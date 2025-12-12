@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   DedicatedServerVmacDetailsType,
   getDedicatedServerVmacDetails,

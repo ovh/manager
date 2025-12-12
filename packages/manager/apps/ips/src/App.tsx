@@ -1,8 +1,12 @@
-import React, { useEffect, useContext } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import React, { useContext, useEffect } from 'react';
+
 import { RouterProvider, createHashRouter } from 'react-router-dom';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { Routes } from './routes/routes';
 
 const queryClient = new QueryClient({

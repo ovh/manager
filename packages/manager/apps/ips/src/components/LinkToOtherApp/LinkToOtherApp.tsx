@@ -1,7 +1,9 @@
 import React from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 type LinkToOtherAppProps = {
   className?: string;

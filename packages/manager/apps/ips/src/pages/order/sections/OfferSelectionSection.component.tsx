@@ -1,39 +1,29 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import {
-  OdsSelect,
-  OdsText,
-  OdsQuantity,
-} from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsQuantity, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { getPrice, getPriceTextFormatted } from '@/components/price';
-import {
-  DEFAULT_PRICING_MODE,
-  IpOffer,
-  MAX_IP_QUANTITY,
-  MIN_IP_QUANTITY,
-} from '../order.constant';
-import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
-import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
+import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
-import {
-  useAdditionalIpPricings,
-  useCatalogLowestPrice,
-} from '@/data/hooks/catalog';
+import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
+import { getPrice, getPriceTextFormatted } from '@/components/price';
+import { useAdditionalIpPricings, useCatalogLowestPrice } from '@/data/hooks/catalog';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
+
+import { DEFAULT_PRICING_MODE, IpOffer, MAX_IP_QUANTITY, MIN_IP_QUANTITY } from '../order.constant';
 import { OrderContext } from '../order.context';
-import {
-  hasAdditionalIpBlockOffer,
-  hasAdditionalIpOffer,
-} from '../order.utils';
+import { hasAdditionalIpBlockOffer, hasAdditionalIpOffer } from '../order.utils';
 
 export const OfferSelectionSection: React.FC = () => {
   const {
@@ -57,11 +47,7 @@ export const OfferSelectionSection: React.FC = () => {
     serviceName: selectedService,
     serviceType: selectedServiceType,
   });
-  const {
-    additionalIpPlanCode,
-    ipBlockPricingList,
-    isLoading,
-  } = useAdditionalIpPricings({
+  const { additionalIpPlanCode, ipBlockPricingList, isLoading } = useAdditionalIpPricings({
     ipVersion,
     region: region || selectedRegion,
     serviceName: selectedService,
@@ -100,7 +86,7 @@ export const OfferSelectionSection: React.FC = () => {
               });
             }}
           >
-            <div className="flex flex-col justify-center min-h-14">
+            <div className="flex min-h-14 flex-col justify-center">
               <OdsQuantity
                 name="additional_ip_quantity"
                 min={MIN_IP_QUANTITY}
@@ -120,20 +106,13 @@ export const OfferSelectionSection: React.FC = () => {
             title={t('additional_ip_block_card_title')}
             className="pt-4"
             description={t('additional_ip_block_card_description')}
-            subtitle={
-              <PriceDescription
-                suffix={t('per_ip_full')}
-                price={ipv4LowestPrice}
-              />
-            }
+            subtitle={<PriceDescription suffix={t('per_ip_full')} price={ipv4LowestPrice} />}
             isSelected={selectedOffer === IpOffer.blockAdditionalIp}
             onClick={() => {
               setSelectedOffer(IpOffer.blockAdditionalIp);
               if (
                 ipBlockPricingList?.length > 0 &&
-                ipBlockPricingList?.every(
-                  (pricing) => pricing.value !== selectedPlanCode,
-                )
+                ipBlockPricingList?.every((pricing) => pricing.value !== selectedPlanCode)
               ) {
                 setSelectedPlanCode(ipBlockPricingList[0].value);
                 setPricingMode(ipBlockPricingList[0].pricingMode);
@@ -147,26 +126,18 @@ export const OfferSelectionSection: React.FC = () => {
             }}
             isLoading={isLoading}
           >
-            <div className="flex flex-col justify-center min-h-14">
+            <div className="flex min-h-14 flex-col justify-center">
               <OdsSelect
-                key={ipBlockPricingList.reduce(
-                  (result, { value }) => result + value,
-                  '',
-                )}
+                key={ipBlockPricingList.reduce((result, { value }) => result + value, '')}
                 name="ip_block_plancode_select"
                 value={selectedPlanCode}
                 onOdsChange={(event) => {
-                  if (
-                    ipBlockPricingList.some(
-                      (pricing) => pricing.value === event.target.value,
-                    )
-                  ) {
+                  if (ipBlockPricingList.some((pricing) => pricing.value === event.target.value)) {
                     setSelectedOffer(IpOffer.blockAdditionalIp);
                     setSelectedPlanCode(event.target.value as string);
                     setPricingMode(
-                      ipBlockPricingList.find(
-                        (p) => p.value === event.target.value,
-                      )?.pricingMode || DEFAULT_PRICING_MODE,
+                      ipBlockPricingList.find((p) => p.value === event.target.value)?.pricingMode ||
+                        DEFAULT_PRICING_MODE,
                     );
                   }
                 }}

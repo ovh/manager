@@ -1,10 +1,13 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { IpCell, IpCellProps } from './IpCell';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
+import '@/test-utils/setupUnitTests';
+
+import { IpCell, IpCellProps } from './IpCell';
 
 const queryClient = new QueryClient();
 /** MOCKS */

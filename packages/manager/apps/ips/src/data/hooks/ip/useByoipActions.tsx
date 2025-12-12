@@ -1,12 +1,14 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   AggregateResponse,
+  SliceResponse,
   getAggregate,
   getSlice,
   postAggregate,
   postSlice,
-  SliceResponse,
 } from '@/data/api';
 import { IpTask } from '@/types';
 
@@ -23,21 +25,18 @@ export function useByoipAggregate({
   onSuccess?: () => void;
   onError?: (error: ApiError) => void;
 }) {
-  const { isLoading, error, data } = useQuery<
-    ApiResponse<AggregateResponse>,
-    ApiError
-  >({
+  const { isLoading, error, data } = useQuery<ApiResponse<AggregateResponse>, ApiError>({
     queryKey: getAggregateQueryKey(ip),
     queryFn: () => getAggregate(ip),
     enabled: !!ip,
     retry: false,
   });
 
-  const { mutate, isPending, error: aggregateError } = useMutation<
-    ApiResponse<IpTask>,
-    ApiError,
-    { aggregationIp: string }
-  >({
+  const {
+    mutate,
+    isPending,
+    error: aggregateError,
+  } = useMutation<ApiResponse<IpTask>, ApiError, { aggregationIp: string }>({
     mutationFn: ({ aggregationIp }) => postAggregate({ ip, aggregationIp }),
     onSuccess,
     onError,
@@ -68,21 +67,18 @@ export function useByoipSlice({
   onError?: (error: ApiError) => void;
   enabled?: boolean;
 }) {
-  const { isLoading, error, data } = useQuery<
-    ApiResponse<SliceResponse>,
-    ApiError
-  >({
+  const { isLoading, error, data } = useQuery<ApiResponse<SliceResponse>, ApiError>({
     queryKey: getSliceQueryKey(ip),
     queryFn: () => getSlice(ip),
     enabled: !!ip && enabled,
     retry: false,
   });
 
-  const { mutate, isPending, error: slicingError } = useMutation<
-    ApiResponse<IpTask>,
-    ApiError,
-    { slicingSize: number }
-  >({
+  const {
+    mutate,
+    isPending,
+    error: slicingError,
+  } = useMutation<ApiResponse<IpTask>, ApiError, { slicingSize: number }>({
     mutationFn: ({ slicingSize }) => postSlice({ ip, slicingSize }),
     onSuccess,
     onError,

@@ -1,12 +1,14 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsSelect, OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import {
-  OdsSelectCustomEvent,
-  OdsSelectChangeEventDetail,
   ODS_SPINNER_SIZE,
+  OdsSelectChangeEventDetail,
+  OdsSelectCustomEvent,
   OdsSelectCustomRendererData,
 } from '@ovhcloud/ods-components';
+import { OdsSelect, OdsSpinner } from '@ovhcloud/ods-components/react';
 
 export type CountrySelectorProps = {
   name: string;
@@ -42,9 +44,7 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({
   const optionRenderingFunction = (data: OdsSelectCustomRendererData) => `
   <div style="display:flex; gap: 8px; align-items: center;">
     <span style="width: 22px; height: 16px; background-size: cover; background-image: url('flags/${data.value.toLowerCase()}.svg')"></span>
-    <span>${t(
-      `region-selector-country-name_${data.value.toUpperCase()}`,
-    )}</span>
+    <span>${t(`region-selector-country-name_${data.value.toUpperCase()}`)}</span>
   </div>
   `;
 

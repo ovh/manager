@@ -1,10 +1,9 @@
 import React from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { isRegionInEu, isRegionInUs } from '@/components/RegionSelector/region-selector.utils';
 import { useCatalogIps } from '@/data/hooks/catalog/useCatalogIps';
-import {
-  isRegionInEu,
-  isRegionInUs,
-} from '@/components/RegionSelector/region-selector.utils';
 import { IpVersion } from '@/types';
 
 export const useIpv6PlanCode = ({
@@ -25,8 +24,6 @@ export const useIpv6PlanCode = ({
   return data?.data?.plans
     ?.map((p) => p.planCode)
     ?.find(
-      (planCode) =>
-        planCode.includes('v6') &&
-        (isUs || planCode.includes(isEu ? 'ripe' : 'arin')),
+      (planCode) => planCode.includes('v6') && (isUs || planCode.includes(isEu ? 'ripe' : 'arin')),
     );
 };

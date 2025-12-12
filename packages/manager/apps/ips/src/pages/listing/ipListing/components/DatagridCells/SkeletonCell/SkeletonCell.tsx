@@ -1,6 +1,9 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import React, { PropsWithChildren, useContext } from 'react';
+
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { ListingContext } from '@/pages/listing/listingContext';
 
 export type SkeletonCellParams = {

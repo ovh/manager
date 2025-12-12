@@ -1,51 +1,62 @@
 import React from 'react';
-import { DEFAULT_PRICING_MODE, IpOffer, Ipv6Options } from './order.constant';
-import { IpVersion, ServiceType } from '@/types';
+
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
+import { IpVersion, ServiceType } from '@/types';
 import { getCountryCode } from '@/utils';
 
-export type OrderContextType = Partial<{
-  ipVersion: IpVersion;
+import { DEFAULT_PRICING_MODE, IpOffer, Ipv6Options } from './order.constant';
+
+export type OrderContextType = {
+  ipVersion?: IpVersion;
   setIpVersion: React.Dispatch<React.SetStateAction<IpVersion>>;
-  selectedService: string;
+  selectedService?: string;
   setSelectedService: React.Dispatch<React.SetStateAction<string>>;
-  selectedServiceType: ServiceType;
+  selectedServiceType?: ServiceType;
   setSelectedServiceType: React.Dispatch<React.SetStateAction<ServiceType>>;
-  selectedOptions: Ipv6Options[];
+  selectedOptions?: Ipv6Options[];
   setSelectedOptions: React.Dispatch<React.SetStateAction<Ipv6Options[]>>;
-  selectedRegion: string;
+  selectedRegion?: string;
   setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
-  selectedOffer: IpOffer;
+  selectedOffer?: IpOffer;
   setSelectedOffer: React.Dispatch<React.SetStateAction<IpOffer>>;
-  selectedPlanCode: string;
+  selectedPlanCode?: string;
   setSelectedPlanCode: React.Dispatch<React.SetStateAction<string>>;
-  pricingMode: string;
+  pricingMode?: string;
   setPricingMode: React.Dispatch<React.SetStateAction<string>>;
-  ipQuantity: number;
+  ipQuantity?: number;
   setIpQuantity: React.Dispatch<React.SetStateAction<number>>;
-  selectedGeolocation: string;
+  selectedGeolocation?: string;
   setSelectedGeolocation: React.Dispatch<React.SetStateAction<string>>;
-  selectedOrganisation: string;
+  selectedOrganisation?: string;
   setSelectedOrganisation: React.Dispatch<React.SetStateAction<string>>;
   disabledServices: string[];
   addDisabledService: (serviceName: string) => void;
-}>;
+};
 
 export const OrderContext = React.createContext<OrderContextType>({
+  setIpVersion: () => {},
+  setSelectedService: () => {},
+  selectedOptions: [],
+  setSelectedOptions: () => {},
+  setSelectedRegion: () => {},
+  setSelectedOffer: () => {},
+  setSelectedPlanCode: () => {},
+  setPricingMode: () => {},
+  setIpQuantity: () => {},
+  setSelectedGeolocation: () => {},
+  setSelectedOrganisation: () => {},
+  setSelectedServiceType: () => {},
   selectedServiceType: ServiceType.unknown,
   ipQuantity: 1,
   pricingMode: DEFAULT_PRICING_MODE,
   disabledServices: [],
+  addDisabledService: () => {},
 });
 
-export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
+export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [ipVersion, setIpVersion] = React.useState(null);
   const [selectedService, setSelectedService] = React.useState(null);
-  const [selectedServiceType, setSelectedServiceType] = React.useState(
-    ServiceType.unknown,
-  );
+  const [selectedServiceType, setSelectedServiceType] = React.useState(ServiceType.unknown);
   const [selectedRegion, setSelectedRegion] = React.useState(null);
   const [selectedOffer, setSelectedOffer] = React.useState(null);
   const [selectedPlanCode, setSelectedPlanCode] = React.useState(null);
@@ -54,9 +65,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
   const [selectedGeolocation, setSelectedGeolocation] = React.useState(null);
   const [selectedOrganisation, setSelectedOrganisation] = React.useState(null);
   const [disabledServices, setDisabledServices] = React.useState([]);
-  const [selectedOptions, setSelectedOptions] = React.useState<Ipv6Options[]>(
-    [],
-  );
+  const [selectedOptions, setSelectedOptions] = React.useState<Ipv6Options[]>([]);
   const { region } = useServiceRegion({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -97,9 +106,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       setSelectedOffer: (newOffer: IpOffer) => {
         const code = getCountryCode(region || selectedRegion);
         setSelectedGeolocation(
-          code === 'gb' && selectedServiceType !== ServiceType.dedicatedCloud
-            ? 'uk'
-            : code,
+          code === 'gb' && selectedServiceType !== ServiceType.dedicatedCloud ? 'uk' : code,
         );
         setSelectedOffer(newOffer);
         if (newOffer === IpOffer.blockAdditionalIp) {
@@ -118,9 +125,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       setSelectedOrganisation,
       disabledServices,
       addDisabledService: (serviceName: string) =>
-        setDisabledServices((serviceList) =>
-          Array.from(new Set([...serviceList, serviceName])),
-        ),
+        setDisabledServices((serviceList) => Array.from(new Set([...serviceList, serviceName]))),
     }),
     [
       ipVersion,
@@ -139,7 +144,5 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
     ],
   );
 
-  return (
-    <OrderContext.Provider value={value}>{children}</OrderContext.Provider>
-  );
+  return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>;
 };

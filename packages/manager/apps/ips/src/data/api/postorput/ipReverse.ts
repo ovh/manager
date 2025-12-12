@@ -20,10 +20,7 @@ export type IpReverseResponseType = {
   reverse: string;
 };
 
-export const updateIpReverseQueryKey = ({
-  ip,
-  ipReverse,
-}: UpdateIpReverseParams) => [
+export const updateIpReverseQueryKey = ({ ip, ipReverse }: UpdateIpReverseParams) => [
   `post/ip/${encodeURIComponent(ip)}/reverse/${encodeURIComponent(ipReverse)}`,
 ];
 
@@ -32,11 +29,8 @@ export const updateIpReverse = async ({
   ipReverse,
   reverse,
 }: UpdateIpReverseParams): Promise<ApiResponse<IpReverseResponseType>> => {
-  return apiClient.v6.post<IpReverseResponseType>(
-    `/ip/${encodeURIComponent(ip)}/reverse`,
-    {
-      ipReverse,
-      reverse,
-    },
-  );
+  return apiClient.v6.post<IpReverseResponseType>(`/ip/${encodeURIComponent(ip)}/reverse`, {
+    ipReverse,
+    reverse,
+  });
 };

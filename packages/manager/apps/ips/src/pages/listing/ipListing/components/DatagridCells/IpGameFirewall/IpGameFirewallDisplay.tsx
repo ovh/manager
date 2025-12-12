@@ -1,17 +1,19 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { IpGameFirewallStateEnum } from '@/data/api';
+import { useGetIpGameFirewall } from '@/data/hooks';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { fromIpToId } from '@/utils';
-import { IpGameFirewallStateEnum } from '@/data/api';
+
 import { BadgeCell } from '../BadgeCell/BadgeCell';
-import { useGetIpGameFirewall } from '@/data/hooks';
 
 export type IpGameFirewallDisplayProps = {
   ip: string;
@@ -30,11 +32,7 @@ export type IpGameFirewallDisplayProps = {
  * @param enabled boolean used to display datas or not
  * @returns React component
  */
-export const IpGameFirewallDisplay = ({
-  ip,
-  ipOnGame,
-  enabled,
-}: IpGameFirewallDisplayProps) => {
+export const IpGameFirewallDisplay = ({ ip, ipOnGame, enabled }: IpGameFirewallDisplayProps) => {
   const id = `gamefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { t } = useTranslation('listing');
   const { trackClick } = useOvhTracking();
@@ -60,10 +58,7 @@ export const IpGameFirewallDisplay = ({
         navigate(
           `${urls.configureGameFirewall
             .replace(urlDynamicParts.parentId, fromIpToId(ip))
-            .replace(
-              urlDynamicParts.id,
-              fromIpToId(ipOnGame),
-            )}?${search.toString()}`,
+            .replace(urlDynamicParts.id, fromIpToId(ipOnGame))}?${search.toString()}`,
         );
       }}
     >
@@ -75,16 +70,14 @@ export const IpGameFirewallDisplay = ({
           trigger={id}
         />
       )}
-      {enabled &&
-        !!ipGameFirewall &&
-        ipGameFirewall.state !== IpGameFirewallStateEnum.OK && (
-          <BadgeCell
-            badgeColor={ODS_BADGE_COLOR.warning}
-            text={t('listingColumnsIpGameFirewallPending')}
-            tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
-            trigger={id}
-          />
-        )}
+      {enabled && !!ipGameFirewall && ipGameFirewall.state !== IpGameFirewallStateEnum.OK && (
+        <BadgeCell
+          badgeColor={ODS_BADGE_COLOR.warning}
+          text={t('listingColumnsIpGameFirewallPending')}
+          tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
+          trigger={id}
+        />
+      )}
     </div>
   );
 };

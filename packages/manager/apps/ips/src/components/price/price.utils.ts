@@ -1,7 +1,7 @@
 import {
+  IntervalUnitType,
   OVH_CURRENCY_BY_SUBSIDIARY,
   OvhSubsidiary,
-  IntervalUnitType,
 } from '@ovh-ux/manager-react-components';
 
 export interface PriceProps {
@@ -27,10 +27,7 @@ export const getPrice = (value: number, tax?: number): number => {
   return valueWithTax / 100000000;
 };
 
-export const convertIntervalPrice = (
-  price: number,
-  intervalUnit: IntervalUnitType,
-): number => {
+export const convertIntervalPrice = (price: number, intervalUnit: IntervalUnitType): number => {
   const conversionRates = {
     [IntervalUnitType.day]: price / 365,
     [IntervalUnitType.month]: price / 12,

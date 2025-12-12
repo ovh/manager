@@ -1,5 +1,6 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
+
 import { ServiceStatus } from '@/types';
 
 export type VPS = {
@@ -35,9 +36,7 @@ export type VpsDatacenter = {
   longName: string;
 };
 
-export const getVpsDatacenter = (
-  serviceName: string,
-): Promise<ApiResponse<VpsDatacenter>> =>
+export const getVpsDatacenter = (serviceName: string): Promise<ApiResponse<VpsDatacenter>> =>
   apiClient.v6.get(`/vps/${serviceName}/datacenter`);
 
 export type VpsServiceInfos = {
@@ -70,12 +69,8 @@ export type VpsServiceInfos = {
   status: ServiceStatus;
 };
 
-export const getVpsServiceInfos = (
-  serviceName: string,
-): Promise<ApiResponse<VpsServiceInfos>> =>
+export const getVpsServiceInfos = (serviceName: string): Promise<ApiResponse<VpsServiceInfos>> =>
   apiClient.v6.get(`/vps/${serviceName}/serviceInfos`);
 
-export const getVpsOrderableIpCountries = (
-  serviceName: string,
-): Promise<ApiResponse<string[]>> =>
+export const getVpsOrderableIpCountries = (serviceName: string): Promise<ApiResponse<string[]>> =>
   apiClient.v6.get(`/vps/${serviceName}/ipCountryAvailable`);

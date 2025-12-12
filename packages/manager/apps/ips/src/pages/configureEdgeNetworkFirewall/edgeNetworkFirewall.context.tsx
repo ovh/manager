@@ -1,19 +1,23 @@
 import React from 'react';
+
 import { useParams } from 'react-router-dom';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import { useQuery } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
+import {
+  IpEdgeFirewallProtocol,
+  IpEdgeFirewallRule,
+  IpEdgeFirewallStateEnum,
+  getIpList,
+} from '@/data/api';
 import {
   useCreateIpEdgeNetworkFirewallRule,
   useGetIpEdgeFirewall,
   useIpEdgeNetworkFirewallRules,
 } from '@/data/hooks';
-import { fromIdToIp, ipFormatter, INVALIDATED_REFRESH_PERIOD } from '@/utils';
-import {
-  getIpList,
-  IpEdgeFirewallProtocol,
-  IpEdgeFirewallRule,
-  IpEdgeFirewallStateEnum,
-} from '@/data/api';
+import { INVALIDATED_REFRESH_PERIOD, fromIdToIp, ipFormatter } from '@/utils';
 
 export const MAX_RULES_NUMBER = 20;
 
@@ -77,9 +81,7 @@ export type EdgeNetworkFirewallContextType = {
   setTmpToggleState: (newToggleState?: boolean) => void;
 };
 
-export const EdgeNetworkFirewallContext = React.createContext<
-  EdgeNetworkFirewallContextType
->({
+export const EdgeNetworkFirewallContext = React.createContext<EdgeNetworkFirewallContextType>({
   rules: [],
   ruleSequenceList: [],
   ip: '',
@@ -122,40 +124,25 @@ export const EdgeFirewallContextProvider: React.FC<{
   const { ipGroup, ipAddress: ipOnFirewall } = ipFormatter(fromIdToIp(id));
   const [newSequence, setNewSequence] = React.useState<number>();
   const [newMode, setNewMode] = React.useState<'permit' | 'deny'>();
-  const [newProtocol, setNewProtocol] = React.useState<
-    IpEdgeFirewallProtocol
-  >();
+  const [newProtocol, setNewProtocol] = React.useState<IpEdgeFirewallProtocol>();
   const [newSource, setNewSource] = React.useState<string>();
   const [newSourcePort, setNewSourcePort] = React.useState<string>();
   const [newDestinationPort, setNewDestinationPort] = React.useState<string>();
   const [newFragments, setNewFragments] = React.useState<boolean>();
-  const [newTcpOption, setNewTcpOption] = React.useState<
-    'established' | 'syn'
-  >();
+  const [newTcpOption, setNewTcpOption] = React.useState<'established' | 'syn'>();
   // It's a state just to let the toggle animate when we try to change its value
   const [tmpToggleState, setTmpToggleState] = React.useState(null);
-  const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] = React.useState<
-    boolean
-  >(false);
-  const [
-    isEnableFirewallModalVisible,
-    setIsEnableFirewallModalVisible,
-  ] = React.useState(false);
-  const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = React.useState<
-    IpEdgeFirewallRule
-  >(null);
+  const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] = React.useState<boolean>(false);
+  const [isEnableFirewallModalVisible, setIsEnableFirewallModalVisible] = React.useState(false);
+  const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] =
+    React.useState<IpEdgeFirewallRule>(null);
   const [sourceError, setSourceError] = React.useState<string>();
   const [sourcePortError, setSourcePortError] = React.useState<string>();
-  const [destinationPortError, setDestinationPortError] = React.useState<
-    string
-  >();
+  const [destinationPortError, setDestinationPortError] = React.useState<string>();
   const [modeError, setModeError] = React.useState<string>();
   const [protocolError, setProtocolError] = React.useState<string>();
 
-  const { data, isLoading: isParentIpLoading } = useQuery<
-    ApiResponse<string[]>,
-    ApiError
-  >({
+  const { data, isLoading: isParentIpLoading } = useQuery<ApiResponse<string[]>, ApiError>({
     queryKey: ['get/ipList', ipOnFirewall],
     queryFn: () => getIpList({ ip: ipOnFirewall }),
     retry: false,
@@ -170,9 +157,7 @@ export const EdgeFirewallContextProvider: React.FC<{
     enabled: !!ipOnFirewall && !isParentIpLoading,
   });
 
-  const hasNoFirewall = React.useMemo(() => ipEdgeFirewall === null, [
-    ipEdgeFirewall,
-  ]);
+  const hasNoFirewall = React.useMemo(() => ipEdgeFirewall === null, [ipEdgeFirewall]);
 
   const hideNewRuleRow = React.useCallback(() => {
     setNewSequence(undefined);
@@ -232,10 +217,7 @@ export const EdgeFirewallContextProvider: React.FC<{
     hideNewRuleRow,
     showNewRuleRow: React.useCallback(() => setIsNewRuleRowDisplayed(true), []),
     isEnableFirewallModalVisible,
-    showEnableFirewallModal: React.useCallback(
-      () => setIsEnableFirewallModalVisible(true),
-      [],
-    ),
+    showEnableFirewallModal: React.useCallback(() => setIsEnableFirewallModalVisible(true), []),
     hideEnableFirewallModal: React.useCallback(() => {
       setIsEnableFirewallModalVisible(false);
       setTmpToggleState(undefined);
@@ -246,10 +228,7 @@ export const EdgeFirewallContextProvider: React.FC<{
       (rule: IpEdgeFirewallRule) => setConfirmDeleteModalOpen(rule),
       [],
     ),
-    hideConfirmDeleteModal: React.useCallback(
-      () => setConfirmDeleteModalOpen(null),
-      [],
-    ),
+    hideConfirmDeleteModal: React.useCallback(() => setConfirmDeleteModalOpen(null), []),
     createNewRule,
     setNewProtocol: React.useCallback((protocol?: IpEdgeFirewallProtocol) => {
       setNewProtocol(protocol);

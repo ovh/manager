@@ -57,6 +57,4 @@ const countryCodeByRegion = {
 };
 
 export const getCountryCode = (region?: string) =>
-  Object.entries(countryCodeByRegion).find(([regionPart]) =>
-    region?.includes(regionPart),
-  )?.[1];
+  Object.entries(countryCodeByRegion).find(([regionPart]) => region?.includes(regionPart))?.[1];

@@ -1,17 +1,19 @@
-import { useQueryClient, useMutation } from '@tanstack/react-query';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import ipaddr from 'ipaddr.js';
+import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import {
+  IpEdgeFirewallProtocol,
   getIpEdgeFirewallQueryKey,
   getIpEdgeNetworkFirewallRuleListQueryKey,
-  IpEdgeFirewallProtocol,
   postIpEdgeFirewall,
   postIpEdgeNetworkFirewallRule,
 } from '@/data/api';
-import { isValidIpv4, isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
+import { TRANSLATION_NAMESPACES, isValidIpv4, isValidIpv4Block } from '@/utils';
 
 export const IP_EDGE_FIREWALL_PORT_MIN = 0;
 export const IP_EDGE_FIREWALL_PORT_MAX = 65535;
@@ -23,10 +25,7 @@ export const hasPortRangeError = (port?: string) => {
 
   const portNumber = parseInt(port, 10);
 
-  return (
-    portNumber < IP_EDGE_FIREWALL_PORT_MIN ||
-    portNumber > IP_EDGE_FIREWALL_PORT_MAX
-  );
+  return portNumber < IP_EDGE_FIREWALL_PORT_MIN || portNumber > IP_EDGE_FIREWALL_PORT_MAX;
 };
 
 export const hasDestinationPortLowerThanSourcePortError = ({
@@ -55,9 +54,7 @@ export const hasSourceError = (source?: string) => {
     return true;
   }
 
-  return source.includes('/')
-    ? !isValidIpv4Block(source)
-    : !ipaddr.IPv4.isValid(source);
+  return source.includes('/') ? !isValidIpv4Block(source) : !ipaddr.IPv4.isValid(source);
 };
 
 export type CreateFirewallRuleParams = {
@@ -177,8 +174,7 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
         ipOnFirewall,
         action,
         protocol,
-        destinationPort:
-          destinationPort && !fragments ? parseInt(destinationPort, 10) : null,
+        destinationPort: destinationPort && !fragments ? parseInt(destinationPort, 10) : null,
         sequence,
         source: source && !source.includes('/') ? `${source}/32` : source,
         sourcePort: sourcePort && !fragments ? parseInt(sourcePort, 10) : null,

@@ -1,4 +1,5 @@
 import { ipFormatter } from '@/utils';
+
 import { useGetIpVmacWithIp } from './useGetIpVmacWithIp';
 
 export type UseIpHasVmacParams = {
@@ -7,11 +8,7 @@ export type UseIpHasVmacParams = {
   enabled?: boolean;
 };
 
-export const useIpHasVmac = ({
-  serviceName,
-  ip,
-  enabled,
-}: UseIpHasVmacParams) => {
+export const useIpHasVmac = ({ serviceName, ip, enabled }: UseIpHasVmacParams) => {
   const { vmacsWithIp, isLoading } = useGetIpVmacWithIp({
     serviceName,
     enabled,

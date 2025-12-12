@@ -1,25 +1,24 @@
 import React from 'react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import '@testing-library/jest-dom';
 import { act, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 import {
   ShellContext,
   ShellContextType,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenuItem } from '@ovh-ux/manager-react-components';
-import { IpActionsCell, IpActionsCellParams } from './IpActionsCell';
-import { ListingContext } from '@/pages/listing/listingContext';
-import '@testing-library/jest-dom';
-import { IpTypeEnum } from '@/data/constants';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import {
-  IpAntihackType,
-  IpSpamType,
-  IpSpamStateEnum,
-  IpAntihackStateEnum,
-} from '@/data/api';
+import { IpAntihackStateEnum, IpAntihackType, IpSpamStateEnum, IpSpamType } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
+import { ListingContext } from '@/pages/listing/listingContext';
+
+import { IpActionsCell, IpActionsCellParams } from './IpActionsCell';
 
 /** TEST CONSTANTS */
 const TEST_IPS = {
@@ -171,9 +170,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
+  const original = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock() }),
@@ -243,9 +240,7 @@ const renderComponent = (
 
   // Use cached context synchronously - it's already initialized in beforeAll
   if (!cachedShellContext) {
-    throw new Error(
-      'Shell context not initialized. Call initShellContext in beforeAll hook.',
-    );
+    throw new Error('Shell context not initialized. Call initShellContext in beforeAll hook.');
   }
 
   return renderWithShellContext(params, listingContext);
@@ -281,7 +276,7 @@ const setupDefaultMocks = () => {
   });
 };
 
-const setupIpDetailsMock = (overrides?: Partial<typeof ipDetailsList[0]>) => {
+const setupIpDetailsMock = (overrides?: Partial<(typeof ipDetailsList)[0]>) => {
   useGetIpdetailsMock.mockReturnValue({
     ipDetails: overrides
       ? { ...ipDetailsList[MOCK_DATA_INDICES.DEFAULT_IPV4], ...overrides }
@@ -321,15 +316,9 @@ const setupAlertsMock = (overrides?: {
 };
 
 const getMenuItem = (container: HTMLElement, menuItemId: number) =>
-  container.querySelector(
-    `[data-testid="menu-item-${menuItemId}"]`,
-  ) as HTMLElement | null;
+  container.querySelector(`[data-testid="menu-item-${menuItemId}"]`);
 
-const expectMenuItemVisible = (
-  container: HTMLElement,
-  menuItemId: number,
-  label?: string,
-) => {
+const expectMenuItemVisible = (container: HTMLElement, menuItemId: number, label?: string) => {
   const menuItem = getMenuItem(container, menuItemId);
   expect(menuItem).toBeInTheDocument();
   if (label) {
@@ -338,10 +327,7 @@ const expectMenuItemVisible = (
   return menuItem;
 };
 
-const expectMenuItemNotVisible = (
-  container: HTMLElement,
-  menuItemId: number,
-) => {
+const expectMenuItemNotVisible = (container: HTMLElement, menuItemId: number) => {
   const menuItem = getMenuItem(container, menuItemId);
   expect(menuItem).not.toBeInTheDocument();
 };
@@ -355,13 +341,8 @@ const expectMenuItemDisabled = (container: HTMLElement, menuItemId: number) => {
   expect(menuItem).toHaveAttribute('data-disabled', 'true');
 };
 
-const expectActionMenuDisabled = (
-  container: HTMLElement,
-  disabled: boolean,
-) => {
-  const actionMenu = container.querySelector(
-    '[data-testid*="action-menu-actions-"]',
-  );
+const expectActionMenuDisabled = (container: HTMLElement, disabled: boolean) => {
+  const actionMenu = container.querySelector('[data-testid*="action-menu-actions-"]');
   if (disabled) {
     expect(actionMenu).toHaveAttribute('data-disabled', 'true');
   } else {
@@ -418,9 +399,7 @@ describe('IpActionsCell Component', () => {
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
-      const actionMenu = container.querySelector(
-        '[data-testid*="action-menu-actions-"]',
-      );
+      const actionMenu = container.querySelector('[data-testid*="action-menu-actions-"]');
       expect(actionMenu).toBeInTheDocument();
       expectActionMenuDisabled(container, false);
     });
@@ -822,10 +801,7 @@ describe('IpActionsCell Component', () => {
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_ALTERNATIVE });
 
-      const menuItem = getMenuItem(
-        container,
-        MENU_ITEM_IDS.TERMINATE_ADDITIONAL,
-      );
+      const menuItem = getMenuItem(container, MENU_ITEM_IDS.TERMINATE_ADDITIONAL);
       expect(menuItem).toBeInTheDocument();
       expect(menuItem?.getAttribute('data-label')).toContain('Additional IP');
     });
@@ -874,9 +850,7 @@ describe('IpActionsCell Component', () => {
       await waitFor(
         () => {
           expect(navigateMockFn).toHaveBeenCalled();
-          expect(navigateMockFn.mock.calls[0][0]).toContain(
-            'configure-reverse-dns',
-          );
+          expect(navigateMockFn.mock.calls[0][0]).toContain('configure-reverse-dns');
         },
         { timeout: TEST_TIMEOUT },
       );
@@ -941,9 +915,7 @@ describe('IpActionsCell Component', () => {
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
-      const actionMenu = container.querySelector(
-        '[data-testid*="action-menu"]',
-      );
+      const actionMenu = container.querySelector('[data-testid*="action-menu"]');
       expect(actionMenu).toBeInTheDocument();
     });
 
@@ -955,9 +927,7 @@ describe('IpActionsCell Component', () => {
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
-      const actionMenu = container.querySelector(
-        '[data-testid*="action-menu"]',
-      );
+      const actionMenu = container.querySelector('[data-testid*="action-menu"]');
       expect(actionMenu).toBeInTheDocument();
     });
 
@@ -972,9 +942,7 @@ describe('IpActionsCell Component', () => {
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_ALTERNATIVE });
 
-      const actionMenu = container.querySelector(
-        '[data-testid*="action-menu"]',
-      );
+      const actionMenu = container.querySelector('[data-testid*="action-menu"]');
       expect(actionMenu).toBeInTheDocument();
     });
 

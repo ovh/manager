@@ -1,19 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
+
 import { Outlet } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { ODS_SPINNER_SIZE, ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
-import {
-  DataGridTextCell,
-  Datagrid,
-  DatagridColumn,
-} from '@ovh-ux/manager-react-components';
-import { useGetOrganisationsDetails } from '@/data/hooks/organisation';
-import {
-  OrganisationsActionsCell,
-  OrganisationsAddressCell,
-} from '../DatagridCells';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { DataGridTextCell, Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { OrgDetails } from '@/data/api';
+import { useGetOrganisationsDetails } from '@/data/hooks/organisation';
+
+import { OrganisationsActionsCell, OrganisationsAddressCell } from '../DatagridCells';
 
 export const ManageOrganisationsDatagrid: React.FC = () => {
   const { t } = useTranslation('manage-organisations');
@@ -45,39 +44,29 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
       {
         id: 'organisationId',
         label: t('manageOrganisationsTabOrganisaton'),
-        cell: (org: OrgDetails) => (
-          <DataGridTextCell>{org?.organisationId}</DataGridTextCell>
-        ),
+        cell: (org: OrgDetails) => <DataGridTextCell>{org?.organisationId}</DataGridTextCell>,
       },
       {
         id: 'type',
         label: t('manageOrganisationsTabType'),
-        cell: (org: OrgDetails) => (
-          <DataGridTextCell>{org?.registry}</DataGridTextCell>
-        ),
+        cell: (org: OrgDetails) => <DataGridTextCell>{org?.registry}</DataGridTextCell>,
       },
       {
         id: 'name',
         label: t('manageOrganisationsTabSurname'),
         cell: (org: OrgDetails) => (
-          <DataGridTextCell>
-            {`${org?.firstname} ${org?.lastname}`}
-          </DataGridTextCell>
+          <DataGridTextCell>{`${org?.firstname} ${org?.lastname}`}</DataGridTextCell>
         ),
       },
       {
         id: 'email',
         label: t('manageOrganisationsTabEmail'),
-        cell: (org: OrgDetails) => (
-          <DataGridTextCell>{org?.abuse_mailbox}</DataGridTextCell>
-        ),
+        cell: (org: OrgDetails) => <DataGridTextCell>{org?.abuse_mailbox}</DataGridTextCell>,
       },
       {
         id: 'phone',
         label: t('manageOrganisationsTabPhone'),
-        cell: (org: OrgDetails) => (
-          <DataGridTextCell>{org?.phone}</DataGridTextCell>
-        ),
+        cell: (org: OrgDetails) => <DataGridTextCell>{org?.phone}</DataGridTextCell>,
       },
       {
         id: 'address',
@@ -110,7 +99,7 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
       ) : (
         <>
           <Datagrid
-            className="pb-[200px] -mx-6"
+            className="-mx-6 pb-[200px]"
             size={ODS_TABLE_SIZE.sm}
             columns={columns}
             items={paginatedOrgList}

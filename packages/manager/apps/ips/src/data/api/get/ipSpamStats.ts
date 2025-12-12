@@ -21,9 +21,7 @@ export type IpSpamStatType = {
 };
 
 export const getIpSpamStatsQueryKey = (params: GetIpSpamStatsParams) => [
-  `get/ip/${encodeURIComponent(params.ip)}/spam/${encodeURIComponent(
-    params.ipSpamming,
-  )}/stats`,
+  `get/ip/${encodeURIComponent(params.ip)}/spam/${encodeURIComponent(params.ipSpamming)}/stats`,
 ];
 
 /**

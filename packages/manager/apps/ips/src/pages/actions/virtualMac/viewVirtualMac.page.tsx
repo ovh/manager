@@ -1,16 +1,17 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { useIpHasVmac, useGetIpVmacDetails } from '@/data/hooks/ip';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { useGetIpVmacDetails, useIpHasVmac } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
 
 export default function ViewVirtualMacModal() {
@@ -30,15 +31,14 @@ export default function ViewVirtualMacModal() {
     enabled: Boolean(service),
   });
 
-  const {
-    dedicatedServerVmacWithIpResponse,
-    isLoading: isVmacWithIpLoading,
-  } = useGetIpVmacDetails({
-    serviceName: service,
-    ip,
-    macAddress,
-    enabled: macAddress !== '' && Boolean(service),
-  });
+  const { dedicatedServerVmacWithIpResponse, isLoading: isVmacWithIpLoading } = useGetIpVmacDetails(
+    {
+      serviceName: service,
+      ip,
+      macAddress,
+      enabled: macAddress !== '' && Boolean(service),
+    },
+  );
 
   useEffect(() => {
     if (ipvmac) {
@@ -49,9 +49,7 @@ export default function ViewVirtualMacModal() {
 
   useEffect(() => {
     if (dedicatedServerVmacWithIpResponse) {
-      setVirtualMachineName(
-        dedicatedServerVmacWithIpResponse?.virtualMachineName,
-      );
+      setVirtualMachineName(dedicatedServerVmacWithIpResponse?.virtualMachineName);
     }
   }, [dedicatedServerVmacWithIpResponse]);
 
@@ -97,13 +95,13 @@ export default function ViewVirtualMacModal() {
       isLoading={isVmacLoading || isVmacWithIpLoading}
     >
       <div>
-        <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
           {t('viewVirtualMacQuestion')}
         </OdsText>
         {fields.map(({ label, value, key }) => (
-          <div className="block mb-2">
+          <div className="mb-2 block">
             <OdsText
-              className="font-semibold text-right min-w-[200px]"
+              className="min-w-[200px] text-right font-semibold"
               key={key}
               preset={ODS_TEXT_PRESET.heading6}
             >

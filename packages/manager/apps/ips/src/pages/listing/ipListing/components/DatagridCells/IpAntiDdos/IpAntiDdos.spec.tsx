@@ -1,14 +1,18 @@
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { ListingContext } from '@/pages/listing/listingContext';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpAntiDdos, IpAntiDdosProps } from './IpAntiDdos';
 import { IpMitigationStateEnum, IpMitigationType } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { getOdsBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpAntiDdos, IpAntiDdosProps } from './IpAntiDdos';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -59,9 +63,7 @@ describe('IpAntiDdos Component', async () => {
     });
     await waitFor(() => {
       expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
-      expect(
-        getByText(`listingColumnsIpAntiDDosAutomaticTooltip`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsIpAntiDDosAutomaticTooltip`)).toBeDefined();
     });
   });
 
@@ -87,9 +89,7 @@ describe('IpAntiDdos Component', async () => {
     });
     await waitFor(() => {
       expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
-      expect(
-        getByText(`listingColumnsIpAntiDDosPermanentTooltip`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsIpAntiDDosPermanentTooltip`)).toBeDefined();
     });
   });
 
@@ -115,9 +115,7 @@ describe('IpAntiDdos Component', async () => {
     });
     await waitFor(() => {
       expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.success);
-      expect(
-        getByText(`listingColumnsIpAntiDDosInActionTooltip`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsIpAntiDDosInActionTooltip`)).toBeDefined();
     });
   });
 

@@ -1,15 +1,16 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
+
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
-import {
-  ODS_ICON_NAME,
-  OdsInput,
-  OdsInputChangeEventDetail,
-} from '@ovhcloud/ods-components';
+import { describe, expect, it, vi } from 'vitest';
+
+import { ODS_ICON_NAME, OdsInput, OdsInputChangeEventDetail } from '@ovhcloud/ods-components';
+
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-import { EditInline, EditInlineProps } from './edit-inline.component';
+
 import { getButtonByIcon } from '@/test-utils';
+import '@/test-utils/setupUnitTests';
+
+import { EditInline, EditInlineProps } from './edit-inline.component';
 
 /** RENDER */
 const renderComponent = (params: EditInlineProps, value: string) => {
@@ -42,7 +43,7 @@ describe('EditInline Component', async () => {
       iconName: ODS_ICON_NAME.check,
     });
 
-    const editInput = (getByTestId('edit-inline-input') as unknown) as OdsInput;
+    const editInput = getByTestId('edit-inline-input') as unknown as OdsInput;
 
     act(() => {
       editInput.odsChange.emit({

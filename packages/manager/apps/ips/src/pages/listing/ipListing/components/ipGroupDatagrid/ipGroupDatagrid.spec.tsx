@@ -1,13 +1,12 @@
-import '@/test-utils/setupUnitTests';
 import React, { MutableRefObject } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Row } from '@tanstack/react-table';
-import ipReverseList from '@/__mocks__/ip/get-ip-reverse-for-block.json';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpGroupDatagrid } from './ipGroupDatagrid';
-import { VmacWithIpType } from '@/data/hooks/ip';
+import ipReverseList from '@/__mocks__/ip/get-ip-reverse-for-block.json';
 import {
   IpEdgeFirewallStateEnum,
   IpEdgeFirewallType,
@@ -17,6 +16,10 @@ import {
   IpMitigationType,
   MacAddressTypeEnum,
 } from '@/data/api';
+import { VmacWithIpType } from '@/data/hooks/ip';
+import '@/test-utils/setupUnitTests';
+
+import { IpGroupDatagrid } from './ipGroupDatagrid';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -102,10 +105,7 @@ vi.mock('../DatagridCells', () => ({
 /** RENDER */
 const renderComponent = () => {
   const row = { original: { ip: '123.123.123.160/30' } } as Row<{ ip: string }>;
-  const parentHeaders: MutableRefObject<Record<
-    string,
-    HTMLTableCellElement
-  >> = {
+  const parentHeaders: MutableRefObject<Record<string, HTMLTableCellElement>> = {
     current: {
       ip: {
         clientWidth: 101,

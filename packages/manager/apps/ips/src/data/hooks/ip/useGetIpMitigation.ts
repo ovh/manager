@@ -1,9 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  ApiError,
-  ApiResponse,
-  IcebergFetchResultV6,
-} from '@ovh-ux/manager-core-api';
+
+import { ApiError, ApiResponse, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import {
   IpMitigationType,
   getIpMitigation,
@@ -18,14 +16,13 @@ export type UseGetIpMitigationParams = {
   enabled?: boolean;
 };
 
-export const useGetIpMitigation = ({
-  ip,
-  enabled = true,
-}: UseGetIpMitigationParams) => {
-  const { data: ipMitigationResponse, isLoading, isError, error } = useQuery<
-    IcebergFetchResultV6<IpMitigationType>,
-    ApiError
-  >({
+export const useGetIpMitigation = ({ ip, enabled = true }: UseGetIpMitigationParams) => {
+  const {
+    data: ipMitigationResponse,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<IcebergFetchResultV6<IpMitigationType>, ApiError>({
     queryKey: getIpMitigationQueryKey({ ip }),
     queryFn: async () => {
       try {
@@ -61,10 +58,12 @@ export const useGetIpMitigationWithoutIceberg = ({
 }: UseGetIpMitigationParams) => {
   const { ipGroup, ipAddress } = ipFormatter(ip);
   const ipBlockip = ipGroup;
-  const { data: ipMitigationResponse, isLoading, isError, error } = useQuery<
-    ApiResponse<IpMitigationType>,
-    ApiError
-  >({
+  const {
+    data: ipMitigationResponse,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<ApiResponse<IpMitigationType>, ApiError>({
     queryKey: getIpMitigationWithoutIcebergQueryKey({
       ipBlockip,
       ip: ipAddress,

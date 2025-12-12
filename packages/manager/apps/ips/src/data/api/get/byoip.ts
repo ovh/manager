@@ -1,4 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { IpTask } from '@/types';
 
 export type TokenParam = { campus: string };
@@ -9,9 +10,7 @@ export const getTokenQueryKey = (params: TokenParam) => [
   `/me/bringYourOwnIp/token?campus=${encodeURIComponent(params.campus)}`,
 ];
 
-export const getTokens = async (
-  params: TokenParam,
-): Promise<ApiResponse<TokenResponse>> =>
+export const getTokens = async (params: TokenParam): Promise<ApiResponse<TokenResponse>> =>
   apiClient.v6.get<TokenResponse>(
     `/me/bringYourOwnIp/token?campus=${encodeURIComponent(params.campus)}`,
   );
@@ -22,23 +21,12 @@ export type AggregateResponse = {
 }[];
 
 export const getAggregate = (ip: string) =>
-  apiClient.v6.get<AggregateResponse>(
-    `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`,
-  );
+  apiClient.v6.get<AggregateResponse>(`/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`);
 
-export const postAggregate = ({
-  ip,
-  aggregationIp,
-}: {
-  ip: string;
-  aggregationIp: string;
-}) =>
-  apiClient.v6.post<IpTask>(
-    `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`,
-    {
-      aggregationIp,
-    },
-  );
+export const postAggregate = ({ ip, aggregationIp }: { ip: string; aggregationIp: string }) =>
+  apiClient.v6.post<IpTask>(`/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`, {
+    aggregationIp,
+  });
 
 export type SliceResponse = {
   slicingSize: number;
@@ -46,20 +34,9 @@ export type SliceResponse = {
 }[];
 
 export const getSlice = (ip: string) =>
-  apiClient.v6.get<SliceResponse>(
-    `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`,
-  );
+  apiClient.v6.get<SliceResponse>(`/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`);
 
-export const postSlice = ({
-  ip,
-  slicingSize,
-}: {
-  ip: string;
-  slicingSize: number;
-}) =>
-  apiClient.v6.post<IpTask>(
-    `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`,
-    {
-      slicingSize,
-    },
-  );
+export const postSlice = ({ ip, slicingSize }: { ip: string; slicingSize: number }) =>
+  apiClient.v6.post<IpTask>(`/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`, {
+    slicingSize,
+  });

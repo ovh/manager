@@ -1,16 +1,13 @@
 import React from 'react';
+
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
+
 import { IpEdgeFirewallRule, IpEdgeFirewallRuleState } from '@/data/api';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
-export const ActionColumn = (
-  rule: IpEdgeFirewallRule & { isNew?: boolean },
-) => {
+export const ActionColumn = (rule: IpEdgeFirewallRule & { isNew?: boolean }) => {
   const {
     newProtocol,
     newSequence,

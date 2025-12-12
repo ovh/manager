@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { getIpDetailsQueryKey, upsertIpDescription } from '@/data/api';
 import { ipFormatter } from '@/utils';
 

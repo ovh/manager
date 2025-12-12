@@ -1,13 +1,13 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
-import { useGetCatalog, CONFIG_NAME } from '@/data/hooks/catalog/useGetCatalog';
+import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+import { CONFIG_NAME, useGetCatalog } from '@/data/hooks/catalog/useGetCatalog';
+
 import { ByoipContext } from '../Byoip.context';
 import { getConfigValues } from '../Byoip.utils';
 

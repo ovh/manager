@@ -1,15 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  ApiError,
-  ApiResponse,
-  IcebergFetchResultV6,
-} from '@ovh-ux/manager-core-api';
+
+import { ApiError, ApiResponse, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import {
   IpReverseType,
   getIcebergIpReverse,
+  getIcebergIpReverseQueryKey,
   getIpReverse,
   getIpReverseQueryKey,
-  getIcebergIpReverseQueryKey,
 } from '@/data/api';
 import { ipFormatter } from '@/utils';
 
@@ -18,10 +16,7 @@ export type UseGetIcebergIpReverseParams = {
   enabled?: boolean;
 };
 
-export const useGetIcebergIpReverse = ({
-  ip,
-  enabled = true,
-}: UseGetIcebergIpReverseParams) => {
+export const useGetIcebergIpReverse = ({ ip, enabled = true }: UseGetIcebergIpReverseParams) => {
   const { data: ipReverseResponse, ...query } = useQuery<
     IcebergFetchResultV6<IpReverseType>,
     ApiError
@@ -64,9 +59,7 @@ export const useGetIpReverse = ({
         return response;
       } catch (err) {
         if ((err as ApiError)?.response?.status === 404) {
-          return { data: { ipReverse, reverse: '' } } as ApiResponse<
-            IpReverseType
-          >;
+          return { data: { ipReverse, reverse: '' } } as ApiResponse<IpReverseType>;
         }
         throw err;
       }

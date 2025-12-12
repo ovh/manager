@@ -1,13 +1,17 @@
 import React from 'react';
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
-import { handleClick } from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
+
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
+import { handleClick } from '@ovh-ux/manager-react-components';
+
 import {
   RegionFilter,
+  isRegionInAp,
   isRegionInCa,
   isRegionInEu,
   isRegionInUs,
-  isRegionInAp,
 } from './region-selector.utils';
 
 export type RegionTabsProps = {
@@ -37,10 +41,7 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
 
   return (
     <OdsTabs className="mb-4">
-      <OdsTab
-        isSelected={currentFilter === RegionFilter.all}
-        {...handleClick(removeFilter)}
-      >
+      <OdsTab isSelected={currentFilter === RegionFilter.all} {...handleClick(removeFilter)}>
         {t('region-selector-all-locations')}
       </OdsTab>
       {hasEu && (

@@ -1,19 +1,24 @@
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import {
-  initShellContext,
   ShellContext,
   ShellContextType,
+  initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ListingContext } from '@/pages/listing/listingContext';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpGameFirewall, IpGameFirewallProps } from './IpGameFirewall';
 import { IpGameFirewallStateEnum, IpGameFirewallType } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { getOdsBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpGameFirewall, IpGameFirewallProps } from './IpGameFirewall';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -64,9 +69,7 @@ describe.skip('IpGameFirewall Component', async () => {
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
-      ipGameFirewall: [
-        { state: IpGameFirewallStateEnum.OK },
-      ] as IpGameFirewallType[],
+      ipGameFirewall: [{ state: IpGameFirewallStateEnum.OK }] as IpGameFirewallType[],
       isLoading: false,
       error: undefined,
     });
@@ -105,9 +108,7 @@ describe.skip('IpGameFirewall Component', async () => {
     });
     await waitFor(() => {
       expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
-      expect(
-        getByText(`listingColumnsIpGameFirewallPendingTooltip`),
-      ).toBeDefined();
+      expect(getByText(`listingColumnsIpGameFirewallPendingTooltip`)).toBeDefined();
     });
   });
 
@@ -139,9 +140,7 @@ describe.skip('IpGameFirewall Component', async () => {
       isHidden: true,
     });
     await waitFor(() => {
-      expect(
-        queryByText(`listingColumnsIpGameFirewallPendingTooltip`),
-      ).toBeNull();
+      expect(queryByText(`listingColumnsIpGameFirewallPendingTooltip`)).toBeNull();
     });
   });
 
@@ -170,9 +169,7 @@ describe.skip('IpGameFirewall Component', async () => {
       isHidden: true,
     });
     await waitFor(() => {
-      expect(
-        queryByText(`listingColumnsIpGameFirewallPendingTooltip`),
-      ).toBeNull();
+      expect(queryByText(`listingColumnsIpGameFirewallPendingTooltip`)).toBeNull();
     });
   });
 });

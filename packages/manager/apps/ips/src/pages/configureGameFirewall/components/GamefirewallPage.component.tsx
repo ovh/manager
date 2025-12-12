@@ -1,38 +1,34 @@
 import React from 'react';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
   ErrorBanner,
   GuideButton,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
 import { urls } from '@/routes/routes.constant';
 import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
+
+import { GameFirewallContext } from '../gamefirewall.context';
+import { DeleteRuleModal } from './DeleteRuleModal.component';
 import { RuleDatagrid } from './RuleDatagrid.component';
 import { StrategyModal } from './StrategyModal.component';
-import { GameFirewallContext } from '../gamefirewall.context';
 import { TopBar } from './TopBar.component';
-import { DeleteRuleModal } from './DeleteRuleModal.component';
 
 export default function GameFirewallPage() {
-  const {
-    ip,
-    ipOnGame,
-    isError,
-    isRulesError,
-    rulesError,
-    error,
-  } = React.useContext(GameFirewallContext);
+  const { ip, ipOnGame, isError, isRulesError, rulesError, error } =
+    React.useContext(GameFirewallContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.gameFirewall,
     NAMESPACES.ACTIONS,
@@ -95,9 +91,7 @@ export default function GameFirewallPage() {
                       actionType: 'action',
                       buttonType: ButtonType.link,
                       location: PageLocation.page,
-                      actions: [
-                        `go-to_${links.configureGameFirewall.trackingLabel}`,
-                      ],
+                      actions: [`go-to_${links.configureGameFirewall.trackingLabel}`],
                     });
                   },
                 },
@@ -107,8 +101,8 @@ export default function GameFirewallPage() {
         }}
         message={<Notifications />}
       >
-        <OdsText className="block mb-3">{t('description')}</OdsText>
-        <OdsText className="block mb-3">{t('subDescription')}</OdsText>
+        <OdsText className="mb-3 block">{t('description')}</OdsText>
+        <OdsText className="mb-3 block">{t('subDescription')}</OdsText>
         <TopBar />
         <RuleDatagrid />
       </BaseLayout>

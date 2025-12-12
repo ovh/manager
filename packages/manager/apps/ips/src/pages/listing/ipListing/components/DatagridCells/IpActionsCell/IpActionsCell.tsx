@@ -1,34 +1,40 @@
 import React, { useContext, useEffect, useState } from 'react';
+
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import ipaddr from 'ipaddr.js';
 import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import ipaddr from 'ipaddr.js';
-import { urlDynamicParts, urls } from '@/routes/routes.constant';
-import { fromIpToId, ipFormatter } from '@/utils';
+
 import { IpTypeEnum } from '@/data/constants';
-import { ListingContext } from '@/pages/listing/listingContext';
-import { isGameFirewallEnabled } from '../enableCellsUtils';
 import {
-  useGetIpdetails,
-  useGetIpGameFirewall,
-  useIpHasForcedMitigation,
   useGetAttachedServices,
-  useIpHasVmac,
+  useGetIpGameFirewall,
+  useGetIpdetails,
   useIpHasAlerts,
+  useIpHasForcedMitigation,
+  useIpHasVmac,
 } from '@/data/hooks';
 import {
   canAggregateByoipIp,
   canSliceByoipIp,
   canTerminateByoipIp,
 } from '@/pages/byoip/Byoip.utils';
+import { ListingContext } from '@/pages/listing/listingContext';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import { fromIpToId, ipFormatter } from '@/utils';
+
+import { isGameFirewallEnabled } from '../enableCellsUtils';
 
 export type IpActionsCellParams = {
   ip: string;
@@ -85,17 +91,9 @@ export type IpActionsCellParams = {
     display => nothing + parent IP
  */
 
-export const IpActionsCell = ({
-  parentIpGroup,
-  ip,
-  isByoipSlice = false,
-}: IpActionsCellParams) => {
-  const {
-    expiredIps,
-    onGoingCreatedIps,
-    onGoingSlicedIps,
-    onGoingAggregatedIps,
-  } = useContext(ListingContext);
+export const IpActionsCell = ({ parentIpGroup, ip, isByoipSlice = false }: IpActionsCellParams) => {
+  const { expiredIps, onGoingCreatedIps, onGoingSlicedIps, onGoingAggregatedIps } =
+    useContext(ListingContext);
   const { shell } = useContext(ShellContext);
   const [vrackPage, setVrackPage] = useState('');
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
@@ -137,11 +135,7 @@ export const IpActionsCell = ({
     if (!serviceName) return;
     const fetchUrl = async () => {
       try {
-        const response = await shell.navigation.getURL(
-          'dedicated',
-          `#/vrack/${serviceName}`,
-          {},
-        );
+        const response = await shell.navigation.getURL('dedicated', `#/vrack/${serviceName}`, {});
         setVrackPage(response as string);
       } catch {
         setVrackPage('#');
@@ -151,8 +145,7 @@ export const IpActionsCell = ({
   }, [serviceName, shell.navigation]);
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
-  const enabledGetGameFirewall =
-    !isIpExpired && !isLoading && isGameFirewallEnabled(ipDetails);
+  const enabledGetGameFirewall = !isIpExpired && !isLoading && isGameFirewallEnabled(ipDetails);
 
   // Get game firewall info
   const { ipGameFirewall } = useGetIpGameFirewall({
@@ -172,17 +165,12 @@ export const IpActionsCell = ({
       label: ipDetails?.description
         ? t('listingActionEditDescription')
         : t('listingActionAddDescription'),
-      trackingLabel: ipDetails?.description
-        ? 'edit_description'
-        : 'add_description',
+      trackingLabel: ipDetails?.description ? 'edit_description' : 'add_description',
       onClick: () =>
         navigate(
           `${urls.upsertDescription
             .replace(urlDynamicParts.parentId, parentId)
-            .replace(
-              urlDynamicParts.optionalId,
-              isGroup ? '' : id,
-            )}?${search.toString()}`,
+            .replace(urlDynamicParts.optionalId, isGroup ? '' : id)}?${search.toString()}`,
         ),
     },
     {
@@ -193,10 +181,7 @@ export const IpActionsCell = ({
         navigate(
           `${urls.listingConfigureReverseDns
             .replace(urlDynamicParts.parentId, parentId)
-            .replace(
-              urlDynamicParts.optionalId,
-              isGroup ? '' : id,
-            )}?${search.toString()}`,
+            .replace(urlDynamicParts.optionalId, isGroup ? '' : id)}?${search.toString()}`,
         ),
     },
     !isGroup &&
@@ -209,10 +194,7 @@ export const IpActionsCell = ({
         onClick: () =>
           navigate(
             `${urls.configureGameFirewall
-              .replace(
-                urlDynamicParts.parentId,
-                parentIpGroup ? fromIpToId(parentIpGroup) : id,
-              )
+              .replace(urlDynamicParts.parentId, parentIpGroup ? fromIpToId(parentIpGroup) : id)
               .replace(
                 urlDynamicParts.id,
                 parentIpGroup ? id : fromIpToId(ipAddress),
@@ -253,15 +235,9 @@ export const IpActionsCell = ({
           navigate(
             `${urls.addVirtualMac
               .replace(urlDynamicParts.id, id)
-              .replace(
-                urlDynamicParts.service,
-                serviceName,
-              )}?${search.toString()}`,
+              .replace(urlDynamicParts.service, serviceName)}?${search.toString()}`,
           ),
-        isDisabled:
-          !hasDedicatedServiceAttachedToIp ||
-          isVmacAlreadyExist ||
-          isVmacLoading,
+        isDisabled: !hasDedicatedServiceAttachedToIp || isVmacAlreadyExist || isVmacLoading,
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
@@ -276,10 +252,7 @@ export const IpActionsCell = ({
           navigate(
             `${urls.viewVirtualMac
               .replace(urlDynamicParts.id, id)
-              .replace(
-                urlDynamicParts.service,
-                serviceName,
-              )}?${search.toString()}`,
+              .replace(urlDynamicParts.service, serviceName)}?${search.toString()}`,
           ),
       },
     !isGroup &&
@@ -293,10 +266,7 @@ export const IpActionsCell = ({
           navigate(
             `${urls.deleteVirtualMac
               .replace(urlDynamicParts.id, id)
-              .replace(
-                urlDynamicParts.service,
-                serviceName,
-              )}?${search.toString()}`,
+              .replace(urlDynamicParts.service, serviceName)}?${search.toString()}`,
           ),
       },
     ipaddr.IPv4.isIPv4(ipAddress) &&
@@ -325,10 +295,7 @@ export const IpActionsCell = ({
             `${urls.unblockAntiHack
               .replace(urlDynamicParts.id, id)
               .replace(urlDynamicParts.parentId, parentId)
-              .replace(
-                urlDynamicParts.service,
-                serviceName,
-              )}?${search.toString()}`,
+              .replace(urlDynamicParts.service, serviceName)}?${search.toString()}`,
           ),
       },
     !isGroup &&
@@ -342,25 +309,16 @@ export const IpActionsCell = ({
             `${urls.unblockAntiSpam
               .replace(urlDynamicParts.id, id)
               .replace(urlDynamicParts.parentId, parentId)
-              .replace(
-                urlDynamicParts.service,
-                serviceName,
-              )}?${search.toString()}`,
+              .replace(urlDynamicParts.service, serviceName)}?${search.toString()}`,
           ),
       },
     canSliceByoipIp({ isByoipSlice, ip, ipDetails }) && {
       id: 11,
       label: t('listingActionSlice'),
       trackingLabel: 'slice_bring-your-own-ip',
-      isDisabled:
-        onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
+      isDisabled: onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
       onClick: () =>
-        navigate(
-          `${urls.slice.replace(
-            urlDynamicParts.parentId,
-            parentId,
-          )}?${search.toString()}`,
-        ),
+        navigate(`${urls.slice.replace(urlDynamicParts.parentId, parentId)}?${search.toString()}`),
     },
     canAggregateByoipIp({
       isByoipSlice,
@@ -371,22 +329,16 @@ export const IpActionsCell = ({
       id: 12,
       label: t('listingActionAggregate'),
       trackingLabel: 'aggregate_bring-your-own-ip',
-      isDisabled:
-        onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
+      isDisabled: onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
       onClick: () =>
         navigate(
-          `${urls.aggregate.replace(
-            urlDynamicParts.parentId,
-            parentId,
-          )}?${search.toString()}`,
+          `${urls.aggregate.replace(urlDynamicParts.parentId, parentId)}?${search.toString()}`,
         ),
     },
     !!ipDetails?.canBeTerminated &&
       !ipDetails.bringYourOwnIp &&
       !parentIpGroup &&
-      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
-        ipDetails?.type,
-      ) && {
+      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(ipDetails?.type) && {
         id: 13,
         label: `${t('terminate', {
           ns: NAMESPACES.ACTIONS,
@@ -395,10 +347,7 @@ export const IpActionsCell = ({
         isLoading,
         onClick: () =>
           navigate(
-            `${urls.listingIpTerminate.replace(
-              urlDynamicParts.id,
-              parentId,
-            )}?${search.toString()}`,
+            `${urls.listingIpTerminate.replace(urlDynamicParts.id, parentId)}?${search.toString()}`,
           ),
       },
     canTerminateByoipIp({
@@ -412,10 +361,7 @@ export const IpActionsCell = ({
       isLoading,
       onClick: () =>
         navigate(
-          `${urls.listingByoipTerminate.replace(
-            urlDynamicParts.id,
-            id,
-          )}?${search.toString()}`,
+          `${urls.listingByoipTerminate.replace(urlDynamicParts.id, id)}?${search.toString()}`,
         ),
     },
     isGroup &&
@@ -433,10 +379,7 @@ export const IpActionsCell = ({
         trackingLabel: 'update_ip-block-information',
         onClick: () =>
           navigate(
-            `${urls.ipBlockInformation.replace(
-              urlDynamicParts.id,
-              parentId,
-            )}?${search.toString()}`,
+            `${urls.ipBlockInformation.replace(urlDynamicParts.id, parentId)}?${search.toString()}`,
           ),
       },
   ]

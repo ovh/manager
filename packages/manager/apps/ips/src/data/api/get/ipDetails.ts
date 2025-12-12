@@ -1,5 +1,6 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
+
 import { IpTypeEnum } from '@/data/constants';
 
 export type GetIpDetailsParams = {
@@ -29,7 +30,5 @@ export const getIpDetailsQueryKey = (params: GetIpDetailsParams) => [
 /**
  * Your IP : Get this object properties
  */
-export const getIpDetails = async (
-  params: GetIpDetailsParams,
-): Promise<ApiResponse<IpDetails>> =>
+export const getIpDetails = async (params: GetIpDetailsParams): Promise<ApiResponse<IpDetails>> =>
   apiClient.v6.get<IpDetails>(`/ip/${encodeURIComponent(params.ip)}`);

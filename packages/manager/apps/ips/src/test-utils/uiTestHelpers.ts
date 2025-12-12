@@ -1,6 +1,7 @@
-import { fireEvent, waitFor, within } from '@testing-library/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
+import { fireEvent, waitFor, within } from '@testing-library/react';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
 export const WAIT_FOR_DEFAULT_OPTIONS = {
@@ -21,12 +22,8 @@ export const getOdsBadgeByLabel = async ({
   let badge: HTMLElement;
   await waitFor(() => {
     const badgeList = container.querySelectorAll('ods-badge');
-    badge = Array.from(badgeList).filter((bdg) =>
-      [label].includes(bdg.getAttribute('label')),
-    )[nth];
-    return isHidden
-      ? expect(badge).not.toBeDefined()
-      : expect(badge).toBeDefined();
+    badge = Array.from(badgeList).filter((bdg) => [label].includes(bdg.getAttribute('label')))[nth];
+    return isHidden ? expect(badge).not.toBeDefined() : expect(badge).toBeDefined();
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return badge;
 };
@@ -47,14 +44,10 @@ export const getLinkByHref = async ({
   let link: HTMLElement;
   await waitFor(() => {
     const linkList = container.querySelectorAll('ods-link');
-    link = Array.from(linkList).filter((lnk) =>
-      [href].includes(lnk.getAttribute('href')),
-    )[nth];
+    link = Array.from(linkList).filter((lnk) => [href].includes(lnk.getAttribute('href')))[nth];
     expect(link).toBeDefined();
     if (label) expect(link).toHaveAttribute('label', label);
-    return disabled
-      ? expect(link).toBeDisabled()
-      : expect(link).not.toBeDisabled();
+    return disabled ? expect(link).toBeDisabled() : expect(link).not.toBeDisabled();
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return link;
 };
@@ -72,9 +65,7 @@ export const getButtonByIcon = async ({
 }) => {
   let button: HTMLElement;
   await waitFor(() => {
-    button = container.querySelectorAll(`ods-button[icon="${iconName}"]`)?.[
-      nth
-    ] as HTMLElement;
+    button = container.querySelectorAll(`ods-button[icon="${iconName}"]`)?.[nth] as HTMLElement;
     expect(button).toBeDefined();
     return disabled
       ? expect(button).toHaveAttribute('disabled')
@@ -128,9 +119,9 @@ export const getButtonByLabel = async ({
 }) => {
   let button: HTMLElement;
   await waitFor(() => {
-    button = Array.from(
-      container.querySelectorAll(`ods-button[label="${label}"]`),
-    )?.[nth] as HTMLElement;
+    button = Array.from(container.querySelectorAll(`ods-button[label="${label}"]`))?.[
+      nth
+    ] as HTMLElement;
     expect(button).toBeDefined();
     return disabled
       ? expect(button).toHaveAttribute('disabled')
@@ -182,9 +173,7 @@ export const changeTextareaValue = async ({
   testId: string;
   value: string;
 }) => {
-  const textarea = container.querySelector(
-    `ods-textarea[data-testid="${testId}"]`,
-  );
+  const textarea = container.querySelector(`ods-textarea[data-testid="${testId}"]`);
   const event = new CustomEvent('odsChange', {
     detail: { value },
   });

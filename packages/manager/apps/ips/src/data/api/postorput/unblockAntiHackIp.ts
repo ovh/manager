@@ -16,9 +16,7 @@ export const unblockAntiHackIp = async ({
   ipBlocked,
 }: UnblockAntiHackIpParams): Promise<ApiResponse<void>> => {
   return apiClient.v6.post<void>(
-    `/ip/${encodeURIComponent(ip)}/antihack/${encodeURIComponent(
-      ipBlocked,
-    )}/unblock`,
+    `/ip/${encodeURIComponent(ip)}/antihack/${encodeURIComponent(ipBlocked)}/unblock`,
     {},
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
-import { ODS_TEXT_PRESET, ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
+
+import { ODS_BADGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 
 export type BadgeCellParams = {
   badgeColor: ODS_BADGE_COLOR;
@@ -9,12 +10,7 @@ export type BadgeCellParams = {
   trigger?: string;
 };
 
-export const BadgeCell = ({
-  badgeColor,
-  text,
-  tooltip,
-  trigger,
-}: BadgeCellParams) => (
+export const BadgeCell = ({ badgeColor, text, tooltip, trigger }: BadgeCellParams) => (
   <>
     <div id={trigger} className="flex items-center">
       <OdsBadge color={badgeColor} label={text} className="mr-2" />

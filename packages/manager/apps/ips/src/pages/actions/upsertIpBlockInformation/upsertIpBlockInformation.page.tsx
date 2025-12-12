@@ -1,37 +1,42 @@
 import React, { useEffect, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
-  OdsText,
-  OdsMessage,
   OdsInput,
-  OdsTextarea,
+  OdsMessage,
   OdsSelect,
+  OdsText,
+  OdsTextarea,
 } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  useGetIpRipeInformation,
-  useGetOrganisationsList,
-  useGetIpOrganisation,
-} from '@/data/hooks';
-import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+
 import {
   changeIpOrganisation,
   getIpDetailsQueryKey,
   getIpRipeInformationQueryKey,
   upsertIpRipeInformation,
 } from '@/data/api';
+import {
+  useGetIpOrganisation,
+  useGetIpRipeInformation,
+  useGetOrganisationsList,
+} from '@/data/hooks';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter } from '@/utils';
 
 export default function UpsertIpBlockInformation() {
   const queryClient = useQueryClient();
@@ -39,9 +44,7 @@ export default function UpsertIpBlockInformation() {
   const [search] = useSearchParams();
   const { id } = useParams();
   const { trackClick, trackPage } = useOvhTracking();
-  const { ipGroup: ip } = id
-    ? ipFormatter(fromIdToIp(id))
-    : { ipGroup: undefined };
+  const { ipGroup: ip } = id ? ipFormatter(fromIdToIp(id)) : { ipGroup: undefined };
   const { ipRipeInfo, isLoading: isRipeLoading } = useGetIpRipeInformation({
     ip,
   });
@@ -55,9 +58,7 @@ export default function UpsertIpBlockInformation() {
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { t } = useTranslation([TRANSLATION_NAMESPACES.ipBlockInformation]);
   const [netname, setNetname] = React.useState(ipRipeInfo?.netname || '');
-  const [description, setDescription] = React.useState(
-    ipRipeInfo?.description || '',
-  );
+  const [description, setDescription] = React.useState(ipRipeInfo?.description || '');
   const [organisation, setOrganisation] = React.useState(organisationId || '');
 
   const closeModal = () => {
@@ -97,9 +98,7 @@ export default function UpsertIpBlockInformation() {
       queryClient.invalidateQueries({
         queryKey: getIpDetailsQueryKey({ ip }),
       });
-      addSuccess(
-        t('ipBlockInformationOrgUpdateSuccessMessage', { ip, organisation }),
-      );
+      addSuccess(t('ipBlockInformationOrgUpdateSuccessMessage', { ip, organisation }));
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'edit_ip-block-information_organization_success',
@@ -122,8 +121,7 @@ export default function UpsertIpBlockInformation() {
 
   const handleSubmit = () => {
     const hasRipeChanges =
-      netname !== ipRipeInfo?.netname ||
-      description !== ipRipeInfo?.description;
+      netname !== ipRipeInfo?.netname || description !== ipRipeInfo?.description;
     const hasOrgChanges = organisation !== organisationId;
 
     if (hasRipeChanges || hasOrgChanges) {
@@ -153,16 +151,14 @@ export default function UpsertIpBlockInformation() {
     if (rirForOrganisation === 'ARIN') {
       return (
         organisations?.filter(
-          (orgId: string): boolean =>
-            orgId?.toLowerCase().startsWith('arin_') ?? false,
+          (orgId: string): boolean => orgId?.toLowerCase().startsWith('arin_') ?? false,
         ) ?? []
       );
     }
     if (rirForOrganisation === 'RIPE') {
       return (
         organisations?.filter(
-          (orgId: string): boolean =>
-            orgId?.toLowerCase().startsWith('ripe_') ?? false,
+          (orgId: string): boolean => orgId?.toLowerCase().startsWith('ripe_') ?? false,
         ) ?? []
       );
     }
@@ -204,9 +200,7 @@ export default function UpsertIpBlockInformation() {
 
         <div>
           <OdsFormField className="w-full">
-            <label slot="label">
-              {t('ipBlockInformationDescriptionLabel')}
-            </label>
+            <label slot="label">{t('ipBlockInformationDescriptionLabel')}</label>
             <OdsTextarea
               name="description"
               value={description}
@@ -219,14 +213,9 @@ export default function UpsertIpBlockInformation() {
 
         <div>
           <OdsFormField className="w-full">
-            <label slot="label">
-              {t('ipBlockInformationOrganisationLabel')}
-            </label>
+            <label slot="label">{t('ipBlockInformationOrganisationLabel')}</label>
             {hasOnGoingChangeRipeOrgTask ? (
-              <OdsMessage
-                isDismissible={false}
-                color={ODS_MESSAGE_COLOR.information}
-              >
+              <OdsMessage isDismissible={false} color={ODS_MESSAGE_COLOR.information}>
                 {t('ipBlockInformationOrganisationOnGoingChange')}
               </OdsMessage>
             ) : (

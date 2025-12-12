@@ -1,30 +1,25 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { addSeconds, isBefore } from 'date-fns';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TABLE_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addSeconds, isBefore } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TABLE_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Modal,
-  useNotifications,
-  useFormatDate,
-  Datagrid,
-} from '@ovh-ux/manager-react-components';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Datagrid, Modal, useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  unblockAntiSpamIp,
-  getIpSpamQueryKey,
-  IpSpamStateEnum,
-  IpSpamStatType,
-} from '@/data/api';
+
+import { IpSpamStatType, IpSpamStateEnum, getIpSpamQueryKey, unblockAntiSpamIp } from '@/data/api';
 import { useGetIpSpam, useGetIpSpamStats } from '@/data/hooks';
 import { fromIdToIp, ipFormatter } from '@/utils';
 
@@ -33,12 +28,8 @@ export default function AntiSpamModal() {
   const [ipBlocked, setIpBlocked] = useState<string | undefined>();
   const [ipState, setIpState] = useState<string | undefined>();
   const [blockedSince, setBlockedSince] = useState<string | undefined>();
-  const [estimationUnblockingDate, setEstimationUnblockingDate] = useState<
-    Date
-  >();
-  const [isUnblockingDisabled, setIsUnblockingDisabled] = useState<boolean>(
-    true,
-  );
+  const [estimationUnblockingDate, setEstimationUnblockingDate] = useState<Date>();
+  const [isUnblockingDisabled, setIsUnblockingDisabled] = useState<boolean>(true);
   const navigate = useNavigate();
   const [search] = useSearchParams();
 
@@ -59,16 +50,12 @@ export default function AntiSpamModal() {
   useEffect(() => {
     if (ipSpam) {
       const toBeUnblocked = ipSpam.find(
-        (spam) =>
-          spam.ipSpamming === ip && spam.state === IpSpamStateEnum.BLOCKED,
+        (spam) => spam.ipSpamming === ip && spam.state === IpSpamStateEnum.BLOCKED,
       );
       setIpBlocked(toBeUnblocked?.ipSpamming);
       setIpState(toBeUnblocked?.state);
       setBlockedSince(toBeUnblocked?.date);
-      const unblockingDate = addSeconds(
-        new Date(toBeUnblocked?.date),
-        toBeUnblocked?.time ?? 0,
-      );
+      const unblockingDate = addSeconds(new Date(toBeUnblocked?.date), toBeUnblocked?.time ?? 0);
       setEstimationUnblockingDate(unblockingDate);
       setIsUnblockingDisabled(isBefore(Date.now(), unblockingDate));
     }
@@ -201,19 +188,16 @@ export default function AntiSpamModal() {
       onSecondaryButtonClick={closeHandler}
       isLoading={isIpSpamLoading}
     >
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         {fields.map(({ label, value, key }) => (
-          <div className="flex mb-2 gap-x-4" key={key}>
-            <OdsText
-              className="font-semibold text-right w-1/2"
-              preset={ODS_TEXT_PRESET.heading6}
-            >
+          <div className="mb-2 flex gap-x-4" key={key}>
+            <OdsText className="w-1/2 text-right font-semibold" preset={ODS_TEXT_PRESET.heading6}>
               {label}
             </OdsText>
             <OdsText className="w-1/2">{value}</OdsText>
           </div>
         ))}
-        <div className="flex mb-2 overflow-y-auto max-h-56">
+        <div className="mb-2 flex max-h-56 overflow-y-auto">
           <Datagrid
             size={ODS_TABLE_SIZE.sm}
             columns={ipSpamStatsColumnDefinitions}

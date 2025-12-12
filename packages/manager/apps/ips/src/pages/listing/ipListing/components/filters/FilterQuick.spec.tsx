@@ -1,17 +1,15 @@
 import React from 'react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import {
-  act,
-  fireEvent,
-  render,
-  waitFor,
-  screen,
-} from '@testing-library/react';
+
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { ListingContext } from '@/pages/listing/listingContext';
-import { QuickFilter } from './FilterQuick';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { QuickFilter } from './FilterQuick';
 
 const queryClient = new QueryClient();
 
@@ -31,9 +29,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 const renderComponent = () => {
   const element = (
     <QueryClientProvider client={queryClient}>
-      <ListingContext.Provider
-        value={{ ...listingContextDefaultParams, setApiFilter }}
-      >
+      <ListingContext.Provider value={{ ...listingContextDefaultParams, setApiFilter }}>
         <QuickFilter />
       </ListingContext.Provider>
     </QueryClientProvider>

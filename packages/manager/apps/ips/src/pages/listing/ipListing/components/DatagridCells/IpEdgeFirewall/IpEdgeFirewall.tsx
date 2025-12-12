@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { ipFormatter } from '@/utils/ipFormatter';
+
 import { useGetIpEdgeFirewall } from '@/data/hooks/ip';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { IpEdgeFirewallDisplay } from './IpEdgeFirewallDisplay';
 
 export type IpEdgeFirewallProps = {
@@ -20,19 +22,13 @@ export type IpEdgeFirewallProps = {
  * @param ip the ip with mask
  * @returns React component
  */
-export const IpEdgeFirewall = ({
-  ip,
-  ipOnFirewall,
-  isByoipSlice,
-}: IpEdgeFirewallProps) => {
+export const IpEdgeFirewall = ({ ip, ipOnFirewall, isByoipSlice }: IpEdgeFirewallProps) => {
   const { expiredIps } = useContext(ListingContext);
   const { isGroup, ipAddress } = ipFormatter(ip);
 
   const enabled = React.useMemo(
     () =>
-      ((isGroup && !!ipOnFirewall) || !isGroup) &&
-      expiredIps.indexOf(ip) === -1 &&
-      !isByoipSlice,
+      ((isGroup && !!ipOnFirewall) || !isGroup) && expiredIps.indexOf(ip) === -1 && !isByoipSlice,
     [isGroup, ipOnFirewall, ip, expiredIps],
   );
 
@@ -44,16 +40,8 @@ export const IpEdgeFirewall = ({
   });
 
   return (
-    <SkeletonCell
-      isLoading={isLoading}
-      enabled={enabled}
-      error={error}
-      ip={ipOnFirewall ?? ip}
-    >
-      <IpEdgeFirewallDisplay
-        ip={ipOnFirewall ?? ip}
-        ipEdgeFirewall={ipEdgeFirewall}
-      />
+    <SkeletonCell isLoading={isLoading} enabled={enabled} error={error} ip={ipOnFirewall ?? ip}>
+      <IpEdgeFirewallDisplay ip={ipOnFirewall ?? ip} ipEdgeFirewall={ipEdgeFirewall} />
     </SkeletonCell>
   );
 };

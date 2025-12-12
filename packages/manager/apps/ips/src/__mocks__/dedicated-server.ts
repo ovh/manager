@@ -1,7 +1,10 @@
-import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { PathParams } from 'msw';
-import { availableService, expiredService } from './serviceInfo';
+
+import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { DedicatedServer } from '@/data/api';
+
+import { availableService, expiredService } from './serviceInfo';
 
 export const dedicatedServerMockList: DedicatedServer[] = [
   {
@@ -50,22 +53,7 @@ export const getDedicatedServerMocks = ({
 }: GetDedicatedServerMocksParams): Handler[] => [
   {
     url: '/dedicated/server/:serviceName/ipCountryAvailable',
-    response: [
-      'fr',
-      'de',
-      'pl',
-      'es',
-      'it',
-      'uk',
-      'pt',
-      'cz',
-      'fi',
-      'lt',
-      'be',
-      'nl',
-      'ie',
-      'ca',
-    ],
+    response: ['fr', 'de', 'pl', 'es', 'it', 'uk', 'pt', 'cz', 'fi', 'lt', 'be', 'nl', 'ie', 'ca'],
     api: 'v6',
   },
   {
@@ -103,9 +91,7 @@ export const getDedicatedServerMocks = ({
   {
     url: '/dedicated/server/:serviceName',
     response: (_: unknown, params: PathParams) =>
-      dedicatedServerMockList.find(
-        (service) => service.name === params.serviceName,
-      ),
+      dedicatedServerMockList.find((service) => service.name === params.serviceName),
     api: 'v6',
   },
   {

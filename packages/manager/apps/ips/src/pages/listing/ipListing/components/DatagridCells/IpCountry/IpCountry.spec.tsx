@@ -1,9 +1,12 @@
-import '@/test-utils/setupUnitTests';
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
+import '@/test-utils/setupUnitTests';
+
 import { IpCountry, IpCountryProps } from './IpCountry';
 
 const queryClient = new QueryClient();
@@ -38,9 +41,7 @@ describe('IpCountry Component', async () => {
     const { getByText } = renderComponent({ ip: ipDetailsList[3].ip });
     await waitFor(() => {
       expect(
-        getByText(
-          `region-selector-country-name_${ipDetailsList[3].country.toUpperCase()}`,
-        ),
+        getByText(`region-selector-country-name_${ipDetailsList[3].country.toUpperCase()}`),
       ).toBeDefined();
     });
   });

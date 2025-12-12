@@ -1,9 +1,11 @@
 import React from 'react';
-import { describe, it, vi, expect } from 'vitest';
+
+import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
+
 import { RegionSelector } from './region-selector.component';
-import '@testing-library/jest-dom';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -56,9 +58,7 @@ describe('RegionSelector component', () => {
       />,
     );
 
-    expect(container.querySelectorAll('ods-card')).toHaveLength(
-      regionList.length,
-    );
+    expect(container.querySelectorAll('ods-card')).toHaveLength(regionList.length);
     expect(asFragment()).toMatchSnapshot();
 
     const newRegion = 'us-west-lz-den';
@@ -97,18 +97,12 @@ describe('RegionSelector component', () => {
 
     expect(container.querySelectorAll('ods-card')).toHaveLength(cardNb);
 
-    await waitFor(() =>
-      userEvent.click(getByText('region-selector-all-locations')),
-    );
-    expect(container.querySelectorAll('ods-card')).toHaveLength(
-      regionList.length,
-    );
+    await waitFor(() => userEvent.click(getByText('region-selector-all-locations')));
+    expect(container.querySelectorAll('ods-card')).toHaveLength(regionList.length);
   });
 
   it('does not break if there is no region at all', () => {
-    const { asFragment } = render(
-      <RegionSelector regionList={[]} setSelectedRegion={vi.fn()} />,
-    );
+    const { asFragment } = render(<RegionSelector regionList={[]} setSelectedRegion={vi.fn()} />);
 
     expect(asFragment()).toMatchSnapshot();
   });
@@ -126,19 +120,12 @@ describe('RegionSelector component', () => {
     expect(queryByText('region-selector-ca-filter')).not.toBeInTheDocument();
     expect(queryByText('region-selector-us-filter')).not.toBeInTheDocument();
     expect(queryByText('region-selector-ap-filter')).not.toBeInTheDocument();
-    expect(
-      queryByText('region-selector-all-locations'),
-    ).not.toBeInTheDocument();
+    expect(queryByText('region-selector-all-locations')).not.toBeInTheDocument();
   });
 
   it.each([
     {
-      list: [
-        'us-west-lz-lax',
-        'us-east-lz-chi',
-        'us-east-lz-nyc',
-        'eu-west-rbx',
-      ],
+      list: ['us-west-lz-lax', 'us-east-lz-chi', 'us-east-lz-nyc', 'eu-west-rbx'],
       missingFilters: ['ca', 'ap'],
     },
     {
@@ -146,31 +133,20 @@ describe('RegionSelector component', () => {
       missingFilters: ['us', 'ap'],
     },
     {
-      list: [
-        'us-west-lz-lax',
-        'us-east-lz-chi',
-        'us-east-lz-nyc',
-        'ca-east-tor',
-        'ap-south-mum',
-      ],
+      list: ['us-west-lz-lax', 'us-east-lz-chi', 'us-east-lz-nyc', 'ca-east-tor', 'ap-south-mum'],
       missingFilters: ['eu'],
     },
     {
       list: ['ap-south-mum', 'us-east-lz-chi', 'us-east-lz-nyc'],
       missingFilters: ['eu', 'ca'],
     },
-  ])(
-    'hide filters if there is no corresponding regions',
-    ({ list, missingFilters }) => {
-      const { queryByText } = render(
-        <RegionSelector regionList={list} setSelectedRegion={vi.fn()} />,
-      );
+  ])('hide filters if there is no corresponding regions', ({ list, missingFilters }) => {
+    const { queryByText } = render(
+      <RegionSelector regionList={list} setSelectedRegion={vi.fn()} />,
+    );
 
-      missingFilters.forEach((tab) => {
-        expect(
-          queryByText(`region-selector-${tab}-filter`),
-        ).not.toBeInTheDocument();
-      });
-    },
-  );
+    missingFilters.forEach((tab) => {
+      expect(queryByText(`region-selector-${tab}-filter`)).not.toBeInTheDocument();
+    });
+  });
 });

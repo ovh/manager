@@ -11,8 +11,8 @@ export const ipFormatter = (ip: string) => {
     };
   }
   if (
-    (range === '32' && ipaddr.IPv4.isIPv4(ipAddress)) ||
-    (range === '128' && ipaddr.IPv6.isIPv6(ipAddress))
+    (range === '32' && ipaddr.IPv4.isIPv4(ipAddress || '')) ||
+    (range === '128' && ipaddr.IPv6.isIPv6(ipAddress || ''))
   ) {
     return {
       ip: ipAddress,
@@ -33,8 +33,6 @@ export const ipFormatter = (ip: string) => {
   };
 };
 
-export const fromIpToId = (ip?: string) =>
-  ip?.replace(/\./g, '-')?.replace(/\//g, '_');
+export const fromIpToId = (ip = '') => ip?.replace(/\./g, '-')?.replace(/\//g, '_');
 
-export const fromIdToIp = (id?: string) =>
-  id?.replace(/-/g, '.')?.replace(/_/g, '/');
+export const fromIdToIp = (id = '') => id?.replace(/-/g, '.')?.replace(/_/g, '/');

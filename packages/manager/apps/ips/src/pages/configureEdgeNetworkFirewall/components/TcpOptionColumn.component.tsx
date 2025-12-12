@@ -1,29 +1,26 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  OdsText,
-  OdsSelect,
   OdsCheckbox,
   OdsIcon,
+  OdsSelect,
+  OdsText,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import { IpEdgeFirewallProtocol, IpEdgeFirewallRule } from '@/data/api';
-import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 const validOptions = ['none', 'established', 'syn'];
 
-export const TcpOptionColumn = (
-  rule: IpEdgeFirewallRule & { isNew?: boolean },
-) => {
-  const {
-    newTcpOption,
-    setNewTcpOption,
-    newFragments,
-    setNewFragments,
-    newProtocol,
-  } = React.useContext(EdgeNetworkFirewallContext);
+export const TcpOptionColumn = (rule: IpEdgeFirewallRule & { isNew?: boolean }) => {
+  const { newTcpOption, setNewTcpOption, newFragments, setNewFragments, newProtocol } =
+    React.useContext(EdgeNetworkFirewallContext);
   const { t } = useTranslation(TRANSLATION_NAMESPACES.edgeNetworkFirewall);
 
   return (
@@ -41,9 +38,7 @@ export const TcpOptionColumn = (
           >
             {validOptions.map((option) => (
               <option key={option} value={option}>
-                {option === 'none'
-                  ? t(`${option}_label`)
-                  : option?.toUpperCase()}
+                {option === 'none' ? t(`${option}_label`) : option?.toUpperCase()}
               </option>
             ))}
           </OdsSelect>
@@ -62,7 +57,7 @@ export const TcpOptionColumn = (
               id="fragments-tooltip"
               name={ODS_ICON_NAME.circleQuestion}
               tabIndex={0}
-              className="text-[var(--ods-color-text)] cursor-pointer ml-2"
+              className="ml-2 cursor-pointer text-[var(--ods-color-text)]"
             />
             <OdsTooltip triggerId="fragments-tooltip" withArrow>
               <OdsText>{t('fragments_tooltip')}</OdsText>

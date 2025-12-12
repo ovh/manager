@@ -1,20 +1,19 @@
-import { within, waitFor, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { describe } from 'vitest';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertOdsModalText,
   assertOdsModalVisibility,
 } from '@ovh-ux/manager-core-test-utils';
-import {
-  getButtonByIcon,
-  getButtonByLabel,
-  labels,
-  renderTest,
-} from '@/test-utils';
-import { urls } from '@/routes/routes.constant';
-import ipList from '@/__mocks__/ip/get-ips.json';
+
 import moveIpResponse from '@/__mocks__/ip/get-ip-move.json';
+import ipList from '@/__mocks__/ip/get-ips.json';
+import { urls } from '@/routes/routes.constant';
+import { getButtonByIcon, getButtonByLabel, labels, renderTest } from '@/test-utils';
+
 import { fillStep1, openMoveIpModal } from './moveIp.test-utils';
 
 describe('Move IP modal', () => {
@@ -51,10 +50,7 @@ describe('Move IP modal', () => {
     await openMoveIpModal({ hasIpTask: true });
 
     await waitFor(
-      () =>
-        expect(
-          screen.getByText(labels.moveIp.moveIpOnGoingTaskMessage),
-        ).toBeVisible(),
+      () => expect(screen.getByText(labels.moveIp.moveIpOnGoingTaskMessage)).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
@@ -76,16 +72,10 @@ describe('Move IP modal', () => {
     });
     await waitFor(() => fireEvent.click(nextButton));
 
-    const confirmText = labels.moveIp.step2DescriptionWithNextHop.replace(
-      /<b>.*/,
-      '',
-    );
+    const confirmText = labels.moveIp.step2DescriptionWithNextHop.replace(/<b>.*/, '');
     const confirmNode = await screen.getByText(confirmText, { exact: false });
     await waitFor(
-      () =>
-        expect(
-          within(confirmNode.parentElement).getByText(service),
-        ).toBeInTheDocument(),
+      () => expect(within(confirmNode.parentElement).getByText(service)).toBeInTheDocument(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
@@ -106,16 +96,10 @@ describe('Move IP modal', () => {
     });
     await waitFor(() => fireEvent.click(nextButton));
 
-    const confirmText = labels.moveIp.step2DescriptionWithoutNextHop.replace(
-      /<b>.*/,
-      '',
-    );
+    const confirmText = labels.moveIp.step2DescriptionWithoutNextHop.replace(/<b>.*/, '');
     const confirmNode = await screen.getByText(confirmText, { exact: false });
     await waitFor(
-      () =>
-        expect(
-          within(confirmNode.parentElement).getByText(service),
-        ).toBeInTheDocument(),
+      () => expect(within(confirmNode.parentElement).getByText(service)).toBeInTheDocument(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
