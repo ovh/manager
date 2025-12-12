@@ -1,6 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
+import { UserWithS3Credentials } from '@/types/User';
 import { FormattedStorage, Storages } from '@/types/Storages';
 import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
 import { useGetUsers } from '@/data/hooks/user/useGetUsers.hook';

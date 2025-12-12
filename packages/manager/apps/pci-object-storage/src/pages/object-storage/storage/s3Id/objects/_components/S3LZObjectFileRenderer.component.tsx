@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { ReactElement } from 'react';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
-import useDownload from '@/hooks/useDownload';
+import useDownload from '@/hooks/useDownload.hook';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useS3Data } from '../../S3.context';

@@ -14,6 +14,7 @@ const Flag = ({
   return (
     <div
       aria-hidden
+      data-testid="flag-container"
       style={{
         backgroundImage: `url('${flagUrl}')`,
         backgroundRepeat: 'no-repeat',

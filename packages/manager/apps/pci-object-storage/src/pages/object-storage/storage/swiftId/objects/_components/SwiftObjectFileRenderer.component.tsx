@@ -17,7 +17,7 @@ import { add, formatRFC3339 } from 'date-fns';
 import { ReactElement } from 'react';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
-import useDownload from '@/hooks/useDownload';
+import useDownload from '@/hooks/useDownload.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import storages from '@/types/Storages';
 import { cn } from '@/lib/utils';
