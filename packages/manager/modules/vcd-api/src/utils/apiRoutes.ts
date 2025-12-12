@@ -42,3 +42,8 @@ export const getVdcVrackSegmentRoute = ({
 }) => {
   return `${getVdcVrackSegmentListRoute(id, vdcId)}/${vrackSegmentId}`;
 };
+
+// IP Block
+export const getVcdIpBlockListRoute = (id: string) => {
+  return `${getVcdOrganizationRoute(id)}/ipblock`;
+};
