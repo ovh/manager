@@ -79,5 +79,6 @@
   "pci_instances_actions_instance_volume_attach_select": "Selezionare un volume esistente",
   "pci_instances_actions_instance_volume_attach_information": "Puoi associare un volume esistente o creare un nuovo volume da associare alla tua istanza. ",
   "pci_instances_actions_instance_volume_attach_create_link": "Creare un volume",
-  "pci_instances_actions_instance_volume_attach_success_message": "Il volume {{ volume }} è stato associato all’istanza {{ instance }}."
+  "pci_instances_actions_instance_volume_attach_success_message": "Il volume {{ volume }} è stato associato all’istanza {{ instance }}.",
+  "pci_instances_actions_instance_volume_attach_detach_warning_message": "Questo volume è già collegato a una o più istanze. Sarà scollegato dall'istanza a cui è attualmente collegato."
 }
