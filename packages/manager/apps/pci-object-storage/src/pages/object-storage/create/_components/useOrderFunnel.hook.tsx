@@ -54,6 +54,8 @@ export function useOrderFunnel({
         region: undefined,
       },
       versioning: storages.VersioningStatusEnum.disabled,
+      objectLock: storages.ObjectLockStatusEnum.disabled,
+      objectLockAcknowledgement: false,
       user: users[0]?.id ?? null,
       encryption: storages.EncryptionAlgorithmEnum.AES256,
     },
@@ -75,6 +77,7 @@ export function useOrderFunnel({
   const { name, offer, region, user } = form.watch();
   const replication = form.watch('replication');
   const versioning = form.watch('versioning');
+  const objectLock = form.watch('objectLock');
   const encryption = form.watch('encryption');
   const containerType = form.watch('containerType');
   const currentRegion = regions.find((r) => r.name === region);
@@ -117,6 +120,7 @@ export function useOrderFunnel({
     }
   }, [currentRegion, form]);
 
+  // Force enable versioning if replication is enabled
   useEffect(() => {
     if (replication?.enabled) {
       form.setValue('versioning', storages.VersioningStatusEnum.enabled, {
@@ -124,6 +128,33 @@ export function useOrderFunnel({
       });
     }
   }, [replication, form]);
+
+  // Force enable versioning if object lock is enabled
+  useEffect(() => {
+    if (objectLock === storages.ObjectLockStatusEnum.enabled) {
+      form.setValue('versioning', storages.VersioningStatusEnum.enabled, {
+        shouldValidate: true,
+      });
+    }
+  }, [objectLock, form]);
+
+  // Force disable object lock if versioning is disabled
+  useEffect(() => {
+    if (versioning === storages.VersioningStatusEnum.disabled) {
+      form.setValue('objectLock', storages.ObjectLockStatusEnum.disabled, {
+        shouldValidate: true,
+      });
+    }
+  }, [versioning, form]);
+
+  // Reset acknowledgement checkbox when Object Lock is disabled
+  useEffect(() => {
+    if (objectLock === storages.ObjectLockStatusEnum.disabled) {
+      form.setValue('objectLockAcknowledgement', false, {
+        shouldValidate: true,
+      });
+    }
+  }, [objectLock, form]);
 
   // build order model
   const result = useMemo(() => {
@@ -141,6 +172,9 @@ export function useOrderFunnel({
       };
       s3.versioning = {
         status: versioning,
+      };
+      s3.objectLock = {
+        status: objectLock,
       };
     }
     if (replication?.enabled) {
@@ -176,6 +210,7 @@ export function useOrderFunnel({
     user,
     encryption,
     versioning,
+    objectLock,
     region,
     replication,
     containerType,
@@ -188,6 +223,7 @@ export function useOrderFunnel({
       currentRegion,
       replication,
     },
+    versioning,
     availableRegions,
     pricings,
     result,
