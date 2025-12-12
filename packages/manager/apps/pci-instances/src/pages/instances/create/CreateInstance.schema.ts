@@ -83,3 +83,33 @@ export type TAddSshKeyForm = z.infer<
 >;
 
 export const networkIdSchema = z.string().nullable();
+
+const VLAN_ID_MIN = 0;
+const VLAN_ID_MAX = 4000;
+
+const ipSchema = z.string().ip();
+const maskSchema = z
+  .number()
+  .min(9)
+  .max(29);
+
+export const networkSchema = z.object({
+  name: z
+    .string()
+    .max(255)
+    .nonempty(),
+  vlanId: z.coerce
+    .number()
+    .min(VLAN_ID_MIN)
+    .max(VLAN_ID_MAX),
+  cidr: z.string().refine((value) => {
+    const [ip, mask] = value.split('/');
+    return (
+      ipSchema.safeParse(ip).success &&
+      maskSchema.safeParse(Number(mask)).success
+    );
+  }),
+  enableDhcp: z.boolean(),
+});
+
+export type TAddNetworkForm = z.infer<typeof networkSchema>;

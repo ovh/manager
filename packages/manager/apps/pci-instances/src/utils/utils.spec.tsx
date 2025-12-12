@@ -9,6 +9,7 @@ import {
   mapUnknownErrorToBannerError,
   replaceToSnakeCase,
   groupBy,
+  formatDateToDDMMYY,
 } from './index';
 
 describe('Utility functions', () => {
@@ -236,6 +237,13 @@ describe('Utility functions', () => {
       Object.entries(localZones).map(([localZone, translationKey]) =>
         expect(getLocalZoneTranslationKey(localZone)).toMatch(translationKey),
       );
+    });
+  });
+
+  describe('Considering formatDateToDDMMYY function', () => {
+    test('Should return DDMMYYYY date', () => {
+      const date = new Date(2025, 1, 1);
+      expect(formatDateToDDMMYY(date)).toBe('01022025');
     });
   });
 });
