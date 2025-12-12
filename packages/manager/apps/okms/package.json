@@ -40,6 +40,7 @@
     "@tanstack/react-table": "^8.20.1",
     "@tanstack/react-virtual": "^3.10.9",
     "clsx": "2.1.1",
+    "date-fns": "~4.1.0",
     "file-saver": "^2.0.5",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.3",

@@ -18,6 +18,10 @@ const OkmsList = React.lazy(() => import('@/modules/secret-manager/pages/okms-li
 const OkmsDashboard = React.lazy(
   () => import('@secret-manager/pages/okms-dashboard/OkmsDashboard.page'),
 );
+const OkmsDashboardGeneralInformation = React.lazy(
+  () => import('@secret-manager/pages/okms-dashboard/general-information/GeneralInformations.page'),
+);
+const OkmsDashboardLogs = React.lazy(() => import('@/common/pages/okms-logs/OkmsLogs.page'));
 
 const OkmsUpdateNameModal = React.lazy(
   () =>
@@ -108,12 +112,15 @@ export default (
         />
       </Route>
       <Route path={`${SECRET_MANAGER_ROUTES_URIS.dashboard}`} Component={OkmsDashboard}>
-        <Route path={`${SECRET_MANAGER_ROUTES_URIS.update}`} Component={OkmsUpdateNameModal} />
-        <Route path={`${SECRET_MANAGER_ROUTES_URIS.terminate}`} Component={OkmsTerminateModal} />
-        <Route
-          path={`${SECRET_MANAGER_ROUTES_URIS.editSecretConfig}`}
-          Component={OkmsEditSecretConfigDrawer}
-        />
+        <Route path={''} Component={OkmsDashboardGeneralInformation}>
+          <Route path={`${SECRET_MANAGER_ROUTES_URIS.update}`} Component={OkmsUpdateNameModal} />
+          <Route path={`${SECRET_MANAGER_ROUTES_URIS.terminate}`} Component={OkmsTerminateModal} />
+          <Route
+            path={`${SECRET_MANAGER_ROUTES_URIS.editSecretConfig}`}
+            Component={OkmsEditSecretConfigDrawer}
+          />
+        </Route>
+        <Route path={`${SECRET_MANAGER_ROUTES_URIS.logs}/*`} Component={OkmsDashboardLogs} />
       </Route>
       <Route path={SECRET_MANAGER_URL_PARAMS.secretPath} Component={Secret}>
         <Route path={''} Component={SecretGeneralInformation}>

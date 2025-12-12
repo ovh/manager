@@ -6,8 +6,7 @@ import { IAM } from '@key-management-service/types/okms.type';
 export type SecretVersionState = 'ACTIVE' | 'DEACTIVATED' | 'DELETED';
 
 // Secret data is defined as JSON, but it is typed as 'Any' in the API schema.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type SecretData = any;
+export type SecretData = unknown;
 
 export type SecretVersionDataField = {
   data: SecretData;

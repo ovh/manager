@@ -4,15 +4,21 @@ import path from 'path';
 import tailwindcss from 'tailwindcss';
 import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 import * as packageJson from './package.json' with { type: 'json' };
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 
-const baseConfig = getBaseConfig({});
 const pathSrc = path.resolve(__dirname, 'src');
 const pathPublic = path.resolve(__dirname, 'public');
 const externalDeps = [
     ...Object.keys(packageJson.default.peerDependencies || {}),
     '@ovhcloud/ods-components/react',
 ];
+const baseConfig = getBaseConfig({
+    staticCopyTargets: [
+        {
+            src: `${pathPublic}/translations`,
+            dest: '@ovh-ux/logs-to-customer',
+        },
+    ],
+});
 
 export default defineConfig({
     ...baseConfig,
@@ -28,14 +34,6 @@ export default defineConfig({
             root: __dirname,
             insertTypesEntry: true,
             outDir: 'dist/types',
-        }),
-        viteStaticCopy({
-            targets: [
-                {
-                    src: `${pathPublic}/translations`,
-                    dest: '@ovh-ux/logs-to-customer',
-                },
-            ],
         }),
     ],
     css: {
@@ -56,7 +54,7 @@ export default defineConfig({
             entry: path.resolve(pathSrc, 'lib.ts'),
             name: 'LogsToCustomerLib',
             formats: ['esm'],
-            fileName: () => `src/lib.js`,
+            fileName: () => 'src/lib.js',
         },
         rollupOptions: {
             external: (id) =>

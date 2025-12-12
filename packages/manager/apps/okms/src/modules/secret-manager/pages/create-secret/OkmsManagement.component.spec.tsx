@@ -30,7 +30,12 @@ import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-clie
 import { REGION_PICKER_TEST_IDS } from '@/common/components/region-picker/regionPicker.constants';
 import * as locationApi from '@/common/data/api/location';
 import { getOrderCatalogOkms } from '@/common/data/api/orderCatalogOkms';
-import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
+import {
+  REGION_EU_WEST_GRA,
+  REGION_EU_WEST_RBX,
+  REGION_EU_WEST_SBG,
+  catalogMock,
+} from '@/common/mocks/catalog/catalog.mock';
 import { locationsMock } from '@/common/mocks/locations/locations.mock';
 import { ErrorResponse } from '@/common/types/api.type';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
@@ -132,7 +137,8 @@ const renderOkmsManagement = async () => {
 
 /* TEST UTILS */
 const assertInitialRegionList = async () => {
-  const availableRegions = catalogMock.plans[0]?.configurations[0]?.values;
+  // Regions available in the catalog - Only Europe as other ones are in other tabs
+  const availableRegions = [REGION_EU_WEST_RBX, REGION_EU_WEST_SBG, REGION_EU_WEST_GRA];
 
   if (!availableRegions) {
     throw new Error('Available regions not found');
