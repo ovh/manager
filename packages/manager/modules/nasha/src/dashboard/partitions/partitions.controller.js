@@ -2,10 +2,9 @@ import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '../dashboard.constants';
 
 export default class NashaDashboardPartitionsController {
   /* @ngInject */
-  constructor($translate, $http, OvhApiDedicatedNashaAapi) {
+  constructor($translate, $http) {
     this.$translate = $translate;
     this.$http = $http;
-    this.OvhApiDedicatedNashaAapi = OvhApiDedicatedNashaAapi;
 
     this.isMonitoredUpdating = false;
   }
@@ -39,20 +38,18 @@ export default class NashaDashboardPartitionsController {
   }
 
   loadPartitions() {
-    const { serviceName } = this;
+    if (this.partitions?.error) {
+      this.alertError(this.partitions.error.statusText);
+      return Promise.resolve({
+        data: [],
+        meta: { totalCount: 0 },
+      });
+    }
 
-    this.OvhApiDedicatedNashaAapi.resetCache();
-
-    return this.OvhApiDedicatedNashaAapi.partitions({ serviceName })
-      .$promise.then((partitions) => partitions.map(this.preparePartition))
-      .then((partitions) => {
-        const totalCount = partitions.length;
-        return {
-          data: partitions,
-          meta: { totalCount },
-        };
-      })
-      .catch((error) => this.alertError({ error }));
+    return Promise.resolve({
+      data: this.partitions,
+      meta: { totalCount: this.partitions.length },
+    });
   }
 
   onRenewClick() {
