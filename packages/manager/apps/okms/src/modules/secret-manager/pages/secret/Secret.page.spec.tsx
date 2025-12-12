@@ -3,10 +3,10 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
@@ -40,7 +40,7 @@ describe('Secret page test suite', () => {
       'SecretBreadcrumbItem',
     ]);
 
-    const labelOnce = [
+    const labelOnce: string[] = [
       // tabs
       labels.secretManager.versions,
       // general information tile
@@ -53,16 +53,18 @@ describe('Secret page test suite', () => {
       labels.secretManager.cas_with_description,
       // settings tile values
       mockSecret.metadata.deactivateVersionAfter,
-      mockSecret.metadata.maxVersions,
+      mockSecret.metadata.maxVersions.toString(),
       labels.secretManager.activated,
       // actions tile
       labels.secretManager.actions,
+      // custom metadata tile
+      labels.secretManager.metadata,
     ];
 
     // Check labels appearing once
     await Promise.all(
-      labelOnce.map(async (text) => {
-        await assertTextVisibility(text.toString());
+      labelOnce.map(async (label) => {
+        await waitFor(() => expect(screen.getByText(label)).toBeVisible());
       }),
     );
 
