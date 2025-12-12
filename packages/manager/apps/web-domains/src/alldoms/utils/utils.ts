@@ -1,17 +1,5 @@
-import { TServiceInfo } from '@/alldoms/types';
-import {
-  LifecycleActionsEnum,
-  ServiceInfoContactEnum,
-} from '@/alldoms/enum/service.enum';
-
-export const findContact = (
-  contacts: TServiceInfo['customer']['contacts'],
-  contactType: ServiceInfoContactEnum,
-) => {
-  const contact = contacts.find((c) => c.type === contactType);
-  return contact ? contact.customerCode : null;
-};
+import { LifecycleCapacitiesEnum } from '@/common/enum/common.enum';
 
 export const hasTerminateAtExpirationDateAction = (
-  actions: LifecycleActionsEnum[],
-) => actions.includes(LifecycleActionsEnum.TerminateAtExpirationDate);
+  actions: LifecycleCapacitiesEnum[],
+) => actions.includes(LifecycleCapacitiesEnum.TerminateAtExpirationDate);

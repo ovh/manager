@@ -1,20 +1,10 @@
-export enum ServiceRoutes {
-  Domain = '/domain',
-  AllDom = '/allDom',
-}
-
 export enum ServiceInfoType {
   French = 'FRENCH',
   FrenchInternational = 'FRENCH+INTERNATIONAL',
   International = 'INTERNATIONAL',
 }
 
-export enum ServiceInfoRenewMode {
-  Automatic = 'automatic',
-  Manual = 'manual',
-}
-
-export enum LifecycleActionsEnum {
+export enum LifecycleCapacitiesEnum {
   EarlyRenewal = 'earlyRenewal',
   Terminate = 'terminate',
   TerminateAtEngagementDate = 'terminateAtEngagementDate',
@@ -24,12 +14,6 @@ export enum ServiceInfoUpdateEnum {
   Empty = 'empty',
   TerminateAtEngagementDate = 'terminateAtEngagementDate',
   TerminateAtExpirationDate = 'terminateAtExpirationDate',
-}
-
-export enum ServiceInfoContactEnum {
-  Administrator = 'administrator',
-  Technical = 'technical',
-  Billing = 'billing',
 }
 
 export enum DomainRegistrationStateEnum {

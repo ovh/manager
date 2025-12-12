@@ -1,7 +1,8 @@
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { toUnicode } from 'punycode';
-import { Link } from '@ovhcloud/ods-react';
-
+import { Link as OdsLink } from '@ovhcloud/ods-react';
+import { Link as RouterLink } from 'react-router-dom';
+import config from '@/web-domains.config';
 interface DomainDatagridColumnDomainProps {
   readonly domain: string;
 }
@@ -9,8 +10,11 @@ interface DomainDatagridColumnDomainProps {
 export default function DomainDatagridColumnDomain({
   domain,
 }: DomainDatagridColumnDomainProps) {
-  const { data: webUrl } = useNavigationGetUrl(['web', '/domain', {}]);
+  const path = `/domain/${domain}/information`;
+  const { data: url } = useNavigationGetUrl([config.rootLabel, path, {}]);
   return (
-    <Link href={`${webUrl}/${domain}/information`}>{toUnicode(domain)}</Link>
+    <OdsLink href={url as string} as={RouterLink} to={path}>
+      {toUnicode(domain)}
+    </OdsLink>
   );
 }

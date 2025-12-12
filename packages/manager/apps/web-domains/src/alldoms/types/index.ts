@@ -1,9 +1,11 @@
 import {
   DomainRegistrationStateEnum,
-  ServiceInfoRenewMode,
   ServiceInfoType,
-  LifecycleActionsEnum,
+  LifecycleCapacitiesEnum,
+  ServiceInfoUpdateEnum,
 } from '@/alldoms/enum/service.enum';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
+import { TServiceInfo } from '@/common/types/common.types';
 
 export interface TAllDomDomains {
   currentState: {
@@ -11,34 +13,6 @@ export interface TAllDomDomains {
     type: ServiceInfoType;
     domains: TDomainsInfo[];
     extensions: string[];
-  };
-}
-
-export interface TServiceInfo {
-  serviceId: number;
-  billing: {
-    expirationDate: string | null;
-    renew?: {
-      current: {
-        mode: ServiceInfoRenewMode | null;
-        nextDate: string;
-      };
-    } | null;
-    lifecycle?: {
-      current: {
-        creationDate: string | null;
-        pendingActions: LifecycleActionsEnum[];
-      };
-    } | null;
-  };
-  customer?: {
-    contacts: {
-      customerCode: string;
-      type: string;
-    }[];
-  };
-  resource: {
-    name: string;
   };
 }
 
@@ -52,8 +26,8 @@ export interface AlldomService {
   nicAdmin: string;
   nicBilling: string;
   nicTechnical: string;
-  lifecyclePendingActions: LifecycleActionsEnum[];
-  renewMode: ServiceInfoRenewMode | null;
+  pendingActions: LifecycleCapacitiesEnum[];
+  renewMode: ServiceInfoRenewModeEnum | null;
   expirationDate: string;
   creationDate: string;
   renewalDate: string;
@@ -67,6 +41,16 @@ export interface TDomainsInfo {
   extension?: string;
 }
 
+export interface UpdateAllDomProps {
+  serviceName: string;
+  displayName: string;
+  renew?: {
+    mode?: ServiceInfoRenewModeEnum;
+    period?: number;
+  };
+  terminationPolicy?: ServiceInfoUpdateEnum;
+}
+
 export interface ModalStepsProps {
   services?: TServiceInfo[];
   domainsChecked?: string[];
@@ -76,4 +60,17 @@ export interface ModalStepsProps {
   setIsStepOne: (changeStep: boolean) => void;
   setDomainsChecked?: (domainSelected: string[]) => void;
   setCheckAllDomains?: (checked: boolean) => void;
+}
+
+export interface DomainBillingInformation {
+  list: {
+    results: [
+      {
+        renew: {
+          deleteAtExpiration: boolean;
+          forced: boolean;
+        };
+      },
+    ];
+  };
 }

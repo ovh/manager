@@ -12,12 +12,12 @@ import DatagridColumnRenewMode from '@/alldoms/components/allDomDatagridColumns/
 import ServiceActionMenu from '@/alldoms/components/actionMenu/ServiceActionMenu';
 import { ActionEnum } from '@/alldoms/enum/service.enum';
 import DatagridColumnSkeleton from '@/alldoms/components/allDomDatagridColumns/DatagridColumnSkeleton';
-import { useNichandle } from '@/alldoms/hooks/nichandle/useNichandle';
+import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 import { CANCEL_TERMINATE_URL, TERMINATE_URL } from '@/alldoms/constants';
 
 export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
-  const { nichandle } = useNichandle();
+  const { nichandleInformation } = useNichandleInformation();
   const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
 
   const columns = [
@@ -36,7 +36,7 @@ export const useAllDomDatagridColumns = () => {
         <DatagridColumnSkeleton serviceId={props.serviceId}>
           <DatagridColumnRenewMode
             renewMode={props.renewMode}
-            lifecyclePendingActions={props.lifecyclePendingActions}
+            pendingActions={props.pendingActions}
           />
         </DatagridColumnSkeleton>
       ),
@@ -81,7 +81,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicAdmin}
             url={
-              props.nicAdmin === nichandle &&
+              props.nicAdmin === nichandleInformation?.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -96,7 +96,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicTechnical}
             url={
-              props.nicTechnical === nichandle &&
+              props.nicTechnical === nichandleInformation?.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -112,7 +112,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicBilling}
             url={
-              props.nicBilling === nichandle &&
+              props.nicBilling === nichandleInformation?.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -128,7 +128,7 @@ export const useAllDomDatagridColumns = () => {
           id={`${props.currentState.name}-${ActionEnum.All}`}
           serviceName={props.currentState.name}
           terminateUrl={TERMINATE_URL(props.currentState.name)}
-          lifecyclePendingActions={props.lifecyclePendingActions}
+          pendingActions={props.pendingActions}
           whichAction={ActionEnum.All}
           cancelTerminateUrl={CANCEL_TERMINATE_URL(props.currentState.name)}
         />
