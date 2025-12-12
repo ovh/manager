@@ -29,6 +29,10 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
+vi.mock('@/common/hooks/useOkmsTracking', () => ({
+  useOkmsTracking: () => ({ trackClick: vi.fn() }),
+}));
+
 vi.mocked(useSearchParams).mockReturnValue([new URLSearchParams(), vi.fn()]);
 
 const renderBackLink = async () => {

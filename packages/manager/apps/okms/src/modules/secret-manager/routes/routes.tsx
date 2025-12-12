@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Navigate, Route } from 'react-router-dom';
 
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { SECRET_MANAGER_ROUTES_URIS, SECRET_MANAGER_URL_PARAMS } from './routes.constants';
 
 const Root = React.lazy(() => import('@/modules/secret-manager/pages/root/Root.page'));
@@ -69,59 +71,233 @@ const OrderOkmsModal = React.lazy(
 export default (
   <Route path={SECRET_MANAGER_ROUTES_URIS.root} id={'secret-manager-root'}>
     <Route index Component={Root} />
-    <Route path={SECRET_MANAGER_ROUTES_URIS.onboarding} Component={Onboarding} />
-    <Route path={SECRET_MANAGER_ROUTES_URIS.create} Component={CreateSecret}>
+    <Route
+      path={SECRET_MANAGER_ROUTES_URIS.onboarding}
+      Component={Onboarding}
+      handle={{
+        tracking: {
+          pageName: 'onboarding',
+          pageType: PageType.onboarding,
+        },
+      }}
+    />
+    <Route
+      path={SECRET_MANAGER_ROUTES_URIS.create}
+      Component={CreateSecret}
+      handle={{
+        tracking: {
+          pageName: 'create-secret',
+          pageType: PageType.funnel,
+        },
+      }}
+    >
       <Route
         path={`${SECRET_MANAGER_ROUTES_URIS.order}/${SECRET_MANAGER_URL_PARAMS.region}`}
         Component={OrderOkmsModal}
+        handle={{
+          tracking: {
+            pageName: 'order-okms',
+            pageType: PageType.popup,
+          },
+        }}
       />
     </Route>
     <Route
       path={`${SECRET_MANAGER_ROUTES_URIS.region}/${SECRET_MANAGER_URL_PARAMS.region}`}
       Component={OkmsList}
+      handle={{
+        tracking: {
+          pageName: 'okms',
+          pageType: PageType.listing,
+        },
+      }}
     />
     <Route path={SECRET_MANAGER_URL_PARAMS.okmsId}>
-      <Route path={''} Component={SecretList}>
+      <Route
+        path={''}
+        Component={SecretList}
+        handle={{
+          tracking: {
+            pageName: 'secrets',
+            pageType: PageType.listing,
+          },
+        }}
+      >
         <Route
           path={`${SECRET_MANAGER_ROUTES_URIS.value}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={SecretValueDrawer}
+          handle={{
+            tracking: {
+              pageName: 'order-value',
+              pageType: PageType.popup,
+            },
+          }}
         />
         <Route
           path={`${SECRET_MANAGER_ROUTES_URIS.createVersion}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={CreateVersionDrawer}
+          handle={{
+            tracking: {
+              pageName: 'create-version',
+              pageType: PageType.popup,
+            },
+          }}
         />
         <Route
           path={`${SECRET_MANAGER_ROUTES_URIS.delete}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={DeleteSecretModal}
+          handle={{
+            tracking: {
+              pageName: 'delete-secret',
+              pageType: PageType.popup,
+            },
+          }}
         />
       </Route>
       <Route path={`${SECRET_MANAGER_ROUTES_URIS.dashboard}`} Component={OkmsDashboard}>
-        <Route path={''} Component={OkmsDashboardGeneralInformation}>
-          <Route path={`${SECRET_MANAGER_ROUTES_URIS.update}`} Component={OkmsUpdateNameModal} />
-          <Route path={`${SECRET_MANAGER_ROUTES_URIS.terminate}`} Component={OkmsTerminateModal} />
+        <Route
+          path={''}
+          Component={OkmsDashboardGeneralInformation}
+          handle={{
+            tracking: {
+              pageName: 'okms',
+              pageType: PageType.dashboard,
+            },
+          }}
+        >
+          <Route
+            path={`${SECRET_MANAGER_ROUTES_URIS.update}`}
+            Component={OkmsUpdateNameModal}
+            handle={{
+              tracking: {
+                pageName: 'rename-okms',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+          <Route
+            path={`${SECRET_MANAGER_ROUTES_URIS.terminate}`}
+            Component={OkmsTerminateModal}
+            handle={{
+              tracking: {
+                pageName: 'terminate',
+                pageType: PageType.popup,
+              },
+            }}
+          />
           <Route
             path={`${SECRET_MANAGER_ROUTES_URIS.editSecretConfig}`}
             Component={OkmsEditSecretConfigDrawer}
+            handle={{
+              tracking: {
+                pageName: 'edit-secret-config',
+                pageType: PageType.popup,
+              },
+            }}
           />
         </Route>
-        <Route path={`${SECRET_MANAGER_ROUTES_URIS.logs}/*`} Component={OkmsDashboardLogs} />
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.logs}/*`}
+          Component={OkmsDashboardLogs}
+          handle={{
+            tracking: {
+              pageName: 'logs',
+              pageType: PageType.dashboard,
+            },
+          }}
+        />
       </Route>
       <Route path={SECRET_MANAGER_URL_PARAMS.secretPath} Component={Secret}>
-        <Route path={''} Component={SecretGeneralInformation}>
-          <Route path={SECRET_MANAGER_ROUTES_URIS.value} Component={SecretValueDrawer} />
-          <Route path={SECRET_MANAGER_ROUTES_URIS.createVersion} Component={CreateVersionDrawer} />
-          <Route path={SECRET_MANAGER_ROUTES_URIS.editMetadata} Component={EditMetadataDrawer} />
-          <Route path={SECRET_MANAGER_ROUTES_URIS.delete} Component={DeleteSecretModal} />
+        <Route
+          path={''}
+          Component={SecretGeneralInformation}
+          handle={{
+            tracking: {
+              pageName: 'secret',
+              pageType: PageType.dashboard,
+            },
+          }}
+        >
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.value}
+            Component={SecretValueDrawer}
+            handle={{
+              tracking: {
+                pageName: 'secret-value',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.createVersion}
+            Component={CreateVersionDrawer}
+            handle={{
+              tracking: {
+                pageName: 'create-version',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.editMetadata}
+            Component={EditMetadataDrawer}
+            handle={{
+              tracking: {
+                pageName: 'edit-metadata',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.delete}
+            Component={DeleteSecretModal}
+            handle={{
+              tracking: {
+                pageName: 'delete-secret',
+                pageType: PageType.popup,
+              },
+            }}
+          />
         </Route>
-        <Route path={SECRET_MANAGER_ROUTES_URIS.versionList} Component={SecretVersionList}>
-          <Route path={SECRET_MANAGER_ROUTES_URIS.create} Component={CreateVersionDrawer} />
+        <Route
+          path={SECRET_MANAGER_ROUTES_URIS.versionList}
+          Component={SecretVersionList}
+          handle={{
+            tracking: {
+              pageName: 'versions',
+              pageType: PageType.listing,
+            },
+          }}
+        >
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.create}
+            Component={CreateVersionDrawer}
+            handle={{
+              tracking: {
+                pageName: 'create-version',
+                pageType: PageType.popup,
+              },
+            }}
+          />
           <Route
             path={`${SECRET_MANAGER_ROUTES_URIS.delete}/${SECRET_MANAGER_URL_PARAMS.versionId}`}
             Component={DeleteVersionModal}
+            handle={{
+              tracking: {
+                pageName: 'delete-version',
+                pageType: PageType.popup,
+              },
+            }}
           />
           <Route
             path={`${SECRET_MANAGER_ROUTES_URIS.value}/${SECRET_MANAGER_URL_PARAMS.versionId}`}
             Component={SecretValueDrawer}
+            handle={{
+              tracking: {
+                pageName: 'secret-value',
+                pageType: PageType.popup,
+              },
+            }}
           />
           <Route path="*" element={<Navigate to={''} replace />} />
         </Route>

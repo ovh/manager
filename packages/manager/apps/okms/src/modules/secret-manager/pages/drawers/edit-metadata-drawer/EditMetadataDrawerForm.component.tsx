@@ -19,11 +19,13 @@ import z from 'zod';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import {
   DrawerContent,
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 type EditMetadataDrawerFormProps = {
   secret: Secret;
@@ -41,6 +43,7 @@ export const EditMetadataDrawerForm = ({
   onDismiss,
 }: EditMetadataDrawerFormProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
+  const { trackClick } = useOkmsTracking();
 
   const {
     mutateAsync: updateSecret,
@@ -61,6 +64,12 @@ export const EditMetadataDrawerForm = ({
   });
 
   const handleSubmitForm = async (data: FormSchema) => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['edit-metadata', 'confirm'],
+    });
     try {
       await updateSecret({
         okmsId,
@@ -81,6 +90,16 @@ export const EditMetadataDrawerForm = ({
     } catch {
       // Error is handled by the useUpdateSecret hook
     }
+  };
+
+  const handleDismiss = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['edit-metadata', 'cancel'],
+    });
+    onDismiss();
   };
 
   return (
@@ -110,7 +129,7 @@ export const EditMetadataDrawerForm = ({
         isPrimaryButtonLoading={isUpdating}
         onPrimaryButtonClick={handleSubmit(handleSubmitForm)}
         secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
-        onSecondaryButtonClick={onDismiss}
+        onSecondaryButtonClick={handleDismiss}
       />
     </div>
   );
