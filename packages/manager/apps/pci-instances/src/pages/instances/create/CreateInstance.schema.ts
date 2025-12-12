@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { instanceNameRegex, sshKeyRegex } from '@/constants';
 import { DEPLOYMENT_MODES } from '@/types/instance/common.type';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const nameSchema = z.string().regex(instanceNameRegex);
 
@@ -83,3 +84,45 @@ export type TAddSshKeyForm = z.infer<
 >;
 
 export const networkIdSchema = z.string().nullable();
+
+const VLAN_ID_MIN = 0;
+const VLAN_ID_MAX = 4000;
+const SUBNET_MASK_MIN = 9;
+const SUBNET_MASK_MAX = 29;
+const NETWORK_NAME_LENGTH = 255;
+
+const ipSchema = z.string().ip();
+const maskSchema = z
+  .number()
+  .min(SUBNET_MASK_MIN)
+  .max(SUBNET_MASK_MAX);
+
+export const networkSchema = z
+  .object({
+    name: z
+      .string()
+      .max(NETWORK_NAME_LENGTH)
+      .nonempty(`${NAMESPACES.FORM}:error_required_field`),
+    vlanId: z.custom<number>(
+      (id) =>
+        id !== ''
+          ? z.coerce
+              .number()
+              .min(VLAN_ID_MIN)
+              .max(VLAN_ID_MAX)
+              .safeParse(id).success
+          : false,
+      'creation:pci_instance_creation_network_add_new_vlanId_error',
+    ),
+    cidr: z.string().refine((value) => {
+      const [ip, mask] = value.split('/');
+      return (
+        ipSchema.safeParse(ip).success &&
+        maskSchema.safeParse(Number(mask)).success
+      );
+    }),
+    enableDhcp: z.boolean(),
+  })
+  .nullable();
+
+export type TAddNetworkForm = z.infer<typeof networkSchema>;

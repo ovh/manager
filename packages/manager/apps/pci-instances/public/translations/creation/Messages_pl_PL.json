@@ -100,5 +100,14 @@
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} netto/godz.",
   "pci_instance_creation_image_available_on_other_models": "Ten obraz jest dostępny w innych modelach.",
   "pci_instance_creation_select_network_dropdown_label": "Wybierz istniejącą sieć prywatną",
-  "pci_instance_creation_network_add_new": "Utwórz sieć prywatną"
+  "pci_instance_creation_network_add_new": "Utwórz sieć prywatną",
+  "pci_instance_creation_network_add_new_warning": "Tworzenie sieci prywatnej nastąpi na końcu procesu konfiguracji. Możesz go edytować.",
+  "pci_instance_creation_network_add_new_name_label_form": "Nazwa sieci prywatnej",
+  "pci_instance_creation_network_add_new_vlanID_label_form": "ID vLAN",
+  "pci_instance_creation_network_add_new_cidr_label_form": "CIDR",
+  "pci_instance_creation_network_add_new_dhcp_label_form": "DHCP włączone",
+  "pci_instance_creation_network_add_new_used_vlanID_warning": "Użycie tego samego ID VLAN dla wielu sieci prywatnych wymaga starannego zarządzania adresami IP. Użycie puli alokacji DHCP bez nakładania się może być sposobem na zarządzanie tym problemem.",
+  "pci_instance_creation_network_add_new_vlanID_warning": "ID VLAN 0 jest domyślnie używane w innych produktach, w tym poza światem Public Cloud. Adresy IP prywatne muszą być zarządzane z uwagą",
+  "pci_instance_creation_network_add_new_cidr_error": "Proszę wprowadzić prawidłowy adres IP",
+  "pci_instance_creation_network_add_new_vlanId_error": "ID vLAN musi mieścić się w zakresie od 0 do 4000. Proszę sprawdzić wprowadzone wartości przed kontynuowaniem."
 }

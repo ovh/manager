@@ -100,5 +100,14 @@
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} inkl. MwSt./Stunde",
   "pci_instance_creation_image_available_on_other_models": "Dieses Bild ist in anderen Modellen verfügbar.",
   "pci_instance_creation_select_network_dropdown_label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
-  "pci_instance_creation_network_add_new": "Ein privates Netzwerk erstellen"
+  "pci_instance_creation_network_add_new": "Ein privates Netzwerk erstellen",
+  "pci_instance_creation_network_add_new_warning": "Die Erstellung Ihres privaten Netzwerks erfolgt am Ende des Konfigurationsprozesses. Sie können es bearbeiten.",
+  "pci_instance_creation_network_add_new_name_label_form": "Name des privaten Netzwerks",
+  "pci_instance_creation_network_add_new_vlanID_label_form": "vLAN-ID",
+  "pci_instance_creation_network_add_new_cidr_label_form": "CIDR",
+  "pci_instance_creation_network_add_new_dhcp_label_form": "DHCP aktiviert",
+  "pci_instance_creation_network_add_new_used_vlanID_warning": "Die Verwendung derselben VLAN-ID für mehrere private Netzwerke erfordert eine sorgfältige Verwaltung der privaten IPs. Die Verwendung eines DHCP-Adresspools ohne Überlappung kann eine Möglichkeit sein, dieses Problem zu verwalten.",
+  "pci_instance_creation_network_add_new_vlanID_warning": "Die VLAN-ID 0 wird standardmäßig in anderen Produkten verwendet, auch außerhalb der Public Cloud. Private IPs müssen sorgfältig verwaltet werden.",
+  "pci_instance_creation_network_add_new_cidr_error": "Bitte geben Sie eine gültige IP-Adresse ein.",
+  "pci_instance_creation_network_add_new_vlanId_error": "Die vLAN-ID muss zwischen 0 und 4000 liegen. Bitte überprüfen Sie den eingegebenen Wert, bevor Sie fortfahren."
 }

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -20,16 +20,32 @@ import {
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../CreateInstance.page';
 import { selectPrivateNetworks } from '../view-models/networksViewModel';
+import AddNetworkForm from './network/AddNetworkForm.component';
+import { TAddNetworkForm } from '../CreateInstance.schema';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+type TUpdateNetworkFieldsArgs = {
+  networkId: string | null;
+  newPrivateNetwork: TAddNetworkForm | null;
+};
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const networkId = useWatch({
+  const [networkId, microRegion] = useWatch({
     control,
-    name: 'networkId',
+    name: ['networkId', 'microRegion'],
   });
 
-  const networks = selectPrivateNetworks();
+  const [
+    isCreationNetworkFormOpened,
+    setIsCreationNetworkFormOpened,
+  ] = useState(false);
+
+  const { networks, ovhPrivateNetwork } = useMemo(
+    () => selectPrivateNetworks(microRegion),
+    [microRegion],
+  );
 
   const { trackClick } = useOvhTracking();
 
@@ -38,7 +54,11 @@ const Network: FC = () => {
 
     if (!id) return;
 
-    setValue('networkId', id);
+    updatePrivateNetworkFields({
+      networkId: id,
+      newPrivateNetwork: null,
+    });
+
     trackClick({
       location: PageLocation.funnel,
       buttonType: ButtonType.select,
@@ -46,6 +66,50 @@ const Network: FC = () => {
       actions: ['add_instance', 'associate_existing_private_network'],
     });
   };
+
+  const handleOpenCreateNetwork = () => {
+    setIsCreationNetworkFormOpened(true);
+
+    updatePrivateNetworkFields({
+      networkId: null,
+      newPrivateNetwork: ovhPrivateNetwork,
+    });
+
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['add_instance', 'create_private_network'],
+    });
+  };
+
+  const handleCloseCreateNetwork = () => {
+    setIsCreationNetworkFormOpened(false);
+
+    updatePrivateNetworkFields({
+      networkId: networks[0]?.value ?? null,
+      newPrivateNetwork: null,
+    });
+  };
+
+  const updatePrivateNetworkFields = useCallback(
+    ({ networkId, newPrivateNetwork }: TUpdateNetworkFieldsArgs) => {
+      setValue('networkId', networkId);
+      setValue('newPrivateNetwork', newPrivateNetwork);
+    },
+    [setValue],
+  );
+
+  useEffect(() => {
+    if (networks.length === 0) {
+      setIsCreationNetworkFormOpened(true);
+
+      updatePrivateNetworkFields({
+        networkId: null,
+        newPrivateNetwork: ovhPrivateNetwork,
+      });
+    }
+  }, [networks.length, ovhPrivateNetwork, updatePrivateNetworkFields]);
 
   return (
     <section>
@@ -65,7 +129,24 @@ const Network: FC = () => {
           'creation:pci_instance_creation_network_private_network_setting_description',
         )}
       </Text>
-      {networks.length !== 0 && (
+      {isCreationNetworkFormOpened ? (
+        <>
+          <Text className="font-semibold" preset="paragraph">
+            {t('creation:pci_instance_creation_network_add_new_warning')}
+          </Text>
+          <AddNetworkForm />
+          {networks.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="mt-6"
+              onClick={handleCloseCreateNetwork}
+            >
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
+            </Button>
+          )}
+        </>
+      ) : (
         <>
           <FormField className="my-4 max-w-[32%]">
             <FormFieldLabel>
@@ -82,7 +163,7 @@ const Network: FC = () => {
               <SelectContent />
             </Select>
           </FormField>
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={handleOpenCreateNetwork}>
             <Icon name="plus" />
             {t('creation:pci_instance_creation_network_add_new')}
           </Button>
