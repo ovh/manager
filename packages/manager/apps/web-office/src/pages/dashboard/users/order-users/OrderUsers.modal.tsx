@@ -169,13 +169,13 @@ export default function ModalOrderUsers() {
       onPrimaryButtonClick={() => void handleSubmit(handleSaveClick)()}
     >
       <form
-        className="flex flex-col text-left gap-y-5"
+        className="flex flex-col gap-y-5 text-left"
         onSubmit={(e) => void handleSubmit(handleSaveClick)(e)}
       >
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(`${NAMESPACES.FORM}:label_mandatory`)}
         </OdsText>
-        <div className="flex flex-wrap sm:flex-nowrap gap-5">
+        <div className="flex flex-wrap gap-5 sm:flex-nowrap">
           <Controller
             name="firstName"
             control={control}
@@ -211,7 +211,7 @@ export default function ModalOrderUsers() {
         </div>
         <OdsFormField error={errors?.login?.message}>
           <label slot="label">{t(`${NAMESPACES.FORM}:login`)}*</label>
-          <div className="flex flex-wrap sm:flex-nowrap gap-5">
+          <div className="flex flex-wrap gap-5 sm:flex-nowrap">
             <Controller
               name="login"
               control={control}
@@ -285,7 +285,7 @@ export default function ModalOrderUsers() {
             ></Price>
           </OdsFormField>
         )}
-        <OdsMessage className="mt-6 mb-6" isDismissible={false}>
+        <OdsMessage className="my-6" isDismissible={false}>
           {t('dashboard_users_order_users_message')}
         </OdsMessage>
       </form>

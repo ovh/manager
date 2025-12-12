@@ -52,7 +52,7 @@ export default function GeneralInformation() {
         value: (
           <>
             {!isLoadingParentTenant && (
-              <div className="flex justify-between items-center gap-2">
+              <div className="flex items-center justify-between gap-2">
                 <OdsText preset={ODS_TEXT_PRESET.paragraph} className="break-all">
                   {dataParentTenant?.displayName}
                 </OdsText>
@@ -214,7 +214,7 @@ export default function GeneralInformation() {
   }, [serviceInfos, isLoadingServiceInfos, locale, serviceType, t]);
 
   return (
-    <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <div className="p-3">
         <DashboardTile
           data-testid="general_informations"
