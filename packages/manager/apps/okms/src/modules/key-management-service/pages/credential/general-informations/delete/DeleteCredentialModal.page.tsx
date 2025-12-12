@@ -5,13 +5,14 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { useTranslation } from 'react-i18next';
 
 import { DeleteModal } from '@ovh-ux/manager-react-components';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const DeleteCredentialPage = () => {
   const navigate = useNavigate();
-  const { trackPage } = useOvhTracking();
+  const { trackPage } = useOkmsTracking();
   const { okmsId, credentialId } = useRequiredParams('okmsId', 'credentialId');
   const { t } = useTranslation('key-management-service/credential');
 

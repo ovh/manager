@@ -14,8 +14,9 @@ import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { Subtitle } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import CreateGeneralInformationsCreationMethod from './general-informations/CreateGeneralInformationsCreationMethod.component';
@@ -57,7 +58,7 @@ const CreateGeneralInformations = ({
   const { t } = useTranslation('key-management-service/credential');
   const { okmsId } = useRequiredParams('okmsId');
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const credentialNameError = validateCredentialName(name);
   const credentialDescriptionError = validateCredentialDescription(description);
