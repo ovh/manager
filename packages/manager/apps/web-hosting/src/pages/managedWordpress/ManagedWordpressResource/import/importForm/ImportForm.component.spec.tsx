@@ -1,20 +1,49 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import 'element-internals-polyfill';
+import { I18nextProvider } from 'react-i18next';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { postManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { createWrapper, i18n } from '@/utils/test.provider';
 
 import ImportForm from './ImportForm.component';
 
-vi.hoisted(() => ({
-  environment: {
-    getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
+const testQueryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      retry: false,
+    },
+    queries: {
+      retry: false,
+    },
   },
+});
+
+const RouterWrapper = createWrapper();
+
+const Wrappers = ({ children }: { children: React.ReactElement }) => {
+  return (
+    <RouterWrapper>
+      <QueryClientProvider client={testQueryClient}>
+        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+      </QueryClientProvider>
+    </RouterWrapper>
+  );
+};
+
+vi.mock('@ovh-ux/muk', () => ({
+  useNotifications: vi.fn(() => ({
+    addSuccess: vi.fn(),
+    addError: vi.fn(),
+    addWarning: vi.fn(),
+    addInfo: vi.fn(),
+  })),
 }));
 
 vi.mock('@/data/api/managedWordpress', () => ({
@@ -33,7 +62,7 @@ describe('ImportForm Component', () => {
   });
 
   it('should render the form inputs and submit button for step 1', () => {
-    const { getByTestId } = render(<ImportForm />);
+    const { getByTestId } = render(<ImportForm />, { wrapper: Wrappers as ComponentType });
     expect(getByTestId('input-admin-url')).toBeInTheDocument();
     expect(getByTestId('input-admin-login')).toBeInTheDocument();
     expect(getByTestId('input-admin-password')).toBeInTheDocument();
@@ -41,7 +70,7 @@ describe('ImportForm Component', () => {
   });
 
   it.skip('should enable the submit button and make an API call on valid input for step 1', async () => {
-    const { getByTestId } = render(<ImportForm />);
+    const { getByTestId } = render(<ImportForm />, { wrapper: Wrappers as ComponentType });
 
     const adminURLInput = getByTestId('input-admin-url') as HTMLInputElement;
     const adminLoginInput = getByTestId('input-admin-login') as HTMLInputElement;
@@ -68,7 +97,9 @@ describe('ImportForm Component', () => {
   });
 
   it.skip('should render the form inputs and submit button for step 2', async () => {
-    const { getByTestId, queryByTestId } = render(<ImportForm />);
+    const { getByTestId, queryByTestId } = render(<ImportForm />, {
+      wrapper: Wrappers as ComponentType,
+    });
 
     const adminURLInput = getByTestId('input-admin-url') as HTMLInputElement;
     const adminLoginInput = getByTestId('input-admin-login') as HTMLInputElement;

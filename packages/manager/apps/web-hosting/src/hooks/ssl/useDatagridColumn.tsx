@@ -1,30 +1,28 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { BADGE_COLOR, BUTTON_VARIANT, Badge, Button, ICON_NAME } from '@ovhcloud/ods-react';
 
-import {
-  ActionMenu,
-  ActionMenuItem,
-  Badge,
-  DataGridTextCell,
-  useFormatDate,
-} from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps, DatagridColumn, useFormatDate } from '@ovh-ux/muk';
 
 import { SslCertificate } from '@/data/types/product/ssl';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
-export const DatagridActionCell = (props: SslCertificate) => {
+interface CellContext<TData> {
+  row: {
+    original: TData;
+  };
+}
+export const DatagridActionCell = ({ row }: CellContext<Record<string, unknown>>) => {
   const { serviceName } = useParams();
   const navigate = useNavigate();
-
   const { t } = useTranslation('ssl');
+  const resource = row.original as SslCertificate;
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     {
       id: 1,
       label: t('disable_ssl'),
@@ -32,22 +30,20 @@ export const DatagridActionCell = (props: SslCertificate) => {
         navigate(
           urls.disableSsl
             .replace(subRoutes.serviceName, serviceName)
-            .replace(subRoutes.domain, props?.currentState?.mainDomain),
+            .replace(subRoutes.domain, resource?.currentState?.mainDomain),
         );
       },
     },
   ];
 
   return (
-    <DataGridTextCell>
-      <ActionMenu
-        id={props?.currentState?.mainDomain}
-        items={items}
-        isCompact
-        variant={ODS_BUTTON_VARIANT.ghost}
-        icon={ODS_ICON_NAME.ellipsisVertical}
-      />
-    </DataGridTextCell>
+    <ActionMenu
+      id={resource?.currentState?.mainDomain}
+      items={items}
+      isCompact
+      variant={BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
+    />
   );
 };
 
@@ -56,106 +52,113 @@ export default function useDatagridColumn() {
   const { serviceName } = useParams();
   const { t } = useTranslation('ssl');
   const formatDate = useFormatDate();
-  const StatusColor = {
-    ACTIVE: ODS_BADGE_COLOR.success,
-    CREATING: ODS_BADGE_COLOR.warning,
-    DELETING: ODS_BADGE_COLOR.warning,
-    EXPIRED: ODS_BADGE_COLOR.neutral,
-    IMPORTING: ODS_BADGE_COLOR.warning,
-    REGENERATING: ODS_BADGE_COLOR.warning,
+
+  const getResource = (row: Record<string, unknown>): SslCertificate => {
+    return row as SslCertificate;
   };
 
-  const columns = [
-    {
-      id: 'mainDomain',
-      cell: (props: SslCertificate) => (
-        <DataGridTextCell>{props?.currentState?.mainDomain}</DataGridTextCell>
-      ),
-      label: t('cell_main_domain'),
-    },
-    {
-      id: 'additionalDomain',
-      cell: (props: SslCertificate) => (
-        <DataGridTextCell>
-          {props?.currentState?.additionalDomains?.[0] || '-'}
-          {props?.currentState?.additionalDomains?.length > 1 && (
-            <OdsButton
-              onClick={() => {
-                navigate({
-                  pathname: urls.sanSsl
-                    .replace(subRoutes.serviceName, serviceName)
-                    .replace(subRoutes.domain, props?.currentState?.mainDomain),
-                  search: `?${new URLSearchParams({
-                    san: props?.currentState?.additionalDomains?.join('; '),
-                  })}`,
-                });
-              }}
-              variant={ODS_BUTTON_VARIANT.ghost}
-              label={t(
-                props?.currentState?.additionalDomains?.length === 2
-                  ? 'additional_domains_singular_total'
-                  : 'additional_domains_plural_total',
-                { n: props?.currentState?.additionalDomains?.length - 1 },
-              )}
-            />
-          )}
-        </DataGridTextCell>
-      ),
-      label: t('cell_additional_domain'),
-    },
-    {
-      id: 'type',
-      cell: (props: SslCertificate) => (
-        <DataGridTextCell>{t(props?.currentState?.certificateType)}</DataGridTextCell>
-      ),
-      label: t('cell_certificate_type'),
-    },
-    {
-      id: 'state',
-      cell: (props: SslCertificate) => (
-        <DataGridTextCell>
-          <Badge
-            label={t(props?.currentState?.state)}
-            className="my-3"
-            color={StatusColor[props?.currentState?.state]}
-          />
-        </DataGridTextCell>
-      ),
-      label: t('cell_state'),
-    },
-    {
-      id: 'creationDate',
-      cell: (props: SslCertificate) => (
-        <DataGridTextCell>
-          {formatDate({
-            date: props?.currentState?.createdAt,
-            format: 'dd/MM/yyyy',
-          })}
-        </DataGridTextCell>
-      ),
-      label: t('cell_creation_date'),
-    },
-    {
-      id: 'expirationDate',
-      cell: (props: SslCertificate) => (
-        <DataGridTextCell>
-          {props?.currentState?.expiredAt
-            ? formatDate({
-                date: props?.currentState?.expiredAt,
-                format: 'dd/MM/yyyy',
-              })
-            : '-'}
-        </DataGridTextCell>
-      ),
-      label: t('cell_expiration_date'),
-    },
-    {
-      id: 'actions',
-      label: '',
-      isSortable: false,
-      cell: DatagridActionCell,
-    },
-  ];
+  const columns: DatagridColumn<Record<string, unknown>>[] = useMemo(() => {
+    const StatusColor = {
+      ACTIVE: BADGE_COLOR.success,
+      CREATING: BADGE_COLOR.warning,
+      DELETING: BADGE_COLOR.warning,
+      EXPIRED: BADGE_COLOR.neutral,
+      IMPORTING: BADGE_COLOR.warning,
+      REGENERATING: BADGE_COLOR.warning,
+    };
 
+    return [
+      {
+        id: 'mainDomain',
+        accessorFn: (row) => getResource(row).currentState.mainDomain,
+        cell: ({ row }) => <div>{getResource(row.original).currentState.mainDomain}</div>,
+        header: t('cell_main_domain'),
+      },
+      {
+        id: 'additionalDomain',
+        cell: ({ row }) => (
+          <>
+            {getResource(row.original)?.currentState?.additionalDomains?.[0] || '-'}
+            {getResource(row.original)?.currentState?.additionalDomains?.length > 1 && (
+              <Button
+                onClick={() => {
+                  navigate({
+                    pathname: urls.sanSsl
+                      .replace(subRoutes.serviceName, serviceName)
+                      .replace(
+                        subRoutes.domain,
+                        getResource(row.original)?.currentState?.mainDomain,
+                      ),
+                    search: `?${new URLSearchParams({
+                      san: getResource(row.original)?.currentState?.additionalDomains?.join('; '),
+                    })}`,
+                  });
+                }}
+                variant={BUTTON_VARIANT.ghost}
+              >
+                {t(
+                  getResource(row.original)?.currentState?.additionalDomains?.length === 2
+                    ? 'additional_domains_singular_total'
+                    : 'additional_domains_plural_total',
+                  { n: getResource(row.original)?.currentState?.additionalDomains?.length - 1 },
+                )}
+              </Button>
+            )}
+          </>
+        ),
+        header: t('cell_additional_domain'),
+      },
+      {
+        id: 'type',
+        cell: ({ row }) => <>{t(getResource(row.original)?.currentState?.certificateType)}</>,
+        header: t('cell_certificate_type'),
+      },
+      {
+        id: 'state',
+        cell: ({ row }) => (
+          <Badge
+            className="my-3"
+            color={StatusColor[getResource(row.original)?.currentState?.state]}
+          >
+            {t(getResource(row.original)?.currentState?.state)}
+          </Badge>
+        ),
+        label: t('cell_state'),
+      },
+      {
+        id: 'creationDate',
+        cell: ({ row }) => (
+          <>
+            {formatDate({
+              date: getResource(row.original)?.currentState?.createdAt,
+              format: 'dd/MM/yyyy',
+            })}
+          </>
+        ),
+        label: t('cell_creation_date'),
+      },
+      {
+        id: 'expirationDate',
+        cell: ({ row }) => (
+          <>
+            {getResource(row.original)?.currentState?.expiredAt
+              ? formatDate({
+                  date: getResource(row.original)?.currentState?.expiredAt,
+                  format: 'dd/MM/yyyy',
+                })
+              : '-'}
+          </>
+        ),
+        label: t('cell_expiration_date'),
+      },
+      {
+        id: 'actions',
+        label: '',
+        size: 48,
+        isSortable: false,
+        cell: DatagridActionCell,
+      },
+    ];
+  }, [t, navigate, serviceName, formatDate]);
   return columns;
 }

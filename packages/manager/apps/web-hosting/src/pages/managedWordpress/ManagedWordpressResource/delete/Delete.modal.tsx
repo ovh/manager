@@ -3,13 +3,12 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQueries } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { MODAL_COLOR, Modal, useNotifications } from '@ovh-ux/muk';
 
 import {
   deleteManagedCmsResourceWebsite,
@@ -51,6 +50,7 @@ export default function DeleteModal() {
       enabled: !!serviceName,
     })),
   });
+
   const websiteDetails = websiteQueries.map((q) => q.data);
   const fqdns = websiteDetails.map(
     (site, index) => site?.currentState?.defaultFQDN || websiteIds[index],
@@ -72,7 +72,7 @@ export default function DeleteModal() {
     },
     onSuccess: () => {
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {websiteIds.length === 1
             ? t('managedWordpress:web_hosting_managed_wordpress_delete_website_success_message', {
                 website: fqdns[0],
@@ -80,17 +80,17 @@ export default function DeleteModal() {
             : t('managedWordpress:web_hosting_managed_wordpress_delete_websites_success_message', {
                 website: fqdns.join('; '),
               })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(`${NAMESPACES.ERROR}:error_message`, {
             message: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -103,7 +103,6 @@ export default function DeleteModal() {
       onClose();
     },
   });
-
   return (
     <Modal
       heading={
@@ -111,23 +110,27 @@ export default function DeleteModal() {
           ? t('delete_my_website')
           : t('delete_my_websites', { number: websiteIds.length })
       }
-      isOpen
-      onDismiss={onClose}
-      type={ODS_MODAL_COLOR.critical}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={onClose}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
-      isPrimaryButtonDisabled={websiteIds.length === 0}
-      onPrimaryButtonClick={() => deleteWebsites({ websiteIds })}
-      isPrimaryButtonLoading={isPending}
+      open
+      onOpenChange={onClose}
+      type={MODAL_COLOR.critical}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
+        loading: isPending,
+        onClick: () => deleteWebsites({ websiteIds }),
+        disabled: websiteIds.length === 0,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: onClose,
+      }}
     >
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         {websiteIds.length === 1
           ? t('confirmation_delete_single_site', { website: fqdns[0] })
           : t('confirmation_delete_multiple_sites', {
               website: fqdns.join(', '),
             })}
-      </OdsText>
+      </Text>
     </Modal>
   );
 }

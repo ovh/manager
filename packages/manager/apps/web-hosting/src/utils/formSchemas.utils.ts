@@ -2,6 +2,9 @@ import { z } from 'zod';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+import { CmsType } from '@/data/types/product/managedWordpress/cms';
+import { AssociationType } from '@/data/types/product/website';
+
 import { PASSWORD_REGEX } from './form';
 
 export const zForm = (t: (key: string, params?: Record<string, unknown>) => string) => {
@@ -45,7 +48,7 @@ export const zForm = (t: (key: string, params?: Record<string, unknown>) => stri
 
     cmsSpecific: z.object({
       wordpress: z.object({
-        language: z.string(),
+        language: z.string().optional(),
       }),
     }),
     phpVersion: z.string().min(1, t(`${NAMESPACES.FORM}:required_field`)),
@@ -55,3 +58,26 @@ export const zForm = (t: (key: string, params?: Record<string, unknown>) => stri
     CREATE_SITE_FORM_SCHEMA,
   };
 };
+
+export const websiteFormSchema = z.object({
+  associationType: z.enum([
+    AssociationType.EXISTING,
+    AssociationType.EXTERNAL,
+    AssociationType.ORDER,
+  ]),
+  cdn: z.boolean().optional(),
+  firewall: z.boolean().optional(),
+  name: z.string(),
+  path: z.string().optional(),
+  autoConfigureDns: z.boolean().optional(),
+  fqdn: z.string(),
+  ip: z.boolean().optional(),
+  selectedIp: z.string().optional(),
+  module: z
+    .enum([CmsType.PRESTASHOP, CmsType.WORDPRESS, CmsType.DRUPAL, CmsType.JOOMLA, CmsType.NONE])
+    .optional(),
+  advancedConfiguration: z.boolean().optional(),
+  wwwNeeded: z.boolean().optional(),
+  hasSubdomain: z.boolean().optional(),
+  subdomain: z.string().optional(),
+});

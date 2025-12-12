@@ -6,6 +6,7 @@ import {
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
+  sharedCssConfig,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
@@ -13,6 +14,7 @@ export default mergeConfig(
   createConfig({
     test: {
       setupFiles: ['src/utils/test.setup.tsx'],
+      ...sharedCssConfig,
       coverage: {
         exclude: [
           ...defaultExcludedFiles,

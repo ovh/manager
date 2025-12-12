@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import { Location, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Location, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
@@ -11,7 +11,7 @@ import { replaceAll } from '@/utils/string';
 export type TabItemProps = {
   name: string;
   trackingName: string;
-  title: ReactNode;
+  title: string;
   pathMatchers?: RegExp[];
   to: string;
   hidden?: boolean;
@@ -29,9 +29,7 @@ export const activatedTabs = (pathMatchers: RegExp[], location: Location) => {
 
 export const useComputePathMatchers = (routes: string[]) => {
   const { serviceName } = useParams<{ serviceName: string }>();
-  const replacements = {
-    ':serviceName': serviceName || '',
-  };
+  const replacements = { ':serviceName': serviceName || '' };
   return routes.map((path) => new RegExp(`^${replaceAll(path, replacements)}$`));
 };
 
@@ -42,59 +40,57 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
   const { trackClick } = useOvhTracking();
 
   useEffect(() => {
-    if (!location.pathname) {
-      setActivePanel(tabs[0].name);
-      navigate(tabs[0].to);
-    } else {
-      const activeTab = tabs.find((tab) => {
+    const activeTab =
+      tabs.find((tab) => {
         const [pathname] = (tab.to || '').split('?');
         return (
           pathname === location.pathname ||
           tab.pathMatchers?.some((pathMatcher) => pathMatcher.test(location.pathname))
         );
-      });
-      if (activeTab) {
-        setActivePanel(activeTab.name);
-      }
+      }) || tabs[0];
+
+    if (activeTab) {
+      setActivePanel(activeTab.name);
     }
-  }, [location.pathname, navigate, tabs]);
+  }, [location.pathname, tabs]);
+
+  const handleClick = (tab: TabItemProps, e: React.MouseEvent) => {
+    if (tab.isDisabled) {
+      e.preventDefault();
+      return;
+    }
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.tab,
+      actionType: 'navigation',
+      actions: [tab.trackingName],
+    });
+    navigate(tab.to);
+  };
 
   return (
-    <OdsTabs>
-      {tabs.map(
-        (tab: TabItemProps) =>
-          !tab.hidden && (
-            <NavLink
-              key={`osds-tab-bar-item-${tab.name}`}
-              to={tab.to}
-              className="no-underline"
-              tabIndex={-1}
-              onClick={(e) => {
-                if (tab.isDisabled) {
-                  e.preventDefault();
-                  return;
-                }
-                trackClick({
-                  location: PageLocation.page,
-                  buttonType: ButtonType.tab,
-                  actionType: 'navigation',
-                  actions: [tab.trackingName],
-                });
-              }}
-            >
-              <OdsTab
+    <Tabs>
+      <TabList>
+        {tabs.map(
+          (tab) =>
+            !tab.hidden && (
+              <Tab
+                key={tab.name}
                 id={tab.name}
                 data-testid={tab.name}
                 role="tab"
-                isSelected={activePanel === tab.name}
-                isDisabled={tab.isDisabled}
+                aria-selected={activePanel === tab.name}
+                disabled={tab.isDisabled}
+                name={tab.name}
+                value={tab.title}
+                onClick={(e) => handleClick(tab, e)}
               >
                 {tab.title}
-              </OdsTab>
-            </NavLink>
-          ),
-      )}
-    </OdsTabs>
+              </Tab>
+            ),
+        )}
+      </TabList>
+    </Tabs>
   );
 };
 

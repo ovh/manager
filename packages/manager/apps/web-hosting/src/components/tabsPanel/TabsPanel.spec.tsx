@@ -26,14 +26,14 @@ const tabs = [
 ];
 
 describe('TabsPanel component', () => {
-  it('should render correctly with first tab active', () => {
+  it('should render correctly with first tab active', async () => {
     vi.mocked(useLocation).mockReturnValue({
       pathname: '/1',
       search: '',
       hash: '',
       key: '',
-      state: '',
-    });
+      state: null,
+    } as ReturnType<typeof useLocation>);
 
     const { getByText, container } = render(<TabsPanel tabs={tabs} />);
 
@@ -42,11 +42,10 @@ describe('TabsPanel component', () => {
     const link1 = getByText('1');
     const link2 = getByText('2');
 
-    return waitFor(() => {
-      expect(link1).toHaveAttribute('is-selected', 'true');
-    }).then(() => {
-      expect(link2).toHaveAttribute('is-selected', 'false');
+    await waitFor(() => {
+      expect(link1).toHaveAttribute('aria-selected', 'true');
     });
+    expect(link2).toHaveAttribute('aria-selected', 'false');
   });
 
   it('should render correctly with second tab active', async () => {
@@ -55,8 +54,8 @@ describe('TabsPanel component', () => {
       search: '',
       hash: '',
       key: '',
-      state: '',
-    });
+      state: null,
+    } as ReturnType<typeof useLocation>);
 
     const { getByText, container } = render(<TabsPanel tabs={tabs} />);
 
@@ -65,10 +64,9 @@ describe('TabsPanel component', () => {
     const link1 = getByText('1');
     const link2 = getByText('2');
 
-    return waitFor(() => {
-      expect(link1).toHaveAttribute('is-selected', 'false');
-    }).then(() => {
-      expect(link2).toHaveAttribute('is-selected', 'true');
+    await waitFor(() => {
+      expect(link2).toHaveAttribute('aria-selected', 'true');
     });
+    expect(link1).toHaveAttribute('aria-selected', 'false');
   });
 });

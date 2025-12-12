@@ -3,26 +3,44 @@ import React from 'react';
 
 import { Route, UIMatch } from 'react-router-dom';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import NotFound from '@/pages/404';
 
 import {
   ADD_DOMAIN,
+  ADD_MODULE,
+  ADD_WEBSITE,
+  ADVANCED_FLUSH_CDN,
+  ASSOCIATE_GIT,
+  CDN_CACHE_RULE,
+  CDN_CONFIRMATION,
+  CDN_CORS_RESOURCE_SHARING,
+  CDN_EDIT_URLS,
+  CONFIGURE_GIT,
   CREATE,
   DASHBOARD,
   DELETE,
+  DELETE_GIT,
+  DELETE_MODULE,
+  DEPLOYE_GIT,
+  DETACHE_DOMAIN,
   DISABLE_SSL,
+  EDIT_NAME,
   GENERAL_INFORMATION,
   IMPORT,
   IMPORT_SSL,
+  LAST_DEPLOYEMENT_GIT,
   LOCAL_SEO,
+  MODIFY_CDN,
+  MODIFY_DOMAIN,
+  MULTISITE,
   ONBOARDING,
-  ORDER_DOMAIN,
   ORDER_SECTIGO,
+  PURGE_CDN,
   REMOVE_SEO_SUBSCIPTION,
   SAN_SSL,
   SSL,
@@ -32,8 +50,31 @@ import {
   WORDPRESS_MANAGED,
   WORDPRESS_MANAGED_SERVICE,
 } from '../utils/tracking.constants';
-import { DashboardLayout, OnboardingPage, RootPage, WebsitesPage } from './pages/default';
-import { AddDomainPage, OrderDomainPage } from './pages/domain';
+import {
+  ActivateCdnModal,
+  AdvancedFlushCdnModal,
+  CdnCacheRuleModal,
+  CdnConfirmationModal,
+  CdnCorsResourceSharingModal,
+  CdnEditUrlsModal,
+  ModifyCdnPage,
+  PurgeCdnModal,
+} from './pages/cdn';
+import {
+  DashboardLayout,
+  MultisitePage,
+  OnboardingPage,
+  RootPage,
+  WebsitesPage,
+} from './pages/default';
+import { AddDomainPage, DetacheDomainModal, ModifyDomainModal } from './pages/domain';
+import {
+  AssociateGitPage,
+  ConfigureGitPage,
+  DeleteGitModal,
+  DeployeGitModal,
+  LastDeploymentGitModal,
+} from './pages/git';
 import { LocalSeoPage, RemoveSeoSubscriptionPage } from './pages/localSeo';
 import {
   ManagedWordpressPage,
@@ -44,8 +85,10 @@ import {
   ManagedWordpressServiceImportPage,
   ManagedWordpressServiceTasksPage,
 } from './pages/managedWordpress';
+import { AddModuleModal, DeleteModuleModal } from './pages/module';
 import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
+import { AddWebsitePage, UpdateDisplayNameModalComponent } from './pages/website';
 import { urls } from './routes.constants';
 
 export type RouteHandle = {
@@ -56,7 +99,7 @@ export type RouteHandle = {
   };
   breadcrumb?: {
     label: string;
-    icon?: ODS_ICON_NAME;
+    icon?: ICON_NAME;
   };
 };
 export type RouteMatch = UIMatch<unknown, RouteHandle>;
@@ -211,7 +254,7 @@ export default (
             label: 'ssl',
           },
         }}
-      />
+      ></Route>
       <Route
         id={TASK}
         path={urls.task}
@@ -222,7 +265,7 @@ export default (
             pageType: PageType.listing,
           },
           breadcrumb: {
-            label: 'task',
+            label: 'common:web_hosting_header_tasks',
           },
         }}
       />
@@ -270,29 +313,6 @@ export default (
           },
         }}
       />
-
-      <Route
-        id={ADD_DOMAIN}
-        path={urls.addDomain}
-        Component={AddDomainPage}
-        handle={{
-          tracking: {
-            pageName: ADD_DOMAIN,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={ORDER_DOMAIN}
-        path={urls.orderDomain}
-        Component={OrderDomainPage}
-        handle={{
-          tracking: {
-            pageName: ORDER_DOMAIN,
-            pageType: PageType.popup,
-          },
-        }}
-      />
       <Route
         id={LOCAL_SEO}
         path={urls.localSeo}
@@ -315,6 +335,260 @@ export default (
           },
         }}
       />
+      {/* Project Multisite */}
+      <Route
+        id={MULTISITE}
+        path={urls.multisite}
+        Component={MultisitePage}
+        handle={{
+          tracking: {
+            pageName: MULTISITE,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'multisite',
+          },
+        }}
+      >
+        <Route
+          id={EDIT_NAME}
+          path={urls.editName}
+          Component={UpdateDisplayNameModalComponent}
+          handle={{
+            tracking: {
+              pageType: PageType.dashboard,
+            },
+            breadcrumb: {
+              label: 'common:edit-displayname',
+            },
+          }}
+        />
+        <Route
+          id={ADD_WEBSITE}
+          path={urls.addWebSite}
+          Component={AddWebsitePage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+            breadcrumb: {
+              label: 'common:add_website',
+            },
+            isOverridePage: true,
+          }}
+        />
+        <Route
+          id={ASSOCIATE_GIT}
+          path={urls.associateGit}
+          Component={AssociateGitPage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+            breadcrumb: {
+              label: 'common:associate_git',
+            },
+            isOverridePage: true,
+          }}
+        />
+        <Route
+          id={CONFIGURE_GIT}
+          path={urls.configureGit}
+          Component={ConfigureGitPage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+            breadcrumb: {
+              label: 'common:configure_git',
+            },
+            isOverridePage: true,
+          }}
+        />
+        <Route
+          id={DELETE_GIT}
+          path={urls.deleteGit}
+          Component={DeleteGitModal}
+          handle={{
+            tracking: {
+              pageName: DELETE_GIT,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={DEPLOYE_GIT}
+          path={urls.deployeGit}
+          Component={DeployeGitModal}
+          handle={{
+            tracking: {
+              pageName: DEPLOYE_GIT,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id="activate-cdn"
+          path={urls.activateCdn}
+          Component={ActivateCdnModal}
+          handle={{
+            tracking: {
+              pageName: 'activate-cdn',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={MODIFY_CDN}
+          path={urls.modifyCdn}
+          Component={ModifyCdnPage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+            breadcrumb: {
+              label: 'common:modify_cdn',
+            },
+            isOverridePage: true,
+          }}
+        />
+        <Route
+          id={LAST_DEPLOYEMENT_GIT}
+          path={urls.lastDeploymentGit}
+          Component={LastDeploymentGitModal}
+          handle={{
+            tracking: {
+              pageName: LAST_DEPLOYEMENT_GIT,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={DETACHE_DOMAIN}
+          path={urls.detacheDomain}
+          Component={DetacheDomainModal}
+          handle={{
+            tracking: {
+              pageName: DETACHE_DOMAIN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={MODIFY_DOMAIN}
+          path={urls.modifyDomain}
+          Component={ModifyDomainModal}
+          handle={{
+            tracking: {
+              pageName: MODIFY_DOMAIN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+
+        <Route
+          id={ADD_MODULE}
+          path={urls.addModule}
+          Component={AddModuleModal}
+          handle={{
+            tracking: {
+              pageName: ADD_MODULE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={DELETE_MODULE}
+          path={urls.deleteModule}
+          Component={DeleteModuleModal}
+          handle={{
+            tracking: {
+              pageName: DELETE_MODULE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={PURGE_CDN}
+          path={urls.purgeCdn}
+          Component={PurgeCdnModal}
+          handle={{
+            tracking: {
+              pageName: PURGE_CDN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={ADVANCED_FLUSH_CDN}
+          path={urls.advancedFlushCdn}
+          Component={AdvancedFlushCdnModal}
+          handle={{
+            tracking: {
+              pageName: ADVANCED_FLUSH_CDN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={CDN_CACHE_RULE}
+          path={urls.cdnCacheRule}
+          Component={CdnCacheRuleModal}
+          handle={{
+            tracking: {
+              pageName: CDN_CACHE_RULE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={CDN_EDIT_URLS}
+          path={urls.cdnEditUrls}
+          Component={CdnEditUrlsModal}
+          handle={{
+            tracking: {
+              pageName: CDN_EDIT_URLS,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={CDN_CORS_RESOURCE_SHARING}
+          path={urls.cdnCorsResourceSharing}
+          Component={CdnCorsResourceSharingModal}
+          handle={{
+            tracking: {
+              pageName: CDN_CORS_RESOURCE_SHARING,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={CDN_CONFIRMATION}
+          path={urls.cdnConfirmation}
+          Component={CdnConfirmationModal}
+          handle={{
+            tracking: {
+              pageName: CDN_CONFIRMATION,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={ADD_DOMAIN}
+          path={urls.addDomain}
+          Component={AddDomainPage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+            breadcrumb: {
+              label: 'common:add_website',
+            },
+            isOverridePage: true,
+          }}
+        />
+      </Route>
     </Route>
     <Route path={'*'} element={<NotFound />} />
   </Route>

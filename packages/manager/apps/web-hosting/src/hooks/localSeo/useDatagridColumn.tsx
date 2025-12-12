@@ -1,19 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BADGE_COLOR, BUTTON_VARIANT, Badge, ICON_NAME } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  ActionMenu,
-  ActionMenuItem,
-  Badge,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItemProps, DatagridColumn } from '@ovh-ux/muk';
 
 import { LOCAL_SEO_INTERFACE } from '@/constants';
 import {
@@ -22,6 +17,8 @@ import {
 } from '@/data/hooks/webHostingLocalSeo/useWebHostingLocalSeo';
 import { LocalSeoType } from '@/data/types/product/seo';
 import { subRoutes, urls } from '@/routes/routes.constants';
+
+import { EmailCell } from './EmailCell';
 
 export const DatagridActionCell = (props: LocalSeoType) => {
   const { t } = useTranslation('local-seo');
@@ -45,7 +42,8 @@ export const DatagridActionCell = (props: LocalSeoType) => {
   };
 
   const { data } = useGetHostingLocalSeoAccount(serviceName, props?.accountId?.toString());
-  const items: ActionMenuItem[] = [
+
+  const items: ActionMenuItemProps[] = [
     {
       id: 1,
       label: t('hosting_tab_LOCAL_SEO_access_interface'),
@@ -74,15 +72,13 @@ export const DatagridActionCell = (props: LocalSeoType) => {
   ];
 
   return (
-    <DataGridTextCell>
-      <ActionMenu
-        id={props?.accountId?.toString()}
-        items={items}
-        isCompact
-        variant={ODS_BUTTON_VARIANT.ghost}
-        icon={ODS_ICON_NAME.ellipsisVertical}
-      />
-    </DataGridTextCell>
+    <ActionMenu
+      id={props?.accountId?.toString()}
+      items={items}
+      isCompact
+      variant={BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
+    />
   );
 };
 
@@ -90,64 +86,69 @@ export default function useDatagridColumn() {
   const { t } = useTranslation(['local-seo', NAMESPACES.STATUS]);
   const { serviceName } = useParams();
 
-  const StatusColor = {
-    created: ODS_BADGE_COLOR.success,
-    creating: ODS_BADGE_COLOR.warning,
-    deleting: ODS_BADGE_COLOR.critical,
-    updating: ODS_BADGE_COLOR.information,
-  };
+  const columns: DatagridColumn<LocalSeoType>[] = useMemo(() => {
+    const StatusColor = {
+      created: BADGE_COLOR.success,
+      creating: BADGE_COLOR.warning,
+      deleting: BADGE_COLOR.critical,
+      updating: BADGE_COLOR.information,
+    };
 
-  const columns = [
-    {
-      id: 'name',
-      cell: (props: LocalSeoType) => <DataGridTextCell>{props?.name}</DataGridTextCell>,
-      label: t('hosting_tab_LOCAL_SEO_table_header_name'),
-    },
-    {
-      id: 'address',
-      cell: (props: LocalSeoType) => (
-        <DataGridTextCell>
-          {props?.address ? (
-            props.address
-          ) : (
-            <Badge
-              label={t('hosting_tab_LOCAL_SEO_table_value_undefined')}
-              className="my-3"
-              color={ODS_BADGE_COLOR.information}
-            />
-          )}
-        </DataGridTextCell>
-      ),
-      label: t('hosting_tab_LOCAL_SEO_table_header_address'),
-    },
-    {
-      id: 'email',
-      cell: function EmailCell(props: LocalSeoType) {
-        const { data } = useGetHostingLocalSeoAccount(serviceName, props?.accountId?.toString());
-        return <DataGridTextCell>{data?.email}</DataGridTextCell>;
+    return [
+      {
+        id: 'name',
+        accessorKey: 'name',
+        cell: ({ row }) => <div>{row.original.name}</div>,
+        header: t('hosting_tab_LOCAL_SEO_table_header_name'),
       },
-      label: t('hosting_tab_LOCAL_SEO_table_header_email'),
-    },
-    {
-      id: 'status',
-      cell: (props: LocalSeoType) => (
-        <DataGridTextCell className="w-10">
-          <Badge
-            label={t(`hosting_tab_LOCAL_SEO_state_${props?.status}`)}
-            className="my-3"
-            color={StatusColor[props?.status]}
+      {
+        id: 'address',
+        accessorKey: 'address',
+        cell: ({ row }) => (
+          <div>
+            {row.original.address ? (
+              row.original.address
+            ) : (
+              <Badge className="my-3" color={BADGE_COLOR.information}>
+                {t('hosting_tab_LOCAL_SEO_table_value_undefined')}
+              </Badge>
+            )}
+          </div>
+        ),
+        header: t('hosting_tab_LOCAL_SEO_table_header_address'),
+      },
+      {
+        id: 'email',
+        accessorKey: 'accountId',
+        cell: ({ row }) => (
+          <EmailCell
+            serviceName={serviceName}
+            accountId={row.original.accountId?.toString() || ''}
           />
-        </DataGridTextCell>
-      ),
-      label: t(t(`${NAMESPACES.STATUS}:status`)),
-    },
-    {
-      id: 'actions',
-      label: '',
-      isSortable: false,
-      cell: DatagridActionCell,
-    },
-  ];
+        ),
+        header: t('hosting_tab_LOCAL_SEO_table_header_email'),
+      },
+      {
+        id: 'status',
+        accessorKey: 'status',
+        cell: ({ row }) => (
+          <div className="w-10">
+            <Badge className="my-3" color={StatusColor[row.original.status]}>
+              {t(`hosting_tab_LOCAL_SEO_state_${row.original.status}`)}
+            </Badge>
+          </div>
+        ),
+        header: t(`${NAMESPACES.STATUS}:status`),
+      },
+      {
+        id: 'actions',
+        header: '',
+        size: 48,
+        isSortable: false,
+        cell: ({ row }) => <DatagridActionCell {...row.original} />,
+      },
+    ];
+  }, [serviceName, t]);
 
   return columns;
 }

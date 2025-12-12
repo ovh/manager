@@ -2,48 +2,41 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
+import { RowSelectionState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  ActionMenu,
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-} from '@ovh-ux/manager-react-components';
+import { ActionMenu, Badge, Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { useManagedWordpressResourceDetails } from '@/data/hooks/managedWordpress/managedWordpressResourceDetails/useManagedWordpressResourceDetails';
 import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpress/managedWordpressWebsites/useManagedWordpressWebsites';
 import { ManagedWordpressWebsites } from '@/data/types/product/managedWordpress/website';
 import { ResourceStatus } from '@/data/types/status';
-import { useDebouncedValue, useGenerateUrl } from '@/hooks';
+import { useGenerateUrl } from '@/hooks';
 import { getStatusColor } from '@/utils/getStatusColor';
 
-export type DashboardTabItemProps = {
-  name: string;
-  title: string;
-  pathMatchers?: RegExp[];
-  to: string;
-};
-export type DashboardLayoutProps = { tabs: DashboardTabItemProps[] };
 export default function MyWebsitesPage() {
   const { t } = useTranslation([
     'common',
     NAMESPACES.ACTIONS,
     NAMESPACES.STATUS,
     'managedWordpress',
+    'dashboard',
   ]);
-  const { serviceName } = useParams();
-  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
-    useDebouncedValue('');
+
+  const { serviceName } = useParams<{ serviceName: string }>();
+  const navigate = useNavigate();
+
   const {
     data,
     fetchNextPage,
@@ -53,189 +46,189 @@ export default function MyWebsitesPage() {
     fetchAllPages,
     refetch,
     isFetching,
-  } = useManagedWordpressWebsites({ defaultFQDN: debouncedSearchInput });
-  const { data: dataResourceDetails, refetch: isRetchDataDetails } =
+  } = useManagedWordpressWebsites();
+
+  const { data: resourceDetails, refetch: refetchResourceDetails } =
     useManagedWordpressResourceDetails(serviceName);
-  const navigate = useNavigate();
-  const [rowSelection, setRowSelection] = useState({});
+
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
   const importPage = useGenerateUrl(`./import`, 'href');
   const createPage = useGenerateUrl(`./create`, 'href');
-  const items = useMemo(() => data ?? [], [data]);
-  const selectedIds = Object.keys(rowSelection);
   const deleteModalBase = useGenerateUrl('./delete-modal', 'path');
-  const handleImportClick = () => {
+
+  const handleImportClick = useCallback(() => {
     window.location.href = importPage;
-  };
-  const handleCreateClick = () => {
+  }, [importPage]);
+
+  const handleCreateClick = useCallback(() => {
     window.location.href = createPage;
-  };
-  const handleDeleteModalClick = () => {
+  }, [createPage]);
+
+  const handleDeleteModalClick = useCallback(() => {
     navigate(deleteModalBase, {
       state: {
-        websiteIds: selectedIds,
+        websiteIds: Object.keys(rowSelection),
         allPages: false,
       },
     });
-  };
+  }, [navigate, deleteModalBase, rowSelection]);
 
-  const handleManageClick = () => {
-    const url = dataResourceDetails?.currentState?.dashboards?.wordpress;
-    window.open(url, '_blank');
-  };
-  const isRowSelectable = useCallback(
-    (item: ManagedWordpressWebsites) =>
-      [ResourceStatus.READY, ResourceStatus.ERROR].includes(item.resourceStatus as ResourceStatus),
-    [],
-  );
+  const handleManageClick = useCallback(() => {
+    const url = resourceDetails?.currentState?.dashboards?.wordpress;
+    if (url) window.open(url, '_blank');
+  }, [resourceDetails]);
+
+  const handleRefreshClick = useCallback(() => {
+    void refetch();
+    void refetchResourceDetails();
+  }, [refetch, refetchResourceDetails]);
+
   const handleDeleteItemClick = useCallback(
     (id: string) => {
       navigate(deleteModalBase, {
-        state: {
-          websiteIds: [id],
-          allPages: false,
-        },
+        state: { websiteIds: [id], allPages: false },
       });
     },
-    [deleteModalBase, navigate],
+    [navigate, deleteModalBase],
   );
+
+  const isRowSelectable = (item: ManagedWordpressWebsites) =>
+    [ResourceStatus.READY, ResourceStatus.ERROR].includes(item.resourceStatus);
+
   const columns: DatagridColumn<ManagedWordpressWebsites>[] = useMemo(
     () => [
       {
         id: 'defaultFQDN',
-        cell: (item) => (
-          <div>
-            {!item.currentState.defaultFQDN
-              ? t('common:web_hosting_status_creating_label')
-              : item.currentState.defaultFQDN}
-          </div>
-        ),
-        // isSearchable: true,
-        label: t('common:web_hosting_status_header_fqdn'),
-        isSortable: true,
+        accessorKey: 'currentState.defaultFQDN',
+        cell: ({ getValue }) => {
+          const defaultFQDN = getValue<string>();
+          return (
+            <div>{!defaultFQDN ? t('common:web_hosting_status_creating_label') : defaultFQDN}</div>
+          );
+        },
+        header: t('common:web_hosting_status_header_fqdn'),
       },
       {
         id: 'resourceStatus',
-        cell: (item) => {
-          const statusColor = getStatusColor(item?.resourceStatus);
+        accessorKey: 'resourceStatus',
+        cell: ({ getValue }) => {
+          const status = getValue<ResourceStatus>();
+          const statusColor = getStatusColor(status);
           return (
-            <OdsBadge
-              color={statusColor}
-              label={t(`common:web_hosting_status_${item?.resourceStatus.toLocaleLowerCase()}`)}
-            />
+            <Badge color={statusColor}>
+              {t(`common:web_hosting_status_${status?.toLowerCase()}`)}
+            </Badge>
           );
         },
-        label: t(`${NAMESPACES.STATUS}:status`),
+        header: t(`${NAMESPACES.STATUS}:status`),
       },
       {
         id: 'actions',
-        cell: (item) => (
+        size: 48,
+        cell: ({ row }) => (
           <ActionMenu
             items={[
               {
                 id: 1,
                 label: t(`${NAMESPACES.ACTIONS}:delete`),
-                onClick: () => handleDeleteItemClick(item.id),
-                color: ODS_BUTTON_COLOR.critical,
-                isDisabled: !isRowSelectable(item),
+                onClick: () => handleDeleteItemClick(row.original.id),
+                color: BUTTON_COLOR.critical,
+                isDisabled: !isRowSelectable(row.original),
               },
             ]}
             isCompact
-            variant={ODS_BUTTON_VARIANT.ghost}
-            id={item.id}
+            variant={BUTTON_VARIANT.ghost}
+            id={row.id}
           />
         ),
         label: '',
       },
     ],
-
-    [t, isRowSelectable, handleDeleteItemClick],
+    [handleDeleteItemClick, t],
   );
-  const handleRefreshClick = () => {
-    void refetch();
-    void isRetchDataDetails();
-  };
+
   return (
     <>
       <Datagrid
-        columns={columns}
-        getRowId={(row) => row.id}
+        columns={data ? columns : []}
         rowSelection={{
           rowSelection,
           setRowSelection,
-          enableRowSelection: ({ original: item }) => isRowSelectable(item),
+          enableRowSelection: (row) => {
+            return isRowSelectable(row.original);
+          },
         }}
-        search={{
-          searchInput,
-          setSearchInput,
-          onSearch: (search) => setDebouncedSearchInput(search),
+        containerHeight={500}
+        data={data ?? []}
+        hasNextPage={!isFetchingNextPage && hasNextPage}
+        onFetchNextPage={(): void => {
+          void fetchNextPage();
         }}
-        items={items || []}
-        totalItems={items.length || 0}
-        hasNextPage={hasNextPage}
-        onFetchNextPage={fetchNextPage}
         onFetchAllPages={fetchAllPages}
         isLoading={isLoading || isFetchingNextPage}
         topbar={
-          <>
-            <OdsText preset={ODS_TEXT_PRESET.span} className="mb-4 block">
+          <div>
+            <Text preset={TEXT_PRESET.span} className="mb-4 block">
               {t('dashboard:hosting_managed_wordpress_websites_description')}
-            </OdsText>
-            <div className="flex flex-wrap items-center gap-4 m-4">
-              <ManagerButton
-                id={'my-websites-create'}
-                label={t(`${NAMESPACES.ACTIONS}:create`)}
-                onClick={handleCreateClick}
-              />
-              <ManagerButton
-                id={'my-websites-import'}
-                label={t('common:web_hosting_action_import')}
-                variant={ODS_BUTTON_VARIANT.outline}
+            </Text>
+            <div className="m-4 flex flex-wrap items-center gap-4">
+              <Button id="my-websites-create" onClick={handleCreateClick}>
+                {t(`${NAMESPACES.ACTIONS}:create`)}
+              </Button>
+              <Button
+                id="my-websites-import"
+                variant={BUTTON_VARIANT.outline}
                 onClick={handleImportClick}
-              />
-
-              <ManagerButton
-                id={'my-websites-manage'}
-                label={t('common:web_hosting_action_manage_my_sites')}
-                variant={ODS_BUTTON_VARIANT.outline}
-                icon={ODS_ICON_NAME.externalLink}
+              >
+                {t('common:web_hosting_action_import')}
+              </Button>
+              <Button
+                id="my-websites-manage"
+                variant={BUTTON_VARIANT.outline}
                 onClick={handleManageClick}
-                isDisabled={items.length === 0}
-              />
-
-              {Object.keys(rowSelection).length > 0 && (
-                <ManagerButton
-                  id={'my-websites-delete-all'}
-                  label={
-                    Object.keys(rowSelection).length > 1
+                disabled={!data?.length}
+              >
+                <>
+                  {t('common:web_hosting_action_manage_my_sites')}
+                  <Icon name={ICON_NAME.externalLink} className="ml-2" />
+                </>
+              </Button>
+              {!!Object.keys(rowSelection).length && (
+                <Button
+                  id="my-websites-delete-all"
+                  color={BUTTON_COLOR.critical}
+                  variant={BUTTON_VARIANT.outline}
+                  onClick={handleDeleteModalClick}
+                >
+                  <>
+                    {Object.keys(rowSelection).length > 1
                       ? t('delete_my_websites', {
                           number: Object.keys(rowSelection).length,
                         })
-                      : t('common:delete_my_website')
-                  }
-                  color={ODS_BUTTON_COLOR.critical}
-                  variant={ODS_BUTTON_VARIANT.outline}
-                  onClick={handleDeleteModalClick}
-                  icon={ODS_ICON_NAME.trash}
-                />
+                      : t('common:delete_my_website')}
+                    <Icon name={ICON_NAME.trash} className="ml-2" />
+                  </>
+                </Button>
               )}
-              <OdsText preset={ODS_TEXT_PRESET.span} className="self-center">
+              <Text preset={TEXT_PRESET.span} className="self-center">
                 {t('managedWordpress:web_hosting_managed_wordpress_quota_used', {
-                  used: dataResourceDetails?.currentState.quotas.websites.totalUsage,
-                  total: dataResourceDetails?.currentState.quotas.websites.totalQuota,
+                  used: resourceDetails?.currentState?.quotas?.websites?.totalUsage || 0,
+                  total: resourceDetails?.currentState?.quotas?.websites?.totalQuota || 0,
                 })}
-              </OdsText>
-              <ManagerButton
+              </Text>
+              <Button
                 id="refresh"
-                onClick={() => handleRefreshClick()}
+                onClick={handleRefreshClick}
                 data-testid="refresh"
-                label={''}
-                icon={ODS_ICON_NAME.refresh}
-                variant={ODS_BUTTON_VARIANT.outline}
-                isLoading={isFetching}
+                variant={BUTTON_VARIANT.outline}
+                loading={isFetching}
                 className="ml-auto"
-              />
+              >
+                <Icon name={ICON_NAME.refresh} />
+              </Button>
             </div>
-          </>
+          </div>
         }
       />
       <Outlet />

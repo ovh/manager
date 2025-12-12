@@ -57,6 +57,7 @@ export enum ResourceStatus {
   READY = 'READY',
   SUSPENDED = 'SUSPENDED',
   UPDATING = 'UPDATING',
+  DONE = 'DONE',
 }
 
 export type SslCertificate = {

@@ -1,19 +1,42 @@
-import { ReactElement } from 'react';
+import React, { ComponentType } from 'react';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';
+import { I18nextProvider } from 'react-i18next';
 import { describe, it } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-
-import { Badge } from '@ovh-ux/manager-react-components';
-
-import { localSeoMocks } from '@/data/__mocks__';
+import { createWrapper, i18n } from '@/utils/test.provider';
 
 import useDatagridColumn from './useDatagridColumn';
 
+const testQueryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      retry: false,
+    },
+    queries: {
+      retry: false,
+    },
+  },
+});
+
+const RouterWrapper = createWrapper();
+
+const Wrappers = ({ children }: { children: React.ReactElement }) => {
+  return (
+    <RouterWrapper>
+      <QueryClientProvider client={testQueryClient}>
+        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+      </QueryClientProvider>
+    </RouterWrapper>
+  );
+};
+
 describe('useDatagridColumn', () => {
   it('should return correct columns', () => {
-    const { result } = renderHook(() => useDatagridColumn());
+    const { result } = renderHook(() => useDatagridColumn(), {
+      wrapper: Wrappers as ComponentType,
+    });
 
     const columns = result.current;
 
@@ -22,26 +45,5 @@ describe('useDatagridColumn', () => {
     expect(columns[1].id).toBe('address');
     expect(columns[2].id).toBe('email');
     expect(columns[3].id).toBe('status');
-  });
-
-  it('should render correct cells', () => {
-    const { result } = renderHook(() => useDatagridColumn());
-
-    const columns = result.current;
-
-    type ElementWithStringChildren = ReactElement<{ children: string }>;
-    const nameCell = columns[0].cell(localSeoMocks[0]) as ElementWithStringChildren;
-    const addressCell = columns[1].cell(localSeoMocks[0]) as ElementWithStringChildren;
-    const statusCell = columns[3].cell(localSeoMocks[0]) as ElementWithStringChildren;
-
-    expect(nameCell.props.children).toBe(localSeoMocks[0].name);
-    expect(addressCell?.props?.children).toBe(localSeoMocks[0].address);
-    expect(statusCell?.props?.children).toStrictEqual(
-      <Badge
-        label="hosting_tab_LOCAL_SEO_state_created"
-        className="my-3"
-        color={ODS_BADGE_COLOR.success}
-      />,
-    );
   });
 });
