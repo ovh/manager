@@ -80,6 +80,14 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
   };
 });
 
+vi.mock('@ovh-ux/manager-react-components', async (importActual) => {
+  const actual = await importActual<typeof import('@ovh-ux/manager-react-components')>();
+  return {
+    ...actual,
+    useFeatureAvailability: vi.fn(),
+  };
+});
+
 vi.mock('@/hooks/generate-url/useGenerateUrl', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/hooks/generate-url/useGenerateUrl')>()),
