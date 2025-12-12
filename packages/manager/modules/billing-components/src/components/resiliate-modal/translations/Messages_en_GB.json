@@ -19,5 +19,5 @@
   "billing_resiliate_mode_label_us": "Select the action you wish to carry out",
   "billing_resiliate_terminate_us": "Cancel my service now",
   "billing_resiliate_terminateAtExpirationDate_us": "Cancel my service once my commitment has ended",
-  "billing_resiliate_confirmation_mail_to_be_sent": "You have been sent an email confirming this cancellation"
+  "billing_resiliate_confirmation_mail_to_be_sent": "You will be sent an email confirming that your service has been cancelled"
 }

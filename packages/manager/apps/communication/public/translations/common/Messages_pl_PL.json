@@ -25,5 +25,14 @@
   "status_disabled": "Wyłączony",
   "status_valid": "Aktywna",
   "status_to_validate": "Oczekujący",
-  "error_rate_limit_message": "Osiągnąłeś limit zapytań. Spróbuj ponownie później."
+  "error_rate_limit_message": "Osiągnąłeś limit zapytań. Spróbuj ponownie później.",
+  "guide_menu_header": "Przewodniki",
+  "guide_menu_start_guide": "Wycieczka z przewodnikiem",
+  "guided_tour_introduction_title": "Witamy na nowej stronie Moje komunikacje",
+  "guided_tour_introduction_content": "Czy chcesz zobaczyć wycieczkę z przewodnikiem?",
+  "guided_tour_introduction_dont_display_again": "Nie pokazuj więcej",
+  "guided_tour_introduction_start_guide": "Zobacz wycieczkę z przewodnikiem",
+  "guided_tour_communications": "Znajdziesz tutaj wszystkie e-maile, które OVHcloud do Ciebie wysłał, z wyjątkiem zgłoszeń pomocy.",
+  "guided_tour_contacts": "Zarządzaj tutaj swoją listą kontaktów i dodawaj kontakty, aby powiązać je z ustawieniami wysyłania.",
+  "guided_tour_settings": "Dodaj i ustaw swoje zasady wysyłania, aby wybrać, którzy kontaktują się z komunikacjami, w zależności od wybranych kategorii i priorytetów."
 }

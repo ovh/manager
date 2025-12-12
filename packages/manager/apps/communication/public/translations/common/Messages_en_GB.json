@@ -25,5 +25,14 @@
   "status_disabled": "Disabled",
   "status_valid": "Active",
   "status_to_validate": "Queued",
-  "error_rate_limit_message": "You have reached the maximum number of requests. Please try again later."
+  "error_rate_limit_message": "You have reached the maximum number of requests. Please try again later.",
+  "guide_menu_header": "Guides",
+  "guide_menu_start_guide": "Guided tour",
+  "guided_tour_introduction_title": "Welcome to your new My Communications page",
+  "guided_tour_introduction_content": "Would you like to see the guided tour?",
+  "guided_tour_introduction_dont_display_again": "Do not show again",
+  "guided_tour_introduction_start_guide": "View the guided tour",
+  "guided_tour_communications": "Here you can find all the emails that OVHcloud has sent you, except for support requests.",
+  "guided_tour_contacts": "Manage your contact list here and add contacts to associate them with your sending settings.",
+  "guided_tour_settings": "Add and set your sending rules to choose which contacts will receive communications, based on selected categories and priorities."
 }

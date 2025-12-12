@@ -9,7 +9,7 @@ import {
   usePageTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
+import OvhCloudLogo from '@/assets/logo-ovhcloud.svg?url';
 import { useTrackingContext } from '@/context/tracking/useTracking';
 
 export default function HeaderComponent() {
@@ -40,7 +40,7 @@ export default function HeaderComponent() {
       className="p-4 flex flex-row items-center justify-between gap-4"
       data-testid="header"
     >
-      <img src={ovhCloudLogo} alt="ovh-cloud-logo" className="app-logo ml-3" />
+      <img src={OvhCloudLogo} alt="ovh-cloud-logo" className="h-24 w-auto" />
       <LanguageMenu
         onLocalUpdate={onLocalUpdate}
         initialLocal={i18n.language || 'en_GB'}

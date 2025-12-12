@@ -9,21 +9,24 @@ export default class ServicesActionsCtrl {
   constructor(
     $injector,
     $q,
+    $window,
     atInternet,
     coreConfig,
     coreURLBuilder,
     BillingLinksService,
     $element,
     BillingService,
+    SERVICE_ACTIONS,
   ) {
     this.SERVICE_ACTIVE_STATUS = SERVICE_ACTIVE_STATUS;
+    this.SERVICE_ACTIONS = SERVICE_ACTIONS;
     this.$injector = $injector;
     this.$q = $q;
+    this.$window = $window;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.coreConfig = coreConfig;
     this.billingLink = this.coreURLBuilder.buildURL('billing', '#/history');
-
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.isLoading = true;
     this.BillingLinksService = BillingLinksService;
@@ -35,6 +38,7 @@ export default class ServicesActionsCtrl {
     this.initActionMenuClick();
     this.user = this.coreConfig.getUser();
     this.isUSRegion = this.coreConfig.isRegion('US');
+
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
       getCommitmentLink: this.getCommitmentLink,
@@ -114,8 +118,6 @@ export default class ServicesActionsCtrl {
           this.service.hasAdminRights(this.user.auth.account);
         this.canDisplayResiliationMenuEntry =
           (this.resiliateLink || this.isCustomResiliationHandled) &&
-          (this.service.hasAdminRights(this.user.auth.account) ||
-            this.service.hasAdminRights(this.user.nichandle)) &&
           !this.service.isResiliated();
         this.canDisplayDeleteMenuEntry =
           this.autorenewLink &&
@@ -236,8 +238,20 @@ export default class ServicesActionsCtrl {
   handleClickResiliate() {
     this.trackAction('go-to-resiliate');
 
-    if (this.handleGoToResiliation) {
-      this.handleGoToResiliation();
+    if (
+      this.service.hasAdminRights(this.user.auth.account) ||
+      this.service.hasAdminRights(this.user.nichandle)
+    ) {
+      if (this.handleGoToResiliation) {
+        this.handleGoToResiliation();
+      } else if (this.resiliateLink) {
+        this.$window.top.location.href = this.resiliateLink;
+      }
+    } else {
+      this.advancePaymentCallBack({
+        service: this.service,
+        action: this.SERVICE_ACTIONS.RESILIATE,
+      });
     }
   }
 
@@ -284,6 +298,22 @@ export default class ServicesActionsCtrl {
         .finally(() => {
           this.loadedPendingEngagement = true;
         });
+    }
+  }
+
+  onAdvancePaymentClick() {
+    // To check with PO about tracking
+    this.trackAction('go-to-anticipate-payment');
+
+    if (!this.service.possibleActions.includes('earlyRenewal')) {
+      if (typeof this.advancePaymentCallBack === 'function') {
+        this.advancePaymentCallBack({
+          service: this.service,
+          action: this.SERVICE_ACTIONS.ANTICIPATE_PAYMENT,
+        });
+      }
+    } else {
+      this.$window.open(this.getRenewUrl());
     }
   }
 }

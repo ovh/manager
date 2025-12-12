@@ -6,5 +6,10 @@
   "billing_autorenew_service_pending_actions_pendingCreate": "Wird geliefert",
   "billing_autorenew_service_pending_actions_terminate": "Gekündigt",
   "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Kündigung angefordert",
-  "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Kündigung angefordert"
+  "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Kündigung angefordert",
+  "billing_autorenew_service_modal_debt_warning_title": "Wichtige Informationen",
+  "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "Es tut uns leid, aber diese Aktion ist nicht verfügbar.",
+  "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "Es tut uns leid, aber diese Aktion ist nicht verfügbar, da ",
+  "reason_billing_right": "Sie sind nicht der Rechnungskontakt <b>{{contactBilling}}</b>",
+  "reason_admin_right": "Sie sind nicht der Administrator-Kontakt <b>{{contactAdmin}}</b>"
 }

@@ -25,5 +25,14 @@
   "status_disabled": "Disattivato",
   "status_valid": "Attivo",
   "status_to_validate": "In attesa",
-  "error_rate_limit_message": "Hai raggiunto il limite di richieste. Ti chiediamo di riprovare più tardi"
+  "error_rate_limit_message": "Hai raggiunto il limite di richieste. Ti chiediamo di riprovare più tardi",
+  "guide_menu_header": "Guide",
+  "guide_menu_start_guide": "Visita guidata",
+  "guided_tour_introduction_title": "Benvenuto nella tua nuova pagina Le mie comunicazioni",
+  "guided_tour_introduction_content": "Vuoi vedere la visita guidata?",
+  "guided_tour_introduction_dont_display_again": "Non mostrare più",
+  "guided_tour_introduction_start_guide": "Guarda la visita guidata",
+  "guided_tour_communications": "Trova qui l'insieme delle e-mail che OVHcloud ti ha inviato, escluse le richieste di assistenza.",
+  "guided_tour_contacts": "Gestisci qui la tua lista di contatti e aggiungi contatti per associarli alle tue impostazioni di invio.",
+  "guided_tour_settings": "Aggiungi e definisci le tue regole di invio per scegliere quali contatti riceveranno le comunicazioni, in base alle categorie e priorità selezionate."
 }
