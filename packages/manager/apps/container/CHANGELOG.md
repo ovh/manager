@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.170.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.2...@ovh-ux/manager-container-app@0.170.3) (2025-12-11)
+
+
+### Bug Fixes
+
+* **container:** make communications link creation safe ([8108ba7](https://github.com/ovh/manager/commit/8108ba7fd569498bf311ba769a63b4610386c5f5)), closes [#MANAGER-20543](https://github.com/ovh/manager/issues/MANAGER-20543)
+
+
+
+
+
 ## [0.170.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.1...@ovh-ux/manager-container-app@0.170.2) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

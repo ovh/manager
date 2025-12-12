@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.2...@ovh-ux/manager-models@2.7.3) (2025-12-11)
+
+
+### Bug Fixes
+
+* **billing:** fix difference between interval of commitment option ([f3d103e](https://github.com/ovh/manager/commit/f3d103e03c3bd16a04dc58ddbb4143cef6295ede)), closes [#INC0174363](https://github.com/ovh/manager/issues/INC0174363) [#MANAGER-20534](https://github.com/ovh/manager/issues/MANAGER-20534)
+
+
+
+
+
 ## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.1...@ovh-ux/manager-models@2.7.2) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

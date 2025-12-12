@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro-app",
-  "version": "0.11.71",
+  "version": "0.11.72",
   "private": true,
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.8.2",
-    "@ovh-ux/manager-core": "^13.3.3",
+    "@ovh-ux/manager-core": "^13.3.4",
     "@ovh-ux/manager-emailpro": "^3.17.9",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",

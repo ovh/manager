@@ -15,9 +15,11 @@ import { Procedures } from '@/types/procedure';
 
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
+const communicationFeature = 'communication';
 const accountFeatures = [
   kycIndiaFeature,
   kycFraudFeature,
+  communicationFeature,
 ];
 
 export default function AccountSidebar() {
@@ -143,12 +145,14 @@ export default function AccountSidebar() {
       });
     }
 
-    menu.push({
-      id: 'my-communication',
-      label: t('sidebar_communication'),
-      href: navigation.getURL('communication', '/'),
-      pathMatcher: new RegExp('^/communication')
-    });
+    if (availability[communicationFeature]) {
+      menu.push({
+        id: 'my-communication',
+        label: t('sidebar_communication'),
+        href: navigation.getURL('communication', '/'),
+        pathMatcher: new RegExp('^/communication')
+      });
+    }
 
     if (isEUOrCA) {
       menu.push({

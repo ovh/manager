@@ -47,13 +47,6 @@ export const links: UserLink[] = [
     region: ['EU', 'CA'],
   },
   {
-    app: 'communication',
-    key: 'myCommunications',
-    hash: '#/',
-    i18nKey: 'user_account_menu_my_communication',
-    trackingHit: tracking.accountContacts,
-  },
-  {
     app: 'billing',
     key: 'myPaymentMethods',
     hash: '#/payment/method',
