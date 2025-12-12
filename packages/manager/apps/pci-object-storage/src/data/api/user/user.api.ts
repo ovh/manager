@@ -37,17 +37,18 @@ export const getUserPolicy = async ({ projectId, userId }: UserProps) =>
 
 export interface UserPropsWithRegion extends UserProps {
   region: string;
+  service: user.RCloneServiceEnum;
 }
 
 export const getUserRclone = async ({
   projectId,
   userId,
   region,
+  service,
 }: UserPropsWithRegion) =>
   apiClient.v6.get<user.Rclone>(
-    `/cloud/project/${projectId}/user/${userId}/rclone?region=${encodeURIComponent(
-      region,
-    )}`,
+    `/cloud/project/${projectId}/user/${userId}/rclone`,
+    { params: { region, service } },
   );
 
 export interface S3CredsProps extends UserProps {
