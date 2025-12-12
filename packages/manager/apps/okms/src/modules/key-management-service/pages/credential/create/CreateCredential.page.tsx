@@ -17,14 +17,15 @@ import { CertificateType, OkmsCredential } from '@key-management-service/types/o
 import { useTranslation } from 'react-i18next';
 
 import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
-  const { trackPage } = useOvhTracking();
+  const { trackPage } = useOkmsTracking();
   const { okmsId } = useRequiredParams('okmsId');
   const { data: okms, isLoading, error } = useOkmsById(okmsId);
   const { t } = useTranslation('key-management-service/credential');

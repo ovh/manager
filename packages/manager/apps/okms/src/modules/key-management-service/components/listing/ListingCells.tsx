@@ -9,13 +9,15 @@ import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.typ
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { ActionMenu, Clipboard, DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { ServiceKeyStatus } from '../service-key/service-key-status/serviceKeyStatus.component';
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   return (
     <Links
