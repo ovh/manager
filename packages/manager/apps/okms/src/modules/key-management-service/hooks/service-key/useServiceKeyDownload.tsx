@@ -8,8 +8,9 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { initiateTextFileDownload } from '@/common/utils/dom/download';
 
 import { ServiceKeyAction } from './service-key.type';
@@ -31,7 +32,7 @@ export const useServiceKeyDownload = ({
 }: ServiceKeyDownloadParams): ServiceKeyAction | undefined => {
   const { t } = useTranslation(['key-management-service/serviceKeys', 'common']);
   const { addError } = useNotifications();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
   const { refetch, isFetching } = useOkmsServiceKeyById({ okmsId, keyId, enabled: false });
 
   // Oct keys are not downloadable

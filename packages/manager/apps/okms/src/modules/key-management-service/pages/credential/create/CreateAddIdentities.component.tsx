@@ -16,8 +16,9 @@ import {
 import { OdsButton, OdsDivider, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
 
 import { Subtitle } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { useShellContext } from '@/common/hooks/useShellContext';
 
@@ -47,7 +48,7 @@ const CreateAddIdentities = ({
   const { environment } = useShellContext();
   const { auth } = environment.getUser();
   const region = environment.getRegion();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   useEffect(() => {
     setIdentityURNs(
