@@ -1,22 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo, useRef, useState } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import {
-  OdsButton,
-  OdsPopover,
-  OdsSpinner,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  BUTTON_VARIANT,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Spinner,
+} from '@ovhcloud/ods-react';
 
-import { FilterCategories } from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   DatagridColumn,
-  FilterAdd,
-  FilterList,
-  useResourcesIcebergV6,
-} from '@ovh-ux/manager-react-components';
+  useColumnFilters,
+  useDataApi,
+} from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -34,6 +35,7 @@ import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
 import { getLogStreamsQueryKey } from '@/data/hooks/useLogStream';
 import { NAMESPACES } from '@/LogsToCustomer.translations';
+import { applyFilters, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 const STREAM_LIST_COLUMN_ID = {
   title: 'title',
@@ -61,25 +63,32 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
     flattenData,
     error,
     isError,
-    totalCount,
-    hasNextPage,
-    fetchNextPage,
     isLoading,
-    filters,
-  } = useResourcesIcebergV6<Stream>({
+  } = useDataApi<Stream>({
     route: `/dbaas/logs/${service.serviceName}/output/graylog/stream`,
-    queryKey: [logStreamsQueryKey, service.serviceName],
+    cacheKey: [logStreamsQueryKey, service.serviceName],
+    version: 'v6',
     disableCache: true,
+    iceberg: true,
+    enabled: !!service.serviceName,
   });
+
+  const {filters, addFilter: add, removeFilter: remove } = useColumnFilters();
+  const filtersProps = useMemo(() => ({ filters, add, remove }), [filters, add, remove]);
+
+  const filteredData = useMemo(
+    () => applyFilters(flattenData || [], filters),
+    [flattenData, filters],
+  );
 
   if (isLoading)
     return (
       <div className="flex py-8">
-        <OdsSpinner size="md" data-testid="logKinds-spinner" />
+        <Spinner size="md" data-testid="logKinds-spinner" />
       </div>
     );
 
-  if (isError)
+  if (isError && error)
     return (
       <ApiError
         testId="logKinds-error"
@@ -95,111 +104,94 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   const columns: DatagridColumn<Stream>[] = [
     {
       id: STREAM_LIST_COLUMN_ID.title,
-      cell: (stream) => <div>{stream.title}</div>,
+      accessorKey: 'title',
+      header: t('log_streams_colomn_name'),
       label: t('log_streams_colomn_name'),
       isSortable: false,
+      isFilterable: true,
+      type: FilterTypeCategories.String,
     },
     {
       id: STREAM_LIST_COLUMN_ID.description,
-      cell: (stream) => <div>{stream.description}</div>,
+      accessorKey: 'description',
+      header: t('log_streams_colomn_description'),
       label: t('log_streams_colomn_description'),
       isSortable: false,
+      isFilterable: true,
+      type: FilterTypeCategories.String,
     },
     {
       id: STREAM_LIST_COLUMN_ID.indexation,
-      cell: (stream) => (
-        <DataStreamIndexingStatus indexingEnabled={stream.indexingEnabled} />
+      cell: (info) => (
+        <DataStreamIndexingStatus indexingEnabled={info.row.original.indexingEnabled} />
       ),
-      label: t('log_streams_colomn_indexation'),
+      header: t('log_streams_colomn_indexation'),
       isSortable: false,
     },
     {
       id: STREAM_LIST_COLUMN_ID.retention,
-      cell: (stream) => (
+      cell: (info) => (
         <DataStreamRetention
-          retentionId={stream.retentionId}
-          clusterId={stream.clusterId}
+          retentionId={info.row.original.retentionId}
+          clusterId={info.row.original.clusterId}
           serviceName={service.serviceName}
         />
       ),
-      label: t('log_streams_colomn_retention'),
+      header: t('log_streams_colomn_retention'),
       isSortable: false,
     },
     {
       id: STREAM_LIST_COLUMN_ID.subscription,
-      cell: (stream) => (
+      cell: (info) => (
         <DataStreamSubscriptionsLink
-          nbSubscription={stream.nbSubscription}
-          streamId={stream.streamId}
+          nbSubscription={info.row.original.nbSubscription}
+          streamId={info.row.original.streamId}
           serviceName={service.serviceName}
-          parentStreamId={stream.parentStreamId}
+          parentStreamId={info.row.original.parentStreamId}
         />
       ),
-      label: t('log_streams_colomn_subscriptions'),
+      header: t('log_streams_colomn_subscriptions'),
       isSortable: false,
     },
     {
       id: STREAM_LIST_COLUMN_ID.actions,
-      cell: (stream) => <DataStreamActions stream={stream} />,
-      label: '',
+      accessorFn: () => null,
+      cell: (info) => <DataStreamActions stream={info.row.original} />,
+      header: '',
       isSortable: false,
     },
   ];
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex justify-between">
-        <OdsButton
-          size="sm"
-          onClick={() => {
-            trackClick({
-              location: PageLocation.datagrid,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: [addDatastreamLogsAccess],
-            });
-            navigation
-              .getURL(
-                'dedicated',
-                `#/dbaas/logs/${service.serviceName}/streams/add`,
-                {},
-              )
-              .then((url) => window.open(url as string, '_blank'));
-          }}
-          label={t('log_streams_add_stream')}
-        />
-        <OdsButton
-          variant="outline"
-          size="sm"
-          label={t('log_streams_filter')}
-          id="trigger-filter-popover"
-        ></OdsButton>
-        <OdsPopover triggerId={'trigger-filter-popover'}>
-          <FilterAdd
-            columns={[
-              {
-                id: STREAM_LIST_COLUMN_ID.title,
-                label: t('log_streams_colomn_name'),
-                comparators: FilterCategories.String,
-              },
-            ]}
-            onAddFilter={(addedFilter, column) => {
-              filters.add({
-                ...addedFilter,
-                label: column.label,
-              });
-            }}
-          />
-        </OdsPopover>
-      </div>
-      <FilterList filters={filters.filters} onRemoveFilter={filters.remove} />
-      <Datagrid
+      <Datagrid<Stream>
         columns={columns}
-        items={flattenData}
-        totalItems={totalCount || 0}
-        hasNextPage={hasNextPage && !isLoading}
-        onFetchNextPage={fetchNextPage}
-        noResultLabel={t('log_streams_no_results')}
+        data={filteredData}
+        isLoading={isLoading}
+        filters={filtersProps}
+        containerHeight={725} //TOFIX: waiting muk fixes
+        topbar={
+          <Button
+            size="sm"
+            onClick={() => {
+              trackClick({
+                location: PageLocation.datagrid,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: [addDatastreamLogsAccess],
+              });
+              navigation
+                .getURL(
+                  'dedicated',
+                  `#/dbaas/logs/${service.serviceName}/streams/add`,
+                  {},
+                )
+                .then((url) => window.open(url as string, '_blank'));
+            }}
+          >
+            {t('log_streams_add_stream')}
+          </Button>
+        }
       />
     </div>
   );

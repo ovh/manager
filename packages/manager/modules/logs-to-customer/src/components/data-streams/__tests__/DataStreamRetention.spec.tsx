@@ -1,28 +1,27 @@
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import React from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, waitFor } from '@testing-library/react';
-import React from 'react';
 import { vi } from 'vitest';
-import {
-  ClusterRetention,
-  RetentionTypeEnum,
-} from '@/data/types/dbaas/logs';
+
+import type { ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import DataStreamRetention, {
   DATA_STREAM_RETENTION_LOADING_TEST_ID,
 } from '@/components/data-streams/DataStreamRetention.component';
+import type { ClusterRetention } from '@/data/types/dbaas/logs';
+import { RetentionTypeEnum } from '@/data/types/dbaas/logs';
 
-const useLogRetentionMockValue: any = {
+const useLogRetentionMockValue = {
   data: {
     isSupported: true,
     retentionId: '123',
     retentionType: RetentionTypeEnum.LOGS_COLD_STORAGE,
-    duration: 'P1M',
+    duration: 'P1M' as ClusterRetention['duration'],
   },
   isPending: false,
-  error: null,
+  error: null as Error | null,
 };
 
 vi.mock('@/data/hooks/useLogRetention', () => ({
@@ -42,9 +41,7 @@ const renderComponent = () => {
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <DataStreamRetention
           retentionId="retentionId"
           clusterId="clusterId"
@@ -72,7 +69,7 @@ describe('data-stream retention status', () => {
 
     const { getByText } = renderComponent();
 
-    waitFor(() => expect(getByText('error_datagrid_cell')).toBeVisible());
+    void waitFor(() => expect(getByText('error_datagrid_cell')).toBeVisible());
   });
 
   type TTestCases = {
@@ -83,7 +80,7 @@ describe('data-stream retention status', () => {
   const testCases: TTestCases[] = [
     {
       duration: 'P1M',
-      displayedValue: '1 month',
+      displayedValue: '1 mois',
     },
     { duration: undefined, displayedValue: '-' },
   ];
@@ -96,9 +93,7 @@ describe('data-stream retention status', () => {
       useLogRetentionMockValue.data.duration = duration;
       const { getByText, queryByText, queryByTestId } = renderComponent();
 
-      expect(
-        queryByTestId(DATA_STREAM_RETENTION_LOADING_TEST_ID),
-      ).not.toBeInTheDocument();
+      expect(queryByTestId(DATA_STREAM_RETENTION_LOADING_TEST_ID)).not.toBeInTheDocument();
       expect(queryByText('error_datagrid_cell')).not.toBeInTheDocument();
 
       expect(getByText(displayedValue)).toBeVisible();
