@@ -41,6 +41,7 @@ export default class ExchangeExportAsPstCtrl {
     this.exportStep = 1;
     this.timer = null;
     this.getExportDetails(true);
+    this.currentEmail = this.selectedAccount.primaryEmailAddress
   }
 
   getSelected() {
@@ -162,6 +163,13 @@ export default class ExchangeExportAsPstCtrl {
     )
       .then((result) => {
         this.exportURL = result;
+        if(result.expiration) {
+          const dateObj = new Date(result.expiration);
+          this.expirationDate = dateObj.toLocaleDateString();
+          const hours = String(dateObj.getHours()).padStart(2, '0')
+          const minutes = String(dateObj.getMinutes()).padStart(2, '0')
+          this.expirationHour = `${hours}:${minutes}`
+        }
         this.exportStep = 6;
       })
       .catch(() => {
@@ -282,7 +290,10 @@ export default class ExchangeExportAsPstCtrl {
         break;
 
       case 6:
-        this.deleteExportDetails(this.exchange);
+        if (this.exportURL && this.exportURL.url) {
+          window.open(this.exportURL.url, '_blank')
+          this.closeExportWindow()
+        }
         break;
 
       case -1:
