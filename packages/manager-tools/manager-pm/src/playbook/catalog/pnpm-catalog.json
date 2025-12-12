@@ -1,4 +1,5 @@
 [
+  "packages/manager/apps/observability",
   "packages/manager/apps/web-office",
   "packages/manager/apps/zimbra",
   "packages/manager/apps/pci-contacts",
@@ -14,5 +15,7 @@
   "packages/manager/apps/pci-ssh-keys",
   "packages/manager/apps/pci-users",
   "packages/manager/apps/pci-vouchers",
-  "packages/manager/modules/logs-to-customer"
+  "packages/manager/apps/pci-users",
+  "packages/manager/modules/logs-to-customer",
+  "packages/manager/modules/observability-to-customer"
 ]
