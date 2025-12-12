@@ -7,19 +7,10 @@ import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-
 import App from './App';
 import { APP_NAME } from './App.constants';
 import './index.scss';
-import { LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
-
-const trackingContext = {
-  chapter1: UNIVERSE,
-  chapter2: SUB_UNIVERSE,
-  chapter3: APP_NAME,
-  appName: APP_NAME,
-  pageTheme: UNIVERSE,
-  level2Config: LEVEL2,
-};
+import { LEVEL2, TRACKING_CONTEXT } from './tracking.constant';
 
 const init = async (appName: string) => {
-  const context = await initShellContext(appName, trackingContext);
+  const context = await initShellContext(appName, TRACKING_CONTEXT);
 
   await initI18n({
     context,
