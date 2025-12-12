@@ -37,24 +37,31 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
 // Test wrapper component that provides form context
 type TestWrapperProps = {
   defaultValues: FormFieldInput;
+  allowDeleteLastItem?: boolean;
   onSubmit?: () => void;
 };
 
-const TestWrapper = ({ defaultValues }: TestWrapperProps) => {
+const TestWrapper = ({ defaultValues, allowDeleteLastItem = false }: TestWrapperProps) => {
   const methods = useForm<FormFieldInput>({ defaultValues });
   // eslint-disable-next-line react-hooks/incompatible-library
   const value = methods.watch('data');
 
   return (
     <FormProvider {...methods}>
-      <KeyValuesEditor name="data" control={methods.control} />
+      <KeyValuesEditor
+        name="data"
+        control={methods.control}
+        allowDeleteLastItem={allowDeleteLastItem}
+      />
       <p data-testid="value">{value}</p>
     </FormProvider>
   );
 };
 
-const renderTest = async (defaultValues: FormFieldInput) => {
-  return renderWithI18n(<TestWrapper defaultValues={defaultValues} />);
+const renderTest = async (defaultValues: FormFieldInput, allowDeleteLastItem?: boolean) => {
+  return renderWithI18n(
+    <TestWrapper defaultValues={defaultValues} allowDeleteLastItem={allowDeleteLastItem} />,
+  );
 };
 
 describe('KeyValuesEditor', () => {
@@ -193,13 +200,22 @@ describe('KeyValuesEditor', () => {
   });
 
   describe('isDeletable state', () => {
-    test('should disable delete button when only one item exists', async () => {
+    test('should disable delete button when only one item exists and allowDeleteLastItem is false', async () => {
       // Given
       await renderTest(mockDefaultValues.empty);
 
       // Then
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
       expect(deleteButton).toBeDisabled();
+    });
+
+    test('should enable delete button when only one item exists and allowDeleteLastItem is true', async () => {
+      // Given
+      await renderTest(mockDefaultValues.empty, true);
+
+      // Then
+      const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
+      expect(deleteButton).not.toHaveAttribute('is-disabled', 'true');
     });
 
     test('should enable delete buttons when multiple items exist', async () => {
