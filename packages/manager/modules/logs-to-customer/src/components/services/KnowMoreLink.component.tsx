@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+
+import { Icon, Link, ICON_NAME } from '@ovhcloud/ods-react';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -29,12 +30,13 @@ const KnowMoreLink = () => {
   }, []);
 
   return (
-    <Links
-      type={LinkType.external}
-      label={t('log_subscription_empty_tile_button_know_more')}
+    <Link
       href={knowMoreLink}
       target="_blank"
-    />
+    >
+      {t('log_subscription_empty_tile_button_know_more')}
+      <Icon name={ICON_NAME.externalLink} />
+    </Link>
   );
 };
 
