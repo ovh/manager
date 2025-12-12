@@ -111,7 +111,7 @@ export const getPricingSpecsFromModelPricings = (
     const level = formatSecondUnit(
       `${Math.min(
         (capacity ?? 1) * pricing.specs.bandwidth.level,
-        pricing.specs.bandwidth.max * 10 ** 3,
+        pricing.specs.bandwidth.max,
       )} ${t(`${NAMESPACES.BYTES}:unit_size_MB`)}`,
     );
 
@@ -121,7 +121,7 @@ export const getPricingSpecsFromModelPricings = (
       } else {
         const max = formatSecondUnit(
           `${pricing.specs.bandwidth.max} ${t(
-            `${NAMESPACES.BYTES}:unit_size_GB`,
+            `${NAMESPACES.BYTES}:unit_size_MB`,
           )}`,
         );
 
