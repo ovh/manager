@@ -28,13 +28,9 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const stateByReason: {
@@ -57,7 +53,7 @@ export const DisableServiceKeyModal = () => {
   const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick, trackPage } = useOkmsTracking();
   const navigate = useNavigate();
 
   const closeModal = () => navigate('..');
