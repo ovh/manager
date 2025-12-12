@@ -86,10 +86,10 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           BRANCH=$(git branch --show-current)
-          echo "My branch is $BRANCH"
+          echo "Current branch is $BRANCH"
 
           if [[ "$BRANCH" == "master" ]]; then
-            echo "My branch is master and no unit test to run, exit..."
+            echo "Current branch is master and no unit test to run, exit ..."
             exit 0
           fi
 
