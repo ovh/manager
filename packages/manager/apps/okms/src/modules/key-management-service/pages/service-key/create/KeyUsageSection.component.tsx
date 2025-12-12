@@ -14,7 +14,9 @@ import { useTranslation } from 'react-i18next';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
 
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 export type KeyUsageSectionProps = {
   serviceKey: OkmsServiceKeyReference | undefined;
@@ -30,7 +32,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
   setKeyOperations,
 }) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   React.useEffect(() => {
     serviceKey?.operations.forEach((operation) => {
