@@ -100,5 +100,14 @@
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} /hora + IVA",
   "pci_instance_creation_image_available_on_other_models": "Esta imagen está disponible en otros modelos.",
   "pci_instance_creation_select_network_dropdown_label": "Seleccione una red privada existente",
-  "pci_instance_creation_network_add_new": "Crear una red privada"
+  "pci_instance_creation_network_add_new": "Crear una red privada",
+  "pci_instance_creation_network_add_new_warning": "La creación de su red privada se realizará al final del proceso de configuración. Puede editarlo.",
+  "pci_instance_creation_network_add_new_name_label_form": "Nombre de la red privada",
+  "pci_instance_creation_network_add_new_vlanID_label_form": "ID de vLAN",
+  "pci_instance_creation_network_add_new_cidr_label_form": "CIDR",
+  "pci_instance_creation_network_add_new_dhcp_label_form": "DHCP activado",
+  "pci_instance_creation_network_add_new_used_vlanID_warning": "El uso de un mismo ID de VLAN para varias redes privadas implica gestionar con atención las IP privadas. El uso de un pool de asignación DHCP sin solapamientos puede ser una forma de gestionar esta problemática.",
+  "pci_instance_creation_network_add_new_vlanID_warning": "El ID de VLAN 0 se utiliza por defecto en otros productos, incluidos aquellos fuera del universo de Nube Pública. Las IP privadas deben ser gestionadas con atención",
+  "pci_instance_creation_network_add_new_cidr_error": "Por favor, introduzca una dirección IP válida",
+  "pci_instance_creation_network_add_new_vlanId_error": "El ID de vLAN debe estar entre 0 y 4000. Por favor, verifique el valor ingresado antes de continuar."
 }
