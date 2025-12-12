@@ -55,11 +55,40 @@ function setupI18n(locale: string) {
     });
 }
 
+// Temporary function to delete cookies
+const deleteCookie = (name: string, path = "/", domain?: string) => {
+  document.cookie = `${name}=; Max-Age=0; path=${path}${
+    domain ? `; domain=${domain}` : ""
+  }`;
+};
+
+// Temporary function to delete cookies
+const deleteMatchingCookies = () => {
+  const cookies = document.cookie.split("; ");
+
+  cookies?.forEach(cookie => {
+    const cookieName = cookie.split("=")[0];
+    if (
+      cookieName?.startsWith("_biz") ||
+      cookieName?.startsWith("_mkto_trk") ||
+      cookieName?.startsWith("_gcl_au")
+    ) {
+      deleteCookie(cookieName);
+      deleteCookie(cookieName, "/", window.location.hostname);
+    }
+  });
+};
+
 const App = () => {
   const [error, setError] = useState(null);
   const [environment, setEnvironment] = useState<Environment>(null);
   const [shell, setShell] = useState<Shell>(null);
   const [statusPageURL, setStatusPageURL] = useState<string>();
+
+  // Temporary useEffect to delete cookies
+  useEffect(() => {
+    deleteMatchingCookies();
+  }, []);
 
   const { error: responseError, isLoading, data } = useQuery<
     Environment,
