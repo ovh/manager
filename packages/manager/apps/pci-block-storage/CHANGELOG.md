@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.1...@ovh-ux/manager-pci-block-storage-app@0.22.2) (2025-12-12)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** bandwidth unit fix ([c75880c](https://github.com/ovh/manager/commit/c75880c44fb49bf4adedfb44d62f1a494b946bcd)), closes [#TAPC-5477](https://github.com/ovh/manager/issues/TAPC-5477)
+
+
+
+
+
 ## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.0...@ovh-ux/manager-pci-block-storage-app@0.22.1) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
