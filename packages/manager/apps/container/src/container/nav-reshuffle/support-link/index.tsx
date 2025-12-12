@@ -16,7 +16,7 @@ export const SupportLink = () => {
       rel={OdsHTMLAnchorElementRel.noopener}
       data-testid="support-link"
     >
-      <span className={`mx-2 text-[var(--ods-color-primary-100)]`}>
+      <span className={`text-[var(--ods-color-primary-100)] hover:underline`}>
         {t('navbar_support')}
       </span>
     </a>

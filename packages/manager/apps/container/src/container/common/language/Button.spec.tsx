@@ -2,6 +2,8 @@ import { it, vi, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { useTranslation } from 'react-i18next';
 import LanguageButton, { Props } from './Button';
+import { ContainerProvider } from '@/core/container';
+import { getComponentWrapper } from '@/utils/tests/component-wrapper';
 
 const handleClick = vi.fn();
 
@@ -10,12 +12,27 @@ const props: Props = {
   onClick: handleClick,
 };
 
+const baseWrapper = getComponentWrapper({
+  withQueryClientProvider: true,
+  configuration: {
+    user: {
+      ovhSubsidiary: 'FR',
+    },
+  },
+});
+
+vi.mock('react-responsive');
+
 const renderLanguageButton = (props: Props) => {
   return render(
-    <LanguageButton
-      show={props.show}
-      onClick={props.onClick}
-    />,
+    baseWrapper(
+      <ContainerProvider>
+        <LanguageButton
+          show={props.show}
+          onClick={props.onClick}
+        />
+      </ContainerProvider>,
+    ),
   );
 };
 

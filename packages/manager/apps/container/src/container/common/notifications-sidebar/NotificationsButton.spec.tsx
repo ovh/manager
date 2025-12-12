@@ -15,7 +15,6 @@ let notificationsVisible = false;
 const setIsNotificationsSidebarVisible = vi.fn((visibility) => {
   notificationsVisible = visibility;
 });
-const postNotificationsUpdate = vi.fn();
 
 const baseWrapper = getComponentWrapper({
   withQueryClientProvider: true,
@@ -52,8 +51,14 @@ vi.mock('@/context/header', async (importOriginal) => {
 vi.mock('@ovh-ux/manager-core-api');
 
 describe('NotificationsButton', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    // Default mock for aapi.post to return a resolved Promise
+    vi.mocked(aapi.post).mockResolvedValue({} as any);
+  });
+
   describe('Display', () => {
-    it('should render without notification count if there is no notifications', () => {
+    it('should render without notification count if there is no notifications', async () => {
       vi.mocked(aapi.get).mockResolvedValue({
         data: [],
       });
@@ -61,12 +66,17 @@ describe('NotificationsButton', () => {
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
 
-      expect(notificationsButton).toBeInTheDocument();
-      expect(
-        screen.queryByTestId('notifications-count-icon'),
-      ).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(notificationsButton).toBeInTheDocument();
+      });
+
+      await waitFor(() => {
+        expect(
+          screen.queryByTestId('notifications-count-icon'),
+        ).not.toBeInTheDocument();
+      });
     });
-    it('should render without notification count if there is no active notifications', () => {
+    it('should render without notification count if there is no active notifications', async () => {
       vi.mocked(aapi.get).mockResolvedValue({
         data: [
           {
@@ -85,10 +95,15 @@ describe('NotificationsButton', () => {
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
 
-      expect(notificationsButton).toBeInTheDocument();
-      expect(
-        screen.queryByTestId('notifications-count-icon'),
-      ).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(notificationsButton).toBeInTheDocument();
+      });
+
+      await waitFor(() => {
+        expect(
+          screen.queryByTestId('notifications-count-icon'),
+        ).not.toBeInTheDocument();
+      });
     });
     it('should render with notification count', async () => {
       vi.mocked(aapi.get).mockResolvedValue({
@@ -134,7 +149,7 @@ describe('NotificationsButton', () => {
           },
         ],
       });
-      vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
+      vi.mocked(aapi.post).mockResolvedValueOnce({} as any);
 
       renderNotificationsButton();
 
@@ -184,7 +199,7 @@ describe('NotificationsButton', () => {
           },
         ],
       });
-      vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
+      vi.mocked(aapi.post).mockResolvedValueOnce({} as any);
 
       renderNotificationsButton();
 
