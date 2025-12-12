@@ -50,6 +50,7 @@ export const mockedJobSpecInput: ai.job.JobSpecInput = {
   image: 'myImage',
   resources: { flavor: 'ai1-1-cpu', cpu: 2 },
   sshPublicKeys: ['myNewSshKey'],
+  timeoutAutoRestart: false,
   unsecureHttp: false,
   command: ['command', 'docker'],
   volumes: [mockedS3Volume, mockedGitVolume],
