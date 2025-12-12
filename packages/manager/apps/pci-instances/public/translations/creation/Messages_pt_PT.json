@@ -100,5 +100,9 @@
   "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} /hora + IVA",
   "pci_instance_creation_image_available_on_other_models": "Esta imagem está disponível em outros modelos.",
   "pci_instance_creation_select_network_dropdown_label": "Selecione uma rede privada existente",
-  "pci_instance_creation_network_add_new": "Criar uma rede privada"
+  "pci_instance_creation_network_add_new": "Criar uma rede privada",
+  "pci_instance_creation_select_billing_choice_title": "Faturação",
+  "pci_instances_creation_select_billing_hourly": "Horário",
+  "pci_instances_creation_select_billing_monthly": "Mensal",
+  "pci_instances_creation_select_billing_subtext": "Pague conforme o uso, com os custos baseados no tempo de uso real."
 }

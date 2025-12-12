@@ -72,7 +72,7 @@ export type TFlavorRegionDTO = {
   tags: string[] | null;
 };
 
-type TPriceDetailsDTO = {
+export type TPriceDetailsDTO = {
   currencyCode: string;
   priceInUcents: number;
   text: string;

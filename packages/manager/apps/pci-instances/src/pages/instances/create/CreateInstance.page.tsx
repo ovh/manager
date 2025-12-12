@@ -23,6 +23,7 @@ import {
   distributionImageOsTypeSchema,
   distributionImageVersionSchema,
   networkIdSchema,
+  billingTypeSelectionSchema,
 } from '@/pages/instances/create/CreateInstance.schema';
 
 import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
@@ -47,6 +48,7 @@ export const instanceCreationSchema = z.object({
   sshKeyId: sshKeyIdSchema,
   newSshPublicKey: sshPublicKeySchema.nullable(),
   networkId: networkIdSchema,
+  billingType: billingTypeSelectionSchema,
 });
 
 const CreateInstance: FC = () => {
