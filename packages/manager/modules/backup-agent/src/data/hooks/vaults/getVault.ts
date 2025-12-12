@@ -1,17 +1,19 @@
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 
-// Remove during unmocking
+import { BACKUP_VAULTS_LIST_ROUTE } from '@/data/api/vaults/vault.requests';
+import { VaultResource } from '@/types/Vault.type';
+
 export const BACKUP_VAULTS_LIST_QUERY_KEY = ['backup', 'vaults'];
 
 export const useBackupVaultsList = (
   {
-    // pageSize,
+    pageSize,
   }: {
     pageSize: number;
   } = { pageSize: 9999 },
-) => ({ flattenData: mockVaults, isLoading: false });
-// useResourcesIcebergV2<VaultResource>({
-//   route: BACKUP_VAULTS_LIST_ROUTE,
-//   queryKey: BACKUP_VAULTS_LIST_QUERY_KEY,
-//   pageSize,
-// });
+) =>
+  useResourcesIcebergV2<VaultResource>({
+    route: BACKUP_VAULTS_LIST_ROUTE,
+    queryKey: BACKUP_VAULTS_LIST_QUERY_KEY,
+    pageSize,
+  });
