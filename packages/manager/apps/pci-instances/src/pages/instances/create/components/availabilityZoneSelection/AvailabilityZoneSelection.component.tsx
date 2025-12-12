@@ -9,12 +9,12 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { useEffect, useState } from 'react';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 type TAvailabilityZoneSelection = { availabilityZones: string[] };
 type TChoice = 'companyChoice' | 'userChoice';
@@ -60,7 +60,7 @@ export const AvailabilityZoneSelection = ({
   }, [availabilityZones, setValue]);
 
   return (
-    <section className="pt-9 pb-5">
+    <section className="pb-5 pt-9">
       <div className="flex flex-col gap-4">
         <div className="flex items-center space-x-4">
           <Text preset="heading-4">
@@ -112,7 +112,7 @@ export const AvailabilityZoneSelection = ({
         </Radio>
       </RadioGroup>
       {choice === 'userChoice' && (
-        <div className="flex pt-6 gap-6">
+        <div className="flex gap-6 pt-6">
           {availabilityZones.map((zone) => (
             <PciCard
               compact

@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Il tuo attuale quota ti consente di creare simultaneamente fino a {{ quota }} istanza(e) di tipo {{ type }} per la regione di {{ region }}. <Link>Controlla la tua quota.</Link>",
   "pci_instance_creation_choose_localization_title": "Scegli una localizzazione",
   "pci_instance_creation_select_localization_label": "Seleziona una localizzazione",
-  "pci_instance_creation_continue_order": "Continua il mio ordine",
   "pci_instance_creation_configuration_code": "Codice della mia configurazione",
   "pci_instance_creation_select_deployment_mode_title": "Filtra un modo di distribuzione",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud fornisce un'infrastruttura robusta e adattabile, progettata per soddisfare una grande varietà di casi d'uso grazie a modelli di distribuzione che bilanciano redditività, ridondanza e tolleranza ai guasti. Queste diverse opzioni consentono agli utenti di scegliere l'approccio più adatto alle loro esigenze in termini di resilienza, disponibilità e prestazioni.",
@@ -100,5 +99,6 @@
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} +IVA/ora",
   "pci_instance_creation_image_available_on_other_models": "Questa immagine è disponibile su altri modelli.",
   "pci_instance_creation_select_network_dropdown_label": "Seleziona una rete privata esistente",
-  "pci_instance_creation_network_add_new": "Creare una rete privata"
+  "pci_instance_creation_network_add_new": "Creare una rete privata",
+  "pci_instance_creation_create_my_instance": "Avvia la mia istanza"
 }

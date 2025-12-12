@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Twój aktualny limit pozwala na jednoczesne utworzenie do {{ quota }} instancji typu {{ type }} w regionie {{ region }}. <Link>Sprawdź swój limit.</Link>",
   "pci_instance_creation_choose_localization_title": "Wybierz lokalizację",
   "pci_instance_creation_select_localization_label": "Wybierz lokalizację",
-  "pci_instance_creation_continue_order": "Kontynuuj moje zamówienie",
   "pci_instance_creation_configuration_code": "Kod mojej konfiguracji",
   "pci_instance_creation_select_deployment_mode_title": "Filtruj tryb wdrożenia",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud zapewnia solidną i elastyczną infrastrukturę, zaprojektowaną w celu zaspokojenia szerokiego zakresu przypadków użycia dzięki modelom wdrożenia, które równoważą opłacalność, redundancję i tolerancję na awarie. Te różne opcje pozwalają użytkownikom wybrać podejście najlepiej odpowiadające ich wymaganiom w zakresie odporności, dostępności i wydajności.",
@@ -100,5 +99,6 @@
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} netto/godz.",
   "pci_instance_creation_image_available_on_other_models": "Ten obraz jest dostępny w innych modelach.",
   "pci_instance_creation_select_network_dropdown_label": "Wybierz istniejącą sieć prywatną",
-  "pci_instance_creation_network_add_new": "Utwórz sieć prywatną"
+  "pci_instance_creation_network_add_new": "Utwórz sieć prywatną",
+  "pci_instance_creation_create_my_instance": "Uruchom moją instancję"
 }

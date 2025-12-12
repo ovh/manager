@@ -8,12 +8,14 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { selectSshKeys } from '../view-models/sshKeysViewModel';
 import AddSshKey from './sshKey/AddSshKey.component';
 import { SubmitHandler, useFormContext, useWatch } from 'react-hook-form';
-import { TAddSshKeyForm } from '../CreateInstance.schema';
+import {
+  TAddSshKeyForm,
+  TInstanceCreationForm,
+} from '../CreateInstance.schema';
 import Banner from '@/components/banner/Banner.component';
 import SshKeySelector, {
   TCustomSelectSshKeyData,
 } from './sshKey/SshKeySelector.component';
-import { TInstanceCreationForm } from '../CreateInstance.page';
 
 type TSshKeyProps = {
   microRegion: string;

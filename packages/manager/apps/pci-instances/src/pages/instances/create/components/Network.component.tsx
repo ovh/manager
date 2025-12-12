@@ -18,8 +18,8 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../CreateInstance.page';
 import { selectPrivateNetworks } from '../view-models/networksViewModel';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');

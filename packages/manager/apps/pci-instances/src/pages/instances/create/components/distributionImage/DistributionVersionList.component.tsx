@@ -13,7 +13,6 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import {
   TAvailableOption,
   TCustomData,
@@ -23,6 +22,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 type TDistributionVersionList = {
   versions: SelectOptionItem<TCustomData>[];
@@ -102,11 +102,11 @@ const DistributionVersionList = ({ versions }: TDistributionVersionList) => {
                 label,
                 customData,
               }: SelectCustomOptionRendererArg) => (
-                <div className="flex justify-between items-center w-full py-4">
+                <div className="flex w-full items-center justify-between py-4">
                   <Text>{label}</Text>
                   {!(customData as TCustomData).available && (
                     <Badge
-                      className="bg-[--ods-color-neutral-500] text-[--ods-color-element-text-selected] text-xs"
+                      className="bg-[--ods-color-neutral-500] text-xs text-[--ods-color-element-text-selected]"
                       color="neutral"
                     >
                       {t(

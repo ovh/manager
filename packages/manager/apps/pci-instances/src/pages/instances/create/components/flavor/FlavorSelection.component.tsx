@@ -8,7 +8,6 @@ import {
   useWatch,
 } from 'react-hook-form';
 import { FlavorsTable } from '@/components/flavorsTable/FlavorsTable.component';
-import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { FlavorColumnsBuilder } from '@/pages/instances/create/components/flavor/FlavorColumnsBuilder';
 import { FlavorRowsBuilder } from '@/pages/instances/create/components/flavor/FlavorRowsBuilder';
 import { GpuFlavorColumnsBuilder } from '@/pages/instances/create/components/flavor/GpuFlavorColumnsBuilder';
@@ -31,6 +30,7 @@ import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { selectFlavors } from '../../view-models/flavorsViewModel';
 import { useEffect } from 'react';
+import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   withUnavailable,

@@ -15,6 +15,9 @@ const fakeDeps: Deps = {
   configurationPort: {
     selectSshKeys: vi.fn(),
   },
+  instancePort: {
+    createInstance: vi.fn(),
+  },
 };
 
 describe('selectMicroRegionAvailability ViewModel', () => {

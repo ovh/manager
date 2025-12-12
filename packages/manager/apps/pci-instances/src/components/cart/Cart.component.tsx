@@ -1,6 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
-import { Button, Icon, Text } from '@ovhcloud/ods-react';
+import { Text } from '@ovhcloud/ods-react';
 
 import {
   Cart as BaseCart,
@@ -14,6 +13,7 @@ import { CartContent } from './components/CartContent.component';
 
 export type TCartProps = {
   items: TCartItem[];
+  actionsButtons: JSX.Element;
 };
 
 export type TCartItem = {
@@ -33,9 +33,7 @@ export type TCartItemDetail = {
 const getTotalPrice = (items: TCartItemDetail[]) =>
   items.reduce((prev, curr) => (curr.price ? prev + curr.price : prev), 0);
 
-  export const Cart = ({ items }: TCartProps) => {
-  const { t } = useTranslation('creation');
-
+export const Cart = ({ items, actionsButtons }: TCartProps) => {
   const details = useMemo(() => items.flatMap(({ details }) => details), [
     items,
   ]);
@@ -65,14 +63,7 @@ const getTotalPrice = (items: TCartItemDetail[]) =>
         displayHourlyPrice
         displayMonthlyPrice
       />
-      <CartActions className="flex-col gap-6">
-        <Button>
-          {t('pci_instance_creation_continue_order')} <Icon name="home" />
-        </Button>
-        <Button variant="outline">
-          {t('pci_instance_creation_configuration_code')}
-        </Button>
-      </CartActions>
+      <CartActions className="flex-col gap-6">{actionsButtons}</CartActions>
     </BaseCart>
   );
 };
