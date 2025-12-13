@@ -5,6 +5,7 @@ import commitmentDuration from './components/commitment-duration';
 import commitmentPricingMode from './components/commitment-pricing-mode';
 import cancelCommitment from './components/cancel-commitment';
 import cancelResiliation from './components/cancel-resiliation';
+import exchangeRenew from './components/exchange-renew';
 import resiliateModal from './components/resiliate-modal';
 import resiliation from './components/resiliation';
 import cancellationForm from './components/cancellation-form';
@@ -32,6 +33,7 @@ angular.module(moduleName, [
   commitmentPricingMode,
   cancelCommitment,
   cancelResiliation,
+  exchangeRenew,
   resiliateModal,
   resiliation,
   servicesActions,
