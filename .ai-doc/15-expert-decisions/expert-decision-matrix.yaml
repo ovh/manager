@@ -1,0 +1,627 @@
+# Expert Decision Matrix
+# @ai-purpose: Guide AI to make correct technical decisions like an expert developer
+# @ai-usage: Consult BEFORE implementing any feature to choose the right approach
+#
+# Note: When using ODS components in examples, consider the ODS version used in the µ-app
+# and verify component API compatibility. Component props and APIs may vary between versions.
+
+version: "1.0"
+last_updated: "2025-01-27"
+
+# =============================================================================
+# STATE MANAGEMENT DECISIONS
+# =============================================================================
+state_management:
+  title: "When to use which state management approach"
+
+  decisions:
+    # -------------------------------------------------------------------------
+    # Server State (API Data)
+    # -------------------------------------------------------------------------
+    server_state:
+      name: "Server/API State"
+      description: "Data fetched from APIs that needs caching, refetching, invalidation"
+
+      use_react_query:
+        when:
+          - "Data comes from an API (v6, AAPI, Iceberg)"
+          - "Data needs to be cached across components"
+          - "Data needs automatic refetching on window focus"
+          - "Multiple components need the same API data"
+          - "You need loading/error states"
+        examples:
+          - "Service details (useServiceDetail)"
+          - "Resource lists (useServiceList)"
+          - "User permissions"
+          - "Configuration data"
+        pattern: |
+          // @ai-pattern: server-state-react-query
+          import { useQuery } from '@tanstack/react-query';
+
+          export const useServiceDetail = (serviceName: string) => {
+            return useQuery({
+              queryKey: ['service', serviceName],
+              queryFn: () => fetchServiceDetail(serviceName),
+              staleTime: 5 * 60 * 1000, // 5 minutes
+            });
+          };
+
+      never_use:
+        - "useState for API data (no caching, no refetch)"
+        - "useReducer for simple API data"
+        - "Context for server state (causes unnecessary re-renders)"
+        - "Global store (Redux/Zustand) for server state"
+
+    # -------------------------------------------------------------------------
+    # Local UI State
+    # -------------------------------------------------------------------------
+    local_ui_state:
+      name: "Local UI State"
+      description: "UI state that only affects one component"
+
+      use_useState:
+        when:
+          - "State is used by ONE component only"
+          - "State doesn't need to persist"
+          - "Simple boolean, string, number, or small object"
+        examples:
+          - "Modal open/close state"
+          - "Dropdown expanded state"
+          - "Local form field before submission"
+          - "Toggle states"
+        pattern: |
+          // @ai-pattern: local-ui-state
+          const [isModalOpen, setIsModalOpen] = useState(false);
+          const [selectedTab, setSelectedTab] = useState('overview');
+
+      never_use:
+        - "Context for single-component state"
+        - "React Query for non-API state"
+        - "URL state for temporary UI state"
+
+    # -------------------------------------------------------------------------
+    # Shared UI State
+    # -------------------------------------------------------------------------
+    shared_ui_state:
+      name: "Shared UI State"
+      description: "UI state needed by multiple components"
+
+      use_context:
+        when:
+          - "State is needed by 2+ components"
+          - "Components are in the same subtree"
+          - "State changes infrequently"
+          - "Examples: theme, locale, feature flags"
+        pattern: |
+          // @ai-pattern: shared-context
+          const ServiceContext = createContext<ServiceContextType | null>(null);
+
+          export const ServiceProvider = ({ children, serviceName }) => {
+            const { data } = useServiceDetail(serviceName);
+            return (
+              <ServiceContext.Provider value={{ service: data }}>
+                {children}
+              </ServiceContext.Provider>
+            );
+          };
+
+          export const useServiceContext = () => {
+            const context = useContext(ServiceContext);
+            if (!context) throw new Error('useServiceContext must be used within ServiceProvider');
+            return context;
+          };
+
+      use_url_state:
+        when:
+          - "State should persist on page refresh"
+          - "State should be shareable via URL"
+          - "Examples: filters, pagination, selected tab"
+        pattern: |
+          // @ai-pattern: url-state
+          import { useSearchParams } from 'react-router-dom';
+
+          const [searchParams, setSearchParams] = useSearchParams();
+          const currentPage = parseInt(searchParams.get('page') || '1', 10);
+
+          const setPage = (page: number) => {
+            setSearchParams({ ...Object.fromEntries(searchParams), page: String(page) });
+          };
+
+    # -------------------------------------------------------------------------
+    # Form State
+    # -------------------------------------------------------------------------
+    form_state:
+      name: "Form State"
+      description: "Form inputs, validation, submission"
+
+      use_react_hook_form:
+        when:
+          - "Form has 2+ fields"
+          - "Form needs validation"
+          - "Form needs error handling"
+          - "Form data needs to be submitted to API"
+        pattern: |
+          // @ai-pattern: form-state-rhf
+          import { useForm, Controller } from 'react-hook-form';
+          import { zodResolver } from '@hookform/resolvers/zod';
+
+          const schema = z.object({
+            name: z.string().min(1, 'Name is required'),
+            description: z.string().optional(),
+          });
+
+          const { control, handleSubmit, formState: { errors, isDirty, isValid } } = useForm({
+            mode: 'onTouched',
+            resolver: zodResolver(schema),
+            defaultValues: { name: '', description: '' },
+          });
+
+      use_useState:
+        when:
+          - "Single input field"
+          - "No validation needed"
+          - "Search input or filter"
+        pattern: |
+          // @ai-pattern: simple-input-state
+          const [searchTerm, setSearchTerm] = useState('');
+
+# =============================================================================
+# API CALL DECISIONS
+# =============================================================================
+api_calls:
+  title: "When to use which API call pattern"
+
+  decisions:
+    # -------------------------------------------------------------------------
+    # Read Operations
+    # -------------------------------------------------------------------------
+    read_single:
+      name: "Fetch Single Resource"
+      use: "useQuery"
+      pattern: |
+        // @ai-pattern: fetch-single
+        export const useServiceDetail = (serviceName: string) => {
+          return useQuery({
+            queryKey: ['service', serviceName],
+            queryFn: async () => {
+              const { data } = await v6.get(`/dedicated/service/${serviceName}`);
+              return data;
+            },
+          });
+        };
+
+    read_list_small:
+      name: "Fetch Small List (<100 items)"
+      use: "useQuery with v6"
+      pattern: |
+        // @ai-pattern: fetch-list-small
+        export const useServiceList = () => {
+          return useQuery({
+            queryKey: ['services'],
+            queryFn: async () => {
+              const { data: ids } = await v6.get('/dedicated/service');
+              // For small lists, parallel fetch is acceptable
+              const services = await Promise.all(
+                ids.map(id => v6.get(`/dedicated/service/${id}`).then(r => r.data))
+              );
+              return services;
+            },
+          });
+        };
+
+    read_list_large:
+      name: "Fetch Large List (100+ items)"
+      use: "useQuery with Iceberg"
+      pattern: |
+        // @ai-pattern: fetch-list-large-iceberg
+        import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+
+        export const useServiceListPaginated = (page: number, pageSize: number) => {
+          return useQuery({
+            queryKey: ['services', 'paginated', page, pageSize],
+            queryFn: async () => {
+              const { data, totalCount } = await fetchIcebergV6({
+                route: '/dedicated/service',
+                page,
+                pageSize,
+              });
+              return { data, totalCount };
+            },
+          });
+        };
+
+    read_aggregated:
+      name: "Fetch Aggregated Data (AAPI)"
+      description: "When backend provides aggregated/enriched data"
+      use: "useQuery with AAPI"
+      when:
+        - "AngularJS used OvhApi*.Aapi()"
+        - "Need multiple related resources in one call"
+        - "Backend provides pre-processed data"
+      pattern: |
+        // @ai-pattern: fetch-aapi
+        import { aapi } from '@ovh-ux/manager-core-api';
+
+        export const useServiceDashboard = (serviceName: string) => {
+          return useQuery({
+            queryKey: ['service', serviceName, 'dashboard'],
+            queryFn: async () => {
+              const { data } = await aapi.get(`/dedicated/service/${serviceName}/dashboard`);
+              return data;
+            },
+          });
+        };
+
+    # -------------------------------------------------------------------------
+    # Write Operations
+    # -------------------------------------------------------------------------
+    create:
+      name: "Create Resource"
+      use: "useMutation with POST"
+      pattern: |
+        // @ai-pattern: create-resource
+        export const useCreateService = () => {
+          const queryClient = useQueryClient();
+
+          return useMutation({
+            mutationFn: async (payload: CreateServicePayload) => {
+              const { data } = await v6.post('/dedicated/service', payload);
+              return data;
+            },
+            onSuccess: () => {
+              // Invalidate list to refetch
+              queryClient.invalidateQueries({ queryKey: ['services'] });
+            },
+          });
+        };
+
+    update:
+      name: "Update Resource"
+      use: "useMutation with PUT"
+      pattern: |
+        // @ai-pattern: update-resource
+        export const useUpdateService = () => {
+          const queryClient = useQueryClient();
+
+          return useMutation({
+            mutationFn: async ({ serviceName, payload }: UpdateParams) => {
+              const { data } = await v6.put(`/dedicated/service/${serviceName}`, payload);
+              return data;
+            },
+            onSuccess: (_, { serviceName }) => {
+              queryClient.invalidateQueries({ queryKey: ['service', serviceName] });
+            },
+          });
+        };
+
+    delete:
+      name: "Delete Resource"
+      use: "useMutation with DELETE"
+      pattern: |
+        // @ai-pattern: delete-resource
+        export const useDeleteService = (serviceName: string) => {
+          const queryClient = useQueryClient();
+          const navigate = useNavigate();
+
+          return useMutation({
+            mutationFn: async () => {
+              await v6.delete(`/dedicated/service/${serviceName}`);
+            },
+            onSuccess: () => {
+              queryClient.invalidateQueries({ queryKey: ['services'] });
+              navigate('/services'); // Navigate away after deletion
+            },
+          });
+        };
+
+# =============================================================================
+# COMPONENT DECISIONS
+# =============================================================================
+component_decisions:
+  title: "When to use which component pattern"
+
+  decisions:
+    # -------------------------------------------------------------------------
+    # Data Display
+    # -------------------------------------------------------------------------
+    display_list:
+      name: "Display List of Items"
+
+      use_datagrid:
+        when:
+          - "List has columns"
+          - "List needs sorting"
+          - "List needs pagination"
+          - "List shows 10+ items"
+        source: "@ovh-ux/muk"
+        pattern: |
+          // @ai-pattern: datagrid-display
+          import { Datagrid, DatagridColumn } from '@ovh-ux/muk';
+
+          const columns: DatagridColumn<ServiceType>[] = [
+            { id: 'name', label: t('column_name'), cell: (row) => row.name },
+            { id: 'status', label: t('column_status'), cell: (row) => <StatusBadge status={row.status} /> },
+          ];
+
+          <Datagrid data={services} columns={columns} />
+
+    display_key_value:
+      name: "Display Key-Value Data"
+      use: "Tile component from MUK"
+      pattern: |
+        // @ai-pattern: key-value-display
+        import { Tile } from '@ovh-ux/muk';
+
+        <Tile>
+          <Tile.Item>
+            <Tile.Item.Term>{t('label_name')}</Tile.Item.Term>
+            <Tile.Item.Description>{service.name}</Tile.Item.Description>
+          </Tile.Item>
+
+          <Tile.Item>
+            <Tile.Item.Term>{t('label_status')}</Tile.Item.Term>
+            <Tile.Item.Description><StatusBadge status={service.status} /></Tile.Item.Description>
+          </Tile.Item>
+        </Tile>
+
+    # -------------------------------------------------------------------------
+    # User Actions
+    # -------------------------------------------------------------------------
+    action_modal:
+      name: "Action Modal (Create/Edit/Delete)"
+      use: "OdsModal component with useState"
+      pattern: |
+        // @ai-pattern: action-modal
+        import { useState } from 'react';
+        import { OdsModal, OdsButton } from '@ovhcloud/ods-components/react';
+
+        const [isOpen, setIsOpen] = useState(false);
+        const open = () => setIsOpen(true);
+        const close = () => setIsOpen(false);
+
+        <OdsButton onClick={open}>{t('action_delete')}</OdsButton>
+
+        <OdsModal open={isOpen} onOdsModalChange={(e) => setIsOpen(e.detail.open)}>
+          <OdsModal.Header>{t('modal_delete_title')}</OdsModal.Header>
+          <OdsModal.Body>
+            {t('modal_delete_confirmation', { name: service.name })}
+          </OdsModal.Body>
+          <OdsModal.Footer>
+            <OdsButton variant="ghost" onClick={close}>{t('common_cancel')}</OdsButton>
+            <OdsButton variant="primary" onClick={handleDelete}>{t('common_confirm')}</OdsButton>
+          </OdsModal.Footer>
+        </OdsModal>
+
+    action_drawer:
+      name: "Side Panel (Complex Forms)"
+      use: "Drawer component"
+      when:
+        - "Form has many fields"
+        - "User needs to reference main content while filling form"
+        - "Multi-step process"
+      pattern: |
+        // @ai-pattern: action-drawer
+        <Drawer isOpen={isOpen} onClose={close}>
+          <Drawer.Header>{t('drawer_create_title')}</Drawer.Header>
+          <Drawer.Body>
+            <CreateForm onSuccess={close} />
+          </Drawer.Body>
+        </Drawer>
+
+    # -------------------------------------------------------------------------
+    # Navigation
+    # -------------------------------------------------------------------------
+    navigation_tabs:
+      name: "Section Navigation"
+      use: "OdsTabs from ODS"
+      when:
+        - "Multiple views of same resource"
+        - "Views are mutually exclusive"
+      pattern: |
+        // @ai-pattern: navigation-tabs
+        import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+
+        <OdsTabs>
+          <OdsTab onClick={() => navigate('overview')} isSelected={tab === 'overview'}>
+            {t('tab_overview')}
+          </OdsTab>
+          <OdsTab onClick={() => navigate('settings')} isSelected={tab === 'settings'}>
+            {t('tab_settings')}
+          </OdsTab>
+        </OdsTabs>
+
+    navigation_breadcrumb:
+      name: "Hierarchical Navigation"
+      use: "Breadcrumb component"
+      pattern: |
+        // @ai-pattern: breadcrumb
+        import { Breadcrumb } from '@ovh-ux/muk';
+
+        <Breadcrumb
+          items={[
+            { label: t('breadcrumb_home'), href: '/' },
+            { label: t('breadcrumb_services'), href: '/services' },
+            { label: service.name },
+          ]}
+        />
+
+# =============================================================================
+# ERROR HANDLING DECISIONS
+# =============================================================================
+error_handling:
+  title: "When to use which error handling pattern"
+
+  decisions:
+    api_error:
+      name: "API Error"
+      use: "ErrorBanner from MUK"
+      pattern: |
+        // @ai-pattern: api-error-handling
+        import { ErrorBanner } from '@ovh-ux/muk';
+
+        const { data, error, isLoading } = useServiceDetail(serviceName);
+
+        if (error) {
+          return <ErrorBanner error={error} />;
+        }
+
+    validation_error:
+      name: "Form Validation Error"
+      use: "OdsFormField error prop"
+      pattern: |
+        // @ai-pattern: validation-error
+        <OdsFormField error={errors.name?.message}>
+          <OdsInput
+            name="name"
+            value={value}
+            onOdsChange={onChange}
+            hasError={!!errors.name}
+          />
+        </OdsFormField>
+
+    mutation_error:
+      name: "Mutation/Action Error"
+      use: "Toast notification"
+      pattern: |
+        // @ai-pattern: mutation-error
+        import { useNotifications } from '@ovh-ux/muk';
+
+        const { addError, addSuccess } = useNotifications();
+
+        const mutation = useCreateService();
+
+        const handleSubmit = async (data) => {
+          try {
+            await mutation.mutateAsync(data);
+            addSuccess(t('success_created'));
+            close();
+          } catch (error) {
+            addError(t('error_create_failed'), error);
+          }
+        };
+
+    not_found_error:
+      name: "Resource Not Found"
+      use: "NotFound component or redirect"
+      pattern: |
+        // @ai-pattern: not-found-handling
+        const { data, error } = useServiceDetail(serviceName);
+
+        if (error?.response?.status === 404) {
+          return <Navigate to="/services" replace />;
+        }
+
+# =============================================================================
+# LOADING STATE DECISIONS
+# =============================================================================
+loading_states:
+  title: "When to use which loading pattern"
+
+  decisions:
+    page_loading:
+      name: "Full Page Loading"
+      use: "Loading component from MUK"
+      when:
+        - "Initial page load"
+        - "Critical data not yet available"
+      pattern: |
+        // @ai-pattern: page-loading
+        import { Loading } from '@ovh-ux/muk';
+
+        if (isLoading) {
+          return <Loading />;
+        }
+
+    section_loading:
+      name: "Section Loading"
+      use: "Skeleton or spinner"
+      when:
+        - "Part of page is loading"
+        - "Main content already visible"
+      pattern: |
+        // @ai-pattern: section-loading
+        import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+
+        {isLoading ? (
+          <OdsSkeleton />
+        ) : (
+          <ServiceDetails data={data} />
+        )}
+
+    action_loading:
+      name: "Action/Button Loading"
+      use: "Button loading prop"
+      when:
+        - "Form submission"
+        - "Delete/Update action"
+      pattern: |
+        // @ai-pattern: action-loading
+        <OdsButton
+          isLoading={mutation.isPending}
+          onClick={handleSubmit}
+        >
+          {t('action_save')}
+        </OdsButton>
+
+# =============================================================================
+# FILE STRUCTURE DECISIONS
+# =============================================================================
+file_structure:
+  title: "Where to put which code"
+
+  decisions:
+    api_hooks:
+      location: "src/data/api/hooks/"
+      contains:
+        - "useQuery hooks"
+        - "useMutation hooks"
+        - "Query key definitions"
+      naming: "use{Resource}{Action}.ts (e.g., useServiceDetail.ts, useCreateService.ts)"
+
+    api_functions:
+      location: "src/data/api/"
+      contains:
+        - "Raw API call functions"
+        - "Type definitions for API responses"
+      naming: "{resource}.api.ts (e.g., service.api.ts)"
+
+    components:
+      location: "src/components/"
+      contains:
+        - "Reusable components"
+        - "Shared UI elements"
+      naming: "{ComponentName}/{ComponentName}.tsx"
+
+    pages:
+      location: "src/pages/"
+      contains:
+        - "Route components"
+        - "Page-level components"
+      naming: "{PageName}/{PageName}.page.tsx"
+
+    modals:
+      location: "src/pages/{Feature}/modals/"
+      contains:
+        - "Modal components for feature"
+        - "Modal-specific hooks"
+      naming: "{ActionName}Modal.tsx"
+
+    translations:
+      location: "public/translations/"
+      contains:
+        - "Translation JSON files"
+      naming: "{namespace}/Messages_{locale}.json"
+
+    hooks:
+      location: "src/hooks/"
+      contains:
+        - "Custom React hooks (non-API)"
+        - "Shared logic hooks"
+      naming: "use{HookName}.ts"
+
+    types:
+      location: "src/types/"
+      contains:
+        - "TypeScript type definitions"
+        - "Shared interfaces"
+      naming: "{domain}.types.ts"

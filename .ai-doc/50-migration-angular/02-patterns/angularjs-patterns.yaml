@@ -1,0 +1,525 @@
+---
+title: AngularJS Detection Patterns
+version: 1.0.0
+last_update: 2025-01-27
+tags: [patterns, angularjs, detection, regex]
+ai: true
+---
+
+# AngularJS Detection Patterns
+
+## Purpose
+
+Machine-readable patterns for detecting AngularJS code structures. Use these regex patterns to automatically identify routes, resolves, components, and other AngularJS constructs.
+
+## Pattern Format
+
+Each pattern includes:
+- `regex`: The regular expression pattern
+- `flags`: Regex flags (g=global, m=multiline, i=case-insensitive)
+- `groups`: Named capture groups with descriptions
+- `maps_to`: What this pattern converts to in React
+- `test_cases`: Example inputs with expected outputs
+
+---
+
+## Routing Patterns
+
+### state_definition
+
+**Purpose**: Detect $stateProvider.state() calls
+
+```yaml
+state_definition:
+  regex: '\$stateProvider\.state\([''"]([^''"]+)[''"]\s*,\s*\{([^}]+)\}'
+  flags: g
+  groups:
+    - index: 1
+      name: state_name
+      description: The state name (e.g., "nasha.dashboard")
+    - index: 2
+      name: state_config
+      description: The state configuration object
+  maps_to:
+    react: '<Route path="..." Component={...} />'
+    reference: '@.ai-doc/50-migration-angular/angularjs-react-mapping-guide.md#routing-mappings'
+  test_cases:
+    - input: '$stateProvider.state("nasha.dashboard", { url: "/:serviceName", component: "nashaComponent" })'
+      expected:
+        state_name: 'nasha.dashboard'
+        state_config: ' url: "/:serviceName", component: "nashaComponent" '
+    - input: "$stateProvider.state('nasha.directory', { url: '/listing' })"
+      expected:
+        state_name: 'nasha.directory'
+        state_config: " url: '/listing' "
+```
+
+### state_url
+
+**Purpose**: Extract URL pattern from state configuration
+
+```yaml
+state_url:
+  regex: 'url:\s*[''"]([^''"]+)[''"]'
+  flags: ''
+  groups:
+    - index: 1
+      name: url_pattern
+      description: URL pattern (e.g., "/:serviceName")
+  maps_to:
+    react: 'path prop in <Route>'
+  test_cases:
+    - input: 'url: "/:serviceName"'
+      expected:
+        url_pattern: '/:serviceName'
+    - input: "url: '/listing'"
+      expected:
+        url_pattern: '/listing'
+```
+
+### state_component
+
+**Purpose**: Extract component name from state
+
+```yaml
+state_component:
+  regex: 'component:\s*[''"]([^''"]+)[''"]'
+  flags: ''
+  groups:
+    - index: 1
+      name: component_name
+      description: Component name in AngularJS
+  maps_to:
+    react: 'Component prop in <Route>'
+  test_cases:
+    - input: 'component: "nashaComponent"'
+      expected:
+        component_name: 'nashaComponent'
+```
+
+### redirect_to
+
+**Purpose**: Detect redirectTo configuration
+
+```yaml
+redirect_to:
+  regex: 'redirectTo:\s*[''"]([^''"]+)[''"]'
+  flags: ''
+  groups:
+    - index: 1
+      name: redirect_target
+      description: Target state for redirect
+  maps_to:
+    react: 'useNavigate() + useEffect() or <Navigate>'
+    reference: '@.ai-doc/50-migration-angular/angularjs-react-mapping-guide.md#redirect-mappings'
+  test_cases:
+    - input: 'redirectTo: "nasha.directory"'
+      expected:
+        redirect_target: 'nasha.directory'
+```
+
+---
+
+## Resolve Patterns
+
+### resolve_function
+
+**Purpose**: Detect resolve functions in routing
+
+```yaml
+resolve_function:
+  regex: '(\w+):\s*\/\*\s*@ngInject\s*\*\/\s*\(([^)]*)\)\s*=>'
+  flags: g
+  groups:
+    - index: 1
+      name: resolve_name
+      description: Name of the resolve (becomes hook name)
+    - index: 2
+      name: dependencies
+      description: Injected dependencies
+  maps_to:
+    react: 'Custom hook with useQuery'
+    reference: '@.ai-doc/50-migration-angular/angularjs-react-mapping-guide.md#resolve-mappings'
+  test_cases:
+    - input: 'nasha: /* @ngInject */ (OvhApiDedicatedNasha, serviceName) =>'
+      expected:
+        resolve_name: 'nasha'
+        dependencies: 'OvhApiDedicatedNasha, serviceName'
+```
+
+### resolve_promise
+
+**Purpose**: Detect promise chains in resolves
+
+```yaml
+resolve_promise:
+  regex: '(\w+)\(\)?\.\$promise'
+  flags: g
+  groups:
+    - index: 1
+      name: api_call
+      description: API call that returns a promise
+  maps_to:
+    react: 'await in async queryFn'
+  test_cases:
+    - input: 'aapi.get({ serviceName }).$promise'
+      expected:
+        api_call: 'get'
+```
+
+---
+
+## API Patterns
+
+### aapi_call
+
+**Purpose**: Detect AAPI calls
+
+```yaml
+aapi_call:
+  regex: 'OvhApi(\w+)\.Aapi\(\)'
+  flags: g
+  groups:
+    - index: 1
+      name: resource_name
+      description: API resource name (e.g., DedicatedNasha)
+  maps_to:
+    react: 'aapi from @ovh-ux/manager-core-api'
+    reference: '@.ai-doc/20-dependencies/manager-core-api.md#aapi'
+  test_cases:
+    - input: 'OvhApiDedicatedNasha.Aapi()'
+      expected:
+        resource_name: 'DedicatedNasha'
+    - input: 'OvhApiMe.Aapi()'
+      expected:
+        resource_name: 'Me'
+```
+
+### aapi_reset_cache
+
+**Purpose**: Detect cache reset calls (no longer needed in React)
+
+```yaml
+aapi_reset_cache:
+  regex: '(\w+)\.resetCache\(\)'
+  flags: g
+  groups:
+    - index: 1
+      name: aapi_instance
+      description: AAPI instance
+  maps_to:
+    react: 'Remove - React Query handles caching'
+  test_cases:
+    - input: 'aapi.resetCache()'
+      expected:
+        aapi_instance: 'aapi'
+```
+
+### aapi_get
+
+**Purpose**: Detect AAPI get calls
+
+```yaml
+aapi_get:
+  regex: '\.get\(\{([^}]+)\}\)'
+  flags: g
+  groups:
+    - index: 1
+      name: params
+      description: Parameters passed to get
+  maps_to:
+    react: 'aapi.get(endpoint)'
+  test_cases:
+    - input: '.get({ serviceName })'
+      expected:
+        params: ' serviceName '
+```
+
+### iceberg_query
+
+**Purpose**: Detect Iceberg queries
+
+```yaml
+iceberg_query:
+  regex: 'iceberg\(([^)]+)\)\.query\(\)\.expand\('
+  flags: g
+  groups:
+    - index: 1
+      name: endpoint
+      description: API endpoint for Iceberg
+  maps_to:
+    react: 'fetchIcebergV6 from @ovh-ux/manager-core-api'
+    reference: '@.ai-doc/20-dependencies/manager-core-api.md#iceberg'
+  test_cases:
+    - input: "iceberg('/dedicated/nasha').query().expand('CachedObjectList-Pages')"
+      expected:
+        endpoint: "'/dedicated/nasha'"
+```
+
+### v6_http_call
+
+**Purpose**: Detect $http calls (v6 API)
+
+```yaml
+v6_http_call:
+  regex: '\$http\.(get|post|put|delete)\([''"]([^''"]+)[''"]'
+  flags: g
+  groups:
+    - index: 1
+      name: method
+      description: HTTP method
+    - index: 2
+      name: endpoint
+      description: API endpoint
+  maps_to:
+    react: 'apiClient.v6.{method}() or v6.{method}()'
+    reference: '@.ai-doc/20-dependencies/manager-core-api.md#v6'
+  test_cases:
+    - input: "$http.get('/dedicated/nasha')"
+      expected:
+        method: 'get'
+        endpoint: '/dedicated/nasha'
+    - input: '$http.put("/me", data)'
+      expected:
+        method: 'put'
+        endpoint: '/me'
+```
+
+---
+
+## Controller Patterns
+
+### controller_definition
+
+**Purpose**: Detect controller definitions
+
+```yaml
+controller_definition:
+  regex: '\.controller\([''"](\w+)Controller[''"]\s*,\s*function\s*\(([^)]*)\)'
+  flags: g
+  groups:
+    - index: 1
+      name: controller_name
+      description: Controller name
+    - index: 2
+      name: dependencies
+      description: Injected dependencies
+  maps_to:
+    react: 'Custom hook or component'
+  test_cases:
+    - input: ".controller('NashaCtrl', function($scope, OvhApiDedicatedNasha)"
+      expected:
+        controller_name: 'NashaCtrl'
+        dependencies: '$scope, OvhApiDedicatedNasha'
+```
+
+### scope_variable
+
+**Purpose**: Detect $scope variables
+
+```yaml
+scope_variable:
+  regex: '\$scope\.(\w+)\s*='
+  flags: g
+  groups:
+    - index: 1
+      name: variable_name
+      description: Scope variable name
+  maps_to:
+    react: 'useState or useQuery'
+  test_cases:
+    - input: '$scope.loading = false;'
+      expected:
+        variable_name: 'loading'
+    - input: '$scope.data = result;'
+      expected:
+        variable_name: 'data'
+```
+
+### scope_function
+
+**Purpose**: Detect $scope functions
+
+```yaml
+scope_function:
+  regex: '\$scope\.(\w+)\s*=\s*function\s*\(([^)]*)\)'
+  flags: g
+  groups:
+    - index: 1
+      name: function_name
+      description: Function name
+    - index: 2
+      name: parameters
+      description: Function parameters
+  maps_to:
+    react: 'Regular function or event handler'
+  test_cases:
+    - input: '$scope.handleClick = function(event)'
+      expected:
+        function_name: 'handleClick'
+        parameters: 'event'
+```
+
+---
+
+## Service Patterns
+
+### service_definition
+
+**Purpose**: Detect service definitions
+
+```yaml
+service_definition:
+  regex: '\.service\([''"](\w+)[''"]\s*,\s*function\s*\(([^)]*)\)'
+  flags: g
+  groups:
+    - index: 1
+      name: service_name
+      description: Service name
+    - index: 2
+      name: dependencies
+      description: Injected dependencies
+  maps_to:
+    react: 'Custom hook or utility module'
+  test_cases:
+    - input: ".service('NashaService', function($http, OvhApiDedicatedNasha)"
+      expected:
+        service_name: 'NashaService'
+        dependencies: '$http, OvhApiDedicatedNasha'
+```
+
+### service_method
+
+**Purpose**: Detect service methods
+
+```yaml
+service_method:
+  regex: 'this\.(\w+)\s*=\s*function\s*\(([^)]*)\)'
+  flags: g
+  groups:
+    - index: 1
+      name: method_name
+      description: Service method name
+    - index: 2
+      name: parameters
+      description: Method parameters
+  maps_to:
+    react: 'Exported function from utility module'
+  test_cases:
+    - input: 'this.getNasha = function(serviceName)'
+      expected:
+        method_name: 'getNasha'
+        parameters: 'serviceName'
+```
+
+---
+
+## Utility Function Patterns
+
+### prepare_function
+
+**Purpose**: Detect prepare* utility functions
+
+```yaml
+prepare_function:
+  regex: 'function\s+prepare(\w+)\s*\(([^)]*)\)'
+  flags: g
+  groups:
+    - index: 1
+      name: resource_name
+      description: Resource being prepared
+    - index: 2
+      name: parameters
+      description: Function parameters
+  maps_to:
+    react: 'usePrepare{ResourceName} hook'
+    reference: '@.ai-doc/50-migration-angular/angularjs-react-mapping-guide.md#utility-functions'
+  test_cases:
+    - input: 'function prepareNasha(data, t)'
+      expected:
+        resource_name: 'Nasha'
+        parameters: 'data, t'
+```
+
+### translate_call
+
+**Purpose**: Detect $translate calls
+
+```yaml
+translate_call:
+  regex: '\$translate\.instant\([''"]([^''"]+)[''"]'
+  flags: g
+  groups:
+    - index: 1
+      name: translation_key
+      description: Translation key
+  maps_to:
+    react: 't(key) from react-i18next'
+    reference: '@.ai-doc/20-dependencies/react-i18next.md'
+  test_cases:
+    - input: "$translate.instant('nasha_listing_title')"
+      expected:
+        translation_key: 'nasha_listing_title'
+```
+
+---
+
+## Usage Instructions
+
+### For AI Assistants
+
+1. **Load patterns**: Read this YAML file
+2. **Apply regex**: Use patterns to scan AngularJS source
+3. **Extract matches**: Capture groups contain data
+4. **Map to React**: Use `maps_to` for conversion
+5. **Validate**: Test against `test_cases`
+
+### Example Usage (Pseudocode)
+
+```typescript
+// Load patterns
+const patterns = loadYAML('angularjs-patterns.yaml');
+
+// Scan source file
+const sourceCode = readFile('nasha.routing.js');
+
+// Apply pattern
+const statePattern = patterns.routing.state_definition;
+const matches = sourceCode.matchAll(new RegExp(statePattern.regex, statePattern.flags));
+
+// Extract data
+for (const match of matches) {
+  const stateName = match[1]; // First capture group
+  const stateConfig = match[2]; // Second capture group
+
+  // Map to React
+  console.log(`State "${stateName}" → React Route`);
+  console.log(`Reference: ${statePattern.maps_to.reference}`);
+}
+```
+
+---
+
+## Validation
+
+Each pattern includes `test_cases` for validation. AI should verify patterns work correctly:
+
+```typescript
+// Validate pattern
+const pattern = patterns.routing.state_definition;
+const testCase = pattern.test_cases[0];
+
+const regex = new RegExp(pattern.regex, pattern.flags);
+const match = regex.exec(testCase.input);
+
+assert(match[1] === testCase.expected.state_name);
+assert(match[2].trim() === testCase.expected.state_config.trim());
+```
+
+---
+
+## References
+
+- [AngularJS React Mapping Guide](../angularjs-react-mapping-guide.md)
+- [Migration Patterns](../migration-patterns.md)
+- [Manager Core API](@.ai-doc/20-dependencies/manager-core-api.md)
