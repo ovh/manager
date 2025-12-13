@@ -1,17 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 
+import { Tab, TabContent, TabList, Tabs } from '@ovhcloud/ods-react';
+
 import { renderBaseLayout } from '@/commons/tests-utils/Render.utils';
 import { changelogLinks, guideMenuItems } from '@/commons/tests-utils/StaticData.constants';
-import {
-  Breadcrumb,
-  ChangelogMenu,
-  GuideMenu,
-  Notifications,
-  Tab,
-  TabContent,
-  TabList,
-  Tabs,
-} from '@/components';
+import { Breadcrumb, ChangelogMenu, GuideMenu, Notifications } from '@/components';
 
 vi.mock('react-router-dom', async () => ({
   ...(await vi.importActual('react-router-dom')),
