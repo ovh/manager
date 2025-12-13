@@ -1,11 +1,11 @@
 import { User } from '@ovh-ux/manager-config';
-import { isUserConcernedBySuggestion, isSuggestionRelevant } from '@/helpers/suggestions/suggestionsHelper';
+import { isUserConcernedBySuggestion, isSuggestionRelevant, isAssociationOrOther } from '@/helpers/suggestions/suggestionsHelper';
 import { Suggestion } from '@/types/suggestion';
 
 describe('suggestionsHelpers', () => {
 
   describe('isUserConcernedBySuggestion', () => {
-    it('should consider user not concerned by suggestions if they are not a corporation', () => {
+    it('should consider user not concerned by suggestions if they are not a corporation association or other', () => {
       const user: Partial<User> = {
         legalform: 'individual',
         country: 'FR',
@@ -67,6 +67,24 @@ describe('suggestionsHelpers', () => {
       const user = { companyNationalIdentificationNumber: '11112' };
       // TODO: remove unnecessary `as unknown` when User type is fixed
       expect(isSuggestionRelevant(suggestion, user as unknown as User)).toEqual(true);
+    });
+  });
+
+  describe('isAssociationOrOther', () => {
+    it('should return false if the legalform is not association or other', () => {
+      expect(isAssociationOrOther('individual')).toEqual(false);
+    });
+
+    it('should return false if the legalform is "corporation"', () => {
+      expect(isAssociationOrOther('corporation')).toEqual(false);
+    });
+
+    it('should return true if the legalform is "association"', () => {
+      expect(isAssociationOrOther('association')).toEqual(true);
+    });
+
+    it('should return true if the legalform is "other"', () => {
+      expect(isAssociationOrOther('other')).toEqual(true);
     });
   });
 });
