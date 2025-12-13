@@ -196,6 +196,10 @@
     "pnpm": "packages/manager/modules/product-offers"
   },
   {
+    "turbo": "--filter @ovh-ux/metrics-to-customer",
+    "pnpm": "packages/manager/modules/metrics-to-customer"
+  },
+  {
     "turbo": "--filter @ovh-ux/ng-ovh-request-tagger",
     "pnpm": "packages/manager/modules/request-tagger"
   },
