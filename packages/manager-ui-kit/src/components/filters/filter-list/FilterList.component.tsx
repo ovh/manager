@@ -22,7 +22,7 @@ export function FilterList({ filters, onRemoveFilter }: Readonly<FilterListProps
           onClick={() => onRemoveFilter(filter)}
           data-testid="filter-list_tag_item"
         >
-          {`${filter.label && `${filter.label} ${tComp(filter.comparator)} ${formatFilter(filter, locale)}`}`}
+          {`${filter.tagLabel || (filter.label && `${filter.label} ${tComp(filter.comparator)} ${formatFilter(filter, locale)}`)}`}
         </Tag>
       ))}
     </>
