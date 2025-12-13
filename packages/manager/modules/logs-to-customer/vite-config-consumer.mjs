@@ -21,7 +21,7 @@ export function getLogsToCustomerConfig() {
     ],
     dedupe: [
       '@tanstack/react-virtual',
-      '@ovh-ux/manager-react-components', // to remove when all consumer use pnpm
+      '@ovh-ux/muk',
     ],
   };
 }

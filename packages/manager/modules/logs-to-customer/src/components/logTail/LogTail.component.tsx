@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Spinner } from '@ovhcloud/ods-react';
 
 import { LogsContext } from '@/LogsToCustomer.context';
 import { getLogTailUrlQueryKey, useLogTailUrl } from '@/data/hooks/useLogTailUrl';
@@ -21,10 +21,10 @@ export default function LogTail() {
   if (isPending || error) {
     return (
       <div
-        className={`h-[--tail-height] bg-slate-800 text-gray-200 flex items-center justify-center`}
+        className={`h-[var(--tail-height)] bg-slate-800 text-gray-200 flex items-center justify-center`}
       >
         {isPending && (
-          <OdsSpinner data-testid="logTail-spinner" className=" [&::part(spinner)]:fill-white" />
+          <Spinner data-testid="logTail-spinner" className="fill-white" />
         )}
         {error && (
           <ApiError
@@ -45,7 +45,7 @@ export default function LogTail() {
   }
 
   return (
-    <div className={`h-[--tail-height] bg-slate-800 text-slate-300`}>
+    <div className={`h-[var(--tail-height)] bg-slate-800 text-slate-300`}>
       {<LogMessages logTailMessageUrl={data.url} />}
     </div>
   );

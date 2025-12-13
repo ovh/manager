@@ -7,44 +7,139 @@ This module provides the necessary pages and components to add the "Logs to Cust
 - Logs live tail
 - Create, read, update, and delete subscriptions to data-streams
 
+Built with **ODS v19** and **Tailwind CSS v3**.
+
+## Requirements
+
+Ensure your application has the following dependencies:
+
+```json
+{
+  "dependencies": {
+    "@ovh-ux/logs-to-customer": "^1.9.0",
+    "@ovhcloud/ods-react": "^19.2.1",
+    "@ovhcloud/ods-themes": "^19.2.1",
+    "tailwindcss": "^3.4.4 || ^4.1.17"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "autoprefixer": "^10.4.14"
+  }
+}
+```
+
+**Note:** This module is built with Tailwind CSS v3, but works with consumer apps using either v3 or v4.
+
 ## Configuration
 
-### Add the package to your uapp
+### 1. PostCSS Configuration
 
-To use this module, add the following package to your UApp:
+**For Tailwind CSS v4:**
 
-`@ovh-ux/logs-to-customer`
+```javascript
+import tailwindcss from '@tailwindcss/postcss';
+import autoprefixer from 'autoprefixer';
 
-### Update your application tailwind config
-
-Add logs-to-customer to the content of your application tailwind configuration `tailwind.config.mjs` in order to generate the necessary tailwind classes.
-
-```mjs
 export default {
-  //...
-  content: [
-    // ...
-    path.join(
-      path.dirname(require.resolve('@ovh-ux/logs-to-customer')),
-      '**/*.{js,jsx,ts,tsx}',
-    ),
-  ],
+  plugins: [tailwindcss(), autoprefixer()],
 };
 ```
 
-### Add the module in your uapp
+**For Tailwind CSS v3:**
 
-To integrate the module into your UApp, create a log tab on your product dashboard and add the `LogsToCustomerModule` to the page content.
+```javascript
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
 
-**Important**: You must import the CSS file in your app entry point (e.g., `index.tsx`) to ensure styles are loaded globally:
+### 2. Tailwind Configuration
+
+Update your `tailwind.config.mjs` to include the module's component paths:
+
+```javascript
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import baseConfig from '@ovh-ux/manager-tailwind-config';
+
+const require = createRequire(import.meta.url);
+const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
+const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
+
+const logsToCustomerDir = pkgDir('@ovh-ux/logs-to-customer');
+
+export default {
+  ...baseConfig,
+  content: [
+    ...(baseConfig.content ?? []),
+    './src/**/*.{js,jsx,ts,tsx}',
+    toGlob(logsToCustomerDir),
+  ],
+  corePlugins: {
+    preflight: false,
+  },
+};
+```
+
+### 3. Import Module Styles
+
+Import the module's CSS in your application entry point:
 
 ```tsx
-// app entry point
+// In your index.tsx or main entry point
 import '@ovh-ux/logs-to-customer/dist/style.css';
 ```
 
+### 4. Configure your vite config
+
+Add logs-to-customer vite config to your app
+
+_**vite.config.mjs**_
+```ts
+import { defineConfig } from 'vite';
+import { getBaseConfig } from '@ovh-ux/manager-vite-config';
+import { getLogsToCustomerConfig } from '@ovh-ux/logs-to-customer/vite-config';
+import { resolve } from 'path';
+
+const logsToCustomerConfig = getLogsToCustomerConfig();
+const baseConfig = getBaseConfig(logsToCustomerConfig);
+
+export default defineConfig({
+  ...baseConfig,
+  root: resolve(process.cwd()),
+});
+```
+
+### 5. Vitest Configuration (for testing)
+
+If you're running tests, update your `vitest.config.js` to handle ODS v19 CSS:
+
+```javascript
+export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/test-utils/setup-test.ts'],
+    css: true,
+    deps: {
+      inline: ['@ovhcloud/ods-react'],
+    },
+  },
+});
+```
+
+## Usage
+
+### Add the Module to Your Application
+
+Create a logs page and integrate the `LogsToCustomerModule`:
+
 ```tsx
-// component
+import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
+
 export default function LogsPage() {
   // ...
 
@@ -74,14 +169,11 @@ export default function LogsPage() {
 
 ### Configure your µapp routes
 
-To allow the module to handle all logs-related routes, configure your routes as follows:
+Configure your routes to allow the module to handle all logs-related sub-routes:
 
-
-_**routes.tsx**_
 ```tsx
-
-// ...
-<Route path="path/to/parent/component" Component={ParentComponent} id="parent-component">
+// routes.tsx
+<Route path="path/to/parent/component" Component={ParentComponent}>
   <Route
     path="path/to/logs/page/*"
     id="logs"
@@ -92,24 +184,3 @@ _**routes.tsx**_
 ```
 > **Important**
 > `'*'` is mandatory as routing is defined and managed inside the module
-
-
-### configure your vite config
-
-Add logs-to-customer vite config to your app
-
-_**vite.config.mjs**_
-```ts
-import { defineConfig } from 'vite';
-import { getBaseConfig } from '@ovh-ux/manager-vite-config';
-import { getLogsToCustomerConfig } from '@ovh-ux/logs-to-customer/vite-config';
-import { resolve } from 'path';
-
-const logsToCustomerConfig = getLogsToCustomerConfig();
-const baseConfig = getBaseConfig(logsToCustomerConfig);
-
-export default defineConfig({
-  ...baseConfig,
-  root: resolve(process.cwd()),
-});
-```
