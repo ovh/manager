@@ -1,5 +1,5 @@
 {
-  "pci_workflow_create_schedule_rotate_description": "Ogni giorno viene effettuato un backup tra le 22:00 e le 6:00 (UTC), con un sistema di rotazione che conserva lo storico degli ultimi {{ numEntries }} elementi. \n Quando il nuovo backup è completato, il più vecchio viene eliminato.",
+  "pci_workflow_create_schedule_rotate_description": "Ogni giorno viene effettuato un backup tra le 22:00 e le 6:00 (UTC), con un sistema di rotazione che conserva lo storico degli ultimi {{ numEntries }} elementi.  Quando il nuovo backup è completato, il più vecchio viene eliminato.",
   "pci_workflow_create_type_title": "Seleziona un workflow",
   "pci_workflow_create_type_description": "Un workflow descrive una o più azioni.",
   "pci_workflow_create_type_instance_backup_description": "Questo workflow genererà copie di sicurezza di tipo Instance Backup, che potranno essere utilizzate per avviare nuove istanze.",
