@@ -99,6 +99,7 @@ export type TVolumeStatus = {
   statusGroup: string;
   statusLabel: string;
 };
+
 export const mapVolumeStatus = <V extends TAPIVolume>(
   t: TFunction<['common']>,
 ) => (volume: V): V & TVolumeStatus => {
