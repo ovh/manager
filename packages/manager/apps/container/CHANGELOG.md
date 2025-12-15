@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.171.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.4...@ovh-ux/manager-container-app@0.171.0) (2025-12-12)
+
+
+### Features
+
+* **container:** delete local storage prefix by biz ([d4fcec3](https://github.com/ovh/manager/commit/d4fcec319993f666b55917c02b6fff0e5b27acdc)), closes [#MANAGER-20560](https://github.com/ovh/manager/issues/MANAGER-20560)
+
+
+
+
+
 ## [0.170.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.3...@ovh-ux/manager-container-app@0.170.4) (2025-12-12)
 
 
