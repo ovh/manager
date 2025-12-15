@@ -16,7 +16,7 @@ type Props = {
 export default function HtmlViewer({ html, className, isVisible }: Props) {
   const sanitized = useMemo(() => {
     const parser = new DOMParser();
-    const sanitizedHtml = DOMPurify.sanitize(html);
+    const sanitizedHtml = DOMPurify.sanitize(html, { WHOLE_DOCUMENT: true });
 
     // open all links in a new tab
     const doc = parser.parseFromString(sanitizedHtml, 'text/html');
