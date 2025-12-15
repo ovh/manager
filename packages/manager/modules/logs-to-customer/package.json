@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/logs-to-customer",
-  "version": "1.10.1",
+  "version": "1.10.2",
   "description": "OVHcloud - observability - logs to customer module",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -37,7 +37,6 @@
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
-  "dependencies": {},
   "devDependencies": {
     "@ovh-ux/manager-core-api": "^0.20.1",
     "@ovh-ux/manager-core-test-utils": "^0.11.2",

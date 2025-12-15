@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.40.2...@ovh-ux/manager-okms-app@0.41.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* **observability.logs:** fix incorrect path for dep libraries ([8558d7a](https://github.com/ovh/manager/commit/8558d7a06a203e7f101622a2d6ff7603fc8e28ad)), closes [#MAOBS-136](https://github.com/ovh/manager/issues/MAOBS-136)
+* **okms:** broken link on secret versions list ([18786ac](https://github.com/ovh/manager/commit/18786ac45004b1a192a5aba8ffd0038fee5c0567)), closes [#MANAGER-20487](https://github.com/ovh/manager/issues/MANAGER-20487)
+* **okms:** error message with react-dev-tools ([f4c0ed2](https://github.com/ovh/manager/commit/f4c0ed2f21f0c85031a5cf2f7be94922341232f7)), closes [#MANAGER-19795](https://github.com/ovh/manager/issues/MANAGER-19795)
+
+
+### Features
+
+* **okms:** add beta badge to logs tab ([4e7cbac](https://github.com/ovh/manager/commit/4e7cbac1aef120ddcbacb43bc8647c1d0cfa0cd8)), closes [#MANAGER-19795](https://github.com/ovh/manager/issues/MANAGER-19795)
+* **okms:** add continent tabs to region picker ([5c5e8f5](https://github.com/ovh/manager/commit/5c5e8f5b40320cb88943343780eb9646ffe9c196)), closes [#MANAGER-19097](https://github.com/ovh/manager/issues/MANAGER-19097)
+* **okms:** add key-value clipboards view for secret data ([53aaa37](https://github.com/ovh/manager/commit/53aaa37a5541217754f1cc665674f49a995b9dfa)), closes [#MANAGER-18315](https://github.com/ovh/manager/issues/MANAGER-18315)
+* **okms:** add logs to secrets manager okms dashboard ([85b466b](https://github.com/ovh/manager/commit/85b466b69fda8e0bf7021cfff091e1e0e282da09)), closes [#MANAGER-19795](https://github.com/ovh/manager/issues/MANAGER-19795)
+
+
+
+
+
 ## [0.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.40.1...@ovh-ux/manager-okms-app@0.40.2) (2025-12-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-okms-app
