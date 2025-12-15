@@ -1,4 +1,4 @@
-export type ContactStatus = 'SENT' | 'DROPPED' | 'QUEUED';
+export type ContactStatus = 'SENT' | 'DROPPED' | 'QUEUED' | 'BOUNCED' | 'DELIVERED';
 export type ContactType = 'EMAIL';
 export type NotificationPriority = 'HIGH' | 'MEDIUM' | 'LOW';
 
