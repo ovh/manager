@@ -16,6 +16,7 @@ export default {
       '**/*.{js,jsx,ts,tsx}',
     ),
     './node_modules/@datatr-ux/uxlib/dist/components/ui/**/*.{js,jsx,ts,tsx}',
+    './../../../../node_modules/@datatr-ux/uxlib/dist/components/ui/**/*.{js,jsx,ts,tsx}',
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   presets: [odsPreset],

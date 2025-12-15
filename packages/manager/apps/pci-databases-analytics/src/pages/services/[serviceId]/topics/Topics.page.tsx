@@ -59,7 +59,7 @@ const Topics = () => {
                   }
                   onClick={() => navigate('./add')}
                 >
-                  <Plus className="w-4 h-" />
+                  <Plus className="w-4 h-4" />
                   {t('addButtonLabel')}
                 </Button>
               </DataTable.Action>
