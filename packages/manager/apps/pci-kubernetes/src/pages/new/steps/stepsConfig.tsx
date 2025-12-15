@@ -75,9 +75,11 @@ const stepsConfig = ({
   {
     key: 'confirm',
     component: !stepper.confirm.step.isLocked ? ClusterConfirmationStep : Loader,
+
     titleKey: 'stepper:common_stepper_submit_button_cluster',
     extraProps: {
       nodePools: stepper.form.nodePools,
+      type: stepper.form.region?.type,
       plan: stepper.form.plan,
       onSubmit: () => {
         stepper.confirm.step.lock();

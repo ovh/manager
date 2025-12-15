@@ -95,7 +95,7 @@ export const GatewaySelector = ({
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._300}
             color={ODS_THEME_COLOR_INTENT.text}
-            className="block mx-9 my-4"
+            className="mx-9 my-4 block"
           >
             {tAdd('kubernetes_network_form_gateway_public_description')}
           </OsdsText>

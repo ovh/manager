@@ -1,11 +1,11 @@
 {
-  "kube_list_title": "Kubernetes",
+  "kube_list_title": "Managed Kubernetes Service",
   "kube_list_name": "Nome del cluster",
   "kube_list_id": "ID",
   "kube_list_region": "Region",
   "kube_list_version": "Versione",
   "kube_list_cluster_manage": "Gestisci il cluster",
-  "kube_list_cluster_create": "Crea un cluster Kubernetes",
+  "kube_list_cluster_create": "Creare un cluster MKS",
   "kube_list_error": "Si è verificato un errore durante il caricamento dei tuoi cluster",
   "kube_common_save": "Salva",
   "kube_common_cancel": "Annulla",
@@ -25,5 +25,16 @@
   "kube_common_node_pool_title_multiple": "Configura uno o più pool di nodi (opzionale)",
   "kubernetes_containers_deployment_mode_label": "Modalità di deploy",
   "kube_list_node_pools": "Hai bisogno di volumi persistenti per più pod attraverso diversi nodi e zone di disponibilità? Prova il nostro servizio <strong>File Storage</strong> totalmente gestito, compatibile con Managed Kubernetes Service. Approfitta di volumi “Read Write Many” <strong>a partire da 10 GB</strong>, che si evolvono in modo trasparente con i tuoi cluster.",
-  "kube_list_node_pools_discover": "Scopri la versione alpha"
+  "kube_list_node_pools_discover": "Scopri la versione alpha",
+  "READY": "Pronto",
+  "DISABLED": "Disattivato",
+  "UPDATING": "Aggiornamento in corso",
+  "ERROR": "Errore",
+  "DELETING": "Cancellazione in corso",
+  "CREATING": "Creazione in corso",
+  "ENABLED": "Attivato",
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Impatto tariffario",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "L'attivazione delle Floating IP comporta un costo aggiuntivo. Ogni istanza attuale e futura di questo pool di nodi riceverà una Floating IP addebitata {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Attenzione: Perdita delle Floating IPs",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "La disattivazione comporterà il distacco immediato delle Floating IP. Questi indirizzi saranno rilasciati definitivamente e non potranno essere recuperati."
 }

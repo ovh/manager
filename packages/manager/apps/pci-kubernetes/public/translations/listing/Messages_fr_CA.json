@@ -1,11 +1,11 @@
 {
-  "kube_list_title": "Kubernetes",
+  "kube_list_title": "Managed Kubernetes Service",
   "kube_list_name": "Nom du cluster",
   "kube_list_id": "ID",
   "kube_list_region": "Région",
   "kube_list_version": "Version",
   "kube_list_cluster_manage": "Gérer le cluster",
-  "kube_list_cluster_create": "Créer un cluster Kubernetes",
+  "kube_list_cluster_create": "Créer un cluster MKS",
   "kube_list_error": "Une erreur est survenue lors du chargement de vos clusters",
   "kube_common_save": "Valider",
   "kube_common_cancel": "Annuler",
@@ -25,5 +25,16 @@
   "kubernetes_add_private_network_add": "Créer un réseau privé",
   "kubernetes_containers_deployment_mode_label": "Mode de déploiement",
   "kube_list_node_pools": "Besoin de volumes persistants pour plusieurs pods à travers différents nœuds et zones de disponibilité ? Essayez notre service entièrement géré <strong>File Storage</strong>, compatible avec Managed Kubernetes Service. Profitez de volumes 'Read Write Many' <strong>à partir de 10 Go</strong>, évoluant de manière transparente avec vos clusters.",
-  "kube_list_node_pools_discover": "Découvrir l'alpha"
+  "kube_list_node_pools_discover": "Découvrir l'alpha",
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Impact tarifaire",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "L'activation des Floating IPs implique un coût supplémentaire. Chaque instance actuelle et future de ce pool de nœuds se verra attribuer une Floating IP facturée {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Attention : Perte des Floating IPs",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "La désactivation entraînera le détachement immédiat des Floating IPs. Ces adresses seront définitivement relâchées et ne pourront pas être récupérées.",
+  "READY": "Prêt",
+  "DISABLED": "Désactivé",
+  "UPDATING": "Mise à jour en cours",
+  "ERROR": "Erreur",
+  "DELETING": "Suppression en cours",
+  "CREATING": "Création en cours",
+  "ENABLED": "Activé"
 }

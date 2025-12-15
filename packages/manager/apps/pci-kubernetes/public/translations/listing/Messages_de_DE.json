@@ -1,11 +1,11 @@
 {
-  "kube_list_title": "Kubernetes",
+  "kube_list_title": "Managed Kubernetes Service",
   "kube_list_name": "Name des Clusters",
   "kube_list_id": "ID",
   "kube_list_region": "Region",
   "kube_list_version": "Version",
   "kube_list_cluster_manage": "Cluster verwalten",
-  "kube_list_cluster_create": "Kubernetes-Cluster erstellen",
+  "kube_list_cluster_create": "Einen MKS-Cluster erstellen",
   "kube_list_error": "Beim Laden Ihrer Cluster ist ein Fehler aufgetreten.",
   "kube_common_save": "Speichern",
   "kube_common_cancel": "Abbrechen",
@@ -25,5 +25,16 @@
   "kube_common_node_pool_title_multiple": "Konfigurieren Sie mindestens einen Node-Pool (optional)",
   "kubernetes_containers_deployment_mode_label": "Bereitstellungsmodus",
   "kube_list_node_pools": "Sie benötigen persistente Volumes für mehrere Pods über verschiedene Nodes und Availability Zones hinweg? Testen Sie unseren vollständig verwalteten <strong>File Storage</strong>, der mit Managed Kubernetes Service kompatibel ist. Profitieren Sie von „Read-Write-Many“-Volumes <strong>ab 10 GB</strong>, die sich nahtlos mit Ihren Clustern skalieren lassen.",
-  "kube_list_node_pools_discover": "Die Alpha-Version entdecken"
+  "kube_list_node_pools_discover": "Die Alpha-Version entdecken",
+  "READY": "Bereit",
+  "DISABLED": "Deaktiviert",
+  "UPDATING": "Aktualisierung läuft",
+  "ERROR": "Fehler",
+  "DELETING": "Löschung wird ausgeführt",
+  "CREATING": "Erstellung läuft",
+  "ENABLED": "Aktiviert",
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Tarifimpact",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "Die Aktivierung der Floating-IPs verursacht zusätzliche Kosten. Jede aktuelle und zukünftige Instanz dieses Knotenspeichers erhält eine Floating-IP, die mit {{price}} berechnet wird.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Achtung: Verlust der Floating-IPs",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "Die Deaktivierung führt zur sofortigen Trennung der Floating-IPs. Diese Adressen werden dauerhaft freigegeben und können nicht wiederhergestellt werden."
 }
