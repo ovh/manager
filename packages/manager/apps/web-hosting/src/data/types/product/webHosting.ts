@@ -238,3 +238,11 @@ export type PutWebHostingWebsitePayload = {
     name: string;
   };
 };
+
+export type VcsWebhookUrls = {
+  push?: string;
+};
+
+export type SshKey = {
+  publicKey: string;
+};
