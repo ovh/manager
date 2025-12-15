@@ -1,7 +1,7 @@
 {
   "addVirtualMacTitle": "Añadir una MAC virtual",
   "addVirtualMacNew": "Crear una nueva MAC virtual",
-  "addVirtualMacNewInfo": "Las direcciones MAC virtuales permiten una mejor gestión de las direcciones IP asignando direcciones MAC únicas a cada máquina virtual.",
+  "addVirtualMacNewInfo": "Las MAC virtuales permiten una mejor gestión de las direcciones IP asignando direcciones MAC únicas a cada máquina virtual.",
   "addVirtualMacNewInfoGuide": "Ver la guía sobre las MAC virtuales",
   "addVirtualMacExisting": "Utilizar una MAC virtual existente",
   "virtualMacIpAddress": "Dirección IP",

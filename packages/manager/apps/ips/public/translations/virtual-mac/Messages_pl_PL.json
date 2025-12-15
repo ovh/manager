@@ -1,7 +1,7 @@
 {
   "addVirtualMacTitle": "Dodaj wirtualny adres MAC",
   "addVirtualMacNew": "Utwórz nowy wirtualny adres MAC",
-  "addVirtualMacNewInfo": "Wirtualne adresy MAC ułatwiają zarządzanie adresami IP, ponieważ przypisują unikalny adres MAC każdej maszynie wirtualnej.",
+  "addVirtualMacNewInfo": "Wirtualne adresy MAC pozwalają na lepsze zarządzanie adresami IP, przypisując unikatowe adresy MAC do każdej wirtualnej maszyny.",
   "addVirtualMacNewInfoGuide": "Sprawdź przewodnik dotyczący wirtualnych adresów MAC",
   "addVirtualMacExisting": "Skorzystaj z istniejącego wirtualnego adresu MAC",
   "virtualMacIpAddress": "Adres IP",

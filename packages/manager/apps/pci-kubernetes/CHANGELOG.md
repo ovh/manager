@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.39.0...@ovh-ux/manager-pci-kubernetes-app@0.39.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.38.2...@ovh-ux/manager-pci-kubernetes-app@0.39.0) (2025-12-15)
+
+
+### Features
+
+* **pci-kubernetes:** add confirmation floating ip step ([a87fd80](https://github.com/ovh/manager/commit/a87fd803a832f656223426ea39dde1699f38f6ad)), closes [#TAPC-4731](https://github.com/ovh/manager/issues/TAPC-4731)
+* **pci-kubernetes:** add floating ip on 3az cluster creation ([d453cd1](https://github.com/ovh/manager/commit/d453cd165b42c2b8f679d3df2179be93be20675e)), closes [#TAPC-4731](https://github.com/ovh/manager/issues/TAPC-4731) [#TAPC-5285](https://github.com/ovh/manager/issues/TAPC-5285)
+* **pci-kubernetes:** add floating ip on list ([841c42d](https://github.com/ovh/manager/commit/841c42de9a2728d73212febb1975b158710211bc)), closes [#TAPC-4772](https://github.com/ovh/manager/issues/TAPC-4772)
+* **pci-kubernetes:** add floating ip on nodepools ([fc3aa4d](https://github.com/ovh/manager/commit/fc3aa4d01a53e49ee33544e8a85e73d6f3287016)), closes [#TAPC-4732](https://github.com/ovh/manager/issues/TAPC-4732)
+* **pci-kubernetes:** add floating ip on scaling page ([3bd3ce4](https://github.com/ovh/manager/commit/3bd3ce4502db9a17ec527f019019bc6befa441be)), closes [#TAPC-4733](https://github.com/ovh/manager/issues/TAPC-4733)
+* **pci-kubernetes:** update kubeconfig actions ([a490a28](https://github.com/ovh/manager/commit/a490a28bb8ccb71d6aaa1376e67bd289180b7717)), closes [#TAPC-5144](https://github.com/ovh/manager/issues/TAPC-5144) [#TAPC-5360](https://github.com/ovh/manager/issues/TAPC-5360)
+* **pci-kubernetes:** update kubernetes page title ([89723e3](https://github.com/ovh/manager/commit/89723e3d52ab9c354726995b1a129ff902a8f29b)), closes [#TAPC-5440](https://github.com/ovh/manager/issues/TAPC-5440)
+* **pci-rancher:** add iam guide ([4284190](https://github.com/ovh/manager/commit/42841908a7b66d2a03d44f76b587251e39873c91)), closes [#TAPC-4730](https://github.com/ovh/manager/issues/TAPC-4730)
+
+
+
+
+
+## [0.38.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.38.1...@ovh-ux/manager-pci-kubernetes-app@0.38.2) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
 ## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.38.0...@ovh-ux/manager-pci-kubernetes-app@0.38.1) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

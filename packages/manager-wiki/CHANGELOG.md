@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.22.0...@ovh-ux/manager-wiki@0.22.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.21.1...@ovh-ux/manager-wiki@0.22.0) (2025-12-12)
+
+
+### Features
+
+* **manager-wiki:** add use data api hook documentation ([5c82180](https://github.com/ovh/manager/commit/5c82180227e3b9b910bea2f6497d7648f2b3ad83)), closes [#MANAGER-20470](https://github.com/ovh/manager/issues/MANAGER-20470)
+
+
+
+
+
 ## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.21.0...@ovh-ux/manager-wiki@0.21.1) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-wiki

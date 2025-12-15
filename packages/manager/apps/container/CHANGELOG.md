@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.172.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.0...@ovh-ux/manager-container-app@0.172.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.172.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.171.0...@ovh-ux/manager-container-app@0.172.0) (2025-12-15)
+
+
+### Features
+
+* **container:** update code for local storage prefix by biz ([b0baae3](https://github.com/ovh/manager/commit/b0baae383cb17368233f72d3a47ea298fafe0607)), closes [#MANAGER-20560](https://github.com/ovh/manager/issues/MANAGER-20560)
+
+
+
+
+
+# [0.171.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.4...@ovh-ux/manager-container-app@0.171.0) (2025-12-12)
+
+
+### Features
+
+* **container:** delete local storage prefix by biz ([d4fcec3](https://github.com/ovh/manager/commit/d4fcec319993f666b55917c02b6fff0e5b27acdc)), closes [#MANAGER-20560](https://github.com/ovh/manager/issues/MANAGER-20560)
+
+
+
+
+
+## [0.170.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.3...@ovh-ux/manager-container-app@0.170.4) (2025-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4527] ([70197f1](https://github.com/ovh/manager/commit/70197f1a8dc563ce2895b7357f4b51cb2a110f6b))
+
+
+
+
+
 ## [0.170.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.2...@ovh-ux/manager-container-app@0.170.3) (2025-12-11)
 
 

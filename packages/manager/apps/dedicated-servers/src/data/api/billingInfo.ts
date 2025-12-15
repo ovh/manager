@@ -7,7 +7,7 @@ export const getBillingInfoQueryKey = (serverName: string) => [
 
 export const getBillingInfo = async (
   serviceName: string,
-  isNutanix: boolean = false,
+  isNutanix = false,
   cluster?: string,
 ): Promise<ApiResponse<BillingInfo>> => {
   const pathType = isNutanix ? 'nutanix' : 'dedicated/server';

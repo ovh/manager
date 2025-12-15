@@ -12,7 +12,7 @@ export function getCommonTranslations() {
   }
   const COMMON_TRANSLATIONS_PACKAGE = '@ovh-ux/manager-common-translations';
   const viteStaticPluginTargets = [];
-  if (packageJson?.dependencies[COMMON_TRANSLATIONS_PACKAGE]) {
+  if (packageJson?.dependencies?.[COMMON_TRANSLATIONS_PACKAGE]) {
     viteStaticPluginTargets.push({
       src: `${path.dirname(require.resolve(COMMON_TRANSLATIONS_PACKAGE))}/@ovh-ux`,
       dest: `translations`,

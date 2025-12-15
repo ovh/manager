@@ -1,11 +1,11 @@
 {
-  "kube_list_title": "Kubernetes",
+  "kube_list_title": "Managed Kubernetes Service",
   "kube_list_name": "Nome do cluster",
   "kube_list_id": "ID",
   "kube_list_region": "Região",
   "kube_list_version": "Versão",
   "kube_list_cluster_manage": "Gerar o cluster",
-  "kube_list_cluster_create": "Criar um cluster Kubernetes",
+  "kube_list_cluster_create": "Criar um cluster MKS",
   "kube_list_error": "Ocorreu um erro no carregamento dos seus clusters",
   "kube_common_save": "Guardar",
   "kube_common_cancel": "Cancelar",
@@ -25,5 +25,16 @@
   "kube_common_node_pool_title_multiple": "Configure um ou vários pools de nós (opcional)",
   "kubernetes_containers_deployment_mode_label": "Modo de implementação",
   "kube_list_node_pools": "Precisa de volumes persistentes para vários pods em diferentes nós e zonas de disponibilidade? Experimente o nosso serviço <strong>File Storage</strong> totalmente gerido, compatível com o Managed Kubernetes Service. Desfrute de volumes 'Read Write Many' <strong>a partir de 10 GB</strong>, evoluindo de forma transparente com os seus clusters.",
-  "kube_list_node_pools_discover": "Descobrir o alpha"
+  "kube_list_node_pools_discover": "Descobrir o alpha",
+  "READY": "Pronto",
+  "DISABLED": "Desativado",
+  "UPDATING": "Atualização em curso",
+  "ERROR": "Erro",
+  "DELETING": "Eliminação em curso",
+  "CREATING": "Criação em curso",
+  "ENABLED": "Ativado",
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Impact tarifário",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "A ativação dos IPs Flutuantes implica um custo adicional. Cada instância atual e futura deste pool de nós receberá um IP Flutuante cobrado {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Atenção: Perda de Floating IPs",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "A desativação resultará na desvinculação imediata dos IPs Flutuantes. Esses endereços serão liberados definitivamente e não poderão ser recuperados."
 }

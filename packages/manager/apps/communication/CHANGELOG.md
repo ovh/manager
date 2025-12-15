@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.5.0...@ovh-ux/manager-communication-app@0.5.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.5...@ovh-ux/manager-communication-app@0.5.0) (2025-12-15)
+
+
+### Features
+
+* **communication:** add guided tour ([39e611f](https://github.com/ovh/manager/commit/39e611f56378029da39e7caaea607f9e8f7577b1)), closes [#MANAGER-18777](https://github.com/ovh/manager/issues/MANAGER-18777)
+
+
+
+
+
+## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.4...@ovh-ux/manager-communication-app@0.4.5) (2025-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4527] ([70197f1](https://github.com/ovh/manager/commit/70197f1a8dc563ce2895b7357f4b51cb2a110f6b))
+
+
+
+
+
 ## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.3...@ovh-ux/manager-communication-app@0.4.4) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-communication-app

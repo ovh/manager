@@ -6,8 +6,11 @@ jobs:
   build:
     name: Lint Code Base
     runs-on: ubuntu-latest
+
+    env:
+      PNPM_VERSION: "10.17.0" # must match playbook-config.js
+
     steps:
-      # choose with pkgs and storage you want to clean
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
@@ -18,35 +21,45 @@ jobs:
           large-packages: false
           docker-images: false
           swap-storage: true
-      # Checkout the code and include all commit history
+
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # Setup Node.js 22.x environment
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v3
+      # -------------------------------------------------------
+      # CACHE PNPM (binary only)
+      # -------------------------------------------------------
+      - name: Restore PNPM cache (binary only)
+        uses: actions/cache@v3
         with:
-          node-version: 22
+          path: |
+            target/pnpm
+          key: ${{ runner.os }}-pnpm-lint-${{ env.PNPM_VERSION }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-lint-${{ env.PNPM_VERSION }}-
+            ${{ runner.os }}-pnpm-lint-
 
-      # Restore and cache node_modules and yarn.lock related cache
-      - name: Restore node_modules cache
+      # -------------------------------------------------------
+      # CACHE YARN (node_modules + yarn global cache)
+      # -------------------------------------------------------
+      - name: Restore Yarn cache
         uses: actions/cache@v3
         with:
           path: |
             ~/.cache/yarn
             node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-yarn-lint-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn-lint-
 
-      # Install dependencies only if necessary (cache hit will skip)
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
       - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
-      # Lint the code base
       - name: Lint Code Base
-        run: |
-          yarn lint
+        run: yarn lint

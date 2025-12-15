@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.2...@ovh-ux/logs-to-customer@1.10.3) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.1...@ovh-ux/logs-to-customer@1.10.2) (2025-12-15)
+
+
+### Bug Fixes
+
+* **observability.logs:** fix incorrect path for dep libraries ([8558d7a](https://github.com/ovh/manager/commit/8558d7a06a203e7f101622a2d6ff7603fc8e28ad)), closes [#MAOBS-136](https://github.com/ovh/manager/issues/MAOBS-136)
+
+
+
+
+
 ## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.0...@ovh-ux/logs-to-customer@1.10.1) (2025-12-10)
 
 

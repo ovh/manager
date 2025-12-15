@@ -27,36 +27,64 @@ const ScalingStrat = () => {
           <Pen className="ml-2 size-4" />
         </Button>
       </div>
-      <ul className="list-disc">
+      <ul>
         {app.spec.scalingStrategy.fixed?.replicas ? (
-          <li data-testid="fixed-list" className="ml-8">
+          <li data-testid="fixed-list">
             {t('fixedReplicasLabel', {
               rep: app.spec.scalingStrategy.fixed.replicas,
             })}
           </li>
         ) : (
           <>
-            <li data-testid="automatic-list" className="ml-8">
+            <li data-testid="automatic-list">
               {t('minReplicasLabel', {
                 rep: app.spec.scalingStrategy.automatic.replicasMin,
               })}
               {}
             </li>
-            <li className="ml-8">
+            <li>
               {t('maxReplicasLabel', {
                 rep: app.spec.scalingStrategy.automatic.replicasMax,
               })}
             </li>
-            <li className="ml-8">
-              {t('resourceTypeLabel', {
-                res: app.spec.scalingStrategy.automatic.resourceType,
-              })}
-            </li>
-            <li className="ml-8">
-              {t('averageUsegeLabel', {
-                val: app.spec.scalingStrategy.automatic.averageUsageTarget,
-              })}
-            </li>
+            {app.spec.scalingStrategy.automatic.resourceType && (
+              <li>
+                {t('resourceTypeLabel', {
+                  res: app.spec.scalingStrategy.automatic.resourceType,
+                })}
+              </li>
+            )}
+            {app.spec.scalingStrategy.automatic.customMetrics ? (
+              <>
+                <li className="break-all">
+                  {t('customMetricsUrlLabel')}
+                  {app.spec.scalingStrategy.automatic.customMetrics.apiUrl}
+                </li>
+                <li>
+                  {t('customMetricsFormatLabel', {
+                    for:
+                      app.spec.scalingStrategy.automatic.customMetrics.format,
+                  })}
+                </li>
+                <li className="break-all">
+                  {t('customMetricsLocationLabel')}
+                  {app.spec.scalingStrategy.automatic.customMetrics.valueLocation}
+                </li>
+                <li>
+                  {t('customMetricsTargetValueLabel', {
+                    val:
+                      app.spec.scalingStrategy.automatic.customMetrics
+                        .targetValue,
+                  })}
+                </li>
+              </>
+            ) : (
+              <li>
+                {t('averageUsegeLabel', {
+                  val: app.spec.scalingStrategy.automatic.averageUsageTarget,
+                })}
+              </li>
+            )}
           </>
         )}
       </ul>

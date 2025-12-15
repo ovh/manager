@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.12.0...@ovh-ux/manager-pci-private-registry-app@0.12.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.17...@ovh-ux/manager-pci-private-registry-app@0.12.0) (2025-12-15)
+
+
+### Features
+
+* **pci-kubernetes:** add legacy guide ([4b99bcb](https://github.com/ovh/manager/commit/4b99bcb299f9888e11f640ab94a46cb48a673ce6)), closes [#TAPC-3171](https://github.com/ovh/manager/issues/TAPC-3171)
+
+
+
+
+
 ## [0.11.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.16...@ovh-ux/manager-pci-private-registry-app@0.11.17) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app

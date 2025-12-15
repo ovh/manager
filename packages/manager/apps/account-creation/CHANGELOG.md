@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.8.0...@ovh-ux/manager-account-creation-app@0.8.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.7.2...@ovh-ux/manager-account-creation-app@0.8.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* **account-creation:** update phone country on country selection change ([58cfb36](https://github.com/ovh/manager/commit/58cfb36aeafdad469435175a077ab9a79240a0fa)), closes [#MANAGER-20502](https://github.com/ovh/manager/issues/MANAGER-20502)
+* **account-creation:** use phone number from ods 19 ([4d144ea](https://github.com/ovh/manager/commit/4d144ea2492508469bc46b8b4885c999d7d05683)), closes [#MANAGER-20468](https://github.com/ovh/manager/issues/MANAGER-20468)
+
+
+### Features
+
+* **account-creation:** change logo ([2980a95](https://github.com/ovh/manager/commit/2980a9546e55d1896be44a3e1efa11fe3d879252)), closes [#MANAGER-20304](https://github.com/ovh/manager/issues/MANAGER-20304)
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.7.1...@ovh-ux/manager-account-creation-app@0.7.2) (2025-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4530] ([7e3e3fe](https://github.com/ovh/manager/commit/7e3e3fe87aea2b7799c75bb8440e36e5cecac077))
+
+
+
+
+
 ## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.7.0...@ovh-ux/manager-account-creation-app@0.7.1) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-creation-app

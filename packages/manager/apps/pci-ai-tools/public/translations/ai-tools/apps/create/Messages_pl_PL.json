@@ -65,5 +65,9 @@
   "errorCreatingApp": "Błąd",
   "successCreatingAppTitle": "Operacja zakończona pomyślnie",
   "successCreatingAppDescription": "Aplikacja została utworzona.",
-  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM",
+  "summaryCustomMetricsUrlLabel": "URL: ",
+  "summaryCustomMetricsFormatLabel": "Format: {{for}}",
+  "summaryCustomMetricsLocationLabel": "Lokalizacja: ",
+  "summaryCustomMetricsTargetValueLabel": "Wartość: {{val}}"
 }

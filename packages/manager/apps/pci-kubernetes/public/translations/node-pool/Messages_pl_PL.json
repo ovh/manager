@@ -20,7 +20,7 @@
   "kube_node_pool_autoscale_false": "Nieaktywny",
   "kube_common_node_pool_configure_true": "Konfigurowanie pul węzłów",
   "kube_common_node_pool_configure_false": " Utwórz klaster bez puli węzłów",
-  "kube_common_node_pool_estimated_cost": "Oszacowanie miesięcznego kosztu klastra:",
+  "kube_common_node_pool_estimated_cost": "Oszacowanie miesięcznego kosztu klastra",
   "kube_common_node_pool_estimation_text": "Szacunek ten nie obejmuje ewentualnej redukcji związanej z planami Savings.",
   "kube_common_node_pool_estimation_price": "Pule węzłów:",
   "kube_common_node_pool_estimation_text_end": "Dokładny koszt zależy od rzeczywistego wykorzystania zasobów, którego nie można dokładnie oszacować przed utworzeniem klastra.",
@@ -43,5 +43,16 @@
   "kube_common_node_pool_select_zone": "Wybierz co najmniej jedną strefę dostępności.",
   "kube_common_add_node_pool_plural": "Dodaj {{count}} pul/e węzłów",
   "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Jeśli wybierzesz kilka stref dostępności (AZ), konfiguracja zostanie skopiowana i w każdej strefie zostanie utworzona osobna pula węzłów.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Rozmieszczenie pul węzłów w AZ"
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Rozmieszczenie pul węzłów w AZ",
+  "kube_common_node_pool_public_connetivity_title": "Połączenie publiczne",
+  "kube_common_node_pool_public_connetivity_toggle": "Przypisz Floating IP do węzłów",
+  "kube_common_node_pool_public_connectivity_warning_title": "Ostrzeżenie związane z aktualizacją klastra:",
+  "kube_common_node_pool_public_connectivity_warning_description_rolling": "Strategia aktualizacji (upgrade i pach) klastrów jest obecnie <strong> typu „Rolling Upgrade”:</strong> węzły są <strong>zastępowane</strong> pojedynczo, podobnie jak <strong>powiązane z nimi adresy Floating IP</strong>.",
+  "kube_common_node_pool_public_connectivity_warning_description_in_place": "Przyszła strategia aktualizacji (<strong>„In Place”)</strong> pozwoli <strong>zachować te adresy IP podczas aktualizacji</strong>. ",
+  "kube_common_node_pool_public_connectivity_warning_description_more": "<strong>Aby dowiedzieć się więcej</strong>, zapoznaj się z naszym <a>przewodnikiem po koncepcji Floating IP</a>",
+  "kube_common_node_pool_deploy_floating_ip_content1": "Automatycznie przypisuje <strong>Floating IP (IP publiczne)</strong> do każdego węzła w puli węzłów, w tym tych z autoskalera.",
+  "kube_common_node_pool_deploy_floating_ip_content2": "<strong>Bezpośredni dostęp publiczny</strong> do węzła.",
+  "kube_common_node_pool_deploy_floating_ip_content3": "Pozwala na korzystanie z <a>szerokości pasma publicznego węzła</a> (zamiast tego z Zarządzanej Bramy).",
+  "kube_common_node_pool_deploy_floating_ip_content4": "Cykl życia Floating IP jest powiązany z cyklem życia węzła (jest usuwany razem z nim).",
+  "kube_common_node_pool_node": "węzeł"
 }

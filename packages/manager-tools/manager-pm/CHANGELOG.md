@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.41.1...@ovh-ux/manager-pm@0.42.0) (2025-12-12)
+
+
+### Features
+
+* adding missing app to pnpm ([eaf8973](https://github.com/ovh/manager/commit/eaf8973614d0c38e9acd1065b054c6ebbd596839)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
 ## [0.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.41.0...@ovh-ux/manager-pm@0.41.1) (2025-12-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm
