@@ -2,27 +2,37 @@ import { ChartWidget } from '@/components/widget/ChartWidget.type';
 import { useChartData, useDashboardConfig } from '@/data/hooks';
 import { RequestPayload } from '@/types/RequestPayload.type';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
+import { buildQueryWithResourceUrn } from '@/utils/metrics.utils';
 import { getWindowSecAndStep } from '@/utils/dateTimeUtils';
+import { useQueryClient } from '@tanstack/react-query';
+import getChartDataQueryKey from './getChartDataQueryKey';
 
 type UseChartWithDataParams = {
   chartId: string;
   resourceName: string;
   productType: string;
+  resourceURN: string;
   startDateTime?: number;
   endDateTime?: number;
   selectedTimeOption: TimeRangeOption;
   refreshInterval: number;
+  metricToken: string;
 };
 
 export const useChartWithData = <TData>({
   chartId,
   resourceName,
   productType,
+  resourceURN,
   startDateTime,
   endDateTime,
   selectedTimeOption,
   refreshInterval,
+  metricToken,
 }: UseChartWithDataParams) => {
+
+  const queryClient = useQueryClient();
+
   const {
     data: dashboard,
     isLoading: configLoading,
@@ -39,7 +49,7 @@ export const useChartWithData = <TData>({
   const start: number = startDateTime ?? end - windowSec;
 
   const requestPayload: RequestPayload = {
-    query: chartConfig.query,
+    query: buildQueryWithResourceUrn(chartConfig.query, resourceURN),
     start,
     end,
     step,
@@ -47,12 +57,18 @@ export const useChartWithData = <TData>({
   };
 
   // fetch chart data
-  const {
+  const {    
     data: chartData,
     isLoading: dataLoading,
     error: dataError,
     isError: isDataError,
-  } = useChartData<TData>(requestPayload, refreshInterval);
+    refetch,    
+  } = useChartData<TData>(requestPayload, refreshInterval, metricToken);
+
+  const cancel = () => queryClient.cancelQueries({
+    queryKey: getChartDataQueryKey(requestPayload, metricToken),
+    exact: true,
+  });
 
   const isLoading = configLoading || dataLoading;
 
@@ -69,5 +85,7 @@ export const useChartWithData = <TData>({
     dataError,
     isConfigError,
     isDataError,
+    refetch,
+    cancel,
   };
 };
