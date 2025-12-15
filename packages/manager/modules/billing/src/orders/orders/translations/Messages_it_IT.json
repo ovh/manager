@@ -29,5 +29,6 @@
   "orders_table_actions_tooltip": "Maggiori informazioni su questo ordine",
   "orders_order_action_retract": "Annulla l'ordine",
   "orders_tracking": "Stato dell'ordine",
-  "orders_order_status_orderExpired": "Ordine scaduto"
+  "orders_order_status_orderExpired": "Ordine scaduto",
+  "orders_order_view_bill": "Visualizzare la fattura"
 }
