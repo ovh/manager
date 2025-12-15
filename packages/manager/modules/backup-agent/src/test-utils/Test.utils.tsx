@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { render } from '@testing-library/react';
+import { RenderResult, render } from '@testing-library/react';
 
 import { urls } from '@/routes/Routes.constants';
 
@@ -16,7 +14,7 @@ export const renderTest = async ({
   ...mockParams
 }: {
   initialRoute?: string;
-} & MockParams = {}) => {
+} & MockParams = {}): Promise<RenderResult> => {
   setupMswMock(mockParams);
 
   const Providers = await testWrapperBuilder()
