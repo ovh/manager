@@ -15,6 +15,7 @@ export default {
     handleGoToResiliation: '&?',
     isCustomResiliationHandled: '<?',
     advancePaymentCallBack: '&?',
+    goToBills: '<?',
   },
   controller,
   template,
