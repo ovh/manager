@@ -22,28 +22,31 @@ import {
 } from './components/split-payment/constants';
 import autoRenewPaymentMethod from './components/payment-method';
 import autoRenewTips from './components/auto-renew-tips';
+import { SERVICE_ACTIONS } from './constants';
 
 const moduleName = 'ovhManagerBilling';
 
-angular.module(moduleName, [
-  cancellationForm,
-  commitment,
-  commitmentDuration,
-  commitmentPricingMode,
-  cancelCommitment,
-  cancelResiliation,
-  resiliateModal,
-  resiliation,
-  servicesActions,
-  serviceStatus,
-  splitPayment,
-  terminate,
-  terminateAgoraService,
-  subscriptionTile,
-  autoRenew2016DeploymentBanner,
-  autoRenewPaymentMethod,
-  autoRenewTips,
-]);
+angular
+  .module(moduleName, [
+    cancellationForm,
+    commitment,
+    commitmentDuration,
+    commitmentPricingMode,
+    cancelCommitment,
+    cancelResiliation,
+    resiliateModal,
+    resiliation,
+    servicesActions,
+    serviceStatus,
+    splitPayment,
+    terminate,
+    terminateAgoraService,
+    subscriptionTile,
+    autoRenew2016DeploymentBanner,
+    autoRenewPaymentMethod,
+    autoRenewTips,
+  ])
+  .constant('SERVICE_ACTIONS', SERVICE_ACTIONS);
 
 export { RENEW_URL, SPLIT_PAYMENT, SPLIT_PAYMENT_FEATURE_NAME };
 
