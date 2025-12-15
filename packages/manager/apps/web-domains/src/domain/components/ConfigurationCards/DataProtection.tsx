@@ -4,6 +4,7 @@ import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
 import { Badge, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { dataProtectionStatus } from '@/domain/utils/dataProtection';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 interface DataProtectionProps {
   readonly domainResource: TDomainResource;
@@ -16,7 +17,7 @@ export default function DataProtection({
   domainResource,
   setDataProtectionDrawerOpened,
 }: DataProtectionProps) {
-  const { t } = useTranslation(['domain']);
+  const { t } = useTranslation(['domain', NAMESPACES.IAM]);
 
   const status = dataProtectionStatus(domainResource);
   const statusDetails = ConfigurationDataProtectionBadgeColorAndContent[status];
@@ -31,20 +32,24 @@ export default function DataProtection({
           <Badge color={statusDetails.color}>
             {t(statusDetails.i18nkeyContent)}
           </Badge>
-          <ActionMenu
-            id={'data-protection-action-menu'}
-            isCompact
-            items={[
-              {
-                id: 1,
-                label: t(
-                  'domain_tab_general_information_data_protection_manage_button',
-                ),
-                isDisabled: statusDetails.buttonStatus,
-                onClick: () => setDataProtectionDrawerOpened(true),
-              },
-            ]}
-          />
+          <div>
+            <ActionMenu
+              id={'data-protection-action-menu'}
+              isCompact
+              items={[
+                {
+                  id: 1,
+                  label: t(
+                    'domain_tab_general_information_data_protection_manage_button',
+                  ),
+                  isDisabled: statusDetails.buttonStatus,
+                  onClick: () => setDataProtectionDrawerOpened(true),
+                  iamActions: ['domain:apiovh:name/edit'],
+                  urn: domainResource?.iam?.urn || '',
+                },
+              ]}
+            />
+          </div>
         </div>
         <Text>{t(statusDetails.i18nkeySubContent)}</Text>
       </ManagerTile.Item.Description>
