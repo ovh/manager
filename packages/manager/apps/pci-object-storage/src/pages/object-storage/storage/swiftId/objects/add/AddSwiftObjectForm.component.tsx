@@ -67,11 +67,17 @@ const AddSwiftObjectForm = ({
       </FormField>
       <DialogFooter className="flex justify-end px-0">
         <DialogClose asChild>
-          <Button type="button" mode="ghost">
+          <Button
+            type="button"
+            mode="ghost"
+            data-testid="add-object-form-cancel"
+          >
             {t('fileUploaderButtonCancel')}
           </Button>
         </DialogClose>
-        <Button type="submit">{t('fileUploaderButtonConfirm')}</Button>
+        <Button type="submit" data-testid="add-object-form-submit">
+          {t('fileUploaderButtonConfirm')}
+        </Button>
       </DialogFooter>
     </form>
   );
