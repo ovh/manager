@@ -77,6 +77,12 @@ angular
           operator_string_isNot: $translate.instant(
             'common_criteria_adder_operator_string_isNot',
           ),
+          operator_string_in: $translate.instant(
+            'common_criteria_adder_operator_string_in',
+          ),
+          operator_string_notIn: $translate.instant(
+            'common_criteria_adder_operator_string_notIn',
+          ),
 
           operator_number_is: $translate.instant(
             'common_criteria_adder_operator_number_is',
