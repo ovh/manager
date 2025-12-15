@@ -32,8 +32,8 @@ export const AvailabilityZoneSelection = ({
     name: 'availabilityZone',
   });
 
-  const handleAvailabilityZoneChange = (zone: string) => () => {
-    setValue('availabilityZone', zone);
+  const handleAvailabilityZoneChange = (zone: string | null) => {
+    if (zone) setValue('availabilityZone', zone);
   };
 
   const handleChoiceChange = (choice: RadioValueChangeDetail) => {
@@ -60,7 +60,7 @@ export const AvailabilityZoneSelection = ({
   }, [availabilityZones, setValue]);
 
   return (
-    <section className="pt-9 pb-5">
+    <section className="pb-5 pt-9">
       <div className="flex flex-col gap-4">
         <div className="flex items-center space-x-4">
           <Text preset="heading-4">
@@ -112,21 +112,33 @@ export const AvailabilityZoneSelection = ({
         </Radio>
       </RadioGroup>
       {choice === 'userChoice' && (
-        <div className="flex pt-6 gap-6">
-          {availabilityZones.map((zone) => (
-            <PciCard
-              compact
-              key={zone}
-              selectable
-              selected={selectedAvailabilityZone === zone}
-              onClick={handleAvailabilityZoneChange(zone)}
-            >
-              <PciCard.Content>
-                <Text>{zone}</Text>
-              </PciCard.Content>
-            </PciCard>
-          ))}
-        </div>
+        <RadioGroup
+          {...(selectedAvailabilityZone && {
+            value: selectedAvailabilityZone,
+          })}
+          onValueChange={({ value }) => handleAvailabilityZoneChange(value)}
+        >
+          <div className="flex gap-6 pt-6">
+            {availabilityZones.map((zone) => (
+              <PciCard
+                compact
+                key={zone}
+                selectable
+                selected={selectedAvailabilityZone === zone}
+                onClick={() => handleAvailabilityZoneChange(zone)}
+              >
+                <PciCard.Header>
+                  <Radio value={zone}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text>{zone}</Text>
+                    </RadioLabel>
+                  </Radio>
+                </PciCard.Header>
+              </PciCard>
+            ))}
+          </div>
+        </RadioGroup>
       )}
     </section>
   );
