@@ -6,7 +6,7 @@ import {
   DialogDescription,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
-import AddS3Form from '../add/AddSwiftObjectForm.component';
+import AddSwiftObjectForm from '../add/AddSwiftObjectForm.component';
 import FileUploadPending from '@/components/file-input/FileUploadPending.component';
 import { useAddSwiftObjectForm } from '../add/useAddSwiftObjectForm.component';
 
@@ -38,7 +38,9 @@ const SwiftObjectDropFileModal = ({
     <Dialog open={open} onOpenChange={() => onClose?.()}>
       <DialogContent className="sm:max-w-xl px-0">
         <DialogHeader className="px-6">
-          <DialogTitle>{t('addOjectModalTitle')}</DialogTitle>
+          <DialogTitle data-testid="swift-object-drop-file-modal">
+            {t('addOjectModalTitle')}
+          </DialogTitle>
           <DialogDescription>{t('addOjectModalTitle')}</DialogDescription>
         </DialogHeader>
         <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden">
@@ -48,7 +50,7 @@ const SwiftObjectDropFileModal = ({
               total={totalFilesToUploadCount}
             />
           ) : (
-            <AddS3Form
+            <AddSwiftObjectForm
               onSubmit={onSubmit}
               onError={() => {}}
               initialValue={{

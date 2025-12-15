@@ -31,7 +31,8 @@ const DeleteSwiftObject = () => {
   const toast = useToast();
   const [confirmationInput, setConfirmationInput] = useState('');
 
-  if (!objectName) return navigate('../');
+  if (!objectName) navigate('../');
+
   const { deleteSwiftObject, isPending: deletePending } = useDeleteSwiftObject({
     onError: (err) => {
       toast.toast({
@@ -80,7 +81,9 @@ const DeleteSwiftObject = () => {
     <RouteModal isLoading={!projectId && !objectName}>
       <DialogContent variant="warning">
         <DialogHeader>
-          <DialogTitle>{t('deleteObjectTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-object-modal">
+            {t('deleteObjectTitle')}
+          </DialogTitle>
         </DialogHeader>
         <DialogBody>
           <p className="mt-2">
@@ -112,6 +115,7 @@ const DeleteSwiftObject = () => {
             </Button>
           </DialogClose>
           <Button
+            data-testid="delete-object-submit-button"
             type="button"
             disabled={
               deletePending ||

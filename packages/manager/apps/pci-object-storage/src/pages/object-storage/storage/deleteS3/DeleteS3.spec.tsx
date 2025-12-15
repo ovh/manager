@@ -12,6 +12,10 @@ import * as s3storageAPI from '@/data/api/storage/s3Storage.api';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import DeleteS3Modal from './DeleteS3.modal';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 
@@ -35,19 +39,6 @@ vi.mock('@/data/hooks/s3-storage/useGetS3.hook', () => ({
   })),
 }));
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      storageId: 'storageId',
-      region: 'region',
-    }),
-    useNavigate: () => vi.fn(),
-  };
-});
-
 vi.mock('@/data/api/storage/s3Storage.api', () => ({
   deleteS3Storage: vi.fn(),
 }));
@@ -55,6 +46,12 @@ vi.mock('@/data/api/storage/s3Storage.api', () => ({
 describe('Delete S3', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
+      storageId: 'storageId',
+      region: 'region',
+    });
   });
 
   afterEach(() => {

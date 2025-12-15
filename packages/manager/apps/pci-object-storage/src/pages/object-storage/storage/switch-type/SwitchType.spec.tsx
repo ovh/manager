@@ -12,6 +12,10 @@ import * as swiftstorageAPI from '@/data/api/storage/swiftStorage.api';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
 import { mockedSwiftContainer } from '@/__tests__/helpers/mocks/swift/swift';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import SwithType from './SwitchType.modal';
 
 vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
@@ -34,17 +38,6 @@ vi.mock('@/data/hooks/swift-storage/useGetSwift.hook', () => ({
   })),
 }));
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      containerId: 'containerId',
-    }),
-  };
-});
-
 vi.mock('@/data/api/storage/swiftStorage.api', () => ({
   editSwiftStorage: vi.fn((edit) => edit),
 }));
@@ -52,6 +45,8 @@ vi.mock('@/data/api/storage/swiftStorage.api', () => ({
 describe('Switch Type Swift User', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({ projectId: 'projectId', containerId: 'containerId' });
   });
 
   afterEach(() => {

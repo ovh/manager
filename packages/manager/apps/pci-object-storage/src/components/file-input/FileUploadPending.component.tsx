@@ -18,7 +18,10 @@ const FileUploadPending = ({ value, total }: FileUploadPendingProps) => {
     : undefined;
 
   return (
-    <div className="flex flex-col items-center justify-center py-12 space-y-6">
+    <div
+      className="flex flex-col items-center justify-center py-12 space-y-6"
+      data-testid="file-upload-pending"
+    >
       <Loader2 className="w-8 h-8 text-primary animate-spin" />
 
       {isDeterminate && (
