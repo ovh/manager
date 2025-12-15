@@ -58,7 +58,7 @@ import { WORKER_NODE_POLICIES } from '@/constants';
 import { getFormatedKubeVersion, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
-import { isValidGateway3AZ } from '../new/steps/NetworkClusterStep.component';
+import { isValidGateway3AZ } from '../new_legacy/steps/NetworkClusterStep.component';
 
 export default function ResetClusterPage() {
   const { t } = useTranslation(['network-add', 'listing', 'reset', 'add']);

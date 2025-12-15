@@ -33,19 +33,19 @@ vi.mock('@/hooks/useFloatingIpsPrice', () => ({
   })),
 }));
 
-vi.mock('@/pages/new/steps/node-pool/DeploymentZone.component', () => ({
+vi.mock('@/pages/new_legacy/steps/node-pool/DeploymentZone.component', () => ({
   default: () => <div data-testid="deployment-zone">DeploymentZone</div>,
 }));
 
-vi.mock('@/pages/new/steps/node-pool/NodePoolSize.component', () => ({
+vi.mock('@/pages/new_legacy/steps/node-pool/NodePoolSize.component', () => ({
   default: () => <div data-testid="node-pool-size">NodePoolSize</div>,
 }));
 
-vi.mock('@/pages/new/steps/node-pool/NodePoolAntiAffinity.component', () => ({
+vi.mock('@/pages/new_legacy/steps/node-pool/NodePoolAntiAffinity.component', () => ({
   default: () => <div data-testid="node-pool-anti-affinity">NodePoolAntiAffinity</div>,
 }));
 
-vi.mock('@/pages/new/steps/node-pool/PublicConnectivity.component', () => ({
+vi.mock('@/pages/new_legacy/steps/node-pool/PublicConnectivity.component', () => ({
   default: () => <div data-testid="public-connectivity">PublicConnectivity</div>,
 }));
 
