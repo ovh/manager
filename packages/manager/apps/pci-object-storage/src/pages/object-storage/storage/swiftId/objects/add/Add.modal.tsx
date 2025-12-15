@@ -28,7 +28,9 @@ const AddObjectModal = () => {
     <RouteModal>
       <DialogContent className="sm:max-w-xl" variant="information">
         <DialogHeader>
-          <DialogTitle>{t('addNewObject')}</DialogTitle>
+          <DialogTitle data-testid="add-object-modal">
+            {t('addNewObject')}
+          </DialogTitle>
         </DialogHeader>
         <DialogBody>
           <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden px-1">

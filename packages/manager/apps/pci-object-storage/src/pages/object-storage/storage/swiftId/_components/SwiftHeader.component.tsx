@@ -15,7 +15,7 @@ export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
   const localeBytesConverter = useLocaleBytesConverter();
   return (
     <div
-      data-testid="notebook-header-container"
+      data-testid="swift-header-container"
       className="flex gap-2 items-center mt-4 mb-6 justify-between"
     >
       <div className="flex gap-2 items-center">
@@ -53,7 +53,7 @@ SwiftHeader.Skeleton = function S3HeaderSkeleton() {
     <div className="flex gap-2 items-center mt-4 mb-6">
       <Skeleton className="rounded-full h-14 w-14" />
       <div>
-        <h2>Dashboard</h2>
+        <h2 data-testid="swift-header-skeleton-title">Dashboard</h2>
         <div className="flex gap-2">
           <Skeleton className="h-4 w-10" />
           <Skeleton className="h-4 w-10" />

@@ -22,7 +22,10 @@ const SwiftObjectBrowser = ({ objects }: SwiftObjectBrowserProps) => {
           setDropped({ files, prefix: path.replace(/\/$/, '') })
         }
       >
-        <div className="flex flex-col min-h-0 border rounded-md relative max-h-[70vh]">
+        <div
+          className="flex flex-col min-h-0 border rounded-md relative max-h-[70vh]"
+          data-testid="swift-object-browser"
+        >
           <BrowserFileListTopbar />
           <BrowserFileList<ContainerObject & { name: string }>
             renderFileRow={(file) => <SwiftObjectFileRenderer object={file} />}

@@ -10,6 +10,7 @@ import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 import * as userAPI from '@/data/api/user/user.api';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import Rclone from './Rclone.modal';
 import { mockedRegion } from '@/__tests__/helpers/mocks/region/region';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
@@ -26,19 +27,6 @@ vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
     regions: [mockedRegion],
   })),
 }));
-
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual<typeof import('react-router-dom')>(
-    'react-router-dom',
-  );
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      userId: String(mockedCloudUser.id),
-    }),
-  };
-});
 
 vi.mock('@/hooks/useLocale', () => ({
   useLocale: vi.fn(() => 'fr_FR'),
@@ -63,6 +51,10 @@ vi.mock('@/components/region-with-flag/RegionWithFlag.component', () => ({
 describe('Rclone', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
+      userId: String(mockedCloudUser.id),
+    });
     downloadMock.mockReset();
   });
 

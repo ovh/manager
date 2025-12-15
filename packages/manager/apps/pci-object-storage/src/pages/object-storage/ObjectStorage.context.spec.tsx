@@ -1,5 +1,6 @@
 import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedStorages } from '@/__tests__/helpers/mocks/storageContainer/storages';
 import { mockedRegion } from '@/__tests__/helpers/mocks/region/region';
@@ -9,16 +10,8 @@ import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 describe('ObjectStorage context', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
 
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
     vi.mock('@/data/api/storage/storages.api', () => ({
       getStorages: vi.fn(() => mockedStorages),
     }));

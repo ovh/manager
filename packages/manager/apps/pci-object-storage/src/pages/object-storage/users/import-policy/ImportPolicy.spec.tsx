@@ -12,6 +12,10 @@ import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
 import * as userAPI from '@/data/api/user/user.api';
 import { readJsonFile } from '@/lib/fileReader';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import ImportPolicyModal from './ImportPolicy.modal';
 
 let mockedPolicies: File[] = [];
@@ -25,20 +29,6 @@ vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   })),
 }));
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual<typeof import('react-router-dom')>(
-    'react-router-dom',
-  );
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      userId: String(mockedCloudUser.id),
-    }),
-    useNavigate: () => vi.fn(),
-  };
-});
-
 vi.mock('@/data/api/user/user.api', () => ({
   addUserPolicy: vi.fn(),
 }));
@@ -50,6 +40,11 @@ vi.mock('@/lib/fileReader', () => ({
 describe('ImportPolicy', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
+      userId: String(mockedCloudUser.id),
+    });
     mockedPolicies = [];
   });
 
