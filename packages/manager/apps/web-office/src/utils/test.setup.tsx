@@ -1,8 +1,13 @@
 import React from 'react';
 
+import '@testing-library/jest-dom';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import type { ResponsiveContainerProps } from 'recharts';
 import { afterEach, vi } from 'vitest';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import '@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup';
 
 import {
@@ -17,6 +22,34 @@ import { priceMock } from '@/data/api/__mocks__/price';
 import { mockOfficeLicenseServiceInfos } from '@/data/api/__mocks__/serviceInfos';
 import { mockUsageStatistics } from '@/data/api/__mocks__/usageStatistics';
 import { pendingTask, userDomainMock, usersMock } from '@/data/api/__mocks__/user';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import consumptionTranslation from '@/public/translations/dashboard/consumption/Messages_fr_FR.json';
+import dashboardGeneralInformationTranslation from '@/public/translations/dashboard/general-information/Messages_fr_FR.json';
+import dashboardUsersTranslation from '@/public/translations/dashboard/users/Messages_fr_FR.json';
+import dashboardUsersOrderLicensesTranslation from '@/public/translations/dashboard/users/order-licenses/Messages_fr_FR.json';
+import dashboardUsersOrderUsersTranslation from '@/public/translations/dashboard/users/order-users/Messages_fr_FR.json';
+import licensesTranslation from '@/public/translations/licenses/Messages_fr_FR.json';
+import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
+
+// eslint-disable-next-line @typescript-eslint/no-floating-promises, import/no-named-as-default-member
+i18n.use(initReactI18next).init({
+  lng: 'fr',
+  fallbackLng: 'fr',
+  resources: {
+    fr: {
+      licenses: licensesTranslation,
+      'dashboard/general-information': dashboardGeneralInformationTranslation,
+      'dashboard/users': dashboardUsersTranslation,
+      'dashboard/consumption': consumptionTranslation,
+      'dashboard/users/order-licenses': dashboardUsersOrderLicensesTranslation,
+      'dashboard/users/order-users': dashboardUsersOrderUsersTranslation,
+      onboarding: onboardingTranslation,
+      common: commonTranslation,
+      [NAMESPACES.ACTIONS]: actionsCommonTranslation,
+    },
+  },
+  ns: ['dashboard'],
+});
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -46,38 +79,6 @@ vi.mock('axios', async (importActual) => {
   };
 
   return mockAxios;
-});
-
-const mocksWebOfficeUrl = vi.hoisted(() => ({
-  shell: {
-    navigation: {
-      getURL: vi.fn().mockResolvedValue('test-url'),
-    },
-  },
-}));
-
-vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
-  const actual = await importActual<typeof import('@ovh-ux/manager-react-shell-client')>();
-  return {
-    ...actual,
-    ShellContext: React.createContext(mocksWebOfficeUrl),
-    useContext: React.useContext,
-    useOvhTracking: vi.fn(() => {
-      return {
-        trackClick: vi.fn(),
-        trackPage: vi.fn(),
-        trackCurrentPage: vi.fn(),
-      };
-    }),
-    PageLocation: {
-      page: 'page',
-      tile: 'tile',
-    },
-    ButtonType: {
-      button: 'button',
-      externalLink: 'externalLink',
-    },
-  };
 });
 
 vi.mock('@/hooks/generate-url/useGenerateUrl', async (importActual) => {

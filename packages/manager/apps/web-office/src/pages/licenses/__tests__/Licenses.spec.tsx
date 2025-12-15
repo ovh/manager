@@ -1,28 +1,28 @@
+import React from 'react';
+
+import { waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
-
-import { render, waitFor } from '@/utils/Test.provider';
+import { renderWithRouter } from '@/utils/Test.provider';
 
 import Licenses from '../Licenses.page';
 
 describe('Licenses Page', () => {
   it('should render page with content', async () => {
-    const { getByTestId } = render(<Licenses />);
+    const { getByTestId } = renderWithRouter(<Licenses />);
 
     await waitFor(() => {
       expect(getByTestId('licenses-order-button')).toBeInTheDocument();
     });
 
+    // new OS DOM:
+    // <button class="_button_6crpx_2 _button--primary_6crpx_276 _button--md_6crpx_217
+    // _button--outline_6crpx_435" data-ods="button" data-testid="licenses-order-button"
+    // type="button">Commander</button>
     const orderButton = getByTestId('licenses-order-button');
     const sortedRows = getByTestId('header-serviceName');
 
-    expect(orderButton).toBeInTheDocument();
-    expect(orderButton).toHaveAttribute('label', actions.order);
-
-    expect(orderButton).toHaveAttribute('color', 'primary');
-    expect(orderButton).toHaveAttribute('variant', 'outline');
-
+    expect(orderButton).toHaveTextContent('Commander');
     expect(sortedRows).toHaveTextContent('service_name');
   });
 });
@@ -30,9 +30,8 @@ describe('Licenses Page', () => {
 describe('Licenses W3C Validation', () => {
   // issue with ods on label and input (for / id)
   it.skip('should have a valid html', async () => {
-    const { container } = render(<Licenses />);
+    const { container } = renderWithRouter(<Licenses />);
     const html = container.innerHTML;
-
     await expect(html).toBeValidHtml();
   });
 });

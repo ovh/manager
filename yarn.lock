@@ -7282,11 +7282,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ovh-at-internet@^0.21.6":
-  version "0.21.8"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.21.8.tgz#91f6b35e77eb60839a715d787e6ab9a22e7ec183"
-  integrity sha512-RBrew2Xnkhw/gqvDhLDBiv3mQMlTn6yLNDrF0kc8JtuYG1FiNdM7ucIOq581jZJ598GNhCMIbjvpQ2XjysnKuQ==
-
 "@ovh-ux/ovh-at-internet@^0.24.1":
   version "0.24.10"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.24.10.tgz#88926c05c7a5e0622605f651661d9a8ae633af17"

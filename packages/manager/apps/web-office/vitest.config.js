@@ -1,21 +1,35 @@
-import path from 'path';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import {
+  INLINE_DEPS,
+  NO_EXTERNAL_DEPS,
   createConfig,
   defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
-  sharedCssConfig,
+  stubStylesPlugin,
 } from '@ovh-ux/manager-tests-setup';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
+    plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
     test: {
       environment: 'jsdom',
       setupFiles: ['src/utils/test.setup.tsx'],
-      ...sharedCssConfig,
+      deps: {
+        inline: INLINE_DEPS,
+      },
+      server: {
+        deps: {
+          inline: INLINE_DEPS,
+        },
+      },
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
@@ -29,6 +43,9 @@ export default mergeConfig(
           'src/utils/index.ts',
         ],
       },
+    },
+    ssr: {
+      noExternal: NO_EXTERNAL_DEPS,
     },
     resolve: {
       dedupe: [...defaultDedupedDependencies],
