@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vite-config",
-  "version": "0.15.4",
+  "version": "0.15.5",
   "private": true,
   "description": "OVHcloud manager vite configuration.",
   "repository": {
