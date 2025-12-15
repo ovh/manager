@@ -35,8 +35,6 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
   ODS_TEXT_PRESET,
-  OdsPhoneNumberChangeEventDetail,
-  OdsPhoneNumberCustomEvent,
 } from '@ovhcloud/ods-components';
 import { User } from '@ovh-ux/manager-config';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -193,6 +191,7 @@ function AccountDetailsForm({
   const country = watch('country');
 
   useEffect(() => {
+    setValue('phone', '');
     if (phoneType === 'landline' && isSMSConsentAvailable) {
       setValue('smsConsent', false);
     }
@@ -560,41 +559,40 @@ function AccountDetailsForm({
           <Controller
             control={control}
             name="address"
-            render={({ field: { name, value, onChange, onBlur } }) => {
-              const labeladress = isIndividualLegalForm(legalForm)
-                ? t('account_details_section_address_individual')
-                : t('account_details_field_address');
-              return (
-                <OdsFormField>
-                  <label htmlFor={name} slot="label" aria-label={labeladress}>
-                    <OdsText preset="caption">
-                      {labeladress}
-                      {rules?.address?.mandatory && ' *'}
-                    </OdsText>
-                  </label>
-                  <OdsInput
-                    isReadonly={Boolean(address)}
-                    name="address"
-                    value={value}
-                    maxlength={rules?.address.maxLength || undefined}
-                    hasError={!!errors[name]}
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
-                  />
-                  {errors[name] && rules?.address && (
-                    <OdsText
-                      className="text-critical leading-[0.8]"
-                      preset="caption"
-                    >
-                      {renderTranslatedZodError(
-                        errors[name].message,
-                        rules?.address,
-                      )}
-                    </OdsText>
-                  )}
-                </OdsFormField>
-              );
-            }}
+            render={({ field: { name, value, onChange, onBlur } }) => (
+              <OdsFormField>
+                <label
+                  htmlFor={name}
+                  slot="label"
+                  aria-label={t('account_details_section_address_individual')}
+                >
+                  <OdsText preset="caption">
+                    {t('account_details_section_address_individual')}
+                    {rules?.address?.mandatory && ' *'}
+                  </OdsText>
+                </label>
+                <OdsInput
+                  isReadonly={Boolean(address)}
+                  name="address"
+                  value={value}
+                  maxlength={rules?.address.maxLength || undefined}
+                  hasError={!!errors[name]}
+                  onOdsChange={onChange}
+                  onOdsBlur={onBlur}
+                />
+                {errors[name] && rules?.address && (
+                  <OdsText
+                    className="text-critical leading-[0.8]"
+                    preset="caption"
+                  >
+                    {renderTranslatedZodError(
+                      errors[name].message,
+                      rules?.address,
+                    )}
+                  </OdsText>
+                )}
+              </OdsFormField>
+            )}
           />
           {rules.area && (
             <Controller
@@ -758,7 +756,7 @@ function AccountDetailsForm({
           <Controller
             control={control}
             name="phone"
-            render={({ field: { name, value, onBlur } }) => (
+            render={({ field: { name, onBlur } }) => (
               <OdsFormField>
                 <OdsText
                   preset="caption"
@@ -771,6 +769,7 @@ function AccountDetailsForm({
                 </OdsText>
                 <PhoneNumber
                   name={name}
+                  key={phoneType}
                   countries={
                     rules?.phoneCountry && rules?.phoneCountry.in
                       ? [
@@ -796,7 +795,6 @@ function AccountDetailsForm({
                   onValueChange={(e: PhoneNumberValueChangeDetail) => {
                     setValue('phone', e.formattedValue);
                   }}
-                  defaultValue={value}
                   onBlur={onBlur}
                   country={
                     phoneCountry?.toLocaleLowerCase() as
