@@ -36,14 +36,14 @@ export const KeyValuesEditorItem = ({
 
   const handleKeyChange: OdsInputChangeEventHandler = (event) => {
     const newKey = event.target.value?.toString();
-    if (newKey) {
+    if (newKey !== undefined) {
       onChange({ key: newKey, value: item.value });
     }
   };
 
   const handleValueChange: OdsInputChangeEventHandler = (event) => {
     const newValue = event.target.value?.toString();
-    if (newValue) {
+    if (newValue !== undefined) {
       onChange({ key: item.key, value: newValue });
     }
   };
