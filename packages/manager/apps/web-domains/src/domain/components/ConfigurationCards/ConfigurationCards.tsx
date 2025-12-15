@@ -153,7 +153,6 @@ export default function ConfigurationCards({
         },
         onError: (error: TUpdateDNSConfigError) => {
           setTransferModalOpened(false);
-          console.log(error);
         },
       },
     );
@@ -169,6 +168,7 @@ export default function ConfigurationCards({
       (acc, [key, contact]) => {
         if (contact.disclosurePolicy?.visibleViaRdds) {
           acc[key] = {
+            ...(key === 'contactOwner' && { id: contact.id }),
             disclosurePolicy: {
               disclosureConfiguration: selectedContacts.includes(key)
                 ? DisclosureConfigurationEnum.DISCLOSED
@@ -184,7 +184,7 @@ export default function ConfigurationCards({
     updateDomain(
       {
         checksum: domainResource.checksum,
-        currentTargetSpec: domainResource.targetSpec,
+        currentTargetSpec: { ...domainResource.targetSpec },
         updatedSpec: {
           contactsConfiguration,
         },
