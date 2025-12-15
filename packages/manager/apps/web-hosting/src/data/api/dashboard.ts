@@ -2,7 +2,7 @@ import { aapi, v6 } from '@ovh-ux/manager-core-api';
 
 import { TAttachedDomain, TCreateAttachedDomain, TExistingDomain } from '../types/product/domain';
 import { DomainServiceType, ServiceInfosType } from '../types/product/service';
-import { WebHostingType } from '../types/product/webHosting';
+import { SshKey, VcsWebhookUrls, WebHostingType } from '../types/product/webHosting';
 
 export const getHostingService = async (serviceName: string): Promise<WebHostingType> => {
   const { data } = await v6.get<WebHostingType>(`/hosting/web/${serviceName}`);
@@ -131,5 +131,23 @@ export const updateAttachedDomainService = async (
     `/hosting/web/${serviceName}/attachedDomain/${domain}`,
     { cdn },
   );
+  return data;
+};
+
+export const getVcsWebhookUrls = async (
+  serviceName: string,
+  path: string,
+  vcs: string,
+): Promise<VcsWebhookUrls> => {
+  const { data } = await v6.get<VcsWebhookUrls>(
+    `/hosting/web/${serviceName}/vcs/webhooks?path=${path}&vcs=${vcs}`,
+  );
+
+  return data;
+};
+
+export const getSshKey = async (serviceName: string): Promise<SshKey> => {
+  const { data } = await v6.get<SshKey>(`/hosting/web/${serviceName}/key/ssh`);
+
   return data;
 };

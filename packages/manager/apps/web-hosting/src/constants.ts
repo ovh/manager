@@ -105,3 +105,52 @@ export const SHARED_CDN_OPTIONS = {
 
 export const CDN_ADVANCED = 'cdn-advanced';
 export const MAX_URL_ENTRIES = 100;
+
+export const REPOSITORY_PLACEHOLDER = 'https://github.com/username/repositoryname';
+export const EXAMPLE_HTTPS_REPOSITORY_URL = 'https://github.com/username/respositoryname.git';
+export const EXAMPLE_SSH_REPOSITORY_URL = 'git@github.com:username/respositoryname.git';
+export const EXAMPLE_BRANCHES_NAMES = '"main", "master", ...';
+export const GITHUB_VCS = 'github';
+export const REGEX_GIT_REPO =
+  /^(https:\/\/github.com\/[^/]+\/.+\.git|git@github.com:[^/]+\/.+\.git)$/;
+
+const PREFIX_GIT_ASSOCIATION = 'https://help.ovhcloud.com/csm/';
+
+export const GIT_ASSOCIATION_GUIDE_LINK = {
+  DE: `${PREFIX_GIT_ASSOCIATION}de-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063761`,
+  ES: `${PREFIX_GIT_ASSOCIATION}es-es-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063758`,
+  FR: `${PREFIX_GIT_ASSOCIATION}fr-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063755`,
+  IE: `${PREFIX_GIT_ASSOCIATION}en-ie-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063757`,
+  IT: `${PREFIX_GIT_ASSOCIATION}it-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063763`,
+  NL: `${PREFIX_GIT_ASSOCIATION}en-ie-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063757`,
+  PL: `${PREFIX_GIT_ASSOCIATION}pl-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063765`,
+  PT: `${PREFIX_GIT_ASSOCIATION}pt-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063752`,
+  GB: `${PREFIX_GIT_ASSOCIATION}en-gb-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063762`,
+  CA: `${PREFIX_GIT_ASSOCIATION}en-ca-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063759`,
+  QC: `${PREFIX_GIT_ASSOCIATION}fr-ca-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063764`,
+  MA: `${PREFIX_GIT_ASSOCIATION}fr-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063755`,
+  SN: `${PREFIX_GIT_ASSOCIATION}fr-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063755`,
+  TN: `${PREFIX_GIT_ASSOCIATION}fr-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063755`,
+  AU: `${PREFIX_GIT_ASSOCIATION}en-au-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063766`,
+  IN: `${PREFIX_GIT_ASSOCIATION}asia-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063756`,
+  SG: `${PREFIX_GIT_ASSOCIATION}en-sg-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063753`,
+  ASIA: `${PREFIX_GIT_ASSOCIATION}asia-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063756`,
+  WE: `${PREFIX_GIT_ASSOCIATION}en-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063754`,
+  WS: `${PREFIX_GIT_ASSOCIATION}es-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063760`,
+  DEFAULT: `${PREFIX_GIT_ASSOCIATION}en-web-hosting-git-integration?id=kb_article_view&sysparm_article=KB0063754`,
+};
+
+const PREFIX_GITHUB_DOCS_URL = 'https://docs.github.com/';
+const SUFFIX_GITHUB_WEBHOOK_DOCS_URL =
+  '/apps/github-marketplace/listing-an-app-on-github-marketplace/configuring-a-webhook-to-notify-you-of-plan-changes';
+export const GIT_WEBHOOK_GUIDE_LINK = {
+  DE: `${PREFIX_GITHUB_DOCS_URL}de${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  ES: `${PREFIX_GITHUB_DOCS_URL}es${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  FR: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  QC: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  MA: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  SN: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  TN: `${PREFIX_GITHUB_DOCS_URL}fr${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  WS: `${PREFIX_GITHUB_DOCS_URL}es${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+  DEFAULT: `${PREFIX_GITHUB_DOCS_URL}en${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
+};
