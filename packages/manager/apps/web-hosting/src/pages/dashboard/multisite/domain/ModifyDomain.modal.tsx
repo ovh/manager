@@ -54,7 +54,7 @@ export default function ModifyModalDomain() {
       path: state.path ?? '',
       cdn: state.cdnStatus ?? ServiceStatus.INACTIVE,
       firewall: state.firewallStatus ?? ServiceStatus.INACTIVE,
-      countriesIpEnabled: false,
+      countriesIpEnabled: !!hosting.hostingIp,
       enableOwnLog: false,
       ownLog: '',
     },

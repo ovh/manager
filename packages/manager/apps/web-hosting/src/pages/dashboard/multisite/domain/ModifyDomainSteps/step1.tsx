@@ -196,9 +196,15 @@ export default function Step1({
                 <Controller
                   name="ipLocation"
                   control={control}
-                  render={({ field }) => {
-                    const currentCountryIp = hosting?.countriesIp?.find(
-                      (c) => c.country === field.value,
+                  render={({ field: ipField }) => {
+                    const defaultIp = hosting?.hostingIp;
+                    const defaultCountryIp = hosting?.countriesIp?.find((c) => c.ip === defaultIp);
+                    const defaultCountry = defaultCountryIp?.country;
+
+                    const currentValue = ipField.value || defaultCountry;
+
+                    const selectedCountryIp = hosting?.countriesIp?.find(
+                      (c) => c.country === currentValue,
                     );
 
                     return (
@@ -206,14 +212,14 @@ export default function Step1({
                         key="ipLocation-select"
                         id="ipLocation-select"
                         name="ipLocation"
-                        value={currentCountryIp?.ip ? [currentCountryIp.ip] : []}
+                        value={selectedCountryIp?.ip ? [selectedCountryIp.ip] : []}
                         disabled={!isGitDisabled}
                         onValueChange={(detail) => {
                           const selectedIp = Array.isArray(detail.value)
                             ? detail.value[0]
                             : detail.value;
                           const countryCode = ipToCountryMap.get(selectedIp);
-                          field.onChange(countryCode);
+                          ipField.onChange(countryCode);
                         }}
                         items={hosting?.countriesIp?.map((countryIp) => ({
                           label: `${t(`${NAMESPACES.COUNTRIES}:country_${countryIp.country}`)}`,
@@ -235,6 +241,7 @@ export default function Step1({
             </div>
           )}
         />
+
         <Controller
           name="enableOwnLog"
           control={control}
