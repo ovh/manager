@@ -6,6 +6,7 @@ import {
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { User } from '@ovh-ux/manager-config';
 import { getMe } from '@/data/api/me';
+import { isUserLoggedIn } from '@/helpers/flowHelper';
 
 export const useMe = (
   options: Omit<
@@ -17,5 +18,6 @@ export const useMe = (
     queryKey: [`me`],
     queryFn: getMe,
     retry: 0,
+    enabled: isUserLoggedIn(),
     ...options,
   });
