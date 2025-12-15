@@ -133,7 +133,6 @@ const Users = () => {
                 </Button>
               </DataTable.Action>
             )}
-            
             <DataTable.SearchBar />
             <DataTable.FiltersButton />
           </DataTable.Header>
@@ -144,7 +143,6 @@ const Users = () => {
       ) : (
         <DataTable.Skeleton />
       )}
-
       <Outlet />
     </>
   );
