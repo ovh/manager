@@ -10,7 +10,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { getDnsStateDetails } from '@/domain/utils/dnsUtils';
 import { OptionStateEnum } from '@/domain/enum/optionState.enum';
-import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import { TDomainOption, TDomainResource } from '@/domain/types/domainResource';
 

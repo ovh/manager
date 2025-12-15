@@ -9,7 +9,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGetDomainAnycastOption } from '@/domain/hooks/data/query';
-import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import { OptionStateEnum } from '@/domain/enum/optionState.enum';
 import AnycastTerminateModal from '@/domain/components/AnycastOrder/AnycastTerminateModal';

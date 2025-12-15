@@ -67,7 +67,9 @@ export const useHostsDatagridColumns = ({
               id: 2,
               label: t(`${NAMESPACES.ACTIONS}:delete`),
               color: ODS_BUTTON_COLOR.critical,
-              isDisabled: props.status === StatusEnum.DELETING,
+              isDisabled:
+                props.status === StatusEnum.DELETING ||
+                props.status === StatusEnum.ACTIVATING,
               onClick: () => navigate(`${props.host}/delete`),
             },
           ]}

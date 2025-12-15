@@ -23,7 +23,7 @@ import {
 import { getLanguageKey } from '@/domain/utils/utils';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
 import { GUIDES_LIST } from '@/domain/constants/guideLinks';
-import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import Loading from '@/domain/components/Loading/Loading';
 import {

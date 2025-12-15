@@ -27,7 +27,7 @@ import Loading from '@/domain/components/Loading/Loading';
 import { generateOrderUrl } from '@/domain/utils/order';
 import { OrderProduct } from '@/domain/types/order';
 import { urls } from '@/domain/routes/routes.constant';
-import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import config from '@/web-domains.config';
 import { BreadcrumbAnyCast } from './breadcrumb';
 
