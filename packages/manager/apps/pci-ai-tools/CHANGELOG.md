@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.16.0...@ovh-ux/manager-pci-ai-tools-app@1.17.0) (2025-12-15)
+
+
+### Features
+
+* **pci-ai-tools:** add custom autoscaling option ([3ce0e86](https://github.com/ovh/manager/commit/3ce0e86e832569791fac2ff2857f6bb66f4c5cdb)), closes [#AIS-1482](https://github.com/ovh/manager/issues/AIS-1482)
+
+
+
+
+
 # [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.15.9...@ovh-ux/manager-pci-ai-tools-app@1.16.0) (2025-12-12)
 
 

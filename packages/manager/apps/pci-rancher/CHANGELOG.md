@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.31.0...@ovh-ux/manager-pci-rancher-app@1.32.0) (2025-12-15)
+
+
+### Features
+
+* **pci-rancher:** add iam guide ([4284190](https://github.com/ovh/manager/commit/42841908a7b66d2a03d44f76b587251e39873c91)), closes [#TAPC-4730](https://github.com/ovh/manager/issues/TAPC-4730)
+
+
+
+
+
 # [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.30.6...@ovh-ux/manager-pci-rancher-app@1.31.0) (2025-12-12)
 
 
