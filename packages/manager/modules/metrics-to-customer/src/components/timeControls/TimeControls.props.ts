@@ -9,4 +9,6 @@ export interface TimeControlsProps {
   state: DashboardState;
   onStateChange: <TValue>(key: string, value: TValue) => void;
   defaultValue?: string;
+  onRefresh: () => void;
+  onCancel: () => void;
 }

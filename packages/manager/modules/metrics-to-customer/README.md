@@ -15,7 +15,7 @@ Add the package to your µApp:
 
 ```mjs
 import { getBaseConfig } from '@ovh-ux/manager-vite-config';
-import { getMetricsToCustomerConfig } from '@ovh-ux/observability-to-customer/vite-config';
+import { getMetricsToCustomerConfig } from '@ovh-ux/metrics-to-customer/vite-config';
 
 const metricsToCustomerConfig = getMetricsToCustomerConfig();
 const baseConfig = getBaseConfig(metricsToCustomerConfig);
@@ -32,7 +32,7 @@ Import the custom Tailwind configuration provided by the module and extend your 
 Also, you need to add the module path to your application Tailwind configuration content array to generate the necessary utility classes.
 
 ```mjs
-import metricsToCustomerTwConfig from '@ovh-ux/observability-to-customer/tailwind-config';
+import metricsToCustomerTwConfig from '@ovh-ux/metrics-to-customer/tailwind-config';
 
 export default {
   ...metricsToCustomerTwConfig,
@@ -56,6 +56,7 @@ export default function ObservabilityMetricsPage() {
   return <MetricsToCustomerModule
             resourceName={resourceName} // resourceName (exp: d0a6031b-04c3-4b98-8dc5-0d2c10da99ba)
             productType={productType}   // productType  (exp: instances)
+            resourceURN={resourceURN}   // resourceURN  (exp: `urn:v1:eu:resource:publicCloudProject:${project.project_id}/instance/${instanceId}`)
         />;
 }
 ```
