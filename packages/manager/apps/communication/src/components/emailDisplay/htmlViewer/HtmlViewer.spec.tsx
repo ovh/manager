@@ -27,4 +27,24 @@ describe('HtmlViewer.component', () => {
     expect(srcdoc).not.toContain('<object');
     expect(srcdoc).not.toContain('<embed');
   });
+
+  it('should should preserve head styles', () => {
+    const html = `
+      <html>
+        <head>
+          <style>body { background-color: red; }</style>
+          <script>alert('XSS')</script>
+        </head>
+      </html>
+    `;
+    render(<HtmlViewer html={html} isVisible={true} />);
+
+    const iframe = screen.getByTestId('html-viewer') as HTMLIFrameElement;
+
+    expect(iframe).toBeInTheDocument();
+
+    const { srcdoc } = iframe;
+    expect(srcdoc).toContain('body { background-color: red; }');
+    expect(srcdoc).not.toContain('<script');
+  });
 });
