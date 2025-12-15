@@ -66,7 +66,15 @@ const App = () => {
     { environment: Environment; error?: ApiError }
   >({
     queryKey: ['configuration'],
-    queryFn: () => new Promise((resolve) => setTimeout(() => fetchConfiguration('shell').then(resolve), 10000)),
+    queryFn: () => {
+      if (!responseError) {
+        const env = new Environment();
+        const errorObj = new Error('Server::InternalServerError::ApiUnreachableMaintenance');
+        Object.assign(errorObj, { error: errorObj, environment: env });
+        throw errorObj;
+      }
+      return fetchConfiguration('shell')
+    },
     staleTime: 0,
     retry: false,
     refetchInterval: error ? 60000 : false,
