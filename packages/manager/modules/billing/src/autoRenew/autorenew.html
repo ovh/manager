@@ -2,7 +2,7 @@
     data-heading="{{:: 'billing_title' | translate}}"
     data-description="{{ :: $ctrl.descriptionOfHeading() }}"
 >
-    <oui-header-tabs>
+    <oui-header-tabs id="tabs">
         <oui-header-tabs-item
             href="{{:: $ctrl.homeLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.homeLink"

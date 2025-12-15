@@ -33,6 +33,7 @@ export default {
     sort: '<',
     trackClick: '<',
     choiceRenewDayTooltipAvailable: '<',
+    goToCorrespondingBills: '<',
   },
   controller,
   template,

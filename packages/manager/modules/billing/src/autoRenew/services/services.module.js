@@ -6,12 +6,15 @@ import routing from './services.routing';
 
 import resiliateModule from './resiliate';
 
+import service from './service/service.service';
+
 const moduleName = 'ovhManagerBillingAutorenewServices';
 
 angular
   .module(moduleName, [resiliateModule, reasonWarningModule])
   .config(routing)
   .component('services', component)
+  .service('ServiceService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
