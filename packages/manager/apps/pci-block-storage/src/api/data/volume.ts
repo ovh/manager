@@ -1,5 +1,23 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
+export type TAPIVolumeStatus =
+  | 'available'
+  | 'in-use'
+  | 'creating'
+  | 'attaching'
+  | 'detaching'
+  | 'deleting'
+  | 'backing-up'
+  | 'restoring-backup'
+  | 'retyping'
+  | 'snapshotting'
+  | 'awaiting-transfer'
+  | 'error'
+  | 'error_deleting'
+  | 'error_restoring'
+  | 'error_extending'
+  | string;
+
 export type TAPIVolume = {
   id: string;
   attachedTo: string[];
@@ -7,7 +25,7 @@ export type TAPIVolume = {
   name: string;
   description: string;
   size: number;
-  status: string;
+  status: TAPIVolumeStatus;
   region: string;
   bootable: boolean;
   planCode: string;
