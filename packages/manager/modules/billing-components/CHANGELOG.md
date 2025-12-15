@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.32.3...@ovh-ux/manager-billing-components@4.33.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4525] ([c87078f](https://github.com/ovh/manager/commit/c87078f3cc4450fe6b71f52e1a2cdda4292cde38))
+
+
+### Features
+
+* **billing:** add debt warning modal on renewal ([1b85d6a](https://github.com/ovh/manager/commit/1b85d6a83e0ba267c7cd0bd5ae0c8e35c25b082a)), closes [#MANAGER-19069](https://github.com/ovh/manager/issues/MANAGER-19069)
+* **billing:** add modal unauthorized to action ([96c8e62](https://github.com/ovh/manager/commit/96c8e627b956ab6ba5857b100076cadcea20e0a3)), closes [#MANAGER-20009](https://github.com/ovh/manager/issues/MANAGER-20009)
+* **billing:** show modal to inform customer of his debt ([8fc7bb9](https://github.com/ovh/manager/commit/8fc7bb9fbd5465807c0193c451fa79cdc5fbe4e6))
+
+
+
+
+
 ## [4.32.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.32.2...@ovh-ux/manager-billing-components@4.32.3) (2025-12-12)
 
 

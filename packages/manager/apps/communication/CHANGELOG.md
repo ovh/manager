@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.5...@ovh-ux/manager-communication-app@0.5.0) (2025-12-15)
+
+
+### Features
+
+* **communication:** add guided tour ([39e611f](https://github.com/ovh/manager/commit/39e611f56378029da39e7caaea607f9e8f7577b1)), closes [#MANAGER-18777](https://github.com/ovh/manager/issues/MANAGER-18777)
+
+
+
+
+
 ## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.4.4...@ovh-ux/manager-communication-app@0.4.5) (2025-12-12)
 
 
