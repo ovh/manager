@@ -26,6 +26,7 @@ export interface Step1Props {
   isGitDisabled: boolean;
   isCdnAvailable: boolean;
   hosting: {
+    hostingIp?: string;
     countriesIp?: CountryIp[];
     hasHostedSsl?: boolean;
   } | null;
