@@ -21,3 +21,5 @@ export const getSirenFromSiret = (
 
 export const isIndividualLegalForm = (legalForm?: LegalForm) =>
   legalForm === 'individual';
+
+export const isUserLoggedIn = () => document.cookie.includes('USERID');

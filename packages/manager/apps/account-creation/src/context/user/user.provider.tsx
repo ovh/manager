@@ -24,9 +24,9 @@ type Props = {
 
 export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
-  const [ searchParams ] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { setUser } = useTrackingContext();
-  const { data: me, isFetched, error } = useMe({ retry: 0 });
+  const { data: me, isFetched, isError, isEnabled } = useMe();
   const { data: availability } = useFeatureAvailability(
     [NEW_ACCOUNT_CREATION_ACCESS_FEATURE, SMS_CONSENT_FEATURE],
     { enabled: Boolean(isFetched && me) },
@@ -49,22 +49,25 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
 
   useEffect(() => {
-    if (isFetched) {
-      if (error?.status === 401) {
-        navigate(`${urls.settings}?${searchParams.toString()}`);
-        return;
-      }
-      setLegalForm(me?.legalform);
-      setOvhSubsidiary(me?.ovhSubsidiary);
-      setCountry(me?.country);
-      setLanguage(me?.language || undefined);
-      // When we receive the user data, we will call setUser to update the tracking configuration
-      setUser({
-        ...(me || {}),
-        language: me?.language || undefined,
-      } as User);
+    if (!isEnabled) {
+      navigate(`${urls.settings}?${searchParams.toString()}`);
     }
-  }, [isFetched]);
+  }, [isEnabled]);
+
+  useEffect(() => {
+    if (!isFetched || isError) {
+      return;
+    }
+    setLegalForm(me?.legalform);
+    setOvhSubsidiary(me?.ovhSubsidiary);
+    setCountry(me?.country);
+    setLanguage(me?.language || undefined);
+    // When we receive the user data, we will call setUser to update the tracking configuration
+    setUser({
+      ...(me || {}),
+      language: me?.language || undefined,
+    } as User);
+  }, [isFetched, isError]);
 
   useEffect(() => {
     if (availability) {
