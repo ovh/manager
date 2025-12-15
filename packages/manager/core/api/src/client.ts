@@ -1,7 +1,8 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 import { redirectToLoginPage, redirectToLogoutPage } from '@ovh-ux/manager-core-sso';
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import { getHeaders } from '@ovh-ux/request-tagger';
 
 type ApiKey = keyof typeof apiClient;
@@ -62,11 +63,8 @@ export const apiClient = { v6, aapi, ws, v2 } as const;
   const client = apiClient[api];
 
   client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-    // @ts-ignore
-    const headers = getHeaders(config.baseURL || '');
-    // @ts-ignore
+    const headers = getHeaders(config.baseURL || '') as Record<string, string>;
     Object.entries(headers).forEach(([key, value]) => {
-      // @ts-ignore
       (config.headers as Record<string, string>)[key] = value;
     });
     return config;
