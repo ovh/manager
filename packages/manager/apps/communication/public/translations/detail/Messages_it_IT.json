@@ -3,7 +3,7 @@
   "history_banner": "Questo messaggio è stato inviato il <strong>{{ date }}</strong> su <strong>{{ email }}</strong>. <anchor>Consultare lo storico</anchor>",
   "button_download_attachment": "Scaricare l'allegato",
   "format_switch_short": "Corto",
-  "format_switch_long": "Lungo",
+  "format_switch_long": "Testo",
   "format_switch_html": "Formato HTML",
   "history_overlay_headline": "Storico degli invii",
   "history_overlay_description": "Qui sono disponibili tutte le informazioni relative all'invio di questo messaggio. In caso di problemi, puoi gestire i parametri di comunicazione.",
