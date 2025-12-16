@@ -58,15 +58,6 @@ export default class HostingMultisiteGitAssociationController {
     }
   }
 
-  goToMultisite() {
-    this.multisiteLink = this.coreURLBuilder.buildURL(
-      'web-hosting',
-      '#/:serviceName/multisite',
-      { serviceName: this.serviceName },
-    );
-    window.location.href = this.multisiteLink;
-  }
-
   applyConfiguration() {
     this.atInternet.trackClick({
       name: `${TRACKING_MULTISITE_PREFIX}::git-association::confirm`,
@@ -85,6 +76,29 @@ export default class HostingMultisiteGitAssociationController {
           this.model.repositoryUrl,
         );
 
-    promise.then(() => this.goToMultisite()).catch(() => this.goToMultisite());
+    promise
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            this.isConfiguration
+              ? 'hosting_multisite_git_association_reconfigure_success'
+              : 'hosting_multisite_git_association_success_message',
+            { href: this.ongoingTasksHref },
+          ),
+          'success',
+          true,
+        ),
+      )
+      .catch(({ data: { message } }) =>
+        this.goBack(
+          this.$translate.instant(
+            this.isConfiguration
+              ? 'hosting_multisite_git_association_reconfigure_error'
+              : 'hosting_multisite_git_association_error_message',
+            { errorMessage: message },
+          ),
+          'danger',
+        ),
+      );
   }
 }
