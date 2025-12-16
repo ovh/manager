@@ -1,11 +1,13 @@
 import { ComponentProps } from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 
 import { DownloadCode } from '@/components/DownloadCode/DownloadCode.component';
 
+const codeTestId = 'ods-code';
+
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsCode: (props: ComponentProps<'code'>) => <code {...props}></code>,
+  OdsCode: (props: ComponentProps<'code'>) => <code data-testid={codeTestId} {...props}></code>,
 }));
 
 describe('DownloadCode', () => {
@@ -14,10 +16,12 @@ describe('DownloadCode', () => {
 
     await expect(container).toBeAccessible();
 
-    expect(screen.getAllByRole('code').length).toBe(2);
+    await waitFor(() => {
+      expect(screen.getAllByTestId(codeTestId).length).toBe(2);
+    });
 
     screen
-      .getAllByRole('code')
+      .getAllByTestId(codeTestId)
       .forEach((el) => expect(el).toHaveTextContent('https://example.com/download'));
   });
 });
