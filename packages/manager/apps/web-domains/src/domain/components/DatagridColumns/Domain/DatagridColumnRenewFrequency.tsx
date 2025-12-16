@@ -30,7 +30,11 @@ export default function DatagridColumnRenewFrequency({
   );
 
   if (isServiceInfoLoading) {
-    return <Skeleton />;
+    return (
+      <div className="w-full">
+        <Skeleton />
+      </div>
+    );
   }
 
   return (
