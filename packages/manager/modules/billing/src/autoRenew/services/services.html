@@ -180,9 +180,11 @@
         </oui-datagrid-column>
 
         <oui-datagrid-column
-            data-property="renewPeriod"
-            data-title="::'billing_autorenew_service_frequency' | translate"
+            data-property="renew"
+            data-title="::'billing_autorenew_service_renew' | translate"
+            data-type-options="$ctrl.filtersOptions.renew"
             data-type="options"
+            data-filterable
         >
             <span data-ng-bind-html="::$ctrl.getRenewPeriodTranslation($row)">
             </span>
