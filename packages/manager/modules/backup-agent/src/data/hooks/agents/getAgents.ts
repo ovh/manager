@@ -1,9 +1,11 @@
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 
-import { getBackupAgentsListRoute } from '@/data/api/agents/agents.requests';
 import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useBackupTenantDetails';
 import { Agent } from '@/types/Agent.type';
 import { Resource } from '@/types/Resource.type';
+import { getBackupAgentsRoute } from '@/utils/apiRoutes';
+
+import { useBackupServicesId } from '../backup/useBackupServicesId';
 
 export const BACKUP_AGENTS_LIST_QUERY_KEY = (tenantId: string) => [
   ...BACKUP_TENANT_DETAILS_QUERY_KEY(tenantId),
@@ -18,10 +20,13 @@ export const useBackupAgentList = (
     tenantId?: string;
     pageSize: number;
   } = { pageSize: 9999 },
-) =>
-  useResourcesIcebergV2<Resource<Agent>>({
-    route: getBackupAgentsListRoute(tenantId!),
+) => {
+  const { backupServicesId } = useBackupServicesId();
+
+  return useResourcesIcebergV2<Resource<Agent>>({
+    route: getBackupAgentsRoute(backupServicesId, tenantId!),
     queryKey: BACKUP_AGENTS_LIST_QUERY_KEY(tenantId!),
-    enabled: !!tenantId,
+    enabled: !!backupServicesId && !!tenantId,
     pageSize,
   });
+};

@@ -1,9 +1,8 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 
-import { getDetailsVspcTenantRoute } from '@/data/api/tenants/tenants.requests';
+import { getBackupPoliciesRoute } from '@/utils/apiRoutes';
 
-export const getBackupPoliciesRoute = (tenantId: string, vspcTenantId: string) =>
-  `${getDetailsVspcTenantRoute(tenantId, vspcTenantId)}/backupPolicies`;
-
-export const getBackupPolicies = async (tenantId: string, vspcTenantId: string) =>
-  (await v2.get<string[]>(getBackupPoliciesRoute(tenantId, vspcTenantId))).data;
+export const getBackupPolicies = async (backupServicesId: string, vspcTenantId: string) => {
+  const { data } = await v2.get<string[]>(getBackupPoliciesRoute(backupServicesId, vspcTenantId));
+  return data;
+};
