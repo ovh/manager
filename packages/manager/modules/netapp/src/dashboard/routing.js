@@ -42,12 +42,9 @@ export default /* @ngInject */ ($stateProvider) => {
       volumes: /* @ngInject */ ($http, serviceName, NetAppDashboardService) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
-          .then(({ data }) => {
-            return NetAppDashboardService.getListOfAccessPath(
-              serviceName,
-              data,
-            );
-          })
+          .then(({ data }) =>
+            NetAppDashboardService.getListOfAccessPath(serviceName, data),
+          )
           .then((volumes) => volumes.map((volume) => new Share(volume))),
       availableVolumeSize: /* @ngInject */ (storage, volumes) => {
         const storageVolumesSize = volumes.reduce(
