@@ -40,10 +40,10 @@
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Região",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Fechar",
-  "pci_projects_project_storages_cold_archive_banner_title": "Novo: arquive objetos individualmente a partir do seu painel de controle de Armazenamento de Objetos!",
-  "pci_projects_project_storages_cold_archive_banner_description": "Agora é possível arquivar objetos um a um para otimizar seus custos de armazenamento e gerenciar melhor seus dados, sem precisar arquivar todo o contêiner.",
-  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Esta funcionalidade está acessível diretamente a partir do seu painel de controle de Armazenamento de Objetos, a partir dos seus contêineres existentes:",
-  "pci_projects_project_storages_cold_archive_banner_feature_1": "carregue seus objetos classificando-os diretamente em Arquivo Frio;",
-  "pci_projects_project_storages_cold_archive_banner_feature_2": "ou use regras de ciclo de vida para transferir os dados para a classe Arquivo Frio.",
+  "pci_projects_project_storages_cold_archive_banner_title": "Novidade: arquive objetos individualmente a partir do painel de controlo Object Storage!",
+  "pci_projects_project_storages_cold_archive_banner_description": "Já é possível arquivar objetos um por um para otimizar custos de armazenamento e gerir melhor os dados, sem que seja preciso arquivar todo o container.",
+  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Pode aceder a esta funcionalidade através do painel de controlo Object Storage, a partir dos seus containers:",
+  "pci_projects_project_storages_cold_archive_banner_feature_1": "carregue objetos classificando-os diretamente como Cold Archive;",
+  "pci_projects_project_storages_cold_archive_banner_feature_2": "ou use regras de ciclo de vida para transferir os dados para a classe Cold Archive.",
   "pci_projects_project_storages_cold_archive_banner_cta": "Teste já!"
 }

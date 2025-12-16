@@ -74,5 +74,5 @@
   "replicationRequiresVersioningAlert": "Per utilizzare la replica asincrona, il versioning deve essere attivato.",
   "destinationFieldLabel": "Contenitore di destinazione",
   "replicationButtonCancel": "Annulla",
-  "disabledClassDestinationHelper": "Seleziona un contenitore di destinazione per attivare questa opzione"
+  "disabledClassDestinationHelper": "Seleziona un container di destinazione per attivare questa opzione"
 }
