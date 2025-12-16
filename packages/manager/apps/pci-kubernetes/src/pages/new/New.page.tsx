@@ -42,7 +42,7 @@ import stepsConfig from './steps/stepsConfig';
 const formIsNonNullable = (form: TClusterCreationForm): form is TNonNullableForm => {
   if (!form.region?.type) return false;
 
-  const regionType = form.region.type as DeploymentMode;
+  const regionType = form.region.type;
 
   // TODO:  When 3AZ will be available, update condition to make form.plan mandatory to create a cluster & remove "free" fallback value in createCluster call
   return (
