@@ -101,7 +101,6 @@ export default /* @ngInject */ ($stateProvider) => {
         queryParameters.refresh === 'true',
 
       services: /* @ngInject */ (
-        $state,
         BillingAutoRenew,
         filters,
         nicBilling,
@@ -123,6 +122,7 @@ export default /* @ngInject */ ($stateProvider) => {
           sort,
           nicBilling,
           refresh,
+          filters.renew,
         ),
 
       choiceRenewDayTooltipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
