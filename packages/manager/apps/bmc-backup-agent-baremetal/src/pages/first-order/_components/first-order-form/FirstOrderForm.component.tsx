@@ -1,16 +1,19 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsCombobox } from '@ovhcloud/ods-components/react';
+import { OdsFormField } from '@ovhcloud/ods-components/react';
 
 import { BaremetalOption } from '@ovh-ux/backup-agent/components/CommonFields/BaremetalOption/BaremetalOption.component';
-import { RhfField } from '@ovh-ux/backup-agent/components/Fields/RhfField/RhfField.component';
 import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-type Inputs = {
-  baremetal: string;
-};
+const FIRST_ORDER_SCHEMA = z.object({
+  baremetal: z.string().nonempty(),
+});
+type FirstOrderSchema = z.infer<typeof FIRST_ORDER_SCHEMA>;
 
 export const FirstOrderFormComponent = () => {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
@@ -19,10 +22,12 @@ export const FirstOrderFormComponent = () => {
   const {
     control,
     handleSubmit,
-    register,
     formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (dataForm) => console.log({ dataForm });
+  } = useForm<FirstOrderSchema>({
+    resolver: zodResolver(FIRST_ORDER_SCHEMA),
+    defaultValues: { baremetal: '' },
+  });
+  const onSubmit: SubmitHandler<FirstOrderSchema> = (dataForm) => console.log({ dataForm });
 
   return (
     <form
@@ -30,19 +35,34 @@ export const FirstOrderFormComponent = () => {
       noValidate
       onSubmit={handleSubmit(onSubmit)}
     >
-      <RhfField
+      {/* TODO: fix RhfField component to use it here */}
+      <Controller
         control={control}
-        controllerParams={register('baremetal', { required: true })}
-        helperMessage={t(`${NAMESPACES.FORM}:required_field`)}
-        className="w-full max-w-xl"
-      >
-        <RhfField.Label>{t('select_baremetal')}</RhfField.Label>
-        <RhfField.Combobox placeholder={t('select_baremetal')} isDisabled={isLoading}>
-          {flattenData?.map(({ name, ip, iam: { displayName } }) => (
-            <BaremetalOption key={name} name={name} ip={ip} displayName={displayName} />
-          ))}
-        </RhfField.Combobox>
-      </RhfField>
+        name="baremetal"
+        render={({ field, fieldState: { invalid } }) => {
+          return (
+            <OdsFormField
+              className="w-full max-w-xl"
+              error={invalid ? t(`${NAMESPACES.FORM}:required_field`) : undefined}
+            >
+              <label htmlFor={field.name}>{t('select_baremetal')}</label>
+              <OdsCombobox
+                id={field.name}
+                {...field}
+                placeholder={t('select_baremetal')}
+                isDisabled={isLoading}
+                hasError={invalid}
+                onOdsBlur={field.onBlur}
+                onOdsChange={field.onChange}
+              >
+                {flattenData?.map(({ name, ip, iam: { displayName } }) => (
+                  <BaremetalOption key={name} name={name} ip={ip} displayName={displayName} />
+                ))}
+              </OdsCombobox>
+            </OdsFormField>
+          );
+        }}
+      />
       <OdsButton type="submit" label={t(`${NAMESPACES.ACTIONS}:start`)} isDisabled={isLoading} />
     </form>
   );
