@@ -8,8 +8,8 @@ import {
   LifecycleCapacitiesEnum,
   ServiceInfoRenewModeEnum,
 } from '@/common/enum/common.enum';
-import { DomainServiceStateEnum } from '@/domain/types/domainResource';
 import { wrapper } from '@/common/utils/test.provider';
+import { DomainStateEnum } from '@/domain/enum/domainState.enum';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const actual = await importOriginal<
@@ -118,7 +118,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -137,7 +137,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -151,7 +151,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -180,7 +180,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -194,7 +194,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.RESTORABLE}
+        mainState={DomainStateEnum.RESTORABLE}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -211,7 +211,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -245,7 +245,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -258,7 +258,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -290,7 +290,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },
@@ -309,7 +309,7 @@ describe('DatagridColumnActions', () => {
     render(
       <DatagridColumnActions
         serviceName={mockServiceName}
-        mainState={DomainServiceStateEnum.OK}
+        mainState={DomainStateEnum.OK}
         openModal={mockOpenModal}
       />,
       { wrapper },

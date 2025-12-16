@@ -75,7 +75,7 @@ export default function TransferToggleStatus({
         >
           <ToggleControl data-testid={'toggle-control'} />
           <ToggleLabel>
-            <Badge color={transferStatus.color} className="mt-4">
+            <Badge color={transferStatus.color}>
               {t(transferStatus.i18nkeyContent)}
             </Badge>
           </ToggleLabel>
