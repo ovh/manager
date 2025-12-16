@@ -69,7 +69,15 @@ export const baseScalingSchema = (t: (key: string) => string) =>
         .string()
         .trim()
         .optional(),
-      targetMetricValue: z.coerce.number().optional(),
+      targetMetricValue: z.preprocess(
+        (val) => (val === '' ? undefined : val),
+        z.coerce
+          .number()
+          .finite()
+          .min(0)
+          .max(100)
+          .optional(),
+      ),
       aggregationType: z
         .nativeEnum(ai.app.CustomMetricsAggregationTypeEnum)
         .optional(),
@@ -96,6 +104,13 @@ export const baseScalingSchema = (t: (key: string) => string) =>
             code: z.ZodIssueCode.custom,
             message: t('dataLocationRequired'),
             path: ['dataLocation'],
+          });
+        }
+        if (data.targetMetricValue == null) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: t('targetMetricValueRequired'),
+            path: ['targetMetricValue'],
           });
         }
       }
