@@ -26,5 +26,6 @@
   "packages/manager/apps/pci-volume-backup",
   "packages/manager/apps/pci-vouchers",
   "packages/manager/apps/pci-workflow",
-  "packages/manager/modules/logs-to-customer"
+  "packages/manager/modules/logs-to-customer",
+  "packages/manager/apps/okms"
 ]
