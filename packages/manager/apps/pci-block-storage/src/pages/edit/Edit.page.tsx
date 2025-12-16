@@ -91,7 +91,8 @@ export default function EditPage() {
     data: volume,
     isLoading: isLoadingVolume,
     isPending: isPendingVolume,
-  } = useVolume(projectId, volumeId, size);
+  } = useVolume(projectId, volumeId, { capacity: size });
+
   const { data: catalog } = useVolumeCatalog(projectId);
   const { has3AZ } = useHas3AZRegion(projectId);
   const pciCommonProperties = usePCICommonContextFactory({ has3AZ });

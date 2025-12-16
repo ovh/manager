@@ -32,7 +32,8 @@ const RetypePage = () => {
   const {
     data: volumeModelData,
     isPending: isCatalogPending,
-  } = useCatalogWithPreselection(projectId, volumeId);
+    isFetching: isCatalogFetching,
+  } = useCatalogWithPreselection(projectId, volumeId, { forceReload: true });
 
   const {
     data: instances,
@@ -48,6 +49,7 @@ const RetypePage = () => {
 
   const isPending =
     isCatalogPending ||
+    isCatalogFetching ||
     isInstancesPending ||
     isInstancesFetching ||
     isSnapshotsPending ||

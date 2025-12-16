@@ -14,6 +14,7 @@ import {
   TModelPrice,
 } from '@/api/select/catalog';
 import { canRetype } from '@/api/select/volume';
+import { TApiHookOptions } from '@/api/hooks/helpers';
 
 export type TVolumeRetypeModel = TModelPrice &
   TModelAvailabilityZones &
@@ -29,13 +30,14 @@ export const isRetypeModel = (
 export const useCatalogWithPreselection = (
   projectId: string,
   volumeId: string,
+  options: TApiHookOptions = {},
 ) => {
   const [
     { data: volumeData, ...restVolumeQuery },
     { data: catalogData, ...restCatalogQuery },
   ] = useQueries({
     queries: [
-      getVolumeQuery(projectId, volumeId),
+      getVolumeQuery(projectId, volumeId, options),
       getVolumeCatalogQuery(projectId),
     ],
   });
@@ -62,5 +64,6 @@ export const useCatalogWithPreselection = (
   return {
     data,
     isPending: restVolumeQuery.isPending || restCatalogQuery.isPending,
+    isFetching: restVolumeQuery.isFetching || restCatalogQuery.isFetching,
   };
 };
