@@ -46,6 +46,7 @@ export const resolveRoutePath = (appName, { verbose = false } = {}) => {
     join(applicationsBasePath, appName, 'src/alldoms/routes/routes.tsx'),
     join(applicationsBasePath, appName, 'src/core/routing/redirections.tsx'),
     join(applicationsBasePath, appName, 'src/core/routing/iframe-app-router.tsx'),
+    join(applicationsBasePath, appName, 'src/common/routes/routes.tsx'),
   ];
 
   for (const path of candidates) {
