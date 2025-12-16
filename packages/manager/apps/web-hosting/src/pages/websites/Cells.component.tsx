@@ -15,6 +15,7 @@ import {
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
 
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { Link } from '@ovh-ux/muk';
 
@@ -32,14 +33,17 @@ const useHostingUrlWithOptions = (
   withMultisite = false,
   withBoost = false,
 ) => {
+  const { data: availability } = useFeatureAvailability(['web-hosting:multisite-react']);
   const multisiteUrl = useGenerateUrl(`/${serviceName}/multisite`, 'path');
   const hostingUrl = useHostingUrl(serviceName);
   const boostUrl = useHostingUrl(serviceName, 'boost');
-  if (withMultisite) {
-    return `#${multisiteUrl}`;
-  }
+
   if (withBoost) {
     return boostUrl;
+  }
+
+  if (withMultisite && availability?.['web-hosting:multisite-react']) {
+    return `#${multisiteUrl}`;
   }
   return hostingUrl;
 };
