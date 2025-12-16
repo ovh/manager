@@ -7,7 +7,7 @@ import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
-import { FormFieldInput, KeyValuesEditor } from './KeyValuesEditor';
+import { KeyValuesEditor } from './KeyValuesEditor';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
 const labels = allLabels.secretManager;
@@ -34,15 +34,19 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
   };
 });
 
+type TestWrapperDefaultValues = {
+  data: string;
+};
+
 // Test wrapper component that provides form context
 type TestWrapperProps = {
-  defaultValues: FormFieldInput;
+  defaultValues: TestWrapperDefaultValues;
   allowDeleteLastItem?: boolean;
   onSubmit?: () => void;
 };
 
 const TestWrapper = ({ defaultValues, allowDeleteLastItem = false }: TestWrapperProps) => {
-  const methods = useForm<FormFieldInput>({ defaultValues });
+  const methods = useForm<TestWrapperDefaultValues>({ defaultValues });
   // eslint-disable-next-line react-hooks/incompatible-library
   const value = methods.watch('data');
 
@@ -58,7 +62,10 @@ const TestWrapper = ({ defaultValues, allowDeleteLastItem = false }: TestWrapper
   );
 };
 
-const renderTest = async (defaultValues: FormFieldInput, allowDeleteLastItem?: boolean) => {
+const renderTest = async (
+  defaultValues: TestWrapperDefaultValues,
+  allowDeleteLastItem?: boolean,
+) => {
   return renderWithI18n(
     <TestWrapper defaultValues={defaultValues} allowDeleteLastItem={allowDeleteLastItem} />,
   );
