@@ -1,6 +1,6 @@
 import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
 import { Secret } from '@secret-manager/types/secret.type';
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { OdsFormField } from '@ovhcloud/ods-components/react';
@@ -22,16 +22,13 @@ import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type CasRequiredFormValue = 'active' | 'inactive';
 
-type FormFieldInput = {
-  casRequired?: CasRequiredFormValue;
-};
-
-type SecretCasRequiredFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
-  secret?: Secret;
+type SecretCasRequiredFormFieldProps<T extends FieldValues> = UseControllerProps<T> & {
+  isCasRequiredSetOnOkms?: boolean;
   okmsId?: string;
+  secret?: Secret;
 };
 
-export const SecretCasRequiredFormField = <T extends FormFieldInput>({
+export const SecretCasRequiredFormField = <T extends FieldValues>({
   name,
   control,
   secret,
