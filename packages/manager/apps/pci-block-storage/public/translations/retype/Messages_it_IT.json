@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_storages_blocks_retype_cant_retype": "La funzionalità di modifica del tipo non è disponibile per i volumi Classic 3AZ o i volumi crittografati",
+  "pci_projects_project_storages_blocks_retype_title": "Modifica il tuo tipo di offerta",
+  "pci_projects_project_storages_blocks_retype_change_type_title": "Seleziona il tipo",
+  "pci_projects_project_storages_blocks_retype_change_encryption_title": "Seleziona la crittografia",
+  "pci_projects_project_storages_blocks_retype_encryption_not_available": "La crittografia non è disponibile in questa regione",
+  "pci_projects_project_storages_blocks_retype_confirm_action_label": "Inserisci \"{{ confirmWord }}\" per confermare la tua scelta.",
+  "pci_projects_project_storages_blocks_retype_confirm_action_confirm_button": "Conferma e continua",
+  "pci_projects_project_storages_blocks_retype_detach_volume_label": "Stacca la tua istanza",
+  "pci_projects_project_storages_blocks_retype_detach_volume_warning": "Per modificare il tuo tipo di offerta, devi staccare il volume dalla sua istanza {{ instance }}",
+  "pci_projects_project_storages_blocks_retype_detach_volume_error": "Si è verificato un errore durante lo stacco dell'istanza. Ti invitiamo a visitare &lt;0>la pagina di block storage&lt;/0> per staccare manualmente l'istanza.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_label": "Elimina gli snapshot",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_warning": "Per modificare il tuo tipo di offerta devi prima eliminare gli snapshot associati al tuo volume.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_error": "Si è verificato un errore durante l'eliminazione degli snapshot. Ti invitiamo a visitare &lt;0>la pagina degli snapshot&lt;/0> per eliminarli manualmente.",
+  "pci_projects_project_storages_blocks_retype_retype_success": "Il volume {{ volumeName }} è in fase di modifica. Questa operazione potrebbe richiedere diversi minuti. Una volta completata, potrai procedere con le azioni abituali",
+  "pci_projects_project_storages_blocks_retype_retype_error": "Si è verificato un errore durante la modifica del tipo del tuo volume."
+}
