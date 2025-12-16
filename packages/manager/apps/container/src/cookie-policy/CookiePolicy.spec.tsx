@@ -16,7 +16,7 @@ vi.mock('@ovh-ux/shell');
 const renderCookiePolicy = async () => {
   const shell = initShell({} as Environment);
   const environment = shell.getPlugin('environment').getEnvironment();
-  render(
+  return render(
     <ApplicationContext.Provider value={{ shell, environment }}>
       <CookiePolicy onValidate={onValidate} shell={shell} />
     </ApplicationContext.Provider>,
@@ -86,9 +86,10 @@ describe('CookiePolicy.component', () => {
     (await import('@ovh-ux/shell')).initShell = vi
       .fn()
       .mockReturnValue(mockedShell('EU'));
-    renderCookiePolicy();
+    const { container } = await renderCookiePolicy();
     await waitFor(
       () => {
+        expect(container).toBeAccessible();
         expect(trackingInit).not.toHaveBeenCalled();
         expect(trackingSetEnabled).not.toHaveBeenCalled();
         expect(trackingOnConsentModalDisplay).toHaveBeenCalled();

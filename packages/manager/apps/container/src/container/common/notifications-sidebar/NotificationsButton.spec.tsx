@@ -76,7 +76,8 @@ describe('NotificationsButton', () => {
           level: 'HIGH',
         }],
       });
-      renderNotificationsButton();
+      const { container } = renderNotificationsButton();
+      expect(container).toBeAccessible();
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
 
@@ -122,7 +123,7 @@ describe('NotificationsButton', () => {
         }],
       });
       vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
-    
+
       renderNotificationsButton();
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
@@ -187,7 +188,7 @@ describe('NotificationsButton', () => {
       await waitFor(() => {
         expect(notificationsVisible).toBe(false);
       });
-      
+
       expect(aapi.post).toHaveBeenCalledWith(
         '/notification',
         { 'acknowledged': ['1'] },
