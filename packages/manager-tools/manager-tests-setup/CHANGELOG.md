@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tests-setup@0.6.2...@ovh-ux/manager-tests-setup@0.7.0) (2025-12-16)
+
+
+### Features
+
+* update core modules and configuration ([3655306](https://github.com/ovh/manager/commit/3655306a8ad31a88d8c42657a323fd119d4baad3)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
 ## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-tests-setup@0.6.1...@ovh-ux/manager-tests-setup@0.6.2) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-tests-setup
