@@ -1,16 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsText,
-  OdsSelect,
-  OdsMessage,
-  OdsButton,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_VARIANT,
+  MESSAGE_COLOR,
+  TEXT_PRESET,
+  Text,
+  Select,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Button,
+  SelectControl,
+  SelectContent,
+} from '@ovhcloud/ods-react';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   PageLocation,
@@ -81,63 +83,63 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
 
   return (
     <>
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+      <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
         {t('modalVrackAssociationDescription')}
-      </OdsText>
+      </Text>
       {isError && (
-        <OdsMessage
-          className="block"
-          isDismissible={false}
-          color={ODS_MESSAGE_COLOR.critical}
-        >
-          {t('modalVrackAssociationError', {
-            error: error?.response?.data?.message,
-          })}
-        </OdsMessage>
+        <Message dismissible={false} color={MESSAGE_COLOR.critical}>
+          <MessageIcon name="hexagon-exclamation" />
+          <MessageBody>
+            {t('modalVrackAssociationError', {
+              error: error?.response?.data?.message,
+            })}
+          </MessageBody>
+        </Message>
       )}
-      <OdsSelect
+      <Select
         id="select-vrack-input"
         name="select-vrack-input"
         className="block mb-4"
-        isDisabled={isPending}
-        onOdsChange={(event) => setSelectedVrack(event.detail.value as string)}
-        placeholder={t('vrackSelectPlaceholder')}
+        disabled={isPending}
+        onValueChange={(event) => setSelectedVrack(event.value[0] as string)}
+        items={vrackList.map((vrack) => ({ label: vrack, value: vrack }))}
       >
-        {vrackList.map((vrack) => (
-          <option key={vrack} value={vrack}>
-            {vrack}
-          </option>
-        ))}
-      </OdsSelect>
+        <SelectControl placeholder={t('vrackSelectPlaceholder')} />
+        <SelectContent />
+      </Select>
       {isPending && (
         <LoadingText
           title={t('cancel', { ns: NAMESPACES.ACTIONS })}
           description={t('addVrackServicesToVrack')}
         />
       )}
-      <OdsButton
-        slot="actions"
-        isDisabled={isPending}
-        type="button"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-        onClick={closeModal}
-      />
-      <OdsButton
-        slot="actions"
-        type="button"
-        isLoading={isPending}
-        isDisabled={!selectedVrack}
-        label={t('modalConfirmVrackAssociationButtonLabel')}
-        onClick={() => {
-          trackClick({
-            location: PageLocation.popup,
-            buttonType: ButtonType.button,
-            actions: ['associate-vrack', 'confirm'],
-          });
-          associateVs({ vrackId: selectedVrack });
-        }}
-      />
+      <div className="flex justify-end gap-8">
+        <Button
+          slot="actions"
+          disabled={isPending}
+          type="button"
+          variant={BUTTON_VARIANT.ghost}
+          onClick={closeModal}
+        >
+          {t('cancel', { ns: NAMESPACES.ACTIONS })}
+        </Button>
+        <Button
+          slot="actions"
+          type="button"
+          loading={isPending}
+          disabled={!selectedVrack}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.popup,
+              buttonType: ButtonType.button,
+              actions: ['associate-vrack', 'confirm'],
+            });
+            associateVs({ vrackId: selectedVrack });
+          }}
+        >
+          {t('modalConfirmVrackAssociationButtonLabel')}
+        </Button>
+      </div>
     </>
   );
 };

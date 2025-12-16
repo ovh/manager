@@ -2,6 +2,7 @@ import {
   NAMESPACES,
   NAMESPACE_PREFIX,
 } from '@ovh-ux/manager-common-translations';
+import i18next, { i18n } from 'i18next';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 import common from '../../public/translations/vrack-services/Messages_fr_FR.json';
 import create from '../../public/translations/vrack-services/create/Messages_fr_FR.json';
@@ -17,7 +18,6 @@ import actions from '../../../../modules/common-translations/public/translations
 import service from '../../../../modules/common-translations/public/translations/service/Messages_fr_FR.json';
 import order from '../../../../modules/common-translations/public/translations/order/Messages_fr_FR.json';
 import regionSelector from '../../public/translations/region-selector/Messages_fr_FR.json';
-import i18next, { i18n } from 'i18next';
 
 export const translations = {
   [TRANSLATION_NAMESPACES.common]: common,
@@ -60,8 +60,8 @@ export type TranslationObject = {
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
 
-function addTranslations(translations: TranslationObject) {
-  Object.entries(translations).forEach(([key, values]) =>
+function addTranslations(translationEntries: TranslationObject) {
+  Object.entries(translationEntries).forEach(([key, values]) =>
     i18next.addResources(defaultLocale, key, values),
   );
   i18next.use({
@@ -73,7 +73,7 @@ function addTranslations(translations: TranslationObject) {
 
 export const initTestI18n = (
   appName: string,
-  translations: TranslationObject,
+  translationEntries: TranslationObject,
 ) =>
   new Promise<i18n>((resolve) => {
     i18next.init({
@@ -88,14 +88,13 @@ export const initTestI18n = (
     });
 
     if (i18next.isInitialized) {
-      addTranslations(translations);
+      addTranslations(translationEntries);
     } else {
       i18next.on('initialized', () => {
-        addTranslations(translations);
+        addTranslations(translationEntries);
         resolve(i18next);
       });
     }
 
-    return translations;
+    return translationEntries;
   });
-

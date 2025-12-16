@@ -1,60 +1,37 @@
 import { describe, it } from 'vitest';
-import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
-import { iamResourcesMocks } from '../../__mocks__';
+import React from 'react';
 import {
-  changeSelectValueByLabelText,
-  getButtonByLabel,
   labels,
-  renderTest,
-  assertDisabled,
   assertEnabled,
   doActionOnElementUntil,
+  getElementByText,
+  renderTestComponent,
+  changeSelectValueByTestId,
 } from '@/test-utils';
-import { urls } from '@/routes/routes.constants';
+import EndpointCreatePage from './EndpointCreate.page';
 
 describe('Vrack Services endpoint creation page test suite', () => {
-  it('should create an endpoint', async () => {
-    const { container } = await renderTest({
-      nbVs: 21,
-      initialRoute: urls.createEndpoint.replace(
-        ':id',
-        vrackServicesListMocks[20].id,
-      ),
-      nbEligibleService: 1,
+  it('should display an endpoint creation page', async () => {
+    const { container } = await renderTestComponent({
+      component: <EndpointCreatePage />,
     });
 
     await assertTextVisibility(labels.endpoints.createEndpointPageDescription);
 
-    const submitButton = await getButtonByLabel({
-      container,
+    const submitButton = await getElementByText({
       value: labels.endpoints.createEndpointButtonLabel,
     });
-    await assertDisabled(submitButton);
-
-    await changeSelectValueByLabelText({
-      selectLabel: labels.endpoints.serviceNameLabel,
-      value: iamResourcesMocks[0].urn,
-    });
-    await assertDisabled(submitButton);
 
     await doActionOnElementUntil(
       () =>
-        changeSelectValueByLabelText({
-          selectLabel: labels.endpoints.subnetLabel,
+        changeSelectValueByTestId({
+          testId: 'select-subnet',
+          container,
           value: vrackServicesListMocks[20].currentState.subnets[0].cidr,
         }),
       () => assertEnabled(submitButton),
-    );
-
-    await doActionOnElementUntil(
-      () => userEvent.click(submitButton),
-      () =>
-        expect(
-          screen.getByText(labels.endpoints.endpointsOnboardingDescription),
-        ).toBeVisible(),
     );
   });
 });

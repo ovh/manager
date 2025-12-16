@@ -4,7 +4,7 @@ import {
   PageType,
   TrackingPageParams,
 } from '@ovh-ux/manager-react-shell-client';
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/muk';
 import { urls } from './routes.constants';
 import { PageName } from '@/utils/tracking';
 

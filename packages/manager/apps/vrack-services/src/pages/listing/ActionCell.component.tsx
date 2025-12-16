@@ -6,8 +6,8 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ActionMenu } from '@ovh-ux/muk';
+import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { urls } from '@/routes/routes.constants';
@@ -38,7 +38,7 @@ export const ActionCell = (vs: VrackServicesWithIAM) => {
     <ActionMenu
       id={`action-menu-${vs.id}`}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       items={[
         {
           id: 0,
@@ -72,7 +72,7 @@ export const ActionCell = (vs: VrackServicesWithIAM) => {
           id: 2,
           label: t('delete', { ns: NAMESPACES.ACTIONS }),
           isDisabled: isDisabled || isVrackserviceAlreadyAssociated,
-          color: ODS_BUTTON_COLOR.critical,
+          color: BUTTON_COLOR.critical,
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,

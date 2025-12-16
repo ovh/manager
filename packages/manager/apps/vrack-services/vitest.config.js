@@ -1,5 +1,6 @@
 import path from 'path';
 import {
+  INLINE_DEPS,
   sharedConfig,
   mergeConfig,
   createConfig,
@@ -23,6 +24,14 @@ export default mergeConfig(
           'src/data/mocks',
           'src/tracking.constant.ts',
         ],
+      },
+      deps: {
+        inline: INLINE_DEPS,
+      },
+      server: {
+        deps: {
+          inline: INLINE_DEPS,
+        },
       },
     },
     resolve: {

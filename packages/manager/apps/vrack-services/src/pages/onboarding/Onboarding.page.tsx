@@ -1,15 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 import {
-  Card,
-  CardProps,
-  useFeatureAvailability,
+  LinkCard,
+  LinkCardProps,
   OnboardingLayout,
-  PageLayout,
-} from '@ovh-ux/manager-react-components';
+  BaseLayout,
+} from '@ovh-ux/muk';
 import {
   OrderDescription,
   useOrderPollingStatus,
@@ -20,6 +18,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { getVrackServicesResourceListQueryKey } from '@ovh-ux/manager-network-common';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { urls } from '@/routes/routes.constants';
@@ -40,7 +39,7 @@ export default function OnboardingPage() {
     'vrack-services:order',
   ]);
 
-  const tileList: CardProps[] = [
+  const tileList: LinkCardProps[] = [
     {
       texts: {
         title: t('guide1Title'),
@@ -54,7 +53,7 @@ export default function OnboardingPage() {
           buttonType: ButtonType.tutorial,
           actions: [`go-to-${t('guide1Title')}`],
         }),
-      isExternalHref: true,
+      externalHref: true,
       hoverable: true,
       badges: [{ text: t('newBadgeText') }],
     },
@@ -71,7 +70,7 @@ export default function OnboardingPage() {
           buttonType: ButtonType.tutorial,
           actions: [`go-to-${t('guide2Title')}`],
         }),
-      isExternalHref: true,
+      externalHref: true,
       hoverable: true,
       badges: [{ text: t('newBadgeText') }],
     },
@@ -85,13 +84,13 @@ export default function OnboardingPage() {
   }
 
   return (
-    <PageLayout>
-      <OdsText preset={ODS_TEXT_PRESET.heading1} className="block mb-6">
+    <BaseLayout>
+      <Text preset={TEXT_PRESET.heading1} className="block mb-6">
         {t('introTitle')}
-      </OdsText>
-      <OdsText className="block mb-8" preset={ODS_TEXT_PRESET.paragraph}>
+      </Text>
+      <Text className="block mb-8" preset={TEXT_PRESET.paragraph}>
         {t('intro')}
-      </OdsText>
+      </Text>
       <OnboardingLayout
         title={t('onboardingPageTitle')}
         description={t('onboardingPageDescription')}
@@ -111,18 +110,11 @@ export default function OnboardingPage() {
         }}
         moreInfoButtonLabel={t('moreInfoButtonLabel')}
         moreInfoHref={link?.guideLink2}
-        onmoreInfoButtonClick={() => {
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.externalLink,
-            actions: ['go-to-discover_vrack-services'],
-          });
-        }}
       >
         {tileList.map((tile) => (
-          <Card key={tile.texts?.title} {...tile} />
+          <LinkCard key={tile.texts?.title} {...tile} />
         ))}
       </OnboardingLayout>
-    </PageLayout>
+    </BaseLayout>
   );
 }

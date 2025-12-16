@@ -2,16 +2,18 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  OdsButton,
-  OdsModal,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+  BUTTON_VARIANT,
+  MESSAGE_COLOR,
+  TEXT_PRESET,
+  Button,
+  Modal,
+  Message,
+  Text,
+  MessageBody,
+  ModalContent,
+  ModalBody,
+  MessageIcon,
+} from '@ovhcloud/ods-react';
 import {
   ButtonType,
   PageLocation,
@@ -49,37 +51,55 @@ export default function AssociateAnotherVrackModal() {
   }
 
   return (
-    <OdsModal isOpen isDismissible onOdsClose={closeModal}>
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading4}>
-        {t('modalAssociateAnotherVrackTitle')}
-      </OdsText>
-      {isError && (
-        <OdsMessage
-          isDismissible={false}
-          className="block mb-4"
-          color={ODS_MESSAGE_COLOR.critical}
-        >
-          {t('modalVrackAssociationError', {
-            error: error?.response?.data?.message,
-          })}
-        </OdsMessage>
-      )}
-      {isLoading && <LoadingText title={t('modalLoadingVrackList')} />}
-      {!isLoading && !isError && vrackList.length > 0 && (
-        <AssociateAnotherVrack closeModal={closeModal} vrackList={vrackList} />
-      )}
-      {!isLoading && !isError && vrackList.length === 0 && (
-        <CreateVrack closeModal={closeModal} />
-      )}
-      {(isLoading || isError) && (
-        <OdsButton
-          slot="actions"
-          type="button"
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={closeModal}
-          label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-        />
-      )}
-    </OdsModal>
+    <Modal
+      open
+      closeOnEscape={false}
+      closeOnInteractOutside={false}
+      onOpenChange={closeModal}
+    >
+      <ModalContent dismissible={false}>
+        <ModalBody>
+          <Text className="block mb-4" preset={TEXT_PRESET.heading4}>
+            {t('modalAssociateAnotherVrackTitle')}
+          </Text>
+          {isError && (
+            <Message
+              dismissible={false}
+              className="mb-4"
+              color={MESSAGE_COLOR.critical}
+            >
+              <MessageIcon name="hexagon-exclamation" />
+              <MessageBody>
+                {t('modalVrackAssociationError', {
+                  error: error?.response?.data?.message,
+                })}
+              </MessageBody>
+            </Message>
+          )}
+          {isLoading && <LoadingText title={t('modalLoadingVrackList')} />}
+          {!isLoading && !isError && vrackList.length > 0 && (
+            <AssociateAnotherVrack
+              closeModal={closeModal}
+              vrackList={vrackList}
+            />
+          )}
+          {!isLoading && !isError && vrackList.length === 0 && (
+            <CreateVrack closeModal={closeModal} />
+          )}
+          {(isLoading || isError) && (
+            <div className="flex justify-end">
+              <Button
+                slot="actions"
+                type="button"
+                variant={BUTTON_VARIANT.ghost}
+                onClick={closeModal}
+              >
+                {t('cancel', { ns: NAMESPACES.ACTIONS })}
+              </Button>
+            </div>
+          )}
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 }

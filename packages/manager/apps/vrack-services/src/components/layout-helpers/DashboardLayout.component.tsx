@@ -6,9 +6,9 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+import { Tabs, Tab, TabList } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
+import { BaseLayout, ChangelogMenu } from '@ovh-ux/muk';
 import { OperationMessages } from '../feedback-messages/OperationMessages.component';
 import { SuccessMessages } from '../feedback-messages/SuccessMessage.component';
 import { CHANGELOG_LINKS, TRANSLATION_NAMESPACES } from '@/utils/constants';
@@ -56,7 +56,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
       breadcrumb={<Breadcrumb />}
       header={{
         title: t('dashboardPageTitle'),
-        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+        changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
       }}
       description={t('dashboardPageDescription')}
       message={
@@ -66,22 +66,21 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
         </>
       }
       tabs={
-        <OdsTabs>
-          {tabs.map((tab: DashboardTabItemProps) => (
-            <OdsTab
-              key={`osds-tab-${tab.name}`}
-              isSelected={activePanel === tab.name}
-            >
-              <NavLink
-                to={tab.to}
-                className="no-underline"
-                onClick={tab.onClick}
-              >
-                {tab.title}
-              </NavLink>
-            </OdsTab>
-          ))}
-        </OdsTabs>
+        <Tabs value={activePanel}>
+          <TabList>
+            {tabs.map((tab: DashboardTabItemProps) => (
+              <Tab value={tab.name} key={`osds-tab-${tab.name}`}>
+                <NavLink
+                  to={tab.to}
+                  className="no-underline"
+                  onClick={tab.onClick}
+                >
+                  {tab.title}
+                </NavLink>
+              </Tab>
+            ))}
+          </TabList>
+        </Tabs>
       }
     >
       <Outlet />

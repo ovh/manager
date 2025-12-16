@@ -2,18 +2,20 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  OdsButton,
-  OdsMessage,
-  OdsModal,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-  ODS_BUTTON_COLOR,
-  ODS_MODAL_COLOR,
-} from '@ovhcloud/ods-components';
+  BUTTON_VARIANT,
+  MESSAGE_COLOR,
+  TEXT_PRESET,
+  BUTTON_COLOR,
+  MODAL_COLOR,
+  Button,
+  Message,
+  Modal,
+  Text,
+  ModalContent,
+  ModalBody,
+  MessageBody,
+  MessageIcon,
+} from '@ovhcloud/ods-react';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   ButtonType,
@@ -91,59 +93,64 @@ export default function DissociateModal() {
   }
 
   return (
-    <OdsModal
-      isOpen
-      isDismissible
-      color={ODS_MODAL_COLOR.critical}
-      onOdsClose={closeModal}
+    <Modal
+      open
+      closeOnEscape={!isPending}
+      closeOnInteractOutside={!isPending}
+      onOpenChange={closeModal}
     >
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading4}>
-        {t('modalDissociateHeadline')}
-      </OdsText>
-      {!!isError && (
-        <OdsMessage
-          className="block"
-          isDismissible={false}
-          color={ODS_MESSAGE_COLOR.critical}
-        >
-          {t('modalDissociateError', {
-            error: error.response?.data?.message || error?.message,
-          })}
-        </OdsMessage>
-      )}
+      <ModalContent dismissible={!isPending} color={MODAL_COLOR.critical}>
+        <ModalBody>
+          <Text className="block mb-4" preset={TEXT_PRESET.heading4}>
+            {t('modalDissociateHeadline')}
+          </Text>
+          {!!isError && (
+            <Message dismissible={false} color={MESSAGE_COLOR.critical}>
+              <MessageIcon name="hexagon-exclamation" />
+              <MessageBody>
+                {t('modalDissociateError', {
+                  error: error.response?.data?.message || error?.message,
+                })}
+              </MessageBody>
+            </Message>
+          )}
 
-      <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block mb-8">
-        {t('modalDissociateDescription')}
-      </OdsText>
-      {isPending && (
-        <LoadingText
-          title={t('modalDissociateVrackWaitMessage')}
-          description={t('removeVrackServicesFromVrack')}
-        />
-      )}
-      <OdsButton
-        slot="actions"
-        type="button"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_BUTTON_COLOR.critical}
-        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-        onClick={closeModal}
-      />
-      <OdsButton
-        isLoading={isPending}
-        slot="actions"
-        type="button"
-        color={ODS_BUTTON_COLOR.critical}
-        onClick={() => {
-          trackClick({
-            ...sharedTrackingParams,
-            actionType: 'action',
-            actions: ['dissociate-vrack', 'confirm'],
-          });
-          dissociateVs();
-        }}
-        label={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      />
-    </OdsModal>
+          <Text preset={TEXT_PRESET.paragraph} className="block mb-8">
+            {t('modalDissociateDescription')}
+          </Text>
+          {isPending && (
+            <LoadingText
+              title={t('modalDissociateVrackWaitMessage')}
+              description={t('removeVrackServicesFromVrack')}
+            />
+          )}
+          <div className="flex justify-end gap-8">
+            <Button
+              type="button"
+              variant={BUTTON_VARIANT.ghost}
+              color={BUTTON_COLOR.critical}
+              onClick={closeModal}
+            >
+              {t('cancel', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+            <Button
+              loading={isPending}
+              type="button"
+              color={BUTTON_COLOR.critical}
+              onClick={() => {
+                trackClick({
+                  ...sharedTrackingParams,
+                  actionType: 'action',
+                  actions: ['dissociate-vrack', 'confirm'],
+                });
+                dissociateVs();
+              }}
+            >
+              {t('confirm', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+          </div>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 }

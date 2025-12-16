@@ -1,9 +1,10 @@
 import React from 'react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
-import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { BUTTON_VARIANT, Link, Text } from '@ovhcloud/ods-react';
+import { ActionMenu } from '@ovh-ux/muk';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useVrackMenuItems } from './useVrackMenuItems.hook';
 import { isEditable } from '@/utils/vrack-services';
 
@@ -12,6 +13,7 @@ export type VrackIdProps = { isListing?: boolean } & VrackServicesWithIAM;
 export const VrackId: React.FC<VrackIdProps> = ({ isListing, ...vs }) => {
   const { shell } = React.useContext(ShellContext);
   const [vrackUrl, setVrackUrl] = React.useState('#');
+  const { t } = useTranslation(NAMESPACES.DASHBOARD);
   const vrackId = vs?.currentState?.vrackId;
   const menuItems = useVrackMenuItems({ vs, isListing });
 
@@ -24,14 +26,14 @@ export const VrackId: React.FC<VrackIdProps> = ({ isListing, ...vs }) => {
   }, [vrackId]);
 
   return isListing ? (
-    <DataGridTextCell>{vs.currentState.vrackId}</DataGridTextCell>
+    <Text>{vrackId ?? t('none')}</Text>
   ) : (
     <div className="flex items-center">
       <div className="grow">
         {vrackId ? (
-          <OdsLink href={vrackUrl} label={vrackId} />
+          <Link href={vrackUrl}>{vrackId}</Link>
         ) : (
-          <DataGridTextCell>{vrackId}</DataGridTextCell>
+          <Text>{vrackId}</Text>
         )}
       </div>
       <div className="flex-none">
@@ -39,7 +41,7 @@ export const VrackId: React.FC<VrackIdProps> = ({ isListing, ...vs }) => {
           id={`action-menu-${vs.id}`}
           isCompact
           items={menuItems}
-          variant={ODS_BUTTON_VARIANT.ghost}
+          variant={BUTTON_VARIANT.ghost}
           isDisabled={!isEditable(vs)}
         />
       </div>

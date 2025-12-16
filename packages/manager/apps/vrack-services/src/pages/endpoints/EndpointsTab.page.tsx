@@ -1,7 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { SPINNER_SIZE, Spinner } from '@ovhcloud/ods-react';
 import { useVrackService } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
 
@@ -28,7 +27,7 @@ export default function EndpointsTab() {
 
   return isLoading ? (
     <div className="mt-5">
-      <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
+      <Spinner size={SPINNER_SIZE.lg} />
     </div>
   ) : (
     <Outlet />
