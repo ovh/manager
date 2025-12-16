@@ -15,10 +15,11 @@ import { DOMAIN } from '@/common/constants';
 import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { useNavigate } from 'react-router-dom';
+import { DomainStateEnum } from '@/domain/enum/domainState.enum';
 
 interface DatagridColumnActionsProps {
   readonly serviceName: string;
-  readonly mainState: DomainServiceStateEnum;
+  readonly mainState: DomainStateEnum;
   readonly openModal: (serviceNames: string[]) => void;
 }
 
@@ -84,7 +85,7 @@ export default function DatagridColumnActions({
       });
     }
 
-    if (mainState === DomainServiceStateEnum.RESTORABLE) {
+    if (mainState === DomainStateEnum.RESTORABLE) {
       actionsList.push({
         id: 4,
         label: t('domain_action_restore'),
@@ -97,7 +98,7 @@ export default function DatagridColumnActions({
       !serviceInfo?.billing?.lifecycle?.current?.pendingActions.includes(
         LifecycleCapacitiesEnum.EarlyRenewal,
       ) &&
-      mainState !== DomainServiceStateEnum.RESTORABLE
+      mainState !== DomainStateEnum.RESTORABLE
     ) {
       actionsList.push({
         id: 5,

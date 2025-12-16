@@ -98,7 +98,7 @@ export interface TTargetSpec {
 
 export interface TContactDisclosurePolicy {
   disclosureConfiguration: DisclosureConfigurationEnum;
-  forceDisclosure: boolean;
+  forcedDisclosureConfiguration: boolean;
   disclosedFields: string[];
   visibleViaRdds: boolean;
 }
