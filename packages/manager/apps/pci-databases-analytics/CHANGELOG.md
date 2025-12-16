@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.36.0...@ovh-ux/manager-pci-databases-analytics-app@1.36.1) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
 # [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.35.1...@ovh-ux/manager-pci-databases-analytics-app@1.36.0) (2025-12-16)
 
 
