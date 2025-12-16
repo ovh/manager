@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi, expect } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
 import * as MRC from '@ovh-ux/manager-react-components';
@@ -23,9 +23,9 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
 vi.mock('@/context', () => ({
   useApplication: () => ({
     shell: {
-       
+
       getPlugin: (plugin: string) => {
-         
+
         switch (plugin) {
           case 'navigation':
             return {
@@ -173,8 +173,8 @@ describe('AgreementsUpdateModal', () => {
     }];
 
     const { queryByTestId } = renderComponent();
-
     await waitFor(() => {
+      expect(queryByTestId('agreements-update-modal')).toBeAccessible();
       expect(queryByTestId('agreements-update-modal')).not.toBeNull();
     });
   });
