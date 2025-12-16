@@ -1,21 +1,7 @@
-import { OnboardingConfigType } from '@/types/Onboarding.type';
-
 export const appName = 'dedicated-nasha';
 
-const docUrl = 'https://docs.ovh.com';
-
-export const ONBOARDING_CONFIG: OnboardingConfigType = {
-  productName: 'dedicated-nasha',
-  productCategory: 'Public Cloud',
-  brand: 'OVHcloud',
-  tiles: [
-    { id: 1, key: 'guide1', linkKey: 'discover' },
-    { id: 2, key: 'guide2', linkKey: 'tutorial' },
-    { id: 3, key: 'guide3', linkKey: 'faq' },
-  ],
-  links: {
-    discover: docUrl,
-    tutorial: docUrl,
-    faq: docUrl,
-  },
+export const NASHA_USE_SIZE_NAME = 'size';
+export const SERVICE_TYPE = 'DEDICATED_NASHA';
+export const GUIDES_URL = {
+  DEFAULT: 'https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-nas-get-started?id=kb_article_view&sysparm_article=KB0046698',
 };
