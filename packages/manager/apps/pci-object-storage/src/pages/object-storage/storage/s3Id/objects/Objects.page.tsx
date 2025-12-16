@@ -98,11 +98,13 @@ const Objects = () => {
                 placeholder={t('searchPlaceholder') || 'Search...'}
               />
             </>
-          ): <SimpleSearchBar
-          value={searchQuery}
-          onChange={setSearchQuery}
-          placeholder={t('searchPlaceholder')}
-        />}
+          ) : (
+            <SimpleSearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder={t('searchPlaceholder')}
+            />
+          )}
         </div>
       </div>
       <S3ObjectBrowser

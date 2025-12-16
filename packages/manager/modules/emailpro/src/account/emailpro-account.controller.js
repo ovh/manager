@@ -99,7 +99,11 @@ export default class {
     });
 
     this.$scope.goToOvhMailMigrator = () => {
-      return window.open(OVH_MAIL_MIGRATOR_URL[this.$scope.user.ovhSubsidiary] || OVH_MAIL_MIGRATOR_URL.DEFAULT, '_blank');
+      return window.open(
+        OVH_MAIL_MIGRATOR_URL[this.$scope.user.ovhSubsidiary] ||
+          OVH_MAIL_MIGRATOR_URL.DEFAULT,
+        '_blank',
+      );
     };
 
     this.$scope.getAccounts = (count, offset) => {

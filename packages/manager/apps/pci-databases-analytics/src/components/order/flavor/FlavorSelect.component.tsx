@@ -50,8 +50,7 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
         onChange(flavorName);
       }
     };
-    const classNameTableHead =
-      'p-3 h-10 border font-semibold text-primary-800';
+    const classNameTableHead = 'p-3 h-10 border font-semibold text-primary-800';
     const classNameTableCell = 'p-3 text-[#4d5592] border';
     return (
       <Table

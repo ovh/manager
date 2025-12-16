@@ -95,7 +95,7 @@ const Backups = () => {
           pageSize={25}
         >
           <DataTable.Header>
-            {service.capabilities.fork?.create  && (
+            {service.capabilities.fork?.create && (
               <DataTable.Action>
                 <div className="flex gap-2 mt-4">
                   {service.capabilities.fork?.create && (

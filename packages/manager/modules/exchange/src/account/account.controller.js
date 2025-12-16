@@ -106,8 +106,11 @@ export default class ExchangeAccountHomeController {
   }
 
   goToOvhMailMigrator = () =>
-     window.open(OVH_MAIL_MIGRATOR_URL[this.$scope.user.ovhSubsidiary] || OVH_MAIL_MIGRATOR_URL.DEFAULT, '_blank');
-
+    window.open(
+      OVH_MAIL_MIGRATOR_URL[this.$scope.user.ovhSubsidiary] ||
+        OVH_MAIL_MIGRATOR_URL.DEFAULT,
+      '_blank',
+    );
 
   getColumnParameters() {
     return this.gridParameters.columnParameters.current[this.productId];

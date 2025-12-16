@@ -13,7 +13,7 @@ const SimpleSearchBar = ({
   placeholder,
 }: SimpleSearchBarProps) => {
   return (
-  <div className="flex items-stretch border rounded-md overflow-hidden [&>div]:border-none [&>div>svg]:hidden">
+    <div className="flex items-stretch border rounded-md overflow-hidden [&>div]:border-none [&>div>svg]:hidden">
       <Input
         value={value}
         onChange={(e) => onChange(e.target.value)}

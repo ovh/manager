@@ -17,22 +17,24 @@ export function useAvailableStorageClasses(region: string) {
     };
   }
 
-    const s3Region = regions.find((r) => r.name === region);
-    const regionType = s3Region?.type;
+  const s3Region = regions.find((r) => r.name === region);
+  const regionType = s3Region?.type;
 
-  const availableStorageClasses = Object.values(storages.StorageClassEnum).filter((st) => {
+  const availableStorageClasses = Object.values(
+    storages.StorageClassEnum,
+  ).filter((st) => {
     if (!regionType) return false;
 
     switch (st) {
       case storages.StorageClassEnum.DEEP_ARCHIVE:
-        return s3Region.name === "EU-WEST-PAR" 
-        // Cold archive is only available in EU-WEST-PAR
+        return s3Region.name === 'EU-WEST-PAR';
+      // Cold archive is only available in EU-WEST-PAR
 
-        case storages.StorageClassEnum.HIGH_PERF:
-          return regionType !== RegionTypeEnum['region-3-az'];
+      case storages.StorageClassEnum.HIGH_PERF:
+        return regionType !== RegionTypeEnum['region-3-az'];
 
-        case storages.StorageClassEnum.STANDARD_IA:
-          return regionType !== RegionTypeEnum.localzone;
+      case storages.StorageClassEnum.STANDARD_IA:
+        return regionType !== RegionTypeEnum.localzone;
 
       default:
         return true;
@@ -42,5 +44,5 @@ export function useAvailableStorageClasses(region: string) {
   return {
     availableStorageClasses,
     isPending: regionQuery.isPending,
-  }
+  };
 }

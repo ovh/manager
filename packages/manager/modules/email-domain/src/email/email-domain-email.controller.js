@@ -18,14 +18,14 @@ const emailsConfigurationGuides = {
   PT: 'https://www.ovh.pt/g1474.generalidades-mails-partilhados-ovh',
 };
 
-const  ovhMailMigratorUrl ={
+const ovhMailMigratorUrl = {
   FR: 'https://omm.ovhcloud.com/fr/',
   MA: 'https://omm.ovhcloud.com/fr/',
   TN: 'https://omm.ovhcloud.com/fr/',
   SN: 'https://omm.ovhcloud.com/fr/',
   QC: 'https://omm.ovhcloud.com/fr/',
   DEFAULT: 'https://omm.ovhcloud.com/en/',
-}
+};
 
 export default class EmailDomainEmailCtrl {
   /* @ngInject */
@@ -108,7 +108,8 @@ export default class EmailDomainEmailCtrl {
           ? 'https://mail.ovh.net/'
           : null;
         this.webOMMUrl = this.coreConfig.isRegion('EU')
-          ? ovhMailMigratorUrl[this.coreConfig.getUser().ovhSubsidiary] || ovhMailMigratorUrl.DEFAULT
+          ? ovhMailMigratorUrl[this.coreConfig.getUser().ovhSubsidiary] ||
+            ovhMailMigratorUrl.DEFAULT
           : null;
         this.domains = allDomains;
         this.quotas = quotas;

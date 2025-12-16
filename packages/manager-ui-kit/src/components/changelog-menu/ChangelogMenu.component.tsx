@@ -17,6 +17,7 @@ import './translations/translation';
 
 export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
 const GO_TO = (link: string) => `go-to-${link}`;
+const DEFAULT_EXT_TARGET = '_blank';
 
 const LinksTrad = {
   changelog: 'mrc_changelog_changelog',
@@ -33,6 +34,7 @@ export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({ links, chapters = 
       label: string;
       href: string;
       linktype: LinkType;
+      target: string;
       onClick: () => void;
     }[]
   >([]);
@@ -50,6 +52,7 @@ export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({ links, chapters = 
       label: string;
       href: string;
       linktype: LinkType;
+      target: string;
       onClick: () => void;
     }[] = [];
     Object.keys(links).forEach((key, index) => {
@@ -58,6 +61,7 @@ export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({ links, chapters = 
         label: t(LinksTrad[key as keyof typeof LinksTrad]),
         href: links[key as keyof ChangelogMenuLinks],
         linktype: LinkType.external,
+        target: DEFAULT_EXT_TARGET,
         onClick: () => sendTrackClick(key),
       });
     });

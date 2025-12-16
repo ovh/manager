@@ -52,14 +52,14 @@ const TimeUpdate = ({
     </div>
   );
   return (
-    <div className={isUpdate ? "grid grid-cols-[2fr,1fr]" : "grid grid-cols-2"}>
+    <div className={isUpdate ? 'grid grid-cols-[2fr,1fr]' : 'grid grid-cols-2'}>
       <Form {...form}>
         <FormField
           control={form.control}
           name="date"
           render={({ field }) =>
             isUpdate ? (
-              <TimePicker date={field.value} setDate={field.onChange}/>
+              <TimePicker date={field.value} setDate={field.onChange} />
             ) : (
               <span>
                 <FormattedDate

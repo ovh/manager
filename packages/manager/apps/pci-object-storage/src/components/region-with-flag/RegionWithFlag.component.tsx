@@ -6,10 +6,8 @@ const RegionWithFlag = ({ region }: { region: Region }) => {
   const { translateMicroRegion } = useTranslatedMicroRegions();
   return (
     <div className="flex items-center gap-2">
-      <Flag className='shrink-0' flagName={region?.countryCode} />
-      <span className="break-words">
-        {translateMicroRegion(region.name)}
-      </span>
+      <Flag className="shrink-0" flagName={region?.countryCode} />
+      <span className="break-words">{translateMicroRegion(region.name)}</span>
     </div>
   );
 };

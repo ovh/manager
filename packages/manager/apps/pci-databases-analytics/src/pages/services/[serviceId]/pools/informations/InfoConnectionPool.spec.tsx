@@ -97,7 +97,6 @@ describe('InfoConnectionPool', () => {
     expect(screen.getByText(mockedConnectionPool.size)).toBeInTheDocument();
   });
 
-
   it('should navigate back if no connection pool is found', async () => {
     vi.mocked(connectionPoolApi.getConnectionPools).mockResolvedValueOnce([]);
     render(<InfoConnectionPool />, { wrapper: RouterWithQueryClientWrapper });

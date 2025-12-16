@@ -60,7 +60,7 @@ export const ReplicationFormProvider = ({
   const isDeleteMarkerEnabled =
     formValues.deleteMarkerReplication === 'enabled';
 
-  const {availableStorageClasses} = useAvailableStorageClasses(
+  const { availableStorageClasses } = useAvailableStorageClasses(
     formValues.destination.region,
   );
 

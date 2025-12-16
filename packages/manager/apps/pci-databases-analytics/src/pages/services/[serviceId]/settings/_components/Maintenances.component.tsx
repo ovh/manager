@@ -13,9 +13,7 @@ import {
   CollapsibleContent,
   Separator,
 } from '@datatr-ux/uxlib';
-import {
-  ChevronDown,
-} from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 import { useServiceData } from '../../Service.context';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';

@@ -1,7 +1,11 @@
-import { ContinentCountryLocation, ContinentEnum, CountryEnum } from "@datatr-ux/ovhcloud-types/me/geolocation";
+import {
+  ContinentCountryLocation,
+  ContinentEnum,
+  CountryEnum,
+} from '@datatr-ux/ovhcloud-types/me/geolocation';
 
-export const mockedGeolocation:ContinentCountryLocation = {
+export const mockedGeolocation: ContinentCountryLocation = {
   continent: ContinentEnum.europe,
   countryCode: CountryEnum.fr,
-  ip: "0.0.0.0",
-}
+  ip: '0.0.0.0',
+};

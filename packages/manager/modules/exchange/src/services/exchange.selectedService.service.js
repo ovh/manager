@@ -76,8 +76,6 @@ export default class ExchangeSelectedService {
   }
 
   isMfaAvailable() {
-    return (
-      this.exchangeVersion.isAfter(2010)
-    );
+    return this.exchangeVersion.isAfter(2010);
   }
 }
