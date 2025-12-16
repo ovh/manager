@@ -41,15 +41,37 @@ export default function AddWebsitePage() {
 
   type FormData = z.infer<typeof websiteFormSchema>;
 
-  const { control, handleSubmit, watch, reset } = useForm<FormData>({
+  const { control, handleSubmit, watch, reset, setValue } = useForm<FormData>({
     defaultValues: {
       path: 'public_html',
       autoConfigureDns: true,
+      module: CmsType.NONE,
+      advancedInstallation: false,
     },
     resolver: zodResolver(websiteFormSchema),
   });
 
   const controlValues = watch();
+
+  const isAdvancedInstallationEnabled =
+    controlValues.associationType === AssociationType.EXISTING &&
+    Boolean(controlValues.advancedInstallation);
+
+  const isAdvancedInstallationIncomplete =
+    isAdvancedInstallationEnabled &&
+    (!controlValues.module ||
+      controlValues.module === CmsType.NONE ||
+      !controlValues.selectedDatabase ||
+      !controlValues.databaseServer ||
+      !controlValues.databaseName ||
+      !controlValues.databasePort ||
+      !controlValues.databaseUser ||
+      !controlValues.databasePassword ||
+      !controlValues.adminName ||
+      !controlValues.adminPassword ||
+      !controlValues.moduleDomain ||
+      !controlValues.moduleLanguage ||
+      !controlValues.moduleInstallPath);
 
   const { postWebHostingWebsites } = usePostWebHostingWebsites(
     serviceName,
@@ -159,10 +181,10 @@ export default function AddWebsitePage() {
       {step === 4 && (
         <div>
           <Divider />
-          <DomainCmsModule control={control} controlValues={controlValues} />
+          <DomainCmsModule control={control} controlValues={controlValues} setValue={setValue} />
           <Button
             onClick={() => void handleSubmit(onSubmit)()}
-            disabled={!controlValues.fqdn}
+            disabled={!controlValues.fqdn || isAdvancedInstallationIncomplete}
             className="mt-4"
           >
             {t('common:web_hosting_common_action_continue')}

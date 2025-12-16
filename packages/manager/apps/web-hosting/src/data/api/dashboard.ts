@@ -133,3 +133,8 @@ export const updateAttachedDomainService = async (
   );
   return data;
 };
+
+export const getAttachedDomains = async (serviceName: string): Promise<string[]> => {
+  const { data } = await v6.get<string[]>(`/hosting/web/${serviceName}/attachedDomain`);
+  return data;
+};
