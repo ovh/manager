@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-product-icons",
-  "version": "0.14.2",
+  "version": "0.15.0",
   "private": true,
   "description": "Ovh product icons",
   "license": "BSD-3-Clause",
@@ -10,7 +10,7 @@
   "module": "dist/index",
   "types": "dist/index",
   "scripts": {
-    "build": "tsc && yarn copy-files",
+    "build": "tsc && tsc-alias && yarn copy-files",
     "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
     "lint:modern": "manager-lint --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
@@ -25,9 +25,10 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.6.2",
+    "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "^0.15.5",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "tsc-alias": "^1.8.16"
   },
   "peerDependencies": {
     "react": "^18.2.0"

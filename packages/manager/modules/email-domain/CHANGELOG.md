@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.13...@ovh-ux/manager-email-domain@1.11.14) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-email-domain
+
+
+
+
+
+## [1.11.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.12...@ovh-ux/manager-email-domain@1.11.13) (2025-12-16)
+
+
+### Bug Fixes
+
+* **manager:** promote new OMM ([d26dc8e](https://github.com/ovh/manager/commit/d26dc8ee2b57d7481c8b34543d880b45cc63d445)), closes [#PRDCOL-280](https://github.com/ovh/manager/issues/PRDCOL-280)
+* **web:** fix dkim status ([44dbe45](https://github.com/ovh/manager/commit/44dbe45d660008bdc437abb4836c23047207ddc2)), closes [#PRDCOL-306](https://github.com/ovh/manager/issues/PRDCOL-306)
+
+
+
+
+
 ## [1.11.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.11...@ovh-ux/manager-email-domain@1.11.12) (2025-11-04)
 
 

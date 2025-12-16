@@ -21,6 +21,7 @@ export default [
       'check-file/no-index': 'off',
       'check-file/folder-naming-convention': 'off',
       'import/no-unresolved': 'off',
+      'import/no-nodejs-modules': 'off',
     },
   },
   {

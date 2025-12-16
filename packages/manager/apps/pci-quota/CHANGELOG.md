@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.3.4...@ovh-ux/manager-pci-quota-app@0.3.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.3.3...@ovh-ux/manager-pci-quota-app@0.3.4) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4531] ([40ed9bf](https://github.com/ovh/manager/commit/40ed9bf0e7ff392cca78e84ead3e8c54ea48e17f))
+* **i18n:** add missing translations [CDS 4533] ([62d9869](https://github.com/ovh/manager/commit/62d9869ef2d79d81ea51960894547eaf988b0c6c))
+
+
+
+
+
 ## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.3.2...@ovh-ux/manager-pci-quota-app@0.3.3) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-quota-app

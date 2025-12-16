@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.10...@ovh-ux/manager-emailpro@3.17.11) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-emailpro
+
+
+
+
+
+## [3.17.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.9...@ovh-ux/manager-emailpro@3.17.10) (2025-12-16)
+
+
+### Bug Fixes
+
+* **manager:** promote new OMM ([d26dc8e](https://github.com/ovh/manager/commit/d26dc8ee2b57d7481c8b34543d880b45cc63d445)), closes [#PRDCOL-280](https://github.com/ovh/manager/issues/PRDCOL-280)
+
+
+
+
+
 ## [3.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.8...@ovh-ux/manager-emailpro@3.17.9) (2025-12-04)
 
 
