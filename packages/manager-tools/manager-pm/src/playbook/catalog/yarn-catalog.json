@@ -36,7 +36,6 @@
   "packages/manager/apps/telecom",
   "packages/manager/apps/telecom-dashboard",
   "packages/manager/apps/telecom-task",
-  "packages/manager/apps/veeam-backup",
   "packages/manager/apps/veeam-enterprise",
   "packages/manager/apps/vps",
   "packages/manager/apps/vrack",
