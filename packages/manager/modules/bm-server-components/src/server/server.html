@@ -17,10 +17,23 @@
                 ></span>
             </button>
         </div>
-        <changelog-button
-            links="$ctrl.constants.CHANGELOG.dedicated_server.links"
-            chapters="$ctrl.constants.CHANGELOG.dedicated_server.chapters"
-        ></changelog-button>
+        <div class="d-flex">
+            <changelog-button
+                data-links="$ctrl.constants.CHANGELOG.dedicated_server.links"
+                data-chapters="$ctrl.constants.CHANGELOG.dedicated_server.chapters"
+            ></changelog-button>
+            <oui-guide-menu
+                data-ng-if="$ctrl.isGameServer"
+                data-text="{{:: 'server_guides' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-href="{{:: $ctrl.gameDDosGuide }}"
+                    data-external="true"
+                >
+                    <span data-translate="server_guide_ddos_game"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
     </div>
     <h2
         class="oui-header__description"
