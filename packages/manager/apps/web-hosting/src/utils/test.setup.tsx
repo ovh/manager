@@ -10,6 +10,8 @@ import {
   domainInformationMock,
   domainZoneMock,
   serviceInfosMock,
+  sshKeyMock,
+  vcsWebhookUrlsMock,
   webHostingMock,
   websitesMocks,
 } from '@/data/__mocks__';
@@ -382,6 +384,8 @@ vi.mock('@/data/api/dashboard', async (importActual) => {
     getDomainZone: vi.fn(() => Promise.resolve(domainZoneMock)),
     getServiceInfos: vi.fn(() => Promise.resolve(serviceInfosMock)),
     getDomainService: vi.fn(() => Promise.resolve(domainInformationMock)),
+    getSshKey: vi.fn(() => Promise.resolve(sshKeyMock)),
+    getVcsWebhookUrls: vi.fn(() => Promise.resolve(vcsWebhookUrlsMock)),
   };
 });
 vi.mock('@/data/api/git', () => ({
@@ -419,6 +423,8 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
   useGetDomainZone: vi.fn(),
   useGetHostingService: vi.fn(),
   useGetHostingServiceWebsite: vi.fn(),
+  useGetSshKey: vi.fn(),
+  useGetVcsWebhookUrls: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (importActual) => {

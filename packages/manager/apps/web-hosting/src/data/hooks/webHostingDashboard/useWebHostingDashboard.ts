@@ -12,6 +12,8 @@ import {
   getServiceInfos,
   getSshKey,
   getVcsWebhookUrls,
+  postWebsiteV6,
+  putWebsiteV6,
   updateAttachedDomainService,
   updateHostingService,
 } from '@/data/api/dashboard';
@@ -21,7 +23,7 @@ import {
   fetchWebsiteDeployments,
   postWebsiteDeploy,
 } from '@/data/api/git';
-import { getWebHostingWebsiteV6, postWebsiteV6 } from '@/data/api/webHosting';
+import { getWebHostingWebsiteV6 } from '@/data/api/webHosting';
 import { TAttachedDomain, TCreateAttachedDomain } from '@/data/types/product/domain';
 import { Logs } from '@/data/types/product/git';
 import queryClient from '@/utils/queryClient';
@@ -278,6 +280,24 @@ export const usePostWebsiteV6 = (
 
   return {
     postWebsiteV6: mutation.mutate,
+    ...mutation,
+  };
+};
+
+export const usePutWebsiteV6 = (
+  serviceName: string,
+  onSuccess: () => void,
+  onError: (error: ApiError) => void,
+) => {
+  const mutation = useMutation({
+    mutationFn: ({ id, vcsBranch }: { id?: string; vcsBranch?: string }) =>
+      putWebsiteV6(serviceName, id, vcsBranch),
+    onSuccess,
+    onError,
+  });
+
+  return {
+    putWebsiteV6: mutation.mutate,
     ...mutation,
   };
 };
