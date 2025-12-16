@@ -69,5 +69,6 @@
   "summaryCustomMetricsUrlLabel": "URL: ",
   "summaryCustomMetricsFormatLabel": "Formato: {{for}}",
   "summaryCustomMetricsLocationLabel": "Localização: ",
-  "summaryCustomMetricsTargetValueLabel": "Valor: {{val}}"
+  "summaryCustomMetricsTargetValueLabel": "Valor: {{val}}",
+  "warningCLITitle": "Impossível gerar o equivalente CLI"
 }
