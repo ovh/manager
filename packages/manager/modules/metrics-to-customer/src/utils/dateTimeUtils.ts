@@ -1,3 +1,5 @@
+import { formatDate, getUnixTime, setHours, setMinutes, setSeconds } from 'date-fns';
+
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 
 /**
@@ -56,6 +58,51 @@ export const getWindowSecAndStep = (timeRangeOption: TimeRangeOption) => {
 
 export const formatTimeFromDate = (value?: string | Date): string => {
   const date = value ? new Date(value) : new Date();
-  const pad = (num: number) => String(num).padStart(2, '0');
-  return `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+  return formatDate(date, 'HH:mm:ss');
+};
+
+/**
+ * Format a Unix timestamp (in seconds) into a human-readable date time string
+ * @param timestampInSeconds - Unix timestamp in seconds
+ * @returns Formatted date time string (yyyy-MM-dd HH:mm:ss)
+ */
+export const formatDateTime = (timestampInSeconds: number): string => {
+  return formatDate(new Date(timestampInSeconds * 1000), 'yyyy-MM-dd HH:mm:ss');
+};
+
+/**
+ * Calculate start and end date times based on a time range option
+ * @param timeOption - The selected time range option
+ * @param providedEndDateTime - Optional end date time (in seconds). If not provided, uses current time
+ * @param providedStartDateTime - Optional start date time (in seconds). If not provided, calculates from endDateTime and rangeInSeconds
+ * @returns Object containing startDateTime and endDateTime (both in seconds)
+ */
+export const calculateDateTimeRange = (
+  timeOption: TimeRangeOption,
+  providedEndDateTime?: number,
+  providedStartDateTime?: number,
+): { startDateTime: number; endDateTime: number } => {
+  const endDateTime = providedEndDateTime ?? Math.floor(Date.now() / 1000);
+  const startDateTime = providedStartDateTime ?? endDateTime - timeOption.rangeInSeconds;
+  return { startDateTime, endDateTime };
+};
+
+/**
+ * Calculate a Unix timestamp in seconds by combining a date with a time string
+ * @param date - The date to combine with the time
+ * @param time - Time string in HH:mm:ss format
+ * @returns Unix timestamp in seconds
+ */
+export const calculateTimestamp = (date: Date | null, time: string): number => {
+  if (!date) {
+    return getUnixTime(new Date());
+  }
+
+  const [hours, minutes, seconds] = time.split(':').map(Number);
+  const combinedDate = setSeconds(
+    setMinutes(setHours(date, hours || 0), minutes || 0),
+    seconds || 0,
+  );
+
+  return getUnixTime(combinedDate);
 };

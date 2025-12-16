@@ -1,21 +1,11 @@
 import { getDataset } from '@/__datasets__/datasetsUtils';
-import { ChartData } from '@/components/charts/base';
-import {
-  ObservabilityMetricDataParams,
+
+import {  
   ObservabilityMetricKindParams,
   ObservabilityMetricKindsParams,
+  ObservabilityServiceParams,
 } from '@/types/ClientApi.type';
-import { Kind, MetricData } from '@/types/observability.type';
-
-export const fetchChartData = async <TData>(
-  params: ObservabilityMetricDataParams,
-): Promise<MetricData<TData>> => {
-  console.info(`[MOCK-ADAPTER][fetchChartData] mock for resource ${params.query} -> `);
-
-  const data: ChartData<TData> = getDataset('metrics/prometheus', params.query) as ChartData<TData>;
-
-  return Promise.resolve(data);
-};
+import { Kind } from '@/types/observability.type';
 
 export const getMetricKinds = async (params: ObservabilityMetricKindsParams): Promise<string[]> => {
   console.info(`[MOCK-ADAPTER][getMetricKinds] mock for resource ${params.productType} -> `);
@@ -31,4 +21,12 @@ export const getMetricKind = async (params: ObservabilityMetricKindParams): Prom
   const data: Kind = getDataset<Kind>('metrics/kinds', params.kindName) as Kind;
 
   return Promise.resolve(data);
+};
+
+export const getMetricToken = async (params: ObservabilityServiceParams): Promise<string> => {  
+  console.info(`[MOCK-ADAPTER][getMetricToken] from url param for the resource ${params.resourceName} -> `);
+
+  const metricToken = window.localStorage.getItem('metric-token') ?? '';
+
+  return Promise.resolve(metricToken);
 };
