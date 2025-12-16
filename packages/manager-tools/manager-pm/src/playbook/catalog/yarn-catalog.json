@@ -49,7 +49,6 @@
   "packages/manager/apps/pci-rancher",
   "packages/manager/apps/pci-volume-backup",
   "packages/manager/apps/pci-volume-snapshot",
-  "packages/manager/apps/pci-workflow",
   "packages/manager/apps/procedures",
   "packages/manager/apps/public-cloud",
   "packages/manager/apps/restricted",
