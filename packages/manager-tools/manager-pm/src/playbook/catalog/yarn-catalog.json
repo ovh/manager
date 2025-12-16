@@ -35,7 +35,6 @@
   "packages/manager/apps/overthebox",
   "packages/manager/apps/pci",
   "packages/manager/apps/pci-cold-archive",
-  "packages/manager/apps/pci-databases-analytics",
   "packages/manager/apps/procedures",
   "packages/manager/apps/restricted",
   "packages/manager/apps/sap-features-hub",
