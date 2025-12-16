@@ -214,6 +214,7 @@ function SettingsPage() {
       )}
 
       <Notifications clearAfterRead />
+      <div>Test Alex !!</div>
 
       <Datagrid
         items={flattenData || []}
