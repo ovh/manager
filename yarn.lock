@@ -7128,6 +7128,11 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/logs-to-customer@^1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/logs-to-customer/-/logs-to-customer-1.10.3.tgz#a7c4c54914751eee1b8e3a4da75bcacb339ae375"
+  integrity sha512-IH4d0277RAb83hyYCKr4hs1Ojp+J+z84yDi4Scuih8SY7m1B8mi/Fp4p2qA6jQU/aAMoQhUmQF/SkPpVTu6DZw==
+
 "@ovh-ux/manager-common-translations@^0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.10.0.tgz#b135fbf4c9fd64a6c2045ad54091a1982fbad2d0"
@@ -7202,32 +7207,6 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
-"@ovh-ux/manager-pci-common@^0.18.2":
-  version "0.18.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.18.3.tgz#29633de4e841d8b02c424f127526398253d7b8d0"
-  integrity sha512-LRe20WKrAUlcm2WWWB8So3fquIq7a8qq1du/Ku0vT2GreJ1sLXf0so5RxQFQckRlF05dE2C/r5iJ3AOnPyweOw==
-  dependencies:
-    clsx "2.1.1"
-    date-fns "^3.6.0"
-    lodash.isequal "^4.5.0"
-
-"@ovh-ux/manager-react-components@2.43.1", "@ovh-ux/manager-react-components@^2.43.1":
-  version "2.43.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
-  integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
-  dependencies:
-    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
-    "@tanstack/react-query" "^5.51.21"
-    "@tanstack/react-table" "^8.20.1"
-    clsx "^2.1.1"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    react-i18next "^14.0.5"
-    react-use "^17.5.0"
-    sass "1.56.1"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
-
 "@ovh-ux/manager-react-components@^1.46.0":
   version "1.46.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.46.0.tgz#8c868c4098e210918de90041dbffdc0dabea82d5"
@@ -7288,6 +7267,23 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
+"@ovh-ux/manager-react-components@^2.43.1":
+  version "2.43.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
+  integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
+  dependencies:
+    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-i18next "^14.0.5"
+    react-use "^17.5.0"
+    sass "1.56.1"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+
 "@ovh-ux/manager-react-shell-client@^0.11.2":
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.11.2.tgz#4aa1146543db4ef6bb07461ae92f95f44251244d"
@@ -7300,11 +7296,6 @@
     "@ovh-ux/url-builder" "^2.0.4"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
-
-"@ovh-ux/manager-tests-setup@latest":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.6.1.tgz#0455896a6efd93e989afcd8bc7f4d4d6014c7618"
-  integrity sha512-LFc5seUn/EmMtVm1tEiIpqtF+QLeW7ztUAXvsiY732HFRA2AlMzD2PiHDpO/WB7CMIA0xu8y8I+Ar4ASSQBQ7Q==
 
 "@ovh-ux/muk@0.9.0":
   version "0.9.0"
@@ -10612,19 +10603,19 @@
   dependencies:
     "@tanstack/table-core" "8.20.1"
 
-"@tanstack/react-virtual@3.10.9", "@tanstack/react-virtual@^3.10.9":
-  version "3.10.9"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.10.9.tgz#40606b6dd8aba8e977f576d8f7df07f69ca63eea"
-  integrity sha512-OXO2uBjFqA4Ibr2O3y0YMnkrRWGVNqcvHQXmGvMu6IK8chZl3PrDxFXdGZ2iZkSrKh3/qUYoFqYe+Rx23RoU0g==
-  dependencies:
-    "@tanstack/virtual-core" "3.10.9"
-
 "@tanstack/react-virtual@^3.0.0-beta.18":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.2.0.tgz#fb70f9c6baee753a5a0f7618ac886205d5a02af9"
   integrity sha512-OEdMByf2hEfDa6XDbGlZN8qO6bTjlNKqjM3im9JG+u3mCL8jALy0T/67oDI001raUUPh1Bdmfn4ZvPOV5knpcg==
   dependencies:
     "@tanstack/virtual-core" "3.2.0"
+
+"@tanstack/react-virtual@^3.10.9":
+  version "3.10.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.10.9.tgz#40606b6dd8aba8e977f576d8f7df07f69ca63eea"
+  integrity sha512-OXO2uBjFqA4Ibr2O3y0YMnkrRWGVNqcvHQXmGvMu6IK8chZl3PrDxFXdGZ2iZkSrKh3/qUYoFqYe+Rx23RoU0g==
+  dependencies:
+    "@tanstack/virtual-core" "3.10.9"
 
 "@tanstack/table-core@8.11.8":
   version "8.11.8"
