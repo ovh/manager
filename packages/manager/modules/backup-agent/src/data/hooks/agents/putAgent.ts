@@ -3,23 +3,26 @@ import { UseMutationOptions, useMutation, useQueryClient } from '@tanstack/react
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 
 import {
-  EditConfigurationBackupAgentsParams,
+  EditBackupAgentConfigParams,
   editConfigurationBackupAgents,
 } from '@/data/api/agents/agents.requests';
 
+import { useBackupServicesId } from '../backup/useBackupServicesId';
 import { GET_VSPC_TENANTS_QUERY_KEY } from '../tenants/useVspcTenants';
 
+type EditBackupConfigPayload = Omit<EditBackupAgentConfigParams, 'backupServicesId'>;
 type UseEditConfigurationVSPCTenantAgentParams = Partial<
-  UseMutationOptions<ApiResponse<string>, ApiError, EditConfigurationBackupAgentsParams>
+  UseMutationOptions<ApiResponse<string>, ApiError, EditBackupConfigPayload>
 >;
 export const useEditConfigurationVSPCTenantAgent = ({
   ...options
 }: UseEditConfigurationVSPCTenantAgentParams) => {
   const queryClient = useQueryClient();
+  const { backupServicesId } = useBackupServicesId();
 
   return useMutation({
-    mutationFn: (payload: EditConfigurationBackupAgentsParams) =>
-      editConfigurationBackupAgents(payload),
+    mutationFn: (payload: EditBackupConfigPayload) =>
+      editConfigurationBackupAgents({ backupServicesId, ...payload }),
     ...options,
     onSuccess: async (...params) => {
       await queryClient.invalidateQueries({
