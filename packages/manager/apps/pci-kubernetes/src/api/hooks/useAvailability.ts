@@ -1,5 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 
+import { TProductAvailability } from '@ovh-ux/manager-pci-common';
+
 export type TProductAvailabilityFilter = {
   addonFamily?: string;
   planCode?: string;
@@ -23,14 +25,15 @@ export const useRefreshProductAvailability = (
   filter?: TProductAvailabilityFilter,
 ) => {
   const queryClient = useQueryClient();
+  const queryKey = getProductAvailabilityQueryKey({
+    projectId,
+    ovhSubsidiary,
+    filter,
+  });
   return {
-    refresh: () =>
-      queryClient.invalidateQueries({
-        queryKey: getProductAvailabilityQueryKey({
-          projectId,
-          ovhSubsidiary,
-          filter,
-        }),
-      }),
+    refresh: async (): Promise<TProductAvailability | undefined> => {
+      await queryClient.invalidateQueries({ queryKey });
+      return queryClient.getQueryData<TProductAvailability>(queryKey);
+    },
   };
 };

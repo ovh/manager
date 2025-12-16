@@ -60,16 +60,16 @@ export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationSte
   const { t } = useTranslation(['stepper', 'add', 'region-selector', 'versions']);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
-  const [region, setRegion] = useState<TLocation | undefined>();
+  const [region, setRegion] = useState<TLocation | null>();
   const featureFlipping3az = use3AZPlanAvailable();
 
   const { uniqueRegions, contains3AZ } = useHas3AZRegions();
   const has3AZ = contains3AZ && featureFlipping3az;
-  const [selectedDeployment, setSelectedDeployment] = useState<TRegion['type'] | undefined>(
+  const [selectedDeployment, setSelectedDeployment] = useState<DeploymentMode | undefined>(
     undefined,
   );
 
-  const tilesData = uniqueRegions.map((regionType: TRegion['type']) => ({
+  const tilesData = uniqueRegions.map((regionType: DeploymentMode) => ({
     title: t(`add:kubernetes_add_region_title_${regionType}`),
     badge: () =>
       DeploymentMode.MULTI_ZONES === regionType ? (
@@ -83,7 +83,7 @@ export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationSte
   }));
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const { refresh: refreshRegionStatus } = useRefreshProductAvailability(projectId, ovhSubsidiary, {
-    product: 'kubernetes',
+    addonFamily: 'mks',
   });
 
   useEffect(() => {
@@ -106,14 +106,15 @@ export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationSte
     isSuccess: addRegionSuccess,
   } = useAddProjectRegion({
     projectId,
-    onSuccess: (data: TLocation) => {
-      refreshRegionStatus();
+    onSuccess: async (data: TLocation) => {
+      await refreshRegionStatus();
       addSuccess(
         t('region-selector:pci_projects_project_regions_add_region_success', {
           code: data.name,
         }),
       );
-      onSubmit(data);
+
+      onSubmit({ ...data, codes: region?.codes });
       setRegion((reg) => reg && { ...reg, enabled: true });
     },
     onError: (error: ApiError) =>
@@ -139,11 +140,6 @@ export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationSte
 
   return (
     <>
-      {(addRegionError || addRegionSuccess) && (
-        <div className="my-4">
-          <Notifications />
-        </div>
-      )}
       <div className={clsx(step.isLocked && 'hidden')}>
         {has3AZ && (
           <>
