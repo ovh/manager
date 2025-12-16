@@ -9,6 +9,7 @@ import {
   Notifications,
   useResourcesIcebergV6,
   ChangelogButton,
+  useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 import {
@@ -22,8 +23,13 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { toASCII } from 'punycode';
-import appConfig from '@/web-domains.config';
-import { DomainService } from '@/domain/types/domainResource';
+import { FilterWithLabel } from '@ovh-ux/manager-react-components/dist/types/src/components/filters/interface';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  DomainService,
+  DomainServiceStateEnum,
+  TDomainResource,
+} from '@/domain/types/domainResource';
 import { useDomainDatagridColumns } from '@/domain/hooks/useDomainDatagridColumns';
 import RenewRestoreModal from '@/domain/pages/service/serviceList/modalDrawer/RenewRestoreModal';
 import { useDomainExportHandler } from '@/domain/hooks/useDomainExportHandler';
@@ -78,16 +84,15 @@ export default function ServiceList() {
     isError,
     filters,
     error,
-    totalCount,
     hasNextPage,
     fetchNextPage,
     sorting,
     setSorting,
     search,
-  } = useResourcesIcebergV6<DomainService>({
+  } = useResourcesIcebergV2<TDomainResource>({
     columns: domainColumns,
-    route: '/domain',
-    queryKey: ['/domain'],
+    route: '/domain/name',
+    queryKey: ['/domain/name'],
     disableCache: true,
   });
 
@@ -202,12 +207,12 @@ export default function ServiceList() {
           isLoading={isLoading || isFetching}
           columns={domainColumns}
           items={domainResources || []}
-          totalItems={totalCount || 0}
+          totalItems={domainResources?.length || 0}
           hasNextPage={hasNextPage}
           onFetchNextPage={fetchNextPage}
           sorting={sorting}
           onSortChange={setSorting}
-          getRowId={(row) => row.domain}
+          getRowId={(row) => row.id}
           rowSelection={{
             rowSelection,
             setRowSelection,

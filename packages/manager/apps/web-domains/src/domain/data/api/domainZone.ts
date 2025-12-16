@@ -11,13 +11,6 @@ export const getDomainZone = async (
   return data;
 };
 
-export const getServiceOptions = async (
-  serviceId: number,
-): Promise<TServiceOption[]> => {
-  const { data } = await v6.get(`/services/${serviceId}/options`);
-  return data;
-};
-
 export const getServiceDnssec = async (
   serviceName: string,
 ): Promise<DnssecStatus> => {

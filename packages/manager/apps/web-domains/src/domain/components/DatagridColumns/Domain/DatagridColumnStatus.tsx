@@ -8,13 +8,21 @@ import {
 } from '@/domain/types/domainResource';
 import { domainStatusToBadge } from '@/domain/utils/domainStatus';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
+import {
+  AdditionalDomainStateEnum,
+  DomainStateEnum,
+} from '@/domain/enum/domainState.enum';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 
 interface DatagridColumnStatusProps {
   readonly state:
+    | AdditionalDomainStateEnum
     | DomainServiceStateEnum
     | SuspensionStateEnum
     | TransferLockStatusEnum
-    | DnssecStateEnum;
+    | DnssecStateEnum
+    | DomainStateEnum
+    | ProtectionStateEnum;
   readonly mapping: Record<string, StatusDetails>;
 }
 

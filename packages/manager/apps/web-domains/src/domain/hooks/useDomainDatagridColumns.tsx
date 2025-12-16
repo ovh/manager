@@ -8,9 +8,12 @@ import DatagridColumnServiceName from '@/domain/components/DatagridColumns/Domai
 import {
   DomainService,
   NameServerTypeEnum,
+  StatusDetails,
+  TDomainResource,
 } from '@/domain/types/domainResource';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/Domain/DatagridColumnStatus';
 import {
+  additionalDomainStateAsValue,
   DOMAIN_STATE,
   DOMAIN_TRANSFER_LOCK_STATUS,
   SUSPENSION_STATUS,
@@ -24,20 +27,30 @@ import DatagridColumnContact from '@/domain/components/DatagridColumns/Domain/Da
 import DatagridColumnDnsType from '@/domain/components/DatagridColumns/Domain/DatagridColumnDnsType';
 import DatagridColumnDns from '@/domain/components/DatagridColumns/Domain/DatagridColumnDns';
 import DatagridColumnActions from '@/domain/components/DatagridColumns/Domain/DatagridColumnActions';
+import { AdditionalDomainStateEnum } from '../enum/domainState.enum';
 
 interface DomainDatagridColumnsProps {
   readonly openModal: (serviceNames: string[]) => void;
 }
 export const useDomainDatagridColumns = ({
   openModal,
-}: DomainDatagridColumnsProps): DatagridColumn<DomainService>[] => {
+}: DomainDatagridColumnsProps): DatagridColumn<TDomainResource>[] => {
   const { t } = useTranslation('domain');
 
-  const columns: DatagridColumn<DomainService>[] = [
+  const deduplicatedRecord = Object.entries(DOMAIN_STATE).reduce<
+    Record<string, StatusDetails>
+  >((acc, [key, item]) => {
+    if (!Object.values(acc).some((v) => v.i18nKey === item.i18nKey)) {
+      acc[key] = item;
+    }
+    return acc;
+  }, {});
+
+  const columns: DatagridColumn<TDomainResource>[] = [
     {
       id: 'domain',
-      cell: (props: DomainService) => (
-        <DatagridColumnServiceName domainName={props.domain} />
+      cell: (props: TDomainResource) => (
+        <DatagridColumnServiceName domainName={props.id} />
       ),
       comparator: FilterCategories.String,
       label: t('domain_table_header_serviceName'),
@@ -46,10 +59,28 @@ export const useDomainDatagridColumns = ({
       isSearchable: true,
     },
     {
-      id: 'state',
-      cell: (props: DomainService) => (
-        <DatagridColumnStatus state={props.state} mapping={DOMAIN_STATE} />
+      id: 'iam.tags',
+      cell: (props: TDomainResource) => (
+        <DatagridColumnTags tags={props.iam.tags} />
       ),
+      type: FilterTypeCategories.Tags,
+      label: t('domain_table_header_tags'),
+      isFilterable: true,
+      enableHiding: true,
+    },
+    {
+      id: 'state',
+      cell: (props: TDomainResource) => {
+        const procedure = additionalDomainStateAsValue(
+          props.currentState?.additionalStates,
+        ) as AdditionalDomainStateEnum;
+        return (
+          <DatagridColumnStatus
+            state={procedure ? procedure : props.currentState.mainState}
+            mapping={DOMAIN_STATE}
+          />
+        );
+      },
       comparator: FilterCategories.String,
       label: t('domain_table_header_status'),
       isFilterable: true,
@@ -57,9 +88,9 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'suspensionState',
-      cell: (props: DomainService) => (
+      cell: (props: TDomainResource) => (
         <DatagridColumnStatus
-          state={props.suspensionState}
+          state={props.currentState?.suspensionState}
           mapping={SUSPENSION_STATUS}
         />
       ),
@@ -69,9 +100,9 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'transferProtection',
-      cell: (props: DomainService) => (
+      cell: (props: TDomainResource) => (
         <DatagridColumnStatus
-          state={props.transferLockStatus}
+          state={props.currentState?.protectionState}
           mapping={DOMAIN_TRANSFER_LOCK_STATUS}
         />
       ),
@@ -81,8 +112,8 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'renewFrequency',
-      cell: (props: DomainService) => (
-        <DatagridColumnRenewFrequency serviceName={props.domain} />
+      cell: (props: TDomainResource) => (
+        <DatagridColumnRenewFrequency serviceName={props.id} />
       ),
       label: t('domain_table_header_renew_frequency'),
       isFilterable: false,
@@ -90,8 +121,8 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'pendingActions',
-      cell: (props: DomainService) => (
-        <DatagridColumnPendingActions serviceName={props.domain} />
+      cell: (props: TDomainResource) => (
+        <DatagridColumnPendingActions serviceName={props.id} />
       ),
       label: t('domain_table_header_pending_actions'),
       isFilterable: false,
@@ -99,27 +130,17 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'expiration',
-      cell: (props: DomainService) => (
-        <DatagridColumnExpiration serviceName={props.domain} />
+      cell: (props: TDomainResource) => (
+        <DatagridColumnExpiration serviceName={props.id} />
       ),
       label: t('domain_table_header_expiration'),
       isFilterable: false,
       enableHiding: false,
     },
     {
-      id: 'iam.tags',
-      cell: (props: DomainService) => (
-        <DatagridColumnTags tags={props.iam.tags} />
-      ),
-      type: FilterTypeCategories.Tags,
-      label: t('domain_table_header_tags'),
-      isFilterable: true,
-      enableHiding: true,
-    },
-    {
       id: 'dnssec',
-      cell: (props: DomainService) => (
-        <DatagridColumnDnssec serviceName={props.domain} />
+      cell: (props: TDomainResource) => (
+        <DatagridColumnDnssec serviceName={props.id} />
       ),
       label: t('domain_table_header_dnssec'),
       isFilterable: false,
@@ -127,9 +148,11 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'contactOwner.id',
-      cell: (props: DomainService) => (
+      cell: (props: TDomainResource) => (
         <DatagridColumnContact
-          contactId={props.contactOwner.id}
+          contactId={
+            props.currentState?.contactsConfiguration?.contactOwner?.id
+          }
           isOwner={true}
         />
       ),
@@ -140,9 +163,11 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'contactTech.id',
-      cell: (props: DomainService) => (
+      cell: (props: TDomainResource) => (
         <DatagridColumnContact
-          contactId={props.contactTech.id}
+          contactId={
+            props.currentState?.contactsConfiguration?.contactTechnical?.id
+          }
           isOwner={false}
         />
       ),
@@ -153,9 +178,11 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'contactAdmin.id',
-      cell: (props: DomainService) => (
+      cell: (props: TDomainResource) => (
         <DatagridColumnContact
-          contactId={props.contactAdmin.id}
+          contactId={
+            props.currentState?.contactsConfiguration?.contactTechnical?.id
+          }
           isOwner={false}
         />
       ),
@@ -166,9 +193,11 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'contactBilling.id',
-      cell: (props: DomainService) => (
+      cell: (props: TDomainResource) => (
         <DatagridColumnContact
-          contactId={props.contactBilling.id}
+          contactId={
+            props.currentState?.contactsConfiguration?.contactBilling?.id
+          }
           isOwner={false}
         />
       ),
@@ -179,8 +208,10 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'dns',
-      cell: (props: DomainService) => (
-        <DatagridColumnDns dns={props.nameServers} />
+      cell: (props: TDomainResource) => (
+        <DatagridColumnDns
+          dns={props.currentState?.dnsConfiguration?.nameServers}
+        />
       ),
       label: t('domain_tab_name_dns_server'),
       isFilterable: false,
@@ -188,8 +219,10 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'nameServerType',
-      cell: (props: DomainService) => (
-        <DatagridColumnDnsType type={props.nameServerType} />
+      cell: (props: TDomainResource) => (
+        <DatagridColumnDnsType
+          type={props.currentState?.dnsConfiguration?.configurationType}
+        />
       ),
       comparator: FilterCategories.String,
       label: t('domain_dns_table_header_type'),
@@ -232,10 +265,10 @@ export const useDomainDatagridColumns = ({
     },
     {
       id: 'actions',
-      cell: (props: DomainService) => (
+      cell: (props: TDomainResource) => (
         <DatagridColumnActions
-          serviceName={props.domain}
-          mainState={props.state}
+          serviceName={props.id}
+          mainState={props.currentState?.mainState}
           openModal={openModal}
         />
       ),
