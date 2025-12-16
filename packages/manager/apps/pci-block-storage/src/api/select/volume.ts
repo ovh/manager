@@ -23,6 +23,7 @@ import {
   BlockStorageListColumn,
   isBlockStorageListColumn,
 } from '@/hooks/useDatagridColumn';
+import { capitalizeFirstLetter } from '@/utils';
 
 const volumeComparator = <T>(extractor: (_: TVolume) => T) => (
   t1: TVolume,
@@ -134,7 +135,7 @@ export const mapVolumeStatus = <V extends TAPIVolume>(
     statusGroup,
     statusLabel: t('common:pci_projects_project_storages_blocks_status', {
       context: statusGroup,
-      defaultValue: volume.status,
+      defaultValue: capitalizeFirstLetter(volume.status),
     }),
   };
 };
