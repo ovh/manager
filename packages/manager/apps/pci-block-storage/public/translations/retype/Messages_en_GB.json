@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_storages_blocks_retype_cant_retype": "The type modification feature is not available for Classic 3AZ volumes or encrypted volumes",
+  "pci_projects_project_storages_blocks_retype_title": "Change your offer type",
+  "pci_projects_project_storages_blocks_retype_change_type_title": "Select type",
+  "pci_projects_project_storages_blocks_retype_change_encryption_title": "Select encryption",
+  "pci_projects_project_storages_blocks_retype_encryption_not_available": "Encryption is not available in this region",
+  "pci_projects_project_storages_blocks_retype_confirm_action_label": "Enter \"{{ confirmWord }}\" to confirm your choice.",
+  "pci_projects_project_storages_blocks_retype_confirm_action_confirm_button": "Confirm and continue",
+  "pci_projects_project_storages_blocks_retype_detach_volume_label": "Detach your instance",
+  "pci_projects_project_storages_blocks_retype_detach_volume_warning": "To change your offer type, you must detach the volume from its instance {{ instance }}",
+  "pci_projects_project_storages_blocks_retype_detach_volume_error": "An error occurred while detaching the instance. We invite you to visit &lt;0>the block storage page&lt;/0> to detach the instance manually.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_label": "Delete snapshots",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_warning": "To change your offer type, you must first delete the snapshots attached to your volume.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_error": "An error occurred while deleting the snapshots. We invite you to visit &lt;0>the snapshots page&lt;/0> to delete them manually.",
+  "pci_projects_project_storages_blocks_retype_retype_success": "The volume {{ volumeName }} is being modified. This operation may take several minutes. Once it is completed, you will be able to proceed with the usual actions",
+  "pci_projects_project_storages_blocks_retype_retype_error": "An error occurred while changing the type of your volume."
+}
