@@ -1,5 +1,5 @@
 import React from 'react';
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import {
   RegionFilter,
@@ -36,46 +36,33 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
   const hasAp = regionList.some(isRegionInAp);
 
   return (
-    <OdsTabs className="mb-4">
-      <OdsTab
-        isSelected={currentFilter === RegionFilter.all}
-        onClick={removeFilter}
-      >
-        {t('region-selector-all-locations')}
-      </OdsTab>
-      {hasEu && (
-        <OdsTab
-          isSelected={currentFilter === RegionFilter.eu}
-          onClick={() => hasEu && setEuFilter()}
-        >
-          {t('region-selector-eu-filter')}
-        </OdsTab>
-      )}
-      {hasCa && (
-        <OdsTab
-          isSelected={currentFilter === RegionFilter.ca}
-          onClick={() => hasCa && setCaFilter()}
-        >
-          {t('region-selector-ca-filter')}
-        </OdsTab>
-      )}
-      {hasUs && (
-        <OdsTab
-          isSelected={currentFilter === RegionFilter.us}
-          onClick={() => hasUs && setUsFilter()}
-        >
-          {t('region-selector-us-filter')}
-        </OdsTab>
-      )}
-      {hasAp && (
-        <OdsTab
-          isSelected={currentFilter === RegionFilter.ap}
-          onClick={() => hasAp && setApFilter()}
-        >
-          {t('region-selector-ap-filter')}
-        </OdsTab>
-      )}
-    </OdsTabs>
+    <Tabs className="mb-4" value={currentFilter}>
+      <TabList>
+        <Tab value={RegionFilter.all} onClick={removeFilter}>
+          {t('region-selector-all-locations')}
+        </Tab>
+        {hasEu && (
+          <Tab value={RegionFilter.eu} onClick={() => hasEu && setEuFilter()}>
+            {t('region-selector-eu-filter')}
+          </Tab>
+        )}
+        {hasCa && (
+          <Tab value={RegionFilter.ca} onClick={() => hasCa && setCaFilter()}>
+            {t('region-selector-ca-filter')}
+          </Tab>
+        )}
+        {hasUs && (
+          <Tab value={RegionFilter.us} onClick={() => hasUs && setUsFilter()}>
+            {t('region-selector-us-filter')}
+          </Tab>
+        )}
+        {hasAp && (
+          <Tab value={RegionFilter.ap} onClick={() => hasAp && setApFilter()}>
+            {t('region-selector-ap-filter')}
+          </Tab>
+        )}
+      </TabList>
+    </Tabs>
   );
 };
 

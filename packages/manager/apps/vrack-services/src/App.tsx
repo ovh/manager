@@ -2,12 +2,12 @@ import React, { Suspense } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import {
   RouterProvider,
   createHashRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import ComponentRoutes from '@/routes/routes';
 import { MessageContextProvider } from '@/components/feedback-messages/Messages.context';
 

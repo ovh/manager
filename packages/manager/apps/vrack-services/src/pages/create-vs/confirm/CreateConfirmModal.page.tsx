@@ -14,16 +14,18 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_MESSAGE_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsModal,
-  OdsButton,
-  OdsText,
-  OdsMessage,
-} from '@ovhcloud/ods-components/react';
+  MESSAGE_COLOR,
+  BUTTON_VARIANT,
+  TEXT_PRESET,
+  Modal,
+  Button,
+  Text,
+  Message,
+  ModalContent,
+  ModalBody,
+  MessageBody,
+  MessageIcon,
+} from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useCreateVrackServicesCart } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
@@ -71,123 +73,141 @@ export default function CreateConfirmModal() {
   };
 
   return (
-    <OdsModal isOpen isDismissible onOdsClose={cancel}>
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('modalHeadline')}</OdsText>
-      {hasVrackOrderAsked &&
-        !isPending &&
-        !isSendOrderPending &&
-        !isSendOrderError && (
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-            {t('modalDescriptionLine4')}
-          </OdsText>
-        )}
-      {hasVrackServiceOrderAsked &&
-        !isPending &&
-        !isSendOrderPending &&
-        !isSendOrderError && (
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-            {t('modalDescriptionLine5')}
-          </OdsText>
-        )}
-      {(!hasVrackServiceOrderAsked || isPending || isSendOrderPending) && (
-        <>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-            {t('modalDescriptionLine1')}
-          </OdsText>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-            {t('modalDescriptionLine2')}
-          </OdsText>
-        </>
-      )}
-      {isError && (
-        <OdsMessage
-          isDismissible={false}
-          color={ODS_MESSAGE_COLOR.critical}
-          className="block mb-6"
-        >
-          {error?.response?.data?.message}
-        </OdsMessage>
-      )}
-      {isSendOrderError && !isSendOrderError && (
-        <OdsMessage
-          isDismissible={false}
-          color={ODS_MESSAGE_COLOR.critical}
-          className="block mb-6"
-        >
-          {sendOrderError?.response?.data?.message}
-        </OdsMessage>
-      )}
-      {(isPending || isSendOrderPending) && (
-        <LoadingText title={t('modalCreateOrderWaitMessage')} />
-      )}
-      <OdsButton
-        slot="actions"
-        type="button"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-        onClick={cancel}
-      />
-      {data?.contractList?.length > 0 ? (
-        <OrderSubmitModalContent
-          submitButtonLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-          cartId={data?.cartId}
-          contractList={data?.contractList}
-          onSuccess={async () => {
-            await queryClient.invalidateQueries({
-              queryKey: getDeliveringOrderQueryKey(
-                OrderDescription.vrackServices,
-              ),
-            });
+    <Modal
+      open
+      closeOnEscape={!isPending}
+      closeOnInteractOutside={!isPending}
+      onOpenChange={cancel}
+    >
+      <ModalContent dismissible={!isPending}>
+        <ModalBody>
+          <Text preset={TEXT_PRESET.heading4}>{t('modalHeadline')}</Text>
+          {hasVrackOrderAsked &&
+            !isPending &&
+            !isSendOrderPending &&
+            !isSendOrderError && (
+              <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
+                {t('modalDescriptionLine4')}
+              </Text>
+            )}
+          {hasVrackServiceOrderAsked &&
+            !isPending &&
+            !isSendOrderPending &&
+            !isSendOrderError && (
+              <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
+                {t('modalDescriptionLine5')}
+              </Text>
+            )}
+          {(!hasVrackServiceOrderAsked || isPending || isSendOrderPending) && (
+            <>
+              <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
+                {t('modalDescriptionLine1')}
+              </Text>
+              <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
+                {t('modalDescriptionLine2')}
+              </Text>
+            </>
+          )}
+          {isError && (
+            <Message
+              dismissible={false}
+              color={MESSAGE_COLOR.critical}
+              className="mb-6"
+            >
+              <MessageIcon name="hexagon-exclamation" />
+              <MessageBody>{error?.response?.data?.message}</MessageBody>
+            </Message>
+          )}
+          {isSendOrderError && !isSendOrderError && (
+            <Message
+              dismissible={false}
+              color={MESSAGE_COLOR.critical}
+              className="mb-6"
+            >
+              <MessageIcon name="hexagon-exclamation" />
+              <MessageBody>
+                {sendOrderError?.response?.data?.message}
+              </MessageBody>
+            </Message>
+          )}
+          {(isPending || isSendOrderPending) && (
+            <LoadingText title={t('modalCreateOrderWaitMessage')} />
+          )}
+          <div className="flex justify-end gap-4">
+            <Button
+              slot="actions"
+              type="button"
+              variant={BUTTON_VARIANT.ghost}
+              onClick={cancel}
+            >
+              {t('cancel', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+            {data?.contractList?.length > 0 ? (
+              <OrderSubmitModalContent
+                submitButtonLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
+                cartId={data?.cartId}
+                contractList={data?.contractList}
+                onSuccess={async () => {
+                  await queryClient.invalidateQueries({
+                    queryKey: getDeliveringOrderQueryKey(
+                      OrderDescription.vrackServices,
+                    ),
+                  });
 
-            await queryClient.invalidateQueries({
-              queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
-            });
+                  await queryClient.invalidateQueries({
+                    queryKey: getDeliveringOrderQueryKey(
+                      OrderDescription.vrack,
+                    ),
+                  });
 
-            navigate(urls.listing, { state: { fromOrder: true } });
-          }}
-        />
-      ) : (
-        <>
-          <OdsButton
-            slot="actions"
-            type="button"
-            variant={ODS_BUTTON_VARIANT.outline}
-            isDisabled={isPending || isSendOrderPending}
-            onClick={() => {
-              setHasVrackServiceOrderAsked(true);
-              trackClick({
-                ...trackingParams,
-                actions: ['no-vrack', 'confirm'],
-              });
-              createCart({
-                region,
-                hasVrack: false,
-                ovhSubsidiary: environment.user.ovhSubsidiary,
-              });
-            }}
-            label={t('modalNoVrackButtonLabel')}
-          />
-          <OdsButton
-            slot="actions"
-            type="button"
-            isDisabled={isPending || isSendOrderPending}
-            label={t('modalConfirmVrackButtonLabel')}
-            onClick={() => {
-              setHasVrackOrderAsked(true);
-              setHasVrackServiceOrderAsked(true);
-              trackClick({
-                ...trackingParams,
-                actions: ['create-vrack', 'confirm'],
-              });
-              createCart({
-                region,
-                hasVrack: true,
-                ovhSubsidiary: environment.user.ovhSubsidiary,
-              });
-            }}
-          />
-        </>
-      )}
-    </OdsModal>
+                  navigate(urls.listing, { state: { fromOrder: true } });
+                }}
+              />
+            ) : (
+              <>
+                <Button
+                  type="button"
+                  variant={BUTTON_VARIANT.outline}
+                  disabled={isPending || isSendOrderPending}
+                  onClick={() => {
+                    setHasVrackServiceOrderAsked(true);
+                    trackClick({
+                      ...trackingParams,
+                      actions: ['no-vrack', 'confirm'],
+                    });
+                    createCart({
+                      region,
+                      hasVrack: false,
+                      ovhSubsidiary: environment.user.ovhSubsidiary,
+                    });
+                  }}
+                >
+                  {t('modalNoVrackButtonLabel')}
+                </Button>
+                <Button
+                  type="button"
+                  disabled={isPending || isSendOrderPending}
+                  onClick={() => {
+                    setHasVrackOrderAsked(true);
+                    setHasVrackServiceOrderAsked(true);
+                    trackClick({
+                      ...trackingParams,
+                      actions: ['create-vrack', 'confirm'],
+                    });
+                    createCart({
+                      region,
+                      hasVrack: true,
+                      ovhSubsidiary: environment.user.ovhSubsidiary,
+                    });
+                  }}
+                >
+                  {t('modalConfirmVrackButtonLabel')}
+                </Button>
+              </>
+            )}
+          </div>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 }

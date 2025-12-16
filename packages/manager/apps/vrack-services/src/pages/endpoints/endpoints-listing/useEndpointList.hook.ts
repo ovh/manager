@@ -1,4 +1,4 @@
-import { ColumnSort } from '@ovh-ux/manager-react-components';
+import { ColumnSort } from '@tanstack/react-table';
 import { useParams } from 'react-router-dom';
 import {
   useServiceList,
@@ -18,7 +18,7 @@ export type EndpointItem = {
 };
 
 const sortEndpoints = (
-  sorting: ColumnSort,
+  sorting: ColumnSort | undefined,
   iamResources: IAMResource[] = [],
   endpointList: EndpointItem[] = [],
 ) => {
@@ -29,7 +29,7 @@ const sortEndpoints = (
     const resource2 = iamResources?.find(
       (iamResource) => iamResource.urn === e2.managedServiceURN,
     );
-    switch (sorting.id) {
+    switch (sorting?.id ?? '') {
       case 'managedServiceURN':
         return resource1?.displayName?.localeCompare(resource2?.displayName);
       case 'serviceType':
@@ -43,7 +43,7 @@ const sortEndpoints = (
     }
   });
 
-  return sorting.desc ? endpointList.reverse() : endpointList;
+  return sorting?.desc ? endpointList.reverse() : endpointList;
 };
 
 export const useEndpointsList = (sorting: ColumnSort): EndpointItem[] => {

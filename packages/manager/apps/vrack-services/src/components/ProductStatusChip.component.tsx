@@ -1,14 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_BADGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OdsSpinner, OdsBadge } from '@ovhcloud/ods-components/react';
+import { BADGE_COLOR, SPINNER_SIZE, Spinner, Badge } from '@ovhcloud/ods-react';
 import { VrackServicesProductStatus } from '@ovh-ux/manager-network-common';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 const colorByProductStatus = {
-  [VrackServicesProductStatus.ACTIVE]: ODS_BADGE_COLOR.success,
-  [VrackServicesProductStatus.SUSPENDED]: ODS_BADGE_COLOR.neutral,
-  [VrackServicesProductStatus.DRAFT]: ODS_BADGE_COLOR.information,
+  [VrackServicesProductStatus.ACTIVE]: BADGE_COLOR.success,
+  [VrackServicesProductStatus.SUSPENDED]: BADGE_COLOR.neutral,
+  [VrackServicesProductStatus.DRAFT]: BADGE_COLOR.information,
 };
 
 export type ProductStatusChipProps = {
@@ -20,11 +19,10 @@ export const ProductStatusChip: React.FC<ProductStatusChipProps> = ({
 }) => {
   const { t } = useTranslation(NAMESPACES.SERVICE);
   return productStatus ? (
-    <OdsBadge
-      color={colorByProductStatus[productStatus]}
-      label={t(`service_state_${productStatus?.toLowerCase()}`)}
-    />
+    <Badge color={colorByProductStatus[productStatus]}>
+      {t(`service_state_${productStatus?.toLowerCase()}`)}
+    </Badge>
   ) : (
-    <OdsSpinner size={ODS_SPINNER_SIZE.sm} data-testid="status-chip-spinner" />
+    <Spinner size={SPINNER_SIZE.sm} data-testid="status-chip-spinner" />
   );
 };

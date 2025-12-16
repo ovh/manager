@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  DatagridColumn,
-  Datagrid,
-  useDataGrid,
-  DataGridTextCell,
-  ColumnSort,
-  Clipboard,
-} from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+import { DatagridColumn, Datagrid, Clipboard } from '@ovh-ux/muk';
+import { ColumnSort } from '@tanstack/react-table';
 import { useVrackService, Subnet } from '@ovh-ux/manager-network-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { SubnetsActionCell } from './SubnetsActionCell.component';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const sortSubnets = (sorting: ColumnSort, subnetList: Subnet[] = []) => {
   subnetList.sort((s1, s2) => {
-    switch (sorting.id) {
+    switch (sorting?.id ?? '') {
       case 'displayName':
         return s1.displayName?.localeCompare(s2.displayName);
       case 'cidr':
@@ -28,50 +24,80 @@ const sortSubnets = (sorting: ColumnSort, subnetList: Subnet[] = []) => {
     }
   });
 
-  return sorting.desc ? subnetList.reverse() : subnetList;
+  return sorting?.desc ? subnetList.reverse() : subnetList;
 };
 
 export const SubnetDatagrid: React.FC = () => {
-  const { t } = useTranslation(TRANSLATION_NAMESPACES.subnets);
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.subnets,
+    NAMESPACES.DASHBOARD,
+  ]);
   const { data: vs } = useVrackService();
 
-  const { sorting, setSorting } = useDataGrid({
-    id: 'displayName',
-    desc: false,
-  });
+  const [sorting, setSorting] = useState<ColumnSort[]>([
+    {
+      id: 'managedServiceURN',
+      desc: false,
+    },
+  ]);
 
   const subnetList = vs?.currentState.subnets || [];
 
   const columns: DatagridColumn<Subnet>[] = [
     {
       id: 'displayName',
+      header: t('subnetDatagridDisplayNameLabel'),
       label: t('subnetDatagridDisplayNameLabel'),
-      cell: (subnet) => (
-        <DataGridTextCell>{subnet?.displayName}</DataGridTextCell>
+      accessorKey: 'displayName',
+      isSortable: true,
+      cell: (cellContext) => (
+        <Text>
+          {cellContext.row.original?.displayName ??
+            t('none', { ns: NAMESPACES.DASHBOARD })}
+        </Text>
       ),
     },
     {
       id: 'cidr',
+      header: t('subnetDatagridCidrLabel'),
       label: t('subnetDatagridCidrLabel'),
-      cell: ({ cidr }) => <Clipboard value={cidr} />,
+      accessorKey: 'cidr',
+      isSortable: true,
+      cell: (cellContext) => (
+        <Clipboard value={cellContext.row.original.cidr} />
+      ),
     },
     {
       id: 'serviceRange',
+      header: t('subnetDatagridServiceRangeLabel'),
       label: t('subnetDatagridServiceRangeLabel'),
-      cell: ({ serviceRange }) => (
-        <DataGridTextCell>{serviceRange.cidr}</DataGridTextCell>
+      accessorKey: 'serviceRange.cidr',
+      isSortable: true,
+      minSize: 220,
+      cell: (cellContext) => (
+        <Text>{cellContext.row.original.serviceRange.cidr}</Text>
       ),
     },
     {
       id: 'vlan',
+      header: t('subnetDatagridVlanLabel'),
       label: t('subnetDatagridVlanLabel'),
-      cell: ({ vlan }) => <DataGridTextCell>{vlan}</DataGridTextCell>,
+      accessorKey: 'vlan',
+      isSortable: true,
+      maxSize: 50,
+      cell: (cellContext) => <Text>{cellContext.row.original.vlan}</Text>,
     },
     {
       id: 'actions',
+      header: t('subnetDatagridActionsLabel'),
       label: t('subnetDatagridActionsLabel'),
       isSortable: false,
-      cell: ({ cidr }) => <SubnetsActionCell cidr={cidr} vs={vs} />,
+      enableHiding: false,
+      maxSize: 50,
+      minSize: 50,
+      cell: (cellContext) => (
+        <SubnetsActionCell cidr={cellContext.row.original.cidr} vs={vs} />
+      ),
     },
   ];
 
@@ -79,13 +105,14 @@ export const SubnetDatagrid: React.FC = () => {
     <Datagrid
       // wrapperStyle={{ display: 'flex' }}
       // tableStyle={{ minWidth: '700px' }}
-      className="pb-[200px] -mx-6"
       columns={columns}
-      items={sortSubnets(sorting, subnetList)}
-      totalItems={subnetList.length}
-      sorting={sorting}
-      onSortChange={setSorting}
-      noResultLabel={t('subnetsEmptyDataGridMessage')}
+      data={sortSubnets(sorting[0], subnetList)}
+      totalCount={subnetList.length}
+      sorting={{
+        sorting,
+        setSorting,
+        manualSorting: true,
+      }}
     />
   );
 };

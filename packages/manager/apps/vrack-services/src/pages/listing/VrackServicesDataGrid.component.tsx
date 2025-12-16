@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router-dom';
 import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
-import {
-  ColumnSort,
-  DataGridTextCell,
-  Datagrid,
-  DatagridColumn,
-  useDataGrid,
-} from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+import { Datagrid, DatagridColumn } from '@ovh-ux/muk';
 import {
   VrackServicesWithIAM,
   useVrackServicesList,
 } from '@ovh-ux/manager-network-common';
+import { ColumnSort } from '@tanstack/react-table';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
 import { ProductStatusChip } from '@/components/ProductStatusChip.component';
@@ -26,7 +21,7 @@ const sortVrackServicesListing = (
 ) => {
   const vsList = [...originalList];
   vsList.sort((vs1, vs2) => {
-    switch (sorting.id) {
+    switch (sorting?.id ?? '') {
       case 'displayName':
         return getDisplayName(vs1)?.localeCompare(getDisplayName(vs2));
       case 'createdAt':
@@ -48,78 +43,110 @@ const sortVrackServicesListing = (
     }
   });
 
-  return sorting.desc ? vsList.reverse() : vsList;
+  return sorting?.desc ? vsList.reverse() : vsList;
 };
 
 export const VrackServicesDatagrid: React.FC = () => {
   const { t, i18n } = useTranslation(TRANSLATION_NAMESPACES.listing);
 
   const { data } = useVrackServicesList();
-  const { sorting, setSorting } = useDataGrid({
-    id: 'displayName',
-    desc: false,
-  });
+  const [sorting, setSorting] = useState<ColumnSort[]>([
+    {
+      id: 'displayName',
+      desc: false,
+    },
+  ]);
 
   const columns: DatagridColumn<VrackServicesWithIAM>[] = [
     {
       id: 'displayName',
+      header: t('displayName'),
       label: t('displayName'),
-      cell: (vs) => <DisplayName {...vs} isListing />,
+      accessorKey: 'id',
+      isSortable: true,
+      enableHiding: false,
+      cell: (cellContext) => (
+        <DisplayName {...cellContext.row.original} isListing />
+      ),
     },
     {
       id: 'productStatus',
+      header: t('productStatus'),
       label: t('productStatus'),
-      cell: (vs) => (
-        <ProductStatusChip productStatus={vs.currentState.productStatus} />
+      accessorKey: 'productStatus',
+      isSortable: true,
+      enableHiding: false,
+      cell: (cellContext) => (
+        <ProductStatusChip
+          productStatus={cellContext.row.original.currentState.productStatus}
+        />
       ),
     },
     {
       id: 'region',
+      header: t('region'),
       label: t('region'),
-      cell: (vs) => (
-        <DataGridTextCell>{t(vs.currentState.region)}</DataGridTextCell>
+      accessorKey: 'region',
+      isSortable: true,
+      enableHiding: false,
+      cell: (cellContext) => (
+        <Text>{t(cellContext.row.original.currentState.region)}</Text>
       ),
     },
     {
       id: 'vrackId',
+      header: t('vrackId'),
       label: t('vrackId'),
-      cell: (vs) => <VrackId isListing {...vs} />,
+      accessorKey: 'vrackId',
+      isSortable: true,
+      enableHiding: false,
+      cell: (cellContext) => (
+        <VrackId isListing {...cellContext.row.original} />
+      ),
     },
     {
       id: 'createdAt',
+      header: t('createdAt'),
       label: t('createdAt'),
-      cell: (vs) => {
-        const date = new Date(vs.createdAt);
+      accessorKey: 'createdAt',
+      isSortable: true,
+      enableHiding: false,
+      cell: (cellContext) => {
+        const date = new Date(cellContext.row.original.createdAt);
         return (
-          <DataGridTextCell>
+          <Text>
             {date.toString() !== 'Invalid Date'
               ? date.toLocaleDateString(ovhLocaleToI18next(i18n.language))
               : '-'}
-          </DataGridTextCell>
+          </Text>
         );
       },
     },
     {
       id: 'actions',
+      header: '',
       label: '',
       isSortable: false,
-      cell: ActionCell,
+      enableHiding: false,
+      maxSize: 50,
+      minSize: 50,
+      cell: (cellContext) => <ActionCell {...cellContext.row.original} />,
     },
   ];
 
-  return (
-    <>
-      <Datagrid
-        className="pb-[200px] -mx-6"
-        sorting={sorting}
-        onSortChange={setSorting}
-        columns={columns}
-        items={sortVrackServicesListing(sorting, data?.data)}
-        totalItems={data?.data.length}
-        noResultLabel={t('vrackServicesEmptyDataGridMessage')}
-      />
-      <Outlet />
-    </>
+  return data?.data.length ? (
+    <Datagrid
+      sorting={{
+        sorting,
+        setSorting,
+        manualSorting: true,
+      }}
+      columns={columns}
+      data={sortVrackServicesListing(sorting[0], data?.data)}
+      totalCount={data?.data.length}
+    />
+  ) : (
+    <Text>{t('vrackServicesEmptyDataGridMessage')}</Text>
   );
 };
 

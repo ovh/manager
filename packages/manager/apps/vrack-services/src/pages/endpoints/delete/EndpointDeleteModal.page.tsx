@@ -2,15 +2,27 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Text,
+  Modal,
+  ModalBody,
+  ModalContent,
+  TEXT_PRESET,
+  BUTTON_VARIANT,
+  Button,
+  Spinner,
+  SPINNER_SIZE,
+} from '@ovhcloud/ods-react';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Modal } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getEligibleManagedServiceListQueryKey,
@@ -75,37 +87,81 @@ export default function EndpointsDeleteModal() {
 
   return (
     <Modal
-      isOpen
-      onDismiss={onClose}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['delete_endpoints', 'confirm'],
-        });
-        deleteEndpoint({ vs, urnToDelete });
-      }}
-      heading={t('modalDeleteServiceEndpointHeadline')}
-      onSecondaryButtonClick={onClose}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      primaryLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
-      isPrimaryButtonLoading={isPending}
-      isLoading={isLoading}
+      defaultOpen={true}
+      closeOnEscape={!isPending}
+      closeOnInteractOutside={!isPending}
+      onOpenChange={onClose}
     >
-      <OdsText>{t('modalDeleteEndpointDescription')}</OdsText>
-      {isError && (
-        <OdsMessage
-          className="block mb-8"
-          color={ODS_MESSAGE_COLOR.critical}
-          isDismissible={false}
-        >
-          {t('modalError', {
-            error: updateError?.response?.data?.message,
-            ns: TRANSLATION_NAMESPACES.common,
-          })}
-        </OdsMessage>
-      )}
+      <ModalContent>
+        <ModalBody>
+          <div className="flex items-center mb-4">
+            <Text className="block mr-3 flex-1" preset={TEXT_PRESET.heading4}>
+              {t('modalDeleteServiceEndpointHeadline')}
+            </Text>
+          </div>
+
+          {isLoading && (
+            <div data-testid="spinner" className="flex justify-center my-5">
+              <Spinner size={SPINNER_SIZE.md} inline-block></Spinner>
+            </div>
+          )}
+          {!isLoading && (
+            <>
+              <Text>{t('modalDeleteEndpointDescription')}</Text>
+              {isError && (
+                <Message
+                  className="mb-8"
+                  color={MESSAGE_COLOR.critical}
+                  dismissible={false}
+                >
+                  <MessageIcon name="hexagon-exclamation" />
+                  <MessageBody>
+                    {t('modalError', {
+                      error: updateError?.response?.data?.message,
+                      ns: TRANSLATION_NAMESPACES.common,
+                    })}
+                  </MessageBody>
+                </Message>
+              )}
+            </>
+          )}
+          <div className="flex justify-end flex-wrap gap-4">
+            <Button
+              data-testid={'secondary-button'}
+              variant={BUTTON_VARIANT.ghost}
+              onClick={() => {
+                if (!isPending) {
+                  onClose();
+                }
+              }}
+              disabled={isPending}
+              className="mt-4"
+            >
+              {t('cancel', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+            <Button
+              data-testid={'primary-button'}
+              onClick={() => {
+                if (!isPending) {
+                  trackClick({
+                    location: PageLocation.popup,
+                    buttonType: ButtonType.button,
+                    actionType: 'action',
+                    actions: ['delete_endpoints', 'confirm'],
+                  });
+                  deleteEndpoint({ vs, urnToDelete });
+                }
+              }}
+              disabled={isPending || isLoading}
+              loading={isPending || isLoading}
+              variant={BUTTON_VARIANT.default}
+              className="mt-4"
+            >
+              {t('delete', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+          </div>
+        </ModalBody>
+      </ModalContent>
     </Modal>
   );
 }
