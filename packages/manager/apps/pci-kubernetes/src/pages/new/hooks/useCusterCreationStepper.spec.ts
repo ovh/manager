@@ -1,9 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { TLocalisation } from '@ovh-ux/manager-pci-common';
-
-import { UpdatePolicy } from '@/types';
+import { TLocation, UpdatePolicy } from '@/types';
 
 import { useClusterCreationStepper } from './useCusterCreationStepper';
 
@@ -52,7 +50,7 @@ describe('useClusterCreationStepper', () => {
     const mockRegion = {
       name: 'GRA1',
       country: 'FR',
-    } as unknown as TLocalisation;
+    } as unknown as TLocation;
 
     act(() => {
       result.current.location.submit(mockRegion);

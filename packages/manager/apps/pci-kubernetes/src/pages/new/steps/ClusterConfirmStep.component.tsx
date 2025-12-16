@@ -9,6 +9,7 @@ import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-re
 
 import { NodePoolPrice } from '@/api/data/kubernetes';
 import Estimation from '@/components/create/Estimation.component';
+import { isMultiDeploymentZones } from '@/helpers';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
 import useSavingPlanAvailable from '@/hooks/useSavingPlanAvailable';
@@ -22,6 +23,7 @@ export interface BillingStepProps {
   nodePools: NodePoolPrice[];
   plan: TClusterPlan;
   type: DeploymentMode;
+  codes: string[];
 }
 
 export function ClusterConfirmationStep({
@@ -29,13 +31,14 @@ export function ClusterConfirmationStep({
   nodePools,
   plan,
   type,
+  codes,
 }: Readonly<BillingStepProps>) {
   const { t } = useTranslation('stepper');
   const { t: tNode } = useTranslation('node-pool');
   const { projectId } = useParam('projectId');
   const { data: project } = useProject(projectId);
   const isDiscovery = isDiscoveryProject(project as TProject);
-  const { plans } = usePlanData();
+  const { plans } = usePlanData(codes, isMultiDeploymentZones(type));
 
   const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2, {
     exclVat: true,
