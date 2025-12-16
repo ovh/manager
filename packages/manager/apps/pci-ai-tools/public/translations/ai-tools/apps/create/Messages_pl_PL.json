@@ -69,5 +69,6 @@
   "summaryCustomMetricsUrlLabel": "URL: ",
   "summaryCustomMetricsFormatLabel": "Format: {{for}}",
   "summaryCustomMetricsLocationLabel": "Lokalizacja: ",
-  "summaryCustomMetricsTargetValueLabel": "Wartość: {{val}}"
+  "summaryCustomMetricsTargetValueLabel": "Wartość: {{val}}",
+  "warningCLITitle": "Nie można wygenerować równoważnika CLI"
 }
