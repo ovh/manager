@@ -18,7 +18,7 @@ import {
   transferTag,
 } from '@/domain/data/api/domainResources';
 import {
-  DsRecordApiError,
+  DomainUpdateApiError,
   ServiceType,
   TDomainOption,
   TDomainResource,
@@ -158,10 +158,12 @@ export const useTerminateAnycastMutation = (
 
 export const useUpdateDomainResource = (serviceName: string) => {
   const queryClient = useQueryClient();
+  const { addSuccess, addError } = useNotifications();
+  const { t } = useTranslation(['domain', 'web-domains/error']);
 
   const { mutate, isPending, error, reset } = useMutation<
     void,
-    DsRecordApiError,
+    DomainUpdateApiError,
     TUpdateDomainVariables
   >({
     mutationKey: ['domain', 'resource', 'update', serviceName],
@@ -188,8 +190,13 @@ export const useUpdateDomainResource = (serviceName: string) => {
       queryClient.invalidateQueries({
         queryKey: ['domain', 'resource', serviceName],
       });
+      addSuccess(t('domain_tab_general_information_update_success'));
     },
-    onError: () => {},
+    onError: (error: DomainUpdateApiError) => {
+      addError(
+        t('domain_dns_tab_terminate_anycast_error', { error: error.message }),
+      );
+    },
   });
 
   return {

@@ -10,6 +10,8 @@ import {
   DrawerContent,
   DrawerOpenChangeDetail,
   Icon,
+  Message,
+  MessageBody,
   Text,
   TEXT_PRESET,
   Tooltip,
@@ -17,11 +19,15 @@ import {
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import { Trans, useTranslation } from 'react-i18next';
-import { TDomainResource } from '@/domain/types/domainResource';
+import {
+  DomainUpdateApiError,
+  TDomainResource,
+} from '@/domain/types/domainResource';
 import {
   translateContactType,
   translateContactField,
-} from '../../utils/dataProtection';
+} from '@/domain/utils/dataProtection';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 
 interface DataProtectionDrawerProps {
   readonly isDrawerOpen: boolean;
@@ -34,6 +40,8 @@ interface DataProtectionDrawerProps {
     disclosedFields: string[];
   }>;
   readonly selectedContacts: string[];
+  readonly isUpdateDomainPending: boolean;
+  readonly errorMessage: DomainUpdateApiError | null;
   readonly onCheckboxChange: (
     contactKey: string,
     checked: boolean | 'indeterminate',
@@ -47,6 +55,8 @@ export default function DataProtectionDrawer({
   domainResource,
   visibleContacts,
   selectedContacts,
+  isUpdateDomainPending,
+  errorMessage,
   onCheckboxChange,
   onClick,
 }: DataProtectionDrawerProps) {
@@ -70,6 +80,15 @@ export default function DataProtectionDrawer({
       <DrawerContent position={DRAWER_POSITION.right} className="min-w-[28rem]">
         <DrawerBody className="flex flex-col h-full overflow-hidden">
           <div className="flex-1 overflow-y-auto space-y-8 py-8 pl-4">
+            {errorMessage && (
+              <Message color={ODS_MESSAGE_COLOR.critical} dismissible={false}>
+                <MessageBody>
+                  {t('domain_dns_tab_terminate_anycast_error', {
+                    error: errorMessage.message,
+                  })}
+                </MessageBody>
+              </Message>
+            )}
             <Text preset={TEXT_PRESET.heading2}>
               {t('domain_tab_general_information_data_drawer_title')}
             </Text>
@@ -148,6 +167,7 @@ export default function DataProtectionDrawer({
             <Button
               variant="default"
               onClick={handleValidate}
+              loading={isUpdateDomainPending}
               disabled={selectedContacts.length === 0}
             >
               {t(`${NAMESPACES.ACTIONS}:validate`)}

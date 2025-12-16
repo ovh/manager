@@ -310,6 +310,6 @@ export type TUpdateDomainVariables = {
   updatedSpec: Partial<TTargetSpec>;
 };
 
-export type DsRecordApiError = AxiosError<{
+export type DomainUpdateApiError = AxiosError<{
   message: string;
 }>;
