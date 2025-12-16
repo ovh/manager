@@ -1,15 +1,13 @@
 import { useState } from 'react';
 
-import { TLocalisation } from '@ovh-ux/manager-pci-common';
-
 import { NodePoolPrice } from '@/api/data/kubernetes';
-import { TClusterPlan, UpdatePolicy } from '@/types';
+import { TClusterPlan, TLocation, UpdatePolicy } from '@/types';
 
 import { TNetworkFormState } from '../steps/NetworkClusterStep.component';
 import { useStep } from './useStep';
 
 export type TClusterCreationForm = {
-  region: TLocalisation | null;
+  region: TLocation | null;
   version: string;
   updatePolicy: UpdatePolicy | null;
   network: TNetworkFormState | null;
@@ -83,7 +81,7 @@ export function useClusterCreationStepper(has3AZRegions = false) {
         locationStep.unlock();
         [planStep, versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
       },
-      submit: (region: TLocalisation) => {
+      submit: (region: TLocation) => {
         setForm((f) => ({
           ...f,
           region,

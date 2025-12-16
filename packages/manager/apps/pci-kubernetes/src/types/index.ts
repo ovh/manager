@@ -235,7 +235,6 @@ export type TCreateNodePoolParam = {
 
 export type TPlan = {
   title: string;
-  type: DeploymentMode;
   description: string;
   content: string[];
   footer?: string;
@@ -269,3 +268,5 @@ export enum ResourceStatus {
   ERROR = 'ERROR',
   ENABLED = 'ENABLED',
 }
+
+export * from './region';
