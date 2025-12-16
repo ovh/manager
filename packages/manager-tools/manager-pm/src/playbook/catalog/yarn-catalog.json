@@ -33,7 +33,6 @@
   "packages/manager/apps/veeam-enterprise",
   "packages/manager/apps/vps",
   "packages/manager/apps/vrack",
-  "packages/manager/apps/vrack-services",
   "packages/manager/core/api",
   "packages/manager/core/application",
   "packages/manager/core/ovh-product-icons",
