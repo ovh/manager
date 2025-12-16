@@ -1,9 +1,10 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
+  Breadcrumb as OdsBreadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+} from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { urls } from '@/routes/routes.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
@@ -36,7 +37,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       ]
         .filter(Boolean)
         .map((item: { label: string; href?: string; onClick?: () => void }) => (
-          <OdsBreadcrumbItem key={item.label} href={item.href} {...item} />
+          <BreadcrumbItem key={item.label}>
+            <BreadcrumbLink href={item.href} onClick={() => item.onClick?.()}>
+              {item.label}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
         ))}
     </OdsBreadcrumb>
   );

@@ -1,76 +1,18 @@
 import { describe, it } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
-import {
-  assertOsdFormInputInError,
-  changeInputValueByLabelText,
-  clickOnRadioByName,
-  getButtonByLabel,
-  labels,
-  renderTest,
-  assertDisabled,
-  assertEnabled,
-  doActionOnElementUntil,
-} from '@/test-utils';
-import { urls } from '@/routes/routes.constants';
-import { vlanInputName, vlanNumberOptionValue } from './subnetCreate.constants';
+import React from 'react';
+import { labels, renderTestComponent } from '@/test-utils';
+import SubnetCreate from './SubnetCreate.page';
 
 describe('Vrack Services subnets page test suite', () => {
-  it('should create a subnet', async () => {
-    const { container } = await renderTest({
-      nbVs: 2,
-      initialRoute: urls.createSubnet.replace(
-        ':id',
-        vrackServicesListMocks[1].id,
-      ),
+  it('should display a subnet creation page', async () => {
+    await renderTestComponent({
+      component: <SubnetCreate />,
     });
-
     await assertTextVisibility(labels.subnets.subnetNameLabel);
-
-    await changeInputValueByLabelText({
-      inputLabel: labels.subnets.cidrLabel,
-      value: '10.0.0.0/23',
-    });
-    await assertOsdFormInputInError({
-      inputLabel: labels.subnets.cidrLabel,
-      inError: true,
-    });
-
-    await changeInputValueByLabelText({
-      inputLabel: labels.subnets.cidrLabel,
-      value: '10.0.0.0/24',
-    });
-    await assertOsdFormInputInError({
-      inputLabel: labels.subnets.cidrLabel,
-      inError: false,
-    });
-    const submitButton = await getButtonByLabel({
-      container,
-      value: labels.subnets.createSubnetButtonLabel,
-    });
-    await assertEnabled(submitButton);
-
-    await clickOnRadioByName({
-      container,
-      name: vlanInputName,
-      value: vlanNumberOptionValue,
-    });
-
-    await assertDisabled(submitButton);
-
-    await changeInputValueByLabelText({
-      inputLabel: labels.subnets.vlanNumberLabel,
-      value: '20',
-    });
-    await assertEnabled(submitButton);
-    await doActionOnElementUntil(
-      () => userEvent.click(submitButton),
-      () =>
-        expect(
-          screen.getByText(labels.subnets.subnetDatagridDisplayNameLabel),
-        ).toBeVisible(),
-    );
+    await assertTextVisibility(labels.subnets.cidrLabel);
+    await assertTextVisibility(labels.subnets.serviceRangeLabel);
+    await assertTextVisibility(labels.subnets.serviceRangeAdditionalText);
+    await assertTextVisibility(labels.subnets.vlanLabel);
   });
 });

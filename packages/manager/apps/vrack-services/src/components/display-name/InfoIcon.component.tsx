@@ -1,15 +1,17 @@
 import React from 'react';
 import {
-  OdsIcon,
-  OdsMessage,
-  OdsSpinner,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_COLOR,
-  ODS_ICON_NAME,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
+  MESSAGE_COLOR,
+  ICON_NAME,
+  SPINNER_SIZE,
+  Icon,
+  Message,
+  MessageBody,
+  Spinner,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  MessageIcon,
+} from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import {
   VrackServicesResourceStatus,
@@ -34,27 +36,34 @@ export const InfoIcon: React.FC<InfoInconProps> = ({ className, vs }) => {
   return (
     <>
       {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
-        <OdsIcon
-          id={`${vs.id}-info`}
-          className={className}
-          name={ODS_ICON_NAME.triangleExclamation}
-        />
+        <Tooltip>
+          <TooltipTrigger>
+            <Icon
+              id={`${vs.id}-info`}
+              className={className}
+              name={ICON_NAME.triangleExclamation}
+            />
+          </TooltipTrigger>
+          <TooltipContent withArrow>
+            {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
+              <Message dismissible={false} color={MESSAGE_COLOR.warning}>
+                <MessageIcon name="triangle-exclamation" />
+                <MessageBody>
+                  {t('vrackServicesInErrorMessage', { displayName })}
+                </MessageBody>
+              </Message>
+            ) : (
+              t('vrackServicesNotReadyInfoMessage', { displayName })
+            )}
+          </TooltipContent>
+        </Tooltip>
       ) : (
-        <OdsSpinner
+        <Spinner
           className={className}
           style={{ maxWidth: 20 }}
-          size={ODS_SPINNER_SIZE.sm}
+          size={SPINNER_SIZE.sm}
         />
       )}
-      <OdsTooltip triggerId={`${vs.id}-info`} withArrow>
-        {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
-          <OdsMessage isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
-            {t('vrackServicesInErrorMessage', { displayName })}
-          </OdsMessage>
-        ) : (
-          t('vrackServicesNotReadyInfoMessage', { displayName })
-        )}
-      </OdsTooltip>
     </>
   );
 };

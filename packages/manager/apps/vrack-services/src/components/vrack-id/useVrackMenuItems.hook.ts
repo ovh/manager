@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -16,10 +15,19 @@ export type UseVrackMenuItemsParams = {
   isListing?: boolean;
 };
 
+type MenuItem = {
+  id: number;
+  label: string;
+  href?: string;
+  target?: string;
+  isDisabled?: boolean;
+  onClick?: () => void;
+};
+
 export const useVrackMenuItems = ({
   vs,
   isListing,
-}: UseVrackMenuItemsParams): ActionMenuItem[] => {
+}: UseVrackMenuItemsParams): MenuItem[] => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
   const { trackClick } = useOvhTracking();
   const editable = isEditable(vs);

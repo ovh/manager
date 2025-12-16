@@ -8,14 +8,19 @@ import {
   PageType,
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
-import { Modal } from '@ovh-ux/manager-react-components';
-import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
+import { Modal } from '@ovh-ux/muk';
+import {
+  MESSAGE_COLOR,
+  Text,
+  Message,
+  MessageBody,
+  MessageIcon,
+} from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   useVrackService,
   useUpdateVrackServices,
 } from '@ovh-ux/manager-network-common';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { getDisplayName } from '@/utils/vrack-services';
@@ -79,35 +84,42 @@ export default function SubnetDeleteModal() {
 
   return (
     <Modal
-      isOpen
+      open
       heading={t('modalDeleteSubnetHeadline')}
-      onDismiss={onClose}
-      onSecondaryButtonClick={onClose}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      primaryLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          ...sharedTrackingParams,
-          actionType: 'action',
-          actions: ['delete_subnets', 'confirm'],
-        });
-        deleteSubnet({ vs, cidrToDelete });
+      onOpenChange={onClose}
+      primaryButton={{
+        label: t('delete', { ns: NAMESPACES.ACTIONS }),
+        loading: isPending,
+        onClick: () => {
+          trackClick({
+            ...sharedTrackingParams,
+            actionType: 'action',
+            actions: ['delete_subnets', 'confirm'],
+          });
+          deleteSubnet({ vs, cidrToDelete });
+        },
       }}
-      isPrimaryButtonLoading={isPending}
-      isLoading={isLoading}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: onClose,
+      }}
+      loading={isLoading}
     >
-      <OdsText>{t('modalDeleteSubnetDescription')}</OdsText>
+      <Text>{t('modalDeleteSubnetDescription')}</Text>
       {isError && (
-        <OdsMessage
-          isDismissible={false}
-          className="block mb-8"
-          color={ODS_MESSAGE_COLOR.critical}
+        <Message
+          dismissible={false}
+          className="mb-8"
+          color={MESSAGE_COLOR.critical}
         >
-          {t('modalError', {
-            error: updateError?.response?.data?.message,
-            ns: TRANSLATION_NAMESPACES.common,
-          })}
-        </OdsMessage>
+          <MessageIcon name="hexagon-exclamation" />
+          <MessageBody>
+            {t('modalError', {
+              error: updateError?.response?.data?.message,
+              ns: TRANSLATION_NAMESPACES.common,
+            })}
+          </MessageBody>
+        </Message>
       )}
     </Modal>
   );

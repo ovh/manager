@@ -1,17 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_TEXT_PRESET,
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_MESSAGE_COLOR,
-} from '@ovhcloud/ods-components';
-import {
-  OdsText,
-  OdsSpinner,
-  OdsButton,
-  OdsMessage,
-} from '@ovhcloud/ods-components/react';
+  TEXT_PRESET,
+  BUTTON_VARIANT,
+  SPINNER_SIZE,
+  MESSAGE_COLOR,
+  Text,
+  Spinner,
+  Button,
+  Message,
+  MessageIcon,
+  MessageBody,
+} from '@ovhcloud/ods-react';
 import {
   OrderDescription,
   getDeliveringOrderQueryKey,
@@ -76,13 +76,13 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
 
   return (
     <>
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+      <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
         {t('modalVrackCreationDescriptionLine1')}
-      </OdsText>
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+      </Text>
+      <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
         {t('modalVrackCreationDescriptionLine2')}
-      </OdsText>
-      {areVrackOrdersLoading && <OdsSpinner size={ODS_SPINNER_SIZE.md} />}
+      </Text>
+      {areVrackOrdersLoading && <Spinner size={SPINNER_SIZE.md} />}
       <DeliveringMessages
         messageKey="deliveringVrackMessage"
         orders={vrackDeliveringOrders}
@@ -91,23 +91,23 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         <LoadingText title={t('modalVrackCreationOrderWaitMessage')} />
       )}
       {(isVrackOrdersError || isError) && (
-        <OdsMessage
-          className="block"
-          isDismissible={false}
-          color={ODS_MESSAGE_COLOR.critical}
-        >
-          {isVrackOrdersError
-            ? t('modalVrackCreationError', { error: vrackOrdersError })
-            : error?.response?.data?.message}
-        </OdsMessage>
+        <Message dismissible={false} color={MESSAGE_COLOR.critical}>
+          <MessageIcon name="hexagon-exclamation" />
+          <MessageBody>
+            {isVrackOrdersError
+              ? t('modalVrackCreationError', { error: vrackOrdersError })
+              : error?.response?.data?.message}
+          </MessageBody>
+        </Message>
       )}
-      <OdsButton
+      <Button
         slot="actions"
         type="button"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
+        variant={BUTTON_VARIANT.ghost}
         onClick={closeModal}
-      />
+      >
+        {t('cancel', { ns: NAMESPACES.ACTIONS })}
+      </Button>
       {data?.contractList?.length > 0 ? (
         <OrderSubmitModalContent
           submitButtonLabel={t('modalVrackCreationSubmitOrderButtonLabel')}
@@ -125,16 +125,15 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
           }}
         />
       ) : (
-        <OdsButton
+        <Button
           slot="actions"
           type="button"
-          isDisabled={
+          disabled={
             areVrackOrdersLoading ||
             vrackDeliveringOrders.length > 0 ||
             isVrackOrdersError ||
             isPending
           }
-          label={t('modalCreateNewVrackButtonLabel')}
           onClick={() => {
             trackClick({
               ...trackingParams,
@@ -142,7 +141,9 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
             });
             createCart();
           }}
-        />
+        >
+          {t('modalCreateNewVrackButtonLabel')}
+        </Button>
       )}
     </>
   );
