@@ -48,6 +48,10 @@ import {
   TVolumeToRetype,
   TVolumeType,
 } from '@/api/select/volume';
+import {
+  forceReloadUseQueryOptions,
+  TApiHookOptions,
+} from '@/api/hooks/helpers';
 
 export type TVolume = TAPIVolume &
   TVolumeAttach &
@@ -126,10 +130,15 @@ export const getVolumeQueryKey = (projectId: string, volumeId: string) => [
   volumeId,
 ];
 
-export const getVolumeQuery = (projectId: string, volumeId: string) => ({
+export const getVolumeQuery = (
+  projectId: string,
+  volumeId: string,
+  options: TApiHookOptions = {},
+) => ({
   queryKey: getVolumeQueryKey(projectId, volumeId),
   queryFn: () => getVolume(projectId, volumeId),
   enabled: !!volumeId,
+  ...(options.forceReload && forceReloadUseQueryOptions),
 });
 
 export type UseVolumeResult =
@@ -144,11 +153,11 @@ export type UseVolumeResult =
 export const useVolume = (
   projectId: string,
   volumeId: string,
-  capacity?: number,
+  options: TApiHookOptions & { capacity?: number } = {},
 ) => {
   const [{ data, ...restQuery }, { data: catalogData }] = useQueries({
     queries: [
-      getVolumeQuery(projectId, volumeId),
+      getVolumeQuery(projectId, volumeId, options),
       getVolumeCatalogQuery(projectId),
     ],
   });
@@ -164,9 +173,14 @@ export const useVolume = (
         mapVolumeEncryption(t, catalogData),
         mapVolumeStatus(t),
         mapVolumeRegion(t),
-        mapVolumePricing(catalogData, getFormattedCatalogPrice, t, capacity),
+        mapVolumePricing(
+          catalogData,
+          getFormattedCatalogPrice,
+          t,
+          options?.capacity,
+        ),
       ),
-    [catalogData, t, getFormattedCatalogPrice, capacity],
+    [catalogData, t, getFormattedCatalogPrice, options?.capacity],
   );
 
   return {
@@ -414,13 +428,13 @@ export const useRetypeVolume = ({
     mutationFn,
     onError,
     onSuccess: async () => {
+      onSuccess(volume);
       await queryClient.invalidateQueries({
         queryKey: getVolumeQueryKey(projectId, volumeId),
       });
       await queryClient.invalidateQueries({
         queryKey: getVolumesQueryKey(projectId),
       });
-      onSuccess(volume);
     },
   });
 
