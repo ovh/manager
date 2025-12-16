@@ -20,7 +20,7 @@ import { useProjectUrl } from '@ovh-ux/manager-react-components';
 
 import { TNetworkRegion } from '@/api/data/network';
 import { TGateway } from '@/api/data/subnets';
-import { isValidGateway3AZ } from '@/pages/new/steps/NetworkClusterStep.component';
+import { isValidGateway3AZ } from '@/pages/new_legacy/steps/NetworkClusterStep.component';
 import { DeploymentMode } from '@/types';
 
 type Props = {
