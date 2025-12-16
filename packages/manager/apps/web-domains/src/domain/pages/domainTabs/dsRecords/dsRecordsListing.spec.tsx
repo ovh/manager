@@ -36,6 +36,7 @@ vi.mock('@/domain/utils/utils', async () => {
 describe('DS Records Columns', () => {
   const setDrawer = vi.fn();
   const setDsRecordsData = vi.fn();
+  const setIsModalOpen = vi.fn();
   const activeConfiguration = ActiveConfigurationTypeEnum.EXTERNAL;
 
   it('should return the correct number of column', () => {
@@ -44,6 +45,7 @@ describe('DS Records Columns', () => {
         useDomainDsRecordsDatagridColumns({
           setDrawer,
           setDsRecordsData,
+          setIsModalOpen,
           activeConfiguration,
         }),
       { wrapper },
@@ -59,6 +61,7 @@ describe('DS Records Columns', () => {
         useDomainDsRecordsDatagridColumns({
           setDrawer,
           setDsRecordsData,
+          setIsModalOpen,
           activeConfiguration,
         }),
       { wrapper },

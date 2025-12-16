@@ -1,40 +1,41 @@
-import { urls } from '@/domain/routes/routes.constant';
-import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import {
-  useGetDomainResource,
-  useUpdateDomainResource,
-} from '@/domain/hooks/data/query';
+import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { Dispatch, SetStateAction } from 'react';
+import { TDomainResource } from '@/domain/types/domainResource';
 
-export default function DsRecordsDelete() {
+interface DsRecordsDeleteModalProps {
+  readonly isModalOpen: boolean;
+  readonly serviceName: string;
+  readonly keyTag: number;
+  readonly domainResource: TDomainResource;
+  readonly setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function DsRecordsDeleteModal({
+  isModalOpen,
+  serviceName,
+  keyTag,
+  domainResource,
+  setIsModalOpen,
+}: DsRecordsDeleteModalProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
-  const { serviceName, keyTag } = useParams();
-  const url = useGenerateUrl(urls.domainTabDsrecords, 'path', { serviceName });
-  const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { updateDomain, isUpdateDomainPending } = useUpdateDomainResource(
     serviceName,
   );
-  const { domainResource, isFetchingDomainResource } = useGetDomainResource(
-    serviceName,
-  );
-
-  const backToListingPage = () => navigate(url);
 
   return (
     <Modal
-      isOpen
+      isOpen={isModalOpen}
       type={ODS_MODAL_COLOR.critical}
       heading={t('domain_tab_dsrecords_modal_delete_title')}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={() => backToListingPage()}
-      isLoading={isFetchingDomainResource}
+      onSecondaryButtonClick={() => setIsModalOpen(false)}
       isPrimaryButtonLoading={isUpdateDomainPending}
       onPrimaryButtonClick={() => {
         updateDomain(
@@ -61,7 +62,7 @@ export default function DsRecordsDelete() {
               addError(t('domain_tab_dsrecords_modal_delete_error_message'));
             },
             onSettled: () => {
-              backToListingPage();
+              setIsModalOpen(false);
             },
           },
         );

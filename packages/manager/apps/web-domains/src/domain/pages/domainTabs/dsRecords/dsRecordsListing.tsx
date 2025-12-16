@@ -10,7 +10,7 @@ import {
   MessageBody,
   MessageIcon,
 } from '@ovhcloud/ods-react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
 import {
@@ -29,12 +29,14 @@ import { DrawerActionEnum } from '@/common/enum/common.enum';
 import DsRecordsDrawer from '@/domain/components/DsRecords/DsRecordsDrawer';
 import { computeActiveConfiguration } from '@/domain/utils/dnsUtils';
 import { flagsValue } from '@/domain/constants/dsRecords';
+import DsRecordsDeleteModal from '@/domain/components/DsRecords/DsRecordsDeleteModal';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const { serviceName } = useParams();
   const { domainResource } = useGetDomainResource(serviceName);
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [items, setItems] = useState<TDsDataInterface[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [drawer, setDrawer] = useState<DrawerBehavior>({
@@ -124,6 +126,7 @@ export default function DsRecordsListing() {
   const columns = useDomainDsRecordsDatagridColumns({
     setDrawer,
     setDsRecordsData,
+    setIsModalOpen,
     activeConfiguration,
   });
 
@@ -175,7 +178,13 @@ export default function DsRecordsListing() {
         }
         dsRecordsData={dsRecordsData}
       />
-      <Outlet />
+      <DsRecordsDeleteModal
+        isModalOpen={isModalOpen}
+        serviceName={serviceName}
+        setIsModalOpen={setIsModalOpen}
+        domainResource={domainResource}
+        keyTag={dsRecordsData.keyTag}
+      />
     </div>
   );
 }

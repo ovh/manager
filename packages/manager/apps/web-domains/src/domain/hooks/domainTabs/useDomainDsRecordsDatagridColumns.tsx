@@ -16,12 +16,14 @@ import { isDsRecordActionDisabled } from '@/domain/utils/utils';
 interface useDomainDsRecordsDatagridColumnsProps {
   readonly setDrawer: Dispatch<SetStateAction<DrawerBehavior>>;
   readonly setDsRecordsData: Dispatch<SetStateAction<TDsDataInterface>>;
+  readonly setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   readonly activeConfiguration: ActiveConfigurationTypeEnum;
 }
 
 export const useDomainDsRecordsDatagridColumns = ({
   setDrawer,
   setDsRecordsData,
+  setIsModalOpen,
   activeConfiguration,
 }: useDomainDsRecordsDatagridColumnsProps) => {
   const { t } = useTranslation(['domain', NAMESPACES.STATUS]);
@@ -95,7 +97,10 @@ export const useDomainDsRecordsDatagridColumns = ({
               id: 2,
               label: t(`${NAMESPACES.ACTIONS}:delete`),
               color: ODS_BUTTON_COLOR.critical,
-              onClick: () => navigate(`${props.keyTag}/delete`),
+              onClick: () => {
+                setDsRecordsData(props);
+                setIsModalOpen(true);
+              },
             },
           ]}
           id={`${props.publicKey}`}

@@ -190,12 +190,6 @@ export const useUpdateDomainResource = (serviceName: string) => {
       queryClient.invalidateQueries({
         queryKey: ['domain', 'resource', serviceName],
       });
-      addSuccess(t('domain_tab_general_information_update_success'));
-    },
-    onError: (error: DomainUpdateApiError) => {
-      addError(
-        t('domain_dns_tab_terminate_anycast_error', { error: error.message }),
-      );
     },
   });
 

@@ -1,6 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import {
+  ManagerTile,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import {
   useGetDnssecStatus,
   useGetDomainAnycastOption,
@@ -65,6 +68,7 @@ export default function ConfigurationCards({
   const { dnssecStatus, isDnssecStatusLoading } = useGetDnssecStatus(
     serviceName,
   );
+  const { addError, addSuccess } = useNotifications();
 
   const { updateServiceDnssec } = useUpdateDnssecService(
     serviceName,
@@ -195,6 +199,14 @@ export default function ConfigurationCards({
       {
         onSuccess: () => {
           setDataProtectionDrawerOpened(false);
+          addSuccess(t('domain_tab_general_information_update_success'));
+        },
+        onError: (error) => {
+          addError(
+            t('domain_dns_tab_terminate_anycast_error', {
+              error: error.response.data.message,
+            }),
+          );
         },
       },
     );
