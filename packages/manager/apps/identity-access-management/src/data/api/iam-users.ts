@@ -59,7 +59,7 @@ export const updateIamUserToken = async (
 ) => {
   const updatePayload = {...payload};
   delete updatePayload.name;
-  const { data } = await apiClient.v6.post<IamUserToken>(
+  const { data } = await apiClient.v6.put<IamUserToken>(
     `/me/identity/user/${userId}/token/${payload.name}`,
     updatePayload,
   );

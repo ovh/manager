@@ -7,49 +7,24 @@ import {
   OdsText,
   OdsSelect,
   OdsDatepicker,
-  OdsTimepicker,
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 
-// TODO: fix typing error for OdsToggle's defaultValue.
-type TOdsToggleDefaultValue =
-  | (false & readonly string[])
-  | (true & readonly string[]);
-
-export type ExpiryDateModel = {
-  active: boolean;
-  mode: 'duration' | 'date';
-  expiresAt: Date | null;
-  expiresIn: number | null;
-};
-
-const SECONDS_IN_MINUTE = 60;
-const SECONDS_IN_HOUR = 60 * 60;
-const SECONDS_IN_DAY = 60 * 60 * 24;
-
-export const DEFAULT_EXPIRY_DATE_MODEL: ExpiryDateModel = {
-  active: false,
-  mode: 'duration',
-  expiresAt: new Date(),
-  expiresIn: SECONDS_IN_HOUR,
-};
+import { ExpiryDateModel, TOdsToggleDefaultValue } from '@/types/expiryDate';
+import {
+  SECONDS_IN_MINUTE,
+  SECONDS_IN_HOUR,
+  SECONDS_IN_DAY,
+  MINUTES_OPTIONS,
+  HOURS_OPTIONS,
+} from '@/utils/expiryDateUtils';
 
 enum Unit {
   MINUTES = 'minutes',
   HOURS = 'hours',
   DAYS = 'days',
 }
-
-const MINUTES_OPTIONS = Array.from({ length: 59 }, (_, i) => ({
-  value: i + 1,
-  label: `${i + 1}`,
-}));
-
-const HOURS_OPTIONS = Array.from({ length: 23 }, (_, i) => ({
-  value: i + 1,
-  label: `${i + 1}`,
-}));
 
 export default function ExpiryDateInput({
   model,
@@ -65,18 +40,20 @@ export default function ExpiryDateInput({
   const [days, setDays] = useState<number>(1);
 
   const setExpiresIn = (unit: Unit, value: number) => {
-    if (!model.active || model.mode !== 'duration') { return; }
+    if (!model.active || model.mode !== 'duration') {
+      return;
+    }
     switch (unit) {
       case Unit.MINUTES:
-        setModel({...model, expiresIn: value * SECONDS_IN_MINUTE })
+        setModel({ ...model, expiresIn: value * SECONDS_IN_MINUTE });
         setMinutes(value);
         break;
       case Unit.HOURS:
-        setModel({...model, expiresIn: value * SECONDS_IN_HOUR })
+        setModel({ ...model, expiresIn: value * SECONDS_IN_HOUR });
         setHours(value);
         break;
       case Unit.DAYS:
-        setModel({...model, expiresIn: value * SECONDS_IN_DAY })
+        setModel({ ...model, expiresIn: value * SECONDS_IN_DAY });
         setDays(value);
         break;
     }
@@ -88,6 +65,7 @@ export default function ExpiryDateInput({
         <OdsToggle
           id="hasExpiryDate"
           name="hasExpiryDate"
+          data-testid="hasExpiryDate"
           defaultValue={(model.active as unknown) as TOdsToggleDefaultValue}
           onOdsChange={(e) => {
             const active = e.detail.value;
@@ -109,6 +87,7 @@ export default function ExpiryDateInput({
           <div className="flex gap-4 items-center">
             <OdsRadio
               inputId="expiryDateType-duration"
+              data-testid="expiryDateType-duration"
               name="expiryDateType"
               value="duration"
               isChecked={model.mode === 'duration'}
@@ -124,6 +103,7 @@ export default function ExpiryDateInput({
           <div className="flex gap-4 items-center">
             <OdsRadio
               inputId="expiryDateType-date"
+              data-testid="expiryDateType-date"
               name="expiryDateType"
               value="date"
               isChecked={model.mode === 'date'}
@@ -142,6 +122,7 @@ export default function ExpiryDateInput({
           <div className="flex flex-row gap-4">
             <OdsSelect
               name="expiryDateUnit"
+              data-testid="expiryDateUnit"
               value={unit}
               onOdsChange={(e) => setUnit(e.detail.value as Unit)}
               isDisabled={!model.active}
@@ -160,8 +141,11 @@ export default function ExpiryDateInput({
             {unit === 'minutes' && (
               <OdsSelect
                 name="expiryDateMinutes"
+                data-testid="expiryDateMinutes"
                 value={`${minutes}`}
-                onOdsChange={e => setExpiresIn(Unit.MINUTES, parseInt(e.detail.value, 10))}
+                onOdsChange={(e) =>
+                  setExpiresIn(Unit.MINUTES, parseInt(e.detail.value, 10))
+                }
                 isDisabled={!model.active}
               >
                 {MINUTES_OPTIONS.map(({ value, label }) => (
@@ -175,8 +159,11 @@ export default function ExpiryDateInput({
             {unit === 'hours' && (
               <OdsSelect
                 name="expiryDateHours"
+                data-testid="expiryDateHours"
                 value={`${hours}`}
-                onOdsChange={e => setExpiresIn(Unit.HOURS, parseInt(e.detail.value, 10))}
+                onOdsChange={(e) =>
+                  setExpiresIn(Unit.HOURS, parseInt(e.detail.value, 10))
+                }
                 isDisabled={!model.active}
               >
                 {HOURS_OPTIONS.map(({ value, label }) => (
@@ -191,8 +178,9 @@ export default function ExpiryDateInput({
               <OdsQuantity
                 id="expiryDateDays"
                 name="expiryDateDays"
+                data-testid="expiryDateDays"
                 value={days}
-                onOdsChange={e => setExpiresIn(Unit.DAYS, e.detail.value)}
+                onOdsChange={(e) => setExpiresIn(Unit.DAYS, e.detail.value)}
                 min={1}
                 isDisabled={!model.active}
               />
@@ -202,6 +190,7 @@ export default function ExpiryDateInput({
         {model.mode === 'date' && (
           <OdsDatepicker
             name="ExpiryDateValue"
+            data-testid="ExpiryDateValue"
             value={model.expiresAt}
             onOdsChange={(e) =>
               setModel({ ...model, expiresAt: e.detail.value || null })

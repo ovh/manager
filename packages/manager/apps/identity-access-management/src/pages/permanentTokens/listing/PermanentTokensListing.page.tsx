@@ -69,11 +69,12 @@ export default function PermanentTokensListing() {
   } = useIamUserTokenList({ userId, columns, pageSize: 10 });
 
   const handleReturnLink = () => {
+    // TODO: tracking
     shell?.navigation.navigateTo('', '/iam/identities/users', {});
   };
 
   const handleCreateToken = () => {
-    console.log('[default] todo');
+    // TODO: tracking
     navigate(subRoutes.permanentTokensAdd);
   };
 

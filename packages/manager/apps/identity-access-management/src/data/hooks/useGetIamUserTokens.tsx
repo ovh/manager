@@ -53,7 +53,7 @@ export const useGetIamUserToken = ({
 }) => {
   return useQuery<IamUserToken, ApiError>({
     queryKey: getIamUserTokenQueryKey(userId, token),
-    enabled: token && token !== '',
+    enabled: !!token,
     queryFn: () => getIamUserToken(userId, token),
   });
 };
@@ -103,6 +103,9 @@ export const useUpdateIamUserToken = ({
     onSuccess: (payload: IamUserTokenPayload) => {
       void queryClient.invalidateQueries({
         queryKey: getIamUserTokenQueryKey(userId, payload.name),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: getIamUserTokenListQueryKey(userId),
       });
       onSuccess(payload);
     },

@@ -6,6 +6,7 @@ import {
   OdsFormField,
   OdsInput,
   OdsTextarea,
+  OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -17,10 +18,9 @@ import {
   useUpdateIamUserToken,
 } from '@/data/hooks/useGetIamUserTokens';
 import { IamUserTokenPayload } from '@/data/api/iam-users';
-import ExpiryDateInput, {
-  ExpiryDateModel,
-  DEFAULT_EXPIRY_DATE_MODEL,
-} from '@/pages/permanentTokens/components/ExpiryDateInput.component';
+import ExpiryDateInput from '@/pages/permanentTokens/components/ExpiryDateInput.component';
+import { ExpiryDateModel } from '@/types/expiryDate';
+import { DEFAULT_EXPIRY_DATE_MODEL } from '@/utils/expiryDateUtils';
 
 export default function PermanentTokensAdd() {
   const { t } = useTranslation(['permanent-tokens', NAMESPACES.ACTIONS]);
@@ -32,7 +32,10 @@ export default function PermanentTokensAdd() {
   const isCreationMode = !tokenId;
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [expiryModel, setExpiryModel] = useState<ExpiryDateModel>(DEFAULT_EXPIRY_DATE_MODEL);
+  const [formDataLoaded, setFormDataLoaded] = useState<boolean>(!tokenId);
+  const [expiryModel, setExpiryModel] = useState<ExpiryDateModel>(
+    DEFAULT_EXPIRY_DATE_MODEL,
+  );
 
   const {
     data: tokenData,
@@ -55,6 +58,7 @@ export default function PermanentTokensAdd() {
           expiresIn: null,
         });
       }
+      setFormDataLoaded(true);
     }
   }, [isCreationMode, isTokenLoading, isTokenError, tokenData]);
 
@@ -102,6 +106,7 @@ export default function PermanentTokensAdd() {
   };
 
   const handleCancel = () => {
+    // TODO: add tracking
     goBack();
   };
 
@@ -123,33 +128,41 @@ export default function PermanentTokensAdd() {
       onDismiss={handleCancel}
       isOpen
     >
-      <OdsFormField className="mb-6">
-        <label htmlFor="tokenName" slot="label">
-          {t('iam_user_token_modal_field_name_label')}
-        </label>
-        <OdsInput
-          type={ODS_INPUT_TYPE.text}
-          name="tokenName"
-          value={name}
-          onOdsChange={(e) => setName(e.detail.value as string)}
-          placeholder={t('iam_user_token_modal_field_name_placeholder')}
-          isDisabled={!isCreationMode}
-        />
-      </OdsFormField>
-      <OdsFormField className="mb-6">
-        <label htmlFor="tokenDescription" slot="label">
-          {t('iam_user_token_modal_field_description_label')}
-        </label>
-        <OdsTextarea
-          name="tokenDescription"
-          value={description}
-          onOdsChange={(e) => setDescription(e.detail.value as string)}
-          placeholder={t('iam_user_token_modal_field_description_placeholder')}
-          rows={3}
-        />
-      </OdsFormField>
+      {!formDataLoaded && <OdsSpinner />}
 
-      <ExpiryDateInput model={expiryModel} setModel={setExpiryModel} />
+      {formDataLoaded && (
+        <>
+          <OdsFormField className="mb-6">
+            <label htmlFor="tokenName" slot="label">
+              {t('iam_user_token_modal_field_name_label')}
+            </label>
+            <OdsInput
+              type={ODS_INPUT_TYPE.text}
+              name="tokenName"
+              value={name}
+              onOdsChange={(e) => setName(e.detail.value as string)}
+              placeholder={t('iam_user_token_modal_field_name_placeholder')}
+              isDisabled={!isCreationMode}
+              data-testid="tokenName"
+            />
+          </OdsFormField>
+          <OdsFormField className="mb-6">
+            <label htmlFor="tokenDescription" slot="label">
+              {t('iam_user_token_modal_field_description_label')}
+            </label>
+            <OdsTextarea
+              name="tokenDescription"
+              value={description}
+              onOdsChange={(e) => setDescription(e.detail.value as string)}
+              placeholder={t('iam_user_token_modal_field_description_placeholder')}
+              rows={3}
+              data-testid="tokenDescription"
+            />
+          </OdsFormField>
+
+          <ExpiryDateInput model={expiryModel} setModel={setExpiryModel} />
+        </>
+      )}
     </Modal>
   );
 }

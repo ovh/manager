@@ -27,5 +27,11 @@ export function Actions({ token }: { token: IamUserToken }) {
       href: deleteHref,
     },
   ];
-  return <ActionMenu id="manage-tokens-actions" items={items} isCompact />;
+  return (
+    <ActionMenu
+      id={`manage-tokens-actions_${token.name}`}
+      items={items}
+      isCompact
+    />
+  );
 }
