@@ -16,7 +16,6 @@ import {
   WebHostingWebsiteType,
 } from '@/data/types/product/webHosting';
 import { GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
-import { useHostingUrl } from '@/hooks/useHostingUrl';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 interface ActionButtonMultisiteProps {
@@ -43,10 +42,6 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
   const navigate = useNavigate();
   const { t } = useTranslation('common');
   const { serviceName } = useParams();
-  const configureGitLink = useHostingUrl(
-    serviceName,
-    `multisite/git-configuration?path=${path ?? ''}`,
-  );
   const { data: websites = [] } = useWebHostingWebsite(serviceName) as {
     data?: WebHostingWebsiteType[];
     isLoading: boolean;
@@ -130,13 +125,18 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
               urls.associateGit
                 .replace(subRoutes.serviceName, serviceName)
                 .replace(subRoutes.path, path ?? ''),
-              { state: { serviceName, path } },
             ),
           label: t('associate_git'),
         }),
         actionCondition(canConfigureGit, {
           id: 7,
-          onClick: () => window.location.replace(configureGitLink),
+          onClick: () =>
+            navigate(
+              urls.associateGit
+                .replace(subRoutes.serviceName, serviceName)
+                .replace(subRoutes.path, path ?? ''),
+              { state: { isConfiguration: true } },
+            ),
           label: t('configure_git'),
         }),
         actionCondition(canDeployGit, {
@@ -263,7 +263,6 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     path,
     domainId,
     domain,
-    configureGitLink,
     service,
   ]);
 
