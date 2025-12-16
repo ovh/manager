@@ -55,6 +55,7 @@
   "packages/manager/apps/pci-volume-backup",
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/pci-vouchers",
+  "packages/manager/apps/vrack-services",
   "packages/manager/apps/pci-workflow",
   "packages/manager/apps/sms",
   "packages/manager/apps/telecom",

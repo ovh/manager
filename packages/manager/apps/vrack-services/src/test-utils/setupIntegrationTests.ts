@@ -144,6 +144,14 @@ if (!HTMLElement.prototype.attachInternals) {
     reportValidity: vi.fn(),
     setValidity: vi.fn(),
     validationMessage: null,
+    ariaActiveDescendantElement: null,
+    ariaControlsElements: [],
+    ariaDescribedByElements: [],
+    ariaDetailsElements: [],
+    ariaErrorMessageElements: [],
+    ariaFlowToElements: [],
+    ariaLabelledByElements: [],
+    ariaOwnsElements: []
   });
 }
 
