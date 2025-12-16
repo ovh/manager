@@ -3,50 +3,47 @@ import { ApiResponse, v2 } from '@ovh-ux/manager-core-api';
 import { Agent } from '@/types/Agent.type';
 import { AgentDownloadLinks } from '@/types/AgentDownloadLinks';
 import { Resource } from '@/types/Resource.type';
+import {
+  GetBackupAgentParams,
+  getBackupAgentDetailsRoute,
+  getManagementAgentsRoute,
+} from '@/utils/apiRoutes';
 
-export const getBackupAgentsListRoute = (tenantId: string, vspcTenantId: string) =>
-  `/backupServices/tenant/${tenantId}/vspc/${vspcTenantId}/backupAgent`;
-
-export const getBackupAgentsDetailsRoute = (tenantId: string, vspcTenantId: string, backupAgentId: string) =>
-  `/backupServices/tenant/${tenantId}/vspc/${vspcTenantId}/backupAgent/${backupAgentId}`;
-
-export const getEditConfigurationBackupAgentsRoute = (
-  tenantId: string, vspcTenantId: string,
-  backupAgentId: string,
-) => `/backupServices/tenant/${tenantId}/vspc/${vspcTenantId}/backupAgent/${backupAgentId}`;
-
-export const getDeleteBackupAgentsRoute = (tenantId: string, vspcTenantId: string, backupAgentId: string) =>
-  `/backupServices/tenant/${tenantId}/vspc/${vspcTenantId}/backupAgent/${backupAgentId}`;
-
-export const getDownloadLinkBackupAgentsRoute = (tenantId: string, vspcTenantId: string) =>
-  `/backupServices/tenant/${tenantId}/vspc/${vspcTenantId}/managementAgent`;
-
-export type EditConfigurationBackupAgentsParams = {
-  tenantId: string;
-  vspcTenantId: string;
-  backupAgentId: string;
+export type EditBackupAgentConfigParams = GetBackupAgentParams & {
   ips: string[];
   displayName: string;
   policy: string;
 };
 
-export const getBackupAgentsDetails = async (tenantId: string, vspcTenantId: string, agentId: string) =>
-  (await v2.get<Resource<Agent>>(getBackupAgentsDetailsRoute(tenantId, vspcTenantId, agentId))).data;
+export const getBackupAgentsDetails = async ({
+  backupServicesId,
+  vspcTenantId,
+  backupAgentId,
+}: GetBackupAgentParams) => {
+  const { data } = await v2.get<Resource<Agent>>(
+    getBackupAgentDetailsRoute({ backupServicesId, vspcTenantId, backupAgentId }),
+  );
+  return data;
+};
 
 export const editConfigurationBackupAgents = async ({
-  tenantId,
+  backupServicesId,
   vspcTenantId,
   backupAgentId,
   ...payload
-}: EditConfigurationBackupAgentsParams): Promise<ApiResponse<string>> =>
-  v2.put(getEditConfigurationBackupAgentsRoute(tenantId, vspcTenantId, backupAgentId), payload);
+}: EditBackupAgentConfigParams): Promise<ApiResponse<string>> =>
+  v2.put(getBackupAgentDetailsRoute({ backupServicesId, vspcTenantId, backupAgentId }), payload);
 
-export const deleteBackupAgent = async (
-  tenantId: string,
-  vspcTenantId: string,
-  agentId: string,
-): Promise<ApiResponse<string>> =>
-  v2.delete(`${getDeleteBackupAgentsRoute(tenantId, vspcTenantId, agentId)}`);
+export const deleteBackupAgent = async ({
+  backupServicesId,
+  vspcTenantId,
+  backupAgentId,
+}: GetBackupAgentParams): Promise<ApiResponse<string>> =>
+  v2.delete(getBackupAgentDetailsRoute({ backupServicesId, vspcTenantId, backupAgentId }));
 
-export const downloadLinkBackupAgent = async (tenantId: string, vspcTenantId: string) =>
-  (await v2.get<AgentDownloadLinks>(getDownloadLinkBackupAgentsRoute(tenantId, vspcTenantId))).data;
+export const downloadLinkBackupAgent = async (backupServicesId: string, vspcTenantId: string) => {
+  const { data } = await v2.get<AgentDownloadLinks>(
+    getManagementAgentsRoute(backupServicesId, vspcTenantId),
+  );
+  return data;
+};

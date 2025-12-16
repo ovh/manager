@@ -12,14 +12,14 @@ export type TVaultMockParams = {
 
 export const getVaultMocks = ({ vault, isVaultError }: TVaultMockParams): Handler[] => [
   {
-    url: '/backupServices/tenant/:tenantId/vault',
+    url: '/backupServices/tenant/:backupServicesId/vault',
     response: () => vault ?? mockVaults,
     api: 'v2',
     method: 'get',
     status: 200,
   },
   {
-    url: '/backupServices/tenant/:tenantId/vault/:vaultId',
+    url: '/backupServices/tenant/:backupServicesId/vault/:vaultId',
     response: (_: unknown, params: PathParams) => {
       if (isVaultError) return null;
       return mockVaults.find((vault) => vault.id === params.vaultId);
