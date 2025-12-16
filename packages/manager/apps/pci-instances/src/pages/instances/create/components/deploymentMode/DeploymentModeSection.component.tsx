@@ -11,7 +11,7 @@ export const DeploymentModeSection = () => {
 
   return (
     <section className="my-8">
-      <div className="flex gap-4 mt-8 items-center">
+      <div className="mt-8 flex items-center gap-4">
         <Text preset="heading-4">
           {t('creation:pci_instance_creation_select_deployment_mode_title')}
         </Text>
