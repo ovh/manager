@@ -1,4 +1,4 @@
-import { Control, Controller } from 'react-hook-form';
+import { Control, Controller, FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
@@ -15,20 +15,31 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
+import { AssociationType } from '@/data/types/product/website';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
 
-type FormData = z.infer<typeof websiteFormSchema>;
+import { DomainCmsAdvancedOptions } from './DomainCmsAdvancedOptions';
+
+type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
 
 interface DomainCmsModuleProps {
   control: Control<FormData, unknown, FormData>;
   controlValues: FormData;
+  setValue: UseFormSetValue<FormData>;
+  errors: FieldErrors<FormData>;
 }
 
 export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
   control,
   controlValues,
+  setValue,
+  errors,
 }: DomainCmsModuleProps) => {
   const { t } = useTranslation(['common', 'multisite', 'dashboard']);
+
+  const shouldShowAdvancedOptions =
+    controlValues.associationType === AssociationType.EXISTING ||
+    controlValues.associationType === AssociationType.EXTERNAL;
 
   return (
     <div className="flex flex-col space-y-5">
@@ -154,6 +165,14 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
           </RadioGroup>
         )}
       />
+      {shouldShowAdvancedOptions && (
+        <DomainCmsAdvancedOptions
+          control={control}
+          controlValues={controlValues}
+          setValue={setValue}
+          errors={errors}
+        />
+      )}
     </div>
   );
 };

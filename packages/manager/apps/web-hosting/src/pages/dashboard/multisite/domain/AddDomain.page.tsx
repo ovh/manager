@@ -42,7 +42,7 @@ export default function AddWDomainPage() {
   const { t } = useTranslation(['common', 'multisite']);
   const [step, setStep] = useState<number>(1);
 
-  type FormData = z.infer<typeof websiteFormSchema>;
+  type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
   const { state } = useLocation() as Location<AddDomainPageState>;
 
   const { control, handleSubmit, watch, reset } = useForm<FormData>({
@@ -51,7 +51,7 @@ export default function AddWDomainPage() {
       path: state?.path ?? 'public_html',
       autoConfigureDns: true,
     },
-    resolver: zodResolver(websiteFormSchema),
+    resolver: zodResolver(websiteFormSchema(t)),
   });
 
   const controlValues = watch();

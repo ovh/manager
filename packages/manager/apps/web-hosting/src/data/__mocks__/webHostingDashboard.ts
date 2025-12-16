@@ -118,3 +118,5 @@ export const vcsWebhookUrlsMock = {
 export const sshKeyMock = {
   publicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7...',
 };
+
+export const attachedDomainsMock = ['example.com', 'test.ovh', 'www.example.com'];

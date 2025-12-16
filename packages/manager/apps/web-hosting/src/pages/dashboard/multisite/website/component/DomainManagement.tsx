@@ -22,7 +22,7 @@ import {
 import { AssociationType } from '@/data/types/product/website';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
 
-type FormData = z.infer<typeof websiteFormSchema>;
+type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
 
 interface DomainManagementProps {
   controlValues: FormData;

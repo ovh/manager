@@ -33,7 +33,7 @@ import { websiteFormSchema } from '@/utils/formSchemas.utils';
 import { DomainManagement } from './DomainManagement';
 import { PathField } from './fields/Pathfield';
 
-type FormData = z.infer<typeof websiteFormSchema>;
+type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
 
 interface DomainAdvancedConfigurationProps {
   control: Control<FormData, unknown, FormData>;

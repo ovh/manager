@@ -24,7 +24,7 @@ import { DOMAIN_ORDER_URL, REGION } from '@/constants';
 import { AssociationType } from '@/data/types/product/website';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
 
-type FormData = z.infer<typeof websiteFormSchema>;
+type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
 
 interface DomainAssociationProps {
   control: Control<FormData, unknown, FormData>;
