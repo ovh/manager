@@ -9,9 +9,9 @@ import { DrawerBehavior } from '@/common/types/common.types';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/DatagridColumnStatus';
 import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { domain_dsrecords_key_signing_ksk } from '@/domain/constants/dsRecords';
-import { isDsRecordActionDisabled } from '@/domain/utils/utils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { useNavigate } from 'react-router-dom';
+import { isDsRecordActionDisabled } from '@/domain/utils/utils';
 
 interface useDomainDsRecordsDatagridColumnsProps {
   readonly setDrawer: Dispatch<SetStateAction<DrawerBehavior>>;

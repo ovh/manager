@@ -13,13 +13,11 @@ import {
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { DNS_UPDATE_OPERATION } from '@/domain/constants/dns.const';
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
-import {
-  DrawerActionEnum,
-  IpsSupportedEnum,
-} from '@/domain/enum/hostConfiguration.enum';
+import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 import { THost } from '@/domain/types/host';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { algorithm_RSASHZA3457 } from '@/domain/constants/dsRecords';
+import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -117,16 +115,8 @@ export const isValidHostSyntax = (value: string, serviceName: string) => {
 export const makeHostValidators = (
   hostsTargetSpec: THost[],
   serviceName: string,
-  actionType: DrawerActionEnum,
   t: TFunction,
 ) => {
-  if (actionType === DrawerActionEnum.Modify) {
-    // Checks are ok, field is readonly
-    return {
-      noDuplicate: () => true || '',
-      validSyntax: () => true || '',
-    };
-  }
   return {
     noDuplicate: (value: string) =>
       !isDuplicateHost(value, hostsTargetSpec, serviceName) ||
@@ -217,6 +207,18 @@ export const getSupportedAlgorithm = (
   );
 };
 
+export const getPublicKeyError = (value: string) => {
+  if (value === '') {
+    return 'domain_tab_dsrecords_drawer_form_error_empty';
+  }
+
+  if (!z.base64().safeParse(value).success) {
+    return 'domain_tab_dsrecords_drawer_form_publicKey_error';
+  }
+
+  return '';
+};
+
 export const makeIpsValidator = (
   ipsSupported: IpsSupportedEnum,
   t: TFunction,
@@ -230,3 +232,7 @@ export const makeIpsValidator = (
       t('domain_tab_hosts_drawer_add_invalid_ips'),
   };
 };
+
+export const isDsRecordActionDisabled = (
+  activeConfiguration: ActiveConfigurationTypeEnum,
+) => activeConfiguration === ActiveConfigurationTypeEnum.INTERNAL;

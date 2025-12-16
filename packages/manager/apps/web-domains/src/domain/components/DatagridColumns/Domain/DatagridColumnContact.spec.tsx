@@ -135,10 +135,10 @@ describe('DatagridColumnContact', () => {
 
       const link = screen.getByRole('link');
       expect(link).toHaveAttribute('href', mockUserAccountUrl);
-      expect(link).toHaveTextContent('User Company');
+      expect(link).toHaveTextContent(mockContactId);
     });
 
-    it('should render name when no organisation for current user', () => {
+    it('should render contact ID in link when no organisation for current user', () => {
       const mockNichandleInfo = {
         nichandle: mockContactId,
         organisation: null as string | null,
@@ -156,7 +156,8 @@ describe('DatagridColumnContact', () => {
       );
 
       const link = screen.getByRole('link');
-      expect(link).toHaveTextContent('User Test');
+      expect(link).toHaveAttribute('href', mockUserAccountUrl);
+      expect(link).toHaveTextContent(mockContactId);
     });
 
     it('should render contact ID when not current user', () => {
