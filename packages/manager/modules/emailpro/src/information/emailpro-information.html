@@ -188,19 +188,6 @@
                                                 data-ng-if="!exchange.isMXPlan"
                                                 data-ng-bind="exchange.accountsNumber"
                                             ></span>
-                                            <oui-action-menu
-                                                data-ng-if="exchange.isMXPlan && exchange.accountsNumber <= 100 && !currentRegionCA"
-                                                data-compact
-                                                data-placement="end"
-                                            >
-                                                <oui-action-menu-item
-                                                    data-href="{{ $ctrl.upgradeLink }}"
-                                                >
-                                                    <span
-                                                        data-translate="emailpro_dashboard_accounts_upgrade_mxPlan"
-                                                    ></span>
-                                                </oui-action-menu-item>
-                                            </oui-action-menu>
                                         </div>
                                     </div>
                                 </li>
