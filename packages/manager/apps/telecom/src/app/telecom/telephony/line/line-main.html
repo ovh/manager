@@ -79,6 +79,16 @@
             </oui-header-tabs-item>
 
             <oui-header-tabs-item
+                href="{{LineCtrl.phoneBookLink}}"
+                active="LineCtrl.phoneBookLink === LineCtrl.currentActiveLink()"
+                data-disabled="LineCtrl.disablePhonebook"
+            >
+                <span
+                    data-translate="telephony_line_phone_actions_line_phonebook"
+                ></span>
+            </oui-header-tabs-item>
+
+            <oui-header-tabs-item
                 href="{{LineCtrl.phoneLink}}"
                 active="LineCtrl.phoneLink === LineCtrl.currentActiveLink()"
             >

@@ -224,11 +224,11 @@ export default class EmailTabGeneralInformationsCtrl {
   }
 
   getDkimStatus() {
-    if (this.dkim.status !== DKIM_STATUS.DISABLED) {
-      return this.dkim.status;
+    if (this.dkim?.status !== DKIM_STATUS.DISABLED) {
+      return this.dkim?.status;
     }
     const otherStatusThanSet =
-      this.dkim.selectors.filter((selector) => selector.status !== 'set')
+      this.dkim?.selectors?.filter((selector) => selector?.status !== 'set')
         .length > 0;
     return otherStatusThanSet
       ? DKIM_STATUS.DISABLED_NO_SET

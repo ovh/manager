@@ -1,4 +1,4 @@
-import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud';
 import { Archive } from 'lucide-react';
 import { Badge, Skeleton } from '@datatr-ux/uxlib';
 import Flag from '@/components/flag/Flag.component';

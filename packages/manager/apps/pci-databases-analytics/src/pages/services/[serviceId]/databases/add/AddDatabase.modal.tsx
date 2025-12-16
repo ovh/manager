@@ -19,6 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
   useToast,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import { useAddDatabase } from '@/hooks/api/database/database/useAddDatabase.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -38,7 +39,7 @@ const AddDatabase = () => {
     onError: (err) => {
       toast.toast({
         title: t('addDatabaseToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -82,49 +83,55 @@ const AddDatabase = () => {
 
   return (
     <RouteModal isLoading={!service}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-database-modal">
             {t('addDatabaseTitle')}
           </DialogTitle>
           <DialogDescription>{t('addDatabaseDescription')}</DialogDescription>
         </DialogHeader>
-
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="grid gap-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('addDatabaseInputLabel')}</FormLabel>
-                  <FormControl>
-                    <Input {...field} data-testid="add-database-name-input" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <DialogFooter className="flex justify-end">
-              <DialogClose asChild>
-                <Button
-                  type="button"
-                  mode="outline"
-                  data-testid="add-database-cancel-button"
-                >
-                  {t('addDatabaseButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="submit"
-                disabled={isPending}
-                data-testid="add-database-submit-button"
-              >
-                {t('addDatabaseButtonAdd')}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+        <DialogBody>
+          <Form {...form}>
+            <form
+              onSubmit={onSubmit}
+              className="grid gap-4"
+              id="add-database-form"
+            >
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('addDatabaseInputLabel')}</FormLabel>
+                    <FormControl>
+                      <Input {...field} data-testid="add-database-name-input" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="button"
+              mode="ghost"
+              data-testid="add-database-cancel-button"
+            >
+              {t('addDatabaseButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            form="add-database-form"
+            type="submit"
+            disabled={isPending}
+            data-testid="add-database-submit-button"
+          >
+            {t('addDatabaseButtonAdd')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

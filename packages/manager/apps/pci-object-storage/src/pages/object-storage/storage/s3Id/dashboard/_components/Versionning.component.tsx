@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Settings } from 'lucide-react';
-import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
+import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage';
 import { useNavigate } from 'react-router-dom';
 import { Badge, Button } from '@datatr-ux/uxlib';
 import { useS3Data } from '../../S3.context';

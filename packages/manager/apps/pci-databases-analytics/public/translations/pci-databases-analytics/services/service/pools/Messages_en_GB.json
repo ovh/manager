@@ -52,5 +52,6 @@
   "infoConnectionPoolUriLabel": "URI service",
   "infoConnectionPoolUriToast": "The URI has been copied to your clipboard",
   "infoConnectionPoolModeLabel": "Mode",
-  "infoConnectionPoolSizeLabel": "Size"
+  "infoConnectionPoolSizeLabel": "Size",
+  "infoConnectionPoolButtonClose": "Close"
 }

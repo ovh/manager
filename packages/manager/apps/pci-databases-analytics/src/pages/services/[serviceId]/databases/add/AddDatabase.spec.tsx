@@ -157,7 +157,7 @@ describe('AddDatabase Component', () => {
       expect(mockToast.toast).toHaveBeenCalledWith({
         title: 'addDatabaseToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

@@ -12,7 +12,7 @@
   "labelLocation": "Localizzazione",
   "labelContainerType": "Tipo di container",
   "labelOffsiteReplication": "Offsite Replication",
-  "descriptionOffsiteReplication": "Replicare automaticamente i tuoi dati su un sito remoto in una classe di storage Infrequent Access. &lt;0>Più informazioni&lt;/0>",
+  "descriptionOffsiteReplication": "Replicare automaticamente i tuoi dati su un sito remoto in una classe di archiviazione Accesso Infrequente. <0>Scopri di più</0>",
   "labelVersioning": "Gestione delle versioni",
   "descriptionVersioning": "Automatizza la creazione di versioni di un oggetto per evitarne la possibile eliminazione accidentale, o semplicemente quando viene caricato un nuovo oggetto.",
   "labelUser": "Utente",

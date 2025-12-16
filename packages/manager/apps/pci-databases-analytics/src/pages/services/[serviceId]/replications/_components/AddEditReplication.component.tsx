@@ -25,6 +25,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 
 import { useForm } from 'react-hook-form';
@@ -147,7 +148,7 @@ const AddEditReplication = ({
     onError(err) {
       toast.toast({
         title: t(`${prefix}ReplicationToastErrorTitle`),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
         duration: TOAST.ERROR_DURATION,
       });
@@ -198,8 +199,8 @@ const AddEditReplication = ({
 
   return (
     <RouteModal>
-      <DialogContent className="px-0 sm:max-w-2xl">
-        <DialogHeader className="p-6">
+      <DialogContent className="sm:max-w-2xl" variant="information">
+        <DialogHeader>
           <DialogTitle data-testid="add-edit-replication-modal">
             {t(`${prefix}ReplicationTitle`)}
           </DialogTitle>
@@ -207,7 +208,7 @@ const AddEditReplication = ({
             {t(`${prefix}ReplicationDescription`)}
           </DialogDescription>
         </DialogHeader>
-        <div className="max-h-[60vh] px-4 overflow-auto">
+        <DialogBody>
           <Form {...form}>
             <form
               id="addEditReplication"
@@ -391,12 +392,17 @@ const AddEditReplication = ({
                         value={field.value}
                         onValueChange={field.onChange}
                       >
-                        <SelectTrigger ref={field.ref}>
-                          <SelectValue
-                            placeholder={t(
-                              'addEditReplicationPolicyClassPlaceholder',
-                            )}
-                          />
+                        <SelectTrigger
+                          ref={field.ref}
+                          className="flex items-center max-w-full"
+                        >
+                          <span className="truncate block flex-1">
+                            <SelectValue
+                              placeholder={t(
+                                'addEditReplicationPolicyClassPlaceholder',
+                              )}
+                            />
+                          </span>
                         </SelectTrigger>
                         <SelectContent>
                           {Object.values(
@@ -465,13 +471,13 @@ const AddEditReplication = ({
               />
             </form>
           </Form>
-        </div>
+        </DialogBody>
         <DialogFooter className="flex gap-2 justify-end mt-4 px-6">
           <DialogClose asChild>
             <Button
               data-testid="add-edit-replication-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('addEditReplicationCancel')}
             </Button>

@@ -33,7 +33,14 @@ const Settings = () => {
         <h2>{t('title')}</h2>
         <Guides section={GuideSections.settings} engine={service.engine} />
       </div>
-      <div className="flex flex-col lg:grid lg:grid-cols-3 gap-2" id="update">
+      <div
+        className={cn(
+          'grid gap-2',
+          'grid-cols-1',
+          hasKafkaSettingsTile ? 'lg:grid-cols-3' : 'lg:grid-cols-2',
+        )}
+        id="update"
+      >
         <Card data-testid="update-table-card">
           <CardHeader>
             <h5>{t('updateTitle')}</h5>
@@ -43,28 +50,8 @@ const Settings = () => {
           </CardContent>
         </Card>
 
-        <Card className="col-span-2">
-          <CardHeader>
-            <h5>{t('ipsTitle')}</h5>
-          </CardHeader>
-          <CardContent>
-            <IpsRestrictionsUpdate initialValue={service.ipRestrictions} />
-          </CardContent>
-        </Card>
-
-        <Card
-          className={cn('col-span-2', hasKafkaSettingsTile && 'col-span-1')}
-          id="maintenances"
-        >
-          <CardHeader>
-            <h5>{t('maintenancesTitle')}</h5>
-          </CardHeader>
-          <CardContent>
-            <Maintenances />
-          </CardContent>
-        </Card>
         {hasKafkaSettingsTile && (
-          <Card id="kafka-configuration" className="col-span-1">
+          <Card id="kafka-configuration">
             <CardHeader>
               <h5>{t('Kafka')}</h5>
             </CardHeader>
@@ -73,6 +60,7 @@ const Settings = () => {
             </CardContent>
           </Card>
         )}
+
         <Card className="col-span-1" id="configuration">
           <CardHeader>
             <h5>{t('serviceConfigurationTitle')}</h5>
@@ -81,25 +69,44 @@ const Settings = () => {
             <ServiceConfiguration />
           </CardContent>
         </Card>
-        {service.capabilities.advancedConfiguration && (
-          <Card className="col-span-3">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="advancedConfiguration">
-                <CardHeader>
-                  <AccordionTrigger data-testid="advanced-config-accordion-trigger">
-                    <h5>{t('advancedConfigurationTitle')}</h5>
-                  </AccordionTrigger>
-                </CardHeader>
-                <CardContent>
-                  <AccordionContent>
-                    <AdvancedConfigurationUpdate />
-                  </AccordionContent>
-                </CardContent>
-              </AccordionItem>
-            </Accordion>
-          </Card>
-        )}
       </div>
+
+      <Card className="w-full">
+        <CardHeader>
+          <h5>{t('ipsTitle')}</h5>
+        </CardHeader>
+        <CardContent>
+          <IpsRestrictionsUpdate initialValue={service.ipRestrictions} />
+        </CardContent>
+      </Card>
+
+      <Card id="maintenances" className="w-full">
+        <CardHeader>
+          <h5>{t('maintenancesTitle')}</h5>
+        </CardHeader>
+        <CardContent>
+          <Maintenances />
+        </CardContent>
+      </Card>
+
+      {service.capabilities.advancedConfiguration && (
+        <Card className="w-full">
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="advancedConfiguration">
+              <CardHeader>
+                <AccordionTrigger data-testid="advanced-config-accordion-trigger">
+                  <h5>{t('advancedConfigurationTitle')}</h5>
+                </AccordionTrigger>
+              </CardHeader>
+              <CardContent>
+                <AccordionContent>
+                  <AdvancedConfigurationUpdate />
+                </AccordionContent>
+              </CardContent>
+            </AccordionItem>
+          </Accordion>
+        </Card>
+      )}
       <Outlet />
     </>
   );

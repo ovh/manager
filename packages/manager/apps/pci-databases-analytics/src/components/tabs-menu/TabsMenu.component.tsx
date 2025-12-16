@@ -26,18 +26,23 @@ const TabsMenu = ({ tabs }: TabsMenuProps) => {
               <span
                 className="w-full px-6 flex gap-2 items-center"
                 ref={(node) => {
-                  if (node && isActive)
-                    node?.scrollIntoView({
+                  if (!node) return;
+                  const alreadyScrolled = node.getAttribute('data-scrolled');
+                  if (isActive && !alreadyScrolled) {
+                    node.scrollIntoView({
                       behavior: 'smooth',
-                      block: 'center',
+                      inline: 'center',
+                      block: 'nearest',
                     });
+                    node.setAttribute('data-scrolled', 'true');
+                  }
                 }}
               >
                 {tab.label}
                 {tab.count > 0 && (
                   <Badge
                     variant="primary"
-                    className="hidden md:block text-xs rounded-full"
+                    className="hidden md:block text-xs rounded-full text-center aspect-square px-0"
                   >
                     {tab.count}
                   </Badge>

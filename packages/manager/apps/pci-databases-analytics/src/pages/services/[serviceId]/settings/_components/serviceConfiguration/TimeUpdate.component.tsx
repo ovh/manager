@@ -1,15 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Check, Pen, X } from 'lucide-react';
+import { CheckCircle2, Pen, XCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import {
-  Button,
-  Form,
-  FormField,
-  TableCell,
-  TimePicker,
-} from '@datatr-ux/uxlib';
+import { Button, Form, FormField, TimePicker } from '@datatr-ux/uxlib';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 
 interface TimeUpdateProps {
@@ -45,18 +39,21 @@ const TimeUpdate = ({
   const updateButton = readonly ? (
     <></>
   ) : (
-    <Button
-      data-testid="edit-time-update-button"
-      className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-      onClick={() => setIsUpdate(true)}
-      disabled={disabled}
-    >
-      <Pen />
-    </Button>
+    <div className="flex justify-end">
+      <Button
+        data-testid="edit-time-update-button"
+        mode="ghost"
+        className="rounded-full aspect-square h-6 p-1"
+        onClick={() => setIsUpdate(true)}
+        disabled={disabled}
+      >
+        <Pen className="size-4" />
+      </Button>
+    </div>
   );
   return (
-    <Form {...form}>
-      <TableCell>
+    <div className={isUpdate ? 'grid grid-cols-[2fr,1fr]' : 'grid grid-cols-2'}>
+      <Form {...form}>
         <FormField
           control={form.control}
           name="date"
@@ -64,38 +61,41 @@ const TimeUpdate = ({
             isUpdate ? (
               <TimePicker date={field.value} setDate={field.onChange} />
             ) : (
-              <FormattedDate
-                date={field.value}
-                options={{ timeStyle: 'medium' }}
-              />
+              <span>
+                <FormattedDate
+                  date={field.value}
+                  options={{ timeStyle: 'medium' }}
+                />
+              </span>
             )
           }
         />
-      </TableCell>
-      <TableCell className="text-right divide-x-2">
         {isUpdate ? (
-          <div className="flex gap-2 justify-end">
+          <div className="flex gap-2 items-center justify-end">
             <Button
               data-testid="submit-time-update-button"
-              className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
+              mode="ghost"
+              className="p-0 h-auto"
               onClick={handleSubmit}
             >
-              <Check />
+              <CheckCircle2 className="size-4" />
             </Button>
             <Button
               data-testid="cancel-time-update-button"
               type="reset"
-              className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
+              mode="ghost"
+              variant="critical"
+              className="p-0 h-auto"
               onClick={handleReset}
             >
-              <X />
+              <XCircle className="size-4" />
             </Button>
           </div>
         ) : (
           updateButton
         )}
-      </TableCell>
-    </Form>
+      </Form>
+    </div>
   );
 };
 

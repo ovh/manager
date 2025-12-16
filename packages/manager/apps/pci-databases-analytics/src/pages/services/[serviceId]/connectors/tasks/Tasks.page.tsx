@@ -63,7 +63,7 @@ const Tasks = () => {
     onError: (err) => {
       toast.toast({
         title: t('restartConnectorTaskToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -79,7 +79,7 @@ const Tasks = () => {
       case StatusEnum.RUNNING:
         return 'success';
       case StatusEnum.FAILED:
-        return 'destructive';
+        return 'critical';
       case StatusEnum.PAUSED:
         return 'warning';
       default:
@@ -107,7 +107,7 @@ const Tasks = () => {
           </>
         )}
         {tasksQuery.data?.length === 0 && (
-          <Alert className="mt-4">
+          <Alert variant="information" className="mt-4">
             <AlertTitle>{t('noTasksMessage')}</AlertTitle>
           </Alert>
         )}

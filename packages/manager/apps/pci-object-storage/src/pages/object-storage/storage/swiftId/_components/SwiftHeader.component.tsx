@@ -8,6 +8,7 @@ import {
   useTranslatedMicroRegions,
 } from '@/hooks/useTranslatedMicroRegions';
 import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 
 export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
   const { translateMacroRegion } = useTranslatedMicroRegions();
@@ -15,31 +16,34 @@ export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
   return (
     <div
       data-testid="notebook-header-container"
-      className="flex gap-2 items-center mt-4 mb-6"
+      className="flex gap-2 items-center mt-4 mb-6 justify-between"
     >
-      <div className="rounded-full bg-gradient-to-tr from-primary to-slate-50 text-white p-2">
-        <Archive width={40} height={40} />
-      </div>
-      <div className="w-full">
-        <div className="flex flex-row items-center gap-3">
-          <h2>{swift.name ?? 'Dashboard'}</h2>
+      <div className="flex gap-2 items-center">
+        <div className="rounded-full bg-gradient-to-tr from-primary to-slate-50 text-white p-2">
+          <Archive width={40} height={40} />
         </div>
-        <div className="flex gap-2 flex-wrap mt-2">
-          <Badge variant="outline">Swift</Badge>
-          <Badge variant="outline" className="capitalize">
-            <div className="flex items-center gap-1">
-              <Flag
-                flagName={getRegionFlag(getMacroRegion(swift.region))}
-                className="w-3 h-2"
-              />
-              {translateMacroRegion(swift.region)}
-            </div>
-          </Badge>
-          <Badge variant="outline">
-            {localeBytesConverter(swift.storedBytes)}
-          </Badge>
+        <div className="w-full">
+          <div className="flex flex-row items-center gap-3">
+            <h2>{swift.name ?? 'Dashboard'}</h2>
+          </div>
+          <div className="flex gap-2 flex-wrap mt-2">
+            <Badge variant="outline">Swift</Badge>
+            <Badge variant="outline" className="capitalize">
+              <div className="flex items-center gap-1">
+                <Flag
+                  flagName={getRegionFlag(getMacroRegion(swift.region))}
+                  className="w-3 h-2"
+                />
+                {translateMacroRegion(swift.region)}
+              </div>
+            </Badge>
+            <Badge variant="outline">
+              {localeBytesConverter(swift.storedBytes)}
+            </Badge>
+          </div>
         </div>
       </div>
+      <RoadmapChangelog />
     </div>
   );
 };

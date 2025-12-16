@@ -154,6 +154,7 @@ module.exports = {
         },
         dnssec_service: 'http://www.ovh.cz/domeny/sluzba_dnssec.xml',
         domainOrderChange: 'https://www.ovh.cz/cgi-bin/newOrder/order.cgi',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
         domainOrderTrade:
           "https://www.ovh.cz/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         changeOwner:
@@ -202,6 +203,7 @@ module.exports = {
         },
         dnssec_service: 'https://www.ovh.de/domains/dnssec_dienst.xml',
         domainOrderChange: 'https://www.ovh.de/cgi-bin/newOrder/order.cgi',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
         changeOwner:
           'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
         bulkChangeOwner:
@@ -249,6 +251,7 @@ module.exports = {
         },
         dnssec_service: 'https://www.ovh.es/dominios/servicio-dnssec.xml',
         domainOrderChange: 'https://www.ovh.es/cgi-bin/newOrder/order.cgi',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
         domainOrderTrade:
           "https://www.ovh.es/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         changeOwner:
@@ -410,7 +413,7 @@ module.exports = {
         domainOrderTrade:
           "https://www.ovh.com/fr/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
         domainWebmailUrl: 'https://mail.ovh.net/',
-        domainOMMUrl: 'https://omm.ovh.net/',
+        domainOMMUrl: 'https://omm.ovhcloud.com/fr/',
         changeOwner:
           'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
         bulkChangeOwner:
@@ -465,6 +468,7 @@ module.exports = {
         bulkChangeOwner:
           'https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/list',
         exchangeOrder: 'https://www.ovh.co.uk/emails/hosted-exchange/',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
       },
       IE: {
         domainOrderTrade:
@@ -481,10 +485,12 @@ module.exports = {
               'https://community.ovh.com/t/faq-how-can-i-update-my-website-to-support-apache-2-4/3851',
           },
         },
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
       },
       IT: {
         support: 'http://www.ovh.it/supporto/',
         support_contact: 'http://www.ovh.it/supporto/',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
         guides: {
           home: 'http://guida.ovh.it/',
           all: 'https://docs.ovh.com/it/it/',
@@ -556,6 +562,7 @@ module.exports = {
       LT: {
         support: 'http://www.ovh.lt/pagalba/',
         support_contact: 'http://www.ovh.lt/pagalba/',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
         guides: {
           home: 'http://gidai.ovh.lt/',
           all: 'https://docs.ovh.com/lt/lt/',
@@ -602,6 +609,7 @@ module.exports = {
       NL: {
         support: 'http://www.ovh.nl/support/',
         support_contact: 'http://www.ovh.nl/support/',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
         guides: {
           home: 'http://gids.ovh.nl/',
           all: 'https://docs.ovh.com/nl/nl/',
@@ -642,6 +650,7 @@ module.exports = {
       PL: {
         support: 'https://www.ovh.pl/pomoc/',
         support_contact: 'https://www.ovh.pl/pomoc/',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
         guides: {
           home: 'https://www.ovh.pl/community/knowledge/',
           all: 'https://docs.ovh.com/pl/pl/',
@@ -715,6 +724,7 @@ module.exports = {
       PT: {
         support: 'https://www.ovh.pt/suporte/',
         support_contact: 'https://www.ovh.pt/suporte/',
+        domainOMMUrl: 'https://omm.ovhcloud.com/en/',
         guides: {
           home: 'http://guias.ovh.pt/',
           all: 'https://docs.ovh.com/pt/pt/',
