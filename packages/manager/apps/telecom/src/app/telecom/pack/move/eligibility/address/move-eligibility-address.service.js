@@ -13,10 +13,26 @@ export default class MoveEligibilityAddressService {
       .then(({ data }) => data);
   }
 
-  searchBuildings(hexacle, streetCode, streetNumber) {
+  searchBuildings(hexacle, streetAltCode, streetCode, streetNumber) {
     return this.$http
-      .post('/connectivity/eligibility/search/buildings ', {
+      .post('/connectivity/eligibility/search/buildings', {
         hexacle,
+        streetCode,
+        streetNumber,
+        streetAltCode,
+      })
+      .then(({ data }) => data);
+  }
+
+  testAddress(hexacle, streetAltCode, streetCode, streetNumber, isReseller) {
+    let url = '/connectivity/eligibility/test/address';
+    if (isReseller) {
+      url = '/connectivity/eligibility/test/address/partners';
+    }
+    return this.$http
+      .post(url, {
+        hexacle,
+        streetAltCode,
         streetCode,
         streetNumber,
       })
