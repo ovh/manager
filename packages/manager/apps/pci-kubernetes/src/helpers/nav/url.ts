@@ -1,7 +1,7 @@
 import { resolvePath } from 'react-router-dom';
 
-export const computeBreadcrumbUrl = <Crumb extends { label: string }>(
-  items: Array<Crumb>,
+export const computeBreadcrumbUrl = <Entry extends object>(
+  items: Array<Entry>,
   currentPath: string,
 ) => {
   return items.map((item, index) => {
@@ -9,8 +9,8 @@ export const computeBreadcrumbUrl = <Crumb extends { label: string }>(
     const backs = Array.from({ length: backIndex }).fill('..').join('/');
 
     return {
-      ...item,
       href: resolvePath(backs, currentPath).pathname,
+      ...item,
     };
   });
 };

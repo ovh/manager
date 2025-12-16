@@ -11,7 +11,7 @@ describe('computeBreadcrumbUrl', () => {
     expect(result[3]?.href).toEqual('/a/b/c/d');
   });
 
-  it('does not change labels', () => {
+  it('keeps properties other than href', () => {
     const items = [{ label: 'a' }, { label: 'b' }, { label: 'c' }];
     const result = computeBreadcrumbUrl(items, '/a/b/c');
 
