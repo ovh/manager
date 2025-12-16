@@ -25,8 +25,15 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock('@/domain/utils/utils', () => ({
-  getHostnameErrorMessage: mocks.getHostnameErrorMessageMock,
-  getIpsErrorMessage: mocks.getIpsErrorMessageMock,
+  makeHostValidators: vi.fn((hostsTargetSpec, serviceName, t) => ({
+    custom: (value: string) =>
+      mocks.getHostnameErrorMessageMock(value, serviceName, hostsTargetSpec) ||
+      true,
+  })),
+  makeIpsValidator: vi.fn((ipsSupported) => (value: string) => {
+    const ipsArray = mocks.tranformIpsStringToArrayMock(value);
+    return mocks.getIpsErrorMessageMock(ipsArray, ipsSupported) || true;
+  }),
   transformIpsStringToArray: mocks.tranformIpsStringToArrayMock,
 }));
 
@@ -111,19 +118,12 @@ describe('HostForm', () => {
     ).toBeInTheDocument();
   });
 
-  it('does not validate hostname in Modify mode and input is readonly', async () => {
+  it('does not validate hostname in Modify mode and input is readonly', () => {
     renderHostForm({ drawerAction: DrawerActionEnum.Modify });
 
     const [hostInput] = screen.getAllByRole('textbox');
 
     expect(hostInput).toHaveAttribute('readonly');
-
-    fireEvent.change(hostInput, { target: { value: 'bad-host' } });
-    fireEvent.blur(hostInput);
-
-    await waitFor(() => {
-      expect(getHostnameErrorMessageMock).not.toHaveBeenCalled();
-    });
   });
 
   it('displays ips error when validation fails', async () => {

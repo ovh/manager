@@ -28,6 +28,10 @@ vi.mock('@ovhcloud/ods-react', () => ({
   Text: ({ children }: MockTextProps) => (
     <span data-testid="text">{children}</span>
   ),
+  Icon: ({ name }: { name?: string }) => <span data-testid="icon">{name}</span>,
+  ICON_NAME: {
+    externalLink: 'external-link',
+  },
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
