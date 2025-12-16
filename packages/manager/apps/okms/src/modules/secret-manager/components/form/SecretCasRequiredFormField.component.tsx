@@ -1,4 +1,4 @@
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { OdsFormField, OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
@@ -11,15 +11,11 @@ import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type CasRequiredFormValue = 'active' | 'inactive';
 
-type FormFieldInput = {
-  casRequired: CasRequiredFormValue;
-};
-
-type SecretCasRequiredFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
+type SecretCasRequiredFormFieldProps<T extends FieldValues> = UseControllerProps<T> & {
   isCasRequiredSetOnOkms?: boolean;
 };
 
-export const SecretCasRequiredFormField = <T extends FormFieldInput>({
+export const SecretCasRequiredFormField = <T extends FieldValues>({
   name,
   control,
   isCasRequiredSetOnOkms,
