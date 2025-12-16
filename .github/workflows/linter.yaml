@@ -1,6 +1,16 @@
 name: Lint Code Base
 
-on: [push]
+on:
+  push:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
 
 jobs:
   build:
