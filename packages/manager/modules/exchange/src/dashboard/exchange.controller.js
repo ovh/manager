@@ -66,7 +66,6 @@ export default class ExchangeCtrl {
 
     this.isLogsAvailable =
       isLogsAvailable && exchange.offer.startsWith('DEDICATED');
-    this.BETA = 'Beta';
     this.EXCHANGE_CONTAINER_MESSAGING = EXCHANGE_CONTAINER_MESSAGING;
 
     set(navigation, '$exchangeRootScope', $scope);
