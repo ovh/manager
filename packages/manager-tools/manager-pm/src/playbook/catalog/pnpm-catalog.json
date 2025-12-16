@@ -10,6 +10,7 @@
   "packages/manager/apps/container",
   "packages/manager/apps/dedicated",
   "packages/manager/apps/hpc-vmware-vsphere",
+  "packages/manager/apps/hycu",
   "packages/manager/apps/okms",
   "packages/manager/apps/pci-ai-endpoints",
   "packages/manager/apps/pci-ai-tools",
