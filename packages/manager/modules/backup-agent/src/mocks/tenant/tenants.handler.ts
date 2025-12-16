@@ -20,10 +20,10 @@ export const getTenantMocks = ({ tenants, isTenantError }: TTenantMockParams): H
     status: 200,
   },
   {
-    url: '/backupServices/tenant/:tenantId',
+    url: '/backupServices/tenant/:backupServicesId',
     response: (_: unknown, params: PathParams) => {
       if (isTenantError) return null;
-      return TENANTS_MOCKS.find((tenant) => tenant.id === params.tenantId);
+      return TENANTS_MOCKS.find((tenant) => tenant.id === params.backupServicesId);
     },
     api: 'v2',
     method: 'get',

@@ -2,6 +2,9 @@ import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import { getBackupAgentsDetails } from '@/data/api/agents/agents.requests';
 import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useBackupTenantDetails';
+import { GetBackupAgentParams } from '@/utils/apiRoutes';
+
+import { useBackupServicesId } from '../backup/useBackupServicesId';
 
 export const BACKUP_VSPC_TENANT_AGENT_DETAILS_QUERY_KEY = (
   vspcTenantId: string,
@@ -9,17 +12,21 @@ export const BACKUP_VSPC_TENANT_AGENT_DETAILS_QUERY_KEY = (
 ) => [...BACKUP_TENANT_DETAILS_QUERY_KEY(vspcTenantId), agentId];
 
 export const useBackupVSPCTenantAgentDetailsOptions = ({
-  tenantId,
-  agentId,
-}: {
-  tenantId?: string;
-  agentId?: string;
-}) =>
-  queryOptions({
-    queryFn: () => getBackupAgentsDetails(tenantId!, agentId!),
-    queryKey: BACKUP_VSPC_TENANT_AGENT_DETAILS_QUERY_KEY(tenantId!, agentId!),
-    enabled: !!tenantId && !!agentId,
+  backupServicesId,
+  vspcTenantId,
+  backupAgentId,
+}: GetBackupAgentParams) => {
+  return queryOptions({
+    queryFn: () =>
+      getBackupAgentsDetails({
+        backupServicesId,
+        vspcTenantId,
+        backupAgentId,
+      }),
+    queryKey: BACKUP_VSPC_TENANT_AGENT_DETAILS_QUERY_KEY(vspcTenantId, backupAgentId),
+    enabled: !!backupServicesId && !!vspcTenantId && !!backupAgentId,
   });
+};
 
 export const useBackupVSPCTenantAgentDetails = ({
   tenantId,
@@ -28,8 +35,15 @@ export const useBackupVSPCTenantAgentDetails = ({
 }: {
   tenantId?: string;
   agentId?: string;
-}) =>
-  useQuery({
-    ...useBackupVSPCTenantAgentDetailsOptions({ tenantId, agentId }),
+}) => {
+  const { backupServicesId } = useBackupServicesId();
+
+  return useQuery({
+    ...useBackupVSPCTenantAgentDetailsOptions({
+      backupServicesId,
+      vspcTenantId: tenantId!,
+      backupAgentId: agentId!,
+    }),
     ...options,
   });
+};

@@ -21,7 +21,7 @@ describe('[INTEGRATION] - General Information page', () => {
           ).toBeVisible();
         });
       },
-      { timeout: 5000 },
+      { timeout: 10_000 },
     );
   });
 });

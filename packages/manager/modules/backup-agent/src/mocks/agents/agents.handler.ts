@@ -10,7 +10,7 @@ export type TAgentMockParams = {
 
 export const getAgentMocks = ({ isAgentsError = false }: TAgentMockParams = {}): Handler[] => [
   {
-    url: '/backupServices/tenant/:tenantId/vspc/:vspcTenantId/backupAgent',
+    url: '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId/backupAgent',
     response: () => {
       return isAgentsError ? null : mockAgents;
     },
@@ -19,7 +19,7 @@ export const getAgentMocks = ({ isAgentsError = false }: TAgentMockParams = {}):
     status: isAgentsError ? 500 : 200,
   },
   {
-    url: '/backupServices/tenant/:tenantId/vspc/:vspcTenantId/backupAgent/:backupAgentId',
+    url: '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId/backupAgent/:backupAgentId',
     response: (_: unknown, params: PathParams) => {
       if (isAgentsError) return null;
       return mockAgents.find((agent) => agent.id === params.backupAgentId);
@@ -29,7 +29,7 @@ export const getAgentMocks = ({ isAgentsError = false }: TAgentMockParams = {}):
     status: isAgentsError ? 500 : 200,
   },
   {
-    url: '/backupServices/tenant/:tenantId/vspc/:vspcTenantId/backupAgent/:backupAgentId',
+    url: '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId/backupAgent/:backupAgentId',
     response: (_: unknown, params: PathParams) => {
       if (isAgentsError) return null;
       return mockAgents.find((agent) => agent.id === params.backupAgentId);
