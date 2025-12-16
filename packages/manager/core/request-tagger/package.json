@@ -10,9 +10,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "sideEffects": false,
-  "main": "dist/index.js",
+  "type": "module",
   "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/types/requestTagger.d.ts",
+  "main": "dist/requestTagger.js",
   "files": [
     "dist"
   ],
@@ -21,7 +22,7 @@
     "dev": "tsc && tsc-alias",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts",
-    "prepare": "tsc"
+    "prepare": "tsc && tsc-alias"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",

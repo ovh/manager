@@ -16,6 +16,11 @@
     "isolatedModules": true,
     "declarationDir": "./dist/types"
   },
+  /* Custom Config To Keep Extension */
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "resolveFullExtension": ".js"
+  },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

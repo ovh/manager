@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/ovh-at-internet",
   "version": "0.28.3",
+  "type": "module",
   "description": "ATInternet tracking library for OVHcloud.",
   "keywords": [
     "at-internet",
@@ -25,13 +26,14 @@
     "types"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc",
+    "build": "tsc && tsc-alias",
+    "dev": "tsc && tsc-alias",
     "dev:watch": "tsc --watch",
-    "prepare": "tsc"
+    "prepare": "tsc && tsc-alias"
   },
   "devDependencies": {
-    "@ovh-ux/manager-config": "^8.8.3"
+    "@ovh-ux/manager-config": "^8.8.3",
+    "tsc-alias": "^1.8.16"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.1"
