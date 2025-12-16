@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.31.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.8...@ovh-ux/manager-web@19.31.9) (2025-12-16)
+
+
+### Bug Fixes
+
+* **manager:** promote new OMM ([d26dc8e](https://github.com/ovh/manager/commit/d26dc8ee2b57d7481c8b34543d880b45cc63d445)), closes [#PRDCOL-280](https://github.com/ovh/manager/issues/PRDCOL-280)
+
+
+
+
+
 ## [19.31.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.7...@ovh-ux/manager-web@19.31.8) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
