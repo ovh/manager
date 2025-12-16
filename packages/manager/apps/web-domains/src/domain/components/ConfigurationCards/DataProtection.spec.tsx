@@ -105,7 +105,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -114,7 +114,7 @@ describe('DataProtection component', () => {
           id: 'admin-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -145,7 +145,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -181,7 +181,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -190,7 +190,7 @@ describe('DataProtection component', () => {
           id: 'admin-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: ['EMAIL', 'PHONE'],
             visibleViaRdds: true,
           },
@@ -222,7 +222,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: ['EMAIL', 'NAME'],
             visibleViaRdds: true,
           },
@@ -255,7 +255,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: true,
+            forcedDisclosureConfiguration: true,
             disclosedFields: ['EMAIL', 'NAME'],
             visibleViaRdds: true,
           },
@@ -286,7 +286,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: true,
+            forcedDisclosureConfiguration: true,
             disclosedFields: [],
             visibleViaRdds: true,
           },

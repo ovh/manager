@@ -7,10 +7,12 @@ import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface DatagridColumnPendingActionsProps {
   serviceName: string;
+  isProcedure: boolean;
 }
 
 export default function DatagridColumnPendingActions({
   serviceName,
+  isProcedure,
 }: DatagridColumnPendingActionsProps) {
   const { t } = useTranslation('domain');
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
@@ -20,11 +22,15 @@ export default function DatagridColumnPendingActions({
   );
 
   if (isServiceInfoLoading) {
-    return <Skeleton />;
+    return (
+      <div className="w-full">
+        <Skeleton />
+      </div>
+    );
   }
 
   if (!serviceInfo?.billing?.lifecycle?.current?.pendingActions) {
-    return <></>;
+    return <span>-</span>;
   }
 
   const domainState = domainStatusToBadge(
@@ -41,6 +47,11 @@ export default function DatagridColumnPendingActions({
         >
           {domainState?.icon && <Icon name={domainState.icon} />}
           {t(domainState?.i18nKey)}
+        </Badge>
+      )}
+      {isProcedure && (
+        <Badge color="warning" className="w-max mt-2">
+          {t('domain_status_ongoing_proceedings')}
         </Badge>
       )}
     </>

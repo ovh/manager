@@ -38,8 +38,12 @@ export default function SubscriptionCards({
     ServiceRoutes.Domain,
   );
 
-  const { domainContact, isFetchingDomainContact } = useGetDomainContact(
+  const {
+    domainContact,
+    isFetchingDomainContact,
+  } = useGetDomainContact(
     domainResource?.currentState?.contactsConfiguration.contactOwner.id,
+    { enabled: true },
   );
 
   const formatDate = useFormatDate();
