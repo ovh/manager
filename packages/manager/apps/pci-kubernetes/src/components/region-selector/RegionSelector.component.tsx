@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
