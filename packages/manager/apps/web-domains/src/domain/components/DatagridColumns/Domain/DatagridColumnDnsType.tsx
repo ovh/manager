@@ -1,9 +1,9 @@
 import { Text } from '@ovhcloud/ods-react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { NameServerTypeEnum } from '@/domain/types/domainResource';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 interface DatagridColumnDnsTypeProps {
-  readonly type: NameServerTypeEnum;
+  readonly type: DnsConfigurationTypeEnum;
 }
 
 export default function DatagridColumnDnsType({

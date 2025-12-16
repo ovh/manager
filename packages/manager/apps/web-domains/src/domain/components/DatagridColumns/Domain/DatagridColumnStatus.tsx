@@ -8,13 +8,23 @@ import {
 } from '@/domain/types/domainResource';
 import { domainStatusToBadge } from '@/domain/utils/domainStatus';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
+import {
+  AdditionalDomainStateEnum,
+  DomainStateEnum,
+} from '@/domain/enum/domainState.enum';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { CellRow, ColumnMetaType } from '@ovh-ux/muk';
+import { test } from 'vitest';
 
 interface DatagridColumnStatusProps {
   readonly state:
+    | AdditionalDomainStateEnum
     | DomainServiceStateEnum
     | SuspensionStateEnum
     | TransferLockStatusEnum
-    | DnssecStateEnum;
+    | DnssecStateEnum
+    | DomainStateEnum
+    | ProtectionStateEnum;
   readonly mapping: Record<string, StatusDetails>;
 }
 
@@ -27,14 +37,14 @@ export default function DatagridColumnStatus({
   return (
     <>
       {domainState && (
-        <Badge
-          color={domainState.statusColor}
+        <CellRow
+          type={'badge' as ColumnMetaType}
+          badgeColor={domainState?.statusColor}
           data-testid={`status-badge-${state}`}
-          className="w-max"
         >
           {domainState?.icon && <Icon name={domainState.icon} />}
           {t(domainState?.i18nKey)}
-        </Badge>
+        </CellRow>
       )}
     </>
   );

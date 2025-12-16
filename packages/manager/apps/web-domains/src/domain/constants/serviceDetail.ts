@@ -14,9 +14,10 @@ import {
   ComboRule,
   StatusDetails,
   TransferLockStatusEnum,
-} from '../types/domainResource';
+} from '@/domain/types/domainResource';
 import { DnssecStatusEnum } from '../enum/dnnecStatus.enum';
 import { LifecycleCapacitiesEnum } from '@/common/enum/common.enum';
+import { ProtectionStateEnum } from '../enum/protectionState.enum';
 
 export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
   {
@@ -248,6 +249,42 @@ export const SUSPENSION_STATUS: Record<string, StatusDetails> = {
 export const ONGOING_PROCEEDINGS = 'ongoing_proceedings';
 
 export const DOMAIN_STATE: Record<string, StatusDetails> = {
+  [DomainStateEnum.DELETED]: {
+    i18nKey: 'domain_tab_general_information_deleted',
+    statusColor: BADGE_COLOR.critical,
+  },
+  [DomainStateEnum.EXPIRED]: {
+    i18nKey: 'domain_tab_general_information_expired',
+    statusColor: BADGE_COLOR.critical,
+  },
+  [DomainStateEnum.OK]: {
+    i18nKey: 'domain_tab_general_information_registered',
+    statusColor: BADGE_COLOR.success,
+  },
+  [DomainStateEnum.PENDING_CREATE]: {
+    i18nKey: 'domain_tab_general_information_registration_progress',
+    statusColor: BADGE_COLOR.information,
+  },
+  [DomainStateEnum.PENDING_DELETE]: {
+    i18nKey: 'domain_tab_general_information_pending_deletion',
+    statusColor: BADGE_COLOR.critical,
+  },
+  [DomainStateEnum.PENDING_INTERNAL_TRANSFER]: {
+    i18nKey: 'domain_tab_general_information_incoming_transfer',
+    statusColor: BADGE_COLOR.information,
+  },
+  [DomainStateEnum.PENDING_OUTGOING_TRANSFER]: {
+    i18nKey: 'domain_tab_general_information_outgoing_transfer',
+    statusColor: BADGE_COLOR.information,
+  },
+  [DomainStateEnum.RESTORABLE]: {
+    i18nKey: 'domain_tab_general_information_restorable',
+    statusColor: BADGE_COLOR.warning,
+  },
+  [DomainStateEnum.TO_DELETE]: {
+    i18nKey: 'domain_tab_general_information_pending_deletion',
+    statusColor: BADGE_COLOR.warning,
+  },
   [DomainServiceStateEnum.AUTORENEW_IN_PROGRESS]: {
     i18nKey: 'domain_status_auto_renew_in_progress',
     statusColor: BADGE_COLOR.success,
@@ -292,47 +329,27 @@ export const DOMAIN_STATE: Record<string, StatusDetails> = {
     i18nKey: 'domain_tab_general_information_restorable',
     statusColor: BADGE_COLOR.warning,
   },
-  // dispute, registry_suspended and technical_suspended statuses/flags are handled all at once as "Procédure en cours" status
-  [DomainServiceStateEnum.DISPUTE]: {
-    value: ONGOING_PROCEEDINGS,
-    i18nKey: 'domain_status_ongoing_proceedings',
-    statusColor: BADGE_COLOR.warning,
-  },
-  [DomainServiceStateEnum.REGISTRY_SUSPENDED]: {
-    value: ONGOING_PROCEEDINGS,
-    i18nKey: 'domain_status_ongoing_proceedings',
-    statusColor: BADGE_COLOR.critical,
-  },
-  [DomainServiceStateEnum.TECHNICAL_SUSPENDED]: {
-    value: ONGOING_PROCEEDINGS,
-    i18nKey: 'domain_status_ongoing_proceedings',
-    statusColor: BADGE_COLOR.critical,
-  },
+};
+
+export const additionalDomainStateAsValue = (
+  additionalState: AdditionalDomainStateEnum[],
+) => {
+  return additionalState.some((state) =>
+    Object.values(AdditionalDomainStateEnum).includes(state),
+  )
+    ? AdditionalDomainStateEnum.PROCEDURE_IN_PROGRESS
+    : '';
 };
 
 export const DOMAIN_TRANSFER_LOCK_STATUS: Record<string, StatusDetails> = {
-  [TransferLockStatusEnum.LOCKED]: {
+  [ProtectionStateEnum.PROTECTED]: {
     i18nKey: 'domain_tab_general_information_status_enabled',
     statusColor: BADGE_COLOR.success,
     icon: ICON_NAME.lockClose,
   },
-  [TransferLockStatusEnum.LOCKING]: {
-    i18nKey: 'domain_tab_general_information_status_enabling',
-    statusColor: BADGE_COLOR.information,
-    icon: ICON_NAME.lockClose,
-  },
-  [TransferLockStatusEnum.UNAVAILABLE]: {
-    i18nKey: 'domain_tab_general_information_status_unavailable',
-    statusColor: BADGE_COLOR.neutral,
-  },
-  [TransferLockStatusEnum.UNLOCKED]: {
+  [ProtectionStateEnum.UNPROTECTED]: {
     i18nKey: 'domain_tab_general_information_status_disabled',
     statusColor: BADGE_COLOR.warning,
-    icon: ICON_NAME.lockOpen,
-  },
-  [TransferLockStatusEnum.UNLOCKING]: {
-    i18nKey: 'domain_tab_general_information_status_disabling',
-    statusColor: BADGE_COLOR.information,
     icon: ICON_NAME.lockOpen,
   },
 };
