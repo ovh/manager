@@ -1,4 +1,4 @@
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useCatalogPrice } from '@ovh-ux/muk';
 import { Text } from '@ovhcloud/ods-react';
 
 type TCartTotalPriceProps = {

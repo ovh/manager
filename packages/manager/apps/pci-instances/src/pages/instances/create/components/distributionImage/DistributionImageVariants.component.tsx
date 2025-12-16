@@ -24,7 +24,7 @@ import {
 import { TImageOption, TImageOsType } from '../../view-models/imagesViewModel';
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useCatalogPrice } from '@ovh-ux/muk';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 
 type TDistributionvariants = {
