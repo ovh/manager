@@ -470,15 +470,17 @@ export default class PackMoveOffersCtrl {
         );
 
       case this.PROMO_DISPLAY.PROMO_FTTH_2025:
-        return this.$translate.instant(
-          'telecom_pack_migration_promotion_subscription_months_reduces',
-
-          {
-            duration: this.PROMO_DISPLAY[
-              offer.prices.promotion.subscription.duration
-            ].value,
-          },
-        );
+        if (offer.prices.promotion.subscription) {
+          return this.$translate.instant(
+            'telecom_pack_migration_promotion_subscription_months_reduces',
+            {
+              duration: this.PROMO_DISPLAY[
+                offer.prices.promotion.subscription.duration
+              ].value,
+            },
+          );
+        }
+        return '';
 
       default:
         return '';
