@@ -2,7 +2,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { FlavorDetails } from '../components/cart/FlavorDetails.component';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useCatalogPrice } from '@ovh-ux/muk';
 import { useInstanceCreation } from './useInstanceCreation';
 
 export type TCartItem = {

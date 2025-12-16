@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { ReactNode } from 'react';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useCatalogPrice } from '@ovh-ux/muk';
 
 export function useFlavorCommon() {
   const { t } = useTranslation('creation');
@@ -27,8 +27,8 @@ export function useFlavorCommon() {
     const isUnavailable = flavor.unavailable || flavor.unavailableQuota;
 
     const nameContent = (
-      <div className="flex flex-row gap-4 w-full h-full flex-wrap items-center content-start">
-        <Text preset={TEXT_PRESET.span} className="font-normal text-nowrap">
+      <div className="flex size-full flex-row flex-wrap content-start items-center gap-4">
+        <Text preset={TEXT_PRESET.span} className="text-nowrap font-normal">
           {flavor.name}
         </Text>
         {isUnavailable && (
@@ -53,7 +53,7 @@ export function useFlavorCommon() {
         <TooltipTrigger asChild className="px-2 py-4">
           {nameContent}
         </TooltipTrigger>
-        <TooltipContent withArrow className="px-6 max-w-[250px]">
+        <TooltipContent withArrow className="max-w-[250px] px-6">
           <Text preset={TEXT_PRESET.caption}>
             {flavor.unavailable
               ? t('pci_instance_creation_flavor_unavailable_help')
