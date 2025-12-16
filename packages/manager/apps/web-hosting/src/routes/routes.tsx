@@ -20,7 +20,6 @@ import {
   CDN_CONFIRMATION,
   CDN_CORS_RESOURCE_SHARING,
   CDN_EDIT_URLS,
-  CONFIGURE_GIT,
   CREATE,
   DASHBOARD,
   DELETE,
@@ -70,7 +69,6 @@ import {
 import { AddDomainPage, DetacheDomainModal, ModifyDomainModal } from './pages/domain';
 import {
   AssociateGitPage,
-  ConfigureGitPage,
   DeleteGitModal,
   DeployeGitModal,
   LastDeploymentGitModal,
@@ -387,20 +385,6 @@ export default (
             },
             breadcrumb: {
               label: 'common:associate_git',
-            },
-            isOverridePage: true,
-          }}
-        />
-        <Route
-          id={CONFIGURE_GIT}
-          path={urls.configureGit}
-          Component={ConfigureGitPage}
-          handle={{
-            tracking: {
-              pageType: PageType.listing,
-            },
-            breadcrumb: {
-              label: 'common:configure_git',
             },
             isOverridePage: true,
           }}
