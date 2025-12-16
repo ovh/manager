@@ -96,7 +96,6 @@ export default function DnssecToggleStatus({
                           dnssecStatus?.status ?? DnssecStatusEnum.NOT_SUPPORTED
                         ].color
                       }
-                      className="mt-4"
                     >
                       {t(
                         ConfigurationDnssecBadgeColorAndContent[
