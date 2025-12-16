@@ -1,4 +1,4 @@
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
@@ -8,11 +8,7 @@ import { HelpIconWithTooltip } from '@/common/components/help-icon-with-tooltip/
 
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
-type FormFieldInput = {
-  deactivateVersionAfter?: string;
-};
-
-export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>({
+export const SecretDeactivateVersionAfterFormField = <T extends FieldValues>({
   name,
   control,
 }: UseControllerProps<T>) => {
@@ -28,7 +24,7 @@ export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>(
       <OdsInput
         id={field.name}
         name={field.name}
-        value={field.value?.toString()}
+        value={field.value}
         onOdsBlur={field.onBlur}
         onOdsChange={field.onChange}
         data-testid={SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER}
