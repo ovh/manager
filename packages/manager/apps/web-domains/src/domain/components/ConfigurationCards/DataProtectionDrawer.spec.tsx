@@ -61,7 +61,7 @@ const mockDomainResource: TDomainResource = {
         id: 'owner-id',
         disclosurePolicy: {
           disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-          forceDisclosure: false,
+          forcedDisclosureConfiguration: false,
           disclosedFields: ['EMAIL', 'NAME'],
           visibleViaRdds: true,
         },
@@ -70,7 +70,7 @@ const mockDomainResource: TDomainResource = {
         id: 'admin-id',
         disclosurePolicy: {
           disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-          forceDisclosure: false,
+          forcedDisclosureConfiguration: false,
           disclosedFields: ['PHONE', 'ADDRESS'],
           visibleViaRdds: true,
         },
@@ -79,7 +79,7 @@ const mockDomainResource: TDomainResource = {
         id: 'tech-id',
         disclosurePolicy: {
           disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-          forceDisclosure: false,
+          forcedDisclosureConfiguration: false,
           disclosedFields: [],
           visibleViaRdds: false,
         },

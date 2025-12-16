@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest';
 import DatagridColumnDnsType from './DatagridColumnDnsType';
 import { NameServerTypeEnum } from '@/domain/types/domainResource';
 import { wrapper } from '@/common/utils/test.provider';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
@@ -13,16 +14,16 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 describe('DatagridColumnDnsType', () => {
   it('should render DNS type with first letter capitalized', () => {
-    render(<DatagridColumnDnsType type={NameServerTypeEnum.HOSTED} />, {
+    render(<DatagridColumnDnsType type={DnsConfigurationTypeEnum.HOSTING} />, {
       wrapper,
     });
 
     const textCell = screen.getByTestId('datagrid-text-cell');
-    expect(textCell).toHaveTextContent('Hosted');
+    expect(textCell).toHaveTextContent('HOSTING');
   });
 
   it('should handle all DNS type enum values', () => {
-    const testCases = Object.values(NameServerTypeEnum).map((type) => ({
+    const testCases = Object.values(DnsConfigurationTypeEnum).map((type) => ({
       type,
       expected: type.charAt(0).toUpperCase() + type.slice(1),
     }));
@@ -42,7 +43,7 @@ describe('DatagridColumnDnsType', () => {
   });
 
   it('should render DataGridTextCell component', () => {
-    render(<DatagridColumnDnsType type={NameServerTypeEnum.EXTERNAL} />, {
+    render(<DatagridColumnDnsType type={DnsConfigurationTypeEnum.EXTERNAL} />, {
       wrapper,
     });
 
@@ -51,7 +52,7 @@ describe('DatagridColumnDnsType', () => {
 
   it('should capitalize single character type', () => {
     // Create a mock type for edge case testing
-    const singleCharType = 'x' as NameServerTypeEnum;
+    const singleCharType = 'x' as DnsConfigurationTypeEnum;
 
     render(<DatagridColumnDnsType type={singleCharType} />, { wrapper });
 
@@ -60,7 +61,7 @@ describe('DatagridColumnDnsType', () => {
   });
 
   it('should handle empty string type gracefully', () => {
-    const emptyType = '' as NameServerTypeEnum;
+    const emptyType = '' as DnsConfigurationTypeEnum;
 
     render(<DatagridColumnDnsType type={emptyType} />, { wrapper });
 

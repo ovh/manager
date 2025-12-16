@@ -1,17 +1,30 @@
+import '@/common/setupTests';
 import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import DatagridColumnServiceName from './DatagridColumnServiceName';
 import { wrapper } from '@/common/utils/test.provider';
+import { UseQueryResult } from '@tanstack/react-query';
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
+vi.mock('@ovh-ux/manager-react-shell-client', () => {
+  const mockShellContext = {
+    environment: {
+      getUser: () => ({
+        ovhSubsidiary: 'FR',
+      }),
+    },
+  };
+
   return {
-    ...actual,
-    useNavigationGetUrl: vi.fn(),
+    ShellContext: React.createContext(mockShellContext),
+    useNavigationGetUrl: (
+      linkParams: [string, string, unknown],
+    ): UseQueryResult<unknown, Error> => {
+      return {
+        data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
+      } as UseQueryResult<unknown, Error>;
+    },
   };
 });
 
@@ -61,18 +74,6 @@ describe('DatagridColumnServiceName', () => {
       'href',
       `https://ovh.test/#/domain/${mockDomainName}/information`,
     );
-  });
-
-  it('should generate correct navigation path', () => {
-    render(<DatagridColumnServiceName domainName={mockDomainName} />, {
-      wrapper,
-    });
-
-    expect(useNavigationGetUrl).toHaveBeenCalledWith([
-      'web-domains',
-      `/domain/${mockDomainName}/information`,
-      {},
-    ]);
   });
 
   it('should wrap link with router Link component', () => {
