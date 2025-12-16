@@ -2,7 +2,14 @@ name: Duplicate translation
 on:
   push:
     branches-ignore: [master]
+  pull_request:
+    types:
+      - opened
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+  
 jobs:
   duplicate-translation:
     runs-on: ubuntu-latest
