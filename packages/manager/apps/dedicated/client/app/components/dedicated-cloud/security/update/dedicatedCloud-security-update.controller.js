@@ -10,6 +10,19 @@ export default class {
     this.loading = false;
   }
 
+  useMyCurrentIp() {
+    this.loading = true;
+
+    this.DedicatedCloud.getIpGeolocation()
+      .then((data) => {
+        this.entryToModify.network = data.ip;
+      })
+      .catch(() => {})
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
   modifyEntry() {
     this.loading = true;
     this.DedicatedCloud.modifySecurityPolicy(
