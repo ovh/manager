@@ -3504,20 +3504,20 @@
   dependencies:
     "@ovhcloud/ods-themes" "^18.4.1"
 
-"@datatr-ux/ovhcloud-types@1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.11.tgz#bac1d9b460cc969a191967cd2b1d0858de713d78"
-  integrity sha512-NSqgUoIXKHxVRY5fnp5hV2kNQJxbX9/Om0naInG1tnztBvdkRuuhfzga9+ReYVqkktaSg/kb3CGZzyWi2tpvCg==
-
-"@datatr-ux/ovhcloud-types@1.0.68":
-  version "1.0.68"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.68.tgz#69780e4e1c2a8f3ca5588118543ced74fba55275"
-  integrity sha512-5E7KT5LcNIzkQ+ScYBYjyoFNiUngAM+swlzL8+a4OwA1W6R4zebMMwxzSmEcuDlhx8+gsb7PJp6LAem22GjfZQ==
-
 "@datatr-ux/ovhcloud-types@1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.8.tgz#0e6a8359cc8a52389f65c1aebfae57261ec8215a"
   integrity sha512-Fze56Qv4qkucB3/w5/bl1lNVCNKlOdSBKYDVLaHNCJhHs+JbHCtMR4Ki29dA+Lk8mti0r3g1fdMZ7Hb2YBZ8gA==
+
+"@datatr-ux/ovhcloud-types@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-2.0.1.tgz#d53e6d97066ca5ee6fb31af9fc03658610db995b"
+  integrity sha512-FIX94AXtvQRNWyXzGGcqVK1U+HeFirNqCv/zU46fWCLV8Wb9pIuI/Xes2ZlPCzBr/ri//CoN9rdIpFu9/o8w2A==
+
+"@datatr-ux/ovhcloud-types@2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-2.0.3.tgz#6e790e3266856b7a81a0630d7fc8544204b4a4c5"
+  integrity sha512-NhnQZgINOZDNv+6oQCv/Nm8e2fsmjykVdhbsZVgm5+FdbTUUZDdXZuBvdWJS5PZ4SSiw2jL6l/iRSJ+ODPdT4g==
 
 "@datatr-ux/ovhcloud-types@^1.0.83":
   version "1.0.84"
@@ -3528,57 +3528,6 @@
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.10.tgz#0a66c5d3ad49b0e1effa1cd02c36167e3ac6eef1"
   integrity sha512-STOaCY/5w6R0CI7vHDs6nK0WOu1iNjPhr0eJnlVuYwDZgXeUUg0YoyVfKpXAKIbpXSxJhZj9VL/dewnD4Kli4g==
-  dependencies:
-    "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
-    "@ovhcloud/ods-themes" "^18.4.1"
-    "@radix-ui/react-accordion" "^1.2.2"
-    "@radix-ui/react-alert-dialog" "^1.1.4"
-    "@radix-ui/react-aspect-ratio" "^1.1.1"
-    "@radix-ui/react-avatar" "^1.1.2"
-    "@radix-ui/react-checkbox" "^1.1.3"
-    "@radix-ui/react-collapsible" "^1.1.2"
-    "@radix-ui/react-context-menu" "^2.2.4"
-    "@radix-ui/react-dialog" "^1.1.4"
-    "@radix-ui/react-dropdown-menu" "^2.1.4"
-    "@radix-ui/react-hover-card" "^1.1.4"
-    "@radix-ui/react-label" "^2.1.1"
-    "@radix-ui/react-menubar" "^1.1.4"
-    "@radix-ui/react-navigation-menu" "^1.2.3"
-    "@radix-ui/react-popover" "^1.1.4"
-    "@radix-ui/react-progress" "^1.1.1"
-    "@radix-ui/react-radio-group" "^1.2.2"
-    "@radix-ui/react-scroll-area" "^1.2.2"
-    "@radix-ui/react-select" "^2.1.4"
-    "@radix-ui/react-separator" "^1.1.1"
-    "@radix-ui/react-slider" "^1.2.2"
-    "@radix-ui/react-slot" "^1.1.1"
-    "@radix-ui/react-switch" "^1.1.2"
-    "@radix-ui/react-tabs" "^1.1.2"
-    "@radix-ui/react-toast" "^1.2.4"
-    "@radix-ui/react-toggle" "^1.1.1"
-    "@radix-ui/react-toggle-group" "^1.1.1"
-    "@radix-ui/react-tooltip" "^1.1.6"
-    class-variance-authority "^0.7.1"
-    clsx "^2.1.1"
-    cmdk "^1.0.0"
-    date-fns "^3.6.0"
-    embla-carousel-react "^8.5.1"
-    input-otp "^1.4.1"
-    lodash "^4.17.21"
-    lucide-react "^0.469.0"
-    next-themes "^0.4.4"
-    react-day-picker "^8.10.1"
-    react-resizable-panels "^2.1.7"
-    shiki "^3.2.1"
-    sonner "^1.7.1"
-    tailwind-merge "^2.6.0"
-    tailwindcss-animate "^1.0.7"
-    vaul "^1.1.2"
-
-"@datatr-ux/uxlib@0.0.12-beta-3":
-  version "0.0.12-beta-3"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.12-beta-3.tgz#9f7f2b75f67bf4ba15e16e64d25a641788f1354e"
-  integrity sha512-r8RKXPY1ACZCSRuI8x/F1kpjptm4ioJPKlcApaVmJny6LK3Hg5l3Y+Up22h1R5wUvVBV1q3w/l6QfaMNarz0uw==
   dependencies:
     "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
     "@ovhcloud/ods-themes" "^18.4.1"
@@ -7493,6 +7442,11 @@
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
+
+"@ovhcloud/ods-themes@19.2.0":
+  version "19.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.0.tgz#8e2851579245907a4d0506bfd8cf9f68b66d4d22"
+  integrity sha512-X4n1o+RzAN35FlJpeE+HtNcLOqCZf26SSl6pzNbGw2Ig+wkozoPcl1YiJrMZJ0T/pR+OSYZZdLI3wjjKzQaqew==
 
 "@ovhcloud/ods-themes@19.2.1", "@ovhcloud/ods-themes@^19.2.0":
   version "19.2.1"

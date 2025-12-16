@@ -9,7 +9,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  ScrollArea,
   Form,
   FormControl,
   FormField,
@@ -17,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
   useToast,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import PlansSelect from '@/components/order/plan/PlanSelect.component';
 import * as database from '@/types/cloud/project/database';
@@ -56,7 +56,7 @@ const UpdatePlan = () => {
     onError: (err) => {
       toast.toast({
         title: t('updatePlanToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -100,15 +100,15 @@ const UpdatePlan = () => {
     <RouteModal
       isLoading={!listPlans || !initialFlavorObject || !newPrice || !oldPrice}
     >
-      <DialogContent className="px-0 sm:max-w-2xl">
-        <ScrollArea className="max-h-[80vh] px-5">
+      <DialogContent className="px-0 sm:max-w-2xl" variant="information">
+        <DialogHeader>
+          <DialogTitle data-testid="update-plan-modal">
+            {t('updatePlanTitle')}
+          </DialogTitle>
+        </DialogHeader>
+        <DialogBody>
           <Form {...form}>
-            <form onSubmit={onSubmit} id="updatePlanForm" className="px-1">
-              <DialogHeader className="mb-2">
-                <DialogTitle data-testid="update-plan-modal">
-                  {t('updatePlanTitle')}
-                </DialogTitle>
-              </DialogHeader>
+            <form onSubmit={onSubmit} id="updatePlanForm">
               <FormField
                 control={form.control}
                 name="plan"
@@ -132,7 +132,7 @@ const UpdatePlan = () => {
               />
             </form>
           </Form>
-        </ScrollArea>
+        </DialogBody>
         <DialogFooter className="flex sm:justify-between px-6">
           <div className="flex-col w-full">
             <div className="flex items-center gap-2">
@@ -155,7 +155,7 @@ const UpdatePlan = () => {
                 <Button
                   data-testid="update-plan-cancel-button"
                   type="button"
-                  mode="outline"
+                  mode="ghost"
                 >
                   {t('updatePlanCancelButton')}
                 </Button>

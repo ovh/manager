@@ -12,6 +12,7 @@ import {
   PopoverContent,
   RadioGroup,
   RadioTile,
+  RadioIndicator,
 } from '@datatr-ux/uxlib';
 import { ExternalLink, HelpCircle } from 'lucide-react';
 import { Region } from '@/types/orderFunnel';
@@ -144,6 +145,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                 >
                   <div className="flex w-full gap-2 justify-between">
                     <h5 className="flex gap-2 items-center">
+                      <RadioIndicator />
                       <Flag flagName={getRegionFlag(region.name)} />
                       {region.label}
                     </h5>

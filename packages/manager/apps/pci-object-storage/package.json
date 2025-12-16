@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-object-storage-app",
-  "version": "0.24.1",
+  "version": "0.25.0",
   "private": true,
   "description": "pci-object-storage",
   "repository": {
@@ -20,7 +20,7 @@
     "test-ui": "vitest --ui --coverage.enabled=true"
   },
   "dependencies": {
-    "@datatr-ux/ovhcloud-types": "1.0.68",
+    "@datatr-ux/ovhcloud-types": "2.0.3",
     "@datatr-ux/uxlib": "1.0.0-alpha-34",
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-common-translations": "^0.9.1",

@@ -1,3 +1,3 @@
-import * as cloud from '@datatr-ux/ovhcloud-types/cloud/index';
+import * as cloud from '@datatr-ux/ovhcloud-types/cloud';
 
 export default cloud;

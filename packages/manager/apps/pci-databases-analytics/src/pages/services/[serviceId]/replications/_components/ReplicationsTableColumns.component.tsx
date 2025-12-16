@@ -182,7 +182,7 @@ export const getColumns = ({
                       {service.capabilities.replication?.delete && (
                         <DropdownMenuItem
                           data-testid="replications-action-delete-button"
-                          variant="destructive"
+                          variant="critical"
                           disabled={
                             service.capabilities.replication?.delete ===
                             database.service.capability.StateEnum.disabled

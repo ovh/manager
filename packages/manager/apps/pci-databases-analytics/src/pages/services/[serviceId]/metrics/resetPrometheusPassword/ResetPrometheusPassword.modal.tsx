@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { Copy } from 'lucide-react';
 import {
   Button,
   DialogClose,
@@ -10,7 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
   useToast,
-  Alert,
+  DialogBody,
+  Clipboard,
 } from '@datatr-ux/uxlib';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
@@ -29,7 +29,7 @@ const ResetPrometheusPassword = () => {
       onError: (err) => {
         toast.toast({
           title: t('resetUserPasswordToastErrorTitle'),
-          variant: 'destructive',
+          variant: 'critical',
           description: getCdbApiErrorMessage(err),
         });
       },
@@ -52,74 +52,50 @@ const ResetPrometheusPassword = () => {
       engine: service.engine,
     });
   };
-  const handleCopyPass = () => {
-    navigator.clipboard.writeText(newPass);
-    toast.toast({
-      title: t('resetUserPasswordCopy'),
-    });
-  };
 
   return (
     <RouteModal>
-      <DialogContent>
+      <DialogContent variant={`${newPass ? 'information' : 'warning'}`}>
         <DialogHeader>
           <DialogTitle data-testid="reset-password-modal">
             {t('resetUserPasswordTitle')}
           </DialogTitle>
-          {newPass ? (
-            <Alert variant="success">
-              <p>{t('resetUserPasswordSuccess')}</p>
-              <div className="relative my-4">
-                <Button
-                  onClick={() => handleCopyPass()}
-                  className="absolute top-0 right-0 m-2 p-2 text-sm bg-primary-500 text-white rounded hover:bg-primary-700 transition duration-300"
-                  data-testid="reset-password-copy-button"
-                >
-                  <Copy className="size-4" />
-                  <span className="sr-only">copy</span>
-                </Button>
-                <pre className="p-4 bg-gray-100 rounded">
-                  <code>{newPass}</code>
-                </pre>
-              </div>
-            </Alert>
-          ) : (
+          {!newPass && (
             <DialogDescription>
               {t('resetUserPasswordDescription', { name: 'prometheus' })}
             </DialogDescription>
           )}
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
-          {newPass ? (
-            <DialogClose asChild>
-              <Button
-                type="button"
-                mode="outline"
-                data-testid="reset-password-close-button"
-              >
-                {t('resetUserPasswordButtonClose')}
-              </Button>
-            </DialogClose>
-          ) : (
-            <>
-              <DialogClose asChild>
-                <Button
-                  type="button"
-                  mode="outline"
-                  data-testid="reset-password-cancel-button"
-                >
-                  {t('resetUserPasswordButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="button"
-                disabled={isPending}
-                onClick={handleResetPassword}
-                data-testid="reset-password-submit-button"
-              >
-                {t('resetUserPasswordButtonConfirm')}
-              </Button>
-            </>
+
+        {newPass && (
+          <DialogBody>
+            <p>{t('resetUserPasswordSuccess')}</p>
+            <Clipboard
+              value={`${newPass}`}
+              secret
+              data-testid="reset-password-copy-button"
+            />
+          </DialogBody>
+        )}
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="button"
+              mode="ghost"
+              data-testid="reset-password-cancel-button"
+            >
+              {t('resetUserPasswordButtonCancel')}
+            </Button>
+          </DialogClose>
+          {!newPass && (
+            <Button
+              type="button"
+              disabled={isPending}
+              onClick={handleResetPassword}
+              data-testid="reset-password-submit-button"
+            >
+              {t('resetUserPasswordButtonConfirm')}
+            </Button>
           )}
         </DialogFooter>
       </DialogContent>

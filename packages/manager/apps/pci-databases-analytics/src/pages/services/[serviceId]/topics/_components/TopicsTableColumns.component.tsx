@@ -127,7 +127,7 @@ export const getColumns = ({
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   data-testid="topic-action-delete-button"
-                  variant="destructive"
+                  variant="critical"
                   disabled={
                     service.capabilities.topic?.delete ===
                     database.service.capability.StateEnum.disabled

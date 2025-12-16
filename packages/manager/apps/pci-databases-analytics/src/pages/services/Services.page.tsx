@@ -36,7 +36,7 @@ const Services = () => {
     <>
       <div
         data-testid="services-guides-container"
-        className="flex justify-between w-full items-center"
+        className="flex justify-between w-full items-center py-4"
       >
         <h2>{t('title')}</h2>
         <div className="flex flex-wrap justify-end gap-1">

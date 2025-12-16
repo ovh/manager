@@ -36,7 +36,7 @@ const DeleteTopic = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteTopicToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -66,7 +66,7 @@ const DeleteTopic = () => {
 
   return (
     <RouteModal isLoading={!topics || !deletedTopic}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-database-modal">
             {t('deleteTopicTitle')}
@@ -75,11 +75,11 @@ const DeleteTopic = () => {
             {t('deleteTopicDescription', { name: deletedTopic?.name })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               type="button"
-              mode="outline"
+              mode="ghost"
               data-testid="delete-database-cancel-button"
             >
               {t('deleteTopicButtonCancel')}
