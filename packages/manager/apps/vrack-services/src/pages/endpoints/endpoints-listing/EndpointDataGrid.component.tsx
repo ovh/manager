@@ -1,19 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { SPINNER_SIZE, Spinner, Text } from '@ovhcloud/ods-react';
 import { useParams } from 'react-router-dom';
-import {
-  DataGridTextCell,
-  Datagrid,
-  DatagridColumn,
-  useDataGrid,
-  ErrorBanner,
-} from '@ovh-ux/manager-react-components';
+import { ColumnSort } from '@tanstack/react-table';
+import { Datagrid, DatagridColumn, Error } from '@ovh-ux/muk';
 import {
   useVrackService,
   useServiceList,
 } from '@ovh-ux/manager-network-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getIamResourceQueryKey,
   getIamResource,
@@ -21,9 +16,13 @@ import {
 import { EndpointItem, useEndpointsList } from './useEndpointList.hook';
 import { ActionCell } from './ActionCell.component';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { IAMResource } from '@/data/types';
 
 export const EndpointDatagrid: React.FC = () => {
-  const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.endpoints,
+    NAMESPACES.DASHBOARD,
+  ]);
   const { id } = useParams();
 
   const { data: vs, isError, error, isLoading } = useVrackService();
@@ -37,76 +36,104 @@ export const EndpointDatagrid: React.FC = () => {
     getIamResourceQueryKey,
     getIamResource,
   });
+  const [sorting, setSorting] = useState<ColumnSort[]>([
+    {
+      id: 'managedServiceURN',
+      desc: false,
+    },
+  ]);
 
-  const { sorting, setSorting } = useDataGrid({
-    id: 'managedServiceURN',
-    desc: false,
-  });
+  const endpointList = useEndpointsList(sorting[0]);
 
-  const endpointList = useEndpointsList(sorting);
+  const findMatchingIAMResourceType = (endpoint: EndpointItem) =>
+    iamResources?.data?.find(
+      (iamResource: IAMResource) =>
+        iamResource.urn === endpoint.managedServiceURN,
+    )?.type;
 
   const columns: DatagridColumn<EndpointItem>[] = [
     {
       id: 'managedServiceURN',
+      accessorKey: 'managedServiceURN',
+      header: t('endpointDatagridManagedServiceURNLabel'),
       label: t('endpointDatagridManagedServiceURNLabel'),
-      cell: ({ managedServiceURN }) => {
+      isSortable: true,
+      cell: (cellContext) => {
         const resource = iamResources?.data?.find(
-          (iamResource) => iamResource.urn === managedServiceURN,
+          (iamResource) =>
+            iamResource.urn === cellContext.row.original.managedServiceURN,
         );
         return (
-          <DataGridTextCell>
-            {resource?.displayName || resource?.name || resource?.id}
-          </DataGridTextCell>
+          <Text>
+            {resource?.displayName ||
+              resource?.name ||
+              resource?.id ||
+              t('none', { ns: NAMESPACES.DASHBOARD })}
+          </Text>
         );
       },
     },
     {
       id: 'serviceType',
+      header: t('endpointDatagridServiceTypeLabel'),
       label: t('endpointDatagridServiceTypeLabel'),
-      cell: ({ managedServiceURN }) => {
-        const resource = iamResources?.data?.find(
-          (iamResource) => iamResource.urn === managedServiceURN,
+      isSortable: true,
+      maxSize: 100,
+      accessorFn: findMatchingIAMResourceType,
+      cell: (cellContext) => {
+        const resourceType = findMatchingIAMResourceType(
+          cellContext.row.original,
         );
-        return <DataGridTextCell>{resource?.type}</DataGridTextCell>;
+        return <Text>{resourceType}</Text>;
       },
     },
     {
       id: 'ip',
+      header: t('endpointDatagridIpLabel'),
       label: t('endpointDatagridIpLabel'),
-      cell: ({ ip }) => <DataGridTextCell>{ip}</DataGridTextCell>,
+      isSortable: true,
+      maxSize: 70,
+      accessorKey: 'ip',
     },
     {
       id: 'subnet',
+      header: t('endpointDatagridSubnetLabel'),
       label: t('endpointDatagridSubnetLabel'),
-      cell: ({ subnet }) => <DataGridTextCell>{subnet}</DataGridTextCell>,
+      isSortable: true,
+      maxSize: 70,
+      accessorKey: 'subnet',
     },
     {
       id: 'actions',
+      header: t('endpointDatagridActionsLabel'),
       label: t('endpointDatagridActionsLabel'),
       isSortable: false,
-      cell: (endpoint) => <ActionCell vs={vs} endpoint={endpoint} />,
+      maxSize: 50,
+      minSize: 50,
+      cell: (cellContext) => (
+        <ActionCell vs={vs} endpoint={cellContext.row.original} />
+      ),
     },
   ];
 
   if (isError || iamResourcesError || serviceListError) {
-    return (
-      <ErrorBanner error={error || iamResourcesError || serviceListError} />
-    );
+    return <Error error={error || iamResourcesError || serviceListError} />;
   }
 
   return isServiceListLoading || isIamResourcesLoading || isLoading ? (
     <div>
-      <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
+      <Spinner size={SPINNER_SIZE.lg} />
     </div>
   ) : (
     <Datagrid
-      className="pb-[200px] -mx-6"
+      data={endpointList}
       columns={columns}
-      items={endpointList}
-      totalItems={endpointList.length}
-      sorting={sorting}
-      onSortChange={setSorting}
-      noResultLabel={t('endpointsEmptyDataGridMessage')}
+      totalCount={endpointList.length}
+      sorting={{
+        sorting,
+        setSorting,
+        manualSorting: true,
+      }}
     />
   );
 };

@@ -7,6 +7,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { App } from './App';
 import './index.scss';
+import '@ovh-ux/muk/dist/style.css';
 import './vite-hmr';
 import { getTrackingContext } from './utils/tracking';
 import { LEVEL2, TRANSLATION_NAMESPACES } from './utils/constants';

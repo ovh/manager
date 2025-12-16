@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
-import {
-  useFeatureAvailability,
-  ErrorBanner,
-} from '@ovh-ux/manager-react-components';
+import { Error } from '@ovh-ux/muk';
 import { useVrackServicesRegion } from '@ovh-ux/manager-network-common';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { RegionFormField } from './RegionFormField.component';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { urls } from '@/routes/routes.constants';
@@ -32,7 +30,7 @@ export default function CreateVrackServicesPage() {
   } = useVrackServicesRegion();
 
   if (hasRegionError) {
-    return <ErrorBanner error={error} />;
+    return <Error error={error} />;
   }
 
   return (

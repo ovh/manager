@@ -8,12 +8,13 @@ import {
   TrackingClickParams,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
+import { UpdateNameModal } from '@ovh-ux/muk';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   getVrackServicesResourceListQueryKey,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
+import { useUpdateServiceDisplayName } from '@ovh-ux/manager-module-common-api';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
@@ -32,6 +33,39 @@ export default function EditVrackServicesDisplayNameModal() {
   const { data: vs } = useVrackService();
   const queryClient = useQueryClient();
 
+  const onSuccess = () => {
+    trackPage({
+      pageType: PageType.bannerSuccess,
+      pageName: PageName.successUpdateVrackServices,
+    });
+    navigate('..');
+    addSuccessMessage(
+      t('updateVrackServicesDisplayNameSuccess', {
+        vrackServices: id,
+      }),
+      { vrackServicesId: id },
+    );
+    setTimeout(() => {
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceListQueryKey,
+      });
+    }, 2000);
+  };
+
+  const onError = () => {
+    trackPage({
+      pageType: PageType.bannerError,
+      pageName: PageName.errorUpdateVrackServices,
+    });
+  };
+
+  const {
+    updateDisplayName,
+    isPending,
+    error,
+    isError,
+  } = useUpdateServiceDisplayName({ onSuccess, onError });
+
   const onClose = () => {
     trackClick({
       ...sharedTrackingParams,
@@ -42,43 +76,22 @@ export default function EditVrackServicesDisplayNameModal() {
   };
 
   return (
-    <UpdateIamNameModal
+    <UpdateNameModal
       isOpen
-      closeModal={onClose}
+      onClose={onClose}
+      onOpenChange={onClose}
+      isLoading={isPending}
+      error={isError ? error?.response?.data?.message : null}
       inputLabel={t('updateVrackServicesDisplayNameInputLabel')}
       headline={t('modalUpdateVrackServicesHeadline', { id })}
       description={t('modalUpdateVrackServicesDescription')}
-      resourceName={id}
-      onSuccess={() => {
-        trackPage({
-          pageType: PageType.bannerSuccess,
-          pageName: PageName.successUpdateVrackServices,
-        });
-        navigate('..');
-        addSuccessMessage(
-          t('updateVrackServicesDisplayNameSuccess', {
-            vrackServices: id,
-          }),
-          { vrackServicesId: id },
-        );
-        setTimeout(() => {
-          queryClient.invalidateQueries({
-            queryKey: getVrackServicesResourceListQueryKey,
-          });
-        }, 2000);
-      }}
-      onError={() => {
-        trackPage({
-          pageType: PageType.bannerError,
-          pageName: PageName.errorUpdateVrackServices,
-        });
-      }}
-      onConfirm={() => {
+      updateDisplayName={(displayName) => {
         trackClick({
           ...sharedTrackingParams,
           actionType: 'action',
           actions: ['edit_vrack-services', 'confirm'],
         });
+        updateDisplayName({ resourceName: id, displayName });
       }}
       defaultValue={vs?.iam?.displayName}
     />

@@ -1,17 +1,21 @@
 import React from 'react';
-import { OdsText, OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_SIZE,
-  ODS_TEXT_PRESET,
-  ODS_MESSAGE_COLOR,
-} from '@ovhcloud/ods-components';
+  BUTTON_SIZE,
+  TEXT_PRESET,
+  MESSAGE_COLOR,
+  Text,
+  Button,
+  Message,
+  MessageBody,
+  MessageIcon,
+} from '@ovhcloud/ods-react';
 import { useNavigate } from 'react-router-dom';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { LinkType, Links, PageLayout } from '@ovh-ux/manager-react-components';
+import { LinkType, Link, BaseLayout } from '@ovh-ux/muk';
 import { LoadingText } from '../LoadingText.component';
 import { Breadcrumb } from '../Breadcrumb.component';
 
@@ -53,13 +57,13 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   const { trackClick } = useOvhTracking();
 
   return (
-    <PageLayout>
+    <BaseLayout>
       <Breadcrumb items={[{ label: title }]} overviewUrl={overviewUrl} />
       {goBackUrl && goBackLinkLabel && (
-        <Links
+        <Link
           type={LinkType.back}
           label={goBackLinkLabel}
-          onClickReturn={() => {
+          onClick={() => {
             trackClick({
               location: PageLocation.funnel,
               buttonType: ButtonType.link,
@@ -69,13 +73,13 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           }}
         />
       )}
-      <OdsText preset={ODS_TEXT_PRESET.heading2} className="block mb-7">
+      <Text preset={TEXT_PRESET.heading2} className="block mb-7">
         {title}
-      </OdsText>
+      </Text>
       {description && (
-        <OdsText className="block mb-8" preset={ODS_TEXT_PRESET.paragraph}>
+        <Text className="block mb-8" preset={TEXT_PRESET.paragraph}>
           {description}
-        </OdsText>
+        </Text>
       )}
       <form
         onSubmit={(event) => {
@@ -84,11 +88,10 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
         }}
       >
         {children}
-        <OdsButton
-          isDisabled={!isFormSubmittable || isSubmitPending}
+        <Button
+          disabled={!isFormSubmittable || isSubmitPending}
           type="submit"
-          size={ODS_BUTTON_SIZE.sm}
-          label={createButtonLabel}
+          size={BUTTON_SIZE.sm}
           onClick={() => {
             trackClick({
               location: PageLocation.funnel,
@@ -96,7 +99,9 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
               actions: confirmActionsTracking,
             });
           }}
-        />
+        >
+          {createButtonLabel}
+        </Button>
       </form>
       {isSubmitPending && (
         <div className="mt-4">
@@ -104,14 +109,15 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
         </div>
       )}
       {hasFormError && (
-        <OdsMessage
-          isDismissible={false}
-          className="block mt-5"
-          color={ODS_MESSAGE_COLOR.critical}
+        <Message
+          dismissible={false}
+          className="mt-5"
+          color={MESSAGE_COLOR.critical}
         >
-          {formErrorMessage}
-        </OdsMessage>
+          <MessageIcon name="hexagon-exclamation" />
+          <MessageBody>{formErrorMessage}</MessageBody>
+        </Message>
       )}
-    </PageLayout>
+    </BaseLayout>
   );
 };
