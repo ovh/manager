@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import {
   useGetDnssecStatus,
   useGetDomainAnycastOption,
@@ -74,7 +73,11 @@ export default function ConfigurationCards({
       : DnssecStatusEnum.ENABLED,
   );
 
-  const { updateDomain } = useUpdateDomainResource(serviceName);
+  const {
+    updateDomain,
+    errorMessage,
+    isUpdateDomainPending,
+  } = useUpdateDomainResource(serviceName);
   const {
     transferTag,
     isTransferTagPending,
@@ -193,9 +196,6 @@ export default function ConfigurationCards({
         onSuccess: () => {
           setDataProtectionDrawerOpened(false);
         },
-        onError: (_: TUpdateDNSConfigError) => {
-          setDataProtectionDrawerOpened(false);
-        },
       },
     );
   };
@@ -210,96 +210,106 @@ export default function ConfigurationCards({
   }
 
   return (
-    <ManagerTile>
-      <ManagerTile.Title>
-        {t('domain_tab_general_information_configuration')}
-      </ManagerTile.Title>
-      <ManagerTile.Divider />
-      <DnsState
-        domainResource={domainResource}
-        serviceName={serviceName}
-        anycastOption={anycastOption}
-        isFetchingAnycastOption={isFetchingAnycastOption}
-        anycastTerminateModalOpen={anycastTerminateModalOpen}
-        setAnycastTerminateModalOpen={setAnycastTerminateModalOpen}
-        restoreAnycast={restoreAnycast}
-        setRestoreAnycast={setRestoreAnycast}
-      />
-      <ManagerTile.Divider />
-      <DnssecToggleStatus
-        dnssecModalOpened={dnssecModalOpened}
-        dnssecStatus={dnssecStatus}
-        domainResource={domainResource}
-        isDnssecStatusLoading={isDnssecStatusLoading}
-        setDnssecModalOpened={setDnssecModalOpened}
-      />
-      <ManagerTile.Divider />
-      <TransferToggleStatus
-        domainResource={domainResource}
-        transferModalOpened={transferModalOpened}
-        setTransferModalOpened={setTransferModalOpened}
-        setTransferAuthInfoModalOpened={setTransferAuthInfoModalOpened}
-        setTagModalOpened={setTagModalOpened}
-      />
-      <DnssecModal
-        action={dnssecStatus?.status}
-        open={dnssecModalOpened}
-        updateDnssec={updateDnssec}
-        onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
-      />
-      <ManagerTile.Divider />
-      <DataProtection
-        domainResource={domainResource}
-        setDataProtectionDrawerOpened={setDataProtectionDrawerOpened}
-      />
-      <TransferModal
-        serviceName={serviceName}
-        action={domainResource?.currentState.protectionState}
-        open={transferModalOpened}
-        updateDomain={() => handleUpdateProtectionState()}
-        onClose={() => setTransferModalOpened(!transferModalOpened)}
-      />
-      <TransferAuthInfoModal
-        authInfo={authInfo}
-        authInfoManagedByOVH={
-          domainResource?.currentState?.authInfoManagedByOVHcloud
-        }
-        isAuthInfoLoading={isAuthInfoLoading}
-        onClose={() =>
-          setTransferAuthInfoModalOpened(!transferAuthInfoModalOpened)
-        }
-        open={transferAuthInfoModalOpened}
-      />
-      <TransferTagModal
-        tag={tag}
-        setTag={setTag}
-        handleTag={handleTag}
-        serviceName={serviceName}
-        isTransferTagPending={isTransferTagPending}
-        transferTagError={transferTagError}
-        open={tagModalOpened}
-        onClose={() => setTagModalOpened(!tagModalOpened)}
-      />
-      <DataProtectionDrawer
-        isDrawerOpen={dataProtectionDrawerOpened}
-        onClose={() => setDataProtectionDrawerOpened(false)}
-        domainResource={domainResource}
-        visibleContacts={visibleContacts}
-        selectedContacts={selectedContacts}
-        onCheckboxChange={handleCheckboxChange}
-        onClick={() => {
-          handleUpdateDataProtection();
-        }}
-      />
-      <AnycastTerminateModal
-        serviceName={serviceName}
-        restore={restoreAnycast}
-        anycastTerminateModalOpen={anycastTerminateModalOpen}
-        expirationDate={anycastOption?.expirationDate}
-        onOpenAnycastTerminateModal={() =>
-          setAnycastTerminateModalOpen(!anycastTerminateModalOpen)
-        }
-      />
-    </ManagerTile>
+    <>
+      {dataProtectionDrawerOpened && (
+        <div
+          className="fixed inset-0 bg-[--ods-color-primary-500] opacity-75 z-40"
+          onClick={() => setDataProtectionDrawerOpened(false)}
+        />
+      )}
+      <ManagerTile>
+        <ManagerTile.Title>
+          {t('domain_tab_general_information_configuration')}
+        </ManagerTile.Title>
+        <ManagerTile.Divider />
+        <DnsState
+          domainResource={domainResource}
+          serviceName={serviceName}
+          anycastOption={anycastOption}
+          isFetchingAnycastOption={isFetchingAnycastOption}
+          anycastTerminateModalOpen={anycastTerminateModalOpen}
+          setAnycastTerminateModalOpen={setAnycastTerminateModalOpen}
+          restoreAnycast={restoreAnycast}
+          setRestoreAnycast={setRestoreAnycast}
+        />
+        <ManagerTile.Divider />
+        <DnssecToggleStatus
+          dnssecModalOpened={dnssecModalOpened}
+          dnssecStatus={dnssecStatus}
+          domainResource={domainResource}
+          isDnssecStatusLoading={isDnssecStatusLoading}
+          setDnssecModalOpened={setDnssecModalOpened}
+        />
+        <ManagerTile.Divider />
+        <TransferToggleStatus
+          domainResource={domainResource}
+          transferModalOpened={transferModalOpened}
+          setTransferModalOpened={setTransferModalOpened}
+          setTransferAuthInfoModalOpened={setTransferAuthInfoModalOpened}
+          setTagModalOpened={setTagModalOpened}
+        />
+        <DnssecModal
+          action={dnssecStatus?.status}
+          open={dnssecModalOpened}
+          updateDnssec={updateDnssec}
+          onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
+        />
+        <ManagerTile.Divider />
+        <DataProtection
+          domainResource={domainResource}
+          setDataProtectionDrawerOpened={setDataProtectionDrawerOpened}
+        />
+        <TransferModal
+          serviceName={serviceName}
+          action={domainResource?.currentState.protectionState}
+          open={transferModalOpened}
+          updateDomain={() => handleUpdateProtectionState()}
+          onClose={() => setTransferModalOpened(!transferModalOpened)}
+        />
+        <TransferAuthInfoModal
+          authInfo={authInfo}
+          authInfoManagedByOVH={
+            domainResource?.currentState?.authInfoManagedByOVHcloud
+          }
+          isAuthInfoLoading={isAuthInfoLoading}
+          onClose={() =>
+            setTransferAuthInfoModalOpened(!transferAuthInfoModalOpened)
+          }
+          open={transferAuthInfoModalOpened}
+        />
+        <TransferTagModal
+          tag={tag}
+          setTag={setTag}
+          handleTag={handleTag}
+          serviceName={serviceName}
+          isTransferTagPending={isTransferTagPending}
+          transferTagError={transferTagError}
+          open={tagModalOpened}
+          onClose={() => setTagModalOpened(!tagModalOpened)}
+        />
+        <DataProtectionDrawer
+          isDrawerOpen={dataProtectionDrawerOpened}
+          onClose={() => setDataProtectionDrawerOpened(false)}
+          domainResource={domainResource}
+          visibleContacts={visibleContacts}
+          selectedContacts={selectedContacts}
+          onCheckboxChange={handleCheckboxChange}
+          onClick={() => {
+            handleUpdateDataProtection();
+          }}
+          errorMessage={errorMessage}
+          isUpdateDomainPending={isUpdateDomainPending}
+        />
+        <AnycastTerminateModal
+          serviceName={serviceName}
+          restore={restoreAnycast}
+          anycastTerminateModalOpen={anycastTerminateModalOpen}
+          expirationDate={anycastOption?.expirationDate}
+          onOpenAnycastTerminateModal={() =>
+            setAnycastTerminateModalOpen(!anycastTerminateModalOpen)
+          }
+        />
+      </ManagerTile>
+    </>
   );
 }

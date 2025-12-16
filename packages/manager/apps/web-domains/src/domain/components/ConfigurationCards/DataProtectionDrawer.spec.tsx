@@ -131,6 +131,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={['contactOwner']}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -157,6 +159,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={['contactOwner']}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -177,6 +181,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={['contactOwner']}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -199,6 +205,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={['contactOwner']}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -229,6 +237,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={['contactOwner']}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -252,6 +262,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={[]}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -272,6 +284,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={['contactOwner']}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -293,6 +307,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={['contactOwner', 'contactAdministrator']}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -317,6 +333,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={['contactOwner']}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );
@@ -342,6 +360,8 @@ describe('DataProtectionDrawer component', () => {
         selectedContacts={[]}
         onCheckboxChange={mockOnCheckboxChange}
         onClick={mockOnClick}
+        isUpdateDomainPending={false}
+        errorMessage={null}
       />,
       { wrapper },
     );

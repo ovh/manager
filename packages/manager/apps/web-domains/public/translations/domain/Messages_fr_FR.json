@@ -134,6 +134,7 @@
   "domain_tab_general_information_outgoing_transfer": "Transfert sortant",
   "domain_tab_general_information_pending_deletion": "Suppression en cours",
   "domain_tab_general_information_deleted": "Supprimé",
+  "domain_tab_general_information_update_success": "Votre demande de mise à jour a été traitée avec succès.",
   "domain_tab_general_information_subscription_expiration_date": "Date d'expiration",
   "domain_tab_general_information_subscription_renew_frequency": "Fréquence de renouvellement",
   "domain_tab_general_information_subscription_renew_frequency_years": "Tous les {{ years }} ans",
