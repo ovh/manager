@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.35.1...@ovh-ux/manager-pci-databases-analytics-app@1.36.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* **pci.db:** update tailwind path ([cc12a4b](https://github.com/ovh/manager/commit/cc12a4bfe35cfd0f139411af5a7f772017f4876a)), closes [#DATATR-1234](https://github.com/ovh/manager/issues/DATATR-1234)
+
+
+### Features
+
+* **pci.databases-analytics:** update theme to ods19 ([59d6590](https://github.com/ovh/manager/commit/59d65905768cd7d09155d1adc53d4b684154e524)), closes [#DATATR-2573](https://github.com/ovh/manager/issues/DATATR-2573) [#DATATR-2586](https://github.com/ovh/manager/issues/DATATR-2586)
+* **pci.databases:** replace ipify ([cada71b](https://github.com/ovh/manager/commit/cada71b9411cb2d45c4b9f7151c27dd99d8dda64)), closes [#DATATR-2644](https://github.com/ovh/manager/issues/DATATR-2644)
+
+
+
+
+
 ## [1.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.35.0...@ovh-ux/manager-pci-databases-analytics-app@1.35.1) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
