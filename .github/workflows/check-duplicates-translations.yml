@@ -2,6 +2,15 @@ name: Duplicate translation
 on:
   push:
     branches-ignore: [master]
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
 
 jobs:
   duplicate-translation:

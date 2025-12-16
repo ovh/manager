@@ -1,5 +1,15 @@
 name: Lint Commit Messages
-on: [pull_request, push]
+
+on:
+  push:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref_name }}
+  cancel-in-progress: true
 
 jobs:
   commitlint:
