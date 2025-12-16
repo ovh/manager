@@ -6,9 +6,14 @@ type GeneralInformationTenantTileProps = {
 };
 
 export function GeneralInformationTenantTile({ tenantId }: GeneralInformationTenantTileProps) {
-  const { data, isLoading } = useBackupTenantDetails({ tenantId });
+  const { data, isLoading, isLoadingBackupServicesId } = useBackupTenantDetails({ tenantId });
 
-  return <GeneralInformationTile resourceDetails={data} isLoading={isLoading} />;
+  return (
+    <GeneralInformationTile
+      resourceDetails={data}
+      isLoading={isLoading || isLoadingBackupServicesId}
+    />
+  );
 }
 
 export default GeneralInformationTenantTile;

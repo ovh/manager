@@ -16,14 +16,14 @@ export const getVSPCTenantMocks = ({
   isVspcTenantsError,
 }: TVSPCTenantMockParams): Handler[] => [
   {
-    url: '/backupServices/tenant/:tenantId/vspc',
+    url: '/backupServices/tenant/:backupServicesId/vspc',
     response: () => vspcTenants ?? VSPC_TENANTS_MOCKS,
     api: 'v2',
     method: 'get',
     status: 200,
   },
   {
-    url: '/backupServices/tenant/:tenantId/vspc/:vspcTenantId',
+    url: '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId',
     response: (_: unknown, params: PathParams) => {
       if (isVspcTenantsError) return null;
       return VSPC_TENANTS_MOCKS.find((tenant) => tenant.id === params.vspcTenantId);
