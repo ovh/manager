@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_storages_blocks_retype_cant_retype": "Die Funktion zur Änderung des Typs ist für Classic 3AZ-Volumes oder verschlüsselte Volumes nicht verfügbar",
+  "pci_projects_project_storages_blocks_retype_title": "Ändern Sie Ihren Angebotstyp",
+  "pci_projects_project_storages_blocks_retype_change_type_title": "Typ auswählen",
+  "pci_projects_project_storages_blocks_retype_change_encryption_title": "Verschlüsselung auswählen",
+  "pci_projects_project_storages_blocks_retype_encryption_not_available": "Die Verschlüsselung ist in dieser Region nicht verfügbar",
+  "pci_projects_project_storages_blocks_retype_confirm_action_label": "Geben Sie \"{{ confirmWord }}\" ein, um Ihre Auswahl zu bestätigen.",
+  "pci_projects_project_storages_blocks_retype_confirm_action_confirm_button": "Bestätigen und fortfahren",
+  "pci_projects_project_storages_blocks_retype_detach_volume_label": "Ihre Instanz trennen",
+  "pci_projects_project_storages_blocks_retype_detach_volume_warning": "Um Ihren Angebotstyp zu ändern, müssen Sie das Volume von seiner Instanz {{ instance }} trennen",
+  "pci_projects_project_storages_blocks_retype_detach_volume_error": "Beim Trennen der Instanz ist ein Fehler aufgetreten. Wir empfehlen Ihnen, die &lt;0>Blockspeicher-Seite&lt;/0> zu besuchen, um die Instanz manuell zu trennen.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_label": "Snapshots löschen",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_warning": "Um Ihren Angebotstyp zu ändern, müssen Sie zuerst die an Ihr Volume angehängten Snapshots löschen.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_error": "Beim Löschen der Snapshots ist ein Fehler aufgetreten. Wir empfehlen Ihnen, die &lt;0>Snapshots-Seite&lt;/0> zu besuchen, um sie manuell zu löschen.",
+  "pci_projects_project_storages_blocks_retype_retype_success": "Das Volume {{ volumeName }} wird geändert. Dieser Vorgang kann mehrere Minuten dauern. Sobald dieser abgeschlossen ist, können Sie die üblichen Aktionen durchführen",
+  "pci_projects_project_storages_blocks_retype_retype_error": "Beim Ändern des Typs Ihres Volumes ist ein Fehler aufgetreten."
+}
