@@ -14,7 +14,6 @@ import {
 import { i18n } from 'i18next';
 import { SetupServer } from 'msw/node';
 import {
-  initTestI18n,
   WAIT_FOR_DEFAULT_OPTIONS,
   getAuthenticationMocks,
   toMswHandlers,
@@ -27,7 +26,7 @@ import {
   NetworkConfigParams,
   getNetworkConfig,
 } from '@ovh-ux/manager-network-common';
-import { translations, labels } from './test-i18n';
+import { translations, labels, initTestI18n } from './test-i18n';
 import { GetIamMocksParams, getIamMocks } from '../__mocks__/iam';
 import { RenderTest } from './render-test';
 
