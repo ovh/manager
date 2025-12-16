@@ -1,0 +1,96 @@
+@capacity-bar-used: #64b347;
+@capacity-bar-overflow: #4bb2f6;
+@capacity-bar-reserve: #0050d7;
+@capacity-bar-available: #e6e6e6;
+
+#capacity-bar {
+  .container {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+
+  .bar {
+    display: flex;
+    width: 100%;
+    height: 20px;
+    margin: 5px 0 5px 0;
+    background-color: @capacity-bar-available;
+    border-radius: 6px;
+  }
+
+  .segment {
+    height: 100%;
+    &:first-child {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+    &:last-child {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+  }
+
+  .used {
+    background-color: @capacity-bar-used;
+  }
+
+  .used-reserve {
+    background-color: @capacity-bar-reserve;
+  }
+
+  .overflow {
+    background-color: @capacity-bar-overflow;
+  }
+
+  .available {
+    background-color: @capacity-bar-available;
+  }
+
+  .separator {
+    background-color: #808080;
+    width: 1px;
+    height: 30px;
+    margin-top: -5px;
+  }
+
+  .info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .capacity-label {
+    background-color: transparent;
+    padding-left: 0.5rem;
+    &:before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+    &.used:before {
+      background-color: @capacity-bar-used;
+    }
+    &.used-reserve:before {
+      background-color: @capacity-bar-reserve;
+    }
+
+    &.overflow:before {
+      background-color: @capacity-bar-overflow;
+    }
+
+    &.available:before {
+      background-color: @capacity-bar-available;
+    }
+  }
+}

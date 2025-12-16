@@ -1,0 +1,7 @@
+{
+  "netapp_volumes_dashboard_volume_data_space": "Spazio dati",
+  "netapp_volumes_dashboard_volume_used": "Utilizzato",
+  "netapp_volumes_dashboard_volume_overflow": "Overflow",
+  "netapp_volumes_dashboard_volume_available": "Disponibile",
+  "netapp_volumes_dashboard_snapshot_space": "Riserva di Snapshot"
+}
