@@ -46,5 +46,8 @@
   "netapp_volumes_dashboard_volume_used": "Używane",
   "netapp_volumes_dashboard_volume_overflow": "Skalowanie zasobów",
   "netapp_volumes_dashboard_volume_available": "Dostępny",
-  "netapp_volumes_dashboard_snapshot_space": "Rezerwa migawki"
+  "netapp_volumes_dashboard_snapshot_space": "Rezerwa migawki",
+  "netapp_volumes_dashboard_configuration_title": "Skonfiguruj sieć",
+  "netapp_volumes_dashboard_configuration_bare_metal": "Skonfiguruj prywatną sieć dla serwera bare metal",
+  "netapp_volumes_dashboard_configuration_public_cloud": "Skonfiguruj prywatną sieć dla instancji / projektu Public Cloud"
 }

@@ -125,6 +125,28 @@
                 >
                     <oui-tile-description>
                         <oui-collapsible
+                            data-heading="{{:: 'netapp_volumes_dashboard_configuration_title' | translate }}"
+                        >
+                            <ul class="list-none">
+                                <li>
+                                    <a
+                                        data-ng-href="{{:: $ctrl.BARE_METAL_GUIDE}}"
+                                        data-translate="netapp_volumes_dashboard_configuration_bare_metal"
+                                        rel="noopener"
+                                        target="_blank"
+                                    ></a>
+                                </li>
+                                <li>
+                                    <a
+                                        data-ng-href="{{:: $ctrl.PUBLIC_CLOUD_GUIDE}}"
+                                        data-translate="netapp_volumes_dashboard_configuration_public_cloud"
+                                        rel="noopener"
+                                        target="_blank"
+                                    ></a>
+                                </li>
+                            </ul>
+                        </oui-collapsible>
+                        <oui-collapsible
                             data-heading="{{:: 'netapp_volumes_dashboard_connection_setting_up' | translate }}"
                         >
                             <ol>
