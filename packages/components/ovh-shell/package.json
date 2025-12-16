@@ -17,10 +17,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc",
+    "build": "tsc && tsc-alias",
+    "dev": "tsc && tsc-alias",
     "dev:watch": "tsc -w",
-    "prepare": "tsc",
+    "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:ci": "manager-test run --coverage"
   },
@@ -37,6 +37,7 @@
   "devDependencies": {
     "@ovh-ux/manager-tests-setup": "^0.6.2",
     "@typescript-eslint/eslint-plugin": "^4.7.4",
-    "@typescript-eslint/parser": "^4.7.4"
+    "@typescript-eslint/parser": "^4.7.4",
+    "tsc-alias": "^1.8.16"
   }
 }
