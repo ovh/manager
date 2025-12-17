@@ -108,6 +108,7 @@ export const CreateVersionDrawerForm = ({
         <FormProvider {...form}>
           <form
             className="m-1" // give room to display the outline of all inputs
+            onSubmit={handleSubmit(handleSubmitForm)}
           >
             {createError && (
               <OdsMessage color="danger" className="mb-4">
