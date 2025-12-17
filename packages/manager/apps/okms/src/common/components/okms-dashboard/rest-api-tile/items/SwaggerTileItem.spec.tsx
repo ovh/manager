@@ -21,10 +21,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   };
 });
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 describe('OKMS Swagger Tile Item test suite', () => {
   it('should render the tile item correctly', async () => {
     // GIVEN okmsMocked
