@@ -25,8 +25,10 @@ webCloudUniverse.children = [
     features: [
       'web:domains',
       'web:domains:zone',
+      'web:domains:domains',
       'web-ongoing-operations',
       'web-domains:alldoms',
+      'web-domain:domains',
     ],
     children: [
       {
@@ -50,7 +52,19 @@ webCloudUniverse.children = [
           application: 'web',
           hash: '#/domain',
         },
-        features: ['web:domains'],
+        features: ['web:domains:domains'],
+      },
+      {
+        id: 'domains-list',
+        idAttr: 'domains-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_domain',
+        serviceType: 'DOMAIN',
+        routing: {
+          application: 'web-domains',
+          hash: '#/domain',
+        },
+        features: ['web-domains:domains'],
       },
       {
         id: 'alldom',
@@ -63,7 +77,7 @@ webCloudUniverse.children = [
         },
         serviceType: 'ALLDOM',
         features: ['web-domains:alldoms'],
-        hideIfEmpty: true
+        hideIfEmpty: true,
       },
       {
         id: 'dns',
