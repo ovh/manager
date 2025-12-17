@@ -38,6 +38,7 @@
   "kubernetes_add_billing_anti_affinity_title": "Facturation et anti-affinité",
   "kubernetes_add_billing_savings_plan_banner": "Bénéficiez de tarifs mensuels avantageux grâce aux Savings Plans, tout en gardant la flexibilité des instances à l'heure.",
   "kubernetes_add_billing_savings_plan_cta": "Configurez vos Savings Plans",
+  "kubernetes_add_create_cluster": "Créer mon cluster",
   "kube_add_node_pool_config_title": "Configuration générale",
   "kube_add_node_pool_name_label": "Nom du pool de nœuds",
   "kube_add_node_pool_name_title": "Nommez votre pool de nœuds",
