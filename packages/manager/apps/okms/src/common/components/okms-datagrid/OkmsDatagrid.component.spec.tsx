@@ -54,10 +54,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   }),
 }));
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 const columns = {
   name: 'key_management_service_listing_name_cell',
   id: 'key_management_service_listing_id_cell',

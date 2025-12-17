@@ -47,10 +47,6 @@ vi.mock('@secret-manager/routes/routes.constants', () => ({
   },
 }));
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 // Test data
 const mockOkmsId = 'test-okms-id';
 const mockSecretPath = 'test/secret/path';
