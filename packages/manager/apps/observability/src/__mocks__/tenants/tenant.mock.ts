@@ -11,6 +11,7 @@ const tenantsDataset: Tenant[] = [
     id: '1',
     createdAt: '2025-11-21T14:26:14.041Z',
     updatedAt: '2025-11-21T14:26:14.041Z',
+    resourceStatus: 'READY',
     iam: {
       id: '92c16299-3f5b-4ea9-a806-e0464e7bfa31',
       tags: {
@@ -48,6 +49,7 @@ const tenantsDataset: Tenant[] = [
     id: '2',
     createdAt: '2025-11-20T14:26:14.041Z',
     updatedAt: '2025-11-20T14:26:14.041Z',
+    resourceStatus: 'READY',
     iam: {
       id: '92c16299-3f5b-4ea9-a806-e0464e7bfa32',
       tags: {
