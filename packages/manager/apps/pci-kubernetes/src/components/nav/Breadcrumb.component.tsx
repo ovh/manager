@@ -17,15 +17,15 @@ type TBreadcrumbEntry = {
 };
 
 type TBreadcrumbProps = {
-  items: Array<TBreadcrumbEntry>;
+  entries: Array<TBreadcrumbEntry>;
 };
 
-export const Breadcrumb: FC<TBreadcrumbProps> = ({ items }) => {
+export const Breadcrumb: FC<TBreadcrumbProps> = ({ entries }) => {
   const { t } = useTranslation(['common']);
 
   const [home, ...crumbs] = useMemo(
-    () => computeBreadcrumbUrl<Partial<TBreadcrumbEntry>>([{}, ...items], window.location.hash),
-    [items],
+    () => computeBreadcrumbUrl<Partial<TBreadcrumbEntry>>([{}, ...entries], window.location.hash),
+    [entries],
   );
 
   return (
