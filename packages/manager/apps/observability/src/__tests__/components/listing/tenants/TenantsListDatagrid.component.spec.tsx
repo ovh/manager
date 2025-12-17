@@ -218,6 +218,7 @@ const mockTenants: Tenant[] = [
     id: 'tenant-1',
     createdAt: '2024-01-01T00:00:00Z',
     updatedAt: '2024-01-01T00:00:00Z',
+    resourceStatus: 'READY',
     currentState: {
       title: 'Tenant One',
       limits: {
@@ -241,6 +242,7 @@ const mockTenants: Tenant[] = [
     id: 'tenant-2',
     createdAt: '2024-01-02T00:00:00Z',
     updatedAt: '2024-01-02T00:00:00Z',
+    resourceStatus: 'READY',
     currentState: {
       title: 'Tenant Two',
       limits: {
@@ -263,6 +265,7 @@ const mockTenants: Tenant[] = [
     id: 'tenant-3',
     createdAt: '2024-01-03T00:00:00Z',
     updatedAt: '2024-01-03T00:00:00Z',
+    resourceStatus: 'READY',
     currentState: {
       title: 'Tenant Three',
       limits: {
@@ -516,6 +519,7 @@ describe('TenantsListDatagrid', () => {
           id: 'tenant-incomplete',
           createdAt: '2024-01-01T00:00:00Z',
           updatedAt: null,
+          resourceStatus: 'READY',
           currentState: {
             title: 'Incomplete Tenant',
             limits: undefined,
@@ -539,6 +543,7 @@ describe('TenantsListDatagrid', () => {
           id: 'tenant-no-tags',
           createdAt: '2024-01-01T00:00:00Z',
           updatedAt: null,
+          resourceStatus: 'READY',
           currentState: {
             title: 'No Tags Tenant',
             limits: {
@@ -569,6 +574,7 @@ describe('TenantsListDatagrid', () => {
           id: 'tenant-empty-tags',
           createdAt: '2024-01-01T00:00:00Z',
           updatedAt: null,
+          resourceStatus: 'READY',
           currentState: {
             title: 'Empty Tags Tenant',
             limits: {
@@ -601,6 +607,7 @@ describe('TenantsListDatagrid', () => {
           id: 'tenant-no-limits',
           createdAt: '2024-01-01T00:00:00Z',
           updatedAt: null,
+          resourceStatus: 'READY',
           currentState: {
             title: 'No Limits Tenant',
             infrastructure: mockInfrastructure,
