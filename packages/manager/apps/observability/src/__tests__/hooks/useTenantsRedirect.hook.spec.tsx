@@ -107,6 +107,7 @@ describe('useTenantsRedirect', () => {
     id: 'tenant-1',
     createdAt: '2025-11-01T08:00:00.001Z',
     updatedAt: '2025-11-01T08:00:00.001Z',
+    resourceStatus: 'READY',
     currentState: { title: 'Test Tenant' },
   };
 
