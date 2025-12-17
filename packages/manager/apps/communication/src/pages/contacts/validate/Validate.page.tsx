@@ -1,10 +1,9 @@
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { Message, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useRef, useState } from 'react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
@@ -81,45 +80,49 @@ export default function ValidateContactPage() {
   return (
     <Modal
       heading={t('verify_contact_modal_title')}
-      isOpen={true}
-      isLoading={isLoading}
-      onDismiss={() => navigate(urls.contact.listing)}
-      primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      onSecondaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['enter_validation_code', 'cancel'],
-          subApp: TrackingSubApps.Contacts,
-        });
-        navigate(urls.contact.listing);
+      open={true}
+      loading={isLoading}
+      onOpenChange={() => navigate(urls.contact.listing)}
+      primaryButton={{
+        label: t('validate', { ns: NAMESPACES.ACTIONS }),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['enter_validation_code', 'confirm'],
+            subApp: TrackingSubApps.Contacts,
+          });
+          return formRef.current?.submit();
+        },
+        loading: isValidatePending,
       }}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['enter_validation_code', 'confirm'],
-          subApp: TrackingSubApps.Contacts,
-        });
-        return formRef.current?.submit();
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['enter_validation_code', 'cancel'],
+            subApp: TrackingSubApps.Contacts,
+          });
+          navigate(urls.contact.listing);
+        },
       }}
-      isPrimaryButtonLoading={isValidatePending}
     >
       <div className="flex flex-col gap-4 my-4">
         {error && (
-          <OdsMessage
-            color="danger"
-            isDismissible={true}
+          <Message
+            color="critical"
+            dismissible={true}
             className="w-full"
-            onOdsRemove={() => setError(null)}
+            onRemove={() => setError(null)}
           >
             {error}
-          </OdsMessage>
+          </Message>
         )}
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           <Trans
             t={t}
             i18nKey="verify_contact_contact_email_info"
@@ -127,7 +130,7 @@ export default function ValidateContactPage() {
               email: contactMean?.email,
             }}
           />
-        </OdsText>
+        </Text>
         <ContactValidateForm ref={formRef} onSubmit={onSubmitValidate} />
       </div>
     </Modal>

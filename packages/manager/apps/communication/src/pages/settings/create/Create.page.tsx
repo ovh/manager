@@ -1,9 +1,3 @@
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -12,7 +6,7 @@ import {
   Notifications,
   RedirectionGuard,
   useNotifications,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import RuleForm from '@/components/routing/ruleForm/RuleForm.component';
 import { urls } from '@/routes/routes.constant';
@@ -21,6 +15,7 @@ import { CreateRouting } from '@/data/types/routing.type';
 import { useAuthorization } from '@/hooks';
 import useTracking from '@/hooks/useTracking/useTracking';
 import { TrackingSubApps } from '@/tracking.constant';
+import { Button, Icon, MESSAGE_COLOR, Message, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 
 export default function CreateSettingsPage() {
   const formRef = useRef<{ submit: () => void }>(null);
@@ -89,42 +84,34 @@ export default function CreateSettingsPage() {
               });
             }}
           >
-            <OdsButton
+            <Button
               variant="ghost"
-              icon="arrow-left"
-              label={t('back_to_list', { ns: NAMESPACES.ACTIONS })}
-            />
+              aria-label={t('back_to_list', { ns: NAMESPACES.ACTIONS })}
+            >
+              <Icon name="arrow-left" />
+              {t('back_to_list', { ns: NAMESPACES.ACTIONS })}
+            </Button>
           </Link>
         </div>
-        <OdsText preset={ODS_TEXT_PRESET.heading2}>
+        <Text preset={TEXT_PRESET.heading2}>
           {t('add_routing_headline')}
-        </OdsText>
+        </Text>
         <Notifications clearAfterRead />
-        <OdsMessage color={ODS_MESSAGE_COLOR.information} isDismissible={false}>
+        <Message color={MESSAGE_COLOR.information} dismissible={false}>
           {t('add_routing_info')}
-        </OdsMessage>
+        </Message>
 
         <RuleForm onSubmit={onSubmit} ref={formRef} />
         <div className="flex flex-row justify-start gap-5 mt-4">
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.outline}
-            label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-            size="sm"
+          <Button
+            variant="outline"
+            aria-label={t('cancel', { ns: NAMESPACES.ACTIONS })}
             onClick={() => {
               trackButtonClick(['create-rule', 'cancel']);
               navigate(urls.routing.listing);
-            }}
-          />
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.default}
-            label={t('create', { ns: NAMESPACES.ACTIONS })}
-            size="sm"
-            onClick={() => {
-              trackButtonClick(['create-rule', 'confirm']);
-              formRef.current?.submit();
-            }}
-            isLoading={isCreatePending}
-          />
+            }}>
+              {t('cancel', { ns: NAMESPACES.ACTIONS })}
+            </Button>
         </div>
       </div>
     </RedirectionGuard>

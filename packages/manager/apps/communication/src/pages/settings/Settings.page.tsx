@@ -1,17 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ActionMenu,
-  ActionMenuItem,
+  ActionMenuItemProps,
   Datagrid,
   DatagridColumn,
-  DataGridTextCell,
-  ManagerButton,
+  Button as ManagerButton,
   Notifications,
   useNotifications,
-  useResourcesIcebergV2,
-} from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+  useDataApi,
+} from '@ovh-ux/muk';
+import { BUTTON_VARIANT, Message, Text, Icon } from '@ovhcloud/ods-react';
 import { useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -111,7 +109,7 @@ function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
           iamActions: ['account:apiovh:notification/routing/delete'],
           urn: accountUrn,
         },
-      ].filter(Boolean) as ActionMenuItem[],
+      ].filter(Boolean) as ActionMenuItemProps[],
     [t, routing],
   );
 
@@ -120,7 +118,7 @@ function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
       id={routing.id}
       items={items}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       aria-label={t('actions_menu_label')}
     />
   );
@@ -141,30 +139,33 @@ function SettingsPage() {
       {
         id: 'name',
         label: t('table_column_name'),
+        header: t('table_column_name'),
+        accessorKey: 'name',
         isSortable: false,
-        cell: ({ name }) => (
-          <DataGridTextCell className="truncate">{name}</DataGridTextCell>
+        cell: ({ row }) => (
+          <Text className="truncate">{row.original.name}</Text>
         ),
       },
       {
         id: 'status',
         label: t('table_column_status'),
+        header: t('table_column_status'),
+        accessorKey: 'status',
         isSortable: false,
         size: 50,
-        cell: ({ active }) => (
-          <DataGridTextCell>
-            <RoutingStatusChip active={active} />
-          </DataGridTextCell>
+        cell: ({ row }) => (
+          <Text>
+            <RoutingStatusChip active={row.original.active} />
+          </Text>
         ),
       },
       {
         id: 'error',
-        label: '',
         isSortable: false,
         size: 50,
-        cell: ({ rules }) => (
+        cell: ({ row }) => (
           <div className="flex flex-row justify-center">
-            <RoutingError rules={rules} />
+            <RoutingError rules={row.original.rules} />
           </div>
         ),
       },
@@ -173,9 +174,9 @@ function SettingsPage() {
         label: '',
         size: 50,
         isSortable: false,
-        cell: (routing) => (
+        cell: ({ row }) => (
           <div className="flex flex-row justify-center">
-            <RoutingActionMenu routing={routing} />
+            <RoutingActionMenu routing={row.original} />
           </div>
         ),
       },
@@ -188,45 +189,52 @@ function SettingsPage() {
     isLoading: isLoadingRouting,
     hasNextPage,
     fetchNextPage,
-  } = useResourcesIcebergV2<NotificationRouting>({
+  } = useDataApi<NotificationRouting>({
+    version: 'v2',
+    iceberg: true,
     columns,
     route: '/notification/routing',
-    defaultSorting: {
+    defaultSorting: [{
       id: 'createdAt',
       desc: true,
-    },
-    queryKey: getNotificationRoutingListQueryKey(),
+    }],
+    cacheKey: getNotificationRoutingListQueryKey(),
     enabled: isAuthorized,
   });
 
   const isLoading = isLoadingRouting || isLoadingAuthorization;
+  const containerHeight = useMemo(() => {
+    const length = flattenData?.length || 1;
+    if (length <= 10) {
+      return 66 * length + 50
+    }
+    return 710;
+  }, [flattenData]);
 
   return (
     <div className="flex flex-col gap-4">
-      <OdsText preset="paragraph" className="mb-6">
+      <Text preset="paragraph" className="mb-6">
         {t('description')}
-      </OdsText>
+      </Text>
 
       {!isLoading && !isAuthorized && (
-        <OdsMessage color="warning" isDismissible={false} className="w-full">
+        <Message color="warning" dismissible={false} className="w-full">
           {t('iam_display_content_message', { ns: 'common' })}
-        </OdsMessage>
+        </Message>
       )}
 
       <Notifications clearAfterRead />
 
-      <Datagrid
-        items={flattenData || []}
+      <Datagrid<NotificationRouting>
+        data={flattenData || []}
         columns={columns}
         isLoading={isLoading}
-        tableLayoutFixed={true}
+        containerHeight={containerHeight}
         topbar={
           <ManagerButton
             id="add-routing-button"
             iamActions={['account:apiovh:notification/routing/create']}
             urn={accountUrn}
-            icon="plus"
-            label={t('add_routing_button')}
             aria-label={t('add_routing_button')}
             size="sm"
             onClick={() => {
@@ -239,12 +247,21 @@ function SettingsPage() {
               });
               navigate(urls.routing.create);
             }}
-          />
+          >
+            <>
+              <Icon name="plus" />
+              {t('add_routing_button')}
+            </>
+          </ManagerButton>
         }
-        totalItems={flattenData?.length || 0}
+        totalCount={flattenData?.length || 0}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
-        manualSorting={true}
+        sorting={{
+          sorting: [],
+          setSorting: () => {},
+          manualSorting: true,
+        }}
       />
 
       <Outlet />

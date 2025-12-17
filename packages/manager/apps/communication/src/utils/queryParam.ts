@@ -1,5 +1,5 @@
 import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
-import { ColumnSort } from '@ovh-ux/manager-react-components';
+import type { ColumnSort } from '@tanstack/react-table';
 
 export const sanitizeQueryParams = (
   queryParams: Record<string, string | number | undefined | Array<string>>,

@@ -1,4 +1,4 @@
-import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import { useAuthorizationIam } from '@ovh-ux/muk';
 import { useAccountUrn } from '@/data/hooks/useAccountUrn/useAccountUrn';
 
 export const useAuthorization = (action: string[]) => {

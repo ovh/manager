@@ -1,4 +1,4 @@
-import { ManagerLink } from '@ovh-ux/manager-react-components';
+import { Link as ManagerLink } from '@ovh-ux/muk';
 import { useNavigate } from 'react-router-dom';
 
 /**

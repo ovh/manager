@@ -1,17 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { OdsBadge, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   ActionMenu,
-  ActionMenuItem,
+  ActionMenuItemProps,
   Datagrid,
   DatagridColumn,
-  DataGridTextCell,
-  ManagerButton,
+  Button as ManagerButton,
   Notifications,
   useNotifications,
-  useResourcesIcebergV2,
-} from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+  useDataApi,
+} from '@ovh-ux/muk';
+import { Badge, BUTTON_VARIANT, Icon, Message, Text } from '@ovhcloud/ods-react';
 import { useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -169,7 +167,7 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
           iamActions: ['account:apiovh:notification/contactMean/delete'],
           urn: accountUrn,
         },
-      ].filter(Boolean) as ActionMenuItem[],
+      ].filter(Boolean) as ActionMenuItemProps[],
     [t, contactMean],
   );
 
@@ -178,7 +176,7 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
       id={contactMean.id}
       items={items}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
     />
   );
 }
@@ -197,58 +195,62 @@ function ContactsPage() {
     {
       id: 'description',
       label: t('table_column_description'),
+      header: t('table_column_description'),
       size: 400,
       isSortable: false,
-      cell: ({ description, default: isDefault }) => (
-        <DataGridTextCell className="truncate">
-          {description || '-'}
-          {isDefault && (
-            <OdsBadge
+      cell: ({ row }) => (
+        <Text className="truncate">
+          {row.original.description || '-'}
+          {row.original.default && (
+            <Badge
               className="ml-5"
-              label={t('default_badge_label')}
               color="information"
-            />
+            >
+              {t('default_badge_label')}
+            </Badge>
           )}
-        </DataGridTextCell>
+        </Text>
       ),
     },
     {
       id: 'type',
       label: t('table_column_type'),
+      header: t('table_column_type'),
       isSortable: false,
-      cell: ({ type }) => (
-        <DataGridTextCell>{t(`type_${type.toLowerCase()}`)}</DataGridTextCell>
+      cell: ({ row }) => (
+        <Text>{t(`type_${row.original.type.toLowerCase()}`)}</Text>
       ),
     },
     {
       id: 'contact-mean',
-      isSortable: false,
       label: t('table_column_contact_mean'),
+      header: t('table_column_contact_mean'),
+      isSortable: false,
       /* TODO: replace with component once new contact means are defined */
-      cell: (contactMean) => (
-        <DataGridTextCell>{contactMean.email || '-'}</DataGridTextCell>
+      cell: ({ row }) => (
+        <Text>{row.original.email || '-'}</Text>
       ),
     },
     {
       id: 'status',
       label: t('table_column_status'),
+      header: t('table_column_status'),
       size: 120,
       isSortable: false,
-      cell: ({ status }) => (
-        <DataGridTextCell>
-          <ContactMeanStatusChip status={status} />
-        </DataGridTextCell>
+      cell: ({ row }) => (
+        <Text>
+          <ContactMeanStatusChip status={row.original.status} />
+        </Text>
       ),
     },
     {
       id: 'actions',
-      label: '',
       size: 80,
       isSortable: false,
-      cell: (contactMean) => (
+      cell: ({ row }) => (
         <div className="flex flex-row justify-center">
-          {!contactMean.default && (
-            <ContactMeanActionMenu contactMean={contactMean} />
+          {!row.original.default && (
+            <ContactMeanActionMenu contactMean={row.original} />
           )}
         </div>
       ),
@@ -258,14 +260,15 @@ function ContactsPage() {
   const {
     flattenData,
     sorting,
-    setSorting,
     isLoading: isLoadingContactMeans,
     hasNextPage,
     fetchNextPage,
-  } = useResourcesIcebergV2<ContactMean>({
+  } = useDataApi<ContactMean>({
+    version: 'v2',
+    iceberg: true,
     columns,
     route: '/notification/contactMean',
-    queryKey: getContactMeanListQueryKey(),
+    cacheKey: getContactMeanListQueryKey(),
     enabled: isAuthorized,
   });
 
@@ -273,27 +276,22 @@ function ContactsPage() {
   return (
     <div className="flex flex-col gap-4">
       {!isLoading && !isAuthorized && (
-        <OdsMessage color="warning" isDismissible={false} className="w-full">
+        <Message color="warning" dismissible={false} className="w-full">
           {tCommon('iam_display_content_message')}
-        </OdsMessage>
+        </Message>
       )}
 
       <Notifications clearAfterRead />
 
-      <Datagrid
-        items={flattenData || []}
+      <Datagrid<ContactMean>
+        data={flattenData || []}
         columns={columns}
-        sorting={sorting}
-        onSortChange={setSorting}
         isLoading={isLoading}
-        tableLayoutFixed={true}
         topbar={
           <ManagerButton
             id="add-contact-button"
             iamActions={['account:apiovh:notification/contactMean/create']}
             urn={accountUrn}
-            icon="plus"
-            label={t('add_contact_button')}
             aria-label={t('add_contact_button')}
             size="sm"
             onClick={() => {
@@ -306,12 +304,17 @@ function ContactsPage() {
               });
               navigate(urls.contact.create);
             }}
-          />
+          >
+            <span className="flex items-center gap-2">
+              <Icon name="plus" />
+              {t('add_contact_button')}
+            </span>
+          </ManagerButton>
         }
-        totalItems={flattenData?.length || 0}
+        totalCount={flattenData?.length || 0}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
-        manualSorting={true}
+        sorting={sorting}
       />
 
       <Outlet />

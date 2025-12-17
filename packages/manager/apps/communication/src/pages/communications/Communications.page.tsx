@@ -1,22 +1,22 @@
 import {
   Datagrid,
   DatagridColumn,
-  DataGridTextCell,
   useFormatDate,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 import {
   FilterTypeCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
 import {
-  OdsButton,
-  OdsLink,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  Icon,
+  Link,
+  Message,
+  Text,
+} from '@ovhcloud/ods-react';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Notification } from '@/data/types';
 import { urls } from '@/routes/routes.constant';
@@ -32,6 +32,7 @@ import useCategories from '@/hooks/useCategories/useCategories';
 import useHelpLink from '@/hooks/useHelpLink/useHelpLink';
 import { useTracking } from '@/hooks/useTracking/useTracking';
 import { TrackingSubApps } from '@/tracking.constant';
+import { useMemo } from 'react';
 
 function CommunicationsPage() {
   const { trackClick } = useTracking();
@@ -51,11 +52,11 @@ function CommunicationsPage() {
       isSearchable: true,
       isSortable: false,
       label: t('table_column_subject'),
-      cell: (notification) => (
-        <DataGridTextCell>
-          <OdsLink
-            label={notification.title}
-            href={`#${urls.communication.detailTo(notification.id)}`}
+      header: t('table_column_subject'),
+      cell: ({ row }) => (
+        <Text>
+          <Link
+            href={`#${urls.communication.detailTo(row.original.id)}`}
             onClick={() =>
               trackClick({
                 location: PageLocation.datagrid,
@@ -65,27 +66,29 @@ function CommunicationsPage() {
                 subApp: TrackingSubApps.Communications,
               })
             }
-          />
-        </DataGridTextCell>
+          >
+            {row.original.title}
+          </Link>
+        </Text>
       ),
     },
     {
       id: 'status',
-      label: '',
       isFilterable: true,
       isSortable: false,
-      cell: (notification) => (
-        <DataGridTextCell>
+      cell: ({ row }) => (
+        <Text>
           <NotificationContactStatus
-            contacts={notification.contacts}
-            notificationId={notification.id}
+            contacts={row.original.contacts}
+            notificationId={row.original.id}
           />
-        </DataGridTextCell>
+        </Text>
       ),
     },
     {
       id: 'priority',
       label: t('table_column_priority'),
+      header: t('table_column_priority'),
       isFilterable: true,
       isSortable: false,
       type: FilterTypeCategories.Options,
@@ -94,19 +97,20 @@ function CommunicationsPage() {
         label: tCommon(`priority_${name.toLowerCase()}`),
         value: name,
       })),
-      cell: (notification) => (
-        <DataGridTextCell>
-          <NotificationPriorityChip priority={notification.priority} />
-        </DataGridTextCell>
+      cell: ({ row }) => (
+        <Text>
+          <NotificationPriorityChip priority={row.original.priority} />
+        </Text>
       ),
     },
     {
       id: 'createdAt',
       label: t('table_column_date'),
-      cell: (notification) => (
-        <DataGridTextCell>
-          {formatDate({ date: notification.createdAt, format: 'Pp' })}
-        </DataGridTextCell>
+      header: t('table_column_date'),
+      cell: ({ row }) => (
+        <Text>
+          {formatDate({ date: row.original.createdAt, format: 'Pp' })}
+        </Text>
       ),
       isSortable: true,
       isFilterable: true,
@@ -116,6 +120,7 @@ function CommunicationsPage() {
     {
       id: 'category',
       label: t('table_column_categories'),
+      header: t('table_column_categories'),
       isFilterable: true,
       isSortable: false,
       type: FilterTypeCategories.Options,
@@ -124,11 +129,11 @@ function CommunicationsPage() {
         label: tCommon(`category_${name.toLowerCase()}`),
         value: name,
       })),
-      cell: (notification) => (
+      cell: ({ row }) => (
         <div className="min-w-[200px] max-w-min">
-          <DataGridTextCell>
-            {useCategories(tCommon, notification.categories)}
-          </DataGridTextCell>
+          <Text>
+            {useCategories(tCommon, row.original.categories)}
+          </Text>
         </div>
       ),
     },
@@ -153,15 +158,23 @@ function CommunicationsPage() {
   const isLoading = isLoadingNotificationHistory || isLoadingAuthorization;
   const helpLink = useHelpLink();
 
+  const containerHeight = useMemo(() => {
+    const length = flattenData?.length || 1;
+    if (length <= 10) {
+      return (60 * length) + 50;
+    }
+    return 710;
+  }, [flattenData]);
+
   return (
     <>
-      <OdsText className="mb-6">
+      <Text className="mb-6">
         <Trans
           i18nKey="description"
           t={tCommon}
           components={{
             anchor: (
-              <OdsLink
+              <Link
                 href={helpLink}
                 onClick={() =>
                   trackClick({
@@ -173,45 +186,54 @@ function CommunicationsPage() {
                   })
                 }
                 target="_blank"
-                label={tCommon('assistance_link_label')}
-                icon="external-link"
-              />
+              >
+                {tCommon('assistance_link_label')}
+                <Icon name="external-link" />
+              </Link>
             ),
           }}
         />
-      </OdsText>
+      </Text>
       {!isLoading && !isAuthorized && (
-        <OdsMessage
+        <Message
           color="warning"
-          isDismissible={false}
+          dismissible={false}
           className="mb-8 w-full"
         >
           {tCommon('iam_display_content_message')}
-        </OdsMessage>
+        </Message>
       )}
-      <Datagrid
-        items={flattenData}
+      <Datagrid<Notification>
+        data={flattenData || []}
         columns={columns}
-        sorting={sorting}
-        onSortChange={setSorting}
+        containerHeight={containerHeight}
         isLoading={isLoading || isRefetching}
         search={search}
         filters={filters}
         topbar={
-          <OdsButton
+          <Button
             variant="outline"
-            icon="refresh"
-            label=""
             aria-label={tActions('refresh')}
-            isLoading={isRefetching}
+            loading={isRefetching}
             size="sm"
             onClick={() => refetch()}
-          />
+          >
+            <Icon name="refresh" />
+          </Button>
         }
-        totalItems={flattenData?.length || 0}
+        totalCount={flattenData?.length || 0}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
-        manualSorting={true}
+        sorting={{
+          sorting: sorting ? [sorting] : [],
+          setSorting: (newSorting: any) => {
+            const sort = Array.isArray(newSorting) ? newSorting[0] : newSorting;
+            if (sort && sort.id) {
+              setSorting({ id: sort.id, desc: sort.desc ?? false });
+            }
+          },
+          manualSorting: true,
+        }}
       />
     </>
   );

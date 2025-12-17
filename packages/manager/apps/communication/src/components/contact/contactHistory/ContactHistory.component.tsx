@@ -1,6 +1,7 @@
-import { OdsDrawer, OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { Button, Icon, Text } from '@ovhcloud/ods-react';
+import { Drawer } from '@ovh-ux/muk';
 import { useTranslation } from 'react-i18next';
-import { useFormatDate } from '@ovh-ux/manager-react-components';
+import { useFormatDate } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -38,57 +39,60 @@ export default function ContactHistory({ contacts, isOpen, onClose }: Props) {
   }, [isOpen]);
 
   return (
-    <OdsDrawer
-      title={t('history_overlay_headline')}
+    <Drawer.Root
       isOpen={isOpen}
-      position="right"
-      className="contact-history-drawer"
+      onDismiss={() => onClose?.()}
     >
-      <OdsButton
-        variant="ghost"
-        label=""
-        aria-label={t('history_overlay_close')}
-        icon="xmark"
-        size="sm"
-        color="neutral"
-        className="-ml-4"
-        onClick={onClose}
-      />
-      <OdsText preset="heading-4">{t('history_overlay_headline')}</OdsText>
-      <OdsText>{t('history_overlay_description')}</OdsText>
-      <AuthLink
-        href={urls.routing.listing}
-        onClick={() => {
-          trackClick({
-            location: PageLocation.popup,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: [
-              'view_history-mailings',
-              'access_communication-parameters',
-            ],
-            subApp: TrackingSubApps.Communications,
-          });
-        }}
-      >
-        {t('history_overlay_settings_link')}
-      </AuthLink>
+      <Drawer.Header title={t('history_overlay_headline')} />
+      <Drawer.Content>
+        <div className="contact-history-drawer">
+          <Button
+            variant="ghost"
+            aria-label={t('history_overlay_close')}
+            size="sm"
+            color="neutral"
+            className="-ml-4"
+            onClick={onClose}
+          >
+            <Icon name="xmark" />
+          </Button>
+          <Text preset="heading-4">{t('history_overlay_headline')}</Text>
+          <Text>{t('history_overlay_description')}</Text>
+          <AuthLink
+            href={urls.routing.listing}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.popup,
+                buttonType: ButtonType.link,
+                actionType: 'navigation',
+                actions: [
+                  'view_history-mailings',
+                  'access_communication-parameters',
+                ],
+                subApp: TrackingSubApps.Communications,
+              });
+            }}
+          >
+            {t('history_overlay_settings_link')}
+          </AuthLink>
 
-      <Steps
-        steps={contacts.map((contact) => ({
-          isActive: true,
-          children: (
-            <>
-              <OdsText preset="paragraph">
-                {formatDate({ date: contact.sentAt, format: 'Pp' })}
-              </OdsText>
-              <OdsText preset="paragraph" className="underline">
-                {getCleanEmail(contact.to)}
-              </OdsText>
-            </>
-          ),
-        }))}
-      />
-    </OdsDrawer>
+          <Steps
+            steps={contacts.map((contact) => ({
+              isActive: true,
+              children: (
+                <>
+                  <Text preset="paragraph">
+                    {formatDate({ date: contact.sentAt, format: 'Pp' })}
+                  </Text>
+                  <Text preset="paragraph" className="underline">
+                    {getCleanEmail(contact.to)}
+                  </Text>
+                </>
+              ),
+            }))}
+          />
+        </div>
+      </Drawer.Content>
+    </Drawer.Root>
   );
 }

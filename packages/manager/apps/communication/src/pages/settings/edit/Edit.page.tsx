@@ -1,14 +1,13 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { Button, BUTTON_VARIANT, Icon, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   Notifications,
   RedirectionGuard,
   useNotifications,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import { useNotificationRouting } from '@/data';
@@ -86,38 +85,41 @@ export default function EditSettingsPage() {
       <div className="flex flex-col gap-6 max-w-4xl">
         <div className="flex flex-row justify-start gap-5">
           <Link to={urls.routing.listing}>
-            <OdsButton
+            <Button
               variant="ghost"
-              icon="arrow-left"
-              label={t('back_to_list', { ns: NAMESPACES.ACTIONS })}
-            />
+            >
+              <Icon name="arrow-left" />
+              {t('back_to_list', { ns: NAMESPACES.ACTIONS })}
+            </Button>
           </Link>
         </div>
-        <OdsText preset={ODS_TEXT_PRESET.heading2}>
+        <Text preset={TEXT_PRESET.heading2}>
           {t('edit_routing_headline')}
-        </OdsText>
+        </Text>
         <Notifications clearAfterRead />
         <RuleForm rule={routing} onSubmit={onSubmit} ref={formRef} />
         <div className="flex flex-row justify-start gap-5 mt-4">
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.outline}
-            label={t('cancel', { ns: NAMESPACES.ACTIONS })}
+          <Button
+            variant={BUTTON_VARIANT.outline}
             size="sm"
             onClick={() => {
               trackButtonClick(['modify_rule', 'cancel']);
               navigate(urls.routing.listing);
             }}
-          />
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.default}
-            label={t('save', { ns: NAMESPACES.ACTIONS })}
+          >
+            {t('cancel', { ns: NAMESPACES.ACTIONS })}
+          </Button>
+          <Button
+            variant={BUTTON_VARIANT.default}
             size="sm"
             onClick={() => {
               trackButtonClick(['modify_rule', 'confirm']);
               formRef.current?.submit();
             }}
-            isLoading={isUpdatePending}
-          />
+            loading={isUpdatePending}
+          >
+            {t('save', { ns: NAMESPACES.ACTIONS })}
+          </Button>
         </div>
       </div>
     </RedirectionGuard>

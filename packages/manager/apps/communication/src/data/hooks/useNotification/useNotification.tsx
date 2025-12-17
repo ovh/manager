@@ -21,7 +21,8 @@ import {
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { ColumnSort, useColumnFilters } from '@ovh-ux/manager-react-components';
+import type { ColumnSort } from '@tanstack/react-table';
+import { useColumnFilters } from '@ovh-ux/muk';
 import {
   commonFilterToNotificationFilter,
   commonSortingToNotificationSorting,
