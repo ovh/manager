@@ -100,7 +100,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
                 location: PageLocation.tile,
                 buttonType: ButtonType.button,
                 actionType: 'action',
-                actions: ['edit-metadata'],
+                actions: ['edit', 'metadata'],
               });
             }}
           />

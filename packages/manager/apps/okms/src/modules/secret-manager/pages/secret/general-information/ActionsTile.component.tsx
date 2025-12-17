@@ -32,7 +32,7 @@ export const ActionsTile = ({ secret }: ActionsTileParams) => {
               location: PageLocation.tile,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: ['reveal-secret'],
+              actions: ['reveal', 'secret'],
             });
           }}
         />
@@ -49,7 +49,7 @@ export const ActionsTile = ({ secret }: ActionsTileParams) => {
               location: PageLocation.tile,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: ['add-version'],
+              actions: ['create', 'version'],
             });
           }}
         />
@@ -62,7 +62,7 @@ export const ActionsTile = ({ secret }: ActionsTileParams) => {
               location: PageLocation.tile,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: ['delete-secret'],
+              actions: ['delete', 'secret'],
             });
           }}
         />

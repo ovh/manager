@@ -49,26 +49,30 @@ export default function DashboardPage() {
     KMS_FEATURES.LOGS,
   ]);
 
-  const tabsList: TabNavigationItem[] = filterFalsy([
+  const tabsList: TabNavigationItem[] = filterFalsy<TabNavigationItem>([
     {
       name: kmsDashboardTabNames.generalInformation,
       title: t('key-management-service/dashboard:general_informations'),
       url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
+      tracking: ['general-informations'],
     },
     {
       name: kmsDashboardTabNames.serviceKeys,
       title: SERVICE_KEYS_LABEL,
       url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
+      tracking: ['service-key'],
     },
     {
       name: kmsDashboardTabNames.credentials,
       title: t('key-management-service/dashboard:access_certificates'),
       url: KMS_ROUTES_URLS.credentialListing(okmsId),
+      tracking: ['credential'],
     },
     features?.[KMS_FEATURES.LOGS] && {
       name: kmsDashboardTabNames.logs,
       title: t('key-management-service/dashboard:logs'),
       url: KMS_ROUTES_URLS.kmsLogs(okmsId),
+      tracking: ['logs'],
     },
   ]);
 

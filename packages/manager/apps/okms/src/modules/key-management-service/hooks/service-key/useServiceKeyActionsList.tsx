@@ -47,13 +47,13 @@ export const useServiceKeyActionsList = (
       navigate(KMS_ROUTES_URLS.serviceKeyListing(okms.id));
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'delete_encryption_key',
+        pageTags: ['delete', 'service-key'],
       });
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'delete_encryption_key',
+        pageTags: ['delete', 'service-key'],
       });
     },
   });
@@ -66,13 +66,13 @@ export const useServiceKeyActionsList = (
       addSuccess(t('key_management_service_service-keys_reactivate_success'), true);
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'reactivate_encryption_key',
+        pageTags: ['activate', 'service-key'],
       });
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'reactivate_encryption_key',
+        pageTags: ['activate', 'service-key'],
       });
     },
   });
@@ -89,7 +89,7 @@ export const useServiceKeyActionsList = (
           location: trackLocation,
           buttonType: ButtonType.button,
           actionType: 'action',
-          actions: ['deactivate_encryption_key'],
+          actions: ['deactivate', 'service-key'],
         });
         return page === 'list'
           ? navigate(KMS_ROUTES_URLS.serviceKeyListingDeactivate(okms.id, okmsKey?.id))
@@ -114,7 +114,7 @@ export const useServiceKeyActionsList = (
           location: trackLocation,
           buttonType: ButtonType.button,
           actionType: 'action',
-          actions: ['reactivate_encryption_key'],
+          actions: ['activate', 'service-key'],
         });
         updateKmsServiceKey({ state: OkmsServiceKeyState.active });
       },
@@ -140,7 +140,7 @@ export const useServiceKeyActionsList = (
           location: trackLocation,
           buttonType: ButtonType.button,
           actionType: 'action',
-          actions: ['delete_encryption_key'],
+          actions: ['delete', 'service-key'],
         });
         deleteKmsServiceKey();
       },
