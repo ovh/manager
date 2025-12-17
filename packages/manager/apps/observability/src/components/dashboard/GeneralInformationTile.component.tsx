@@ -7,6 +7,7 @@ import { Link, Skeleton, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 import { Clipboard, Tile, useFormatDate } from '@ovh-ux/muk';
 
 import { GeneralInformationTileProps } from '@/components/dashboard/GeneralInformationTile.props';
+import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.component';
 import { getEditTenantUrl } from '@/routes/Routes.utils';
 
 export const GeneralInformationTile = ({
@@ -18,6 +19,7 @@ export const GeneralInformationTile = ({
   createdAt,
   updatedAt,
   isLoading,
+  resourceStatus,
 }: GeneralInformationTileProps) => {
   const { t } = useTranslation('tenants');
 
@@ -63,6 +65,13 @@ export const GeneralInformationTile = ({
         <Tile.Item.Term label={t('dashboard.general_information_tile.endpoint')} />
         <Tile.Item.Description>
           {isLoading ? <Skeleton /> : <Clipboard className="w-full" value={endpoint} />}
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('status.title')} />
+        <Tile.Item.Description>
+          {isLoading ? <Skeleton /> : <TenantStatus status={resourceStatus} />}
         </Tile.Item.Description>
       </Tile.Item.Root>
 

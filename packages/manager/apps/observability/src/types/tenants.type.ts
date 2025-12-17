@@ -8,6 +8,15 @@ type TMetricLimits = {
   };
 };
 
+export type TenantResourceStatus =
+  | 'READY'
+  | 'UPDATING'
+  | 'ERROR'
+  | 'DELETING'
+  | 'SUSPENDED'
+  | 'CREATING'
+  | 'UNKNOWN';
+
 export type TenantInfrastructure = InfrastructureSettings & TIdentifier;
 
 export type TenantState = {
@@ -20,6 +29,7 @@ export type TenantState = {
 export type Tenant = {
   currentState: TenantState;
   targetSpec?: TenantState;
+  resourceStatus: TenantResourceStatus;
 } & TObservabilityResource;
 
 export type TenantFormData = {
@@ -33,6 +43,7 @@ export type TenantFormData = {
 
 export type TenantListing = {
   name: string;
+  resourceStatus: TenantResourceStatus;
   endpoint: string | undefined;
   infrastructure: TenantInfrastructure | undefined;
   retention: string | undefined;

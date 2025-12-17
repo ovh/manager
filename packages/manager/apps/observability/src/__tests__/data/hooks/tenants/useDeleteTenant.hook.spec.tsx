@@ -43,6 +43,7 @@ describe('useDeleteTenant', () => {
     id: 'tenant-123',
     createdAt: '2025-11-01T08:00:00.001Z',
     updatedAt: '2025-11-01T08:00:00.001Z',
+    resourceStatus: 'DELETING',
     currentState: {
       title: 'Tenant 123',
     },
