@@ -1408,5 +1408,6 @@
   "hosting_dashboard_service_filer_helper": "Die Kennung Ihres Filers kann geändert werden",
   "hosting_dashboard_service_state_TO_CREATE": "Zu erstellen",
   "hosting_tab_DATABASES_configuration__action_button": "Meine Datenbank kündigen",
-  "hosting_tab_DATABASES_configuration__available_slot": "Datenbank verfügbar"
+  "hosting_tab_DATABASES_configuration__available_slot": "Datenbank verfügbar",
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Eine Domain auswählen"
 }
