@@ -50,10 +50,6 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
   };
 });
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 vi.mocked(useSearchParams).mockReturnValue([new URLSearchParams(), vi.fn()]);
 
 /**
