@@ -11,7 +11,7 @@ import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/use
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 const FIRST_ORDER_SCHEMA = z.object({
-  baremetal: z.string().nonempty(),
+  baremetal: z.string().min(1),
 });
 type FirstOrderSchema = z.infer<typeof FIRST_ORDER_SCHEMA>;
 
@@ -24,7 +24,7 @@ export const FirstOrderFormComponent = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FirstOrderSchema>({
-    resolver: zodResolver(FIRST_ORDER_SCHEMA),
+    resolver: zodResolver(FIRST_ORDER_SCHEMA as any),
     defaultValues: { baremetal: '' },
   });
   const onSubmit: SubmitHandler<FirstOrderSchema> = (dataForm) => console.log({ dataForm });
