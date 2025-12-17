@@ -11,6 +11,7 @@
   "packages/manager/apps/pci-instances",
   "packages/manager/apps/pci-load-balancer",
   "packages/manager/apps/pci-private-network",
+  "packages/manager/apps/pci-quota",
   "packages/manager/apps/pci-rancher",
   "packages/manager/apps/pci-savings-plan",
   "packages/manager/apps/pci-ssh-keys",
