@@ -65,6 +65,7 @@ describe('useCreateTenants', () => {
     id: 'tenant-123',
     createdAt: '2025-11-01T08:00:00.001Z',
     updatedAt: '2025-11-01T08:00:00.001Z',
+    resourceStatus: 'READY',
     currentState: {
       title: 'Test Tenant',
       description: 'Test tenant description',
