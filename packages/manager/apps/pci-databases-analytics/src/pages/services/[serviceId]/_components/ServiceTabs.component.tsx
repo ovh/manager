@@ -8,7 +8,6 @@ import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
 import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
-import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
 import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
 import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook';
 import { useGetConnectors } from '@/hooks/api/database/connector/useGetConnectors.hook';
@@ -45,15 +44,6 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
     {
       refetchInterval: isUserActive && POLLING.DATABASES,
       enabled: !!service.capabilities.databases?.read,
-    },
-  );
-  const { data: namespaces } = useGetNamespaces(
-    projectId,
-    service.engine,
-    service.id,
-    {
-      refetchInterval: isUserActive && POLLING.NAMESPACES,
-      enabled: !!service.capabilities.namespaces?.read,
     },
   );
   const { data: connectionPools } = useGetConnectionPools(
@@ -149,12 +139,6 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       label: t('DatabasesTab'),
       count: databases?.length,
       disabled: !service.capabilities.databases.read,
-    },
-    service.capabilities.namespaces && {
-      href: 'namespaces',
-      label: t('NamespacesTab'),
-      count: namespaces?.length,
-      disabled: !service.capabilities.namespaces.read,
     },
     service.capabilities.connectionPools && {
       href: 'pools',

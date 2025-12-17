@@ -47,7 +47,7 @@ const IpsRestrictionsUpdate = ({
     onError: (err) => {
       toast.toast({
         title: t('ipsUpdateErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },

@@ -25,7 +25,7 @@ export const ReplicationRuleAdvanced = () => {
     showStorageClassField,
     availableStorageClasses,
   } = useReplicationFormContext();
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
   );

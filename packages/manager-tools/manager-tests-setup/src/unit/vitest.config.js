@@ -149,3 +149,108 @@ export const sharedCssConfig = {
   },
   css: true,
 };
+
+/**
+ * Dependencies that must be **inlined by Vite/Vitest**
+ * instead of being externalized.
+ *
+ * Required for:
+ * - Correct ESM/CJS interop
+ * - Single React instance guarantees
+ * - Testing-library compatibility
+ * - Avoiding Vitest v3 SSR + JSDOM issues
+ *
+ * ⚠️ With Vitest v3, this list **must be defined twice**:
+ * - `test.deps.inline`
+ * - `test.server.deps.inline`
+ *
+ * The patterns intentionally cover:
+ * - React core and routers
+ * - Testing utilities
+ * - i18n stack
+ * - OVH design system packages
+ * - Muk and Manager shell dependencies
+ *
+ * @type {(string|RegExp)[]}
+ */
+export const INLINE_DEPS = [
+  /^react$/,
+  /^react-dom$/,
+  /^react-router$/,
+  /^react-router-dom$/,
+  /@testing-library[\\/]/,
+  /react-i18next[\\/]/,
+  /i18next[\\/]/,
+  /@ovhcloud[\\/]ods-/,
+  /@ovh-ux[\\/]muk/,
+  /@ovh-ux[\\/]manager-react-shell-client[\\/]/,
+];
+
+/**
+ * Dependencies that must **never be externalized** during SSR execution.
+ *
+ * Externalizing these packages may lead to:
+ * - Multiple runtime instances
+ * - Broken hooks or providers
+ * - Context isolation across React trees
+ *
+ * This list complements `INLINE_DEPS` but is scoped
+ * specifically to SSR semantics.
+ *
+ * @type {(string|RegExp)[]}
+ */
+export const NO_EXTERNAL_DEPS = [
+  'react',
+  'react-dom',
+  'react-router',
+  'react-router-dom',
+  /@testing-library/,
+  /react-i18next/,
+  /i18next/,
+  /@ovhcloud[\\/]ods-/,
+  /@ovh-ux[\\/]muk/,
+];
+
+/**
+ * Creates a Vite/Vitest plugin that **stubs style imports** during tests.
+ *
+ * This prevents runtime errors when importing non-JS assets such as:
+ * - CSS
+ * - SCSS / SASS
+ * - LESS
+ *
+ * The plugin intercepts style imports and replaces them with
+ * empty virtual modules.
+ *
+ * ### Why this exists
+ * - Avoids requiring CSS preprocessors in test environments
+ * - Prevents JSDOM failures on style imports
+ * - Keeps test bundles deterministic and lightweight
+ *
+ * ### Behavior
+ * - Matches common stylesheet extensions
+ * - Rewrites them to virtual modules
+ * - Returns an empty module as content
+ *
+ * ### Scope
+ * This plugin is **safe to enable globally** in shared Vitest config.
+ *
+ * @returns {import('vite').Plugin}
+ *   A Vite-compatible plugin that stubs style imports
+ */
+export function stubStylesPlugin() {
+  const styleRE = /\.(css|less|sass|scss)(\?.*)?$/;
+
+  return {
+    name: 'vitest-stub-styles',
+    enforce: 'pre',
+    resolveId(id) {
+      if (styleRE.test(id)) return `\0virtual:style:${id}`;
+      return null;
+    },
+    load(id) {
+      if (id.startsWith('\0virtual:style:')) return '';
+      return null;
+    },
+  };
+}

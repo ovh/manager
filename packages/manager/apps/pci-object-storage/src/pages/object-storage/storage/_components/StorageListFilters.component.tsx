@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { FilterCategories } from '@/lib/filters';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import { ObjectStorageTypeEnum } from '@/types/Storages';

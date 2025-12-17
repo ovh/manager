@@ -19,5 +19,5 @@
   "zimbra_redirections_delete_success_message": "O seu pedido de eliminação do reencaminhamento foi registado. Será tratado dentro de alguns instantes.",
   "zimbra_redirections_delete_error_message": "O seu pedido de eliminação do reencaminhamento não foi bem-sucedido. {{ error }}",
   "zimbra_redirections_account_quota": "Quota de reencaminhamento",
-  "zimbra_redirections_delete_selected_modal_content": "Deseja eliminar os reencaminhamentos?"
+  "zimbra_redirections_delete_selected_modal_content": "Pretende eliminar os reencaminhamentos?"
 }

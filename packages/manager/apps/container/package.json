@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-container-app",
-  "version": "0.172.1",
+  "version": "0.172.3",
   "private": true,
   "description": "OVHcloud Manager Container.",
   "repository": {
@@ -23,16 +23,16 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@ovh-ux/manager-config": "^8.8.3",
-    "@ovh-ux/manager-core-api": "^0.20.2",
+    "@ovh-ux/manager-config": "^8.8.4",
+    "@ovh-ux/manager-core-api": "^0.21.0",
     "@ovh-ux/manager-react-components": "^1.47.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/manager-vite-config": "^0.15.5",
     "@ovh-ux/ovh-payment-method": "^0.7.1",
-    "@ovh-ux/ovh-product-icons": "^0.14.2",
-    "@ovh-ux/ovh-reket": "^2.1.25",
-    "@ovh-ux/request-tagger": "^0.5.10",
-    "@ovh-ux/shell": "^4.9.5",
+    "@ovh-ux/ovh-product-icons": "^0.15.0",
+    "@ovh-ux/ovh-reket": "^2.1.26",
+    "@ovh-ux/request-tagger": "^0.6.0",
+    "@ovh-ux/shell": "^4.10.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
@@ -65,10 +65,10 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.11.3",
+    "@ovh-ux/manager-core-test-utils": "^0.11.4",
     "@ovh-ux/manager-dev-server-config": "^6.2.2",
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.6.2",
+    "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@types/dompurify": "^2.3.3",
     "@types/lodash-es": "^4.17.12",
     "@types/react": "^18.2.45",

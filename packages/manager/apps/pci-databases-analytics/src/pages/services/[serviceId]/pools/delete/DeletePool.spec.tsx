@@ -128,7 +128,7 @@ describe('Delete pool modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'deleteConnectionPoolToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

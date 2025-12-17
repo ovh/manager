@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.7.15...@ovh-ux/manager-pci-volume-snapshot-app@0.8.0) (2025-12-17)
+
+
+### Features
+
+* **pci-volume-snapshot:** change failover ip US guide link ([f652064](https://github.com/ovh/manager/commit/f652064d06331a4d5e7ef9a6f718f5a23ab6183f)), closes [#TAPC-5031](https://github.com/ovh/manager/issues/TAPC-5031)
+* **pci-volume-snapshot:** make volume name mandatory when creating a new one from snapshot ([eabc79c](https://github.com/ovh/manager/commit/eabc79cec5b4c1a3136a747c84ccffab7ef12e3b)), closes [#TAPC-3698](https://github.com/ovh/manager/issues/TAPC-3698)
+
+
+
+
+
+## [0.7.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.7.14...@ovh-ux/manager-pci-volume-snapshot-app@0.7.15) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
 ## [0.7.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.7.13...@ovh-ux/manager-pci-volume-snapshot-app@0.7.14) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app

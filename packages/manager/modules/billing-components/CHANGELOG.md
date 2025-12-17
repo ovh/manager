@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.33.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.33.2...@ovh-ux/manager-billing-components@4.33.3) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.33.1...@ovh-ux/manager-billing-components@4.33.2) (2025-12-15)
+
+
+### Bug Fixes
+
+* **billing-components:** remove reactivate engagement on resiliation ([a00e4db](https://github.com/ovh/manager/commit/a00e4dbcf458751250badce2ab72a86ec8ea57fa)), closes [#MANAGER-20549](https://github.com/ovh/manager/issues/MANAGER-20549) [#INC0176084](https://github.com/ovh/manager/issues/INC0176084)
+
+
+
+
+
 ## [4.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.33.0...@ovh-ux/manager-billing-components@4.33.1) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

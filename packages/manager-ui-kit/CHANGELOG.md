@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.6](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.5...@ovh-ux/muk@0.10.6) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.10.5](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.4...@ovh-ux/muk@0.10.5) (2025-12-16)
+
+
+### Bug Fixes
+
+* **muk:** including a target="_blank" property to the links of the ChangelogMenu component ([7de100c](https://github.com/ovh/manager/commit/7de100c3c4bdf3a1ef86aa0771b9270f36cbee25)), closes [#MANAGER-19535](https://github.com/ovh/manager/issues/MANAGER-19535)
+
+
+
+
+
 ## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.3...@ovh-ux/muk@0.10.4) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/muk

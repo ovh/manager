@@ -10,8 +10,8 @@ import {
   Separator,
   useToast,
 } from '@datatr-ux/uxlib';
-import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
-import { Catalog } from '@datatr-ux/ovhcloud-types/order/catalog/public/Catalog';
+import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
+import { Catalog } from '@datatr-ux/ovhcloud-types/order/catalog/public';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import OrderSection from './Section.component';

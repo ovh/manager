@@ -84,9 +84,7 @@ export default class ExchangeServicesConfigureCtrl {
 
         this.originalService = clone(this.service);
         this.owaMfa = server.owaMfa;
-        this.isMfaAvailable =
-          this.services.coreConfig.isRegion('EU') &&
-          this.services.exchangeSelectedService.isMfaAvailable();
+        this.isMfaAvailable = this.services.exchangeSelectedService.isMfaAvailable();
         return this.service;
       })
       .catch((err) => {

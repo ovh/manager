@@ -5,8 +5,8 @@ import {
   OdsButton,
   OdsFormField,
   OdsInput,
-  OdsText,
   OdsQuantity,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import { TRegion, TVolume, TVolumePricing } from '@/api/api.types';
@@ -16,8 +16,8 @@ import { useVolumeCatalog } from '@/api/hooks/useCatalog';
 import { getVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import {
-  VOLUME_MIN_SIZE,
   DEFAULT_MAX_SIZE,
+  VOLUME_MIN_SIZE,
   VOLUME_NAME_MAX_LENGTH,
 } from '@/constants';
 
@@ -87,11 +87,12 @@ export default function VolumeEdit({
   );
 
   const errorState = {
+    nameIsAbsent: volumeName.trim().length === 0,
     nameIsTooLong: volumeName.length > VOLUME_NAME_MAX_LENGTH,
     isMinError: volumeSize < minVolumeSize,
     isMaxError: volumeSize > maxVolumeSize,
   };
-  const hasNameError = errorState.nameIsTooLong;
+  const hasNameError = errorState.nameIsTooLong || errorState.nameIsAbsent;
   const hasSizeError = errorState.isMinError || errorState.isMaxError;
   const hasError = hasNameError || hasSizeError;
 
@@ -151,11 +152,20 @@ export default function VolumeEdit({
           value={volumeName}
           hasError={hasNameError}
           onOdsChange={(e) => setVolumeName(e.detail.value as string)}
+          pattern="(.*)\S+(.*)"
+          isRequired
         />
         {errorState.nameIsTooLong && (
           <OdsText className="text-critical leading-[0.8]" preset="caption">
             {t('common_field_error_maxlength', {
               maxlength: VOLUME_NAME_MAX_LENGTH,
+              ns: 'pci-common',
+            })}
+          </OdsText>
+        )}
+        {errorState.nameIsAbsent && (
+          <OdsText className="text-critical leading-[0.8]" preset="caption">
+            {t('common_field_error_required', {
               ns: 'pci-common',
             })}
           </OdsText>

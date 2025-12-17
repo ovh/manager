@@ -15,7 +15,7 @@ import { useReplicationFormContext } from './ReplicationForm.context';
 
 export const ReplicationRuleIdentification = () => {
   const { form, isPending, isEditMode } = useReplicationFormContext();
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
 
   return (
     <ReplicationRuleContainer title={t('replicationConfigurationTitle')}>

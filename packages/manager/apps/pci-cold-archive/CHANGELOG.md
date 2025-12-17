@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.5.4...@ovh-ux/manager-pci-cold-archive-app@0.5.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+## [0.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.5.3...@ovh-ux/manager-pci-cold-archive-app@0.5.4) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4536] ([08adb80](https://github.com/ovh/manager/commit/08adb8017f44ae5c825d3f734017715185af6035))
+
+
+
+
+
 ## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.5.2...@ovh-ux/manager-pci-cold-archive-app@0.5.3) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app

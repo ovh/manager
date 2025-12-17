@@ -74,11 +74,11 @@ describe('PrometheusTargets', () => {
     render(<PrometheusTargets prometheusData={mockPrometheusData} />);
 
     const table = screen.getByTestId('prometheus-data-table');
-    expect(within(table).getByText('usernameLabel')).toBeInTheDocument();
+    expect(within(table).getByText('username')).toBeInTheDocument();
     expect(within(table).getByText('test-user')).toBeInTheDocument();
-    expect(within(table).getByText('hostLabel')).toBeInTheDocument();
+    expect(within(table).getByText('host')).toBeInTheDocument();
     expect(within(table).getByText('host1.example.com')).toBeInTheDocument();
-    expect(within(table).getByText('portLabel')).toBeInTheDocument();
+    expect(within(table).getByText('port')).toBeInTheDocument();
     expect(within(table).getByText('9090')).toBeInTheDocument();
   });
 });
