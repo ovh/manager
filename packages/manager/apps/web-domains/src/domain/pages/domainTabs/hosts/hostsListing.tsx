@@ -53,13 +53,15 @@ export default function HostsListingTab() {
   const { domainResource } = useGetDomainResource(serviceName);
   const { nichandleInformation } = useNichandleInformation();
 
+  const generalInformationUrl = useGenerateUrl(
+    urls.domainTabInformation,
+    'path',
+    {
+      serviceName,
+    },
+  );
   if (!domainResource.currentState.hostsConfiguration.hostSupported) {
-    navigate(
-      useGenerateUrl(urls.domainTabInformation, 'path', {
-        serviceName,
-      }),
-      { replace: true },
-    );
+    navigate(generalInformationUrl, { replace: true });
   }
 
   // We compare the current and the targetSpec to add a status. The status depends of the difference between current and target object.

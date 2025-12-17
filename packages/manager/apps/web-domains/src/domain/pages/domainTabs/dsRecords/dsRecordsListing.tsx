@@ -10,7 +10,7 @@ import {
   MessageBody,
   MessageIcon,
 } from '@ovhcloud/ods-react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
 import {
@@ -30,9 +30,12 @@ import DsRecordsDrawer from '@/domain/components/DsRecords/DsRecordsDrawer';
 import { computeActiveConfiguration } from '@/domain/utils/dnsUtils';
 import { flagsValue } from '@/domain/constants/dsRecords';
 import DsRecordsDeleteModal from '@/domain/components/DsRecords/DsRecordsDeleteModal';
+import { urls } from '@/domain/routes/routes.constant';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
+  const navigate = useNavigate();
   const { serviceName } = useParams();
   const { domainResource } = useGetDomainResource(serviceName);
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
@@ -51,6 +54,17 @@ export default function DsRecordsListing() {
       0,
     publicKey: '',
   });
+
+  const generalInformationUrl = useGenerateUrl(
+    urls.domainTabInformation,
+    'path',
+    {
+      serviceName,
+    },
+  );
+  if (!domainResource.currentState.dnssecConfiguration.dnssecSupported) {
+    navigate(generalInformationUrl, { replace: true });
+  }
 
   useEffect(() => {
     const {
