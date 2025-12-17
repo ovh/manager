@@ -5,13 +5,8 @@ import {
   useFeatureAvailability,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import {
-  OsdsBreadcrumb,
-  OsdsChip,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -74,19 +69,7 @@ export default function DetailPage() {
   if (availability?.[LOGS_FEATURE_AVAILABILITY_KEY]) {
     tabs.push({
       name: 'octavia_load_balancer_logs_tab_title',
-      title: (
-        <span>
-          {t('octavia_load_balancer_logs_tab_title')}
-          <OsdsChip
-            className="ml-4"
-            color={ODS_THEME_COLOR_INTENT.success}
-            size={ODS_CHIP_SIZE.sm}
-            inline
-          >
-            {t('octavia_load_balancer_logs_tab_title_beta_status')}
-          </OsdsChip>
-        </span>
-      ),
+      title: t('octavia_load_balancer_logs_tab_title'),
       to: logsPath,
     });
   }
