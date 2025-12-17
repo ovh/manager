@@ -26,6 +26,7 @@ import DatagridCellLink from '@/components/listing/common/datagrid-cells/datagri
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
 import TenantsListActions from '@/components/listing/tenants/actions/TenantsListActions.component';
 import TenantsListTopbar from '@/components/listing/tenants/top-bar/TenantsListTopbar.component';
+import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.component';
 import { TenantListing } from '@/types/tenants.type';
 import { mapTenantsToListing } from '@/utils/tenants.utils';
 
@@ -63,6 +64,7 @@ export default function TenantsListDatagrid({
         type: FilterTypeCategories.String,
         isSearchable: true,
         isFilterable: true,
+        size: 200,
       },
       {
         id: 'endpoint',
@@ -77,6 +79,22 @@ export default function TenantsListDatagrid({
         type: FilterTypeCategories.String,
         isSearchable: true,
         isFilterable: true,
+        size: 200,
+      },
+      {
+        id: 'status',
+        header: t(`tenants:status.title`),
+        label: t(`tenants:status.title`),
+        accessorFn: (row: TenantListing) => row,
+        cell: ({ getValue }) => {
+          const { resourceStatus } = getValue() as TenantListing;
+          return <TenantStatus status={resourceStatus} />;
+        },
+        comparator: FilterCategories.String,
+        type: FilterTypeCategories.String,
+        isSearchable: true,
+        isFilterable: true,
+        size: 120,
       },
       {
         id: 'retention',
@@ -87,6 +105,7 @@ export default function TenantsListDatagrid({
         type: FilterTypeCategories.String,
         isSearchable: true,
         isFilterable: true,
+        size: 100,
       },
       {
         id: 'active-metrics',
@@ -97,6 +116,7 @@ export default function TenantsListDatagrid({
         type: FilterTypeCategories.Numeric,
         isSearchable: true,
         isFilterable: true,
+        size: 100,
       },
       {
         id: 'tags',
@@ -110,6 +130,7 @@ export default function TenantsListDatagrid({
         type: FilterTypeCategories.Tags,
         isSearchable: true,
         isFilterable: true,
+        size: 200,
       },
       {
         id: 'actions',
@@ -118,6 +139,7 @@ export default function TenantsListDatagrid({
         cell: ({ getValue }) => <TenantsListActions tenantId={getValue<string>()} />,
         isSearchable: false,
         isFilterable: false,
+        size: 40,
       },
     ],
     [t],
@@ -184,6 +206,7 @@ export default function TenantsListDatagrid({
   return (
     <React.Suspense>
       <Datagrid
+        key={filteredTenants.length}
         topbar={topbar}
         columns={columns}
         columnVisibility={columnVisibilityProps}
