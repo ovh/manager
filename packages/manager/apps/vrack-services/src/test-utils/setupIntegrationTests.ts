@@ -88,6 +88,8 @@ const mockState: CustomStateSet = {
 
 if (!HTMLElement.prototype.attachInternals) {
   console.log('🔧 attachInternals polyfill used');
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   HTMLElement.prototype.attachInternals = () => ({
     labels: mockLabels,
     validity: mockValidity,
