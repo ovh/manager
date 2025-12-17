@@ -7297,6 +7297,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.4.1.tgz#ae77381d54f345e657a5c6c3195ece119fe375a8"
   integrity sha512-4mLN1zVa5CvpAQn+TGnUbxMM6Qr2zytQQQexw1a7WkoxuY/SQ+57PW/2/7VrQ1c1wLnjSUG2h88Wcy5AapZZAA==
 
+"@ovh-ux/request-tagger@^0.5.9":
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.5.10.tgz#3ef239b3cc2842396a40540b5591264d1dc43116"
+  integrity sha512-xj49NuUfCu4leclQb6B1DOnZoMQgLW5aXmNgtMAHljYS9ump2s5jgPgc4+K0nqvLg3fYf/YInwkVk/JEoX4qdQ==
+
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.6.tgz#8db90747f02d2bb95e3a5563d1c5a77a25edd0ad"
