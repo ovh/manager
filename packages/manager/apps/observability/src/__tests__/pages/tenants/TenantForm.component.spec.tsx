@@ -368,6 +368,7 @@ describe('TenantForm', () => {
         id: 'tenant-123',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
+        resourceStatus: 'READY',
         currentState: {
           title: 'Test Tenant',
           description: 'Test Description',
@@ -565,6 +566,7 @@ describe('TenantForm', () => {
       id: '1',
       createdAt: '2025-11-21T14:26:14.041Z',
       updatedAt: '2025-11-21T14:26:14.041Z',
+      resourceStatus: 'READY',
       iam: {
         id: 'iam-tenant-1',
         urn: 'urn:v1:eu:resource:ldp:ldp-sbg-55078',
