@@ -15,7 +15,7 @@
   "sms_senders_add_sender_label": "Remitente: ",
   "sms_senders_add_sender_placeholder": "Remitente",
   "sms_senders_add_sender_error_required": "El campo «Remitente» es obligatorio.",
-  "sms_senders_add_sender_error_pattern": "El campo «Remitente» solo puede incluir caracteres alfabéticos.",
+  "sms_senders_add_sender_error_pattern": "El campo «Remitente» debe estar formado únicamente por caracteres alfabéticos y cifras, incluyendo al menos un carácter alfabético.",
   "sms_senders_add_sender_error_maxlength": "El campo «Remitente» no puede tener más de 11 caracteres.",
   "sms_senders_add_sender_description_label": "Descripción: ",
   "sms_senders_add_sender_description_placeholder": "Descripción (opcional)",
@@ -34,5 +34,6 @@
   "sms_senders_add_senders_success": "Añadiendo...",
   "sms_senders_add_sender_supporting_document": "Justificantes",
   "sms_senders_add_sender_supporting_document_help": "En el marco de nuestra política de seguridad, es necesario que nos envíe un documento acreditativo. Se trata por defecto de un documento en papel con el membrete de la empresa o de la marca, incluyendo la autorización de un responsable con firma y sello de esta empresa, documento de identidad o extracto de registro de comercio (CIF), si no es una marca registrada.",
-  "sms_senders_add_sender_supporting_document_info": "Un máximo de 10 archivos de un tamaño máximo de 10MB cuyo formato requerido es pdf, jpg, jpeg o png."
+  "sms_senders_add_sender_supporting_document_info": "Un máximo de 10 archivos de un tamaño máximo de 10MB cuyo formato requerido es pdf, jpg, jpeg o png.",
+  "sms_senders_add_sender_info": "Utilice únicamente caracteres alfabéticos y números con un máximo de 11 caracteres, en los que se incluya al menos un carácter alfabético."
 }

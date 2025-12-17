@@ -46,7 +46,7 @@ export default class {
       adding: false,
     };
     this.senders = {
-      pattern: /^[\w\s\-.,&+]+$/,
+      pattern: /^(?=.*[a-zA-Z])[a-zA-Z0-9]+$/,
       availableForValidation: {
         domains: [],
         nichandle: [],
