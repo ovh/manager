@@ -1,0 +1,149 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Manager UI Kit/What's new/Common issues/Fixing setup tests" />
+
+# Fixing Test Setup Configuration
+
+This guide helps you configure your test environment correctly when using Manager UI Kit (MUK) with different component library combinations.
+
+## Supported Implementation Scenarios
+
+MUK supports several implementation configurations depending on your project requirements:
+
+- **MUK only** - Pure Manager UI Kit implementation
+- **MUK + ODS19** - MUK with OVHcloud Design System v19
+- **MUK + ODS19 + MRCV2 + ODS18** - Mixed ODS versions with Manager React Components v2
+- **MUK + ODS18 + MRCV2** - Legacy ODS v18 with Manager React Components v2
+
+## Configuration Steps
+
+### Step 1: Update Required Dependencies
+
+Ensure your `package.json` includes the latest versions of the following core dependencies:
+
+```json
+{
+  "dependencies": {
+    "@ovh-ux/manager-core-utils": "^0.5.0",
+    "@ovh-ux/ovh-at-internet": "^0.29.0",
+    "@ovh-ux/shell": "^4.10.0",
+    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-core-api": "^0.21.0",
+    "@ovh-ux/manager-react-core-application": "^0.14.0",
+    "@ovh-ux/ovh-product-icons": "^0.15.0",
+    "@ovh-ux/request-tagger": "^0.6.0",
+    "@ovh-ux/manager-core-sso": "^0.7.0",
+    "@ovh-ux/url-builder": "^2.4.0",
+    "@ovh-ux/manager-core-utils": "^0.5.0"
+    "@ovh-ux/manager-react-shell-client": "^1.0.2"
+  }
+}
+```
+
+**Why these versions?**
+- These packages contain critical fixes for test environment compatibility
+- They provide proper ESM/CJS module resolution
+- They ensure correct handling of React 18 features in tests
+
+### Step 2: Configure Vitest
+
+Update your `vitest.config.js` (or `vitest.config.ts`) with the following configuration:
+
+```typescript
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import {
+  INLINE_DEPS,
+  NO_EXTERNAL_DEPS,
+  createConfig,
+  defaultDedupedDependencies,
+  defaultExcludedFiles,
+  mergeConfig,
+  sharedConfig,
+  stubStylesPlugin,
+} from '@ovh-ux/manager-tests-setup';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    // Plugins configuration
+    plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
+    
+    test: {
+      // Setup file for global test configuration
+      setupFiles: ['./setupTests.ts'],
+      
+      // Dependencies that should be processed by Vitest (not pre-bundled)
+      deps: {
+        inline: INLINE_DEPS,
+      },
+      
+      // Server-side dependency handling
+      server: {
+        deps: {
+          inline: INLINE_DEPS,
+        },
+      },
+      
+      // Coverage configuration
+      coverage: {
+        exclude: [
+          ...defaultExcludedFiles,
+          // App-specific exclusions:
+          'vite-*.ts',           // Vite configuration files
+          'App.tsx',             // Root application component
+          'core/ShellRoutingSync.tsx',  // Shell routing integration
+          'main.tsx',            // Application entry point
+          'routes.tsx',          // Route definitions
+          '__mocks__',           // Mock files
+          'queryClient.ts',      // React Query client setup
+        ],
+      },
+    },
+    
+    // SSR configuration - prevents external dependencies from being bundled
+    ssr: {
+      noExternal: NO_EXTERNAL_DEPS,
+    },
+    
+    // Module resolution configuration
+    resolve: {
+      // Prevent duplicate module instances
+      dedupe: [...defaultDedupedDependencies],
+      
+      // Path alias for cleaner imports
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
+    },
+  }),
+);
+```
+
+## Configuration Breakdown
+
+### `INLINE_DEPS`
+Forces certain dependencies to be transformed by Vitest rather than pre-bundled. This is essential for:
+- ESM-only packages
+- Packages that need to be instrumented for coverage
+- MUK and related OVHcloud packages
+
+### `NO_EXTERNAL_DEPS`
+Prevents Vitest from treating certain packages as external during SSR testing. Required for:
+- React components that need server-side rendering
+- Packages that contain both client and server code
+
+### `stubStylesPlugin()`
+Automatically stubs CSS/SCSS imports during tests to prevent style-related errors in the test environment.
+
+### `defaultDedupedDependencies`
+Ensures packages like React, React DOM, and ODS components are loaded only once, preventing:
+- "Invalid hook call" errors
+- Context provider mismatches
+- Multiple React instances
+
+
