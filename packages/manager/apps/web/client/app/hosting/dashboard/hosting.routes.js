@@ -119,6 +119,14 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params(),
         );
       },
+      isWebsiteFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web-hosting:multisite-react')
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(
+              'web-hosting:multisite-react',
+            );
+          }),
 
       availableOptions: /* @ngInject */ (WucOrderCartService, serviceName) =>
         WucOrderCartService.getProductServiceOptions(
