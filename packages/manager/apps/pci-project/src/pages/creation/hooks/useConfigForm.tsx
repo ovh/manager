@@ -40,24 +40,22 @@ export const useConfigForm = (ovhSubsidiary: OvhSubsidiary, cartId: string | und
   const { data: hdsItem } = useIsHdsChecked(cartId);
 
   useEffect(() => {
-    if (cartConfigurationDescription && form.description !== cartConfigurationDescription.value) {
-      setTimeout(() => {
-        setForm((prev) => ({
-          ...prev,
-          description: cartConfigurationDescription.value || '',
-        }));
-      }, 0);
+    if (cartConfigurationDescription) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setForm((prev) => ({
+        ...prev,
+        description: cartConfigurationDescription.value || '',
+      }));
     }
-  }, [cartConfigurationDescription, setForm, form.description]);
+  }, [cartConfigurationDescription, setForm]);
 
   useEffect(() => {
     if (hdsItem) {
-      setTimeout(() => {
-        setForm((prev) => ({
-          ...prev,
-          isHdsChecked: !!hdsItem,
-        }));
-      }, 0);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setForm((prev) => ({
+        ...prev,
+        isHdsChecked: !!hdsItem,
+      }));
     }
   }, [hdsItem, setForm]);
 
