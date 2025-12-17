@@ -24,7 +24,10 @@ const SecretValueDrawerPage = () => {
   const secretPathDecoded = decodeSecretPath(secretPath);
   const { versionId } = useParams();
 
-  const { data: secret } = useSecret(okmsId, decodeSecretPath(secretPath));
+  const { data: secret, isPending: isSecretPending } = useSecret(
+    okmsId,
+    decodeSecretPath(secretPath),
+  );
 
   const [selectedVersion, setSelectedVersion] = useState<SecretVersion | undefined>(undefined);
 
@@ -38,6 +41,7 @@ const SecretValueDrawerPage = () => {
       onDismiss={() => {
         navigate('..');
       }}
+      isLoading={isSecretPending}
       isOpen
     >
       <Suspense>
