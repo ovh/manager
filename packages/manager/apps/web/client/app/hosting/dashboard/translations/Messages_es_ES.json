@@ -198,7 +198,7 @@
   "hosting_dashboard_service_default_runtime": "Motor de ejecución por defecto",
   "hosting_dashboard_available_space": "Espacio disponible",
   "hosting_tab_DOMAINS_OLD": "Sitios web",
-  "hosting_tab_MULTISITE": "Mis sitios",
+  "hosting_tab_MULTISITE": "Multisitio",
   "hosting_tab_FTP": "FTP - SSH",
   "hosting_tab_MODULE": "Módulos en un clic",
   "hosting_tab_DATABASE": "Bases de datos",
@@ -1409,5 +1409,6 @@
   "hosting_dashboard_service_state_TO_CREATE": "Por crear",
   "hosting_tab_DATABASES_configuration__action_button": "Desactivar mi base de datos",
   "hosting_tab_DATABASES_configuration__available_slot": "Base de datos disponible",
+  "hosting_tab_WEBSITE": "Mis sitios",
   "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleccionar un dominio"
 }
