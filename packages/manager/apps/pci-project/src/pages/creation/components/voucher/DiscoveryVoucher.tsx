@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
 import { TEligibilityVoucher } from '@/data/models/Eligibility.type';
 
@@ -11,7 +13,7 @@ type DiscoveryVoucherProps = {
 };
 
 export default function DiscoveryVoucher({ voucher }: DiscoveryVoucherProps) {
-  const { t } = useTranslation('new/voucher');
+  const { t } = useTranslation(['new/voucher', NAMESPACES.ACTIONS]);
 
   return (
     <div className="pci-project-new-voucher">
@@ -36,7 +38,7 @@ export default function DiscoveryVoucher({ voucher }: DiscoveryVoucherProps) {
           variant={ODS_BUTTON_VARIANT.default}
           size="sm"
           isDisabled={true}
-          label={t('pci_projects_new_voucher_form_add')}
+          label={t('add', { ns: NAMESPACES.ACTIONS })}
         />
       </div>
 
