@@ -5,6 +5,7 @@ import {
   screen,
   fireEvent,
 } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
 import {
@@ -44,7 +45,7 @@ export const renderTest = async ({
   initialRoute?: string;
 } & GetServicesMocksParams &
   GetIamMocksParams &
-  NetworkConfigParams = {}) => {
+  NetworkConfigParams = {}): Promise<RenderResult> => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
