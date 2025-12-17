@@ -88,5 +88,6 @@
   "kube_add_plan_content_standard_1AZ_control_plane": "Verwalteter Kontrollplan, hochverfügbar (1-AZ) und dediziert, mit garantierten Ressourcen",
   "kube_add_plan_content_not_available": "in der Region nicht verfügbar",
   "kubernetes_add_region_plan_select": "Nach Plänen filtern",
-  "kube_add_plan_content_standard_1AZ_SLA": "SLA von 99,9 %"
+  "kube_add_plan_content_standard_1AZ_SLA": "SLA VON 99,9 %",
+  "kubernetes_add_create_cluster": "Erstelle meinen Cluster"
 }

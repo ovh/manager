@@ -88,5 +88,6 @@
   "kube_add_plan_content_standard_1AZ_control_plane": "Plano de controlo gerido, altamente disponível (1-AZ) e dedicado, com recursos garantidos",
   "kube_add_plan_content_not_available": "indisponível na região",
   "kubernetes_add_region_plan_select": "Filtrar por planos",
-  "kube_add_plan_content_standard_1AZ_SLA": "SLA DE 99,9%"
+  "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA",
+  "kubernetes_add_create_cluster": "Criar o meu cluster"
 }

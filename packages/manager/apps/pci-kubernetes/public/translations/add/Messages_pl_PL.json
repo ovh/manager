@@ -88,5 +88,6 @@
   "kube_add_plan_content_standard_1AZ_control_plane": "Dedykowany, zarządzany control plane o wysokiej dostępności (1-AZ), z gwarantowanymi zasobami",
   "kube_add_plan_content_not_available": "niedostępny w regionie",
   "kubernetes_add_region_plan_select": "Filtruj według ofert",
-  "kube_add_plan_content_standard_1AZ_SLA": "SLA 99,9%"
+  "kube_add_plan_content_standard_1AZ_SLA": "SLA 99,9%",
+  "kubernetes_add_create_cluster": "Utwórz mój klaster"
 }
