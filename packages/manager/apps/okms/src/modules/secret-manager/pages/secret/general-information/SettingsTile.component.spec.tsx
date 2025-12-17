@@ -31,10 +31,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 const mockSecret = mockSecret1;
 
 const mockSecretSmartConfig: SecretSmartConfig = {

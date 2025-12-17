@@ -24,10 +24,6 @@ vi.mock('@secret-manager/data/hooks/useUpdateSecret', () => ({
   useUpdateSecret: (): unknown => mockUseUpdateSecret(),
 }));
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 const mockSecret: Secret = mockSecret1;
 const mockSecretConfig: SecretSmartConfig = {
   casRequired: {

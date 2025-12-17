@@ -7,25 +7,17 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
-import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-
 import { renderHookWithClient } from '@/common/utils/tests/testUtils';
 
 import { useServiceKeyDownload } from './useServiceKeyDownload';
 
-const {
-  mockAddError,
-  mockTrackClick,
-  mockRefetch,
-  mockInitiateTextFileDownload,
-  mockUseOkmsServiceKeyById,
-} = vi.hoisted(() => ({
-  mockAddError: vi.fn(),
-  mockTrackClick: vi.fn(),
-  mockRefetch: vi.fn(),
-  mockInitiateTextFileDownload: vi.fn(),
-  mockUseOkmsServiceKeyById: vi.fn(),
-}));
+const { mockAddError, mockRefetch, mockInitiateTextFileDownload, mockUseOkmsServiceKeyById } =
+  vi.hoisted(() => ({
+    mockAddError: vi.fn(),
+    mockRefetch: vi.fn(),
+    mockInitiateTextFileDownload: vi.fn(),
+    mockUseOkmsServiceKeyById: vi.fn(),
+  }));
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({
@@ -45,10 +37,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     })),
   };
 });
-
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: mockTrackClick }),
-}));
 
 vi.mock('@key-management-service/data/hooks/useOkmsServiceKeys', () => ({
   useOkmsServiceKeyById: (...args: unknown[]) =>
@@ -201,56 +189,7 @@ describe('useServiceKeyDownload', () => {
       }
 
       expect(mockAddError).toHaveBeenCalledWith('common:error_fetching_data');
-      expect(mockTrackClick).not.toHaveBeenCalled();
       expect(mockInitiateTextFileDownload).not.toHaveBeenCalled();
-    });
-
-    it('should track click with datagrid location when page is list', async () => {
-      const { result } = renderHookWithClient(() =>
-        useServiceKeyDownload({
-          okmsId,
-          keyId,
-          keyType: OkmsKeyTypes.RSA,
-          keyState: OkmsServiceKeyState.active,
-          page: 'list',
-        }),
-      );
-
-      const onClick = result.current?.onClick;
-      if (onClick) {
-        await Promise.resolve(onClick());
-      }
-
-      expect(mockTrackClick).toHaveBeenCalledWith({
-        location: PageLocation.datagrid,
-        buttonType: ButtonType.button,
-        actionType: 'action',
-        actions: ['download', 'service-key'],
-      });
-    });
-
-    it('should track click with page location when page is detail', async () => {
-      const { result } = renderHookWithClient(() =>
-        useServiceKeyDownload({
-          okmsId,
-          keyId,
-          keyType: OkmsKeyTypes.RSA,
-          keyState: OkmsServiceKeyState.active,
-          page: 'detail',
-        }),
-      );
-
-      const onClick = result.current?.onClick;
-      if (onClick) {
-        await Promise.resolve(onClick());
-      }
-
-      expect(mockTrackClick).toHaveBeenCalledWith({
-        location: PageLocation.page,
-        buttonType: ButtonType.button,
-        actionType: 'action',
-        actions: ['download', 'service-key'],
-      });
     });
 
     it('should initiate file download with correct filename and content', async () => {
@@ -292,7 +231,6 @@ describe('useServiceKeyDownload', () => {
       }
 
       expect(mockRefetch).toHaveBeenCalledTimes(1);
-      expect(mockTrackClick).toHaveBeenCalledTimes(1);
       expect(mockInitiateTextFileDownload).toHaveBeenCalledTimes(1);
       expect(mockAddError).not.toHaveBeenCalled();
     });

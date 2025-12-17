@@ -35,10 +35,6 @@ vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(() => vi.fn()),
 }));
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 vi.mock('@key-management-service/data/hooks/useDeleteOkmsServiceKey', () => ({
   useDeleteOkmsServiceKey: vi.fn(() => ({
     deleteKmsServiceKey: vi.fn(),
