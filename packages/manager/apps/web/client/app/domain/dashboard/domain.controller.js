@@ -29,6 +29,7 @@ angular.module('App').controller(
       goToContactManagement,
       hasEmailDomain,
       isEmailDomainAvailable,
+      isDomainFeatureAvailable,
       Hosting,
       orderedHosting,
       WucUser,
@@ -52,12 +53,38 @@ angular.module('App').controller(
       this.goToWebhostingOrder = goToWebhostingOrder;
       this.goToContactManagement = goToContactManagement;
       this.isEmailDomainTabAvailable = isEmailDomainAvailable && hasEmailDomain;
+      this.isDomainFeatureAvailable = isDomainFeatureAvailable;
       this.Hosting = Hosting;
       this.orderedHosting = orderedHosting;
       this.WucUser = WucUser;
       this.WucAllDom = WucAllDom;
       this.zoneCapabilities = zoneCapabilities;
       this.coreConfig = coreConfig;
+      this.informationLink = coreURLBuilder.buildURL(
+        'web-domains',
+        '#/domain/:serviceName/information',
+        { serviceName: this.$stateParams.productId },
+      );
+      this.serverLink = coreURLBuilder.buildURL(
+        'web-domains',
+        '#/domain/:serviceName/dns',
+        { serviceName: this.$stateParams.productId },
+      );
+      this.hostLink = coreURLBuilder.buildURL(
+        'web-domains',
+        '#/domain/:serviceName/hosts',
+        { serviceName: this.$stateParams.productId },
+      );
+      this.dnssecLink = coreURLBuilder.buildURL(
+        'web-domains',
+        '#/domain/:serviceName/dnssec',
+        { serviceName: this.$stateParams.productId },
+      );
+      this.contactManagementLink = coreURLBuilder.buildURL(
+        'web-domains',
+        '#/domain/:serviceName/contact-management',
+        { serviceName: this.$stateParams.productId },
+      );
     }
 
     $onInit() {

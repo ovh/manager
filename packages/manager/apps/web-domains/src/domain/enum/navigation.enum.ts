@@ -1,0 +1,4 @@
+export enum AnycastPreviousPages {
+  GENERAL_INFORMATION = 'GENERAL_INFORMATION',
+  DNS_SERVERS = 'DNS_SERVERS',
+}
