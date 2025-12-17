@@ -104,7 +104,6 @@
   "kubernetes_add_region_title_region_alt": "Logo región 1-AZ",
   "kubernetes_add_region_title_region-3-az_alt": "Logo región 3-AZ",
   "kubernetes_add_region_continent_select": "Seleccionar una zona geográfica",
-  "kubernetes_add_region_plan_select": "Filtrar por planes",
   "kubernetes_add_region_plan_all": "Todos los planes",
   "kubernetes_add_micro_region_choose": "Elegir un centro de datos",
   "kubernetes_add_micro_region_select": "Seleccionar un centro de datos"
