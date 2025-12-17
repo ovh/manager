@@ -14,11 +14,11 @@ import { toASCII } from 'punycode';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { AlldomService } from '@/alldoms/types';
+import { findContact } from '@/common/utils/utils';
 import {
-  ServiceInfoContactEnum,
   ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
-import { findContact } from '@/alldoms/utils/utils';
+  ServiceInfoContactEnum,
+} from '@/common/enum/common.enum';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom']);
@@ -58,7 +58,7 @@ export default function ServiceList() {
             nicAdmin: '',
             nicBilling: '',
             nicTechnical: '',
-            lifecyclePendingActions: [],
+            pendingActions: [],
             renewMode: null,
             expirationDate: '',
             creationDate: '',
@@ -76,7 +76,7 @@ export default function ServiceList() {
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
-          lifecyclePendingActions: lifecycle?.current.pendingActions ?? [],
+          pendingActions: lifecycle?.current.pendingActions ?? [],
           renewMode: renew.current.mode,
           expirationDate,
           creationDate: lifecycle?.current?.creationDate,
