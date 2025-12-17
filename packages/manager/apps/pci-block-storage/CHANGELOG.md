@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.6...@ovh-ux/manager-pci-block-storage-app@0.23.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** fix displayed attachable instances ([560b802](https://github.com/ovh/manager/commit/560b802daae09480e119c8656d11805d7803c5b1)), closes [#TAPC-5257](https://github.com/ovh/manager/issues/TAPC-5257)
+
+
+### Features
+
+* **pci-block-storage:** fix region next button being visible when it should not ([0539102](https://github.com/ovh/manager/commit/053910204780aa320968f1f7b75c9a246e438599)), closes [#TAPC-5343](https://github.com/ovh/manager/issues/TAPC-5343)
+
+
+
+
+
 ## [0.22.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.5...@ovh-ux/manager-pci-block-storage-app@0.22.6) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
