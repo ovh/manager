@@ -27,10 +27,6 @@ vi.mock('@/common/utils/dom/download', () => ({
   initiateTextFileDownload: vi.fn(),
 }));
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 const mockOkms = {
   id: 'test-okms-id',
   region: 'test-region',
