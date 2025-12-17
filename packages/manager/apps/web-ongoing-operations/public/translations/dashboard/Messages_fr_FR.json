@@ -87,6 +87,7 @@
   "domain_operations_update_fax": "Fax",
   "domain_operations_update_gender": "Genre",
   "domain_operations_update_language": "Langue",
+  "domain_operations_update_firstName": "Prénom",
   "domain_operations_update_lastName": "Nom",
   "domain_operations_update_legalForm": "Forme légale",
   "domain_operations_update_nationalIdentificationNumber": "Code fiscal",
