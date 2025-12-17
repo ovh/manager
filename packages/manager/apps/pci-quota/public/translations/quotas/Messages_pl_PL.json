@@ -26,6 +26,6 @@
   "pci_projects_project_quota_autoscaling_help": "Limit dostosowuje się automatycznie w zależności od wykorzystania zasobów oraz od wybranych kryteriów.",
   "pci_projects_project_quota_protect_contact_support": "Skontaktuj się z pomocą techniczną",
   "pci_projects_project_quota_error_forbidden": "Nie masz wystarczających uprawnień, aby zarządzać limitami. Skontaktuj się z właścicielem usługi",
-  "pci_projects_project_quota_limit_warning": "Limity odpowiadają maksymalnej ilości zasobów, które możesz wykorzystać. Aby ograniczyć nadużycia, wprowadziliśmy domyślne limity.",
-  "pci_projects_project_quota_help_cta": "Zrozumieć działanie limitów"
+  "pci_projects_project_quota_limit_warning": "Limity określają maksymalną ilość zasobów, z których możesz korzystać. Aby ograniczyć nadużycia, wprowadziliśmy domyślne limity.",
+  "pci_projects_project_quota_help_cta": "Poznaj zasady działania limitów zasobów"
 }
