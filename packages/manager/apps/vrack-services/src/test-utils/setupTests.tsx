@@ -1,5 +1,4 @@
 import { vi } from 'vitest';
-import React from 'react';
 import '@testing-library/jest-dom';
 import { NavLinkProps } from 'react-router-dom';
 
