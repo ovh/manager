@@ -19,7 +19,6 @@ export const useCreateSecretVersion = () => {
       // Invalidate secrets
       await queryClient.invalidateQueries({
         queryKey: secretQueryKeys.list(variables.okmsId),
-        exact: true,
       });
       // Invalidate secret details
       await queryClient.invalidateQueries({
