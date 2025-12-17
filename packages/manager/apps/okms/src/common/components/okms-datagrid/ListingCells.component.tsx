@@ -13,6 +13,7 @@ import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { Link } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { TrackingTags } from '@/tracking.constant';
 
 import { OKMS_LIST_CELL_TEST_IDS } from './ListingCells.constants';
 import { OkmsDatagridType } from './okmsDatagrid.type';
@@ -30,11 +31,14 @@ export const DatagridCellId = (okms: OKMS) => {
 export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => {
   const { trackClick } = useOkmsTracking();
 
-  const links: Record<OkmsDatagridType, { href: string; tracking: string }> = {
-    kms: { href: KMS_ROUTES_URLS.kmsDashboard(okms.id), tracking: 'go-to-kms' },
+  const links: Record<OkmsDatagridType, { href: string; tracking: TrackingTags[] }> = {
+    kms: {
+      href: KMS_ROUTES_URLS.kmsDashboard(okms.id),
+      tracking: ['okms'],
+    },
     'secret-manager': {
       href: SECRET_MANAGER_ROUTES_URLS.secretList(okms.id),
-      tracking: 'go-to-secret-list',
+      tracking: ['secret', 'list'],
     },
   };
 
@@ -49,7 +53,7 @@ export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => 
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'navigation',
-          actions: [links[type].tracking],
+          actions: links[type].tracking,
         });
       }}
     />

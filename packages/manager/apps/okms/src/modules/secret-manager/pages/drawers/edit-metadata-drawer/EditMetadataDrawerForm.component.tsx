@@ -68,7 +68,7 @@ export const EditMetadataDrawerForm = ({
       location: PageLocation.popup,
       buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['edit-metadata', 'confirm'],
+      actions: ['edit', 'metadata', 'confirm'],
     });
     try {
       await updateSecret({
@@ -97,7 +97,7 @@ export const EditMetadataDrawerForm = ({
       location: PageLocation.popup,
       buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['edit-metadata', 'cancel'],
+      actions: ['edit', 'metadata', 'cancel'],
     });
     onDismiss();
   };

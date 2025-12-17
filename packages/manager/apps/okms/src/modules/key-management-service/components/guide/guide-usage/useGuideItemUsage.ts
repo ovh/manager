@@ -23,7 +23,7 @@ export const useGuideItemUsage = (id: number): GuideItem => {
         location: PageLocation.page,
         buttonType: ButtonType.externalLink,
         actionType: 'navigation',
-        actions: ['go-to-use-ovh-kms'],
+        actions: ['guide-quick-usage'],
       }),
   };
 };
