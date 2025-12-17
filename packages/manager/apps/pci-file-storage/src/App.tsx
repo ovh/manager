@@ -1,13 +1,13 @@
 import React, { Suspense, useContext, useEffect } from 'react';
 
-import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
+import { createHashRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import Routes from '@/routes/Routes';
+import { Routes } from '@/routes/Routes';
 
 import queryClient from './QueryClient';
 
@@ -30,12 +30,10 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Suspense ensures lazy-loaded route components show a fallback UI */}
       <Suspense fallback={<span>Loading routes ...</span>}>
         <RouterProvider router={router} />
       </Suspense>
 
-      {/* React Query Devtools are included for development and debugging */}
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

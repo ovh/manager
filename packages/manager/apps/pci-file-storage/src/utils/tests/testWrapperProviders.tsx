@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 
 import {
   ShellContext,
@@ -12,12 +10,9 @@ import {
 
 import { appName } from '@/App.constants';
 
-import { initTestI18n } from './i18ntest.utils';
-
 export type TestProvider = (props: React.PropsWithChildren) => React.ReactNode;
 
 let context: ShellContextType;
-let i18nState: i18n;
 
 export const createProviderWrapper = (
   providers: TestProvider[],
@@ -27,13 +22,6 @@ export const createProviderWrapper = (
       const ProviderComponent = provider;
       return <ProviderComponent>{acc}</ProviderComponent>;
     }, children);
-};
-
-export const addI18nextProvider = async (providers: TestProvider[]) => {
-  if (!i18nState) {
-    i18nState = await initTestI18n();
-  }
-  providers.push(({ children }) => <I18nextProvider i18n={i18nState}>{children}</I18nextProvider>);
 };
 
 export const addQueryClientProvider = (providers: TestProvider[]) => {
