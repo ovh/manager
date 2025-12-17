@@ -84,5 +84,6 @@
   "kube_add_plan_content_unavailable_1AZ_banner": "Das {{ plan }} Angebot ist in den 1-AZ-Regionen noch nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte die 3-AZ-Bereitstellung aus.",
   "kube_add_plan_content_unavailable_3AZ_banner": "Das {{ plan }} Angebot ist in den 3-AZ-Regionen noch nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte eine 1-AZ-Bereitstellung aus.",
   "kube_add_name_title": "Node-Pool benennen",
-  "kube_add_node_pool_name_already_exist_validation_error": "Der Node-Pool-Name wird bereits verwendet. Bitte wählen Sie einen anderen aus."
+  "kube_add_node_pool_name_already_exist_validation_error": "Der Node-Pool-Name wird bereits verwendet. Bitte wählen Sie einen anderen aus.",
+  "kubernetes_add_create_cluster": "Erstelle meinen Cluster"
 }
