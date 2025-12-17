@@ -17,6 +17,7 @@ import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { TrackingTags } from '@/tracking.constant';
 
 export type KeyUsageSectionProps = {
   serviceKey: OkmsServiceKeyReference | undefined;
@@ -47,11 +48,14 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
       const newOperations: OkmsServiceKeyOperations[][] = prev.includes(operation.value)
         ? prev.filter((op) => op !== operation.value)
         : [...prev, operation.value];
+
+      const newOperationsTrackingTag = newOperations.flat().join('-') as TrackingTags;
+
       trackClick({
         location: PageLocation.funnel,
         buttonType: ButtonType.button,
         actionType: 'action',
-        actions: ['select_use_key', newOperations.flat().join('_')],
+        actions: ['select', 'usage', newOperationsTrackingTag],
       });
       return newOperations;
     });

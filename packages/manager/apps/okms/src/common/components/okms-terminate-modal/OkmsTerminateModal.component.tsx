@@ -47,7 +47,7 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
     );
     trackPage({
       pageType: PageType.bannerSuccess,
-      pageName: 'delete_kms_success',
+      pageTags: ['delete', 'okms'],
     });
   };
 
@@ -63,7 +63,7 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
     );
     trackPage({
       pageType: PageType.bannerError,
-      pageName: 'delete_kms_error',
+      pageTags: ['delete', 'okms'],
     });
   };
 
@@ -82,7 +82,7 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
           location: PageLocation.popup,
           buttonType: ButtonType.button,
           actionType: 'navigation',
-          actions: ['delete_kms', 'cancel'],
+          actions: ['delete', 'okms', 'cancel'],
         });
         closeModal();
       }}
@@ -91,7 +91,7 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
           location: PageLocation.popup,
           buttonType: ButtonType.button,
           actionType: 'navigation',
-          actions: ['delete_kms', 'confirm'],
+          actions: ['delete', 'okms', 'confirm'],
         });
         terminateService({ resourceName: okmsId });
       }}

@@ -22,7 +22,7 @@ const DeleteCredentialPage = () => {
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'delete_access_certificate',
+        pageTags: ['delete', 'credential'],
       });
       navigate(KMS_ROUTES_URLS.credentialListing(okmsId), {
         state: { deletingCredentialId: credentialId },
@@ -31,7 +31,7 @@ const DeleteCredentialPage = () => {
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'delete_access_certificate',
+        pageTags: ['delete', 'credential'],
       });
       navigate('..');
     },

@@ -9,6 +9,8 @@ import {
   usePageTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
+import { TrackingTags } from '@/tracking.constant';
+
 import { useProductType } from './useProductType';
 
 /**
@@ -38,7 +40,13 @@ export const useOkmsTracking = () => {
     );
   };
 
-  const trackPage = ({ pageName, pageType }: TrackingPageParams) => {
+  // used for success and error banner tracking
+  const trackPage = ({
+    pageTags,
+    pageType,
+  }: Omit<TrackingPageParams, 'pageName'> & { pageTags: TrackingTags[] }) => {
+    const pageName = pageTags.join('_');
+
     shell.tracking.trackPage(
       getPageProps({
         ...tracking,
@@ -52,7 +60,12 @@ export const useOkmsTracking = () => {
     );
   };
 
-  const trackClick = ({ location, buttonType, actions, actionType }: TrackingClickParams) => {
+  const trackClick = ({
+    location,
+    buttonType,
+    actions,
+    actionType,
+  }: Omit<TrackingClickParams, 'actions'> & { actions: TrackingTags[] }) => {
     shell.tracking.trackClick(
       getClickProps({
         ...tracking,

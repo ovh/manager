@@ -13,6 +13,7 @@ import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
+import { TrackingTags } from '@/tracking.constant';
 
 type ButtonState = 'hidden' | 'enabled' | 'disabled';
 type ButtonAction = 'show_value' | 'activate' | 'deactivate' | 'delete';
@@ -41,6 +42,12 @@ const buttonsStateRecord: Record<SecretVersionState, ButtonGroupState> = {
   },
 };
 
+const updateVersionTracking: Record<SecretVersionState, TrackingTags[]> = {
+  ACTIVE: ['activate', 'version'],
+  DEACTIVATED: ['deactivate', 'version'],
+  DELETED: ['delete', 'version'],
+};
+
 type VersionMenuItem = ActionMenuItem & { name: ButtonAction };
 
 export const VersionCellAction = ({
@@ -67,8 +74,8 @@ export const VersionCellAction = ({
     trackClick({
       location: PageLocation.datagrid,
       buttonType: ButtonType.link,
-      actionType: 'navigation',
-      actions: ['update-version'],
+      actionType: 'action',
+      actions: updateVersionTracking[state],
     });
     try {
       await updateSecretVersion({
@@ -91,7 +98,7 @@ export const VersionCellAction = ({
       location: PageLocation.datagrid,
       buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['delete-version'],
+      actions: ['delete', 'version'],
     });
   };
 
@@ -107,7 +114,7 @@ export const VersionCellAction = ({
       location: PageLocation.datagrid,
       buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['reveal-version'],
+      actions: ['reveal', 'version'],
     });
   };
 

@@ -35,9 +35,9 @@ export default function CreateKmsPage() {
   const handleCancel = () => {
     trackClick({
       location: PageLocation.funnel,
-      buttonType: ButtonType.link,
-      actionType: 'navigation',
-      actions: ['create_kms', 'cancel'],
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['create', 'okms', 'cancel'],
     });
     navigate(KMS_ROUTES_URLS.kmsListing);
   };
