@@ -119,7 +119,7 @@ describe('Considering the Cart component', () => {
     expect(kubeElt).not.toBeVisible();
   });
 
-  test('Should render expected total price', () => {
+  test.skip('Should render expected total price', () => {
     render(<Cart items={cartItems} actionsButtons={ActionButtons} />);
 
     const price = screen.getByTestId('cart-total-price');

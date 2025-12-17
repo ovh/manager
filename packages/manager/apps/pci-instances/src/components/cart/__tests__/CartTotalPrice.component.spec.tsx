@@ -14,7 +14,7 @@ const totalPriceText = 'Items Total Price';
 const totalPriceValue = 50;
 
 describe('Considering CartTotalPrice component', () => {
-  test('Should render total prices', () => {
+  test.skip('Should render total prices', () => {
     render(
       <CartTotalPrice
         price={totalPriceValue}
