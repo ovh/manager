@@ -46,11 +46,12 @@ export default function OkmsDashboardPage() {
     KMS_FEATURES.LOGS,
   ]);
 
-  const tabsList: TabNavigationItem[] = filterFalsy([
+  const tabsList: TabNavigationItem[] = filterFalsy<TabNavigationItem>([
     {
       name: 'general-information',
       title: t('key-management-service/dashboard:general_informations'),
       url: SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId),
+      tracking: ['general-informations'],
     },
     features?.[KMS_FEATURES.LOGS] && {
       name: 'logs',
@@ -60,6 +61,7 @@ export default function OkmsDashboardPage() {
         label: 'beta',
         color: 'information',
       },
+      tracking: ['logs'],
     },
   ]);
 

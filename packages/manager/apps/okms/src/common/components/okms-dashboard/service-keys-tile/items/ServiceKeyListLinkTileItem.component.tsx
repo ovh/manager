@@ -29,7 +29,7 @@ export const ServiceKeyListLinkTileItem = ({ okms }: ServiceKeyListLinkTileItemP
             location: PageLocation.tile,
             buttonType: ButtonType.link,
             actionType: 'navigation',
-            actions: ['service-keys'],
+            actions: ['service-key', 'list'],
           });
         }}
       />

@@ -27,7 +27,7 @@ const DeleteSecretModal = () => {
       location: PageLocation.popup,
       buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['delete-secret', 'confirm'],
+      actions: ['delete', 'secret', 'confirm'],
     });
     try {
       await deleteSecret({
@@ -45,7 +45,7 @@ const DeleteSecretModal = () => {
       location: PageLocation.popup,
       buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['delete-secret', 'cancel'],
+      actions: ['delete', 'secret', 'cancel'],
     });
     navigate('..');
   };

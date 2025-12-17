@@ -34,7 +34,7 @@ export const DatagridCredentialCellName = (credential: OkmsCredential) => {
             location: PageLocation.datagrid,
             buttonType: ButtonType.link,
             actionType: 'action',
-            actions: ['details_access_certificate'],
+            actions: ['credential'],
           });
           navigate(`${credential.id}`);
         }}
@@ -107,7 +107,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: 
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'action',
-          actions: ['download_access_certificate'],
+          actions: ['download', 'credential'],
         }),
     },
     {
@@ -120,7 +120,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: 
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'action',
-          actions: ['delete_access_certificate'],
+          actions: ['delete', 'credential'],
         });
         navigate(`${KMS_ROUTES_URIS.credentialDelete}/${credential.id}`);
       },

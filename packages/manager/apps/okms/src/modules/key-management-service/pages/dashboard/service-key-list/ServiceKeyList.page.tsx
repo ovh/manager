@@ -127,7 +127,7 @@ export default function Keys() {
             location: PageLocation.page,
             buttonType: ButtonType.button,
             actionType: 'action',
-            actions: ['create_encryption_key'],
+            actions: ['create', 'service-key'],
           });
           navigate(KMS_ROUTES_URLS.serviceKeyCreate(okmsId));
         }}

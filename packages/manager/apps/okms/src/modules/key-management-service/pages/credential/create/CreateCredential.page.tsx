@@ -51,13 +51,13 @@ const CreateCredential = () => {
       }
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'create_access_certificate',
+        pageTags: ['create', 'credential'],
       });
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'create_access_certificate',
+        pageTags: ['create', 'credential'],
       });
     },
   });

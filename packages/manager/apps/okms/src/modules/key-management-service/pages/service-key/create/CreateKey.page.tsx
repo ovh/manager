@@ -110,12 +110,12 @@ export default function CreateKey() {
       navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'create_encryption_key',
+        pageTags: ['create', 'service-key'],
       });
     } catch {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'create_encryption_key',
+        pageTags: ['create', 'service-key'],
       });
     }
   };
