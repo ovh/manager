@@ -1,4 +1,5 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, Suspense } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -16,11 +17,13 @@ import { useParam } from '@/hooks/useParam';
 import { useIamUserTokenList } from '@/data/hooks/useGetIamUserTokens';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from '@/pages/permanentTokens/listing/useDatagridColumn';
+import { subRoutes } from '@/routes/routes.constant';
 
 import { PermanentTokensBreadcrumb } from '@/pages/permanentTokens/components/PermanentTokenBreadcrumb.component';
 
 export default function PermanentTokensListing() {
   const { t } = useTranslation('permanent-tokens');
+  const navigate = useNavigate();
   const { shell } = useContext(ShellContext);
   const userId = useParam('userId');
 
@@ -66,7 +69,13 @@ export default function PermanentTokensListing() {
   } = useIamUserTokenList({ userId, columns, pageSize: 10 });
 
   const handleReturnLink = () => {
+    // TODO: tracking
     shell?.navigation.navigateTo('', '/iam/identities/users', {});
+  };
+
+  const handleCreateToken = () => {
+    // TODO: tracking
+    navigate(subRoutes.permanentTokensAdd);
   };
 
   if (isUserError) {
@@ -87,6 +96,7 @@ export default function PermanentTokensListing() {
             <ManagerButton
               id="create-user-token"
               label={t('iam_user_tokens_add_new_token')}
+              onClick={handleCreateToken}
             />
           }
           isLoading={isLoading}
@@ -103,6 +113,9 @@ export default function PermanentTokensListing() {
           getRowId={(token) => token.name}
         />
       )}
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </BaseLayout>
   );
 }
