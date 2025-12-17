@@ -1408,5 +1408,6 @@
   "hosting_dashboard_service_filer_helper": "Identyfikator kolejki może ulec zmianie",
   "hosting_dashboard_service_state_TO_CREATE": "Do utworzenia",
   "hosting_tab_DATABASES_configuration__action_button": "Usuń bazę danych",
-  "hosting_tab_DATABASES_configuration__available_slot": "Dostępna baza danych"
+  "hosting_tab_DATABASES_configuration__available_slot": "Dostępna baza danych",
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Wybierz domenę"
 }
