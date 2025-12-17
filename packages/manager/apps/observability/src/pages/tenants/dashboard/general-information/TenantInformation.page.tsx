@@ -27,6 +27,7 @@ export default function TenantsInformationPage() {
   const { data: tenant, isLoading, error, isError } = useTenant(resourceName, tenantId ?? '');
 
   const tenantState = tenant?.currentState;
+  const resourceStatus = tenant?.resourceStatus;
   const iam = tenant?.iam;
   const createdAt = tenant?.createdAt;
   const updatedAt = tenant?.updatedAt;
@@ -66,6 +67,7 @@ export default function TenantsInformationPage() {
             createdAt={createdAt}
             updatedAt={updatedAt}
             isLoading={isLoading}
+            resourceStatus={resourceStatus}
           />
 
           <div className="flex flex-col justify-start gap-6">
