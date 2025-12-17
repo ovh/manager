@@ -25,10 +25,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mock('@/common/hooks/useOkmsTracking', () => ({
-  useOkmsTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 vi.mock('@ovh-ux/manager-billing-informations', async (original) => ({
   ...(await original()),
   BillingInformationsTileStandard: vi.fn(
