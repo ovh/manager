@@ -4,7 +4,7 @@ import { Tenant, TenantListing } from '@/types/tenants.type';
 import { formatObservabilityDuration } from '@/utils/duration.utils';
 
 export const mapTenantsToListing = (tenants: Tenant[], dateFnsLocale: Locale): TenantListing[] => {
-  const result: TenantListing[] = tenants.map(({ id, currentState, iam }) => {
+  const result: TenantListing[] = tenants.map(({ id, currentState, iam, resourceStatus }) => {
     const { title, limits, infrastructure } = currentState;
     const entryPoint = infrastructure?.entryPoint;
     const retention = limits?.mimir?.compactor_blocks_retention_period
@@ -19,11 +19,12 @@ export const mapTenantsToListing = (tenants: Tenant[], dateFnsLocale: Locale): T
     return {
       id,
       name: title,
-      infrastructure: infrastructure,
+      infrastructure,
       endpoint: entryPoint,
-      retention: retention,
-      numberOfSeries: numberOfSeries,
-      tags: tags,
+      retention,
+      numberOfSeries,
+      resourceStatus,
+      tags,
       search: `${title} ${entryPoint ?? ''} ${retention ?? ''} ${numberOfSeries ?? ''} ${tagsStr}`,
     };
   });
