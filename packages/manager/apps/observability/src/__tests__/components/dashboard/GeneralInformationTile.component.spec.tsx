@@ -56,6 +56,17 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {children}
     </button>
   ),
+  Badge: ({ children, color }: { children: React.ReactNode; color: string }) => (
+    <span data-testid="badge" data-color={color}>
+      {children}
+    </span>
+  ),
+  BADGE_COLOR: {
+    success: 'success',
+    critical: 'critical',
+    warning: 'warning',
+    neutral: 'neutral',
+  },
 }));
 
 describe('GeneralInformationTile.component', () => {
@@ -81,7 +92,7 @@ describe('GeneralInformationTile.component', () => {
   it('renders skeletons when loading', () => {
     render(<GeneralInformationTile {...baseProps} isLoading />);
 
-    expect(screen.getAllByTestId('skeleton')).toHaveLength(7);
+    expect(screen.getAllByTestId('skeleton')).toHaveLength(8);
   });
 
   it('renders tenant information when data is available', () => {
