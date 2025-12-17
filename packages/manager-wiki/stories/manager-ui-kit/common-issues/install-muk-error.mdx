@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Manager UI Kit/What's new/Common issues/Install MUK error" />
+
+# Install MUK error
+
+## Peer Dependencies Required
+
+When you install and import `@ovh-ux/muk` in your project, you must also install all its **peer dependencies**. These are external packages that MUK depends on but doesn't bundle directly.
+
+### Why Peer Dependencies?
+
+Peer dependencies ensure:
+- **Version consistency** across your application
+- **Reduced bundle size** by avoiding duplicate dependencies
+- **Compatibility** between MUK and your project's existing dependencies
+
+### Required Peer Dependencies
+
+The following packages must be installed alongside `@ovh-ux/muk`:
+
+```json
+{
+  "@ovh-ux/manager-common-translations": "*",
+  "@ovh-ux/manager-config": "^8.8.0",
+  "@ovh-ux/manager-core-api": "^0.10.0",
+  "@ovh-ux/manager-core-utils": "*",
+  "@ovh-ux/manager-react-shell-client": "^0.11.2",
+  "@ovhcloud/ods-react": "19.2.1",
+  "@ovhcloud/ods-themes": "19.2.1",
+  "@tanstack/react-query": "^5.51.21",
+  "@tanstack/react-table": "8.11.8",
+  "@tanstack/react-virtual": "^3.10.9",
+  "date-fns": "~4.1.0",
+  "i18next": "^23.8.2",
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-i18next": "^14.0.5",
+  "react-router-dom": "^6.3.0",
+  "react-use": "^17.5.0",
+  "zustand": "^4.5.5"
+}
+```
+
+### Installation
+
+#### Using pnpm
+
+```bash
+pnpm add @ovh-ux/muk
+pnpm add @ovh-ux/manager-common-translations @ovh-ux/manager-config @ovh-ux/manager-core-api @ovh-ux/manager-core-utils @ovh-ux/manager-react-shell-client @ovhcloud/ods-react @ovhcloud/ods-themes @tanstack/react-query @tanstack/react-table @tanstack/react-virtual date-fns i18next react react-dom react-i18next react-router-dom react-use zustand
+```
+
+#### Using yarn
+
+```bash
+yarn add @ovh-ux/muk
+yarn add @ovh-ux/manager-common-translations @ovh-ux/manager-config @ovh-ux/manager-core-api @ovh-ux/manager-core-utils @ovh-ux/manager-react-shell-client @ovhcloud/ods-react @ovhcloud/ods-themes @tanstack/react-query @tanstack/react-table @tanstack/react-virtual date-fns i18next react react-dom react-i18next react-router-dom react-use zustand
+```
+
+### Common Errors
+
+If you see errors like:
+
+- `Cannot find module '@ovhcloud/ods-react'`
+- `Module not found: Can't resolve 'react-i18next'`
+- `Peer dependency warnings`
+
+This means you're missing one or more peer dependencies. Install all the packages listed above to resolve these issues.
+
+### Verifying Installation
+
+After installation, verify that all peer dependencies are properly installed by checking your `package.json` file. All the packages listed above should appear in your `dependencies` section.
+

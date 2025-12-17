@@ -265,6 +265,76 @@ Default.args = {
   data,
 };
 
+Default.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          
+          const columns = [
+            {
+              'id': 'Person',
+              'label': 'Person',
+              'accessorKey': 'person',
+              'header': 'Person',
+              'cell': ({ getValue }) => <div>{getValue()}</div>,
+            },
+            {
+              'id': 'Most interest in',
+              'label': 'Most interest in',
+              'accessorKey': 'mostInterestIn',
+              'header': 'Most interest in',
+              'cell': ({ getValue }) => <div>{getValue()}</div>,
+            },
+            {
+              'id': 'Age',
+              'label': 'Age',
+              'accessorKey': 'age',
+              'header': 'Age',
+              'cell': ({ getValue }) => <div>{getValue()}</div>,
+            },
+          ];
+          const data = [
+            {
+              'id': '1',
+              'person': 'John Doe',
+              'mostInterestIn': 'HTML tables',
+              'age': 25,
+            },
+            {
+              'id': '2',
+              'person': 'Jane Doe',
+              'mostInterestIn': 'Web accessibility',
+              'age': 26,
+            },
+            {
+              'id': '3',
+              'person': 'Sarah',
+              'mostInterestIn': 'JavaScript frameworks',
+              'age': 25,
+            },
+            {
+              'id': '4',
+              'person': 'Karen',
+              'mostInterestIn': 'Web performance',
+              'age': 26,
+            },
+          ];
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const Size = DatagridStory.bind({});
 
 Size.args = {
@@ -273,12 +343,54 @@ Size.args = {
   size: TABLE_SIZE.sm,
 };
 
+Size.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid, TABLE_SIZE } from '@ovh-ux/muk';
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              size={TABLE_SIZE.sm}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const Variant = DatagridStory.bind({});
 
 Variant.args = {
   columns,
   data,
   variant: TABLE_VARIANT.striped,
+};
+
+Variant.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid, TABLE_VARIANT } from '@ovh-ux/muk';
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              variant={TABLE_VARIANT.striped}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
 };
 
 export const Sorting = DatagridStory.bind({});
@@ -294,12 +406,67 @@ Sorting.args = {
   },
 };
 
+Sorting.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid, SortingState, useDataApi } from '@ovh-ux/muk';
+          // an exemple with dedicated server data
+          const { sorting } = useDataApi({
+            route: '/dedicated/server',
+            version: 'v6',
+            cacheKey: ['dedicated-server'],
+            iceberg: true,
+            enabled: true,
+          });
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              manualSorting={false}
+              sorting={{
+                sorting: sorting?.sorting,
+                setSorting: sorting?.setSorting,
+                manualSorting: true,
+              }}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const Loading = DatagridStory.bind({});
 
 Loading.args = {
   columns,
   data: [],
   isLoading: true,
+};
+
+Loading.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              isLoading={true}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
 };
 
 export const LoadMore = DatagridStory.bind({});
@@ -311,6 +478,35 @@ LoadMore.args = {
   onFetchNextPage: () => {},
 };
 
+LoadMore.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid, useDataApi } from '@ovh-ux/muk';
+          const { hasNextPage, fetchNextPag, hasNextPage } = useDataApi({
+            route: '/dedicated/server',
+            version: 'v6',
+            cacheKey: ['dedicated-server'],
+            iceberg: true,
+            enabled: true,
+          });
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              hasNextPage={hasNextPage}
+              onFetchNextPage={fetchNextPage}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const LoadAllAndLoading = DatagridStory.bind({});
 
 LoadAllAndLoading.args = {
@@ -320,6 +516,36 @@ LoadAllAndLoading.args = {
   hasNextPage: true,
   onFetchAllPages: () => {},
   onFetchNextPage: () => {},
+};
+
+LoadAllAndLoading.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid, useDataApi } from '@ovh-ux/muk';
+          const { hasNextPage, onFetchAllPages, fetchNextPage } = useDataApi({
+            route: '/dedicated/server',
+            version: 'v6',
+            cacheKey: ['dedicated-server'],
+            iceberg: true,
+            enabled: true,
+          });
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              hasNextPage={hasNextPage}
+              onFetchAllPages={onFetchAllPages}
+              onFetchNextPage={fetchNextPage}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
 };
 
 export const SubComponent = DatagridStory.bind({});
@@ -339,6 +565,35 @@ SubComponent.args = {
   size: TABLE_SIZE.md,
 };
 
+SubComponent.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              renderSubComponent={(row) => (
+                <>
+                  <div>{row.original.person}</div>
+                  <div>{row.original.mostInterestIn}</div>
+                  <div>{row.original.age}</div>
+                </>
+              )}
+              subComponentHeight={80}
+              size={TABLE_SIZE.md}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const Expandable = DatagridStory.bind({});
 
 Expandable.args = {
@@ -353,6 +608,89 @@ Expandable.args = {
   subRows: true,
 };
 
+Expandable.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          import { ExpandedState } from '@tanstack/react-table';
+          const [expanded, setExpanded] = useState<ExpandedState>({});
+          const items = [
+            {
+              'id': '1',
+              'person': 'John Doe',
+              'age': 25,
+              'mostInterestIn': 'HTML tables',
+              'subRows': [
+                {
+                  'id': '99',
+                  'person': 'Joahn Cruyff',
+                  'age': 26,
+                },
+              ]
+            },
+            {
+              'id': '2',
+              'person': 'Jane Doe',
+              'age': 26,
+              'mostInterestIn': 'Web accessibility',
+              'subRows': [
+                {
+                  'id': '100',
+                  'person': 'Michel Platini',
+                  'age': 28,
+                },
+              ]
+            },
+            {
+              'id': '3',
+              'person': 'Sarah',
+              'age': 25,
+              'mostInterestIn': 'JavaScript frameworks',
+              'subRows': [
+                {
+                  'id': '101',
+                  'person': 'Lionel Messi',
+                  'age': 27,
+                },
+              ]
+            }
+            {
+              'id': '4',
+              'person': 'Karen',
+              'age': 26,
+              'mostInterestIn': 'Web performance',
+              'subRows': [
+                {
+                  'id': '102',
+                  'person': 'Cristiano Ronaldo',
+                  'age': 28,
+                },
+              ]
+            }
+          ];
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              expandable={{
+                expanded: expanded,
+                setExpanded: setExpanded,
+                getRowCanExpand: (row: any) => row?.original?.age === 26,
+              }}
+              autoScroll={false}
+              subComponentHeight={80}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const VisibilityColumns = DatagridStory.bind({});
 
 VisibilityColumns.args = {
@@ -362,6 +700,59 @@ VisibilityColumns.args = {
   columnVisibility: {
     columnVisibility: { person: true, mostInterestIn: true, age: true },
     setColumnVisibility: () => {},
+  },
+};
+
+VisibilityColumns.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          import { VisibilityState } from '@tanstack/react-table';
+          const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+          const columns = [
+            {
+              'id': 'Person',
+              'label': 'Person',
+              'accessorKey': 'person',
+              'header': 'Person',
+              'enableHiding': true,
+              'cell': ({ getValue }) => <div>{getValue()}</div>,
+            },
+            {
+              'id': 'Most interest in',
+              'label': 'Most interest in',
+              'accessorKey': 'mostInterestIn',
+              'header': 'Most interest in',
+              'enableHiding': true,
+              'cell': ({ getValue }) => <div>{getValue()}</div>,
+            },
+            {
+              'id': 'Age',
+              'label': 'Age',
+              'accessorKey': 'age',
+              'header': 'Age',
+              'enableHiding': true,
+              'cell': ({ getValue }) => <div>{getValue()}</div>,
+            },
+          ];
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              manualSorting={false}
+              columnVisibility={
+                columnVisibility,
+                setColumnVisibility,
+              }
+            />
+          );
+          `.trim()
+        );
+      },
+    },
   },
 };
 
@@ -377,6 +768,38 @@ Filtering.args = {
   },
 };
 
+Filtering.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid, useDataApi } from '@ovh-ux/muk';
+          const { filters } = useDataApi({
+            route: '/dedicated/server',
+            version: 'v6',
+            cacheKey: ['dedicated-server'],
+            iceberg: true,
+            enabled: true,
+          });
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              filters={{
+                filters: filters?.filters,
+                add: filters?.add,
+                remove: filters?.remove,
+              }}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const Search = DatagridStory.bind({});
 
 Search.args = {
@@ -386,6 +809,38 @@ Search.args = {
     searchInput: '',
     setSearchInput: () => {},
     onSearch: () => {},
+  },
+};
+
+Search.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid, useDataApi } from '@ovh-ux/muk';
+          const { searchInput, setSearchInput, onSearch } = useDataApi({
+            route: '/dedicated/server',
+            version: 'v6',
+            cacheKey: ['dedicated-server'],
+            iceberg: true,
+            enabled: true,
+          });
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              search={{
+                searchInput: '',
+                setSearchInput: () => {},
+                onSearch: () => {},
+              }}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
   },
 };
 
@@ -402,12 +857,62 @@ RowSelection.args = {
   },
 };
 
+RowSelection.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          import { RowSelectionState } from '@tanstack/react-table';
+
+          const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              rowSelection={{
+                rowSelection: [],
+                setRowSelection: () => {},
+                onRowSelectionChange: () => {},
+                enableRowSelection: (row: Row<DatagridStoryData>) => row?.original?.age === 26,
+              }}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const HideHeader = DatagridStory.bind({});
 
 HideHeader.args = {
   columns,
   data: [...data],
   hideHeader: true,
+};
+
+HideHeader.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              hideHeader={true}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
 };
 
 export const Topbar = DatagridStory.bind({});
@@ -444,12 +949,112 @@ Topbar.args = {
   },
 };
 
+Topbar.parameters = {
+
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              topbar={
+                <div>
+                  <Button size={BUTTON_SIZE.sm}>
+                    <Icon name={ICON_NAME.plus} />
+                    Add New
+                  </Button>
+                </div>
+              }
+              filters={{
+                filters: [],
+                add: () => {},
+                remove: () => {},
+              }}
+              search={{
+                searchInput: '',
+                setSearchInput: () => {},
+                onSearch: () => {},
+              }}
+              rowSelection={{
+                rowSelection: [],
+                setRowSelection: () => {},
+                onRowSelectionChange: () => {},
+                enableRowSelection: (row: Row<DatagridStoryData>) => row?.original?.age === 26,
+              }}
+              columnVisibility={{
+                columnVisibility: { person: true, mostInterestIn: true, age: true },
+                setColumnVisibility: () => {},
+              }}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
 export const TotalCount = DatagridStory.bind({});
 
 TotalCount.args = {
   columns,
   data: [...data],
   totalCount: 4,
+};
+
+TotalCount.parameters = {
+
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              totalCount={4}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
+};
+
+export const ResourceType = DatagridStory.bind({});
+
+ResourceType.args = {
+  columns,
+  data: [...data],
+  resourceType: 'dedicated-server',
+};
+
+ResourceType.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid } from '@ovh-ux/muk';
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              resourceType="dedicated-server"
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
 };
 
 export const FullFooter = DatagridStory.bind({});
@@ -461,6 +1066,53 @@ FullFooter.args = {
   onFetchAllPages: () => {},
   onFetchNextPage: () => {},
   totalCount: 4,
+};
+
+FullFooter.parameters = {
+  docs: {
+    source: {
+      format: 'dedent',
+      transform: () => {
+        return (
+          `import { Datagrid, useDataApi } from '@ovh-ux/muk';
+          import { VisibilityState, RowSelectionState } from '@tanstack/react-table';
+          
+          const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+          const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+          const { filters, search } = useDataApi({
+            route: '/dedicated/server',
+            version: 'v6',
+            cacheKey: ['dedicated-server'],
+            iceberg: true,
+            enabled: true,
+          });
+          return (
+            <Datagrid
+              columns={columns}
+              data={data}
+              hasNextPage={true}
+              onFetchAllPages={() => {}}
+              onFetchNextPage={() => {}}
+              totalCount={4}
+              topbar={
+                <div>
+                  <Button size={BUTTON_SIZE.sm}>
+                    <Icon name={ICON_NAME.plus} />
+                    Add New
+                  </Button>
+                </div>
+              }
+              filters={filters}
+              search={search}
+              rowSelection={rowSelection}
+              columnVisibility={columnVisibility}
+            />
+          );
+          `.trim()
+        );
+      },
+    },
+  },
 };
 
 const meta = {
