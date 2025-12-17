@@ -71,9 +71,9 @@ export const CreateVersionDrawerForm = ({
   const handleSubmitForm = async (data: FormSchema) => {
     trackClick({
       location: PageLocation.funnel,
-      buttonType: ButtonType.link,
-      actionType: 'navigation',
-      actions: ['create_version', 'confirm'],
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['create', 'version', 'confirm'],
     });
     try {
       await createSecretVersion({
@@ -95,9 +95,9 @@ export const CreateVersionDrawerForm = ({
   const handleDismiss = () => {
     trackClick({
       location: PageLocation.funnel,
-      buttonType: ButtonType.link,
-      actionType: 'navigation',
-      actions: ['create_version', 'cancel'],
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['create', 'version', 'cancel'],
     });
     onDismiss();
   };

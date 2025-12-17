@@ -138,7 +138,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
                 location: PageLocation.funnel,
                 buttonType: ButtonType.button,
                 actionType: 'action',
-                actions: ['create-secret'],
+                actions: ['create', 'secret'],
               });
             }}
           />

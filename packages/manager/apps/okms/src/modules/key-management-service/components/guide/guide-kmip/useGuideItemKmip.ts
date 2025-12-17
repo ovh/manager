@@ -23,7 +23,7 @@ export const useGuideItemKmip = (id: number): GuideItem => {
         location: PageLocation.page,
         buttonType: ButtonType.externalLink,
         actionType: 'navigation',
-        actions: ['connect-product-kmip'],
+        actions: ['guide-kmip'],
       }),
   };
 };
