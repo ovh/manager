@@ -11,7 +11,6 @@ type TLocalizationCardProps = {
   macroRegion: string;
   countryCode: TCountryIsoCode | null;
   deploymentMode: TDeploymentMode;
-  isSelected: boolean;
   disabled: boolean;
   onSelect: () => void;
 };
@@ -22,21 +21,14 @@ export const LocalizationCard = ({
   macroRegion,
   countryCode,
   deploymentMode,
-  isSelected,
   disabled,
   onSelect,
 }: TLocalizationCardProps) => (
-  <PciCard
-    selectable
-    compact
-    selected={isSelected}
-    onClick={onSelect}
-    disabled={disabled}
-  >
+  <PciCard selectable compact onClick={onSelect} disabled={disabled}>
     <PciCard.Header>
       <Radio value={macroRegion} disabled={disabled}>
         <RadioControl />
-        <RadioLabel className="font-bold text-lg text-[--ods-color-heading] gap-x-4 flex items-center">
+        <RadioLabel className="flex items-center gap-x-4 text-lg font-bold text-[--ods-color-heading]">
           {countryCode && <Flag isoCode={countryCode} />}
           {city}
         </RadioLabel>

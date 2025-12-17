@@ -5,8 +5,6 @@ import { Reader } from '@/types/utils.type';
 import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { getLocalZoneTranslationKey } from '@/utils';
 
-const MAX_DISPLAYED_LOCALIZATIONS = 12;
-
 type TMicroRegionDataForCard = {
   name: string;
   availabilityZones: string[];
@@ -81,58 +79,22 @@ const mapRegionToLocalizationCard = (
 
 export type TRegionDataForCard = {
   localizations: TRegionData[];
-  hasMoreLocalizations: boolean;
 };
 
-const getLocalizationsPart = (
-  localizations: TRegionData[],
-  selectedMacroRegionId: string | null,
-) => {
-  const localizationsPartToDisplay = localizations.slice(
-    0,
-    MAX_DISPLAYED_LOCALIZATIONS,
-  );
-
-  const selectedLocalization = localizations.find(
-    (localization) => localization.macroRegion === selectedMacroRegionId,
-  );
-
-  const isSelectedLocalizationInHiddenResults =
-    !!selectedLocalization &&
-    !localizationsPartToDisplay.includes(selectedLocalization);
-
-  return isSelectedLocalizationInHiddenResults
-    ? [
-        selectedLocalization,
-        ...localizations.slice(0, MAX_DISPLAYED_LOCALIZATIONS - 1),
-      ]
-    : localizationsPartToDisplay;
-};
-
-// eslint-disable-next-line max-params
 type TSelectLocalizationsData = (
   projectId: string,
   deploymentMode: TDeploymentMode[],
   continentId: string,
-  display: 'partial' | 'total',
   selectedMacroRegionId: string | null,
 ) => TRegionDataForCard;
 
 const emptyLocalizations = {
   localizations: [],
-  hasMoreLocalizations: false,
 };
 
 export const selectLocalizations: Reader<Deps, TSelectLocalizationsData> = (
   deps,
-) => (
-  projectId,
-  deploymentModes,
-  continentId,
-  display,
-  selectedMacroRegionId,
-  // eslint-disable-next-line max-params
-) => {
+) => (projectId, deploymentModes, continentId) => {
   const { instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
@@ -166,10 +128,6 @@ export const selectLocalizations: Reader<Deps, TSelectLocalizationsData> = (
   );
 
   return {
-    localizations:
-      display === 'total'
-        ? localizations
-        : getLocalizationsPart(localizations, selectedMacroRegionId),
-    hasMoreLocalizations: localizations.length > MAX_DISPLAYED_LOCALIZATIONS,
+    localizations,
   };
 };
