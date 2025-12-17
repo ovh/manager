@@ -47,12 +47,14 @@ describe('useTenants', () => {
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { title: 'Tenant 1' },
+        resourceStatus: 'READY',
       },
       {
         id: '2',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { title: 'Tenant 2' },
+        resourceStatus: 'READY',
       },
     ];
     mockGetTenants.mockResolvedValue(mockTenants);
@@ -101,12 +103,14 @@ describe('useTenants', () => {
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { title: 'Test Tenant 1' },
+        resourceStatus: 'READY',
       },
       {
         id: 'tenant-2',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { title: 'Test Tenant 2' },
+        resourceStatus: 'READY',
       },
     ];
     mockGetTenants.mockResolvedValue(mockTenants);
