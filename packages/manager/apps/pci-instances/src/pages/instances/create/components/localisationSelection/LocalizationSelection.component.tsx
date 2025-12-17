@@ -3,18 +3,13 @@ import {
   ButtonType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  Checkbox,
-  CheckboxControl,
-  CheckboxLabel,
-  RadioGroup,
-} from '@ovhcloud/ods-react';
+import { RadioGroup } from '@ovhcloud/ods-react';
 import { LocalizationCard } from '@/components/localizationCard/LocalizationCard.component';
 import { deps } from '@/deps/deps';
 import { selectLocalizations } from '../../view-models/localizationsViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   isMicroRegionAvailable,
   selectMicroRegions,
@@ -27,7 +22,6 @@ import { TInstanceCreationForm } from '../../CreateInstance.schema';
 export const LocalizationSelection = () => {
   const projectId = useProjectId();
   const { trackClick } = useOvhTracking();
-  const [seeAll, setSeeAll] = useState(false);
   const { t } = useTranslation(['creation', 'regions']);
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
@@ -36,22 +30,15 @@ export const LocalizationSelection = () => {
     name: ['deploymentModes', 'continent', 'macroRegion'],
   });
 
-  const { localizations, hasMoreLocalizations } = useMemo(
+  const { localizations } = useMemo(
     () =>
       selectLocalizations(deps)(
         projectId,
         deploymentModes,
         selectedContinent,
-        seeAll ? 'total' : 'partial',
         selectedMacroRegion,
       ),
-    [
-      deploymentModes,
-      projectId,
-      seeAll,
-      selectedContinent,
-      selectedMacroRegion,
-    ],
+    [deploymentModes, projectId, selectedContinent, selectedMacroRegion],
   );
 
   const translatedLocalizations = useMemo(
@@ -91,8 +78,6 @@ export const LocalizationSelection = () => {
     }
   };
 
-  const handleDisplayChange = () => setSeeAll(!seeAll);
-
   useEffect(() => {
     const availablePreviousSelectedLocalization = localizations.find(
       (localization) => localization.macroRegion === selectedMacroRegion,
@@ -115,7 +100,7 @@ export const LocalizationSelection = () => {
   };
 
   useEffect(() => {
-    if (!selectedMacroRegion || !seeAll) return;
+    if (!selectedMacroRegion) return;
 
     const selectedElt = macroRegionRefs.current[selectedMacroRegion];
 
@@ -123,20 +108,12 @@ export const LocalizationSelection = () => {
 
     selectedElt.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [seeAll]);
+  }, []);
 
   return (
     <section>
       <div className="flex justify-between py-5">
         <ContinentSelection />
-        {hasMoreLocalizations && (
-          <Checkbox className="self-end" onCheckedChange={handleDisplayChange}>
-            <CheckboxControl />
-            <CheckboxLabel className="text-[--ods-color-text]">
-              {t('creation:pci_instance_creation_show_all_localizations')}
-            </CheckboxLabel>
-          </Checkbox>
-        )}
       </div>
       {selectedMacroRegion && (
         <Controller
@@ -144,7 +121,7 @@ export const LocalizationSelection = () => {
           control={control}
           render={() => (
             <div className="flex flex-col">
-              <div className={clsx(seeAll && 'max-h-[450px] overflow-auto')}>
+              <div className={clsx('max-h-[450px] overflow-auto')}>
                 <RadioGroup
                   value={selectedMacroRegion}
                   onValueChange={({ value }) => handleSelectRegion(value)}
@@ -176,7 +153,6 @@ export const LocalizationSelection = () => {
                               onSelect={() =>
                                 updateSelection(macroRegion, microRegion)
                               }
-                              isSelected={selectedMacroRegion === macroRegion}
                               disabled={!isRegionAvailable(macroRegion)}
                             />
                           </div>

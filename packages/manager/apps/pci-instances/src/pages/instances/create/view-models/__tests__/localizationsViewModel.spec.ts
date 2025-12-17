@@ -31,11 +31,9 @@ describe('SelectLocalizations ViewModel', () => {
         ['region', 'region-3-az'],
         'western_europe',
         'total',
-        null,
       ),
     ).toStrictEqual({
       localizations: mockedLocalizationsData,
-      hasMoreLocalizations: false,
     });
   });
 
@@ -46,20 +44,17 @@ describe('SelectLocalizations ViewModel', () => {
         ['region', 'region-3-az'],
         'all',
         'total',
-        null,
       ),
     ).toStrictEqual({
       localizations: mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents,
-      hasMoreLocalizations: false,
     });
   });
 
   it('should return all available regions for "all" continent selected and none deployment zone selected', () => {
     expect(
-      selectLocalizations(fakeDeps)(mockedProjectId, [], 'all', 'total', null),
+      selectLocalizations(fakeDeps)(mockedProjectId, [], 'all', 'total'),
     ).toStrictEqual({
       localizations: mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents,
-      hasMoreLocalizations: false,
     });
   });
 });

@@ -36,7 +36,6 @@ export const useForm = (projectId: string) => {
     deploymentModesDefaultValue,
     continentDefaultValue,
     'total',
-    null,
   );
 
   const macroRegionDefaultValue = localizations[0]!.macroRegion;
