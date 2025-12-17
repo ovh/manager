@@ -175,5 +175,6 @@
   "domain_operations_update_organisationName": "Name der Organisation",
   "domain_operations_update_phone": "Telefon",
   "domain_operations_update_spareEmail": "Backup-E-Mail",
-  "domain_operations_update_vat": "Umsatzsteuer-Identifikationsnummer"
+  "domain_operations_update_vat": "Umsatzsteuer-Identifikationsnummer",
+  "domain_operations_update_firstName": "Vorname"
 }
