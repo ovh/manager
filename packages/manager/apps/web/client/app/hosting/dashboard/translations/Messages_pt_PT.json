@@ -198,7 +198,7 @@
   "hosting_dashboard_service_default_runtime": "Software de tempo de execução padrão",
   "hosting_dashboard_available_space": "Espaço disponível",
   "hosting_tab_DOMAINS_OLD": "Websites",
-  "hosting_tab_MULTISITE": "Meus sites",
+  "hosting_tab_MULTISITE": "Multisite",
   "hosting_tab_FTP": "FTP - SSH",
   "hosting_tab_MODULE": "Módulos \"1 clique\"",
   "hosting_tab_DATABASE": "Bases de dados",
@@ -1408,5 +1408,6 @@
   "hosting_dashboard_service_filer_helper": "O identificador do seu filer é suscetível de ser modificado",
   "hosting_dashboard_service_state_TO_CREATE": "Criação pendente",
   "hosting_tab_DATABASES_configuration__action_button": "Rescindir a minha base de dados",
-  "hosting_tab_DATABASES_configuration__available_slot": "Base de dados disponível"
+  "hosting_tab_DATABASES_configuration__available_slot": "Base de dados disponível",
+  "hosting_tab_WEBSITE": "Meus sites"
 }

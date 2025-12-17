@@ -198,7 +198,7 @@
   "hosting_dashboard_service_default_runtime": "Standard-Runtime-Engine",
   "hosting_dashboard_available_space": "Verfügbarer Speicherplatz",
   "hosting_tab_DOMAINS_OLD": "Websites",
-  "hosting_tab_MULTISITE": "Meine Seiten",
+  "hosting_tab_MULTISITE": "Multisite",
   "hosting_tab_FTP": "FTP - SSH",
   "hosting_tab_MODULE": "1-Klick-Module",
   "hosting_tab_DATABASE": "Datenbanken",
@@ -1408,5 +1408,6 @@
   "hosting_dashboard_service_filer_helper": "Die Kennung Ihres Filers kann geändert werden",
   "hosting_dashboard_service_state_TO_CREATE": "Zu erstellen",
   "hosting_tab_DATABASES_configuration__action_button": "Meine Datenbank kündigen",
-  "hosting_tab_DATABASES_configuration__available_slot": "Datenbank verfügbar"
+  "hosting_tab_DATABASES_configuration__available_slot": "Datenbank verfügbar",
+  "hosting_tab_WEBSITE": "Meine Seiten"
 }

@@ -198,7 +198,7 @@
   "hosting_dashboard_service_default_runtime": "Default runtime software",
   "hosting_dashboard_available_space": "Space available",
   "hosting_tab_DOMAINS_OLD": "Websites",
-  "hosting_tab_MULTISITE": "My sites",
+  "hosting_tab_MULTISITE": "Multi-site",
   "hosting_tab_FTP": "FTP - SSH",
   "hosting_tab_MODULE": "1-click modules",
   "hosting_tab_DATABASE": "Databases",
@@ -1408,5 +1408,6 @@
   "hosting_dashboard_service_filer_helper": "There is a chance your filer ID will be modified",
   "hosting_dashboard_service_state_TO_CREATE": "To be created",
   "hosting_tab_DATABASES_configuration__action_button": "Cancel my database",
-  "hosting_tab_DATABASES_configuration__available_slot": "Database available"
+  "hosting_tab_DATABASES_configuration__available_slot": "Database available",
+  "hosting_tab_WEBSITE": "My sites"
 }
