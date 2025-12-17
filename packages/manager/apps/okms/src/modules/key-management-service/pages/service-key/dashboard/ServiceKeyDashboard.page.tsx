@@ -20,14 +20,12 @@ import {
   ErrorBanner,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
 import {
   TabNavigation,
   TabNavigationItem,
 } from '@/common/components/tab-navigation/TabNavigation.component';
-import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
@@ -39,7 +37,6 @@ export default function ServiceKeyDashboard() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { trackClick } = useOkmsTracking();
 
   const { data: okms, isPending: isLoadingOkms, error: okmsError } = useOkmsById(okmsId);
 
@@ -89,6 +86,7 @@ export default function ServiceKeyDashboard() {
       name: 'general-information',
       title: t('key_management_service_service-keys_dashboard_tab_informations'),
       url: KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, keyId),
+      tracking: ['general-informations'],
     },
   ];
 
@@ -126,12 +124,6 @@ export default function ServiceKeyDashboard() {
         }}
         onClickReturn={() => {
           navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: ['return_listing_page'],
-          });
         }}
         backLinkLabel={t('key_management_service_service_keys_back_link')}
         message={<Notifications />}

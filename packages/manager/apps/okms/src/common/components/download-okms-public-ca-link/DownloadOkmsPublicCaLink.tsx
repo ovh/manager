@@ -12,6 +12,7 @@ import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { initiateTextFileDownload } from '@/common/utils/dom/download';
+import { TrackingTags } from '@/tracking.constant';
 
 import { PUBLIC_CA_FILENAME, PUBLIC_RSA_CA_FILENAME } from './downloadOkmsPublicCaLink.constants';
 
@@ -21,7 +22,7 @@ type ButtonResource = {
   label: string;
   filename: string;
   certificateType: keyof OkmsPublicCa;
-  tracking: string;
+  tracking: TrackingTags[];
 };
 
 export type DownloadOkmsPublicCaLinkProps = {
@@ -40,19 +41,19 @@ export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLin
       label: t('key_management_service_dashboard_button_label_download_ca'),
       filename: PUBLIC_CA_FILENAME,
       certificateType: 'publicCA',
-      tracking: 'download_rest-api-endpoint-ca',
+      tracking: ['download', 'rest-api-endoint-ca'],
     },
     publicCaKmip: {
       label: t('key_management_service_dashboard_button_label_download_ca'),
       filename: PUBLIC_CA_FILENAME,
       certificateType: 'publicCA',
-      tracking: 'download_kmip-endpoint-ca',
+      tracking: ['download', 'kmip-api-endoint-ca'],
     },
     publicCaRsaKmip: {
       label: t('key_management_service_dashboard_button_label_download_rsa_ca'),
       filename: PUBLIC_RSA_CA_FILENAME,
       certificateType: 'publicRsaCA',
-      tracking: 'download_kmip-endpoint-ca-rsa',
+      tracking: ['download', 'kmip-api-endoint-ca-rsa'],
     },
   };
 
@@ -72,7 +73,7 @@ export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLin
         location: PageLocation.tile,
         buttonType: ButtonType.link,
         actionType: 'action',
-        actions: [resources[type].tracking],
+        actions: resources[type].tracking,
       });
     } catch {
       addError(t('key_management_service_dashboard_error_download_ca'));

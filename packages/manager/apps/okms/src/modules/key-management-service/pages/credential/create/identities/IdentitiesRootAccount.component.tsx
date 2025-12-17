@@ -30,7 +30,7 @@ const IdentitiesRootAccount = ({ isRootAccount, setIsRootAccount }: IdentitiesRo
               location: PageLocation.funnel,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: ['toggle_root_identity', !isRootAccount ? 'on' : 'off'],
+              actions: ['toggle', 'root-identity', !isRootAccount ? 'on' : 'off'],
             });
             setIsRootAccount(event.detail.value);
           }}

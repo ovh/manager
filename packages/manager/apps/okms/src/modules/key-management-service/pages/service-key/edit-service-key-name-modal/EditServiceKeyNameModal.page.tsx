@@ -56,14 +56,14 @@ export const EditServiceKeyNameModal = () => {
       addSuccess(t('key_management_service_service-keys_update_name_success'), true);
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'rename_encryption_key',
+        pageTags: ['rename', 'service-key'],
       });
       closeModal();
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'rename_encryption_key',
+        pageTags: ['rename', 'service-key'],
       });
       closeModal();
     },

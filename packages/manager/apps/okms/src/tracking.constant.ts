@@ -27,3 +27,51 @@ export const TRACKING_CONTEXT = {
   pageTheme: UNIVERSE,
   level2Config: LEVEL2,
 };
+
+export type TrackingTags =
+  // resources
+  | 'credential'
+  | 'custom'
+  | 'identity'
+  | 'kmip-api-endoint-ca-rsa'
+  | 'kmip-api-endoint-ca'
+  | 'metadata'
+  | 'okms'
+  | 'ovh-generated'
+  | 'rest-api-endoint-ca'
+  | 'root-identity'
+  | 'secret-config'
+  | 'secret'
+  | 'service-key'
+  | 'swagger-ui'
+  | 'value'
+  | 'version'
+  // guides
+  | 'guide-kmip'
+  | 'guide-quick-start'
+  | 'guide-quick-usage'
+  // actions
+  | 'activate'
+  | 'cancel'
+  | 'confirm'
+  | 'create'
+  | 'deactivate'
+  | 'delete'
+  | 'download'
+  | 'edit'
+  | 'next'
+  | 'order'
+  | 'previous'
+  | 'rename'
+  | 'reveal'
+  | 'select'
+  | 'terminate'
+  | 'toggle'
+  // others
+  | 'general-informations'
+  | 'list'
+  | 'logs'
+  | 'off'
+  | 'on'
+  | 'type'
+  | 'usage';

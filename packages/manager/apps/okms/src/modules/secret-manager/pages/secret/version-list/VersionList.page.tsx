@@ -118,7 +118,7 @@ const VersionListPage = () => {
                 location: PageLocation.page,
                 buttonType: ButtonType.button,
                 actionType: 'navigation',
-                actions: ['create-version'],
+                actions: ['create', 'version'],
               });
             }}
             icon={'plus'}

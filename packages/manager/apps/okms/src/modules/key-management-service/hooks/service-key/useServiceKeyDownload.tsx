@@ -59,7 +59,7 @@ export const useServiceKeyDownload = ({
         location: page === 'list' ? PageLocation.datagrid : PageLocation.page,
         buttonType: ButtonType.button,
         actionType: 'action',
-        actions: ['download_encryption_key'],
+        actions: ['download', 'service-key'],
       });
       initiateTextFileDownload({
         filename: `${key.data.data.name}.jwk`,

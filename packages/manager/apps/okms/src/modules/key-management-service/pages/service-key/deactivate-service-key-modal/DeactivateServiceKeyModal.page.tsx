@@ -66,14 +66,14 @@ export const DisableServiceKeyModal = () => {
       addSuccess(t('key_management_service_service-keys_deactivation_success'), true);
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'deactivate_encryption_key',
+        pageTags: ['deactivate', 'service-key'],
       });
       closeModal();
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'deactivate_encryption_key',
+        pageTags: ['deactivate', 'service-key'],
       });
       closeModal();
     },

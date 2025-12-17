@@ -18,14 +18,12 @@ import { useTranslation } from 'react-i18next';
 
 import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
 import {
   TabNavigation,
   TabNavigationItem,
 } from '@/common/components/tab-navigation/TabNavigation.component';
-import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 export type CredentialContextType = {
@@ -38,7 +36,6 @@ export function useOutletCredential() {
 }
 
 const CredentialDashboard = () => {
-  const { trackClick } = useOkmsTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
   const { okmsId, credentialId } = useRequiredParams('okmsId', 'credentialId');
@@ -95,11 +92,13 @@ const CredentialDashboard = () => {
       name: 'general-information',
       title: t('key_management_service_credential_dashboard_tab_informations'),
       url: KMS_ROUTES_URLS.credentialDashboard(okmsId, credentialId),
+      tracking: ['general-informations'],
     },
     {
       name: 'identities',
       title: t('key_management_service_credential_dashboard_tab_identities'),
       url: KMS_ROUTES_URLS.credentialIdentitiesList(okmsId, credentialId),
+      tracking: ['identity', 'list'],
     },
   ];
 
@@ -116,12 +115,6 @@ const CredentialDashboard = () => {
         message={<Notifications />}
         onClickReturn={() => {
           navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: ['return_listing_page'],
-          });
         }}
         tabs={<TabNavigation tabs={tabsList} />}
       >

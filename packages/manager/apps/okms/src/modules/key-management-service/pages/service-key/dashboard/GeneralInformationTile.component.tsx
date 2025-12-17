@@ -66,7 +66,7 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
                     location: PageLocation.page,
                     buttonType: ButtonType.button,
                     actionType: 'action',
-                    actions: ['rename_encryption_key'],
+                    actions: ['rename', 'service-key'],
                   });
                   navigate(KMS_ROUTES_URLS.serviceKeyEditName(kms.id, serviceKey.id));
                 }}

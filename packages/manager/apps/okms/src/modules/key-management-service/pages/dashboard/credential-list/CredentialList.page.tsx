@@ -41,7 +41,7 @@ const CredentialList = () => {
             location: PageLocation.page,
             buttonType: ButtonType.button,
             actionType: 'action',
-            actions: ['create_access_certificate'],
+            actions: ['create', 'credential'],
           });
           navigate(KMS_ROUTES_URLS.credentialCreate(okms.id));
         }}

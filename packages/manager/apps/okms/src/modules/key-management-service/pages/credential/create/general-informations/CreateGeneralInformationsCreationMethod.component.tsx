@@ -64,7 +64,7 @@ const CreateGeneralInformationsCreationMethod = ({
                 location: PageLocation.funnel,
                 buttonType: ButtonType.button,
                 actionType: 'action',
-                actions: ['select_type_key', 'ovh_generated'],
+                actions: ['select', 'type', 'ovh-generated'],
               });
               setIsCustomCsr(false);
             }}
@@ -93,7 +93,7 @@ const CreateGeneralInformationsCreationMethod = ({
                 location: PageLocation.funnel,
                 buttonType: ButtonType.button,
                 actionType: 'action',
-                actions: ['select_type_key', 'custom'],
+                actions: ['select', 'type', 'custom'],
               });
               setIsCustomCsr(true);
             }}

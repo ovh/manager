@@ -51,11 +51,13 @@ export default function SecretPage() {
       name: 'general-information',
       title: t('general_information', { ns: NAMESPACES.DASHBOARD }),
       url: SECRET_MANAGER_ROUTES_URLS.secret(okmsId, secretPathDecoded),
+      tracking: ['general-informations'],
     },
     {
       name: 'versions',
       title: t('versions'),
       url: SECRET_MANAGER_ROUTES_URLS.versionList(okmsId, secretPathDecoded),
+      tracking: ['version', 'list'],
     },
   ];
 

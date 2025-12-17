@@ -36,7 +36,7 @@ export default function SecretManagerOnboardingPage() {
           location: PageLocation.page,
           buttonType: ButtonType.button,
           actionType: 'navigation',
-          actions: ['create_create'],
+          actions: ['create', 'secret'],
         });
         navigate(SECRET_MANAGER_ROUTES_URLS.createSecret);
       }}

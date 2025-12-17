@@ -225,7 +225,7 @@ describe('useServiceKeyDownload', () => {
         location: PageLocation.datagrid,
         buttonType: ButtonType.button,
         actionType: 'action',
-        actions: ['download_encryption_key'],
+        actions: ['download', 'service-key'],
       });
     });
 
@@ -249,7 +249,7 @@ describe('useServiceKeyDownload', () => {
         location: PageLocation.page,
         buttonType: ButtonType.button,
         actionType: 'action',
-        actions: ['download_encryption_key'],
+        actions: ['download', 'service-key'],
       });
     });
 

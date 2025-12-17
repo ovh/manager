@@ -29,7 +29,7 @@ export const SecretListLinkTileItem = ({ okms }: SecretListLinkTileItemProps) =>
             location: PageLocation.tile,
             buttonType: ButtonType.link,
             actionType: 'navigation',
-            actions: ['secrets'],
+            actions: ['secret', 'list'],
           });
         }}
       />

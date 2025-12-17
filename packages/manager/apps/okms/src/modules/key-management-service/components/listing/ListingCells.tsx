@@ -26,7 +26,7 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'navigation',
-          actions: ['details_encryption_key'],
+          actions: ['service-key'],
         });
         navigate(`${props?.id}`);
       }}

@@ -21,6 +21,7 @@ import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { TrackingTags } from '@/tracking.constant';
 
 export type KeyTypeSectionProps = {
   region: string;
@@ -50,12 +51,15 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
   const { trackClick } = useOkmsTracking();
 
   const handleSelectKeyType = (reference: OkmsServiceKeyReference) => {
+    const keyTypeTrackingTag = reference.type as unknown as TrackingTags;
+
     trackClick({
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: ['select_type_key', reference.type],
+      actions: ['select', 'type', keyTypeTrackingTag],
     });
+
     setServiceKey(reference);
     setKeyType(reference.type);
 

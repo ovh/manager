@@ -85,7 +85,7 @@ export default function Listing() {
                 location: PageLocation.page,
                 buttonType: ButtonType.button,
                 actionType: 'navigation',
-                actions: ['create_kms'],
+                actions: ['create', 'okms'],
               });
               navigate(KMS_ROUTES_URLS.kmsCreate);
             }}

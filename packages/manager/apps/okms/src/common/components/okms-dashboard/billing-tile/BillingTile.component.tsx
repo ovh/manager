@@ -36,7 +36,7 @@ export const BillingTile = ({ okms }: BillingTileProps) => {
       location: PageLocation.page,
       buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['delete_kms'],
+      actions: ['delete', 'okms'],
     });
     navigate(resiliateLink);
   };
