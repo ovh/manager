@@ -165,11 +165,15 @@ export const mapVolumeAttach = <V extends TAPIVolume>(
 
     const maxAttachedInstances = pricing?.specs.maxAttachedInstances || 1;
 
+    const isVolumeBeingRetyped = volume.status === 'retyping';
+
     return {
       ...volume,
       maxAttachedInstances,
-      canAttachInstance: maxAttachedInstances > volume.attachedTo.length,
-      canDetachInstance: volume.attachedTo.length > 0,
+      canAttachInstance:
+        maxAttachedInstances > volume.attachedTo.length &&
+        !isVolumeBeingRetyped,
+      canDetachInstance: volume.attachedTo.length > 0 && !isVolumeBeingRetyped,
     };
   };
 };
