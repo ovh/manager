@@ -175,5 +175,6 @@
   "domain_operations_update_organisationName": "Nome dell'organizzazione:",
   "domain_operations_update_phone": "Telefono",
   "domain_operations_update_spareEmail": "Email di recupero",
-  "domain_operations_update_vat": "Partita IVA comunitaria"
+  "domain_operations_update_vat": "Partita IVA comunitaria",
+  "domain_operations_update_firstName": "Nome"
 }

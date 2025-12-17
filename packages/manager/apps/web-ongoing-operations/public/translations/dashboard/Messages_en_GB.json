@@ -175,5 +175,6 @@
   "domain_operations_update_organisationName": "Name of organisation",
   "domain_operations_update_phone": "Phone",
   "domain_operations_update_spareEmail": "Backup email address",
-  "domain_operations_update_vat": "Intra-Community VAT number"
+  "domain_operations_update_vat": "Intra-Community VAT number",
+  "domain_operations_update_firstName": "First name"
 }

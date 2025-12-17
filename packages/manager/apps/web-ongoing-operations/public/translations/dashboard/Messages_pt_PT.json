@@ -175,5 +175,6 @@
   "domain_operations_update_organisationName": "Nome da organização",
   "domain_operations_update_phone": "Telefone",
   "domain_operations_update_spareEmail": "E-mail de segurança",
-  "domain_operations_update_vat": "NIF intracomunitário"
+  "domain_operations_update_vat": "NIF intracomunitário",
+  "domain_operations_update_firstName": "Nome"
 }

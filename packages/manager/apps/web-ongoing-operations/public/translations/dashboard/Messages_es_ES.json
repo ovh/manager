@@ -175,5 +175,6 @@
   "domain_operations_update_organisationName": "Nombre de la organización",
   "domain_operations_update_phone": "Teléfono",
   "domain_operations_update_spareEmail": "Correo electrónico secundario",
-  "domain_operations_update_vat": "N.º de IVA intracomunitario"
+  "domain_operations_update_vat": "N.º de IVA intracomunitario",
+  "domain_operations_update_firstName": "Nombre"
 }
