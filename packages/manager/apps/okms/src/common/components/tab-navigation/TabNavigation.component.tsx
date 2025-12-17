@@ -7,6 +7,7 @@ import { OdsBadge, OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { TrackingTags } from '@/tracking.constant';
 
 export type TabNavigationItem = {
   name: string;
@@ -16,6 +17,7 @@ export type TabNavigationItem = {
     label: string;
     color: ComponentProps<typeof OdsBadge>['color'];
   };
+  tracking: TrackingTags[];
 };
 
 export type TabNavigationProps = {
@@ -45,12 +47,12 @@ export const TabNavigation = ({ tabs }: TabNavigationProps) => {
   const location = useLocation();
   const activeTabIndex = getActiveTab(tabs, location.pathname);
 
-  const handleTrackClickTab = (action: string) =>
+  const handleTrackClickTab = (actions: TrackingTags[]) =>
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.tab,
       actionType: 'navigation',
-      actions: [action],
+      actions,
     });
 
   return (
@@ -68,7 +70,7 @@ export const TabNavigation = ({ tabs }: TabNavigationProps) => {
             role="tab"
             isSelected={activeTabIndex === index}
             className="space-x-1"
-            onClick={() => handleTrackClickTab(tab.name)}
+            onClick={() => handleTrackClickTab(tab.tracking)}
           >
             <span>{tab.title}</span>
             {tab.badge && (

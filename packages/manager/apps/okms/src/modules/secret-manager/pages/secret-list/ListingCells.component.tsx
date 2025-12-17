@@ -33,7 +33,7 @@ export const DatagridCellPath = (secret: Secret) => {
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'navigation',
-          actions: ['go-to-secret'],
+          actions: ['secret'],
         });
       }}
     />
@@ -72,8 +72,8 @@ export const DatagridAction = (secret: Secret) => {
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
-          actionType: 'action',
-          actions: ['secret-value'],
+          actionType: 'navigation',
+          actions: ['reveal', 'value'],
         });
       },
       urn: secret.iam.urn,
@@ -93,8 +93,8 @@ export const DatagridAction = (secret: Secret) => {
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
-          actionType: 'action',
-          actions: ['create-version'],
+          actionType: 'navigation',
+          actions: ['create', 'version'],
         });
       },
       urn: secret.iam.urn,
@@ -108,8 +108,8 @@ export const DatagridAction = (secret: Secret) => {
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
-          actionType: 'action',
-          actions: ['version-list'],
+          actionType: 'navigation',
+          actions: ['version', 'list'],
         });
       },
     },
@@ -121,8 +121,8 @@ export const DatagridAction = (secret: Secret) => {
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
-          actionType: 'action',
-          actions: ['delete-secret'],
+          actionType: 'navigation',
+          actions: ['delete', 'secret'],
         });
       },
       urn: secret.iam.urn,

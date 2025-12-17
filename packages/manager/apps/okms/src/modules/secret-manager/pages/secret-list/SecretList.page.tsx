@@ -120,7 +120,7 @@ export default function SecretListPage() {
                 location: PageLocation.page,
                 buttonType: ButtonType.button,
                 actionType: 'navigation',
-                actions: ['go-to-okms'],
+                actions: ['okms'],
               });
             }}
           />
@@ -147,7 +147,7 @@ export default function SecretListPage() {
                   location: PageLocation.page,
                   buttonType: ButtonType.button,
                   actionType: 'navigation',
-                  actions: ['create-secret'],
+                  actions: ['create', 'secret'],
                 });
               }}
             />
