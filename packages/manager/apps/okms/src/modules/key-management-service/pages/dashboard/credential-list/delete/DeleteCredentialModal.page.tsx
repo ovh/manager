@@ -21,7 +21,7 @@ const DeleteCredentialPage = () => {
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'delete_access_certificate',
+        pageTags: ['delete', 'credential'],
       });
       navigate('..', {
         state: { deletingCredentialId: credentialId },
@@ -30,7 +30,7 @@ const DeleteCredentialPage = () => {
     onError: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'delete_access_certificate',
+        pageTags: ['delete', 'credential'],
       });
       navigate('..');
     },

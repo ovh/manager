@@ -123,7 +123,7 @@ const CredentialGeneralInformations = () => {
                 location: PageLocation.page,
                 buttonType: ButtonType.button,
                 actionType: 'action',
-                actions: ['download_access_certificate'],
+                actions: ['download', 'credential'],
               })
             }
             label={t('key_management_service_credential_download')}
@@ -141,7 +141,7 @@ const CredentialGeneralInformations = () => {
               location: PageLocation.page,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: ['delete_access_certificate'],
+              actions: ['delete', 'credential'],
             });
             navigate(KMS_ROUTES_URIS.credentialDelete);
           }}

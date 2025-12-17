@@ -27,7 +27,7 @@ export const EditSecretConfigLinkTileItem = ({ okms }: EditSecretConfigTileItemP
             location: PageLocation.tile,
             buttonType: ButtonType.link,
             actionType: 'action',
-            actions: ['edit-secret-config'],
+            actions: ['edit', 'secret-config'],
           });
         }}
       />

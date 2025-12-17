@@ -23,7 +23,7 @@ export const useGuideItemQuickStart = (id: number): GuideItem => {
         location: PageLocation.page,
         buttonType: ButtonType.externalLink,
         actionType: 'navigation',
-        actions: ['go-to-quick-start-guide'],
+        actions: ['guide-quick-start'],
       }),
   };
 };
