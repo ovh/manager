@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { TVolumeSnapshot } from '@/api/api.types';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import StatusComponent from './Status.component';
-import ActionsComponent from './Actions.component';
+import StatusComponent from '@/pages/listing/components/Status.component';
+import ActionsComponent from '@/pages/listing/components/Actions.component';
 
 const CreationDateCell = (props: TVolumeSnapshot) => (
   <DataGridTextCell>
