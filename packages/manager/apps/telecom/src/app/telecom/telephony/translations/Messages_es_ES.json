@@ -5,5 +5,6 @@
   "telephony_table_header_action": "Acciones",
   "telephony_table_action_item_telephony_repayments": "Gestionar mis ingresos",
   "telephony_order": "Contratar",
-  "telephony_title": "VoIP"
+  "telephony_title": "VoIP",
+  "telephony_rio_label": "RIO (Declaración de Identidad del Operador)"
 }
