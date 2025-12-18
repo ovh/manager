@@ -41,7 +41,8 @@ const DeleteTenantModal = () => {
 
       handleDismiss();
     } catch (error) {
-      const { message } = error as ApiError;
+      const apiError = error as ApiError;
+      const message = apiError?.response?.data?.message ?? apiError.message;
       addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
     }
   };
