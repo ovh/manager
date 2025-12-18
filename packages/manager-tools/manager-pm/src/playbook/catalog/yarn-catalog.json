@@ -42,7 +42,6 @@
   "packages/manager/apps/pci-dataplatform",
   "packages/manager/apps/pci-object-storage",
   "packages/manager/apps/pci-private-registry",
-  "packages/manager/apps/pci-volume-backup",
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/procedures",
   "packages/manager/apps/public-cloud",
