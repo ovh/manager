@@ -166,21 +166,6 @@ export const getWebHostingWebsiteV6 = async (serviceName: string, path?: string)
   return data;
 };
 
-export const postWebsiteV6 = async (
-  serviceName: string,
-  path: string,
-  vcsBranch?: string,
-  vcsUrl?: string,
-) => {
-  const { data } = await v6.post<void>(`/hosting/web/${serviceName}/website`, {
-    path,
-    vcsBranch,
-    vcsUrl,
-  });
-
-  return data;
-};
-
 export const putAttachedDomain = async (
   serviceName: string,
   domain: string,

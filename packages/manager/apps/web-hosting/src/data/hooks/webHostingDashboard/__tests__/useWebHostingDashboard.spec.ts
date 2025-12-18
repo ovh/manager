@@ -7,6 +7,8 @@ import {
   domainInformationMock,
   domainZoneMock,
   serviceInfosMock,
+  sshKeyMock,
+  vcsWebhookUrlsMock,
   webHostingMock,
 } from '@/data/__mocks__';
 import {
@@ -17,6 +19,10 @@ import {
   useGetHostingService,
   useGetHostingServiceWebsite,
   useGetServiceInfos,
+  useGetSshKey,
+  useGetVcsWebhookUrls,
+  usePostWebsiteV6,
+  usePutWebsiteV6,
   useUpdateHostingService,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { HostingDomainStatus } from '@/data/types/product/webHosting';
@@ -198,6 +204,70 @@ describe('useWebHostingDashboard', () => {
         ssl: true,
         bypassDNSConfiguration: true,
         ipLocation: null,
+      });
+
+      expect(onSuccess).toHaveBeenCalled();
+    });
+  });
+  it('useGetVcsWebhookUrls: should return  vcs webhook urls', async () => {
+    const { result } = renderHook(() => useGetVcsWebhookUrls('serviceName', 'path', 'vcs'), {
+      wrapper,
+    });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(result.current.data).toEqual(vcsWebhookUrlsMock);
+  });
+
+  it('useGetSshKey: should return ssh key', async () => {
+    const { result } = renderHook(() => useGetSshKey('serviceName'), {
+      wrapper,
+    });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(result.current.data).toEqual(sshKeyMock);
+  });
+
+  it('update website v6', async () => {
+    const { result } = renderHook(() => usePutWebsiteV6('serviceName', onSuccess, onError), {
+      wrapper,
+    });
+
+    act(() =>
+      result.current.mutate({
+        id: 'id',
+        vcsBranch: 'main',
+      }),
+    );
+
+    await waitFor(() => {
+      expect(mockPut).toHaveBeenCalledWith('/hosting/web/serviceName/website/id', {
+        vcsBranch: 'main',
+      });
+
+      expect(onSuccess).toHaveBeenCalled();
+    });
+  });
+
+  it('create git association', async () => {
+    const { result } = renderHook(() => usePostWebsiteV6('serviceName', onSuccess, onError), {
+      wrapper,
+    });
+
+    act(() =>
+      result.current.mutate({
+        path: 'path',
+        vcsBranch: 'main',
+        vcsUrl: 'https://example.com/repo.git',
+      }),
+    );
+
+    await waitFor(() => {
+      expect(mockPost).toHaveBeenCalledWith('/hosting/web/serviceName/website', {
+        path: 'path',
+        vcsBranch: 'main',
+        vcsUrl: 'https://example.com/repo.git',
       });
 
       expect(onSuccess).toHaveBeenCalled();

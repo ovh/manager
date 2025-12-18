@@ -4,10 +4,6 @@ export const AssociateGitPage = React.lazy(
   () => import('@/pages/dashboard/multisite/git/AssociateGit.page'),
 );
 
-export const ConfigureGitPage = React.lazy(
-  () => import('@/pages/dashboard/multisite/git/ConfigureGIt.page'),
-);
-
 export const DeleteGitModal = React.lazy(
   () => import('@/pages/dashboard/multisite/git/DeleteGit.modal'),
 );

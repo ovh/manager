@@ -151,3 +151,26 @@ export const getSshKey = async (serviceName: string): Promise<SshKey> => {
 
   return data;
 };
+
+export const postWebsiteV6 = async (
+  serviceName: string,
+  path: string,
+  vcsBranch?: string,
+  vcsUrl?: string,
+) => {
+  const { data } = await v6.post<void>(`/hosting/web/${serviceName}/website`, {
+    path,
+    vcsBranch,
+    vcsUrl,
+  });
+
+  return data;
+};
+
+export const putWebsiteV6 = async (serviceName: string, id: string, vcsBranch?: string) => {
+  const { data } = await v6.put<void>(`/hosting/web/${serviceName}/website/${id}`, {
+    vcsBranch,
+  });
+
+  return data;
+};
