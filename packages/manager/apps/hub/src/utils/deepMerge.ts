@@ -35,15 +35,11 @@ export function deepMerge<T extends Record<string, unknown>, U extends Record<st
   const output: Record<string, unknown> = { ...target };
 
   Object.keys(source).forEach((key) => {
-    const sourceValue = source[key];
-    const targetValue = output[key];
+    const sourceValue = source[key] as Record<string, unknown>;
+    const targetValue = output[key] as Record<string, unknown>;
 
     if (isRecord(sourceValue) && isRecord(targetValue)) {
-      output[key] = deepMerge(
-        targetValue as Record<string, unknown>,
-        sourceValue as Record<string, unknown>,
-        options,
-      );
+      output[key] = deepMerge(targetValue, sourceValue, options);
     } else if (Array.isArray(sourceValue) && Array.isArray(targetValue)) {
       output[key] = arrayMode === 'concat' ? [...targetValue, ...sourceValue] : [...sourceValue];
     } else {

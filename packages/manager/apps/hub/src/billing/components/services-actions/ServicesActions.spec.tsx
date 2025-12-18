@@ -45,6 +45,6 @@ describe('ServicesActions W3C Validation', () => {
   it('should have a valid html for service Resiliated', () => {
     const { container } = renderComponent();
 
-    expect(container.innerHTML).toBeValidHtml();
+    void expect(container.innerHTML).toBeValidHtml();
   });
 });
