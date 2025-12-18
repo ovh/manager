@@ -151,7 +151,10 @@ const AddConfigurationPage = () => {
             />
           </a>
           {!isLoadingDownloadLink && (
-            <DownloadCode downloadLink={downloadLink ?? '...'} canCopy={isDownloadEnabled} />
+            <DownloadCode
+              downloadLink={isDownloadEnabled ? downloadLink : '...'}
+              canCopy={isDownloadEnabled}
+            />
           )}
         </section>
       </Drawer>
