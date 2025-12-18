@@ -28,6 +28,7 @@ import TenantsListActions from '@/components/listing/tenants/actions/TenantsList
 import TenantsListTopbar from '@/components/listing/tenants/top-bar/TenantsListTopbar.component';
 import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.component';
 import { TenantListing } from '@/types/tenants.type';
+import { RESOURCE_TYPES } from '@/utils/iam.constants';
 import { mapTenantsToListing } from '@/utils/tenants.utils';
 
 export default function TenantsListDatagrid({
@@ -218,6 +219,7 @@ export default function TenantsListDatagrid({
         size={TABLE_SIZE.lg}
         contentAlignLeft={true}
         isLoading={isLoading}
+        resourceType={RESOURCE_TYPES.TENANT}
       />
     </React.Suspense>
   );
