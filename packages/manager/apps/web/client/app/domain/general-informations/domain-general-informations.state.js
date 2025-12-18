@@ -92,23 +92,32 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     /^\/domain\/[^/]+\/information/,
     /* @ngInject */ (ovhFeatureFlipping, coreURLBuilder, $state, $location) => {
       ovhFeatureFlipping
-        .checkFeatureAvailability('web-domains:domains')
+        .checkFeatureAvailability('web:domains:domains')
         .then((featureAvailability) => {
-          return featureAvailability.isFeatureAvailable('web-domains:domains');
+          return featureAvailability.isFeatureAvailable('web:domains:domains');
         })
-        .then((isFeatureAvailable) => {
-          if (isFeatureAvailable) {
-            const path = $location.path();
-            const productId = path.split('/')[2];
-            const url = coreURLBuilder.buildURL(
-              'web-domains',
-              '#/domain/:serviceName/information',
-              { serviceName: productId },
-            );
-            return window.location.replace(url);
-          }
-          $state.go('app.domain.product.information');
-          return false;
+        .then((isLegacyFeatureAvailable) => {
+          ovhFeatureFlipping
+            .checkFeatureAvailability('web-domains:domains')
+            .then((featureAvailability) => {
+              return featureAvailability.isFeatureAvailable(
+                'web-domains:domains',
+              );
+            })
+            .then((isFeatureAvailable) => {
+              if (!isLegacyFeatureAvailable && isFeatureAvailable) {
+                const path = $location.path();
+                const productId = path.split('/')[2];
+                const url = coreURLBuilder.buildURL(
+                  'web-domains',
+                  '#/domain/:serviceName/information',
+                  { serviceName: productId },
+                );
+                return window.location.replace(url);
+              }
+              $state.go('app.domain.product.information');
+              return false;
+            });
         });
     },
   );
