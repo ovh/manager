@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.33.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.33.3...@ovh-ux/manager-billing-components@4.33.4) (2025-12-18)
+
+
+### Bug Fixes
+
+* fix unknown service renewal link ([4569198](https://github.com/ovh/manager/commit/4569198a20df19ec7f9ec3fedc719d8850c289f3)), closes [#MANAGER-20616](https://github.com/ovh/manager/issues/MANAGER-20616)
+
+
+
+
+
 ## [4.33.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.33.2...@ovh-ux/manager-billing-components@4.33.3) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.4...@ovh-ux/manager-hub-app@0.28.5) (2025-12-18)
+
+
+### Bug Fixes
+
+* fix unknown service renewal link ([4569198](https://github.com/ovh/manager/commit/4569198a20df19ec7f9ec3fedc719d8850c289f3)), closes [#MANAGER-20616](https://github.com/ovh/manager/issues/MANAGER-20616)
+
+
+
+
+
 ## [0.28.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.3...@ovh-ux/manager-hub-app@0.28.4) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
