@@ -1,10 +1,6 @@
-import {
-  DefinedInitialDataOptions,
-  UseQueryResult,
-  useQueries,
-  useQuery,
-} from '@tanstack/react-query';
+import { DefinedInitialDataOptions, useQueries, useQuery } from '@tanstack/react-query';
 
+import { BackupServiceAwareQuery } from '@/types/Query.type';
 import { Resource } from '@/types/Resource.type';
 import { AssociatedTenantVSPC } from '@/types/Tenant.type';
 import { VSPCTenant } from '@/types/VspcTenant.type';
@@ -14,19 +10,19 @@ import { getVSPCTenantDetails, getVSPCTenants } from '../../api/tenants/tenants.
 import { useBackupServicesId } from '../backup/useBackupServicesId';
 import { BACKUP_TENANTS_QUERY_KEY } from './useBackupTenants';
 
-type TUseVSPCTenantsResult = UseQueryResult<Resource<VSPCTenant>[], Error>;
-
 export const GET_VSPC_TENANTS_QUERY_KEY = [...BACKUP_TENANTS_QUERY_KEY, 'vspc'];
 
-export const useVSPCTenants = (): TUseVSPCTenantsResult => {
-  const { backupServicesId } = useBackupServicesId();
+export const useVSPCTenants = (): BackupServiceAwareQuery<Resource<VSPCTenant>[]> => {
+  const { backupServicesId, isPending } = useBackupServicesId();
 
-  return useQuery({
+  const query = useQuery({
     queryKey: GET_VSPC_TENANTS_QUERY_KEY,
     queryFn: () => getVSPCTenants({ backupServicesId }),
     select: (res) => res.data,
     enabled: !!backupServicesId,
   });
+
+  return { ...query, isLoadingBackupServicesId: isPending };
 };
 
 export const useInstalledBackupAgents = ({
