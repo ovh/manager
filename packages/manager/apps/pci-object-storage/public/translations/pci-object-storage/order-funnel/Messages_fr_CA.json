@@ -86,5 +86,14 @@
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Déploiement de vos applications au plus près de vos utilisateurs pour une faible latence et la résidence des données.",
   "selectGeographicalZone": "Selectionner une zone géographique",
-  "showAllRegions": "Afficher toutes les régions"
+  "showAllRegions": "Afficher toutes les régions",
+  "labelObjectLock": "Object Lock",
+  "descriptionObjectLock": "Avec Object Lock, stockez des objets en mode WORM (Write Once, Read Many), garantissant leur intégrité en empêchant toute modification ou suppression après écriture. <0>En savoir plus</0>",
+  "objectLockTypeDisabledPopover": "Pour activer la fonctionnalité Object Lock, il est nécessaire d'activer le versioning",
+  "objectLockCannotDisableAlert": "À cette étape, seule l’activation de la fonctionnalité est proposée. La configuration détaillée d’Object Lock (mode, période de rétention, etc.) interviendra après la création du bucket. Veuillez noter que cette action est irréversible : une fois activé, Object Lock ne peut plus être désactivé sur le bucket.",
+  "summaryObjectLockSection": "Object Lock",
+  "summaryObjectLockEnabled": "Object Lock activé",
+  "summaryObjectLockDisabled": "Object Lock désactivé",
+  "objectLockAcknowledgementLabel": "Je comprends le fonctionnement et les implications de l'activation de la fonctionnalité d'Object Lock. <0>En savoir plus</0>",
+  "objectLockAcknowledgementRequired": "Vous devez reconnaître le fonctionnement de l'Object Lock avant de continuer"
 }

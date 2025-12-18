@@ -83,8 +83,17 @@
   "pci_instances_common_instance_region_deployment_mode_description": "Implementación resiliente y económica en 1 zona de disponibilidad.",
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Despliegue de sus aplicaciones lo más cerca posible de sus usuarios para una baja latencia y la residencia de los datos.",
-  "selectGeographicalZone": "Seleccione una región geográfica",
-  "showAllRegions": "Ver todas las regiones",
-  "nameInputInfo": "El nombre del contenedor debe tener entre 3 y 63 caracteres, y debe empezar y terminar por caracteres alfanuméricos en minúsculas (de la «a» a la «z» y de 0 a 9) y puede contener los siguientes signos de puntuación: punto («.») y guion («-»).",
-  "summaryEncryptionPlaintext": "Ninguno/a"
+  "selectGeographicalZone": "Seleccione una zona geográfica",
+  "showAllRegions": "Muestre todas las regiones",
+  "nameInputInfo": "El nombre del contenedor debe tener entre 3 y 63 caracteres, debe comenzar y terminar con caracteres alfanuméricos en minúsculas (de a a z y de 0 a 9) y puede incluir los siguientes signos de puntuación: « . » y « - ».",
+  "summaryEncryptionPlaintext": "Ninguno",
+  "labelObjectLock": "Object Lock",
+  "descriptionObjectLock": "Con Object Lock, almacene objetos en modo WORM (Escribir una vez, Leer muchos), garantizando su integridad al evitar cualquier modificación o eliminación después de la escritura. <0>Más información</0>",
+  "objectLockTypeDisabledPopover": "Para activar la funcionalidad Object Lock, es necesario habilitar el versionado",
+  "objectLockCannotDisableAlert": "En esta etapa, solo se ofrece la activación de la funcionalidad. La configuración detallada de Object Lock (modo, período de retención, etc.) se realizará después de la creación del bucket. Tenga en cuenta que esta acción es irreversible: una vez activado, Object Lock no se puede desactivar en el bucket.",
+  "summaryObjectLockSection": "Object Lock",
+  "summaryObjectLockEnabled": "Object Lock activado",
+  "summaryObjectLockDisabled": "Object Lock desactivado",
+  "objectLockAcknowledgementLabel": "Entiendo el funcionamiento y las implicaciones de activar la funcionalidad de Object Lock. <0>Más información</0>",
+  "objectLockAcknowledgementRequired": "Debe reconocer el funcionamiento de Object Lock antes de continuar"
 }

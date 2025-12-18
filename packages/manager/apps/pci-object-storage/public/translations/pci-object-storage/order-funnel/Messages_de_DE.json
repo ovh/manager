@@ -86,5 +86,14 @@
   "pci_instances_common_instance_localzone_deployment_mode_description": "Bereitstellung Ihrer Anwendungen möglichst nahe an Ihren Usern für niedrige Latenz und die Datenresidenz.",
   "selectGeographicalZone": "Eine geografische Zone auswählen",
   "showAllRegions": "Alle Regionen anzeigen",
-  "summaryEncryptionPlaintext": "Keine"
+  "summaryEncryptionPlaintext": "Keine",
+  "labelObjectLock": "Objektsperre",
+  "descriptionObjectLock": "Mit Object Lock speichern Sie Objekte im WORM-Modus (Write Once, Read Many), was ihre Integrität gewährleistet, indem es jede Änderung oder Löschung nach dem Schreiben verhindert. <0>Mehr erfahren</0>",
+  "objectLockTypeDisabledPopover": "Um die Funktionalität von Object Lock zu aktivieren, muss das Versioning aktiviert werden.",
+  "objectLockCannotDisableAlert": "In diesem Schritt wird nur die Aktivierung der Funktion angeboten. Die detaillierte Konfiguration von Object Lock (Modus, Aufbewahrungszeitraum usw.) erfolgt nach der Erstellung des Buckets. Bitte beachten Sie, dass diese Aktion irreversibel ist: Sobald aktiviert, kann Object Lock im Bucket nicht mehr deaktiviert werden.",
+  "summaryObjectLockSection": "Objektsperre",
+  "summaryObjectLockEnabled": "Object Lock aktiviert",
+  "summaryObjectLockDisabled": "Object Lock deaktiviert",
+  "objectLockAcknowledgementLabel": "Ich verstehe die Funktionsweise und die Auswirkungen der Aktivierung der Funktion von Object Lock. <0>Mehr erfahren</0>",
+  "objectLockAcknowledgementRequired": "Sie müssen die Funktionsweise von Object Lock anerkennen, bevor Sie fortfahren."
 }
