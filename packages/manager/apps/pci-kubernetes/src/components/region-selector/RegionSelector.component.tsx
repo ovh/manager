@@ -7,26 +7,33 @@ import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods
 import { ODS_SPINNER_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
 
-import { RegionTile, isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { TabsComponent } from '@ovh-ux/manager-react-components';
 
+import { TClusterPlanEnum } from '@/types';
 import { TLocation } from '@/types/region';
 
 import { RegionList } from './RegionList.component';
+import { RegionTile } from './RegionTile.component';
 import { useRegionSelector } from './useRegionSelector';
 
 export type RegionSelectorProps = {
   projectId: string;
   onSelectRegion: (region: TLocation | null) => void;
+  onLoadedRegion?: (data: { plans: TClusterPlanEnum[] }) => void;
+  onSelectPlan?: (plan: TClusterPlanEnum) => void;
   regionFilter?: (region: TLocation) => boolean;
   compactMode?: boolean;
+  selectedPlan?: TClusterPlanEnum;
 };
 
 export function RegionSelector({
   projectId,
   onSelectRegion,
+  onSelectPlan,
   regionFilter,
   compactMode,
+  selectedPlan,
 }: Readonly<RegionSelectorProps>): ReactElement {
   const { t } = useTranslation('region-selector');
 
@@ -57,16 +64,26 @@ export function RegionSelector({
       contentElement={() => (
         <>
           <RegionList
+            onSelectPlan={onSelectPlan}
+            selectedPlan={selectedPlan}
             isUnselectableRegion={isDiscovery}
             regions={macroRegions}
             selectedRegion={selectedMacroRegion}
             onClick={selectMacroRegion}
+            filter
             render={(region: TLocation, isSelected) => (
               <RegionTile
                 key={region.name}
                 region={region}
                 isSelected={isSelected}
                 isCompact={compactMode}
+                plans={
+                  region.codes?.map((code) =>
+                    code.includes(TClusterPlanEnum.STANDARD)
+                      ? TClusterPlanEnum.STANDARD
+                      : TClusterPlanEnum.FREE,
+                  ) ?? [TClusterPlanEnum.FREE]
+                }
               />
             )}
           />

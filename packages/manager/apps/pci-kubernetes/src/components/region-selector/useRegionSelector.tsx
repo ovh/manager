@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import { useProjectLocalisation } from '@/api/hooks/useRegions';
+import { TClusterPlanEnum } from '@/types';
 import { TLocation } from '@/types/region';
 
 export type TRegionSelectorArgs = {
@@ -83,6 +84,7 @@ export function useRegionSelector({
   };
 
   // list of displayed micro regions
+  // TODO Macro Region
   const microRegions = useMemo(() => {
     const actualRegions = macroRegions.find((region) => region.name === selectedMacroRegion);
     return actualRegions ? filterMicrosRegions(actualRegions) : [];
