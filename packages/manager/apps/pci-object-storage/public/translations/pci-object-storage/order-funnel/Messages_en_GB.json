@@ -12,7 +12,7 @@
   "labelLocation": "Location",
   "labelContainerType": "Container type",
   "labelOffsiteReplication": "Offsite Replication",
-  "descriptionOffsiteReplication": "Automatically replicate your data to a remote site in an Infrequent Access storage class. &lt;0>Learn more&lt;/0>",
+  "descriptionOffsiteReplication": "Automatically replicate your data to a remote site in an Infrequent Access storage class. <0>Learn more</0>",
   "labelVersioning": "Version management",
   "descriptionVersioning": "Automates the creation of versions of an object to prevent accidental deletion, or simply when a new object is uploaded.",
   "labelUser": "User",
@@ -86,5 +86,14 @@
   "selectGeographicalZone": "Select a geographical area",
   "showAllRegions": "View all regions",
   "nameInputInfo": "The name of the container must be between 3 and 63 characters long, must start and end with lowercase alphanumeric characters (from a to z and from 0 to 9), and may include the following punctuation marks: \".\" and \"-\".",
-  "summaryEncryptionPlaintext": "None"
+  "summaryEncryptionPlaintext": "None",
+  "labelObjectLock": "Object Lock",
+  "descriptionObjectLock": "With Object Lock, store objects in WORM (Write Once, Read Many) mode, ensuring their integrity by preventing any modification or deletion after writing. <0>Learn more</0>",
+  "objectLockTypeDisabledPopover": "To enable the Object Lock feature, versioning must be enabled",
+  "objectLockCannotDisableAlert": "At this stage, only the activation of the feature is offered. The detailed configuration of Object Lock (mode, retention period, etc.) will take place after the bucket is created. Please note that this action is irreversible: once enabled, Object Lock cannot be disabled on the bucket.",
+  "summaryObjectLockSection": "Object Lock",
+  "summaryObjectLockEnabled": "Object Lock enabled",
+  "summaryObjectLockDisabled": "Object Lock disabled",
+  "objectLockAcknowledgementLabel": "I understand how the Object Lock feature works and its implications. <0>Learn more</0>",
+  "objectLockAcknowledgementRequired": "You must acknowledge how Object Lock works before continuing"
 }

@@ -38,6 +38,7 @@
   "changeStorageClassConfirm": "Modifier",
   "changeStorageClassSuccessTitle": "Succès",
   "changeStorageClassSuccessDescription": "La classe de stockage a été modifiée",
+  "changeStorageClassWarningInfrequentAccess": "Attention : Les classes Infrequent Access et Cold Archive imposent une durée minimale de conservation. <0>En savoir plus</0>",
   "propertiesTab": "Propriétés",
   "versionsTab": "Versions",
   "restoreModalTitle": "Restaurer un objet",

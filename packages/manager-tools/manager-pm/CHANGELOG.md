@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.42.0...@ovh-ux/manager-pm@0.42.1) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
 # [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.41.1...@ovh-ux/manager-pm@0.42.0) (2025-12-12)
 
 

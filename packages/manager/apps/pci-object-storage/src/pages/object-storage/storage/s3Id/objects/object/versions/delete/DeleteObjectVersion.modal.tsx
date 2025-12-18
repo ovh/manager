@@ -44,7 +44,7 @@ const DeleteObjectVersion = () => {
   const { deleteS3ObjectVersion, isPending } = useDeleteS3ObjectVersion({
     onError: (err) => {
       toast.toast({
-        title: t('objectToastErrorTitle'),
+        title: t('objectVersionToastErrorTitle'),
         variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });

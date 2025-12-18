@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.1...@ovh-ux/manager-telecom@16.21.2) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.0...@ovh-ux/manager-telecom@16.21.1) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [16.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.20.7...@ovh-ux/manager-telecom@16.21.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix missing translation key ([30340d4](https://github.com/ovh/manager/commit/30340d4623b9d328cd077b4e803a5a6f48252705)), closes [#PRDCOL-309](https://github.com/ovh/manager/issues/PRDCOL-309)
+* **telecom:** remove expert mode from service config on phone numbers ([d067b41](https://github.com/ovh/manager/commit/d067b412f091f2de4e7f02ebc7f73d75c4110766))
+
+
+### Features
+
+* **telecom:** add phonebook tab to line number page ([9c1dcb2](https://github.com/ovh/manager/commit/9c1dcb2f8ff091f11c842f8b608a36e711e167f9)), closes [#PRDCOL-275](https://github.com/ovh/manager/issues/PRDCOL-275)
+* **telecom:** replace action menu in voip page  with two buttons (order & manage my repayments) ([c723604](https://github.com/ovh/manager/commit/c7236041c5add4ebb7df15cc3b995fc25985d154)), closes [#PRDCOL-277](https://github.com/ovh/manager/issues/PRDCOL-277)
+
+
+
+
+
 ## [16.20.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.20.6...@ovh-ux/manager-telecom@16.20.7) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

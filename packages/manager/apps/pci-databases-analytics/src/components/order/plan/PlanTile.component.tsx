@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Badge, RadioTile, Separator } from '@datatr-ux/uxlib';
+import { Badge, RadioIndicator, RadioTile, Separator } from '@datatr-ux/uxlib';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import * as database from '@/types/cloud/project/database';
 import { Plan } from '@/types/orderFunnel';
@@ -17,8 +17,9 @@ export const PlanTile = ({ plan }: { plan: Plan }) => {
     >
       <div className="flex flex-col justify-between h-full">
         <div>
-          <div className="flex justify-between w-full">
-            <h5 className="capitalize font-normal">{plan.name}</h5>
+          <div className="flex gap-2 items-center w-full">
+            <RadioIndicator />
+            <h5 className="capitalize">{plan.name}</h5>
             <div>
               {plan.tags.map((tag) => (
                 <Badge

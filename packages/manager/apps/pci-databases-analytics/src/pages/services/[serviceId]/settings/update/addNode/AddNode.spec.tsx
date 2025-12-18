@@ -121,7 +121,7 @@ describe('Add Node Modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'addNodeToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

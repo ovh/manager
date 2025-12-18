@@ -25,18 +25,7 @@
         </oui-collapsible>
     </div>
 
-    <div class="mb-4">
-        <oui-button
-            data-on-click="$ctrl.switchOptionMode()"
-            data-variant="secondary"
-        >
-            <span
-                data-translate="{{ ($ctrl.showExpertOptions ? 'telephony_alias_change_type_show_simple_option' : 'telephony_alias_change_type_show_expert_option') }}"
-            ></span>
-        </oui-button>
-    </div>
-
-    <div data-ng-if="!$ctrl.showExpertOptions">
+    <div>
         <div class="row w-100 d-md-flex">
             <div class="col-lg-4 col-sm-12 mb-4">
                 <oui-select-picker
@@ -117,29 +106,29 @@
                 </oui-select-picker>
             </div>
         </div>
-    </div>
-    <div class="row d-md-flex w-100" data-ng-if="$ctrl.showExpertOptions">
-        <div class="col-lg-4 col-sm-12 mb-4">
-            <oui-select-picker
-                class="h-100"
-                data-match="name"
-                data-model="$ctrl.selectedFeatureType"
-                data-label="{{:: 'telephony_alias_config_change_type_label_svi' | translate }}"
-                data-values="[{ id: 'svi', name: $ctrl.$translate.instant('telephony_alias_config_change_type_desc_svi') }]"
-                data-variant="light"
-            >
-            </oui-select-picker>
-        </div>
-        <div class="col-lg-4 col-sm-12 mb-4">
-            <oui-select-picker
-                class="h-100"
-                data-match="name"
-                data-model="$ctrl.selectedFeatureType"
-                data-label="{{:: 'telephony_alias_config_change_type_label_contactCenterSolutionExpert' | translate }}"
-                data-values="[{ id: 'contactCenterSolutionExpert', name: $ctrl.$translate.instant('telephony_alias_config_change_type_desc_contactCenterSolutionExpert') }]"
-                data-variant="light"
-            >
-            </oui-select-picker>
+        <div class="row d-md-flex w-100">
+            <div class="col-lg-4 col-sm-12 mb-4">
+                <oui-select-picker
+                    class="h-100"
+                    data-match="name"
+                    data-model="$ctrl.selectedFeatureType"
+                    data-label="{{:: 'telephony_alias_config_change_type_label_svi' | translate }}"
+                    data-values="[{ id: 'svi', name: $ctrl.$translate.instant('telephony_alias_config_change_type_desc_svi') }]"
+                    data-variant="light"
+                >
+                </oui-select-picker>
+            </div>
+            <div class="col-lg-4 col-sm-12 mb-4">
+                <oui-select-picker
+                    class="h-100"
+                    data-match="name"
+                    data-model="$ctrl.selectedFeatureType"
+                    data-label="{{:: 'telephony_alias_config_change_type_label_contactCenterSolutionExpert' | translate }}"
+                    data-values="[{ id: 'contactCenterSolutionExpert', name: $ctrl.$translate.instant('telephony_alias_config_change_type_desc_contactCenterSolutionExpert') }]"
+                    data-variant="light"
+                >
+                </oui-select-picker>
+            </div>
         </div>
     </div>
 

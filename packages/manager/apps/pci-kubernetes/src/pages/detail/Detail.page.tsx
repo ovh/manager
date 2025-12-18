@@ -4,9 +4,7 @@ import { Outlet, useHref, useLocation, useResolvedPath } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsChip } from '@ovhcloud/ods-components/react';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 
 import { useParam, useProject } from '@ovh-ux/manager-pci-common';
 import {
@@ -60,19 +58,7 @@ export default function DetailPage() {
     },
     {
       name: 'kube_logs_tab_title',
-      title: (
-        <span>
-          {tDetail('kube_logs_tab_title')}
-          <OsdsChip
-            className="ml-4"
-            color={ODS_THEME_COLOR_INTENT.success}
-            size={ODS_CHIP_SIZE.sm}
-            inline
-          >
-            {tDetail('kube_logs_tab_title_beta_status')}
-          </OsdsChip>
-        </span>
-      ),
+      title: tDetail('kube_logs_tab_title'),
       to: logsPath,
       tracking: TRACKING_TABS.LOGS,
       isHidden: false,

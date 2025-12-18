@@ -16,7 +16,7 @@ export function getColumns({
   onEditClicked,
   onDeleteClicked,
 }: GetColumnsParams): ColumnDef<storages.ReplicationRule>[] {
-  const { t } = useTranslation('pci-object-storage/replication');
+  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
   );

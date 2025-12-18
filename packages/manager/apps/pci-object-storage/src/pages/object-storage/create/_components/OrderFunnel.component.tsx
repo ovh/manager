@@ -10,8 +10,8 @@ import {
   Separator,
   useToast,
 } from '@datatr-ux/uxlib';
-import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
-import { Catalog } from '@datatr-ux/ovhcloud-types/order/catalog/public/Catalog';
+import { Region, RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
+import { Catalog } from '@datatr-ux/ovhcloud-types/order/catalog/public';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import OrderSection from './Section.component';
@@ -20,6 +20,7 @@ import OrderSummary from './OrderSummary.component';
 import RegionsStep from './steps/RegionStep.component';
 import OffsiteReplicationStep from './steps/OffsiteReplicationStep.component';
 import VersionningStep from './steps/VersionningStep.component';
+import ObjectLockStep from './steps/ObjectLockStep.component';
 import ContainerTypeStep from './steps/ContainerTypeStep.component';
 import UserStep from './steps/UserStep.component';
 import EncryptStep from './steps/EncryptStep.component';
@@ -64,7 +65,7 @@ const OrderFunnel = ({
   const storagePricesLink = useLink(STORAGE_PRICES_LINK);
   const replicationLink = useLink(STORAGE_ASYNC_REPLICATION_LINK);
 
-  const { form, availableRegions, model, result } = useOrderFunnel({
+  const { form, availableRegions, model, versioning, result } = useOrderFunnel({
     regions,
     users,
     availabilities,
@@ -206,6 +207,7 @@ const OrderFunnel = ({
 
               {!isLZ && (
                 <>
+                  {/* Versioning */}
                   <OrderSection
                     id="versions"
                     title={t('labelVersioning')}
@@ -223,6 +225,41 @@ const OrderFunnel = ({
                     </FormField>
                   </OrderSection>
 
+                  {/* Object Lock */}
+                  <OrderSection
+                    id="object-lock"
+                    title={t('labelObjectLock')}
+                    description={
+                      <Trans
+                        i18nKey="descriptionObjectLock"
+                        ns="pci-object-storage/order-funnel"
+                        components={[
+                          <A href={replicationLink} target="_blank" />,
+                        ]}
+                      />
+                    }
+                  >
+                    <FormField name="objectLock" form={form}>
+                      {(field) => (
+                        <ObjectLockStep
+                          versioning={versioning}
+                          {...field}
+                          acknowledgement={form.watch(
+                            'objectLockAcknowledgement',
+                          )}
+                          onAcknowledgementChange={(checked) =>
+                            form.setValue('objectLockAcknowledgement', checked)
+                          }
+                          acknowledgementError={
+                            form.formState.errors.objectLockAcknowledgement
+                              ?.message
+                          }
+                        />
+                      )}
+                    </FormField>
+                  </OrderSection>
+
+                  {/* User */}
                   <OrderSection
                     id="user"
                     title={t('labelUser')}
@@ -233,6 +270,7 @@ const OrderFunnel = ({
                     </FormField>
                   </OrderSection>
 
+                  {/* Encryption */}
                   <OrderSection
                     id="encryption"
                     title={t('labelEncryption')}

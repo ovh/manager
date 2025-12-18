@@ -11,6 +11,16 @@ import ObjectLock from './_components/ObjectLock.component';
 import { useS3Data } from '../S3.context';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem
+      translationKey="dashboardTab"
+      namespace="pci-object-storage/storages/header-tabs"
+    />
+  );
+}
 
 const Dashboard = () => {
   const { s3 } = useS3Data();
@@ -36,17 +46,6 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         <div className="space-y-2">
-          <Card className="w-full">
-            <CardHeader>
-              <h4>
-                <FolderLock className="size-4 inline mr-2" />
-                <span>{t('objectLockTitle')}</span>
-              </h4>
-            </CardHeader>
-            <CardContent>
-              <ObjectLock />
-            </CardContent>
-          </Card>
           {!isLocaleZone && (
             <Card className="w-full">
               <CardHeader>
@@ -60,6 +59,17 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           )}
+          <Card className="w-full">
+            <CardHeader>
+              <h4>
+                <FolderLock className="size-4 inline mr-2" />
+                <span>{t('objectLockTitle')}</span>
+              </h4>
+            </CardHeader>
+            <CardContent>
+              <ObjectLock />
+            </CardContent>
+          </Card>
           <Card className="w-full">
             <CardHeader>
               <h4>

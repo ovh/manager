@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.25.2...@ovh-ux/manager-pci-object-storage-app@0.26.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** add missing translation key for object version deletion error ([086ffd8](https://github.com/ovh/manager/commit/086ffd80acd239df7add5b1b01ff2188457e2e08)), closes [#DATATR-2792](https://github.com/ovh/manager/issues/DATATR-2792)
+
+
+### Features
+
+* **object-storage:** add service type parameter on rclone route ([763c504](https://github.com/ovh/manager/commit/763c504ccb9e494530cf89da9da9a28942b0ab42)), closes [#DATATR-2712](https://github.com/ovh/manager/issues/DATATR-2712)
+* **pci-object-storage:** add Object Lock feature ([439fbe0](https://github.com/ovh/manager/commit/439fbe027cad1e69ba7a814a9a4387b76f63e4b2)), closes [#DATATR-2728](https://github.com/ovh/manager/issues/DATATR-2728) [#DATATR-2637](https://github.com/ovh/manager/issues/DATATR-2637) [#DATATR-2636](https://github.com/ovh/manager/issues/DATATR-2636) [#DATATR-2635](https://github.com/ovh/manager/issues/DATATR-2635)
+
+
+
+
+
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.25.1...@ovh-ux/manager-pci-object-storage-app@0.25.2) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.25.0...@ovh-ux/manager-pci-object-storage-app@0.25.1) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4536] ([08adb80](https://github.com/ovh/manager/commit/08adb8017f44ae5c825d3f734017715185af6035))
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.24.1...@ovh-ux/manager-pci-object-storage-app@0.25.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* **pci-os:** add missing flag and translation ([97f9a31](https://github.com/ovh/manager/commit/97f9a311b63e8ac5a75848ddaebccf72a899cd82)), closes [#DATATR-2680](https://github.com/ovh/manager/issues/DATATR-2680)
+* **pci-os:** breadcrumb missing in container and filter translation issue ([fb17c05](https://github.com/ovh/manager/commit/fb17c05738dee0f3e7c29fdafe35b14657bdfe72)), closes [#DATATR-2717](https://github.com/ovh/manager/issues/DATATR-2717) [#DATATR-2711](https://github.com/ovh/manager/issues/DATATR-2711)
+* **pci.db:** update tailwind path ([cc12a4b](https://github.com/ovh/manager/commit/cc12a4bfe35cfd0f139411af5a7f772017f4876a)), closes [#DATATR-1234](https://github.com/ovh/manager/issues/DATATR-1234)
+
+
+### Features
+
+* **object-store:** add cold archive on replication ([d322d8f](https://github.com/ovh/manager/commit/d322d8f70d225f1ddfd72c69c08956e7320d96b1)), closes [#DATATR-2629](https://github.com/ovh/manager/issues/DATATR-2629)
+* **object-storeage:** add search on lz and swift ([392b3f4](https://github.com/ovh/manager/commit/392b3f483f153f035061a5db4dd3e1412f1646e2)), closes [#DATATR-2695](https://github.com/ovh/manager/issues/DATATR-2695)
+* **os:** add refresh button on objects ([875a48d](https://github.com/ovh/manager/commit/875a48dec284cc5554d13f38fbae07f7ea74e61b)), closes [#DATATR-2633](https://github.com/ovh/manager/issues/DATATR-2633)
+* **os:** add warning on infrequent access ([f5602fa](https://github.com/ovh/manager/commit/f5602fa4acb5edba87963474741c58120dc5c94e)), closes [#DATATR-2715](https://github.com/ovh/manager/issues/DATATR-2715)
+* **pci-os:** remove number of object in tab ([f7979cc](https://github.com/ovh/manager/commit/f7979cca52d54db0a3c34111df49cdaaefa51069)), closes [#DATATR-2696](https://github.com/ovh/manager/issues/DATATR-2696)
+* **pci-os:** use separate logic for bucket deletion ([74c4602](https://github.com/ovh/manager/commit/74c46029010b0c7d2261a520bb58ae23aafb33e5)), closes [#DATATR-2648](https://github.com/ovh/manager/issues/DATATR-2648)
+* **pci.os:** update types ([68f2a84](https://github.com/ovh/manager/commit/68f2a842c1463f79527f302c220bf7d92be558c2)), closes [#DATATR-2719](https://github.com/ovh/manager/issues/DATATR-2719)
+
+
+
+
+
 ## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.24.0...@ovh-ux/manager-pci-object-storage-app@0.24.1) (2025-12-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

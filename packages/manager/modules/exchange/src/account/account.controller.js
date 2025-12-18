@@ -73,6 +73,7 @@ export default class ExchangeAccountHomeController {
   $onInit() {
     this.hostname = this.Exchange.value.hostname;
     this.webUrl = this.Exchange.value.webUrl;
+    this.$scope.user = this.coreConfig.getUser();
 
     this.initialAccountRetrieval = true;
     this.atLeastOneDomainIsAssociatedToCurrentExchangeService = true;
@@ -103,6 +104,13 @@ export default class ExchangeAccountHomeController {
         : TICKET_SUPPORT_PROPS_WITHOUT_TICKET
     }`;
   }
+
+  goToOvhMailMigrator = () =>
+    window.open(
+      OVH_MAIL_MIGRATOR_URL[this.$scope.user.ovhSubsidiary] ||
+        OVH_MAIL_MIGRATOR_URL.DEFAULT,
+      '_blank',
+    );
 
   getColumnParameters() {
     return this.gridParameters.columnParameters.current[this.productId];

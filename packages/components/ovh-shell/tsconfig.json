@@ -15,6 +15,11 @@
     "declarationDir": "dist/types",
     "jsx": "react"
   },
+  /* Custom Config To Keep Extension */
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "resolveFullExtension": ".js"
+  },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "__tests__", "features"]
 }

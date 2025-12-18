@@ -40,10 +40,10 @@
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Región",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Cerrar",
-  "pci_projects_project_storages_cold_archive_banner_title": "Nuevo: ¡archiva objetos individualmente desde tu panel de control de Almacenamiento de Objetos!",
-  "pci_projects_project_storages_cold_archive_banner_description": "Ahora es posible archivar objetos uno por uno para optimizar tus costos de almacenamiento y gestionar mejor tus datos, sin necesidad de archivar todo el contenedor.",
-  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Esta funcionalidad está accesible directamente desde tu panel de control de Almacenamiento de Objetos, a partir de tus contenedores existentes:",
-  "pci_projects_project_storages_cold_archive_banner_feature_1": "carga tus objetos clasificándolos directamente en Archivo Frío;",
-  "pci_projects_project_storages_cold_archive_banner_feature_2": "o utiliza reglas de ciclo de vida para transferir los datos a la clase Archivo Frío.",
-  "pci_projects_project_storages_cold_archive_banner_cta": "¡Prueba ahora!"
+  "pci_projects_project_storages_cold_archive_banner_title": "Novedad: ¡archive objetos individualmente desde dashboard de Object Storage!",
+  "pci_projects_project_storages_cold_archive_banner_description": "Ya es posible archivar objetos uno a uno para optimizar los costes de almacenamiento y gestionar mejor los datos, sin tener que archivar todo el contenedor.",
+  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Puede acceder a esta funcionalidad directamente desde su dashboard de Object Storage, en sus contenedores existentes:",
+  "pci_projects_project_storages_cold_archive_banner_feature_1": "Cargue sus objetos clasificándolos directamente en Cold Archive,",
+  "pci_projects_project_storages_cold_archive_banner_feature_2": "o utilice reglas de ciclo de vida para transferir datos a la clase Cold Archive.",
+  "pci_projects_project_storages_cold_archive_banner_cta": "¡Pruébelo ahora!"
 }

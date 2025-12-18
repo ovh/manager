@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-config",
-  "version": "8.8.3",
+  "version": "8.8.4",
   "description": "Retrieve configuration based on the environment.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/config#readme",
   "bugs": {
@@ -30,11 +30,11 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.10.1",
-    "@ovh-ux/manager-core-sso": "^0.6.2"
+    "@ovh-ux/manager-core-sso": "^0.7.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/request-tagger": "^0.5.10"
+    "@ovh-ux/request-tagger": "^0.6.0"
   },
   "peerDependencies": {
     "@ovh-ux/request-tagger": "^0.4.0"

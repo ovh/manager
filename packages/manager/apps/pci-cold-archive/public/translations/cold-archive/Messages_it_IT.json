@@ -40,10 +40,10 @@
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Chiudere",
-  "pci_projects_project_storages_cold_archive_banner_title": "Nuovo: archivia oggetti singolarmente dal tuo cruscotto Object Storage!",
-  "pci_projects_project_storages_cold_archive_banner_description": "Ora è possibile archiviare oggetti uno per uno per ottimizzare i costi di archiviazione e gestire meglio i dati, senza dover archiviare l'intero contenitore.",
-  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Questa funzionalità è accessibile direttamente dal tuo cruscotto Object Storage, a partire dai tuoi contenitori esistenti:",
-  "pci_projects_project_storages_cold_archive_banner_feature_1": "carica i tuoi oggetti classificandoli direttamente in Cold Archive;",
-  "pci_projects_project_storages_cold_archive_banner_feature_2": "oppure utilizza regole di ciclo di vita per trasferire i dati nella classe Cold Archive.",
+  "pci_projects_project_storages_cold_archive_banner_title": "Novità: archivia singoli oggetti dalla tua dashboard Object Storage!",
+  "pci_projects_project_storages_cold_archive_banner_description": "Adesso è possibile archiviare singolarmente gli oggetti per ottimizzare i tuoi costi di storage e gestire al meglio i tuoi dati, senza dover archiviare l'intero container.",
+  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Questa funzionalità è disponibile direttamente nella tua dashboard Object Storage, a partire dai container esistenti:",
+  "pci_projects_project_storages_cold_archive_banner_feature_1": "carica i tuoi oggetti classificandoli direttamente in Cold Archive",
+  "pci_projects_project_storages_cold_archive_banner_feature_2": "o utilizza regole del ciclo di vita per trasferire i dati nella classe Cold Archive",
   "pci_projects_project_storages_cold_archive_banner_cta": "Prova subito!"
 }

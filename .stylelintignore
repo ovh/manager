@@ -14,3 +14,4 @@ packages/manager-tools/manager-cli-core
 packages/manager/apps/okms
 packages/manager/apps/web-ongoing-operations
 packages/manager/apps/communication
+packages/manager/apps/zimbra
