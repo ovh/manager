@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.0.1...@ovh-ux/manager-react-shell-client@1.0.2) (2025-12-18)
+
+
+### Update
+
+*   **dependencies update:** update `@ovh-ux/ovh-at-internet` to last version ([3655306](https://github.com/ovh/manager/commit/3655306a8ad31a88d8c42657a323fd119d4baad3))
+
+
+
+
+
+
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.0.0...@ovh-ux/manager-react-shell-client@1.0.1) (2025-12-10)
+
+
+### Bug Fixes
+
+*   **tracking:** add additional data for page tracking ([d3973dd](https://github.com/ovh/manager/commit/d3973dd4dc40448df71695e717d1667e606a81b3))
+
+
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.11.2...@ovh-ux/manager-react-shell-client@1.0.0) (2025-12-04)
 
 
@@ -378,4 +401,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **pci-rancher:** add rancher project + rancher in menu ([#10628](https://github.com/ovh/manager/issues/10628)) ([545ac71](https://github.com/ovh/manager/commit/545ac719b60602f6b53bbdc54d0dc9a704ea7bf8))
-
