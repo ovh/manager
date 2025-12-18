@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { Divider } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button, useNotifications } from '@ovh-ux/muk';
 
 import { InformationForm } from '@/components/form/information-form/InformationForm.component';
@@ -26,6 +25,7 @@ import {
   ObservabilityDurationParsed,
   parseObservabilityDurationValue,
 } from '@/utils/duration.utils';
+import { getErrorMessage } from '@/utils/error.utils';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
 export const TenantForm = ({ tenant }: TenantFormProps) => {
@@ -52,8 +52,8 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
     }
   };
 
-  const handleError = (error: ApiError) => {
-    const message = error?.response?.data?.message ?? error.message;
+  const handleError = (error: unknown) => {
+    const message = getErrorMessage(error);
     addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
   };
 
@@ -62,7 +62,7 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
       addSuccess(t('tenants:creation.success'));
       goBack();
     },
-    onError: (error) => handleError(error as ApiError),
+    onError: (error) => handleError(error),
   });
 
   const editMutation = useEditTenant({
@@ -70,7 +70,7 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
       addSuccess(t('tenants:edition.success'));
       goBack();
     },
-    onError: (error) => handleError(error as ApiError),
+    onError: (error) => handleError(error),
   });
 
   const { isPending } = isEditionMode ? editMutation : createMutation;
