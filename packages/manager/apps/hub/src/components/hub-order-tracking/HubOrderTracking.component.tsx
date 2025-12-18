@@ -84,7 +84,7 @@ export default function HubOrderTracking() {
 
   const isWaitingPayment = displayedLabel === WAITING_PAYMENT_LABEL;
 
-  const { format } = useDateFormat({
+  const dateformat = useDateFormat({
     options: {
       hourCycle: 'h23',
       dateStyle: 'short',
@@ -106,7 +106,7 @@ export default function HubOrderTracking() {
         variant={ODS_TILE_VARIANT.ghost}
         inline
       >
-        <div className="bg-500 !flex flex-col gap-1 items-center justify-center">
+        <div className="bg-500 !flex flex-col items-center justify-center gap-1">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.primary}
             level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
@@ -117,7 +117,7 @@ export default function HubOrderTracking() {
           </OsdsText>
           {isLoading || isLastOrderLoading ? (
             <>
-              <div className="mb-6 h-[40px] flex flex-col justify-center">
+              <div className="mb-6 flex h-[40px] flex-col justify-center">
                 <OsdsSkeleton
                   data-testid="order_link_skeleton"
                   inline
@@ -146,7 +146,7 @@ export default function HubOrderTracking() {
                           target={OdsHTMLAnchorElementTarget._blank}
                           rel={OdsHTMLAnchorElementRel.noreferrer}
                           color={ODS_THEME_COLOR_INTENT.primary}
-                          className="font-bold flex flex-col items-center justify-center mb-6 h-[40px]"
+                          className="mb-6 flex h-[40px] flex-col items-center justify-center font-bold"
                         >
                           <span slot="start" className="flex flex-col items-center justify-center">
                             <OsdsChip size={ODS_CHIP_SIZE.sm} color={ODS_THEME_COLOR_INTENT.info}>
@@ -159,14 +159,14 @@ export default function HubOrderTracking() {
                       )}
                     />
                   </Suspense>
-                  <div className="mb-6 flex justify-center gap-3 items-center flex-wrap">
+                  <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
                     <OsdsText
                       level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                       hue={ODS_TEXT_COLOR_HUE._800}
                       color={ODS_THEME_COLOR_INTENT.primary}
-                      className="inline-block mr-1"
+                      className="mr-1 inline-block"
                     >
-                      <strong>{format(new Date(currentStatus.date))}</strong>
+                      <strong>{dateformat.format(new Date(currentStatus.date))}</strong>
                       &nbsp;{t(`order_tracking_history_${displayedLabel}`)}
                     </OsdsText>
                     <span className="inline-block size-[16px]">
@@ -190,7 +190,7 @@ export default function HubOrderTracking() {
                           target={OdsHTMLAnchorElementTarget._top}
                           color={ODS_THEME_COLOR_INTENT.primary}
                           onClick={handleSeeAll}
-                          className="font-bold mb-1 flex flex-col items-center justify-center"
+                          className="mb-1 flex flex-col items-center justify-center font-bold"
                         >
                           {t('hub_order_tracking_see_all')}
                           <span slot="end">
@@ -210,7 +210,7 @@ export default function HubOrderTracking() {
                 <TileError
                   message={t('hub_order_tracking_error')}
                   className={`!p-1`}
-                  refetch={refetch}
+                  refetch={void refetch}
                 />
               )}
             </>

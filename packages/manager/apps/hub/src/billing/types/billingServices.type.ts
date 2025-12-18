@@ -4,22 +4,6 @@ export const DEBT_STATUS = ['PENDING_DEBT', 'UN_PAID', 'UNPAID'];
 
 export const BYOIP_SERVICE_PREFIX = 'byoip-failover-';
 
-type ServiceState =
-  // Agora API statuses
-  | 'ACTIVE'
-  | 'ERROR'
-  | 'RUPTURE'
-  | 'TERMINATED'
-  | 'TO_RENEW'
-  | 'UNPAID'
-  | 'UNRENEWED'
-  // Rebound statuses
-  | 'EXPIRED'
-  | 'PENDING_DEBT'
-  | 'DELETE_AT_EXPIRATION'
-  | 'AUTO'
-  | 'MANUAL';
-
 type ServiceMenuItems = {
   manageEmailAccountsInBilling: boolean;
   manageEmailAccountsInExchange: boolean;

@@ -3,7 +3,7 @@ import { ButtonType, PageLocation, TrackingClickParams } from '@ovh-ux/manager-r
 interface ChangelogLinks {
   url: string;
   label_key: string;
-  tracking: TrackingClickParams | any;
+  tracking: TrackingClickParams;
 }
 
 export const ROADMAP_CHANGELOG_PAGES = 10;

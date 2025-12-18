@@ -46,7 +46,7 @@ export const NotificationsEmailUnreachable: FunctionComponent = () => {
           resolve={notificationLinkAsync}
           children={(notificationLink: string) => (
             <OsdsMessage
-              className="rounded mt-5"
+              className="mt-5 rounded"
               role="alert"
               color={ODS_TEXT_COLOR_INTENT.warning}
               type={ODS_MESSAGE_TYPE.warning}
