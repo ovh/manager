@@ -25,6 +25,7 @@ import {
   ObservabilityDurationParsed,
   parseObservabilityDurationValue,
 } from '@/utils/duration.utils';
+import { getErrorMessage } from '@/utils/error.utils';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
 export const TenantForm = ({ tenant }: TenantFormProps) => {
@@ -45,15 +46,17 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
     }
   };
 
+  const handleError = (error: unknown) => {
+    const message = getErrorMessage(error);
+    addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
+  };
+
   const createMutation = useCreateTenants({
     onSuccess: () => {
       addSuccess(t('tenants:creation.success'));
       goBack();
     },
-    onError: (error) => {
-      const { message } = error;
-      addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
-    },
+    onError: (error) => handleError(error),
   });
 
   const editMutation = useEditTenant({
@@ -61,10 +64,7 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
       addSuccess(t('tenants:edition.success'));
       goBack();
     },
-    onError: (error) => {
-      const { message } = error;
-      addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
-    },
+    onError: (error) => handleError(error),
   });
 
   const { isPending } = isEditionMode ? editMutation : createMutation;
