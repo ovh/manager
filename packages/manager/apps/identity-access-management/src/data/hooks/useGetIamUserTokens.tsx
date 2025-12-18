@@ -8,6 +8,7 @@ import {
   getIamUserToken,
   createIamUserToken,
   updateIamUserToken,
+  deleteIamUserToken,
   IamUserToken,
   IamUserTokenPayload,
 } from '@/data/api/iam-users';
@@ -112,6 +113,36 @@ export const useUpdateIamUserToken = ({
   });
   return {
     updateToken: (payload: IamUserTokenPayload) => mutation.mutate(payload),
+    ...mutation,
+  };
+};
+
+export const useDeleteIamUserToken = ({
+  userId,
+  token,
+  onSuccess,
+  onError,
+}: {
+  userId: string;
+  token: string;
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
+}) => {
+  const mutation = useMutation({
+    mutationFn: () => deleteIamUserToken(userId, token),
+    onError,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: getIamUserTokenQueryKey(userId, token),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: getIamUserTokenListQueryKey(userId),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deleteToken: () => mutation.mutate(),
     ...mutation,
   };
 };

@@ -65,3 +65,14 @@ export const updateIamUserToken = async (
   );
   return data;
 };
+
+export const deleteIamUserToken = async (
+  userId: string,
+  token: string,
+) => {
+  const { data } = await apiClient.v6.delete<void>(
+    `/me/identity/user/${userId}/token/${token}`,
+  );
+  return data;
+};
+

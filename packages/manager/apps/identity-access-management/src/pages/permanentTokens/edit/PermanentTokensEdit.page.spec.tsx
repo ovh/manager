@@ -127,11 +127,14 @@ describe('PermanentTokensEdit (creation mode)', () => {
       isPending: true,
     } as unknown) as ReturnType<typeof useCreateIamUserToken>);
     const { getByTestId } = render(<PermanentTokensAdd />, { wrapper });
+    fireEvent.click(getByTestId('primary-button'));
 
     expect(getByTestId('primary-button')).toHaveAttribute(
       'is-disabled',
       'true',
     );
+    expect(updateTokenSpy).not.toHaveBeenCalled();
+    expect(createTokenSpy).not.toHaveBeenCalled();
   });
 });
 
@@ -192,10 +195,13 @@ describe('PermanentTokensEdit (edit mode)', () => {
       isPending: true,
     } as unknown) as ReturnType<typeof useUpdateIamUserToken>);
     const { getByTestId } = render(<PermanentTokensAdd />, { wrapper });
+    fireEvent.click(getByTestId('primary-button'));
 
     expect(getByTestId('primary-button')).toHaveAttribute(
       'is-disabled',
       'true',
     );
+    expect(updateTokenSpy).not.toHaveBeenCalled();
+    expect(createTokenSpy).not.toHaveBeenCalled();
   });
 });
