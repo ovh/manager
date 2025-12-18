@@ -6,6 +6,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest';
 
 import HubOrderTracking from '@/components/hub-order-tracking/HubOrderTracking.component';
+import { OrderHistory, OrderStatus } from '@/types/order.type';
 
 const queryClient = new QueryClient();
 
@@ -23,10 +24,23 @@ vi.mock('@/components/tile-error/TileError.component', () => ({
   default: () => <div data-testid="tile-error"></div>,
 }));
 
-const useLastOrderTrackingMockValue: any = {
-  data: { orderId: 12345, history: [], date: new Date(), status: 'delivered' },
+interface OrderDataResponse {
+  date: string;
+  orderId: number;
+  status: OrderStatus;
+  history: OrderHistory[];
+}
+
+const useLastOrderTrackingMockValue = {
+  data: {
+    orderId: 12345,
+    history: [],
+    date: new Date().toISOString(),
+    status: 'delivered',
+  } as OrderDataResponse,
   isFetched: true,
   isLoading: false,
+  error: false,
   refetch,
 };
 
@@ -63,7 +77,7 @@ vi.mock('@/hooks/dateFormat/useDateFormat', () => ({
   }),
 }));
 
-describe('HubOrderTracking Component', async () => {
+describe('HubOrderTracking Component', () => {
   it('renders correctly with data', async () => {
     renderComponent(<HubOrderTracking />);
 
@@ -156,6 +170,6 @@ describe('HubOrderTracking Component', async () => {
     const { container } = renderComponent(<HubOrderTracking />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

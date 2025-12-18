@@ -22,11 +22,11 @@ type Props = {
 export default function TileError({ message, refetch, className, contrasted }: Props) {
   const { t } = useTranslation('hub/error');
   return (
-    <div className={`flex gap-1 flex-col items-center p-8 ${className}`}>
+    <div className={`flex flex-col items-center gap-1 p-8 ${className}`}>
       <OsdsText
         {...(contrasted ? { contrasted } : { color: ODS_THEME_COLOR_INTENT.text })}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        className="block mb-6"
+        className="mb-6 block"
         size={ODS_TEXT_SIZE._600}
       >
         {t('manager_hub_error_tile_oops')}
@@ -35,7 +35,7 @@ export default function TileError({ message, refetch, className, contrasted }: P
         {...(contrasted ? { contrasted } : { color: ODS_THEME_COLOR_INTENT.text })}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
         size={ODS_TEXT_SIZE._400}
-        className="block mb-5"
+        className="mb-5 block"
       >
         {message}
       </OsdsText>

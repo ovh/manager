@@ -3,11 +3,7 @@ import React, { PropsWithChildren } from 'react';
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
-import {
-  ShellContext,
-  ShellContextType,
-  useRouteSynchro,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 import {
   lotsOfProductsMocked,
