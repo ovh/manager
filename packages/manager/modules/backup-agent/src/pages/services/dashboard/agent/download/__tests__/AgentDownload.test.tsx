@@ -126,6 +126,8 @@ const getSelectOs = () =>
 
 describe('AgentDownload', () => {
   it('Should render AgentDownload component', async () => {
+    const emptyLinkLabel = 'curl -O ...';
+
     const user = userEvent.setup();
     useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
       data: mockAgentDownloadLinks.linuxUrl,
@@ -145,10 +147,10 @@ describe('AgentDownload', () => {
 
     expect(useBackupVSPCTenantAgentDownloadLinkMock).toHaveBeenCalledWith({
       tenantId: TENANTS_MOCKS[0]!.id,
-      os: 'LINUX',
+      os: undefined,
     });
 
-    expect(screen.getAllByTestId(codeTestId)[0]).toHaveTextContent(mockAgentDownloadLinks.linuxUrl);
+    expect(screen.getAllByTestId(codeTestId)[0]).toHaveTextContent(emptyLinkLabel);
 
     // Prepare mock for change value
     useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
