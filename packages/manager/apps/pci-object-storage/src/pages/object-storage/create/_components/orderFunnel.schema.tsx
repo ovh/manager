@@ -13,6 +13,7 @@ export const createOrderFunnelFormSchema = (t: typeof i18next.t) => {
       .regex(/^[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$/, t('nameInputRegexError')),
     region: z.string().min(1, t('regionRequired')),
     user: z.number().optional(),
+    objectLockAcknowledgement: z.boolean().optional(),
   });
 
   const replicationSchema = z
@@ -37,6 +38,7 @@ export const createOrderFunnelFormSchema = (t: typeof i18next.t) => {
     encryption: z.nativeEnum(storages.EncryptionAlgorithmEnum).optional(),
     replication: replicationSchema,
     versioning: z.nativeEnum(storages.VersioningStatusEnum).optional(),
+    objectLock: z.nativeEnum(storages.ObjectLockStatusEnum).optional(),
   });
 
   const swiftSchema = baseSchema.extend({
@@ -45,7 +47,23 @@ export const createOrderFunnelFormSchema = (t: typeof i18next.t) => {
     containerType: z.nativeEnum(storages.TypeEnum).optional(),
   });
 
-  return z.discriminatedUnion('offer', [s3Schema, swiftSchema]);
+  return z
+    .discriminatedUnion('offer', [s3Schema, swiftSchema])
+    .superRefine((val, ctx) => {
+      // When Object Lock is enabled, acknowledgement must be checked
+      if (
+        'objectLock' in val &&
+        val.objectLock === storages.ObjectLockStatusEnum.enabled &&
+        'objectLockAcknowledgement' in val &&
+        !val.objectLockAcknowledgement
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('objectLockAcknowledgementRequired'),
+          path: ['objectLockAcknowledgement'],
+        });
+      }
+    });
 };
 
 export type OrderFunnelFormValues = z.infer<
