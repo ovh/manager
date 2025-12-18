@@ -649,4 +649,103 @@ describe('TenantConfigurationForm', () => {
       expect(screen.getByTestId('text-heading2')).toBeInTheDocument();
     });
   });
+
+  describe('onBoundsErrorChange callback', () => {
+    it('should call onBoundsErrorChange with true then false when value goes from invalid to valid', async () => {
+      const onBoundsErrorChange = vi.fn();
+
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '7',
+            maxSeries: 100,
+          }}
+        >
+          <TenantConfigurationForm onBoundsErrorChange={onBoundsErrorChange} />
+        </TestWrapper>,
+      );
+
+      // Change retention to invalid value (below min of 7)
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      fireEvent.change(retentionInput, { target: { value: '1' } });
+
+      await waitFor(() => {
+        expect(onBoundsErrorChange).toHaveBeenCalledWith(true);
+      });
+
+      // Change back to valid value
+      fireEvent.change(retentionInput, { target: { value: '30' } });
+
+      await waitFor(() => {
+        expect(onBoundsErrorChange).toHaveBeenCalledWith(false);
+      });
+    });
+
+    it('should call onBoundsErrorChange with true when retention value is below minimum', async () => {
+      const onBoundsErrorChange = vi.fn();
+
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '7',
+            maxSeries: 100,
+          }}
+        >
+          <TenantConfigurationForm onBoundsErrorChange={onBoundsErrorChange} />
+        </TestWrapper>,
+      );
+
+      // Change retention to invalid value (below min of 7)
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      fireEvent.change(retentionInput, { target: { value: '1' } });
+
+      await waitFor(() => {
+        expect(onBoundsErrorChange).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it('should call onBoundsErrorChange with true when maxSeries value is above maximum', async () => {
+      const onBoundsErrorChange = vi.fn();
+
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '30',
+            maxSeries: 100,
+          }}
+        >
+          <TenantConfigurationForm onBoundsErrorChange={onBoundsErrorChange} />
+        </TestWrapper>,
+      );
+
+      // Change maxSeries to invalid value (above max of 1000)
+      const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+      fireEvent.change(maxSeriesInput, { target: { value: '2000' } });
+
+      await waitFor(() => {
+        expect(onBoundsErrorChange).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it('should not crash when callback is not provided', () => {
+      // This test ensures the component doesn't crash when no callback is provided
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '7',
+            maxSeries: 100,
+          }}
+        >
+          <TenantConfigurationForm />
+        </TestWrapper>,
+      );
+
+      // Component should still render without crashing
+      expect(screen.getByTestId('text-heading2')).toBeInTheDocument();
+    });
+  });
 });
