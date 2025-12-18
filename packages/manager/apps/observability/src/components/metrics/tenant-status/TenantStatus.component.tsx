@@ -7,15 +7,15 @@ import { TenantResourceStatus } from '@/types/tenants.type';
 
 const statusColorMap: Record<TenantResourceStatus, BADGE_COLOR> = {
   READY: BADGE_COLOR.success,
-  ERROR: BADGE_COLOR.critical,
-  UPDATING: BADGE_COLOR.warning,
-  DELETING: BADGE_COLOR.warning,
-  SUSPENDED: BADGE_COLOR.warning,
-  CREATING: BADGE_COLOR.warning,
+  ERROR: BADGE_COLOR.warning,
+  UPDATING: BADGE_COLOR.information,
+  DELETING: BADGE_COLOR.information,
+  SUSPENDED: BADGE_COLOR.critical,
+  CREATING: BADGE_COLOR.information,
   UNKNOWN: BADGE_COLOR.neutral,
 };
 
-export const TenantStatus = ({ status }: TenantStatusProps) => {
+export const TenantStatus = ({ status = 'UNKNOWN' }: TenantStatusProps) => {
   const { t } = useTranslation('tenants');
   return <Badge color={statusColorMap[status]}>{t(`tenants:status.${status}`)}</Badge>;
 };

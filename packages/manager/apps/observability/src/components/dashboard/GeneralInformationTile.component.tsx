@@ -71,7 +71,7 @@ export const GeneralInformationTile = ({
       <Tile.Item.Root>
         <Tile.Item.Term label={t('status.title')} />
         <Tile.Item.Description>
-          {isLoading ? <Skeleton /> : <TenantStatus status={resourceStatus ?? 'UNKNOWN'} />}
+          {isLoading ? <Skeleton /> : <TenantStatus status={resourceStatus} />}
         </Tile.Item.Description>
       </Tile.Item.Root>
 

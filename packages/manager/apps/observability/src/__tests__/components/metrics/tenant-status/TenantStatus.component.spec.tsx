@@ -20,6 +20,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
   ),
   BADGE_COLOR: {
     success: 'success',
+    information: 'information',
     critical: 'critical',
     warning: 'warning',
     neutral: 'neutral',
@@ -29,17 +30,18 @@ vi.mock('@ovhcloud/ods-react', () => ({
 describe('TenantStatus.component', () => {
   it.each([
     { status: 'READY' as TenantResourceStatus, expectedColor: 'success' },
-    { status: 'ERROR' as TenantResourceStatus, expectedColor: 'critical' },
-    { status: 'UPDATING' as TenantResourceStatus, expectedColor: 'warning' },
-    { status: 'DELETING' as TenantResourceStatus, expectedColor: 'warning' },
-    { status: 'SUSPENDED' as TenantResourceStatus, expectedColor: 'warning' },
-    { status: 'CREATING' as TenantResourceStatus, expectedColor: 'warning' },
+    { status: 'ERROR' as TenantResourceStatus, expectedColor: 'warning' },
+    { status: 'UPDATING' as TenantResourceStatus, expectedColor: 'information' },
+    { status: 'DELETING' as TenantResourceStatus, expectedColor: 'information' },
+    { status: 'SUSPENDED' as TenantResourceStatus, expectedColor: 'critical' },
+    { status: 'CREATING' as TenantResourceStatus, expectedColor: 'information' },
     { status: 'UNKNOWN' as TenantResourceStatus, expectedColor: 'neutral' },
+    { status: undefined, expectedColor: 'neutral' },
   ])('renders $status status with $expectedColor color', ({ status, expectedColor }) => {
     render(<TenantStatus status={status} />);
 
     const badge = screen.getByTestId('badge');
     expect(badge).toHaveAttribute('data-color', expectedColor);
-    expect(badge).toHaveTextContent(`tenants:status.${status}`);
+    expect(badge).toHaveTextContent(`tenants:status.${status ?? 'UNKNOWN'}`);
   });
 });
