@@ -24,7 +24,7 @@ export const useBackupVSPCTenantAgentDownloadLink = ({
   return useQuery({
     queryFn: () => downloadLinkBackupAgent(backupServicesId, tenantId!),
     queryKey: BACKUP_VSPC_TENANT_AGENT_DOWNLOAD_LINK_QUERY_KEY(tenantId!),
-    enabled: !!backupServicesId && !!tenantId,
+    enabled: !!backupServicesId && !!tenantId && !!os,
     select: (data) => {
       switch (os) {
         case 'WINDOWS':
