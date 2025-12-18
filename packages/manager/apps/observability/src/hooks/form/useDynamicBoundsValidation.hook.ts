@@ -1,61 +1,64 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-interface Bounds {
-  min?: number;
-  max?: number;
-}
+import type { Bounds } from '@/types/form.type';
 
 /**
  * Hook to validate a numeric field against dynamic bounds.
  * Useful when bounds are fetched asynchronously and might change.
  *
+ * Sets form errors for display purposes and returns the error state
+ * synchronously for immediate use in disabled states.
+ *
  * @param fieldName - The name of the field to validate
  * @param value - The current value of the field
  * @param bounds - The min/max bounds to validate against
+ * @returns Whether the field has a bounds validation error
  */
 export const useDynamicBoundsValidation = <T extends FieldValues>(
   fieldName: Path<T>,
   value: number | null | undefined,
   bounds: Bounds,
-) => {
-  const {
-    setError,
-    clearErrors,
-    formState: { errors },
-  } = useFormContext<T>();
+): boolean => {
+  const { setError, clearErrors } = useFormContext<T>();
   const { t } = useTranslation([NAMESPACES.FORM]);
 
-  // Extract only the error type for this field to avoid infinite loops
-  // (using the full errors object would cause re-runs on every error change)
-  const fieldErrorType = errors[fieldName]?.type;
+  // Track previous error state to avoid unnecessary setError/clearErrors calls
+  const prevHasErrorRef = useRef(false);
 
-  // Extract primitive values to avoid re-runs when bounds object reference changes
   const { min, max } = bounds;
 
-  useEffect(() => {
-    if (value === null || value === undefined) return;
+  // Calculate error state synchronously for immediate return
+  const isValueValid = value !== null && value !== undefined && !Number.isNaN(value);
+  const hasError =
+    isValueValid && ((min !== undefined && value < min) || (max !== undefined && value > max));
 
-    if (min !== undefined && value < min) {
-      setError(fieldName, {
-        type: 'manual',
-        message: t(`${NAMESPACES.FORM}:error_min_inclusive`, {
-          value: min,
-        }),
-      });
-    } else if (max !== undefined && value > max) {
-      setError(fieldName, {
-        type: 'manual',
-        message: t(`${NAMESPACES.FORM}:error_max_inclusive`, {
-          value: max,
-        }),
-      });
-    } else if (fieldErrorType === 'manual') {
+  // Sync error state with react-hook-form for error message display
+  useEffect(() => {
+    // Skip if error state hasn't changed
+    if (hasError === prevHasErrorRef.current) return;
+    prevHasErrorRef.current = hasError;
+
+    if (!hasError) {
       clearErrors(fieldName);
+      return;
     }
-  }, [value, min, max, fieldName, setError, clearErrors, fieldErrorType, t]);
+
+    const isUnderMin = min !== undefined && value < min;
+    setError(fieldName, {
+      type: 'bounds',
+      message: t(
+        isUnderMin
+          ? `${NAMESPACES.FORM}:error_min_inclusive`
+          : `${NAMESPACES.FORM}:error_max_inclusive`,
+        { value: isUnderMin ? min : max },
+      ),
+    });
+  }, [hasError, fieldName, setError, clearErrors, min, max, value, t]);
+
+  return hasError;
 };
