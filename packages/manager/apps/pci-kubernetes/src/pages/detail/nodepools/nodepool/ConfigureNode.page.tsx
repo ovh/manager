@@ -93,7 +93,11 @@ export default function ScalePage(): ReactElement {
               isAutoscale: pool.autoscale,
             },
             ...(isStandardPlan
-              ? { attachFloatingIps: pool.attachFloatingIps ?? { enabled: false } }
+              ? {
+                  attachFloatingIps: pool.attachFloatingIps ?? {
+                    enabled: false,
+                  },
+                }
               : {}),
           }
         : null,
@@ -171,7 +175,10 @@ export default function ScalePage(): ReactElement {
   const isDisabled =
     isPendingScaling ||
     (state &&
-      !isScalingValid({ quantity: state.scale.quantity, isAutoscale: state?.scale.isAutoscale })) ||
+      !isScalingValid({
+        quantity: state.scale.quantity,
+        isAutoscale: state?.scale.isAutoscale,
+      })) ||
     !hasChanges;
 
   const { price: priceFloatingIp } = useFloatingIpsPrice(true, regionInformations?.type ?? null);
@@ -179,9 +186,9 @@ export default function ScalePage(): ReactElement {
 
   const scaleObject = useMemo(() => {
     const { desired, min, max } = state?.scale.quantity || {};
-    const d = Number(desired),
-      mn = Number(min),
-      mx = Number(max);
+    const d = Number(desired);
+    const mn = Number(min);
+    const mx = Number(max);
 
     if (state?.scale.isAutoscale) {
       return { maxNodes: mx || NODE_RANGE.MAX, minNodes: mn || 0 };
