@@ -48,9 +48,15 @@ vi.mock('@/components/infrastructures/region-selector/RegionSelector.component',
 }));
 
 vi.mock('@/components/metrics/tenant-configuration-form/TenantConfigurationForm.component', () => ({
-  TenantConfigurationForm: vi.fn(() => (
-    <div data-testid="tenant-configuration-form">TenantConfigurationForm</div>
-  )),
+  TenantConfigurationForm: vi.fn(
+    ({ onBoundsErrorChange }: { onBoundsErrorChange?: (hasError: boolean) => void }) => {
+      // Simulate no bounds errors by default
+      React.useEffect(() => {
+        onBoundsErrorChange?.(false);
+      }, [onBoundsErrorChange]);
+      return <div data-testid="tenant-configuration-form">TenantConfigurationForm</div>;
+    },
+  ),
 }));
 
 // Mock ODS React components
@@ -184,30 +190,78 @@ describe('TenantForm', () => {
     iam: { id: 'iam-123', urn: 'urn:service:123' },
   };
 
-  const mockForm = {
-    handleSubmit: vi.fn((callback: (data: TenantFormData) => void) => (e: Event) => {
-      e.preventDefault();
-      const mockData: TenantFormData = {
-        title: 'Test Tenant',
-        description: 'Test Description',
-        infrastructureId: 'infra-1',
-        retentionDuration: '30',
-        retentionUnit: 'd',
-        maxSeries: 1000,
-      };
-      callback(mockData);
-    }),
-    formState: {
+  const createMockForm = (overrides?: Partial<UseFormReturn<TenantFormData>>) => {
+    const formState = {
       isValid: true,
       errors: {},
       isDirty: false,
       isSubmitting: false,
-    },
-    control: {},
-    register: vi.fn(),
-    getValues: vi.fn(),
-    reset: vi.fn(),
-  } as unknown as UseFormReturn<TenantFormData>;
+      isSubmitted: false,
+      isSubmitSuccessful: false,
+      submitCount: 0,
+      dirtyFields: {},
+      touchedFields: {},
+      isValidating: false,
+      isLoading: false,
+      validatingFields: {},
+      defaultValues: {},
+      disabled: false,
+      ...overrides?.formState,
+    };
+
+    const unsubscribeFn = vi.fn();
+    const control = {
+      _subscribe: vi.fn(() => unsubscribeFn),
+      _getWatch: vi.fn(),
+      _formState: formState,
+      _state: { mount: true },
+      _subjects: {
+        state: { subscribe: vi.fn(() => ({ unsubscribe: vi.fn() })) },
+      },
+      _proxyFormState: {
+        isValid: true,
+        errors: true,
+        isDirty: true,
+        isSubmitting: true,
+        touchedFields: true,
+        dirtyFields: true,
+        isValidating: true,
+        isLoading: true,
+        disabled: true,
+      },
+      _setValid: vi.fn(),
+      _updateValid: vi.fn(),
+      _getDirty: vi.fn(),
+      _updateFormState: vi.fn(),
+      ...overrides?.control,
+    };
+
+    return {
+      handleSubmit: vi.fn(
+        (callback: (data: TenantFormData) => void) => (e?: React.BaseSyntheticEvent) =>
+          Promise.resolve().then(() => {
+            e?.preventDefault();
+            const mockData: TenantFormData = {
+              title: 'Test Tenant',
+              description: 'Test Description',
+              infrastructureId: 'infra-1',
+              retentionDuration: '30',
+              retentionUnit: 'd',
+              maxSeries: 1000,
+            };
+            callback(mockData);
+          }),
+      ),
+      formState,
+      control,
+      register: vi.fn(),
+      getValues: vi.fn(),
+      reset: vi.fn(),
+      ...overrides,
+    } as unknown as UseFormReturn<TenantFormData>;
+  };
+
+  const mockForm = createMockForm();
 
   const mockMutate = vi.fn();
   const mockEditMutate = vi.fn();
@@ -313,13 +367,9 @@ describe('TenantForm', () => {
         scenario: 'form is invalid',
         setup: () => {
           mockUseTenantsFormSchema.mockReturnValue({
-            form: {
-              ...mockForm,
-              formState: {
-                ...mockForm.formState,
-                isValid: false,
-              },
-            },
+            form: createMockForm({
+              formState: { ...mockForm.formState, isValid: false },
+            }),
             schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
           });
         },
@@ -447,22 +497,24 @@ describe('TenantForm', () => {
 
       const mockHandleSubmitCallback = vi.fn();
       mockUseTenantsFormSchema.mockReturnValue({
-        form: {
-          ...mockForm,
-          handleSubmit: vi.fn((callback: (data: TenantFormData) => void) => (e: Event) => {
-            e.preventDefault();
-            const mockData: TenantFormData = {
-              title: 'Test Tenant',
-              description: 'Test Description',
-              infrastructureId: 'infra-1',
-              retentionDuration: '30',
-              retentionUnit: 'd',
-              maxSeries: 1000,
-            };
-            callback(mockData);
-            mockHandleSubmitCallback(mockData);
-          }),
-        } as unknown as UseFormReturn<TenantFormData>,
+        form: createMockForm({
+          handleSubmit: vi.fn(
+            (callback: (data: TenantFormData) => void) => (e?: React.BaseSyntheticEvent) =>
+              Promise.resolve().then(() => {
+                e?.preventDefault();
+                const mockData: TenantFormData = {
+                  title: 'Test Tenant',
+                  description: 'Test Description',
+                  infrastructureId: 'infra-1',
+                  retentionDuration: '30',
+                  retentionUnit: 'd',
+                  maxSeries: 1000,
+                };
+                callback(mockData);
+                mockHandleSubmitCallback(mockData);
+              }),
+          ),
+        }),
         schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
       });
 
@@ -482,24 +534,24 @@ describe('TenantForm', () => {
     });
 
     it('should use null maxSeries value when null', async () => {
-      const mockFormWithNullMaxSeries = {
-        ...mockForm,
-        handleSubmit: vi.fn((callback: (data: TenantFormData) => void) => (e: Event) => {
-          e.preventDefault();
-          const mockData: TenantFormData = {
-            title: 'Test Tenant',
-            description: 'Test Description',
-            infrastructureId: 'infra-1',
-            retentionDuration: '30',
-            retentionUnit: 'd',
-            maxSeries: null,
-          };
-          callback(mockData);
-        }),
-      } as unknown as UseFormReturn<TenantFormData>;
-
       mockUseTenantsFormSchema.mockReturnValue({
-        form: mockFormWithNullMaxSeries,
+        form: createMockForm({
+          handleSubmit: vi.fn(
+            (callback: (data: TenantFormData) => void) => (e?: React.BaseSyntheticEvent) =>
+              Promise.resolve().then(() => {
+                e?.preventDefault();
+                const mockData: TenantFormData = {
+                  title: 'Test Tenant',
+                  description: 'Test Description',
+                  infrastructureId: 'infra-1',
+                  retentionDuration: '30',
+                  retentionUnit: 'd',
+                  maxSeries: null,
+                };
+                callback(mockData);
+              }),
+          ),
+        }),
         schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
       });
 
@@ -591,13 +643,17 @@ describe('TenantForm', () => {
 
     describe('Rendering', () => {
       it('should not render RegionSelector in edition mode', () => {
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         expect(screen.queryByTestId('region-selector')).not.toBeInTheDocument();
       });
 
       it('should render edit button instead of create button in edition mode', () => {
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         expect(screen.queryByTestId('create-tenant')).not.toBeInTheDocument();
         expect(screen.getByTestId('edit-tenant')).toBeInTheDocument();
@@ -605,7 +661,9 @@ describe('TenantForm', () => {
       });
 
       it('should render same number of dividers in edition mode', () => {
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         const dividers = screen.getAllByTestId('divider');
         expect(dividers).toHaveLength(2);
@@ -615,17 +673,15 @@ describe('TenantForm', () => {
     describe('Form Initialization', () => {
       it('should initialize form with tenant values', () => {
         const mockFormReset = vi.fn();
-        const formWithReset = {
-          ...mockForm,
-          reset: mockFormReset,
-        } as unknown as UseFormReturn<TenantFormData>;
 
         mockUseTenantsFormSchema.mockReturnValue({
-          form: formWithReset,
+          form: createMockForm({ reset: mockFormReset }),
           schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
         });
 
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         expect(mockFormReset).toHaveBeenCalledWith({
           title: 'Tenant 1',
@@ -640,7 +696,9 @@ describe('TenantForm', () => {
 
     describe('Button States', () => {
       it('should enable edit button when form is valid and service is selected', () => {
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         const editButton = screen.getByTestId('edit-tenant');
         expect(editButton).not.toBeDisabled();
@@ -649,17 +707,15 @@ describe('TenantForm', () => {
 
       it('should disable edit button when form is invalid', () => {
         mockUseTenantsFormSchema.mockReturnValue({
-          form: {
-            ...mockForm,
-            formState: {
-              ...mockForm.formState,
-              isValid: false,
-            },
-          },
+          form: createMockForm({
+            formState: { ...mockForm.formState, isValid: false },
+          }),
           schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
         });
 
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         const editButton = screen.getByTestId('edit-tenant');
         expect(editButton).toBeDisabled();
@@ -675,7 +731,9 @@ describe('TenantForm', () => {
           data: undefined,
         } as unknown as UseMutationResult<Tenant, Error, EditTenantPayload>);
 
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         const editButton = screen.getByTestId('edit-tenant');
         const cancelButton = screen.getByTestId('cancel-tenant');
@@ -743,22 +801,24 @@ describe('TenantForm', () => {
 
         const mockHandleSubmitCallback = vi.fn();
         mockUseTenantsFormSchema.mockReturnValue({
-          form: {
-            ...mockForm,
-            handleSubmit: vi.fn((callback: (data: TenantFormData) => void) => (e: Event) => {
-              e.preventDefault();
-              const mockData: TenantFormData = {
-                title: 'Test Tenant',
-                description: 'Test Description',
-                infrastructureId: 'infra-1',
-                retentionDuration: '30',
-                retentionUnit: 'd',
-                maxSeries: 1000,
-              };
-              callback(mockData);
-              mockHandleSubmitCallback(mockData);
-            }),
-          } as unknown as UseFormReturn<TenantFormData>,
+          form: createMockForm({
+            handleSubmit: vi.fn(
+              (callback: (data: TenantFormData) => void) => (e?: React.BaseSyntheticEvent) =>
+                Promise.resolve().then(() => {
+                  e?.preventDefault();
+                  const mockData: TenantFormData = {
+                    title: 'Test Tenant',
+                    description: 'Test Description',
+                    infrastructureId: 'infra-1',
+                    retentionDuration: '30',
+                    retentionUnit: 'd',
+                    maxSeries: 1000,
+                  };
+                  callback(mockData);
+                  mockHandleSubmitCallback(mockData);
+                }),
+            ),
+          }),
           schema: {} as unknown as ReturnType<typeof useTenantsFormSchema>['schema'],
         });
 
@@ -779,7 +839,9 @@ describe('TenantForm', () => {
 
     describe('Navigation', () => {
       it('should navigate back in browser history when cancel button is clicked in edition mode', () => {
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         const cancelButton = screen.getByTestId('cancel-tenant');
         fireEvent.click(cancelButton);
@@ -812,7 +874,9 @@ describe('TenantForm', () => {
           } as unknown as UseMutationResult<Tenant, Error, EditTenantPayload>;
         });
 
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         if (onSuccessCallback) {
           onSuccessCallback(updatedTenant, {} as EditTenantPayload, undefined);
@@ -844,7 +908,9 @@ describe('TenantForm', () => {
           } as unknown as UseMutationResult<Tenant, Error, EditTenantPayload>;
         });
 
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         if (onErrorCallback) {
           onErrorCallback(mockError, {} as EditTenantPayload, undefined);
@@ -856,7 +922,9 @@ describe('TenantForm', () => {
 
     describe('Integration', () => {
       it('should call form handleSubmit on edit button click', async () => {
-        render(<TenantForm tenant={mockTenant} />, { wrapper: createWrapper() });
+        render(<TenantForm tenant={mockTenant} />, {
+          wrapper: createWrapper(),
+        });
 
         const editButton = screen.getByTestId('edit-tenant');
         fireEvent.click(editButton);

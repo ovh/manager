@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { FormProvider } from 'react-hook-form';
+import { FormProvider, useFormState } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { Divider } from '@ovhcloud/ods-react';
@@ -37,6 +37,12 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
   const isEditionMode = tenant !== undefined;
 
   const { form } = useTenantsFormSchema();
+
+  // Subscribe to form state changes
+  const { isValid } = useFormState({ control: form.control });
+
+  // Track bounds validation errors from TenantConfigurationForm
+  const [hasBoundsError, setHasBoundsError] = useState(false);
 
   const goBack = () => {
     if (isEditionMode) {
@@ -159,7 +165,10 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
           </section>
           <Divider spacing="24" />
           <section className="mt-6">
-            <TenantConfigurationForm />
+            <TenantConfigurationForm
+              onBoundsErrorChange={setHasBoundsError}
+              isCreation={!isEditionMode}
+            />
           </section>
           <section className="mx-auto mt-10 flex flex-row justify-between gap-6">
             <Button
@@ -177,7 +186,7 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
               type="submit"
               size={BUTTON_SIZE.sm}
               color={BUTTON_COLOR.primary}
-              disabled={!selectedService || isPending || !form.formState.isValid}
+              disabled={!selectedService || isPending || !isValid || hasBoundsError}
               loading={isPending}
               iamActions={isEditionMode ? IAM_ACTIONS.EDIT_TENANT : IAM_ACTIONS.CREATE_TENANT}
               urn={selectedService?.iam?.urn}
