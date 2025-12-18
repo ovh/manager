@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.4...@ovh-ux/manager-bm-server-components@2.19.5) (2025-12-18)
+
+
+### Bug Fixes
+
+* **dedicated:** fix display iam.displayName ([b88166d](https://github.com/ovh/manager/commit/b88166d9553dc9f250a11dc097222aa1cb805f4a)), closes [#MANAGER-18367](https://github.com/ovh/manager/issues/MANAGER-18367)
+
+
+
+
+
 ## [2.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.3...@ovh-ux/manager-bm-server-components@2.19.4) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

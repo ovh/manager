@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.69.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.68.10...@ovh-ux/manager-dedicated@20.69.0) (2025-12-18)
+
+
+### Features
+
+* **dedicated:** add migration vcfaas banner ([5615a55](https://github.com/ovh/manager/commit/5615a5505c1be188148306a160a37566f07c03a5)), closes [#MANAGER-19946](https://github.com/ovh/manager/issues/MANAGER-19946)
+
+
+
+
+
 ## [20.68.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.68.9...@ovh-ux/manager-dedicated@20.68.10) (2025-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
