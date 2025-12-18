@@ -14,13 +14,15 @@ type SubscriptionTileProps = {
   vaultId: string;
 };
 
+export const CONSUMPTION_MAX_VALUE_IN_TO = 100;
+
 export function SubscriptionTile({ vaultId }: SubscriptionTileProps) {
   const { t } = useTranslation([
     NAMESPACES.DASHBOARD,
     NAMESPACES.BILLING,
     BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD,
   ]);
-  const { isLoading } = useBackupVaultDetails({ vaultId });
+  const { isFullyLoaded, data: vault } = useBackupVaultDetails({ vaultId });
   const tooltipId = 'consumption-tooltip';
 
   return (
@@ -40,13 +42,16 @@ export function SubscriptionTile({ vaultId }: SubscriptionTileProps) {
           </div>
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? (
+          {!isFullyLoaded ? (
             <OdsSkeleton />
           ) : (
-            <>
-              <ConsumptionRegionsList />
+            <section className="flex flex-col gap-4">
               <ConsumptionDetails />
-            </>
+              <ConsumptionRegionsList
+                primaryRegion={vault?.currentState.region ?? 'N/A'}
+                secondaryRegion={vault?.currentState.secondaryRegion}
+              />
+            </section>
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
@@ -56,7 +61,7 @@ export function SubscriptionTile({ vaultId }: SubscriptionTileProps) {
           {t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:type_billing`)}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <BillingType />}
+          {!isFullyLoaded ? <OdsSkeleton /> : <BillingType />}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
     </ManagerTile>
