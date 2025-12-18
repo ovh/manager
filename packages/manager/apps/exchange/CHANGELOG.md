@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.37](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.36...@ovh-ux/manager-exchange-app@0.13.37) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
 ## [0.13.36](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.35...@ovh-ux/manager-exchange-app@0.13.36) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-exchange-app

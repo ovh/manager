@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.32.0...@ovh-ux/manager-web@19.33.0) (2025-12-18)
+
+
+### Features
+
+* **web:** remove beta badge for logs to customer ([ca05327](https://github.com/ovh/manager/commit/ca05327eeece948dd0ce72a8f8dab734db1c9203)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
 # [19.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.11...@ovh-ux/manager-web@19.32.0) (2025-12-18)
 
 

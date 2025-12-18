@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.41.3...@ovh-ux/manager-okms-app@0.42.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4537] ([0e72f25](https://github.com/ovh/manager/commit/0e72f25756f159f8e9f1a4ac26885e5f9e435abb))
+
+
+### Features
+
+* **okms:** remove beta badge for logs to customer ([b72947c](https://github.com/ovh/manager/commit/b72947c4a82663fe4364fd79cc4eddb50bfa4cbc)), closes [#MAOBS-167](https://github.com/ovh/manager/issues/MAOBS-167)
+
+
+
+
+
 ## [0.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.41.2...@ovh-ux/manager-okms-app@0.41.3) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-okms-app

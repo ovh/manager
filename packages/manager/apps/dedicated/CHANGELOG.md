@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.70.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.69.0...@ovh-ux/manager-dedicated@20.70.0) (2025-12-18)
+
+
+### Features
+
+* **dedicated:** remove beta badge for logs to customer ([bb5bfcc](https://github.com/ovh/manager/commit/bb5bfcc1a2dc97d50f796eec85ff60496088274b)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
 # [20.69.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.68.10...@ovh-ux/manager-dedicated@20.69.0) (2025-12-18)
 
 
