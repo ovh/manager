@@ -82,11 +82,10 @@ export function useRegionSelector({
     onSelectRegion(region);
   };
 
-  // list of displayed micro regions
   const microRegions = useMemo(() => {
     const actualRegions = macroRegions.find((region) => region.name === selectedMacroRegion);
     return actualRegions ? filterMicrosRegions(actualRegions) : [];
-  }, [macroRegions, selectedMacroRegion]);
+  }, [filterMicrosRegions, macroRegions, selectedMacroRegion]);
 
   const selectedRegionIsDisabled = useMemo(
     () =>
