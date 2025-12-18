@@ -42,7 +42,6 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
     this.user = this.coreConfig.getUser();
     this.initGuides();
     this.isLogsAvailable = this.features.isFeatureAvailable(FEATURES.LOGS);
-    this.BETA = 'Beta';
   }
 
   initGuides() {

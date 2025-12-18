@@ -80,7 +80,6 @@ sioUniverse.children = [
         idAttr: 'iam-logs-link',
         translation: 'sidebar_security_identity_operations_iam_logs',
         universe: sioUniverse.id,
-        tag: NodeTag.BETA,
         features: ['identity-access-management:logs'],
         routing: {
           application: 'iam',

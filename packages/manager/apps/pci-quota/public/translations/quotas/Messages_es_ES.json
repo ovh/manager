@@ -26,6 +26,6 @@
   "pci_projects_project_quota_autoscaling_help": "La cuota se actualizará de forma automática en función de su uso y según diferentes criterios.",
   "pci_projects_project_quota_protect_contact_support": "Contactar con el soporte",
   "pci_projects_project_quota_error_forbidden": "No dispone de derechos necesarios para gestionar sus cuotas. Por favor, contacte con el propietario del servicio",
-  "pci_projects_project_quota_limit_warning": "Las cuotas corresponden al máximo de recursos que puedes consumir. Para limitar los usos abusivos, hemos establecido límites por defecto.",
+  "pci_projects_project_quota_limit_warning": "Las cuotas corresponden al máximo de recursos que puede consumir. Para limitar el uso abusivo, hemos establecido límites por defecto.",
   "pci_projects_project_quota_help_cta": "Entender el funcionamiento de las cuotas"
 }

@@ -69,10 +69,6 @@ export default function DashboardPage() {
       name: kmsDashboardTabNames.logs,
       title: t('key-management-service/dashboard:logs'),
       url: KMS_ROUTES_URLS.kmsLogs(okmsId),
-      badge: {
-        label: 'beta',
-        color: 'information',
-      },
     },
   ]);
 
