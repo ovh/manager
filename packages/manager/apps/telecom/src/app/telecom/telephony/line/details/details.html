@@ -76,6 +76,12 @@
                     <dd
                         data-ng-bind="::$ctrl.line.getPublicOffer.description || '-'"
                     ></dd>
+
+                    <!-- rio -->
+                    <div data-ng-if="$ctrl.line.rio">
+                        <dt data-translate="telephony_rio_label"></dt>
+                        <dd data-ng-bind="::$ctrl.line.rio || '-'"></dd>
+                    </div>
                 </dl>
             </section>
             <!-- /.widget-presentation -->
