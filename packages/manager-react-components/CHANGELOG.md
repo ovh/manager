@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.43.1...@ovh-ux/manager-react-components@2.43.2) (2025-12-18)
+
+### Bug Fixes
+
+- **mrc:** override viewport width rule on small screens ([f512688](https://github.com/ovh/manager/commit/f512688aad39aff8eac946144a73c9b074cd1cd4)), closes [#ISSUE-20793](https://github.com/ovh/manager/issues/ISSUE-20793)
+
 ## [2.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.43.0...@ovh-ux/manager-react-components@2.43.1) (2025-10-22)
 
 ### Bug Fixes
