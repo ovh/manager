@@ -95,6 +95,6 @@ describe('Roadmap Changelog Datagrids', () => {
     const { container } = renderComponent();
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });
