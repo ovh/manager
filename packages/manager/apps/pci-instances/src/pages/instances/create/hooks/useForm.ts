@@ -81,7 +81,7 @@ export const useForm = (projectId: string) => {
 
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
-    values: {
+    defaultValues: {
       name: nameDefaultValue,
       quantity: quantityDefaultValue,
       deploymentModes: deploymentModesDefaultValue,
