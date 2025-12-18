@@ -180,26 +180,21 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
 
 type TSelectWindowsImageLicensePrice = (
   projectId: string,
-  microRegion: string | null,
   osType: string | null,
-  flavorName?: string | null,
+  flavorId?: string | null,
 ) => number | null;
 
 export const selectWindowsImageLicensePrice: Reader<
   Deps,
   TSelectWindowsImageLicensePrice
 > = (deps) => {
-  return (projectId, regionId, osType, flavorName) => {
+  return (projectId, osType, flavorId) => {
     const { instancesCatalogPort } = deps;
     const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
-    if (!flavorName || !regionId || !osType) return null;
+    if (!flavorId || !osType) return null;
 
-    const flavorOsTypePriceId = getRegionalizedFlavorOsTypePriceId(
-      flavorName,
-      regionId,
-      osType,
-    );
+    const flavorOsTypePriceId = `${flavorId}_${osType}_price`;
 
     const flavorPrices = data?.entities.flavorPrices.byId.get(
       flavorOsTypePriceId,
