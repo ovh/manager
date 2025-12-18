@@ -4,13 +4,13 @@ import { Outlet } from 'react-router-dom';
 
 import { Datagrid } from '@ovh-ux/manager-react-components';
 
-import { useBackupTenants } from '@/data/hooks/tenants/useBackupTenants';
+import { useVSPCTenants } from '@/data/hooks/tenants/useVspcTenants';
 
 import { useTenantListingColumns } from './_hooks/useVspcTenantListingColumns';
 
 export default function ListingPage() {
   const columns = useTenantListingColumns();
-  const { data, isLoading } = useBackupTenants();
+  const { data, isFullyLoaded } = useVSPCTenants();
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function ListingPage() {
             columns={columns}
             items={data || []}
             totalItems={data?.length || 0}
-            isLoading={isLoading}
+            isLoading={!isFullyLoaded}
           />
         )}
       </Suspense>
