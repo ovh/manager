@@ -96,11 +96,10 @@ export const useInstanceCreation = (): TInstanceCreation => {
     () =>
       selectWindowsImageLicensePrice(deps)(
         projectId,
-        microRegion,
         distributionImageOsType,
-        name,
+        flavorId,
       ),
-    [distributionImageOsType, microRegion, projectId, name],
+    [distributionImageOsType, projectId, flavorId],
   );
 
   const { networks } = useMemo(() => selectPrivateNetworks(microRegion), [
