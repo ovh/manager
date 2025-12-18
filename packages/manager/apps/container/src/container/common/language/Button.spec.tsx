@@ -1,7 +1,17 @@
 import { it, vi, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { useTranslation } from 'react-i18next';
+import { getComponentWrapper } from '@/utils/tests/component-wrapper';
 import LanguageButton, { Props } from './Button';
+
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  fetchFeatureAvailabilityData: vi.fn(() => Promise.resolve({ pnr: false, livechat: false })),
+}));
+
+const wrapper = getComponentWrapper({
+  withContainerProvider: true,
+  configuration: {},
+});
 
 const handleClick = vi.fn();
 
@@ -12,10 +22,12 @@ const props: Props = {
 
 const renderLanguageButton = (props: Props) => {
   return render(
-    <LanguageButton
-      show={props.show}
-      onClick={props.onClick}
-    />,
+    wrapper(
+      <LanguageButton
+        show={props.show}
+        onClick={props.onClick}
+      />,
+    ),
   );
 };
 

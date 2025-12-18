@@ -1,13 +1,6 @@
 import { useTranslation } from 'react-i18next';
-
-import {
-  OsdsText,
-  OsdsRadioButton,
-  OsdsRadio,
-  OsdsRadioGroup,
-} from '@ovhcloud/ods-components/react';
-import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Button } from '@ovh-ux/muk';
+import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 import { useShell } from '@/context';
 import useContainer from '@/core/container';
 
@@ -31,62 +24,24 @@ function NavReshuffleSwitchBack(): JSX.Element {
   };
 
   return (
-    <>
-      <OsdsRadioGroup name="version" className="flex flex-row">
-        <OsdsRadio
-          name="version"
-          value="classic"
-          onOdsCheckedChange={() => toggleVersion('classic')}
-          checked={!useBeta}
-          className="mr-1"
-        >
-          <OsdsRadioButton
-            size={ODS_RADIO_BUTTON_SIZE.xs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            <span slot="end">
-              <OsdsText
-                size={ODS_TEXT_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-                style={
-                  useBeta ? {
-                    color: 'var(--ods-color-primary-100)',
-                  } : undefined
-                }
-              >
-                {t('beta_modal_old')}
-              </OsdsText>
-            </span>
-          </OsdsRadioButton>
-        </OsdsRadio>
-
-        <OsdsRadio
-          name="version"
-          value="beta"
-          onOdsCheckedChange={() => toggleVersion('beta')}
-          checked={useBeta}
-        >
-          <OsdsRadioButton
-            size={ODS_RADIO_BUTTON_SIZE.xs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            <span slot="end">
-              <OsdsText
-                size={ODS_TEXT_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-                style={
-                  useBeta ? {
-                    color: 'var(--ods-color-primary-100)',
-                  } : undefined
-                }
-              >
-                {t('beta_modal_new')}
-              </OsdsText>
-            </span>
-          </OsdsRadioButton>
-        </OsdsRadio>
-      </OsdsRadioGroup>
-    </>
+    <div className="flex gap-2 p-[2px] bg-white rounded-lg w-fit mx-2 min-h-[34px]">
+      <Button
+        variant={!useBeta ? BUTTON_VARIANT.default : BUTTON_VARIANT.ghost}
+        onClick={() => toggleVersion('classic')}
+        className="min-w-16 rounded-lg text-sm p-1 min-h-[32px]"
+        disabled={!useBeta}
+      >
+        {t('beta_modal_old')}
+      </Button>
+      <Button
+        variant={useBeta ? BUTTON_VARIANT.default : BUTTON_VARIANT.ghost}
+        onClick={() => toggleVersion('beta')}
+        className="min-w-16 rounded-lg text-sm p-1 min-h-[32px]"
+        disabled={useBeta}
+      >
+        {t('beta_modal_new')}
+      </Button>
+    </div>
   );
 }
 

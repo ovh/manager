@@ -4,6 +4,7 @@ import { Environment } from "@ovh-ux/manager-config";
 import { initShell, Shell } from "@ovh-ux/shell";
 
 import { ApplicationProvider } from "@/context";
+import { ContainerProvider } from "@/core/container";
 import { BaseContextFactory } from "@/utils/tests/base-context.factory";
 
 export class TestWrapperFactory extends BaseContextFactory {
@@ -13,6 +14,9 @@ export class TestWrapperFactory extends BaseContextFactory {
       let composition = component;
       if (this.hasClientProvider) {
         composition = <QueryClientProvider client={new QueryClient()}>{composition}</QueryClientProvider>;
+      }
+      if (this.hasContainerProvider) {
+        composition = <ContainerProvider>{composition}</ContainerProvider>;
       }
       if (this.hasApplicationProvider) {
         const shellEnvironment = new Environment();

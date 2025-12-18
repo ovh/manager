@@ -80,8 +80,10 @@ function NavbarNotifications(): JSX.Element {
         aria-hidden="true"
         className={iconClassName}
       ></OsdsIcon>
-      {true && (
-        <span className={badgeClassName} data-testid="notifications-count-icon">3</span>
+      {noticiationsCount > 0 && (
+        <span className={badgeClassName} data-testid="notifications-count-icon">
+          {noticiationsCount}
+        </span>
       )}
     </button>
   );
