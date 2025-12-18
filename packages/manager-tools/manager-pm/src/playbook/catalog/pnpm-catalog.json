@@ -5,6 +5,7 @@
   "packages/manager/apps/zimbra",
   "packages/manager/apps/pci-billing",
   "packages/manager/apps/pci-block-storage",
+  "packages/manager/apps/public-cloud",
   "packages/manager/apps/pci-contacts",
   "packages/manager/apps/dedicated",
   "packages/manager/apps/pci-gateway",

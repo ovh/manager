@@ -44,7 +44,6 @@
   "packages/manager/apps/pci-private-registry",
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/procedures",
-  "packages/manager/apps/public-cloud",
   "packages/manager/apps/restricted",
   "packages/manager/apps/sap-features-hub",
   "packages/manager/apps/sign-up",
