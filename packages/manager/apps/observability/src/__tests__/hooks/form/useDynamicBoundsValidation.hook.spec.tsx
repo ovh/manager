@@ -97,7 +97,7 @@ describe('useDynamicBoundsValidation', () => {
       renderWithForm(value, bounds);
 
       expect(screen.getByTestId('error-message').textContent).toBe(expectedMessage);
-      expect(screen.getByTestId('error-type').textContent).toBe('manual');
+      expect(screen.getByTestId('error-type').textContent).toBe('bounds');
     });
   });
 
