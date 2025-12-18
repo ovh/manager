@@ -23,6 +23,7 @@ import { selectPrivateNetworks } from '../view-models/networksViewModel';
 import AddNetworkForm from './network/AddNetworkForm.component';
 import { TAddNetworkForm } from '../CreateInstance.schema';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import Banner from '@/components/banner/Banner.component';
 
 type TUpdateNetworkFieldsArgs = {
   networkId: string | null;
@@ -124,6 +125,9 @@ const Network: FC = () => {
           'creation:pci_instance_creation_network_private_network_setting_title',
         )}
       </Text>
+      <Banner className="my-4">
+        {t('creation:pci_instance_creation_network_setting_beta_warning')}
+      </Banner>
       <Text className="mt-4" preset="paragraph">
         {t(
           'creation:pci_instance_creation_network_private_network_setting_description',
