@@ -15,6 +15,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { BoundsFormFieldHelper } from '@/components/form/bounds-form-field-helper/BoundsFormFieldHelper.component';
+import { TenantConfigurationFormProps } from '@/components/metrics/tenant-configuration-form/TenantConfigurationForm.props';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useInfrastructureSettings } from '@/data/hooks/infrastructures/useInfrastructureSettings.hook';
 import { useDynamicBoundsValidation } from '@/hooks/form/useDynamicBoundsValidation.hook';
@@ -22,7 +23,7 @@ import { useFormattedDurationSetting } from '@/hooks/useFormattedExtraSettings.h
 import type { TenantFormData } from '@/types/tenants.type';
 import { toRequiredLabel } from '@/utils/form.utils';
 
-export const TenantConfigurationForm = () => {
+export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigurationFormProps) => {
   const { t } = useTranslation(['tenants', 'shared', NAMESPACES.FORM]);
   const {
     control,
@@ -93,12 +94,30 @@ export const TenantConfigurationForm = () => {
   // Validate bounds dynamically (bounds depend on selected infrastructure)
   const retentionValue = retentionDuration ? parseInt(retentionDuration, 10) : null;
 
-  useDynamicBoundsValidation<TenantFormData>('retentionDuration', retentionValue, {
-    min: settingBounds.retention.min?.value,
-    max: settingBounds.retention.max?.value,
-  });
+  const hasRetentionError = useDynamicBoundsValidation<TenantFormData>(
+    'retentionDuration',
+    retentionValue,
+    {
+      min: settingBounds.retention.min?.value,
+      max: settingBounds.retention.max?.value,
+    },
+  );
 
-  useDynamicBoundsValidation<TenantFormData>('maxSeries', maxSeries, settingBounds.maxSeries);
+  const hasMaxSeriesError = useDynamicBoundsValidation<TenantFormData>(
+    'maxSeries',
+    maxSeries,
+    settingBounds.maxSeries,
+  );
+
+  // Notify parent of bounds error state changes
+  const hasBoundsError = hasRetentionError || hasMaxSeriesError;
+  const prevHasBoundsErrorRef = useRef(hasBoundsError);
+  useEffect(() => {
+    if (prevHasBoundsErrorRef.current !== hasBoundsError) {
+      prevHasBoundsErrorRef.current = hasBoundsError;
+      onBoundsErrorChange?.(hasBoundsError);
+    }
+  }, [hasBoundsError, onBoundsErrorChange]);
 
   return (
     <>
@@ -123,7 +142,7 @@ export const TenantConfigurationForm = () => {
                 max={settingBounds.retention.max?.value}
                 value={field.value?.toString() || ''}
                 onValueChange={(detail) => field.onChange(detail.value ?? '')}
-                invalid={!!errors.retentionDuration}
+                invalid={!!errors.retentionDuration || hasRetentionError}
                 disabled={!infrastructureId || !retentionSetting}
               >
                 <QuantityControl>
@@ -158,7 +177,7 @@ export const TenantConfigurationForm = () => {
                 onValueChange={(detail) =>
                   field.onChange(detail.value ? parseInt(detail.value, 10) : null)
                 }
-                invalid={!!errors.maxSeries}
+                invalid={!!errors.maxSeries || hasMaxSeriesError}
                 disabled={!infrastructureId}
               >
                 <QuantityControl>
