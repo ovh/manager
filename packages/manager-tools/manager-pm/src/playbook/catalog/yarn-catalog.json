@@ -14,7 +14,6 @@
   "packages/manager/apps/communication",
   "packages/manager/apps/container",
   "packages/manager/apps/dbaas-logs",
-  "packages/manager/apps/dedicated",
   "packages/manager/apps/dedicated-servers",
   "packages/manager/apps/email-domain",
   "packages/manager/apps/email-pro",
