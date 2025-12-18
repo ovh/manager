@@ -1,11 +1,11 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
-import { DeploymentMode } from '@/types';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
 import { TLocation } from '@/types/region';
 
 import usePlanToRegionAvailability from '../../api/hooks/usePlanToRegionAvailability';
@@ -25,23 +25,31 @@ export function KubeRegionSelector({
 }: Readonly<KubeRegionSelectorProps>) {
   const { data: availability, isPending } = usePlanToRegionAvailability(projectId, 'mks');
 
+  const [selectedPlan, setSelectedPlan] = useState<TClusterPlanEnum>(TClusterPlanEnum.ALL);
+
   const featureFlipping3az = use3AZPlanAvailable();
   const { contains3AZ } = useHas3AZRegions();
   const has3AZ = contains3AZ && featureFlipping3az;
 
-  const regionFilter = useCallback(
+  const filterRegion = useCallback(
     (region: TLocation) => {
-      return Boolean(
-        region.isMacro ||
-          (!isPending &&
-            availability.some(({ name, type }) =>
-              selectedDeployment
-                ? name === region.name && type === selectedDeployment
-                : name === region.name,
-            )),
+      if (isPending) return false;
+      if (region.isMacro) return true;
+
+      const matchesPlan = (codes: string[]) =>
+        selectedPlan === TClusterPlanEnum.ALL || codes.some((code) => code.includes(selectedPlan));
+
+      const matchesDeployment = (type: string) =>
+        !selectedDeployment || type === selectedDeployment;
+
+      const matchesRegion = (name: string) => name === region.name;
+
+      return availability.some(
+        ({ name, type, codes }) =>
+          matchesRegion(name) && matchesDeployment(type) && matchesPlan(codes),
       );
     },
-    [availability, isPending, selectedDeployment],
+    [availability, isPending, selectedPlan, selectedDeployment],
   );
 
   if (isPending) {
@@ -53,8 +61,10 @@ export function KubeRegionSelector({
       <RegionSelector
         projectId={projectId}
         onSelectRegion={onSelectRegion}
-        regionFilter={regionFilter}
+        onSelectPlan={setSelectedPlan}
+        regionFilter={filterRegion}
         compactMode={!has3AZ}
+        selectedPlan={selectedPlan}
       />
     </div>
   );

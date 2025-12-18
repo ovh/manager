@@ -71,6 +71,7 @@ export type TClusterCustomization = {
 export enum TClusterPlanEnum {
   FREE = 'free',
   STANDARD = 'standard',
+  ALL = 'all',
 }
 
 export enum TClusterPlanCodeEnum {
