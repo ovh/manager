@@ -32,7 +32,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
 
   return (
     <>
-      <OsdsRadioGroup name="version" className="d-flex">
+      <OsdsRadioGroup name="version" className="flex flex-row">
         <OsdsRadio
           name="version"
           value="classic"
@@ -48,6 +48,11 @@ function NavReshuffleSwitchBack(): JSX.Element {
               <OsdsText
                 size={ODS_TEXT_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
+                style={
+                  useBeta ? {
+                    color: 'var(--ods-color-primary-100)',
+                  } : undefined
+                }
               >
                 {t('beta_modal_old')}
               </OsdsText>
@@ -69,6 +74,11 @@ function NavReshuffleSwitchBack(): JSX.Element {
               <OsdsText
                 size={ODS_TEXT_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
+                style={
+                  useBeta ? {
+                    color: 'var(--ods-color-primary-100)',
+                  } : undefined
+                }
               >
                 {t('beta_modal_new')}
               </OsdsText>

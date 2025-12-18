@@ -11,7 +11,12 @@ const props: Props = {
 };
 
 const renderLanguageButton = (props: Props) => {
-  return render(<LanguageButton show={props.show} onClick={props.onClick} />);
+  return render(
+    <LanguageButton
+      show={props.show}
+      onClick={props.onClick}
+    />,
+  );
 };
 
 describe('LanguageButton.component', () => {

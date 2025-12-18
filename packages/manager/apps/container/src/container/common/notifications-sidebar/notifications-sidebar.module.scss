@@ -23,6 +23,18 @@
   }
 }
 
-.navbarLink:disabled {
+.notificationIcon:disabled {
   opacity: 0.5;
+}
+
+.notificationIconContrasted {
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: transparent !important;
+  }
+  :global(.ods-icon) {
+    height: 1.15rem;
+    background-color: var(--ods-color-primary-100);
+  }
 }

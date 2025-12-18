@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import style from './style.module.scss';
+import useProductNavReshuffle from '@/core/product-nav-reshuffle';
+import clsx from 'clsx';
 
 type Props = {
   children?: JSX.Element | JSX.Element[];
@@ -16,24 +18,42 @@ const UserAccountMenuButton = ({
   show = false,
 }: Props): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
+  const { isMobile } = useProductNavReshuffle();
+
+
+  const userIconClassName = clsx(
+    'bg-[var(--ods-color-primary-100)]',
+    isMobile ? 'size-8' : 'size-7',
+  );
   return (
-    <OsdsButton
+    <div
       role="button"
       id="header-user-menu-button"
       title={t('user_account_menu_manage_my_account')}
       aria-haspopup={show}
       aria-expanded={show}
       aria-label={t('user_account_menu_manage_my_account')}
-      size={ODS_BUTTON_SIZE.sm}
-      variant={ODS_BUTTON_VARIANT.stroked}
-      color={ODS_THEME_COLOR_INTENT.primary}
       onClick={(e) => {
         e.preventDefault();
         onClick(!show);
       }}
     >
-      {children}
-    </OsdsButton>
+      <div className={style.userMenuLink}>
+        <OsdsIcon
+          name={ODS_ICON_NAME.USER}
+          size={ODS_ICON_SIZE.sm}
+          aria-hidden="true"
+          className={userIconClassName}
+        ></OsdsIcon>
+        {children}
+        {!isMobile && <OsdsIcon
+          name={ODS_ICON_NAME.CHEVRON_DOWN}
+          size={ODS_ICON_SIZE.sm}
+          aria-hidden="true"
+          className="size-7 bg-[var(--ods-color-primary-100)]"
+        ></OsdsIcon>}
+      </div>
+    </div>
   );
 };
 
