@@ -364,7 +364,7 @@ describe('TenantConfigurationForm', () => {
     it('should render the configuration title', () => {
       render(
         <TestWrapper>
-          <TenantConfigurationForm />
+          <TenantConfigurationForm isCreation />
         </TestWrapper>,
       );
 
@@ -647,6 +647,238 @@ describe('TenantConfigurationForm', () => {
 
       // Component should still render
       expect(screen.getByTestId('text-heading2')).toBeInTheDocument();
+    });
+  });
+
+  describe('onBoundsErrorChange callback', () => {
+    it('should call onBoundsErrorChange with true then false when value goes from invalid to valid', async () => {
+      const onBoundsErrorChange = vi.fn();
+
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '7',
+            maxSeries: 100,
+          }}
+        >
+          <TenantConfigurationForm onBoundsErrorChange={onBoundsErrorChange} />
+        </TestWrapper>,
+      );
+
+      // Change retention to invalid value (below min of 7)
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      fireEvent.change(retentionInput, { target: { value: '1' } });
+
+      await waitFor(() => {
+        expect(onBoundsErrorChange).toHaveBeenCalledWith(true);
+      });
+
+      // Change back to valid value
+      fireEvent.change(retentionInput, { target: { value: '30' } });
+
+      await waitFor(() => {
+        expect(onBoundsErrorChange).toHaveBeenCalledWith(false);
+      });
+    });
+
+    it('should call onBoundsErrorChange with true when retention value is below minimum', async () => {
+      const onBoundsErrorChange = vi.fn();
+
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '7',
+            maxSeries: 100,
+          }}
+        >
+          <TenantConfigurationForm onBoundsErrorChange={onBoundsErrorChange} />
+        </TestWrapper>,
+      );
+
+      // Change retention to invalid value (below min of 7)
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      fireEvent.change(retentionInput, { target: { value: '1' } });
+
+      await waitFor(() => {
+        expect(onBoundsErrorChange).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it('should call onBoundsErrorChange with true when maxSeries value is above maximum', async () => {
+      const onBoundsErrorChange = vi.fn();
+
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '30',
+            maxSeries: 100,
+          }}
+        >
+          <TenantConfigurationForm onBoundsErrorChange={onBoundsErrorChange} />
+        </TestWrapper>,
+      );
+
+      // Change maxSeries to invalid value (above max of 1000)
+      const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+      fireEvent.change(maxSeriesInput, { target: { value: '2000' } });
+
+      await waitFor(() => {
+        expect(onBoundsErrorChange).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it('should not crash when callback is not provided', () => {
+      // This test ensures the component doesn't crash when no callback is provided
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '7',
+            maxSeries: 100,
+          }}
+        >
+          <TenantConfigurationForm isCreation />
+        </TestWrapper>,
+      );
+
+      // Component should still render without crashing
+      expect(screen.getByTestId('text-heading2')).toBeInTheDocument();
+    });
+  });
+
+  describe('isCreation prop behavior', () => {
+    it('should set default values when isCreation is true and infrastructure is selected', async () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm isCreation />
+        </TestWrapper>,
+      );
+
+      await waitFor(() => {
+        const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+        const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+        // Default values from mockFormattedDurationSetting and mockExtraSettings
+        expect(retentionInput).toHaveValue(7); // default retention from mock
+        expect(maxSeriesInput).toHaveValue(100); // default maxSeries from mock
+      });
+    });
+
+    it('should NOT set default values when isCreation is false (edit mode)', async () => {
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '30',
+            maxSeries: 500,
+          }}
+        >
+          <TenantConfigurationForm isCreation={false} />
+        </TestWrapper>,
+      );
+
+      // Wait for any potential updates
+      await waitFor(() => {
+        const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+        const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+        // Values should remain as provided, not overwritten with defaults
+        expect(retentionInput).toHaveValue(30);
+        expect(maxSeriesInput).toHaveValue(500);
+      });
+    });
+
+    it('should preserve existing values in edit mode when isCreation is false', async () => {
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '200',
+            maxSeries: 750,
+          }}
+        >
+          <TenantConfigurationForm isCreation={false} />
+        </TestWrapper>,
+      );
+
+      await waitFor(() => {
+        const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+        const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+        // Custom values should be preserved
+        expect(retentionInput).toHaveValue(200);
+        expect(maxSeriesInput).toHaveValue(750);
+      });
+    });
+
+    it('should default isCreation to true when not provided', async () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm />
+        </TestWrapper>,
+      );
+
+      await waitFor(() => {
+        const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+        const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+        // Default values should be set (isCreation defaults to true)
+        expect(retentionInput).toHaveValue(7);
+        expect(maxSeriesInput).toHaveValue(100);
+      });
+    });
+
+    it('should allow manual changes in creation mode after defaults are set', async () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm isCreation />
+        </TestWrapper>,
+      );
+
+      // Wait for defaults to be set
+      await waitFor(() => {
+        expect(screen.getByTestId('quantity-input-retention-quantity')).toHaveValue(7);
+      });
+
+      // Change values manually
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+      fireEvent.change(retentionInput, { target: { value: '50' } });
+      fireEvent.change(maxSeriesInput, { target: { value: '300' } });
+
+      await waitFor(() => {
+        expect(retentionInput).toHaveValue(50);
+        expect(maxSeriesInput).toHaveValue(300);
+      });
+    });
+
+    it('should allow manual changes in edit mode', async () => {
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '30',
+            maxSeries: 500,
+          }}
+        >
+          <TenantConfigurationForm isCreation={false} />
+        </TestWrapper>,
+      );
+
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+      fireEvent.change(retentionInput, { target: { value: '100' } });
+      fireEvent.change(maxSeriesInput, { target: { value: '800' } });
+
+      await waitFor(() => {
+        expect(retentionInput).toHaveValue(100);
+        expect(maxSeriesInput).toHaveValue(800);
+      });
     });
   });
 });
