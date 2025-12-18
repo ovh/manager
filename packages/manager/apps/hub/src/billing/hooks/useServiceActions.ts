@@ -83,6 +83,8 @@ export const useServiceActions = (
         },
         href: links.anticipatePayment,
         external: true,
+        target: OdsHTMLAnchorElementTarget._blank,
+        rel: OdsHTMLAnchorElementRel.noopener,
       });
     }
     if (links.renewManually) {
