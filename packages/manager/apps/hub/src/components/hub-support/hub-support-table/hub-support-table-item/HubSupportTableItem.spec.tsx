@@ -99,7 +99,7 @@ describe('HubSupportTableItem Component', () => {
     });
   });
 
-  it('applies correct color based on support state', async () => {
+  it('applies correct color based on support state', () => {
     mocks.environment.getRegion.mockReturnValue('EU');
 
     render(<HubSupportTableItem ticket={{ ...mockTicket, state: 'closed' }} />);

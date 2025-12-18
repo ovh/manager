@@ -1,4 +1,4 @@
-import { Suspense, useContext, useEffect, useMemo } from 'react';
+import { Suspense, useContext, useEffect, useMemo, useState } from 'react';
 
 import { Await } from 'react-router-dom';
 
@@ -35,6 +35,8 @@ export default function KycFraudBanner() {
     enabled: !(isLoading || isFreshCustomer || availability?.[KYC_FRAUD_FEATURE]),
   });
 
+  const [hasLink, setHasLink] = useState<boolean>(false);
+
   const shouldBeDisplayed = useMemo(
     () =>
       data?.status === KycStatuses.REQUIRED ||
@@ -52,6 +54,7 @@ export default function KycFraudBanner() {
   }, [shouldBeDisplayed]);
 
   const link = useMemo(() => {
+    setHasLink(true);
     if (data?.status === KycStatuses.REQUIRED) {
       return navigation.getURL('dedicated', '#/documents', {});
     }
@@ -71,7 +74,7 @@ export default function KycFraudBanner() {
 
   return shouldBeDisplayed ? (
     <OsdsMessage
-      className="flex rounded mb-4"
+      className="mb-4 flex rounded"
       type={
         data?.status === KycStatuses.REQUIRED ? ODS_MESSAGE_TYPE.warning : ODS_MESSAGE_TYPE.info
       }
@@ -89,7 +92,7 @@ export default function KycFraudBanner() {
         className="block"
       >
         {t(`kyc_fraud_${data.status}_banner_text`)}
-        {link && (
+        {hasLink && (
           <Suspense fallback={<OsdsSkeleton data-testid="kyc_fraud_banner_link_skeleton" />}>
             <Await
               resolve={link}

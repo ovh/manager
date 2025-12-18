@@ -27,26 +27,30 @@ const renderComponent = () => {
   );
 };
 
+interface TranslationParams {
+  name?: string;
+}
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (translationKey: string, params: any) => `${translationKey} ${params?.name}`,
+    t: (translationKey: string, params: TranslationParams) => `${translationKey} ${params?.name}`,
   }),
 }));
 
 describe('Welcome.component', () => {
-  it('should display customer first name', async () => {
+  it('should display customer first name', () => {
     const { getByText } = renderComponent();
 
     expect(getByText(`manager_hub_dashboard_welcome ${user.firstname}`)).not.toBeNull();
   });
 
-  it('should not display SNC badge for non trusted customer', async () => {
+  it('should not display SNC badge for non trusted customer', () => {
     const { queryByTestId } = renderComponent();
 
     expect(queryByTestId('snc_chip')).not.toBeInTheDocument();
   });
 
-  it('should display SNC badge for trusted customer', async () => {
+  it('should display SNC badge for trusted customer', () => {
     user.isTrusted = true;
     const { getByTestId } = renderComponent();
 
@@ -57,6 +61,6 @@ describe('Welcome.component', () => {
     const { container } = renderComponent();
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkeleton.component';
 
 describe('TileSkeleton', () => {
-  it('should display a skeleton for the title and 4 inner skeletons', async () => {
+  it('should display a skeleton for the title and 4 inner skeletons', () => {
     const { getByTestId } = render(<TileSkeleton />);
 
     const headerContainer = getByTestId('tile_skeleton_header');

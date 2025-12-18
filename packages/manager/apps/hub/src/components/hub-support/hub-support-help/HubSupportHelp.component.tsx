@@ -33,18 +33,18 @@ export const HubSupportHelp: FunctionComponent = () => {
         <img
           src={assistance}
           alt="assistance"
-          className="h-32 w-auto inline-block object-contain"
+          className="inline-block h-32 w-auto object-contain"
         />
       </div>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.primary}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        className="block mb-2"
+        className="mb-2 block"
         size={ODS_TEXT_SIZE._400}
       >
         {t('hub_support_need_help')}
       </OsdsText>
-      <OsdsText level={ODS_THEME_TYPOGRAPHY_LEVEL.body} className="block mb-2">
+      <OsdsText level={ODS_THEME_TYPOGRAPHY_LEVEL.body} className="mb-2 block">
         {t('hub_support_need_help_more')}
       </OsdsText>
       <OsdsLink
@@ -52,7 +52,7 @@ export const HubSupportHelp: FunctionComponent = () => {
         onClick={handleClick}
         target={OdsHTMLAnchorElementTarget._blank}
         color={ODS_THEME_COLOR_INTENT.primary}
-        className="font-bold text-right"
+        className="text-right font-bold"
       >
         {t('hub_support_help')}
       </OsdsLink>
