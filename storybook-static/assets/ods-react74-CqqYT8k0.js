@@ -1,1 +1,0 @@
-var e=(t=>(t.lg="lg",t.md="md",t.sm="sm",t))(e||{});const a=Object.freeze(Object.values(e));var s=(t=>(t.default="default",t.striped="striped",t))(s||{});const r=Object.freeze(Object.values(s));export{a,r as b,e as r,s as t};
