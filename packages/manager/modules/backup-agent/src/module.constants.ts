@@ -12,3 +12,5 @@ export const OS_LABELS = {
   LINUX: 'Linux',
   WINDOWS: 'Windows',
 };
+
+export const VAULT_PLAN_CODE = 'backup-vault-paygo-consumption';
