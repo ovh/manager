@@ -1,4 +1,4 @@
-import { useFeatureAvailability } from '@ovh-ux/manager-react-shell-client';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { Nasha } from '@/types/nasha.type';
 
 export const useNashaEolBanner = (nasha?: Nasha) => {

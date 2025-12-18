@@ -1,0 +1,14 @@
+{
+  "nasha_dashboard_partition_actions": "Actions",
+  "nasha_dashboard_partition_edit": "Edit",
+  "nasha_dashboard_partition_information_description_none": "No description",
+  "nasha_dashboard_partition_information_description": "Description",
+  "nasha_dashboard_partition_information_name": "Name",
+  "nasha_dashboard_partition_information_protocol": "Protocol",
+  "nasha_dashboard_partition_information_quota": "Quota",
+  "nasha_dashboard_partition_information_size": "Partition size",
+  "nasha_dashboard_partition_information_title": "Information",
+  "nasha_dashboard_partition_tab_general_information": "General information",
+  "nasha_dashboard_partition_tab_snapshots": "Snapshot policies",
+  "nasha_dashboard_partition_tab_accesses": "Access Control List (ACL)"
+}

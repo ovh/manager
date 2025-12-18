@@ -5,7 +5,7 @@ export type OnboardingLinksType = {
 };
 
 export type OnboardingTile = {
-  id: number;
+  id: number | string;
   key: string;
   linkKey: keyof OnboardingLinksType;
 };

@@ -13,5 +13,6 @@
   "nasha_dashboard_tab_general_information": "General information",
   "nasha_dashboard_tab_partitions": "Partitions",
   "nasha_dashboard_guides_header": "Guides",
-  "nasha_dashboard_guides_title": "General documentation"
+  "nasha_dashboard_guides_title": "General documentation",
+  "nasha_components_space_meter_free": "Free"
 }

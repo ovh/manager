@@ -1,0 +1,17 @@
+{
+  "nasha_dashboard_partitions_action_access": "Gerir os acessos",
+  "nasha_dashboard_partitions_action_delete": "Eliminar",
+  "nasha_dashboard_partitions_action_edit_size": "Alterar dimensão",
+  "nasha_dashboard_partitions_action_show": "Editar/Consultar",
+  "nasha_dashboard_partitions_action_snapshots": "Gerir as snapshots",
+  "nasha_dashboard_partitions_action_zfs_options": "Configurar a utilização (ZFS)",
+  "nasha_dashboard_partitions_create": "Criar partição",
+  "nasha_dashboard_partitions_list_description": "Descrição",
+  "nasha_dashboard_partitions_list_partition_name": "Nome da partição",
+  "nasha_dashboard_partitions_list_protocol": "Protocolo",
+  "nasha_dashboard_partitions_list_use": "Dimensão",
+  "nasha_dashboard_partitions_metrics": "Métricas gerais",
+  "nasha_dashboard_partitions_monitored_off": "O aviso de utilização está desativado.",
+  "nasha_dashboard_partitions_monitored_on": "O aviso de utilização está ativado.",
+  "nasha_dashboard_partitions_title": "Partições"
+}
