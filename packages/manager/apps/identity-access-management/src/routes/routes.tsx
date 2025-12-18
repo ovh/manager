@@ -13,9 +13,15 @@ const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
 const AssignTag = lazy(() =>
   import('@/pages/tagManager/assignTag/AssignTag.page'),
 );
-const PermanentTokensListing = lazy(() => import('@/pages/permanentTokens/listing/PermanentTokensListing.page'));
-const PermanentTokensEdit = lazy(() => import('@/pages/permanentTokens/edit/PermanentTokensEdit.page'));
-
+const PermanentTokensListing = lazy(() =>
+  import('@/pages/permanentTokens/listing/PermanentTokensListing.page'),
+);
+const PermanentTokensEdit = lazy(() =>
+  import('@/pages/permanentTokens/edit/PermanentTokensEdit.page'),
+);
+const PermanentTokensDelete = lazy(() =>
+  import('@/pages/permanentTokens/delete/PermanentTokensDelete.page'),
+);
 
 export default (
   <Route
@@ -95,6 +101,10 @@ export default (
       <Route
         path={urls.permanentTokensEdit}
         Component={PermanentTokensEdit}
+      />
+      <Route
+        path={urls.permanentTokensDelete}
+        Component={PermanentTokensDelete}
       />
     </Route>
   </Route>

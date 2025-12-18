@@ -65,11 +65,11 @@ export default function PermanentTokensAdd() {
   const { createToken, isPending: isCreationPending } = useCreateIamUserToken({
     userId: userId,
     onSuccess: () => {
-      addSuccess(t('iam_user_token_modal_title_add_success'));
+      addSuccess(t('iam_user_token_modal_add_success'));
       goBack();
     },
     onError: () => {
-      addError(t('iam_user_token_modal_title_add_error'));
+      addError(t('iam_user_token_modal_add_error'));
       goBack();
     },
   });
@@ -77,11 +77,11 @@ export default function PermanentTokensAdd() {
   const { updateToken, isPending: isUpdatePending } = useUpdateIamUserToken({
     userId: userId,
     onSuccess: () => {
-      addSuccess(t('iam_user_token_modal_title_edit_success'));
+      addSuccess(t('iam_user_token_modal_edit_success'));
       goBack();
     },
     onError: () => {
-      addError(t('iam_user_token_modal_title_edit_error'));
+      addError(t('iam_user_token_modal_edit_error'));
       goBack();
     },
   });
