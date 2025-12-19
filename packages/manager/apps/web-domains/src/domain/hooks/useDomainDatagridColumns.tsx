@@ -310,43 +310,7 @@ export const useDomainDatagridColumns = ({
             );
           },
           header: t('domain_dns_table_header_type'),
-          comparator: FilterCategories.String,
           label: t('domain_dns_table_header_type'),
-          isFilterable: true,
-          filterOptions: [
-            {
-              value: NameServerTypeEnum.ANYCAST,
-              label: NameServerTypeEnum.ANYCAST,
-            },
-            {
-              value: NameServerTypeEnum.MIXED,
-              label: NameServerTypeEnum.MIXED,
-            },
-            {
-              value: NameServerTypeEnum.HOSTING,
-              label: NameServerTypeEnum.HOSTING,
-            },
-            {
-              value: NameServerTypeEnum.EMPTY,
-              label: NameServerTypeEnum.EMPTY,
-            },
-            {
-              value: NameServerTypeEnum.EXTERNAL,
-              label: NameServerTypeEnum.EXTERNAL,
-            },
-            {
-              value: NameServerTypeEnum.HOLD,
-              label: NameServerTypeEnum.HOLD,
-            },
-            {
-              value: NameServerTypeEnum.HOSTED,
-              label: NameServerTypeEnum.HOSTED,
-            },
-            {
-              value: NameServerTypeEnum.PARKING,
-              label: NameServerTypeEnum.PARKING,
-            },
-          ],
           enableHiding: true,
         },
         {

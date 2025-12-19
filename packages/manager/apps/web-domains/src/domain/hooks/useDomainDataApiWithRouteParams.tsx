@@ -1,51 +1,72 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useDataApi } from '@ovh-ux/muk';
 import { UseDataApiOptions, UseDataApiResult } from '@ovh-ux/muk';
+import { SearchProps } from '@ovh-ux/muk';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
 
 type UseDomainDataApiWithRouteParamsOptions<TData> = Omit<
   UseDataApiOptions<TData>,
   'route'
 > & {
   baseRoute: string;
+  columns?: unknown[];
+};
+
+type FilterWithLabel = {
+  key: string;
+  value: string | string[];
+  comparator: FilterComparator;
+  label: string;
+};
+
+export type UseDomainDataApiWithRouteParamsResult<TData> = UseDataApiResult<
+  TData
+> & {
+  searchProps: SearchProps;
+  filtersProps: {
+    filters: FilterWithLabel[];
+    add: (filter: FilterWithLabel) => void;
+    remove: (filter: FilterWithLabel) => void;
+  };
+};
+
+const FILTER_KEY_TO_API_PARAM: Record<string, string> = {
+  'contactOwner.id': 'contactOwner',
+  'contactAdmin.id': 'contactAdministrator',
+  'contactTech.id': 'contactTechnical',
+  'contactBilling.id': 'contactBilling',
+  state: 'mainState',
+  suspensionState: 'additionalStates',
 };
 
 export function useDomainDataApiWithRouteParams<
   TData = Record<string, unknown>
 >(
   options: UseDomainDataApiWithRouteParamsOptions<TData>,
-): UseDataApiResult<TData> {
+): UseDomainDataApiWithRouteParamsResult<TData> {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { baseRoute, ...restOptions } = options;
+  const { baseRoute, columns = [], ...restOptions } = options;
 
-  // Build route with query params from URL
+  const [searchInput, setSearchInput] = useState<string>(
+    searchParams.get('search') || '',
+  );
+
   const routeWithParams = useMemo(() => {
     const params = new URLSearchParams();
 
-    // Handle search value
     const searchValue = searchParams.get('search');
     if (searchValue) {
       params.set('searchValue', searchValue);
     }
 
-    // Handle array filters - map from datagrid filter names to API param names
-    const filterMapping: Record<string, string> = {
-      contactOwner: 'contactOwner',
-      contactAdministrator: 'contactAdministrator',
-      contactTechnical: 'contactTechnical',
-      contactBilling: 'contactBilling',
-      mainState: 'mainState',
-      additionalStates: 'additionalStates',
-    };
-
-    Object.entries(filterMapping).forEach(([filterKey, apiParamName]) => {
-      const value = searchParams.get(`filter_${filterKey}`);
+    Object.entries(FILTER_KEY_TO_API_PARAM).forEach(([, apiParam]) => {
+      const value = searchParams.get(`filter_${apiParam}`);
       if (value) {
-        params.set(apiParamName, value);
+        params.set(apiParam, value);
       }
     });
 
-    // Preserve other query params (sorting, pagination, etc.)
     searchParams.forEach((value, key) => {
       if (!key.startsWith('filter_') && key !== 'search' && !params.has(key)) {
         params.set(key, value);
@@ -56,85 +77,85 @@ export function useDomainDataApiWithRouteParams<
     return queryString ? `${baseRoute}?${queryString}` : baseRoute;
   }, [baseRoute, searchParams]);
 
-  // Normalize cacheKey and include routeWithParams so query refetches on param change
   const baseCacheKey = restOptions.cacheKey ?? [];
   const normalizedCacheKey = Array.isArray(baseCacheKey)
     ? baseCacheKey
     : [baseCacheKey];
 
-  // Call the original hook with the enhanced route and extended cacheKey
-  const result = useDataApi<TData>({
+  const hookResult = useDataApi<TData>({
     ...restOptions,
     cacheKey: [...normalizedCacheKey, routeWithParams],
     route: routeWithParams,
   });
 
-  // Sync search input to URL
-  useEffect(() => {
-    if (result.search?.searchInput !== undefined) {
-      const newParams = new URLSearchParams(searchParams);
-      if (result.search.searchInput) {
-        newParams.set('search', result.search.searchInput);
-      } else {
-        newParams.delete('search');
-      }
+  const getColumnLabel = (columnId: string): string => {
+    const col = columns?.find((c: any) => c.id === columnId);
+    return typeof col?.header === 'string' ? col.header : '';
+  };
 
-      const currentParams = searchParams.toString();
-      const newParamsString = newParams.toString();
-      if (currentParams !== newParamsString) {
-        setSearchParams(newParams, { replace: true });
-      }
-    }
-  }, [result.search?.searchInput]);
+  const updateUrlParams = (
+    updater: (params: URLSearchParams) => void,
+  ): void => {
+    const next = new URLSearchParams(searchParams);
+    updater(next);
+    setSearchParams(next, { replace: true });
+  };
 
-  // Sync filters to URL (filters are applied via route params, not x-pagination-filter header)
-  useEffect(() => {
-    if (result.filters?.filters) {
-      const newParams = new URLSearchParams(searchParams);
-
-      // Remove old filter params
-      Array.from(newParams.keys()).forEach((key) => {
-        if (key.startsWith('filter_')) {
-          newParams.delete(key);
+  const searchProps: SearchProps = {
+    onSearch: (value?: string) => {
+      updateUrlParams((params) => {
+        if (value && value.length > 0) {
+          params.set('search', value);
+        } else {
+          params.delete('search');
         }
       });
+      setSearchInput(value ?? '');
+    },
+    searchInput,
+    setSearchInput,
+  };
 
-      // Map of datagrid filter keys to their expected API query param names
-      const filterToApiMapping: Record<string, string> = {
-        'contactOwner.id': 'contactOwner',
-        'contactAdministrator.id': 'contactAdministrator',
-        'contactTechnical.id': 'contactTechnical',
-        'contactBilling.id': 'contactBilling',
-        state: 'mainState',
-        suspensionState: 'additionalStates',
-      };
+  const urlFilters: FilterWithLabel[] = useMemo(() => {
+    return Object.entries(FILTER_KEY_TO_API_PARAM)
+      .map(([columnKey, apiParam]) => {
+        const value = searchParams.get(`filter_${apiParam}`);
+        if (!value) return null;
 
-      // Add current filters, but skip iam.tags (managed by the hook to generate iamTags param)
-      result.filters.filters.forEach((filter) => {
-        if (filter.value !== undefined && filter.value !== null) {
-          const apiParamName = filterToApiMapping[filter.key] || filter.key;
-          if (apiParamName === 'iam.tags' || filter.key.startsWith('iam.')) {
-            return;
-          }
+        return {
+          key: columnKey,
+          value: value.includes(',') ? value.split(',') : value,
+          comparator: FilterComparator.IsEqual,
+          label: getColumnLabel(columnKey),
+        };
+      })
+      .filter((f): f is FilterWithLabel => f !== null);
+  }, [searchParams, columns]);
 
-          // Handle array values (for multi-select filters)
-          if (Array.isArray(filter.value)) {
-            if (filter.value.length > 0) {
-              newParams.set(`filter_${apiParamName}`, filter.value.join(','));
-            }
-          } else {
-            newParams.set(`filter_${apiParamName}`, String(filter.value));
-          }
+  const filtersProps = {
+    filters: urlFilters,
+    add: (filter: FilterWithLabel) => {
+      const apiParam = FILTER_KEY_TO_API_PARAM[filter.key] ?? filter.key;
+      updateUrlParams((params) => {
+        const value = Array.isArray(filter.value)
+          ? filter.value.join(',')
+          : String(filter.value);
+        if (value) {
+          params.set(`filter_${apiParam}`, value);
         }
       });
+    },
+    remove: (filter: FilterWithLabel) => {
+      const apiParam = FILTER_KEY_TO_API_PARAM[filter.key] ?? filter.key;
+      updateUrlParams((params) => {
+        params.delete(`filter_${apiParam}`);
+      });
+    },
+  };
 
-      const currentParams = searchParams.toString();
-      const newParamsString = newParams.toString();
-      if (currentParams !== newParamsString) {
-        setSearchParams(newParams, { replace: true });
-      }
-    }
-  }, [result.filters?.filters]);
-
-  return result;
+  return {
+    ...hookResult,
+    searchProps,
+    filtersProps,
+  };
 }
