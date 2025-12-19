@@ -102,7 +102,9 @@ export default (
     </Route>
     <Route path={subRoutes.services}>
       <Route path={`${subRoutes.dashboard}/${urlParams.tenantId}`} Component={TenantDashboardPage}>
-        <Route path="" Component={TenantGeneralInformationPage} />
+        <Route path="" Component={TenantGeneralInformationPage}>
+          <Route path={subRoutes.delete} Component={DeleteTenantPage} />
+        </Route>
         <Route path={subRoutes.agents} Component={AgentListingPage}>
           <Route path={subRoutes.add} Component={AgentAddConfigurationPage} />
           <Route

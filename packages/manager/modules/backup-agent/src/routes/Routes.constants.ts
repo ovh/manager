@@ -36,7 +36,7 @@ export const urls = {
   editAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.configure}/${urlParams.agentId}`,
   downloadAgentBackup: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.download}`,
   listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
-  dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${subRoutes.delete}`,
+  dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.delete}`,
   listingBilling: `/${subRoutes.billing}`,
 } as const;
 
