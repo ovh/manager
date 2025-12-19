@@ -7,7 +7,6 @@ import {
   mockedOvhPrivateNetwork,
   mockedPrivateNetworks,
 } from '@/__mocks__/instance/constants';
-import { FormProvider, useForm } from 'react-hook-form';
 import { selectPrivateNetworks } from '../../view-models/networksViewModel';
 import {
   ButtonType,
@@ -15,55 +14,49 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { PropsWithChildren } from 'react';
-import {
-  TInstanceCreationForm,
-  instanceCreationSchema,
-} from '../../CreateInstance.schema';
+import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 
 const selectPrivateNetworksMock = vi.fn();
 
 const NETWORK_ID = mockedPrivateNetworks[0]?.value;
 
-export const NETWORK_NAME = 'fake-name';
-export const DEFAULT_VLAN_ID = 24;
-export const DEFAULT_CIDR = '10.1.0.0/16';
-
-export const TestCreateInstanceFormWrapper = ({
-  children,
-}: PropsWithChildren) => {
-  const form = useForm<TInstanceCreationForm>({
-    resolver: zodResolver(instanceCreationSchema),
-    defaultValues: {
-      networkId: NETWORK_ID,
-      newPrivateNetwork: {
-        name: NETWORK_NAME,
-        cidr: DEFAULT_CIDR,
-        vlanId: DEFAULT_VLAN_ID,
-        enableDhcp: true,
-      },
-    },
-    mode: 'onChange',
-  });
-
-  return <FormProvider {...form}>{children}</FormProvider>;
-};
+const NETWORK_NAME = 'fake-name';
+const DEFAULT_VLAN_ID = 24;
+const DEFAULT_CIDR = '10.1.0.0/16';
 
 vi.mock('../../view-models/networksViewModel');
 vi.mocked(selectPrivateNetworks).mockImplementation(selectPrivateNetworksMock);
 
+type TNetworkItem = { label: string; value: string };
+
+const setupTest = (
+  { networks }: { networks: TNetworkItem[] } = { networks: [] },
+) => {
+  selectPrivateNetworksMock.mockReturnValue({
+    networks,
+    ovhPrivateNetwork: mockedOvhPrivateNetwork,
+  });
+
+  renderWithMockedWrappers(
+    <TestCreateInstanceFormWrapper
+      defaultValues={{
+        networkId: NETWORK_ID,
+        newPrivateNetwork: {
+          name: NETWORK_NAME,
+          cidr: DEFAULT_CIDR,
+          vlanId: DEFAULT_VLAN_ID,
+          enableDhcp: true,
+        },
+      }}
+    >
+      <Network />
+    </TestCreateInstanceFormWrapper>,
+  );
+};
+
 describe('Considering Network component', () => {
   it('should not display neither the dropdown nor the create private network button when networks do not yet exists', () => {
-    selectPrivateNetworksMock.mockReturnValue({
-      networks: [],
-      ovhPrivateNetwork: mockedOvhPrivateNetwork,
-    });
-    renderWithMockedWrappers(
-      <TestCreateInstanceFormWrapper>
-        <Network />
-      </TestCreateInstanceFormWrapper>,
-    );
+    setupTest();
 
     expect(
       screen.queryByText(
@@ -76,15 +69,7 @@ describe('Considering Network component', () => {
   });
 
   it('should display creation form directly when networks do not yet exists', () => {
-    selectPrivateNetworksMock.mockReturnValue({
-      networks: [],
-      ovhPrivateNetwork: mockedOvhPrivateNetwork,
-    });
-    renderWithMockedWrappers(
-      <TestCreateInstanceFormWrapper>
-        <Network />
-      </TestCreateInstanceFormWrapper>,
-    );
+    setupTest();
 
     expect(
       screen.getByRole('form', {
@@ -97,15 +82,7 @@ describe('Considering Network component', () => {
   });
 
   it('should display dropdown and select the first existing network when it exists', async () => {
-    selectPrivateNetworksMock.mockReturnValue({
-      networks: mockedPrivateNetworks,
-      ovhPrivateNetwork: mockedOvhPrivateNetwork,
-    });
-    renderWithMockedWrappers(
-      <TestCreateInstanceFormWrapper>
-        <Network />
-      </TestCreateInstanceFormWrapper>,
-    );
+    setupTest({ networks: mockedPrivateNetworks });
 
     const defaultNetwork = mockedPrivateNetworks[0];
 
@@ -134,15 +111,7 @@ describe('Considering Network component', () => {
   });
 
   it('should display create new Private Network button when networks exists', () => {
-    selectPrivateNetworksMock.mockReturnValue({
-      networks: mockedPrivateNetworks,
-      ovhPrivateNetwork: mockedOvhPrivateNetwork,
-    });
-    renderWithMockedWrappers(
-      <TestCreateInstanceFormWrapper>
-        <Network />
-      </TestCreateInstanceFormWrapper>,
-    );
+    setupTest({ networks: mockedPrivateNetworks });
 
     expect(
       screen.getByText('creation:pci_instance_creation_network_add_new'),
@@ -150,15 +119,7 @@ describe('Considering Network component', () => {
   });
 
   it('should not display creation form until create button is clicked when networks exist', () => {
-    selectPrivateNetworksMock.mockReturnValue({
-      networks: mockedPrivateNetworks,
-      ovhPrivateNetwork: mockedOvhPrivateNetwork,
-    });
-    renderWithMockedWrappers(
-      <TestCreateInstanceFormWrapper>
-        <Network />
-      </TestCreateInstanceFormWrapper>,
-    );
+    setupTest({ networks: mockedPrivateNetworks });
 
     expect(
       screen.queryByRole('form', {
@@ -168,15 +129,7 @@ describe('Considering Network component', () => {
   });
 
   it('should display create new Private Network form when click on btn', async () => {
-    selectPrivateNetworksMock.mockReturnValue({
-      networks: mockedPrivateNetworks,
-      ovhPrivateNetwork: mockedOvhPrivateNetwork,
-    });
-    renderWithMockedWrappers(
-      <TestCreateInstanceFormWrapper>
-        <Network />
-      </TestCreateInstanceFormWrapper>,
-    );
+    setupTest({ networks: mockedPrivateNetworks });
 
     await act(async () => {
       await userEvent.click(
@@ -201,15 +154,7 @@ describe('Considering Network component', () => {
   });
 
   it('should display cancel button when form is opened and networks exist', async () => {
-    selectPrivateNetworksMock.mockReturnValue({
-      networks: mockedPrivateNetworks,
-      ovhPrivateNetwork: mockedOvhPrivateNetwork,
-    });
-    renderWithMockedWrappers(
-      <TestCreateInstanceFormWrapper>
-        <Network />
-      </TestCreateInstanceFormWrapper>,
-    );
+    setupTest({ networks: mockedPrivateNetworks });
 
     await act(async () => {
       await userEvent.click(
@@ -221,15 +166,7 @@ describe('Considering Network component', () => {
   });
 
   it('should close creation form when click on cancel', async () => {
-    selectPrivateNetworksMock.mockReturnValue({
-      networks: mockedPrivateNetworks,
-      ovhPrivateNetwork: mockedOvhPrivateNetwork,
-    });
-    renderWithMockedWrappers(
-      <TestCreateInstanceFormWrapper>
-        <Network />
-      </TestCreateInstanceFormWrapper>,
-    );
+    setupTest({ networks: mockedPrivateNetworks });
 
     await act(async () => {
       await userEvent.click(

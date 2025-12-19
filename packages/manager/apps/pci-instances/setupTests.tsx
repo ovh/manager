@@ -1,16 +1,36 @@
+import { ReactNode } from 'react';
 import { vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-      exists: () => true,
-      language: 'fr_FR',
-    },
-  }),
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const original: typeof import('react-i18next') = await importOriginal();
+
+  return {
+    ...original,
+    useTranslation: () => ({
+      t: (translationKey: string) => translationKey,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+        exists: () => true,
+        language: 'fr_FR',
+      },
+    }),
+    Trans: ({
+      i18nKey,
+      components,
+    }: {
+      i18nKey: string;
+      components: Record<string, ReactNode>;
+    }) => (
+      <>
+        <span>{i18nKey}</span>
+        {Object.entries(components).map(([key, node]) => (
+          <div key={key}>{node}</div>
+        ))}
+      </>
+    ),
+  };
+});
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useProjectUrl: () => '/foo/bar',

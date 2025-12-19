@@ -20,7 +20,7 @@ export default mergeConfig(
   createConfig({
     plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
     test: {
-      setupFiles: ['./setupTests.ts'],
+      setupFiles: ['./setupTests.tsx'],
       deps: {
         inline: INLINE_DEPS,
       },
