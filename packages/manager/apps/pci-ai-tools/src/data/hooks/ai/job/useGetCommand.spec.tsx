@@ -35,6 +35,7 @@ describe('useGetCommand', () => {
         mockedCommand,
         addJobProps,
         undefined,
+        expect.anything(),
       );
     });
   });
