@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,12 +12,13 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useBackupAgentList } from '@/data/hooks/agents/getAgents';
+import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { urlParams, urls } from '@/routes/Routes.constants';
 
 import { useAgentsListingColumnsHooks } from './_hooks/useAgentsListingColumns.hooks';
 
 export default function AgentsListingPage() {
-  const { tenantId } = useParams<{ tenantId: string }>();
+  const { tenantId } = useRequiredParams('tenantId');
   const { t } = useTranslation([
     BACKUP_AGENT_NAMESPACES.SERVICE_LISTING,
     BACKUP_AGENT_NAMESPACES.AGENT,
@@ -25,14 +26,14 @@ export default function AgentsListingPage() {
   ]);
   const navigate = useNavigate();
   const columns = useAgentsListingColumnsHooks();
-  const { flattenData, isLoading } = useBackupAgentList();
+  const { flattenData, isPending } = useBackupAgentList({ tenantId });
 
   const handleDownloadButton = () => {
-    navigate(urls.downloadAgentBackup.replace(urlParams.tenantId, tenantId ?? ''));
+    navigate(urls.downloadAgentBackup.replace(urlParams.tenantId, tenantId));
   };
 
   const handleAddConfiguration = () => {
-    navigate(urls.addAgentConfiguration.replace(urlParams.tenantId, tenantId ?? ''));
+    navigate(urls.addAgentConfiguration.replace(urlParams.tenantId, tenantId));
   };
 
   return (
@@ -58,7 +59,7 @@ export default function AgentsListingPage() {
             columns={columns}
             items={flattenData || []}
             totalItems={flattenData?.length || 0}
-            isLoading={isLoading}
+            isLoading={isPending}
           />
         )}
       </Suspense>
