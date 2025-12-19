@@ -13,6 +13,7 @@ type UseMultipleChartDataParams = {
   endDateTime?: number;
   selectedTimeOption: TimeRangeOption;
   refreshInterval: number;
+  metricToken: string;
 };
 
 export const useMultipleChartData = <TData>({
@@ -21,6 +22,7 @@ export const useMultipleChartData = <TData>({
   endDateTime,
   selectedTimeOption,
   refreshInterval,
+  metricToken,
 }: UseMultipleChartDataParams): ChartQueryResult<TData>[] => {
   const hasCharts = !!dashboard?.currentState?.length;
 
@@ -38,7 +40,7 @@ export const useMultipleChartData = <TData>({
           step,
           type: 'query_range',
         };
-        const query = getChartDataOptions<TData>(payload, refreshInterval);
+        const query = getChartDataOptions<TData>(payload, refreshInterval, metricToken);
 
         return {
           ...query,
