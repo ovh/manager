@@ -3490,79 +3490,16 @@
   resolved "https://registry.yarnpkg.com/@cucumber/tag-expressions/-/tag-expressions-6.1.0.tgz#cb7af908bdb43669b7574c606f71fa707196e962"
   integrity sha512-+3DwRumrCJG27AtzCIL37A/X+A/gSfxOPLg8pZaruh5SLumsTmpvilwroVWBT2fPzmno/tGXypeK5a7NHU4RzA==
 
-"@datatr-ux/ods-tailwind-config@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ods-tailwind-config/-/ods-tailwind-config-1.0.3.tgz#f4fe4cf803d9a1d5fbf2d5356b0cc58b0572f7a7"
-  integrity sha512-bQrlP+Qj1OC2oj/CmzqswG6D6j/RPvC21ZnRQrOuRLFo+CM+LhQi94EErf1abivJWeXMa2BZ/eID6s+iB4dPHw==
-  dependencies:
-    "@ovhcloud/ods-themes" "^18.4.1"
-
 "@datatr-ux/ovhcloud-types@2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-2.0.1.tgz#d53e6d97066ca5ee6fb31af9fc03658610db995b"
   integrity sha512-FIX94AXtvQRNWyXzGGcqVK1U+HeFirNqCv/zU46fWCLV8Wb9pIuI/Xes2ZlPCzBr/ri//CoN9rdIpFu9/o8w2A==
-
-"@datatr-ux/ovhcloud-types@^1.0.83":
-  version "1.0.84"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/ovhcloud-types/-/ovhcloud-types-1.0.84.tgz#b3afeaf7caffb887e492e56ee421f2c7dd4b1ec8"
-  integrity sha512-gnL+LtVakrmN4BDKt93zqhsclCWuFuIIIkojsjmG5DhCkIhdZ2AQIRltgLFanCRSa/1+iYXcJnyZ42B+loJTYA==
 
 "@datatr-ux/uxlib@1.0.0-alpha-34":
   version "1.0.0-alpha-34"
   resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-1.0.0-alpha-34.tgz#e8e58b30782f67d3b1550f40c04769f6b9c3a8ac"
   integrity sha512-Vgn83KLmgq/QkR32VDM8QQzmSxGgaCAI1LMESh87Qnmu62d5vE03VXIUinXKC/A+sSgRmNv0Eg6Gl1NK3NJPzA==
   dependencies:
-    "@radix-ui/react-accordion" "^1.2.2"
-    "@radix-ui/react-alert-dialog" "^1.1.4"
-    "@radix-ui/react-aspect-ratio" "^1.1.1"
-    "@radix-ui/react-avatar" "^1.1.2"
-    "@radix-ui/react-checkbox" "^1.1.3"
-    "@radix-ui/react-collapsible" "^1.1.2"
-    "@radix-ui/react-context-menu" "^2.2.4"
-    "@radix-ui/react-dialog" "^1.1.4"
-    "@radix-ui/react-dropdown-menu" "^2.1.4"
-    "@radix-ui/react-hover-card" "^1.1.4"
-    "@radix-ui/react-label" "^2.1.1"
-    "@radix-ui/react-menubar" "^1.1.4"
-    "@radix-ui/react-navigation-menu" "^1.2.3"
-    "@radix-ui/react-popover" "^1.1.4"
-    "@radix-ui/react-progress" "^1.1.1"
-    "@radix-ui/react-radio-group" "^1.2.2"
-    "@radix-ui/react-scroll-area" "^1.2.2"
-    "@radix-ui/react-select" "^2.1.4"
-    "@radix-ui/react-separator" "^1.1.1"
-    "@radix-ui/react-slider" "^1.2.2"
-    "@radix-ui/react-slot" "^1.1.1"
-    "@radix-ui/react-switch" "^1.1.2"
-    "@radix-ui/react-tabs" "^1.1.2"
-    "@radix-ui/react-toast" "^1.2.4"
-    "@radix-ui/react-toggle" "^1.1.1"
-    "@radix-ui/react-toggle-group" "^1.1.1"
-    "@radix-ui/react-tooltip" "^1.1.6"
-    class-variance-authority "^0.7.1"
-    clsx "^2.1.1"
-    cmdk "^1.0.0"
-    date-fns "^3.6.0"
-    embla-carousel-react "^8.5.1"
-    input-otp "^1.4.1"
-    lodash "^4.17.21"
-    lucide-react "^0.469.0"
-    next-themes "^0.4.4"
-    react-day-picker "^8.10.1"
-    react-resizable-panels "^2.1.7"
-    shiki "^3.2.1"
-    sonner "^1.7.1"
-    tailwind-merge "^2.6.0"
-    tailwindcss-animate "^1.0.7"
-    vaul "^1.1.2"
-
-"@datatr-ux/uxlib@^0.0.11-beta-8":
-  version "0.0.11-beta-8"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-0.0.11-beta-8.tgz#e47edc3465d6ea8add18e81717193d3d543223c8"
-  integrity sha512-yAIPXaEVXtv0uxj7Z8A8GMIOUrtzuC06gG1Uw9proXtjCGSh6yBpnjaNIRhK0LWORtBQFxs9yVwy/M8CjkJkKw==
-  dependencies:
-    "@ovhcloud/ods-theme-blue-jeans" "^17.2.2"
-    "@ovhcloud/ods-themes" "^18.4.1"
     "@radix-ui/react-accordion" "^1.2.2"
     "@radix-ui/react-alert-dialog" "^1.1.4"
     "@radix-ui/react-aspect-ratio" "^1.1.1"
@@ -7300,7 +7237,7 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "17.2.1"
 
-"@ovhcloud/ods-theme-blue-jeans@17.2.2", "@ovhcloud/ods-theme-blue-jeans@^17.2.2":
+"@ovhcloud/ods-theme-blue-jeans@17.2.2":
   version "17.2.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.2.tgz#12029b0e1c129f47a98ffd4f2002d7968182922a"
   integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
@@ -7321,11 +7258,6 @@
   version "19.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.1.tgz#c30976d911207f5309f2a3daaab04aed50d7a7ff"
   integrity sha512-zjtSoX2gaVMtpBVIGmg3HBNfjWeHRAHzTyTOxjeR47L+qo4iAj2pghL4riZpNvn9/YlVaIJT8GpO+Lw/IVAAnQ==
-
-"@ovhcloud/ods-themes@^18.4.1":
-  version "18.4.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
-  integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
 
 "@ovhcloud/ods-themes@^18.6.2":
   version "18.6.2"
@@ -12247,7 +12179,7 @@
   dependencies:
     tinyspy "^4.0.3"
 
-"@vitest/ui@2.1.9", "@vitest/ui@^2.1.9":
+"@vitest/ui@2.1.9":
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/@vitest/ui/-/ui-2.1.9.tgz#9e876cf3caf492dd6fddbd7f87b2d6bf7186a7a9"
   integrity sha512-izzd2zmnk8Nl5ECYkW27328RbQ1nKvkm6Bb5DAaz1Gk59EbLkiCMa6OLT0NoaAYTjOFS6N+SMYW1nh4/9ljPiw==
@@ -14616,7 +14548,7 @@ autoprefixer@10.4.14:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
-autoprefixer@^10.4.14, autoprefixer@^10.4.20:
+autoprefixer@^10.4.14:
   version "10.4.21"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.21.tgz#77189468e7a8ad1d9a37fbc08efc9f480cf0a95d"
   integrity sha512-O+A6LWV5LDHSJD3LjHYoNi4VLsj/Whi7k6zG12xTYaU4cQ8oxQGckXNX8cRHK5yOZ/ppVHe0ZBXGzSV9jXdVbQ==
@@ -24057,11 +23989,6 @@ lucide-react@^0.469.0:
   resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.469.0.tgz#f16936ca6521482fef754a7eabb310e6c68e1482"
   integrity sha512-28vvUnnKQ/dBwiCQtwJw7QauYnE7yd2Cyp4tTTJpvglX4EMpbflcdBgrgToX2j71B3YvugK/NH3BGUk+E/p/Fw==
 
-lucide-react@^0.544.0:
-  version "0.544.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.544.0.tgz#4719953c10fd53a64dd8343bb0ed16ec79f3eeef"
-  integrity sha512-t5tS44bqd825zAW45UQxpG2CvcC4urOwn2TrwSH8u+MjeE+1NnWl6QqeQ/6NdjMqdOygyiT9p3Ev0p1NJykxjw==
-
 lunr@^2.3.9:
   version "2.3.9"
   resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.9.tgz#18b123142832337dd6e964df1a5a7707b25d35e1"
@@ -25269,11 +25196,6 @@ netmask@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-2.0.2.tgz#8b01a07644065d536383835823bc52004ebac5e7"
   integrity sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==
-
-next-themes@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.2.1.tgz#0c9f128e847979daf6c67f70b38e6b6567856e45"
-  integrity sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==
 
 next-themes@^0.4.4:
   version "0.4.6"
