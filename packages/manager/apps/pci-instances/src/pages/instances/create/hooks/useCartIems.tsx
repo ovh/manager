@@ -47,7 +47,7 @@ export const useCartItems = (): TCartItems => {
     distributionImageVersionName,
     windowsImageLicensePrice,
     sshKeyId,
-    networkDetails,
+    networkName,
     name,
   } = instanceData;
 
@@ -123,7 +123,7 @@ export const useCartItems = (): TCartItems => {
       ]
     : [];
 
-  const network = networkDetails
+  const network = networkName
     ? [
         {
           name: t(
@@ -131,7 +131,7 @@ export const useCartItems = (): TCartItems => {
           ),
           description: (
             <Text preset="heading-6" className="text-[--ods-color-heading]">
-              {networkDetails.label}
+              {networkName}
             </Text>
           ),
         },

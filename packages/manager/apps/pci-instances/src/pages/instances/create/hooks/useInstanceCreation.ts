@@ -25,10 +25,7 @@ type TInstanceData = {
   localizationDetails: TSelectLocalizationDetails | null;
   flavorDetails: TSelectFlavorDetails | null;
   windowsImageLicensePrice: number | null;
-  networkDetails?: {
-    label: string;
-    value: string;
-  };
+  networkName?: string;
 };
 
 type TInstanceCreation = {
@@ -55,6 +52,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     sshKeyId,
     networkId,
     newSshPublicKey,
+    newPrivateNetwork,
   ] = useWatch({
     control,
     name: [
@@ -70,6 +68,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'sshKeyId',
       'networkId',
       'newSshPublicKey',
+      'newPrivateNetwork',
     ],
   });
 
@@ -106,7 +105,9 @@ export const useInstanceCreation = (): TInstanceCreation => {
     microRegion,
   ]);
 
-  const networkDetails = networks.find(({ value }) => networkId === value);
+  const networkName =
+    newPrivateNetwork?.name ??
+    networks.find(({ value }) => networkId === value)?.label;
 
   const handleSuccess = () => {
     // TODO: update with new success specs to come
@@ -163,7 +164,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     localizationDetails,
     flavorDetails,
     windowsImageLicensePrice,
-    networkDetails,
+    networkName,
     distributionImageVersionName:
       distributionImageVersion.distributionImageVersionName,
   };
