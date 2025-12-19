@@ -3,7 +3,7 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { act, screen } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {
@@ -43,7 +43,7 @@ describe('Secret page test suite', () => {
       'SecretBreadcrumbItem',
     ]);
 
-    const labelOnce = [
+    const labelOnce: string[] = [
       // tabs
       labels.secretManager.versions,
       // general information tile
@@ -56,10 +56,12 @@ describe('Secret page test suite', () => {
       labels.secretManager.cas_with_description,
       // settings tile values
       mockSecret.metadata.deactivateVersionAfter,
-      mockSecret.metadata.maxVersions,
+      mockSecret.metadata.maxVersions.toString(),
       labels.secretManager.activated,
       // actions tile
       labels.secretManager.actions,
+      // custom metadata tile
+      labels.secretManager.metadata,
     ];
 
     const labelTwice = [
@@ -71,8 +73,8 @@ describe('Secret page test suite', () => {
 
     // Check labels appearing once
     await Promise.all(
-      labelOnce.map(async (text) => {
-        await assertTextVisibility(text.toString());
+      labelOnce.map(async (label) => {
+        await waitFor(() => expect(screen.getByText(label)).toBeVisible());
       }),
     );
 

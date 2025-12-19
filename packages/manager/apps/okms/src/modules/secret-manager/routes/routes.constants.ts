@@ -9,6 +9,7 @@ const URIS = {
   create: 'create',
   createVersion: 'create-version',
   editMetadata: 'edit-metadata',
+  editCustomMetadata: 'edit-custom-metadata',
   order: 'order',
   value: 'value',
   delete: 'delete',
@@ -66,6 +67,9 @@ const URLS = {
 
   secretEditMetadataDrawer: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.editMetadata}`,
+
+  secretEditCustomMetadataDrawer: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.editCustomMetadata}`,
 
   secretDeleteSecret: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.delete}`,

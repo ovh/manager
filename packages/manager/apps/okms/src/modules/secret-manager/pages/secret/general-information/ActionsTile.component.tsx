@@ -9,11 +9,11 @@ import { Link } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
-type ActionsTileParams = {
+type ActionsTileProps = {
   secret: Secret;
 };
 
-export const ActionsTile = ({ secret }: ActionsTileParams) => {
+export const ActionsTile = ({ secret }: ActionsTileProps) => {
   const { okmsId } = useRequiredParams('okmsId');
   const { t } = useTranslation('secret-manager');
   const { trackClick } = useOkmsTracking();

@@ -10,7 +10,7 @@ import {
   getOdsButtonByLabel,
 } from '@/common/utils/tests/uiTestHelpers';
 
-import { FormFieldInput, KeyValuesEditor } from './KeyValuesEditor';
+import { KeyValuesEditor } from './KeyValuesEditor';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
 const labels = allLabels.secretManager;
@@ -37,27 +37,41 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
   };
 });
 
+type TestWrapperDefaultValues = {
+  data: string;
+};
+
 // Test wrapper component that provides form context
 type TestWrapperProps = {
-  defaultValues: FormFieldInput;
+  defaultValues: TestWrapperDefaultValues;
+  allowDeleteLastItem?: boolean;
   onSubmit?: () => void;
 };
 
-const TestWrapper = ({ defaultValues }: TestWrapperProps) => {
-  const methods = useForm<FormFieldInput>({ defaultValues });
+const TestWrapper = ({ defaultValues, allowDeleteLastItem = false }: TestWrapperProps) => {
+  const methods = useForm<TestWrapperDefaultValues>({ defaultValues });
   // eslint-disable-next-line react-hooks/incompatible-library
   const value = methods.watch('data');
 
   return (
     <FormProvider {...methods}>
-      <KeyValuesEditor name="data" control={methods.control} />
+      <KeyValuesEditor
+        name="data"
+        control={methods.control}
+        allowDeleteLastItem={allowDeleteLastItem}
+      />
       <p data-testid="value">{value}</p>
     </FormProvider>
   );
 };
 
-const renderTest = async (defaultValues: FormFieldInput) => {
-  return renderWithI18n(<TestWrapper defaultValues={defaultValues} />);
+const renderTest = async (
+  defaultValues: TestWrapperDefaultValues,
+  allowDeleteLastItem?: boolean,
+) => {
+  return renderWithI18n(
+    <TestWrapper defaultValues={defaultValues} allowDeleteLastItem={allowDeleteLastItem} />,
+  );
 };
 
 describe('KeyValuesEditor', () => {
@@ -198,13 +212,22 @@ describe('KeyValuesEditor', () => {
   });
 
   describe('isDeletable state', () => {
-    test('should disable delete button when only one item exists', async () => {
+    test('should disable delete button when only one item exists and allowDeleteLastItem is false', async () => {
       // Given
       await renderTest(mockDefaultValues.empty);
 
       // Then
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
       expect(deleteButton).toHaveAttribute('is-disabled', 'true');
+    });
+
+    test('should enable delete button when only one item exists and allowDeleteLastItem is true', async () => {
+      // Given
+      await renderTest(mockDefaultValues.empty, true);
+
+      // Then
+      const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
+      expect(deleteButton).not.toHaveAttribute('is-disabled', 'true');
     });
 
     test('should enable delete buttons when multiple items exist', async () => {
