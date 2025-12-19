@@ -39,7 +39,6 @@
   "packages/manager/apps/pci-ai-tools",
   "packages/manager/apps/pci-cold-archive",
   "packages/manager/apps/pci-databases-analytics",
-  "packages/manager/apps/pci-object-storage",
   "packages/manager/apps/pci-private-registry",
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/procedures",
