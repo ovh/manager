@@ -1,36 +1,42 @@
 import { describe, expect, it } from 'vitest';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddNetworkForm from '../network/AddNetworkForm.component';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  DEFAULT_CIDR,
-  DEFAULT_VLAN_ID,
-  NETWORK_NAME,
-  TestCreateInstanceFormWrapper,
-} from './Network.component.spec';
+import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
+import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
+
+const NETWORK_NAME = 'fake-name';
+const DEFAULT_VLAN_ID = 24;
+const DEFAULT_CIDR = '10.1.0.0/16';
 
 type TRenderNetworkProps = {
   takenVlanIds: number[];
 };
 
-const renderNetwork = (
+const setupTest = (
   { takenVlanIds }: TRenderNetworkProps = { takenVlanIds: [] },
 ) => {
-  return render(<AddNetworkForm takenVlanIds={takenVlanIds} />, {
-    wrapper: TestCreateInstanceFormWrapper,
-  });
+  renderWithMockedWrappers(
+    <TestCreateInstanceFormWrapper
+      defaultValues={{
+        networkId: 'fake-networkId',
+        newPrivateNetwork: {
+          name: NETWORK_NAME,
+          cidr: DEFAULT_CIDR,
+          vlanId: DEFAULT_VLAN_ID,
+          enableDhcp: true,
+        },
+      }}
+    >
+      <AddNetworkForm takenVlanIds={takenVlanIds} />
+    </TestCreateInstanceFormWrapper>,
+  );
 };
 
 describe('Considering AddNetwork component', () => {
   it('should display pn-region-ddmmyyyy format as private network name default value', () => {
-    renderNetwork();
+    setupTest();
 
     expect(
       screen.getByLabelText(
@@ -40,7 +46,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should invalidate private name field when it is empty', async () => {
-    renderNetwork();
+    setupTest();
 
     const input = screen.getByLabelText(
       'creation:pci_instance_creation_network_add_new_name_label_form',
@@ -57,7 +63,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should invalidate private name field when it is more than 255 characters', async () => {
-    renderNetwork();
+    setupTest();
 
     const input = screen.getByLabelText(
       'creation:pci_instance_creation_network_add_new_name_label_form',
@@ -73,7 +79,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should display default vlanId', () => {
-    renderNetwork();
+    setupTest();
 
     expect(
       screen.getByLabelText(
@@ -95,7 +101,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should display warning message when vlanId is already used', async () => {
-    renderNetwork({ takenVlanIds: [40] });
+    setupTest({ takenVlanIds: [40] });
 
     fireEvent.change(
       screen.getByLabelText(
@@ -114,7 +120,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should display warning message when vlanId = 0', async () => {
-    renderNetwork();
+    setupTest();
 
     fireEvent.change(
       screen.getByLabelText(
@@ -133,7 +139,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should invalidate vlanId field when value is greater than 4000', async () => {
-    renderNetwork();
+    setupTest();
 
     const input = screen.getByLabelText(
       'creation:pci_instance_creation_network_add_new_vlanID_label_form',
@@ -147,7 +153,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should display default cidr', () => {
-    renderNetwork();
+    setupTest();
 
     expect(
       screen.getByLabelText(
@@ -157,7 +163,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should invalidate cidr field when value is not formatted as a ip/mask', async () => {
-    renderNetwork();
+    setupTest();
 
     const input = screen.getByLabelText(
       'creation:pci_instance_creation_network_add_new_cidr_label_form',
@@ -176,7 +182,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should invalidate cidr field when it is empty', async () => {
-    renderNetwork();
+    setupTest();
 
     const input = screen.getByLabelText(
       'creation:pci_instance_creation_network_add_new_cidr_label_form',
@@ -190,7 +196,7 @@ describe('Considering AddNetwork component', () => {
   });
 
   it('should checked by default the dhcp field', () => {
-    renderNetwork();
+    setupTest();
 
     expect(
       screen.getByLabelText(
