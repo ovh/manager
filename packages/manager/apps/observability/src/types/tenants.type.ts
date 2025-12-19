@@ -23,6 +23,7 @@ export type TenantState = {
   title: string;
   description?: string;
   limits?: TMetricLimits;
+  endpoint?: string;
   infrastructure?: TenantInfrastructure;
 };
 
@@ -45,6 +46,7 @@ export type TenantListing = {
   name: string;
   resourceStatus: TenantResourceStatus;
   endpoint: string | undefined;
+  entryPoint: string | undefined;
   infrastructure: TenantInfrastructure | undefined;
   retention: string | undefined;
   numberOfSeries: number | undefined;
