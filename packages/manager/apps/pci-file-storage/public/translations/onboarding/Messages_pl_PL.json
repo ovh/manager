@@ -1,11 +1,11 @@
 {
-  "title_fallback": "Witamy w app-gen-test",
-  "description_part1": "Dowiedz się, jak najlepiej wykorzystać app-gen-test, ddd.",
+  "title_fallback": "Witamy w File Storage",
+  "description_part1": "Dowiedz się, jak najlepiej wykorzystać File Storage, ddd.",
   "description_part2": "Zapoznaj się z naszymi przewodnikami, aby szybko wystartować.",
   "guides": {
     "guide1": {
       "category": "Pierwsze kroki",
-      "title": "Rozpocznij pracę z app-gen-test",
+      "title": "Rozpocznij pracę z File Storage",
       "description": "Poznaj podstawy i przejdź do działania.",
       "cta": "Sprawdź"
     },

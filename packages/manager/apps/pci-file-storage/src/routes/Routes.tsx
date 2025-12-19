@@ -12,7 +12,7 @@ import { redirectionApp, subRoutes, urls } from './Routes.constants';
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 
-export default (
+export const Routes = (
   <>
     <Route path="/" element={<Navigate to={urls.onboarding} replace />} />
     <Route
@@ -34,6 +34,7 @@ export default (
           tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
         }}
       />
+      <Route path="" element={<Navigate to={subRoutes.onboarding} replace />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   </>

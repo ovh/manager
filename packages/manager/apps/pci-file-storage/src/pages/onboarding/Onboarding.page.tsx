@@ -5,15 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LinkCard, OnboardingLayout, Text } from '@ovh-ux/muk';
 
-import { useGuideLinks, useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
-import { OnboardingLinksType } from '@/types/Onboarding.type';
+import { GUIDES } from '@/pages/onboarding/Onboarding.guides.constants';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
-  const { productName, productCategory, brand, title, heroImage, tiles } = useOnboardingContent();
-  const links: OnboardingLinksType = useGuideLinks();
+  const productName = 'pci-file-storage';
+  const productCategory = 'Public Cloud';
+  const brand = 'OVHcloud';
 
-  // Build localized description paragraph.
   const description = useMemo(
     () => (
       <section className="text-center">
@@ -27,44 +26,23 @@ export default function OnboardingPage() {
         <Text>{t('onboarding:description_part2', { productName })}</Text>
       </section>
     ),
-    [t, productName, productCategory, brand],
-  );
-
-  // Build hero image object with fallback alt text.
-  const img = useMemo(
-    () =>
-      heroImage
-        ? {
-            src: heroImage.src,
-            alt: heroImage.alt ?? t('onboarding:hero_alt', { productName }),
-          }
-        : undefined,
-    [heroImage, t, productName],
-  );
-
-  // Filter tiles to include only those with matching guide links.
-  const validTiles = useMemo(
-    () => tiles.filter(({ linkKey }) => Boolean(links[linkKey])),
-    [tiles, links],
+    [t],
   );
 
   return (
     <OnboardingLayout
-      title={title ?? t('onboarding:title_fallback', { productName })}
-      img={img}
+      title={t('onboarding:title_fallback', { productName })}
+      img={undefined}
       description={description}
       orderButtonLabel={t(`${NAMESPACES.ACTIONS}:start`)}
       onOrderButtonClick={() => {}}
       moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
     >
-      {validTiles.map(({ id, key, linkKey }) => {
-        const href = links[linkKey];
-        if (!href) return null;
-
+      {GUIDES.map(({ key, link }) => {
         return (
           <LinkCard
-            key={id}
-            href={href}
+            key={key}
+            href={link}
             texts={{
               title: t(`onboarding:guides.${key}.title`, { productName }),
               description: t(`onboarding:guides.${key}.description`, {

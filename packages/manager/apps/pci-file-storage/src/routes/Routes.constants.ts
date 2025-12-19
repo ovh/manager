@@ -1,6 +1,6 @@
 import { appName } from '@/App.constants';
 
-const ROOT_URL = `/`;
+const ROOT_URL = `/pci/projects/:projectId/storages/files/`;
 
 export const subRoutes = {
   onboarding: 'onboarding' as const,

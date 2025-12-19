@@ -1,11 +1,11 @@
 {
-  "title_fallback": "Bienvenido/a a app-gen-test",
-  "description_part1": "Descubra cómo sacar el máximo partido de app-gen-test, ddd.",
+  "title_fallback": "Bienvenido/a a File Storage",
+  "description_part1": "Descubra cómo sacar el máximo partido de File Storage, ddd.",
   "description_part2": "Siga nuestras guías para empezar rápidamente.",
   "guides": {
     "guide1": {
       "category": "Discovery",
-      "title": "Empezar con app-gen-test",
+      "title": "Empezar con File Storage",
       "description": "Descubra los aspectos clave para empezar.",
       "cta": "Descubrir"
     },

@@ -1,6 +1,6 @@
 import React, { Suspense, useContext, useEffect } from 'react';
 
-import { createHashRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
