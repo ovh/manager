@@ -9,7 +9,6 @@ import {
   Outlet,
   useRouteError,
   useParams,
-  NavLink,
   useResolvedPath,
   useNavigate,
   useLocation,
@@ -20,22 +19,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  OsdsTabs,
-  OsdsIcon,
-  OsdsTabBar,
-  OsdsTabBarItem,
-  OsdsButton,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_SIZE,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { Tabs, TabList, Tab, Button, Icon, Spinner } from '@ovhcloud/ods-react';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import usePageTracking from '@/hooks/usePageTracking';
@@ -156,14 +140,14 @@ export default function Layout() {
       <Suspense
         fallback={
           <div className="flex justify-center" data-testid="loading-container">
-            <OsdsSpinner className="w-16 h-16 my-20" />
+            <Spinner className="w-16 h-16 my-20" />
           </div>
         }
       >
         <ShellRoutingSync />
         {metricsQuery.isLoading ? (
           <div className="flex justify-center">
-            <OsdsSpinner className="w-16 h-16 mt-[45vh]" />
+            <Spinner className="w-16 h-16 mt-[45vh]" />
           </div>
         ) : (
           data && (
@@ -172,27 +156,31 @@ export default function Layout() {
                 header={pathname !== ROOT ? headerProps : undefined}
                 tabs={
                   pathname !== ROOT && (
-                    <OsdsTabs panel={activePanel} className="-ml-2">
-                      <OsdsTabBar slot="top">
+                    <Tabs
+                      value={activePanel}
+                      className="-ml-2"
+                      onValueChange={({ value }) => {
+                        const target = tabsList.find(
+                          (tab) => tab.name === value,
+                        );
+                        if (target) {
+                          handleTabClick(target.name);
+                          navigate(target.to);
+                        }
+                      }}
+                    >
+                      <TabList>
                         {tabsList.map((tab) => (
-                          <NavLink
+                          <Tab
                             key={tab.name}
-                            to={tab.to}
-                            className="no-underline"
-                            onClick={() => {
-                              handleTabClick(tab.name);
-                            }}
+                            value={tab.name}
+                            className="m-0 cursor-pointer"
                           >
-                            <OsdsTabBarItem
-                              panel={tab.name}
-                              className="m-0 cursor-pointer"
-                            >
-                              {tab.title}
-                            </OsdsTabBarItem>
-                          </NavLink>
+                            {tab.title}
+                          </Tab>
                         ))}
-                      </OsdsTabBar>
-                    </OsdsTabs>
+                      </TabList>
+                    </Tabs>
                   )
                 }
                 breadcrumb={<Breadcrumb />}
@@ -205,26 +193,21 @@ export default function Layout() {
                       : 'customTabs:ml-[9rem]'
                   } customTabs:absolute`}
                 >
-                  <OsdsButton
-                    inline
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_BUTTON_SIZE.sm}
-                    variant={ODS_BUTTON_VARIANT.ghost}
-                    href={AI_ENDPOINTS_URL}
-                    target={OdsHTMLAnchorElementTarget._blank}
+                  <Button
+                    color="primary"
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      window.open(AI_ENDPOINTS_URL, '_blank', 'noopener')
+                    }
                   >
                     {AI_ENDPOINTS_LABEL}
-                    <span slot="end">
-                      <OsdsIcon
-                        aria-hidden="true"
-                        className="ml-1"
-                        name={ODS_ICON_NAME.EXTERNAL_LINK}
-                        hoverable
-                        size={ODS_ICON_SIZE.xxs}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                      />
-                    </span>
-                  </OsdsButton>
+                    <Icon
+                      aria-hidden="true"
+                      className="ml-1"
+                      name="external-link"
+                    />
+                  </Button>
                 </div>
               )}
               <div className="py-8 px-4 md:pb-9 md:pt-0 md:px-10">
