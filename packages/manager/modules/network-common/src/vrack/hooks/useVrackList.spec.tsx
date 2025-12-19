@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 import { vi } from 'vitest';
 
 import { vrackListMocks } from '../../__mocks__';
