@@ -66,6 +66,17 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
         })),
       },
     }),
+    NavLink: ({ children }: NavLinkProps) => (
+      <>
+        {typeof children === 'function'
+          ? children({
+              isActive: false,
+              isPending: false,
+              isTransitioning: false,
+            })
+          : children}
+      </>
+    ),
   };
 });
 
