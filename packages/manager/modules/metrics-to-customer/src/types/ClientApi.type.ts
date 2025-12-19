@@ -5,6 +5,10 @@ import type { ColumnSort, DatagridColumn } from '@ovh-ux/manager-react-component
 
 export type ApiVersion = 'v2' | 'v6';
 
+export type TAbortSignal = {
+  signal?: AbortSignal;
+};
+
 export type JsonRequestOptions = {
   params?: Record<string, unknown>;
   headers?: Record<string, string>;
@@ -13,13 +17,11 @@ export type JsonRequestOptions = {
 
 export type ObservabilityServiceParams = {
   resourceName: string;
-  signal?: AbortSignal;
-};
+} & TAbortSignal;
 
 export type ObservabilityMetricParams = {
   resourceName: string;
-  signal?: AbortSignal;
-};
+} & TAbortSignal;
 
 export type ObservabilityMetricKindsParams = {
   productType: string;
@@ -32,8 +34,7 @@ export type ObservabilityMetricKindParams = {
 export type ObservabilityDashboardParams = {
   resourceName: string;
   productType: string;
-  signal?: AbortSignal;
-};
+} & TAbortSignal;
 
 export type ObservabilityMetricDataParams = {
   type: 'query' | 'query_range';
