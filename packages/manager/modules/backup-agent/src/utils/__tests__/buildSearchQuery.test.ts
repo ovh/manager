@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { urls } from '@/routes/Routes.constants';
+import { urlParams, urls } from '@/routes/Routes.constants';
 
 import {
   TBuildDeleteAgentUrlParams,
@@ -67,7 +67,7 @@ describe('buildDeleteTenantUrl test suite', () => {
       desc: 'dashboard deleteUrl if tenantId is valid & origin=dashboard',
       tenantId: '42',
       origin: 'dashboard',
-      expectedUrl: `${urls.dashboardTenantDelete}?tenantId=42`,
+      expectedUrl: urls.dashboardTenantDelete.replace(urlParams.tenantId, '42'),
     },
   ];
 
