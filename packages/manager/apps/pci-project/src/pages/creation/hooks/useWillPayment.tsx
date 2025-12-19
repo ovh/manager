@@ -1,11 +1,12 @@
 import { useCallback, useState } from 'react';
 
-import { GlobalStateStatus } from '@/types/UWillPayment.type';
+import { GlobalStateStatus, TCreditData, TRedirectionData } from '@/types/UWillPayment.type';
 
 import { triggerSavePaymentMethodEvent, triggerSubmitChallengeEvent } from '../utils/paymentEvents';
 import {
   isPaymentMethodSaveRequired as checkIsPaymentMethodSaveRequired,
   isPaymentMethodSaved as checkIsPaymentMethodSaved,
+  isRedirectionNeeded as checkIsRedirectionNeeded,
   isSubmittingEnabled as checkIsSubmittingEnabled,
 } from '../utils/paymentLogic';
 
@@ -49,14 +50,17 @@ export const useWillPayment = () => {
     }
   }, [isChallengeRequired]);
 
-  const creditData = globalStateStatus?.data;
+  const globalStateData = globalStateStatus?.data;
   const needsSave = checkIsPaymentMethodSaveRequired(globalStateStatus);
   const isSaved = checkIsPaymentMethodSaved(globalStateStatus);
   const canSubmit = checkIsSubmittingEnabled(hasNoUserActionNeeded, isChallengeRequired, needsSave);
+  const isRedirectionNeeded = checkIsRedirectionNeeded(globalStateStatus);
 
   return {
-    isCreditPayment: creditData?.isCredit,
-    creditAmount: creditData?.creditAmount,
+    isRedirectionNeeded,
+    redirectionTarget: (globalStateData as TRedirectionData)?.url,
+    isCreditPayment: (globalStateData as TCreditData)?.isCredit,
+    creditAmount: (globalStateData as TCreditData)?.creditAmount,
     hasNoUserActionNeeded,
     isChallengeRequired,
     needsSave,

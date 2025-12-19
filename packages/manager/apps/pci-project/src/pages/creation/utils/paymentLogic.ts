@@ -34,3 +34,7 @@ export const isSubmittingEnabled = (
 ): boolean => {
   return (noUserActionNeeded && !isChallengeRequired) || saveRequired;
 };
+
+export const isRedirectionNeeded = (globalStateStatus: GlobalStateStatus | null): boolean => {
+  return globalStateStatus?.componentStatus === ComponentStatus.REDIRECTION_NEEDED;
+};
