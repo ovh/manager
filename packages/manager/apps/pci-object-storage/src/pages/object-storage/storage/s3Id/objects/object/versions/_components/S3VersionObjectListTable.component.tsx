@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@datatr-ux/uxlib';
 import { getColumns } from './S3ObjectVersionListColumns.component';
@@ -14,6 +13,7 @@ import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { useS3Data } from '../../../../S3.context';
 import RefreshButton from '@/components/refresh-button/RefreshButton.component';
+import { BulkActionButton } from '../../../_components/BulkActionButton.component';
 
 interface ObjectsListProps {
   objects: StorageObject[];
@@ -52,6 +52,7 @@ export default function S3ObjectVersionList({
 
   const columns: ColumnDef<StorageObject>[] = getColumns({
     isPending: pendingGetPresignUrl,
+    objects,
     onDownloadClicked: (object: StorageObject) => {
       setObjectName(object.key);
       return getPresignUrlS3({
@@ -84,13 +85,14 @@ export default function S3ObjectVersionList({
       pageSize={25}
       filtersDefinition={storagesFilters}
     >
-      <div className="w-full flex flex-col sm:flex-row gap-2 pb-4">
-        <div className="flex ml-auto gap-2">
-          <RefreshButton onClick={onRefreshClicked} isLoading={isLoading} />
-          <DataTable.SearchBar />
-          <DataTable.FiltersButton />
-        </div>
-      </div>
+      <DataTable.Header>
+        <DataTable.Action>
+          <BulkActionButton />
+        </DataTable.Action>
+        <RefreshButton onClick={onRefreshClicked} isLoading={isLoading} />
+        <DataTable.SearchBar />
+        <DataTable.FiltersButton />
+      </DataTable.Header>
       <DataTable.FiltersList />
       <DataTable.Table />
       <DataTable.Pagination />

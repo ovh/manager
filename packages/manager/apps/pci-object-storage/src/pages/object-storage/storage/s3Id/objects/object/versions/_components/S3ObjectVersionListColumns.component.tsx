@@ -5,6 +5,7 @@ import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import {
   Badge,
   Button,
+  Checkbox,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -17,23 +18,106 @@ import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
 import { isDeepArchive } from '@/lib/s3ObjectHelper';
 import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
+import {
+  useObjectSelection,
+  SelectedObject,
+} from '../../../_contexts/ObjectSelection.context';
 
 interface ObjectVersionListColumnsProps {
   onDownloadClicked: (object: StorageObject) => void;
   onDeleteClicked: (object: StorageObject) => void;
   isPending: boolean;
 }
+
+function SelectCheckboxCell({ object }: { object: StorageObject }) {
+  const { isSelected, setSelection } = useObjectSelection();
+  const { t } = useTranslation('pci-object-storage/storages/s3/objects');
+
+  return (
+    <Checkbox
+      checked={isSelected(object.key, object.versionId)}
+      onCheckedChange={(checked: boolean) =>
+        setSelection({
+          key: object.key,
+          versionId: object.versionId,
+          checked,
+        })
+      }
+      aria-label={t('selectObject', { name: object.key })}
+    />
+  );
+}
+
+function SelectAllHeader({ objects }: { objects: StorageObject[] }) {
+  const { t } = useTranslation('pci-object-storage/storages/s3/objects');
+  const {
+    selectAll,
+    clearSelection,
+    getSelectedObjects,
+  } = useObjectSelection();
+
+  const selectedObjects = getSelectedObjects();
+  const allSelected =
+    objects.length > 0 &&
+    objects.every((obj) =>
+      selectedObjects.some(
+        (s: SelectedObject) =>
+          s.key === obj.key && s.versionId === obj.versionId,
+      ),
+    );
+  const someSelected =
+    !allSelected &&
+    objects.some((obj) =>
+      selectedObjects.some(
+        (s: SelectedObject) =>
+          s.key === obj.key && s.versionId === obj.versionId,
+      ),
+    );
+
+  const getCheckedState = (): boolean | 'indeterminate' => {
+    if (allSelected) return true;
+    if (someSelected) return 'indeterminate';
+    return false;
+  };
+
+  const handleSelectAll = () => {
+    if (allSelected) {
+      clearSelection();
+    } else {
+      selectAll(
+        objects.map((obj) => ({ key: obj.key, versionId: obj.versionId })),
+      );
+    }
+  };
+
+  return (
+    <Checkbox
+      checked={getCheckedState()}
+      onCheckedChange={handleSelectAll}
+      aria-label={t('selectAll')}
+    />
+  );
+}
+
 export const getColumns = ({
   isPending,
   onDownloadClicked,
   onDeleteClicked,
-}: ObjectVersionListColumnsProps) => {
+  objects,
+}: ObjectVersionListColumnsProps & { objects: StorageObject[] }) => {
   const localeBytesConverter = useLocaleBytesConverter();
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
   );
   const columns: ColumnDef<StorageObject>[] = [
+    {
+      id: 'select',
+      header: () => <SelectAllHeader objects={objects} />,
+      cell: ({ row }) => <SelectCheckboxCell object={row.original} />,
+      enableSorting: false,
+      enableGlobalFilter: false,
+    },
     {
       id: 'name',
       header: ({ column }) => (

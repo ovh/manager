@@ -5,6 +5,7 @@ import { useS3Data } from '../../../S3.context';
 import DataTable from '@/components/data-table';
 import S3ObjectVersionList from './_components/S3VersionObjectListTable.component';
 import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVersions.hook';
+import { ObjectSelectionProvider } from '../../_contexts/ObjectSelection.context';
 
 const Versions = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
@@ -39,7 +40,7 @@ const Versions = () => {
   }
 
   return (
-    <>
+    <ObjectSelectionProvider>
       <h2>{t('versionsTitle')}</h2>
       <S3ObjectVersionList
         objects={objectVersionQuery.data}
@@ -47,7 +48,7 @@ const Versions = () => {
         isLoading={objectVersionQuery.isFetching}
       />
       <Outlet />
-    </>
+    </ObjectSelectionProvider>
   );
 };
 

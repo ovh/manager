@@ -2,6 +2,7 @@ import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import {
   Badge,
   Button,
+  Checkbox,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -17,6 +18,7 @@ import { cn } from '@/lib/utils';
 import { useS3ObjectActions } from '../_hooks/useS3ObjectActions.hook';
 import { DeepArchiveBadge } from './DeepArchiveBadge.component';
 import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
+import { useObjectSelection } from '../_contexts/ObjectSelection.context';
 
 interface S3ObjectFileRendererProps {
   object: StorageObject;
@@ -31,20 +33,33 @@ const S3ObjectFileRenderer = ({
     'pci-object-storage/storages/s3/object-class',
   );
   const localeBytesConverter = useLocaleBytesConverter();
+  const { isSelected, setSelection } = useObjectSelection();
 
   const { actions } = useS3ObjectActions({
     object,
     showVersion,
   });
 
+  const handleCheckboxChange = (checked: boolean) => {
+    setSelection({ key: object.key, versionId: object.versionId, checked });
+  };
+
   return (
     <>
       <div
         className={cn(
-          'py-2 px-3 grid grid-cols-[minmax(0,1fr)_auto_130px_auto] items-center gap-4 hover:bg-primary-50',
+          'py-2 px-3 grid grid-cols-[auto_minmax(0,1fr)_auto_130px_auto] items-center gap-4 hover:bg-primary-50',
           object.isLatest === false && 'bg-neutral-50 pl-6',
         )}
       >
+        {/* CHECKBOX */}
+        <div className="flex items-center">
+          <Checkbox
+            checked={isSelected(object.key, object.versionId)}
+            onCheckedChange={handleCheckboxChange}
+            aria-label={t('selectObject', { name: object.key })}
+          />
+        </div>
         {/* NAME */}
         <div className="flex items-center gap-2 min-w-0">
           <ConditionalLink
