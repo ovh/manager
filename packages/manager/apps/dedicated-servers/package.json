@@ -14,8 +14,8 @@
     "build": "tsc && vite build",
     "lint": "eslint ./src",
     "start": "tsc && vite",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test": "vitest --config vitest.config.mjs run",
+    "test:coverage": "vitest --config vitest.config.mjs run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.25.2",
