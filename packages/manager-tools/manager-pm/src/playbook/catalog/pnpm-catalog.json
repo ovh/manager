@@ -11,7 +11,6 @@
   "packages/manager/apps/pci-block-storage",
   "packages/manager/apps/public-cloud",
   "packages/manager/apps/pci-contacts",
-  "packages/manager/apps/pci-databases-analytics",
   "packages/manager/apps/pci-dataplatform",
   "packages/manager/apps/pci-gateway",
   "packages/manager/apps/pci-kubernetes",
