@@ -9,7 +9,7 @@ export function groupBy<
   T,
   Func extends (arg: T) => RetType
 >(array: T[], mapper: Func): Record<RetType, T[]> {
-  return array.reduce((result, item) => {
+  return array?.reduce((result, item) => {
     const groupKey = mapper(item);
     if (!result[groupKey]) {
       result[groupKey] = [];
