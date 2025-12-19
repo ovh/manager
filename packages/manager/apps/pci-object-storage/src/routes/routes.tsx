@@ -271,6 +271,15 @@ export default [
                       ),
                     ),
                   },
+                  {
+                    path: 'bulk-delete',
+                    id: 's3.objects.bulk-delete',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/bulk-delete/BulkDeleteObjects.modal'
+                      ),
+                    ),
+                  },
                 ],
               },
               {
@@ -334,6 +343,15 @@ export default [
                         ...lazyLoadRoute(() =>
                           import(
                             '@/pages/object-storage/storage/s3Id/objects/object/versions/delete/DeleteObjectVersion.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'bulk-delete',
+                        id: 'versions.bulk-delete',
+                        ...lazyLoadRoute(() =>
+                          import(
+                            '@/pages/object-storage/storage/s3Id/objects/bulk-delete/BulkDeleteObjects.modal'
                           ),
                         ),
                       },
