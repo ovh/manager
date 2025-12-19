@@ -22,6 +22,7 @@ export enum ComponentStatus {
   READY_TO_GO_FORWARD = 'READY_TO_GO_FORWARD', // PM and PSP are ready, the UI can go forward or wait user action
   PAYMENT_SUCCESS = 'PAYMENT_SUCCESS', // When a payment is a success
   PAYMENT_METHOD_SAVED = 'PAYMENT_METHOD_SAVED', // When a payment method is registered or updated
+  REDIRECTION_NEEDED = 'REDIRECTION_NEEDED', // The payment/registration workflow needs to redirect the user to an external URL
 }
 
 export type TCreditData = {
@@ -29,11 +30,15 @@ export type TCreditData = {
   creditAmount?: TProjectPrice;
 };
 
+export type TRedirectionData = {
+  url: string;
+};
+
 export type GlobalStateStatus = {
   componentStatus: ComponentStatus;
   paymentMethodStatus: PaymentMethodStatus;
   error?: string | null;
-  data?: TCreditData;
+  data?: TCreditData | TRedirectionData | null;
 };
 
 export type TWillPaymentConfig = {

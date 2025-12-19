@@ -81,6 +81,8 @@ export default function ProjectCreation() {
   } = useProjectCreation({ cart, projectItem, goToCreditConfirmation });
 
   const {
+    isRedirectionNeeded,
+    redirectionTarget,
     isCreditPayment,
     creditAmount,
     needsSave,
@@ -167,10 +169,15 @@ export default function ProjectCreation() {
    * Auto-proceed with project creation when payment method is saved
    */
   useEffect(() => {
+    if (isRedirectionNeeded && redirectionTarget && window.top) {
+      window.top.location.href = redirectionTarget;
+      return;
+    }
+
     if (isSaved) {
       void handleProjectCreation({});
     }
-  }, [isSaved, handleProjectCreation]);
+  }, [isSaved, handleProjectCreation, isRedirectionNeeded, redirectionTarget]);
 
   if (!cart || !projectItem) {
     return <FullPageSpinner />;
