@@ -2,26 +2,19 @@ import { useMemo, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
+import {
+  Badge,
+  Button,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  FormField,
+  Input,
+  Text,
+  Textarea,
+} from '@ovhcloud/ods-react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import {
-  OsdsFormField,
-  OsdsText,
-  OsdsInput,
-  OsdsTextarea,
-  OsdsDatepicker,
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-  OsdsButton,
-  OsdsChip,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_CHECKBOX_BUTTON_SIZE,
-  ODS_CHIP_SIZE,
-} from '@ovhcloud/ods-components';
+import { OsdsDatepicker } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { z } from 'zod';
 import { TRACKING } from '@/configuration/tracking.constants';
@@ -129,113 +122,87 @@ const CreateForm = ({
 
   return (
     <>
-      <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="mt-6"
-          slot="label"
-        >
+      <FormField>
+        <Text preset="paragraph" className="mt-6">
           {t('ai_endpoints_token_name')}
-        </OsdsText>
+        </Text>
         <Controller
           control={control}
           name="tokenName"
           render={({ field: { onChange, onBlur, value, ref } }) => (
-            <OsdsInput
-              ariaLabel="token-name-input"
+            <Input
+              aria-label="token-name-input"
               color={
                 errors.tokenName
                   ? ODS_THEME_COLOR_INTENT.error
                   : ODS_THEME_COLOR_INTENT.primary
               }
-              type={ODS_INPUT_TYPE.text}
               value={value || ''}
-              onOdsValueChange={(e) => {
-                const newVal = e.detail?.value;
+              onBlur={onBlur}
+              className="max-w-[23.125rem] mt-2"
+              onInput={(event) => {
+                const newVal = (event.target as HTMLInputElement).value;
                 onChange(newVal.slice(0, 60));
               }}
-              onBlur={onBlur}
               ref={ref}
-              className="max-w-[23.125rem] mt-2"
+              type="text"
             />
           )}
         />
         {errors.tokenName && tokenNameValue.trim() !== '' && (
-          <OsdsText color={ODS_THEME_COLOR_INTENT.error} slot="helper">
-            {errors.tokenName.message}
-          </OsdsText>
+          <Text preset="paragraph">{errors.tokenName.message}</Text>
         )}
-      </OsdsFormField>
+      </FormField>
 
-      <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="flex mt-6"
-          slot="label"
-        >
+      <FormField>
+        <Text preset="paragraph" className="flex mt-6">
           {t('ai_endpoints_token_description')}
-        </OsdsText>
-        <OsdsTextarea
-          ariaLabel={t('ai_endpoints_token_description')}
+        </Text>
+        <Textarea
+          aria-label={t('ai_endpoints_token_description')}
           rows={5}
           placeholder={t('ai_endpoints_token_description_placeholder')}
           className="mt-2"
           value={watch('description')}
-          onOdsValueChange={(e) => {
-            const newVal = e.detail?.value;
-            setValue('description', newVal);
+          onChange={(detail) => {
+            setValue('description', detail.target.value);
           }}
         />
-      </OsdsFormField>
+      </FormField>
 
-      <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="mt-6"
-          slot="label"
-        >
+      <FormField>
+        <Text preset="paragraph" className="mt-6">
           <span className="pr-4">{t('ai_endpoints_token_expires')}</span>
-          <OsdsChip
+          <Badge
             className="inline-flex max-w-fit justify-center"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_CHIP_SIZE.sm}
+            color="information"
           >
             {displayChipValue}
-          </OsdsChip>
-        </OsdsText>
-      </OsdsFormField>
+          </Badge>
+        </Text>
+      </FormField>
 
-      <OsdsFormField>
+      <FormField>
         <Controller
           control={control}
           name="isChecked"
-          render={({ field: { value, onChange } }) => (
-            <OsdsCheckbox
-              checked={value}
-              onOdsCheckedChange={(e) => onChange(e.detail.checked)}
+          render={({ field }) => (
+            <Checkbox
+              checked={field.value}
+              onCheckedChange={(detail) => field.onChange(detail.checked)}
               className="mt-2 -ml-2 max-w-fit"
             >
-              <OsdsCheckboxButton
-                size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                <span slot="end">
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    level={ODS_TEXT_LEVEL.body}
-                    size={ODS_TEXT_SIZE._400}
-                  >
-                    {t('ai_endpoints_token_expiration_date')}
-                  </OsdsText>
-                </span>
-              </OsdsCheckboxButton>
-            </OsdsCheckbox>
+              <CheckboxControl />
+              <CheckboxLabel>
+                <Text>{t('ai_endpoints_token_expiration_date')}</Text>
+              </CheckboxLabel>
+            </Checkbox>
           )}
         />
-      </OsdsFormField>
+      </FormField>
 
       {isChecked && (
-        <OsdsFormField>
+        <FormField>
           <Controller
             control={control}
             name="expirationDate"
@@ -255,13 +222,11 @@ const CreateForm = ({
               />
             )}
           />
-        </OsdsFormField>
+        </FormField>
       )}
 
-      <OsdsButton
+      <Button
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.flat}
         onClick={() => {
           handleSubmit(onSubmit)();
           trackClick(TRACKING.apikey.confirmClick);
@@ -269,7 +234,7 @@ const CreateForm = ({
         disabled={!isValid || undefined}
       >
         {t('ai_endpoints_token_create')}
-      </OsdsButton>
+      </Button>
     </>
   );
 };

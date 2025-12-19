@@ -2,27 +2,22 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsSearchBar,
-  OsdsText,
-  OsdsMessage,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  Icon,
+  Input,
+  INPUT_TYPE,
+  Message,
+  MESSAGE_COLOR,
+  MessageBody,
+  MessageIcon,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import {
   Datagrid,
   useDataGrid,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_MESSAGE_TYPE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { TRACKING } from '@/configuration/tracking.constants';
 import CreateModal from '@/components/Token/CreateModal';
@@ -157,85 +152,85 @@ export default function TokenPage() {
     startIndex,
     startIndex + pagination.pageSize,
   );
+  const applySearch = (value: string) => {
+    setSearchQuery(value);
+    setPagination({
+      pageIndex: 0,
+      pageSize: pagination.pageSize,
+    });
+  };
+
   return (
     <>
       {availability && (
         <>
-          <OsdsText
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._600}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className="flex mb-4"
+          <Text
+            preset={TEXT_PRESET.heading3}
+            className="flex mb-4 text-[var(--ods-theme-primary-color)]"
           >
             {t('ai_endpoints_token_management')}
-          </OsdsText>
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
+          </Text>
+          <Text
+            preset={TEXT_PRESET.paragraph}
             className="flex mb-12 max-w-[30rem]"
-            size={ODS_TEXT_SIZE._400}
           >
             {t('ai_endpoints_token_intro')}
-          </OsdsText>
+          </Text>
           {projectData?.planCode === 'project.discovery' && (
-            <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="mb-4">
-              <OsdsText
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('ai_endpoints_token_discovery_mod')}
-              </OsdsText>
-            </OsdsMessage>
+            <Message color={MESSAGE_COLOR.information} className="mb-4">
+              <MessageIcon name="circle-info" className="text-sm" />
+              <MessageBody>
+                <Text preset={TEXT_PRESET.paragraph} className="">
+                  {t('ai_endpoints_token_discovery_mod')}
+                </Text>
+              </MessageBody>
+            </Message>
           )}
           {!isAdmin && (
-            <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="max-w-fit">
-              <OsdsText
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._400}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                {t('ai_endpoints_non_admin_user')}
-              </OsdsText>
-            </OsdsMessage>
+            <Message
+              color={MESSAGE_COLOR.information}
+              className=" p-4 max-w-fit"
+            >
+              <MessageIcon name="circle-info" className="" />
+              <MessageBody>
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {t('ai_endpoints_non_admin_user')}
+                </Text>
+              </MessageBody>
+            </Message>
           )}
           <div className="sm:flex items-center justify-between mt-16">
             <div className="flex flex-row items-center justify-between w-full">
-              <OsdsButton
-                size={ODS_BUTTON_SIZE.sm}
-                variant={ODS_BUTTON_VARIANT.flat}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                className="xs:mb-0.5 sm:mb-0 mr-4"
-                onClick={() => isAdmin && openModal('create')}
+              <Button
+                className="xs:mb-0.5 sm:mb-0 mr-4 --ods-button-background-color-primary"
+                onClick={() => openModal('create')}
                 disabled={!isAdmin || undefined}
               >
-                <OsdsIcon
-                  name={ODS_ICON_NAME.PLUS}
-                  size={ODS_ICON_SIZE.xs}
-                  className="mr-2 bg-white"
-                />
+                <Icon name="plus" className="mr-1 " />
                 {t('ai_endpoints_token_creation')}
-              </OsdsButton>
-              <OsdsSearchBar
-                className="w-[20rem]"
-                value={searchQuery}
-                placeholder={t('ai_endpoints_token_search')}
-                onOdsSearchSubmit={({ detail }) => {
-                  setSearchQuery(detail.inputValue);
-                  setPagination({
-                    pageIndex: 0,
-                    pageSize: pagination.pageSize,
-                  });
+              </Button>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  applySearch(searchQuery);
                 }}
-                onOdsValueChange={({ detail }) => {
-                  if (detail.value === '') {
-                    setSearchQuery('');
-                    setPagination({
-                      pageIndex: 0,
-                      pageSize: pagination.pageSize,
-                    });
-                  }
-                }}
-              />
+              >
+                <Input
+                  className="border-blue-500"
+                  type={INPUT_TYPE.search}
+                  clearable
+                  value={searchQuery}
+                  placeholder={t('ai_endpoints_token_search')}
+                  onChange={(event) => {
+                    const { value } = event.target as HTMLInputElement;
+                    if (value === '') {
+                      applySearch('');
+                      return;
+                    }
+                    setSearchQuery(value);
+                  }}
+                />
+              </form>
             </div>
           </div>
 
