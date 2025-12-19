@@ -1,7 +1,9 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ID_LABEL, useColumns } from '../useColumns.hooks';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useColumns } from '../useColumns.hooks';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -11,8 +13,8 @@ vi.mock('react-i18next', () => ({
 
 const ACTION_COLUMN_LABEL = '';
 const COLUMNS_EXPECTED = [
-  ID_LABEL,
   'resource_name_label',
+  `${NAMESPACES.DASHBOARD}:reference`,
   'location_label',
   'region_label',
   'buckets_label',
