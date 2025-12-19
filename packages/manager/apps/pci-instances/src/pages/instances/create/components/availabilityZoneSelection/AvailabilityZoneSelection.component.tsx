@@ -33,12 +33,20 @@ export const AvailabilityZoneSelection = ({
   });
 
   const handleAvailabilityZoneChange = (zone: string | null) => {
-    if (zone) setValue('availabilityZone', zone);
+    if (zone) {
+      setValue('availabilityZone', zone);
+    }
+  };
+
+  const setDefaultAvailabilityZoneValue = () => {
+    if (availabilityZones[0])
+      setValue('availabilityZone', availabilityZones[0]);
   };
 
   const handleChoiceChange = (choice: RadioValueChangeDetail) => {
     if (choice.value) setChoice(choice.value as TChoice);
     if (choice.value === 'companyChoice') setValue('availabilityZone', null);
+    if (choice.value === 'userChoice') setDefaultAvailabilityZoneValue();
   };
 
   useEffect(() => {
@@ -113,9 +121,7 @@ export const AvailabilityZoneSelection = ({
       </RadioGroup>
       {choice === 'userChoice' && (
         <RadioGroup
-          {...(selectedAvailabilityZone && {
-            value: selectedAvailabilityZone,
-          })}
+          value={selectedAvailabilityZone ?? ''}
           onValueChange={({ value }) => handleAvailabilityZoneChange(value)}
         >
           <div className="flex gap-6 pt-6">
