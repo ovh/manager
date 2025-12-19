@@ -18,19 +18,9 @@ vi.mock('@ovh-ux/manager-common-translations', () => ({
 
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(() => ({
-    t: (key: string) => {
-      const translations: Record<string, string> = {
-        'tenants:listing.details_action': 'View Details',
-        '@ovh-ux/manager-common-translations/ACTIONS:modify': 'Edit',
-        'tenants:listing.access_grafana_action': 'Access Grafana',
-        'tenants:listing.copy_uid_action': 'Copy UID',
-        'tenants:listing.generate_access_token_action': 'Generate Access Token',
-        '@ovh-ux/manager-common-translations/ACTIONS:delete': 'Delete',
-      };
-      return translations[key] || key;
-    },
-  })),
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
 }));
 
 // Mock MUK components
@@ -124,12 +114,16 @@ describe('TenantsListActions', () => {
     it('should render action labels correctly', () => {
       render(<TenantsListActions tenantId={testTenantId} />);
 
-      expect(screen.getByText('View Details')).toBeInTheDocument();
-      expect(screen.getByText('Edit')).toBeInTheDocument();
-      expect(screen.getByText('Access Grafana')).toBeInTheDocument();
-      expect(screen.getByText('Copy UID')).toBeInTheDocument();
-      expect(screen.getByText('Generate Access Token')).toBeInTheDocument();
-      expect(screen.getByText('Delete')).toBeInTheDocument();
+      expect(screen.getByText(`tenants:listing.details_action`)).toBeInTheDocument();
+      expect(
+        screen.getByText(`@ovh-ux/manager-common-translations/ACTIONS:modify`),
+      ).toBeInTheDocument();
+      expect(screen.getByText(`tenants:listing.access_grafana_action`)).toBeInTheDocument();
+      expect(screen.getByText(`tenants:listing.copy_uid_action`)).toBeInTheDocument();
+      expect(screen.getByText(`tenants:listing.generate_access_token_action`)).toBeInTheDocument();
+      expect(
+        screen.getByText(`@ovh-ux/manager-common-translations/ACTIONS:delete`),
+      ).toBeInTheDocument();
     });
 
     it('should have correct container styling', () => {
@@ -200,7 +194,7 @@ describe('TenantsListActions', () => {
 
       const editButton = screen.getByTestId('action-item-2');
       expect(editButton).toBeInTheDocument();
-      expect(editButton).toHaveTextContent('Edit');
+      expect(editButton).toHaveTextContent(`@ovh-ux/manager-common-translations/ACTIONS:modify`);
     });
 
     it('should render grafana action without onClick handler', () => {
@@ -208,7 +202,7 @@ describe('TenantsListActions', () => {
 
       const grafanaButton = screen.getByTestId('action-item-3');
       expect(grafanaButton).toBeInTheDocument();
-      expect(grafanaButton).toHaveTextContent('Access Grafana');
+      expect(grafanaButton).toHaveTextContent(`tenants:listing.access_grafana_action`);
     });
 
     it('should render copy UID action without onClick handler', () => {
@@ -216,7 +210,7 @@ describe('TenantsListActions', () => {
 
       const copyButton = screen.getByTestId('action-item-4');
       expect(copyButton).toBeInTheDocument();
-      expect(copyButton).toHaveTextContent('Copy UID');
+      expect(copyButton).toHaveTextContent(`tenants:listing.copy_uid_action`);
     });
 
     it('should render generate token action without onClick handler', () => {
@@ -224,7 +218,7 @@ describe('TenantsListActions', () => {
 
       const tokenButton = screen.getByTestId('action-item-5');
       expect(tokenButton).toBeInTheDocument();
-      expect(tokenButton).toHaveTextContent('Generate Access Token');
+      expect(tokenButton).toHaveTextContent(`tenants:listing.generate_access_token_action`);
     });
 
     it('should render delete action without onClick handler', () => {
@@ -232,7 +226,7 @@ describe('TenantsListActions', () => {
 
       const deleteButton = screen.getByTestId('action-item-6');
       expect(deleteButton).toBeInTheDocument();
-      expect(deleteButton).toHaveTextContent('Delete');
+      expect(deleteButton).toHaveTextContent('@ovh-ux/manager-common-translations/ACTIONS:delete');
     });
   });
 
@@ -278,12 +272,16 @@ describe('TenantsListActions', () => {
       const actionItems = screen.getAllByTestId(/action-item-/);
       expect(actionItems).toHaveLength(6);
 
-      expect(actionItems[0]).toHaveTextContent('View Details');
-      expect(actionItems[1]).toHaveTextContent('Edit');
-      expect(actionItems[2]).toHaveTextContent('Access Grafana');
-      expect(actionItems[3]).toHaveTextContent('Copy UID');
-      expect(actionItems[4]).toHaveTextContent('Generate Access Token');
-      expect(actionItems[5]).toHaveTextContent('Delete');
+      expect(actionItems[0]).toHaveTextContent(`tenants:listing.details_action`);
+      expect(actionItems[1]).toHaveTextContent(
+        `@ovh-ux/manager-common-translations/ACTIONS:modify`,
+      );
+      expect(actionItems[2]).toHaveTextContent(`tenants:listing.access_grafana_action`);
+      expect(actionItems[3]).toHaveTextContent(`tenants:listing.copy_uid_action`);
+      expect(actionItems[4]).toHaveTextContent(`tenants:listing.generate_access_token_action`);
+      expect(actionItems[5]).toHaveTextContent(
+        `@ovh-ux/manager-common-translations/ACTIONS:delete`,
+      );
     });
   });
 
