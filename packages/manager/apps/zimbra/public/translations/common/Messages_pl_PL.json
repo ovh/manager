@@ -148,5 +148,6 @@
   "contactInformation_country": "Kraj",
   "redirections": "Przekierowania",
   "delete_redirections": "Usuń przekierowania",
-  "delete_email_accounts": "Usuń konta"
+  "delete_email_accounts": "Usuń konta",
+  "email_address": "Adres email"
 }
