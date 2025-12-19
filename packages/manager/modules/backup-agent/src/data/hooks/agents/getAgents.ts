@@ -7,25 +7,22 @@ import { getBackupAgentsRoute } from '@/utils/apiRoutes';
 
 import { useBackupServicesId } from '../backup/useBackupServicesId';
 
+type UseBackupAgentListParams = {
+  tenantId: string;
+  pageSize?: number;
+};
+
 export const BACKUP_AGENTS_LIST_QUERY_KEY = (tenantId: string) => [
   ...BACKUP_TENANT_DETAILS_QUERY_KEY(tenantId),
   'agents',
 ];
 
-export const useBackupAgentList = (
-  {
-    tenantId,
-    pageSize,
-  }: {
-    tenantId?: string;
-    pageSize: number;
-  } = { pageSize: 9999 },
-) => {
+export const useBackupAgentList = ({ tenantId, pageSize = 9999 }: UseBackupAgentListParams) => {
   const { backupServicesId } = useBackupServicesId();
 
   return useResourcesIcebergV2<Resource<Agent>>({
-    route: getBackupAgentsRoute(backupServicesId, tenantId!),
-    queryKey: BACKUP_AGENTS_LIST_QUERY_KEY(tenantId!),
+    route: getBackupAgentsRoute(backupServicesId, tenantId),
+    queryKey: BACKUP_AGENTS_LIST_QUERY_KEY(tenantId),
     enabled: !!backupServicesId && !!tenantId,
     pageSize,
   });

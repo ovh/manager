@@ -23,6 +23,7 @@ export type Resource<T extends { name: string }> = {
   iam: IamResource | null;
   id: string;
   resourceStatus: ResourceStatus;
+  status?: 'DISABLED' | 'ENABLED' | 'NOT_CONFIGURED' | 'NOT_INSTALLED'; // ex: for agent status
   targetSpec: Pick<T, 'name'>;
   updatedAt: string;
 };

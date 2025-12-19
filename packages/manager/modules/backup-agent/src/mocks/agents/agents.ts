@@ -7,7 +7,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-20T08:15:30.445Z',
     currentState: {
       id: 'a1b2c3d4-1234-4000-85b0-badd52fc7a01',
-      ip: ['192.168.1.10', '10.0.0.15'],
+      ips: ['192.168.1.10', '10.0.0.15'],
       name: 'prod-web-server-01',
       policy: '14d-windows',
       type: 'BAREMETAL',
@@ -35,7 +35,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-21T14:22:15.789Z',
     currentState: {
       id: 'b2c3d4e5-2345-4000-85b0-badd52fc7a02',
-      ip: ['172.16.0.25'],
+      ips: ['172.16.0.25'],
       name: 'staging-db-server',
       policy: 'weekly-backup-retention-90d',
       type: 'VPS',
@@ -63,7 +63,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-19T10:30:44.332Z',
     currentState: {
       id: 'c3d4e5f6-3456-4000-85b0-badd52fc7a03',
-      ip: ['10.10.1.50', '192.168.2.100'],
+      ips: ['10.10.1.50', '192.168.2.100'],
       name: 'on-prem-file-server',
       policy: 'hourly-backup-retention-7d',
       type: 'ON-PREMISE',
@@ -98,7 +98,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-18T16:45:12.678Z',
     currentState: {
       id: 'd4e5f6g7-4567-4000-85b0-badd52fc7a04',
-      ip: ['172.20.0.75'],
+      ips: ['172.20.0.75'],
       name: 'pci-compliance-server',
       policy: 'continuous-backup-retention-365d',
       type: 'PCI',
@@ -127,7 +127,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-17T09:12:28.991Z',
     currentState: {
       id: 'e5f6g7h8-5678-4000-85b0-badd52fc7a05',
-      ip: ['192.168.3.200', '10.1.1.30', '172.18.0.45'],
+      ips: ['192.168.3.200', '10.1.1.30', '172.18.0.45'],
       name: 'prod-app-cluster-node-1',
       policy: 'daily-backup-retention-60d',
       type: 'BAREMETAL',
@@ -156,7 +156,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-22T13:25:17.234Z',
     currentState: {
       id: 'f6g7h8i9-6789-4000-85b0-badd52fc7a06',
-      ip: ['10.5.5.10'],
+      ips: ['10.5.5.10'],
       name: 'dev-test-vm',
       policy: 'weekly-backup-retention-14d',
       type: 'VPS',
@@ -192,7 +192,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-16T11:40:55.567Z',
     currentState: {
       id: 'g7h8i9j0-7890-4000-85b0-badd52fc7a07',
-      ip: ['192.168.10.150'],
+      ips: ['192.168.10.150'],
       name: 'backup-storage-server',
       policy: 'monthly-backup-retention-12m',
       type: 'ON-PREMISE',
@@ -220,7 +220,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-15T08:20:33.123Z',
     currentState: {
       id: 'h8i9j0k1-8901-4000-85b0-badd52fc7a08',
-      ip: ['172.25.0.88', '10.2.2.40'],
+      ips: ['172.25.0.88', '10.2.2.40'],
       name: 'secure-payment-gateway',
       policy: 'realtime-backup-retention-2y',
       type: 'PCI',
@@ -250,7 +250,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-23T15:35:42.789Z',
     currentState: {
       id: 'i9j0k1l2-9012-4000-85b0-badd52fc7a09',
-      ip: ['10.0.10.120'],
+      ips: ['10.0.10.120'],
       name: 'monitoring-server',
       policy: 'daily-backup-retention-30d',
       type: 'VPS',
@@ -286,7 +286,7 @@ export const mockAgents: Resource<Agent>[] = [
     createdAt: '2025-09-14T12:10:25.345Z',
     currentState: {
       id: 'j0k1l2m3-0123-4000-85b0-badd52fc7a10',
-      ip: ['192.168.5.80', '172.30.0.15'],
+      ips: ['192.168.5.80', '172.30.0.15'],
       name: 'legacy-mainframe-adapter',
       policy: 'weekly-backup-retention-180d',
       type: 'BAREMETAL',
