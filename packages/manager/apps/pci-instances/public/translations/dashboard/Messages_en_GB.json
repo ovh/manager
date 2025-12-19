@@ -1,6 +1,7 @@
 {
   "pci_instances_dashboard_edit_name_error_message": "Unable to rename the instance. Please try again in a few moments",
   "pci_instances_dashboard_tab_info_title": "General information",
+  "pci_instances_dashboard_tab_observability_title": "Observability",
   "pci_instances_dashboard_tab_vnc_title": "VNC console",
   "pci_instances_dashboard_info_title": "Information",
   "pci_instances_dashboard_upgrade_model": "Modify model",

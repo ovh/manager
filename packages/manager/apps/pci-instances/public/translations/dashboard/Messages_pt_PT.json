@@ -1,6 +1,7 @@
 {
   "pci_instances_dashboard_edit_name_error_message": "A alteração do nome da instância falhou, agradecemos que tente novamente dentro de alguns instantes",
   "pci_instances_dashboard_tab_info_title": "Informações gerais",
+  "pci_instances_dashboard_tab_observability_title": "Observabilidade",
   "pci_instances_dashboard_tab_vnc_title": "Consola VNC",
   "pci_instances_dashboard_info_title": "Informações",
   "pci_instances_dashboard_upgrade_model": "Alterar o modelo",

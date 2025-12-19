@@ -9,10 +9,13 @@ import {
 import { instanceLegacyRedirectionLoader } from './loaders/instanceLegacy.loader';
 import { ComponentType } from 'react';
 import { TSectionType } from '@/types/instance/action/action.type';
+import { MetricsToCustomerRoutes } from '@ovh-ux/metrics-to-customer';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 const lazyRouteConfig = <ComponentProps extends {} = {}>(
-  importFn: () => Promise<{ default: ComponentType<ComponentProps> } & Omit<RouteObject, 'Component'>>,
+  importFn: () => Promise<
+    { default: ComponentType<ComponentProps> } & Omit<RouteObject, 'Component'>
+  >,
   componentParameters: ComponentProps = {} as ComponentProps,
 ): Pick<RouteObject, 'lazy'> => ({
   lazy: async () => {
@@ -109,7 +112,7 @@ const ACTIONS_SECTIONS = {
   activateMonthlyBilling: 'billing/monthly/activate',
   attachNetwork: 'network/private/attach',
   attachVolume: 'attach',
-} satisfies Record<string, TSectionType>;
+} as Record<string, TSectionType>;
 
 export const SECTIONS = {
   ...ACTIONS_SECTIONS,
@@ -118,6 +121,12 @@ export const SECTIONS = {
   instanceLegacy: ':instanceId',
   instance: `${REGION_PATH}/${INSTANCE_PATH}`,
   edit: ':instanceId/edit',
+} as typeof ACTIONS_SECTIONS & {
+  onboarding: string;
+  new: string;
+  instanceLegacy: string;
+  instance: string;
+  edit: string;
 };
 
 const getActionComponentBySection = (section: string) => {
@@ -132,9 +141,13 @@ const getActionComponentBySection = (section: string) => {
     case SECTIONS.reinstall:
       return import('@/pages/instances/action/ReinstallAction.page');
     case SECTIONS.attachNetwork:
-      return import('@/pages/instances/instance/dashboard/action/AttachNetwork.page');
+      return import(
+        '@/pages/instances/instance/dashboard/action/AttachNetwork.page'
+      );
     case SECTIONS.attachVolume:
-      return import('@/pages/instances/instance/dashboard/action/AttachVolume.page');
+      return import(
+        '@/pages/instances/instance/dashboard/action/AttachVolume.page'
+      );
     default:
       return import('@/pages/instances/action/BaseAction.page');
   }
@@ -144,7 +157,10 @@ const instanceActionsRoutes: RouteObject[] = Object.values(
   ACTIONS_SECTIONS,
 ).map<RouteObject>((section) => ({
   path: section,
-  ...lazyRouteConfig<{section: TSectionType}>(() => getActionComponentBySection(section), { section }),
+  ...lazyRouteConfig<{ section: TSectionType }>(
+    () => getActionComponentBySection(section),
+    { section },
+  ),
   loader: instanceLegacyRedirectionLoader,
 }));
 
@@ -200,6 +216,15 @@ export const getRoutes = (shell: ShellContextType): RouteObject[] => [
               import('@/pages/instances/instance/dashboard/Dashboard.page'),
             ),
             children: instanceActionsRoutes,
+          },
+          {
+            path: 'observability',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/instances/instance/observability/Observability.page'
+              ),
+            ),
+            children: MetricsToCustomerRoutes as RouteObject[],
           },
         ],
       },

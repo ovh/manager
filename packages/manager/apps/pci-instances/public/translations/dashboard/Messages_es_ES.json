@@ -1,6 +1,7 @@
 {
   "pci_instances_dashboard_edit_name_error_message": "No se ha podido renombrar la instancia, por favor, vuelva a intentarlo más tarde",
   "pci_instances_dashboard_tab_info_title": "Información general",
+  "pci_instances_dashboard_tab_observability_title": "Observabilidad",
   "pci_instances_dashboard_tab_vnc_title": "Consola VNC",
   "pci_instances_dashboard_info_title": "Información",
   "pci_instances_dashboard_upgrade_model": "Editar la plantilla",

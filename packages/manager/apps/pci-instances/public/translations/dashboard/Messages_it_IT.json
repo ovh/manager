@@ -1,6 +1,7 @@
 {
   "pci_instances_dashboard_edit_name_error_message": "La ridenominazione dell’istanza non è andata a buon fine, ti invitiamo a riprovare tra qualche istante",
   "pci_instances_dashboard_tab_info_title": "Informazioni generali",
+  "pci_instances_dashboard_tab_observability_title": "Osservabilità",
   "pci_instances_dashboard_tab_vnc_title": "Console VNC",
   "pci_instances_dashboard_info_title": "Informazioni",
   "pci_instances_dashboard_upgrade_model": "Modifica il modello",

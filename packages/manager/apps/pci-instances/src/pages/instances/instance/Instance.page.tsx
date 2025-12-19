@@ -32,23 +32,28 @@ const Instance: FC = () => {
     instanceId,
   });
 
-  const tabs = useMemo(
-    () => [
+  const tabs = useMemo(() => {
+    let instanceTabs = [
       {
         label: t('general_information'),
         to: dashboardPath.pathname,
       },
-      {
+    ];
+
+    instanceTabs.push({
+      label: t('dashboard:pci_instances_dashboard_tab_observability_title'),
+      to: `${dashboardPath.pathname}/observability`,
+    });
+
+    if (instance?.isEditEnabled) {
+      instanceTabs.push({
         label: t('dashboard:pci_instances_dashboard_tab_vnc_title'),
         to: vncPath.pathname,
-        disabled: !instance?.isVncEnabled,
-        tooltipText: !instance?.isVncEnabled
-          ? t('dashboard:pci_instances_dashboard_tab_vnc_disabled_text')
-          : null,
-      },
-    ],
-    [dashboardPath.pathname, vncPath.pathname, t, instance?.isVncEnabled],
-  );
+      });
+    }
+
+    return instanceTabs;
+  }, [dashboardPath.pathname, vncPath.pathname, t, instance?.isEditEnabled]);
 
   return (
     <InstanceWrapper>
@@ -69,7 +74,7 @@ const Instance: FC = () => {
               </div>
             </div>
           </header>
-          <div className="mt-8 mb-8">
+          <div className="my-8">
             <Notifications />
             <SearchNotifications />
           </div>

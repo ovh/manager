@@ -1,6 +1,7 @@
 {
   "pci_instances_dashboard_edit_name_error_message": "Zmiana nazwy instancji nie powiodła się. Spróbuj ponownie za kilka minut",
   "pci_instances_dashboard_tab_info_title": "Informacje ogólne",
+  "pci_instances_dashboard_tab_observability_title": "Obserwowalność",
   "pci_instances_dashboard_tab_vnc_title": "Konsola VNC",
   "pci_instances_dashboard_info_title": "Informacje",
   "pci_instances_dashboard_upgrade_model": "Zmień szablon",

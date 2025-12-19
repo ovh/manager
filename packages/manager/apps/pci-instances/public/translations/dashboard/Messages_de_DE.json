@@ -1,6 +1,7 @@
 {
   "pci_instances_dashboard_edit_name_error_message": "Umbenennen der Instanz fehlgeschlagen, bitte versuchen Sie es in einigen Augenblicken noch einmal",
   "pci_instances_dashboard_tab_info_title": "Allgemeine Informationen",
+  "pci_instances_dashboard_tab_observability_title": "Beobachtbarkeit",
   "pci_instances_dashboard_tab_vnc_title": "VNC-Konsole",
   "pci_instances_dashboard_info_title": "Informationen",
   "pci_instances_dashboard_upgrade_model": "Modell ändern",
