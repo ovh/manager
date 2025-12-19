@@ -13,6 +13,7 @@ import {
   DomainStateEnum,
 } from '@/domain/enum/domainState.enum';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { CellRow, ColumnMetaType } from '@ovh-ux/muk';
 
 interface DatagridColumnStatusProps {
   readonly state:
@@ -35,14 +36,13 @@ export default function DatagridColumnStatus({
   return (
     <>
       {domainState && (
-        <Badge
-          color={domainState.statusColor}
-          data-testid={`status-badge-${state}`}
-          className="w-max"
+        <CellRow
+          type={'badge' as ColumnMetaType}
+          badgeColor={domainState?.statusColor}
         >
           {domainState?.icon && <Icon name={domainState.icon} />}
           {t(domainState?.i18nKey)}
-        </Badge>
+        </CellRow>
       )}
     </>
   );
