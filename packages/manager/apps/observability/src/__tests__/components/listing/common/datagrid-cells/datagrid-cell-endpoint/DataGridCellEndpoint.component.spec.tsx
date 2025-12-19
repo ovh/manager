@@ -152,10 +152,7 @@ describe('DataGridCellEndpoint', () => {
       render(<DataGridCellEndpoint {...defaultProps} />, {
         wrapper: createWrapper(),
       });
-
-      const link = screen.getByTestId('tenant-cell-endpoint-link-infra-123');
-      expect(link).toBeInTheDocument();
-      expect(link).toHaveTextContent('https://example.com');
+      expect(screen.getByText('https://example.com')).toBeInTheDocument();
     });
 
     it('should render location details', () => {
@@ -175,22 +172,15 @@ describe('DataGridCellEndpoint', () => {
       expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('should have correct CSS classes', () => {
-      render(<DataGridCellEndpoint {...defaultProps} />, {
-        wrapper: createWrapper(),
-      });
-
-      const link = screen.getByTestId('tenant-cell-endpoint-link-infra-123');
-      expect(link).toHaveClass('leading-normal');
-    });
-
     it('should use correct text preset for location', () => {
       render(<DataGridCellEndpoint {...defaultProps} />, {
         wrapper: createWrapper(),
       });
 
-      const text = screen.getByTestId('text');
-      expect(text).toHaveAttribute('data-preset', 'small');
+      // Get all text elements and check that location has small preset
+      const textElements = screen.getAllByTestId('text');
+      const locationText = textElements.find((el) => el.textContent === 'Gravelines');
+      expect(locationText).toHaveAttribute('data-preset', 'small');
     });
   });
 
@@ -340,9 +330,11 @@ describe('DataGridCellEndpoint', () => {
         wrapper: createWrapper(),
       });
 
-      // Check that link and text are both present
-      expect(screen.getByTestId('tenant-cell-endpoint-link-infra-123')).toBeInTheDocument();
-      expect(screen.getByTestId('text')).toBeInTheDocument();
+      // Check that both endpoint and location text elements are present
+      const textElements = screen.getAllByTestId('text');
+      expect(textElements).toHaveLength(2);
+      expect(screen.getByText('https://example.com')).toBeInTheDocument();
+      expect(screen.getByText('Gravelines')).toBeInTheDocument();
     });
   });
 });

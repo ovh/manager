@@ -11,7 +11,7 @@
   },
   "listing": {
     "title": "Liste des tenants",
-    "endpoint_cell": "Endpoint",
+    "endpoint_cell": "URL du serveur Prometheus",
     "retention_cell": "Rétention",
     "active_metrics_cell": "Métriques actifs",
     "tags_cell": "Tags",
