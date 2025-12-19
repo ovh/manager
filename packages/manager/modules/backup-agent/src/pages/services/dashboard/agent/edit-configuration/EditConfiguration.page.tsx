@@ -80,7 +80,7 @@ export const EditConfigurationPage = () => {
       const { data } = await refetch();
       return {
         name: data?.currentState?.name ?? '',
-        ip: data?.currentState?.ip.join(', ') ?? '',
+        ip: data?.currentState?.ips.join(', ') ?? '',
         serviceName: data?.id ?? '',
         policy: data?.currentState?.policy ?? '',
       };
@@ -91,7 +91,7 @@ export const EditConfigurationPage = () => {
       vspcTenantId: tenantId,
       backupAgentId: agentId,
       displayName: data.name,
-      ips: resourceAgent!.currentState.ip,
+      ips: resourceAgent!.currentState.ips,
       policy: data.policy,
     });
 
