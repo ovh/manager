@@ -3,6 +3,7 @@ import {
   Badge,
   Button,
   ButtonProps,
+  Checkbox,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -24,6 +25,7 @@ import { useS3Data } from '../../S3.context';
 import storages from '@/types/Storages';
 import { cn } from '@/lib/utils';
 import { useLocaleBytesConverter } from '@/hooks/useLocaleByteConverter.hook';
+import { useObjectSelection } from '../_contexts/ObjectSelection.context';
 
 interface S3ObjectFileRendererProps {
   object: StorageObject;
@@ -39,6 +41,11 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
   const { download } = useDownload();
   const { s3 } = useS3Data();
   const toast = useToast();
+  const { isSelected, setSelection } = useObjectSelection();
+
+  const handleCheckboxChange = (checked: boolean) => {
+    setSelection({ key: object.key, versionId: object.versionId, checked });
+  };
   const {
     getPresignUrlS3,
     isPending: pendingGetPresignUrl,
@@ -104,9 +111,16 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
     <>
       <div
         className={cn(
-          'py-2 px-3 grid grid-cols-[minmax(0,1fr)_auto_130px_auto] items-center gap-4 hover:bg-primary-50',
+          'py-2 px-3 grid grid-cols-[auto_minmax(0,1fr)_auto_130px_auto] items-center gap-4 hover:bg-primary-50',
         )}
       >
+        <div className="flex items-center">
+          <Checkbox
+            checked={isSelected(object.key, object.versionId)}
+            onCheckedChange={handleCheckboxChange}
+            aria-label={t('selectObject', { name: object.key })}
+          />
+        </div>
         {/* NAME */}
         <div className="flex flex-row gap-2 items-center">
           <FileIcon fileName={object.key} className="w-4 h-4 flex-shrink-0" />
@@ -184,17 +198,16 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
               align="end"
             >
               {actions.map((a) => (
-                <>
+                <div key={a.id}>
                   {a.withSeparator && <DropdownMenuSeparator />}
                   <DropdownMenuItem
-                    key={a.id}
                     onClick={a.onClick}
                     variant={a.variant}
                     disabled={a.disabled}
                   >
                     {a.label}
                   </DropdownMenuItem>
-                </>
+                </div>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>

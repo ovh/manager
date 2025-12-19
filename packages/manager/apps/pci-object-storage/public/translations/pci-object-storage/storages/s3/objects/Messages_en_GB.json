@@ -60,5 +60,18 @@
   "restoreAvailableUntil": "Item will be available until",
   "seeVersionsSwitchLabel": "See versions",
   "searchPlaceholder": "Search...",
-  "changeStorageClassWarningInfrequentAccess": "Warning: The Infrequent Access and Cold Archive classes have a minimum retention period. <0>Learn more</0>"
+  "changeStorageClassWarningInfrequentAccess": "Important: The Infrequent Access and Cold Archive classes impose a minimum retention period. <0>Learn more</0>",
+  "selectObject": "Select the item {{name}}",
+  "selectAll": "Select all",
+  "bulkDeleteTitle": "Delete multiple items",
+  "bulkDeleteDescription_one": "You are about to delete {{count}} item.",
+  "bulkDeleteDescription_other": "You are about to delete {{count}} items.",
+  "bulkDeleteButtonConfirm_one": "Delete {{count}} item",
+  "bulkDeleteButtonConfirm_other": "Delete {{count}} items",
+  "bulkDeleteToastSuccessDescription_one": "{{count}} item deleted successfully.",
+  "bulkDeleteToastSuccessDescription_other": "{{count}} items deleted successfully.",
+  "bulkDeleteVersionsTitle": "Delete multiple versions",
+  "bulkDeleteVersionsDescription_one": "Do you want to permanently delete {{count}} version? This action cannot be undone.",
+  "bulkDeleteVersionsDescription_other": "Do you want to permanently delete {{count}} versions? This action cannot be undone.",
+  "bulkDeleteVersionsConfirmation": "Type {{confirmation}} to confirm"
 }

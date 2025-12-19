@@ -91,7 +91,9 @@ const DeleteSwiftObject = () => {
 
           <div className="flex flex-col gap-2 mt-2">
             <Label htmlFor="terminateInput" className="font-semibold">
-              {t('deleteObjectConfirmation')}
+              {t('deleteObjectConfirmation', {
+                confirmation: PERMANENT_DELETE_CONFIRMATION,
+              })}
             </Label>
             <Input
               id="terminateInput"
