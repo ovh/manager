@@ -1,8 +1,15 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { Button, BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
+import {
+  Button,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Icon,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
 
@@ -22,6 +29,7 @@ export default function TopBarCTA({
   const { ovhSubsidiary } = context.environment.getUser();
   const region = context.environment.getRegion();
   const orderUrl = getOrderURL('orderDomain', region, ovhSubsidiary);
+  const [openPopover, setOpenPopover] = useState<boolean>(false);
 
   const handleOrderClick = () => {
     window.open(orderUrl, '_blank', 'noopener,noreferrer');
@@ -32,27 +40,48 @@ export default function TopBarCTA({
       <Button size={BUTTON_SIZE.sm} onClick={handleOrderClick}>
         {t(`${NAMESPACES.ACTIONS}:order`)}
       </Button>
-      <div className="whitespace-nowrap [&_button]:h-10">
-        <ActionMenu
-          id="cta-domain"
-          label={t(`${NAMESPACES.ACTIONS}:export_as`, { format: 'CSV' })}
-          items={[
-            {
-              id: 1,
-              label: t('domain_table_export_csv'),
-              onClick: () => openDrawer([]),
-            },
-            {
-              id: 2,
-              label: t('domain_table_export_csv_selection', {
-                count: serviceNames.length,
-              }),
-              isDisabled: serviceNames.length === 0,
-              onClick: () => openDrawer(serviceNames),
-            },
-          ]}
-        />
-      </div>
+      <Popover position="bottom" open={openPopover}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setOpenPopover(true)}
+          >
+            {t(`${NAMESPACES.ACTIONS}:export_as`, { format: 'CSV' })}
+            <Icon name="chevron-down" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent
+          withArrow
+          className="pl-0 pr-0 w-min"
+          onClick={() => {
+            openDrawer([]);
+            setOpenPopover(false);
+          }}
+        >
+          <Button
+            size="sm"
+            variant="ghost"
+            className="menu-item-button w-full rounded-none justify-start whitespace-nowrap"
+          >
+            {t('domain_table_export_csv')}
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="menu-item-button w-full rounded-none justify-start whitespace-nowrap"
+            onClick={() => {
+              openDrawer(serviceNames);
+              setOpenPopover(false);
+            }}
+            disabled={serviceNames.length === 0}
+          >
+            {t('domain_table_export_csv_selection', {
+              count: serviceNames.length,
+            })}
+          </Button>
+        </PopoverContent>
+      </Popover>
       <Button
         size={BUTTON_SIZE.sm}
         variant={BUTTON_VARIANT.outline}
