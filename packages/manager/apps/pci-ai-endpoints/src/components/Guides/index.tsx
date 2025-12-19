@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Skeleton } from '@ovhcloud/ods-react';
 import { GuideButton } from '@ovh-ux/manager-react-components';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 
@@ -31,7 +31,7 @@ export default function EndpointsGuideHeader() {
   ];
 
   return (
-    <Suspense fallback={<OsdsSkeleton inline randomized />}>
+    <Suspense fallback={<Skeleton />}>
       <GuideButton items={endpointsGuides} />
     </Suspense>
   );
