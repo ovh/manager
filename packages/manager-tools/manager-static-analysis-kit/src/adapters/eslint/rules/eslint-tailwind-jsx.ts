@@ -17,5 +17,13 @@ export const tailwindJsxConfig: Linter.FlatConfig = {
   },
   rules: {
     ...tailwindcss.configs['flat/recommended'].rules,
+    'tailwindcss/classnames-order': 'warn',
+    'tailwindcss/enforces-negative-arbitrary-values': 'warn',
+    'tailwindcss/enforces-shorthand': 'warn',
+    'tailwindcss/migration-from-tailwind-2': 'warn',
+    'tailwindcss/no-arbitrary-value': 'warn',
+    'tailwindcss/no-custom-classname': 'warn',
+    'tailwindcss/no-contradicting-classname': 'warn',
+    'tailwindcss/no-unnecessary-arbitrary-value': 'warn',
   },
 };

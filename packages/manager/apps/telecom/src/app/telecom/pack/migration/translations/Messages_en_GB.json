@@ -152,7 +152,7 @@
   "telecom_pack_migration_promotion_description": "Special offer available until {{ endDate }}",
   "telecom_pack_migration_promotion_subscription_months_offered": "{{ duration }} months included",
   "telecom_pack_migration_promotion_installation_fees_offered": "Setup fees included",
-  "telecom_pack_migration_confirm_promotion": "The installation fees for your new subscription are waived (excluding modem rental, additional options, or transport fees).",
+  "telecom_pack_migration_confirm_promotion": "The setup fees for your new subscription are free (excluding modem rental, additional options, or transportation).",
   "telecom_pack_migration_confirm_first_year_promo": "Reduced price for the first year",
   "telecom_pack_migration_confirm_modem_rental": "Modem location",
   "telecom_pack_migration_confirm_provider_infra": "Additional fees",
@@ -214,8 +214,8 @@
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "This pack will be automatically deleted once your Fiber order is finalized.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "No modification or deletion action is necessary on your part: the switch to your Fiber access will be fully automated.",
   "telecom_pack_migration_phone_call_for_new_meeting": "Online appointment booking is not available. We will contact you via phone to arrange a convenient date and time slot for you.",
-  "telecom_pack_migration_promotion_subscription_months_reduces": "-50% for {{ duration }} months",
-  "telecom_pack_migration_confirm_promotion_table": "Promotion ({{ duration }} months)",
+  "telecom_pack_migration_promotion_subscription_months_reduces": "50% off for {{ duration }} months",
+  "telecom_pack_migration_confirm_promotion_table": "Special offer ({{ duration }} months)",
   "telecom_pack_migration_confirm_discount_displayed": " for {{ duration }} months, then",
-  "telecom_pack_migration_confirm_new_offer_price_discount": "Your new monthly subscription is: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">excl. VAT/month for {{duration}} months then</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">excl. VAT</span>, applicable from the delivery of your new access. You will be informed by email."
+  "telecom_pack_migration_confirm_new_offer_price_discount": "Your new monthly subscription is: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">ex. VAT/month for {{duration}} months, then</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">ex. VAT/month</span>, applicable as soon as your new access is delivered. You will receive confirmation via email."
 }

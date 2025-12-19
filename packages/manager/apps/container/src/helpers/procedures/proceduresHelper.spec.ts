@@ -1,12 +1,11 @@
 import { User } from '@ovh-ux/manager-config';
 import {
-    isIndiaProcedureToBeDone,
-    isUserConcernedWithIndiaProcedure,
+  isIndiaProcedureToBeDone,
+  isUserConcernedWithIndiaProcedure,
 } from '@/helpers/procedures/proceduresHelper';
-import { Procedure } from '@/types/procedure';
+import { Procedure, ProcedureStatus } from '@/types/procedure';
 
 describe('proceduresHelpers', () => {
-
   describe('isUserConcernedWithIndiaProcedure', () => {
     it('should consider user not concerned by India procedure if their kyc is validated', () => {
       const user: Partial<User> = { kycValidated: true };
@@ -20,18 +19,20 @@ describe('proceduresHelpers', () => {
   });
 
   describe('isIndiaProcedureToBeDone', () => {
-    it('should consider India procedure to be done if its status is \'required\'', () => {
-      const procedure: Partial<Procedure> = { status: 'required' };
+    it("should consider India procedure to be done if its status is 'required'", () => {
+      const procedure: Partial<Procedure> = {
+        status: ProcedureStatus.Required,
+      };
       expect(isIndiaProcedureToBeDone(procedure as Procedure)).toEqual(true);
     });
-    
-    it('should consider India procedure to be done if its status is \'open\'', () => {
-      const procedure: Partial<Procedure> = { status: 'open' };
+
+    it("should consider India procedure to be done if its status is 'open'", () => {
+      const procedure: Partial<Procedure> = { status: ProcedureStatus.Open };
       expect(isIndiaProcedureToBeDone(procedure as Procedure)).toEqual(false);
     });
-      
-    it('should consider India procedure to be done if its status is \'ok\'', () => {
-      const procedure: Partial<Procedure> = { status: 'ok' };
+
+    it("should consider India procedure to be done if its status is 'ok'", () => {
+      const procedure: Partial<Procedure> = { status: ProcedureStatus.Ok };
       expect(isIndiaProcedureToBeDone(procedure as Procedure)).toEqual(false);
     });
   });

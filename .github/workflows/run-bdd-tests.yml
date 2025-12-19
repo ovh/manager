@@ -1,10 +1,24 @@
 name: Run tests
-on: [push]
+on: 
+  push:
+    branches-ignore: [master]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      # choose with pkgs and storage you want to clean
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: true
+          android: false
+          dotnet: false
+          haskell: false
+          large-packages: false
+          docker-images: false
+          swap-storage: true
+
       - name: Checkout latest code
         uses: actions/checkout@v3
         with:

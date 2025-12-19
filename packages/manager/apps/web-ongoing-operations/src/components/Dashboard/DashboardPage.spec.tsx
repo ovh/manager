@@ -1,6 +1,6 @@
 import '@/setupTests';
 import { vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { wrapper } from '@/utils/test.provider';
@@ -37,7 +37,7 @@ describe('Datagrid template', () => {
       data: serviceInfo,
     });
 
-    const { getByTestId } = render(
+    render(
       <DashboardPage
         searchableColumnID={ParentEnum.DOMAIN}
         parent={ParentEnum.DOMAIN}
@@ -48,7 +48,7 @@ describe('Datagrid template', () => {
     );
 
     await waitFor(() => {
-      expect(getByTestId('datagrid')).toBeInTheDocument();
+      expect(screen.getByTestId('datagrid')).toBeInTheDocument();
     });
   });
 });

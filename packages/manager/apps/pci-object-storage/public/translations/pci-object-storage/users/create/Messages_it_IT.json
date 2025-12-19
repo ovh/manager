@@ -1,0 +1,19 @@
+{
+  "addUserTitle": "Creare un utente",
+  "userNameLabel": "Descrizione dell'utente",
+  "addUserButtonCancel": "Annullare",
+  "addUserButtonConfirm": "Creare",
+  "formAddUserButtonClose": "Chiudere",
+  "addUserToastErrorTitle": "Si è verificato un errore",
+  "addUserToastSuccessTitle": "Riuscito",
+  "addUserToastSuccessDescription": "L'utente {{ name }} è stato creato correttamente.",
+  "newUserCreationInProgress": "Creazione dell’utente in corso...",
+  "newUserInformationTitle": "Informazioni dell'utente",
+  "downloadUserButton": "Scaricare",
+  "newUserInformationLabel": "Trova qui sotto le informazioni di identificazione Object Storage per l'utente {{ name }}.",
+  "newUserUsernameLabel": "Il tuo nome utente:",
+  "newUserDescriptionLabel": "La tua descrizione:",
+  "newUserAccessKeyLabel": "La tua chiave di accesso:",
+  "newUserSecretKeyLabel": "La tua chiave segreta:",
+  "passwordCopy": "Copiato!"
+}

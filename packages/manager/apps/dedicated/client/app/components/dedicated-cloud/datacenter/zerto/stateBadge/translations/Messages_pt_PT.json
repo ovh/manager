@@ -1,11 +1,11 @@
 {
-  "dedicatedCloud_zerto_site_status_vpn_creating": "Configuração em curso ...",
-  "dedicatedCloud_zerto_site_status_vpn_deleting": "Desativação em curso ...",
-  "dedicatedCloud_zerto_site_status_vpn_delivered": "Configuração implantada",
-  "dedicatedCloud_zerto_site_status_vpn_error": "Erro detectado",
-  "dedicatedCloud_zerto_site_status_vpn_toCreate": "Configuração em curso ...",
-  "dedicatedCloud_zerto_site_status_vpn_toDelete": "Desativação em curso ...",
-  "dedicatedCloud_zerto_site_status_vpn_toUpdate": "Atualização em curso ...",
+  "dedicatedCloud_zerto_site_status_vpn_creating": "Configuração em curso...",
+  "dedicatedCloud_zerto_site_status_vpn_deleting": "Desativação em curso...",
+  "dedicatedCloud_zerto_site_status_vpn_delivered": "Configuração implementada",
+  "dedicatedCloud_zerto_site_status_vpn_error": "Erro detetado",
+  "dedicatedCloud_zerto_site_status_vpn_toCreate": "Configuração em curso...",
+  "dedicatedCloud_zerto_site_status_vpn_toDelete": "Desativação em curso...",
+  "dedicatedCloud_zerto_site_status_vpn_toUpdate": "Atualização em curso...",
   "dedicatedCloud_zerto_site_status_vpn_unknown": "Desconhecido",
-  "dedicatedCloud_zerto_site_status_vpn_updating": "Atualização em curso ..."
+  "dedicatedCloud_zerto_site_status_vpn_updating": "Atualização em curso..."
 }

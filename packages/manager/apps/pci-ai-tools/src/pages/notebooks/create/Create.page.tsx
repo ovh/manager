@@ -9,14 +9,20 @@ import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useGetSshkey } from '@/data/hooks/sshkey/useGetSshkey.hook';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { useGetQuantumSuggestions } from '@/data/hooks/ai/notebook/useGetQuantumSuggestions.hook';
 
 const Notebook = () => {
   const { t } = useTranslation('ai-tools/notebooks/create');
   const { projectId } = useParams();
   const { isQuantum } = useQuantum();
-  const suggestionsQuery = useGetSuggestions(projectId, {
-    refetchOnWindowFocus: false,
-  });
+
+  const suggestionsQuery = isQuantum
+    ? useGetQuantumSuggestions(projectId, 'emulator', {
+        refetchOnWindowFocus: false,
+      })
+    : useGetSuggestions(projectId, {
+        refetchOnWindowFocus: false,
+      });
 
   const regionsQuery = useGetRegions(projectId, {
     refetchOnWindowFocus: false,

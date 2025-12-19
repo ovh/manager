@@ -1,8 +1,10 @@
 {
   "billing_resiliation_title": "Résilier votre engagement",
+  "billing_resiliation_title_us": "Résilier votre engagement",
   "billing_resiliation_service_name": "Nom du service",
   "billing_resiliation_choice": "Souhaitez vous :",
   "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Supprimer votre engagement et conserver votre service en passant en sans engagement.",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE_us": "Supprimer votre engagement et conserver votre service en passant en sans engagement.",
   "billing_resiliation_choice_CANCEL_SERVICE": "Supprimer votre engagement et résilier votre service à la date d'échéance.",
   "billing_resiliation_commitment_end_date": "Fin d'engagement prévue le :",
   "billing_resiliation_details_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE": "Au-delà de cette date vous conserverez votre service {{serviceName}} actif. Vous ne bénéficierez plus de la remise liée à l'engagement. Vous ne serez plus engagés et vous pourrez supprimer votre service à tout moment.",

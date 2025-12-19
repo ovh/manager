@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.8.0...@ovh-ux/manager-log-to-customer@2.8.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-log-to-customer
+
+
+
+
+
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.7.1...@ovh-ux/manager-log-to-customer@2.8.0) (2025-11-12)
+
+
+### Features
+
+* **ldp:** add spinner on angular module ([a6c5297](https://github.com/ovh/manager/commit/a6c5297204635f22f43ae1304ac9252c19e21f1a)), closes [#MAOBS-107](https://github.com/ovh/manager/issues/MAOBS-107)
+
+
+
+
+
 ## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-log-to-customer@2.7.0...@ovh-ux/manager-log-to-customer@2.7.1) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-log-to-customer

@@ -7,25 +7,35 @@ import {
   CheckboxControl,
   ICON_NAME,
   Icon,
+  TABLE_SIZE,
 } from '@ovhcloud/ods-react';
 
 import { Button } from '@/components/button/Button.component';
 import type { ExpandedProps } from '@/components/datagrid/Datagrid.props';
 
-export const getExpandable = <T,>(expandable: ExpandedProps) => ({
+const ROW_SIZE = 30;
+
+const SIZE_TO_BUTTON_SIZE: Record<TABLE_SIZE, BUTTON_SIZE> = {
+  [TABLE_SIZE.sm]: BUTTON_SIZE.xs,
+  [TABLE_SIZE.md]: BUTTON_SIZE.sm,
+  [TABLE_SIZE.lg]: BUTTON_SIZE.md,
+};
+
+export const getExpandable = <T,>(expandable: ExpandedProps<T>, size: TABLE_SIZE) => ({
   cell: ({ row }: { row: Row<T> }) => {
+    const ButtonSize = SIZE_TO_BUTTON_SIZE[size] ?? BUTTON_SIZE.md;
     return row.getCanExpand() ? (
       <div
-        className="text-center"
         style={{
           ...(expandable && { paddingLeft: `${row.depth * 2}rem` }),
         }}
       >
         {expandable && row.depth ? null : (
           <Button
+            className="m-0 p-0"
             onClick={row.getToggleExpandedHandler()}
             variant={BUTTON_VARIANT.ghost}
-            size={BUTTON_SIZE.xs}
+            size={ButtonSize}
           >
             <Icon name={row.getIsExpanded() ? ICON_NAME.chevronDown : ICON_NAME.chevronRight} />
           </Button>
@@ -36,7 +46,8 @@ export const getExpandable = <T,>(expandable: ExpandedProps) => ({
   enableHiding: false,
   enableResizing: true,
   id: 'expander',
-  maxSize: 20,
+  maxSize: ROW_SIZE,
+  minSize: ROW_SIZE,
 });
 
 export const getRowSelection = <T,>() => ({
@@ -64,5 +75,6 @@ export const getRowSelection = <T,>() => ({
     </Checkbox>
   ),
   id: 'select',
-  maxSize: 20,
+  maxSize: ROW_SIZE,
+  minSize: ROW_SIZE,
 });

@@ -1,0 +1,15 @@
+{
+  "error_fetching_data": "Ein Fehler ist beim Laden der Daten aufgetreten",
+  "okms_order_blocked": "Eine OKMS-Domain wird bereits erstellt. Sie können eine neue OKMS-Domain aktivieren, wenn Ihre erste Anfrage bearbeitet wurde.",
+  "okms_order_expired": "Die Aktivierung der Region dauert länger als erwartet. Bitte versuchen Sie es in ein paar Minuten erneut.",
+  "okms_order_pending": "Ihre OKMS-Domain wird erstellt. Sie werden benachrichtigt, wenn sie bereit ist.",
+  "okms_order_success": "Ihre OKMS-Domain {{ okmsId }} ist bereit. Sie können sie jetzt verwenden.",
+  "region_1_az_description": "Resiliente und kostengünstige Bereitstellung in 1 Availability Zone.",
+  "region_3_az_description": "Bereitstellung mit hoher Resilienz/hoher Verfügbarkeit für Ihre kritischen Anwendungen in 3 Availability Zones",
+  "region_continent_AFRICA": "Afrika",
+  "region_continent_ASIA": "Asiatisch-pazifischer Raum",
+  "region_continent_EUROPE": "Europa",
+  "region_continent_NORTH_AMERICA": "Nordamerika",
+  "region_continent_OTHERS": "Andere Regionen",
+  "region_local_zone_description": "Bereitstellung Ihrer Anwendungen möglichst nahe an Ihren Usern für niedrige Latenz und die Datenresidenz."
+}

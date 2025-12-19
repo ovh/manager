@@ -33,5 +33,12 @@
   "netapp_volumes_dashboard_acl": "Contrôle d'accès (ACL)",
   "netapp_volumes_dashboard_snapshots": "Snapshots",
   "netapp_volumes_dashboard_volume_pattern": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points et un maximum de 256 caractères.",
-  "netapp_volumes_dashboard_mount_path_not_configurated": "Paramètres réseaux non configurés"
+  "netapp_volumes_dashboard_mount_path_not_configurated": "Paramètres réseaux non configurés",
+  "netapp_volumes_dashboard_usage_title": "Vue d'ensemble de l'utilisation",
+  "netapp_volumes_dashboard_usage_max_files": "Fichiers maximum",
+  "netapp_volumes_dashboard_usage_files": "Fichiers utilisés",
+  "netapp_volumes_dashboard_usage_nfs_client": "Clients NFS (actifs dans les 48 dernières heures)",
+  "netapp_volumes_dashboard_usage_no_nfs_client": "Pas de connections actives",
+  "netapp_volumes_dashboard_usage_view_all": "Voir tous",
+  "netapp_volumes_dashboard_actives_nfs_title": "Connexions NFS"
 }

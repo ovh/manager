@@ -23,7 +23,14 @@ const config: StorybookConfig = {
       },
     },
   },
-  staticDirs: ['./public/assets', './public'],
+  staticDirs: [
+    './public/assets',
+    './public',
+    {
+      from: '../../manager/modules/common-translations/public/translations',
+      to: '/translations/@ovh-ux/manager-common-translations',
+    },
+  ],
   docs: {
     autodocs: true,
     defaultName: 'Technical information',

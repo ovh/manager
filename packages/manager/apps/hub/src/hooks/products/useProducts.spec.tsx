@@ -81,7 +81,7 @@ describe('useProducts', () => {
                       EU: 'dedicated',
                       US: 'dedicated',
                     },
-                    url: 'https://www.ovh.com/manager/#/dedicated/configuration/fake_product/fake_service',
+                    url: 'https://manager.eu.ovhcloud.com/#/dedicated/configuration/fake_product/fake_service',
                   },
                 ],
               },

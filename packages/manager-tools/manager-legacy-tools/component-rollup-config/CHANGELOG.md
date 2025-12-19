@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@13.1.0...@ovh-ux/component-rollup-config@13.2.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
 # [13.1.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@13.0.3...@ovh-ux/component-rollup-config@13.1.0) (2025-08-07)
 
 

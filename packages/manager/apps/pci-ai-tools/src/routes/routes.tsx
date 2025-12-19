@@ -1117,7 +1117,7 @@ export default [
           },
 
           {
-            path: 'quantum/qpu',
+            path: ':quantum/qpu',
             ...lazyRouteConfig(() => import('@/pages/qpus/QpuRoot.layout')),
             children: [
               {
@@ -1209,7 +1209,6 @@ export default [
                   },
                 ],
               },
-
               {
                 path: ':notebookId',
                 ...lazyRouteConfig(() =>

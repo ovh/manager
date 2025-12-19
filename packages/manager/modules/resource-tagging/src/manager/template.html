@@ -10,25 +10,41 @@
         data-empty-placeholder="{{:: 'manager_components_resource_tagging_manager_empty' | translate}}"
     >
         <oui-datagrid-topbar>
-            <oui-button
-                variant="secondary"
-                type="button"
-                data-on-click="$ctrl.goToTagAssign()"
-            >
-                <span
-                    data-translate="manager_components_resource_tagging_manager_action_assign_tag"
-                ></span>
-            </oui-button>
-            <oui-button
-                variant="secondary"
-                type="button"
-                data-on-click="$ctrl.goToTagUnassign($selectedRows)"
-                data-disabled="!$selectedRows.length"
-            >
-                <span
-                    data-translate="manager_components_resource_tagging_manager_action_unassign_tag"
-                ></span>
-            </oui-button>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <oui-button
+                        variant="secondary"
+                        type="button"
+                        data-on-click="$ctrl.goToTagAssign()"
+                    >
+                        <span
+                            data-translate="manager_components_resource_tagging_manager_action_assign_tag"
+                        ></span>
+                    </oui-button>
+                    <oui-button
+                        variant="secondary"
+                        type="button"
+                        data-on-click="$ctrl.goToTagUnassign($selectedRows)"
+                        data-disabled="!$selectedRows.length"
+                    >
+                        <span
+                            data-translate="manager_components_resource_tagging_manager_action_unassign_tag"
+                        ></span>
+                    </oui-button>
+                </div>
+                <oui-guide-menu
+                    text="{{:: 'manager_components_resource_tagging_manager_guide' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-ng-href="{{:: $ctrl.tagsGuideLink }}"
+                        data-external="true"
+                    >
+                        <span
+                            data-translate="manager_components_resource_tagging_manager_title"
+                        ></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
         </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title="::'manager_components_resource_tagging_manager_column_tag' | translate"
@@ -41,6 +57,12 @@
             <span
                 data-translate="{{'manager_components_resource_tagging_manager_tag_type_'+ $row.type}}"
             ></span>
+            <span
+                class="fa fa-info-circle small"
+                data-oui-tooltip="{{::'manager_components_resource_tagging_manager_tooltip_' + $row.type | translate}}"
+                data-oui-tooltip-placement="bottom"
+            >
+            </span>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="top-end">
             <oui-action-menu-item

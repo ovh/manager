@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.18...@ovh-ux/manager-nutanix@2.11.19) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.17...@ovh-ux/manager-nutanix@2.11.18) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.16...@ovh-ux/manager-nutanix@2.11.17) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.15...@ovh-ux/manager-nutanix@2.11.16) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.14...@ovh-ux/manager-nutanix@2.11.15) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.13...@ovh-ux/manager-nutanix@2.11.14) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.12...@ovh-ux/manager-nutanix@2.11.13) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.11...@ovh-ux/manager-nutanix@2.11.12) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
 ## [2.11.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.10...@ovh-ux/manager-nutanix@2.11.11) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

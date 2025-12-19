@@ -1,5 +1,8 @@
 packages/manager/apps/container
+packages/manager/apps/pci-contacts
+packages/manager/apps/pci-kubernetes
 packages/manager/apps/web-office
+packages/manager/modules/config
 custom-elements-bundle
 **/dist/
 **/node_modules/
@@ -9,7 +12,10 @@ custom-elements
 loader
 react
 vue
+packages/manager/apps/okms
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/pci-databases-analytics/src/lib/utils.ts
 packages/manager-ui-kit
 packages/manager-wiki
+packages/manager-tools/manager-forge-cli
+packages/manager-tools/manager-forge-cli/template

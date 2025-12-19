@@ -117,6 +117,7 @@ export default class ovhManagerResourceTaggingService {
         (resource) => !!resource.tags,
       );
       const allTags = angular.copy(OVHCLOUD_TAGS);
+
       resourcesWithTags.forEach((resource) => {
         Object.keys(resource.tags).forEach((key) => {
           if (key.startsWith('ovh:')) return;
@@ -134,10 +135,12 @@ export default class ovhManagerResourceTaggingService {
             allTags.push({
               key,
               values: [resource.tags[key]],
+              type: OVHCLOUD_TAG_TYPES.CUSTOM,
             });
           }
         });
       });
+
       return allTags;
     });
   }

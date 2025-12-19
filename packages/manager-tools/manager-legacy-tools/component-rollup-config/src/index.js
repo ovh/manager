@@ -64,6 +64,15 @@ const generateConfig = (opts, pluginsOpts) =>
           insert: true,
           output: false,
           options: {
+            silenceDeprecations: [
+              'import',
+              'global-builtin',
+              'color-functions',
+              'legacy-js-api',
+              'abs-percent',
+              'slash-div',
+              'function-units',
+            ],
             importer(url) {
               let filepath = nodeResolve(url);
               if (!filepath) filepath = nodeResolve(`${url}.scss`);

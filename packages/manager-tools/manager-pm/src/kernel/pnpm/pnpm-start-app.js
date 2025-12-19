@@ -4,10 +4,10 @@ import inquirerSearchList from 'inquirer-search-list';
 import process from 'node:process';
 
 import { containerPackageName, managerRootPath } from '../../playbook/playbook-config.js';
-import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/catalog-utils.js';
+import { getApplicationId, getApplications } from '../helpers/apps-workspace-helper.js';
 import { logger } from '../utils/log-manager.js';
-import { resolveBuildFilter } from '../utils/tasks-utils.js';
-import { getApplicationId, getApplications } from '../utils/workspace-utils.js';
+import { resolveApplicationBuildFilter } from '../utils/tasks-utils.js';
+import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/workspace-utils.js';
 
 /**
  * @typedef {Object} StartAppOptions
@@ -180,7 +180,7 @@ export async function startApp(options = {}) {
 
   await updateRootWorkspacesFromCatalogs();
 
-  const appFilter = resolveBuildFilter(packageName) ?? packageName;
+  const appFilter = resolveApplicationBuildFilter(packageName) ?? packageName;
   const commands = await buildCommands(packageName, appFilter, container);
 
   await runWithCleanup(commands, raw, killOthers);

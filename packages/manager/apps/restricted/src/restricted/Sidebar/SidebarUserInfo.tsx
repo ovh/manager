@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getLogoutUrl } from '@ovh-ux/manager-core-sso';
 
 import Context from '@/context';
 
@@ -17,7 +18,7 @@ const SidebarUserInfos = (): JSX.Element => {
 
   const logout = () => {
     window.location.assign(
-      '/auth/?action=disconnect&onsuccess=https://www.ovh.com/manager/#/hub',
+      getLogoutUrl(),
     );
   };
 

@@ -11,6 +11,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrapper from '@ovh-ux/ng-ovh-api-wrappers';
 
+import { changelogButton } from '@ovh-ux/manager-components';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
@@ -53,6 +54,7 @@ angular
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrapper,
+    changelogButton,
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,

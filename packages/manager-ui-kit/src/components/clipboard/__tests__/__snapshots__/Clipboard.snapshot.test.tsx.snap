@@ -3,47 +3,47 @@
 exports[`Clipboard Snapshot Tests > Displays Clipboard 1`] = `
 <div>
   <div
-    class="_clipboard_15kq6_2"
-    data-ods="clipboard"
-    data-part="root"
-    data-scope="clipboard"
-    data-testid="clipboard"
-    id="clip::r0:"
-    role="group"
+    class=_clipboard
+    data-ods=clipboard
+    data-part=root
+    data-scope=clipboard
+    data-testid=clipboard
+    id=clip::r0:
+    role=group
   >
     <div
-      class="_input_ff5b7_2 _clipboard__input_pn8ud_2"
-      data-readonly="true"
+      class=_input _clipboard__input
+      data-readonly=true
     >
       <input
-        aria-busy="false"
-        class="_input__field_ff5b7_41"
-        data-ods="clipboard-control"
-        data-part="control"
-        data-scope="clipboard"
-        id=":r1:"
-        readonly=""
-        type="text"
-        value="Test Message"
+        aria-busy=false
+        class=_input__field
+        data-ods=clipboard-control
+        data-part=control
+        data-scope=clipboard
+        id=:r1:
+        readonly=
+        type=text
+        value=Test Message
       />
     </div>
     <button
-      aria-label="Copier dans le presse-papier"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151 _tooltip-trigger_wxukn_2 _clipboard-trigger__copy_4b6mw_2"
-      data-ods="clipboard-trigger"
-      data-part="trigger"
-      data-scope="clipboard"
-      data-state="closed"
-      dir="ltr"
-      id="tooltip::r2::trigger"
-      role="button"
-      tabindex="0"
-      type="button"
+      aria-label=Copier dans le presse-papier
+      class=_button _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
+      data-ods=clipboard-trigger
+      data-part=trigger
+      data-scope=clipboard
+      data-state=closed
+      dir=ltr
+      id=tooltip::r2::trigger
+      role=button
+      tabindex=0
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--file-copy_10c23_247"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--file-copy
+        data-ods=icon
+        role=presentation
       />
     </button>
   </div>
@@ -53,50 +53,50 @@ exports[`Clipboard Snapshot Tests > Displays Clipboard 1`] = `
 exports[`Clipboard Snapshot Tests > Displays disabled Clipboard 1`] = `
 <div>
   <div
-    class="_clipboard_15kq6_2 _clipboard--disabled_15kq6_18"
-    data-ods="clipboard"
-    data-part="root"
-    data-scope="clipboard"
-    data-testid="clipboard"
-    id="clip::r3:"
-    role="group"
+    class=_clipboard _clipboard--disabled
+    data-ods=clipboard
+    data-part=root
+    data-scope=clipboard
+    data-testid=clipboard
+    id=clip::r3:
+    role=group
   >
     <div
-      class="_input_ff5b7_2 _clipboard__input_pn8ud_2"
-      data-disabled="true"
-      data-readonly="true"
+      class=_input _clipboard__input
+      data-disabled=true
+      data-readonly=true
     >
       <input
-        aria-busy="false"
-        class="_input__field_ff5b7_41"
-        data-ods="clipboard-control"
-        data-part="control"
-        data-scope="clipboard"
-        disabled=""
-        id=":r4:"
-        readonly=""
-        type="text"
-        value="Test Message"
+        aria-busy=false
+        class=_input__field
+        data-ods=clipboard-control
+        data-part=control
+        data-scope=clipboard
+        disabled=
+        id=:r4:
+        readonly=
+        type=text
+        value=Test Message
       />
     </div>
     <button
-      aria-label="Copier dans le presse-papier"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151 _tooltip-trigger_wxukn_2 _clipboard-trigger__copy_4b6mw_2"
-      data-ods="clipboard-trigger"
-      data-part="trigger"
-      data-scope="clipboard"
-      data-state="closed"
-      dir="ltr"
-      disabled=""
-      id="tooltip::r5::trigger"
-      role="button"
-      tabindex="0"
-      type="button"
+      aria-label=Copier dans le presse-papier
+      class=_button _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
+      data-ods=clipboard-trigger
+      data-part=trigger
+      data-scope=clipboard
+      data-state=closed
+      dir=ltr
+      disabled=
+      id=tooltip::r5::trigger
+      role=button
+      tabindex=0
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--file-copy_10c23_247"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--file-copy
+        data-ods=icon
+        role=presentation
       />
     </button>
   </div>
@@ -106,67 +106,67 @@ exports[`Clipboard Snapshot Tests > Displays disabled Clipboard 1`] = `
 exports[`Clipboard Snapshot Tests > Displays loading Clipboard 1`] = `
 <div>
   <div
-    class="_clipboard_15kq6_2"
-    data-ods="clipboard"
-    data-part="root"
-    data-scope="clipboard"
-    data-testid="clipboard"
-    id="clip::r6:"
-    role="group"
+    class=_clipboard
+    data-ods=clipboard
+    data-part=root
+    data-scope=clipboard
+    data-testid=clipboard
+    id=clip::r6:
+    role=group
   >
     <div
-      class="_input_ff5b7_2 _input--with-actions_ff5b7_38 _clipboard__input_pn8ud_2"
-      data-readonly="true"
-      role="group"
+      class=_input _input--with-actions _clipboard__input
+      data-readonly=true
+      role=group
     >
       <input
-        aria-busy="true"
-        class="_input__field_ff5b7_41"
-        data-ods="clipboard-control"
-        data-part="control"
-        data-scope="clipboard"
-        id=":r7:"
-        readonly=""
-        type="text"
-        value="Test Message"
+        aria-busy=true
+        class=_input__field
+        data-ods=clipboard-control
+        data-part=control
+        data-scope=clipboard
+        id=:r7:
+        readonly=
+        type=text
+        value=Test Message
       />
       <div
-        class="_input-actions_ke1hx_2"
+        class=_input-actions
       >
         <span
-          class="_spinner_o7c7y_10 _spinner--primary_o7c7y_29 _spinner--xs_o7c7y_14 _input-actions__loading_ke1hx_7"
-          data-ods="spinner"
-          role="none"
+          class=_spinner _spinner--primary _spinner--xs _input-actions__loading
+          data-ods=spinner
+          role=none
         >
           <svg
-            aria-hidden="true"
-            class="_spinner__svg_o7c7y_32"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden=true
+            class=_spinner__svg
+            viewBox=0 0 24 24
+            xmlns=http://www.w3.org/2000/svg
           >
             <rect
-              fill="none"
-              height="24"
-              width="24"
+              fill=none
+              height=24
+              width=24
             />
             <g
-              transform="translate(-237.694 -93.932)"
+              transform=translate(-237.694 -93.932)
             >
               <path
-                d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
-                transform="translate(5486 4225)"
+                d=M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z
+                transform=translate(5486 4225)
               />
               <circle
-                cx="1"
-                cy="1"
-                r="1"
-                transform="translate(248.694 114.932)"
+                cx=1
+                cy=1
+                r=1
+                transform=translate(248.694 114.932)
               />
               <circle
-                cx="1"
-                cy="1"
-                r="1"
-                transform="translate(238.694 104.932)"
+                cx=1
+                cy=1
+                r=1
+                transform=translate(238.694 104.932)
               />
             </g>
           </svg>
@@ -174,22 +174,22 @@ exports[`Clipboard Snapshot Tests > Displays loading Clipboard 1`] = `
       </div>
     </div>
     <button
-      aria-label="Copier dans le presse-papier"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151 _tooltip-trigger_wxukn_2 _clipboard-trigger__copy_4b6mw_2"
-      data-ods="clipboard-trigger"
-      data-part="trigger"
-      data-scope="clipboard"
-      data-state="closed"
-      dir="ltr"
-      id="tooltip::r8::trigger"
-      role="button"
-      tabindex="0"
-      type="button"
+      aria-label=Copier dans le presse-papier
+      class=_button _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
+      data-ods=clipboard-trigger
+      data-part=trigger
+      data-scope=clipboard
+      data-state=closed
+      dir=ltr
+      id=tooltip::r8::trigger
+      role=button
+      tabindex=0
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--file-copy_10c23_247"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--file-copy
+        data-ods=icon
+        role=presentation
       />
     </button>
   </div>
@@ -199,65 +199,65 @@ exports[`Clipboard Snapshot Tests > Displays loading Clipboard 1`] = `
 exports[`Clipboard Snapshot Tests > Displays masked Clipboard 1`] = `
 <div>
   <div
-    class="_clipboard_15kq6_2"
-    data-ods="clipboard"
-    data-part="root"
-    data-scope="clipboard"
-    data-testid="clipboard"
-    id="clip::r9:"
-    role="group"
+    class=_clipboard
+    data-ods=clipboard
+    data-part=root
+    data-scope=clipboard
+    data-testid=clipboard
+    id=clip::r9:
+    role=group
   >
     <div
-      class="_input_ff5b7_2 _input--with-actions_ff5b7_38 _clipboard__input_pn8ud_2"
-      data-readonly="true"
-      role="group"
+      class=_input _input--with-actions _clipboard__input
+      data-readonly=true
+      role=group
     >
       <input
-        aria-busy="false"
-        class="_input__field_ff5b7_41"
-        data-ods="clipboard-control"
-        data-part="control"
-        data-scope="clipboard"
-        id=":ra:"
-        readonly=""
-        type="password"
-        value="Test Message"
+        aria-busy=false
+        class=_input__field
+        data-ods=clipboard-control
+        data-part=control
+        data-scope=clipboard
+        id=:ra:
+        readonly=
+        type=password
+        value=Test Message
       />
       <div
-        class="_input-actions_ke1hx_2"
+        class=_input-actions
       >
         <button
-          aria-controls=":ra:"
-          aria-label="Show"
-          class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
-          data-ods="button"
-          type="button"
+          aria-controls=:ra:
+          aria-label=Show
+          class=_button _button--primary _button--xs _button--ghost
+          data-ods=button
+          type=button
         >
           <span
-            class="_icon_10c23_2 _icon--eye-off_10c23_238"
-            data-ods="icon"
-            role="presentation"
+            class=_icon _icon--eye-off
+            data-ods=icon
+            role=presentation
           />
         </button>
       </div>
     </div>
     <button
-      aria-label="Copier dans le presse-papier"
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151 _tooltip-trigger_wxukn_2 _clipboard-trigger__copy_4b6mw_2"
-      data-ods="clipboard-trigger"
-      data-part="trigger"
-      data-scope="clipboard"
-      data-state="closed"
-      dir="ltr"
-      id="tooltip::rb::trigger"
-      role="button"
-      tabindex="0"
-      type="button"
+      aria-label=Copier dans le presse-papier
+      class=_button _button--primary _button--xs _button--ghost _tooltip-trigger _clipboard-trigger__copy
+      data-ods=clipboard-trigger
+      data-part=trigger
+      data-scope=clipboard
+      data-state=closed
+      dir=ltr
+      id=tooltip::rb::trigger
+      role=button
+      tabindex=0
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--file-copy_10c23_247"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--file-copy
+        data-ods=icon
+        role=presentation
       />
     </button>
   </div>

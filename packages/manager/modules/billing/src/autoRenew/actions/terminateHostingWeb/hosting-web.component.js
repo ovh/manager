@@ -3,7 +3,7 @@ import template from './billing-autoRenew-terminateHostingWeb.html';
 
 export default {
   bindings: {
-    goBack: '<',
+    goToAutorenew: '<',
     terminateHosting: '<',
     terminateHostingSkipRetentionPeriod: '<',
     skipRetentionPeriod: '<',

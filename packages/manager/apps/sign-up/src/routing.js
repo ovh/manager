@@ -47,7 +47,7 @@ export const state = {
         }ovhSessionSuccess=true`;
       }
 
-      return '/auth/?action=gotomanager';
+      return `${window.location.origin}/`;
     },
 
     getStepByName: /* @ngInject */ (steps) => (name) =>
@@ -69,15 +69,30 @@ export const state = {
       ssoAuthentication.logout($location.search().onsuccess);
     },
 
-    isKycFeatureAvailable: /* @ngInject */ ($http) => {
-      return $http
-        .get(`/feature/identity-documents/availability`, {
+    featureAvailability: /* @ngInject */ ($http) => {
+      return $http.get(
+        `/feature/identity-documents,account-creation/availability`,
+        {
           serviceType: 'aapi',
-        })
-        .then(
-          ({ data: featureAvailability }) =>
-            featureAvailability['identity-documents'],
-        );
+        },
+      );
+    },
+
+    isKycFeatureAvailable: /* @ngInject */ (featureAvailability) =>
+      featureAvailability.data['identity-documents'],
+
+    isNewAccountCreateAvailable: /* @ngInject */ (featureAvailability) =>
+      featureAvailability.data['account-creation'],
+
+    onEnter: /* @ngInject */ (
+      $window,
+      isNewAccountCreateAvailable,
+      coreURLBuilder,
+    ) => {
+      if (isNewAccountCreateAvailable) {
+        const url = coreURLBuilder.buildURL('account-creation', '/#/');
+        $window.location.assign(url);
+      }
     },
 
     kycStatus: /* @ngInject */ ($http, isKycFeatureAvailable) => {

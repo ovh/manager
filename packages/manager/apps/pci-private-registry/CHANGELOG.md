@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.15...@ovh-ux/manager-pci-private-registry-app@0.11.16) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.11.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.14...@ovh-ux/manager-pci-private-registry-app@0.11.15) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.11.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.13...@ovh-ux/manager-pci-private-registry-app@0.11.14) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.11.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.12...@ovh-ux/manager-pci-private-registry-app@0.11.13) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.11.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.11...@ovh-ux/manager-pci-private-registry-app@0.11.12) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.11.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.10...@ovh-ux/manager-pci-private-registry-app@0.11.11) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.9...@ovh-ux/manager-pci-private-registry-app@0.11.10) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.8...@ovh-ux/manager-pci-private-registry-app@0.11.9) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.7...@ovh-ux/manager-pci-private-registry-app@0.11.8) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
 ## [0.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.6...@ovh-ux/manager-pci-private-registry-app@0.11.7) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app

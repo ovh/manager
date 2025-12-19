@@ -3,10 +3,10 @@
 exports[`should display manager state with the good color > should display loading Badge 1`] = `
 <div>
   <div
-    aria-hidden="true"
-    class="_skeleton_kauw8_2"
-    data-ods="skeleton"
-    data-testid="badge"
+    aria-hidden=true
+    class=_skeleton
+    data-ods=skeleton
+    data-testid=badge
   />
 </div>
 `;
@@ -14,9 +14,9 @@ exports[`should display manager state with the good color > should display loadi
 exports[`should display manager state with the good color > should display manager 'active' badge for 'success' 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--success_vpjtq_43 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--success _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     service_state_active
   </span>
@@ -26,9 +26,9 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'deleted' badge for 'critical' 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--critical_vpjtq_19 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--critical _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     service_state_deleted
   </span>
@@ -38,9 +38,9 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'deleted' badge for 'critical' 2`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--critical_vpjtq_19 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--critical _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     service_state_deleted
   </span>
@@ -50,9 +50,9 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'suspended' badge for 'warning' 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--warning_vpjtq_47 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--warning _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     service_state_suspended
   </span>
@@ -62,9 +62,9 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'toActivate' badge for 'information' 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--information _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     service_state_toActivate
   </span>
@@ -74,9 +74,9 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'toDelete' badge for 'information' 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--information _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     service_state_toDelete
   </span>
@@ -86,9 +86,9 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'toSuspend' badge for 'information' 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--information _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     service_state_toSuspend
   </span>
@@ -98,9 +98,9 @@ exports[`should display manager state with the good color > should display manag
 exports[`should display manager state with the good color > should display manager 'unknown' badge for 'information' 1`] = `
 <div>
   <span
-    class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
-    data-ods="badge"
-    data-testid="badge"
+    class=_badge _badge--information _badge--md
+    data-ods=badge
+    data-testid=badge
   >
     unknown
   </span>

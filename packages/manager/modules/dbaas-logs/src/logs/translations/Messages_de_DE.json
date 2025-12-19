@@ -304,7 +304,7 @@
   "logs_streams_update_title": "Stream bearbeiten",
   "logs_streams_update_description": "Für den Stream <strong>{{ name }}</strong>",
   "logs_streams_enable_indexing": "Indizierung aktivieren",
-  "logs_streams_enable_indexing_description": "Entdecken Sie Ihre Logs mit Graylog und OpenSearch zum Preis von {{t0}} inkl. MwSt / GB / Monat für die ersten {{t1}} GB, danach {{t2}} inkl. MwSt / GB / Monat.",
+  "logs_streams_enable_indexing_description": "Erkunden Sie Ihre Logs auf Graylog und OpenSearch.",
   "logs_streams_no_limit": "Keine Einschränkung",
   "logs_streams_enable_websocket": "WebSocket-Übertragung aktivieren",
   "logs_streams_enable_websocket_description": "Verfolgen Sie den Empfang Ihrer Logs in Echtzeit über das WebSocket-Protokoll.",
@@ -803,5 +803,8 @@
   "streams_subscriptions_resource_products_account-api": "OVHcloud Kundencenter und OVHcloud API",
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit-Logs",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
-  "logs_encryption_keys_get_error": "Beim Laden der Verschlüsselungsschlüssel ist ein Fehler aufgetreten: {{message}}"
+  "logs_encryption_keys_get_error": "Beim Laden der Verschlüsselungsschlüssel ist ein Fehler aufgetreten: {{message}}",
+  "logs_streams_enable_indexing_description_detail_small": "Log-Speicher < {{t0}} GB an Logs: kostenlos",
+  "logs_streams_enable_indexing_description_detail_medium": "Log-Speicher von {{t0}} bis {{t1}} GB an Logs: {{t2}} inkl. MwSt./GB/Monat",
+  "logs_streams_enable_indexing_description_detail_large": "Log-Speicher für größere Volumen (über {{t0}} GB): {{t1}} inkl. MwSt./GB/Monat"
 }

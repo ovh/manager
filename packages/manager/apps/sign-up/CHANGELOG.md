@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.0...@ovh-ux/sign-up-app@4.6.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+# [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.5.0...@ovh-ux/sign-up-app@4.6.0) (2025-12-03)
+
+
+### Features
+
+* **sign-up:** redirect uk customer to the new account creation ([839131e](https://github.com/ovh/manager/commit/839131ed7ccf46c86bb290ee0a1021ad3d105ce0)), closes [#MANAGER-17391](https://github.com/ovh/manager/issues/MANAGER-17391)
+
+
+
+
+
+# [4.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.4.0...@ovh-ux/sign-up-app@4.5.0) (2025-12-01)
+
+
+### Features
+
+* update sign-up URLs ([1a76eb8](https://github.com/ovh/manager/commit/1a76eb88165b658cb4d1d420df320180a4fe817a)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.14...@ovh-ux/sign-up-app@4.4.0) (2025-11-27)
+
+
+### Features
+
+* **sign-up:** redirect uk customer to the new account creation ([00362ee](https://github.com/ovh/manager/commit/00362ee127e2b42b8cb9ba0afd08a1997cafce44)), closes [#MANAGER-17391](https://github.com/ovh/manager/issues/MANAGER-17391)
+
+
+### Reverts
+
+* **sign-up:** redirect uk customer to the new account creation ([7ba0b48](https://github.com/ovh/manager/commit/7ba0b48ea57b30c87cc816b144e6c98a8e43cb19)), closes [#MANAGER-17391](https://github.com/ovh/manager/issues/MANAGER-17391)
+
+
+
+
+
+## [4.3.14](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.13...@ovh-ux/sign-up-app@4.3.14) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [4.3.13](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.12...@ovh-ux/sign-up-app@4.3.13) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [4.3.12](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.11...@ovh-ux/sign-up-app@4.3.12) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [4.3.11](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.10...@ovh-ux/sign-up-app@4.3.11) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [4.3.10](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.9...@ovh-ux/sign-up-app@4.3.10) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
 ## [4.3.9](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.3.8...@ovh-ux/sign-up-app@4.3.9) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

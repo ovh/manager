@@ -39,5 +39,11 @@
   "pci_projects_project_storages_cold_archive_container_manage_description_2": "For example, to download data, such as photos, videos, and other documents, you need to use the CLI, SDK, or S3-compatible API.",
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
-  "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Close"
+  "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Close",
+  "pci_projects_project_storages_cold_archive_banner_title": "New: archive items individually from your Object Storage dashboard!",
+  "pci_projects_project_storages_cold_archive_banner_description": "It is now possible to archive items one by one to optimize your storage costs and better manage your data, without having to archive the entire container.",
+  "pci_projects_project_storages_cold_archive_banner_feature_intro": "This feature is accessible directly from your Object Storage dashboard, from your existing containers:",
+  "pci_projects_project_storages_cold_archive_banner_feature_1": "upload your items by classifying them directly into Cold Archive;",
+  "pci_projects_project_storages_cold_archive_banner_feature_2": "or use lifecycle rules to transfer data to the Cold Archive class.",
+  "pci_projects_project_storages_cold_archive_banner_cta": "Try it now!"
 }

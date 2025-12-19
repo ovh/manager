@@ -1,0 +1,8 @@
+{
+  "cancel": "Annuler",
+  "cancel_savings_plan_modal_title": "Annuler le Savings Plan ?",
+  "close_modal": "Fermer",
+  "confirm": "Confirmer",
+  "cancel_savings_plan_success": "Le Savings Plan a été annulé avec succès.",
+  "cancel_savings_plan_error": "Erreur lors de l'annulation du Savings Plan. Veuillez réessayer ultérieurement. ({{ error }})"
+}

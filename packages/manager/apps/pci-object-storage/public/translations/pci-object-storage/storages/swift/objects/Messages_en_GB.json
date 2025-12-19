@@ -1,0 +1,21 @@
+{
+  "objectTitle": "Objects",
+  "addNewObject": "Add objects",
+  "tableHeaderName": "Name",
+  "tableHeaderUpdateDate": "Last updated",
+  "tableHeaderSize": "Size",
+  "tableHeaderType": "Type",
+  "tableActionDownload": "Download",
+  "tableActionDelete": "Delete",
+  "objectToastErrorTitle": "An error has occurred",
+  "objectToastSuccessTitle": "Success",
+  "addObjectToastSuccessDescription": "Object added",
+  "addOjectModalTitle": "Add one or more objects",
+  "deleteObjectToastSuccessDescription": "The object {{ name }} has been deleted.",
+  "deleteObjectTitle": "Delete an object",
+  "deleteObjectDescription": "Do you want to permanently delete the object {{- name }}? This action cannot be reversed.",
+  "deleteObjectConfirmation": "Type PERMANENTLY DELETE to confirm",
+  "deleteObjectButtonCancel": "Cancel",
+  "deleteObjectButtonConfirm": "Delete",
+  "seeVersionsSwitchLabel": "See versions"
+}

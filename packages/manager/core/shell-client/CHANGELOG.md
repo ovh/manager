@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.11.1...@ovh-ux/manager-react-shell-client@0.11.2) (2025-11-07)
+
+
+### Features
+
+*   move tanstack-query to peerdependcies ([7478aec](https://github.com/ovh/manager/commit/7478aec9de75e2255e887f877f81e9886f6fbee4))
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.11.0...@ovh-ux/manager-react-shell-client@0.11.1) (2025-10-01)
 
 

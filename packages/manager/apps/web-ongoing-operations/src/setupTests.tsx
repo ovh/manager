@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
-import 'element-internals-polyfill';
+import { NavLinkProps } from 'react-router-dom';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -77,6 +77,13 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
   },
+  useOvhTracking: vi.fn(() => {
+    return {
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+      trackCurrentPage: vi.fn(),
+    };
+  }),
 }));
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
@@ -99,3 +106,31 @@ vi.mock('@/hooks/nichandle/useNichandle', () => ({
     };
   }),
 }));
+
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => vi.fn(() => null),
+  Navigate: vi.fn(() => null),
+  useLocation: vi.fn(() => ({
+    pathname: '',
+    search: '',
+  })),
+  useResolvedPath: vi.fn(() => ({
+    pathname: '',
+  })),
+  useParams: () => {
+    return {
+      serviceName: 'foobar',
+      id: '1',
+    };
+  },
+  NavLink: ({ ...params }: NavLinkProps) => params.children,
+  Outlet: vi.fn(),
+}));
+
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);

@@ -28,7 +28,7 @@ import {
   getNetworkConfig,
 } from '@ovh-ux/manager-network-common';
 import { translations, labels } from './test-i18n';
-import { GetIamMocksParams, getIamMocks } from '../../__mocks__/iam';
+import { GetIamMocksParams, getIamMocks } from '../__mocks__/iam';
 import { RenderTest } from './render-test';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';

@@ -17,6 +17,8 @@ export const AT_INTERNET_LEVEL2: Record<string, string> = {
   130: 'Manager-Baremetal',
   140: 'Manager-identity-security-operations',
   150: 'Manager-DedicatedServers',
+  152: 'Manager-Network',
+  157: 'Manager-Communications',
 };
 
 export const AT_INTERNET_WEBSITE: Record<string, string> = {

@@ -67,7 +67,7 @@ export default function NotificationContactStatus({
             components={{
               anchor: (
                 <OdsLinkSubstitution
-                  href={urls.ContactsTab}
+                  href={urls.contact.listing}
                 ></OdsLinkSubstitution>
               ),
             }}

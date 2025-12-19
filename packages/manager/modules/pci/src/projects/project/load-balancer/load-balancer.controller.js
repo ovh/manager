@@ -9,11 +9,18 @@ import { getCriteria } from '../project.utils';
 
 export default class {
   /* @ngInject */
-  constructor(CucCloudMessage, PciLoadBalancerService, CHANGELOG, coreConfig) {
+  constructor(
+    CucCloudMessage,
+    PciLoadBalancerService,
+    CHANGELOG,
+    coreConfig,
+    ovhFeatureFlipping,
+  ) {
     this.CucCloudMessage = CucCloudMessage;
     this.coreConfig = coreConfig;
     this.user = coreConfig.getUser();
     this.PciLoadBalancerService = PciLoadBalancerService;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.PciLoadBalancerGuides =
       LOAD_BALANCER_MIGRATE_LINKS[this.user.ovhSubsidiary] ||
       LOAD_BALANCER_MIGRATE_LINKS.DEFAULT;
@@ -25,6 +32,17 @@ export default class {
     this.GUIDES = GUIDES;
     this.loadMessages();
     this.criteria = getCriteria('id', this.loadBalancerId);
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability('public-cloud:project:eos-load-balancer-test')
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable(
+          'public-cloud:project:eos-load-balancer-test',
+        ),
+      )
+      .then((isEosMessageActive) => {
+        this.getEndOFServiceMessage = isEosMessageActive;
+        this.initializeTranslationKeys();
+      });
   }
 
   loadMessages() {
@@ -50,6 +68,21 @@ export default class {
       this.projectId,
       loadBalancerId,
     );
+  }
+
+  getEndOfServiceTranslationKey(baseTranslationKey) {
+    if (this.getEndOFServiceMessage) {
+      return `${baseTranslationKey}_definitive`;
+    }
+
+    return baseTranslationKey;
+  }
+
+  initializeTranslationKeys() {
+    this.getEndServiceKey =
+      'pci_projects_project_load_balancer_end_service_definitive';
+    this.getEndServiceInformationKey =
+      'pci_projects_project_load_balancer_more_information_definitive';
   }
 
   trackGuideClick(guide) {

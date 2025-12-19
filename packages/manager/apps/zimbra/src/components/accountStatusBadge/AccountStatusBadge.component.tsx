@@ -46,7 +46,7 @@ export const AccountStatusBadge: React.FC<EmailAccountItem> = (props) => {
             data-testid={`${props.id}_${status}`}
             id={`current-account-status-${props.id}_${status}`}
             color={getStatusColor(status)}
-            className="capitalize m-1"
+            className="m-1 capitalize"
             label={t(CurrentAccountStatusLabels[status])}
             iconAlignment={ODS_BADGE_ICON_ALIGNMENT.right}
             {...(CurrentAccountTooltipContent[status] ? { icon: ODS_ICON_NAME.circleInfo } : {})}

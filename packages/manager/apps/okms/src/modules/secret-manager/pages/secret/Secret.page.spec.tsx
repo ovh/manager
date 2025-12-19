@@ -1,26 +1,25 @@
-import { act, screen } from '@testing-library/react';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
+import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
+import { act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import {
+  WAIT_FOR_DEFAULT_OPTIONS,
   assertTextVisibility,
   getOdsButtonByLabel,
-  WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import userEvent from '@testing-library/user-event';
-import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
+
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
-import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockSecret = mockSecret1;
 const mockSecretPath = mockSecret.path;
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secret(
-  mockOkmsId,
-  mockSecretPath,
-);
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secret(mockOkmsId, mockSecretPath);
 
 describe('Secret page test suite', () => {
   it('should display an error if the API is KO', async () => {
@@ -29,9 +28,7 @@ describe('Secret page test suite', () => {
     await renderTestApp(mockPageUrl, { isSecretKO: true });
 
     // THEN
-    expect(
-      await screen.findByAltText('OOPS', {}, WAIT_FOR_DEFAULT_OPTIONS),
-    ).toBeInTheDocument();
+    expect(await screen.findByAltText('OOPS', {}, WAIT_FOR_DEFAULT_OPTIONS)).toBeInTheDocument();
   });
 
   it('should display the secret page', async () => {
@@ -82,16 +79,12 @@ describe('Secret page test suite', () => {
     // Check labels appearing twice
     await Promise.all(
       labelTwice.map(async (text) => {
-        expect(
-          await screen.findAllByText(text, {}, WAIT_FOR_DEFAULT_OPTIONS),
-        ).toHaveLength(2);
+        expect(await screen.findAllByText(text, {}, WAIT_FOR_DEFAULT_OPTIONS)).toHaveLength(2);
       }),
     );
 
     // Check clipboard component
-    expect(
-      container.querySelector(`ods-clipboard[value="${mockSecret.iam.urn}"]`),
-    ).toBeVisible();
+    expect(container.querySelector(`ods-clipboard[value="${mockSecret.iam.urn}"]`)).toBeVisible();
 
     // check actions
     const revealSecretLink = await getOdsButtonByLabel({
@@ -127,15 +120,13 @@ describe('Secret page test suite', () => {
       await renderTestApp(mockPageUrl);
 
       expect(
-        await screen.findAllByText(
-          mockSecret.path,
-          {},
-          WAIT_FOR_DEFAULT_OPTIONS,
-        ),
+        await screen.findAllByText(mockSecret.path, {}, WAIT_FOR_DEFAULT_OPTIONS),
       ).toHaveLength(2);
 
       // WHEN
-      user.click(screen.getByText(labels.secretManager.versions));
+      await act(async () => {
+        await user.click(screen.getByText(labels.secretManager.versions));
+      });
 
       // THEN
       await assertVersionDatagridVisilibity();
@@ -155,12 +146,11 @@ describe('Secret page test suite', () => {
     },
     {
       actionLabel: labels.secretManager.add_new_version,
-      assertion: () => assertTextVisibility(labels.secretManager.editor),
+      assertion: () => assertTextVisibility(labels.secretManager.key_value),
     },
     {
       actionLabel: labels.secretManager.delete_secret,
-      assertion: () =>
-        assertTextVisibility(labels.secretManager.delete_secret_modal_title),
+      assertion: () => assertTextVisibility(labels.secretManager.delete_secret_modal_title),
     },
   ];
 

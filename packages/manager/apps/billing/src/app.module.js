@@ -182,6 +182,14 @@ export default async (containerEl, shellClient) => {
       SUPPORT: configConstants.SUPPORT,
       SECTIONS_UNIVERSE_MAP: configConstants.SECTIONS_UNIVERSE_MAP,
     })
+    .config(
+      /* @ngInject */ (ovhPaymentMethodProvider, coreURLBuilderProvider) => {
+        ovhPaymentMethodProvider.setPaymentMethodPageUrl(
+          coreURLBuilderProvider.buildURL('billing', '#/payment/method'),
+        );
+        ovhPaymentMethodProvider.setUserLocale(locale);
+      },
+    )
     .run(broadcastAppStarted)
     .run(transitionsConfig)
     .run(defaultErrorHandler);

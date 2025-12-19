@@ -2,12 +2,17 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { PCIAi } from '../..';
 import { Guide } from '@/types/Guides';
 
+export type GuideCategory = 'ai' | 'quantum' | string;
+
 export interface GetGuidesProps extends PCIAi {
   section?: string[];
+  category?: GuideCategory;
   lang?: string;
 }
+
 export const getGuides = async ({
   projectId,
+  category,
   section,
   lang,
 }: GetGuidesProps) => {
@@ -15,9 +20,10 @@ export const getGuides = async ({
     'X-Pagination-Mode': 'CachedObjectList-Pages',
     'X-Pagination-Size': '50000',
   };
-  const filters = [];
 
-  if (section && section.length > 0) {
+  const filters: string[] = [];
+
+  if (category === 'ai' && section && section.length > 0) {
     filters.push(
       section.length === 1
         ? `section:eq=${section[0]}`
@@ -32,9 +38,13 @@ export const getGuides = async ({
   if (filters.length > 0) {
     headers['X-Pagination-Filter'] = filters.join('&');
   }
+
+  const basePath =
+    category === 'ai'
+      ? `/cloud/project/${projectId}/ai/guides`
+      : `/cloud/project/${projectId}/quantum/guides`;
+
   return apiClient.v6
-    .get(`/cloud/project/${projectId}/ai/guides`, {
-      headers,
-    })
+    .get(basePath, { headers })
     .then((res) => res.data as Guide[]);
 };

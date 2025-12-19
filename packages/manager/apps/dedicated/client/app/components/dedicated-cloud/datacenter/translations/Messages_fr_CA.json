@@ -13,5 +13,6 @@
   "dedicatedCloud_tab_network": "Network",
   "dedicatedCloud_datacenter_EOL_title": "Date de fin de vie de Dedicated Cloud : 30 Septembre 2022",
   "dedicatedCloud_datacenter_EOL_part_1": "Nous vous avons informé en Octobre 2021 que nos offres Dedicated Cloud arrivaient en fin de vie et seront définitivement arrêtées le 30 Septembre 2022. Cette étape est importante pour vos plateformes VMware afin d’améliorer la qualité de service, les performances et la sécurité de vos clusters. En effet, le matériel des offres « Dedicated Cloud » utilisé, antérieur à 2018, ne nous permet plus d’assurer le meilleur niveau de service et l’intégration avec les nouvelles architectures modernes de VMware.",
-  "dedicatedCloud_datacenter_EOL_part_2": "Suite à nos précédentes communications, de nombreux clients ont entamé cette planification et migration et nous vous invitons donc à faire de même afin d'éviter cette date butoir du 30 Septembre 2022."
+  "dedicatedCloud_datacenter_EOL_part_2": "Suite à nos précédentes communications, de nombreux clients ont entamé cette planification et migration et nous vous invitons donc à faire de même afin d'éviter cette date butoir du 30 Septembre 2022.",
+  "dedicatedCloud_order_success_message": "Votre commande de service {{productName}} a été initiée. Si vous ne l'avez pas encore finalisée, vous pouvez la compléter en cliquant sur le <a href=\"{{url}}\" target=\"_blank\" rel=\"noreferrer\"> lien suivant </a> "
 }

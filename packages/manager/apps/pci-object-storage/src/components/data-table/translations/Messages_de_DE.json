@@ -1,0 +1,18 @@
+{
+  "common_criteria_adder_filter_label": "Filtern",
+  "common_criteria_adder_column_label": "Spalte",
+  "common_criteria_adder_operator_label": "Bedingung",
+  "common_criteria_adder_operator_includes": "enthält",
+  "common_criteria_adder_operator_starts_with": "beginnt mit",
+  "common_criteria_adder_operator_ends_with": "endet mit",
+  "common_criteria_adder_operator_is_equal": "ist gleich",
+  "common_criteria_adder_operator_is_different": "ist nicht gleich",
+  "common_criteria_adder_operator_is_lower": "ist kleiner als",
+  "common_criteria_adder_operator_is_higher": "ist größer als",
+  "common_criteria_adder_operator_is_before": "ist vor",
+  "common_criteria_adder_operator_is_after": "ist nach",
+  "common_criteria_adder_true_label": "Ja",
+  "common_criteria_adder_false_label": "Nein",
+  "common_criteria_adder_value_label": "Wert",
+  "common_criteria_adder_submit_label": "Hinzufügen"
+}

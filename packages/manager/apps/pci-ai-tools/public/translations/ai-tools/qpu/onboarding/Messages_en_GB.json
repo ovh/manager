@@ -1,7 +1,7 @@
 {
   "Title": "Quantum Computers (QPU)",
   "createNotebookButton": "Create a Notebook",
-  "Description1": "Access the real power of quantum in QaaS from OVHcloud.",
+  "Description1": "Get the real power of quantum with QaaS from OVHcloud.",
   "Description2": "Run your algorithms on physical quantum processors (QPUs) safely, with no infrastructure to manage.",
-  "Description3": "Enjoy seamless integration with our emulators, and pay-per-second billing to help manage your costs."
+  "Description3": "Make the most of seamless integration with our emulators and better manage your costs using per-second billing."
 }

@@ -4,7 +4,7 @@ import template from './disable-domains-bulk.html';
 export default {
   bindings: {
     disableDomainsBulk: '<',
-    goBack: '<',
+    goToAutorenew: '<',
   },
   controller,
   template,

@@ -1,9 +1,11 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
-  createSecretVersion,
   CreateSecretVersionParams,
   CreateSecretVersionResponse,
+  createSecretVersion,
   secretVersionsQueryKeys,
 } from '../api/secretVersions';
 import { secretQueryKeys } from '../api/secrets';
@@ -11,28 +13,21 @@ import { secretQueryKeys } from '../api/secrets';
 export const useCreateSecretVersion = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<
-    CreateSecretVersionResponse,
-    ApiError,
-    CreateSecretVersionParams
-  >({
+  return useMutation<CreateSecretVersionResponse, ApiError, CreateSecretVersionParams>({
     mutationFn: createSecretVersion,
-    onSuccess: (_, variables) => {
+    onSuccess: async (_, variables) => {
       // Invalidate secrets
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: secretQueryKeys.list(variables.okmsId),
         exact: true,
       });
       // Invalidate secret details
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: secretQueryKeys.detail(variables.okmsId, variables.path),
       });
       // Invalidate secret versions
-      queryClient.invalidateQueries({
-        queryKey: secretVersionsQueryKeys.list(
-          variables.okmsId,
-          variables.path,
-        ),
+      await queryClient.invalidateQueries({
+        queryKey: secretVersionsQueryKeys.list(variables.okmsId, variables.path),
       });
     },
   });

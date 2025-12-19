@@ -3,6 +3,132 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.5.3...@ovh-ux/manager-billing-app@0.5.4) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.5.2...@ovh-ux/manager-billing-app@0.5.3) (2025-12-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.5.1...@ovh-ux/manager-billing-app@0.5.2) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.5.0...@ovh-ux/manager-billing-app@0.5.1) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.67...@ovh-ux/manager-billing-app@0.5.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
+## [0.4.67](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.66...@ovh-ux/manager-billing-app@0.4.67) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.4.66](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.65...@ovh-ux/manager-billing-app@0.4.66) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.4.65](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.64...@ovh-ux/manager-billing-app@0.4.65) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.4.64](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.63...@ovh-ux/manager-billing-app@0.4.64) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.4.63](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.62...@ovh-ux/manager-billing-app@0.4.63) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.4.62](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.61...@ovh-ux/manager-billing-app@0.4.62) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.4.61](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.60...@ovh-ux/manager-billing-app@0.4.61) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.4.60](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.59...@ovh-ux/manager-billing-app@0.4.60) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
+## [0.4.59](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.58...@ovh-ux/manager-billing-app@0.4.59) (2025-11-12)
+
+
+### Bug Fixes
+
+* **payment-methode:** fix the user locale undefined issue ([e0bdb54](https://github.com/ovh/manager/commit/e0bdb54433b9b790a14b4a5faea93cd17869b99a)), closes [#INC0163710](https://github.com/ovh/manager/issues/INC0163710) [#MANAGER-20223](https://github.com/ovh/manager/issues/MANAGER-20223)
+
+
+
+
+
+## [0.4.58](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.57...@ovh-ux/manager-billing-app@0.4.58) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
 ## [0.4.57](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.4.56...@ovh-ux/manager-billing-app@0.4.57) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app

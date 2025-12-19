@@ -182,7 +182,7 @@ describe('getFilterParamsFromUrl', () => {
 
 describe('getSearchUrlFromFilterParams', () => {
   describe('get params categories from url', () => {
-    it('should return string with only categories ', () => {
+    it('should return string with only categories', () => {
       const result = getSearchUrlFromFilterParams(
         '',
         ['AI & machine learning', 'Containers and orchestration', 'Dedicated Servers'],
@@ -194,7 +194,7 @@ describe('getSearchUrlFromFilterParams', () => {
     });
   });
   describe('get params universes from url', () => {
-    it('should return string with only universes ', () => {
+    it('should return string with only universes', () => {
       const result = getSearchUrlFromFilterParams(
         '',
         [],
@@ -204,13 +204,13 @@ describe('getSearchUrlFromFilterParams', () => {
     });
   });
   describe('get params query from url', () => {
-    it('should return string with only query ', () => {
+    it('should return string with only query', () => {
       const result = getSearchUrlFromFilterParams('cloud', [], []);
       expect(result.toString()).toEqual('q=cloud');
     });
   });
   describe('get params universes and category from url', () => {
-    it('should return string with only universes ', () => {
+    it('should return string with only universes', () => {
       const result = getSearchUrlFromFilterParams(
         '',
         ['Containers and orchestration'],

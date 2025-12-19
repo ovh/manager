@@ -27,7 +27,15 @@ vi.spyOn(RulesHooks, 'useLegalFormRules').mockReturnValue({
   isLoading: false,
 } as UseQueryResult<Rule>);
 
-vi.spyOn(ReactRouterDom, 'useNavigate').mockReturnValue(navigate);
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => navigate,
+  useSearchParams: () => [
+    new URLSearchParams({
+      onsuccess: 'https://www.ovh.com/manager',
+    }),
+    vi.fn(),
+  ],
+}));
 
 vi.mock('@/context/user/useUser', () => {
   return {
@@ -71,12 +79,12 @@ describe('AccountTypePage', () => {
   it('should display radio button for each legal form given by the rules API', async () => {
     render(<AccountTypePage />);
 
-    const corporationElement = screen.getByText('legal_form_corporation');
-    const individualElement = screen.getByText('legal_form_individual');
-    const associationElement = screen.getByText('legal_form_association');
-    expect(corporationElement).toBeInTheDocument();
-    expect(individualElement).toBeInTheDocument();
-    expect(associationElement).toBeInTheDocument();
+    const corporationElement = screen.getAllByText('legal_form_corporation');
+    const individualElement = screen.getAllByText('legal_form_individual');
+    const associationElement = screen.getAllByText('legal_form_association');
+    expect(corporationElement).toHaveLength(2);
+    expect(individualElement).toHaveLength(2);
+    expect(associationElement).toHaveLength(2);
   });
 
   it('should display an error message if user click on validate cta without making a choice', async () => {
@@ -103,7 +111,7 @@ describe('AccountTypePage', () => {
 
     const validateButtonElement = screen.getByText('validate');
     await act(() => validateButtonElement.click());
-    expect(navigate).toHaveBeenCalledWith('/company');
+    expect(navigate).toHaveBeenCalledWith('/company?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager');
   });
 
   it('should navigate to info page for FR non corporation', async () => {
@@ -112,6 +120,6 @@ describe('AccountTypePage', () => {
 
     const validateButtonElement = screen.getByText('validate');
     await act(() => validateButtonElement.click());
-    expect(navigate).toHaveBeenCalledWith('/details');
+    expect(navigate).toHaveBeenCalledWith('/details?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager');
   });
 });

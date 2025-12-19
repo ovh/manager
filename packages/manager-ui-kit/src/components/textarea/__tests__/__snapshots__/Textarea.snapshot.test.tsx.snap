@@ -3,25 +3,25 @@
 exports[`Textarea Snapshot tests > renders the component with default props 1`] = `
 <div>
   <textarea
-    class="_textarea_mmrrg_2"
-    data-ods="textarea"
+    class=_textarea
+    data-ods=textarea
   />
   <textarea
-    class="_textarea_mmrrg_2"
-    data-ods="textarea"
-    disabled=""
+    class=_textarea
+    data-ods=textarea
+    disabled=
   />
   <textarea
-    class="_textarea_mmrrg_2"
-    data-ods="textarea"
-    readonly=""
+    class=_textarea
+    data-ods=textarea
+    readonly=
   >
     Readonly
   </textarea>
   <textarea
-    class="_textarea_mmrrg_2"
-    data-ods="textarea"
-    style="resize: both;"
+    class=_textarea
+    data-ods=textarea
+    style=resize: both;
   />
 </div>
 `;

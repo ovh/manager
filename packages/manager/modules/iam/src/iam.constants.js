@@ -242,11 +242,29 @@ GUIDE.LOGS.SN = GUIDE.LOGS.FR;
 GUIDE.LOGS.TN = GUIDE.LOGS.FR;
 GUIDE.LOGS.MA = GUIDE.LOGS.FR;
 
-const API_KEY_URL = {
-  EU: 'https://www.ovh.com/auth/api/createToken',
-  CA: 'https://ca.ovh.com/auth/api/createToken',
-  US: 'https://us.ovhcloud.com/auth/api/createToken',
+const changelogLinks = {
+  default: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/1?sliceBy%5Bvalue%5D=Identity+and+Access+Management+%28IAM%29',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/6?sliceBy%5Bvalue%5D=Identity+and+Access+Management+%28IAM%29',
+    'feature-request':
+      'https://github.com/ovh/management-security-operations-roadmap/issues/new/choose',
+  },
 };
+
+export const CHANGELOG = {
+  default: {
+    links: changelogLinks.default,
+    chapters: [
+      'identity-security-operation',
+      'identity-access-management',
+      'identity-access-management',
+    ],
+  },
+};
+
+const AUTH_CREATE_TOKEN_API = 'api/createToken';
 
 const PAGE_SIZE = 25;
 
@@ -288,5 +306,5 @@ export {
   URN_VERSION,
   WILDCARD,
   ACTION_DESCRIPTION_UNDEFINED,
-  API_KEY_URL,
+  AUTH_CREATE_TOKEN_API,
 };

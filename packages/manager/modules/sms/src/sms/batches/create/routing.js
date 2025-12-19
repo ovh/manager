@@ -95,8 +95,6 @@ export default /* @ngInject */ ($stateProvider) => {
           }),
           {},
         ),
-      smsClasses: /* @ngInject */ (schema) =>
-        schema.models['sms.BatchClassEnum'].enum,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('sms_batches_create_title'),
     },

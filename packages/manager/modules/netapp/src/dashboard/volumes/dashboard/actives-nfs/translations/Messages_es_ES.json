@@ -1,0 +1,7 @@
+{
+  "netapp_volumes_dashboard_actives_nfs_breadcrumb": "NFS",
+  "netapp_volumes_dashboard_actives_nfs_ip": "Dirección IP del cliente",
+  "netapp_volumes_dashboard_actives_nfs_version": "Versión NFS",
+  "netapp_volumes_dashboard_actives_nfs_last_connection": "Última conexión",
+  "netapp_volumes_dashboard_actives_nfs_description": "Lista de clientes NFS conectados recientemente."
+}

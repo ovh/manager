@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.10.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.9.1...@ovh-ux/ng-ovh-sso-auth@4.10.0) (2025-12-01)
+
+
+### Features
+
+* update sign-up URLs ([1a76eb8](https://github.com/ovh/manager/commit/1a76eb88165b658cb4d1d420df320180a4fe817a)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+## [4.9.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.9.0...@ovh-ux/ng-ovh-sso-auth@4.9.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-sso-auth
+
+
+
+
+
 # [4.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.8.5...@ovh-ux/ng-ovh-sso-auth@4.9.0) (2025-08-27)
 
 

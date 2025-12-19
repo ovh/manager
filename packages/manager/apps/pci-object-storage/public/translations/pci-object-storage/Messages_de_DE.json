@@ -1,0 +1,8 @@
+{
+  "title": "Object Storage",
+  "description": "Hosten Sie Ihren Datenkatalog in unserer Objektspeicherlösung. Sie können diese Daten von Ihrer Anwendung aus über S3-kompatible APIs verwalten.",
+  "crumb-object-storage": "Object Storage",
+  "containerTab": "Meine Container",
+  "usersTab": "User",
+  "settingsTab": "Konfigurationen"
+}

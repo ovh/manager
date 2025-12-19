@@ -26,6 +26,14 @@
             >
                 <span data-translate="netapp_volumes_dashboard_acl"></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.volumeDashboardActivesNFSLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardActivesNFSLink"
+            >
+                <span
+                    data-translate="netapp_volumes_dashboard_actives_nfs_title"
+                ></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
     <div data-ovh-alert></div>
@@ -94,7 +102,7 @@
                 </oui-tile-definition>
             </oui-tile>
             <oui-tile
-                class="col-md-8"
+                class="col-md-5"
                 data-heading="{{:: 'netapp_volumes_dashboard_connection' | translate}}"
             >
                 <oui-tile-definition
@@ -226,6 +234,51 @@
                                 </li>
                             </ol>
                         </oui-collapsible>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+            <oui-tile
+                class="col-md-3 ml-2"
+                data-heading="{{:: 'netapp_volumes_dashboard_usage_title' | translate}}"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_usage_max_files' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span>{{$ctrl.volumeUsages.maxFiles}}</span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_usage_files' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span>{{$ctrl.volumeUsages.usedFiles}}</span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'netapp_volumes_dashboard_usage_nfs_client' | translate }}"
+                >
+                    <oui-tile-description>
+                        <ul class="list-none p-0">
+                            <li
+                                data-ng-repeat="nfs in $ctrl.volumeUsages.activesNFS | limitTo: $ctrl.volumeUsages.activesNFSLimite"
+                            >
+                                {{nfs.clientIp}}
+                            </li>
+                        </ul>
+                        <span
+                            data-ng-if="!$ctrl.volumeUsages.activesNFS.length"
+                            data-translate="netapp_volumes_dashboard_usage_no_nfs_client"
+                        ></span>
+                        <a
+                            data-ng-if="$ctrl.volumeUsages.activesNFS.length >= $ctrl.volumeUsages.activesNFSLimite"
+                            href="{{$ctrl.volumeDashboardActivesNFSLink}}"
+                        >
+                            <span
+                                data-translate="netapp_volumes_dashboard_usage_view_all"
+                            ></span>
+                            <ods-icon name="arrow-right"></ods-icon>
+                        </a>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>

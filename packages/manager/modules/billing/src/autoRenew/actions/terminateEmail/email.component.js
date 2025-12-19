@@ -4,7 +4,7 @@ import template from './billing-autoRenew-terminateEmail.html';
 export default {
   bindings: {
     email: '<',
-    goBack: '<',
+    goToAutorenew: '<',
     isHosting: '<',
     terminateEmail: '<',
   },

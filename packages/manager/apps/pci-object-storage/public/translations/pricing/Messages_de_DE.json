@@ -1,0 +1,15 @@
+{
+  "pricing_ht": "{{price}} zzgl. MwSt.",
+  "pricing_ttc": "{{ price }} inkl. MwSt.",
+  "pricing_button_hourly": "Uhr",
+  "pricing_button_monthly": "Monatlich",
+  "pricing_unit_hourly": "/Stunde",
+  "pricing_unit_monthly": "/Monat",
+  "pricing_label": "Preis",
+  "freeBetaLabel": "Kostenlose Beta",
+  "freeBetaPopover": "Der Dienst ist während der Betaphase kostenlos und wird nach dem Übergang zur allgemeinen Verfügbarkeit kostenpflichtig.",
+  "pricing_instance_label": "Instanz",
+  "pricing_storage_label": "Speicher",
+  "total_hour_label": "Gesamt pro Stunde",
+  "estimated_month_label": "Monatlich (geschätzt)"
+}

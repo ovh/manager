@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam",
-  "version": "1.22.2",
+  "version": "1.24.1",
   "private": true,
   "description": "IAM product.",
   "repository": {
@@ -13,7 +13,9 @@
   "main": "src/index.js",
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
+    "@ovh-ux/manager-components": "^1.26.1",
     "@ovh-ux/manager-core": "^12.16.1",
+    "@ovh-ux/manager-core-sso": "^0.4.9",
     "@ovh-ux/manager-log-to-customer": "^2.5.0",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",

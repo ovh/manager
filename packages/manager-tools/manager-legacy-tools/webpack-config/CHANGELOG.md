@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.2.0...@ovh-ux/manager-webpack-config@7.2.1) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.1.1...@ovh-ux/manager-webpack-config@7.2.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
 ## [7.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.1.0...@ovh-ux/manager-webpack-config@7.1.1) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-webpack-config

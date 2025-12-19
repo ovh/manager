@@ -52,6 +52,7 @@ export const ButtonLink = forwardRef<
       children,
       actionName,
       actionValues,
+      location,
       ...htmlProps
     },
     ref,
@@ -60,6 +61,7 @@ export const ButtonLink = forwardRef<
       () => ({
         actionName,
         actionValues,
+        location,
         buttonType: 'button',
       }),
       [actionName, actionValues],

@@ -1,5 +1,5 @@
 {
-  "discoveryMode": "Aktualnie jesteś w trybie Discovery. Aby uzyskać dostęp do produktów AI oferowanych przez OVHcloud, uruchom projekt.",
+  "discoveryMode": "Aktualnie jesteś w trybie Discovery. Aby uzyskać dostęp do produktów {{type}} oferowanych przez OVHcloud, musisz aktywować Twój projekt.",
   "discoveryModeActivate": "Uruchom projekt",
   "authActivateProjectButton": "Uruchom projekt AI",
   "authDescription": "Aby korzystać z usług AI od OVHcloud, zaloguj się przed utworzeniem pierwszego notebooka, zadania lub aplikacji.",
@@ -9,5 +9,5 @@
   "formActiveUserToastSuccessDescription": "Twój projekt został uruchomiony",
   "authQuantumActivateProjectButton": "Aktywuj projekt kwantowy",
   "authQuantumDescription": "Aby móc korzystać z usług kwantowych OVHcloud, zaloguj się przed utworzeniem pierwszego emulatora.",
-  "quantumTitle": "Emulatory kwantowe"
+  "quantumTitle": "Quantum"
 }

@@ -297,7 +297,7 @@
   "logs_streams_update_title": "Modifica il flusso di dati",
   "logs_streams_update_description": "Per il flusso di dati <strong>{{ name }}</strong>",
   "logs_streams_enable_indexing": "Attiva l’indicizzazione",
-  "logs_streams_enable_indexing_description": "Consulta i log su Graylog ed OpenSearch ({{t0}} +IVA/GB/mese per i primi {{t1}} GB, {{t2}} +IVA/GB/mese per i successivi)",
+  "logs_streams_enable_indexing_description": "Scopri i tuoi log su Graylog e OpenSearch.",
   "logs_streams_no_limit": "Nessun limite",
   "logs_streams_enable_websocket": "Attiva la trasmissione WebSocket",
   "logs_streams_enable_websocket_description": "Monitora la ricezione dei tuoi log in tempo reale tramite il protocollo WebSocket.",
@@ -803,5 +803,8 @@
   "logs_iam_ovhcloud_iam": "IAM di OVHcloud",
   "logs_iam_enable_iam": "Attivare IAM OVHcloud",
   "logs_iam_policies": "Politiche IAM",
-  "logs_encryption_keys_get_error": "Si è verificato un errore durante il caricamento delle chiavi di crittografia: {{message}}"
+  "logs_encryption_keys_get_error": "Si è verificato un errore durante il caricamento delle chiavi di crittografia: {{message}}",
+  "logs_streams_enable_indexing_description_detail_small": "Storage di log < {{t0}} GB di log: Incluso",
+  "logs_streams_enable_indexing_description_detail_medium": "Storage di log da {{t0}} a {{t1}} GB di log: {{t2}} +IVA/GB/mese",
+  "logs_streams_enable_indexing_description_detail_large": "Storage di log per volumi maggiori (oltre {{t0}} GB): {{t1}} +IVA/GB/mese"
 }

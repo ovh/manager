@@ -127,6 +127,12 @@ export default [
               },
             },
           },
+          {
+            path: 'iam-activation',
+            ...lazyRouteConfig(() =>
+              import('@/pages/dashboard/iam-activation/iamActivation.page'),
+            ),
+          },
         ],
       },
       {

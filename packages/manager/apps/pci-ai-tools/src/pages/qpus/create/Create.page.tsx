@@ -8,7 +8,7 @@ import { useGetQuantumSuggestions } from '@/data/hooks/ai/notebook/useGetQuantum
 
 const Notebook = () => {
   const { projectId } = useParams();
-  const suggestionsQuery = useGetQuantumSuggestions(projectId, {
+  const suggestionsQuery = useGetQuantumSuggestions(projectId, 'qpu', {
     refetchOnWindowFocus: false,
   });
 

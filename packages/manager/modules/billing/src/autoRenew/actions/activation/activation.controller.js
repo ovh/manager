@@ -19,14 +19,16 @@ export default class {
     this.isActivating = true;
     return this.activateAutorenew()
       .then(() =>
-        this.goBack(
+        this.goToAutorenew(
           this.$translate.instant(
             'billing_autorenew_service_activation_success',
           ),
+          'success',
+          true,
         ),
       )
       .catch((error) =>
-        this.goBack(
+        this.goToAutorenew(
           this.$translate.instant(
             'billing_autorenew_service_activation_error',
             { message: get(error, 'data.message') },

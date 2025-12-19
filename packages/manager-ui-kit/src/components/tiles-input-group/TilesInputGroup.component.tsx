@@ -2,11 +2,11 @@ import { JSX, useCallback, useMemo, useState } from 'react';
 
 import isEqual from 'lodash.isequal';
 
-import { TabsComponent } from '@/components/tabs/Tabs.component';
 import {
   TilesInputGroupProps,
   TilesInputGroupState,
 } from '@/components/tiles-input-group/TilesInputGroup.props';
+import { TilesInputGroupTabs } from '@/components/tiles-input-group/tiles-input-group-tabs/TilesInputGroupTabs.component';
 import { TilesInputComponent } from '@/components/tiles-input/TilesInput.component';
 
 function TilesInputGroupComponent<T, S = void, G = void>({
@@ -61,7 +61,7 @@ function TilesInputGroupComponent<T, S = void, G = void>({
   return (
     <>
       {group ? (
-        <TabsComponent<G>
+        <TilesInputGroupTabs<G>
           items={[...(groups?.keys?.() || [])]}
           titleElement={({ item }: { item: G }) => <>{group.label(item, groups.get(item) || [])}</>}
           contentElement={({ item }: { item: G }) => (

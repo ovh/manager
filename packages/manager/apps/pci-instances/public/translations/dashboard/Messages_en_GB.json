@@ -31,5 +31,5 @@
   "pci_instances_dashboard_backup_title": "Backup management",
   "pci_instances_dashboard_backup_number_of_backups": "Number of backups for the instance",
   "pci_instances_dashboard_backup_last_updated_backups": "Last backup on:",
-  "pci_instances_dashboard_tab_vnc_disabled_text": "The state of this instance does not allow connection via the VNC console."
+  "pci_instances_dashboard_tab_vnc_disabled_text": "The VNC console cannot connect to this instance due to its current state"
 }

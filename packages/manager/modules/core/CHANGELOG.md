@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.1...@ovh-ux/manager-core@13.3.2) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.0...@ovh-ux/manager-core@13.3.1) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+# [13.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.21...@ovh-ux/manager-core@13.3.0) (2025-12-01)
+
+
+### Features
+
+* **core:** get auth urls from core-sso ([7b2336b](https://github.com/ovh/manager/commit/7b2336b240f2c5204962da66fbe31bf9631e3390)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+## [13.2.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.20...@ovh-ux/manager-core@13.2.21) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.2.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.19...@ovh-ux/manager-core@13.2.20) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.2.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.18...@ovh-ux/manager-core@13.2.19) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.2.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.17...@ovh-ux/manager-core@13.2.18) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.2.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.16...@ovh-ux/manager-core@13.2.17) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
 ## [13.2.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.2.15...@ovh-ux/manager-core@13.2.16) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-core

@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.9.3](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.9.2...@ovh-ux/shell@4.9.3) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.9.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.9.1...@ovh-ux/shell@4.9.2) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.9.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.9.0...@ovh-ux/shell@4.9.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+# [4.9.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.8.2...@ovh-ux/shell@4.9.0) (2025-11-27)
+
+
+### Features
+
+* add new standard tracking property ([0c1ecd8](https://github.com/ovh/manager/commit/0c1ecd8ea963c053d285c812e63b3aeaf7b831f3)), closes [#MANAGER-19491](https://github.com/ovh/manager/issues/MANAGER-19491)
+
+
+
+
+
+## [4.8.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.8.1...@ovh-ux/shell@4.8.2) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.8.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.8.0...@ovh-ux/shell@4.8.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+# [4.8.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.15...@ovh-ux/shell@4.8.0) (2025-11-12)
+
+
+### Features
+
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
+## [4.7.15](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.14...@ovh-ux/shell@4.7.15) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
 ## [4.7.14](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.13...@ovh-ux/shell@4.7.14) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/shell

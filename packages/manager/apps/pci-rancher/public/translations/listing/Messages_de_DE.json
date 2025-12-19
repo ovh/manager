@@ -23,13 +23,17 @@
   "editNameModalInfo": "Name des Dienstes",
   "editNameModaleHelperInput": "Der Name des Dienstes muss zwischen 3 und 63 Zeichen lang sein. Er muss mit alphanumerischen Kleinbuchstaben beginnen und enden (von a bis z und von 0 bis 9) und kann die Satzzeichen „_“, „.“ und „-“ enthalten.",
   "editNameRancherCta": "Ändern",
-  "READY": "Fertig",
+  "READY": "Bereit",
   "UPDATING": "Wird aktualisiert",
   "ERROR": "Fehler",
+  "ENABLED": "Aktiviert",
   "DELETING": "Wird gelöscht",
   "CREATING": "Wird erstellt",
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard",
   "DISABLED": "Deaktiviert",
-  "rancherStatusCreating": "Ihr Managed Rancher Service wird erstellt. Bitte gedulden Sie sich einen Augenblick."
+  "rancherStatusCreating": "Ihr Managed Rancher Service wird erstellt. Bitte gedulden Sie sich einen Augenblick.",
+  "iam": "IAM Authentifizierung",
+  "iam_authentication_status": "IAM-Authentifizierung",
+  "iam_authentication_infos_tooltip": "Ermöglicht es Rancher, die über OVHcloud IAM (Identity and Access Management) verwalteten Identitäten zur Steuerung des Dienstzugriffs zu verwenden und so eine manuelle Verwaltung der User zu vermeiden."
 }

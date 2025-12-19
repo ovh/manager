@@ -8,5 +8,7 @@
   "common_empty_text_cell": "Brak",
   "common_topbar_columns": "Kolumny",
   "common_pagination_load_all": "Załaduj wszystko",
-  "common_topbar_columns_select_all": "Zaznacz wszystko"
+  "common_topbar_columns_select_all": "Zaznacz wszystko",
+  "common_search_placeholder": "Szukaj",
+  "datagrid_error_context_not_found": "Błąd podczas pobierania informacji. Spróbuj ponownie później."
 }

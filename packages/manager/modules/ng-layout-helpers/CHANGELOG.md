@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.12.0...@ovh-ux/manager-ng-layout-helpers@2.12.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-ng-layout-helpers
+
+
+
+
+
 # [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.11.4...@ovh-ux/manager-ng-layout-helpers@2.12.0) (2025-08-26)
 
 

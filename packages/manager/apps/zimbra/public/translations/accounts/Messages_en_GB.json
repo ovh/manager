@@ -59,5 +59,9 @@
   "zimbra_account_plan_tag_coming_soon": "Coming soon",
   "zimbra_account_plan_feature_share_starter_tooltip": "Manual sharing (no ActiveSync). For Android, sharing only works with Zimbra.",
   "zimbra_account_plan_feature_sync_tooltip": "Automatic real-time syncing on all devices.",
-  "zimbra_account_update_offer_paid_now_tooltip": "The price is calculated pro rata, based on the time left until your next renewal date."
+  "zimbra_account_update_offer_paid_now_tooltip": "The price is calculated pro rata, based on the time left until your next renewal date.",
+  "zimbra_account_delete_all": "Delete accounts ({{ count }})",
+  "zimbra_account_delete_all_modal_content_step1": "Are you sure you want to delete the following accounts?",
+  "zimbra_account_delete_all_modal_content_step2": "Are you sure you want to delete the following email accounts?",
+  "zimbra_account_delete_all_confirm_label": "Enter <strong>{{ label }}</strong> to confirm deletion:"
 }

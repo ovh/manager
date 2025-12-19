@@ -46,7 +46,7 @@ export const VerifyDomain = () => {
   return (
     <>
       <div
-        className="flex flex-col items-start w-full md:w-1/2 gap-4"
+        className="flex w-full flex-col items-start gap-4 md:w-1/2"
         data-testid="validate-domain-page"
       >
         <Links
@@ -95,7 +95,7 @@ export const VerifyDomain = () => {
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                 {t('zimbra_domains_add_domain_configuration_part_1')}{' '}
                 {t('zimbra_domains_add_domain_configuration_part_2')}
-                <span className="block mt-2">
+                <span className="mt-2 block">
                   <GuideLink
                     guide={GUIDES_LIST.cname_guide}
                     label={t('zimbra_domains_add_domain_configuration_guides_referee')}

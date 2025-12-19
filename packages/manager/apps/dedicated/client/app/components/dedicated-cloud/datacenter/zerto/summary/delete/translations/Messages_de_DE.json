@@ -1,8 +1,8 @@
 {
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Löschen Sie Ihr PRA dauerhaft",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Zerto PRA löschen",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Löschen des Wiederherstellungsplans",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Sind Sie sicher, dass Sie das PRA löschen möchten? Diese Aktion ist unwiderruflich.",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Ihr Zerto PRA wird gelöscht. Der Vorgang wird einige Minuten dauern",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Ein Fehler ist beim Löschen des Wiederherstellungsplans aufgetreten"
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "DRP endgültig löschen",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Zerto DRP löschen",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Löschen des Disaster Recovery Plans",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Sind Sie sicher, dass Sie den DRP löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Zerto DRP wird gelöscht. Dieser Vorgang dauert einige Minuten",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Beim Löschen des Disaster Recovery Plans ist ein Fehler aufgetreten"
 }

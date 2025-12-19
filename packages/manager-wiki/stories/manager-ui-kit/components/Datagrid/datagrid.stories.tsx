@@ -7,7 +7,10 @@ import {
   Icon,
   ICON_NAME,
   Input,
+  TABLE_SIZE,
+  TABLE_VARIANT,
 } from '@ovhcloud/ods-react';
+import type { Row } from '@tanstack/react-table';
 import { Datagrid, DatagridProps, useColumnFilters } from '@ovh-ux/muk';
 import {
   applyFilters,
@@ -121,8 +124,11 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
     subComponentHeight,
     maxRowHeight,
     isLoading,
+    size,
+    variant,
     totalCount,
     topbar,
+    hideHeader,
   } = args;
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -173,29 +179,11 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
   );
   return (
     <>
-      {'containerHeight' in args && (
-        <div className="py-4">
-          <div className="max-w-[200px]">
-            <FormField>
-              <FormFieldLabel>Container Height</FormFieldLabel>
-              <Input
-                value={containerHeightState}
-                onChange={(e) =>
-                  setContainerHeightState(Number(e.target.value))
-                }
-              />
-              <Button
-                onClick={() => setContainerHeightStyle(containerHeightState)}
-              >
-                Update
-              </Button>
-            </FormField>
-          </div>
-        </div>
-      )}
       <Datagrid
         columns={colsArgs}
         data={applyFilters(itemsArgs, filters)}
+        {...('size' in args && { size })}
+        {...('variant' in args && { variant })}
         {...('containerHeight' in args && {
           containerHeight: containerHeightStyle,
         })}
@@ -221,7 +209,8 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
                   age: items.length + 1,
                 },
               ]),
-          })}
+        })}
+        {...('hideHeader' in args && { hideHeader })}
         {...('renderSubComponent' in args && { renderSubComponent })}
         {...('subComponentHeight' in args && { subComponentHeight })}
         {...('maxRowHeight' in args && { maxRowHeight })}
@@ -240,6 +229,7 @@ const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
             setColumnVisibility,
           },
         })}
+
         {...('topbar' in args && { topbar })}
         {...('filters' in args && {
           filters: {
@@ -273,6 +263,22 @@ export const Default = DatagridStory.bind({});
 Default.args = {
   columns,
   data,
+};
+
+export const Size = DatagridStory.bind({});
+
+Size.args = {
+  columns,
+  data,
+  size: TABLE_SIZE.sm,
+};
+
+export const Variant = DatagridStory.bind({});
+
+Variant.args = {
+  columns,
+  data,
+  variant: TABLE_VARIANT.striped,
 };
 
 export const Sorting = DatagridStory.bind({});
@@ -316,15 +322,6 @@ LoadAllAndLoading.args = {
   onFetchNextPage: () => {},
 };
 
-export const ContainerHeight = DatagridStory.bind({});
-
-ContainerHeight.args = {
-  columns,
-  data: [...data],
-  manualSorting: false,
-  containerHeight: '260px',
-};
-
 export const SubComponent = DatagridStory.bind({});
 
 SubComponent.args = {
@@ -339,6 +336,7 @@ SubComponent.args = {
     </>
   ),
   subComponentHeight: 80,
+  size: TABLE_SIZE.md,
 };
 
 export const Expandable = DatagridStory.bind({});
@@ -400,7 +398,16 @@ RowSelection.args = {
     rowSelection: [],
     setRowSelection: () => {},
     onRowSelectionChange: () => {},
+    enableRowSelection: (row: Row<DatagridStoryData>) => row?.original?.age === 26,
   },
+};
+
+export const HideHeader = DatagridStory.bind({});
+
+HideHeader.args = {
+  columns,
+  data: [...data],
+  hideHeader: true,
 };
 
 export const Topbar = DatagridStory.bind({});
@@ -457,7 +464,7 @@ FullFooter.args = {
 };
 
 const meta = {
-  title: 'Manager UI Kit/Components/Datagrid New',
+  title: 'Manager UI Kit/Components/Datagrid',
   component: Datagrid,
   tags: ['autodocs'],
   decorators: [withRouter],
@@ -470,8 +477,20 @@ const meta = {
     },
     preserveArgs: false,
   },
-  args: {},
+  args: {
+    containerHeight: 250,
+  },
   argTypes: {
+    size: {
+      description: 'Controls the table row size',
+      control: 'select',
+      options: [TABLE_SIZE.sm, TABLE_SIZE.md, TABLE_SIZE.lg],
+    },
+    variant: {
+      description: 'Controls the table variant style',
+      control: 'select',
+      options: [TABLE_VARIANT.default, TABLE_VARIANT.striped],
+    },
     hasNextPage: {
       description: 'Controls whether pagination buttons are shown',
       control: 'boolean',

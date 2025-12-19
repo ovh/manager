@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -43,6 +43,7 @@ export default function CompanyPage() {
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const { t: tError } = useTranslation(NAMESPACES.ERROR);
   const navigate = useNavigate();
+  const [ searchParams ] = useSearchParams();
 
   const queryClient = useQueryClient();
 
@@ -72,7 +73,7 @@ export default function CompanyPage() {
   }, [legalForm]);
 
   const onFallbackButtonClicked = useCallback(() => {
-    navigate(urls.accountDetails);
+    navigate(`${urls.accountDetails}?${searchParams.toString()}`);
   }, [legalForm]);
 
   const submitCompanySearch: SubmitHandler<SearchFormData> = useCallback(
@@ -101,7 +102,7 @@ export default function CompanyPage() {
 
   const selectCompany = useCallback((company: Company) => {
     setCompany(company);
-    navigate('/details');
+    navigate(`${urls.accountDetails}?${searchParams.toString()}`);
   }, []);
 
   return (
@@ -109,7 +110,7 @@ export default function CompanyPage() {
       <OdsLink
         icon={ODS_ICON_NAME.arrowLeft}
         iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
-        href={`#${urls.accountType}`}
+        href={`#${urls.accountType}?${searchParams.toString()}`}
         label={tAction('back')}
         className="flex mb-6"
       />

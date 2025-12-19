@@ -141,3 +141,11 @@ export const sharedConfig = createConfig({
     mainFields: ['module'],
   },
 });
+
+// Shared test configuration applied across all frontend apps for launching test in muk
+export const sharedCssConfig = {
+  deps: {
+    inline: ['@ovhcloud/ods-react'],
+  },
+  css: true,
+};

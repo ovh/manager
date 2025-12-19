@@ -4,9 +4,9 @@ import { getRegion } from './regionHelper';
 describe('regionHelper', () => {
   describe('getRegion', () => {
     it.each([
-      ['www.ovh.com', 'EU'],
-      ['ca.ovh.com', 'CA'],
-      ['us.ovhcloud.com', 'US'],
+      ['manager.eu.ovhcloud.com', 'EU'],
+      ['manager.ca.ovhcloud.com', 'CA'],
+      ['manager.us.ovhcloud.com', 'US'],
       ['unknown', 'EU'],
     ])(
       'should give the correct region for %s hostname',

@@ -2,6 +2,12 @@
 
 @import '@ovhcloud/ods-themes/default';
 
+:root {
+  --ods-color-form-element-text-placeholder-default: var(
+    --ods-color-neutral-300
+  );
+}
+
 html {
   font-family: var(--ods-font-family-default);
 }

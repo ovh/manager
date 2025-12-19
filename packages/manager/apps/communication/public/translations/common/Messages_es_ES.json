@@ -1,6 +1,6 @@
 {
   "title": "Mis mensajes",
-  "description": "Descubra todas las comunicaciones que OVH le ha enviado, excepto las solicitudes de asistencia. Puede consultarlos en la sección: <anchor>Soporte</anchor>",
+  "description": "Descubra todas las comunicaciones que OVHcloud le ha enviado, excepto las solicitudes de asistencia. Puede consultarlos en la sección: <anchor>Soporte</anchor>",
   "assistance_link_label": "Soporte",
   "tab_communications": "Mis mensajes",
   "tab_contacts": "Contactos",
@@ -24,6 +24,6 @@
   "status_error": "Error",
   "status_disabled": "Desactivado",
   "status_valid": "Activo",
-  "status_to_validate": "En espera",
-  "error_rate_limit_message": "Has alcanzado el límite de solicitudes. Por favor, inténtalo de nuevo más tarde."
+  "status_to_validate": "Pendiente",
+  "error_rate_limit_message": "Ha alcanzado el límite de peticiones. Por favor, inténtelo de nuevo más tarde."
 }

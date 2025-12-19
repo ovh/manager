@@ -1,6 +1,8 @@
 import { screen } from '@testing-library/react';
 import { type Mock, describe, expect, it, vi } from 'vitest';
 
+import { TABLE_SIZE, TABLE_VARIANT } from '@ovhcloud/ods-react';
+
 import { renderDataGrid } from '@/commons/tests-utils/Render.utils';
 import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
 import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
@@ -30,80 +32,125 @@ describe('Datagrid Snapshot Tests', () => {
     mockedHook.mockReturnValue(mockIamResponse);
   });
 
-  it('should match snapshot with basic props', () => {
-    const { container } = renderDataGrid({ columns: mockBasicColumns, data: mockData });
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should match snapshot with sorting enabled', () => {
-    const { container } = renderDataGrid({
-      columns: mockBasicColumns,
-      data: mockData,
-      sorting: {
-        sorting: [{ id: 'name', desc: false }],
-        setSorting: mockOnSortChange,
-        manualSorting: false,
+  it.each([
+    {
+      description: 'basic props',
+      props: { columns: mockBasicColumns, data: mockData },
+    },
+    {
+      description: 'sorting enabled',
+      props: {
+        columns: mockBasicColumns,
+        data: mockData,
+        sorting: {
+          sorting: [{ id: 'name', desc: false }],
+          setSorting: mockOnSortChange,
+          manualSorting: false,
+        },
       },
-    });
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should match snapshot with search enabled', () => {
-    const { container } = renderDataGrid({
-      columns: mockBasicColumns,
-      data: mockData,
-      search: mockSearch,
-    });
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should match snapshot with filters enabled', () => {
-    const { container } = renderDataGrid({
-      columns: mockBasicColumns,
-      data: mockData,
-      filters: mockFilters,
-    });
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should match snapshot with column visibility enabled', () => {
-    const { container } = renderDataGrid({
-      columns: mockBasicColumns,
-      data: mockData,
-      columnVisibility: {
-        columnVisibility: mockColumnVisibility,
-        setColumnVisibility: mockSetColumnVisibility,
+    },
+    {
+      description: 'search enabled',
+      props: {
+        columns: mockBasicColumns,
+        data: mockData,
+        search: mockSearch,
       },
-    });
+    },
+    {
+      description: 'filters enabled',
+      props: {
+        columns: mockBasicColumns,
+        data: mockData,
+        filters: mockFilters,
+      },
+    },
+    {
+      description: 'column visibility enabled',
+      props: {
+        columns: mockBasicColumns,
+        data: mockData,
+        columnVisibility: {
+          columnVisibility: mockColumnVisibility,
+          setColumnVisibility: mockSetColumnVisibility,
+        },
+      },
+    },
+    {
+      description: 'pagination',
+      props: {
+        columns: mockBasicColumns,
+        data: mockData,
+        hasNextPage: true,
+        onFetchNextPage: mockOnFetchNextPage,
+        onFetchAllPages: mockOnFetchAllPages,
+        totalCount: 100,
+        isLoading: false,
+      },
+    },
+    {
+      description: 'loading state',
+      props: {
+        columns: mockBasicColumns,
+        data: mockData,
+        isLoading: true,
+      },
+    },
+    {
+      description: 'empty data',
+      props: {
+        columns: mockBasicColumns,
+        data: [],
+      },
+    },
+    {
+      description: 'row selection',
+      props: {
+        columns: mockBasicColumns,
+        data: mockData,
+        rowSelection: mockRowSelection,
+      },
+    },
+    {
+      description: 'custom container height',
+      props: {
+        columns: mockBasicColumns,
+        data: mockData,
+        containerHeight: 400,
+      },
+    },
+  ])('should match snapshot with $description', ({ props }) => {
+    const { container } = renderDataGrid(props);
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should match snapshot with pagination', () => {
+  it.each([
+    { size: TABLE_SIZE.sm, description: 'small size' },
+    { size: TABLE_SIZE.md, description: 'medium size' },
+    { size: TABLE_SIZE.lg, description: 'large size' },
+  ])('should match snapshot with $description', ({ size }) => {
     const { container } = renderDataGrid({
       columns: mockBasicColumns,
       data: mockData,
-      hasNextPage: true,
-      onFetchNextPage: mockOnFetchNextPage,
-      onFetchAllPages: mockOnFetchAllPages,
-      totalCount: 100,
-      isLoading: false,
+      size,
     });
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should match snapshot with loading state', () => {
+  it('should match snapshot with striped variant', () => {
     const { container } = renderDataGrid({
       columns: mockBasicColumns,
       data: mockData,
-      isLoading: true,
+      variant: TABLE_VARIANT.striped,
     });
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should match snapshot with empty data', () => {
+  it('should match snapshot with hideHeader enabled', () => {
     const { container } = renderDataGrid({
       columns: mockBasicColumns,
-      data: [],
+      data: mockData,
+      hideHeader: true,
     });
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -121,24 +168,6 @@ describe('Datagrid Snapshot Tests', () => {
     const buttons = screen.queryAllByRole('button');
     expect(buttons.length).toBeGreaterThan(0);
 
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should match snapshot with row selection', () => {
-    const { container } = renderDataGrid({
-      columns: mockBasicColumns,
-      data: mockData,
-      rowSelection: mockRowSelection,
-    });
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  it('should match snapshot with custom container height', () => {
-    const { container } = renderDataGrid({
-      columns: mockBasicColumns,
-      data: mockData,
-      containerHeight: 400,
-    });
     expect(container.firstChild).toMatchSnapshot();
   });
 
@@ -168,6 +197,18 @@ describe('Datagrid Snapshot Tests', () => {
       onFetchAllPages: mockOnFetchAllPages,
       totalCount: 100,
       containerHeight: 500,
+    });
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should match snapshot with conditional row selection', () => {
+    const { container } = renderDataGrid({
+      columns: mockBasicColumns,
+      data: mockData,
+      rowSelection: {
+        ...mockRowSelection,
+        enableRowSelection: ({ original }) => original.id !== '1',
+      },
     });
     expect(container.firstChild).toMatchSnapshot();
   });

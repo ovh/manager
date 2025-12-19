@@ -25,10 +25,8 @@ export default /* @ngInject */ ($stateProvider) => {
       displayErrorMessage: /* @ngInject */ (Alerter) => (message) =>
         Alerter.set('alert-danger', message),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
-      onSuccess: /* @ngInject */ (Alerter, goBack) => (successMessage) =>
-        goBack().then(() => {
-          Alerter.success(successMessage);
-        }),
+      onSuccess: /* @ngInject */ (goBack) => (successMessage) =>
+        goBack(successMessage, 'success', true),
       service: /* @ngInject */ ($http, coreConfig, serviceId) =>
         $http
           .get(`/services/${serviceId}`)

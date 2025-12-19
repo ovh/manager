@@ -1,34 +1,26 @@
-import React, { useEffect, useContext, Suspense } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  RouterProvider,
-  createHashRouter,
-  createRoutesFromElements,
-} from 'react-router-dom';
-import secretManagerRoutes from '@secret-manager/routes/routes';
-import rootRoutes from '@/routes/rootRoutes';
-import kmsRoutes from '@/routes/routes';
-import Loading from '@/components/Loading/Loading';
+import { Suspense, useEffect } from 'react';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 300_000,
-    },
-  },
-});
+import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
+
+import kmsRoutes from '@key-management-service/routes/routes';
+import secretManagerRoutes from '@secret-manager/routes/routes';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+import Loading from '@/common/components/loading/Loading';
+import { useShellContext } from '@/common/hooks/useShellContext';
+import rootRoutes from '@/common/routes/routes';
+import { queryClient } from '@/common/utils/react-query/queryClient';
 
 function App() {
-  const { shell } = useContext(ShellContext);
+  const { shell } = useShellContext();
   const router = createHashRouter(
     createRoutesFromElements([rootRoutes, kmsRoutes, secretManagerRoutes]),
   );
 
   useEffect(() => {
     shell.ux.hidePreloader();
-  }, []);
+  }, [shell.ux]);
 
   return (
     <Suspense fallback={<Loading />}>

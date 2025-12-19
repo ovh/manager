@@ -3,6 +3,148 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.3...@ovh-ux/manager-web-ongoing-operations-app@1.17.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4502] ([a07afca](https://github.com/ovh/manager/commit/a07afcacdb0e73bab5309df2800e8a19f623da5c))
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+## [1.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.2...@ovh-ux/manager-web-ongoing-operations-app@1.16.3) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.1...@ovh-ux/manager-web-ongoing-operations-app@1.16.2) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.16.0...@ovh-ux/manager-web-ongoing-operations-app@1.16.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.15.1...@ovh-ux/manager-web-ongoing-operations-app@1.16.0) (2025-11-26)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** add missing translation ([e63a34f](https://github.com/ovh/manager/commit/e63a34f43084e5d7ef6beeefcf303023c62d6933)), closes [#DCE-99](https://github.com/ovh/manager/issues/DCE-99)
+* **web-ongoing-operations:** remove element-internals-polyfill usage ([cbb07d1](https://github.com/ovh/manager/commit/cbb07d108a87855805f796c7e28e2cce28d8dcc4)), closes [#DCE-12](https://github.com/ovh/manager/issues/DCE-12)
+
+
+### Features
+
+* **web-ongoing-operations:** tracking implementation ([fd3c0c3](https://github.com/ovh/manager/commit/fd3c0c383d7d8367675ba0011aedfc4b541cf34c)), closes [#DCE-57](https://github.com/ovh/manager/issues/DCE-57)
+
+
+
+
+
+## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.15.0...@ovh-ux/manager-web-ongoing-operations-app@1.15.1) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.14.1...@ovh-ux/manager-web-ongoing-operations-app@1.15.0) (2025-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4468] ([a6691b2](https://github.com/ovh/manager/commit/a6691b2efc195d639b48673a7b2fc1434e2b854c))
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
+## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.14.0...@ovh-ux/manager-web-ongoing-operations-app@1.14.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4466] ([5b0902e](https://github.com/ovh/manager/commit/5b0902e4163cce078140abd846a9ddc955ee97d1))
+
+
+
+
+
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.13.7...@ovh-ux/manager-web-ongoing-operations-app@1.14.0) (2025-11-13)
+
+
+### Features
+
+* **web-ongoing-operations:** pnpm migration ([06a047e](https://github.com/ovh/manager/commit/06a047e72705f825e17d7acec8150cd43e688b1f)), closes [#DCE-73](https://github.com/ovh/manager/issues/DCE-73)
+
+
+
+
+
+## [1.13.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.13.6...@ovh-ux/manager-web-ongoing-operations-app@1.13.7) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.13.5...@ovh-ux/manager-web-ongoing-operations-app@1.13.6) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.13.4...@ovh-ux/manager-web-ongoing-operations-app@1.13.5) (2025-11-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4461] ([c0b02fb](https://github.com/ovh/manager/commit/c0b02fb351037c6c57a56826298b7b9ec0e54f03))
+* **i18n:** add missing translations [CDS 4462] ([cc414da](https://github.com/ovh/manager/commit/cc414da0f6f29fd6889c85fe90b566516e7eaeb4))
+
+
+
+
+
+## [1.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.13.3...@ovh-ux/manager-web-ongoing-operations-app@1.13.4) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+
+
+
+
+
 ## [1.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.13.2...@ovh-ux/manager-web-ongoing-operations-app@1.13.3) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

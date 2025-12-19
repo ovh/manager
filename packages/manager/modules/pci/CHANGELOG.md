@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.101.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.4...@ovh-ux/manager-pci@6.101.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
+## [6.100.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.3...@ovh-ux/manager-pci@6.100.4) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4476] ([9fc0b9b](https://github.com/ovh/manager/commit/9fc0b9bd444e084a91ce72a4f93cbcd4ac98e0e8))
+
+
+
+
+
+## [6.100.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.2...@ovh-ux/manager-pci@6.100.3) (2025-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4469] ([d79d092](https://github.com/ovh/manager/commit/d79d092df9f72d6c3b8141370df598d32ec35771))
+
+
+
+
+
+## [6.100.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.1...@ovh-ux/manager-pci@6.100.2) (2025-11-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4466] ([5b0902e](https://github.com/ovh/manager/commit/5b0902e4163cce078140abd846a9ddc955ee97d1))
+
+
+
+
+
+## [6.100.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.0...@ovh-ux/manager-pci@6.100.1) (2025-11-11)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([38e4f58](https://github.com/ovh/manager/commit/38e4f5834caf09c2a4a53d2cc2258a62bbe5c3ce))
+
+
+
+
+
+# [6.100.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.99.1...@ovh-ux/manager-pci@6.100.0) (2025-11-06)
+
+
+### Features
+
+* **pci-load-balancer:** update translation EOS ([9bb717c](https://github.com/ovh/manager/commit/9bb717cb1037271c8c1a7bd284468d5f437a387d)), closes [#TAPC-5173](https://github.com/ovh/manager/issues/TAPC-5173)
+
+
+
+
+
 ## [6.99.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.99.0...@ovh-ux/manager-pci@6.99.1) (2025-11-04)
 
 

@@ -1,0 +1,17 @@
+{
+  "createNewUser": "Utwórz użytkownika",
+  "tableHeaderName": "Nazwa",
+  "tableHeaderDescription": "Opis",
+  "tableHeaderAccessKey": "Klucz dostępu",
+  "tableActionImportUserAccess": "Importuj politykę dostępów dla użytkowników (JSON)",
+  "tableActionDowloadUserAccess": "Pobierz politykę dostępów dla użytkowników (JSON)",
+  "tableActionDowloadRclone": "Pobierz plik rclone",
+  "tableHeaderS3Enabler": "Użytkownik S3",
+  "tableS3Disable": "S3 wyłączony",
+  "tableS3Enable": "S3 włączony",
+  "s3InfoHelper": "Aby użytkownik mógł korzystać z kontenerów S3, wygeneruj dane logowania za pomocą opcji „aktywuj” w menu po prawej stronie.",
+  "tableActionShowSecretKey": "Wyświetl tajny klucz",
+  "tableActionEnable": "Włącz",
+  "tableActionDisable": "Wyłącz",
+  "userPolicyDownloadFailed": "Wystąpił błąd"
+}

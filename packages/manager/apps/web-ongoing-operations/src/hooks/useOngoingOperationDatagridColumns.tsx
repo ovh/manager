@@ -23,11 +23,13 @@ import {
   DomainOperationsEnum,
   AlldomOperations,
 } from '@/constants';
+import { useTrackNavigation } from './tracking/useTrackDatagridNavivationLink';
 
 export const useOngoingOperationDatagridColumns = (
   searchableColumnID: string,
   parent: ParentEnum,
 ) => {
+  const { trackPageNavivationTile } = useTrackNavigation();
   const { t } = useTranslation([
     'dashboard',
     NAMESPACES.FORM,
@@ -145,7 +147,9 @@ export const useOngoingOperationDatagridColumns = (
                 !props.canCancel &&
                 'hidden'} menu-item-button`,
               onClick: () => {
-                navigate(`${location.pathname}/update/${props.id}`);
+                const url = `${location.pathname}/update/${props.id}`;
+                trackPageNavivationTile(url);
+                navigate(url);
                 clearNotifications();
               },
             },
@@ -155,7 +159,11 @@ export const useOngoingOperationDatagridColumns = (
               className: `${props.function !==
                 DomainOperationsEnum.DomainIncomingTransfer &&
                 'hidden'} menu-item-button`,
-              onClick: () => navigate(`/tracking/${props.id}`),
+              onClick: () => {
+                const url = `/tracking/${props.id}`;
+                trackPageNavivationTile(url);
+                navigate(url);
+              },
             },
           ]}
         />

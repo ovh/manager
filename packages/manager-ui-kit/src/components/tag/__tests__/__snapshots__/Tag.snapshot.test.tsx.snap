@@ -3,112 +3,112 @@
 exports[`Tag Snapshot tests > renders the component with default props 1`] = `
 <div>
   <button
-    class="_tag_t7a4o_6 _tag--critical_t7a4o_22 _tag--md_t7a4o_106"
-    data-ods="tag"
-    type="button"
+    class=_tag _tag--critical _tag--md
+    data-ods=tag
+    type=button
   >
     Critical
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--md_t7a4o_106"
-    data-ods="tag"
-    type="button"
+    class=_tag _tag--information _tag--md
+    data-ods=tag
+    type=button
   >
     Information
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--neutral_t7a4o_48 _tag--md_t7a4o_106"
-    data-ods="tag"
-    type="button"
+    class=_tag _tag--neutral _tag--md
+    data-ods=tag
+    type=button
   >
     Neutral
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--primary_t7a4o_61 _tag--md_t7a4o_106"
-    data-ods="tag"
-    type="button"
+    class=_tag _tag--primary _tag--md
+    data-ods=tag
+    type=button
   >
     Primary
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--success_t7a4o_74 _tag--md_t7a4o_106"
-    data-ods="tag"
-    type="button"
+    class=_tag _tag--success _tag--md
+    data-ods=tag
+    type=button
   >
     Success
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--warning_t7a4o_87 _tag--md_t7a4o_106"
-    data-ods="tag"
-    type="button"
+    class=_tag _tag--warning _tag--md
+    data-ods=tag
+    type=button
   >
     Warning
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--md_t7a4o_106"
-    data-ods="tag"
-    type="button"
+    class=_tag _tag--information _tag--md
+    data-ods=tag
+    type=button
   >
     MD tag
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--lg_t7a4o_114"
-    data-ods="tag"
-    type="button"
+    class=_tag _tag--information _tag--lg
+    data-ods=tag
+    type=button
   >
     LG tag
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
   <button
-    class="_tag_t7a4o_6 _tag--information_t7a4o_35 _tag--md_t7a4o_106"
-    data-ods="tag"
-    disabled=""
-    type="button"
+    class=_tag _tag--information _tag--md
+    data-ods=tag
+    disabled=
+    type=button
   >
     My tag
     <span
-      class="_icon_10c23_2 _icon--xmark_10c23_562 _tag__close_t7a4o_111"
-      data-ods="icon"
-      role="presentation"
+      class=_icon _icon--xmark _tag__close
+      data-ods=icon
+      role=presentation
     />
   </button>
 </div>

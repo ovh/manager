@@ -129,9 +129,9 @@
   "next_billing": "Próxima faturação",
   "continue_order_btn": "Prosseguir a encomenda",
   "export_success": "O ficheiro foi criado corretamente. Se o download não se iniciar, pode descarregá-lo manualmente.",
-  "export_error": "O arquivo não pôde ser criado. {{ error }}",
+  "export_error": "Não foi possível criar o ficheiro. {{ error }}",
   "export_download_manually": "Descarregar aqui",
-  "last_connection": "Último acesso",
+  "last_connection": "Última Ligação",
   "quota_used": "Quota utilizada",
   "quota_available": "Quota disponível",
   "hide_in_gal": "Endereço oculto no diretório",
@@ -139,11 +139,14 @@
   "contactInformation_office": "Escritório ",
   "contactInformation_service": "Serviço",
   "contactInformation_company": "Empresa",
-  "contactInformation_mobileNumber": "Número de telefone móvel",
+  "contactInformation_mobileNumber": "Número de telemóvel",
   "contactInformation_phoneNumber": "Número de telefone",
   "contactInformation_faxNumber": "Número de fax",
   "contactInformation_street": "Rua",
   "contactInformation_postcode": "Código postal",
   "contactInformation_city": "Cidade",
-  "contactInformation_country": "País"
+  "contactInformation_country": "País",
+  "redirections": "Reencaminhamentos",
+  "delete_redirections": "Eliminar os reencaminhamentos",
+  "delete_email_accounts": "Eliminar as contas"
 }

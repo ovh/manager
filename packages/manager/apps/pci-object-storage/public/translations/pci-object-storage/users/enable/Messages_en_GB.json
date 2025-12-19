@@ -1,0 +1,12 @@
+{
+  "enableUserTitle": "Enable a user for S3",
+  "enableUSerDescription": "This action allows you to generate the S3 credentials of the user {{ name }}.",
+  "enableUserButtonCancel": "Cancel",
+  "enableUserButtonConfirm": "Confirm",
+  "enableUserToastErrorTitle": "Error",
+  "enableUserToastSuccessTitle": "Success",
+  "accessKeyLabel": "Access key",
+  "secretKeyLabel": "Secret key",
+  "enableUserButtonClose": "Close",
+  "enableUserToastSuccessDescription": "The information for user {{ name }} has been generated."
+}

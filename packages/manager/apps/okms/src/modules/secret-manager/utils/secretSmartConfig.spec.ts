@@ -1,18 +1,17 @@
-import { describe, it, expect } from 'vitest';
-import { Secret, SecretConfig } from '@secret-manager/types/secret.type';
+import { mockSecretConfigReference } from '@secret-manager/mocks/secret-reference/secretReference.mock';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { mockSecretConfigReference } from '@secret-manager/mocks/secretReference/secretReference.mock';
+import { Secret, SecretConfig } from '@secret-manager/types/secret.type';
+import { describe, expect, it } from 'vitest';
+
 import {
-  buildSecretSmartConfig,
   NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
   NOT_SET_VALUE_MAX_VERSIONS,
   SecretSmartConfig,
+  buildSecretSmartConfig,
 } from './secretSmartConfig';
 
 describe('getSecretSmartConfig', () => {
-  const createMockSecret = (
-    overrides: Partial<Secret['metadata']> = {},
-  ): Secret => ({
+  const createMockSecret = (overrides: Partial<Secret['metadata']> = {}): Secret => ({
     ...mockSecret1,
     metadata: {
       ...mockSecret1.metadata,
@@ -20,12 +19,10 @@ describe('getSecretSmartConfig', () => {
     },
   });
 
-  const createMockSecretConfig = (
-    overrides: Partial<SecretConfig> = {},
-  ): SecretConfig => ({
+  const createMockSecretConfig = (overrides: Partial<SecretConfig> = {}): SecretConfig => ({
     casRequired: false,
-    deactivateVersionAfter: undefined,
-    maxVersions: undefined,
+    deactivateVersionAfter: '0s',
+    maxVersions: 0,
     ...overrides,
   });
 
@@ -59,17 +56,11 @@ describe('getSecretSmartConfig', () => {
         const secret = createMockSecret(secretOverrides);
         const secretConfigOkms = createMockSecretConfig(domainOverrides);
 
-        const result = buildSecretSmartConfig(
-          secret,
-          secretConfigOkms,
-          mockSecretConfigReference,
-        );
+        const result = buildSecretSmartConfig(secret, secretConfigOkms, mockSecretConfigReference);
 
         expect(result[testedProperty].value).toBe(expectedValue);
         expect(result[testedProperty].origin).toBe(expectedOrigin);
-        expect(result.isCasRequiredSetOnOkms).toBe(
-          expectedIsCasRequiredSetOnOkms,
-        );
+        expect(result.isCasRequiredSetOnOkms).toBe(expectedIsCasRequiredSetOnOkms);
         if (expectedMaxVersionsDefault) {
           expect(result.maxVersionsDefault).toBe(expectedMaxVersionsDefault);
         }

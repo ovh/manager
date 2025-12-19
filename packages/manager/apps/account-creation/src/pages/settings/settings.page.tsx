@@ -11,6 +11,7 @@ import {
   OdsLink,
   OdsSelect,
   OdsText,
+  OdsPopover,
 } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Currency } from '@ovh-ux/manager-config';
@@ -18,9 +19,15 @@ import {
   useCountrySettings,
   useCurrencySettings,
   useLanguageSettings,
+  useSubsidiarySettings,
 } from '@/data/hooks/settings/useSettings';
+import {
+  useRedirectToLoginUrl,
+  useRedirectToSignUpUrl,
+} from '@/hooks/redirection/useSettingsRedirecions';
 import { useSettingsSchema } from '@/hooks/settings/useSettings';
-import { WEBSITE_LABEL_BY_LOCALE } from './settings.constants';
+import { DEFAULT_REDIRECT_URL, WEBSITE_LABEL_BY_LOCALE } from './settings.constants';
+import AccountSettingsPopoverContent from './popover-content/PopoverContent';
 
 type SettingsFormData = {
   country: string;
@@ -34,6 +41,8 @@ export default function Settings() {
     NAMESPACES.ACTIONS,
     NAMESPACES.FORM,
   ]);
+  const redirectToLoginUrl = useRedirectToLoginUrl();
+  const redirectToSignUpUrl = useRedirectToSignUpUrl();
 
   const schema = useSettingsSchema();
 
@@ -50,6 +59,7 @@ export default function Settings() {
 
   const selectedCountry = watch('country');
   const selectedCurrency = watch('currency');
+  const selectedLanguage = watch('language');
   const {
     data: countries,
     isLoading: isLoadingCountries,
@@ -59,6 +69,17 @@ export default function Settings() {
     selectedCountry,
     selectedCurrency,
   );
+  const { data: ovhSubsidiary } = useSubsidiarySettings(
+    selectedCountry,
+    selectedCurrency,
+    selectedLanguage,
+  );
+
+  const listSettingsDescription = [
+    t('setting_description_list_first'),
+    t('setting_description_list_second'),
+    t('setting_description_list_last'),
+  ];
 
   const comboboxRef = useRef<HTMLOdsComboboxElement | null>(null);
 
@@ -97,8 +118,16 @@ export default function Settings() {
   const submitSettings: SubmitHandler<SettingsFormData> = useCallback(
     ({ country, currency, language }: SettingsFormData) => {
       console.log({ country, currency, language });
+      // In case the signup url is not valid, we will redirect to the website
+      if (redirectToSignUpUrl !== null) {
+        const params = `ovhSubsidiary=${ovhSubsidiary}&country=${country}&language=${language}`;
+        const junction = redirectToSignUpUrl.includes('?') ? '&' : '?';
+        window.location.href = `${redirectToSignUpUrl}${junction}${params}`;
+      } else {
+        window.location.href = DEFAULT_REDIRECT_URL;
+      }
     },
-    [],
+    [redirectToSignUpUrl, ovhSubsidiary],
   );
 
   return (
@@ -110,7 +139,9 @@ export default function Settings() {
             t={t}
             i18nKey="description"
             components={{
-              Link: <OdsLink href={'/auth'} />,
+              Link: (
+                <OdsLink href={redirectToLoginUrl || DEFAULT_REDIRECT_URL} />
+              ),
             }}
           />
         </OdsText>
@@ -121,9 +152,24 @@ export default function Settings() {
           name="country"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField className="flex flex-wrap w-full gap-3 mb-7">
-              <label className="block" slot={'label'}>
+              <label
+                className="block cursor-pointer"
+                slot={'label'}
+                id="country-setting-description"
+              >
                 {t('country_setting')} *
               </label>
+              <OdsPopover
+                className="md:w-1/2 p-5"
+                triggerId="country-setting-description"
+                position="top-start"
+                withArrow
+              >
+                <AccountSettingsPopoverContent
+                  description={t('setting_description')}
+                  list={listSettingsDescription}
+                />
+              </OdsPopover>
               <OdsCombobox
                 name={`country`}
                 className="w-full"
@@ -201,9 +247,23 @@ export default function Settings() {
           name="language"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField className="flex flex-wrap w-full gap-3 mb-7">
-              <label className="block" slot={'label'}>
+              <label
+                className="block cursor-pointer"
+                slot={'label'}
+                id="site-setting-description"
+              >
                 {t('site_setting')} *
               </label>
+              <OdsPopover
+                className="md:w-1/2 p-5"
+                triggerId="site-setting-description"
+                position="top-start"
+                withArrow
+              >
+                <AccountSettingsPopoverContent
+                  description={t('setting_description')}
+                />
+              </OdsPopover>
               <OdsSelect
                 name={`site`}
                 className="w-full"
@@ -211,7 +271,7 @@ export default function Settings() {
                 isDisabled={!languages?.length}
                 onOdsChange={onChange}
                 onBlur={onBlur}
-                key={`languages_for_${selectedCountry}`}
+                key={`languages_for_${selectedCountry}_${selectedCurrency}`}
                 hasError={Boolean(languages?.length && errors[name])}
                 data-testid="language-select"
               >

@@ -45,7 +45,7 @@ export const GeneralInformations = () => {
         label: t('zimbra_dashboard_tile_status_ongoingTask'),
         value: platformUrn && (
           <ManagerText
-            className="w-full flex"
+            className="flex w-full"
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.task.get]}
           >
@@ -103,7 +103,7 @@ export const GeneralInformations = () => {
   }, [links]);
 
   return (
-    <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <div className="p-3">
         <DashboardTile
           data-testid="status"

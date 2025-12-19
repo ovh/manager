@@ -56,5 +56,5 @@
   "sms_senders_terminate_sender_ko": "Ops! Impossibile disattivare il numero virtuale: <br/>{{error}}",
   "sms_senders_add_warning": "La tua richiesta verrà gestita entro 48 ore",
   "sms_senders_breadcrumb": "Mittenti",
-  "sms_senders_order_time2chat": "Comandare un n° Time2Chat"
+  "sms_senders_order_time2chat": "Ordinare un n° Time2Chat"
 }

@@ -1,0 +1,104 @@
+import { useNavigate } from 'react-router-dom';
+import { ColumnDef } from '@tanstack/react-table';
+import { Plus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Skeleton, Button, useToast } from '@datatr-ux/uxlib';
+import { useGetColumns } from './UsertListColumns.component';
+import DataTable from '@/components/data-table';
+import { useGetFilters } from './UserListFilters.component';
+import user from '@/types/User';
+import useDownload from '@/hooks/useDownload';
+import { useObjectStorageData } from '../../ObjectStorage.context';
+import { getUserPolicy } from '@/data/api/user/user.api';
+
+interface UsersListProps {
+  users: user.User[];
+}
+
+export default function UsersList({ users }: UsersListProps) {
+  const { t } = useTranslation('pci-object-storage/users');
+  const { projectId } = useObjectStorageData();
+  const navigate = useNavigate();
+  const toast = useToast();
+  const { download } = useDownload();
+
+  const downloadPolicy = async (us: user.User) => {
+    try {
+      const policyData = await getUserPolicy({ projectId, userId: us.id });
+      download({ type: 'raw', data: policyData.policy }, 'userPolicy.json');
+    } catch (err) {
+      toast.toast({
+        title: t('userPolicyDownloadFailed'),
+        variant: 'critical',
+      });
+    }
+  };
+
+  const columns: ColumnDef<user.User>[] = useGetColumns({
+    onEnableUserClicked: (us: user.User) => {
+      navigate(`./enable/${us.id}`);
+    },
+    onImportUserAccessClicked: (us: user.User) => {
+      navigate(`./import-policy/${us.id}`);
+    },
+    onDownloadUserAccessClicked: (us: user.User) => {
+      downloadPolicy(us);
+    },
+    onDownloadRcloneClicked: (us: user.User) => {
+      navigate(`./rclone/${us.id}`);
+    },
+    onSecretKeyClicked: (us: user.User) => {
+      navigate(`./user-secret/${us.id}`);
+    },
+    onDeleteClicked: (us: user.User) => {
+      navigate(`./disable/${us.id}`);
+    },
+  });
+  const usersFilters = useGetFilters();
+
+  return (
+    <DataTable.Provider
+      columns={columns}
+      data={users}
+      pageSize={25}
+      filtersDefinition={usersFilters}
+    >
+      <DataTable.Header>
+        <DataTable.Action>
+          <Button
+            data-testid="create-user-button"
+            onClick={() => {
+              navigate('./create');
+            }}
+          >
+            <Plus className="size-6" />
+            {t('createNewUser')}
+          </Button>
+        </DataTable.Action>
+        <DataTable.SearchBar />
+        <DataTable.FiltersButton />
+      </DataTable.Header>
+      <DataTable.FiltersList />
+      <DataTable.Table />
+      <DataTable.Pagination />
+    </DataTable.Provider>
+  );
+}
+
+UsersList.Skeleton = function UsersListSkeleton() {
+  return (
+    <>
+      <div
+        data-testid="service-list-table-skeleton"
+        className="flex justify-between w-100 mb-2 items-end"
+      >
+        <Skeleton className="h-10 w-48" />
+        <div className="flex">
+          <Skeleton className="h-10 w-48" />
+          <Skeleton className="h-10 w-12 ml-2" />
+        </div>
+      </div>
+      <DataTable.Skeleton columns={5} rows={10} width={100} height={16} />
+    </>
+  );
+};

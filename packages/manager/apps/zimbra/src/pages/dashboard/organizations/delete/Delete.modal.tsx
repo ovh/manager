@@ -130,7 +130,7 @@ export const DeleteOrganizationModal = () => {
             className="mt-4"
             data-testid="banner-message"
           >
-            <div className="flex flex-col text-left ml-4">
+            <div className="ml-4 flex flex-col text-left">
               <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
                 {t('zimbra_organization_delete_modal_message_disabled_part1')}
               </OdsText>

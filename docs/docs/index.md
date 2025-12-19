@@ -22,7 +22,7 @@ hero:
 features:
 - title: Application
   details: Manage your services with ease by using our control panel.
-  link: https://www.ovh.com/manager/
+  link: https://manager.eu.ovhcloud.com/
 - title: Website
   details: To have more informations about our products, please visit our website.
   link: https://www.ovhcloud.com/

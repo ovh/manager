@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { TrackingPlugin } from '@ovh-ux/shell';
 import { Region, User } from '@ovh-ux/manager-config';
 import {
@@ -31,10 +33,11 @@ export const TrackingProvider = ({
 }: Props): JSX.Element => {
   const [plugin] = useState(new TrackingPlugin());
   const [user, setUser] = useState<User>({} as User);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
-    plugin.configureTracking(region, user);
-  }, [region, user]);
+    plugin.configureTracking(region, user, i18n.language);
+  }, [region, user, i18n.language]);
 
   const trackPage = useCallback(
     (params: TrackingPageParams) => {

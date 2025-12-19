@@ -188,7 +188,7 @@
   "telecom_pack_migration_pto_yes_not_known_description": "Hai verificato di non avere il codice identificativo della presa ottica (PTO)? Questa operazione potrebbe avere un impatto sulla tempistica della connessione.",
   "telecom_pack_migration_promotion_description": "Promozione disponibile fino al {{ endDate }}",
   "telecom_pack_migration_promotion_subscription_months_offered": "{{ duration }} mesi inclusi",
-  "telecom_pack_migration_confirm_promotion": "I costi di installazione del tuo nuovo abbonamento sono offerti (escluso il noleggio del modem, opzioni aggiuntive o spese di trasporto).",
+  "telecom_pack_migration_confirm_promotion": "Le spese di installazione del nuovo abbonamento sono incluse (esclusi il noleggio del modem, opzioni aggiuntive o spese di trasporto).",
   "telecom_pack_migration_confirm_first_year_promo": "Sconto per il primo anno",
   "telecom_pack_migration_confirm_modem_rental": "Locazione modem",
   "telecom_pack_migration_pack_access_error": "Impossibile caricare le informazioni relative al tuo pack.",
@@ -214,8 +214,8 @@
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Questo pack verrà eliminato automaticamente una volta completato l'ordine Fibre.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Nessuna azione di modifica o eliminazione da parte tua è necessaria: il passaggio verso il tuo accesso Fibre sarà completamente automatizzato.",
   "telecom_pack_migration_phone_call_for_new_meeting": "Il servizio di presa appuntamenti online non è disponibile. Verrai contattato telefonicamente per concordare una data e un orario adatti alle tue esigenze.",
-  "telecom_pack_migration_promotion_subscription_months_reduces": "-50 % per {{ duration }} mesi",
+  "telecom_pack_migration_promotion_subscription_months_reduces": "-50% per {{ duration }} mesi",
   "telecom_pack_migration_confirm_promotion_table": "Promozione ({{ duration }} mesi)",
   "telecom_pack_migration_confirm_discount_displayed": " per {{ duration }} mesi, poi",
-  "telecom_pack_migration_confirm_new_offer_price_discount": "Il tuo nuovo abbonamento mensile ammonta a: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">IVA esclusa/mese per {{duration}} mesi poi</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">IVA esclusa</span>, applicabile dalla consegna del tuo nuovo accesso. Ne sarai informato via e-mail."
+  "telecom_pack_migration_confirm_new_offer_price_discount": "Il nuovo abbonamento mensile ammonta a: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">+IVA/mese per {{duration}} mese, poi</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">+IVA/mese</span>, applicabile a partire dalla consegna del nuovo accesso. Riceverai una notifica via email."
 }

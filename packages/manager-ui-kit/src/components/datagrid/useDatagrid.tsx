@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 
 import { useReactTable } from '@tanstack/react-table';
 
+import { TABLE_SIZE } from '@ovhcloud/ods-react';
+
 import { ExpandableRow } from '@/components/datagrid/Datagrid.props';
 
 import { useTableBuilder } from './builder/useTableBuilder';
@@ -16,6 +18,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
   onSortChange,
   renderSubComponent,
   rowSelection,
+  sizeRow,
   setColumnVisibility,
   sorting,
 }: UseDatagridTableProps<T>) => {
@@ -45,6 +48,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
     rowSelection,
     setColumnVisibility: setColumnVisibility ?? (() => {}),
     sorting: sorting ?? [],
+    size: sizeRow ?? TABLE_SIZE.md,
   })
     .setColumns()
     .setColumnsVisibility()

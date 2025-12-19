@@ -1,0 +1,16 @@
+{
+  "title": "Object Storage",
+  "description1": "Nie uruchomiłeś jeszcze usługi Object Storage.",
+  "description2": "Skorzystaj z nieograniczonej przestrzeni dyskowej na żądanie, dostępnej przez API.",
+  "description3": "Object Storage to rozwiązanie do przechowywania danych w chmurze, które pozwala na płacenie tylko za wykorzystane zasoby, bez limitu rozmiaru i czasu, dostępne przez API HTTP.  Dzięki wielu bibliotekom OpenStack Swift dostęp do danych możesz uzyskiwać za pomocą Twoich aplikacji.  Poza zarządzaniem prawami dostępu, Object Storage oferuje funkcje „intelligent storage”, takie jak zarządzanie wersjami i datami wygaśnięcia oraz synchronizacja między różnymi lokalizacjami.",
+  "description4": "Bezpieczeństwo Twoich danych zapewnia potrójna replikacja. Płatność według zużycia za 1 GB.",
+  "createButtonLabel": "Utwórz kontener obiektów",
+  "cardTopGuide": "Tutorial",
+  "cardFindOutMore": "Więcej informacji",
+  "cardLeftTitle": "Udostępnij kontener Object Storage pod własną domeną",
+  "cardLeftDesc": "Sprawdź, jak skonfigurować kontener obiektów z Twoją domeną",
+  "cardMiddleTitle": "Skonfiguruj automatyczne usuwanie obiektów",
+  "cardMiddleDescription": "Sprawdź, jak włączyć automatyczne usuwanie obiektów w Twoim kontenerze",
+  "cardRightTitle": "Udostępnij obiekt za pomocą tymczasowego adresu",
+  "cardRightDesc": "Sprawdź, jak udostępnić obiekt bez ujawniania danych osobowych"
+}

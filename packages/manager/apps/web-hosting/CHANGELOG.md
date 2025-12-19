@@ -3,6 +3,107 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.10.4...@ovh-ux/manager-web-hosting-app@0.11.0) (2025-12-05)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.10.3...@ovh-ux/manager-web-hosting-app@0.10.4) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.10.2...@ovh-ux/manager-web-hosting-app@0.10.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.10.1...@ovh-ux/manager-web-hosting-app@0.10.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* **web-hosting:** skip delete modal test ([9cce4a9](https://github.com/ovh/manager/commit/9cce4a9f005e69b661a658c00040da58a42f9bde))
+
+
+
+
+
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.10.0...@ovh-ux/manager-web-hosting-app@0.10.1) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.9.5...@ovh-ux/manager-web-hosting-app@0.10.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.9.4...@ovh-ux/manager-web-hosting-app@0.9.5) (2025-11-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.9.3...@ovh-ux/manager-web-hosting-app@0.9.4) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.9.2...@ovh-ux/manager-web-hosting-app@0.9.3) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.9.1...@ovh-ux/manager-web-hosting-app@0.9.2) (2025-11-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.9.0...@ovh-ux/manager-web-hosting-app@0.9.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+* **i18n:** add missing translations [CDS 4455] ([c05d4c6](https://github.com/ovh/manager/commit/c05d4c6aab3456f2611819550290446f31b7870f))
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.8.7...@ovh-ux/manager-web-hosting-app@0.9.0) (2025-11-06)
 
 

@@ -33,5 +33,12 @@
   "netapp_volumes_dashboard_snapshots": "Snapshots",
   "netapp_volumes_dashboard_volume_pattern": "Solo debe contener números, letras, guiones, guiones bajos o puntos, y un máximo de 256 caracteres.",
   "netapp_volumes_dashboard_mount_path_not_configurated": "No se han configurado las opciones de red",
-  "netapp_volumes_dashboard_information_reserve_space": "Reserva de snapshots"
+  "netapp_volumes_dashboard_information_reserve_space": "Reserva de snapshots",
+  "netapp_volumes_dashboard_usage_title": "Visión general de uso",
+  "netapp_volumes_dashboard_usage_max_files": "Número máximo de archivos",
+  "netapp_volumes_dashboard_usage_files": "Archivos utilizados",
+  "netapp_volumes_dashboard_usage_nfs_client": "Clientes NFS (activos en las últimas 48 horas)",
+  "netapp_volumes_dashboard_usage_no_nfs_client": "No hay conexiones activas",
+  "netapp_volumes_dashboard_usage_view_all": "Ver todos",
+  "netapp_volumes_dashboard_actives_nfs_title": "Conexiones NFS"
 }

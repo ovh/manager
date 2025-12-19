@@ -417,6 +417,13 @@ describe('Layout.page', () => {
     expect(enterpriseBillingSummary).not.toBeNull();
   });
 
+  it('should have a valid html', () => {
+    const { container } = renderComponent(<Layout />);
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
+
   describe('BillingSummary component', () => {
     it('should render skeletons while loading', async () => {
       const { getByText, getByTestId } = renderComponent(<BillingSummary />);
@@ -500,6 +507,13 @@ describe('Layout.page', () => {
       const tileError = await findByText('manager_hub_error_tile_oops');
       expect(tileError).not.toBeNull();
     });
+
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<BillingSummary />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
+    });
   });
 
   describe('EnterpriseBillingSummary component', () => {
@@ -518,6 +532,13 @@ describe('Layout.page', () => {
         actionType: 'action',
         actions: ['activity', 'billing', 'show-all'],
       });
+    });
+
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<EnterpriseBillingSummary />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
     });
   });
 
@@ -595,7 +616,7 @@ describe('Layout.page', () => {
       expect(serviceLink).not.toBeNull();
       expect(serviceLink).toHaveAttribute(
         'href',
-        'https://www.ovh.com/manager/#/web/configuration/hosting/serviceResiliated',
+        'https://manager.eu.ovhcloud.com/#/web/configuration/hosting/serviceResiliated',
       );
 
       expect(getByTestId('service_with_termination_date')).not.toBeNull();
@@ -607,7 +628,7 @@ describe('Layout.page', () => {
       expect(serviceLink).not.toBeNull();
       expect(serviceLink).toHaveAttribute(
         'href',
-        'https://www.ovh.com/manager/#/web/configuration/domain/serviceWithManualRenewNotResiliatedWithoutDebt/information',
+        'https://manager.eu.ovhcloud.com/#/web/configuration/domain/serviceWithManualRenewNotResiliatedWithoutDebt/information',
       );
 
       expect(getByTestId('service_valid_until_date')).not.toBeNull();
@@ -619,7 +640,7 @@ describe('Layout.page', () => {
       expect(serviceLink).not.toBeNull();
       expect(serviceLink).toHaveAttribute(
         'href',
-        'https://www.ovh.com/manager/#/dedicated/server/serviceOneShotWithoutResiliation',
+        'https://manager.eu.ovhcloud.com/#/dedicated/server/serviceOneShotWithoutResiliation',
       );
 
       expect(getByTestId('service_without_expiration_date')).not.toBeNull();
@@ -646,6 +667,13 @@ describe('Layout.page', () => {
       });
     });
 
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<PaymentStatus />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
+    });
+
     describe('With billing management', () => {
       it('should render "see all" link', async () => {
         const { findAllByText, findByTestId } = renderComponent(<PaymentStatus />);
@@ -656,6 +684,13 @@ describe('Layout.page', () => {
         const serviceActionsComponents = await findAllByText('Service Actions');
         expect(serviceActionsComponents).not.toBeNull();
       });
+
+      it('should have a valid html', () => {
+        const { container } = renderComponent(<PaymentStatus />);
+        const html = container.innerHTML;
+
+        expect(html).toBeValidHtml();
+      });
     });
 
     describe('Without billing management', () => {
@@ -664,6 +699,14 @@ describe('Layout.page', () => {
         const { queryAllByTestId, queryByTestId } = renderComponent(<PaymentStatus />);
         expect(queryByTestId('my_services_link_skeleton')).not.toBeInTheDocument();
         expect(queryAllByTestId('services_actions_skeleton').length).toBe(0);
+      });
+
+      it('should have a valid html', () => {
+        mocks.hubContext.availability['billing:management'] = false;
+        const { container } = renderComponent(<PaymentStatus />);
+        const html = container.innerHTML;
+
+        expect(html).toBeValidHtml();
       });
     });
   });
@@ -718,6 +761,13 @@ describe('Layout.page', () => {
       const { queryByTestId } = renderComponent(<SiretBanner />);
       expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     });
+
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<SiretBanner />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
+    });
   });
 
   describe('KycIndiaBanner component', () => {
@@ -752,6 +802,13 @@ describe('Layout.page', () => {
       mocks.kycStatus.status = 'ok';
       const { queryByTestId } = renderComponent(<KycIndiaBanner />);
       expect(queryByTestId('kyc_india_banner')).not.toBeInTheDocument();
+    });
+
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<KycIndiaBanner />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
     });
   });
 
@@ -806,6 +863,13 @@ describe('Layout.page', () => {
       const { queryByTestId } = renderComponent(<KycFraudBanner />);
       expect(queryByTestId('kyc_fraud_banner')).not.toBeInTheDocument();
     });
+
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<KycFraudBanner />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
+    });
   });
 
   describe('NotificationsCarousel component', () => {
@@ -816,6 +880,13 @@ describe('Layout.page', () => {
       expect(queryByTestId('next-notification-button')).not.toBeInTheDocument();
       expect(queryByTestId('notification-navigation')).not.toBeInTheDocument();
     });
+
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<NotificationsCarousel />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
+    });
   });
 
   describe('NotificationsEmailUnreachable component', () => {
@@ -823,6 +894,13 @@ describe('Layout.page', () => {
       const { findByTestId } = renderComponent(<NotificationsEmailUnreachable />);
 
       expect(await findByTestId('email_unreachable_notifications')).not.toBeNull();
+    });
+
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<NotificationsEmailUnreachable />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
     });
   });
 
@@ -859,6 +937,13 @@ describe('Layout.page', () => {
 
       expect(getAllByTestId('catalog_products_list').length).toBe(2);
       expect(getAllByTestId('catalog_product_item').length).toBe(6);
+    });
+
+    it('should have a valid html', () => {
+      const { container } = renderComponent(<Catalog />);
+      const html = container.innerHTML;
+
+      expect(html).toBeValidHtml();
     });
   });
 });

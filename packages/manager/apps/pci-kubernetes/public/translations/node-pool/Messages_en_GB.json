@@ -40,8 +40,8 @@
   "kube_common_estimation_price_free": "Free",
   "kube_common_estimation_total_price": "Total estimated price:",
   "kube_common_node_pool_estimation_cost_tile": "Monthly estimate",
-  "kube_common_node_pool_select_zone": "You must select at least one availability zone.",
+  "kube_common_node_pool_select_zone": "Please select at least one availability zone.",
   "kube_common_add_node_pool_plural": "Add {{count}} node pools",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "If multiple availability zones (AZ) are selected, the configuration will be automatically duplicated to create a distinct node pool in each zone.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "AZ allocation"
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "When multiple availability zones (AZs) are selected, the configuration is copied automatically, creating a separate node pool in each zone.",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "AZ distribution"
 }

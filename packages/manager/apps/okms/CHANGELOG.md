@@ -3,6 +3,183 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.39.0...@ovh-ux/manager-okms-app@0.40.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4508] ([6f98185](https://github.com/ovh/manager/commit/6f9818503816ca445112473abb718f12fbc3d1be))
+* **i18n:** add missing translations [CDS 4513] ([97cce8f](https://github.com/ovh/manager/commit/97cce8fef572f6435fa798ee5984473655300cb3))
+* **i18n:** add missing translations [CDS 4515] ([e6b3f47](https://github.com/ovh/manager/commit/e6b3f479e33315deca4dc193d0274be096349ce5))
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.38.5...@ovh-ux/manager-okms-app@0.39.0) (2025-12-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4505] ([eb4c22b](https://github.com/ovh/manager/commit/eb4c22b74b62a421035b2ca59fa976feedbeb22b))
+* **i18n:** add missing translations [CDS 876] ([1323ce5](https://github.com/ovh/manager/commit/1323ce5b02c2a349d82cdd72abd13648c87176ab))
+* **okms:** add drawer form padding ([173b80f](https://github.com/ovh/manager/commit/173b80f124c97a9678953c3de0da78981baa2bf8)), closes [#MANAGER-19794](https://github.com/ovh/manager/issues/MANAGER-19794)
+* **okms:** fix dashboard tile text overflow ([f4ad8ca](https://github.com/ovh/manager/commit/f4ad8ca5820aea23b6ebd32196c1fbb54b681ca5)), closes [#MANAGER-16519](https://github.com/ovh/manager/issues/MANAGER-16519)
+* **okms:** fix kms breadcrumb items ([f7dce02](https://github.com/ovh/manager/commit/f7dce02f69a85354c23cbe845dc5c92f9b1c0510)), closes [#MANAGER-20414](https://github.com/ovh/manager/issues/MANAGER-20414)
+* **okms:** fix secret-manager breadcrumb items ([c0d1814](https://github.com/ovh/manager/commit/c0d1814a71b68714e6b4c6a95dfbe0b6a452bae2)), closes [#MANAGER-20414](https://github.com/ovh/manager/issues/MANAGER-20414)
+
+
+### Features
+
+* **okms:** add edit okms secret config drawer ([6cdba5e](https://github.com/ovh/manager/commit/6cdba5e37384900eb09a9ab9ca5dd44e466c13b0)), closes [#MANAGER-19794](https://github.com/ovh/manager/issues/MANAGER-19794)
+* **okms:** add guides utils ([301e7bc](https://github.com/ovh/manager/commit/301e7bc43669fb5b6e4f0701deba5c58d16b66bb)), closes [#MANAGER-19143](https://github.com/ovh/manager/issues/MANAGER-19143)
+* **okms:** add pricing to secrets ([1d5ca3c](https://github.com/ovh/manager/commit/1d5ca3c11260fa13e439cd074967cc6364996720)), closes [#MANAGER-20277](https://github.com/ovh/manager/issues/MANAGER-20277)
+* **okms:** add secret-manager guides ([8e17a26](https://github.com/ovh/manager/commit/8e17a264c6464aa209cae8cd3b90c9ba5e14d42c)), closes [#MANAGER-19143](https://github.com/ovh/manager/issues/MANAGER-19143)
+* **okms:** add secret-manager onboarding guide cards ([4bbc35a](https://github.com/ovh/manager/commit/4bbc35a07eaced4b75f9a2d6293986ea6c45b2c3)), closes [#MANAGER-19112](https://github.com/ovh/manager/issues/MANAGER-19112)
+* **okms:** add silent order to kms creation ([6d41ca8](https://github.com/ovh/manager/commit/6d41ca82f60f012f4efa408c06df2cd8535afff5)), closes [#MANAGER-19783](https://github.com/ovh/manager/issues/MANAGER-19783)
+* **okms:** add update okms secret config ([b8be350](https://github.com/ovh/manager/commit/b8be350bde08e35ef9638db47d111e1cbc1cc876)), closes [#MANAGER-19794](https://github.com/ovh/manager/issues/MANAGER-19794)
+
+
+
+
+
+## [0.38.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.38.4...@ovh-ux/manager-okms-app@0.38.5) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
+## [0.38.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.38.3...@ovh-ux/manager-okms-app@0.38.4) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
+## [0.38.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.38.2...@ovh-ux/manager-okms-app@0.38.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
+## [0.38.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.38.1...@ovh-ux/manager-okms-app@0.38.2) (2025-11-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4473] ([0d10e26](https://github.com/ovh/manager/commit/0d10e2630ca81bf2451d668c342c3f820a60a5f6))
+
+
+
+
+
+## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.38.0...@ovh-ux/manager-okms-app@0.38.1) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.37.8...@ovh-ux/manager-okms-app@0.38.0) (2025-11-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 805] ([255e7a3](https://github.com/ovh/manager/commit/255e7a31dd05b5cafb82938446eefae3e1209dff))
+* **okms:** fix a few case issues with folder names ([4c06c12](https://github.com/ovh/manager/commit/4c06c12aadf1aa948e8209fc295957cd808fdb4c)), closes [#MANAGER-20184](https://github.com/ovh/manager/issues/MANAGER-20184)
+* **okms:** fix domain dashboard ([6514c6c](https://github.com/ovh/manager/commit/6514c6cbfd179d3bf83dc2ad4813fc1794e6b5bf)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** fix kms tests ([c2d9475](https://github.com/ovh/manager/commit/c2d94756c3dad08debb19ad3e473aaeb34115cd4)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** level2 tracking id & minor config for download certificates links ([350c7c9](https://github.com/ovh/manager/commit/350c7c9a71726dffc1e84998c3bc808eba27e0c8)), closes [#MANAGER-18832](https://github.com/ovh/manager/issues/MANAGER-18832)
+* **okms:** neutral color for the "not a key-value" message ([8ff3ebd](https://github.com/ovh/manager/commit/8ff3ebd505e83b163de74a77502e0558840f1173)), closes [#MANAGER-18318](https://github.com/ovh/manager/issues/MANAGER-18318)
+* **okms:** rework continent groups on region selector ([0cb763a](https://github.com/ovh/manager/commit/0cb763ac9917db32d0e41a6edc73f026eae7ff25)), closes [#MANAGER-19002](https://github.com/ovh/manager/issues/MANAGER-19002)
+* **okms:** translate continent names in the region selector ([8c01704](https://github.com/ovh/manager/commit/8c0170476454ffdb1b825ce6fe9916b43f87c590)), closes [#MANAGER-19002](https://github.com/ovh/manager/issues/MANAGER-19002)
+* **okms:** translate region correctly in okms datagrid ([9f4cd72](https://github.com/ovh/manager/commit/9f4cd7270cd366d93ea371aca050c386818e6686)), closes [#MANAGER-19002](https://github.com/ovh/manager/issues/MANAGER-19002)
+* **okms:** translate regions in the region selector ([b5a6144](https://github.com/ovh/manager/commit/b5a61446a44e13c68bd5b96d442a97ad90f312a2)), closes [#MANAGER-19002](https://github.com/ovh/manager/issues/MANAGER-19002)
+* **okms:** update okms api type ([05f1c25](https://github.com/ovh/manager/commit/05f1c25eaee78326dc13ad3de9f651bc2e9985de)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+
+
+### Features
+
+* **okms:** add <OkmsTerminateModal /> common component ([23b5590](https://github.com/ovh/manager/commit/23b5590389a40f0c53e39466751093413a383ffc)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** add <OkmsUpdateNameModal /> common component ([14db006](https://github.com/ovh/manager/commit/14db006dbc7401c720b2c73901123eada5828020)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** add <PageSpinner /> ([0797cbd](https://github.com/ovh/manager/commit/0797cbd8d7e0500d67b6e80ea295943bdb5a4f34)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** add <TileError /> ([1215283](https://github.com/ovh/manager/commit/121528346cf685d6c1f82cb3e7b3b3d3aacd4acd)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** add a key/value editor for secret data ([bd4a886](https://github.com/ovh/manager/commit/bd4a8861ada85a4d0cbc58baf76907dcafef3417)), closes [#MANAGER-18318](https://github.com/ovh/manager/issues/MANAGER-18318)
+* **okms:** add a visual picker for regions on kms order ([2d9b9fc](https://github.com/ovh/manager/commit/2d9b9fc4342325f9e503c292b1bdbee4c2829986)), closes [#MANAGER-18827](https://github.com/ovh/manager/issues/MANAGER-18827)
+* **okms:** add label constants ([3c122c6](https://github.com/ovh/manager/commit/3c122c6def9c3ac5f8fc6864970ad0ebf462ca3d)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** add okms dashboard tiles ([6e05d9a](https://github.com/ovh/manager/commit/6e05d9a28299c4d5608969e99b0c5eb1135c90ab)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** add secret-manager okms dashboard ([b468b23](https://github.com/ovh/manager/commit/b468b2399c5ae3fe6447120e3409b5565f3984a3)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** add useProductType ([3b439d3](https://github.com/ovh/manager/commit/3b439d3c0b519bf97bba9a59f73c8c3b7bd84326)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** move DownloadOkmsPublicCaLink to common components ([ce5c69d](https://github.com/ovh/manager/commit/ce5c69dce6c258b84f0048cf6f1b9a5cfa0ab1fd)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** remove okms list terminate action ([1511b2f](https://github.com/ovh/manager/commit/1511b2fa7da12048119238a3e8c0f28298e853bb)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+* **okms:** update kms okms domain dashboard ([aa064b9](https://github.com/ovh/manager/commit/aa064b99df10015d7e2d4bdebc708d913fdbf976)), closes [#MANAGER-19793](https://github.com/ovh/manager/issues/MANAGER-19793)
+
+
+
+
+
+## [0.37.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.37.7...@ovh-ux/manager-okms-app@0.37.8) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
+## [0.37.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.37.6...@ovh-ux/manager-okms-app@0.37.7) (2025-11-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
+## [0.37.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.37.5...@ovh-ux/manager-okms-app@0.37.6) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
+## [0.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.37.4...@ovh-ux/manager-okms-app@0.37.5) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
+## [0.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.37.3...@ovh-ux/manager-okms-app@0.37.4) (2025-11-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4457] ([5978840](https://github.com/ovh/manager/commit/59788408c090b30a06d78afff1a8ca3b1022dfc9))
+
+
+
+
+
+## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.37.2...@ovh-ux/manager-okms-app@0.37.3) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
 ## [0.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.37.1...@ovh-ux/manager-okms-app@0.37.2) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-okms-app

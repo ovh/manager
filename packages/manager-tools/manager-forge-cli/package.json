@@ -1,0 +1,43 @@
+{
+  "name": "@ovh-ux/manager-forge-cli",
+  "version": "0.3.0",
+  "private": true,
+  "description": "",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "type": "module",
+  "bin": {
+    "manager-forge-api": "bin/manager-forge-api.mjs",
+    "manager-forge-application": "bin/manager-forge-application.mjs",
+    "manager-forge-component": "bin/manager-forge-component.mjs",
+    "manager-forge-hook": "bin/manager-forge-hook.mjs",
+    "manager-forge-module": "bin/manager-forge-module.mjs",
+    "manager-forge-page": "bin/manager-forge-page.mjs"
+  },
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "lint:modern": "manager-lint --config eslint.config.mjs \"src/**/*.{mjs,js,jsx,ts,tsx}\" \"bin/**/*.{mjs,js,jsx,ts,tsx}\"",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs \"src/**/*.{mjs,js,jsx,ts,tsx}\" \"bin/**/*.{mjs,js,jsx,ts,tsx}\"",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
+  },
+  "dependencies": {
+    "enquirer": "^2.4.1",
+    "tsc-alias": "^1.8.16"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
+    "@ovh-ux/manager-tests-setup": "^0.6.2",
+    "@ovh-ux/manager-vite-config": "^0.15.3",
+    "@types/figlet": "^1.7.0",
+    "@types/node": "^24.10.0",
+    "boxen": "^8.0.1",
+    "cfonts": "^3.3.1",
+    "chalk": "^5.6.2",
+    "gradient-string": "^3.0.0",
+    "ora": "^9.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2",
+    "vitest": "3.2.4"
+  }
+}

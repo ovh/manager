@@ -1,7 +1,7 @@
 import { SetupServer, setupServer } from 'msw/node';
 
 declare global {
-  // eslint-disable-next-line vars-on-top, no-var
+   
   var server: SetupServer;
 }
 

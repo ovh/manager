@@ -35,7 +35,7 @@ export const OngoingTasks: React.FC = () => {
   return (
     <div className="flex flex-col" data-testid="ongoingtasks">
       {tasks?.length ? (
-        <ul className="pl-9 flex flex-col gap-3">
+        <ul className="flex flex-col gap-3 pl-9">
           {tasks?.map((task) => (
             <li key={task.id}>
               <OdsText preset={ODS_TEXT_PRESET.span}>{task.message}</OdsText>
@@ -45,7 +45,7 @@ export const OngoingTasks: React.FC = () => {
       ) : null}
       {ongoingTasks?.length > defaultNumberToShow && (
         <OdsLink
-          className="mt-5 ml-9"
+          className="ml-9 mt-5"
           color={ODS_LINK_COLOR.primary}
           onClick={(e) => {
             e?.preventDefault();

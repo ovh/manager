@@ -7,6 +7,7 @@ import { ContactControlProperties, DomainOperationsEnum } from '@/constants';
 import { useNichandle } from '@/hooks/nichandle/useNichandle';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import Loading from '@/components/Loading/Loading';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 interface ActionMeContactComponentProps {
   readonly argumentKey: string;
@@ -23,6 +24,7 @@ export default function ActionMeContactComponent({
   operationName,
   fields,
 }: ActionMeContactComponentProps) {
+  const { trackPageNavivationLink } = useTrackNavigation();
   const { t } = useTranslation('dashboard');
   const { data: webUrl } = useNavigationGetUrl(['web', '', {}]);
   const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
@@ -70,6 +72,9 @@ export default function ActionMeContactComponent({
         icon="external-link"
         data-testid="contactupdate"
         disabled={!url}
+        onClick={() => {
+          trackPageNavivationLink(url, true);
+        }}
       >
         {t(
           `domain_operations_update_nicowner_click_${

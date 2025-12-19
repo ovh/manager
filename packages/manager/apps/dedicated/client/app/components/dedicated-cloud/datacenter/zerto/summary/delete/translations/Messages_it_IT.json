@@ -1,8 +1,8 @@
 {
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Elimina definitivamente il tuo PRA",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Elimina Zerto PRA",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Eliminazione del piano di ripristino dell'attività",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Sei sicuro di voler eliminare il PRA? Questa azione è irreversibile.",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Il tuo PRA Zerto è in fase di eliminazione. L'operazione richiederà alcuni minuti",
-  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Si è verificato un errore durante l'eliminazione del piano di ripristino dell'attività"
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Elimina definitivamente il tuo DRP",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Elimina DRP Zerto ",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Eliminazione del Disaster Recovery Plan",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Vuoi davvero eliminare il DRP? Questa operazione è irreversibile.",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Eliminazione di DRP Zerto in corso... L'operazione richiederà qualche minuto",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Si è verificato un errore durante l'eliminazione del Disaster Recovery Plan"
 }

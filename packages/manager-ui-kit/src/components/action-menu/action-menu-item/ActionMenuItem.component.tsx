@@ -18,6 +18,7 @@ export const ActionMenuItem = ({
     variant: BUTTON_VARIANT.ghost,
     displayTooltip: false,
     className: 'menu-item-button w-full',
+    disabled: item.isDisabled,
     ...item,
   };
 
@@ -31,10 +32,15 @@ export const ActionMenuItem = ({
         urn={item.urn}
         iamActions={item.iamActions}
         onClick={item.onClick}
+        disabled={item.isDisabled}
       >
         {item.label}
       </Link>
     );
+  }
+
+  if (item.isDisabled) {
+    delete buttonProps.isDisabled;
   }
 
   return (

@@ -3,6 +3,148 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.1...@ovh-ux/manager-web@19.31.2) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.0...@ovh-ux/manager-web@19.31.1) (2025-12-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.30.1...@ovh-ux/manager-web@19.31.0) (2025-12-04)
+
+
+### Features
+
+* **web-hosting:** change password min char policy ([4b3330c](https://github.com/ovh/manager/commit/4b3330cac4cb4951a5dded92c53f4318979b83be)), closes [#PUWEBPT-124](https://github.com/ovh/manager/issues/PUWEBPT-124)
+* **web.zone:** update dnssec on datagrid ([5aee11c](https://github.com/ovh/manager/commit/5aee11cecb29c4c08b8efddf5f51ca4400195c83)), closes [#PUWEBPT-9](https://github.com/ovh/manager/issues/PUWEBPT-9)
+
+
+
+
+
+## [19.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.30.0...@ovh-ux/manager-web@19.30.1) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.29.0...@ovh-ux/manager-web@19.30.0) (2025-12-03)
+
+
+### Features
+
+* **web-domain-zone:** add dns rp, https and svcb field ([38d704a](https://github.com/ovh/manager/commit/38d704a3cef93372c84a421c11450b96bfd14da5))
+
+
+
+
+
+# [19.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.28.0...@ovh-ux/manager-web@19.29.0) (2025-12-01)
+
+
+### Features
+
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* update sign-up URLs ([1a76eb8](https://github.com/ovh/manager/commit/1a76eb88165b658cb4d1d420df320180a4fe817a)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [19.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.9...@ovh-ux/manager-web@19.28.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
+## [19.27.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.8...@ovh-ux/manager-web@19.27.9) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.27.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.7...@ovh-ux/manager-web@19.27.8) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.27.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.6...@ovh-ux/manager-web@19.27.7) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.27.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.5...@ovh-ux/manager-web@19.27.6) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.4...@ovh-ux/manager-web@19.27.5) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.27.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.3...@ovh-ux/manager-web@19.27.4) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.2...@ovh-ux/manager-web@19.27.3) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.1...@ovh-ux/manager-web@19.27.2) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.27.0...@ovh-ux/manager-web@19.27.1) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 # [19.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.13...@ovh-ux/manager-web@19.27.0) (2025-11-06)
 
 

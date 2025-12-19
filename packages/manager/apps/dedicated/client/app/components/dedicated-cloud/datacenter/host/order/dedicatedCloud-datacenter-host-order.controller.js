@@ -119,6 +119,18 @@ export default class {
     }));
   }
 
+  confirmOrder() {
+    const url = this.getOrderUrl();
+    window.open(url, '_blank', 'noopener');
+    this.goBack(
+      this.$translate.instant('dedicatedCloud_order_success_message', {
+        productName: this.selectedOffer.productName,
+        url,
+      }),
+      'info',
+    );
+  }
+
   getOrderUrl() {
     const [price] = this.selectedOffer.prices;
     const normalizedQuantity = Math.floor(this.quantity);

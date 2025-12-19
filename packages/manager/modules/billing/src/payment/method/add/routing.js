@@ -174,7 +174,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           {
             type: 'error',
             text: $translate.instant('billing_payment_method_add_error', {
-              errorMessage: get(error, 'data.message'),
+              errorMessage: get(error, 'response.data.message'),
             }),
           },
           get($transition$.params(), 'from', null),

@@ -2,7 +2,7 @@
   "crumb-dashboard": "AI Dashboard",
   "crumb-notebook": "AI Notebooks",
   "crumb-training": "AI Training",
-  "crumb-quantum": "Emuladores",
+  "crumb-quantum": "Emulators",
   "crumb-deploy": "AI Deploy",
   "crumb-qpu": "QPU"
 }

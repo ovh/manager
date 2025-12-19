@@ -3,6 +3,125 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.8...@ovh-ux/manager-identity-access-management-app@0.4.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* tests setup config ([a045d07](https://github.com/ovh/manager/commit/a045d07ab9d883e8c88225e9e3e32fe6775a9487)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+## [0.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.7...@ovh-ux/manager-identity-access-management-app@0.3.8) (2025-12-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 863] ([3c24342](https://github.com/ovh/manager/commit/3c2434288f7fc721448aacf6f89617637fa9dbaf))
+* **iam:** fix okms resource types translations ([a197b5a](https://github.com/ovh/manager/commit/a197b5a7610409c39f45adbf0d11af05b3853786)), closes [#MANAGER-20402](https://github.com/ovh/manager/issues/MANAGER-20402)
+
+
+
+
+
+## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.6...@ovh-ux/manager-identity-access-management-app@0.3.7) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.5...@ovh-ux/manager-identity-access-management-app@0.3.6) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.4...@ovh-ux/manager-identity-access-management-app@0.3.5) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.3...@ovh-ux/manager-identity-access-management-app@0.3.4) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.2...@ovh-ux/manager-identity-access-management-app@0.3.3) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.1...@ovh-ux/manager-identity-access-management-app@0.3.2) (2025-11-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.0...@ovh-ux/manager-identity-access-management-app@0.3.1) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.2.15...@ovh-ux/manager-identity-access-management-app@0.3.0) (2025-11-12)
+
+
+### Features
+
+* **iam:** add 'Roadmap & Changelog' links in tag-manager ([660be50](https://github.com/ovh/manager/commit/660be50151efad659a0a5af46529e2c51f9cea62)), closes [#MAIAM-43](https://github.com/ovh/manager/issues/MAIAM-43)
+
+
+
+
+
+## [0.2.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.2.14...@ovh-ux/manager-identity-access-management-app@0.2.15) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.2.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.2.13...@ovh-ux/manager-identity-access-management-app@0.2.14) (2025-11-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.2.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.2.12...@ovh-ux/manager-identity-access-management-app@0.2.13) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
 ## [0.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.2.11...@ovh-ux/manager-identity-access-management-app@0.2.12) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app

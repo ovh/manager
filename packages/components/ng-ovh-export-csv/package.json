@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-export-csv",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Export data as CSV file.",
   "keywords": [
     "angularjs",
@@ -34,7 +34,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.1.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0"
   },
   "peerDependencies": {
     "angular": "^1.7.8",

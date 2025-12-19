@@ -17,5 +17,7 @@
   "zimbra_redirections_edit_success_message": "Dyspozycja zmiany przekierowania została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
   "zimbra_redirections_edit_error_message": "Modyfikacja przekierowania nie powiodła się. {{error}}",
   "zimbra_redirections_delete_success_message": "Dyspozycja usunięcia przekierowania została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
-  "zimbra_redirections_delete_error_message": "Usunięcie przekierowania nie powiodło się {{error}}."
+  "zimbra_redirections_delete_error_message": "Usunięcie przekierowania nie powiodło się {{error}}.",
+  "zimbra_redirections_account_quota": "Limit przekierowań",
+  "zimbra_redirections_delete_selected_modal_content": "Czy chcesz usunąć przekierowania?"
 }

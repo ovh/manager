@@ -12,4 +12,11 @@ export default [
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
+  {
+    files: ['./src/utils/log-manager.js'],
+    rules: {
+      'no-console': 'off',
+      'no-undef': 'off',
+    },
+  },
 ];

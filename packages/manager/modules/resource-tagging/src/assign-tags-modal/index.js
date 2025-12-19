@@ -7,8 +7,6 @@ import '@ovhcloud/ods-themes/default';
 
 import component from './component';
 
-import './index.scss';
-
 const moduleName = 'ovhManagerResourceTaggingAssignModal';
 
 angular

@@ -20,6 +20,7 @@ export default class ovhManagerResourceTaggingAssignModalController {
     this.Alerter = Alerter;
     this.loading = true;
     this.model = {};
+    this.tags = {};
   }
 
   $onInit() {
@@ -27,27 +28,27 @@ export default class ovhManagerResourceTaggingAssignModalController {
     this.TAG_REGEX = TAG_REGEX;
     this.selectedTags = [];
     this.ovhManagerResourceTaggingService.getAllUserTags().then((tags) => {
-      this.tags = tags;
-      this.keys = tags.map(({ key }) => key);
+      this.tags = Object.groupBy(tags, ({ type }) => type);
       this.values = [];
       this.loading = false;
     });
   }
 
-  updateModel(event, apply = true) {
-    if (event.detail.name === TAG_ASSIGN_FORM.KEY) {
-      this.model.key = event.detail.value;
-      this.model.value = '';
-      this.values =
-        this.tags.find(({ key }) => key === event.detail.value)?.values || [];
+  updateModel({ detail: { name, value } }, apply = true) {
+    if (name === TAG_ASSIGN_FORM.KEY) {
+      this.model = {
+        key: value,
+        value: '',
+      };
+      const allTags = Object.values(this.tags).reduce(
+        (prev, curr) => [...prev, ...curr],
+        [],
+      );
+      this.values = allTags.find(({ key }) => key === value)?.values || [];
     }
-    if (event.detail.name === TAG_ASSIGN_FORM.VALUE)
-      this.model.value = event.detail.value;
+    if (name === TAG_ASSIGN_FORM.VALUE) this.model.value = value;
 
-    this.addTagForm[event.detail.name].$setValidity(
-      'pattern',
-      TAG_REGEX.test(event.detail.value),
-    );
+    this.addTagForm[name].$setValidity('pattern', TAG_REGEX.test(value));
 
     if (apply) {
       this.$scope.$apply();

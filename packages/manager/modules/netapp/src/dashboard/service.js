@@ -4,16 +4,34 @@ import {
   POLLING_TYPE,
   VRACK_ORDER_URLS,
   SNAPSHOT_TYPE,
+  ACTIVES_NFS_LIMITE,
+  CONFIGURATION_GUIDE_LINKS,
 } from './constants';
+
+import {
+  getMaxFilesQuery,
+  getUsedFilesQuery,
+  getActivesNFSQuery,
+} from './utils';
 
 export default class NetAppDashboardService {
   /* @ngInject */
-  constructor($http, $q, Apiv2Service, Poller, iceberg) {
+  constructor($http, $q, Apiv2Service, Poller, iceberg, coreConfig) {
     this.Apiv2Service = Apiv2Service;
     this.$http = $http;
     this.$q = $q;
     this.Poller = Poller;
     this.iceberg = iceberg;
+    this.GUIDES_LINKS = [
+      {
+        text: 'netapp_dashboard_guide_network_configuration',
+        href:
+          CONFIGURATION_GUIDE_LINKS[coreConfig.getUser().ovhSubsidiary] ||
+          CONFIGURATION_GUIDE_LINKS.DEFAULT,
+      },
+    ];
+    this.coreConfig = coreConfig;
+    this.activesNFS = [];
   }
 
   /**
@@ -242,6 +260,76 @@ export default class NetAppDashboardService {
                 : storage.name,
             };
           });
+      });
+  }
+
+  getVolumeUsages(serviceName, volumeId) {
+    return this.$http
+      .get(`/storage/netapp/${serviceName}/metricsToken`)
+      .then(({ data: { endpoint, token } }) => {
+        const getMetrics = (query) =>
+          this.$http.get(`${endpoint}/prometheus/api/v1/query?query=${query}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        return this.$q
+          .all([
+            getMetrics(getMaxFilesQuery(serviceName, volumeId)),
+            getMetrics(getUsedFilesQuery(serviceName, volumeId)),
+            getMetrics(getActivesNFSQuery(serviceName, volumeId)),
+          ])
+          .then((results) =>
+            results.map(
+              ({
+                data: {
+                  data: { result },
+                },
+              }) => result,
+            ),
+          )
+          .then(([maxFiles, usedFiles, activesNFS = []]) => {
+            const parseValue = ([metric]) => {
+              const val = metric?.value?.[1];
+              return val ? parseInt(val, 10).toLocaleString() : '0';
+            };
+
+            this.activesNFS = activesNFS.map(
+              ({
+                metric: { client_ip: clientIp, protocol },
+                value: minutes,
+              }) => {
+                const language = this.coreConfig
+                  .getUserLocale()
+                  .replace('_', '-');
+                const lastConnection = new Intl.DateTimeFormat(language, {
+                  dateStyle: 'short',
+                  timeStyle: 'short',
+                })
+                  .format(new Date() - minutes[1] * 1000)
+                  .replace(' ', ' - ');
+
+                return {
+                  clientIp,
+                  protocol,
+                  lastConnection,
+                };
+              },
+            );
+
+            return {
+              maxFiles: parseValue(maxFiles),
+              usedFiles: parseValue(usedFiles),
+              activesNFSLimite: ACTIVES_NFS_LIMITE,
+              activesNFS: this.activesNFS,
+            };
+          })
+          .catch(() => ({
+            maxFiles: '0',
+            usedFiles: '0',
+            activesNFSLimite: ACTIVES_NFS_LIMITE,
+            activesNFS: [],
+          }));
       });
   }
 }

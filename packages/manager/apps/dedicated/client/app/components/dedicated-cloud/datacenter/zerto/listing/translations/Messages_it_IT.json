@@ -4,5 +4,5 @@
   "dedicatedCloud_datacenter_drp_listing_column_ip_public": "IP pubblico",
   "dedicatedCloud_datacenter_drp_listing_column_vra_datacenter": "Rete VRA Datacenter",
   "dedicatedCloud_datacenter_drp_listing_column_ip_zvm": "IP ZVM",
-  "dedicatedCloud_datacenter_drp_listing_column_status": "Status"
+  "dedicatedCloud_datacenter_drp_listing_column_status": "Stato"
 }

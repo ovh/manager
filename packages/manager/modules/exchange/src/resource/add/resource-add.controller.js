@@ -1,5 +1,4 @@
 import forEach from 'lodash/forEach';
-import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeAddResourceController {
@@ -23,12 +22,6 @@ export default class ExchangeAddResourceController {
 
     this.$routerParams = wucExchange.getParams();
     this.takenEmails = [];
-    this.model = {
-      displayName: '',
-      capacity: 0,
-      resourceEmailAddress: '',
-      company: '',
-    };
 
     $scope.addResource = () => this.addResource();
     $scope.isValid = () => this.isValid();
@@ -43,17 +36,35 @@ export default class ExchangeAddResourceController {
   }
 
   loadResourceData() {
+    this.isLoading = true;
     return this.services.ExchangeResources.getResourcesOptions(
       this.$routerParams.organization,
       this.$routerParams.productId,
     )
       .then((data) => {
-        if (!isEmpty(data.availableDomains) && !isEmpty(data.types)) {
-          this.availableTypes = data.types;
-          this.availableDomains = data.availableDomains;
+        if (
+          !isEmpty(data.availableDomains) &&
+          !isEmpty(data.resourceTypeEnum) &&
+          !isEmpty(data.showMeetingDetailsEnum)
+        ) {
+          this.availableTypes = data.resourceTypeEnum;
+          this.availableShowMeetingDetails = data.showMeetingDetailsEnum;
+          this.availableDomains = data.availableDomains.sort((a, b) =>
+            a.displayName.localeCompare(b.displayName),
+          );
           this.takenEmails = data.takenEmails;
-          this.model.resourceType = head(this.availableTypes);
-          this.model.resourceEmailDomain = head(this.availableDomains);
+          this.model = {
+            type: this.availableTypes[0],
+            displayName: '',
+            capacity: 0,
+            resourceEmailAddress: '',
+            resourceEmailDomain: this.availableDomains[0],
+            company: '',
+            showMeetingDetails: this.availableShowMeetingDetails[0],
+            allowConflict: true,
+            deleteComments: false,
+            deleteSubject: false,
+          };
         } else {
           this.services.navigation.resetAction();
           this.services.messaging.writeError(
@@ -72,6 +83,9 @@ export default class ExchangeAddResourceController {
           ),
           failure,
         );
+      })
+      .finally(() => {
+        this.isLoading = false;
       });
   }
 
@@ -108,7 +122,7 @@ export default class ExchangeAddResourceController {
   }
 
   buildEmailAddress() {
-    if (isEmpty(this.model.resourceEmailDomain)) {
+    if (isEmpty(this.model?.resourceEmailDomain)) {
       return '';
     }
 
@@ -141,7 +155,10 @@ export default class ExchangeAddResourceController {
     const emailAddressIsCorrect =
       !isEmpty(this.model.resourceEmailAddress) &&
       this.model.resourceEmailAddress.length <= 64;
-    const resourceTypeIsSelected = !isEmpty(this.model.resourceType);
+    const resourceTypeIsSelected = !isEmpty(this.model.type);
+    const showMeetingDetailsIsSelected = !isEmpty(
+      this.model.showMeetingDetails,
+    );
     const displayNameIsCorrect =
       !isEmpty(this.model.displayName) && this.model.displayName.length <= 256;
     const capacityIsCorrect =
@@ -153,10 +170,10 @@ export default class ExchangeAddResourceController {
     return (
       emailAddressIsCorrect &&
       resourceTypeIsSelected &&
-      resourceTypeIsSelected &&
       displayNameIsCorrect &&
       capacityIsCorrect &&
-      emailIsFree
+      emailIsFree &&
+      showMeetingDetailsIsSelected
     );
   }
 }

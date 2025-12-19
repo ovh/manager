@@ -1,0 +1,17 @@
+{
+  "createNewUser": "User erstellen",
+  "tableHeaderName": "Name",
+  "tableHeaderDescription": "Beschreibung",
+  "tableHeaderAccessKey": "Zugriffsschlüssel",
+  "tableActionImportUserAccess": "Nutzerzugriffsrichtlinien (JSON) importieren",
+  "tableActionDowloadUserAccess": "Nutzerzugriffsrichtlinien (JSON) herunterladen",
+  "tableActionDowloadRclone": "Rclone-Datei herunterladen",
+  "tableHeaderS3Enabler": "S3-User",
+  "tableS3Disable": "S3 deaktiviert",
+  "tableS3Enable": "S3 aktiviert",
+  "s3InfoHelper": "Um einen User mit Ihren S3-Containern zu verwenden, müssen Sie Login-Daten mit der Option „Aktivieren“ im Menü rechts generieren.",
+  "tableActionShowSecretKey": "Den geheimen Schlüssel anzeigen",
+  "tableActionEnable": "Aktivieren",
+  "tableActionDisable": "Deaktivieren",
+  "userPolicyDownloadFailed": "Es ist ein Fehler aufgetreten"
+}

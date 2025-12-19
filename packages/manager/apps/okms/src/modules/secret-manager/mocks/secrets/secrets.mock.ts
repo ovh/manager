@@ -120,9 +120,4 @@ const mockCreatedSecret: Secret = {
   },
 };
 
-export const secretListMock: Secret[] = [
-  mockSecret1,
-  mockSecret2,
-  mockSecret3,
-  mockCreatedSecret,
-];
+export const secretListMock: Secret[] = [mockSecret1, mockSecret2, mockSecret3, mockCreatedSecret];

@@ -1,0 +1,20 @@
+{
+  "updateS3PolicyTitle": "Añadir un usuario a mi contenedor S3",
+  "updateS3PolicyDescription": "Seleccione el usuario que quiere añadir a su contenedor. Si no aparece en esta lista, deberá crearlo en la sección dedicada.",
+  "userIdFieldLabel": "Usuario",
+  "inputUserPlaceholder": "Buscar un usuario",
+  "noUserFound": "No se ha encontrado ningún usuario",
+  "userRoleFieldLabel": "Rol",
+  "rolePlaceholder": "Seleccionar un rol",
+  "inputRolePlaceholder": "Buscar un rol",
+  "noUserRoleFound": "No se ha encontrado ningún rol",
+  "role_deny": "Deny",
+  "role_admin": "Administrador",
+  "role_readOnly": "Solo lectura",
+  "role_readWrite": "Lectura y escritura",
+  "updateS3PolicyButtonCancel": "Cancelar",
+  "updateS3PolicyButtonConfirm": "Añadir",
+  "updateS3PolicyToastErrorTitle": "Se ha producido un error",
+  "updateS3PolicyToastSuccessTitle": "Realizado",
+  "updateS3PolicyToastSuccessDescription": "El usuario se ha añadido correctamente"
+}

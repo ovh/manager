@@ -1,0 +1,141 @@
+import { Suspense } from 'react';
+
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
+import { okmsQueryKeys } from '@key-management-service/data/api/okms';
+import { getOkmsServiceKeyResourceQueryKey } from '@key-management-service/data/api/okmsServiceKey';
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
+import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
+import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
+import {
+  BaseLayout,
+  DashboardGridLayout,
+  ErrorBanner,
+  Notifications,
+} from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import Loading from '@/common/components/loading/Loading';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+import { SERVICE_KEYS_LABEL } from '@/constants';
+
+import { CryptoPropertiesTile } from './CryptoPropertiesTile.component';
+import { GeneralInformationTile } from './GeneralInformationTile.component';
+
+export default function ServiceKeyDashboard() {
+  const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
+  const { t } = useTranslation('key-management-service/serviceKeys');
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+
+  const { data: okms, isPending: isLoadingOkms, error: okmsError } = useOkmsById(okmsId);
+
+  const {
+    data: serviceKey,
+    error: serviceKeyError,
+    isPending: isLoadingServiceKey,
+  } = useOkmsServiceKeyById({
+    okmsId,
+    keyId,
+  });
+
+  if (isLoadingServiceKey || isLoadingOkms) return <Loading />;
+
+  if (okmsError) {
+    return (
+      <ErrorBanner
+        error={okmsError.response}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: okmsQueryKeys.detail(okmsId),
+          })
+        }
+      />
+    );
+  }
+
+  if (serviceKeyError)
+    return (
+      <ErrorBanner
+        error={serviceKeyError.response}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
+          })
+        }
+      />
+    );
+
+  const kms = okms?.data;
+  const kmsKey = serviceKey?.data;
+
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      id: okmsId,
+      label: kms.iam.displayName,
+      navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
+    },
+    {
+      id: KMS_ROUTES_URIS.serviceKeys,
+      label: SERVICE_KEYS_LABEL,
+      navigateTo: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
+    },
+    {
+      id: keyId,
+      label: kmsKey.name || kmsKey.id,
+      navigateTo: KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, keyId),
+    },
+    {
+      id: KMS_ROUTES_URIS.serviceKeyEditName,
+      label: t('key_management_service_service-keys_update_name_title'),
+      navigateTo: KMS_ROUTES_URLS.serviceKeyEditName(okmsId, keyId),
+    },
+  ];
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <BaseLayout
+        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+        header={{
+          title: kmsKey.name || kmsKey.id,
+          headerButton: <KmsGuidesHeader />,
+          changelogButton: <KmsChangelogButton />,
+        }}
+        onClickReturn={() => {
+          navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['return_listing_page'],
+          });
+        }}
+        backLinkLabel={t('key_management_service_service_keys_back_link')}
+        message={<Notifications />}
+        tabs={
+          <OdsTabs>
+            <OdsTab>{t('key_management_service_service-keys_dashboard_tab_informations')}</OdsTab>
+          </OdsTabs>
+        }
+      >
+        <DashboardGridLayout>
+          <GeneralInformationTile kms={kms} serviceKey={kmsKey} />
+          <CryptoPropertiesTile serviceKey={kmsKey} />
+        </DashboardGridLayout>
+        <Outlet />
+      </BaseLayout>
+    </Suspense>
+  );
+}

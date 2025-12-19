@@ -2,6 +2,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -9,6 +10,7 @@ import {
   OsdsButton,
   OsdsClipboard,
   OsdsIcon,
+  OsdsMessage,
   OsdsPassword,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
@@ -17,7 +19,8 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { FC } from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
+
 import { AccessDetail } from '@/data/hooks/useGenerateAccessDetail/useGenerateAccessDetail';
 import { RancherService } from '@/types/api.type';
 import Modal from '../Modal.component';
@@ -26,6 +29,7 @@ import {
   useTrackingPage,
 } from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useIamActivated } from '@/hooks/useIamActivated';
 
 export interface GenerateAccessModalProps {
   rancher: RancherService;
@@ -42,6 +46,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
 }) => {
   const { t } = useTranslation('dashboard');
   const trackAction = useTrackingAction();
+  const iamIsEnabled = useIamActivated();
   useTrackingPage(TrackingPageView.GenerateAccessModal);
   const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;
 
@@ -59,7 +64,10 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
       </OsdsText>
       {!hasValidAccess && (
         <div className="mt-3">
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._400}
+          >
             {t('generateAccesModalDescription', {
               rancherName: rancher.currentState.name,
             })}
@@ -93,14 +101,44 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
               color={ODS_THEME_COLOR_INTENT.primary}
             />
           </div>
+
           <div className="my-4">
-            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+            <OsdsText
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
               {t('generateAccessModalPasswordDescription', {
                 rancherName: rancher.currentState.name,
               })}
             </OsdsText>
           </div>
         </div>
+      )}
+      {iamIsEnabled && rancher.currentState.iamAuthEnabled && !accessDetail && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.warning}
+          type={ODS_MESSAGE_TYPE.warning}
+          className="my-6"
+        >
+          <div>
+            <OsdsText
+              size={ODS_TEXT_SIZE._400}
+              className="text-[--ods-color-warning-700]"
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              <strong>
+                {t('iam_authentication_warning')} {':'}
+              </strong>
+            </OsdsText>
+
+            <OsdsText
+              className={'text-[--ods-color-warning-700] inline-block'}
+              size={ODS_TEXT_SIZE._400}
+            >
+              <Trans i18nKey={'iam_modal_activation_warning_text'} />
+            </OsdsText>
+          </div>
+        </OsdsMessage>
       )}
       <OsdsButton
         slot="actions"

@@ -1,5 +1,6 @@
-import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const PATH_MIN_CHAR = 1;
@@ -20,8 +21,5 @@ export const useSecretPathSchema = () => {
     .regex(PATH_ALLOWED_CHARACTER_REGEX, t('error_path_allowed_characters'))
     .regex(PATH_STRUCTURE_REGEX, t('error_path_structure'))
     .min(PATH_MIN_CHAR, t('required_field', { ns: NAMESPACES.FORM }))
-    .max(
-      PATH_MAX_CHAR,
-      t('error_max_chars', { value: PATH_MAX_CHAR, ns: NAMESPACES.FORM }),
-    );
+    .max(PATH_MAX_CHAR, t('error_max_chars', { value: PATH_MAX_CHAR, ns: NAMESPACES.FORM }));
 };

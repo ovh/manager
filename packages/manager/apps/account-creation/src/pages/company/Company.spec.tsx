@@ -44,7 +44,15 @@ const setSearchValue = async (input: HTMLElement, value: string) => {
   );
 };
 
-vi.spyOn(ReactRouterDom, 'useNavigate').mockReturnValue(navigate);
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => navigate,
+  useSearchParams: () => [
+    new URLSearchParams({
+      onsuccess: 'https://www.ovh.com/manager',
+    }),
+    vi.fn(),
+  ],
+}));
 
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const module = await importOriginal<

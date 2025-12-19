@@ -36,6 +36,7 @@ export const useGetAllDom = ({
         return {
           data: {} as AlldomService,
           isLoading: results.some((r) => r.isLoading),
+          isError: true,
         };
       }
 

@@ -40,8 +40,8 @@
   "kube_common_estimation_price_free": "Gratis",
   "kube_common_estimation_total_price": "Szacowana cena całkowita:",
   "kube_common_node_pool_estimation_cost_tile": "Szacunkowy koszt miesięczny",
-  "kube_common_node_pool_select_zone": "Musisz wybrać przynajmniej jedną strefę dostępności.",
-  "kube_common_add_node_pool_plural": "Dodać {{count}} pule węzłów",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Jeśli wybrano kilka stref dostępności (AZ), konfiguracja zostanie automatycznie skopiowana, aby utworzyć oddzielną pulę węzłów w każdej strefie.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Rozdzielenie AZ"
+  "kube_common_node_pool_select_zone": "Wybierz co najmniej jedną strefę dostępności.",
+  "kube_common_add_node_pool_plural": "Dodaj {{count}} pul/e węzłów",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Jeśli wybierzesz kilka stref dostępności (AZ), konfiguracja zostanie skopiowana i w każdej strefie zostanie utworzona osobna pula węzłów.",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Rozmieszczenie pul węzłów w AZ"
 }

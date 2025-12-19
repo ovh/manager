@@ -89,8 +89,8 @@ export function useOrderFunnel(
       privacy: suggestions.suggestions.find(
         (sug) => sug.region === suggestions.defaultRegion,
       ).unsecureHttp
-        ? PrivacyEnum.private
-        : PrivacyEnum.public,
+        ? PrivacyEnum.public
+        : PrivacyEnum.private,
       labels: [],
       sshKey: [],
       volumes: [],
@@ -213,17 +213,8 @@ export function useOrderFunnel(
     const suggestedFrameworkVersion = listFramework.find(
       (fmk) => fmk.id === suggestedFramework,
     )?.versions[0];
-
-    if (isQuantum) {
-      form.setValue('frameworkWithVersion.framework', listFramework[0].id);
-      form.setValue(
-        'frameworkWithVersion.version',
-        listFramework[0].versions[0],
-      );
-    } else {
-      form.setValue('frameworkWithVersion.framework', suggestedFramework);
-      form.setValue('frameworkWithVersion.version', suggestedFrameworkVersion);
-    }
+    form.setValue('frameworkWithVersion.framework', suggestedFramework);
+    form.setValue('frameworkWithVersion.version', suggestedFrameworkVersion);
   }, [regionObject, region, listFramework]);
 
   // Change editors when region change?

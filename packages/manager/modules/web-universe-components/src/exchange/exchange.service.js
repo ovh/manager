@@ -108,6 +108,12 @@ export default class Exchange {
     };
   }
 
+  getModels() {
+    return this.services.$http
+      .get('/email/exchange.json')
+      .then(({ data }) => data);
+  }
+
   /*
    * Private function to reset the cache
    */

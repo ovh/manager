@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.24.0...@ovh-ux/manager-iam@1.24.1) (2025-12-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 863] ([3c24342](https://github.com/ovh/manager/commit/3c2434288f7fc721448aacf6f89617637fa9dbaf))
+* **iam:** fix okms resource types translations ([a197b5a](https://github.com/ovh/manager/commit/a197b5a7610409c39f45adbf0d11af05b3853786)), closes [#MANAGER-20402](https://github.com/ovh/manager/issues/MANAGER-20402)
+
+
+
+
+
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.23.0...@ovh-ux/manager-iam@1.24.0) (2025-12-01)
+
+
+### Features
+
+* **iam:** use auth URLs from core-sso package ([c73e251](https://github.com/ovh/manager/commit/c73e2510e0a7fdfa1e0435f462ca1e3c78bd52c6)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.22.3...@ovh-ux/manager-iam@1.23.0) (2025-11-12)
+
+
+### Features
+
+* **iam:** add 'Roadmap & Changelog' links ([764ef11](https://github.com/ovh/manager/commit/764ef11cbc04548f91141a060cba1585427a971d)), closes [#MAIAM-44](https://github.com/ovh/manager/issues/MAIAM-44)
+
+
+
+
+
+## [1.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.22.2...@ovh-ux/manager-iam@1.22.3) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+
+
+
+
+
 ## [1.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.22.1...@ovh-ux/manager-iam@1.22.2) (2025-11-04)
 
 

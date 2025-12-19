@@ -52,8 +52,8 @@
   "successCreatingNotebookTitle": "Erfolgreich",
   "successCreatingNotebookDescription": "Ihr Notebook wurde erfolgreich erstellt",
   "qpuPrice": "QPU-Zeit",
-  "totalPrice": "Summe",
-  "notePriceDesc": "Die QPU-Zeit wird pro Sekunde berechnet. Die QPU-Zeit wird Ihnen nur für Ihre Nutzungszeit der QPU in Rechnung gestellt.",
+  "totalPrice": "Gesamt",
+  "notePriceDesc": "Die QPU-Zeit wird sekundengenau abgerechnet. Die QPU-Zeit wird Ihnen nur für Ihre Nutzungsdauer der QPU berechnet.",
   "pricingLabel": "Preis",
-  "notebookPrice": "Ressourcen-Notebook"
+  "notebookPrice": "Notebook-Ressourcen"
 }

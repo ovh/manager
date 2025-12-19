@@ -14,4 +14,11 @@ describe('TileGridSkeleton', () => {
     expect(contentContainer).not.toBeNull();
     expect(contentContainer.children.length).toBe(6);
   });
+
+  it('should have a valid html', () => {
+    const { container } = render(<TileGridSkeleton />);
+    const html = container.innerHTML;
+
+    expect(html).toBeValidHtml();
+  });
 });

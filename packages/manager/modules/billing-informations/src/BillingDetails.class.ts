@@ -27,7 +27,7 @@ export default class BillingDetails {
   }
 
   get renewPeriod() {
-    return this.billing.renew.current.period;
+    return this.billing.renew?.current.period;
   }
 
   isBillingSuspended() {
@@ -51,23 +51,23 @@ export default class BillingDetails {
   }
 
   isAutomaticRenew() {
-    return this.billing.renew.current.mode === 'automatic';
+    return this.billing.renew?.current?.mode === 'automatic';
   }
 
   isExpired() {
-    return this.billing.lifecycle.current.state !== 'active';
+    return this.billing.lifecycle?.current?.state !== 'active';
   }
 
   isManualRenew() {
-    return this.billing.renew?.current.mode === 'manual';
+    return this.billing.renew?.current?.mode === 'manual';
   }
 
   isResiliated() {
-    return this.isExpired() || ['terminated'].includes(this.billing.lifecycle.current.state);
+    return this.isExpired() || ['terminated'].includes(this.billing.lifecycle?.current?.state);
   }
 
   hasDebt() {
-    return this.billing.lifecycle.current.state === 'unpaid';
+    return this.billing.lifecycle?.current?.state === 'unpaid';
   }
 
   hasEngagement() {

@@ -3,59 +3,59 @@
 exports[`Datepicker Snapshot tests > renders the component with default props and children 1`] = `
 <div>
   <div
-    class="_datepicker_2mvgz_2"
-    data-ods="datepicker"
-    data-part="root"
-    data-scope="date-picker"
-    data-state="closed"
-    dir="ltr"
-    id="datepicker::r0:"
+    class=_datepicker
+    data-ods=datepicker
+    data-part=root
+    data-scope=date-picker
+    data-state=closed
+    dir=ltr
+    id=datepicker::r0:
   >
     <div
-      class="_datepicker-control_1at68_2"
-      data-part="control"
-      data-scope="date-picker"
-      dir="ltr"
-      id="datepicker::r0::control"
+      class=_datepicker-control
+      data-part=control
+      data-scope=date-picker
+      dir=ltr
+      id=datepicker::r0::control
     >
       <div
-        class="_input_ff5b7_2 _datepicker-control__input_1at68_7"
+        class=_input _datepicker-control__input
       >
         <input
-          aria-busy="false"
-          autocomplete="off"
-          autocorrect="off"
-          class="_input__field_ff5b7_41"
-          data-index="0"
-          data-ods="datepicker-control"
-          data-part="input"
-          data-scope="date-picker"
-          data-state="closed"
-          dir="ltr"
-          id="datepicker::r0::input:0"
-          placeholder="mm/dd/yyyy"
-          spellcheck="false"
-          type="text"
-          value=""
+          aria-busy=false
+          autocomplete=off
+          autocorrect=off
+          class=_input__field
+          data-index=0
+          data-ods=datepicker-control
+          data-part=input
+          data-scope=date-picker
+          data-state=closed
+          dir=ltr
+          id=datepicker::r0::input:0
+          placeholder=mm/dd/yyyy
+          spellcheck=false
+          type=text
+          value=
         />
       </div>
       <button
-        aria-controls="datepicker::r0::content"
-        aria-haspopup="grid"
-        aria-label="Open calendar"
-        class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _datepicker-control__trigger_1at68_18"
-        data-ods="button"
-        data-part="trigger"
-        data-scope="date-picker"
-        data-state="closed"
-        dir="ltr"
-        id="datepicker::r0::trigger"
-        type="button"
+        aria-controls=datepicker::r0::content
+        aria-haspopup=grid
+        aria-label=Open calendar
+        class=_button _button--primary _button--sm _button--outline _datepicker-control__trigger
+        data-ods=button
+        data-part=trigger
+        data-scope=date-picker
+        data-state=closed
+        dir=ltr
+        id=datepicker::r0::trigger
+        type=button
       >
         <span
-          class="_icon_10c23_2 _icon--calendar_10c23_70"
-          data-ods="icon"
-          role="presentation"
+          class=_icon _icon--calendar
+          data-ods=icon
+          role=presentation
         />
       </button>
     </div>

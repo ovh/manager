@@ -1,0 +1,21 @@
+{
+  "createNewStorage": "Objektcontainer erstellen",
+  "tableHeaderName": "Name",
+  "tableHeaderLocation": "Standort",
+  "tableHeaderDeploymentMode": "Bereitstellungsmodus",
+  "tableHeaderOffer": "Angebot",
+  "tableSwiftOffer": "Swift",
+  "tableS3Offer": "S3-kompatibel",
+  "tableHeaderObjectNumber": "Objektanzahl",
+  "tableHeaderSpaceUsed": "Verwendeter Speicherplatz",
+  "tableHeaderType": "Typ",
+  "tablePublicType": "Public",
+  "tablePrivateType": "Private",
+  "tableStaticType": "Statisch",
+  "tableActionManage": "Details",
+  "tableActionCopy": "ID kopieren",
+  "tableActionSwitchToPublic": "Zu „öffentlich“ wechseln",
+  "tableActionSwitchToPrivate": "Zu „privat“ wechseln",
+  "tableActionAddUser": "User hinzufügen",
+  "tableActionDelete": "Löschen"
+}

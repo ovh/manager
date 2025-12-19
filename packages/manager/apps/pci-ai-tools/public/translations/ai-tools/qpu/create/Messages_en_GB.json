@@ -53,7 +53,7 @@
   "successCreatingNotebookDescription": "Your notebook has been created",
   "qpuPrice": "QPU Time",
   "totalPrice": "Total",
-  "notePriceDesc": "QPU time is charged by the second. You will only be charged for your QPU usage time.",
-  "pricingLabel": "Prices",
-  "notebookPrice": "Resources Notebook"
+  "notePriceDesc": "QPU time is billed per second. You will only be billed for the time you actually use the QPU.",
+  "pricingLabel": "Price",
+  "notebookPrice": "Notebook Resources"
 }

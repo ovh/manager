@@ -5,12 +5,14 @@ import { Link } from '@ovhcloud/ods-react';
 import { OngoingOperationDatagridDomainProps } from '@/types';
 import { useDatagridColumnUrl } from '@/hooks/url/useDatagridColumnUrl';
 import { DomainOperationsEnum } from '@/constants';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 export default function OngoingOperationDatagridDomain({
   parent,
   props,
 }: Readonly<OngoingOperationDatagridDomainProps>) {
   const { url, value } = useDatagridColumnUrl({ parent, props });
+  const { trackDatagridNavivationLink } = useTrackNavigation();
 
   return (
     <DataGridTextCell>
@@ -25,6 +27,9 @@ export default function OngoingOperationDatagridDomain({
             DomainOperationsEnum.DomainResourceDelete,
           ].includes(props.function as DomainOperationsEnum)
         }
+        onClick={() => {
+          trackDatagridNavivationLink(url);
+        }}
       >
         {toUnicode(value)}
       </Link>

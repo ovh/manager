@@ -1,0 +1,10 @@
+{
+  "switchTypeTitle": "Change the container type",
+  "switchToPublicDescription": "Do you want to make the data container public?",
+  "switchToPrivateDescription": "Do you want to make the data container private?",
+  "switchTypeButtonCancel": "Cancel",
+  "switchTypeButtonConfirm": "Confirm",
+  "updateContainerToastErrorTitle": "An error has occurred",
+  "updateContainerToastSuccessTitle": "Completed",
+  "updateContainerToastSuccessDescription": "The container has been modified"
+}

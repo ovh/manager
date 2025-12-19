@@ -22,7 +22,7 @@ describe('getStreamSubscription test', () => {
     },
   ];
 
-  it.each(testcases)('should return $result ', ({ subscriptions, streamId, result }) => {
+  it.each(testcases)('should return $result', ({ subscriptions, streamId, result }) => {
     expect(getStreamSubscription(subscriptions, streamId)).toEqual(result);
   });
 });

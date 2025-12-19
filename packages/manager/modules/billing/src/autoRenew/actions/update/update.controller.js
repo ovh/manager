@@ -107,15 +107,16 @@ export default class AutoRenewServiceModalController {
     this.loading.updateRenew = true;
     return this.updateRenew(this.billingService, this.autoRenewAgreements)
       .then(() =>
-        this.goBack(
+        this.goToAutorenew(
           this.$translate.instant(
             'autorenew_service_update_modal_update_success',
           ),
           'success',
+          true,
         ),
       )
       .catch((error) =>
-        this.goBack(
+        this.goToAutorenew(
           this.$translate.instant(
             'autorenew_service_update_modal_update_error',
             {

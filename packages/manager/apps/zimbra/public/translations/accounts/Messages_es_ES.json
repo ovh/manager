@@ -59,5 +59,9 @@
   "zimbra_account_plan_tag_coming_soon": "Próximamente disponible",
   "zimbra_account_plan_feature_share_starter_tooltip": "Uso compartido manual (sin sincronización ActiveSync). Para Android, la función de compartir solo es compatible con Zimbra.",
   "zimbra_account_plan_feature_sync_tooltip": "Sincronización automática en todos los dispositivos en tiempo real.",
-  "zimbra_account_update_offer_paid_now_tooltip": "El precio se calcula en función del tiempo restante hasta su próxima fecha de renovación, según un prorrateo temporal"
+  "zimbra_account_update_offer_paid_now_tooltip": "El precio se calcula en función del tiempo restante hasta su próxima fecha de renovación, según un prorrateo temporal",
+  "zimbra_account_delete_all": "Eliminar las cuentas ({{ count }})",
+  "zimbra_account_delete_all_modal_content_step1": "¿Seguro/a que quiere eliminar las siguientes cuentas?",
+  "zimbra_account_delete_all_modal_content_step2": "¿Seguro/a que quiere eliminar las siguientes cuentas de correo?",
+  "zimbra_account_delete_all_confirm_label": "Introduzca <strong>{{ label }}</strong> para confirmar la eliminación:"
 }

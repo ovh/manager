@@ -1,0 +1,21 @@
+{
+  "createNewStorage": "Creare un container di oggetti",
+  "tableHeaderName": "Cognome",
+  "tableHeaderLocation": "Localizzazione",
+  "tableHeaderDeploymentMode": "Modalità di deploy",
+  "tableHeaderOffer": "Piano",
+  "tableSwiftOffer": "Swift",
+  "tableS3Offer": "Compatibile con S3",
+  "tableHeaderObjectNumber": "Numero di oggetti",
+  "tableHeaderSpaceUsed": "Spazio utilizzato",
+  "tableHeaderType": "Tipo",
+  "tablePublicType": "Pubblico",
+  "tablePrivateType": "Privato",
+  "tableStaticType": "Statico",
+  "tableActionManage": "Dettagli",
+  "tableActionCopy": "Copiare ID",
+  "tableActionSwitchToPublic": "Passare a Pubblico",
+  "tableActionSwitchToPrivate": "Passare a Privato",
+  "tableActionAddUser": "Aggiungere un utente",
+  "tableActionDelete": "Eliminare"
+}

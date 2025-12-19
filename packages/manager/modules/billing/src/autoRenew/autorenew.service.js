@@ -1,7 +1,5 @@
-import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
-import pick from 'lodash/pick';
 import reduce from 'lodash/reduce';
 import values from 'lodash/values';
 
@@ -13,7 +11,6 @@ import {
   SERVICE_STATES,
   SERVICE_STATUS,
   SERVICE_RENEW_MODES,
-  SERVICE_TYPES,
   SERVICE_INFOS_URLS_BY_TYPE,
   SERVICE_NAME_PLACEHOLDER,
 } from './autorenew.constants';
@@ -331,37 +328,37 @@ export default class {
         : Promise.resolve([]);
 
     return agreementsPromise.then(() => {
-      if (service?.serviceType === SERVICE_TYPES.ZIMBRA_SLOT) {
-        const mode = service?.renew?.automatic
-          ? SERVICE_RENEW_MODES.AUTOMATIC
-          : SERVICE_RENEW_MODES.MANUAL;
+      const mode = service?.renew?.automatic
+        ? SERVICE_RENEW_MODES.AUTOMATIC
+        : SERVICE_RENEW_MODES.MANUAL;
 
-        const period =
-          Number.isInteger(service?.renew?.period) || !service?.renew?.period
-            ? `P${service?.renew?.period || 1}M`
-            : service?.renew?.period;
+      const renewPeriod = service?.renew?.period || 1;
 
-        return this.putServiceV6(service, {
-          renew: {
-            mode,
-            ...(mode === SERVICE_RENEW_MODES.AUTOMATIC && {
-              period,
-            }),
-          },
-        });
-      }
+      const period =
+        renewPeriod >= 12
+          ? `P${Math.floor(renewPeriod / 12)}Y`
+          : `P${renewPeriod}M`;
 
-      const toUpdate = {
-        ...pick(service, ['serviceId', 'serviceType', 'renew']),
+      return this.putServiceV6(service, {
         renew: {
-          ...service.renew,
-          period: service.renew.period,
+          mode,
+          ...(mode === SERVICE_RENEW_MODES.AUTOMATIC && {
+            period,
+          }),
         },
-      };
-
-      toUpdate.route = get(service, 'route.url');
-      return this.updateServices([toUpdate]);
+      });
     });
+  }
+
+  updateRenewMode(serviceId, mode) {
+    return this.OvhHttp.put(`/services/${serviceId}`, {
+      rootPath: 'apiv6',
+      data: { renew: { mode } },
+    }).catch((error) => ({
+      id: serviceId,
+      message: error?.data?.message || error.message || 'Unknown error',
+      type: 'ERROR',
+    }));
   }
 
   /* eslint-disable class-methods-use-this */
@@ -403,5 +400,18 @@ export default class {
 
   getQueryParams() {
     return this.queryParams || {};
+  }
+
+  cancelTermination(serviceId) {
+    return this.OvhHttp.put(`/services/${serviceId}`, {
+      rootPath: 'apiv6',
+      data: { terminationPolicy: 'empty' },
+    }).catch((error) => {
+      return this.$q.reject({
+        data: {
+          message: error.message,
+        },
+      });
+    });
   }
 }

@@ -7,7 +7,6 @@ import UpdateStringComponent from '@/components/Update/Content/Update.String.com
 
 interface UpdateContentComponentProps {
   readonly domainName: string;
-  readonly operationId: number;
   readonly argument: TArgument;
   readonly operationName: string;
   readonly onChange: (key: string, value: string) => void;

@@ -6,20 +6,29 @@ export default class ResiliateModalController {
     BillingService,
     RESILIATION_CAPACITIES,
     RESILIATION_DEFAULT_CAPABILITY,
+    coreConfig,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.RESILIATION_CAPACITIES = RESILIATION_CAPACITIES;
     this.RESILIATION_DEFAULT_CAPABILITY = RESILIATION_DEFAULT_CAPABILITY;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
+    this.isUSRegion = this.coreConfig.isRegion('US');
     this.resiliateOptions = (this.capabilities || [])
       .filter((option) => this.RESILIATION_CAPACITIES.includes(option))
       .map((value) => ({
         value,
-        label: this.$translate.instant(`billing_resiliate_${value}`),
+        label: this.$translate.instant(
+          `billing_resiliate_${value}${
+            value === 'terminateAtEngagementDate' && this.isUSRegion
+              ? '_us'
+              : ''
+          }`,
+        ),
       }));
 
     this.resiliateOption =
@@ -51,11 +60,16 @@ export default class ResiliateModalController {
         );
       })
       .catch((error) => {
-        const translationKey = this.RESILIATION_CAPACITIES.includes(
+        const translationKeyBase = this.RESILIATION_CAPACITIES.includes(
           this.resiliateOption,
         )
           ? `billing_resiliate_${this.resiliateOption}_error`
           : 'billing_resiliate_error';
+        const translationKey =
+          this.resiliateOption === 'terminateAtEngagementDate' &&
+          this.isUSRegion
+            ? `${translationKeyBase.replace('_error', '')}_error_us`
+            : translationKeyBase;
         const errorMessage = error?.data?.message || error?.message || error;
         return this.onError(
           `${this.$translate.instant(translationKey)} ${errorMessage}`,

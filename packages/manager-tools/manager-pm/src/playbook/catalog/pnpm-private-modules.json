@@ -16,10 +16,6 @@
     "pnpm": "packages/manager/modules/account"
   },
   {
-    "turbo": "--filter @ovh-ux/manager-account-migration",
-    "pnpm": "packages/manager/modules/account-migration"
-  },
-  {
     "turbo": "--filter @ovh-ux/manager-advices",
     "pnpm": "packages/manager/modules/advices"
   },
@@ -44,7 +40,7 @@
     "pnpm": "packages/manager/modules/billing-components"
   },
   {
-    "turbo": "--filter @ovh-ux/billing-informations",
+    "turbo": "--filter @ovh-ux/manager-billing-informations",
     "pnpm": "packages/manager/modules/billing-informations"
   },
   {
@@ -270,6 +266,14 @@
   {
     "turbo": "--filter @ovh-ux/manager-static-analysis-kit",
     "pnpm": "packages/manager-tools/manager-static-analysis-kit"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-tests-setup",
+    "pnpm": "packages/manager-tools/manager-tests-setup"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-forge-cli",
+    "pnpm": "packages/manager-tools/manager-forge-cli"
   },
   {
     "turbo": "--filter @ovh-ux/manager-core-test-utils",

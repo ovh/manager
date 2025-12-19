@@ -1,0 +1,16 @@
+{
+  "errorFileRequired": "Wybierz przynajmniej jeden plik",
+  "errorFileNumber": "Możesz wybrać tylko jeden plik",
+  "errorJsonFile": "Plik musi być zapisany w formacie JSON.",
+  "prefixRequiredError": "Uzupełnienie tego pola jest obowiązkowe",
+  "prefixFieldLabel": "Prefiks",
+  "prefixFieldPlaceholder": "Wprowadź prefiks",
+  "importFileLabel": "Importuj pliki",
+  "importFileButton": "Wybierz pliki...",
+  "fileUploaderButtonCancel": "Anuluj",
+  "fileUploaderButtonConfirm": "Importuj",
+  "storageClassLabel": "Klasa storage",
+  "popOverDesc1": "Informacje na temat:",
+  "popOverDesc2": "Klas przestrzeni dyskowej",
+  "popOverDesc3": "Cen"
+}

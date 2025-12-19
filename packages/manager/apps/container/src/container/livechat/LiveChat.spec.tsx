@@ -112,7 +112,7 @@ describe('LiveChat.component', {}, () => {
     // TODO: Change url after the livechat is ready
     expect(liveChatIFrame).toHaveAttribute(
       'src',
-      `https://chat.ovh.com/system/templates/liveChat-manager/STD/FR_fr/docs/index2.html?v=${format(new Date(), 'yy-MM-dd')}`,
+      `https://chatbot.ovhcloud.com/livechat-manager/STD/FR_fr/docs/index2.html?v=${format(new Date(), 'yy-MM-dd')}`,
     );
   });
 

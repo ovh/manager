@@ -5,12 +5,19 @@ import { getQuantumSuggestions } from '@/data/api/ai/notebook/quantumSuggestions
 
 export function useGetQuantumSuggestions(
   projectId: string,
+  quantumType: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
-  const queryKey = [projectId, 'ai', 'suggestion', 'notebook-quantum', 'qpu'];
+  const queryKey = [
+    projectId,
+    'quantum',
+    'suggestion',
+    'notebook-quantum',
+    quantumType,
+  ];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: () => getQuantumSuggestions({ projectId }),
+    queryFn: () => getQuantumSuggestions({ projectId }, quantumType),
     ...options,
   }) as UseQueryResult<NotebookSuggestions, Error>;
 }

@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.27.0...@ovh-ux/manager-hub-app@0.28.0) (2025-12-05)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.8...@ovh-ux/manager-hub-app@0.27.0) (2025-12-03)
+
+
+### Features
+
+* **hub:** add fix and verrify html tests ([02c88c9](https://github.com/ovh/manager/commit/02c88c9afc566829d4622e3cef2c99e1f317ce44)), closes [#MANAGER-20181](https://github.com/ovh/manager/issues/MANAGER-20181)
+
+
+
+
+
+## [0.26.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.7...@ovh-ux/manager-hub-app@0.26.8) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.26.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.6...@ovh-ux/manager-hub-app@0.26.7) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.26.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.5...@ovh-ux/manager-hub-app@0.26.6) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.4...@ovh-ux/manager-hub-app@0.26.5) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.26.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.3...@ovh-ux/manager-hub-app@0.26.4) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.2...@ovh-ux/manager-hub-app@0.26.3) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.1...@ovh-ux/manager-hub-app@0.26.2) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.26.0...@ovh-ux/manager-hub-app@0.26.1) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.13...@ovh-ux/manager-hub-app@0.26.0) (2025-11-12)
+
+
+### Features
+
+* **hub:** remove phishing info banner ([514c19c](https://github.com/ovh/manager/commit/514c19cee72e0f51bc1d220ff746d82118a56912)), closes [#MANAGER-19964](https://github.com/ovh/manager/issues/MANAGER-19964)
+
+
+
+
+
+## [0.25.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.12...@ovh-ux/manager-hub-app@0.25.13) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
 ## [0.25.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.11...@ovh-ux/manager-hub-app@0.25.12) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

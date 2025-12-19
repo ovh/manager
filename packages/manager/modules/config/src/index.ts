@@ -1,13 +1,16 @@
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
+import type { ApiError } from '@ovh-ux/manager-core-api';
+import { getLogoutUrl } from '@ovh-ux/manager-core-sso';
 import { getHeaders } from '@ovh-ux/request-tagger';
 
+import { Application } from './application';
 import Environment from './environment';
 import { Region } from './environment/region.enum';
 
 export const HOSTNAME_REGIONS: Record<string, Region> = {
-  'www.ovh.com': Region.EU,
-  'ca.ovh.com': Region.CA,
-  'us.ovhcloud.com': Region.US,
+  'manager.eu.ovhcloud.com': Region.EU,
+  'manager.ca.ovhcloud.com': Region.CA,
+  'manager.us.ovhcloud.com': Region.US,
 };
 
 export const RESTRICTED_DEFAULTS: Record<string, string> = {
@@ -24,87 +27,163 @@ export * from './environment';
 
 export const isTopLevelApplication = () => window.top === window.self;
 
-interface ApiError {
-  status: number;
-  data?: {
-    region?: string;
-    applications?: {
-      restricted?: { publicURL?: string };
+export type ConfigurationApiResponse = {
+  region?: string;
+  applications?: {
+    restricted?: { publicURL?: string };
+  };
+  class?: string;
+};
+
+export type ErrorResponseData =
+  | ConfigurationApiResponse
+  | {
+      message?: string;
+      code?: string;
+      details?: unknown;
     };
-    class?: string;
+
+const updateEnvironment = (environment: Environment, data: Environment): Environment => {
+  environment.setRegion(data.region);
+  environment.setUser(data.user);
+  environment.setApplicationURLs(data.applicationURLs);
+  environment.setUniverse(data.universe || '');
+  environment.setMessage(data.message);
+  environment.setApplications(data.applications);
+  return environment;
+};
+
+const handleUnauthorizedError = (): void => {
+  if (!isTopLevelApplication()) {
+    window.parent.postMessage({
+      id: 'ovh-auth-redirect',
+      url: getLogoutUrl(window.location.href),
+    });
+  }
+};
+
+const handleForbiddenError = (data: ConfigurationApiResponse): void => {
+  const region = data?.region || RESTRICTED_DEFAULTS.region;
+  const publicURL = data?.applications?.restricted?.publicURL || RESTRICTED_DEFAULTS.publicURL;
+  const targetWindow = window.top || window;
+  targetWindow.location.href = `${publicURL}?region=${region}`;
+};
+
+const handleMaintenanceError = (
+  data: ConfigurationApiResponse,
+  environment: Environment,
+): never => {
+  const errorObj = new Error('Server::InternalServerError::ApiUnreachableMaintenance');
+  Object.assign(errorObj, { error: data, environment });
+  throw errorObj;
+};
+
+const handleServerError = (
+  data: ErrorResponseData,
+  err: ApiError,
+  environment: Environment,
+): never => {
+  const errorObj = new Error('Server Error');
+  Object.assign(errorObj, {
+    error: {
+      message: data || err?.response?.statusText,
+    },
+    environment,
+  });
+  throw errorObj;
+};
+
+const handleErrorResponse = (
+  err: ApiError & { response: { data: ConfigurationApiResponse } },
+  environment: Environment,
+): Environment => {
+  const { status, data } = err?.response || {};
+
+  switch (status) {
+    case 401:
+      handleUnauthorizedError();
+      break;
+    case 403:
+      handleForbiddenError(data);
+      break;
+    case 500:
+      if (data?.class === 'Server::InternalServerError::ApiUnreachableMaintenance') {
+        handleMaintenanceError(data, environment);
+      }
+      break;
+    default:
+      if (status && status >= 500) {
+        handleServerError(data, err, environment);
+      }
+  }
+
+  environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
+  return environment;
+};
+
+const getNewUrl = (appName = '', currentValue = '', region: 'EU' | 'CA' | 'US') => {
+  if (appName === 'sunrise') {
+    return currentValue;
+  }
+
+  const telecomApps = ['telecom', 'telephony', 'freefax', 'overthebox', 'pack-xdsl', 'sms'];
+
+  if (telecomApps.indexOf(appName) !== -1) {
+    return currentValue.replace('www.ovhtelecom.fr/manager', 'manager.eu.ovhcloud.com');
+  }
+
+  const oldDomains = {
+    EU: 'www.ovh.com/manager',
+    CA: 'ca.ovh.com/manager',
+    US: 'us.ovhcloud.com/manager',
   };
-  response?: {
-    statusText?: string;
-    data?: unknown;
-  };
-}
+
+  return currentValue.replace(oldDomains[region], `manager.${region.toLowerCase()}.ovhcloud.com`);
+};
+
+// TODO: Temporarily update the domains of µ-app URLs as they are still pointing to the old ones from BFF. To clean this method after BFF deployment
+const updateDomain = (configObj: Environment) => {
+  if (window.location.pathname?.includes('/manager/')) {
+    // fix to skip updating URLs for LABEU
+    return;
+  }
+  const { region } = configObj;
+  Object.entries(configObj.applicationURLs).forEach(([key, value]) => {
+    configObj.applicationURLs[key] = getNewUrl(key, value, region);
+  });
+  Object.entries(configObj.applications).forEach(([key, value]) => {
+    (configObj.applications[key] as Application).url = getNewUrl(key, value.url, region);
+    if ((configObj.applications[key] as Application).publicURL) {
+      (configObj.applications[key] as Application).publicURL = getNewUrl(
+        key,
+        value.publicURL,
+        region,
+      );
+    }
+  });
+};
 
 export const fetchConfiguration = async (applicationName: string): Promise<Environment> => {
   const environment = new Environment();
-  const configRequestOptions = {
-    requestType: 'aapi',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      Accept: 'application/json',
-      ...getHeaders('/engine/2api/configuration'),
-    },
-    credentials: 'same-origin',
-  };
   let configurationURL = '/configuration';
   if (applicationName) {
     environment.setApplicationName(applicationName);
     configurationURL = `${configurationURL}?app=${encodeURIComponent(applicationName)}`;
   }
-  const Reket = useReket(true);
 
-  return Reket.get<Environment>(configurationURL, configRequestOptions)
-    .then((config) => {
-      environment.setRegion(config.region);
-      environment.setUser(config.user);
-      environment.setApplicationURLs(config.applicationURLs);
-      environment.setUniverse(config.universe || '');
-      environment.setMessage(config.message);
-      environment.setApplications(config.applications);
-      return environment;
+  return aapi
+    .get(configurationURL, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Accept: 'application/json',
+        ...getHeaders('/engine/2api/configuration'),
+      },
     })
-    .catch((exception) => {
-      const apiError = exception as ApiError;
-      if (apiError && apiError.status === 401 && !isTopLevelApplication()) {
-        window.parent.postMessage({
-          id: 'ovh-auth-redirect',
-          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(window.location.href)}`,
-        });
-      }
-      if (apiError?.status === 403) {
-        const region = apiError?.data?.region || RESTRICTED_DEFAULTS.region;
-        const publicURL =
-          apiError?.data?.applications?.restricted?.publicURL || RESTRICTED_DEFAULTS.publicURL;
-        if (window?.top) {
-          window.top.location.href = `${publicURL}?region=${region}`;
-        }
-      }
-      environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
-      if (
-        apiError?.status === 500 &&
-        apiError?.data?.class === 'Server::InternalServerError::ApiUnreachableMaintenance'
-      ) {
-        const errorObj = {
-          error: apiError.data,
-          environment,
-        };
-        // eslint-disable-next-line @typescript-eslint/only-throw-error
-        throw errorObj;
-      }
-      if (apiError?.status >= 500) {
-        const errorObj = {
-          error: {
-            message: apiError?.response?.data || apiError?.response?.statusText,
-          },
-          environment,
-        };
-        // eslint-disable-next-line @typescript-eslint/only-throw-error
-        throw errorObj;
-      }
-      return environment;
+    .then(({ data }: { data: Environment }) => {
+      updateDomain(data);
+      return updateEnvironment(environment, data);
+    })
+    .catch((err: ApiError & { response: { data: ConfigurationApiResponse } }) => {
+      return handleErrorResponse(err, environment);
     });
 };

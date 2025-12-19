@@ -53,7 +53,7 @@ export default /* @ngInject */ ($stateProvider) => {
             goPaymentList({
               type: 'error',
               text: $translate.instant('billing_payment_method_edit_error', {
-                errorMessage: get(error, 'data.message'),
+                errorMessage: get(error, 'response.data.message'),
               }),
             }),
           );

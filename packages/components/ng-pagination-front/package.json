@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-pagination-front",
-  "version": "10.3.5",
+  "version": "10.3.6",
   "description": "Angular directive to paginate in front end",
   "keywords": [
     "angularjs",
@@ -38,7 +38,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.1.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0"
   },
   "peerDependencies": {
     "@ovh-ux/ui-kit": "^6.10.0",

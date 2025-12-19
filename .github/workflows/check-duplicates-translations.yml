@@ -1,5 +1,7 @@
 name: Duplicate translation
-on: [push]
+on:
+  push:
+    branches-ignore: [master]
 
 jobs:
   duplicate-translation:
@@ -80,12 +82,11 @@ jobs:
           get_changed_packages() {
             BASE_BRANCH=${{ steps.gate.outputs.base_branch }}
             CURRENT_BRANCH=${{ steps.gate.outputs.current_branch }}
-            yarn pm:build:ci --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
-      
+            yarn -s build --silent --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
+
             # Clean JSON
-            tail -n +3 output.json > tmpfile.json && mv tmpfile.json output.json
-            head -n -1 output.json > temp.json && mv temp.json output.json
-      
+            tail -n +2 output.json > tmpfile.json && mv tmpfile.json output.json
+
             # Extract packages
             jq -r '.packages[]' output.json
           }

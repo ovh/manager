@@ -304,7 +304,7 @@
   "logs_streams_update_title": "Modificar el flujo",
   "logs_streams_update_description": "Para el flujo <strong>{{ name }}</strong>",
   "logs_streams_enable_indexing": "Activar la indexación",
-  "logs_streams_enable_indexing_description": "Explore sus logs en Graylog y OpenSearch ({{t0}}/mes + IVA por GB para los {{t1}} primeros GB, {{t2}}/mes + IVA por GB a continuación).",
+  "logs_streams_enable_indexing_description": "Explore sus logs en Graylog y OpenSearch.",
   "logs_streams_no_limit": "Sin límite",
   "logs_streams_enable_websocket": "Activar la difusión WebSocket",
   "logs_streams_enable_websocket_description": "Monitorice la recepción de sus logs en tiempo real mediante el protocolo WebSocket.",
@@ -803,5 +803,8 @@
   "streams_subscriptions_resource_products_account-api": "Área de cliente OVHcloud y API OVHcloud",
   "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
-  "logs_encryption_keys_get_error": "Se ha producido un error al cargar las claves de cifrado: {{message}}"
+  "logs_encryption_keys_get_error": "Se ha producido un error al cargar las claves de cifrado: {{message}}",
+  "logs_streams_enable_indexing_description_detail_small": "Almacenamiento de logs < {{t0}} GB de logs: Gratis",
+  "logs_streams_enable_indexing_description_detail_medium": "Almacenamiento de logs de {{t0}} a {{t1}} GB: {{t2}}/mes + IVA por GB",
+  "logs_streams_enable_indexing_description_detail_large": "Almacenamiento de logs para volúmenes mayores (por encima de {{t0}} GB): {{t1}}/mes + IVA por GB"
 }

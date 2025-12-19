@@ -5,6 +5,8 @@
   "rancherVersion": "Version du Rancher",
   "numberOfCpu": "Nombre de vCPUs",
   "status": "Statut",
+  "iam_authentication_status": "Authentification IAM",
+  "iam_authentication_infos_tooltip": "Permet à Rancher d’utiliser les identités gérées par OVHcloud IAM (Identity and Access Management) pour contrôler l’accès au service, évitant ainsi la gestion manuelle des utilisateurs.",
   "actions": "Actions",
   "cancel": "Annuler",
   "manage": "Gérer",
@@ -25,12 +27,13 @@
   "editNameModaleHelperInput": "Le nom du service doit comporter entre 3 et 63 caractères , doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants :  '_', '.' et '-'.",
   "editNameRancherCta": "Modifier",
 
-  "READY": "Ready",
-  "DISABLED": "Disabled",
-  "UPDATING": "Updating",
-  "ERROR": "Error",
-  "DELETING": "Deleting",
-  "CREATING": "Creating",
+  "READY": "Prêt",
+  "DISABLED": "Désactivé",
+  "ENABLED": "Activé",
+  "UPDATING": "Mise à jour en cours",
+  "ERROR": "Erreur",
+  "DELETING": "Suppression en cours",
+  "CREATING": "Création en cours",
 
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard"

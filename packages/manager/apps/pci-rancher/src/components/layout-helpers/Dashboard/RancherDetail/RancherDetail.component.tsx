@@ -55,6 +55,7 @@ import {
   getLatestVersionAvailable,
 } from '@/utils/rancher';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useIamActivated } from '@/hooks/useIamActivated';
 
 export interface RancherDetailProps {
   rancher: RancherService;
@@ -84,11 +85,12 @@ const RancherDetail = ({
   const hrefEdit = useHref('./edit');
   const hrefUpdateSoftware = useHref('./update-software');
   const hrefGenerateAccess = useHref('./generate-access');
+  const hrefIamActivation = useHref('./iam-activation');
   const hrefUpdateOffer = useHref('./update-offer');
   const [isPendingUpdate, setIsPendingUpdate] = useState(false);
   const [isPendingOffer, setIsPendingOffer] = useState(false);
   const [hasTaskPending, setHasTaskPending] = useState(false);
-  const { resourceStatus, currentState, currentTasks } = rancher;
+  const { resourceStatus, currentState, currentTasks, targetSpec } = rancher;
   const { addError, addInfo, clearNotifications } = useNotifications();
 
   useEffect(() => {
@@ -113,10 +115,10 @@ const RancherDetail = ({
 
   useEffect(() => {
     if (currentTasks.length) {
-      addInfo(t('updateOfferPending'));
+      addInfo(t('updateOfferPending'), true);
       setHasTaskPending(true);
     }
-  }, [currentTasks]);
+  }, [currentTasks, targetSpec.iamAuthEnabled]);
 
   useEffect(() => {
     if (hasTaskPending && currentTasks.length === 0) {
@@ -166,6 +168,8 @@ const RancherDetail = ({
 
   const iamEnabled =
     rancher.currentState.iamAuthEnabled || rancher.targetSpec.iamAuthEnabled;
+
+  const { isIAmActivated } = useIamActivated();
 
   return (
     <div className="max-w-4xl">
@@ -259,7 +263,7 @@ const RancherDetail = ({
                   {t('rancher_button_acces')}
                 </OsdsButton>
                 <div>
-                  {!isReadyStatus || iamEnabled ? (
+                  {!isReadyStatus ? (
                     <OsdsTooltip>
                       <LinkIcon
                         iconName={ODS_ICON_NAME.ARROW_RIGHT}
@@ -337,6 +341,69 @@ const RancherDetail = ({
                   ))}
                 </OsdsText>
                 <OsdsDivider separator />
+                {isIAmActivated && (
+                  <div className="flex flex-col mt-4">
+                    <div className="flex items-center mb-2">
+                      <OsdsText
+                        size={ODS_TEXT_SIZE._200}
+                        level={ODS_TEXT_LEVEL.heading}
+                        color={ODS_THEME_COLOR_INTENT.primary}
+                        hue={ODS_THEME_COLOR_HUE._800}
+                      >
+                        {t('iam_section_title')}
+                      </OsdsText>
+                      <OsdsTooltip className="ml-2">
+                        <OsdsIcon
+                          name={ODS_ICON_NAME.HELP}
+                          size={ODS_ICON_SIZE.xs}
+                          color={ODS_THEME_COLOR_INTENT.primary}
+                        />
+                        <OsdsTooltipContent slot="tooltip-content">
+                          <OsdsText
+                            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                            color={ODS_THEME_COLOR_INTENT.text}
+                            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                            hue={ODS_THEME_COLOR_HUE._500}
+                            className="break-normal whitespace-normal"
+                          >
+                            {t('iam_tooltip_content')}
+                          </OsdsText>
+                        </OsdsTooltipContent>
+                      </OsdsTooltip>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <OsdsText
+                        className="mb-3"
+                        color={ODS_THEME_COLOR_INTENT.text}
+                      >
+                        {t('iam_section_content')}
+                      </OsdsText>
+
+                      <StatusChip
+                        label={
+                          iamEnabled
+                            ? ResourceStatus.ENABLED
+                            : ResourceStatus.DISABLED
+                        }
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <LinkIcon
+                        isDisabled={!isReadyStatus}
+                        iconName={ODS_ICON_NAME.ARROW_RIGHT}
+                        href={hrefIamActivation}
+                        text={t(
+                          `iam_modal_${
+                            !iamEnabled ? 'activate' : 'deactivate'
+                          }_button`,
+                        )}
+                      />
+                    </div>
+
+                    <OsdsDivider separator className="mt-4" />
+                  </div>
+                )}
               </div>
             </div>
           </OsdsTile>

@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.0...@ovh-ux/manager-exchange@4.16.1) (2025-12-04)
+
+
+### Bug Fixes
+
+* **exchange:** replace an existing key information contact instead of creating a new one ([3dd2cae](https://github.com/ovh/manager/commit/3dd2caebc44cdaa66d6444e57b1cadaecdec70a0)), closes [#PRDCOL-267](https://github.com/ovh/manager/issues/PRDCOL-267)
+* **exchange:** show diagnostic field only for trusted and private servers ([a4ea82e](https://github.com/ovh/manager/commit/a4ea82e8f7adafccc693a8b26d6d7b817134aa07)), closes [#PRDCOL-71](https://github.com/ovh/manager/issues/PRDCOL-71)
+* **web.exchange:** replace the spam ticket url ([5971854](https://github.com/ovh/manager/commit/59718546f5f96618c8cfeffa28c594af9c7515cf)), closes [#PRDCOL-133](https://github.com/ovh/manager/issues/PRDCOL-133)
+
+
+
+
+
+# [4.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.12...@ovh-ux/manager-exchange@4.16.0) (2025-11-27)
+
+
+### Features
+
+* **billing:** disable cache in services ([6a7471f](https://github.com/ovh/manager/commit/6a7471f836ffa41b6a9520eae1d4405a80e8fbcc)), closes [#MANAGER-20010](https://github.com/ovh/manager/issues/MANAGER-20010)
+
+
+
+
+
+## [4.15.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.11...@ovh-ux/manager-exchange@4.15.12) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 845] ([b7cf02f](https://github.com/ovh/manager/commit/b7cf02f422fdb4e6fbc6c881c52a019429ec170b))
+
+
+
+
+
+## [4.15.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.10...@ovh-ux/manager-exchange@4.15.11) (2025-11-19)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([d257ee8](https://github.com/ovh/manager/commit/d257ee855e2945b3243ec640ce2e42de64e598ed))
+
+
+
+
+
+## [4.15.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.9...@ovh-ux/manager-exchange@4.15.10) (2025-11-17)
+
+
+### Bug Fixes
+
+* **web.exchange:** add several settings for resources ([7d9178e](https://github.com/ovh/manager/commit/7d9178e63d593d87ce41866f7af076260e3715f7)), closes [#PRDCOL-210](https://github.com/ovh/manager/issues/PRDCOL-210)
+* **web.exchange:** fix guide link for exchange log feature ([6a8a955](https://github.com/ovh/manager/commit/6a8a95531e45dcd9290c651a823f1b903d9ae749)), closes [#PRDCOL-253](https://github.com/ovh/manager/issues/PRDCOL-253)
+
+
+
+
+
 ## [4.15.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.8...@ovh-ux/manager-exchange@4.15.9) (2025-11-04)
 
 

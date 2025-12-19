@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-muk-cli",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -19,7 +19,7 @@
     "tar-stream": "^3.1.7"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.12.0",
+    "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
     "typescript": "^5.9.2"
   }
 }

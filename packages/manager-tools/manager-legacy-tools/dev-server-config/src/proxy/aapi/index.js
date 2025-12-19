@@ -1,7 +1,7 @@
 const bffHostHeader = {
-  EU: 'www.ovh.com',
-  CA: 'ca.ovh.com',
-  US: 'us.ovhcloud.com',
+  eu: 'https://manager.eu.ovhcloud.com',
+  ca: 'https://manager.ca.ovhcloud.com',
+  us: 'https://manager.us.ovhcloud.com',
 };
 
 const config = {

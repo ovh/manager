@@ -6,26 +6,26 @@ exports[`Order Snapshot Tests > should render Order with Configuration component
     Configuration content
   </p>
   <div
-    class="flex flex-row gap-4"
+    class=flex flex-row gap-4
   >
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-testid="cta-order-configuration-cancel"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-testid=cta-order-configuration-cancel
+      type=button
     >
       Annuler
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
-      data-ods="button"
-      data-testid="cta-order-configuration-order"
-      type="button"
+      class=_button _button--primary _button--md _button--default
+      data-ods=button
+      data-testid=cta-order-configuration-order
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--external-link_10c23_232"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--external-link
+        data-ods=icon
+        role=presentation
       />
       Commander
     </button>
@@ -39,27 +39,27 @@ exports[`Order Snapshot Tests > should render Order with Configuration in invali
     Invalid configuration
   </p>
   <div
-    class="flex flex-row gap-4"
+    class=flex flex-row gap-4
   >
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-testid="cta-order-configuration-cancel"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-testid=cta-order-configuration-cancel
+      type=button
     >
       Annuler
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
-      data-ods="button"
-      data-testid="cta-order-configuration-order"
-      disabled=""
-      type="button"
+      class=_button _button--primary _button--md _button--default
+      data-ods=button
+      data-testid=cta-order-configuration-order
+      disabled=
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--external-link_10c23_232"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--external-link
+        data-ods=icon
+        role=presentation
       />
       Commander
     </button>
@@ -77,27 +77,27 @@ exports[`Order Snapshot Tests > should render Order with both Configuration and 
     Configuration steps
   </p>
   <div
-    class="flex flex-row gap-4"
+    class=flex flex-row gap-4
   >
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-testid="cta-order-configuration-cancel"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-testid=cta-order-configuration-cancel
+      type=button
     >
       Annuler
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
-      data-ods="button"
-      data-testid="cta-order-configuration-order"
-      disabled=""
-      type="button"
+      class=_button _button--primary _button--md _button--default
+      data-ods=button
+      data-testid=cta-order-configuration-order
+      disabled=
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--external-link_10c23_232"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--external-link
+        data-ods=icon
+        role=presentation
       />
       Commander
     </button>
@@ -108,7 +108,7 @@ exports[`Order Snapshot Tests > should render Order with both Configuration and 
 exports[`Order Snapshot Tests > should render Order with complex nested content 1`] = `
 <div>
   <div
-    class="complex-content"
+    class=complex-content
   >
     <h2>
       Order Steps
@@ -126,26 +126,26 @@ exports[`Order Snapshot Tests > should render Order with complex nested content 
     </ul>
   </div>
   <div
-    class="flex flex-row gap-4"
+    class=flex flex-row gap-4
   >
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
-      data-ods="button"
-      data-testid="cta-order-configuration-cancel"
-      type="button"
+      class=_button _button--primary _button--md _button--ghost
+      data-ods=button
+      data-testid=cta-order-configuration-cancel
+      type=button
     >
       Annuler
     </button>
     <button
-      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
-      data-ods="button"
-      data-testid="cta-order-configuration-order"
-      type="button"
+      class=_button _button--primary _button--md _button--default
+      data-ods=button
+      data-testid=cta-order-configuration-order
+      type=button
     >
       <span
-        class="_icon_10c23_2 _icon--external-link_10c23_232"
-        data-ods="icon"
-        role="presentation"
+        class=_icon _icon--external-link
+        data-ods=icon
+        role=presentation
       />
       Commander
     </button>

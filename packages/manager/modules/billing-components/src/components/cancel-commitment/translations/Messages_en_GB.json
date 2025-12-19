@@ -4,5 +4,9 @@
   "billing_cancel_commitment_success": "The subscription cancellation request has been processed",
   "billing_cancel_commitment_error": "An error has occurred cancelling the subscription.",
   "billing_cancel_commitment_confirm": "Confirm",
-  "billing_cancel_commitment_cancel": "Cancel"
+  "billing_cancel_commitment_cancel": "Cancel",
+  "billing_cancel_commitment_us": "Cancel commitment request",
+  "billing_cancel_commitment_description_us": "Are you sure you want to cancel the commitment request? Please note that if you proceed, you will no longer be billed at the discounted price.",
+  "billing_cancel_commitment_success_us": "The commitment cancellation request has been processed",
+  "billing_cancel_commitment_error_us": "An error occurred while cancelling the commitment."
 }

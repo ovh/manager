@@ -1,0 +1,12 @@
+import apiClient from '@ovh-ux/manager-core-api';
+
+import { Location } from '@/common/types/location.type';
+
+export const locationQueryKeys = {
+  list: ['location'],
+};
+
+export const getLocations = async (): Promise<Location[]> => {
+  const { data } = await apiClient.v2.get<Location[]>(`location`);
+  return data;
+};

@@ -2,7 +2,16 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { renderBaseLayout } from '@/commons/tests-utils/Render.utils';
 import { changelogLinks, guideMenuItems } from '@/commons/tests-utils/StaticData.constants';
-import { Breadcrumb, ChangelogMenu, GuideMenu, Notifications, TabsComponent } from '@/components';
+import {
+  Breadcrumb,
+  ChangelogMenu,
+  GuideMenu,
+  Notifications,
+  Tab,
+  TabContent,
+  TabList,
+  Tabs,
+} from '@/components';
 
 vi.mock('react-router-dom', async () => ({
   ...(await vi.importActual('react-router-dom')),
@@ -24,7 +33,18 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => ({
 const guideMenu = <GuideMenu items={guideMenuItems} />;
 const changelogMenu = <ChangelogMenu links={changelogLinks} />;
 const breadcrumb = <Breadcrumb appName="Test-App" rootLabel="Test App" />;
-const tabs = <TabsComponent items={['tab1', 'tab2']} />;
+const tabs = (
+  <Tabs>
+    <TabList>
+      <Tab value="tab1">Tab 1</Tab>
+      <Tab value="tab2">Tab 2</Tab>
+      <Tab value="tab3">Tab 3</Tab>
+    </TabList>
+    <TabContent value="tab1">Tab 1 Content</TabContent>
+    <TabContent value="tab2">Tab 2 Content</TabContent>
+    <TabContent value="tab3">Tab 3 Content</TabContent>
+  </Tabs>
+);
 const message = <Notifications />;
 
 describe('BaseLayout - Snapshot Tests', () => {

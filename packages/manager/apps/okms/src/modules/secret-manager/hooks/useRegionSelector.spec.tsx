@@ -1,23 +1,25 @@
 import { useParams } from 'react-router-dom';
-import { waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { locationsMock } from '@secret-manager/mocks/locations/locations.mock';
+
+import { getOkmsList } from '@key-management-service/data/api/okms';
 import {
-  okmsStrasbourg1Mock,
   okmsRoubaix1Mock,
   okmsRoubaix2Mock,
-} from '@/mocks/kms/okms.mock';
+  okmsStrasbourg1Mock,
+} from '@key-management-service/mocks/kms/okms.mock';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { REGION_EU_WEST_RBX, REGION_EU_WEST_SBG } from '@/common/mocks/catalog/catalog.mock';
 import {
-  REGION_EU_WEST_RBX,
-  REGION_EU_WEST_SBG,
-} from '@/mocks/catalog/catalog.mock';
+  LOCATION_EU_WEST_RBX,
+  LOCATION_EU_WEST_SBG,
+  locationsMock,
+} from '@/common/mocks/locations/locations.mock';
+import { createErrorResponseMock, renderHookWithClient } from '@/common/utils/tests/testUtils';
+
 import { RegionOption, useRegionSelector } from './useRegionSelector';
-import { OKMS } from '@/types/okms.type';
-import {
-  renderHookWithClient,
-  createErrorResponseMock,
-} from '@/utils/tests/testUtils';
 
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
@@ -25,10 +27,8 @@ vi.mock('react-router-dom', () => ({
 }));
 
 // Mock the useLocations fetch function
-vi.mock('@/modules/secret-manager/data/api/location', async () => {
-  const actual = await vi.importActual(
-    '@/modules/secret-manager/data/api/location',
-  );
+vi.mock('@/common/data/api/location', async () => {
+  const actual = await vi.importActual('@/common/data/api/location');
   return {
     ...actual,
     getLocations: vi.fn().mockResolvedValue(locationsMock),
@@ -36,8 +36,8 @@ vi.mock('@/modules/secret-manager/data/api/location', async () => {
 });
 
 // Mock the useOkmsList fetch function
-vi.mock('@/data/api/okms', async () => {
-  const actual = await vi.importActual('@/data/api/okms');
+vi.mock('@key-management-service/data/api/okms', async () => {
+  const actual = await vi.importActual('@key-management-service/data/api/okms');
   return {
     ...actual,
     getOkmsList: vi.fn(),
@@ -49,25 +49,23 @@ const mockUseParams = vi.mocked(useParams);
 // 2 okms in Roubaix, 1 in Strasbourg
 const okmsMock = [okmsRoubaix1Mock, okmsRoubaix2Mock, okmsStrasbourg1Mock];
 
-// eslint-disable-next-line import/first, import/newline-after-import
-import { getOkmsList } from '@/data/api/okms';
 const mockGetOkmsList = vi.mocked(getOkmsList);
-
-// eslint-disable-next-line import/first, import/newline-after-import
-import { getLocations } from '@/modules/secret-manager/data/api/location';
-const mockGetLocations = vi.mocked(getLocations);
 
 // Mock the useCurrentRegion hook
 const mockUseCurrentRegion = vi.fn();
 vi.mock('@secret-manager/hooks/useCurrentRegion', () => ({
-  useCurrentRegion: (okmsList: OKMS[]) => mockUseCurrentRegion(okmsList),
+  useCurrentRegion: (okmsList: OKMS[]): unknown => mockUseCurrentRegion(okmsList),
 }));
 
 // Mock the useNotifications hook
 const mockAddError = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useNotifications: () => ({ addError: mockAddError }),
-}));
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...actual,
+    useNotifications: () => ({ addError: mockAddError }),
+  };
+});
 
 const renderCustomHook = async (state: 'success' | 'error') => {
   const { result, rerender } = renderHookWithClient(() => useRegionSelector());
@@ -87,26 +85,29 @@ const renderCustomHook = async (state: 'success' | 'error') => {
 };
 
 const rbxRegionOptionMock: RegionOption = {
-  label: 'Europe (France - Roubaix)',
-  region: REGION_EU_WEST_RBX,
-  geographyLabel: 'Europe',
-  href: SECRET_MANAGER_ROUTES_URLS.okmsList(REGION_EU_WEST_RBX),
+  region: LOCATION_EU_WEST_RBX.name,
+  continentCode: 'EUROPE',
+  // 2 OKMS in Roubaix, so redirect to the OKMS list page
+  href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_RBX.name),
 };
 
 const sbgRegionOptionMock: RegionOption = {
-  label: 'Europe (France - Strasbourg)',
-  region: REGION_EU_WEST_SBG,
-  geographyLabel: 'Europe',
+  region: LOCATION_EU_WEST_SBG.name,
+  continentCode: 'EUROPE',
+  // 1 OKMS in Strasbourg, so redirect to the secrets listing page
   href: SECRET_MANAGER_ROUTES_URLS.secretList(okmsStrasbourg1Mock.id),
 };
 
 describe('useRegionSelector tests suite', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     vi.clearAllMocks();
     mockGetOkmsList.mockResolvedValue(okmsMock);
-    mockGetLocations.mockResolvedValue(locationsMock);
     mockUseParams.mockReturnValue({});
     mockAddError.mockClear();
+
+    const { getLocations } = await import('@/common/data/api/location');
+    vi.mocked(getLocations).mockResolvedValue(locationsMock);
+    mockUseCurrentRegion.mockReturnValue(undefined);
   });
 
   describe('when data is loading', () => {
@@ -135,27 +136,15 @@ describe('useRegionSelector tests suite', () => {
       expect(result.current.geographyGroups).toHaveLength(1);
 
       const europeGroup = result.current.geographyGroups[0];
-      expect(europeGroup.geographyLabel).toBe('Europe');
-      expect(europeGroup.regions).toHaveLength(2);
+      expect(europeGroup?.continentCode).toBe('EUROPE');
+      expect(europeGroup?.regions).toHaveLength(2);
 
       // Check if regions are properly formatted
-      const rbxRegion = europeGroup.regions.find(
-        (r) => r.region === REGION_EU_WEST_RBX,
-      );
+      const rbxRegion = europeGroup?.regions.find((r) => r.region === REGION_EU_WEST_RBX);
       expect(rbxRegion).toEqual(rbxRegionOptionMock);
 
-      const sbgRegion = europeGroup.regions.find(
-        (r) => r.region === REGION_EU_WEST_SBG,
-      );
+      const sbgRegion = europeGroup?.regions.find((r) => r.region === REGION_EU_WEST_SBG);
       expect(sbgRegion).toEqual(sbgRegionOptionMock);
-    });
-
-    it('should set current region based on useCurrentRegion result', async () => {
-      mockUseCurrentRegion.mockReturnValue(REGION_EU_WEST_SBG);
-
-      const { result } = await renderCustomHook('success');
-
-      expect(result.current.currentRegion).toEqual(sbgRegionOptionMock);
     });
 
     it('should set current region based on useCurrentRegion result', async () => {
@@ -181,9 +170,9 @@ describe('useRegionSelector tests suite', () => {
       const { result } = await renderCustomHook('success');
 
       const europeGroup = result.current.geographyGroups.find(
-        (group) => group.geographyLabel === 'Europe',
+        (group) => group.continentCode === 'EUROPE',
       );
-      expect(europeGroup.regions).toHaveLength(2); // Should still be 2, not 3
+      expect(europeGroup?.regions).toHaveLength(2); // Should still be 2, not 3
     });
   });
 
@@ -203,7 +192,8 @@ describe('useRegionSelector tests suite', () => {
     it('should handle locations error', async () => {
       const error = createErrorResponseMock('Locations error');
 
-      mockGetLocations.mockRejectedValue(error);
+      const { getLocations } = await import('@/common/data/api/location');
+      vi.mocked(getLocations).mockRejectedValue(error);
       mockUseCurrentRegion.mockReturnValue(undefined);
 
       const { result } = await renderCustomHook('error');
@@ -218,12 +208,12 @@ describe('useRegionSelector tests suite', () => {
       mockUseCurrentRegion.mockReturnValue(REGION_EU_WEST_RBX);
 
       const { result, rerender } = await renderCustomHook('success');
-      expect(result.current.currentRegion.region).toEqual(REGION_EU_WEST_RBX);
+      expect(result?.current?.currentRegion?.region).toEqual(REGION_EU_WEST_RBX);
 
       mockUseCurrentRegion.mockReturnValue(REGION_EU_WEST_SBG);
       rerender();
       await waitFor(() => {
-        expect(result.current.currentRegion.region).toEqual(REGION_EU_WEST_SBG);
+        expect(result?.current?.currentRegion?.region).toEqual(REGION_EU_WEST_SBG);
       });
     });
   });

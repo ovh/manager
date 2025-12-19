@@ -8,6 +8,11 @@ import { vi } from 'vitest';
 const windowLocation = window.location;
 const setHrefSpy = vi.fn((href) => href);
 
+vi.stubGlobal('window', {
+  ...(window ?? {}),
+  location: { href: '' },
+});
+
 describe('Test shell client', () => {
   beforeEach(() => {
     delete window.location;

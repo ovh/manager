@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MODAL_COLOR } from '@ovhcloud/ods-react';
-import { Modal } from '@ovh-ux/muk';
+import { Modal, Button } from '@ovh-ux/muk';
 import {
   actions as actionsMock,
   basic as basicMock,
@@ -16,30 +16,39 @@ const ModalStory = ({
   loading,
   primaryButton,
   secondaryButton,
-  onOpenChange,
-  open = true,
+  open = false,
   children,
   step,
 }) => {
+  const [isOpen, setIsOpen] = useState(open);
+  const handleOpenChange = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <Modal
-      heading={heading}
-      type={type}
-      loading={loading}
-      primaryButton={primaryButton}
-      secondaryButton={secondaryButton}
-      onOpenChange={onOpenChange}
-      open={open}
-      step={step}
-    >
-      {children}
-    </Modal>
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <Modal
+        heading={heading}
+        type={type}
+        loading={loading}
+        primaryButton={primaryButton}
+        secondaryButton={secondaryButton}
+        onOpenChange={handleOpenChange}
+        open={isOpen}
+        step={step}
+      >
+        {children}
+      </Modal>
+    </>
   );
 };
 
 export const Basic = ModalStory.bind({});
 
 Basic.parameters = {
+  argTypes: {
+    open: { control: 'boolean' },
+  },
   controls: {
     include: ['heading', 'children'],
   },

@@ -3,21 +3,21 @@
 exports[`Card Snapshot tests > renders the component with default props 1`] = `
 <div>
   <div
-    role="list"
+    role=list
   >
     <div
-      class="_card_dzuf6_2 _card--primary_dzuf6_17"
-      data-ods="card"
-      role="listitem"
+      class=_card _card--primary
+      data-ods=card
+      role=listitem
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       <br />
       Interdum et malesuada fames ac ante ipsum primis in faucibus.
     </div>
     <div
-      class="_card_dzuf6_2 _card--primary_dzuf6_17"
-      data-ods="card"
-      role="listitem"
+      class=_card _card--primary
+      data-ods=card
+      role=listitem
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       <br />

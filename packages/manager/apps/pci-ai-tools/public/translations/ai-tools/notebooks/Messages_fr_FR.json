@@ -1,6 +1,7 @@
 {
   "title": "AI Notebooks",
   "quantumTitle": "Emulators",
+  "qpuTitle": "QPUs",
   "createNewNotebook": "Créer un notebook",
   "tableHeaderName": "Name",
   "tableHeaderLocation": "Région",

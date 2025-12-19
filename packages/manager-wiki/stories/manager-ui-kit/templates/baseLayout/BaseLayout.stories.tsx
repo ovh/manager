@@ -7,19 +7,19 @@ import {
   GuideMenu,
   GuideMenuItem,
   Tile,
-} from '@ovh-ux/muk';
-import {
   Badge,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
   Message,
   MESSAGE_COLOR,
   MessageIcon,
   Tab,
-  Table,
   TabList,
   Tabs,
+  Table,
+} from '@ovh-ux/muk';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
 } from '@ovhcloud/ods-react';
 
 import { withRouter } from 'storybook-addon-react-router-v6';
@@ -75,7 +75,6 @@ const changelogLinks = {
 
 const SampleTable = () => (
   <Table>
-    <table className="w-full">
       <thead>
         <tr>
           <th scope="col">Nom</th>
@@ -94,7 +93,6 @@ const SampleTable = () => (
           </tr>
         ))}
       </tbody>
-    </table>
   </Table>
 );
 
@@ -106,7 +104,7 @@ const SampleBreadcrumb = ({ items }) => (
     <BreadcrumbItem>
       <BreadcrumbLink href="#">{items[1]}</BreadcrumbLink>
     </BreadcrumbItem>
-  </Breadcrumb>
+  </Breadcrumb> 
 );
 
 const SampleTabs = () => (

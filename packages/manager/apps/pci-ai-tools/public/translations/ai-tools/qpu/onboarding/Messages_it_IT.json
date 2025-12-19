@@ -1,7 +1,7 @@
 {
-  "Title": "Computer Quantistici (QPU)",
-  "createNotebookButton": "Crea un Notebook",
-  "Description1": "Accedi al potere reale del quantistico in QaaS da OVHcloud.",
-  "Description2": "Esegui i tuoi algoritmi su processori quantistici fisici (QPUs), in tutta sicurezza e senza infrastruttura da gestire.",
-  "Description3": "Goditi un'integrazione fluida con i nostri emulatori e una fatturazione al secondo per gestire meglio i tuoi costi."
+  "Title": "Computer quantistici (QPU)",
+  "createNotebookButton": "Crea un notebook",
+  "Description1": "Accedi alla potenza reale dell’informatica quantistica con il QaaS di OVHcloud.",
+  "Description2": "Esegui i tuoi algoritmi su processori quantistici fisici (QPU), in tutta sicurezza e senza infrastrutture da gestire.",
+  "Description3": "Approfitta di un’integrazione trasparente con i nostri emulatori e una fatturazione al secondo per gestire al meglio i tuoi costi."
 }

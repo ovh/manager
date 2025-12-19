@@ -1,0 +1,20 @@
+{
+  "updateS3PolicyTitle": "Add a user to my S3 container",
+  "updateS3PolicyDescription": "Select the user to add to your container. If the user does not appear in this list, please create them in the dedicated section.",
+  "userIdFieldLabel": "User",
+  "inputUserPlaceholder": "Search for a user",
+  "noUserFound": "No user ID found",
+  "userRoleFieldLabel": "Role",
+  "rolePlaceholder": "Select a role",
+  "inputRolePlaceholder": "Search for a role",
+  "noUserRoleFound": "No roles found",
+  "role_deny": "Deny",
+  "role_admin": "Administrator",
+  "role_readOnly": "Read-only",
+  "role_readWrite": "Read and write",
+  "updateS3PolicyButtonCancel": "Cancel",
+  "updateS3PolicyButtonConfirm": "Add",
+  "updateS3PolicyToastErrorTitle": "An error has occurred",
+  "updateS3PolicyToastSuccessTitle": "Completed",
+  "updateS3PolicyToastSuccessDescription": "User added"
+}

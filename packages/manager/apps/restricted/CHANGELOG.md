@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.0...@ovh-ux/manager-restricted-app@0.14.1) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.13.12...@ovh-ux/manager-restricted-app@0.14.0) (2025-12-01)
+
+
+### Features
+
+* **restricted:** get logout url from core-sso package ([85f2a1d](https://github.com/ovh/manager/commit/85f2a1d20e26a8b6a89abec82fc0cacfe072ea8e)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+## [0.13.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.13.11...@ovh-ux/manager-restricted-app@0.13.12) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+## [0.13.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.13.10...@ovh-ux/manager-restricted-app@0.13.11) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+## [0.13.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.13.9...@ovh-ux/manager-restricted-app@0.13.10) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
 ## [0.13.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.13.8...@ovh-ux/manager-restricted-app@0.13.9) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-restricted-app

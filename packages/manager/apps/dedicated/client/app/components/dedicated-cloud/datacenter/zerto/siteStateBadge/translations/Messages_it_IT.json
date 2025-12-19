@@ -1,9 +1,9 @@
 {
   "dedicatedCloud_datacenter_zerto_site_state_no_site_configured": "Nessun sito configurato",
-  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_success": "1 sito rilasciato",
+  "dedicatedCloud_datacenter_zerto_site_state_one_site_state_success": "1 sito consegnato",
   "dedicatedCloud_datacenter_zerto_site_state_one_site_state_warning": "1 sito in attesa",
   "dedicatedCloud_datacenter_zerto_site_state_one_site_state_error": "1 sito in errore",
-  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_success": "{{numbers}} siti rilasciati",
+  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_success": "{{numbers}} siti consegnati",
   "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_warning": "{{numbers}} siti in attesa",
   "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_error": "{{numbers}} siti in errore"
 }

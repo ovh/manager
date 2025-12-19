@@ -1,5 +1,5 @@
 import { getCoreRowModel, getExpandedRowModel, getSortedRowModel } from '@tanstack/react-table';
-import type { TableOptions } from '@tanstack/react-table';
+import type { Row, TableOptions } from '@tanstack/react-table';
 
 import { ExpandableRow } from '@/components/datagrid/Datagrid.props';
 
@@ -19,6 +19,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
   rowSelection,
   setColumnVisibility,
   sorting,
+  size,
 }: TableBuilderProps<T>) => {
   const params: Partial<TableOptions<T>> = {};
   const builder = {
@@ -29,7 +30,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
         cols = [getRowSelection(), ...cols];
       }
       if ((hasExpandableFeature && expandable) || renderSubComponent) {
-        cols = [getExpandable(expandable), ...cols];
+        cols = [getExpandable(expandable, size), ...cols];
       }
       params.columns = cols;
       return builder;
@@ -62,14 +63,17 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
     },
     setExpandedRowModel: () => {
       if (hasExpandableFeature || renderSubComponent) {
-        params.getRowCanExpand = () => true;
+        params.getRowCanExpand = expandable?.getRowCanExpand ?? ((_row: Row<T>) => true);
         params.getExpandedRowModel = getExpandedRowModel();
       }
       return builder;
     },
     setRowSelection: () => {
       if (rowSelection) {
-        params.enableRowSelection = true;
+        params.enableRowSelection = (row: Row<T>) => {
+          if (rowSelection?.enableRowSelection) return rowSelection.enableRowSelection(row);
+          return !!rowSelection;
+        };
         params.onRowSelectionChange = rowSelection.setRowSelection;
       }
       return builder;

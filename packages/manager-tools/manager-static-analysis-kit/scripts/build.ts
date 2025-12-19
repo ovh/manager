@@ -1,12 +1,12 @@
-// scripts/build.ts
 import { execSync } from 'node:child_process';
 import { writeFileSync, rmSync, mkdirSync, existsSync, cpSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+// @ts-ignore
+import process from 'node:process';
 
 type SrcDest = readonly [src: string, dest: string];
 
-// 1) Your requested src/dest mapping
 const tsConfigFiles: SrcDest[] = [
   ['src/adapters/ts-config/config/standard/tsconfig.react.ts',       'tsconfig/react.json'],
   ['src/adapters/ts-config/config/standard/tsconfig.node.ts',        'tsconfig/node.json'],
@@ -16,7 +16,6 @@ const tsConfigFiles: SrcDest[] = [
   ['src/adapters/ts-config/config/strict/tsconfig.test.ts',          'tsconfig/test-strict.json'],
 ];
 
-// 2) Extra ambient .d.ts files that must be copied to dist (for matcher typings, etc.)
 const extraDtsFiles: SrcDest[] = [
   [
     'src/adapters/html-w3c-validation/types/globals/html-w3c-tests-setup.d.ts',

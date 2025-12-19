@@ -1,5 +1,8 @@
+import { describe, expect, it, vi } from 'vitest';
 import { StorageGuidesHeader } from './StorageGuidesHeader.component';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
+
+vi.mock('@/hooks/useTrackAction');
 
 describe('StorageGuidesHeader', () => {
   it('should renders', () => {

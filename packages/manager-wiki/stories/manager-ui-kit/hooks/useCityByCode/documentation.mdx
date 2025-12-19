@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager React Components/Hooks/useCityByCode" />
+
+<StorybookHeading label="Overview" level={2} />
+
+The `useCityByCode` hook is a data filtering utility designed to get a city name for locations coming from the API v2 endpoint `/location` with a matching code.
+
+<StorybookHeading label="Api" level={2} />
+
+<StorybookHeading label="Parameters" level={3} />
+
+The hook accept a single `string` parameter representing the code of the searched city
+
+<StorybookHeading label="Return Value" level={3} />
+
+The hook returns a `UseQueryResult` object with:
+- `data`: a `string` representing the name of the city matching the code given in parameter
+
+<StorybookHeading label="Example Usage" level={3} />
+
+```tsx
+import { useCityByCode } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const { data: cityName } = useCityByCode('mycityCode');
+}
+```
+
+<StorybookHeading label="Notes" level={3} />
+
+- The hook uses React Query under the hood for efficient data caching and state management
+- The hook use the same `queryFn` and `queryKey` as `useAllCountries`, `useAllLocationsByType` and `useLocationByName` for efficiency

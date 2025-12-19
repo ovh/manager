@@ -13,5 +13,7 @@
   "billing_resiliate_terminateAtEngagementDate_error": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu zakończenia umowy terminowej.",
   "billing_resiliate_terminateAtExpirationDate_success": "Dyspozycja rezygnacji z usługi w dniu wygaśnięcia została przyjęta.",
   "billing_resiliate_terminateAtExpirationDate_error": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu jej wygaśnięcia:",
-  "billing_resiliate_error": "Wystąpił błąd podczas rozwiązywania umowy terminowej:"
+  "billing_resiliate_error": "Wystąpił błąd podczas rozwiązywania umowy terminowej:",
+  "billing_resiliate_terminateAtEngagementDate_us": "Rezygnacja z usługi w dniu zakończenia umowy terminowej",
+  "billing_resiliate_terminateAtEngagementDate_error_us": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu zakończenia umowy terminowej."
 }

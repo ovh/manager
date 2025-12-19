@@ -3,6 +3,149 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.9.1...@ovh-ux/muk@0.10.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* make muk snapshots stable ([c98b972](https://github.com/ovh/manager/commit/c98b9727376e29bcc804ef500ceac34f06e287b8))
+* make ods dependencies stable ([babd112](https://github.com/ovh/manager/commit/babd112364f19e2dbf65b014b5106902c7fe0af5)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+* typescript issues on muk build ([9528984](https://github.com/ovh/manager/commit/952898410d78dd39e527c1f09858e499779a52ae)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.9.0...@ovh-ux/muk@0.9.1) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.8.0...@ovh-ux/muk@0.9.0) (2025-11-27)
+
+
+### Bug Fixes
+
+* **manager-wiki:** correct use translated migro region translations ([d54534b](https://github.com/ovh/manager/commit/d54534b22726cfce9171b3f74d266f829c1812ca)), closes [#MANAGER-20207](https://github.com/ovh/manager/issues/MANAGER-20207)
+* **manager-wiki:** trigger modal on demand ([949b8c8](https://github.com/ovh/manager/commit/949b8c81431f283c49b56c691e58b78f75a4e01e)), closes [#MANAGER-20216](https://github.com/ovh/manager/issues/MANAGER-20216)
+* **muk:** add datagrid exendable get row can expand ([66215b3](https://github.com/ovh/manager/commit/66215b3911249217f10378c58ac21221f09901c5)), closes [#MANAGER-20355](https://github.com/ovh/manager/issues/MANAGER-20355)
+* **muk:** add on open change attribute in modal delete and update ([14bbb23](https://github.com/ovh/manager/commit/14bbb2386377dd0b6586295eb4e56a8304a44e54)), closes [#MANAGER-20216](https://github.com/ovh/manager/issues/MANAGER-20216)
+* **muk:** datagrid attributes hide header ([e66dfba](https://github.com/ovh/manager/commit/e66dfbaa793af065dadf1c7c2c83a7308e27be99)), closes [#MANAGER-20355](https://github.com/ovh/manager/issues/MANAGER-20355)
+* **muk:** datagrid header table fixed sticky ([8c87a29](https://github.com/ovh/manager/commit/8c87a295d8deff7a88f03c9d3d496e9a6d82bfee)), closes [#MANAGER-20389](https://github.com/ovh/manager/issues/MANAGER-20389)
+
+
+### Features
+
+* **muk:** datagrid topbar sm size ([59ad1b3](https://github.com/ovh/manager/commit/59ad1b3364b94085b294da6c41f98a2bdaa3c1ce))
+* **muk:** datagrid translatey in table body for safari ([bb5807f](https://github.com/ovh/manager/commit/bb5807f64308014e00d857685e8127e8095ce2cb)), closes [#MANAGER-20389](https://github.com/ovh/manager/issues/MANAGER-20389)
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.7.0...@ovh-ux/muk@0.8.0) (2025-11-19)
+
+
+### Bug Fixes
+
+* **muk:** correct re-rendering in useDataApi ([93df7b1](https://github.com/ovh/manager/commit/93df7b15922cc1308086aaba1820eb05140310ac)), closes [#MANAGER-20274](https://github.com/ovh/manager/issues/MANAGER-20274)
+* **muk:** datagrid add enable in row selection ([8a7b0f5](https://github.com/ovh/manager/commit/8a7b0f5f43c73932d8eab8fd07acc3a549ff1e5e)), closes [#MANAGER-20308](https://github.com/ovh/manager/issues/MANAGER-20308)
+* **muk:** update action menu disabled button props ([4f437f8](https://github.com/ovh/manager/commit/4f437f8cc91b570f5e60f56f98057c2ad68f4871)), closes [#MANAGER-20311](https://github.com/ovh/manager/issues/MANAGER-20311)
+
+
+### Features
+
+* **muk:** add tabs component from ods 19 ([c8428cb](https://github.com/ovh/manager/commit/c8428cbc4f7556e3f072d806a60355331dd13988)), closes [#MANAGER-20233](https://github.com/ovh/manager/issues/MANAGER-20233)
+* **muk:** rename tabs component to TilesInputGroupTabs ([f49a469](https://github.com/ovh/manager/commit/f49a469d150a4c2b6c3a18fe68db1c4eb74fd1cd)), closes [#MANAGER-20233](https://github.com/ovh/manager/issues/MANAGER-20233)
+* **muk:** update datagrid attributes ([9583b77](https://github.com/ovh/manager/commit/9583b77595fe73e896452e21baed2ab0a3b85a20)), closes [#MANAGER-20066](https://github.com/ovh/manager/issues/MANAGER-20066)
+* pnpm hybrid improvements ([009017a](https://github.com/ovh/manager/commit/009017ac62577359d520a0c7da52d9988cef8c8e))
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.6.0...@ovh-ux/muk@0.7.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.5.3...@ovh-ux/muk@0.6.0) (2025-11-14)
+
+
+### Bug Fixes
+
+* **muk:** update dist name lib of manager ui kit ([e440e19](https://github.com/ovh/manager/commit/e440e19b3775b9283fadcdf6cb79d777b7d71a7d)), closes [#MANAGER-20205](https://github.com/ovh/manager/issues/MANAGER-20205)
+
+
+### Features
+
+* **mrc:** add hooks to use location data ([3232c18](https://github.com/ovh/manager/commit/3232c1875ea244ca4d67a34515c53dacb7df2adc)), closes [#MANAGER-18341](https://github.com/ovh/manager/issues/MANAGER-18341) [#15916](https://github.com/ovh/manager/issues/15916)
+
+
+
+
+
+## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.5.2...@ovh-ux/muk@0.5.3) (2025-11-13)
+
+
+### Bug Fixes
+
+* muk build issues ([6a0c402](https://github.com/ovh/manager/commit/6a0c402f2a3277e6293c3b997f53f25241e82904)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+* muk lint issues ([0272909](https://github.com/ovh/manager/commit/02729097b1f6130440d853b78c15122a9e82dc1a)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+
+
+
+
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.5.1...@ovh-ux/muk@0.5.2) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.5.0...@ovh-ux/muk@0.5.1) (2025-11-11)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.4.1...@ovh-ux/muk@0.5.0) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+* **i18n:** add missing translations [CDS 4455] ([c05d4c6](https://github.com/ovh/manager/commit/c05d4c6aab3456f2611819550290446f31b7870f))
+* **muk:** update export constants ([18d1505](https://github.com/ovh/manager/commit/18d15053f47bf82da77a86b365478acc1ca5202f)), closes [#MANAGER-20219](https://github.com/ovh/manager/issues/MANAGER-20219)
+
+
+### Features
+
+* **manager-wiki:** add documentation for launch test in muk ([c88545f](https://github.com/ovh/manager/commit/c88545fd8be995069520252ae0d805a271a5092b)), closes [#MANAGER-20196](https://github.com/ovh/manager/issues/MANAGER-20196)
+* **muk:** update export lib after the build ([57d6d89](https://github.com/ovh/manager/commit/57d6d89c8a084791145210e269f4b49db429761a)), closes [#MANAGER-20196](https://github.com/ovh/manager/issues/MANAGER-20196)
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.4.0...@ovh-ux/muk@0.4.1) (2025-11-04)
 
 

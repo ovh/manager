@@ -19,7 +19,6 @@ export default {
     selectedReceivers: '<',
     senders: '<',
     service: '<',
-    smsClasses: '<',
     trackClick: '<',
     user: '<',
   },

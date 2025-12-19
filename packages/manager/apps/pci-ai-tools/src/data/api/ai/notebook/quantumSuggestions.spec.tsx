@@ -20,7 +20,7 @@ describe('getQuantumSuggestions', () => {
 
     expect(apiClient.v6.get).not.toHaveBeenCalled();
 
-    await getQuantumSuggestions({ projectId: 'projectId' });
+    await getQuantumSuggestions({ projectId: 'projectId' }, 'qpu');
 
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/suggestion/notebook-quantum/qpu',

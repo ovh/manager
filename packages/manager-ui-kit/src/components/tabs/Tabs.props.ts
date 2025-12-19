@@ -1,9 +1,11 @@
-import { JSX } from 'react';
+import { PropsWithChildren } from 'react';
 
-export type TabsProps<Item> = {
-  items?: Item[];
-  titleElement?: ({ item, isSelected }: { item: Item; isSelected?: boolean }) => JSX.Element;
-  contentElement?: ({ item }: { item: Item }) => JSX.Element;
-  className?: string;
-  onChange?: (item: Item) => void;
-};
+import { TabsProp as OdsTabsProps } from '@ovhcloud/ods-react';
+/**
+ * External types (from contexts, utils, or shared ODS exports)
+ */
+import { type TabsValueChangeEvent } from '@ovhcloud/ods-react';
+
+export type TabsProps = PropsWithChildren<OdsTabsProps> & {};
+
+export type { TabsValueChangeEvent };

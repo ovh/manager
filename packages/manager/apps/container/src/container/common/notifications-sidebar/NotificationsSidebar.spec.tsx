@@ -1,7 +1,7 @@
 import { it, vi, describe, expect } from 'vitest';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
 import { ApplicationProvider } from '@/context';
 import NotificationsSidebar from './NotificationsSidebar';
 import { Environment } from '@ovh-ux/manager-config';
@@ -10,7 +10,7 @@ import * as helpers from '@/helpers';
 
 let notificationsVisible = false;
 const setIsNotificationsSidebarVisible = vi.fn((visibility) => { notificationsVisible = visibility; });
-const postNotificationsUpdate = vi.fn(() => Promise.resolve());
+const postNotificationsUpdate = vi.fn(() => Promise.resolve(null));
 const environment = new Environment();
 const shell = new Shell();
 shell.registerPlugin('ux', {
@@ -49,13 +49,13 @@ vi.mock('@/context/header', async (importOriginal) => {
     })),
   };
 });
-vi.mock('@ovh-ux/ovh-reket');
+vi.mock('@ovh-ux/manager-core-api');
 
 describe('NotificationsSidebar', () => {
   beforeAll(() => {
       vi.spyOn(helpers, 'fromNow').mockResolvedValue('today');
-      vi.mocked(useReket).mockReturnValue({
-        get: () => Promise.resolve([{
+      vi.mocked(aapi.get).mockResolvedValue({
+        data: [{
           date: '2025-09-01',
           id: '1',
           status: 'delivered',
@@ -64,9 +64,9 @@ describe('NotificationsSidebar', () => {
           updating: false,
           urlDetails: { href: '' },
           level: 'HIGH',
-        }]),
-        post: postNotificationsUpdate,
+        }],
       });
+      vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
   });
 
   describe('Visibility', () => {
@@ -103,7 +103,6 @@ describe('NotificationsSidebar', () => {
 
   describe('Notification status update', () => {
     it('should mark an active notification as read when clicking on its status badge', async () => {
-      postNotificationsUpdate.mockClear();
       renderNotificationsSidebar();
 
 
@@ -121,16 +120,14 @@ describe('NotificationsSidebar', () => {
         fireEvent.click(notificationStatusBadge);
       });
 
-      expect(postNotificationsUpdate).toHaveBeenCalledWith(
+      expect(aapi.post).toHaveBeenCalledWith(
         '/notification',
         { 'acknowledged': ['1'] },
-        { requestType: 'aapi' }
       );
     });
     it('should mark an inactive notification as unread when clicking on its status badge', async () => {
-      postNotificationsUpdate.mockClear();
-      vi.mocked(useReket).mockReturnValue({
-        get: () => Promise.resolve([{
+      vi.mocked(aapi.get).mockResolvedValue({
+        data: [{
           date: '2025-09-01',
           id: '1',
           status: 'acknowledged',
@@ -139,9 +136,9 @@ describe('NotificationsSidebar', () => {
           updating: false,
           urlDetails: { href: '' },
           level: 'HIGH',
-        }]),
-        post: postNotificationsUpdate,
+        }],
       });
+      vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
       renderNotificationsSidebar();
 
 
@@ -159,10 +156,9 @@ describe('NotificationsSidebar', () => {
         fireEvent.click(notificationStatusBadge);
       });
 
-      expect(postNotificationsUpdate).toHaveBeenCalledWith(
+      expect(aapi.post).toHaveBeenCalledWith(
         '/notification',
         { 'delivered': ['1'] },
-        { requestType: 'aapi' }
       );
     });
   });

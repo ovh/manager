@@ -3,65 +3,65 @@
 exports[`Tile Snapshot tests > renders multiple dd elements 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Simple Tile
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Sample Term
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <span
-              class="_text--span_1aw48_60"
-              data-ods="text"
+              class=_text--span
+              data-ods=text
             >
               Sample Description
             </span>
           </dd>
           <dd
-            class="m-0"
+            class=m-0
           >
             <a
-              class="_link_1y3p4_2"
-              data-ods="link"
-              href="https://www.ovhcloud.com"
+              class=_link
+              data-ods=link
+              href=https://www.ovhcloud.com
             >
               Link
             </a>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
@@ -74,80 +74,80 @@ exports[`Tile Snapshot tests > renders multiple dd elements 1`] = `
 exports[`Tile Snapshot tests > renders simple tile 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Simple Tile
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Sample Term
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <span
-              class="_text--span_1aw48_60"
-              data-ods="text"
+              class=_text--span
+              data-ods=text
             >
               Sample Description
             </span>
             <hr
-              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
-              data-ods="divider"
+              class=_divider _divider--primary _divider--24
+              data-ods=divider
             />
           </dd>
         </div>
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Sample Term
               </span>
             </div>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <span
-              class="_text--span_1aw48_60"
-              data-ods="text"
+              class=_text--span
+              data-ods=text
             >
               Sample Description
             </span>
@@ -162,69 +162,69 @@ exports[`Tile Snapshot tests > renders simple tile 1`] = `
 exports[`Tile Snapshot tests > renders tile term with Actions Menu 1`] = `
 <div>
   <div
-    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-    data-ods="card"
+    class=_card _card--neutral w-full flex-col p-[1rem]
+    data-ods=card
   >
     <section
-      class="flex flex-col w-full"
+      class=flex flex-col w-full
     >
       <h4
-        class="_text--heading-4_1aw48_31"
-        data-ods="text"
+        class=_text--heading-4
+        data-ods=text
       >
         Simple Tile
       </h4>
       <hr
-        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-        data-ods="divider"
+        class=_divider _divider--primary _divider--24 w-full
+        data-ods=divider
       />
       <dl
-        class="flex flex-col m-0"
+        class=flex flex-col m-0
       >
         <div
-          class="flex flex-col gap-1"
+          class=flex flex-col gap-1
         >
           <dt
-            class="flex justify-between"
+            class=flex justify-between
           >
             <div
-              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class="_text--span_1aw48_60 font-bold"
-                data-ods="text"
+                class=_text--span font-bold
+                data-ods=text
               >
                 Sample Term
               </span>
             </div>
             <button
-              aria-controls=":r2:"
-              aria-expanded="false"
-              aria-haspopup="dialog"
-              class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
-              data-ods="popover-trigger"
-              data-part="trigger"
-              data-scope="popover"
-              data-state="closed"
-              dir="ltr"
-              id="popover::r1::trigger"
-              role="button"
-              tabindex="0"
-              type="button"
+              aria-controls=:r2:
+              aria-expanded=false
+              aria-haspopup=dialog
+              class=_button _button--primary _button--sm _button--outline _popover-trigger
+              data-ods=popover-trigger
+              data-part=trigger
+              data-scope=popover
+              data-state=closed
+              dir=ltr
+              id=popover::r1::trigger
+              role=button
+              tabindex=0
+              type=button
             >
               <span
-                class="_icon_10c23_2 _icon--ellipsis-vertical_10c23_205"
-                data-ods="icon"
-                role="presentation"
+                class=_icon _icon--ellipsis-vertical
+                data-ods=icon
+                role=presentation
               />
             </button>
           </dt>
           <dd
-            class="m-0"
+            class=m-0
           >
             <span
-              class="_text--span_1aw48_60"
-              data-ods="text"
+              class=_text--span
+              data-ods=text
             >
               Sample Description
             </span>
@@ -240,61 +240,61 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
 <body>
   <div>
     <div
-      class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
-      data-ods="card"
+      class=_card _card--neutral w-full flex-col p-[1rem]
+      data-ods=card
     >
       <section
-        class="flex flex-col w-full"
+        class=flex flex-col w-full
       >
         <h4
-          class="_text--heading-4_1aw48_31"
-          data-ods="text"
+          class=_text--heading-4
+          data-ods=text
         >
           Simple Tile
         </h4>
         <hr
-          class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
-          data-ods="divider"
+          class=_divider _divider--primary _divider--24 w-full
+          data-ods=divider
         />
         <dl
-          class="flex flex-col m-0"
+          class=flex flex-col m-0
         >
           <div
-            class="flex flex-col gap-1"
+            class=flex flex-col gap-1
           >
             <dt
-              class="flex justify-between"
+              class=flex justify-between
             >
               <div
-                class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                class=flex items-center gap-1 text-[var(--ods-color-text)]
               >
                 <span
-                  class="_text--span_1aw48_60 font-bold"
-                  data-ods="text"
+                  class=_text--span font-bold
+                  data-ods=text
                 >
                   Sample Term
                 </span>
                 <span
-                  aria-describedby="tooltip::r0::content"
-                  class="_icon_10c23_2 _icon--circle-question_10c23_115 _tooltip-trigger_wxukn_2"
-                  data-expanded=""
-                  data-ods="tooltip-trigger"
-                  data-part="trigger"
-                  data-scope="tooltip"
-                  data-state="open"
-                  dir="ltr"
-                  id="tooltip::r0::trigger"
-                  role="button"
-                  tabindex="0"
+                  aria-describedby=tooltip::r0::content
+                  class=_icon _icon--circle-question _tooltip-trigger
+                  data-expanded=
+                  data-ods=tooltip-trigger
+                  data-part=trigger
+                  data-scope=tooltip
+                  data-state=open
+                  dir=ltr
+                  id=tooltip::r0::trigger
+                  role=button
+                  tabindex=0
                 />
               </div>
             </dt>
             <dd
-              class="m-0"
+              class=m-0
             >
               <span
-                class="_text--span_1aw48_60"
-                data-ods="text"
+                class=_text--span
+                data-ods=text
               >
                 Sample Description
               </span>
@@ -305,27 +305,27 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
     </div>
   </div>
   <div
-    data-part="positioner"
-    data-scope="tooltip"
-    dir="ltr"
-    id="tooltip::r0::popper"
-    style="position: absolute; isolation: isolate; min-width: max-content; top: 0px; left: 0px; transform: translate3d(var(--x), var(--y), 0); z-index: var(--z-index);"
+    data-part=positioner
+    data-scope=tooltip
+    dir=ltr
+    id=tooltip::r0::popper
+    style=position: absolute; isolation: isolate; min-width: max-content; top: 0px; left: 0px; transform: translate3d(var(--x), var(--y), 0); z-index: var(--z-index);
   >
     <div
-      class="_tooltip-content_zk0pd_2"
-      data-ods="tooltip-content"
-      data-part="content"
-      data-placement="top"
-      data-scope="tooltip"
-      data-state="open"
-      dir="ltr"
-      id="tooltip::r0::content"
-      role="tooltip"
-      style="pointer-events: auto;"
+      class=_tooltip-content
+      data-ods=tooltip-content
+      data-part=content
+      data-placement=top
+      data-scope=tooltip
+      data-state=open
+      dir=ltr
+      id=tooltip::r0::content
+      role=tooltip
+      style=pointer-events: auto;
     >
       <p
-        class="_text--paragraph_1aw48_54"
-        data-ods="text"
+        class=_text--paragraph
+        data-ods=text
       >
         Sample Tooltip Message
       </p>

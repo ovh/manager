@@ -1,0 +1,59 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-shell-app@0.1.4...@ovh-ux/manager-cloud-shell-app@0.1.5) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-shell-app
+
+
+
+
+
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-shell-app@0.1.3...@ovh-ux/manager-cloud-shell-app@0.1.4) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-shell-app
+
+
+
+
+
+## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-shell-app@0.1.2...@ovh-ux/manager-cloud-shell-app@0.1.3) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-shell-app
+
+
+
+
+
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-shell-app@0.1.1...@ovh-ux/manager-cloud-shell-app@0.1.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4495] ([4dfee90](https://github.com/ovh/manager/commit/4dfee901280743ab4d2360aaf0d7309086febd26))
+
+
+
+
+
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-shell-app@0.1.0...@ovh-ux/manager-cloud-shell-app@0.1.1) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-shell-app
+
+
+
+
+
+# [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-shell-app@0.0.0...@ovh-ux/manager-cloud-shell-app@0.1.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* **cloud-shell:** fix translation formatting ([5e27ed4](https://github.com/ovh/manager/commit/5e27ed40d71a6600571a13f4820971a2a68b5260)), closes [#MANAGER-20239](https://github.com/ovh/manager/issues/MANAGER-20239)
+
+
+### Features
+
+* **cloud-shell:** add cloud-shell app ([d4b9f7c](https://github.com/ovh/manager/commit/d4b9f7c735941b4979db8c497b636cbe42030c27)), closes [#MANAGER-20239](https://github.com/ovh/manager/issues/MANAGER-20239)

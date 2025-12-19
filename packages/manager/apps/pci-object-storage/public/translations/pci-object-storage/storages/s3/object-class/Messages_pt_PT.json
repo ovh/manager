@@ -1,0 +1,7 @@
+{
+  "objectClassDefault": "Idêntico à fonte",
+  "objectClass_STANDARD": "Standard",
+  "objectClass_HIGH_PERF": "High Performance",
+  "objectClass_DEEP_ARCHIVE": "Cold Archive",
+  "objectClass_STANDARD_IA": "Infrequent Access"
+}

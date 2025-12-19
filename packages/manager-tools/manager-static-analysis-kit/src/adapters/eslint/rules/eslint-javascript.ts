@@ -22,5 +22,7 @@ export const javascriptEslintConfig: Linter.FlatConfig = {
   },
   rules: {
     ...js.configs.recommended.rules,
+    'no-console': 'error',
+    'no-nested-ternary': 'error',
   },
 };

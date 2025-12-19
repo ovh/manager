@@ -24,5 +24,8 @@
   "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Delete my Hycu licence",
   "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Permanently delete hosting plan and corresponding data",
   "billing_services_actions_menu_restore": "Restore service",
-  "billing_services_actions_menu_restore_label": "Restore the following service: {{ serviceName }} (New window)"
+  "billing_services_actions_menu_restore_label": "Restore the following service: {{ serviceName }} (New window)",
+  "billing_services_actions_menu_resiliate_us": "Cancel my service",
+  "billing_services_actions_menu_resiliate_my_engagement_us": "Cancel commitment",
+  "billing_services_actions_menu_commit_cancel_us": "Cancel commitment request"
 }

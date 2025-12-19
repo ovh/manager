@@ -38,7 +38,7 @@
             <ul class="d-flex flex-wrap flex-column flex-md-row list-unstyled">
                 <li
                     class="pr-3"
-                    data-ng-repeat="fieldType in ['CAA', 'TXT', 'NAPTR', 'SRV', 'LOC', 'SSHFP', 'TLSA'] track by $index"
+                    data-ng-repeat="fieldType in ['CAA', 'TXT', 'NAPTR', 'SRV', 'LOC', 'SSHFP', 'TLSA', 'RP', 'SVCB', 'HTTPS'] track by $index"
                 >
                     <button
                         class="oui-button oui-button_primary mb-3"
@@ -103,6 +103,12 @@
                     data-translate="domain_configuration_dns_entry_add_step1_helpwizard_dkim_desc"
                 ></p>
                 <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_https_svcb"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_https_svcb_desc"
+                ></p>
+                <h4
                     data-translate="domain_configuration_dns_entry_add_step1_helpwizard_loc"
                 ></h4>
                 <p
@@ -125,6 +131,12 @@
                 ></h4>
                 <p
                     data-translate="domain_configuration_dns_entry_add_step1_helpwizard_ns_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_rp"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_dns_entry_add_step1_helpwizard_rp_desc"
                 ></p>
                 <h4
                     data-translate="domain_configuration_dns_entry_add_step1_helpwizard_spf"

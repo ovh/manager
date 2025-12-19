@@ -12,12 +12,14 @@ import process from 'node:process';
 
 import {
   buildAll,
-  buildApp,
+  buildApplication,
   buildCI,
   buildDocs,
+  buildModule,
   createRelease,
   lintAll,
-  lintApp,
+  lintApplication,
+  lintModule,
   publishPackage,
   runLernaTask,
   runLifecycleTask,
@@ -26,15 +28,20 @@ import {
   runStaticDynamicReports,
   runStaticDynamicTests,
   testAll,
-  testApp,
+  testApplication,
   testCI,
-} from '../src/kernel/commons/tasks-manager.js';
+  testModule,
+} from '../src/kernel/helpers/tasks-helper.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
+import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
+import {
+  attachCleanupSignals,
+  handleProcessAbortSignals,
+} from '../src/kernel/utils/process-utils.js';
 import {
   clearRootWorkspaces,
   updateRootWorkspacesFromCatalogs,
-} from '../src/kernel/utils/catalog-utils.js';
-import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
+} from '../src/kernel/utils/workspace-utils.js';
 
 const VERSION = '0.2.0';
 
@@ -117,6 +124,10 @@ ACTIONS
     test    --app <name>                 Test one app
     lint    --app <name> [--fix ...]     Lint one app (supports --fix and other ESLint flags)
 
+  Module:
+    add:module     --module <package|path> [--private]     Add a module (optionally private) to PNPM
+    remove:module  --module <package|path> [--private]     Remove a module (optionally private) from PNPM
+
   Turbo passthrough (flags forwarded to Turbo):
     buildCI [--filter <expr>] [other turbo flags]
     testCI  [--filter <expr>] [other turbo flags]
@@ -125,9 +136,9 @@ ACTIONS
     lerna <subcommand> [options]         Run any Lerna command with workspaces restored/cleaned
 
   Global:
-    full-build                           Build ALL apps
-    full-test                            Test ALL apps
-    full-lint [--fix ...]                Lint ALL apps (supports --fix and other ESLint flags)
+    full-build                           Build ALL
+    full-test                            Test ALL
+    full-lint [--fix ...]                Lint ALL (supports --fix and other ESLint flags)
     start                                Launch interactive app starter
     docs                                 Build documentation workspace
     cli                                  Run manager-cli (everything after "cli" is forwarded)
@@ -150,6 +161,7 @@ COMMON OPTIONS
   --type <pnpm>                          Package manager type (default: pnpm)
   --action <name>                        Action to execute
   --app <name>                           App/package name (build/test/lint single-app)
+  --module <name|path>                   Module name or path (add:module/remove:module)
   --filter <expr>                        Turbo filter for buildCI/testCI
   --container                            Hint that we run inside a container
   --region <code>                        Region flag (printed for logs only)
@@ -179,7 +191,13 @@ EXAMPLES
   manager-pm --type pnpm --action lint  --app web --fix
   manager-pm --type pnpm --action lint  --app web --max-warnings 0
 
-  # Lint all apps
+  # Module management
+  manager-pm --type pnpm --action build --module packages/manager/core/api
+  manager-pm --type pnpm --action test  --module @ovh-ux/manager-core-api
+  manager-pm --type pnpm --action lint  --module packages/manager/core/application  --fix
+  manager-pm --type pnpm --action lint  --module @ovh-ux/manager-core-utils --max-warnings 0
+
+  # Lint all
   manager-pm --type pnpm --action full-lint
   manager-pm --type pnpm --action full-lint --fix
   manager-pm --type pnpm --action full-lint --quiet --max-warnings 0
@@ -219,6 +237,7 @@ EXAMPLES
 
 NOTES
   • Exit codes: 0 on success, non-zero on failure.
+  • Module actions support both workspace paths and package names.
   • Lint actions support --fix, --quiet, and other ESLint-compatible flags.
   • In dry release mode, the script safeguards your working tree: no tags/commits/push,
     no persistent file changes (package.json/CHANGELOG restored).
@@ -262,24 +281,75 @@ function collectToolsArgs(opts, includeApp = false) {
 }
 
 /**
+ * Resolves arguments forwarded to CI commands (build, test, etc.).
+ *
+ * @param {string[]} passthrough - Passthrough args from the user.
+ * @param {string | undefined} filter - Optional Turbo filter.
+ * @param {object} opts - Additional CLI options.
+ * @returns {string[]} - Final merged list of arguments.
+ */
+function resolveCIArgs(passthrough, filter, opts) {
+  let base;
+
+  if (passthrough.length > 0) {
+    base = passthrough;
+  } else if (filter) {
+    base = ['--filter', filter];
+  } else {
+    base = [];
+  }
+
+  const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+
+  return [...base, ...forwarded];
+}
+
+/**
  * Map of supported CLI actions to their async handlers.
  * Each handler receives the parsed CLI context.
  *
  * @type {Record<string, (ctx: {app?: string, passthrough: string[], filter?: string|null, mode?: string, opts: Record<string, string|boolean>}) => Promise<void>>}
  */
 const actions = {
-  async build({ app }) {
-    if (!app) exitError(`Action "build" requires --app`);
-    return buildApp(app);
+  async build({ app, module }) {
+    if (!app && !module) {
+      exitError(`Action "build" requires either --app or --module`);
+    }
+    if (app) {
+      logger.info(`🏗️  Building application: ${app}`);
+      return buildApplication(app);
+    }
+    if (module) {
+      logger.info(`📦 Building module: ${module}`);
+      return buildModule(module);
+    }
   },
-  async test({ app }) {
-    if (!app) exitError(`Action "test" requires --app`);
-    return testApp(app);
+  async test({ app, module }) {
+    if (!app && !module) {
+      exitError(`Action "test" requires either --app or --module`);
+    }
+    if (app) {
+      logger.info(`🧪 Testing application: ${app}`);
+      return testApplication(app);
+    }
+    if (module) {
+      logger.info(`🧩 Testing module: ${module}`);
+      return testModule(module);
+    }
   },
-  async lint({ app, passthrough, opts }) {
-    if (!app) exitError(`Action "lint" requires --app`);
+  async lint({ app, module, passthrough, opts }) {
+    if (!app && !module) {
+      exitError(`Action "lint" requires either --app or --module`);
+    }
     const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return lintApp(app, [...forwarded, ...passthrough]);
+    if (app) {
+      logger.info(`🧹 Linting application: ${app}`);
+      return lintApplication(app, [...forwarded, ...passthrough]);
+    }
+    if (module) {
+      logger.info(`🔍 Linting module: ${module}`);
+      return lintModule(module, [...forwarded, ...passthrough]);
+    }
   },
   async start() {
     return startApp();
@@ -324,14 +394,12 @@ const actions = {
     return runLifecycleTask('postinstall');
   },
   async buildCI({ passthrough, filter, opts }) {
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return buildCI([...base, ...forwarded]);
+    const args = resolveCIArgs(passthrough, filter, opts);
+    return buildCI(args);
   },
   async testCI({ passthrough, filter, opts }) {
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return testCI([...base, ...forwarded]);
+    const args = resolveCIArgs(passthrough, filter, opts);
+    return testCI(args);
   },
   async perfBudgets({ passthrough, opts }) {
     const forwarded = collectToolsArgs(opts, true).filter((arg) => arg !== '--silent');
@@ -385,20 +453,25 @@ const actions = {
 };
 
 /**
- * CLI entrypoint. Parses args, selects action, executes it, and handles errors.
- * @returns {Promise<void>}
+ * Configure logger mode based on CLI flags.
  */
-async function main() {
-  const { opts, passthrough } = parseArgs(process.argv.slice(2));
-
+function configureLoggerMode() {
   if (process.argv.includes('--silent')) {
     setLoggerMode('silent');
   } else {
-    setLoggerMode('stderr'); // safe default for jq pipes
+    setLoggerMode('stderr'); // Safe default for jq pipes
   }
+}
 
-  const { action, type = 'pnpm', app = null, filter = null, region = 'EU', mode = null } = opts;
-  const container = Boolean(opts.container);
+/**
+ * Validate base CLI arguments and handle global flags (help, version).
+ * Exits the process early if needed.
+ *
+ * @param {Record<string, string|boolean>} opts - Parsed options.
+ * @param {string[]} passthrough - Remaining CLI args.
+ */
+async function handleGlobalFlags(opts, passthrough) {
+  const { action } = opts;
 
   if (!action) {
     printHelp();
@@ -414,31 +487,103 @@ async function main() {
     await runManagerCli(['--help']);
     process.exit(0);
   }
+}
 
+/**
+ * Log the current CLI context for debugging and visibility.
+ */
+function logExecutionContext({
+  type,
+  action,
+  appReference,
+  moduleReference,
+  filter,
+  region,
+  container,
+  mode,
+}) {
   logger.info(`manager-pm v${VERSION}
 type: ${type}
 action: ${action}
-app: ${app || '(none)'}
+app: ${appReference || '(none)'}
+module: ${moduleReference || '(none)'}
 filter: ${filter || '(none)'}
 region: ${region}
 container: ${container}
 mode: ${mode || '(none)'}`);
+}
+
+/**
+ * Execute a CLI action safely, handling errors and exit codes.
+ */
+async function executeAction(actionName, context) {
+  const actionHandler = actions[actionName];
+  if (!actionHandler) {
+    logger.warn(`⚠️  Unknown action: "${actionName}"`);
+    printHelp();
+    process.exit(1);
+  }
 
   try {
-    const handler = actions[action];
-    if (!handler) {
-      logger.warn(`⚠️  Unknown action: "${action}"`);
-      printHelp();
-      process.exit(1);
-    }
-
-    await handler({ app, passthrough, filter, mode, opts });
+    await actionHandler(context);
     process.exit(0);
-  } catch (err) {
-    logger.error(err.stack || err.message || err);
+  } catch (error) {
+    logger.error(error?.stack || error?.message || String(error));
     process.exit(1);
   }
 }
 
+/**
+ * CLI entrypoint.
+ * Parses args, validates options, and dispatches actions.
+ */
+async function main() {
+  const { opts, passthrough } = parseArgs(process.argv.slice(2));
+
+  configureLoggerMode();
+
+  const {
+    action,
+    type = 'pnpm',
+    app: appReference = null,
+    module: moduleReference = null,
+    filter = null,
+    region = 'EU',
+    mode = null,
+  } = opts;
+
+  const container = Boolean(opts.container);
+
+  // Handle help, version, and CLI passthroughs
+  await handleGlobalFlags(opts, passthrough);
+
+  // Log CLI context summary
+  logExecutionContext({
+    type,
+    action,
+    appReference,
+    moduleReference,
+    filter,
+    region,
+    container,
+    mode,
+  });
+
+  // Execute the corresponding action handler
+  await executeAction(action, {
+    app: appReference,
+    module: moduleReference,
+    passthrough,
+    filter,
+    mode,
+    opts,
+  });
+}
+
+// Attach handlers for signals and unhandled errors
+attachCleanupSignals(handleProcessAbortSignals);
+
 // ---- Run CLI ----
-main();
+main().catch(async (err) => {
+  await handleProcessAbortSignals('unhandled rejection', err);
+});

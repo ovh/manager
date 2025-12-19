@@ -1,5 +1,19 @@
-import React from 'react';
-import { Outlet, useParams, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import {
+  OkmsBreadcrumbItem,
+  RootBreadcrumbItem,
+  SecretBreadcrumbItem,
+} from '@secret-manager/components/breadcrumb';
+import { SecretManagerGuidesButton } from '@secret-manager/components/guides/SecretManagerGuideButton';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
+import { useSecret } from '@secret-manager/data/hooks/useSecret';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { useTranslation } from 'react-i18next';
+
+import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
   ErrorBanner,
@@ -7,30 +21,19 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import {
-  LocationPathParams,
-  SECRET_MANAGER_ROUTES_URLS,
-} from '@secret-manager/routes/routes.constants';
-import { useSecret } from '@secret-manager/data/hooks/useSecret';
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import {
-  OkmsBreadcrumbItem,
-  RootBreadcrumbItem,
-  SecretBreadcrumbItem,
-} from '@secret-manager/components/breadcrumb';
-import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
-import { SecretPageOutletContext } from './Secret.type';
-import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
-import Loading from '@/components/Loading/Loading';
+
+import Loading from '@/common/components/loading/Loading';
 import {
   TabNavigation,
   TabNavigationItem,
-} from '@/common/components/tabNavigation/TabNavigation.component';
+} from '@/common/components/tab-navigation/TabNavigation.component';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
+
+import { SecretPageOutletContext } from './Secret.type';
 
 export default function SecretPage() {
-  const { okmsId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
   const secretPathDecoded = decodeSecretPath(secretPath);
   const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
   const navigate = useNavigate();
@@ -59,6 +62,7 @@ export default function SecretPage() {
   const headerProps: HeadersProps = {
     title: secretPathDecoded,
     changelogButton: <SecretManagerChangelogButton />,
+    headerButton: <SecretManagerGuidesButton />,
   };
 
   if (isSecretPending) {
@@ -69,9 +73,7 @@ export default function SecretPage() {
     return (
       <ErrorBanner
         error={secretError?.response}
-        onRedirectHome={() =>
-          navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId))
-        }
+        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId))}
       />
     );
   }
@@ -84,7 +86,7 @@ export default function SecretPage() {
     <BaseLayout
       header={headerProps}
       backLinkLabel={t('back_to_secret_list')}
-      message={notifications.length > 0 && <Notifications />}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
       breadcrumb={
         <OdsBreadcrumb>
           <RootBreadcrumbItem />

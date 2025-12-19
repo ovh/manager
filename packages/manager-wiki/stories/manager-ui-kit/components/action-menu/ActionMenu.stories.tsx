@@ -33,9 +33,16 @@ const actionItems: ActionMenuItem[] = [
     id: 4,
     onClick: () => window.open('https://ovhcloud.com', '_blank', 'noopener'),
     label: 'action',
+    isDisabled: true,
   },
   {
     id: 5,
+    onClick: () => window.open('https://ovhcloud.com', '_blank', 'noopener'),
+    label: 'button disabled',
+    isDisabled: true,
+  },
+  {
+    id: 6,
     onClick: () => window.open('https://ovhcloud.com', '_blank', 'noopener'),
     label: 'action without iam permissions',
     urn: 'urn:v9:eu:resource:manager-ui-kit:vrz-a878-dsflkds-fdsfsd',

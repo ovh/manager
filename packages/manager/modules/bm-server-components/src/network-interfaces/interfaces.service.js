@@ -115,6 +115,7 @@ export default class DedicatedServerInterfacesService {
                   id: uuid,
                   name,
                   mac: networkInterfaceController.join(', '),
+                  nbMac: networkInterfaceController.length,
                   type,
                   vrack,
                   enabled,

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.6.1...@ovh-ux/manager-tailwind-config@0.6.2) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-tailwind-config
+
+
+
+
+
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.6.0...@ovh-ux/manager-tailwind-config@0.6.1) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-tailwind-config
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.5.7...@ovh-ux/manager-tailwind-config@0.6.0) (2025-11-16)
+
+
+### Features
+
+* pnpm hybrid improvements ([3b45577](https://github.com/ovh/manager/commit/3b455770da0c7aeb7603f7c731abf6fac9eb4b3f))
+
+
+
+
+
 ## [0.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.5.6...@ovh-ux/manager-tailwind-config@0.5.7) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-tailwind-config

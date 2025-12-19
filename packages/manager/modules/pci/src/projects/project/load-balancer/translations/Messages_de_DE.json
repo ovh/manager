@@ -1,6 +1,8 @@
 {
   "pci_projects_project_load_balancer_list_title": "Loadbalancer",
+  "pci_projects_project_load_balancer_list_order": "Bestellen",
   "pci_projects_project_load_balancer_list_name": "Name",
+  "pci_projects_project_load_balancer_list_id": "ID",
   "pci_projects_project_load_balancer_list_status": "Status",
   "pci_projects_project_load_balancer_list_ipAddres": "IP-Adresse",
   "pci_projects_project_load_balancer_list_healthy": "In gutem Zustand",
@@ -8,9 +10,10 @@
   "pci_projects_project_load_balancer_list_reqs": "Anfragen / Sekunde",
   "pci_projects_project_load_balancer_guide_using_load_balancer": "Einen Kubernetes-Service mit einem Loadbalancer konfigurieren",
   "pci_projects_project_load_balancer_list_region": "Region",
-  "pci_projects_project_load_balancer_list_id": "ID",
-  "pci_projects_project_load_balancer_list_order": "Bestellen",
   "pci_projects_project_load_balancer_end_service": "Load Balancer for Managed Kubernetes Service wird ab dem 06. November 2025 nicht mehr verkauft (End of Sale) und auch der Support wird dann eingestellt (EoS). Das End of Life (EoL) ist für Juli 2026 geplant. Wir empfehlen Ihnen, vor dem 06. November 2025 mit der Migration zu beginnen, um weiterhin unterstützte Dienste nutzen zu können, und vor Juli 2026 zu migrieren, um eine Dienstunterbrechung zu vermeiden.",
   "pci_projects_project_load_balancer_end_service_welcome": "Load Balancer for Managed Kubernetes Service wird ab dem 06. November 2025 nicht mehr verkauft (End of Sale) und auch der Support wird dann eingestellt (EoS). Das End of Life (EoL) ist für Juli 2026 geplant. Wir empfehlen Ihnen, ab sofort auf Load Balancer for Public Cloud (Octavia) umzusteigen, um eine potenzielle Migration zu einem späteren Zeitpunkt zu vermeiden.",
-  "pci_projects_project_load_balancer_more_information": "Weitere Informationen finden Sie hier."
+  "pci_projects_project_load_balancer_more_information": "Weitere Informationen finden Sie hier.",
+  "pci_projects_project_load_balancer_end_service_definitive": "Der Load Balancer for Managed Kubernetes Service hat das End of Sales (EoS) und End of Support (EoS) erreicht. Sein End of Life (EoL) ist für Juli 2026 geplant. Wir empfehlen Ihnen, die Migration vor dem End of Life zu starten, um Dienstunterbrechungen zu vermeiden. Um Sie dabei zu unterstützen, haben wir einen Guide zur Migration erstellt.",
+  "pci_projects_project_load_balancer_end_service_welcome_definitive": "Der Load Balancer for Managed Kubernetes Service hat das End of Sales (EoS) und End of Support (EoS) erreicht. Sein End of Life (EoL) ist für Juli 2026 geplant.",
+  "pci_projects_project_load_balancer_more_information_definitive": "Hier verfügbar"
 }

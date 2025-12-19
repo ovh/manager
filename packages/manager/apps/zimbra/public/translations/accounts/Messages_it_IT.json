@@ -59,5 +59,9 @@
   "zimbra_account_plan_tag_coming_soon": "In arrivo",
   "zimbra_account_plan_feature_share_starter_tooltip": "Condivisione manuale (nessuna sincronizzazione ActiveSync). Per Android, la condivisione non è compatibile con applicazioni diverse da Zimbra.",
   "zimbra_account_plan_feature_sync_tooltip": "Sincronizzazione automatica su tutti i dispositivi in tempo reale.",
-  "zimbra_account_update_offer_paid_now_tooltip": "La tariffa viene calcolata in base al tempo restante fino alla prossima data di rinnovo, secondo un prorata temporis"
+  "zimbra_account_update_offer_paid_now_tooltip": "La tariffa viene calcolata in base al tempo restante fino alla prossima data di rinnovo, secondo un prorata temporis",
+  "zimbra_account_delete_all": "Eliminare gli account ({{ count }})",
+  "zimbra_account_delete_all_modal_content_step1": "Vuoi davvero eliminare i seguenti account?",
+  "zimbra_account_delete_all_modal_content_step2": "Vuoi davvero eliminare i seguenti account email?",
+  "zimbra_account_delete_all_confirm_label": "Inserisci <strong>{{ label }}</strong> per confermare l'eliminazione:"
 }

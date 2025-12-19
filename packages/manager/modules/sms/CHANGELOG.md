@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.6...@ovh-ux/manager-sms@8.19.7) (2025-11-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4468] ([44afedf](https://github.com/ovh/manager/commit/44afedf35637c228b090af36e99b5349e35ca3b8))
+* remove unused translations [CDS] ([d257ee8](https://github.com/ovh/manager/commit/d257ee855e2945b3243ec640ce2e42de64e598ed))
+
+
+
+
+
+## [8.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.5...@ovh-ux/manager-sms@8.19.6) (2025-11-17)
+
+
+### Bug Fixes
+
+* **telecom.sms:** delete sms classType on batch sms ([b465582](https://github.com/ovh/manager/commit/b465582e435634c3733be27e5f81dda75caa2de7)), closes [#PRDCOL-247](https://github.com/ovh/manager/issues/PRDCOL-247)
+
+
+
+
+
+## [8.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.4...@ovh-ux/manager-sms@8.19.5) (2025-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4468] ([a6691b2](https://github.com/ovh/manager/commit/a6691b2efc195d639b48673a7b2fc1434e2b854c))
+
+
+
+
+
+## [8.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.3...@ovh-ux/manager-sms@8.19.4) (2025-11-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4466] ([5b0902e](https://github.com/ovh/manager/commit/5b0902e4163cce078140abd846a9ddc955ee97d1))
+
+
+
+
+
+## [8.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.2...@ovh-ux/manager-sms@8.19.3) (2025-11-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4462] ([cc414da](https://github.com/ovh/manager/commit/cc414da0f6f29fd6889c85fe90b566516e7eaeb4))
+
+
+
+
+
+## [8.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.1...@ovh-ux/manager-sms@8.19.2) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+* **i18n:** add missing translations [CDS 4455] ([c05d4c6](https://github.com/ovh/manager/commit/c05d4c6aab3456f2611819550290446f31b7870f))
+
+
+
+
+
 ## [8.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.0...@ovh-ux/manager-sms@8.19.1) (2025-11-04)
 
 

@@ -3,6 +3,196 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.66.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.66.2...@ovh-ux/manager-dedicated@20.66.3) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.66.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.66.1...@ovh-ux/manager-dedicated@20.66.2) (2025-12-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.66.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.66.0...@ovh-ux/manager-dedicated@20.66.1) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.65.0...@ovh-ux/manager-dedicated@20.66.0) (2025-12-01)
+
+
+### Features
+
+* **config:** ovhcom to ovhcloudcom migration ([8ca31c7](https://github.com/ovh/manager/commit/8ca31c78bab36ab952da31722f7ee7650450a683)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* update hard-coded Manager URLs with latest URLs ([4b8bdd7](https://github.com/ovh/manager/commit/4b8bdd78e0a7d039d8ac884c98080fe827978b85)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+# [20.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.10...@ovh-ux/manager-dedicated@20.65.0) (2025-11-27)
+
+
+### Features
+
+* **account-migration:** clean up account migration modules ([38cbdb4](https://github.com/ovh/manager/commit/38cbdb49210b2670fce27f08a2177bb1012310e1)), closes [#MANAGER-14290](https://github.com/ovh/manager/issues/MANAGER-14290)
+
+
+
+
+
+## [20.64.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.9...@ovh-ux/manager-dedicated@20.64.10) (2025-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4477] ([eda1923](https://github.com/ovh/manager/commit/eda19233693f22b1e6006e3c145d1458dbf25489))
+
+
+
+
+
+## [20.64.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.8...@ovh-ux/manager-dedicated@20.64.9) (2025-11-26)
+
+
+### Bug Fixes
+
+* **iplb:** add italy flag for order page ([cb1422f](https://github.com/ovh/manager/commit/cb1422f4b3790e3213d23b90733a92ec09ebbbf3)), closes [#MANAGER-20354](https://github.com/ovh/manager/issues/MANAGER-20354)
+
+
+
+
+
+## [20.64.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.7...@ovh-ux/manager-dedicated@20.64.8) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.64.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.6...@ovh-ux/manager-dedicated@20.64.7) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.64.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.5...@ovh-ux/manager-dedicated@20.64.6) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.64.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.4...@ovh-ux/manager-dedicated@20.64.5) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.64.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.3...@ovh-ux/manager-dedicated@20.64.4) (2025-11-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4468] ([a6691b2](https://github.com/ovh/manager/commit/a6691b2efc195d639b48673a7b2fc1434e2b854c))
+* **i18n:** add missing translations [CDS 4469] ([d79d092](https://github.com/ovh/manager/commit/d79d092df9f72d6c3b8141370df598d32ec35771))
+
+
+
+
+
+## [20.64.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.2...@ovh-ux/manager-dedicated@20.64.3) (2025-11-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.64.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.1...@ovh-ux/manager-dedicated@20.64.2) (2025-11-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4466] ([5b0902e](https://github.com/ovh/manager/commit/5b0902e4163cce078140abd846a9ddc955ee97d1))
+
+
+
+
+
+## [20.64.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.64.0...@ovh-ux/manager-dedicated@20.64.1) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.63.11...@ovh-ux/manager-dedicated@20.64.0) (2025-11-12)
+
+
+### Features
+
+* **dedicated:** add a success message when ordering a host or a datastore ([60c2974](https://github.com/ovh/manager/commit/60c2974e9f5a17a8552575f4a4393311437b96a5)), closes [#MANAGER-16352](https://github.com/ovh/manager/issues/MANAGER-16352)
+
+
+
+
+
+## [20.63.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.63.10...@ovh-ux/manager-dedicated@20.63.11) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.63.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.63.9...@ovh-ux/manager-dedicated@20.63.10) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.63.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.63.8...@ovh-ux/manager-dedicated@20.63.9) (2025-11-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4461] ([c0b02fb](https://github.com/ovh/manager/commit/c0b02fb351037c6c57a56826298b7b9ec0e54f03))
+* **i18n:** add missing translations [CDS 4462] ([cc414da](https://github.com/ovh/manager/commit/cc414da0f6f29fd6889c85fe90b566516e7eaeb4))
+
+
+
+
+
+## [20.63.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.63.7...@ovh-ux/manager-dedicated@20.63.8) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+
+
+
+
+
 ## [20.63.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.63.6...@ovh-ux/manager-dedicated@20.63.7) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

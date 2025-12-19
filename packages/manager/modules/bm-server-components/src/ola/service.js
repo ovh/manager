@@ -1,4 +1,5 @@
 import Ola from './ola.class';
+import { NETWORK_RESILIENCE_GUIDES } from './ola.constants';
 
 export default class OlaService {
   /* @ngInject */
@@ -86,6 +87,12 @@ export default class OlaService {
       .then(({ data }) => data);
   }
 
+  getNetworkInterfaces(serverName) {
+    return this.$http
+      .get(`/dedicated/server/${serverName}/networkInterfaceController`)
+      .then(({ data }) => data);
+  }
+
   waitTasks(serverName) {
     return this.getTasks(serverName).then((tasks) =>
       this.waitAllTasks(serverName, tasks),
@@ -111,6 +118,14 @@ export default class OlaService {
       (error) => {
         throw error;
       },
+    );
+  }
+
+  getResilienceGuideUrl() {
+    const { ovhSubsidiary } = this.coreConfig.getUser();
+    return (
+      NETWORK_RESILIENCE_GUIDES[ovhSubsidiary] ||
+      NETWORK_RESILIENCE_GUIDES.DEFAULT
     );
   }
 }

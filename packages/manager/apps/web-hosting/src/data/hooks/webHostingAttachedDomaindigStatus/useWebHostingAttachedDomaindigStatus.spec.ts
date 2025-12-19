@@ -18,7 +18,7 @@ describe('useWebHostingAttachedDomaindigStatus', () => {
     vi.clearAllMocks();
   });
 
-  it('should return webhosting attached domain dig status ', async () => {
+  it('should return webhosting attached domain dig status', async () => {
     const { result } = renderHook(
       () => useWebHostingAttachedDomaindigStatus('testServiceName', 'testDomain'),
       { wrapper },

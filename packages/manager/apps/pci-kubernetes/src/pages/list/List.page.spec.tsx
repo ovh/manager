@@ -62,7 +62,7 @@ describe('ListPage', () => {
     expect(getByText('Kube1')).toBeInTheDocument();
   });
 
-  it.each(clusterPlans)('renders %s cluster plan ', (plan) => {
+  it.each(clusterPlans)('renders %s cluster plan', (plan) => {
     vi.spyOn(useKubernetesModule, 'useKubes').mockReturnValue({
       isPending: false,
       data: {

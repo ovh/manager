@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.28...@ovh-ux/manager-exchange-app@0.13.29) (2025-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.27...@ovh-ux/manager-exchange-app@0.13.28) (2025-12-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.26...@ovh-ux/manager-exchange-app@0.13.27) (2025-12-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.25...@ovh-ux/manager-exchange-app@0.13.26) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.24...@ovh-ux/manager-exchange-app@0.13.25) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.23...@ovh-ux/manager-exchange-app@0.13.24) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.22...@ovh-ux/manager-exchange-app@0.13.23) (2025-11-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.21...@ovh-ux/manager-exchange-app@0.13.22) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.20...@ovh-ux/manager-exchange-app@0.13.21) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.19...@ovh-ux/manager-exchange-app@0.13.20) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.18...@ovh-ux/manager-exchange-app@0.13.19) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.17...@ovh-ux/manager-exchange-app@0.13.18) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.16...@ovh-ux/manager-exchange-app@0.13.17) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
 ## [0.13.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.15...@ovh-ux/manager-exchange-app@0.13.16) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-exchange-app

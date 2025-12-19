@@ -20,7 +20,6 @@ export default (
     Component={LayoutPage}
     errorElement={
       <ErrorBoundary
-        isPreloaderHide
         isRouteShellSync
         redirectionApp="account-creation"
       />

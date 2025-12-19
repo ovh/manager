@@ -13,5 +13,7 @@
   "billing_resiliate_terminateAtEngagementDate_error": "An error has occurred submitting the cancellation request on the service’s end of subscription date:",
   "billing_resiliate_terminateAtExpirationDate_success": "Your request to cancel this service on its expiry date has been processed.",
   "billing_resiliate_terminateAtExpirationDate_error": "An error has occurred submitting the request to cancel this service on its expiry date:",
-  "billing_resiliate_error": "An error occurred while submitting the cancellation request."
+  "billing_resiliate_error": "An error occurred while submitting the cancellation request.",
+  "billing_resiliate_terminateAtEngagementDate_us": "Cancel the service on the commitment end date",
+  "billing_resiliate_terminateAtEngagementDate_error_us": "An error occurred while submitting the cancellation request on the service’s end of commitment date:"
 }

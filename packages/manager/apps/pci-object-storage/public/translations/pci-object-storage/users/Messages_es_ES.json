@@ -1,0 +1,17 @@
+{
+  "createNewUser": "Crear un usuario",
+  "tableHeaderName": "Nombre",
+  "tableHeaderDescription": "Descripción",
+  "tableHeaderAccessKey": "Clave de acceso",
+  "tableActionImportUserAccess": "Importar una política de acceso de usuario (JSON)",
+  "tableActionDowloadUserAccess": "Descargar la política de acceso de usuario (JSON)",
+  "tableActionDowloadRclone": "Descargar el archivo Rclone",
+  "tableHeaderS3Enabler": "Usuario S3",
+  "tableS3Disable": "S3 desactivado",
+  "tableS3Enable": "S3 activado",
+  "s3InfoHelper": "Para utilizar un usuario con sus contenedores S3, debe generar sus claves de conexión utilizando la opción «Activar» del menú de la derecha",
+  "tableActionShowSecretKey": "Ver la clave secreta",
+  "tableActionEnable": "Activar",
+  "tableActionDisable": "Desactivar",
+  "userPolicyDownloadFailed": "Se ha producido un error"
+}

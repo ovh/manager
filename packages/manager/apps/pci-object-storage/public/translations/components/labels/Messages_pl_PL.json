@@ -1,0 +1,8 @@
+{
+  "addTagTitle": "Dodaj tag",
+  "keyFieldLabel": "Klucz",
+  "valueFieldLabel": "Wartość",
+  "existingKeyError": "Ten klucz już istnieje",
+  "cancelButton": "Anuluj",
+  "confirmButton": "Dodaj"
+}

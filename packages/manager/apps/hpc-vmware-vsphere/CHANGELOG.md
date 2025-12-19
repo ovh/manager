@@ -3,6 +3,105 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.19...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.0) (2025-12-05)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+## [0.1.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.18...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.19) (2025-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.17...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.18) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.16...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.17) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.15...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.16) (2025-11-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.14...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.15) (2025-11-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.13...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.14) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.12...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.13) (2025-11-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.11...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.12) (2025-11-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.10...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.11) (2025-11-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.9...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.10) (2025-11-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.8...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.9) (2025-11-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
 ## [0.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.7...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.8) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app

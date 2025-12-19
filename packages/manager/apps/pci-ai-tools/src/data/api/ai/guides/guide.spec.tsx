@@ -11,6 +11,7 @@ describe('Guides functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getGuides({
       projectId: 'projectId',
+      category: 'ai',
       lang: 'fr-FR',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
@@ -29,6 +30,7 @@ describe('Guides functions', () => {
     expect(apiClient.v6.get).not.toHaveBeenCalled();
     await getGuides({
       projectId: 'projectId',
+      category: 'ai',
       section: ['cli'],
       lang: 'fr-FR',
     });

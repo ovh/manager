@@ -42,6 +42,19 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss],
     },
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: [
+          'import',
+          'global-builtin',
+          'color-functions',
+          'legacy-js-api',
+          'abs-percent',
+          'slash-div',
+          'function-units',
+        ],
+      },
+    },
   },
   test: {
     globals: true,
@@ -52,7 +65,12 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/lib.ts'),
       name: 'ManagerUiKitLib',
-      fileName: (format) => `manager-ui-kit-lib.${format}.ts`,
+      fileName: (format) => {
+        if (format === 'umd') {
+          return 'manager-ui-kit-lib.umd.cjs';
+        }
+        return 'manager-ui-kit-lib.es.js';
+      },
     },
     rollupOptions: {
       external: [

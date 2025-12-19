@@ -1,4 +1,5 @@
-import { EngagementConfiguration, Pricing } from '@ovh-ux/manager-models';
+import { EngagementConfiguration } from '@ovh-ux/manager-models';
+import { computeDiscount } from './commitment.helpers';
 
 export default class {
   /* @ngInject */
@@ -27,6 +28,7 @@ export default class {
   }
 
   $onInit() {
+    this.isUSRegion = this.coreConfig.isRegion('US');
     this.user = this.coreConfig.getUser();
     this.isLoadingService = true;
     this.paymentMethod = null;
@@ -109,56 +111,14 @@ export default class {
       (commitment) => commitment.durationInMonths === duration.monthlyDuration,
     );
     [this.model.engagement] = this.pricingModes;
-    this.computeDiscount();
-  }
-
-  hasSavings() {
-    const { savings } = this.duration;
-
-    return this.defaultPrice && savings?.value > 0;
-  }
-
-  computeDiscount() {
-    const upfront = this.pricingModes.find((commitment) =>
-      commitment.isUpfront(),
+    const { periodicTotalPrice, discount, upfrontSavings } = computeDiscount(
+      this.pricingModes,
+      this.duration.savings,
+      this.coreConfig.getUserLocale(),
     );
-    const periodic = this.pricingModes.find((commitment) =>
-      commitment.isPeriodic(),
-    );
-
-    this.periodicTotalPrice = periodic
-      ? Number.parseFloat(periodic.totalPrice.value.toFixed(2))
-      : null;
-
-    if (upfront && periodic) {
-      // compute discount
-      const { value: savedAmount } = periodic.getPriceDiff(
-        upfront,
-        this.selectedQuantity,
-      );
-      this.discount = (savedAmount / periodic.totalPrice.value) * 100;
-      this.discount = this.discount.toFixed(2);
-
-      // compute total saving
-      const { savings } = this.duration;
-      const totalSavings = savedAmount + (savings?.value || 0);
-      this.upfrontSavings = {
-        amountSaved: new Pricing(
-          {
-            duration: periodic.duration,
-            price: {
-              currencyCode: upfront.pricing.price.currencyCode,
-              value: totalSavings,
-            },
-          },
-          this.coreConfig.getUserLocale(),
-        ).getPriceAsText(),
-        amountToPay: {
-          text: upfront.totalPrice.text,
-          value: upfront.totalPrice.value,
-        },
-      };
-    }
+    this.periodicTotalPrice = periodicTotalPrice;
+    this.discount = discount;
+    this.upfrontSavings = upfrontSavings;
   }
 
   getStartingDate() {

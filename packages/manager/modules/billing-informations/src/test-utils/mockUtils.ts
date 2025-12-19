@@ -32,4 +32,4 @@ serviceEngagedAndContinueResponse.billing.engagement = {
 export const serviceManualRenewResponse: ServiceDetails = JSON.parse(
   JSON.stringify(defaultServiceResponse),
 ) as ServiceDetails;
-serviceManualRenewResponse.billing.renew.current.mode = 'manual';
+serviceManualRenewResponse.billing.renew!.current.mode = 'manual';

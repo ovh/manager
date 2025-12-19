@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.5.0...@ovh-ux/manager-core-sso@0.6.0) (2025-12-05)
+
+
+### Features
+
+* use fixed versions for tests setup ([f917f0c](https://github.com/ovh/manager/commit/f917f0cb6a3c06f1cceb8a1bca8d1f42d66c4ee7)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.9...@ovh-ux/manager-core-sso@0.5.0) (2025-12-01)
+
+
+### Features
+
+* **core.sso:** update auth URLs generation methods ([1cb3066](https://github.com/ovh/manager/commit/1cb3066a3affb65617bef592a05c7bb0a5865398)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+* migrate telecom to ovhcloud.com domain ([3da12e0](https://github.com/ovh/manager/commit/3da12e0adc0931bf9251d6df986090f9b756d176)), closes [#MANAGER-18470](https://github.com/ovh/manager/issues/MANAGER-18470)
+
+
+
+
+
+## [0.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.8...@ovh-ux/manager-core-sso@0.4.9) (2025-11-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
+## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.7...@ovh-ux/manager-core-sso@0.4.8) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
 ## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.6...@ovh-ux/manager-core-sso@0.4.7) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-sso

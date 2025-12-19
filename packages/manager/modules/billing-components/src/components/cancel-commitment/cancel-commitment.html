@@ -1,5 +1,5 @@
 <oui-modal
-    heading="{{:: 'billing_cancel_commitment' | translate}}"
+    heading="{{:: ($ctrl.isUSRegion ? 'billing_cancel_commitment_us' : 'billing_cancel_commitment') | translate}}"
     primary-action="$ctrl.cancelCommitment()"
     secondary-action="$ctrl.goBack()"
     on-dismiss="$ctrl.goBack()"
@@ -7,5 +7,7 @@
     primary-label="{{:: 'billing_cancel_commitment_confirm' | translate }}"
     secondary-label="{{:: 'billing_cancel_commitment_cancel' | translate }}"
 >
-    <span data-translate="billing_cancel_commitment_description"></span>
+    <span
+        data-translate="{{ $ctrl.isUSRegion ? 'billing_cancel_commitment_description_us' : 'billing_cancel_commitment_description' }}"
+    ></span>
 </oui-modal>

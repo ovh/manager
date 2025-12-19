@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.7.0...@ovh-ux/ovh-payment-method@0.7.1) (2025-11-16)
+
+**Note:** Version bump only for package @ovh-ux/ovh-payment-method
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.6.3...@ovh-ux/ovh-payment-method@0.7.0) (2025-11-12)
+
+
+### Features
+
+* **ovh-payment-method:** switch to axios, improve documentation ([e9a8984](https://github.com/ovh/manager/commit/e9a8984c709cc5d6207446257f64f80e690d03c9)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* remove last occurances of reket ([500dd80](https://github.com/ovh/manager/commit/500dd800eb1b8402515554e61ed8b6c199bc6044)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.6.2...@ovh-ux/ovh-payment-method@0.6.3) (2025-10-30)
 
 **Note:** Version bump only for package @ovh-ux/ovh-payment-method
