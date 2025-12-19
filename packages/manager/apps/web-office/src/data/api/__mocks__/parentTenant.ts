@@ -6,6 +6,7 @@ export const parentTenantMock: ParentTenantType = {
   city: 'Springfield',
   creationDate: '2023-05-15',
   displayName: 'John Doe',
+  mcaAgreed: true,
   firstName: 'John',
   lastName: 'Doe',
   phone: '+1234567890',

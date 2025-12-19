@@ -24,8 +24,10 @@ import { useLicenses } from '@/data/hooks/licenses/useLicenses';
 import { useGenerateUrl } from '@/hooks/generate-url/useGenerateUrl';
 import { urls } from '@/routes/Routes.constants';
 
-function GenerateUrl(serviceName: string) {
-  const href = useGenerateUrl(urls.generalInformation, 'href', {
+import ActionButtonLicenses from './ActionButtonLicenses.component';
+
+function GenerateUrl(serviceName: string, url: string, type: 'path' | 'href') {
+  const href = useGenerateUrl(url, type, {
     serviceName,
   });
   return href;
@@ -66,11 +68,11 @@ export default function Licenses() {
         accessorKey: 'tenantServiceName',
         cell: ({
           row: {
-            original: { serviceName, tenantServiceName },
+            original: { serviceName, tenantServiceName, mcaAgreed },
           },
         }) => (
           <Link
-            href={GenerateUrl(serviceName)}
+            href={GenerateUrl(serviceName, mcaAgreed ? urls.generalInformation : urls.mca, 'href')}
             onClick={() =>
               trackClick({
                 location: PageLocation.datagrid,
@@ -105,9 +107,29 @@ export default function Licenses() {
         id: 'status',
         header: t(`${NAMESPACES.STATUS}:status`),
         accessorKey: 'status',
-        cell: ({ getValue }) => <OfficeServiceState state={getValue<StateEnum>()} />,
+        cell: ({
+          row: {
+            original: { status, mcaAgreed },
+          },
+        }) => <OfficeServiceState state={mcaAgreed ? status : StateEnum.AWAITING_SIGNATURE} />,
         enableHiding: true,
         isSortable: true,
+      },
+      {
+        id: 'actions',
+        maxSize: 50,
+        cell: ({
+          row: {
+            original: { serviceName, mcaAgreed },
+          },
+        }) => (
+          <ActionButtonLicenses
+            serviceName={serviceName}
+            serviceDetailUrl={GenerateUrl(serviceName, urls.generalInformation, 'path')}
+            mcaUrl={GenerateUrl(serviceName, urls.mca, 'path')}
+            mcaAgreed={mcaAgreed}
+          ></ActionButtonLicenses>
+        ),
       },
     ],
     [t, trackClick],
