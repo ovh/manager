@@ -11,13 +11,13 @@ const TableHeaderContentComponent = <T,>({
   onSortChange,
   enableSorting,
 }: TableHeaderContentProps<T>) => (
-  <thead className={`sticky top-[0px] z-10 bg-white overflow-hidden`}>
+  <thead className={`sticky top-[-1px] z-10 bg-white overflow-hidden`}>
     {headerGroups?.map((headerGroup) => (
       <tr key={headerGroup.id}>
         {headerGroup.headers.map((header) => (
           <th
             key={header.id}
-            className={`${contentAlignLeft ? 'text-left pl-4' : 'text-center'} whitespace-nowrap `}
+            className={`${contentAlignLeft ? 'text-left pl-4' : 'text-center'} whitespace-nowrap break-normal wrap-break-word`}
             style={{
               width: header.column.getSize(),
               minWidth: header.column.columnDef.minSize ?? 0,
