@@ -9,7 +9,6 @@ import {
 import DatagridColumnServiceName from '@/domain/components/DatagridColumns/Domain/DatagridColumnServiceName';
 import {
   NameServerTypeEnum,
-  StatusDetails,
   TDomainResource,
 } from '@/domain/types/domainResource';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/Domain/DatagridColumnStatus';
@@ -44,15 +43,6 @@ export const useDomainDatagridColumns = ({
 >[] => {
   const { t } = useTranslation('domain');
 
-  const deduplicatedRecord = Object.entries(DOMAIN_STATE).reduce<
-    Record<string, StatusDetails>
-  >((acc, [key, item]) => {
-    if (!Object.values(acc).some((v) => v.i18nKey === item.i18nKey)) {
-      acc[key] = item;
-    }
-    return acc;
-  }, {});
-
   const columns = useMemo(
     () =>
       [
@@ -65,8 +55,6 @@ export const useDomainDatagridColumns = ({
             <DatagridColumnServiceName domainName={getValue<string>()} />
           ),
           header: t('domain_table_header_serviceName'),
-          comparator: FilterCategories.String,
-          isFilterable: true,
           enableHiding: false,
           isSearchable: true,
         },
@@ -84,264 +72,300 @@ export const useDomainDatagridColumns = ({
               <span>-</span>
             );
           },
+          label: t('domain_table_header_tags'),
           header: t('domain_table_header_tags'),
           type: FilterTypeCategories.Tags,
           isFilterable: true,
           enableHiding: true,
         },
-        // {
-        //   id: 'state',
-        //   accessorFn: (row: DomainResourceDatagridData) => {
-        //     const procedure = additionalDomainStateAsValue(
-        //       row.currentState?.additionalStates,
-        //     ) as AdditionalDomainStateEnum;
-        //     return procedure === AdditionalDomainStateEnum.PROCEDURE_IN_PROGRESS
-        //       ? procedure
-        //       : row.currentState?.mainState;
-        //   },
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const state = getValue<
-        //       | string
-        //       | AdditionalDomainStateEnum
-        //       | undefined
-        //     >();
-        //     return (
-        //       <DatagridColumnStatus
-        //         state={state as any}
-        //         mapping={DOMAIN_STATE}
-        //       />
-        //     );
-        //   },
-        //   header: t('domain_table_header_status'),
-        //   comparator: FilterCategories.String,
-        //   isFilterable: true,
-        //   enableHiding: false,
-        // },
-        // {
-        //   id: 'suspensionState',
-        //   accessorKey: 'currentState.suspensionState',
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const state = getValue<string | undefined>();
-        //     return state ? (
-        //       <DatagridColumnStatus
-        //         state={state as any}
-        //         mapping={SUSPENSION_STATUS}
-        //       />
-        //     ) : (
-        //       <span>-</span>
-        //     );
-        //   },
-        //   header: t('domain_table_header_technical_status'),
-        //   isFilterable: false,
-        //   enableHiding: false,
-        // },
-        // {
-        //   id: 'transferProtection',
-        //   accessorKey: 'currentState.protectionState',
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const state = getValue<string | undefined>();
-        //     return state ? (
-        //       <DatagridColumnStatus
-        //         state={state as any}
-        //         mapping={DOMAIN_TRANSFER_LOCK_STATUS}
-        //       />
-        //     ) : (
-        //       <span>-</span>
-        //     );
-        //   },
-        //   header: t('domain_table_header_transfer_protection'),
-        //   isFilterable: false,
-        //   enableHiding: true,
-        // },
-        // {
-        //   id: 'renewFrequency',
-        //   accessorFn: (row: DomainResourceDatagridData) => row.id,
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => (
-        //     <DatagridColumnRenewFrequency
-        //       serviceName={getValue<string>()}
-        //     />
-        //   ),
-        //   header: t('domain_table_header_renew_frequency'),
-        //   isFilterable: false,
-        //   enableHiding: false,
-        // },
-        // {
-        //   id: 'pendingActions',
-        //   accessorFn: (row: DomainResourceDatagridData) => row.id,
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => (
-        //     <DatagridColumnPendingActions
-        //       serviceName={getValue<string>()}
-        //     />
-        //   ),
-        //   header: t('domain_table_header_pending_actions'),
-        //   isFilterable: false,
-        //   enableHiding: false,
-        // },
-        // {
-        //   id: 'expiration',
-        //   accessorFn: (row: DomainResourceDatagridData) => row.id,
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => (
-        //     <DatagridColumnExpiration serviceName={getValue<string>()} />
-        //   ),
-        //   header: t('domain_table_header_expiration'),
-        //   isFilterable: false,
-        //   enableHiding: false,
-        // },
-        // {
-        //   id: 'dnssec',
-        //   accessorFn: (row: DomainResourceDatagridData) => row.id,
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => (
-        //     <DatagridColumnDnssec serviceName={getValue<string>()} />
-        //   ),
-        //   header: t('domain_table_header_dnssec'),
-        //   isFilterable: false,
-        //   enableHiding: true,
-        // },
-        // {
-        //   id: 'contactOwner.id',
-        //   accessorKey: 'currentState.contactsConfiguration.contactOwner.id',
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const contactId = getValue<string | undefined>();
-        //     return contactId ? (
-        //       <DatagridColumnContact contactId={contactId} isOwner={true} />
-        //     ) : (
-        //       <span>-</span>
-        //     );
-        //   },
-        //   header: t('domain_table_header_contact_owner'),
-        //   comparator: FilterCategories.String,
-        //   isFilterable: false,
-        //   enableHiding: true,
-        // },
-        // {
-        //   id: 'contactTech.id',
-        //   accessorKey: 'currentState.contactsConfiguration.contactTechnical.id',
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const contactId = getValue<string | undefined>();
-        //     return contactId ? (
-        //       <DatagridColumnContact contactId={contactId} isOwner={false} />
-        //     ) : (
-        //       <span>-</span>
-        //     );
-        //   },
-        //   header: t('domain_table_header_contact_tech'),
-        //   comparator: FilterCategories.String,
-        //   isFilterable: true,
-        //   enableHiding: true,
-        // },
-        // {
-        //   id: 'contactAdmin.id',
-        //   accessorKey:
-        //     'currentState.contactsConfiguration.contactAdministrator.id',
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const contactId = getValue<string | undefined>();
-        //     return contactId ? (
-        //       <DatagridColumnContact contactId={contactId} isOwner={false} />
-        //     ) : (
-        //       <span>-</span>
-        //     );
-        //   },
-        //   header: t('domain_table_header_contact_admin'),
-        //   comparator: FilterCategories.String,
-        //   isFilterable: true,
-        //   enableHiding: true,
-        // },
-        // {
-        //   id: 'contactBilling.id',
-        //   accessorKey: 'currentState.contactsConfiguration.contactBilling.id',
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const contactId = getValue<string | undefined>();
-        //     return contactId ? (
-        //       <DatagridColumnContact contactId={contactId} isOwner={false} />
-        //     ) : (
-        //       <span>-</span>
-        //     );
-        //   },
-        //   header: t('domain_table_header_contact_billing'),
-        //   comparator: FilterCategories.String,
-        //   isFilterable: true,
-        //   enableHiding: true,
-        // },
-        // {
-        //   id: 'dns',
-        //   accessorKey: 'currentState.dnsConfiguration.nameServers',
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const dns = getValue<any[] | undefined>();
-        //     const hasContent = dns && dns.length > 0;
-        //     return hasContent ? (
-        //       <DatagridColumnDns dns={dns} />
-        //     ) : (
-        //       <span>-</span>
-        //     );
-        //   },
-        //   header: t('domain_tab_name_dns_server'),
-        //   isFilterable: false,
-        //   enableHiding: true,
-        // },
-        // {
-        //   id: 'nameServerType',
-        //   accessorKey: 'currentState.dnsConfiguration.configurationType',
-        //   cell: ({ getValue }: CellContext<DomainResourceDatagridData, unknown>) => {
-        //     const type = getValue<string | undefined>();
-        //     return type ? (
-        //       <DatagridColumnDnsType type={type as any} />
-        //     ) : (
-        //       <span>-</span>
-        //     );
-        //   },
-        //   header: t('domain_dns_table_header_type'),
-        //   comparator: FilterCategories.String,
-        //   isFilterable: true,
-        //   filterOptions: [
-        //     {
-        //       value: NameServerTypeEnum.ANYCAST,
-        //       label: NameServerTypeEnum.ANYCAST,
-        //     },
-        //     {
-        //       value: NameServerTypeEnum.MIXED,
-        //       label: NameServerTypeEnum.MIXED,
-        //     },
-        //     {
-        //       value: NameServerTypeEnum.HOSTING,
-        //       label: NameServerTypeEnum.HOSTING,
-        //     },
-        //     {
-        //       value: NameServerTypeEnum.EMPTY,
-        //       label: NameServerTypeEnum.EMPTY,
-        //     },
-        //     {
-        //       value: NameServerTypeEnum.EXTERNAL,
-        //       label: NameServerTypeEnum.EXTERNAL,
-        //     },
-        //     {
-        //       value: NameServerTypeEnum.HOLD,
-        //       label: NameServerTypeEnum.HOLD,
-        //     },
-        //     {
-        //       value: NameServerTypeEnum.HOSTED,
-        //       label: NameServerTypeEnum.HOSTED,
-        //     },
-        //     {
-        //       value: NameServerTypeEnum.PARKING,
-        //       label: NameServerTypeEnum.PARKING,
-        //     },
-        //   ],
-        //   enableHiding: true,
-        // },
-        // {
-        //   id: 'actions',
-        //   accessorFn: (row: DomainResourceDatagridData) => row.id,
-        //   cell: ({ getValue, row }: CellContext<DomainResourceDatagridData, unknown>) => (
-        //     <DatagridColumnActions
-        //       serviceName={getValue<string>()}
-        //       mainState={row.original.currentState?.mainState}
-        //       openModal={openModal}
-        //     />
-        //   ),
-        //   header: '',
-        //   isFilterable: false,
-        //   enableHiding: false,
-        // },
+        {
+          id: 'state',
+          accessorFn: (row: DomainResourceDatagridData) => {
+            const procedure = additionalDomainStateAsValue(
+              row.currentState?.additionalStates,
+            ) as AdditionalDomainStateEnum;
+            return procedure === AdditionalDomainStateEnum.PROCEDURE_IN_PROGRESS
+              ? procedure
+              : row.currentState?.mainState;
+          },
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const state = getValue<
+              string | AdditionalDomainStateEnum | undefined
+            >();
+            return (
+              <DatagridColumnStatus
+                state={state as any}
+                mapping={DOMAIN_STATE}
+              />
+            );
+          },
+          label: t('domain_table_header_status'),
+          header: t('domain_table_header_status'),
+          comparator: FilterCategories.Options,
+          isFilterable: true,
+          enableHiding: false,
+          filterOptions: Object.entries(DOMAIN_STATE).map(
+            ([value, details]) => ({
+              value,
+              label: t(details.i18nKey),
+            }),
+          ),
+        },
+        {
+          id: 'suspensionState',
+          accessorKey: 'currentState.suspensionState',
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const state = getValue<string | undefined>();
+            return state ? (
+              <DatagridColumnStatus
+                state={state as any}
+                mapping={SUSPENSION_STATUS}
+              />
+            ) : (
+              <span>-</span>
+            );
+          },
+          header: t('domain_table_header_technical_status'),
+          isFilterable: false,
+          enableHiding: false,
+        },
+        {
+          id: 'transferProtection',
+          accessorKey: 'currentState.protectionState',
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const state = getValue<string | undefined>();
+            return state ? (
+              <DatagridColumnStatus
+                state={state as any}
+                mapping={DOMAIN_TRANSFER_LOCK_STATUS}
+              />
+            ) : (
+              <span>-</span>
+            );
+          },
+          header: t('domain_table_header_transfer_protection'),
+          isFilterable: false,
+          enableHiding: true,
+        },
+        {
+          id: 'renewFrequency',
+          accessorFn: (row: DomainResourceDatagridData) => row.id,
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => (
+            <DatagridColumnRenewFrequency serviceName={getValue<string>()} />
+          ),
+          header: t('domain_table_header_renew_frequency'),
+          isFilterable: false,
+          enableHiding: false,
+        },
+        {
+          id: 'pendingActions',
+          accessorFn: (row: DomainResourceDatagridData) => row.id,
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => (
+            <DatagridColumnPendingActions serviceName={getValue<string>()} />
+          ),
+          header: t('domain_table_header_pending_actions'),
+          isFilterable: false,
+          enableHiding: false,
+        },
+        {
+          id: 'expiration',
+          accessorFn: (row: DomainResourceDatagridData) => row.id,
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => (
+            <DatagridColumnExpiration serviceName={getValue<string>()} />
+          ),
+          header: t('domain_table_header_expiration'),
+          isFilterable: false,
+          enableHiding: false,
+        },
+        {
+          id: 'dnssec',
+          accessorFn: (row: DomainResourceDatagridData) => row.id,
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => (
+            <DatagridColumnDnssec serviceName={getValue<string>()} />
+          ),
+          header: t('domain_table_header_dnssec'),
+          isFilterable: false,
+          enableHiding: true,
+        },
+        {
+          id: 'contactOwner.id',
+          accessorKey: 'currentState.contactsConfiguration.contactOwner.id',
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const contactId = getValue<string | undefined>();
+            return contactId ? (
+              <DatagridColumnContact contactId={contactId} isOwner={true} />
+            ) : (
+              <span>-</span>
+            );
+          },
+          header: t('domain_table_header_contact_owner'),
+          comparator: FilterCategories.String,
+          label: t('domain_table_header_contact_owner'),
+          isFilterable: true,
+          enableHiding: true,
+        },
+        {
+          id: 'contactTech.id',
+          accessorKey: 'currentState.contactsConfiguration.contactTechnical.id',
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const contactId = getValue<string | undefined>();
+            return contactId ? (
+              <DatagridColumnContact contactId={contactId} isOwner={false} />
+            ) : (
+              <span>-</span>
+            );
+          },
+          header: t('domain_table_header_contact_tech'),
+          label: t('domain_table_header_contact_tech'),
+          comparator: FilterCategories.String,
+          isFilterable: true,
+          enableHiding: true,
+        },
+        {
+          id: 'contactAdmin.id',
+          accessorKey:
+            'currentState.contactsConfiguration.contactAdministrator.id',
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const contactId = getValue<string | undefined>();
+            return contactId ? (
+              <DatagridColumnContact contactId={contactId} isOwner={false} />
+            ) : (
+              <span>-</span>
+            );
+          },
+          header: t('domain_table_header_contact_admin'),
+          label: t('domain_table_header_contact_admin'),
+          comparator: FilterCategories.String,
+          isFilterable: true,
+          enableHiding: true,
+        },
+        {
+          id: 'contactBilling.id',
+          accessorKey: 'currentState.contactsConfiguration.contactBilling.id',
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const contactId = getValue<string | undefined>();
+            return contactId ? (
+              <DatagridColumnContact contactId={contactId} isOwner={false} />
+            ) : (
+              <span>-</span>
+            );
+          },
+          header: t('domain_table_header_contact_billing'),
+          label: t('domain_table_header_contact_billing'),
+          comparator: FilterCategories.String,
+          isFilterable: true,
+          enableHiding: true,
+        },
+        {
+          id: 'dns',
+          accessorKey: 'currentState.dnsConfiguration.nameServers',
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const dns = getValue<any[] | undefined>();
+            const hasContent = dns && dns.length > 0;
+            return hasContent ? (
+              <DatagridColumnDns dns={dns} />
+            ) : (
+              <span>-</span>
+            );
+          },
+          header: t('domain_tab_name_dns_server'),
+          isFilterable: false,
+          enableHiding: true,
+        },
+        {
+          id: 'nameServerType',
+          accessorKey: 'currentState.dnsConfiguration.configurationType',
+          cell: ({
+            getValue,
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const type = getValue<string | undefined>();
+            return type ? (
+              <DatagridColumnDnsType type={type as any} />
+            ) : (
+              <span>-</span>
+            );
+          },
+          header: t('domain_dns_table_header_type'),
+          comparator: FilterCategories.String,
+          label: t('domain_dns_table_header_type'),
+          isFilterable: true,
+          filterOptions: [
+            {
+              value: NameServerTypeEnum.ANYCAST,
+              label: NameServerTypeEnum.ANYCAST,
+            },
+            {
+              value: NameServerTypeEnum.MIXED,
+              label: NameServerTypeEnum.MIXED,
+            },
+            {
+              value: NameServerTypeEnum.HOSTING,
+              label: NameServerTypeEnum.HOSTING,
+            },
+            {
+              value: NameServerTypeEnum.EMPTY,
+              label: NameServerTypeEnum.EMPTY,
+            },
+            {
+              value: NameServerTypeEnum.EXTERNAL,
+              label: NameServerTypeEnum.EXTERNAL,
+            },
+            {
+              value: NameServerTypeEnum.HOLD,
+              label: NameServerTypeEnum.HOLD,
+            },
+            {
+              value: NameServerTypeEnum.HOSTED,
+              label: NameServerTypeEnum.HOSTED,
+            },
+            {
+              value: NameServerTypeEnum.PARKING,
+              label: NameServerTypeEnum.PARKING,
+            },
+          ],
+          enableHiding: true,
+        },
+        {
+          id: 'actions',
+          accessorFn: (row: DomainResourceDatagridData) => row.id,
+          cell: ({
+            getValue,
+            row,
+          }: CellContext<DomainResourceDatagridData, unknown>) => (
+            <DatagridColumnActions
+              serviceName={getValue<string>()}
+              mainState={row.original.currentState?.mainState}
+              openModal={openModal}
+            />
+          ),
+          header: '',
+          isFilterable: false,
+          enableHiding: false,
+        },
       ] as DatagridColumn<DomainResourceDatagridData>[],
     [t, openModal],
   );
