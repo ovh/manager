@@ -81,13 +81,13 @@ const UserAccountMenu = ({
       if (featureAvailability['identity-documents']) {
         try {
           const identityProcedure = await fetchProcedureStatus(Procedures.INDIA);
-          isIdentityDocumentsAvailable = identityProcedure?.status && ['required', 'open'].includes(identityProcedure.status);
+          isIdentityDocumentsAvailable = identityProcedure?.status && ['required', 'open'].includes(identityProcedure?.status);
         } catch {}
       }
       if (featureAvailability['procedures:fraud']) {
         try {
           const fraudProcedure = await fetchProcedureStatus(Procedures.FRAUD);
-          setIsDocumentsVisible(fraudProcedure?.status && ['required', 'open'].includes(fraudProcedure.status));
+          setIsDocumentsVisible(fraudProcedure?.status && ['required', 'open'].includes(fraudProcedure?.status));
         } catch {}
       }
 
