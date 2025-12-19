@@ -99,7 +99,8 @@ describe('tenants.utils', () => {
           id: 'tenant-1',
           name: 'Tenant 1',
           infrastructure: mockTenant.currentState.infrastructure,
-          endpoint: 'sbg1.metrics.ovh.com',
+          entryPoint: 'sbg1.metrics.ovh.com',
+          endpoint: undefined,
           retention: 'formatted-180d',
           numberOfSeries: 222,
           resourceStatus: 'READY',
@@ -174,7 +175,7 @@ describe('tenants.utils', () => {
         }),
         expectations: (result: TenantListing) => {
           expect(result.infrastructure).toBeUndefined();
-          expect(result.endpoint).toBeUndefined();
+          expect(result.entryPoint).toBeUndefined();
         },
       },
       {
@@ -267,7 +268,7 @@ describe('tenants.utils', () => {
             },
             infrastructure: {
               id: 'infra-1',
-              entryPoint: 'https://first.com',
+              entryPoint: 'mimir.m2c.ovh.net',
               location: 'GRA11',
               type: 'SHARED',
             },
@@ -313,21 +314,23 @@ describe('tenants.utils', () => {
           name: 'First Tenant',
           infrastructure: {
             id: 'infra-1',
-            entryPoint: 'https://first.com',
+            entryPoint: 'mimir.m2c.ovh.net',
             location: 'GRA11',
             type: 'SHARED',
           },
-          endpoint: 'https://first.com',
+          entryPoint: 'mimir.m2c.ovh.net',
+          endpoint: undefined,
           retention: 'formatted-30d',
           numberOfSeries: 100,
           resourceStatus: 'READY',
           tags: expectedFirstTags,
-          search: `First Tenant https://first.com formatted-30d 100 team:alpha`,
+          search: `First Tenant mimir.m2c.ovh.net formatted-30d 100 team:alpha`,
         },
         {
           id: 'tenant-2',
           name: 'Second Tenant',
           infrastructure: undefined,
+          entryPoint: undefined,
           endpoint: undefined,
           retention: 'formatted-7d',
           numberOfSeries: 50,
@@ -465,6 +468,7 @@ describe('tenants.utils', () => {
           id: 'unique-id-1',
           name: 'Tenant 1',
           infrastructure: undefined,
+          entryPoint: undefined,
           endpoint: undefined,
           retention: undefined,
           numberOfSeries: undefined,
@@ -476,6 +480,7 @@ describe('tenants.utils', () => {
           id: 'unique-id-2',
           name: 'Tenant 2',
           infrastructure: undefined,
+          entryPoint: undefined,
           endpoint: undefined,
           retention: undefined,
           numberOfSeries: undefined,
@@ -494,7 +499,7 @@ describe('tenants.utils', () => {
             title: 'Tenant With Infrastructure',
             infrastructure: {
               id: 'infra-id',
-              entryPoint: 'test-endpoint.com',
+              entryPoint: 'mimir.m2c.ovh.net',
               location: 'GRA11',
               type: 'SHARED',
             },
@@ -505,7 +510,7 @@ describe('tenants.utils', () => {
       const result = mapTenantsToListing(mockTenants, mockDateFnsLocale);
 
       expect(result).toHaveLength(1);
-      expect(result[0]?.endpoint).toBe('test-endpoint.com');
+      expect(result[0]?.entryPoint).toBe('mimir.m2c.ovh.net');
       expect(result[0]?.infrastructure).toBeDefined();
     });
 
