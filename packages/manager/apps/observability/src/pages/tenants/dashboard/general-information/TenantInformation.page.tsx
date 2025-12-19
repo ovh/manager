@@ -33,9 +33,8 @@ export default function TenantsInformationPage() {
   const updatedAt = tenant?.updatedAt;
   const title = tenantState?.title;
   const description = tenantState?.description;
-  const infrastructure = tenantState?.infrastructure;
+  const endpoint = tenantState?.endpoint;
 
-  const endpoint = infrastructure?.entryPoint ?? '';
   const limits = tenantState?.limits;
 
   const currentTenantId = tenantId ?? '';
@@ -73,8 +72,7 @@ export default function TenantsInformationPage() {
           <div className="flex flex-col justify-start gap-6">
             <ConfigurationTile
               retention={limits?.mimir?.compactor_blocks_retention_period}
-              numberOfSeriesCurrent={limits?.mimir?.max_global_series_per_user}
-              numberOfSeriesMaximum={limits?.mimir?.max_global_series_per_user} // TODO still needed?
+              numberOfSeriesMaximum={limits?.mimir?.max_global_series_per_user}
               isLoading={isLoading}
             />
 

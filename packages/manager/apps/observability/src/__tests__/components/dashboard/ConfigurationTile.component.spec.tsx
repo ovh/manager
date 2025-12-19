@@ -61,7 +61,7 @@ describe('ConfigurationTile.component', () => {
   it('renders skeletons while data is loading', () => {
     render(<ConfigurationTile {...baseProps} isLoading />);
 
-    expect(screen.getAllByTestId('skeleton')).toHaveLength(3);
+    expect(screen.getAllByTestId('skeleton')).toHaveLength(2);
   });
 
   it('renders formatted retention and metric limits when available', () => {
@@ -72,7 +72,6 @@ describe('ConfigurationTile.component', () => {
       'test-locale',
     );
     expect(screen.getByText('10 days')).toBeInTheDocument();
-    expect(screen.getByText(String(baseProps.numberOfSeriesCurrent))).toBeInTheDocument();
     expect(screen.getByText(String(baseProps.numberOfSeriesMaximum))).toBeInTheDocument();
   });
 
@@ -80,7 +79,6 @@ describe('ConfigurationTile.component', () => {
     render(
       <ConfigurationTile
         retention={undefined}
-        numberOfSeriesCurrent={baseProps.numberOfSeriesCurrent}
         numberOfSeriesMaximum={baseProps.numberOfSeriesMaximum}
         isLoading={false}
       />,

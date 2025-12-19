@@ -9,7 +9,6 @@ import { formatObservabilityDuration } from '@/utils/duration.utils';
 
 export const ConfigurationTile = ({
   retention,
-  numberOfSeriesCurrent,
   numberOfSeriesMaximum,
   isLoading,
 }: ConfigurationTileProps) => {
@@ -30,17 +29,6 @@ export const ConfigurationTile = ({
                 {formatObservabilityDuration(retention, dateFnsLocale)}
               </Text>
             )
-          )}
-        </Tile.Item.Description>
-      </Tile.Item.Root>
-
-      <Tile.Item.Root>
-        <Tile.Item.Term label={t('dashboard.configuration_tile.active_metrics')} />
-        <Tile.Item.Description>
-          {isLoading ? (
-            <Skeleton />
-          ) : (
-            <Text preset={TEXT_PRESET.span}>{numberOfSeriesCurrent}</Text>
           )}
         </Tile.Item.Description>
       </Tile.Item.Root>
