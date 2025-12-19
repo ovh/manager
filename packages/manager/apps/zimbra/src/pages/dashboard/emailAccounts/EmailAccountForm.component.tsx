@@ -245,7 +245,7 @@ export const EmailAccountForm = () => {
         render={({ field: { name, value, onChange, onBlur } }) => (
           <OdsFormField className="w-full" error={errors?.[name]?.message}>
             <label htmlFor={name} slot="label">
-              {t('common:email_account')} *
+              {t('common:email_address')} *
             </label>
             <div className="flex">
               <OdsInput
