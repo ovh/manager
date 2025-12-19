@@ -5,7 +5,7 @@ import { formatObservabilityDuration } from '@/utils/duration.utils';
 
 export const mapTenantsToListing = (tenants: Tenant[], dateFnsLocale: Locale): TenantListing[] => {
   const result: TenantListing[] = tenants.map(({ id, currentState, iam, resourceStatus }) => {
-    const { title, limits, infrastructure } = currentState;
+    const { title, endpoint, limits, infrastructure } = currentState;
     const entryPoint = infrastructure?.entryPoint;
     const retention = limits?.mimir?.compactor_blocks_retention_period
       ? formatObservabilityDuration(limits?.mimir?.compactor_blocks_retention_period, dateFnsLocale)
@@ -20,7 +20,8 @@ export const mapTenantsToListing = (tenants: Tenant[], dateFnsLocale: Locale): T
       id,
       name: title,
       infrastructure,
-      endpoint: entryPoint,
+      entryPoint,
+      endpoint,
       retention,
       numberOfSeries,
       resourceStatus,
