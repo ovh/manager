@@ -5,7 +5,6 @@ import { Routes } from 'react-router-dom';
 import { IMetricsToCustomerModule } from '@/IMetricsToCustomerModule.interface';
 import { DashboardProvider } from '@/contexts';
 import getMetricsToCustomerRoutes from '@/routes/routes';
-import '@/public/translations';
 
 export function MetricsToCustomerModule(
   moduleProps: Readonly<IMetricsToCustomerModule>,
