@@ -19,7 +19,7 @@
     "tags_cell": "Tags",
     "clipboard_error_label": "Erreur",
     "create_tenant_button": "Ajouter un nouveau tenant",
-    "details_action": "Details",
+    "details_action": "Détails",
     "access_grafana_action": "Accéder à Grafana",
     "copy_uid_action": "Copier l'UID du tenant",
     "generate_access_token_action": "Générer un jeton d'accès",
