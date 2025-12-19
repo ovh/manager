@@ -11,6 +11,13 @@ export default mergeConfig(
   createConfig({
     test: {
       setupFiles: './src/setupTests.tsx',
+      server: {
+        deps: {
+          // Inline @ovh-ux/logs-to-customer packages to fix ESM resolution issues
+          // (missing .js extensions in compiled output)
+          inline: [/@ovh-ux\/logs-to-customer/],
+        },
+      },
       coverage: {
         exclude: [
           ...defaultExcludedFiles,

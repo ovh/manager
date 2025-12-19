@@ -12,8 +12,11 @@ export const getLogStreamsMocks = ({ isLogStreamsKO }: GetLogStreamsMocksParams)
   {
     url: '/dbaas/logs/:serviceName/output/graylog/stream',
     response: isLogStreamsKO ? { message: LogStreamsError } : logStreamsMock,
+    icebergResponse: isLogStreamsKO ? { message: LogStreamsError } : logStreamsMock,
+    headers: { 'x-pagination-elements': `${logStreamsMock.length}` },
     status: isLogStreamsKO ? 500 : 200,
     api: 'v6',
+    delay: 100,
   },
 ];
 
