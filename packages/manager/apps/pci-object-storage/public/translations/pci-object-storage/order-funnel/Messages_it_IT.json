@@ -88,12 +88,12 @@
   "showAllRegions": "Visualizzare tutte le Region",
   "summaryEncryptionPlaintext": "Nessuna",
   "labelObjectLock": "Object Lock",
-  "descriptionObjectLock": "Con Object Lock, puoi memorizzare oggetti in modalità WORM (Write Once, Read Many), garantendo la loro integrità impedendo qualsiasi modifica o cancellazione dopo la scrittura. <0>Scopri di più</0>",
+  "descriptionObjectLock": "Con Object Lock archivi oggetti in modalità WORM (Write Once, Read Many), garantendone l'integrità e impedendone modifica o eliminazione dopo la scrittura. &lt;0>Più informazioni&lt;/0>",
   "objectLockTypeDisabledPopover": "Per attivare la funzionalità Object Lock, è necessario attivare il versioning",
-  "objectLockCannotDisableAlert": "In questa fase, viene proposta solo l'attivazione della funzionalità. La configurazione dettagliata di Object Lock (modalità, periodo di retention, ecc.) avverrà dopo la creazione del bucket. Si prega di notare che questa azione è irreversibile: una volta attivato, Object Lock non può più essere disattivato sul bucket.",
+  "objectLockCannotDisableAlert": "In questa fase viene proposta solo l'attivazione della funzionalità. La configurazione dettagliata di Object Lock (modalità, periodo di retention, etc.) sarà possibile dopo la creazione del bucket. Ti ricordiamo che questa azione è irreversibile: una volta attivata, Object Lock non potrà più essere disattivato sul bucket.",
   "summaryObjectLockSection": "Object Lock",
   "summaryObjectLockEnabled": "Object Lock attivato",
   "summaryObjectLockDisabled": "Object Lock disattivato",
-  "objectLockAcknowledgementLabel": "Comprendo il funzionamento e le implicazioni dell'attivazione della funzionalità di Object Lock. <0>Scopri di più</0>",
-  "objectLockAcknowledgementRequired": "Devi riconoscere il funzionamento di Object Lock prima di continuare"
+  "objectLockAcknowledgementLabel": "Comprendo il funzionamento e le implicazioni dell'attivazione della funzionalità Object Lock. &lt;0>Più informazioni&lt;/0>",
+  "objectLockAcknowledgementRequired": "Prima di continuare, è necessario dichiarare di essere a conoscenza del funzionamento di Object Lock."
 }

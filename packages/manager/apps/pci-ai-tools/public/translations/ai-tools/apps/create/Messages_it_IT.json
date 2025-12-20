@@ -68,6 +68,6 @@
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
   "summaryCustomMetricsUrlLabel": "URL: ",
   "summaryCustomMetricsFormatLabel": "Formato: {{for}}",
-  "summaryCustomMetricsLocationLabel": "Posizione: ",
+  "summaryCustomMetricsLocationLabel": "Localizzazione: ",
   "summaryCustomMetricsTargetValueLabel": "Valore: {{val}}"
 }

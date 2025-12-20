@@ -40,10 +40,10 @@
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Close",
-  "pci_projects_project_storages_cold_archive_banner_title": "New: archive items individually from your Object Storage dashboard!",
-  "pci_projects_project_storages_cold_archive_banner_description": "It is now possible to archive items one by one to optimize your storage costs and better manage your data, without having to archive the entire container.",
-  "pci_projects_project_storages_cold_archive_banner_feature_intro": "This feature is accessible directly from your Object Storage dashboard, from your existing containers:",
-  "pci_projects_project_storages_cold_archive_banner_feature_1": "upload your items by classifying them directly into Cold Archive;",
+  "pci_projects_project_storages_cold_archive_banner_title": "New: archive objects individually from your Object Storage dashboard!",
+  "pci_projects_project_storages_cold_archive_banner_description": "You can now archive objects one at a time to optimise your storage costs and better manage your data, without having to archive the entire container.",
+  "pci_projects_project_storages_cold_archive_banner_feature_intro": "You can access this feature directly from your Object Storage dashboard, via your existing containers:",
+  "pci_projects_project_storages_cold_archive_banner_feature_1": "Upload your objects by filing them directly in the Cold Archive;",
   "pci_projects_project_storages_cold_archive_banner_feature_2": "or use lifecycle rules to transfer data to the Cold Archive class.",
   "pci_projects_project_storages_cold_archive_banner_cta": "Try it now!"
 }
