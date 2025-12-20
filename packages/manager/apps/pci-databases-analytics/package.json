@@ -24,7 +24,7 @@
   "dependencies": {
     "@datatr-ux/ovhcloud-types": "2.0.1",
     "@datatr-ux/uxlib": "1.0.0-alpha-34",
-    "@hookform/resolvers": "3.10.0",
+    "@hookform/resolvers": "3.3.4",
     "@monaco-editor/react": "4.7.0",
     "@ovh-ux/manager-config": "8.8.5",
     "@ovh-ux/manager-core-api": "0.21.0",
@@ -33,6 +33,7 @@
     "@ovh-ux/manager-react-shell-client": "1.0.2",
     "@ovh-ux/request-tagger": "0.6.0",
     "@ovh-ux/shell": "4.10.0",
+    "@ovhcloud/ods-components": "17.2.2",
     "@ovhcloud/ods-react": "19.2.1",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "@ovhcloud/ods-themes": "19.2.0",
@@ -68,7 +69,7 @@
     "@types/node": "20.12.5",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.3.0",
-    "monaco-editor": "0.52.2"
+    "monaco-editor": "^0.52.2"
   },
   "regions": [
     "CA",
