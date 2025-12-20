@@ -491,6 +491,7 @@
   "domain_configuration_dns_entry_add_success": "The record has been added to the DNS zone, but please note that the change may take up to 24 hours to propagate.",
   "domain_configuration_dns_entry_add_fail": "An error has occurred adding the record to the DNS zone.",
   "domain_configuration_dns_importtext_title": "Enter below the text related to the DNS zones you want to import: ",
+  "domain_configuration_dns_importtext_iacwarning": "Users of Terraform or IaC tools: changing zones in text mode reinitializes the internal ID of each DNS record, thereby invalidating the Terraform state.",
   "domain_configuration_dns_importtext_confirm": "You are about to import a new DNS zone configuration.",
   "domain_configuration_dns_importtext_propagation_info": "The configuration will be imported in a few moments, but please note that the change may take up to 24 hours to propagate.",
   "domain_configuration_dns_importtext_success": "The configuration will be imported in a few moments. You can track the progress of the DNS zone import in the ‘Recent tasks’ section, but please note that the change may take up to 24 hours to propagate.",

@@ -491,6 +491,7 @@
   "domain_configuration_dns_entry_add_success": "Der Eintrag wurde in der DNS-Zone hinzugefügt. Bitte berücksichtigen Sie auch die Propagationszeit von höchstens 24 Stunden.",
   "domain_configuration_dns_entry_add_fail": "Beim Hinzufügen des Eintrags zur DNS-Zone ist ein Fehler aufgetreten.",
   "domain_configuration_dns_importtext_title": "Tragen Sie hier den entsprechenden Text für die DNS-Zonen ein, die Sie importieren möchten:",
+  "domain_configuration_dns_importtext_iacwarning": "Benutzer von Terraform oder IaC-Tools: Der Wechsel der Zone im Textmodus initialisiert die interne ID jedes DNS-Eintrags neu und macht damit den Terraform-Status ungültig.",
   "domain_configuration_dns_importtext_confirm": "Sie sind im Begriff, eine neue Konfiguration der DNS-Zone zu importieren.",
   "domain_configuration_dns_importtext_propagation_info": "Die Konfiguration wird in wenigen Sekunden importiert. Bitte berücksichtigen Sie auch die Propagationszeit von höchstens 24 Stunden.",
   "domain_configuration_dns_importtext_success": "Die Konfiguration wird in wenigen Augenblicken importiert. Sie können den Fortschritt des Imports der DNS-Zone im Bereich „Aktuelle Tasks“ nachverfolgen. Bitte beachten Sie die Propagationszeit von höchstens 24 Stunden.",
