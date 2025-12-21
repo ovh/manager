@@ -33,6 +33,8 @@ type CreateAddIdentitiesProps = {
   nextStep: () => void;
 };
 
+const isServiceAccountDefined = <T,>(value: T | null | undefined): value is T => value != null;
+
 const CreateAddIdentities = ({
   identityURNs,
   setIdentityURNs,
@@ -58,7 +60,7 @@ const CreateAddIdentities = ({
             ...groupList.map((group) => group.urn),
             ...serviceAccountList
               .map((serviceAccount) => serviceAccount.identity)
-              .filter((identity) => identity !== null),
+              .filter(isServiceAccountDefined),
           ],
     );
   }, [

@@ -12,7 +12,7 @@ export const groupOkmsListByRegion = (okmsList: OKMS[]): GroupedOkmsList => {
     if (!acc[region]) {
       acc[region] = [];
     }
-    acc[region].push(okms);
+    acc[region]?.push(okms);
     return acc;
   }, {});
   return okmsListGroupeByRegion;

@@ -1,4 +1,4 @@
-import { IdentityType } from '@key-management-service/types/identity.type';
+import { IdentityObject, IdentityType } from '@key-management-service/types/identity.type';
 
 import { decodeIdentity } from './decodeIdentities';
 
@@ -7,11 +7,11 @@ interface IfilterIdentities {
   type: IdentityType;
 }
 
-export const filterIdentities = ({ identities, type }: IfilterIdentities) => {
-  const decodedIdentities = identities
-    .map((i) => decodeIdentity(i))
-    .filter((i) => i?.type === type)
-    .filter((i) => i !== null);
+const isIdentityOfType =
+  (type: IdentityType) =>
+  (i: IdentityObject | null | undefined): i is IdentityObject =>
+    i != null && i.type === type;
 
-  return decodedIdentities;
+export const filterIdentities = ({ identities, type }: IfilterIdentities) => {
+  return identities.map(decodeIdentity).filter(isIdentityOfType(type));
 };

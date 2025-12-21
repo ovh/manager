@@ -58,7 +58,7 @@ const buildRegionOptions = (locations: Location[], okmsList: OKMS[]): RegionOpti
             : SECRET_MANAGER_ROUTES_URLS.okmsList(region),
       };
     })
-    .filter((option) => option !== null);
+    .filter((option): option is RegionOption => option !== null);
 };
 
 /**
