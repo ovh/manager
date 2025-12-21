@@ -14,8 +14,8 @@
     "build": "tsc && vite build",
     "coverage": "manager-test run --coverage",
     "start": "tsc && vite",
-    "test": "manager-test run",
-    "test:coverage": "manager-test run --coverage"
+    "test": "manager-test --config vitest.config.mjs run",
+    "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
   },
   "dependencies": {
     "@ovh-ux/logs-to-customer": "^1.10.7",
