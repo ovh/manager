@@ -6648,11 +6648,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.23.2.tgz#71f4812de2400a5897159a18bb9d7f5f3a05fd30"
   integrity sha512-+kWwTgA51z8rDTXbMiZiCH85L2nSewD9H/HVrqFivo1/1uZLrNHkOLKouGVmP7isnqFRAMyOa0FTbDtk2Dm6LQ==
 
-"@ovh-ux/manager-common-translations@^0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.9.1.tgz#9e79e284f461fa5396d70cd7641f0e4c694bd115"
-  integrity sha512-UJ/8hLplbB9qi+Nh4NoJO62PG0ZMBx9gZLJOsT83m1uL7trknY8ZOEuH5p3YWJwSbRc6G4mEHEwwsoG5w/zwiw==
-
 "@ovh-ux/manager-config@8.8.0":
   version "8.8.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-8.8.0.tgz#a10d67f5cc4cc18d8bebd3eab86150f12471efd9"
