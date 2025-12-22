@@ -76,6 +76,10 @@
     "pnpm": "packages/manager/modules/cloud-universe-components"
   },
   {
+    "turbo": "--filter @ovh-ux/manager-common-translations",
+    "pnpm": "packages/manager/modules/common-translations"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-module-common-api",
     "pnpm": "packages/manager/modules/common-api"
   },
