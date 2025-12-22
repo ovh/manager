@@ -3,7 +3,6 @@
   "packages/manager-ui-kit",
   "packages/manager-wiki",
   "packages/manager/apps/billing",
-  "packages/manager/apps/carbon-calculator",
   "packages/manager/apps/carrier-sip",
   "packages/manager/apps/cda",
   "packages/manager/apps/cloud-connect",
