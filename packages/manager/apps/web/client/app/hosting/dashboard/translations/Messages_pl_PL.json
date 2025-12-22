@@ -198,7 +198,7 @@
   "hosting_dashboard_service_default_runtime": "Domyślny framework",
   "hosting_dashboard_available_space": "Dostępna przestrzeń",
   "hosting_tab_DOMAINS_OLD": "Strony WWW",
-  "hosting_tab_MULTISITE": "MultiSite",
+  "hosting_tab_MULTISITE": "Multisite",
   "hosting_tab_FTP": "FTP - SSH",
   "hosting_tab_MODULE": "Moduły CMS",
   "hosting_tab_DATABASE": "Bazy danych",
@@ -1408,5 +1408,7 @@
   "hosting_dashboard_service_filer_helper": "Identyfikator kolejki może ulec zmianie",
   "hosting_dashboard_service_state_TO_CREATE": "Do utworzenia",
   "hosting_tab_DATABASES_configuration__action_button": "Usuń bazę danych",
-  "hosting_tab_DATABASES_configuration__available_slot": "Dostępna baza danych"
+  "hosting_tab_DATABASES_configuration__available_slot": "Dostępna baza danych",
+  "hosting_tab_WEBSITE": "Moje strony",
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Wybierz domenę"
 }

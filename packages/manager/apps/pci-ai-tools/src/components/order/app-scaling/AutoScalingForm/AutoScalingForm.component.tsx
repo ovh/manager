@@ -27,16 +27,6 @@ export function AutoScalingForm({ pricingFlavor }: AutoScalingFormProps) {
         {!isCustom && <CpuRamFields />}
         {isCustom && <CustomMetricsFields />}
       </div>
-      {pricingFlavor && (
-        <div>
-          <Price
-            decimals={2}
-            displayInHour={true}
-            priceInUcents={(minRep ?? 1) * 60 * pricingFlavor.price}
-            taxInUcents={(minRep ?? 1) * 60 * pricingFlavor.tax}
-          />
-        </div>
-      )}
     </div>
   );
 }

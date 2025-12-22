@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.12.5...@ovh-ux/manager-web-hosting-app@0.13.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 784] ([88e872a](https://github.com/ovh/manager/commit/88e872a061a7c8944fef9b9ee5d37564a187eef7))
+* **i18n:** add missing translations [CDS 798] ([ed8810a](https://github.com/ovh/manager/commit/ed8810a993d919d5097cc677bc8564a0286d5607))
+* **i18n:** add missing translations [CDS 798] ([6c400b4](https://github.com/ovh/manager/commit/6c400b4fa576588aded8ce925b93731a8452d779))
+* **i18n:** add missing translations [CDS 806] ([ac9843b](https://github.com/ovh/manager/commit/ac9843b2bc3fcc37bf26d6a0f674d2a0202b86e4))
+* **i18n:** add missing translations [CDS 806] ([2bf8358](https://github.com/ovh/manager/commit/2bf8358f91030454e35a07e9762d51a3a319fff3))
+* **i18n:** add missing translations [CDS 812] ([9a9a246](https://github.com/ovh/manager/commit/9a9a246a1c07f3cef3738ed8cfcf2d4505fb36fc))
+* **i18n:** add missing translations [CDS 821] ([fdb19fd](https://github.com/ovh/manager/commit/fdb19fd463f909ed665e837e7a6f7e20e8ccf9ca))
+* **i18n:** add missing translations [CDS 822] ([b8e43ee](https://github.com/ovh/manager/commit/b8e43eeae614a94143f12f301cef6896fdd3521c))
+* **i18n:** add missing translations [CDS 823] ([9e08c6a](https://github.com/ovh/manager/commit/9e08c6ae3fae5261ae153e21ade2f0b8032c6e73))
+* **i18n:** add missing translations [CDS 825] ([13aa24e](https://github.com/ovh/manager/commit/13aa24eb3581b8e6306b50394d3f59b97297b725))
+* **i18n:** add missing translations [CDS 825] ([931d0bb](https://github.com/ovh/manager/commit/931d0bb7caa2f23b9e3a34b211a0a5d10874906c))
+* **i18n:** add missing translations [CDS 828] ([2946b52](https://github.com/ovh/manager/commit/2946b5252f632711e44d9ed294877102cecda75a))
+* **i18n:** add missing translations [CDS 834] ([cad3e73](https://github.com/ovh/manager/commit/cad3e73baf0fdffbe49051d044d2ecf788500c66))
+* **i18n:** add missing translations [CDS 893] ([d758e99](https://github.com/ovh/manager/commit/d758e997f775b79bb4c17015be63e5a51a5c24db))
+* **i18n:** add missing translations [CDS 901] ([d967ae7](https://github.com/ovh/manager/commit/d967ae7d77c9f117f068a623c60f671868099cfa))
+* **i18n:** add missing translations [CDS 906] ([c410d49](https://github.com/ovh/manager/commit/c410d490c551c3ea60417cee1da725e55c4257ab))
+* **web-hosting:** fix height datagrid ([443131c](https://github.com/ovh/manager/commit/443131c47113b0375325cbe87267d1fa3e4ca6fc)), closes [#PUWEBPT-86](https://github.com/ovh/manager/issues/PUWEBPT-86)
+* **web-hosting:** fix post demo issues ([4b184cd](https://github.com/ovh/manager/commit/4b184cde6168179b03cdda324c922ac08e8dd680)), closes [#PUWEBPT-101](https://github.com/ovh/manager/issues/PUWEBPT-101)
+* **web-hosting:** fix success and error messages for detach domain ([0703b7c](https://github.com/ovh/manager/commit/0703b7cad3fcaeaf88ec19c69d02b22641a4077d)), closes [#PUWEBPT-64](https://github.com/ovh/manager/issues/PUWEBPT-64)
+* **web-hosting:** fix tests ([549c92b](https://github.com/ovh/manager/commit/549c92be4c84913baf9bb0f807a095bfc8250e72)), closes [#PUWEBPT-86](https://github.com/ovh/manager/issues/PUWEBPT-86)
+* **web-hosting:** fix tests ([c3374c5](https://github.com/ovh/manager/commit/c3374c596455ac6abdbdfeb33b67e17ffe001a91)), closes [#PUWEBPT-86](https://github.com/ovh/manager/issues/PUWEBPT-86)
+
+
+### Features
+
+* **web-hosting:** [MIG. REACT] Multisite - Information about the last deployment ([aa2fd8f](https://github.com/ovh/manager/commit/aa2fd8f6f5acf3c5ae00244731e118c7800c7d9a)), closes [#PUWEBPT-77](https://github.com/ovh/manager/issues/PUWEBPT-77)
+* **web-hosting:** add cms module when adding external site and post demo return ([2936402](https://github.com/ovh/manager/commit/2936402d1615771f07ee16192ec55c86d762be0e)), closes [#PUWEBPT-101](https://github.com/ovh/manager/issues/PUWEBPT-101)
+* **web-hosting:** add datagrid multisite ([867afc8](https://github.com/ovh/manager/commit/867afc8329b60011ad9a2e11173994aeb325074b)), closes [#PUWEBPT-62](https://github.com/ovh/manager/issues/PUWEBPT-62)
+* **web-hosting:** add default value for modify domain ([d80d759](https://github.com/ovh/manager/commit/d80d759683381d96f7fe990c8f0e7083703ff21c)), closes [#PUWEBPT-126](https://github.com/ovh/manager/issues/PUWEBPT-126)
+* **web-hosting:** add delete git modal ([1f3494d](https://github.com/ovh/manager/commit/1f3494daf550ba7d814e992c4689d72b3fcd6f16)), closes [#PUWEBPT-70](https://github.com/ovh/manager/issues/PUWEBPT-70)
+* **web-hosting:** add feature flipping ([f0fbbdf](https://github.com/ovh/manager/commit/f0fbbdf1da41027a48016f20c4644fcd150db41c)), closes [#PUWEBPT-158](https://github.com/ovh/manager/issues/PUWEBPT-158)
+* **web-hosting:** add modify domain modal ([7b641c0](https://github.com/ovh/manager/commit/7b641c0ffdba9e8a8da6727a05c842fb6e3cb19a)), closes [#PUWEBPT-63](https://github.com/ovh/manager/issues/PUWEBPT-63)
+* **web-hosting:** add muk ([1172453](https://github.com/ovh/manager/commit/1172453f2f86156aa79d96c37323bde35c4fb4dc)), closes [#PUWEPT-86](https://github.com/ovh/manager/issues/PUWEPT-86)
+* **web-hosting:** add path input on external website ([81e77b8](https://github.com/ovh/manager/commit/81e77b8b724f2e51d175521a0b6351de9c2d050e)), closes [#PUWEBPT-145](https://github.com/ovh/manager/issues/PUWEBPT-145)
+* **web-hosting:** add purge cdn modal ([5a7fcdd](https://github.com/ovh/manager/commit/5a7fcddb7a46962d7f3c579b61441b9476b3b67a)), closes [#PUWEBPT-66](https://github.com/ovh/manager/issues/PUWEBPT-66)
+* **web-hosting:** add subdomain on multisite ([1a4bd06](https://github.com/ovh/manager/commit/1a4bd064ea482138ba676f9442cf162954528312)), closes [#PUWEBPT-123](https://github.com/ovh/manager/issues/PUWEBPT-123)
+* **web-hosting:** add technical conception for multisite ([9d6b65c](https://github.com/ovh/manager/commit/9d6b65c340fabdad47839eef2b42408276b10937)), closes [#PUWEBPT-51](https://github.com/ovh/manager/issues/PUWEBPT-51)
+* **web-hosting:** create add domain page ([e7bd82f](https://github.com/ovh/manager/commit/e7bd82f229a22873f4186f4bf75402f278185c85)), closes [#PUWEBPT-31](https://github.com/ovh/manager/issues/PUWEBPT-31)
+* **web-hosting:** create add website page ([3df690b](https://github.com/ovh/manager/commit/3df690b31b1d872bbe157f4076d291cb784dae73)), closes [#PUWEBPT-101](https://github.com/ovh/manager/issues/PUWEBPT-101)
+* **web-hosting:** delete actions button and migrate activate cdn ([4039ab2](https://github.com/ovh/manager/commit/4039ab220f5690a4b87be0b46849372dd0a953fe)), closes [#PUWEBPT-97](https://github.com/ovh/manager/issues/PUWEBPT-97)
+* **web-hosting:** detach domain modal react migration ([c201afd](https://github.com/ovh/manager/commit/c201afd80387a0c14a4832e09ee82768f89f64e2)), closes [#PUWEBPT-64](https://github.com/ovh/manager/issues/PUWEBPT-64)
+* **web-hosting:** fix tests and add get expanded row ([be9ce6b](https://github.com/ovh/manager/commit/be9ce6b4014a76a69ee6a946d955a191ad55df99)), closes [#PUWEPT-86](https://github.com/ovh/manager/issues/PUWEPT-86)
+* **web-hosting:** manage add and detach domain ([aac58b4](https://github.com/ovh/manager/commit/aac58b482e68c9450b1632c5d393a47e3d645331)), closes [#PUWEBPT-156](https://github.com/ovh/manager/issues/PUWEBPT-156)
+* **web-hosting:** manage rooting page for git association and configuration ([a2efcb1](https://github.com/ovh/manager/commit/a2efcb1f1e0128478624e42385ba1c56e73c3ac6)), closes [#PUWEBPT-105](https://github.com/ovh/manager/issues/PUWEBPT-105)
+* **web-hosting:** migrate cdn modification page into react ([0904e62](https://github.com/ovh/manager/commit/0904e6227e2db2e672249149bbdd6a387b4ab373)), closes [#PUWEBPT-65](https://github.com/ovh/manager/issues/PUWEBPT-65)
+* **web-hosting:** muk adaptation ([76d2df5](https://github.com/ovh/manager/commit/76d2df52b5285618f4b59e47fe853550d59a5de4)), closes [#PUWEBPT-86](https://github.com/ovh/manager/issues/PUWEBPT-86)
+* **web-hosting:** multisite deploy GIT ([4c75550](https://github.com/ovh/manager/commit/4c755504275ff2970057fbc327940b5d3552bba8)), closes [#PUWEBPT-73](https://github.com/ovh/manager/issues/PUWEBPT-73)
+* **web-hosting:** post demo modification ([9559f02](https://github.com/ovh/manager/commit/9559f022e63b987d010d811e180ce15ab9ab3fea)), closes [#PUWEBPT-114](https://github.com/ovh/manager/issues/PUWEBPT-114)
+* **web-hosting:** readd module links ([d2cc1e6](https://github.com/ovh/manager/commit/d2cc1e657675c2283a49d9c52c59d622aeabd5d7)), closes [#PUWEBPT-108](https://github.com/ovh/manager/issues/PUWEBPT-108)
+* **web-hosting:** update cdn cache rule values ([5417fe7](https://github.com/ovh/manager/commit/5417fe726ee0618925a689faa489f8e14f5d3974)), closes [#PUWEBPT-135](https://github.com/ovh/manager/issues/PUWEBPT-135)
+
+
+
+
+
 ## [0.12.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.12.4...@ovh-ux/manager-web-hosting-app@0.12.5) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app

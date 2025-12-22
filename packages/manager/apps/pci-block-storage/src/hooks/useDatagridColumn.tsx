@@ -78,6 +78,7 @@ export const useDatagridColumn = (projectId: string, projectUrl: string) => {
         <Badge
           label={volume.encryptionStatus}
           color={volume.encrypted ? 'success' : 'neutral'}
+          className="whitespace-nowrap"
         />
       ),
       label: t('pci_projects_project_storages_blocks_encrypted_label'),

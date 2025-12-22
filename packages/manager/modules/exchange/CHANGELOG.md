@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.4...@ovh-ux/manager-exchange@4.17.0) (2025-12-18)
+
+
+### Features
+
+* **web:** remove beta badge for logs to customer ([ca05327](https://github.com/ovh/manager/commit/ca05327eeece948dd0ce72a8f8dab734db1c9203)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
 ## [4.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.3...@ovh-ux/manager-exchange@4.16.4) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-exchange

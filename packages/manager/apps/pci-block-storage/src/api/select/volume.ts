@@ -5,22 +5,25 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { TFunction } from 'i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { TVolume } from '@/api/hooks/useVolume';
+import { TVolume, UseVolumeResult } from '@/api/hooks/useVolume';
 import {
   AddVolumeProps,
   TAPIVolume,
+  TRetypeVolumeProps,
   TUpdateVolumeProps,
 } from '@/api/data/volume';
 import { TVolumeCatalog } from '@/api/data/catalog';
 import {
   getPricingSpecsFromModelPricings,
   getVolumeModelPricings,
+  is3az,
   TModelPrice,
 } from '@/api/select/catalog';
 import {
   BlockStorageListColumn,
   isBlockStorageListColumn,
 } from '@/hooks/useDatagridColumn';
+import { capitalizeFirstLetter } from '@/utils';
 
 const volumeComparator = <T>(extractor: (_: TVolume) => T) => (
   t1: TVolume,
@@ -97,6 +100,7 @@ export type TVolumeStatus = {
   statusGroup: string;
   statusLabel: string;
 };
+
 export const mapVolumeStatus = <V extends TAPIVolume>(
   t: TFunction<['common']>,
 ) => (volume: V): V & TVolumeStatus => {
@@ -131,12 +135,12 @@ export const mapVolumeStatus = <V extends TAPIVolume>(
     statusGroup,
     statusLabel: t('common:pci_projects_project_storages_blocks_status', {
       context: statusGroup,
-      defaultValue: volume.status,
+      defaultValue: capitalizeFirstLetter(volume.status),
     }),
   };
 };
 
-const getVolumePricing = (catalog?: TVolumeCatalog) => {
+export const getVolumePricing = (catalog?: TVolumeCatalog) => {
   const catalogPricing = catalog?.models.flatMap((m) => m.pricings) ?? [];
 
   return (volume: Pick<TAPIVolume, 'type' | 'region'>) =>
@@ -161,11 +165,15 @@ export const mapVolumeAttach = <V extends TAPIVolume>(
 
     const maxAttachedInstances = pricing?.specs.maxAttachedInstances || 1;
 
+    const isVolumeBeingRetyped = volume.status === 'retyping';
+
     return {
       ...volume,
       maxAttachedInstances,
-      canAttachInstance: maxAttachedInstances > volume.attachedTo.length,
-      canDetachInstance: volume.attachedTo.length > 0,
+      canAttachInstance:
+        maxAttachedInstances > volume.attachedTo.length &&
+        !isVolumeBeingRetyped,
+      canDetachInstance: volume.attachedTo.length > 0 && !isVolumeBeingRetyped,
     };
   };
 };
@@ -180,14 +188,29 @@ export type TVolumeEncryption = {
   encrypted: boolean | null;
   encryptionType: EncryptionType | null;
 };
+
+export const getEncryption = (catalog?: TVolumeCatalog) => <
+  V extends TAPIVolume
+>(
+  volume: V,
+) => {
+  const encrypted = getVolumePricing(catalog)(volume)?.specs.encrypted ?? null;
+  const encryptionType = encrypted ? EncryptionType.OMK : null;
+
+  return {
+    encrypted,
+    encryptionType,
+  };
+};
+
 export const mapVolumeEncryption = <V extends TAPIVolume>(
   t: TFunction<['common']>,
   catalog?: TVolumeCatalog,
 ) => {
-  const getPrice = getVolumePricing(catalog);
+  const getEncryptionForVolume = getEncryption(catalog);
 
   return (volume: V): V & TVolumeEncryption => {
-    const encrypted = getPrice(volume)?.specs.encrypted ?? null;
+    const { encrypted, encryptionType } = getEncryptionForVolume(volume);
 
     let encryptionStatusContext = 'UNKNOWN';
     if (encrypted !== null) {
@@ -203,7 +226,7 @@ export const mapVolumeEncryption = <V extends TAPIVolume>(
           defaultValue: encryptionStatusContext,
         },
       ),
-      encryptionType: encrypted ? EncryptionType.OMK : null,
+      encryptionType,
       encrypted,
     };
   };
@@ -242,6 +265,19 @@ export const mapVolumePricing = <V extends TAPIVolume>(
   };
 };
 
+const getVolumeTypeName = (
+  catalog: TVolumeCatalog,
+  region: string,
+  type: string,
+  encryptionType: EncryptionType,
+): string | undefined =>
+  catalog.models
+    .find((m) => m.name === type)
+    ?.pricings?.find(
+      (p) =>
+        p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
+    )?.specs?.name;
+
 export type TVolumeToAdd = {
   name: string;
   region: string;
@@ -251,6 +287,10 @@ export type TVolumeToAdd = {
   availabilityZone: string | null;
 };
 
+export enum TErrors {
+  VOLUME_TYPE_NOT_FOUND = 'volume_not_found',
+}
+
 export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
   name,
   region,
@@ -258,20 +298,17 @@ export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
   type,
   availabilityZone,
   encryptionType,
-}: TVolumeToAdd): AddVolumeProps => {
-  const pricing = catalog.models
-    .find((m) => m.name === type)
-    .pricings.find(
-      (p) =>
-        p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
-    );
+}: TVolumeToAdd): AddVolumeProps | TErrors.VOLUME_TYPE_NOT_FOUND => {
+  const typeName = getVolumeTypeName(catalog, region, type, encryptionType);
+
+  if (!typeName) return TErrors.VOLUME_TYPE_NOT_FOUND;
 
   return {
     projectId,
     name,
     region,
     size,
-    type: pricing.specs.name,
+    type: typeName,
     availabilityZone,
   };
 };
@@ -283,7 +320,7 @@ export type TVolumeToEdit = {
     size: number;
     bootable: boolean;
   };
-  originalVolume: TVolume;
+  originalVolume: UseVolumeResult;
 };
 
 export const mapVolumeToEdit = ({
@@ -304,3 +341,49 @@ export const mapVolumeToEdit = ({
     size: originalVolume.size,
   },
 });
+
+export const isClassicMultiAttach = (volume: TAPIVolume) =>
+  volume.type === 'classic-multiattach';
+
+export const canRetype = <V extends TAPIVolume>(catalog?: TVolumeCatalog) => (
+  volume: V,
+) =>
+  !getEncryption(catalog)(volume).encrypted &&
+  !(is3az(catalog?.regions, volume.region) && isClassicMultiAttach(volume));
+
+export type TVolumeType = {
+  is3az: boolean;
+  isClassicMultiAttach: boolean;
+  canRetype: boolean;
+};
+
+export const mapVolumeType = <V extends TAPIVolume>(
+  catalog?: TVolumeCatalog,
+) => (volume: V): V & TVolumeType => ({
+  ...volume,
+  is3az: is3az(catalog?.regions || [], volume.region),
+  isClassicMultiAttach: isClassicMultiAttach(volume),
+  canRetype: canRetype(catalog)(volume),
+});
+
+export type TVolumeToRetype = {
+  type: string;
+};
+
+export const mapVolumeToRetype = (
+  projectId: string,
+  volume: TAPIVolume,
+  catalog: TVolumeCatalog,
+) => ({
+  type,
+}: TVolumeToRetype): TRetypeVolumeProps | TErrors.VOLUME_TYPE_NOT_FOUND => {
+  const typeName = getVolumeTypeName(catalog, volume.region, type, null);
+
+  if (!typeName) return TErrors.VOLUME_TYPE_NOT_FOUND;
+
+  return {
+    projectId,
+    originalVolume: { id: volume.id, region: volume.region },
+    newType: typeName,
+  };
+};

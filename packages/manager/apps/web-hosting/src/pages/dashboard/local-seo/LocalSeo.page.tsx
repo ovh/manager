@@ -4,15 +4,15 @@ import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { BUTTON_SIZE, Button, ICON_NAME, Icon, Link, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, Notifications, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Datagrid, Notifications, useDataApi } from '@ovh-ux/muk';
 
 import Loading from '@/components/loading/Loading.component';
 import { LOCAL_SEO_ORDER_OPTIONS_SERVICE, LOCAL_SEO_VISIBILITY_CHECKER } from '@/constants';
+import { LocalSeoType } from '@/data/types/product/seo';
 import useDatagridColumn from '@/hooks/localSeo/useDatagridColumn';
 
 export default function LocalSeo() {
@@ -28,46 +28,49 @@ export default function LocalSeo() {
 
   const columns = useDatagridColumn();
 
-  const { flattenData, hasNextPage, fetchNextPage, isLoading } = useResourcesIcebergV6({
+  const { flattenData, hasNextPage, fetchNextPage, isLoading } = useDataApi<LocalSeoType>({
+    version: 'v6',
     route: `/hosting/web/${serviceName}/localSeo/location`,
-    queryKey: ['hosting', 'web', serviceName, 'localSeo', 'location'],
+    cacheKey: ['hosting', 'web', serviceName, 'localSeo', 'location'],
+    enabled: !!serviceName,
+    iceberg: true,
   });
 
   return (
     <React.Suspense fallback={<Loading />}>
       <Notifications />
-      <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-6 mt-4">
+      <Text preset={TEXT_PRESET.heading3} className="mb-6 mt-4">
         {t('hosting_tab_LOCAL_SEO')}
-      </OdsText>
-      <OdsText className="mb-6">
+      </Text>
+      <Text className="mb-6">
         {t('hosting_tab_LOCAL_SEO_description')}
-        <OdsLink
-          href={LOCAL_SEO_VISIBILITY_CHECKER}
-          className="ml-3"
-          target="_blank"
-          icon={ODS_ICON_NAME.externalLink}
-          label={t('hosting_dashboard_local_seo_visibility_check')}
-        />
-      </OdsText>
-      <OdsButton
+        <Link href={LOCAL_SEO_VISIBILITY_CHECKER} className="ml-3" target="_blank">
+          <>
+            {t('hosting_dashboard_local_seo_visibility_check')}
+            <Icon name={ICON_NAME.externalLink}></Icon>
+          </>
+        </Link>
+      </Text>
+      <Button
         className="mb-10"
-        size={ODS_BUTTON_SIZE.sm}
-        label={t(`${NAMESPACES.ACTIONS}:order`)}
-        onClick={(e) => {
+        size={BUTTON_SIZE.sm}
+        onClick={(event) => {
           window.open(localSeoOrderURL.replace('{serviceName}', serviceName));
-          e.preventDefault();
+          event.preventDefault();
         }}
+      >
+        {t(`${NAMESPACES.ACTIONS}:order`)}
+      </Button>
+
+      <Datagrid
+        columns={flattenData ? columns : []}
+        data={flattenData || []}
+        hasNextPage={hasNextPage && !isLoading}
+        onFetchNextPage={(): void => {
+          void fetchNextPage();
+        }}
+        isLoading={isLoading}
       />
-      {columns && (
-        <Datagrid
-          columns={columns}
-          items={flattenData || []}
-          totalItems={flattenData?.length || 0}
-          hasNextPage={hasNextPage && !isLoading}
-          onFetchNextPage={fetchNextPage}
-          isLoading={isLoading}
-        />
-      )}
     </React.Suspense>
   );
 }

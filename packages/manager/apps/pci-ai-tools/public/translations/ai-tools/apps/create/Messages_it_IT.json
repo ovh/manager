@@ -68,6 +68,7 @@
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
   "summaryCustomMetricsUrlLabel": "URL: ",
   "summaryCustomMetricsFormatLabel": "Formato: {{for}}",
-  "summaryCustomMetricsLocationLabel": "Localizzazione: ",
-  "summaryCustomMetricsTargetValueLabel": "Valore: {{val}}"
+  "summaryCustomMetricsLocationLabel": "Posizione: ",
+  "summaryCustomMetricsTargetValueLabel": "Valore: {{val}}",
+  "warningCLITitle": "Impossibile generare l'equivalente CLI"
 }

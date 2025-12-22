@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.6](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.5...@ovh-ux/logs-to-customer@1.10.6) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4539] ([b90b9d2](https://github.com/ovh/manager/commit/b90b9d2b605ba03e7e364830f9e261479a2c1b7d))
+
+
+
+
+
 ## [1.10.5](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.4...@ovh-ux/logs-to-customer@1.10.5) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer

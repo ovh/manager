@@ -59,7 +59,6 @@ export default class {
     HostingCdnSharedService,
     HostingCdnOrderService,
     indyLink,
-    localSEOLink,
     logs,
     moduleLink,
     multisiteLink,
@@ -69,9 +68,9 @@ export default class {
     privateDatabasesIds,
     serviceName,
     runtimesLink,
-    taskLink,
     user,
     userLogsLink,
+    isWebsiteFeatureAvailable,
     HOSTING_STATUS,
     DOMAIN_ORDER_URL,
     HOSTING_ORDER_URL,
@@ -131,7 +130,6 @@ export default class {
     this.HostingCdnOrderService = HostingCdnOrderService;
     this.indyLink = indyLink;
     this.moduleLink = moduleLink;
-    this.multisiteLink = multisiteLink;
     this.pendingTasks = pendingTasks;
     this.PrivateDatabase = PrivateDatabase;
     this.privateDatabasesDetachable = privateDatabasesDetachable;
@@ -157,6 +155,14 @@ export default class {
       '#/:serviceName/localSeo',
       { serviceName },
     );
+    this.multisiteLink = isWebsiteFeatureAvailable
+      ? coreURLBuilder.buildURL('web-hosting', '#/:serviceName/multisite', {
+          serviceName,
+        })
+      : multisiteLink;
+    this.multisiteLabel = isWebsiteFeatureAvailable
+      ? 'hosting_tab_WEBSITE'
+      : 'hosting_tab_MULTISITE';
   }
 
   $onInit() {

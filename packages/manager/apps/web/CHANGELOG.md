@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.32.0...@ovh-ux/manager-web@19.33.0) (2025-12-18)
+
+
+### Features
+
+* **web:** remove beta badge for logs to customer ([ca05327](https://github.com/ovh/manager/commit/ca05327eeece948dd0ce72a8f8dab734db1c9203)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
+# [19.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.11...@ovh-ux/manager-web@19.32.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4538] ([91c38b8](https://github.com/ovh/manager/commit/91c38b80d4acacaa25391fa1df9672a4e848324f))
+* **i18n:** add missing translations [CDS 822] ([24ab8d6](https://github.com/ovh/manager/commit/24ab8d632e6a020384c171e98674de3cda2ab793))
+* **i18n:** add missing translations [CDS 920] ([3b91093](https://github.com/ovh/manager/commit/3b910935c340fa2fac6c256a2ea9cdbfa5c858b8))
+
+
+### Features
+
+* **web-hosting:** create add domain page ([e7bd82f](https://github.com/ovh/manager/commit/e7bd82f229a22873f4186f4bf75402f278185c85)), closes [#PUWEBPT-31](https://github.com/ovh/manager/issues/PUWEBPT-31)
+* **web-hosting:** manage multisite feature flipping on angular ([2bb053c](https://github.com/ovh/manager/commit/2bb053c2ccdc6f0468b9fa78bbb60d647f654e8d)), closes [#PUWEPT-158](https://github.com/ovh/manager/issues/PUWEPT-158)
+* **web-hosting:** manage rooting page for git association and configuration ([a2efcb1](https://github.com/ovh/manager/commit/a2efcb1f1e0128478624e42385ba1c56e73c3ac6)), closes [#PUWEBPT-105](https://github.com/ovh/manager/issues/PUWEBPT-105)
+* **web:** add placeholder on module for domain ([f763a34](https://github.com/ovh/manager/commit/f763a345d83688c8cb64d45918fda2c6d8a397d7)), closes [#PUWEBPT-5](https://github.com/ovh/manager/issues/PUWEBPT-5)
+
+
+
+
+
 ## [19.31.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.10...@ovh-ux/manager-web@19.31.11) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
