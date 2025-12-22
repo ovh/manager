@@ -16,17 +16,6 @@ jobs:
   duplicate-translation:
     runs-on: ubuntu-latest
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@v1.3.1
-        with:
-          tool-cache: true
-          android: false
-          dotnet: false
-          haskell: false
-          large-packages: false
-          docker-images: false
-          swap-storage: true
-
       - name: Checkout latest code
         uses: actions/checkout@v3
         with:
@@ -42,7 +31,18 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           # If it's a PR, use github.head_ref to get the source branch of the PR
-          CURRENT_BRANCH="${{ github.head_ref }}"
+          # Check if we are in a PR event
+          if [ -n "${{ github.head_ref }}" ]; then
+            CURRENT_BRANCH="${{ github.head_ref }}"
+          else
+            # Fallback to using `git` to get the current branch
+            CURRENT_BRANCH=$(git branch --show-current)
+            # Check if we are still in a detached HEAD state
+            if [ "$CURRENT_BRANCH" == "" ]; then
+              echo "Not on any branch (detached HEAD)"
+              CURRENT_BRANCH="detached-head"
+            fi
+          fi
           echo "My branch is $CURRENT_BRANCH"
           if [[ "$CURRENT_BRANCH" == "master" ]]; then
             echo "My branch is master and no unit test to run, exit..."
