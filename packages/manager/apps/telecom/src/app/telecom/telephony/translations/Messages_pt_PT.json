@@ -139,5 +139,6 @@
   "telephony_status_label_deleted": "Eliminado",
   "telephony_status_label_enabled": "OK",
   "telephony_status_label_expired": "Expirado",
-  "telephony_view_billing_account_label": "Detalhes do grupo de faturação"
+  "telephony_view_billing_account_label": "Detalhes do grupo de faturação",
+  "telephony_rio_label": "RIO (Extrato de Identidade do Operador)"
 }
