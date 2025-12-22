@@ -60,5 +60,14 @@
   "extendRestoreObjectToastSuccessDescription": "La prolongation a bien été prise en compte",
   "inProgressRestore": "Restauration en cours...",
   "available": "Disponible jusqu'au",
-  "seeVersionsSwitchLabel": "Voir les versions"
+  "seeVersionsSwitchLabel": "Voir les versions",
+  "selectObject": "Sélectionner l'objet {{name}}",
+  "selectAll": "Tout sélectionner",
+  "bulkDeleteTitle": "Supprimer plusieurs objets",
+  "bulkDeleteDescription": "Vous allez supprimer {{count}} objet(s).",
+  "bulkDeleteButtonConfirm": "Supprimer {{count}} objet(s)",
+  "bulkDeleteToastSuccessDescription": "{{count}} objet(s) supprimé(s) avec succès.",
+  "bulkDeleteVersionsTitle": "Supprimer plusieurs versions",
+  "bulkDeleteVersionsDescription": "Voulez-vous supprimer définitivement {{count}} version(s)? Cette action ne peut être annulée.",
+  "bulkDeleteVersionsConfirmation": "Taper PERMANENTLY DELETE pour confirmer"
 }

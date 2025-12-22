@@ -19,6 +19,8 @@ import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 import SimpleSearchBar from '@/components/simple-search-bar/SimpleSearchBar.component';
 import SearchBar from './_components/SearchBar.component';
 import RefreshButton from '@/components/refresh-button/RefreshButton.component';
+import { ObjectSelectionProvider } from './_contexts/ObjectSelection.context';
+import { BulkActionButton } from './_components/BulkActionButton.component';
 
 const Objects = () => {
   const { projectId } = useParams();
@@ -61,7 +63,7 @@ const Objects = () => {
   }
 
   return (
-    <>
+    <ObjectSelectionProvider>
       <div
         data-testid="containers-guides-container"
         className="flex justify-between w-full items-center"
@@ -73,10 +75,13 @@ const Objects = () => {
       </div>
 
       <div className="flex justify-between w-full">
-        <Button onClick={() => navigate('./add-object')}>
-          <Plus className="size-6" />
-          {t('addNewObject')}
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={() => navigate('./add-object')}>
+            <Plus className="size-6" />
+            {t('addNewObject')}
+          </Button>
+          <BulkActionButton />
+        </div>
         <div className="flex items-center space-x-2">
           <RefreshButton
             onClick={objectQuery.refetch}
@@ -113,7 +118,7 @@ const Objects = () => {
         showVersion={withVersion}
       />
       <Outlet />
-    </>
+    </ObjectSelectionProvider>
   );
 };
 
