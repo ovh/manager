@@ -2,8 +2,6 @@
 name: Duplicate translation
 
 on:
-  push:
-    branches-ignore: [master]
   pull_request:
     types:
       - opened
@@ -28,7 +26,7 @@ jobs:
           large-packages: false
           docker-images: false
           swap-storage: true
-          
+
       - name: Checkout latest code
         uses: actions/checkout@v3
         with:
