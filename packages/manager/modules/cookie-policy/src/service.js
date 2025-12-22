@@ -1,5 +1,5 @@
 const TC_PRIVACY_CENTER = 'TC_PRIVACY_CENTER';
-const MANAGER_TRACKING = 'MANAGER_TRACKING';
+const WEBSITE_TRACKING_CONSENT_VALUE = '2';
 
 export default class CookiePolicyService {
   /* @ngInject */
@@ -59,23 +59,27 @@ export default class CookiePolicyService {
   hasPrivacyCenterConsent() {
     return (this.$cookies.get(TC_PRIVACY_CENTER) || '')
       .split(',')
-      .includes('2');
+      .includes(WEBSITE_TRACKING_CONSENT_VALUE);
   }
 
   hasManagerTrackingCookie() {
-    return !!this.$cookies.get(MANAGER_TRACKING);
+    return this.hasPrivacyCenterCookie();
   }
 
   hasManagerTrackingConsent() {
-    return (this.$cookies.get(MANAGER_TRACKING) || false) === '1';
+    return this.hasPrivacyCenterConsent();
   }
 
   writeManagerTrackingConsent(consent = false) {
     const expirationDate = new Date();
     expirationDate.setMonth(expirationDate.getMonth() + 13);
-    this.$cookies.put(MANAGER_TRACKING, consent ? '1' : '0', {
-      path: '/',
-      expires: expirationDate,
-    });
+    this.$cookies.put(
+      TC_PRIVACY_CENTER,
+      consent ? WEBSITE_TRACKING_CONSENT_VALUE : '0',
+      {
+        path: '/',
+        expires: expirationDate,
+      },
+    );
   }
 }
