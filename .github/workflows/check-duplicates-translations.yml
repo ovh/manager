@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22
+
       - name: GetGitVars
         id: gate
         env:
@@ -38,18 +39,13 @@ jobs:
           if echo "$labels" | grep -wq "translation required"; then
             echo "✅ Translation required: Check the duplicate translation pls!..."
             SHOULD_CONTINUE=true
-            echo "should_continue<<EOF" >> $GITHUB_OUTPUT
-            echo "$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
           else
             echo "❌ Translation label does not exist, exit..."
             SHOULD_CONTINUE=false
-            echo "should_continue<<EOF" >> $GITHUB_OUTPUT
-            echo "$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
           fi
 
-          # Safe multiline output for next step
+          echo "should_continue=$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
+
           echo "current_branch<<EOF" >> $GITHUB_OUTPUT
           echo "$CURRENT_BRANCH" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -71,8 +67,31 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-cache-
 
-      - name: Install dependencies
+      # ------------------------------------------
+      # node_modules CACHE (root only)
+      # ------------------------------------------
+      - name: Restore node_modules (root)
         if: steps.gate.outputs.should_continue == 'true'
+        id: nm
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node22-yarn1-node_modules-${{ hashFiles('yarn.lock', '**/package.json', '.npmrc') }}
+          restore-keys: |
+            ${{ runner.os }}-node22-yarn1-node_modules-
+
+      - name: Ensure yarn cache folder exists
+        if: steps.gate.outputs.should_continue == 'true'
+        run: mkdir -p target/yarn-cache
+
+      - name: Verify cached deps (skip install if ok)
+        if: steps.gate.outputs.should_continue == 'true' && steps.nm.outputs.cache-hit == 'true'
+        run: |
+          yarn check --integrity || (echo "::warning::node_modules cache stale; reinstalling..." && yarn ci:install)
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_continue == 'true' && steps.nm.outputs.cache-hit != 'true'
         run: yarn ci:install
 
       - name: GetChangedPackages
@@ -87,12 +106,10 @@ jobs:
             CURRENT_BRANCH=${{ steps.gate.outputs.current_branch }}
             yarn -s build --silent --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
 
-            # Clean JSON
             tail -n +2 output.json > tmpfile.json && mv tmpfile.json output.json
-
-            # Extract packages
             jq -r '.packages[]' output.json
           }
+
           echo "[INFO] Dry run to determine which packages will be built..."
           CHANGED_PACKAGES=$(get_changed_packages)
           echo "Changed packages:"
@@ -115,16 +132,12 @@ jobs:
               continue
             fi
 
-            # Remove prefix and suffix
-            cleaned_package="${line#@ovh-ux/manager-}"   # remove prefix
-            cleaned_package="${cleaned_package%-app}"    # remove suffix if exist
+            cleaned_package="${line#@ovh-ux/manager-}"
+            cleaned_package="${cleaned_package%-app}"
             echo "Checking: $cleaned_package"
 
-            # Check if cleaned_package is in available_apps
             if printf "%s\n" "${apps_array[@]}" | grep -qx "$cleaned_package"; then
               echo "✅ Found: $cleaned_package"
               yarn manager-cli duplicated-translations --app $cleaned_package
             fi
-
-
           done <<< "${{ steps.changed.outputs.changed_packages }}"

@@ -59,7 +59,29 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-cache-
 
+      # ------------------------------------------
+      # node_modules CACHE (root only)
+      # ------------------------------------------
+      - name: Restore node_modules (root)
+        id: nm
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node22-yarn1-node_modules-${{ hashFiles('yarn.lock', '**/package.json', '.npmrc') }}
+          restore-keys: |
+            ${{ runner.os }}-node22-yarn1-node_modules-
+
+      - name: Ensure yarn cache folder exists
+        run: mkdir -p target/yarn-cache
+
+      - name: Verify cached deps (skip install if ok)
+        if: steps.nm.outputs.cache-hit == 'true'
+        run: |
+          yarn check --integrity || (echo "::warning::node_modules cache stale; reinstalling..." && yarn ci:install)
+
       - name: Install repository
+        if: steps.nm.outputs.cache-hit != 'true'
         run: yarn ci:install
 
       - name: Clean stale git locks (post-install)
