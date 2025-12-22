@@ -38,11 +38,6 @@ const NetworkHelper: FC = () => {
       <Text preset="heading-2">
         {t('creation:pci_instance_creation_network_setting_help_title')}
       </Text>
-      <Text preset="paragraph" className="py-4">
-        Lorem ipsum dolor sit amet consectetur. Vel orci tincidunt leo porttitor
-        sagittis facilisis tincidunt non. Pellentesque auctor lectus ligula
-        consequat.
-      </Text>
       <Link
         className="visited:text-[var(--ods-color-primary-500)]"
         href={guide}
