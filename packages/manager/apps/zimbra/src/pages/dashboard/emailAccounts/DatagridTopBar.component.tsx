@@ -17,6 +17,7 @@ import {
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
   PageLocation,
@@ -45,7 +46,7 @@ export type DatagridTopbarProps = {
 export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
   selectedRows,
 }: DatagridTopbarProps) => {
-  const { t } = useTranslation(['accounts', 'common']);
+  const { t } = useTranslation(['accounts', 'common', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const context = useContext(ShellContext);
@@ -127,7 +128,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
           >
             <>
               <Icon name={ICON_NAME.plus} />
-              {t('zimbra_account_account_add')}
+              {t(`${NAMESPACES.ACTIONS}:configure`)}
             </>
           </Button>
         </TooltipTrigger>
@@ -153,7 +154,10 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
         size={BUTTON_SIZE.sm}
         onClick={handleOrderEmailAccountClick}
       >
-        {t('zimbra_account_account_order')}
+        <>
+          <Icon name={ICON_NAME.shoppingCart} />
+          {t(`${NAMESPACES.ACTIONS}:order`)}
+        </>
       </Button>
       <Button
         id="ovh-mail-migrator-btn"
@@ -163,11 +167,10 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
         onClick={handleOvhMailMigratorAccountClick}
       >
         <>
-          {t('zimbra_account_account_migrate')}
+          {t(`${NAMESPACES.ACTIONS}:migrate`)}
           <Icon name={ICON_NAME.externalLink} />
         </>
       </Button>
-      <EmailAccountsExportCsv />
       {!!selectedRows?.length && (
         <Button
           id="ovh-mail-delete-selected-btn"
@@ -181,6 +184,9 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
           </>
         </Button>
       )}
+      <div className="ml-auto">
+        <EmailAccountsExportCsv />
+      </div>
     </div>
   );
 };
