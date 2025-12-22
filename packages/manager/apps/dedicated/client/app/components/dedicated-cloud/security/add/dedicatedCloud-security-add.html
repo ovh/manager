@@ -10,7 +10,16 @@
         data-wizard-step-valid="$ctrl.newNetwork.value && $ctrl.newNetwork.value.length && !$ctrl.newNetwork.value.contains('0.0.0.0')"
     >
         <form>
-            <div class="form-group">
+            <div class="text-center">
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-ng-click="$ctrl.useMyCurrentIp()"
+                    data-translate="use_my_current_ip_label"
+                ></button>
+            </div>
+
+            <div class="form-group mt-5">
                 <label
                     for="network"
                     class="control-label"

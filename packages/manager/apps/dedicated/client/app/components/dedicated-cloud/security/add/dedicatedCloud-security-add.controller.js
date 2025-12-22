@@ -1,9 +1,13 @@
+import { CIDR_FROM_EVERYWHERE } from './dedicatedCloud-security-add.constants';
+
 export default class {
   /* @ngInject */
-  constructor($translate, DedicatedCloud, REGEX) {
+  constructor($translate, DedicatedCloud, REGEX, $http) {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
+    this.$http = $http;
     this.REGEX = REGEX;
+    this.isUnableToFetchIP = false;
   }
 
   $onInit() {
@@ -11,6 +15,23 @@ export default class {
     this.newNetwork = {
       value: null,
     };
+  }
+
+  useMyCurrentIp() {
+    this.loading = true;
+
+    this.DedicatedCloud.getIpGeolocation()
+      .then((data) => {
+        this.newNetwork.value = data.ip;
+      })
+      .catch(() => {})
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  useFromAnywhere() {
+    this.newNetwork.value = CIDR_FROM_EVERYWHERE;
   }
 
   addEntry() {
