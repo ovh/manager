@@ -2,7 +2,11 @@ import { useMemo, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { CardProps, ChangelogLinks } from '@ovh-ux/manager-react-components';
+import {
+  CardProps,
+  ChangelogLinks,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
 
 export type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
 
@@ -10,11 +14,10 @@ export const helpRoot = 'https://help.ovhcloud.com/csm/';
 
 export const getGuideLinks = ({
   link,
-  usFullLink,
+  ...specificLink
 }: {
   link: string;
-  usFullLink: string;
-}): GuideLinks => ({
+} & { [sub in OvhSubsidiary]?: string }): GuideLinks => ({
   FR: `${helpRoot}fr-${link}`,
   GB: `${helpRoot}en-gb-${link}`,
   DE: `${helpRoot}de-${link}`,
@@ -34,9 +37,10 @@ export const getGuideLinks = ({
   NL: `${helpRoot}en-nl-${link}`,
   QC: `${helpRoot}fr-ca-${link}`,
   SG: `${helpRoot}en-sg-${link}`,
-  US: usFullLink || 'https://us.ovhcloud.com/support',
+  US: 'https://us.ovhcloud.com/support',
   WE: `${helpRoot}world-${link}`,
   WS: `${helpRoot}es-${link}`,
+  ...specificLink,
 });
 
 const URL_LIST: {
@@ -45,8 +49,10 @@ const URL_LIST: {
   guideLink1: {
     links: getGuideLinks({
       link:
-        'public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050241',
-      usFullLink:
+        'public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050247',
+      FR: `${helpRoot}fr-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050241`,
+      PL: `${helpRoot}pl-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050254`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/19770592015891-Configuring-an-Additional-IP-Public-Cloud',
     }),
     trackingLabel: 'public-cloud-network-configure-additional-ip',
@@ -54,8 +60,10 @@ const URL_LIST: {
   guideLink2: {
     links: getGuideLinks({
       link:
-        'dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043761',
-      usFullLink:
+        'dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043752',
+      FR: `${helpRoot}fr-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043761`,
+      PL: `${helpRoot}pl-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043770`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/7154925809683-How-to-Configure-IP-Aliasing',
     }),
     trackingLabel: 'dedicated-servers-network-ipaliasing',
@@ -63,8 +71,10 @@ const URL_LIST: {
   guideLink3: {
     links: getGuideLinks({
       link:
-        'dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043915',
-      usFullLink:
+        'dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043909',
+      FR: `${helpRoot}fr-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043915`,
+      PL: `${helpRoot}pl-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043916`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/37457315856787-Configuring-the-network-on-Proxmox-VE-on-the-High-Grade-Scale-and-Advance-ranges',
     }),
     trackingLabel: 'dedicated-servers-proxmox-network-hg-scale',
@@ -72,8 +82,10 @@ const URL_LIST: {
   guideLink4: {
     links: getGuideLinks({
       link:
-        'public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159',
-      usFullLink:
+        'public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050162',
+      FR: `${helpRoot}fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159`,
+      PL: `${helpRoot}pl-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050160`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/21134381741715-Concepts-Additional-IP-or-Floating-IP',
     }),
     trackingLabel: 'public-cloud-network-additional-ip-vs-floating-ip',
@@ -81,8 +93,10 @@ const URL_LIST: {
   guideLink5: {
     links: getGuideLinks({
       link:
-        'dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825',
-      usFullLink:
+        'dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062826',
+      FR: `${helpRoot}fr-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825`,
+      PL: `${helpRoot}pl-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062837`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/31163475160211-Configuring-an-Additional-IPv6-block-in-a-vRack',
     }),
     trackingLabel: 'dedicated-servers-configure-an-ipv6-in-a-vrack',
@@ -91,7 +105,7 @@ const URL_LIST: {
     links: getGuideLinks({
       link:
         'vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047603',
-      usFullLink:
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/360002181530-How-to-Configure-Reverse-DNS',
     }),
     trackingLabel: 'vps-configure-reverse-dns',
@@ -100,7 +114,7 @@ const URL_LIST: {
     links: getGuideLinks({
       link:
         'dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060685',
-      usFullLink:
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/24578879059347-Protecting-a-Game-Server-with-the-Application-Firewall',
     }),
     trackingLabel: 'dedicated-servers-game-ddos-firewall',
@@ -109,7 +123,7 @@ const URL_LIST: {
     links: getGuideLinks({
       link:
         'dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043455',
-      usFullLink:
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/115001729044-Enabling-and-configuring-the-Edge-Network-Firewall',
     }),
     trackingLabel: 'dedicated-servers-firewall-network',
