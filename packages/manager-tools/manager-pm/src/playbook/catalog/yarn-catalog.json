@@ -36,7 +36,6 @@
   "packages/manager/apps/pci",
   "packages/manager/apps/pci-cold-archive",
   "packages/manager/apps/procedures",
-  "packages/manager/apps/restricted",
   "packages/manager/apps/sap-features-hub",
   "packages/manager/apps/sign-up",
   "packages/manager/apps/sms",
