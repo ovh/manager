@@ -1,4 +1,6 @@
-import { IdentityType } from '@key-management-service/types/identity.type';
+import { IdentityObject, IdentityType } from '@key-management-service/types/identity.type';
+
+import { filterFalsy } from '@/common/utils/tools/filterFalsy';
 
 import { decodeIdentity } from './decodeIdentities';
 
@@ -8,10 +10,9 @@ interface IfilterIdentities {
 }
 
 export const filterIdentities = ({ identities, type }: IfilterIdentities) => {
-  const decodedIdentities = identities
-    .map((i) => decodeIdentity(i))
-    .filter((i) => i?.type === type)
-    .filter((i) => i !== null);
+  const decodedIdentities = filterFalsy(
+    identities.map((i) => decodeIdentity(i)).filter((i): i is IdentityObject => i?.type === type),
+  );
 
   return decodedIdentities;
 };

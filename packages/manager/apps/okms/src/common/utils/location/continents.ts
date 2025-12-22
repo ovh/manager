@@ -34,7 +34,7 @@ export const groupLocationsByContinent = (locations: Location[]) => {
       locationsByContinent[continentCode] = [];
       continents.push(continentCode);
     }
-    locationsByContinent[continentCode].push(location);
+    locationsByContinent[continentCode]?.push(location);
   }
   return { locationsByContinent, continents };
 };
