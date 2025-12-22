@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage';
 import { ReactElement } from 'react';
-import useDownload from '@/hooks/useDownload';
+import useDownload from '@/hooks/useDownload.hook';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useS3Data } from '../../S3.context';
