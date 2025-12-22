@@ -7,6 +7,7 @@ export default class BmServerComponentsNetworkTileController {
     this.$q = $q;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
+    this.totalAssocietedIps = 0;
   }
 
   $onInit() {
@@ -28,6 +29,15 @@ export default class BmServerComponentsNetworkTileController {
       .finally(() => {
         this.loading = false;
       });
+
+    this.$http
+      .get(`/ip?routedTo.serviceName=${encodeURIComponent(this.server.name)}`)
+      .then(({ data = [] }) => {
+        this.totalAssocietedIps = data.length;
+      })
+      .catch(() => null);
+    this.gameDDosGuide = this.dedicatedServer.gameDDosGuide;
+    this.isGameServer = this.dedicatedServer.isGameServer;
   }
 
   loadVrackInfos() {
