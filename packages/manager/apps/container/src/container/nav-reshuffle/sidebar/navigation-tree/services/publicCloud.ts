@@ -105,6 +105,7 @@ pciNode.children = [
     translation: 'sidebar_pci_storage',
     features: [
       'block-storage',
+      'pci-file-storage',
       'object-storage',
       'snapshot',
       'volume-backup',
@@ -125,6 +126,20 @@ pciNode.children = [
         },
         features: ['block-storage'],
         forceVisibility: true,
+      },
+      {
+        id: 'pci-file-storage',
+        idAttr: 'pci-file-storage-link',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
+        translation: 'sidebar_pci_file_storage',
+        serviceType: 'CLOUD_PROJECT_FILE_STORAGE',
+        routing: {
+          application: 'public-cloud',
+          hash: '#/pci/projects/{projectId}/storages/files',
+        },
+        features: ['pci-file-storage'],
+        forceVisibility: true,
+        tag: NodeTag.BETA,
       },
       {
         id: 'pci-volume-backup',
