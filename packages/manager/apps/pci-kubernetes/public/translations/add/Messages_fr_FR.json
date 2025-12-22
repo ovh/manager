@@ -24,6 +24,7 @@
   "kubernetes_select_version_title": "Sélectionnez une version",
   "kubernetes_add_name_title": "Nommez votre cluster",
   "kubernetes_add_name_placeholder": "Nom du cluster",
+  "kubernetes_add_name_input_label": "Nom du projet",
   "kubernetes_add_name": "Nom",
   "kubernetes_add_location": "Localisation",
   "kubernetes_add_location_subtitle": "Choisir un mode de déploiement",
@@ -104,6 +105,5 @@
   "kube_add_plan_content_coming_very_soon": "Bientôt disponible",
   "kube_add_plan_content_not_available": "indisponible dans la région",
   "kube_add_plan_subtitle": "Choisissez le plan adapté à vos besoins. Bénéficiez d'un large choix d'instances utilisées comme nœuds Kubernetes, facturées à l'usage ou avec engagement.",
-  "kube_add_node_pool_name_already_exist_validation_error": "Le nom de nodepool est déjà utilisé. Veuillez en choisir un autre.",
-  "kubernetes_add_region_plan_select":"Filtrer par plans"
+  "kube_add_node_pool_name_already_exist_validation_error": "Le nom de nodepool est déjà utilisé. Veuillez en choisir un autre."
 }

@@ -90,6 +90,7 @@
   "kubernetes_add_region_plan_select": "Nach Plänen filtern",
   "kube_add_plan_content_standard_1AZ_SLA": "SLA VON 99,9 %",
   "kubernetes_add_create_cluster": "Erstelle meinen Cluster",
+  "kubernetes_add_name_input_label": "Projektname",
   "kubernetes_add_cluster_name_input_helper": {
     "introduction": "Muss:",
     "char_number": "zwischen 2 und 64 Zeichen enthalten",
