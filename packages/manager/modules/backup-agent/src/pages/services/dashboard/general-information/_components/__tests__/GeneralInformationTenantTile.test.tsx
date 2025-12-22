@@ -6,12 +6,12 @@ import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 
 import { GeneralInformationTenantTile } from '../general-information-tenant-tile/GeneralInformationTenantTile.component';
 
-const { useBackupTenantDetailsMock } = vi.hoisted(() => ({
-  useBackupTenantDetailsMock: vi.fn(),
+const { useBackupVSPCTenantDetailsMock } = vi.hoisted(() => ({
+  useBackupVSPCTenantDetailsMock: vi.fn(),
 }));
 
-vi.mock('@/data/hooks/tenants/useBackupTenantDetails', () => ({
-  useBackupTenantDetails: useBackupTenantDetailsMock,
+vi.mock('@/data/hooks/tenants/useVspcTenantDetails', () => ({
+  useBackupVSPCTenantDetails: useBackupVSPCTenantDetailsMock,
 }));
 
 vi.mock(
@@ -27,7 +27,7 @@ vi.mock(
 
 describe('GeneralInformationTenantTile', () => {
   it('Should render GeneralInformationTenantTile component', async () => {
-    useBackupTenantDetailsMock.mockReturnValue({ data: TENANTS_MOCKS[0]!, isLoading: false });
+    useBackupVSPCTenantDetailsMock.mockReturnValue({ data: TENANTS_MOCKS[0]!, isLoading: false });
     const { container } = render(<GeneralInformationTenantTile tenantId={TENANTS_MOCKS[0]!.id} />);
 
     await expect(container).toBeAccessible();
@@ -36,7 +36,7 @@ describe('GeneralInformationTenantTile', () => {
   });
 
   it('Should render GeneralInformationTenantTile component', async () => {
-    useBackupTenantDetailsMock.mockReturnValue({ data: TENANTS_MOCKS[0]!, isLoading: true });
+    useBackupVSPCTenantDetailsMock.mockReturnValue({ data: TENANTS_MOCKS[0]!, isLoading: true });
     const { container } = render(<GeneralInformationTenantTile tenantId={TENANTS_MOCKS[0]!.id} />);
 
     await expect(container).toBeAccessible();
