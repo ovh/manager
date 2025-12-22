@@ -115,10 +115,6 @@ function runPnpmInstall(targetPath, pnpmBin) {
     `--store-dir=${path.join(managerRootPath, 'target/.pnpm-store')}`,
   ];
 
-  if (process.env.CI) {
-    args.push('--frozen-lockfile');
-  }
-
   logger.info(`▶ Running pnpm ${args.join(' ')}`);
   execSync(`${pnpmBin} ${args.join(' ')}`, {
     cwd: targetPath,
