@@ -6,7 +6,7 @@ import { urls } from '@/routes/routes.constant';
 import TagDetail from '@/pages/tagManager/tagDetail/TagDetail.page';
 import TagDetailAssign from '@/pages/tagManager/tagDetailAssign/TagDetailAssign.page';
 import TagDetailUnassign from '@/pages/tagManager/tagDetailUnassign/TagDetailUnassign.modal';
-import { TrackPageName } from '@/tracking.constant';
+import { TrackPageName, PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
@@ -93,18 +93,42 @@ export default (
     <Route
       path={urls.permanentTokens}
       Component={PermanentTokensListing}
+      handle={{
+        tracking: {
+          pageName: PERMANENT_TOKENS_TRACKING.LISTING.PAGE_NAME,
+          pageType: PageType.listing,
+        },
+      }}
     >
       <Route
         path={urls.permanentTokensAdd}
         Component={PermanentTokensEdit}
+        handle={{
+          tracking: {
+            pageName: PERMANENT_TOKENS_TRACKING.ADD.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
       />
       <Route
         path={urls.permanentTokensEdit}
         Component={PermanentTokensEdit}
+        handle={{
+          tracking: {
+            pageName: PERMANENT_TOKENS_TRACKING.EDIT.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
       />
       <Route
         path={urls.permanentTokensDelete}
         Component={PermanentTokensDelete}
+        handle={{
+          tracking: {
+            pageName: PERMANENT_TOKENS_TRACKING.DELETE.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
       />
     </Route>
   </Route>

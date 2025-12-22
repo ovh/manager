@@ -10,6 +10,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useParam } from '@/hooks/useParam';
 import {
@@ -21,9 +22,11 @@ import { IamUserTokenPayload } from '@/data/api/iam-users';
 import ExpiryDateInput from '@/pages/permanentTokens/components/ExpiryDateInput.component';
 import { ExpiryDateModel } from '@/types/expiryDate';
 import { DEFAULT_EXPIRY_DATE_MODEL } from '@/utils/expiryDateUtils';
+import { PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
 
 export default function PermanentTokensAdd() {
   const { t } = useTranslation(['permanent-tokens', NAMESPACES.ACTIONS]);
+  const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
   const goBack = () => navigate('..');
@@ -65,10 +68,18 @@ export default function PermanentTokensAdd() {
   const { createToken, isPending: isCreationPending } = useCreateIamUserToken({
     userId: userId,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: PERMANENT_TOKENS_TRACKING.ADD.REQUEST_SUCCESS,
+      });
       addSuccess(t('iam_user_token_modal_add_success'));
       goBack();
     },
     onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PERMANENT_TOKENS_TRACKING.ADD.REQUEST_FAIL,
+      });
       addError(t('iam_user_token_modal_add_error'));
       goBack();
     },
@@ -77,10 +88,18 @@ export default function PermanentTokensAdd() {
   const { updateToken, isPending: isUpdatePending } = useUpdateIamUserToken({
     userId: userId,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: PERMANENT_TOKENS_TRACKING.EDIT.REQUEST_SUCCESS,
+      });
       addSuccess(t('iam_user_token_modal_edit_success'));
       goBack();
     },
     onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PERMANENT_TOKENS_TRACKING.EDIT.REQUEST_FAIL,
+      });
       addError(t('iam_user_token_modal_edit_error'));
       goBack();
     },
@@ -102,11 +121,22 @@ export default function PermanentTokensAdd() {
         payload.expiresIn = expiryModel.expiresIn;
       }
     }
+    trackClick({
+      actionType: 'action',
+      actions: isCreationMode
+        ? PERMANENT_TOKENS_TRACKING.ADD.CTA_CONFIRM
+        : PERMANENT_TOKENS_TRACKING.EDIT.CTA_CONFIRM,
+    });
     isCreationMode ? createToken(payload) : updateToken(payload);
   };
 
   const handleCancel = () => {
-    // TODO: add tracking
+    trackClick({
+      actionType: 'action',
+      actions: isCreationMode
+        ? PERMANENT_TOKENS_TRACKING.ADD.CTA_CANCEL
+        : PERMANENT_TOKENS_TRACKING.EDIT.CTA_CANCEL,
+    });
     goBack();
   };
 
@@ -154,7 +184,9 @@ export default function PermanentTokensAdd() {
               name="tokenDescription"
               value={description}
               onOdsChange={(e) => setDescription(e.detail.value as string)}
-              placeholder={t('iam_user_token_modal_field_description_placeholder')}
+              placeholder={t(
+                'iam_user_token_modal_field_description_placeholder',
+              )}
               rows={3}
               data-testid="tokenDescription"
             />

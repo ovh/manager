@@ -4,12 +4,15 @@ import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import { PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
 import { useParam } from '@/hooks/useParam';
 import { useDeleteIamUserToken } from '@/data/hooks/useGetIamUserTokens';
 
 export default function PermanentTokensDelete() {
   const { t } = useTranslation(['permanent-tokens', NAMESPACES.ACTIONS]);
+  const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
   const goBack = () => navigate('..');
@@ -20,22 +23,36 @@ export default function PermanentTokensDelete() {
     userId,
     token: tokenId || '',
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: PERMANENT_TOKENS_TRACKING.DELETE.REQUEST_SUCCESS,
+      });
       addSuccess(t('iam_user_token_modal_delete_success'));
       goBack();
     },
     onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PERMANENT_TOKENS_TRACKING.DELETE.REQUEST_FAIL,
+      });
       addError(t('iam_user_token_modal_remove_error'));
       goBack();
     },
   });
 
   const handleSubmit = () => {
-    // TODO: add tracking
+    trackClick({
+      actionType: 'action',
+      actions: PERMANENT_TOKENS_TRACKING.DELETE.CTA_CONFIRM,
+    });
     deleteToken();
   };
 
   const handleCancel = () => {
-    // TODO: add tracking
+    trackClick({
+      actionType: 'action',
+      actions: PERMANENT_TOKENS_TRACKING.DELETE.CTA_CANCEL,
+    });
     goBack();
   };
 
