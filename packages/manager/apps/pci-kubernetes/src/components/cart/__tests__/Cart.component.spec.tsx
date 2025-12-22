@@ -71,7 +71,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   }),
 }));
 
-const renderCart = (items: TCartItem[]) => render(<Cart items={items} />);
+const renderCart = (items: TCartItem[]) => render(<Cart items={items} confirmDisabled={false} />);
 
 afterEach(() => {
   vi.clearAllMocks();
