@@ -45,20 +45,19 @@ jobs:
             ${{ runner.os }}-pnpm-binary-
 
       # ------------------------------------------
-      # YARN CACHE (node_modules + yarn cache)
+      # YARN CACHE (tarballs only)
       # ------------------------------------------
-      - name: Restore Yarn cache
+      - name: Restore Yarn cache (tarballs)
         uses: actions/cache@v3
         with:
           path: |
-            ~/.cache/yarn
-            node_modules
-          key: ${{ runner.os }}-yarn-tests-${{ hashFiles('yarn.lock') }}
+            target/yarn-cache
+          key: ${{ runner.os }}-yarn-cache-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-tests-
+            ${{ runner.os }}-yarn-cache-
 
       - name: Install repository
-        run: yarn install --frozen-lockfile
+        run: yarn ci:install
 
       # ------------------------------------------
       # BUILD TARGETED PACKAGES

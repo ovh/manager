@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Use Node.js 22.x
         uses: actions/setup-node@v3
         with:
@@ -57,20 +58,22 @@ jobs:
           echo "$BASE_BRANCH" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Restore/create node_modules cache
+      # ------------------------------------------
+      # YARN CACHE (tarballs only)
+      # ------------------------------------------
+      - name: Restore Yarn cache (tarballs)
         if: steps.gate.outputs.should_continue == 'true'
         uses: actions/cache@v3
         with:
           path: |
-            ~/.cache/yarn
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+            target/yarn-cache
+          key: ${{ runner.os }}-yarn-cache-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn-cache-
 
       - name: Install dependencies
         if: steps.gate.outputs.should_continue == 'true'
-        run: yarn install --frozen-lockfile
+        run: yarn ci:install
 
       - name: GetChangedPackages
         if: steps.gate.outputs.should_continue == 'true'
@@ -95,7 +98,6 @@ jobs:
           echo "Changed packages:"
           echo "$CHANGED_PACKAGES"
 
-          # Safe multiline output for next step
           echo "changed_packages<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -108,9 +110,7 @@ jobs:
           available_apps=$(yarn manager-cli --list | grep -E '^\s+- ' | sed -E 's/^\s+- //')
           readarray -t apps_array <<< "$available_apps"
 
-          # Read the changed packages into a bash array
           while IFS= read -r line; do
-            # Skip empty lines and '//' lines
             if [[ "$line" == "//" || -z "$line" ]]; then
               continue
             fi

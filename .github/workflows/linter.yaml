@@ -40,17 +40,16 @@ jobs:
             ${{ runner.os }}-pnpm-binary-
 
       # -------------------------------------------------------
-      # CACHE YARN (node_modules + yarn global cache)
+      # CACHE YARN (tarballs only)
       # -------------------------------------------------------
-      - name: Restore Yarn cache
+      - name: Restore Yarn cache (tarballs)
         uses: actions/cache@v3
         with:
           path: |
-            ~/.cache/yarn
-            node_modules
-          key: ${{ runner.os }}-yarn-lint-${{ hashFiles('yarn.lock') }}
+            target/yarn-cache
+          key: ${{ runner.os }}-yarn-cache-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-lint-
+            ${{ runner.os }}-yarn-cache-
 
       - name: Use Node.js 22.x
         uses: actions/setup-node@v3
@@ -58,7 +57,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn ci:install
 
       - name: Lint Code Base
         run: yarn lint
