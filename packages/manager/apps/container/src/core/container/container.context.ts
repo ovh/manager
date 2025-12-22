@@ -12,6 +12,7 @@ export type ContainerContextType = {
   betaVersion: BetaVersion | string;
   useBeta: boolean;
   isLivechatEnabled: boolean;
+  isReady: boolean;
   isLoading: boolean;
   updateBetaChoice: (accept: boolean) => Promise<unknown>;
   chatbotOpen: boolean;

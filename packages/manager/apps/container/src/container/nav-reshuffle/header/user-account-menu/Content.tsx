@@ -14,16 +14,9 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { UserLink } from './UserLink';
 import { Procedures } from '@/types/procedure';
 import { fetchProcedureStatus } from '@/data/api/procedure/procedure';
+import { useDefaultPaymentMethod } from '@/data/hooks/paymentMethod/usePaymentMethod';
 
-type Props = {
-  defaultPaymentMethod?: unknown;
-  isLoading?: boolean;
-};
-
-const UserAccountMenu = ({
-  defaultPaymentMethod = {},
-  isLoading = false,
-}: Props): JSX.Element => {
+const UserAccountMenu = (): JSX.Element => {
   const { t } = useTranslation('user-account-menu');
   const sidebarTranslation = useTranslation('sidebar');
   const shell = useShell();
@@ -39,6 +32,8 @@ const UserAccountMenu = ({
     .getPlugin('environment')
     .getEnvironment()
     .getUser();
+
+  const { data: defaultPaymentMethod, isLoading } = useDefaultPaymentMethod({ enabled: !user.enterprise })
 
   const isSubUser = ['provider', 'user'].includes(user.auth.method);
 

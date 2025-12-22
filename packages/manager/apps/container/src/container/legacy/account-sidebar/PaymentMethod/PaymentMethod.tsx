@@ -20,7 +20,7 @@ const PaymentMethod = (): JSX.Element => {
   const shell = useShell();
   const environment: Environment = shell
     .getPlugin('environment')
-    .getEnvironment();
+    ?.getEnvironment();
 
   const { getDefaultPaymentMethod, isEnterpriseAccount } = usePaymentMethod(
     environment,

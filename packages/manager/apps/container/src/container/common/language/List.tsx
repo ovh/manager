@@ -3,16 +3,22 @@ import { useTranslation } from 'react-i18next';
 
 import style from './style.module.scss';
 import { useShell } from '@/context';
+import { useMemo } from 'react';
 
 type Props = {
-  languages?: KeyPairName[];
+  userLocale: string;
   onSelect(key: string): void;
 };
 
-const LanguageMenu = ({ languages = [], onSelect }: Props): JSX.Element => {
+const LanguageMenu = ({ userLocale, onSelect }: Props): JSX.Element => {
   const { t } = useTranslation('language');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
+  const languages: KeyPairName[] = useMemo(() => shell
+    .getPlugin('i18n')
+    .getAvailableLocales()
+    .filter(({ key }: { key: string }) => key !== userLocale),
+  [userLocale]);
 
   return (
     <div className="oui-navbar-menu__wrapper">

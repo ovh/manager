@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { HashRouter } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { initShell, Shell } from '@ovh-ux/shell';
+import { initShell, Shell, completeShellWithEnvironment, updateShellPlugins } from '@ovh-ux/shell';
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
-import { Environment, fetchConfiguration } from '@ovh-ux/manager-config';
+import { detectUserLocale, Environment, fetchConfiguration, findAvailableLocale, HOSTNAME_REGIONS } from '@ovh-ux/manager-config';
 
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 
@@ -58,7 +58,7 @@ function setupI18n(locale: string) {
 const App = () => {
   const [error, setError] = useState(null);
   const [environment, setEnvironment] = useState<Environment>(null);
-  const [shell, setShell] = useState<Shell>(null);
+  const [shell, setShell] = useState<Shell>(initShell());
   const [statusPageURL, setStatusPageURL] = useState<string>();
 
   const { error: responseError, isLoading, data } = useQuery<
@@ -74,24 +74,33 @@ const App = () => {
   });
 
   useEffect(() => {
-    if ((data || responseError) && !shell) {
-      const shellObj = initShell(data || responseError.environment);
-      const environmentObj = shellObj.getPlugin('environment').getEnvironment();
-      setupI18n(environmentObj.getUserLocale());
-      const config = () => import(`./config-${environmentObj.getRegion()}.js`);
-      setupDevApplication(shellObj);
-      config()
-        .catch(() => {})
-        .then(() => {
-          setShell(shellObj);
-          setEnvironment(environmentObj);
-        });
+    setupI18n(findAvailableLocale(detectUserLocale(), HOSTNAME_REGIONS[window.location.hostname] || undefined));
+  }, []);
+
+  useLayoutEffect(() => {
+    const finalizeInitialization = async () => {
+      if ((data || responseError)) {
+        const currentEnvironmentPlugin = shell.getPlugin('environment');
+        // We don't want to do these actions in case we received an error and then receive a valid response
+        if (!currentEnvironmentPlugin) {
+          completeShellWithEnvironment(shell, data || responseError.environment);
+          const environmentObj = shell.getPlugin('environment').getEnvironment();
+          const config = () => import(`./config-${environmentObj.getRegion()}.js`);
+          try {
+            await config();
+          }
+          catch(_) {}
+        }
+        else {
+          updateShellPlugins(shell, data || responseError.environment);
+        }
+        setupDevApplication(shell);
+        setShell(shell);
+        setEnvironment(shell.getPlugin('environment').getEnvironment());
+      }
     }
-    // reload the page when API services are back after maintenance
-    // this hack is implemented to avoid reinitialising the shell
-    if (data && shell) {
-      reloadPage();
-    }
+
+    finalizeInitialization();
   }, [data, responseError]);
 
   useEffect(() => {
@@ -99,7 +108,7 @@ const App = () => {
       const { error: errorObj } = responseError;
       setError({
         data: {
-          message: `${errorObj.message}`,
+          message: errorObj.message,
         },
       });
       setStatusPageURL(errorObj?.details?.statusPageURL);
@@ -107,10 +116,6 @@ const App = () => {
       setError(null);
     }
   }, [responseError, isLoading]);
-
-  if (!shell) {
-    return <></>;
-  }
 
   return (
     <>

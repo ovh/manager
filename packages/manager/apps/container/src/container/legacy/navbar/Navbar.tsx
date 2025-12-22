@@ -15,7 +15,7 @@ import Universes from './Universes';
 import useContainer from '@/core/container';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import CloudShellLink from '@/container/common/cloud-shell';
-import LanguageMenu from '@/container/common/language';
+import { LanguageMenuContainer } from '@/container/common/language/container.component';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
 import Notifications from '@/container/common/notifications-sidebar/NotificationsButton';
@@ -31,11 +31,8 @@ const HamburgerMenu = React.lazy(() => import('./HamburgerMenu'));
 
 function Navbar(): JSX.Element {
   const shell = useShell();
-  const { universe, setUniverse } = useContainer();
+  const { isReady, universe, setUniverse } = useContainer();
   const { getUniverses, getHubUniverse } = useUniverses();
-  const [userLocale, setUserLocale] = useState(
-    shell.getPlugin('i18n').getLocale(),
-  );
   const isSmallDevice = useMediaQuery({
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
   });
@@ -55,7 +52,7 @@ function Navbar(): JSX.Element {
 
   const brandClickHandler = useCallback(
     () =>
-      shell.getPlugin('tracking').trackClick({
+      shell.getPlugin('tracking')?.trackClick({
         name: `navbar::entry::logo`,
         type: 'action',
       }),
@@ -64,13 +61,15 @@ function Navbar(): JSX.Element {
 
   const universeClickHandler = useCallback(
     ({ universe }: Partial<Environment>) => {
-      shell.getPlugin('tracking').trackClick({
-        name: `navbar::entry::${universe}`,
-        type: 'action',
-      });
-      setUniverse(universe);
+      if (isReady) {
+        shell.getPlugin('tracking').trackClick({
+          name: `navbar::entry::${universe}`,
+          type: 'action',
+        });
+        setUniverse(universe);
+      }
     },
-    [shell],
+    [shell, isReady],
   );
 
   return (
@@ -113,19 +112,17 @@ function Navbar(): JSX.Element {
             </div>
           )}
           <div className="oui-navbar-list__item">
-            <LanguageMenu
-              setUserLocale={setUserLocale}
-              userLocale={userLocale}
+            <LanguageMenuContainer
               onChange={(show: boolean) => {
                 setIsDropdownOpen(show);
                 setIsNotificationsSidebarVisible(false);
               }}
-            ></LanguageMenu>
+            ></LanguageMenuContainer>
           </div>
-          {cloudShellAvailability?.['cloud-shell'] && (
-          <div className="oui-navbar-list__item">
-            <CloudShellLink />
-          </div>
+          {isReady && cloudShellAvailability?.['cloud-shell'] && (
+            <div className="oui-navbar-list__item">
+              <CloudShellLink />
+            </div>
           )}
           <div className="oui-navbar-list__item">
             <Notifications />

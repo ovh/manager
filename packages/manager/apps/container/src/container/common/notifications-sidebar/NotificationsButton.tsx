@@ -44,6 +44,7 @@ function NavbarNotifications(): JSX.Element {
       title={t('navbar_notifications')}
       aria-label={t('navbar_notifications')}
       onClick={onClick}
+      {...(trackingPlugin ? {} : { disabled: true })}
     >
       <OsdsIcon
         name={ODS_ICON_NAME.BELL}
