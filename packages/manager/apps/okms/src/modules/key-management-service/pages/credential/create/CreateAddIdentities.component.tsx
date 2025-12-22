@@ -20,6 +20,7 @@ import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { useShellContext } from '@/common/hooks/useShellContext';
+import { filterFalsy } from '@/common/utils/tools/filterFalsy';
 
 import IdentitiesRootAccount from './identities/IdentitiesRootAccount.component';
 import IdentitiesSelectedGroups from './identities/IdentitiesSelectedGroups.component';
@@ -32,8 +33,6 @@ type CreateAddIdentitiesProps = {
   prevStep: () => void;
   nextStep: () => void;
 };
-
-const isServiceAccountDefined = <T,>(value: T | null | undefined): value is T => value != null;
 
 const CreateAddIdentities = ({
   identityURNs,
@@ -55,13 +54,11 @@ const CreateAddIdentities = ({
     setIdentityURNs(
       isRootAccount
         ? [`urn:v1:${region.toLowerCase()}:identity:account:${auth.account}`]
-        : [
+        : filterFalsy([
             ...userList.map((user) => user.urn),
             ...groupList.map((group) => group.urn),
-            ...serviceAccountList
-              .map((serviceAccount) => serviceAccount.identity)
-              .filter(isServiceAccountDefined),
-          ],
+            ...serviceAccountList.map((serviceAccount) => serviceAccount.identity),
+          ]),
     );
   }, [
     userList,
