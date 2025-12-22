@@ -67,7 +67,7 @@
   "pci_instance_creation_select_flavor_category_label": "Instanzmodell",
   "pci_instance_creation_select_flavor_include_unavailable_action": "Nicht verfügbare einbeziehen",
   "pci_instance_creation_choose_availabilityZone_title": "Wählen Sie Ihre Verfügbarkeitszone",
-  "pci_instance_creation_choose_availabilityZone_informations": "Eine Standardverfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen. Erfahren Sie mehr über die Spezifikationen der 3-AZ-Dienste und wie Sie diese nutzen können, um eine resiliente Infrastruktur zu entwerfen.",
+  "pci_instance_creation_choose_availabilityZone_informations": "Eine Standardverfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
   "pci_instance_creation_availabilityZone_choose_for_me": "Wählen Sie für mich",
   "pci_instance_creation_availabilityZone_user_choice": "Ich wähle meine Verfügbarkeitszone",
   "pci_instance_creation_availabilityZone_help_description_p1": "In einer Cloud-Umgebung sind Verfügbarkeit und Resilienz der Dienste entscheidend, um die Kontinuität der Abläufe auch im Falle eines Ausfalls einer Verfügbarkeitszone (AZ) zu gewährleisten.",
