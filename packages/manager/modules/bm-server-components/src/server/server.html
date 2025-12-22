@@ -27,10 +27,10 @@
                 data-text="{{:: 'server_guides' | translate }}"
             >
                 <oui-guide-menu-item
-                    data-ng-href="{{:: $ctrl.gameDDosGuide }}"
+                    data-ng-href="{{:: $ctrl.gameDDosGuide.href }}"
                     data-external="true"
                 >
-                    <span data-translate="server_guide_ddos_game"></span>
+                    <span>{{ $ctrl.gameDDosGuide.label }}</span>
                 </oui-guide-menu-item>
             </oui-guide-menu>
         </div>
