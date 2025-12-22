@@ -23,6 +23,7 @@ import Network from '../Network.component';
 import BillingChoice from '../BillingChoice.component';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
 import { useMemo } from 'react';
+import Backup from '../Backup.component';
 
 const quantityHintParams = {
   quota: 1,
@@ -95,6 +96,8 @@ export const CreateInstanceForm = () => {
           {microRegion && !isWindowsSelected && (
             <SshKey microRegion={microRegion} />
           )}
+          <Divider spacing="64" />
+          <Backup />
           <Divider spacing="64" />
           <Network />
           {billingTypes.length > 1 && (

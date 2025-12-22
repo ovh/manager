@@ -115,5 +115,18 @@
   "pci_instance_creation_select_billing_hourly": "Orario",
   "pci_instance_creation_select_billing_monthly": "Mensile",
   "pci_instance_creation_select_billing_choice_subtext_hourly": "Paga in base all'uso, secondo il tempo reale di utilizzo.",
-  "pci_instance_creation_select_billing_choice_subtext_monthly": "Paga mensilmente, con costi fissi"
+  "pci_instance_creation_select_billing_choice_subtext_monthly": "Paga mensilmente, con costi fissi",
+  "pci_instance_creation_backup_setting_title": "Impostazioni di backup",
+  "pci_instance_creation_backup_setting_description": "Questa funzionalità consente di eseguire il backup della tua istanza in modo automatico secondo la pianificazione di tua scelta.",
+  "pci_instance_creation_backup_setting_help_title": "Impostare il backup della tua istanza",
+  "pci_instance_creation_backup_setting_help_description": "Proteggi i tuoi dati e garantisci la continuità della tua infrastruttura grazie ai meccanismi di backup automatizzati.",
+  "pci_instance_creation_backup_setting_help_auto_backup_description": "<h6>Backup automatico predefinito</h6><p>Ogni istanza dispone di un backup locale automatico, con due opzioni possibili: Rotazione su 7 giorni o Rotazione su 14 giorni. Questi backup ti consentono di ripristinare rapidamente il tuo ambiente in caso di incidente.</p>",
+  "pci_instance_creation_backup_setting_help_custom_backup_description": "<h6>Backup personalizzato e gestione avanzata</h6><p>Se desideri impostare una rotazione personalizzata o pianificare i tuoi backup secondo le tue esigenze, utilizza la sezione Gestione del flusso di lavoro.</p> <CreateBackupAction />",
+  "pci_instance_creation_backup_setting_help_replication_description": "<h6>Replicazione su un altro datacenter</h6><p>Per rafforzare la resilienza dei tuoi dati, puoi attivare una replicazione dei tuoi backup verso un datacenter remoto. Questo offre una sicurezza aggiuntiva e la possibilità di ripristinare la tua istanza in un'altra regione.",
+  "pci_instance_creation_backup_setting_auto_backup_checkbox_label": "Backup automatico delle istanze (Locale)",
+  "pci_instance_creation_backup_billing_label": "Ogni backup sarà addebitato:",
+  "pci_instance_creation_backup_setting_distant_backup_checkbox_label": "Aggiungi un backup remoto (Opzionale)",
+  "pci_instance_creation_backup_setting_distant_backup_warning_message": "Il backup remoto segue la stessa rotazione del backup locale.",
+  "pci_instance_creation_backup_setting_help_ui_guide": "<h6>Dove trovare i tuoi backup</h6><p>Tutti i tuoi backup sono accessibili da: L'interfaccia di gestione della tua istanza, La sezione Backup e Gestione del flusso di lavoro.</p><Link>Consulta la guida completa sulla gestione dei backup</Link>",
+  "pci_instance_creation_backup_setting_action_label": "Creare un backup automatico di un'istanza"
 }
