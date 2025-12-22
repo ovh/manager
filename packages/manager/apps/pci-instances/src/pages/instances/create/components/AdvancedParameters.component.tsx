@@ -6,13 +6,9 @@ export const AdvancedParameters = () => {
 
   return (
     <section>
-      <hr className={'h-px my-8 bg-gray-200 border-0 w-full'} />
+      <hr className={'my-8 h-px w-full border-0 bg-gray-200'} />
       <Text preset="heading-2">
         {t('pci_instances_creation_advanced_parameters')}
-      </Text>
-      <Text preset="paragraph">
-        Lorem ipsum dolor sit amet consectetur. Tempor malesuada sit a bibendum
-        sit tempus pretium imperdiet
       </Text>
     </section>
   );

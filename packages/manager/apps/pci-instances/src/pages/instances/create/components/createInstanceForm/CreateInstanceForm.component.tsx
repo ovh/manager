@@ -66,11 +66,6 @@ export const CreateInstanceForm = () => {
             <Text preset="heading-1">
               {t('common:pci_instances_common_create_instance')}
             </Text>
-            <Text className="mt-4" preset="paragraph">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. (Not
-              mandatory) Si besoin d’un texte d’introduction... .
-            </Text>
           </article>
           <Name />
           <Divider spacing="64" />
