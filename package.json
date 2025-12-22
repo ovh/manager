@@ -11,6 +11,7 @@
     "build": "yarn pm:build:ci",
     "build:turbo": "yarn pm:build:ci",
     "ci:install": "yarn install --frozen-lockfile --non-interactive --cache-folder target/yarn-cache --prefer-offline",
+    "ci:local:install": "yarn install --non-interactive --cache-folder target/yarn-cache --prefer-offline",
     "clean": "yarn run clean:dist && rimraf node_modules",
     "clean:deep": "node ./packages/manager-tools/manager-pm/src/manager-pm-deep-clean.js",
     "clean:dist": "rimraf \"packages/**/dist\"",
