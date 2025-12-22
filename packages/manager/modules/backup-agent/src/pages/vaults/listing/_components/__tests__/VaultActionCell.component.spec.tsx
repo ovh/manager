@@ -23,24 +23,22 @@ describe('VaultActionCell test suite', () => {
     currentState: { ...vault.currentState, vspcTenants: [] },
   };
 
-  const testCases: Array<{ desc: string; vault: VaultResource; isDisabled: boolean }> = [
+  const testCases: Array<{ desc: string; vault: VaultResource }> = [
     {
       desc: 'renders an enabled button if vault has no VSPC',
       vault: withoutVspc,
-      isDisabled: false,
     },
     {
-      desc: 'renders a disabled button if vault has VSPC',
+      desc: 'renders a enabled button if vault has VSPC',
       vault: withVspc,
-      isDisabled: true,
     },
   ];
 
-  it.each(testCases)('$desc', ({ vault, isDisabled }) => {
+  it.each(testCases)('$desc', ({ vault }) => {
     render(<VaultActionCell {...vault} />);
 
     const button = screen.getByTestId('delete-vault-button');
-    expect(button).toHaveAttribute('is-disabled', `${isDisabled}`);
+    expect(button).toHaveAttribute('is-disabled', 'false');
     expect(button).toHaveAttribute('icon', ODS_ICON_NAME.trash);
     expect(button).toHaveAttribute('variant', ODS_BUTTON_VARIANT.ghost);
   });
