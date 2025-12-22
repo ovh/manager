@@ -6,18 +6,13 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
-  BaseLayout,
-  GuideButton,
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import type { GuideItem } from '@ovh-ux/manager-react-components';
-import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, GuideMenu, Notifications, useNotifications } from '@ovh-ux/muk';
+import type { GuideMenuItem } from '@ovh-ux/muk';
 
 import { GUIDES_LIST } from '@/Guides.constants';
 import { GUIDES } from '@/Tracking.constants';
@@ -70,13 +65,13 @@ export default function DashboardPage() {
     },
   ];
 
-  const guideItems: GuideItem[] = [
+  const guideItems: GuideMenuItem[] = [
     {
       id: 1,
       href: GUIDES_LIST.office_guides.url[ovhSubsidiary] || GUIDES_LIST.office_guides.url.DEFAULT,
       target: '_blank',
-      label: t('common_guides_header'),
-      onClickReturn: () => {
+      children: t('common_guides_header'),
+      onClick: () => {
         trackClick({
           location: PageLocation.page,
           buttonType: ButtonType.externalLink,
@@ -86,14 +81,14 @@ export default function DashboardPage() {
       },
     },
   ];
-  const header = {
-    title: data?.serviceName,
-    headerButton: <GuideButton items={guideItems} />,
-  };
+
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb />}
-      header={header}
+      header={{
+        title: data?.serviceName,
+        guideMenu: <GuideMenu items={guideItems} />,
+      }}
       tabs={<TabsPanel tabs={tabsList} />}
       message={
         // temporary fix margin even if empty

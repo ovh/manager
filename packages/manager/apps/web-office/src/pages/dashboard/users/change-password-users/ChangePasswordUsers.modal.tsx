@@ -8,24 +8,31 @@ import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
-  OdsInput,
-  OdsPassword,
-  OdsRadio,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  MODAL_COLOR,
+  Password,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import type { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { CANCEL, CONFIRM, EDIT_PASSWORD } from '@/Tracking.constants';
 import { GeneratePasswordButton } from '@/components/generate-password-button/GeneratePasswordButton.component';
@@ -75,20 +82,20 @@ export default function ModalChangePasswordUsers() {
       postUsersPassword(licencePrepaidName || serviceName, activationEmail, params),
     onSuccess: () => {
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('dashboard_users_change_password_message_success')}
-        </OdsText>,
+        </Text>,
         true,
       );
       onClose();
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('dashboard_users_change_password_message_error', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -125,74 +132,56 @@ export default function ModalChangePasswordUsers() {
   return (
     <Modal
       heading={t(`${NAMESPACES.ACTIONS}:change_password`)}
-      type={ODS_MODAL_COLOR.information}
-      isOpen={true}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
-      onDismiss={handleCancelClick}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      isPrimaryButtonDisabled={!isValid}
-      onPrimaryButtonClick={() => void handleSubmit(handleSaveClick)()}
-      isPrimaryButtonLoading={isSending}
+      type={MODAL_COLOR.information}
+      open={true}
+      secondaryButton={{ label: t(`${NAMESPACES.ACTIONS}:cancel`), onClick: handleCancelClick }}
+      onOpenChange={handleCancelClick}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        disabled: !isValid,
+        onClick: () => void handleSubmit(handleSaveClick)(),
+        loading: isSending,
+      }}
     >
       <form className="flex flex-col" onSubmit={(e) => void handleSubmit(handleSaveClick)(e)}>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+        <Text preset={TEXT_PRESET.paragraph} className="mb-4">
           {t(`${NAMESPACES.FORM}:label_mandatory`)}
-        </OdsText>
-        <OdsFormField>
-          <span>
-            <OdsRadio
-              name="passwordAutomatic"
-              inputId="radio-automatic"
-              isChecked={isAutomatic}
-              onOdsChange={() => {
-                setValue('email', emailUser);
-                setIsAutomatic(true);
-              }}
-              data-testid="radio-automatic"
-              value="passwordAutomatic"
-            ></OdsRadio>
-            <label htmlFor="radio-automatic" className="ml-4">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('dashboard_users_change_password_radio_1')}
-              </OdsText>
-            </label>
-          </span>
-          <span>
-            <OdsRadio
-              name="passwordManual"
-              inputId="radio-manual"
-              value="passwordManual"
-              isChecked={!isAutomatic}
-              onOdsChange={() => {
-                setValue('email', null);
-                setIsAutomatic(false);
-              }}
-              isRequired={isAutomatic}
-              data-testid="radio-manual"
-            ></OdsRadio>
-            <label htmlFor="radio-manual" className="ml-4">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('dashboard_users_change_password_radio_2')}
-              </OdsText>
-            </label>
-          </span>
-        </OdsFormField>
+        </Text>
+        <FormField>
+          <RadioGroup
+            value={isAutomatic ? 'passwordAutomatic' : 'passwordManual'}
+            onValueChange={(e) => {
+              setValue('email', e.value === 'passwordAutomatic' ? emailUser : null);
+              setIsAutomatic(e.value === 'passwordAutomatic');
+            }}
+          >
+            <Radio data-testid="radio-automatic" value="passwordAutomatic">
+              <RadioControl />
+              <RadioLabel>{t('dashboard_users_change_password_radio_1')}</RadioLabel>
+            </Radio>
+            <Radio value="passwordManual" data-testid="radio-manual">
+              <RadioControl />
+              <RadioLabel>{t('dashboard_users_change_password_radio_2')}</RadioLabel>
+            </Radio>
+          </RadioGroup>
+        </FormField>
         {!isAutomatic && (
           <>
             <Controller
               name="password"
               control={control}
               render={({ field: { name, value, onBlur, onChange } }) => (
-                <OdsFormField className="mt-4" error={errors?.password?.message}>
-                  <label slot="label">{t('dashboard_users_change_password_label_password')}*</label>
+                <FormField className="mt-4" invalid={!!errors?.password?.message}>
+                  <FormFieldLabel>
+                    {t('dashboard_users_change_password_label_password')}*
+                  </FormFieldLabel>
                   <div className="flex flex-1 gap-4">
-                    <OdsPassword
+                    <Password
                       name={name}
                       value={value}
-                      hasError={!!errors.password}
-                      onOdsBlur={onBlur}
-                      onOdsChange={onChange}
+                      invalid={!!errors.password}
+                      onBlur={onBlur}
+                      onChange={onChange}
                       data-testid="input-password"
                       className="w-full"
                     />
@@ -203,10 +192,11 @@ export default function ModalChangePasswordUsers() {
                       }}
                     />
                   </div>
-                </OdsFormField>
+                  <FormFieldError>{errors?.password?.message}</FormFieldError>
+                </FormField>
               )}
             />
-            <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-6">
+            <Text preset={TEXT_PRESET.paragraph} className="mt-6">
               <div>{t(`${NAMESPACES.FORM}:change_password_helper1`)}</div>
               <ul className="mt-0">
                 <li>{t(`${NAMESPACES.FORM}:min_chars`, { value: 8 })}</li>
@@ -216,7 +206,7 @@ export default function ModalChangePasswordUsers() {
                 </li>
                 <li>{t(`dashboard_users_change_password_helper3`)}</li>
               </ul>
-            </OdsText>
+            </Text>
           </>
         )}
 
@@ -224,22 +214,23 @@ export default function ModalChangePasswordUsers() {
           control={control}
           name="email"
           render={({ field: { name, value, onBlur, onChange } }) => (
-            <OdsFormField className="w-full mt-4 mb-4" error={errors?.email?.message}>
-              <label slot="label">
+            <FormField className="my-4 w-full" invalid={!!errors?.email?.message}>
+              <FormFieldLabel>
                 {t('dashboard_users_change_password_label_email')}
                 {isAutomatic && '*'}
-              </label>
-              <OdsInput
+              </FormFieldLabel>
+              <Input
                 name={name}
                 value={value}
                 data-testid="input-email"
-                hasError={!!errors.email}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-                type={ODS_INPUT_TYPE.email}
-                isClearable
+                invalid={!!errors.email}
+                onBlur={onBlur}
+                onChange={onChange}
+                type={INPUT_TYPE.email}
+                clearable
               />
-            </OdsFormField>
+              <FormFieldError>{errors?.email?.message}</FormFieldError>
+            </FormField>
           )}
         />
       </form>

@@ -1,6 +1,7 @@
+import { fireEvent } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 
-import { fireEvent, render } from '@/utils/Test.provider';
+import { renderWithRouter } from '@/utils/Test.provider';
 import { containsDigit, containsLowercase, containsSpecial, containsUppercase } from '@/utils/form';
 
 import { GeneratePasswordButton } from '../GeneratePasswordButton.component';
@@ -9,7 +10,7 @@ describe('GeneratePasswordButton component', () => {
   it('should render and call onGenerate & onClick when clicked', () => {
     const onGenerate = vi.fn();
     const onClick = vi.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <GeneratePasswordButton
         id="generate-password-btn"
         onGenerate={onGenerate}
@@ -28,7 +29,7 @@ describe('GeneratePasswordButton component', () => {
 
   it('should generate a password with all defaults', () => {
     const onGenerate = vi.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <GeneratePasswordButton id="generate-password-btn" onGenerate={onGenerate} />,
     );
     const cmp = getByTestId('generate-password-btn');
@@ -47,7 +48,7 @@ describe('GeneratePasswordButton component', () => {
 
   it('should generate a password with 20 characters', () => {
     const onGenerate = vi.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <GeneratePasswordButton id="generate-password-btn" onGenerate={onGenerate} length={20} />,
     );
     const cmp = getByTestId('generate-password-btn');
@@ -62,7 +63,7 @@ describe('GeneratePasswordButton component', () => {
 
   it('should generate a password with only lowercased letters', () => {
     const onGenerate = vi.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <GeneratePasswordButton
         id="generate-password-btn"
         onGenerate={onGenerate}
@@ -87,7 +88,7 @@ describe('GeneratePasswordButton component', () => {
 
   it('should generate a password with only uppercased letters', () => {
     const onGenerate = vi.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <GeneratePasswordButton
         id="generate-password-btn"
         onGenerate={onGenerate}
@@ -112,7 +113,7 @@ describe('GeneratePasswordButton component', () => {
 
   it('should generate a password with only digits', () => {
     const onGenerate = vi.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <GeneratePasswordButton
         id="generate-password-btn"
         onGenerate={onGenerate}
@@ -137,7 +138,7 @@ describe('GeneratePasswordButton component', () => {
 
   it('should generate a password with only special characters', () => {
     const onGenerate = vi.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <GeneratePasswordButton
         id="generate-password-btn"
         onGenerate={onGenerate}

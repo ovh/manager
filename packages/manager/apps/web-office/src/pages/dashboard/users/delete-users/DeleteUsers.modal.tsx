@@ -3,13 +3,21 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ICON_NAME,
+  MESSAGE_COLOR,
+  MODAL_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import type { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { CANCEL, CONFIRM, DELETE_ACCOUNT } from '@/Tracking.constants';
 import { postOfficePrepaidLicenseUnconfigure } from '@/data/api/license/api';
@@ -56,19 +64,17 @@ export default function ModalDeleteUsers() {
     },
     onSuccess: () => {
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('dashboard_users_delete_message_success')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('dashboard_users_delete_message_success')}</Text>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('dashboard_users_delete_message_error', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -88,26 +94,28 @@ export default function ModalDeleteUsers() {
   return (
     <Modal
       heading={t(`${NAMESPACES.ACTIONS}:delete_account`)}
-      type={ODS_MODAL_COLOR.critical}
-      isOpen={true}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
-      onDismiss={handleCancelClick}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
-      isPrimaryButtonDisabled={!activationEmail}
-      onPrimaryButtonClick={deleteUsers}
-      isPrimaryButtonLoading={isDeleting}
+      type={MODAL_COLOR.critical}
+      open={true}
+      onOpenChange={handleCancelClick}
+      secondaryButton={{ label: t(`${NAMESPACES.ACTIONS}:cancel`), onClick: handleCancelClick }}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
+        disabled: !activationEmail,
+        onClick: deleteUsers,
+        loading: isDeleting,
+      }}
     >
       <div>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-4">
+        <Text preset={TEXT_PRESET.paragraph} className="mt-4">
           <Trans t={t} i18nKey="dashboard_users_delete_confirm" values={{ t0: activationEmail }} />
-        </OdsText>
-        <OdsMessage color={ODS_MESSAGE_COLOR.critical} className="mt-4 mb-6" isDismissible={false}>
-          <div>
+        </Text>
+        <Message color={MESSAGE_COLOR.critical} className="mb-6 mt-4" dismissible={false}>
+          <MessageIcon name={ICON_NAME.hexagonExclamation} />
+          <MessageBody>
             <span className="block font-bold">{t('dashboard_users_delete_info1')}</span>
             <p>{t('dashboard_users_delete_info2')}</p>
-          </div>
-        </OdsMessage>
+          </MessageBody>
+        </Message>
       </div>
     </Modal>
   );
