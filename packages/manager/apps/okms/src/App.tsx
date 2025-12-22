@@ -26,8 +26,7 @@ function App() {
     <Suspense fallback={<Loading />}>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        {/* @ts-expect-error - TODO: remove this once the react-query dependency error is fixed  */}
-        <ReactQueryDevtools client={queryClient} />
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </Suspense>
   );
