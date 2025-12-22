@@ -8,13 +8,21 @@ import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  MODAL_COLOR,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import type { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { CANCEL, CONFIRM, EDIT_ACCOUNT } from '@/Tracking.constants';
 import { UserParamsType } from '@/data/api/ApiType';
@@ -95,19 +103,17 @@ export default function ModalEditUsers() {
     },
     onSuccess: () => {
       addInfo(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('dashboard_users_edit_message_success')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('dashboard_users_edit_message_success')}</Text>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('dashboard_users_edit_message_error', {
             error: error.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -162,43 +168,43 @@ export default function ModalEditUsers() {
   return (
     <Modal
       heading={t('dashboard_users_edit_title')}
-      type={ODS_MODAL_COLOR.information}
-      isOpen={true}
-      isLoading={isLoading}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
-      onDismiss={handleCancelClick}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      isPrimaryButtonDisabled={!isDirty || !isValid}
-      onPrimaryButtonClick={() => void handleSubmit(handleSaveClick)()}
-      isPrimaryButtonLoading={isSending}
+      type={MODAL_COLOR.information}
+      open={true}
+      loading={isLoading}
+      onOpenChange={handleCancelClick}
+      secondaryButton={{ label: t(`${NAMESPACES.ACTIONS}:cancel`), onClick: handleCancelClick }}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        disabled: !isDirty || !isValid,
+        onClick: () => void handleSubmit(handleSaveClick)(),
+        loading: isSending,
+      }}
     >
       <form
-        className="flex flex-col text-left gap-y-5"
+        className="flex flex-col gap-y-5 text-left"
         onSubmit={(e) => void handleSubmit(handleSaveClick)(e)}
       >
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(`${NAMESPACES.FORM}:label_mandatory`)}
-        </OdsText>
-        <div className="flex flex-wrap sm:flex-nowrap gap-5">
+        <div className="flex flex-wrap gap-5 sm:flex-nowrap">
           <Controller
             control={control}
             name="firstname"
             rules={{ required: true }}
             render={({ field: { name, value, onBlur, onChange } }) => (
-              <OdsFormField error={errors?.firstname?.message} className="w-full">
-                <label slot="label">{t(`${NAMESPACES.FORM}:firstname`)}*</label>
-
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+              <FormField invalid={!!errors?.firstname?.message} className="w-full">
+                <FormFieldLabel>
+                  {t(`${NAMESPACES.FORM}:firstname`)} - {t(`${NAMESPACES.FORM}:required`)}
+                </FormFieldLabel>
+                <Input
+                  type={INPUT_TYPE.text}
                   name={name}
                   value={value}
                   data-testid="input-firstname"
-                  hasError={!!errors.firstname}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
-                ></OdsInput>
-              </OdsFormField>
+                  invalid={!!errors.firstname}
+                  onBlur={onBlur}
+                  onChange={onChange}
+                ></Input>
+                <FormFieldError>{errors?.firstname?.message}</FormFieldError>
+              </FormField>
             )}
           />
           <Controller
@@ -206,19 +212,21 @@ export default function ModalEditUsers() {
             name="lastname"
             rules={{ required: true }}
             render={({ field: { name, value, onBlur, onChange } }) => (
-              <OdsFormField error={errors?.lastname?.message} className="w-full">
-                <label slot="label">{t(`${NAMESPACES.FORM}:lastname`)}*</label>
-
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+              <FormField invalid={!!errors?.lastname?.message} className="w-full">
+                <FormFieldLabel>
+                  {t(`${NAMESPACES.FORM}:lastname`)} - {t(`${NAMESPACES.FORM}:required`)}
+                </FormFieldLabel>
+                <Input
+                  type={INPUT_TYPE.text}
                   name={name}
                   value={value}
                   data-testid="input-lastname"
-                  hasError={!!errors.lastname}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
-                ></OdsInput>
-              </OdsFormField>
+                  invalid={!!errors.lastname}
+                  onBlur={onBlur}
+                  onChange={onChange}
+                ></Input>
+                <FormFieldError>{errors?.lastname?.message}</FormFieldError>
+              </FormField>
             )}
           />
         </div>
@@ -227,39 +235,40 @@ export default function ModalEditUsers() {
           name="login"
           rules={{ required: true }}
           render={({ field: { name, value, onBlur, onChange } }) => (
-            <OdsFormField error={errors?.login?.message}>
-              <label htmlFor="label" slot="label">
-                {t(`${NAMESPACES.FORM}:login`)}*
-              </label>
-              <div className="flex flex-wrap sm:flex-nowrap gap-5">
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+            <FormField invalid={!!errors?.login?.message}>
+              <FormFieldLabel>
+                {t(`${NAMESPACES.FORM}:login`)} - {t(`${NAMESPACES.FORM}:required`)}
+              </FormFieldLabel>
+              <div className="flex flex-wrap gap-5 sm:flex-nowrap">
+                <Input
+                  type={INPUT_TYPE.text}
                   name={name}
                   value={value}
                   data-testid="input-login"
-                  hasError={!!errors.login}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
+                  invalid={!!errors.login}
+                  onBlur={onBlur}
+                  onChange={onChange}
                   className="w-full"
-                ></OdsInput>
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+                ></Input>
+                <Input
+                  type={INPUT_TYPE.text}
                   name="domain"
                   data-testid="input-domain"
-                  isDisabled
+                  disabled
                   value={`@${userDetail.activationEmail.split('@')[1] || domain}`}
                   className="w-full"
-                ></OdsInput>
+                ></Input>
               </div>
-            </OdsFormField>
+              <FormFieldError>{errors?.login?.message}</FormFieldError>
+            </FormField>
           )}
         />
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           <ul className="mt-0">
             <li>{t('common:form_helper_login_conditions')}</li>
             <li>{t('common:form_helper_login_condition_exception')}</li>
           </ul>
-        </OdsText>
+        </Text>
       </form>
     </Modal>
   );

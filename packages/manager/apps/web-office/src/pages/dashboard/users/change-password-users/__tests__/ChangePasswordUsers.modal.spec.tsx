@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/await-thenable */
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import '@testing-library/jest-dom';
+import { act, fireEvent } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { postUsersPassword } from '@/data/api/users/api';
-import { act, fireEvent, render } from '@/utils/Test.provider';
-import { OdsHTMLElement } from '@/utils/Test.utils';
+import { renderWithRouter } from '@/utils/Test.provider';
 
 import ModalChangePasswordUsers from '../ChangePasswordUsers.modal';
 
@@ -34,16 +33,14 @@ describe('ModalChangePasswordUsers Component', () => {
       },
     });
 
-    const { getByTestId } = render(<ModalChangePasswordUsers />);
+    const { getByTestId } = renderWithRouter(<ModalChangePasswordUsers />);
 
-    const manualRadio = getByTestId('radio-manual') as OdsHTMLElement;
+    const manualRadio = getByTestId('radio-manual');
 
-    const saveButton = getByTestId('primary-button') as OdsHTMLElement;
+    const saveButton = getByTestId('primary-button');
+
     await act(() => {
       fireEvent.click(manualRadio);
-      manualRadio.odsChange.emit({
-        value: 'passwordManual',
-      });
     });
     const inputPassword = getByTestId('input-password');
     expect(inputPassword).toBeVisible();
@@ -51,7 +48,7 @@ describe('ModalChangePasswordUsers Component', () => {
     await act(() => {
       fireEvent.change(inputPassword, { target: { value: 'newPas$word123' } });
     });
-    expect(saveButton).toHaveAttribute('is-disabled', 'false');
+    expect(saveButton).not.toHaveAttribute('disabled');
 
     await act(() => fireEvent.click(saveButton));
     expect(postUsersPassword).toHaveBeenCalledOnce();
@@ -76,11 +73,11 @@ describe('ModalChangePasswordUsers Component', () => {
       },
     });
 
-    const { getByTestId, getByText } = render(<ModalChangePasswordUsers />);
+    const { getByTestId, getByText } = renderWithRouter(<ModalChangePasswordUsers />);
 
     const automaticRadioSpan = getByText('dashboard_users_change_password_radio_1').parentElement;
-    const emailInput = getByTestId('input-email') as OdsHTMLElement;
-    const saveButton = getByTestId('primary-button') as OdsHTMLElement;
+    const emailInput = getByTestId('input-email');
+    const saveButton = getByTestId('primary-button');
 
     await act(() => fireEvent.click(automaticRadioSpan));
 
@@ -88,10 +85,9 @@ describe('ModalChangePasswordUsers Component', () => {
 
     await act(() => {
       fireEvent.input(emailInput, { target: { value: 'test@ovhcloud.com' } });
-      emailInput.odsChange.emit({ name: 'email', value: 'test@ovhcloud.com' });
     });
 
-    expect(saveButton).toHaveAttribute('is-disabled', 'false');
+    expect(saveButton).not.toHaveAttribute('disabled');
 
     await act(() => fireEvent.click(saveButton));
     expect(postUsersPassword).toHaveBeenCalledOnce();
@@ -99,9 +95,8 @@ describe('ModalChangePasswordUsers Component', () => {
 });
 
 describe('ModalChangePasswordUsers W3C Validation', () => {
-  // issue with ods on label and input (for / id)
-  it.skip('should have a valid html', async () => {
-    const { container } = render(<ModalChangePasswordUsers />);
+  it('should have a valid html', async () => {
+    const { container } = renderWithRouter(<ModalChangePasswordUsers />);
     const html = container.innerHTML;
 
     await expect(html).toBeValidHtml();

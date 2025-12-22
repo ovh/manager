@@ -1,14 +1,25 @@
+import { useMemo, useState } from 'react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
 
+import type { VisibilityState } from '@tanstack/react-table';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsIcon, OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ICON_NAME,
+  Icon,
+  Link,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, ManagerButton } from '@ovh-ux/manager-react-components';
-import type { DatagridColumn } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button, Datagrid } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
 
 import { ORDER_OFFICE } from '@/Tracking.constants';
 import { BadgeStatus } from '@/components/badge-status/BadgeStatus.component';
@@ -23,6 +34,7 @@ import { IAM_ACTIONS } from '@/utils/IamAction.constants';
 import ActionButtonUsers from './ActionButtonUsers.component';
 
 export default function Users() {
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const { t } = useTranslation([
     'dashboard/users',
     'common',
@@ -63,113 +75,117 @@ export default function Users() {
     navigate(hrefOrderUsers);
   };
 
-  const columns: DatagridColumn<UserNativeType | LicensePrepaidType>[] = [
-    {
-      id: 'firstName',
-      cell: (item: UserNativeType) => (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.firstName}</OdsText>
-      ),
-      label: `${NAMESPACES.FORM}:firstname`,
-    },
-    {
-      id: 'lastName',
-      cell: (item: UserNativeType) => (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.lastName}</OdsText>
-      ),
-      label: `${NAMESPACES.FORM}:lastname`,
-      enableHiding: true,
-    },
-    {
-      id: 'activationEmail',
-      cell: (item: UserNativeType) => (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.activationEmail}</OdsText>
-      ),
-      label: 'dashboard_users_table_activationEmail',
-      enableHiding: true,
-    },
-    {
-      id: 'licences',
-      cell: (item: UserNativeType) => (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.licences}</OdsText>
-      ),
-      label: 'dashboard_users_table_licences',
-      enableHiding: true,
-    },
-    {
-      id: 'status',
-      cell: (item: UserNativeType) =>
-        item.isVirtual ? (
-          <BadgeStatus
-            itemStatus={item.taskPendingId ? UserStateEnum.CREATING : UserStateEnum.UNCONFIGURED}
-          ></BadgeStatus>
-        ) : (
-          <BadgeStatus itemStatus={item.status}></BadgeStatus>
+  const columns: DatagridColumn<UserNativeType | LicensePrepaidType>[] = useMemo(
+    () => [
+      {
+        id: 'firstName',
+        header: t(`${NAMESPACES.FORM}:firstname`),
+        accessorKey: 'firstName',
+        enableHiding: true,
+      },
+      {
+        id: 'lastName',
+        header: t(`${NAMESPACES.FORM}:lastname`),
+        accessorKey: 'lastName',
+        enableHiding: true,
+      },
+      {
+        id: 'activationEmail',
+        header: t('dashboard_users_table_activationEmail'),
+        accessorKey: 'activationEmail',
+        enableHiding: true,
+      },
+      {
+        id: 'licences',
+        header: t('dashboard_users_table_licences'),
+        accessorKey: 'licences',
+        enableHiding: true,
+      },
+      {
+        id: 'status',
+        header: t('dashboard_users_table_status'),
+        cell: ({
+          row: {
+            original: { isVirtual, taskPendingId, status },
+          },
+        }) =>
+          isVirtual ? (
+            <BadgeStatus
+              itemStatus={taskPendingId ? UserStateEnum.CREATING : UserStateEnum.UNCONFIGURED}
+            ></BadgeStatus>
+          ) : (
+            <BadgeStatus itemStatus={status}></BadgeStatus>
+          ),
+        enableHiding: true,
+      },
+      {
+        id: 'actions',
+        maxSize: 50,
+        cell: ({ row: { original } }) => (
+          <ActionButtonUsers
+            usersItem={original}
+            licenceDetail={dataLicenceDetail}
+          ></ActionButtonUsers>
         ),
-      label: 'dashboard_users_table_status',
-      enableHiding: true,
-    },
-    {
-      id: 'action',
-      cell: (item: UserNativeType) => (
-        <ActionButtonUsers usersItem={item} licenceDetail={dataLicenceDetail}></ActionButtonUsers>
-      ),
-      enableHiding: false,
-      label: '',
-    },
-  ];
+      },
+    ],
+    [dataLicenceDetail, t],
+  );
 
   return (
-    <div className="mb-4">
+    <>
       <Outlet />
-      <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
-        <OdsIcon name={ODS_ICON_NAME.download} className="mr-4" />
+      <Text preset={TEXT_PRESET.paragraph} className="mb-4">
+        <Icon name={ICON_NAME.download} className="mr-4" />
         <Trans
           t={t}
           i18nKey={'dashboard_users_download_text'}
           components={{
             officeLink: (
-              <OdsLink
+              <Link
                 target="_blank"
                 referrerpolicy="strict-origin-when-cross-origin"
                 href={'https://portal.office.com/'}
-                icon={ODS_ICON_NAME.externalLink}
-                label={'Microsoft Office'}
-              ></OdsLink>
+              >
+                Microsoft Office
+                <Icon name={ICON_NAME.externalLink} />
+              </Link>
             ),
           }}
         />
-        <p>{t('dashboard_users_download_info')}</p>
-        <OdsMessage isDismissible={false}>{t('dashboard_users_download_id')}</OdsMessage>
-      </OdsText>
+      </Text>
+      <Text preset={TEXT_PRESET.paragraph} className="mb-4">
+        {t('dashboard_users_download_info')}
+      </Text>
+      <Message dismissible={false} className="mb-4">
+        <MessageIcon name={ICON_NAME.circleInfo} />
+        <MessageBody>{t('dashboard_users_download_id')}</MessageBody>
+      </Message>
       <Datagrid
-        columns={columns.map((column) => ({
-          ...column,
-          label: t(column.label),
-        }))}
-        items={dataUsers || []}
-        totalItems={dataUsers?.length || 0}
+        columns={columns}
+        data={dataUsers ?? []}
+        columnVisibility={{
+          columnVisibility,
+          setColumnVisibility,
+        }}
         topbar={
           !dataLicenceDetail?.serviceType ? (
-            <OdsButton
-              data-testid="licenses-order-button"
-              label={t('common:users_order_licenses')}
-              onClick={onOrderLicenses}
-              variant={ODS_BUTTON_VARIANT.outline}
-            />
+            <Button data-testid="licenses-order-button" onClick={onOrderLicenses}>
+              {t('common:users_order_licenses')}
+            </Button>
           ) : (
-            <ManagerButton
-              id={dataLicenceDetail.id as string}
+            <Button
               data-testid="users-order-button"
-              label={t(`${NAMESPACES.ACTIONS}:order_users`)}
               urn={dataLicenceDetail?.iam.urn}
               onClick={onOrderUsers}
-              variant={ODS_BUTTON_VARIANT.outline}
               iamActions={[IAM_ACTIONS.user.create]}
-            />
+            >
+              {t(`${NAMESPACES.ACTIONS}:order_users`)}
+            </Button>
           )
         }
         isLoading={isLoadingUsers || isLoadingLicenceDetail}
       />
-    </div>
+    </>
   );
 }
