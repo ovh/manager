@@ -174,5 +174,6 @@
   "billing_autorenew_service_renew_automatic": "Automatico",
   "billing_autorenew_service_renew_manual": "Manuale",
   "billing_autorenew_service_renew": "Rinnovo",
-  "billing_autorenew_criterion_renew": "Rinnovo"
+  "billing_autorenew_criterion_renew": "Rinnovo",
+  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC"
 }
