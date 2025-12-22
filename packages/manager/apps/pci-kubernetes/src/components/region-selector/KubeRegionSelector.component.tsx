@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
@@ -7,7 +7,7 @@ import { RegionSelectorProps } from '@ovh-ux/manager-pci-common';
 
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
-import { DeploymentMode } from '@/types';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
 import { TLocation } from '@/types/region';
 
 import usePlanToRegionAvailability from '../../api/hooks/usePlanToRegionAvailability';
@@ -27,6 +27,8 @@ export function KubeRegionSelector({
 }: Readonly<KubeRegionSelectorProps>) {
   const { data: availability, isPending } = usePlanToRegionAvailability(projectId, 'mks');
 
+  const [selectedPlan, setSelectedPlan] = useState<TClusterPlanEnum>(TClusterPlanEnum.ALL);
+
   const featureFlipping3az = use3AZPlanAvailable();
   const { contains3AZ } = useHas3AZRegions();
   const has3AZ = contains3AZ && featureFlipping3az;
@@ -36,14 +38,17 @@ export function KubeRegionSelector({
       return Boolean(
         region.isMacro ||
           (!isPending &&
-            availability.some(({ name, type }) =>
-              selectedDeployment
-                ? name === region.name && type === selectedDeployment
-                : name === region.name,
+            availability.some(
+              ({ name, type, codes }) =>
+                (selectedPlan === TClusterPlanEnum.ALL ||
+                  codes.some((code) => code.includes(selectedPlan))) &&
+                (selectedDeployment
+                  ? name === region.name && type === selectedDeployment
+                  : name === region.name),
             )),
       );
     },
-    [availability, isPending, selectedDeployment],
+    [availability, isPending, selectedPlan, selectedDeployment],
   );
 
   if (isPending) {
@@ -55,8 +60,10 @@ export function KubeRegionSelector({
       <RegionSelector
         projectId={projectId}
         onSelectRegion={onSelectRegion}
+        onSelectPlan={setSelectedPlan}
         regionFilter={regionFilter}
         compactMode={!has3AZ}
+        selectedPlan={selectedPlan}
       />
     </div>
   );
