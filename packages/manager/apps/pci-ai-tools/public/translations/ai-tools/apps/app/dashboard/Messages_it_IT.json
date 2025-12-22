@@ -30,6 +30,6 @@
   "cliEquivalentToastMessage": "Il comando CLI è stato copiato",
   "customMetricsUrlLabel": "URL: ",
   "customMetricsFormatLabel": "Formato: {{for}}",
-  "customMetricsLocationLabel": "Posizione: ",
+  "customMetricsLocationLabel": "Localizzazione: ",
   "customMetricsTargetValueLabel": "Valore: {{val}}"
 }

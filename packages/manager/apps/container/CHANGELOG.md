@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.173.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.3...@ovh-ux/manager-container-app@0.173.0) (2025-12-18)
+
+
+### Features
+
+* **container:** remove beta badge for logs to customer ([49df7c4](https://github.com/ovh/manager/commit/49df7c49e4a855356391d8d2d1b85aa096f67e58)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
 ## [0.172.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.2...@ovh-ux/manager-container-app@0.172.3) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

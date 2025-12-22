@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_storages_blocks_retype_cant_retype": "Funkcja zmiany typu nie jest dostępna dla wolumenów Classic 3AZ lub wolumenów szyfrowanych",
+  "pci_projects_project_storages_blocks_retype_title": "Zmień swój typ oferty",
+  "pci_projects_project_storages_blocks_retype_change_type_title": "Wybierz typ",
+  "pci_projects_project_storages_blocks_retype_change_encryption_title": "Wybierz szyfrowanie",
+  "pci_projects_project_storages_blocks_retype_encryption_not_available": "Szyfrowanie nie jest dostępne w tym regionie",
+  "pci_projects_project_storages_blocks_retype_confirm_action_label": "Wpisz \"{{ confirmWord }}\" aby potwierdzić swój wybór.",
+  "pci_projects_project_storages_blocks_retype_confirm_action_confirm_button": "Potwierdź i kontynuuj",
+  "pci_projects_project_storages_blocks_retype_detach_volume_label": "Odłącz swoją instancję",
+  "pci_projects_project_storages_blocks_retype_detach_volume_warning": "Aby zmienić swój typ oferty, musisz odłączyć wolumen od instancji {{ instance }}",
+  "pci_projects_project_storages_blocks_retype_detach_volume_error": "Wystąpił błąd podczas odłączania instancji. Zachęcamy do odwiedzenia &lt;0>strony przechowywania bloków&lt;/0>, aby ręcznie odłączyć instancję.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_label": "Usuń migawki",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_warning": "Aby zmienić swój typ oferty, musisz najpierw usunąć migawki przypisane do swojego wolumenu.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_error": "Wystąpił błąd podczas usuwania migawek. Zachęcamy do odwiedzenia &lt;0>strony migawek&lt;/0>, aby ręcznie je usunąć.",
+  "pci_projects_project_storages_blocks_retype_retype_success": "Wolumen {{ volumeName }} jest w trakcie zmiany. Operacja ta może potrwać kilka minut. Po jej zakończeniu będziesz mógł przeprowadzić zwykłe działania",
+  "pci_projects_project_storages_blocks_retype_retype_error": "Wystąpił błąd podczas zmiany typu twojego wolumenu."
+}

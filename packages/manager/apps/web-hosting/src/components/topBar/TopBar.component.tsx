@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
-import { useNotifications, useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
+import { useDataApi, useNotifications } from '@ovh-ux/muk';
 
 import { useCreateDomainCertificates } from '@/data/hooks/ssl/useSsl';
 import { WebsiteType } from '@/data/types/product/website';
@@ -21,10 +29,13 @@ export default function Topbar() {
   const { addSuccess, addWarning } = useNotifications();
 
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
-  const { flattenData } = useResourcesIcebergV2<WebsiteType>({
+  const { flattenData } = useDataApi<WebsiteType>({
     route: `/webhosting/resource/${serviceName}/attachedDomain`,
-    queryKey: ['webhosting', 'resource', serviceName, 'attachedDomain'],
+    cacheKey: ['webhosting', 'resource', serviceName, 'attachedDomain'],
     pageSize: APIV2_MAX_PAGESIZE,
+    enabled: !!serviceName,
+    iceberg: true,
+    version: 'v2',
   });
 
   const { t } = useTranslation('ssl');
@@ -48,55 +59,58 @@ export default function Topbar() {
     createDomainCertificates(selectedDomains);
   };
 
+  const selectItems =
+    flattenData
+      ?.filter(
+        (item) =>
+          item?.currentState?.ssl?.status !== ServiceStatus.ACTIVE &&
+          !item?.currentState?.isDefault,
+      )
+      ?.map((it) => ({
+        value: it?.currentState?.fqdn,
+        label: it?.currentState?.fqdn,
+      })) || [];
   return (
     <div className="mb-10 flex flex-col space-y-10">
       <div className="flex space-x-4">
-        <OdsButton
-          size={ODS_BUTTON_SIZE.sm}
+        <Button
+          size={BUTTON_SIZE.sm}
           data-testid="order-ssl"
           onClick={() => navigate(urls.orderSectigo.replace(subRoutes.serviceName, serviceName))}
-          label={t('order_ssl_certificate')}
-        />
-        <OdsButton
-          size={ODS_BUTTON_SIZE.sm}
+        >
+          {t('order_ssl_certificate')}
+        </Button>
+        <Button
+          size={BUTTON_SIZE.sm}
           data-testid="import-ssl"
           onClick={() => navigate(urls.importSsl.replace(subRoutes.serviceName, serviceName))}
-          variant={ODS_BUTTON_VARIANT.outline}
-          label={t('import_ssl_certificate')}
-        />
+          variant={BUTTON_VARIANT.outline}
+        >
+          {t('import_ssl_certificate')}
+        </Button>
       </div>
       <div className="bg-gray-200 p-6">
-        <OdsText preset={ODS_TEXT_PRESET.heading4} className="mb-6">
+        <Text preset={TEXT_PRESET.heading4} className="mb-6">
           {t('enable_ssl_certificate')}
-        </OdsText>
+        </Text>
         <div className="flex space-x-4">
-          <OdsSelect
+          <Select
+            id="domainName"
+            data-testid="domainName"
             name="domainName"
             className="w-1/3"
-            multipleSelectionLabel={t('hosting_dashboard_ssl_selected_item')}
-            allowMultiple
-            onOdsChange={(v) => {
-              setSelectedDomains(v.detail.value?.toString()?.split(','));
+            multiple={true}
+            onValueChange={(detail) => {
+              setSelectedDomains(detail.value ?? []);
             }}
+            items={selectItems}
           >
-            {flattenData
-              ?.filter(
-                (item) =>
-                  item?.currentState?.ssl?.status !== ServiceStatus.ACTIVE &&
-                  !item?.currentState?.isDefault,
-              )
-              ?.map((it) => (
-                <option value={it?.currentState?.fqdn} key={it?.currentState?.fqdn}>
-                  {it?.currentState?.fqdn}
-                </option>
-              ))}
-          </OdsSelect>
-          <OdsButton
-            size={ODS_BUTTON_SIZE.sm}
-            variant={ODS_BUTTON_VARIANT.outline}
-            onClick={handleSslEncrypt}
-            label={t('enable_ssl_encrypt')}
-          />
+            <SelectControl placeholder={t('hosting_dashboard_ssl_selected_item')} />
+            <SelectContent />
+          </Select>
+          <Button size={BUTTON_SIZE.sm} variant={BUTTON_VARIANT.outline} onClick={handleSslEncrypt}>
+            {t('enable_ssl_encrypt')}
+          </Button>
         </div>
       </div>
     </div>

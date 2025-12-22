@@ -1408,5 +1408,7 @@
   "hosting_dashboard_service_filer_helper": "L'identificativo del tuo filer è soggetto a modifiche",
   "hosting_dashboard_service_state_TO_CREATE": "Da creare",
   "hosting_tab_DATABASES_configuration__action_button": "Disattivare il mio database",
-  "hosting_tab_DATABASES_configuration__available_slot": "Database disponibile"
+  "hosting_tab_DATABASES_configuration__available_slot": "Database disponibile",
+  "hosting_tab_WEBSITE": "I miei siti",
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleziona un dominio"
 }

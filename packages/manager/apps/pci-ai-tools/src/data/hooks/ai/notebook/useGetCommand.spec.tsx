@@ -35,6 +35,7 @@ describe('useGetCommand', () => {
         mockedCommand,
         addNotebookProps,
         undefined,
+        expect.anything(),
       );
     });
   });

@@ -12,13 +12,15 @@ export default function ActionsComponent({
   volume,
   projectUrl,
 }: Readonly<ActionsProps>) {
-  const { t } = useTranslation();
-
+  const { t } = useTranslation(['common', 'retype']);
   const hrefEdit = useHref(`./${volume.id}/edit`);
   const hrefAttach = useHref(`./attach/${volume.id}`);
   const hrefDetach = useHref(`./detach/${volume.id}`);
   const hrefRemove = useHref(`./delete/${volume.id}`);
+  const hrefRetype = useHref(`./retype/${volume.id}`);
   const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volumeId=${volume.id}`;
+
+  const isVolumeBeingRetyped = volume.status === 'retyping';
 
   const onTrackingClick = useTrackAction<(actionName: string) => void>(
     (actionName) => ({
@@ -27,6 +29,14 @@ export default function ActionsComponent({
       actionValues: [volume.region, volume.type],
     }),
   );
+
+  const retypeTitleIfDeactivated = !volume.canRetype
+    ? {
+        title: t(
+          'retype:pci_projects_project_storages_blocks_retype_cant_retype',
+        ),
+      }
+    : {};
 
   const items: (ActionMenuItem & { dataTestid?: string })[] = [
     {
@@ -50,15 +60,23 @@ export default function ActionsComponent({
       dataTestid: 'actionComponent-detach-button',
       onClick: () => onTrackingClick('detach_instance'),
     },
-    {
+    !isVolumeBeingRetyped && {
       id: 3,
       href: hrefCreateBackup,
       label: t('pci_projects_project_storages_blocks_create_backup_label'),
       dataTestid: 'actionComponent-create-backup-button',
       onClick: () => onTrackingClick('create_volume_backup'),
     },
-    {
-      id: 4,
+    !isVolumeBeingRetyped && {
+      id: 5,
+      href: hrefRetype,
+      label: t('pci_projects_project_storages_blocks_change_type'),
+      dataTestid: 'actionComponent-retype-button',
+      disabled: !volume.canRetype,
+      ...retypeTitleIfDeactivated,
+    },
+    !isVolumeBeingRetyped && {
+      id: 6,
       href: hrefRemove,
       label: t('pci_projects_project_storages_blocks_delete_label'),
       dataTestid: 'actionComponent-remove-button',

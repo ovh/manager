@@ -2,7 +2,7 @@
   "exchange_update_billing_button_title": "Verlängerung konfigurieren",
   "exchange_update_billing_action_title": "Verlängerungszeitraum",
   "exchange_update_billing_validation_title": "Bestätigung",
-  "exchange_update_billing_periode_intro": "Wählen Sie den gewünschten Zeitraum für die automatische Verlängerung jedes Accounts aus. <br />Die Änderung wird bei der nächsten Verlängerung aktiv.",
+  "exchange_update_billing_periode_intro": "Wählen Sie den gewünschten Rhythmus für die automatische Verlängerung von jedem Account. <br />Ab der nächsten Verlängerung wird dieser Rhythmus dann angewendet.",
   "exchange_update_billing_actions_label": "Aktionen",
   "exchange_update_billing_email_label": "E-Mail-Account",
   "exchange_update_billing_expiration_date_label": "Ablaufdatum",

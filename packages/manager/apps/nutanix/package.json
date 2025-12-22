@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "3.0.120",
+  "version": "3.0.122",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -15,13 +15,13 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-bm-server-components": "^2.19.4",
+    "@ovh-ux/manager-bm-server-components": "^2.19.6",
     "@ovh-ux/manager-components": "^1.27.1",
     "@ovh-ux/manager-config": "^8.8.4",
-    "@ovh-ux/manager-core": "^13.3.6",
+    "@ovh-ux/manager-core": "^13.3.7",
     "@ovh-ux/manager-error-page": "^2.4.6",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
-    "@ovh-ux/manager-nutanix": "^2.11.23",
+    "@ovh-ux/manager-nutanix": "^2.11.24",
     "@ovh-ux/ng-at-internet": "^6.0.41",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.5",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",

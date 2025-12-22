@@ -8,8 +8,8 @@
   "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Złożona rezygnacja",
   "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Złożona rezygnacja",
   "billing_autorenew_service_modal_debt_warning_title": "Ważna informacja",
-  "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "Przykro nam, ale ta akcja nie jest dostępna.",
-  "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "Przykro nam, ale ta akcja nie jest dostępna, ponieważ ",
-  "reason_billing_right": "Nie jesteś kontaktem do fakturowania <b>{{contactBilling}}</b>",
-  "reason_admin_right": "Nie jesteś administratorem <b>{{contactAdmin}}</b>"
+  "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "Niestety ta operacja jest niedostępna.",
+  "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "Niestety ta operacja jest niedostępna, ponieważ ",
+  "reason_billing_right": "Nie jesteś kontaktem księgowym <b>{{contactBilling}}</b>",
+  "reason_admin_right": "Nie jesteś kontaktem administracyjnym <b>{{contactAdmin}}</b>"
 }

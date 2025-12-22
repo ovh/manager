@@ -5,5 +5,5 @@
   "pci_rancher_header_create_managed_rancher": "Creare un cluster Managed Rancher",
   "pci_rancher_header_update_managed_rancher": "Aggiornare un cluster Managed Rancher",
   "pci_rancher_header_iam_rancher": "Gestione delle identità e degli accessi (IAM)",
-  "pci_rancher_header_authentification_iam": "Attivare l'autenticazione IAM (EN)"
+  "pci_rancher_header_authentification_iam": "Attivare l’autenticazione IAM (EN)"
 }
