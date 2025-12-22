@@ -67,7 +67,7 @@
   "pci_instance_creation_select_flavor_category_label": "Modelo de instância",
   "pci_instance_creation_select_flavor_include_unavailable_action": "Incluir os indisponíveis",
   "pci_instance_creation_choose_availabilityZone_title": "Escolha a sua zona de disponibilidade",
-  "pci_instance_creation_choose_availabilityZone_informations": "Uma zona de disponibilidade padrão foi selecionada. Você tem a opção de personalizar esta escolha. Para saber mais sobre as especificações dos serviços 3-AZ e como usá-los para projetar uma infraestrutura resiliente.",
+  "pci_instance_creation_choose_availabilityZone_informations": "Uma zona de disponibilidade padrão foi selecionada. Você tem a possibilidade de personalizar essa escolha.",
   "pci_instance_creation_availabilityZone_choose_for_me": "Escolher por mim",
   "pci_instance_creation_availabilityZone_user_choice": "Eu escolho a minha zona de disponibilidade",
   "pci_instance_creation_availabilityZone_help_description_p1": "Num ambiente de nuvem, a disponibilidade e a resiliência dos serviços são essenciais para garantir a continuidade das operações, mesmo em caso de falha de uma zona de disponibilidade (AZ).",
