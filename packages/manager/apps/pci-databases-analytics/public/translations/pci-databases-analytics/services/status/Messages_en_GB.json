@@ -8,5 +8,6 @@
   "status-UPDATING": "Updating",
   "status-ERROR": "Error",
   "status-ERROR_INCONSISTENT_SPEC": "spec error",
-  "status-READY": "Available"
+  "status-READY": "Available",
+  "status-SHELVED": "Suspended"
 }
