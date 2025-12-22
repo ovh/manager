@@ -1276,3 +1276,18 @@ export const mockedOvhPrivateNetwork = {
   cidr: '10.1.0.0/16',
   enableDhcp: true,
 };
+
+export const mockedLocalBackups = [
+  {
+    label: 'Rotation 7',
+    value: 'rotation7-id',
+    description:
+      'A backup is taken every day between 22:00 and 06:00, and the rotation maintains a log of the 7 latest entries. When the new backup is taken, the previous one is deleted.',
+  },
+  {
+    label: 'Rotation 14',
+    value: 'rotation14-id',
+    description:
+      'A backup is taken every day between 22:00 and 06:00, and the rotation maintains a log of the 14 latest entries. When the new backup is taken, the previous one is deleted.',
+  },
+];

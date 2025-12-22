@@ -13,7 +13,10 @@ import {
 import { selectFlavors } from '../view-models/flavorsViewModel';
 import { selectImages } from '../view-models/imagesViewModel';
 import { useMemo } from 'react';
-import { mockedPrivateNetworks } from '@/__mocks__/instance/constants';
+import {
+  mockedPrivateNetworks,
+  mockedLocalBackups,
+} from '@/__mocks__/instance/constants';
 import { instanceCreationSchema } from '../CreateInstance.schema';
 
 const preselectedOs = 'linux';
@@ -78,6 +81,8 @@ export const useForm = (projectId: string) => {
 
   const defaultNetworkId = defaultNetwork?.value ?? null;
 
+  const defaultLocalBackup = mockedLocalBackups[0]?.value ?? null;
+
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     defaultValues: {
@@ -106,6 +111,7 @@ export const useForm = (projectId: string) => {
       networkId: defaultNetworkId,
       newPrivateNetwork: null,
       billingType: BILLING_TYPE.Hourly,
+      localBackup: defaultLocalBackup,
     },
     mode: 'onChange',
   });

@@ -32,5 +32,6 @@
   "pci_instances_common_backups_image_type": "Backups",
   "pci_instances_common_linux_image_type": "Distribuciones Unix",
   "pci_instances_common_apps_image_type": "Distribuciones + Apps",
-  "pci_instances_common_windows_image_type": "Distribuciones Windows"
+  "pci_instances_common_windows_image_type": "Distribuciones Windows",
+  "pci_instances_common_recommanded": "Recomendado"
 }
