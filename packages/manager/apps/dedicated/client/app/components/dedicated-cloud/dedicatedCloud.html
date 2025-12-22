@@ -99,6 +99,12 @@
     </header>
 
     <div>
+        <ovh-manager-pcc-dashboard-customer-vcfaas-migration-banner
+            data-ng-if="$ctrl.customerVcfaasMigrationBannerAvailability"
+            data-service-name="$ctrl.dedicatedCloud.serviceName"
+            data-set-message="$ctrl.setMessage"
+            data-vcd-migration-state="$ctrl.dedicatedCloudVCDMigrationState"
+        ></ovh-manager-pcc-dashboard-customer-vcfaas-migration-banner>
         <div data-ovh-alert="dedicatedCloud"></div>
 
         <div data-ui-view="pccView"></div>

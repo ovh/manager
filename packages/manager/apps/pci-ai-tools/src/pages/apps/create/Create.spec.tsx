@@ -119,6 +119,11 @@ describe('Order funnel page', () => {
         },
       });
       fireEvent.click(screen.getByTestId('docker-custom-image-add-button'));
+    });
+    await waitFor(() => {
+      expect(screen.getByText('myNewImage')).toBeTruthy();
+    });
+    act(() => {
       fireEvent.click(screen.getByTestId('cli-command-button'));
     });
     await waitFor(() => {
@@ -143,6 +148,11 @@ describe('Order funnel page', () => {
         },
       });
       fireEvent.click(screen.getByTestId('docker-custom-image-add-button'));
+    });
+    await waitFor(() => {
+      expect(screen.getByText('myNewImage')).toBeTruthy();
+    });
+    act(() => {
       fireEvent.click(screen.getByTestId('cli-command-button'));
     });
     await waitFor(() => {

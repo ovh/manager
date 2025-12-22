@@ -125,23 +125,11 @@ export default function ScalingStrategy({
       {autoScaling ? (
         <AutoScalingForm pricingFlavor={pricingFlavor} />
       ) : (
-        <div>
-          <FormField
-            control={control}
-            name="replicas"
-            render={renderReplicasField}
-          />
-          {pricingFlavor && (
-            <div className="mt-2">
-              <Price
-                decimals={2}
-                displayInHour={true}
-                priceInUcents={replicas * 60 * pricingFlavor.price}
-                taxInUcents={replicas * 60 * pricingFlavor.tax}
-              />
-            </div>
-          )}
-        </div>
+        <FormField
+          control={control}
+          name="replicas"
+          render={renderReplicasField}
+        />
       )}
     </div>
   );

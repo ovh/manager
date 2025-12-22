@@ -11,7 +11,7 @@ import {
   postIpEdgeFirewall,
   postIpEdgeNetworkFirewallRule,
 } from '@/data/api';
-import { isValidIpv4, isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
+import { isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
 
 export const IP_EDGE_FIREWALL_PORT_MIN = 0;
 export const IP_EDGE_FIREWALL_PORT_MAX = 65535;
@@ -46,18 +46,26 @@ export const hasDestinationPortLowerThanSourcePortError = ({
   return destinationPortNumber < sourcePortNumber;
 };
 
-export const hasSourceError = (source?: string) => {
-  if (!source || source.length === 0) {
-    return false;
-  }
+const isValidEmptySourceValue = (source?: string) =>
+  !source ||
+  source.length === 0 ||
+  ['0.0.0.0', '0.0.0.0/0', 'any', 'all'].includes(source.toLowerCase());
 
-  if (source.includes('0.0.0.0')) {
-    return true;
+export const hasSourceError = (source?: string) => {
+  if (isValidEmptySourceValue(source)) {
+    return false;
   }
 
   return source.includes('/')
     ? !isValidIpv4Block(source)
     : !ipaddr.IPv4.isValid(source);
+};
+
+export const formatSourceValue = (source?: string) => {
+  if (isValidEmptySourceValue(source)) {
+    return null;
+  }
+  return !source.includes('/') ? `${source}/32` : source;
 };
 
 export type CreateFirewallRuleParams = {
@@ -180,7 +188,7 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
         destinationPort:
           destinationPort && !fragments ? parseInt(destinationPort, 10) : null,
         sequence,
-        source: source && !source.includes('/') ? `${source}/32` : source,
+        source: formatSourceValue(source),
         sourcePort: sourcePort && !fragments ? parseInt(sourcePort, 10) : null,
         tcpOption:
           fragments || tcpOption

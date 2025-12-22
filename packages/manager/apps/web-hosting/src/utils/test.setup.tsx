@@ -1,10 +1,11 @@
-import React from 'react';
-
 import { Path, To } from 'react-router-dom';
 
 import { vi } from 'vitest';
 
 import {
+  WebHostingWebsiteDomainMocks,
+  WebHostingWebsiteMocks,
+  WebHostingWebsiteV6Mock,
   attachedDomainDigStatusMock,
   domainInformationMock,
   domainZoneMock,
@@ -12,6 +13,7 @@ import {
   webHostingMock,
   websitesMocks,
 } from '@/data/__mocks__';
+import { cdnOptionMock, cdnPropertiesMock, serviceNameCdnMock } from '@/data/__mocks__/cdn';
 import { managedWordpressRerefenceAvailableLanguageMock } from '@/data/__mocks__/managedWordpress/language';
 import {
   managedWordpressResourceDetailsMock,
@@ -32,24 +34,15 @@ const mocksAxios = vi.hoisted(() => ({
   delete: vi.fn(),
 }));
 
-const mocksHostingUrl = vi.hoisted(() => ({
-  shell: {
-    navigation: {
-      getURL: vi.fn().mockResolvedValue('test-url'),
-    },
-  },
-  environment: {
-    getRegion: () => 'FR',
-    getUser: () => ({ ovhSubsidiary: 'FR' }),
-  },
-}));
+export const deleteMock = vi.fn();
 
 vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@ovh-ux/manager-core-api')>()),
   v6: {
     put: vi.fn().mockResolvedValue({ data: {} }),
     post: vi.fn().mockResolvedValue({ data: {} }),
-    delete: vi.fn(),
+    delete: deleteMock,
+    fetchIcebergV2: vi.fn().mockResolvedValue({ data: {}, cursorNext: null }),
   },
 }));
 
@@ -76,45 +69,258 @@ vi.mock('axios', async (importActual) => {
   return mockAxios;
 });
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
-  const actual = await importActual<typeof import('@ovh-ux/manager-react-shell-client')>();
-  return {
-    ...actual,
-    ShellContext: React.createContext(mocksHostingUrl),
-    useContext: React.useContext,
-    useOvhTracking: vi.fn(() => {
-      return {
-        trackClick: vi.fn(),
-        trackPage: vi.fn(),
-        trackCurrentPage: vi.fn(),
-      };
-    }),
-    PageLocation: {
-      page: 'page',
-      tile: 'tile',
-    },
-    ButtonType: {
-      button: 'button',
-      externalLink: 'externalLink',
-    },
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  return {
-    ...(await importOriginal<typeof import('@ovh-ux/manager-react-components')>()),
-    useNotifications: () => ({
-      addSuccess: vi.fn(),
-      addWarning: vi.fn(),
-    }),
-  };
-});
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
 vi.mock('export-to-csv', () => ({
   generateCsv: () => vi.fn().mockReturnValue('csv-content'),
   mkConfig: vi.fn().mockReturnValue({ filename: 'websites.csv' }),
   download: vi.fn().mockImplementation(() => vi.fn()),
 }));
+
+/* eslint-disable react/no-multi-comp */
+vi.mock('@ovh-ux/muk', () => {
+  return {
+    Datagrid: ({
+      columns,
+      topbar,
+      ...props
+    }: React.PropsWithChildren<{
+      columns?: Array<{ id: string; header?: string }>;
+      topbar?: React.ReactElement;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid="datagrid" {...props}>
+        {topbar}
+        {columns?.map((column) => (
+          <div key={column.id} data-testid={`header-${column.id}`}>
+            {column.header || column.id}
+          </div>
+        ))}
+      </div>
+    ),
+    Notifications: ({
+      message,
+    }: React.PropsWithChildren<{
+      message?: string;
+    }>) => <div>{message}</div>,
+    ActionMenu: ({
+      id,
+      items,
+      ...props
+    }: React.PropsWithChildren<{
+      id?: string;
+      items?: Array<{ id: number; label: string; onClick?: () => void }>;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid="action-menu" data-id={id} {...props}>
+        {items?.map((item) => (
+          <button key={item.id} data-testid={`action-item-${item.id}`} onClick={item.onClick}>
+            {item.label}
+          </button>
+        ))}
+      </div>
+    ),
+    ChangelogMenu: ({
+      id,
+      links,
+      ...props
+    }: React.PropsWithChildren<{
+      id?: string;
+      links?: Record<string, string>;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid="action-menu" data-id={id} {...props}>
+        {links &&
+          Object.entries(links).map(([key, value]) => (
+            <a key={key} data-testid={`changelog-link-${key}`} href={value}>
+              {key}
+            </a>
+          ))}
+      </div>
+    ),
+    GuideMenu: ({
+      id,
+      items,
+      ...props
+    }: React.PropsWithChildren<{
+      id?: string;
+      items?: Array<{ id: number; label: string; href?: string; onClick?: () => void }>;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid="guide-menu" data-id={id} {...props}>
+        {items?.map((item) => (
+          <button key={item.id} data-testid={`guide-item-${item.id}`} onClick={item.onClick}>
+            {item.label}
+          </button>
+        ))}
+      </div>
+    ),
+    Modal: ({
+      children,
+      primaryButton,
+      secondaryButton,
+    }: React.PropsWithChildren<{
+      children: React.ReactNode;
+      primaryButton?: { label: string; disabled: boolean; onClick: () => void };
+      secondaryButton?: { label: string; disabled: boolean; onClick: () => void };
+    }>) => (
+      <div data-testid="modal">
+        {children}
+        {primaryButton && (
+          <button
+            data-testid="primary-button"
+            onClick={primaryButton.onClick}
+            disabled={primaryButton.disabled}
+          >
+            {primaryButton.label}
+          </button>
+        )}
+        {secondaryButton && (
+          <button
+            data-testid="secondary-button"
+            onClick={secondaryButton.onClick}
+            disabled={secondaryButton.disabled}
+          >
+            {secondaryButton.label}
+          </button>
+        )}
+      </div>
+    ),
+    BaseLayout: ({
+      breadcrumb,
+      message,
+      children,
+      tabs,
+    }: React.PropsWithChildren<{
+      children: React.ReactNode;
+      message: React.ReactElement;
+      breadcrumb: React.ReactElement;
+      tabs: React.ReactElement;
+    }>) => (
+      <div>
+        <div>{breadcrumb}</div>
+        {message && <div>{message}</div>}
+        {tabs && <div>{tabs}</div>}
+        {children}
+      </div>
+    ),
+    OnboardingLayout: ({
+      title,
+      description,
+      children,
+      orderButtonLabel,
+      onOrderButtonClick,
+    }: React.PropsWithChildren<{
+      title: string;
+      children: React.ReactNode;
+      description: string;
+      orderButtonLabel?: string;
+      onOrderButtonClick?: () => void;
+    }>) => (
+      <main>
+        <section aria-labelledby="onboarding-title">
+          {title}
+          {description}
+        </section>
+        {orderButtonLabel && onOrderButtonClick && (
+          <button onClick={onOrderButtonClick} data-testid="onboarding-order-button">
+            {orderButtonLabel}
+          </button>
+        )}
+        {children && <div>{children}</div>}
+      </main>
+    ),
+    Badge: ({
+      children,
+      'data-testid': dataTestId,
+      color,
+      onClick,
+      ...props
+    }: React.PropsWithChildren<{
+      children: React.ReactNode;
+      'data-testid'?: string;
+      color?: string;
+      onClick?: () => void;
+      [key: string]: unknown;
+    }>) => (
+      <span
+        data-testid={dataTestId}
+        color={color}
+        onClick={onClick}
+        onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
+        role={onClick ? 'button' : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        {...props}
+      >
+        {children}
+      </span>
+    ),
+    LinkCard: ({
+      href,
+      externalHref,
+      description,
+    }: React.PropsWithChildren<{
+      externalHref: string;
+      href: string;
+      description: string;
+    }>) => (
+      <a
+        href={href}
+        target={externalHref ? '_blank' : undefined}
+        rel={externalHref ? 'noreferrer' : undefined}
+        className="no-underline"
+      >
+        {description}
+      </a>
+    ),
+    MODAL_COLOR: {
+      critical: 'critical',
+      information: 'information',
+      neutral: 'neutral',
+      primary: 'primary',
+      success: 'success',
+      warning: 'warning',
+    },
+    BADGE_COLOR: {
+      alpha: 'alpha',
+      beta: 'beta',
+      new: 'new',
+      promotion: 'promotion',
+      critical: 'critical',
+      information: 'information',
+      neutral: 'neutral',
+      primary: 'primary',
+      success: 'success',
+      warning: 'warning',
+    },
+    useNotifications: vi.fn(() => ({
+      addSuccess: vi.fn(),
+      addError: vi.fn(),
+      addWarning: vi.fn(),
+      addInfo: vi.fn(),
+    })),
+    useDataApi: vi.fn(() => ({
+      flattenData: [],
+      hasNextPage: false,
+      fetchNextPage: vi.fn(),
+      isLoading: false,
+      filters: {},
+      sorting: {},
+    })),
+    useFormatDate: vi.fn(() => (params: { date?: string; format?: string }) => {
+      if (params.date) {
+        return `formatted-${params.date}`;
+      }
+      return 'formatted-date';
+    }),
+  };
+});
+/* eslint-enable react/no-multi-comp */
 
 export const navigate = vi.fn();
 
@@ -143,7 +349,6 @@ vi.mock('react-router-dom', async (importActual) => {
     ),
   };
 });
-
 vi.mock('@/data/api/local-seo', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@/data/api/local-seo')>();
   return {
@@ -152,8 +357,7 @@ vi.mock('@/data/api/local-seo', async (importOriginal) => {
     hostingDeleteLocation: vi.fn().mockResolvedValue('OK'),
   };
 });
-
-vi.mock('@/data/api/index', () => ({
+vi.mock('@/data/api/webHosting', () => ({
   getWebHostingAttachedDomain: vi.fn().mockResolvedValue({
     data: websitesMocks,
     cursorNext: null,
@@ -162,6 +366,13 @@ vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
   getManagedCmsResourceWebsiteDetailsQueryKey: vi.fn(),
+  getWebHostingWebsite: vi.fn(() => Promise.resolve(WebHostingWebsiteMocks)),
+  getWebHostingWebsiteDomain: vi.fn(() => Promise.resolve(WebHostingWebsiteDomainMocks)),
+  getWebHostingWebsiteDomainQueryKey: vi.fn(),
+  useWebHostingWebsite: vi.fn(),
+  useWebHostingWebsiteDomain: vi.fn(),
+  deleteAttachedDomains: vi.fn(),
+  getWebHostingWebsiteV6: vi.fn(() => Promise.resolve(WebHostingWebsiteV6Mock)),
 }));
 
 vi.mock('@/data/api/dashboard', async (importActual) => {
@@ -173,12 +384,41 @@ vi.mock('@/data/api/dashboard', async (importActual) => {
     getDomainService: vi.fn(() => Promise.resolve(domainInformationMock)),
   };
 });
+vi.mock('@/data/api/git', () => ({
+  deleteGitAssociation: vi.fn(),
+}));
+
+vi.mock('@/data/api/cdn', () => ({
+  getCDNProperties: vi.fn(() => Promise.resolve(cdnPropertiesMock)),
+}));
+
+vi.mock('@/data/hooks/cdn', () => ({
+  useGetCDNProperties: vi.fn(),
+  flushCDNDomainCache: vi.fn(),
+  flushCdn: vi.fn(),
+}));
+
+vi.mock('@/data/hooks/cdn/useCdn', async (importActual) => {
+  const actual = await importActual<typeof import('@/data/hooks/cdn/useCdn')>();
+  return {
+    ...actual,
+    useGetServiceNameCdn: vi.fn(() => ({
+      data: serviceNameCdnMock,
+      isSuccess: true,
+    })),
+    useGetCdnOption: vi.fn(() => ({
+      data: cdnOptionMock,
+      isSuccess: true,
+    })),
+  };
+});
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
   useCreateAttachedDomainsService: vi.fn(),
   useGetAddDomainExisting: vi.fn(),
   useGetDomainZone: vi.fn(),
   useGetHostingService: vi.fn(),
+  useGetHostingServiceWebsite: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (importActual) => {
@@ -218,3 +458,23 @@ vi.mock('@/data/api/managedWordpress', () => ({
 afterEach(() => {
   vi.clearAllMocks();
 });
+
+vi.mock(
+  '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain',
+  async (importActual) => {
+    const actual =
+      await importActual<
+        typeof import('@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain')
+      >();
+    return {
+      ...actual,
+      useWebHostingAttachedDomain: vi.fn(() => ({
+        data: websitesMocks,
+        isSuccess: true,
+        isLoading: false,
+        isError: false,
+        status: 'success',
+      })),
+    };
+  },
+);

@@ -1,5 +1,23 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
+export type TAPIVolumeStatus =
+  | 'available'
+  | 'in-use'
+  | 'creating'
+  | 'attaching'
+  | 'detaching'
+  | 'deleting'
+  | 'backing-up'
+  | 'restoring-backup'
+  | 'retyping'
+  | 'snapshotting'
+  | 'awaiting-transfer'
+  | 'error'
+  | 'error_deleting'
+  | 'error_restoring'
+  | 'error_extending'
+  | string;
+
 export type TAPIVolume = {
   id: string;
   attachedTo: string[];
@@ -7,24 +25,12 @@ export type TAPIVolume = {
   name: string;
   description: string;
   size: number;
-  status: string;
+  status: TAPIVolumeStatus;
   region: string;
   bootable: boolean;
   planCode: string;
   type: string;
   availabilityZone: 'any' | string;
-};
-
-export type TVolumeSnapshot = {
-  id: string;
-  creationDate: string;
-  description: string;
-  name: string;
-  planCode: string;
-  region: string;
-  size: number;
-  status: string;
-  volumeId: string;
 };
 
 export const getVolume = async (
@@ -33,15 +39,6 @@ export const getVolume = async (
 ): Promise<TAPIVolume> => {
   const { data } = await v6.get<TAPIVolume>(
     `/cloud/project/${projectId}/volume/${volumeId}`,
-  );
-  return data;
-};
-
-export const getVolumeSnapshot = async (
-  projectId: string,
-): Promise<TVolumeSnapshot[]> => {
-  const { data } = await v6.get<TVolumeSnapshot[]>(
-    `/cloud/project/${projectId}/volume/snapshot`,
   );
   return data;
 };
@@ -153,6 +150,24 @@ export const addVolume = async ({
   const { data } = await v6.post<void>(
     `/cloud/project/${projectId}/region/${region}/volume`,
     props,
+  );
+
+  return data;
+};
+
+export type TRetypeVolumeProps = {
+  projectId: string;
+  originalVolume: Pick<TAPIVolume, 'id' | 'region'>;
+  newType: string;
+};
+export const retypeVolume = async ({
+  projectId,
+  originalVolume: { id, region },
+  newType,
+}: TRetypeVolumeProps) => {
+  const { data } = await v6.put<void>(
+    `/cloud/project/${projectId}/region/${region}/volume/${id}`,
+    { type: newType },
   );
 
   return data;
