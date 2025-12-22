@@ -41,7 +41,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          CURRENT_BRANCH=$(git branch --show-current)
+          # If it's a PR, use github.head_ref to get the source branch of the PR
+          if [ -n "${{ github.head_ref }}" ]; then
+            CURRENT_BRANCH="${{ github.head_ref }}"
+          else
+            # Fallback to git command if not a PR
+            CURRENT_BRANCH=$(git branch --show-current)
+          fi
           echo "My branch is $CURRENT_BRANCH"
           if [[ "$CURRENT_BRANCH" == "master" ]]; then
             echo "My branch is master and no unit test to run, exit..."
