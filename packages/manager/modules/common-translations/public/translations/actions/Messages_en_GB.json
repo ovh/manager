@@ -61,5 +61,6 @@
   "reset": "Clear all",
   "filters_apply": "Apply filters",
   "show_hide_filters": "Show/Hide filters",
-  "discover": "Get started"
+  "discover": "Get started",
+  "migrate": "Migrate"
 }
