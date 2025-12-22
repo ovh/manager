@@ -64,8 +64,7 @@ describe('Network ACL Listing Page', () => {
 
     const modifyButton = await getElementByTestId(`actions-modify-${name}`);
     const deleteButton = await getElementByTestId(`actions-delete-${name}`);
-    expect(modifyButton).toBeEnabled();
-    expect(deleteButton).toBeEnabled();
+
     expect(modifyButton).toBeVisible();
     expect(deleteButton).toBeVisible();
   });

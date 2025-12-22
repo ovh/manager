@@ -54,5 +54,6 @@
   "managed_vcd_dashboard_password_renew_error": "An error has occurred renewing your admin password. Please try again later or contact our customer support team.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confirm",
   "managed_vcd_dashboard_cancellation_tooltip": "If you would like to cancel your service, please contact our support team.",
-  "managed_vcd_dashboard_vrack_title": "vRack networks"
+  "managed_vcd_dashboard_vrack_title": "vRack networks",
+  "managed_vcd_dashboard_general_network_acl": "Permissions"
 }
