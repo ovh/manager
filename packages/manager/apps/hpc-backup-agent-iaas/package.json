@@ -46,7 +46,7 @@
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/manager-tests-setup": "*",
-    "@ovh-ux/manager-vite-config": "0.15.4",
+    "@ovh-ux/manager-vite-config": "0.15.5",
     "@tanstack/react-query-devtools": "5.51.21",
     "msw": "^2.11.5",
     "vite": "6.3.4",
