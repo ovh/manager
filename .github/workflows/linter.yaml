@@ -27,6 +27,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Clean stale git locks (pre)
+        run: rm -f .git/index.lock
+
       # -------------------------------------------------------
       # CACHE PNPM (binary only)
       # -------------------------------------------------------
@@ -58,6 +61,9 @@ jobs:
 
       - name: Install dependencies
         run: yarn ci:install
+
+      - name: Clean stale git locks (post-install)
+        run: rm -f .git/index.lock
 
       - name: Lint Code Base
         run: yarn lint
