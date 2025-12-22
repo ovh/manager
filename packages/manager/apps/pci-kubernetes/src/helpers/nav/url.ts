@@ -15,3 +15,12 @@ export const computeBreadcrumbUrl = <Entry extends object>(
     };
   });
 };
+
+const PROJECT_URL_REGEX = /^(?<projectUrl>.+\/projects\/\w+)/;
+export const getProjectUrl = () => {
+  const url = window.top?.location.href ?? window.document.baseURI;
+  const match = url.match(PROJECT_URL_REGEX);
+  const projectUrl = match?.groups?.['projectUrl'];
+
+  return projectUrl ?? null;
+};

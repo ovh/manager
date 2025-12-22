@@ -9,7 +9,9 @@ import {
   Breadcrumb as ODSBreadcrumb,
 } from '@ovhcloud/ods-react';
 
-import { computeBreadcrumbUrl } from '@/helpers/nav/url';
+import { useProject } from '@ovh-ux/manager-pci-common';
+
+import { computeBreadcrumbUrl, getProjectUrl } from '@/helpers/nav/url';
 
 type TBreadcrumbEntry = {
   label: string;
@@ -23,15 +25,17 @@ type TBreadcrumbProps = {
 export const Breadcrumb: FC<TBreadcrumbProps> = ({ entries }) => {
   const { t } = useTranslation(['common']);
 
-  const [home, ...crumbs] = useMemo(
-    () => computeBreadcrumbUrl<Partial<TBreadcrumbEntry>>([{}, ...entries], window.location.hash),
+  const { data: project } = useProject();
+  const projectUrl = useMemo(() => getProjectUrl(), []);
+  const crumbs = useMemo(
+    () => computeBreadcrumbUrl<Partial<TBreadcrumbEntry>>(entries, window.location.hash),
     [entries],
   );
 
   return (
     <ODSBreadcrumb aria-label={t('common_breadcrumb')}>
       <BreadcrumbItem>
-        <BreadcrumbLink href={home?.href}>
+        <BreadcrumbLink href={projectUrl} aria-label={project?.description} target="_self">
           <Icon name="home" />
         </BreadcrumbLink>
       </BreadcrumbItem>
