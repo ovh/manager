@@ -37,6 +37,7 @@ describe('useDataSync', () => {
         mockedDataSync,
         dataSyncProps,
         undefined,
+        expect.anything(),
       );
     });
   });

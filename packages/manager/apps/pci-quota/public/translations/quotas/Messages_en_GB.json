@@ -26,6 +26,6 @@
   "pci_projects_project_quota_autoscaling_help": "Your quota will be automatically increased depending on your usage, and based on a certain number of criteria.",
   "pci_projects_project_quota_protect_contact_support": "Contact Support",
   "pci_projects_project_quota_error_forbidden": "You do not have enough permissions to manage your quotas. Please contact the service owner.",
-  "pci_projects_project_quota_limit_warning": "Quotas correspond to the maximum resources you can consume. To limit abusive usage, we have set default limits.",
+  "pci_projects_project_quota_limit_warning": "Quotas are the maximum number of resources you can use. To limit abuse, we have set default limits.",
   "pci_projects_project_quota_help_cta": "Understanding how quotas work"
 }

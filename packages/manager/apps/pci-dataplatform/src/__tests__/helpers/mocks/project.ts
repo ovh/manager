@@ -1,4 +1,4 @@
-import { AccessTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/AccessTypeEnum';
+import { AccessTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { PlanCode, Project } from '@/types/cloud/Project';
 import { ProjectStatusEnum } from '@/types/cloud/project/ProjectStatusEnum';
 

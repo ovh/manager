@@ -2,7 +2,7 @@
   "exchange_update_billing_button_title": "Renewal configuration",
   "exchange_update_billing_action_title": "Renewal period",
   "exchange_update_billing_validation_title": "Confirmation",
-  "exchange_update_billing_periode_intro": "Select the automatic renewal period you want for each account. <br />This will be applied from the next renewal.",
+  "exchange_update_billing_periode_intro": "Choose the automatic renewal frequency for each account. <br />This will be applied from the next renewal.",
   "exchange_update_billing_actions_label": "Actions",
   "exchange_update_billing_email_label": "Email account",
   "exchange_update_billing_expiration_date_label": "Expiry",
