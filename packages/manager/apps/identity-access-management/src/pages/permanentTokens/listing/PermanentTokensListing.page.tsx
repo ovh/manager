@@ -1,7 +1,10 @@
 import { useEffect, useContext, Suspense } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   BaseLayout,
   ManagerButton,
@@ -18,11 +21,13 @@ import { useIamUserTokenList } from '@/data/hooks/useGetIamUserTokens';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from '@/pages/permanentTokens/listing/useDatagridColumn';
 import { subRoutes } from '@/routes/routes.constant';
+import { PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
 
 import { PermanentTokensBreadcrumb } from '@/pages/permanentTokens/components/PermanentTokenBreadcrumb.component';
 
 export default function PermanentTokensListing() {
   const { t } = useTranslation('permanent-tokens');
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { shell } = useContext(ShellContext);
   const userId = useParam('userId');
@@ -69,12 +74,18 @@ export default function PermanentTokensListing() {
   } = useIamUserTokenList({ userId, columns, pageSize: 10 });
 
   const handleReturnLink = () => {
-    // TODO: tracking
+    trackClick({
+      actionType: 'action',
+      actions: PERMANENT_TOKENS_TRACKING.LISTING.GO_BACK,
+    });
     shell?.navigation.navigateTo('', '/iam/identities/users', {});
   };
 
   const handleCreateToken = () => {
-    // TODO: tracking
+    trackClick({
+      actionType: 'action',
+      actions: PERMANENT_TOKENS_TRACKING.LISTING.ADD_TOKEN,
+    });
     navigate(subRoutes.permanentTokensAdd);
   };
 
