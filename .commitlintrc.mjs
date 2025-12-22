@@ -1,6 +1,6 @@
 const COMMIT_TYPES = ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test', 'sync', 'release', 'merge'];
 
-module.exports = {
+export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
     'scope-case': [2, 'always', 'lower-case'],
@@ -19,7 +19,5 @@ module.exports = {
     'header-max-length': [2, 'always', 100],
     'footer-leading-blank' : [2, 'always']
   },
-  ignores: [
-    (c) => c.startsWith('fixup!'),
-    ],
+  ignores: [(c) => c.startsWith('fixup!')],
 };
