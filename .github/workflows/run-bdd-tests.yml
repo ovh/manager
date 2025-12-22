@@ -40,10 +40,9 @@ jobs:
         with:
           path: |
             target/pnpm
-          key: ${{ runner.os }}-pnpm-tests-${{ env.PNPM_VERSION }}-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-tests-${{ env.PNPM_VERSION }}-
-            ${{ runner.os }}-pnpm-tests-
+            ${{ runner.os }}-pnpm-binary-
 
       # ------------------------------------------
       # YARN CACHE (node_modules + yarn cache)

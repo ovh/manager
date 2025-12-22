@@ -111,11 +111,19 @@ function runPnpmInstall(targetPath, pnpmBin) {
     'install',
     '--ignore-scripts',
     '--no-lockfile',
+    '--prefer-offline',
     `--store-dir=${path.join(managerRootPath, 'target/.pnpm-store')}`,
   ];
 
+  if (process.env.CI) {
+    args.push('--frozen-lockfile');
+  }
+
   logger.info(`▶ Running pnpm ${args.join(' ')}`);
-  execSync(`${pnpmBin} ${args.join(' ')}`, { cwd: targetPath, stdio: 'inherit' });
+  execSync(`${pnpmBin} ${args.join(' ')}`, {
+    cwd: targetPath,
+    stdio: 'inherit',
+  });
 }
 
 /**
