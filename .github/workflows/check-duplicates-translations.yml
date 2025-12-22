@@ -1,12 +1,32 @@
+## check the duplication transalation in json files
 name: Duplicate translation
+
 on:
-  push:
-    branches-ignore: [master]
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 
 jobs:
   duplicate-translation:
     runs-on: ubuntu-latest
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: true
+          android: false
+          dotnet: false
+          haskell: false
+          large-packages: false
+          docker-images: false
+          swap-storage: true
+
       - name: Checkout latest code
         uses: actions/checkout@v3
         with:

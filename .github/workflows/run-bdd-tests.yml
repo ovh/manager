@@ -1,7 +1,17 @@
 name: Run tests
+
 on:
   push:
     branches-ignore: [master]
+  pull_request:
+    types:
+      - opened
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 
 jobs:
   test:

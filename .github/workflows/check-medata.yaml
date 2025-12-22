@@ -1,5 +1,9 @@
 name: Check package.json metadatas
-on: [push]
+on:
+  push:
+  pull_request:
+    types:
+      - opened
 
 jobs:
   check-regions:
