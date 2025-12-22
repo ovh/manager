@@ -8,110 +8,231 @@ export type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
 
 export const helpRoot = 'https://help.ovhcloud.com/csm/';
 
-export const getGuideLinks = ({
-  link,
-  usFullLink,
-}: {
-  link: string;
-  usFullLink: string;
-}): GuideLinks => ({
-  FR: `${helpRoot}fr-${link}`,
-  GB: `${helpRoot}en-gb-${link}`,
-  DE: `${helpRoot}de-${link}`,
-  ES: `${helpRoot}es-es-${link}`,
-  IT: `${helpRoot}it-${link}`,
-  PL: `${helpRoot}pl-${link}`,
-  PT: `${helpRoot}pt-${link}`,
-  IE: `${helpRoot}en-ie-${link}`,
-  DEFAULT: `${helpRoot}en-gb-${link}`,
-  MA: `${helpRoot}fr-${link}`,
-  TN: `${helpRoot}fr-${link}`,
-  SN: `${helpRoot}fr-${link}`,
-  ASIA: `${helpRoot}asia-${link}`,
-  AU: `${helpRoot}en-au-${link}`,
-  CA: `${helpRoot}en-ca-${link}`,
-  IN: `${helpRoot}asia-${link}`,
-  NL: `${helpRoot}en-nl-${link}`,
-  QC: `${helpRoot}fr-ca-${link}`,
-  SG: `${helpRoot}en-sg-${link}`,
-  US: usFullLink || 'https://us.ovhcloud.com/support',
-  WE: `${helpRoot}world-${link}`,
-  WS: `${helpRoot}es-${link}`,
-});
-
 const URL_LIST: {
   [guideName: string]: { links: GuideLinks; trackingLabel: string };
 } = {
   guideLink1: {
-    links: getGuideLinks({
-      link:
-        'public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050241',
-      usFullLink:
+    links: {
+      DEFAULT: `${helpRoot}en-ie-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050247`,
+      DE: `${helpRoot}de-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050233`,
+      ES: `${helpRoot}es-es-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050239`,
+      FR: `${helpRoot}fr-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050241`,
+      IE: `${helpRoot}en-ie-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050247`,
+      IT: `${helpRoot}it-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050243`,
+      PT: `${helpRoot}pt-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050256`,
+      PL: `${helpRoot}pl-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050254`,
+      GB: `${helpRoot}en-gb-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050235`,
+      CA: `${helpRoot}en-ca-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050236`,
+      QC: `${helpRoot}fr-ca-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050242`,
+      WS: `${helpRoot}es-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050240`,
+      WE: `${helpRoot}en-ie-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050247`,
+      NL: `${helpRoot}en-ie-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050247`,
+      MA: `${helpRoot}fr-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050241`,
+      SN: `${helpRoot}fr-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050241`,
+      TN: `${helpRoot}fr-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050241`,
+      AU: `${helpRoot}en-au-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050234`,
+      IN: `${helpRoot}en-in-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0069597`,
+      SG: `${helpRoot}en-sg-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0050246`,
+      ASIA: `${helpRoot}asia-public-cloud-network-configure-additional-ip?id=kb_article_view&sysparm_article=KB0037889`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/19770592015891-Configuring-an-Additional-IP-Public-Cloud',
-    }),
+    },
     trackingLabel: 'public-cloud-network-configure-additional-ip',
   },
   guideLink2: {
-    links: getGuideLinks({
-      link:
-        'dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043761',
-      usFullLink:
+    links: {
+      DEFAULT: `${helpRoot}en-ie-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043752`,
+      DE: `${helpRoot}de-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043749`,
+      ES: `${helpRoot}es-es-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043760`,
+      IE: `${helpRoot}en-ie-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043752`,
+      NL: `${helpRoot}en-ie-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043752`,
+      FR: `${helpRoot}fr-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043761`,
+      IT: `${helpRoot}it-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043763`,
+      PL: `${helpRoot}pl-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043770`,
+      PT: `${helpRoot}pt-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043774`,
+      GB: `${helpRoot}en-gb-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043753`,
+      CA: `${helpRoot}en-ca-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043757`,
+      QC: `${helpRoot}fr-ca-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043759`,
+      WS: `${helpRoot}es-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043768`,
+      MA: `${helpRoot}fr-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043761`,
+      SN: `${helpRoot}fr-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043761`,
+      TN: `${helpRoot}fr-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043761`,
+      AU: `${helpRoot}en-au-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043754`,
+      IN: `${helpRoot}en-in-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0067961`,
+      SG: `${helpRoot}en-sg-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043762`,
+      ASIA: `${helpRoot}asia-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0030786`,
+      WE: `${helpRoot}en-ie-dedicated-servers-network-ipaliasing?id=kb_article_view&sysparm_article=KB0043752`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/7154925809683-How-to-Configure-IP-Aliasing',
-    }),
+    },
     trackingLabel: 'dedicated-servers-network-ipaliasing',
   },
   guideLink3: {
-    links: getGuideLinks({
-      link:
-        'dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043915',
-      usFullLink:
+    links: {
+      DEFAULT: `${helpRoot}en-ie-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043909`,
+      DE: `${helpRoot}de-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043914`,
+      ES: `${helpRoot}es-es-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043912`,
+      FR: `${helpRoot}fr-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043915`,
+      IE: `${helpRoot}en-ie-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043909`,
+      NL: `${helpRoot}en-ie-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043909`,
+      IT: `${helpRoot}it-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043917`,
+      PL: `${helpRoot}pl-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043916`,
+      PT: `${helpRoot}pt-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043918`,
+      GB: `${helpRoot}en-gb-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043899`,
+      CA: `${helpRoot}en-ca-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043904`,
+      QC: `${helpRoot}fr-ca-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043925`,
+      WS: `${helpRoot}es-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043921`,
+      MA: `${helpRoot}fr-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043915`,
+      SN: `${helpRoot}fr-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043915`,
+      TN: `${helpRoot}fr-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043915`,
+      AU: `${helpRoot}en-au-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043902`,
+      IN: `${helpRoot}en-in-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0067971`,
+      SG: `${helpRoot}en-sg-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043911`,
+      ASIA: `${helpRoot}asia-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0030946`,
+      WE: `${helpRoot}en-ie-dedicated-servers-proxmox-network-hg-scale?id=kb_article_view&sysparm_article=KB0043909`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/37457315856787-Configuring-the-network-on-Proxmox-VE-on-the-High-Grade-Scale-and-Advance-ranges',
-    }),
+    },
     trackingLabel: 'dedicated-servers-proxmox-network-hg-scale',
   },
   guideLink4: {
-    links: getGuideLinks({
-      link:
-        'public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159',
-      usFullLink:
+    links: {
+      DEFAULT: `${helpRoot}en-ie-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050162`,
+      DE: `${helpRoot}de-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0037798`,
+      ES: `${helpRoot}es-es-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050166`,
+      FR: `${helpRoot}fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159`,
+      IT: `${helpRoot}it-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050156`,
+      IE: `${helpRoot}en-ie-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050162`,
+      NL: `${helpRoot}en-ie-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050162`,
+      PL: `${helpRoot}pl-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050160`,
+      PT: `${helpRoot}pt-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050161`,
+      GB: `${helpRoot}en-gb-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050147`,
+      CA: `${helpRoot}en-ca-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050146`,
+      QC: `${helpRoot}fr-ca-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050158`,
+      WS: `${helpRoot}es-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050169`,
+      MA: `${helpRoot}fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159`,
+      SN: `${helpRoot}fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159`,
+      TN: `${helpRoot}fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159`,
+      AU: `${helpRoot}en-au-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050157`,
+      IN: `${helpRoot}en-in-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0069583`,
+      SG: `${helpRoot}en-sg-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050150`,
+      ASIA: `${helpRoot}asia-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050155`,
+      WE: `${helpRoot}en-ie-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050162`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/21134381741715-Concepts-Additional-IP-or-Floating-IP',
-    }),
+    },
     trackingLabel: 'public-cloud-network-additional-ip-vs-floating-ip',
   },
   guideLink5: {
-    links: getGuideLinks({
-      link:
-        'dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825',
-      usFullLink:
+    links: {
+      DEFAULT: `${helpRoot}en-ie-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062826`,
+      DE: `${helpRoot}de-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062832`,
+      ES: `${helpRoot}es-es-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062830`,
+      IE: `${helpRoot}en-ie-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062826`,
+      NL: `${helpRoot}en-ie-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062826`,
+      FR: `${helpRoot}fr-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825`,
+      IT: `${helpRoot}it-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062839`,
+      PL: `${helpRoot}pl-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062837`,
+      PT: `${helpRoot}pt-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062831`,
+      GB: `${helpRoot}en-gb-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062828`,
+      CA: `${helpRoot}en-ca-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062827`,
+      QC: `${helpRoot}fr-ca-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062834`,
+      WS: `${helpRoot}es-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062835`,
+      MA: `${helpRoot}fr-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825`,
+      SN: `${helpRoot}fr-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825`,
+      TN: `${helpRoot}fr-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825`,
+      AU: `${helpRoot}en-au-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062836`,
+      IN: `${helpRoot}en-in-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0067889`,
+      SG: `${helpRoot}en-sg-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062829`,
+      ASIA: `${helpRoot}asia-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062833`,
+      WE: `${helpRoot}en-ie-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062826`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/31163475160211-Configuring-an-Additional-IPv6-block-in-a-vRack',
-    }),
+    },
     trackingLabel: 'dedicated-servers-configure-an-ipv6-in-a-vrack',
   },
   configureReverseDnsGuide: {
-    links: getGuideLinks({
-      link:
-        'vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047603',
-      usFullLink:
+    links: {
+      DEFAULT: `${helpRoot}en-ie-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047596`,
+      DE: `${helpRoot}de-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047597`,
+      ES: `${helpRoot}es-es-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047600`,
+      FR: `${helpRoot}fr-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047603`,
+      IE: `${helpRoot}en-ie-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047596`,
+      IT: `${helpRoot}it-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047605`,
+      NL: `${helpRoot}en-ie-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047596`,
+      PL: `${helpRoot}pl-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047606`,
+      PT: `${helpRoot}pt-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047608`,
+      GB: `${helpRoot}en-gb-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047594`,
+      CA: `${helpRoot}en-ca-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047598`,
+      QC: `${helpRoot}fr-ca-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047604`,
+      WS: `${helpRoot}es-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047601`,
+      MA: `${helpRoot}fr-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047603`,
+      SN: `${helpRoot}fr-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047603`,
+      TN: `${helpRoot}fr-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047603`,
+      AU: `${helpRoot}en-au-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047593`,
+      IN: `${helpRoot}en-in-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0068113`,
+      SG: `${helpRoot}en-sg-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047599`,
+      ASIA: `${helpRoot}asia-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0034962`,
+      WE: `${helpRoot}en-ie-vps-configure-reverse-dns?id=kb_article_view&sysparm_article=KB0047596`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/360002181530-How-to-Configure-Reverse-DNS',
-    }),
+    },
     trackingLabel: 'vps-configure-reverse-dns',
   },
   configureGameFirewall: {
-    links: getGuideLinks({
-      link:
-        'dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060685',
-      usFullLink:
+    links: {
+      DEFAULT: `${helpRoot}en-ie-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060676`,
+      DE: `${helpRoot}de-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060678`,
+      ES: `${helpRoot}es-es-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060679`,
+      IE: `${helpRoot}en-ie-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060676`,
+      IT: `${helpRoot}it-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060681`,
+      NL: `${helpRoot}en-ie-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060676`,
+      PL: `${helpRoot}pl-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060682`,
+      PT: `${helpRoot}pt-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060674`,
+      GB: `${helpRoot}en-gb-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060687`,
+      FR: `${helpRoot}fr-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060685`,
+      CA: `${helpRoot}en-ca-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060683`,
+      QC: `${helpRoot}fr-ca-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060688`,
+      WS: `${helpRoot}es-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060673`,
+      MA: `${helpRoot}fr-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060685`,
+      SN: `${helpRoot}fr-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060685`,
+      TN: `${helpRoot}fr-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060685`,
+      AU: `${helpRoot}en-au-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060684`,
+      IN: `${helpRoot}en-in-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0067917`,
+      SG: `${helpRoot}en-sg-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060675`,
+      ASIA: `${helpRoot}asia-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060686`,
+      WE: `${helpRoot}en-ie-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060676`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/24578879059347-Protecting-a-Game-Server-with-the-Application-Firewall',
-    }),
+    },
     trackingLabel: 'dedicated-servers-game-ddos-firewall',
   },
   configureEdgeNetworkFirewall: {
-    links: getGuideLinks({
-      link:
-        'dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043455',
-      usFullLink:
+    links: {
+      DEFAULT: `${helpRoot}en-ie-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043450`,
+      DE: `${helpRoot}de-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0030464`,
+      ES: `${helpRoot}es-es-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043451`,
+      FR: `${helpRoot}fr-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043455`,
+      IE: `${helpRoot}en-ie-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043450`,
+      IT: `${helpRoot}it-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043454`,
+      NL: `${helpRoot}en-ie-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043450`,
+      PL: `${helpRoot}pl-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043457`,
+      PT: `${helpRoot}pt-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043456`,
+      GB: `${helpRoot}en-gb-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043447`,
+      CA: `${helpRoot}en-ca-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043446`,
+      QC: `${helpRoot}fr-ca-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043453`,
+      WS: `${helpRoot}es-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043452`,
+      MA: `${helpRoot}fr-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043455`,
+      SN: `${helpRoot}fr-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043455`,
+      TN: `${helpRoot}fr-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043455`,
+      AU: `${helpRoot}en-au-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043445`,
+      IN: `${helpRoot}en-in-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0067913`,
+      SG: `${helpRoot}en-sg-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043449`,
+      ASIA: `${helpRoot}asia-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043444`,
+      WE: `${helpRoot}en-ie-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043450`,
+      US:
         'https://support.us.ovhcloud.com/hc/en-us/articles/115001729044-Enabling-and-configuring-the-Edge-Network-Firewall',
-    }),
+    },
     trackingLabel: 'dedicated-servers-firewall-network',
   },
   presentationLink: {
