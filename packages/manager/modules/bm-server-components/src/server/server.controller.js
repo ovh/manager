@@ -49,9 +49,12 @@ export default class ServerCtrl {
     this.User = User;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     const { ovhSubsidiary } = coreConfig.getUser();
-    this.gameDDosGuide =
-      GAME_DDOS_GUIDE_URL(...GAME_DDOS_GUIDE_PARAMS[ovhSubsidiary]) ||
-      GAME_DDOS_GUIDE_URL(...GAME_DDOS_GUIDE_PARAMS.DEFAULT);
+    this.gameDDosGuide = {
+      href:
+        GAME_DDOS_GUIDE_URL(...GAME_DDOS_GUIDE_PARAMS[ovhSubsidiary]) ||
+        GAME_DDOS_GUIDE_URL(...GAME_DDOS_GUIDE_PARAMS.DEFAULT),
+      label: $translate.instant('server_guide_ddos_game'),
+    };
   }
 
   $onInit() {

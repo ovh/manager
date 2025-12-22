@@ -28,5 +28,9 @@
   "server_network_ola_reset": "Déconfigurer l'agrégation privée",
   "server_network_ola_terminate": "Résilier OLA",
   "server_network_ola_mode_vrack_aggregation": "Agrégation privée",
-  "server_network_ola_mode_default": "Défaut"
+  "server_network_ola_mode_default": "Défaut",
+  "server_network_game_protection": "Game anti-DDoS Protection",
+  "server_network_game_protection_no_ip": "Pas d'ip associée",
+  "server_network_game_protection_numbers": "{{ total }} addresse(s) IP associée(s) à ce serveur",
+  "server_network_game_protection_button_configure": "Configurer Game Protection"
 }
