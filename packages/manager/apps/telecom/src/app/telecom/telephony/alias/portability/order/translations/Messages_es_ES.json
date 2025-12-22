@@ -22,7 +22,7 @@
   "telephony_alias_portability_order_desireDate_pattern_error": "La fecha introducida no es válida.",
   "telephony_alias_portability_order_rio": "RIO",
   "telephony_alias_portability_order_rio_pattern_error": "El RIO introducido no es válido.",
-  "telephony_alias_portability_order_rio_info": "Detalle de Identidad Operadora: llame al 3179 para obtener el RIO de su número.",
+  "telephony_alias_portability_order_rio_info": "Llame al 3179 desde su línea para obtener su RIO por SMS o email. Si no tiene acceso a la línea correspondiente, llame al 0805 69 3179 para obtener otro RIO.",
   "telephony_alias_portability_order_contact_help": "Introduzca con precisión la información indicada en la factura del actual operador.",
   "telephony_alias_portability_order_contact_personal_infos": "Información personal",
   "telephony_alias_portability_order_contact_social_reason": "Forma jurídica",
