@@ -14,6 +14,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -42,7 +43,7 @@ export type DatagridTopbarProps = {
 export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
   selectedRows,
 }: DatagridTopbarProps) => {
-  const { t } = useTranslation(['accounts', 'common']);
+  const { t } = useTranslation(['accounts', 'common', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const context = useContext(ShellContext);
@@ -120,7 +121,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
           onClick={handleAddEmailAccountClick}
           data-testid="add-account-btn"
           icon={ODS_ICON_NAME.plus}
-          label={t('zimbra_account_account_add')}
+          label={t(`${NAMESPACES.ACTIONS}:configure`)}
           isDisabled={!canCreateAccount}
         />
       </div>
@@ -144,7 +145,8 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
         variant={ODS_BUTTON_VARIANT.outline}
         size={ODS_BUTTON_SIZE.sm}
         onClick={handleOrderEmailAccountClick}
-        label={t('zimbra_account_account_order')}
+        label={t(`${NAMESPACES.ACTIONS}:order`)}
+        icon={ODS_ICON_NAME.shoppingCart}
       />
       <ManagerButton
         id="ovh-mail-migrator-btn"
@@ -152,11 +154,10 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
         variant={ODS_BUTTON_VARIANT.outline}
         size={ODS_BUTTON_SIZE.sm}
         onClick={handleOvhMailMigratorAccountClick}
-        label={t('zimbra_account_account_migrate')}
+        label={t(`${NAMESPACES.ACTIONS}:migrate`)}
         iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
         icon={ODS_ICON_NAME.externalLink}
       />
-      <EmailAccountsExportCsv />
       {!!selectedRows?.length && (
         <ManagerButton
           id="ovh-mail-delete-selected-btn"
@@ -168,6 +169,9 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
           icon={ODS_ICON_NAME.trash}
         />
       )}
+      <div className="ml-auto">
+        <EmailAccountsExportCsv />
+      </div>
     </div>
   );
 };
