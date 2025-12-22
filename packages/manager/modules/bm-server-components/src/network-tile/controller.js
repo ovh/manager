@@ -11,6 +11,7 @@ export default class BmServerComponentsNetworkTileController {
     this.$q = $q;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
+    this.totalAssocietedIps = 0;
   }
 
   $onInit() {
