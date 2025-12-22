@@ -15,6 +15,7 @@ import { useGetReplications } from '@/hooks/api/database/replication/useGetRepli
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 import Link from '@/components/links/Link.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -124,10 +125,11 @@ const Replications = () => {
               <DataTable.Action>
                 <Button
                   data-testid="replications-add-button"
-                  disabled={
-                    service.capabilities.replication?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'replication',
+                    'create',
+                  )}
                   mode="outline"
                   onClick={() => navigate('./add')}
                 >

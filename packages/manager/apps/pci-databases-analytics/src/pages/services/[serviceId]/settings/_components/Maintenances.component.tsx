@@ -21,6 +21,7 @@ import * as database from '@/types/cloud/project/database';
 import { useGetMaintenances } from '@/hooks/api/database/maintenance/useGetMaintenances.hook';
 import { useApplyMaintenance } from '@/hooks/api/database/maintenance/useApplyMaintenance.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 const Maintenances = () => {
   const { t } = useTranslation(
@@ -150,8 +151,7 @@ const Maintenances = () => {
                   data-testid="apply-maintenance-button"
                   disabled={
                     isPending ||
-                    service.capabilities.maintenanceApply.create ===
-                      database.service.capability.StateEnum.disabled
+                    isCapabilityDisabled(service, 'maintenanceApply', 'create')
                   }
                   size="sm"
                   className="mt-2"

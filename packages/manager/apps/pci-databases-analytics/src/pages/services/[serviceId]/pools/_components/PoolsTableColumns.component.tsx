@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
-
 import { MoreHorizontal } from 'lucide-react';
 import {
   Tooltip,
@@ -16,8 +15,8 @@ import {
 import DataTable from '@/components/data-table';
 import { ConnectionPoolWithData } from '../Pools.page';
 import { useServiceData } from '../../Service.context';
-import * as database from '@/types/cloud/project/database';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface ConnectionPoolsTableColumnsProps {
   onGetInformationClick: (connectionPool: ConnectionPoolWithData) => void;
@@ -117,10 +116,11 @@ export const getColumns = ({
                         <DropdownMenuItem
                           data-testid="pools-action-edit-button"
                           variant="primary"
-                          disabled={
-                            service.capabilities.connectionPools?.update ===
-                            database.service.capability.StateEnum.disabled
-                          }
+                          disabled={isCapabilityDisabled(
+                            service,
+                            'connectionPools',
+                            'update',
+                          )}
                           onClick={() => {
                             onEditClick(row.original);
                           }}
@@ -134,10 +134,11 @@ export const getColumns = ({
                         <DropdownMenuItem
                           data-testid="pools-action-delete-button"
                           variant="critical"
-                          disabled={
-                            service.capabilities.connectionPools?.delete ===
-                            database.service.capability.StateEnum.disabled
-                          }
+                          disabled={isCapabilityDisabled(
+                            service,
+                            'connectionPools',
+                            'delete',
+                          )}
                           onClick={() => {
                             onDeleteClick(row.original);
                           }}

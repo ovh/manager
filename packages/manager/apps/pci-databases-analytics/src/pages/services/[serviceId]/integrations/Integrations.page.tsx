@@ -14,6 +14,7 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { GuideSections } from '@/types/guide';
 import Guides from '@/components/guides/Guides.component';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -78,10 +79,11 @@ const Integrations = () => {
                 <Button
                   data-testid="integrations-add-button"
                   mode="outline"
-                  disabled={
-                    service.capabilities.integrations?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'integrations',
+                    'create',
+                  )}
                   onClick={() => navigate('./add')}
                 >
                   <Plus className="w-4 h-4" />
