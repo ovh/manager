@@ -78,10 +78,16 @@ describe('User functions', () => {
       projectId: 'projectId',
       userId: 123,
       region: 'BHS',
+      service: user.RCloneServiceEnum['storage-s3'],
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/user/123/rclone?region=BHS',
-      undefined,
+      '/cloud/project/projectId/user/123/rclone',
+      {
+        params: {
+          region: 'BHS',
+          service: user.RCloneServiceEnum['storage-s3'],
+        },
+      },
     );
   });
 
