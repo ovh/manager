@@ -7,11 +7,8 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as database from '@/types/cloud/project/database';
-import * as serviceApi from '@/data/api/database/service.api';
-import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import {
   mockedAvailabilitiesFlavor,
   mockedAvailabilitiesVersion,
@@ -95,26 +92,13 @@ describe('Update Version modal', () => {
               pricings: [{ price: 1000, tax: 200 }],
             },
             {
-              planCode: 'databases.mysql-business-db1-4.month.consumption',
-              pricings: [{ price: 20000, tax: 4000 }],
-            },
-            {
               planCode: 'databases.mysql-business-db1-7.hour.consumption',
               pricings: [{ price: 1000, tax: 200 }],
-            },
-            {
-              planCode: 'databases.mysql-business-db1-7.month.consumption',
-              pricings: [{ price: 20000, tax: 4000 }],
             },
             {
               planCode:
                 'databases.mysql-business-additionnal-storage-gb.hour.consumption',
               pricings: [{ price: 100, tax: 200 }],
-            },
-            {
-              planCode:
-                'databases.mysql-business-additionnal-storage-gb.month.consumption',
-              pricings: [{ price: 200, tax: 400 }],
             },
           ],
         },
