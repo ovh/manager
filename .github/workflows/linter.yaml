@@ -62,4 +62,5 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Lint Code Base
-        run: yarn lint
+        run: |
+          yarn lint --runner nx
