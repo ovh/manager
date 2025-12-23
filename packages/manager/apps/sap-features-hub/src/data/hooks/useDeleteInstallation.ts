@@ -19,9 +19,9 @@ export const useDeleteInstallation = ({
   return useMutation({
     mutationFn: () => deleteInstallation({ serviceName, taskId }),
     ...options,
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       invalidateInstallationHistory();
-      options.onSuccess?.(data, variables, context);
+      options.onSuccess?.(data, variables, onMutateResult, context);
     },
   });
 };
