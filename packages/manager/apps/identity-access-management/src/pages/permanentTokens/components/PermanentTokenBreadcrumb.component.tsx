@@ -8,8 +8,8 @@ import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 export function PermanentTokensBreadcrumb() {
   const { t } = useTranslation('permanent-tokens');
   const { data: iamHref } = useNavigationGetUrl(['', '/iam', {}]);
-  const identitiesHref  = `${iamHref}/identities`;
-  const localUserHref = `${identitiesHref}/users`
+  const identitiesHref = `${iamHref}/identities`;
+  const localUserHref = `${identitiesHref}/users`;
 
   return (
     <OdsBreadcrumb>

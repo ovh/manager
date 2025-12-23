@@ -66,7 +66,7 @@ export default function PermanentTokensAdd() {
   }, [isCreationMode, isTokenLoading, isTokenError, tokenData]);
 
   const { createToken, isPending: isCreationPending } = useCreateIamUserToken({
-    userId: userId,
+    userId,
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
@@ -86,7 +86,7 @@ export default function PermanentTokensAdd() {
   });
 
   const { updateToken, isPending: isUpdatePending } = useUpdateIamUserToken({
-    userId: userId,
+    userId,
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
@@ -109,10 +109,7 @@ export default function PermanentTokensAdd() {
     if (isCreationPending || isUpdatePending) {
       return;
     }
-    const payload: IamUserTokenPayload = {
-      name: name,
-      description: description,
-    };
+    const payload: IamUserTokenPayload = { name, description };
     if (expiryModel.active) {
       if (expiryModel.mode === 'date' && expiryModel.expiresAt !== null) {
         payload.expiresAt = expiryModel.expiresAt.toISOString();
@@ -127,7 +124,11 @@ export default function PermanentTokensAdd() {
         ? PERMANENT_TOKENS_TRACKING.ADD.CTA_CONFIRM
         : PERMANENT_TOKENS_TRACKING.EDIT.CTA_CONFIRM,
     });
-    isCreationMode ? createToken(payload) : updateToken(payload);
+    if (isCreationMode) {
+      createToken(payload);
+    } else {
+      updateToken(payload);
+    }
   };
 
   const handleCancel = () => {
@@ -171,7 +172,6 @@ export default function PermanentTokensAdd() {
               name="tokenName"
               value={name}
               onOdsChange={(e) => setName(e.detail.value as string)}
-              placeholder={t('iam_user_token_modal_field_name_placeholder')}
               isDisabled={!isCreationMode}
               data-testid="tokenName"
             />
@@ -184,9 +184,6 @@ export default function PermanentTokensAdd() {
               name="tokenDescription"
               value={description}
               onOdsChange={(e) => setDescription(e.detail.value as string)}
-              placeholder={t(
-                'iam_user_token_modal_field_description_placeholder',
-              )}
               rows={3}
               data-testid="tokenDescription"
             />

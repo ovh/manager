@@ -7,6 +7,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import {
   BaseLayout,
+  Datagrid,
   ManagerButton,
   ChangelogButton,
   HeadersProps,
@@ -18,7 +19,6 @@ import { CHANGELOG_CHAPTERS, CHANGELOG_LINKS, IAM_FEATURES } from '@/constants';
 import { useGetIamUser } from '@/data/hooks/useGetIamUser';
 import { useParam } from '@/hooks/useParam';
 import { useIamUserTokenList } from '@/data/hooks/useGetIamUserTokens';
-import { Datagrid } from '@ovh-ux/manager-react-components';
 import { useDatagridColumn } from '@/pages/permanentTokens/listing/useDatagridColumn';
 import { subRoutes } from '@/routes/routes.constant';
 import { PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';

@@ -144,11 +144,11 @@ describe('PermanentTokensEdit (edit mode)', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.mocked(useParams).mockReturnValue(({
+    vi.mocked(useParams).mockReturnValue({
       userId: 'fakeUserId',
       tokenId: 'fake-token',
-    }));
-    vi.mocked(useGetIamUserToken).mockReturnValue({
+    });
+    vi.mocked(useGetIamUserToken).mockReturnValue(({
       data: {
         name: 'fake-token',
         description: 'Fake token description',
@@ -156,22 +156,27 @@ describe('PermanentTokensEdit (edit mode)', () => {
         lastUsed: '2025-06-11T00:00:00+02:00',
         expiresAt: '2025-06-11T00:00:00+02:00',
       },
-    } as unknown as ReturnType<typeof useGetIamUserToken>);
-    vi.mocked(useCreateIamUserToken).mockReturnValue({
+    } as unknown) as ReturnType<typeof useGetIamUserToken>);
+    vi.mocked(useCreateIamUserToken).mockReturnValue(({
       createToken: createTokenSpy,
       isPending: false,
-    } as unknown as ReturnType<typeof useCreateIamUserToken>);
-    vi.mocked(useUpdateIamUserToken).mockReturnValue({
+    } as unknown) as ReturnType<typeof useCreateIamUserToken>);
+    vi.mocked(useUpdateIamUserToken).mockReturnValue(({
       updateToken: updateTokenSpy,
       isPending: false,
-    } as unknown as ReturnType<typeof useUpdateIamUserToken>);
+    } as unknown) as ReturnType<typeof useUpdateIamUserToken>);
   });
 
   it('displays modal with pre-filled value and correct title', () => {
-    const { getByText, getByTestId } = render(<PermanentTokensAdd />, { wrapper });
+    const { getByText, getByTestId } = render(<PermanentTokensAdd />, {
+      wrapper,
+    });
     expect(getByText('iam_user_token_modal_title_edit')).toBeVisible();
     expect(getByTestId('tokenName')).toHaveAttribute('value', 'fake-token');
-    expect(getByTestId('tokenDescription')).toHaveAttribute('value', 'Fake token description');
+    expect(getByTestId('tokenDescription')).toHaveAttribute(
+      'value',
+      'Fake token description',
+    );
   });
 
   it('calls updateToken on submit', () => {

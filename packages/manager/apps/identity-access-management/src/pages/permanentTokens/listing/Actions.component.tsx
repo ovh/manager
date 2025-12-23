@@ -26,9 +26,9 @@ export function Actions({ token }: { token: IamUserToken }) {
       onClick: () => {
         trackClick({
           actionType: 'action',
-          actions: PERMANENT_TOKENS_TRACKING.LISTING.EDIT_TOKEN
+          actions: PERMANENT_TOKENS_TRACKING.LISTING.EDIT_TOKEN,
         });
-      }
+      },
     },
     {
       id: 1,
@@ -37,9 +37,9 @@ export function Actions({ token }: { token: IamUserToken }) {
       onClick: () => {
         trackClick({
           actionType: 'action',
-          actions: PERMANENT_TOKENS_TRACKING.LISTING.DELETE_TOKEN
+          actions: PERMANENT_TOKENS_TRACKING.LISTING.DELETE_TOKEN,
         });
-      }
+      },
     },
   ];
   return (

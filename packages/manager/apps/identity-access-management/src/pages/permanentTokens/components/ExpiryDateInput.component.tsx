@@ -39,11 +39,11 @@ export default function ExpiryDateInput({
   const [hours, setHours] = useState<number>(1);
   const [days, setDays] = useState<number>(1);
 
-  const setExpiresIn = (unit: Unit, value: number) => {
+  const setExpiresIn = (expiryUnit: Unit, value: number) => {
     if (!model.active || model.mode !== 'duration') {
       return;
     }
-    switch (unit) {
+    switch (expiryUnit) {
       case Unit.MINUTES:
         setModel({ ...model, expiresIn: value * SECONDS_IN_MINUTE });
         setMinutes(value);
@@ -55,6 +55,8 @@ export default function ExpiryDateInput({
       case Unit.DAYS:
         setModel({ ...model, expiresIn: value * SECONDS_IN_DAY });
         setDays(value);
+        break;
+      default:
         break;
     }
   };
