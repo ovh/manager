@@ -30,19 +30,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          # If it's a PR, use github.head_ref to get the source branch of the PR
-          # Check if we are in a PR event
-          if [ -n "${{ github.head_ref }}" ]; then
-            CURRENT_BRANCH="${{ github.head_ref }}"
+          if [ -n "$GITHUB_HEAD_REF" ]; then
+            CURRENT_BRANCH="$GITHUB_HEAD_REF"
           else
-            # Fallback to using `git` to get the current branch
-            CURRENT_BRANCH=$(git branch --show-current)
-            # Check if we are still in a detached HEAD state
-            if [ "$CURRENT_BRANCH" == "" ]; then
-              echo "Not on any branch (detached HEAD)"
-              CURRENT_BRANCH="detached-head"
-            fi
+            CURRENT_BRANCH="${GITHUB_REF##*/}"
           fi
+
           echo "My branch is $CURRENT_BRANCH"
           if [[ "$CURRENT_BRANCH" == "master" ]]; then
             echo "My branch is master and no unit test to run, exit..."
