@@ -1,0 +1,22 @@
+{
+  "managed_vcd_network_acl_ip_name": "Adres IP",
+  "managed_vcd_network_acl_ip_action_modify_ip": "Zmień zakres IP",
+  "managed_vcd_network_acl_ip_action_delete_ip": "Usuń zakres IP",
+  "managed_vcd_network_acl_ip_cta_add_ip": "Dodaj adres IP",
+  "managed_vcd_network_acl_ip_cta_modify_ip": "Zmień dozwolony zakres IP",
+  "managed_vcd_network_acl_drawer_header_edit_ip": "Zmiana zakresu IP",
+  "managed_vcd_network_acl_drawer_header_suppression_ip": "Usunięcie reguły bezpieczeństwa",
+  "managed_vcd_network_acl_drawer_body_suppression_ip": "Czy na pewno chcesz usunąć następującą regułę ACL:",
+  "managed_vcd_network_acl_update_success_message": "Dyspozycja aktualizacji reguły bezpieczeństwa została przyjęta",
+  "managed_vcd_network_acl_delete_success_message": "Dyspozycja usunięcia reguły bezpieczeństwa została przyjęta",
+  "managed_vcd_network_acl_update_error_message": "Wystąpił błąd podczas aktualizacji {{errorApi}}",
+  "managed_vcd_network_acl_add_error_message": "Wystąpił błąd podczas dodawania reguły bezpieczeństwa {{errorApi}}",
+  "managed_vcd_network_acl_delete_error_message": "Wystąpił błąd podczas usuwania reguły bezpieczeństwa {{errorApi}}",
+  "managed_vcd_network_acl_operation_ongoing": "Trwa aktualizacja reguł ACL. Zaczekaj na jej zakończenie, zanim wprowadzisz zmiany",
+  "managed_vcd_network_acl_status_ACTIVE": "Uruchomiona",
+  "managed_vcd_network_acl_status_CREATING": "Trwa tworzenie",
+  "managed_vcd_network_acl_status_DELETING": "Trwa usuwanie",
+  "managed_vcd_network_acl_normalized_info": "Zakres IP zostanie automatycznie zapisany w formacie {{normalized}}.",
+  "managed_vcd_network_acl_add_current_ip": "Dodaj bieżący adres IP",
+  "managed_vcd_network_acl_allow_access_from_anywhere": "Zezwalaj na dostęp z dowolnego miejsca"
+}
