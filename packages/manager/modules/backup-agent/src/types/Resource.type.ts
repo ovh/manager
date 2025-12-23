@@ -2,6 +2,8 @@ export type ResourceStatus = 'CREATING' | 'DELETING' | 'ERROR' | 'READY' | 'SUSP
 
 export type TaskStatus = 'ERROR' | 'PENDING' | 'RUNNING' | 'SCHEDULED' | 'WAITING_USER_INPUT';
 
+export type AlternativeStatus = 'DISABLED' | 'ENABLED' | 'NOT_CONFIGURED' | 'NOT_INSTALLED';
+
 export interface CurrentTask {
   id: string;
   link: string;
@@ -23,7 +25,7 @@ export type Resource<T extends { name: string }> = {
   iam: IamResource | null;
   id: string;
   resourceStatus: ResourceStatus;
-  status?: 'DISABLED' | 'ENABLED' | 'NOT_CONFIGURED' | 'NOT_INSTALLED'; // ex: for agent status
+  status?: AlternativeStatus; // ex: for agent status
   targetSpec: Pick<T, 'name'>;
   updatedAt: string;
 };
