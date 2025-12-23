@@ -57,6 +57,8 @@ export default class DomainTabGeneralInformationsCtrl {
     goToContactManagement,
     shellClient,
     atInternet,
+    ovhFeatureFlipping,
+    $location,
   ) {
     this.$http = $http;
     this.$scope = $scope;
@@ -88,6 +90,8 @@ export default class DomainTabGeneralInformationsCtrl {
     this.DOMAIN_STATE_TYPE = DOMAIN_STATE_TYPE;
     this.shellClient = shellClient;
     this.atInternet = atInternet;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.$location = $location;
   }
 
   $onInit() {
@@ -156,6 +160,34 @@ export default class DomainTabGeneralInformationsCtrl {
         },
       },
     };
+
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability('web:domains:domains')
+      .then((featureAvailability) => {
+        return featureAvailability.isFeatureAvailable('web:domains:domains');
+      })
+      .then((isLegacyFeatureAvailable) => {
+        this.ovhFeatureFlipping
+          .checkFeatureAvailability('web-domains:domains')
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(
+              'web-domains:domains',
+            );
+          })
+          .then((isFeatureAvailable) => {
+            if (!isLegacyFeatureAvailable && isFeatureAvailable) {
+              const path = this.$location.path();
+              const productId = path.split('/')[2];
+              const url = this.coreURLBuilder.buildURL(
+                'web-domains',
+                '#/domain/:serviceName/information',
+                { serviceName: productId },
+              );
+              return window.location.replace(url);
+            }
+            return false;
+          });
+      });
 
     this.ongoingOperationsLink = this.coreURLBuilder.buildURL(
       'web-ongoing-operations',

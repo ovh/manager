@@ -75,7 +75,7 @@ export default function WebSidebar() {
             : [];
 
           let webDomainsUrl = '';
-          if(features['web-domains:domains'] || features['web-domains:alldoms']){
+          if(features['web-domains'] && (features['web-domains:domains'] || features['web-domains:alldoms'])){
             webDomainsUrl = navigation.getURL('web-domains', '#/domain');
           }
 
