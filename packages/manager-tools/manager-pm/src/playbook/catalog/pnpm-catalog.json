@@ -24,6 +24,7 @@
   "packages/manager/apps/pci-ssh-keys",
   "packages/manager/apps/pci-users",
   "packages/manager/apps/pci-volume-backup",
+  "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/pci-vouchers",
   "packages/manager/apps/pci-workflow",
   "packages/manager/apps/web-domains",
