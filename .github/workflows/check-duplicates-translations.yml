@@ -12,6 +12,9 @@ jobs:
   duplicate-translation:
     runs-on: ubuntu-latest
 
+    env:
+      PNPM_VERSION: "10.17.0" # must match playbook-config.js
+
     steps:
       # ------------------------------------------
       # Checkout
@@ -75,11 +78,12 @@ jobs:
       # pnpm binary cache (tool only)
       # ------------------------------------------
       - name: Restore pnpm binary
-        if: steps.gate.outputs.should_continue == 'true'
         uses: actions/cache@v4
         with:
           path: target/pnpm
-          key: ${{ runner.os }}-pnpm-binary-v8
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-binary-
 
       # ------------------------------------------
       # Yarn cache (tarballs only)
