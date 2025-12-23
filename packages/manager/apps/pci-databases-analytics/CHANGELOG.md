@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.37.0...@ovh-ux/manager-pci-databases-analytics-app@1.38.0) (2025-12-23)
+
+
+### Bug Fixes
+
+* **pci.db:** cli equivalent modal style issue ([f933ac0](https://github.com/ovh/manager/commit/f933ac0bee9ba7585aaefe3159716fe8398c6d9c)), closes [#DATATR-2798](https://github.com/ovh/manager/issues/DATATR-2798)
+
+
+### Features
+
+* **pci.db:** add missing flag and region trans and new statut ([a173f07](https://github.com/ovh/manager/commit/a173f075cf142a0d6b4ebdb83a5431fc81b43501)), closes [#DATATR-2777](https://github.com/ovh/manager/issues/DATATR-2777) [#DATATR-2778](https://github.com/ovh/manager/issues/DATATR-2778)
+* **pci.db:** improve services capabilities logic ([94d50c0](https://github.com/ovh/manager/commit/94d50c03fadfc1ba91b43f928826c0279213c099)), closes [#DATATR-2313](https://github.com/ovh/manager/issues/DATATR-2313) [#DATATR-2686](https://github.com/ovh/manager/issues/DATATR-2686)
+
+
+
+
+
 # [1.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.36.3...@ovh-ux/manager-pci-databases-analytics-app@1.37.0) (2025-12-23)
 
 

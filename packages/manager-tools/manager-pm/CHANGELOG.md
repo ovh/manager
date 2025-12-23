@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.43.1...@ovh-ux/manager-pm@0.43.2) (2025-12-23)
+
+
+### Bug Fixes
+
+* pnpm migration ([5d94816](https://github.com/ovh/manager/commit/5d948165b52899143b14aafdc8f3d50c3aaf9ff9)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
 ## [0.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.43.0...@ovh-ux/manager-pm@0.43.1) (2025-12-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm
