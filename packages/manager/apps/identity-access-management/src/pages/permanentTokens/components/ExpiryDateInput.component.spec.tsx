@@ -33,12 +33,8 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         {children}
       </select>
     ),
-    OdsRadio: ({ ...props }: any) => (
-      <input
-        type="radio"
-        onChange={props.onOdsChange}
-        {...props}
-      />
+    OdsRadio: ({ ...props }) => (
+      <input type="radio" onChange={props.onOdsChange} {...props} />
     ),
   };
 });
@@ -55,7 +51,7 @@ describe('ExpiryDateInput', () => {
     const { getByText, getByTestId } = render(
       <ExpiryDateInput model={model} setModel={setModelSpy} />,
     );
-    fireEvent.click(getByTestId('expiryDateType-duration'))
+    fireEvent.click(getByTestId('expiryDateType-duration'));
 
     expect(
       getByText('iam_user_token_modal_field_expiry_date_label'),
@@ -65,6 +61,6 @@ describe('ExpiryDateInput', () => {
       mode: 'duration',
       expiresAt: new Date('2025-06-11T00:00:00+02:00'),
       expiresIn: 123,
-    })
+    });
   });
 });

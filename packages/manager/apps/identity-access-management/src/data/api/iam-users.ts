@@ -57,7 +57,7 @@ export const updateIamUserToken = async (
   userId: string,
   payload: IamUserTokenPayload,
 ) => {
-  const updatePayload = {...payload};
+  const updatePayload = { ...payload };
   delete updatePayload.name;
   const { data } = await apiClient.v6.put<IamUserToken>(
     `/me/identity/user/${userId}/token/${payload.name}`,
@@ -66,13 +66,9 @@ export const updateIamUserToken = async (
   return data;
 };
 
-export const deleteIamUserToken = async (
-  userId: string,
-  token: string,
-) => {
+export const deleteIamUserToken = async (userId: string, token: string) => {
   const { data } = await apiClient.v6.delete<void>(
     `/me/identity/user/${userId}/token/${token}`,
   );
   return data;
 };
-
