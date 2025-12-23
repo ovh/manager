@@ -43,7 +43,7 @@ const CredentialDashboard = () => {
   const { data: okms, isPending: isLoadingKms, error: errorKms } = useOkmsById(okmsId);
 
   const {
-    data,
+    data: credential,
     isPending: isLoadingCredential,
     error: errorCredential,
   } = useOkmsCredentialById({
@@ -67,12 +67,10 @@ const CredentialDashboard = () => {
     );
   }
 
-  const credential = data.data;
-
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms.data.iam.displayName,
+      label: okms.iam.displayName,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -118,7 +116,7 @@ const CredentialDashboard = () => {
         }}
         tabs={<TabNavigation tabs={tabsList} />}
       >
-        <Outlet context={{ credential, okms: okms.data } as CredentialContextType} />
+        <Outlet context={{ credential, okms } as CredentialContextType} />
       </BaseLayout>
     </Suspense>
   );

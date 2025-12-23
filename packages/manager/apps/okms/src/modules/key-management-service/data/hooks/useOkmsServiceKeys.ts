@@ -20,7 +20,7 @@ import {
 /* Service Key List */
 
 export const useAllOkmsServiceKeys = (okmsId: string) => {
-  return useQuery<{ data: OkmsServiceKey[] }, ApiError>({
+  return useQuery<OkmsServiceKey[], ApiError>({
     queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
     queryFn: () => getListingOkmsServiceKey(okmsId),
     retry: false,
@@ -40,7 +40,7 @@ export const useOkmsServiceKeys = ({ sorting, okmsId }: OkmsServiceKeyOptions) =
   return {
     isLoading: allOKMSLoading,
     error: allOKMSError,
-    data: sortOkmsServiceKey(okms?.data || [], sorting),
+    data: sortOkmsServiceKey(okms || [], sorting),
   };
 };
 
@@ -57,7 +57,7 @@ export const useOkmsServiceKeyById = ({
   keyId,
   enabled = true,
 }: UseOkmsServiceKeyByIdParams) => {
-  return useQuery<{ data: OkmsServiceKeyWithData }, ErrorResponse>({
+  return useQuery<OkmsServiceKeyWithData, ErrorResponse>({
     queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
     queryFn: () => getOkmsServiceKeyResource({ okmsId, keyId }),
     retry: false,

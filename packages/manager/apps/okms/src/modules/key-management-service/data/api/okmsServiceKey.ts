@@ -14,10 +14,9 @@ import { defaultCompareFunctionSortKey } from './utils';
  *  Get okms ServiceKey list
  */
 
-export const getListingOkmsServiceKey = async (
-  okmsId: string,
-): Promise<{ data: OkmsServiceKey[] }> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}/serviceKey`);
+export const getListingOkmsServiceKey = async (okmsId: string): Promise<OkmsServiceKey[]> => {
+  const { data } = await apiClient.v2.get<OkmsServiceKey[]>(`okms/resource/${okmsId}/serviceKey`);
+  return data;
 };
 
 export const getOkmsServiceKeyResourceListQueryKey = (okmsId: string) => [
@@ -60,8 +59,11 @@ export const getOkmsServiceKeyResource = async ({
 }: {
   okmsId: string;
   keyId: string;
-}): Promise<{ data: OkmsServiceKeyWithData }> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`);
+}): Promise<OkmsServiceKeyWithData> => {
+  const { data } = await apiClient.v2.get<OkmsServiceKeyWithData>(
+    `okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`,
+  );
+  return data;
 };
 
 /**
@@ -85,7 +87,7 @@ export const updateOkmsServiceKeyResource = async ({
   keyId: string;
   data: OkmsServiceKeyPutPayload;
 }) => {
-  return apiClient.v2.put(`okms/resource/${okmsId}/serviceKey/${keyId}`, data);
+  await apiClient.v2.put(`okms/resource/${okmsId}/serviceKey/${keyId}`, data);
 };
 
 /**
@@ -107,7 +109,7 @@ export const deleteOkmsServiceKeyResource = async ({
   okmsId: string;
   keyId: string;
 }) => {
-  return apiClient.v2.delete(`okms/resource/${okmsId}/serviceKey/${keyId}`);
+  await apiClient.v2.delete(`okms/resource/${okmsId}/serviceKey/${keyId}`);
 };
 
 /**
@@ -125,5 +127,9 @@ export const createOkmsServiceKeyResource = async ({
   okmsId: string;
   data: OkmsServiceKeyPostPayload;
 }) => {
-  return apiClient.v2.post(`okms/resource/${okmsId}/serviceKey`, data);
+  const { data: response } = await apiClient.v2.post<OkmsServiceKey>(
+    `okms/resource/${okmsId}/serviceKey`,
+    data,
+  );
+  return response;
 };
