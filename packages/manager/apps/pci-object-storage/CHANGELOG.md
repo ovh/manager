@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.26.2...@ovh-ux/manager-pci-object-storage-app@0.27.0) (2025-12-23)
+
+
+### Bug Fixes
+
+* **pci.db:** cli equivalent modal style issue ([f933ac0](https://github.com/ovh/manager/commit/f933ac0bee9ba7585aaefe3159716fe8398c6d9c)), closes [#DATATR-2798](https://github.com/ovh/manager/issues/DATATR-2798)
+
+
+### Features
+
+* **pci-os:** add unit test in component and hooks ([8d52dc2](https://github.com/ovh/manager/commit/8d52dc2d81c8501c171c227a7850880a6166e945)), closes [#DATATR-2573](https://github.com/ovh/manager/issues/DATATR-2573)
+
+
+
+
+
 ## [0.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.26.1...@ovh-ux/manager-pci-object-storage-app@0.26.2) (2025-12-22)
 
 
