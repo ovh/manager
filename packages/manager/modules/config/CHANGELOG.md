@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.8.4...@ovh-ux/manager-config@8.8.5) (2025-12-23)
+
+
+### Reverts
+
+* **config:** update Manager domains in front-end ([6cac4e2](https://github.com/ovh/manager/commit/6cac4e200c672856132e6c54fdef885610df3602))
+* **config:** update Telecom domain ([03b1487](https://github.com/ovh/manager/commit/03b1487feba47b27bfcb3636d9a7d605f2816c27))
+* skip labeu url update ([5f68a11](https://github.com/ovh/manager/commit/5f68a112ec1e0d31cd97a04381ceb332bb6eaf22))
+
+
+
+
+
 ## [8.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.8.3...@ovh-ux/manager-config@8.8.4) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-config

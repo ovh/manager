@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.17](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-request-tagger@2.0.16...@ovh-ux/ng-ovh-request-tagger@2.0.17) (2025-12-23)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-request-tagger
+
+
+
+
+
 ## [2.0.16](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-request-tagger@2.0.15...@ovh-ux/ng-ovh-request-tagger@2.0.16) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-request-tagger

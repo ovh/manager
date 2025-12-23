@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ips-app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Ips manager app",
   "repository": {
@@ -20,13 +20,13 @@
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.22.2",
-    "@ovh-ux/manager-config": "^8.8.4",
-    "@ovh-ux/manager-core-api": "^0.21.0",
-    "@ovh-ux/manager-core-utils": "^0.5.0",
-    "@ovh-ux/manager-module-common-api": "^0.6.3",
-    "@ovh-ux/manager-module-order": "^0.13.2",
+    "@ovh-ux/manager-config": "^8.8.5",
+    "@ovh-ux/manager-core-api": "^0.21.1",
+    "@ovh-ux/manager-core-utils": "^0.5.1",
+    "@ovh-ux/manager-module-common-api": "^0.6.4",
+    "@ovh-ux/manager-module-order": "^0.13.3",
     "@ovh-ux/manager-react-components": "^2.43.1",
-    "@ovh-ux/manager-react-core-application": "^0.14.0",
+    "@ovh-ux/manager-react-core-application": "^0.14.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.4.1",
     "@ovhcloud/ods-components": "^18.6.2",
@@ -49,8 +49,8 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.11.4",
-    "@ovh-ux/manager-vite-config": "^0.15.5",
+    "@ovh-ux/manager-core-test-utils": "^0.11.5",
+    "@ovh-ux/manager-vite-config": "^0.15.6",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",

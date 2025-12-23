@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-reket",
-  "version": "2.1.26",
+  "version": "2.1.27",
   "description": "Expose a way to get a predefined Reket instance",
   "repository": {
     "type": "git",
@@ -23,11 +23,11 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-sso": "^0.7.0",
+    "@ovh-ux/manager-core-sso": "^0.7.1",
     "@ovhcloud/reket-axios-client": "^0.2.1",
     "@ovhcloud/reket-core": "^0.2.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.2.0"
+    "@ovh-ux/component-rollup-config": "^13.2.1"
   }
 }

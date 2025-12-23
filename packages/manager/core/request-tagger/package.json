@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/request-tagger",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "OVHcloud control panel Request tagger",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "prepare": "tsc && tsc-alias"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
+    "@ovh-ux/manager-static-analysis-kit": "^0.15.1",
     "tsc-alias": "^1.8.16"
   }
 }

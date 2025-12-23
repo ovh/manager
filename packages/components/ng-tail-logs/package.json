@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-tail-logs",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Poll a log API for displaying messages",
   "keywords": [
     "angularjs",
@@ -41,7 +41,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.2.0"
+    "@ovh-ux/component-rollup-config": "^13.2.1"
   },
   "peerDependencies": {
     "angular": "1.6.10",

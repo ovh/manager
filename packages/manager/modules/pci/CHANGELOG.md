@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.101.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.101.0...@ovh-ux/manager-pci@6.101.1) (2025-12-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci
+
+
+
+
+
 # [6.101.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.4...@ovh-ux/manager-pci@6.101.0) (2025-11-27)
 
 

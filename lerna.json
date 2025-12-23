@@ -20,8 +20,9 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": "master",
-      "ignoreChanges": []
+      "allowBranch": "feat/MANAGER-20371",
+      "ignoreChanges": [],
+      "conventionalCommits": true
     }
   }
 }

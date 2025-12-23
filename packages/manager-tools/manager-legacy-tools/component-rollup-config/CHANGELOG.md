@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@13.2.0...@ovh-ux/component-rollup-config@13.2.1) (2025-12-23)
+
+**Note:** Version bump only for package @ovh-ux/component-rollup-config
+
+
+
+
+
 # [13.2.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@13.1.0...@ovh-ux/component-rollup-config@13.2.0) (2025-11-16)
 
 

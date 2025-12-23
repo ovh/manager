@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-utils",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "description": "OVHcloud manager core utils.",
   "repository": {
@@ -19,7 +19,7 @@
     "prepare": "tsc && tsc-alias"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
+    "@ovh-ux/manager-static-analysis-kit": "^0.15.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
