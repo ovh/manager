@@ -1,4 +1,4 @@
-import { order } from '../catalog';
+import { Pricing } from '@/lib/pricingHelper';
 import * as database from '@/types/cloud/project/database';
 
 export interface EngineWithVersion {
@@ -76,18 +76,12 @@ export interface Flavor {
     minimum?: { unit: string; value: number };
     maximum?: { unit: string; value: number };
     step?: { unit: string; value: number };
-    pricing?: {
-      hourly?: order.publicOrder.Pricing;
-      monthly?: order.publicOrder.Pricing;
-    };
+    pricing?: Pricing;
   };
   order: number;
   default: boolean;
   tags: database.capabilities.TagEnum[];
-  pricing: {
-    hourly?: order.publicOrder.Pricing;
-    monthly?: order.publicOrder.Pricing;
-  };
+  pricing?: Pricing;
 }
 
 export enum ForkSourceType {

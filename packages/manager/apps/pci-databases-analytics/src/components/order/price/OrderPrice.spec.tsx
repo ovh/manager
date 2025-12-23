@@ -58,8 +58,8 @@ describe('OrderPrice component', () => {
     );
     await waitFor(() => {
       expect(screen.getByTestId('order-price-container')).toBeInTheDocument();
-      expect(screen.getByText('pricing_ht 10 €')).toBeInTheDocument();
-      expect(screen.getByText('(pricing_ttc 20 €)')).toBeInTheDocument();
+      expect(screen.getByText('pricing_ht 7 €')).toBeInTheDocument();
+      expect(screen.getByText('(pricing_ttc 15 €)')).toBeInTheDocument();
     });
   });
 
@@ -74,11 +74,8 @@ describe('OrderPrice component', () => {
     const servicePricing: ServicePricing = {
       ...mockedServicePrice,
       servicePrice: {
-        ...mockedServicePrice.servicePrice,
-        hourly: {
-          price: 0,
-          tax: 0,
-        },
+        price: 0,
+        tax: 0,
       },
     };
     render(
