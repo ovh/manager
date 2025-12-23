@@ -42,15 +42,7 @@ jobs:
             echo "My branch is master and no unit test to run, exit..."
             echo "should_continue=false" >> $GITHUB_OUTPUT
           fi
-          echo "Get the base branch..."
-          
-          # If we have a PR number, query gh explicitly; otherwise avoid letting gh infer branch
-          if [ -n "$PR_NUMBER" ]; then
-            BASE_BRANCH=$(gh pr view "$PR_NUMBER" --repo ovh/manager --json baseRefName -q ".baseRefName")
-          else
-            echo "PR number not found in event or ref; skipping gh pr view to avoid detached-head error"
-            BASE_BRANCH="${BASE_BRANCH:-}"
-          fi
+          BASE_BRANCH="origin/master"
           
           echo "Base Branch is $BASE_BRANCH"
           labels=$(gh pr view $PR_NUMBER --repo ovh/manager --json labels --jq '.labels[].name')
