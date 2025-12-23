@@ -54,9 +54,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/yarn
-          key: ${{ runner.os }}-yarn-cache-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-cache-
+            ${{ runner.os }}-yarn-cache-node22-
 
       - name: Ensure yarn cache folder exists
         run: mkdir -p ~/.cache/yarn
@@ -79,7 +79,8 @@ jobs:
       # ------------------------------------------
       - name: Build documentation packages
         run: |
-          yarn build \
+          CORES=$(nproc --ignore=1 || nproc)
+          yarn build --concurrency=$CORES \
             --filter="./packages/manager/core/api" \
             --filter="./packages/manager/core/url-builder" \
             --filter="./packages/components/ovh-shell" \
