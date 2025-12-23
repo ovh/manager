@@ -83,7 +83,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
     const errors = useMemo(
       () =>
         Object.entries(form.formState.errors)
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+           
           .map(([_, error]) => error?.message)
           .filter((message): message is string => Boolean(message)),
       [form.formState.errors],

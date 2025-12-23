@@ -41,7 +41,7 @@ export const editTopic = async ({
   serviceId,
   topic,
 }: EditTopic) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   const { id, name, ...body } = topic;
   return apiClient.v6.put<database.kafka.Topic>(
     `/cloud/project/${projectId}/database/${engine}/${serviceId}/topic/${id}`,
