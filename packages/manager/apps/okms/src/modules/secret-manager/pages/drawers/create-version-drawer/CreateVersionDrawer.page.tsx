@@ -42,7 +42,7 @@ export default function CreateVersionDrawerPage() {
   // Version is fetched only if versionId is provided
   const {
     data: version,
-    isFetching: isVersionFetching,
+    isFetching: isVersionFetching, // use isFetching in case there is no versionId provided
     error: versionError,
   } = useSecretVersionWithData({
     okmsId,
