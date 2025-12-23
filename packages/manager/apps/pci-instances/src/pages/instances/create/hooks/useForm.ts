@@ -112,6 +112,7 @@ export const useForm = (projectId: string) => {
       newPrivateNetwork: null,
       billingType: BILLING_TYPE.Hourly,
       localBackup: defaultLocalBackup,
+      distantBackupLocalization: null,
     },
     mode: 'onChange',
   });

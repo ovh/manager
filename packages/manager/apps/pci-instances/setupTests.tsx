@@ -34,6 +34,11 @@ vi.mock('react-i18next', async (importOriginal) => {
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useProjectUrl: () => '/foo/bar',
+  useCatalogPrice: vi.fn().mockReturnValue({
+    getTextPrice: vi.fn((price: number) => `${price}`),
+    getFormattedHourlyCatalogPrice: vi.fn(),
+    getFormattedMonthlyCatalogPrice: vi.fn(),
+  }),
 }));
 
 vi.mock('@/hooks/project/useProjectId', () => ({

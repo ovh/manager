@@ -393,5 +393,7 @@
   "manager_components_region_US-EAST-LZ-DAL": "Dallas",
   "manager_components_region_US-EAST-LZ-DAL_micro": "Dallas ({{ micro }})",
   "manager_components_region_US-WEST-LZ-PHX": "Phoenix",
-  "manager_components_region_US-WEST-LZ-PHX_micro": "Phoenix ({{ micro }})"
+  "manager_components_region_US-WEST-LZ-PHX_micro": "Phoenix ({{ micro }})",
+  "manager_components_select_localization_label": "Selecione uma localização",
+  "manager_component_select_localization_placeholder": "Escolha a localização"
 }

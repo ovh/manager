@@ -8,7 +8,10 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import Backup from '../Backup.component';
-import { selectLocalBackups } from '../../view-models/backupViewModel';
+import {
+  selectLocalBackups,
+  selectDistantBackupLocalizations,
+} from '../../view-models/backupViewModel';
 import { mockedLocalBackups } from '@/__mocks__/instance/constants';
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 
@@ -16,6 +19,7 @@ const selectLocalBackupsMock = vi.fn();
 
 vi.mock('../../view-models/backupViewModel');
 vi.mocked(selectLocalBackups).mockImplementation(selectLocalBackupsMock);
+vi.mocked(selectDistantBackupLocalizations).mockReturnValue([]);
 
 const setupTest = () => {
   selectLocalBackupsMock.mockReturnValue({
@@ -123,5 +127,17 @@ describe('Considering Backup component', () => {
 
       expect(screen.queryByRole('radiogroup')).not.toBeInTheDocument();
     });
+  });
+
+  it('should unchecked by default the remote backup', async () => {
+    setupTest();
+
+    await waitFor(() =>
+      expect(
+        screen.getByLabelText(
+          /creation:pci_instance_creation_backup_setting_distant_backup_checkbox_label/i,
+        ),
+      ).not.toBeChecked(),
+    );
   });
 });
