@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-namespace */
+ 
 export namespace order {
   /** Currency code */
   export enum CurrencyCodeEnum {
