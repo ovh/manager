@@ -31,17 +31,38 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { selectFlavors } from '../../view-models/flavorsViewModel';
 import { useEffect } from 'react';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
 
 export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   withUnavailable,
 }) => {
   const projectId = useProjectId();
   const { t } = useTranslation(['creation']);
-  const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [flavorCategory, flavorType, microRegion, flavorId] = useWatch({
+  const { control, setValue, resetField } = useFormContext<
+    TInstanceCreationForm
+  >();
+  const [
+    flavorCategory,
+    flavorType,
+    microRegion,
+    flavorId,
+    osType,
+    billingType,
+  ] = useWatch({
     control,
-    name: ['flavorCategory', 'flavorType', 'microRegion', 'flavorId'],
+    name: [
+      'flavorCategory',
+      'flavorType',
+      'microRegion',
+      'flavorId',
+      'distributionImageOsType',
+      'billingType',
+    ],
   });
+  const flavorAvailableBillingTypes = useMemo(
+    () => selectBillingTypes(deps)(projectId, flavorId, osType),
+    [projectId, flavorId, osType],
+  );
 
   const {
     renderName,
@@ -161,6 +182,22 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       setValue('flavorId', preselecteFlavordId);
     }
   }, [flavorId, flavors, preselecteFlavordId, setValue]);
+
+  useEffect(() => {
+    const hasPreviousSelectedBilling = flavorAvailableBillingTypes.some(
+      (billingChoice) => billingChoice === billingType,
+    );
+
+    if (!hasPreviousSelectedBilling) resetField('billingType');
+  }, [
+    billingType,
+    flavorAvailableBillingTypes,
+    flavorId,
+    flavors,
+    preselecteFlavordId,
+    resetField,
+    setValue,
+  ]);
 
   return (
     <section className="mt-8">

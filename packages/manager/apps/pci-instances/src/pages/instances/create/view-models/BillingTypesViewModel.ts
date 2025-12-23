@@ -22,7 +22,9 @@ export const selectBillingTypes: Reader<Deps, TSelectBillingData> = (deps) => (
   const flavorPriceId = `${flavorId}_${osType}_price`;
   const prices = data.entities.flavorPrices.byId.get(flavorPriceId)?.prices;
   const periodPrices =
-    prices?.filter((price) => price.type !== 'licence') || [];
+    prices?.filter(
+      (price) => price.type !== 'licence' && price.type !== 'licenceMonth',
+    ) || [];
 
   return periodPrices.map(({ type }) =>
     type === 'hour' ? BILLING_TYPE.Hourly : BILLING_TYPE.Monthly,

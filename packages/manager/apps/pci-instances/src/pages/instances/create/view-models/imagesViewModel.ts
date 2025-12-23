@@ -40,6 +40,7 @@ export type TImageOption = {
   osType: TImageOsType;
   windowsId?: string;
   windowsHourlyLicensePrice?: number;
+  windowsMonthlyLicensePrice?: number;
 };
 
 export type TCustomData = { available: boolean };
@@ -228,9 +229,17 @@ const createWindowsImageVariant = (
       `${imageId}_${microRegion}`,
     )?.imageId;
 
-    const windowsHourlyLicensePrice = entities.flavorPrices.byId
-      .get(`${regionalizedFlavorWindowsId}_price`)
-      ?.prices.find((price) => price.type === 'licence')?.price.priceInUcents;
+    const windowsPrices =
+      entities.flavorPrices.byId.get(`${regionalizedFlavorWindowsId}_price`)
+        ?.prices ?? [];
+
+    const windowsHourlyLicensePrice = windowsPrices.find(
+      (price) => price.type === 'licence',
+    )?.price.priceInUcents;
+
+    const windowsMonthlyLicensePrice = windowsPrices.find(
+      (price) => price.type === 'licenceMonth',
+    )?.price.priceInUcents;
 
     if (!windowsVersionId || !windowsHourlyLicensePrice) return acc;
 
@@ -240,6 +249,7 @@ const createWindowsImageVariant = (
       windowsId: windowsVersionId,
       available: hasWindowsStock,
       windowsHourlyLicensePrice,
+      windowsMonthlyLicensePrice,
       osType: image.osType,
     });
   });

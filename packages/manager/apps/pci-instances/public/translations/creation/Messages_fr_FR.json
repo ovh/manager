@@ -94,6 +94,7 @@
   "pci_instance_creation_select_image_distribution_version_label": "Version de l'image",
   "pci_instance_creation_select_image_distribution_version_unavailable": "Version indisponible",
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} HT/heure",
+  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mois",
   "pci_instance_creation_select_billing_choice_title": "Facturation",
   "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} HT/heure",
   "pci_instance_creation_image_available_on_other_models": "Cette image est disponible sur d'autres modèles.",

@@ -53,6 +53,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     networkId,
     newSshPublicKey,
     newPrivateNetwork,
+    billingType,
   ] = useWatch({
     control,
     name: [
@@ -69,6 +70,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'networkId',
       'newSshPublicKey',
       'newPrivateNetwork',
+      'billingType',
     ],
   });
 
@@ -87,8 +89,13 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const flavorDetails = useMemo(
     () =>
-      selectFlavorDetails(deps)(projectId, flavorId, distributionImageOsType),
-    [distributionImageOsType, flavorId, projectId],
+      selectFlavorDetails(deps)(
+        projectId,
+        flavorId,
+        distributionImageOsType,
+        billingType,
+      ),
+    [distributionImageOsType, flavorId, projectId, billingType],
   );
 
   const windowsImageLicensePrice = useMemo(
@@ -96,9 +103,10 @@ export const useInstanceCreation = (): TInstanceCreation => {
       selectWindowsImageLicensePrice(deps)(
         projectId,
         distributionImageOsType,
+        billingType,
         flavorId,
       ),
-    [distributionImageOsType, projectId, flavorId],
+    [distributionImageOsType, projectId, billingType, flavorId],
   );
 
   const { networks } = useMemo(() => selectPrivateNetworks(microRegion), [

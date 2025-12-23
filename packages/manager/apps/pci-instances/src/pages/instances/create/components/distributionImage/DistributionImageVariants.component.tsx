@@ -26,6 +26,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/muk';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import { BILLING_TYPE } from '@/types/instance/common.type';
 
 type TDistributionvariants = {
   variants: TImageOption[];
@@ -41,6 +42,11 @@ type TSelectImageArgs = {
   windowsId?: string;
 };
 
+type TWindowsPriceProps = {
+  price: number;
+  billingType: BILLING_TYPE;
+};
+
 const Distributionvariants = ({ variants }: TDistributionvariants) => {
   const { t } = useTranslation('creation');
   const { getTextPrice } = useCatalogPrice(4);
@@ -50,6 +56,18 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
     name: ['distributionImageVariantId', 'distributionImageType'],
   });
   const { trackClick } = useOvhTracking();
+
+  // eslint-disable-next-line react/no-multi-comp
+  const WindowsPrice = ({ price, billingType }: TWindowsPriceProps) => (
+    <Text className="text-sm font-medium text-[--ods-color-success-500]">
+      {t(
+        `creation:pci_instance_creation_windows_image_${billingType}_license_price`,
+        {
+          price: getTextPrice(price),
+        },
+      )}
+    </Text>
+  );
 
   const handleSelectImage = ({
     field,
@@ -153,6 +171,7 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
               value,
               osType,
               windowsHourlyLicensePrice,
+              windowsMonthlyLicensePrice,
               windowsId,
             }) => {
               // eslint-disable-next-line react/no-multi-comp
@@ -183,17 +202,18 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
                         >
                           <span className="max-w-full flex-1 pr-8">
                             {label}
+
                             {windowsHourlyLicensePrice && (
-                              <Text className="text-sm font-medium text-[--ods-color-success-500]">
-                                {t(
-                                  'creation:pci_instance_creation_windows_image_hourly_license_price',
-                                  {
-                                    price: getTextPrice(
-                                      windowsHourlyLicensePrice,
-                                    ),
-                                  },
-                                )}
-                              </Text>
+                              <WindowsPrice
+                                price={windowsHourlyLicensePrice}
+                                billingType={BILLING_TYPE.Hourly}
+                              />
+                            )}
+                            {windowsMonthlyLicensePrice && (
+                              <WindowsPrice
+                                price={windowsMonthlyLicensePrice}
+                                billingType={BILLING_TYPE.Monthly}
+                              />
                             )}
                           </span>
                         </DistributionImageLabel>

@@ -2,11 +2,8 @@ import { Deps } from '@/deps/deps';
 import { Reader } from '@/types/utils.type';
 import { getRegionNameKey } from './localizationsViewModel';
 import { getRegionalizedFlavorOsTypePriceId } from '@/utils';
-import {
-  TFlavorPrices,
-  TRegionalizedFlavor,
-} from '@/domain/entities/instancesCatalog';
-import { getMinimumPrices } from './flavorsViewModel';
+import { TFlavorPrices } from '@/domain/entities/instancesCatalog';
+import { BILLING_TYPE } from '@/types/instance/common.type';
 
 export type TSelectLocalizationDetails = {
   cityKey: string;
@@ -45,11 +42,6 @@ export const selectLocalisationDetails: Reader<
   return { cityKey, datacenterDetails };
 };
 
-type TFlavorCartPrice = {
-  hourlyPrice: number | null;
-  monthlyPrice: number | null;
-};
-
 export type TSelectFlavorDetails = {
   id: string;
   name: string;
@@ -58,7 +50,7 @@ export type TSelectFlavorDetails = {
   storage: number;
   bandwidthPublic: number;
   bandwidthPrivate: number;
-  prices: TFlavorCartPrice;
+  price: number;
   gpu?: string;
   numberOfGpu?: number;
   vRamTotal?: number;
@@ -68,14 +60,24 @@ type TSelectFlavorData = (
   projectId: string,
   regionalizedFlavorId: string | null,
   osType: string | null,
+  billingType: BILLING_TYPE,
 ) => TSelectFlavorDetails | null;
 
-const getFlavorPrices = (
-  flavorName: string,
-  regionId: string,
-  osType: string,
-  flavorPricesById: Map<string, TFlavorPrices>,
-): TFlavorCartPrice => {
+type TFlavorPricesArgs = {
+  flavorName: string;
+  regionId: string;
+  osType: string;
+  flavorPricesById: Map<string, TFlavorPrices>;
+  billingType: BILLING_TYPE;
+};
+
+const getFlavorPrice = ({
+  flavorName,
+  regionId,
+  osType,
+  flavorPricesById,
+  billingType,
+}: TFlavorPricesArgs): number | null => {
   const flavorOsTypePriceId = getRegionalizedFlavorOsTypePriceId(
     flavorName,
     regionId,
@@ -84,51 +86,20 @@ const getFlavorPrices = (
 
   const flavorPrices = flavorPricesById.get(flavorOsTypePriceId);
 
-  if (!flavorPrices)
-    return {
-      hourlyPrice: null,
-      monthlyPrice: null,
-    };
+  if (!flavorPrices) return null;
 
-  return flavorPrices.prices.reduce<TFlavorCartPrice>(
-    (acc, price) => {
-      if (price.type === 'hour') acc.hourlyPrice = price.price.priceInUcents;
-      if (price.type === 'month') acc.monthlyPrice = price.price.priceInUcents;
-      return acc;
-    },
-    {
-      hourlyPrice: null,
-      monthlyPrice: null,
-    },
+  return (
+    flavorPrices.prices.find((price) =>
+      billingType === BILLING_TYPE.Hourly
+        ? price.type === 'hour'
+        : price.type === 'month',
+    )?.price.priceInUcents ?? null
   );
 };
 
-const getFlavorMinimumPrices = (
-  flavoName: string,
-  foundRegionalizedFlavor: TRegionalizedFlavor,
-  flavorPricesById: Map<string, TFlavorPrices>,
-): TFlavorCartPrice => {
-  const pricings = foundRegionalizedFlavor.osTypes.flatMap((osType) => {
-    const flavorPriceId = getRegionalizedFlavorOsTypePriceId(
-      flavoName,
-      foundRegionalizedFlavor.regionId,
-      osType,
-    );
-    const pricing = flavorPricesById.get(flavorPriceId);
-    return pricing ? [pricing] : [];
-  });
-
-  const minimumPrices = getMinimumPrices(pricings);
-
-  return {
-    hourlyPrice: minimumPrices.realMinimumHourlyPrice,
-    monthlyPrice: minimumPrices.realMinimumMonthlyPrice,
-  };
-};
-
 export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
-  return (projectId, regionalizedFlavorId, osType) => {
-    if (!regionalizedFlavorId) return null;
+  return (projectId, regionalizedFlavorId, osType, billingType) => {
+    if (!regionalizedFlavorId || !osType) return null;
 
     const { instancesCatalogPort } = deps;
     const data = instancesCatalogPort.selectInstancesCatalog(projectId);
@@ -151,18 +122,15 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
 
     if (!foundFlavor || !flavorId) return null;
 
-    const prices = osType
-      ? getFlavorPrices(
-          foundFlavor.name,
-          foundRegionalizedFlavor.regionId,
-          osType,
-          data.entities.flavorPrices.byId,
-        )
-      : getFlavorMinimumPrices(
-          foundFlavor.name,
-          foundRegionalizedFlavor,
-          data.entities.flavorPrices.byId,
-        );
+    const price = getFlavorPrice({
+      flavorName: foundFlavor.name,
+      regionId: foundRegionalizedFlavor.regionId,
+      osType,
+      flavorPricesById: data.entities.flavorPrices.byId,
+      billingType,
+    });
+
+    if (price === null) return null;
 
     // TODO: adapt to GPU
     return {
@@ -173,7 +141,7 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
       storage: foundFlavor.specifications.storage.value,
       bandwidthPublic: foundFlavor.specifications.bandwidth.public.value,
       bandwidthPrivate: foundFlavor.specifications.bandwidth.private.value,
-      prices: prices,
+      price,
     };
   };
 };
@@ -181,6 +149,7 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
 type TSelectWindowsImageLicensePrice = (
   projectId: string,
   osType: string | null,
+  billingType: BILLING_TYPE,
   flavorId?: string | null,
 ) => number | null;
 
@@ -188,7 +157,7 @@ export const selectWindowsImageLicensePrice: Reader<
   Deps,
   TSelectWindowsImageLicensePrice
 > = (deps) => {
-  return (projectId, osType, flavorId) => {
+  return (projectId, osType, billingType, flavorId) => {
     const { instancesCatalogPort } = deps;
     const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
@@ -202,8 +171,10 @@ export const selectWindowsImageLicensePrice: Reader<
 
     if (!flavorPrices) return null;
 
-    const licensePrice = flavorPrices.prices.find(
-      (price) => price.type === 'licence',
+    const licensePrice = flavorPrices.prices.find((price) =>
+      billingType === BILLING_TYPE.Hourly
+        ? price.type === 'licence'
+        : price.type === 'licenceMonth',
     );
 
     return licensePrice?.price.priceInUcents ?? null;
