@@ -129,5 +129,7 @@
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "Die Remote-Sicherung folgt der gleichen Rotation wie die lokale Sicherung.",
   "pci_instance_creation_backup_setting_help_ui_guide": "<h6>Wo Sie Ihre Sicherungen finden</h6><p>Alle Ihre Sicherungen sind zugänglich über: Die Verwaltungsoberfläche Ihrer Instanz, der Abschnitt Backup &amp; Workflow-Management.</p><Link>Den vollständigen Leitfaden zur Verwaltung von Sicherungen einsehen</Link>",
   "pci_instance_creation_backup_setting_action_label": "Erstellen Sie eine automatisierte Sicherung einer Instanz.",
-  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/Monat"
+  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/Monat",
+  "pci_instance_creation_backup_setting_local_label": "Automatische Sicherung (lokal)",
+  "pci_instance_creation_backup_setting_distant_label": "Automatische Sicherung (fern)"
 }

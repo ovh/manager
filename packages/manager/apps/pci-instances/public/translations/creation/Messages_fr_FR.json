@@ -130,5 +130,7 @@
   "pci_instance_creation_backup_billing_label": "Chaque sauvegarde sera facturée :",
   "pci_instance_creation_backup_setting_distant_backup_checkbox_label": "Ajouter une sauvegarde distante (Optionnel)",
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "La sauvegarde distante suit la même rotation que la sauvegarde locale.",
-  "pci_instance_creation_backup_setting_action_label": "Créer une sauvegarde automatisée d'une instance"
+  "pci_instance_creation_backup_setting_action_label": "Créer une sauvegarde automatisée d'une instance",
+  "pci_instance_creation_backup_setting_local_label": "Sauvegarde auto (local)",
+  "pci_instance_creation_backup_setting_distant_label": "Sauvegarde auto (distant)"
 }

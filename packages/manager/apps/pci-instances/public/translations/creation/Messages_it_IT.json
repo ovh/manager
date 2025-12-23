@@ -129,5 +129,7 @@
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "Il backup remoto segue la stessa rotazione del backup locale.",
   "pci_instance_creation_backup_setting_help_ui_guide": "<h6>Dove trovare i tuoi backup</h6><p>Tutti i tuoi backup sono accessibili da: L'interfaccia di gestione della tua istanza, La sezione Backup e Gestione del flusso di lavoro.</p><Link>Consulta la guida completa sulla gestione dei backup</Link>",
   "pci_instance_creation_backup_setting_action_label": "Creare un backup automatico di un'istanza",
-  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mese"
+  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mese",
+  "pci_instance_creation_backup_setting_local_label": "Backup automatico (locale)",
+  "pci_instance_creation_backup_setting_distant_label": "Backup automatico (remoto)"
 }
