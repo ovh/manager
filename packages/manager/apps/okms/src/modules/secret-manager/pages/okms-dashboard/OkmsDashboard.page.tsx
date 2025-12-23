@@ -80,9 +80,7 @@ export default function OkmsDashboardPage() {
     );
   }
 
-  const contextValue: OkmsDashboardOutletContext = {
-    okms: okms.data,
-  };
+  const contextValue: OkmsDashboardOutletContext = { okms };
 
   return (
     <BaseLayout

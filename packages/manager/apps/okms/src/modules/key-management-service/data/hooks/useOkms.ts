@@ -7,7 +7,7 @@ import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { ErrorResponse } from '@/common/types/api.type';
 
 export const useOkmsById = (okmsId: string) => {
-  return useQuery<{ data: OKMS }, ErrorResponse>({
+  return useQuery<OKMS, ErrorResponse>({
     queryKey: okmsQueryKeys.detail(okmsId),
     queryFn: () => getOkms(okmsId),
     retry: false,
