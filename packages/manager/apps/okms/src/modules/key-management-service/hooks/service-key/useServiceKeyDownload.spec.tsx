@@ -75,7 +75,7 @@ describe('useServiceKeyDownload', () => {
       isFetching: false,
     });
     mockRefetch.mockResolvedValue({
-      data: { data: mockServiceKeyWithData },
+      data: mockServiceKeyWithData,
     });
   });
 

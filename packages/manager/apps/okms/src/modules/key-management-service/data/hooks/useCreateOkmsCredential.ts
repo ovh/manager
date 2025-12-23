@@ -30,7 +30,7 @@ export const useCreateOkmsCredential = ({
   const { mutate: createKmsCredential, isPending } = useMutation({
     mutationFn: async (data: OkmsCredentialCreation) => {
       const okmsCredential = await createOkmsCredential({ okmsId, data });
-      return okmsCredential.data;
+      return okmsCredential;
     },
     onSuccess: async (credential: OkmsCredential) => {
       await queryClient.invalidateQueries({

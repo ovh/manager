@@ -97,7 +97,7 @@ describe('useSecretSmartConfig', () => {
     // Default mock implementations
     mockUseParams.mockReturnValue({ okmsId: mockOkmsId });
     mockUseOkmsById.mockReturnValue({
-      data: { data: okmsRoubaix1Mock },
+      data: okmsRoubaix1Mock,
       isPending: false,
       error: null,
     });
