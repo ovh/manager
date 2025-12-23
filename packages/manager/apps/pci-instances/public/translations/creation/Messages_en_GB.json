@@ -128,5 +128,6 @@
   "pci_instance_creation_backup_setting_distant_backup_checkbox_label": "Add a remote backup (Optional)",
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "The remote backup follows the same rotation as the local backup.",
   "pci_instance_creation_backup_setting_help_ui_guide": "<h6>Where to find your backups</h6><p>All your backups are accessible from: The management interface of your instance, the Backup &amp; Workflow Management section.</p><Link>Consult the complete guide on backup management</Link>",
-  "pci_instance_creation_backup_setting_action_label": "Create an automated backup of an instance"
+  "pci_instance_creation_backup_setting_action_label": "Create an automated backup of an instance",
+  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} ex VAT/month"
 }

@@ -128,5 +128,6 @@
   "pci_instance_creation_backup_setting_distant_backup_checkbox_label": "Dodaj zdalną kopię zapasową (Opcjonalnie)",
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "Zdalne kopie zapasowe podążają za tą samą rotacją co lokalne kopie zapasowe.",
   "pci_instance_creation_backup_setting_help_ui_guide": "<h6>Gdzie znaleźć swoje kopie zapasowe</h6><p>Wszystkie twoje kopie zapasowe są dostępne z: Interfejsu zarządzania twoją instancją, Sekcji Kopie zapasowe i Zarządzanie przepływem pracy.</p><Link>Zapoznaj się z pełnym przewodnikiem po zarządzaniu kopiami zapasowymi</Link>",
-  "pci_instance_creation_backup_setting_action_label": "Utwórz zautomatyzowaną kopię zapasową instancji"
+  "pci_instance_creation_backup_setting_action_label": "Utwórz zautomatyzowaną kopię zapasową instancji",
+  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/miesiąc"
 }

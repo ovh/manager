@@ -98,7 +98,7 @@ export type TPriceDetails = {
 };
 
 export type TPrice = {
-  type: 'hour' | 'month' | 'licence';
+  type: 'hour' | 'month' | 'licence' | 'licenceMonth';
   includeVat: boolean;
   price: TPriceDetails;
   monthlyEquivalent: TPriceDetails | null;

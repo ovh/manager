@@ -73,9 +73,9 @@ export const useCartItems = (): TCartItems => {
           description: (
             <>
               <FlavorDetails quantity={quantity} flavor={flavorDetails} />
-              {flavorDetails.prices.hourlyPrice && (
+              {flavorDetails.price && (
                 <Text preset="heading-6" className="text-[--ods-color-heading]">
-                  {getTextPrice(flavorDetails.prices.hourlyPrice)}
+                  {getTextPrice(flavorDetails.price)}
                 </Text>
               )}
             </>

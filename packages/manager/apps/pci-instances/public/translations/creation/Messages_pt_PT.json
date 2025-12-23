@@ -128,5 +128,6 @@
   "pci_instance_creation_backup_setting_distant_backup_checkbox_label": "Adicionar um backup remoto (Opcional)",
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "O backup remoto segue a mesma rotação que o backup local.",
   "pci_instance_creation_backup_setting_help_ui_guide": "<h6>Onde encontrar os seus backups</h6><p>Todos os seus backups estão acessíveis a partir de: A interface de gestão da sua instância, A seção Backup &amp; Gestão de Fluxos de Trabalho.</p><Link>Consultar o guia completo sobre a gestão de backups</Link>",
-  "pci_instance_creation_backup_setting_action_label": "Criar um backup automatizado de uma instância"
+  "pci_instance_creation_backup_setting_action_label": "Criar um backup automatizado de uma instância",
+  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mês"
 }
