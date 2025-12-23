@@ -5,6 +5,7 @@ import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import { compareStorage } from './bytesHelper';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { PRICING_PREFIX } from '@/configuration/pricing.constants';
+import { Pricing } from './pricingHelper';
 
 function updatePlanStorage(
   availability: database.Availability,
@@ -225,6 +226,7 @@ const mapFlavor = (
   let treeFlavor = treePlan.flavors.find(
     (f) => f.name === availability.specifications.flavor,
   );
+
   if (!treeFlavor) {
     treeFlavor = {
       name: availability.specifications.flavor,
@@ -234,7 +236,10 @@ const mapFlavor = (
       order: flavorSpec.order,
       tags: flavorSpec.tags as database.capabilities.TagEnum[],
       default: engineSuggestion.flavor === availability.specifications.flavor,
-      pricing: {},
+      pricing: {
+        price: undefined,
+        tax: 0,
+      },
     };
     treePlan.flavors.push(treeFlavor);
   }
@@ -247,51 +252,32 @@ const setPrices = (
   flavor: Flavor,
 ) => {
   // Default pricing if not found in the catalog
-  const defaultPricing = {
+  const defaultPricing: Pricing = {
     price: undefined,
     tax: 0,
-  } as order.publicOrder.Pricing;
+  };
 
   const hasStorage = flavor.storage?.step;
 
   let hourlyPricing = defaultPricing;
-  let monthlyPricing = defaultPricing;
   let hourlyStoragePricing = defaultPricing;
-  let monthlyStoragePricing = defaultPricing;
-
   const findPricing = (pricingPlanCode: string) =>
     catalog.addons.find((addon) => addon.planCode === pricingPlanCode)
       ?.pricings?.[0] || defaultPricing;
 
   hourlyPricing = findPricing(`${PRICING_PREFIX}.${availability.planCode}`);
-  monthlyPricing = findPricing(
-    `${PRICING_PREFIX}.${availability.planCode.replace(
-      '.hour.consumption',
-      '.month.consumption',
-    )}`,
-  );
   if (hasStorage) {
     hourlyStoragePricing = findPricing(
       `${PRICING_PREFIX}.${availability.planCodeStorage}`,
     );
-    monthlyStoragePricing = findPricing(
-      `${PRICING_PREFIX}.${availability.planCodeStorage.replace(
-        '.hour.consumption',
-        '.month.consumption',
-      )}`,
-    );
   }
 
   // Assign extracted pricing to the flavor
-  flavor.pricing.hourly = hourlyPricing;
-  flavor.pricing.monthly = monthlyPricing;
+  flavor.pricing = hourlyPricing;
 
   // Handle storage pricing if flavor has storage with step
   if (hasStorage) {
-    flavor.storage.pricing = {
-      hourly: hourlyStoragePricing,
-      monthly: monthlyStoragePricing,
-    };
+    flavor.storage.pricing = hourlyStoragePricing;
   }
 };
 
@@ -324,16 +310,6 @@ export function createTree(
     // Map plan
     treeRegion.plans.sort((a, b) => a.order - b.order);
     const treePlan = mapPlan(treeRegion, curr, capabilities, engineSuggestion);
-    // // Map plan
-    // const treePlan = mapPlan(treeVersion, curr, capabilities, engineSuggestion);
-    // treeVersion.plans.sort((a, b) => a.order - b.order);
-    // // Map region
-    // const treeRegion = mapRegion(
-    //   treePlan,
-    //   curr,
-    //   capabilities,
-    //   engineSuggestion,
-    // );
     treePlan.flavors.sort((a, b) => a.order - b.order);
     // Map flavor
     const treeFlavor = mapFlavor(

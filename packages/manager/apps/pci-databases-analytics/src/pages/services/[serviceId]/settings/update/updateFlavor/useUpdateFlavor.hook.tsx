@@ -99,9 +99,9 @@ export function useUpdateFlavor({
     const { storageMode } =
       listEngines.find((e) => e.name === service.engine) || {};
     return computeServicePrice({
-      offerPricing: flavor.pricing || {},
+      offerPricing: flavor.pricing,
       nbNodes: service.nodes.length,
-      storagePricing: flavor.storage?.pricing || {},
+      storagePricing: flavor.storage?.pricing,
       additionalStorage,
       storageMode,
     });
