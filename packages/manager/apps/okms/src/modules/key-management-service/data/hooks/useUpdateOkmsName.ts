@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
 import { okmsQueryKeys } from '../api/okms';
@@ -39,7 +39,7 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
   } = useMutation({
     mutationKey: updateOkmsNameQueryKey(),
     mutationFn: async ({ displayName }: UpdateOkmsNameMutationParams) => {
-      const { data: servicesId } = await queryClient.fetchQuery<ApiResponse<number[]>>({
+      const servicesId = await queryClient.fetchQuery<number[]>({
         queryKey: getOkmsServiceIdQueryKey(okms.id),
         queryFn: () => getOkmsServiceId(okms.id),
       });

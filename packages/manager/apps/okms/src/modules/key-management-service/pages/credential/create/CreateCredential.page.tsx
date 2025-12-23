@@ -65,7 +65,7 @@ const CreateCredential = () => {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms?.data?.iam?.displayName || '',
+      label: okms?.iam?.displayName || '',
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
