@@ -34,6 +34,7 @@
   "sidebar_pci_settings": "Einstellungen",
   "sidebar_pci_object_storage": "Object Storage",
   "sidebar_pci_block_storage": "Block Storage",
+  "sidebar_pci_file_storage": "File Storage",
   "sidebar_pci_databases": "Datenbanken",
   "sidebar_pci_cloud_archive": "Cloud Archive",
   "sidebar_pci_volume_snapshot": "Volume Snapshot",
