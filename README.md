@@ -1,8 +1,5 @@
 # Manager
 
-(A simple change without dependencies changes - second iteration)
-(checking tasks cancellation)
-
 > The official [OVHcloud](https://ovhcloud.com) control panel also known as the **[Manager](https://manager.eu.ovhcloud.com/)**.
 
 ![Contributors](https://badgen.net/github/contributors/ovh/manager) ![Last commit](https://badgen.net/github/last-commit/ovh/manager) [![License](https://badgen.net/github/license/ovh/manager)](https://github.com/ovh/manager/blob/master/LICENSE)
