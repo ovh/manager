@@ -35,14 +35,16 @@ export function useAgentsListingColumnsHooks() {
       {
         id: 'resourceStatus',
         cell: (agentResource: Resource<Agent>) => (
-          <ResourceStatusCell resourceStatus={agentResource.resourceStatus} />
+          <ResourceStatusCell
+            resourceStatus={agentResource.resourceStatus || agentResource.status}
+          />
         ),
         label: t(`${NAMESPACES.STATUS}:status`),
       },
       {
         id: 'currentState.ip.',
         cell: (agentResource: Resource<Agent>) => (
-          <AgentIpsCell ip={agentResource.currentState.ip} />
+          <AgentIpsCell ips={agentResource.currentState.ips} />
         ),
         label: t(`${NAMESPACES.SYSTEM}:address_ip`),
       },

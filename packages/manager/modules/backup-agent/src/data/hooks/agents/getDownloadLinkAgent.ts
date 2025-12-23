@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { downloadLinkBackupAgent } from '@/data/api/agents/agents.requests';
 import { BACKUP_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useBackupTenantDetails';
-import { mockAgentDownloadLinks } from '@/mocks/agents/agentDownloadLinks';
-import { AgentDownloadLinks } from '@/types/AgentDownloadLinks';
 import { OS } from '@/types/Os.type';
+
+import { useBackupServicesId } from '../backup/useBackupServicesId';
 
 export const BACKUP_VSPC_TENANT_AGENT_DOWNLOAD_LINK_QUERY_KEY = (vspcTenantId: string) => [
   ...BACKUP_TENANT_DETAILS_QUERY_KEY(vspcTenantId),
@@ -17,16 +18,13 @@ export const useBackupVSPCTenantAgentDownloadLink = ({
 }: {
   tenantId?: string;
   os?: OS;
-}) =>
-  useQuery({
-    queryFn: () =>
-      new Promise<AgentDownloadLinks>((resolve) => {
-        setTimeout(() => {
-          resolve(mockAgentDownloadLinks);
-        }, 1000);
-      }),
+}) => {
+  const { backupServicesId } = useBackupServicesId();
+
+  return useQuery({
+    queryFn: () => downloadLinkBackupAgent(backupServicesId, tenantId!),
     queryKey: BACKUP_VSPC_TENANT_AGENT_DOWNLOAD_LINK_QUERY_KEY(tenantId!),
-    enabled: !!tenantId,
+    enabled: !!backupServicesId && !!tenantId && !!os,
     select: (data) => {
       switch (os) {
         case 'WINDOWS':
@@ -38,3 +36,4 @@ export const useBackupVSPCTenantAgentDownloadLink = ({
     },
     ...options,
   });
+};

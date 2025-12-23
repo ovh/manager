@@ -32,7 +32,6 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       ],
     },
     currentTasks: [],
-
     iam: {
       displayName: 'Production Backup Tenant',
       id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',
@@ -252,7 +251,6 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       ],
     },
     currentTasks: [],
-
     iam: {
       displayName: 'Production Backup Tenant',
       id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',

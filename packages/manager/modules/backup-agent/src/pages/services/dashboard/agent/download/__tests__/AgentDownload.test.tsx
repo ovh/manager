@@ -10,6 +10,8 @@ const { useBackupVSPCTenantAgentDownloadLinkMock } = vi.hoisted(() => ({
   useBackupVSPCTenantAgentDownloadLinkMock: vi.fn(),
 }));
 
+const codeTestId = 'ods-code';
+
 // --- Mock translation ---
 vi.mock('@ovhcloud/ods-components/react', async () => {
   const actual = await vi.importActual('@ovhcloud/ods-components/react');
@@ -78,7 +80,9 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
           </select>
         ),
       ),
-    OdsCode: vi.fn().mockImplementation(({ children }) => <code>{children}</code>),
+    OdsCode: vi
+      .fn()
+      .mockImplementation(({ children }) => <code data-testid={codeTestId}>{children}</code>),
   };
 });
 
@@ -122,6 +126,8 @@ const getSelectOs = () =>
 
 describe('AgentDownload', () => {
   it('Should render AgentDownload component', async () => {
+    const emptyLinkLabel = 'curl -O ...';
+
     const user = userEvent.setup();
     useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
       data: mockAgentDownloadLinks.linuxUrl,
@@ -141,10 +147,10 @@ describe('AgentDownload', () => {
 
     expect(useBackupVSPCTenantAgentDownloadLinkMock).toHaveBeenCalledWith({
       tenantId: TENANTS_MOCKS[0]!.id,
-      os: 'LINUX',
+      os: undefined,
     });
 
-    expect(screen.getAllByRole('code')[0]).toHaveTextContent(mockAgentDownloadLinks.linuxUrl);
+    expect(screen.getAllByTestId(codeTestId)[0]).toHaveTextContent(emptyLinkLabel);
 
     // Prepare mock for change value
     useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
@@ -161,8 +167,12 @@ describe('AgentDownload', () => {
       os: 'WINDOWS',
     });
 
-    expect(screen.getAllByRole('code')[0]).not.toHaveTextContent(mockAgentDownloadLinks.linuxUrl);
+    expect(screen.getAllByTestId(codeTestId)[0]).not.toHaveTextContent(
+      mockAgentDownloadLinks.linuxUrl,
+    );
 
-    expect(screen.getAllByRole('code')[0]).toHaveTextContent(mockAgentDownloadLinks.windowsUrl);
+    expect(screen.getAllByTestId(codeTestId)[0]).toHaveTextContent(
+      mockAgentDownloadLinks.windowsUrl,
+    );
   });
 });

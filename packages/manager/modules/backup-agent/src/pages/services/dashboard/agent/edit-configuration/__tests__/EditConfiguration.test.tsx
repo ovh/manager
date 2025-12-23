@@ -212,13 +212,13 @@ describe('EditConfigurationComponent', () => {
 
     expect(getInputName()).toHaveValue(mockAgents[0]!.currentState.name);
     expect(getInputServiceName()).toHaveValue(mockAgents[0]!.id);
-    expect(getInputIp()).toHaveValue(mockAgents[0]!.currentState.ip.join(', '));
+    expect(getInputIp()).toHaveValue(mockAgents[0]!.currentState.ips.join(', '));
     expect(getSelectPolicy()).toHaveValue(mockAgents[0]!.currentState.policy);
 
     await user.click(screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:edit` }));
     expect(mutateMock).toHaveBeenCalledWith({
       displayName: mockAgents[0]!.currentState.name,
-      ips: mockAgents[0]!.currentState.ip,
+      ips: mockAgents[0]!.currentState.ips,
       policy: mockAgents[0]!.currentState.policy,
       vspcTenantId: TENANTS_MOCKS[0]!.id,
       backupAgentId: mockAgents[0]!.id,

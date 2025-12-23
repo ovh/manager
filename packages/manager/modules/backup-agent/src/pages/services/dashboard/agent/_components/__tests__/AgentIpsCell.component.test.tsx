@@ -14,7 +14,7 @@ describe('AgentNameCell', () => {
     { ips: ['1.1.1.1'], expected: '1.1.1.1' },
     { ips: ['1.1.1.1', '2.2.2.2'], expected: '1.1.1.1, 2.2.2.2' },
   ])('renders ips $expected', ({ ips, expected }) => {
-    render(<AgentIpsCell ip={ips} />);
+    render(<AgentIpsCell ips={ips} />);
 
     expect(screen.getByText(expected)).toBeVisible();
   });

@@ -1,13 +1,14 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 
 import { VaultResource } from '@/types/Vault.type';
+import { getVaultDetailsRoute } from '@/utils/apiRoutes';
 
-export const BACKUP_VAULTS_LIST_ROUTE = '/backup/tenant/vaults';
+export const getVaultDetails = async (backupServicesId: string, vaultId: string) => {
+  const { data } = await v2.get<VaultResource>(getVaultDetailsRoute(backupServicesId, vaultId));
+  return data;
+};
 
-const getVaultDetailsRoute = (vaultId: string) => `${BACKUP_VAULTS_LIST_ROUTE}/${vaultId}`;
-
-export const getVaultDetails = async (locationName: string) =>
-  (await v2.get<VaultResource>(getVaultDetailsRoute(locationName))).data;
-
-export const deleteVault = async (vaultId: string) =>
-  v2.delete<string>(`/backup/tenant/vault/${vaultId}`);
+export const deleteVault = async (backupServicesId: string, vaultId: string) => {
+  const { data } = await v2.delete<string>(getVaultDetailsRoute(backupServicesId, vaultId));
+  return data;
+};

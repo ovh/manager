@@ -1,18 +1,20 @@
 import { UseMutationOptions, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiError } from '@ovh-ux/manager-core-api';
 
 import { deleteVault } from '@/data/api/vaults/vault.requests';
 
+import { useBackupServicesId } from '../backup/useBackupServicesId';
 import { BACKUP_VAULTS_LIST_QUERY_KEY } from './getVault';
 
-type UseDeleteVaultParams = Partial<UseMutationOptions<ApiResponse<string>, ApiError, string>>;
+type UseDeleteVaultParams = Partial<UseMutationOptions<string, ApiError, string>>;
 
 export const useDeleteVault = (options: UseDeleteVaultParams = {}) => {
   const queryClient = useQueryClient();
+  const { backupServicesId } = useBackupServicesId();
 
   return useMutation({
-    mutationFn: (vaultId: string) => deleteVault(vaultId),
+    mutationFn: (vaultId: string) => deleteVault(backupServicesId, vaultId),
     ...options,
     onSuccess: async (...params) => {
       await queryClient.invalidateQueries({

@@ -1,12 +1,16 @@
-import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
+import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 
-import { VSPC_TENANTS_MOCKS } from '@/mocks/tenant/vspcTenants.mock';
+import { getVSPCTenantDetails } from '@/data/api/tenants/tenants.requests';
+import { BackupServiceAwareQuery } from '@/types/Query.type';
 import { Resource } from '@/types/Resource.type';
-import { WithRegion } from '@/types/Utils.type';
 import { VSPCTenant } from '@/types/VspcTenant.type';
-import { mapTenantResourceToTenantResourceWithRegion } from '@/utils/mappers/mapTenantToTenantWithRegion';
 
+import { useBackupServicesId } from '../backup/useBackupServicesId';
 import { GET_VSPC_TENANTS_QUERY_KEY } from './useVspcTenants';
+
+type UseVSPCTenantDetailsParams = {
+  tenantId: string;
+} & Omit<UseQueryOptions<Resource<VSPCTenant>>, 'queryKey' | 'queryFn'>;
 
 export const BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY = (vspcTenantID: string) => [
   ...GET_VSPC_TENANTS_QUERY_KEY,
@@ -16,22 +20,15 @@ export const BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY = (vspcTenantID: string) => [
 export const useBackupVSPCTenantDetails = ({
   tenantId,
   ...options
-}: {
-  tenantId: string;
-} & Partial<
-  Omit<
-    DefinedInitialDataOptions<Resource<VSPCTenant>, unknown, Resource<WithRegion<VSPCTenant>>>,
-    'queryKey' | 'queryFn'
-  >
->) =>
-  useQuery({
-    queryFn: () =>
-      new Promise<Resource<VSPCTenant>>((resolve, reject) => {
-        const result = VSPC_TENANTS_MOCKS.find((tenant) => tenant.id === tenantId);
-        result ? resolve(result) : reject(new Error('Tenant not found'));
-      }),
+}: UseVSPCTenantDetailsParams): BackupServiceAwareQuery<Resource<VSPCTenant>, unknown> => {
+  const { backupServicesId, isPending } = useBackupServicesId();
+
+  const query = useQuery({
+    queryFn: () => getVSPCTenantDetails(backupServicesId, tenantId),
     queryKey: BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY(tenantId),
-    select: (data): Resource<WithRegion<VSPCTenant>> =>
-      mapTenantResourceToTenantResourceWithRegion(data),
+    enabled: !!backupServicesId && !!tenantId,
     ...options,
   });
+
+  return { ...query, isLoadingBackupServicesId: isPending };
+};

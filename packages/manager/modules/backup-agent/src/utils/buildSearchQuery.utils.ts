@@ -1,4 +1,4 @@
-import { urls } from '@/routes/Routes.constants';
+import { urlParams, urls } from '@/routes/Routes.constants';
 
 export const buildSearchQuery = (
   params: Record<string, string | number | boolean | undefined>,
@@ -34,7 +34,12 @@ export const buildDeleteTenantUrl = ({
       ? { fallback: urls.dashboardTenants, base: urls.dashboardTenantDelete }
       : { fallback: urls.listingTenants, base: urls.listingTenantDelete };
 
-  return tenantId ? `${url.base}${buildSearchQuery({ tenantId })}` : url.fallback;
+  if (tenantId) {
+    return origin === 'dashboard'
+      ? url.base.replace(urlParams.tenantId, tenantId)
+      : `${url.base}${buildSearchQuery({ tenantId })}`;
+  }
+  return url.fallback;
 };
 
 export const buildDeleteAgentUrl = ({

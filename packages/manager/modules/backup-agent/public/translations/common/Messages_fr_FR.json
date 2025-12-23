@@ -5,5 +5,7 @@
   "agents": "Agents",
   "buckets": "Buckets",
   "policy": "Policy",
-  "actions": "Actions"
+  "actions": "Actions",
+  "primary": "Primaire",
+  "secondary": "Secondaire"
 }
