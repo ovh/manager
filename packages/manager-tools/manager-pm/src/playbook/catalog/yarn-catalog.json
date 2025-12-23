@@ -52,7 +52,6 @@
   "packages/manager/apps/veeam-enterprise",
   "packages/manager/apps/vps",
   "packages/manager/apps/vrack",
-  "packages/manager/apps/vrack-services",
   "packages/manager/apps/web",
   "packages/manager/apps/web-domains",
   "packages/manager/core/api",
