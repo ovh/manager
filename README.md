@@ -1,6 +1,6 @@
 # Manager
 
-(A simple change without dependencies changes)
+(A simple change without dependencies changes - second iteration)
 
 > The official [OVHcloud](https://ovhcloud.com) control panel also known as the **[Manager](https://manager.eu.ovhcloud.com/)**.
 
