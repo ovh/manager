@@ -44,18 +44,6 @@ jobs:
           fi
           echo "Get the base branch..."
           
-          # Determine PR number from event payload or GITHUB_REF
-          PR_NUMBER=""
-          if [ -n "$GITHUB_EVENT_PATH" ] && [ -f "$GITHUB_EVENT_PATH" ]; then
-            PR_NUMBER=$(jq -r '.pull_request.number // empty' < "$GITHUB_EVENT_PATH" 2>/dev/null || true)
-          fi
-          
-          if [ -z "$PR_NUMBER" ]; then
-            if [[ "$GITHUB_REF" =~ refs/pull/([0-9]+)/ ]]; then
-              PR_NUMBER="${BASH_REMATCH[1]}"
-            fi
-          fi
-          
           # If we have a PR number, query gh explicitly; otherwise avoid letting gh infer branch
           if [ -n "$PR_NUMBER" ]; then
             BASE_BRANCH=$(gh pr view "$PR_NUMBER" --repo ovh/manager --json baseRefName -q ".baseRefName")
