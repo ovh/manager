@@ -98,7 +98,7 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
             </OdsText>
           </div>
           <div className="grid gap-3">
-            {servicekeyReferenceList?.data.map((reference) => (
+            {servicekeyReferenceList?.map((reference) => (
               <ServiceKeyTypeRadioButton
                 key={reference.type.toString()}
                 type={reference.type}

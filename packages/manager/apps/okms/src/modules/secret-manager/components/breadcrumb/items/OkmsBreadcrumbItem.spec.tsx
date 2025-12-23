@@ -38,7 +38,7 @@ describe('OkmsBreadcrumbItem test suite', () => {
   it('should display okms displayname and have the correct href link', async () => {
     // GIVEN
     mockUseOkmsById.mockReturnValue({
-      data: { data: mockedOkms },
+      data: mockedOkms,
       isPending: false,
       error: null,
     });

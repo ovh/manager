@@ -50,8 +50,8 @@ export const useServiceKeyDownload = ({
     icon: ODS_ICON_NAME.download,
     color: ODS_BUTTON_COLOR.primary,
     onClick: async () => {
-      const key = await refetch();
-      if (!key.data) {
+      const { data: key } = await refetch();
+      if (!key) {
         addError(t('common:error_fetching_data'));
         return;
       }
@@ -62,8 +62,8 @@ export const useServiceKeyDownload = ({
         actions: ['download', 'service-key'],
       });
       initiateTextFileDownload({
-        filename: `${key.data.data.name}.jwk`,
-        text: JSON.stringify(key.data.data.keys),
+        filename: `${key.name}.jwk`,
+        text: JSON.stringify(key.keys),
       });
     },
   };

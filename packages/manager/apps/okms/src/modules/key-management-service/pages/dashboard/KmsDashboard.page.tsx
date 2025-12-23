@@ -94,7 +94,7 @@ export default function DashboardPage() {
     );
   }
 
-  const { displayName } = okms.data.iam;
+  const { displayName } = okms.iam;
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
@@ -130,9 +130,7 @@ export default function DashboardPage() {
     changelogButton: <KmsChangelogButton />,
   };
 
-  const contextValue: KmsDashboardOutletContext = {
-    okms: okms.data,
-  };
+  const contextValue: KmsDashboardOutletContext = { okms };
 
   return (
     <Suspense fallback={<PageSpinner />}>

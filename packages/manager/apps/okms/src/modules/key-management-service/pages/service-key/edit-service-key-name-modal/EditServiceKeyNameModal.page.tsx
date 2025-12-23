@@ -38,7 +38,7 @@ import { SERVICE_KEY_TEST_IDS } from '../dashboard/ServiceKeyDashboard.constants
 export const EditServiceKeyNameModal = () => {
   const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
   const { data, isLoading, error } = useOkmsServiceKeyById({ okmsId, keyId });
-  const [serviceKeyName, setServiceKeyName] = useState(data?.data?.name || '');
+  const [serviceKeyName, setServiceKeyName] = useState(data?.name || '');
   const serviceKeyNameError = validateServiceKeyName(serviceKeyName);
   const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
@@ -84,8 +84,8 @@ export const EditServiceKeyNameModal = () => {
   };
 
   React.useEffect(() => {
-    if (data?.data?.name) {
-      setServiceKeyName(data?.data?.name);
+    if (data?.name) {
+      setServiceKeyName(data?.name);
     }
   }, [data]);
 
@@ -125,7 +125,7 @@ export const EditServiceKeyNameModal = () => {
       />
       <OdsButton
         isLoading={isPending}
-        isDisabled={!!serviceKeyNameError || serviceKeyName === data?.data?.name}
+        isDisabled={!!serviceKeyNameError || serviceKeyName === data?.name}
         slot="actions"
         data-testid={SERVICE_KEY_TEST_IDS.modifyNameButton}
         color={ODS_BUTTON_COLOR.primary}
