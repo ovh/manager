@@ -37,7 +37,7 @@ const VersionListPage = () => {
   const { secret } = useOutletContext<SecretPageOutletContext>();
   const hasVersions = secret?.metadata?.currentVersion !== undefined;
 
-  const { data, error, hasNextPage, fetchNextPage, sorting, isFetching, setSorting, refetch } =
+  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
     useSecretVersionList({
       okmsId,
       path: secretPathDecoded,
@@ -98,7 +98,7 @@ const VersionListPage = () => {
         columns={columns}
         items={versions || []}
         totalItems={versions?.length ?? 0}
-        isLoading={isFetching}
+        isLoading={isPending}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
         sorting={sorting}
