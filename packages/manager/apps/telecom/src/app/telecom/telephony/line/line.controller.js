@@ -121,14 +121,15 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
           !(self.line.isPlugNFax || self.fax || self.line.hasFaxCapabilities) ||
           self.line.isTrunk();
 
-        // check if has phone or it supports phonebook
-        self.disablePhonebook =
-          !self.line.hasPhone || !self.line.hasSupportsPhonebook;
+        promises.push(self.line.supportsPhonebook());
 
         return $q.all(promises);
       })
       .finally(() => {
         self.loading.init = false;
+        // check if it supports phonebook
+        self.disablePhonebook =
+          !self.line.hasPhone || !self.line.hasSupportsPhonebook;
       });
   }
 
