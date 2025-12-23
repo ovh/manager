@@ -81,7 +81,7 @@ export const EditConfigurationPage = () => {
       return {
         name: data?.currentState?.name ?? '',
         ip: data?.currentState?.ips.join(', ') ?? '',
-        serviceName: data?.id ?? '',
+        serviceName: data?.currentState?.productResourceName ?? '',
         policy: data?.currentState?.policy ?? '',
       };
     },
