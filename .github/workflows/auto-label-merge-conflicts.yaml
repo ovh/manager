@@ -2,6 +2,10 @@ name: Auto-label merge conflicts
 
 on: [push, pull_request]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   triage:
     runs-on: ubuntu-latest

@@ -7,7 +7,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  lint:
     name: Lint Code Base
     runs-on: ubuntu-latest
 
@@ -15,6 +15,9 @@ jobs:
       PNPM_VERSION: "10.17.0" # must match playbook-config.js
 
     steps:
+      # ------------------------------------------
+      # Free disk space
+      # ------------------------------------------
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
@@ -26,70 +29,63 @@ jobs:
           docker-images: false
           swap-storage: true
 
+      # ------------------------------------------
+      # Checkout
+      # ------------------------------------------
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Clean stale git locks (pre)
         run: rm -f .git/index.lock
 
+      # ------------------------------------------
+      # Node
+      # ------------------------------------------
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      # -------------------------------------------------------
-      # CACHE PNPM (binary only)
-      # -------------------------------------------------------
-      - name: Restore PNPM cache (binary only)
-        uses: actions/cache@v3
+      # ------------------------------------------
+      # pnpm binary cache (tool only)
+      # ------------------------------------------
+      - name: Restore pnpm binary
+        uses: actions/cache@v4
         with:
-          path: |
-            target/pnpm
+          path: target/pnpm
           key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
           restore-keys: |
             ${{ runner.os }}-pnpm-binary-
 
-      # -------------------------------------------------------
-      # CACHE YARN (tarballs only)
-      # -------------------------------------------------------
-      - name: Restore Yarn cache (tarballs)
-        uses: actions/cache@v3
+      # ------------------------------------------
+      # Yarn cache (tarballs only, standard path)
+      # ------------------------------------------
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
         with:
-          path: |
-            target/yarn-cache
+          path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn-cache-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-cache-
 
-      # -------------------------------------------------------
-      # CACHE node_modules (root only) – enables skipping install
-      # -------------------------------------------------------
-      - name: Restore node_modules (root)
-        id: nm
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-          key: ${{ runner.os }}-node22-yarn1-node_modules-${{ hashFiles('yarn.lock') }}-cold-001
-          restore-keys: |
-            ${{ runner.os }}-node22-yarn1-node_modules-
-
       - name: Ensure yarn cache folder exists
-        run: mkdir -p target/yarn-cache
+        run: mkdir -p ~/.cache/yarn
 
-      - name: Verify cached deps (skip install if ok)
-        if: steps.nm.outputs.cache-hit == 'true'
-        run: |
-          yarn check --integrity || (echo "::warning::node_modules cache stale; reinstalling..." && yarn ci:install)
-
+      # ------------------------------------------
+      # Install deps (always deterministic)
+      # ------------------------------------------
       - name: Install dependencies
-        if: steps.nm.outputs.cache-hit != 'true'
+        env:
+          YARN_CACHE_FOLDER: ~/.cache/yarn
         run: yarn ci:install
 
       - name: Clean stale git locks (post-install)
         run: rm -f .git/index.lock
 
+      # ------------------------------------------
+      # Lint
+      # ------------------------------------------
       - name: Lint Code Base
         run: yarn lint

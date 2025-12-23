@@ -1,11 +1,15 @@
 name: Check package.json metadatas
 on: [push]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check-regions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Check regions metadata
         run: ./scripts/regions/check-regions.sh
         shell: bash
