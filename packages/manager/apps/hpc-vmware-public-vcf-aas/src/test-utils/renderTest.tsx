@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen, waitFor } from '@testing-library/react';
+import { RenderResult, render, screen, waitFor } from '@testing-library/react';
 import { i18n } from 'i18next';
 import { SetupServer } from 'msw/node';
 import { I18nextProvider } from 'react-i18next';
@@ -62,7 +62,7 @@ export const renderTest = async ({
   TFeatureAvailabilityMockParams &
   GetVrackSegmentsMocksParams &
   GetNetworkAclMocksParams &
-  GetServicesMocksParams = {}) => {
+  GetServicesMocksParams = {}): Promise<RenderResult> => {
   (global as unknown as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
