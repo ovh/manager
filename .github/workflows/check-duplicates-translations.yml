@@ -42,8 +42,8 @@ jobs:
             echo "My branch is master and no unit test to run, exit..."
             echo "should_continue=false" >> $GITHUB_OUTPUT
           fi
-          BASE_BRANCH="origin/master"
-          
+          # Extract the base branch from the PR event context
+          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
           echo "Base Branch is $BASE_BRANCH"
           PR_JSON=$(gh pr list --repo ovh/manager --head $CURRENT_BRANCH --base $BASE_BRANCH --json number)
           NUMBER_PULL=$(echo "$PR_JSON" | jq -r '.[0].number')
