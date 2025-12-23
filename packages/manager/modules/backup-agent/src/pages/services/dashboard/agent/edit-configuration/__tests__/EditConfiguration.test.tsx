@@ -211,7 +211,7 @@ describe('EditConfigurationComponent', () => {
     );
 
     expect(getInputName()).toHaveValue(mockAgents[0]!.currentState.name);
-    expect(getInputServiceName()).toHaveValue(mockAgents[0]!.id);
+    expect(getInputServiceName()).toHaveValue(mockAgents[0]!.currentState.productResourceName);
     expect(getInputIp()).toHaveValue(mockAgents[0]!.currentState.ips.join(', '));
     expect(getSelectPolicy()).toHaveValue(mockAgents[0]!.currentState.policy);
 
