@@ -12,8 +12,7 @@ export const DISCOVER_VCD_REDIRECTION_URL: Record<string, string> = {
   GB: 'https://www.ovhcloud.com/en-gb/public-vcf-aas/',
   CA: 'https://www.ovhcloud.com/en-ca/public-vcf-aas/',
   QC: 'https://www.ovhcloud.com/fr-ca/public-vcf-aas/',
-  US:
-    'https://us.ovhcloud.com/public-vcf-aas/?_gl=1*kt40jj*_gcl_aw*R0NMLjE3NTAwODY2NzUuRUFJYUlRb2JDaE1JbUxUQjhaejJqUU1WX2JWb0NSM0ZZRFhmRUFBWUFTQUFFZ0tTV2ZEX0J3RQ..*_gcl_au*MTk2MDY1OTc0NS4xNzQ5NjI3ODUw',
+  US: 'https://us.ovhcloud.com/public-vcf-aas/?_gl=1*kt40jj*_gcl_aw*R0NMLjE3NTAwODY2NzUuRUFJYUlRb2JDaE1JbUxUQjhaejJqUU1WX2JWb0NSM0ZZRFhmRUFBWUFTQUFFZ0tTV2ZEX0J3RQ..*_gcl_au*MTk2MDY1OTc0NS4xNzQ5NjI3ODUw',
   MA: 'https://www.ovhcloud.com/fr-ma/public-vcf-aas/',
   SN: 'https://www.ovhcloud.com/fr-sn/public-vcf-aas/',
   TN: 'https://www.ovhcloud.com/fr-tn/public-vcf-aas/',
