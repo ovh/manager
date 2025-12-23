@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
+import '@ovh-ux/manager-static-analysis-kit/tests/html-a11y-tests-setup';
 import { vi } from 'vitest';
 import { fetch } from 'cross-fetch';
 

@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
-
 import { MoreHorizontal } from 'lucide-react';
 import {
   Tooltip,
@@ -15,12 +14,11 @@ import {
   Skeleton,
   Badge,
 } from '@datatr-ux/uxlib';
-
-import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { ReplicationWithServiceData } from '../Replications.page';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface ReplicationsTableColumnsProps {
   onEditClick: (replication: ReplicationWithServiceData) => void;
@@ -166,10 +164,11 @@ export const getColumns = ({
                         <DropdownMenuItem
                           data-testid="replications-action-edit-button"
                           variant="primary"
-                          disabled={
-                            service.capabilities.replication?.update ===
-                            database.service.capability.StateEnum.disabled
-                          }
+                          disabled={isCapabilityDisabled(
+                            service,
+                            'replication',
+                            'update',
+                          )}
                           onClick={() => {
                             onEditClick(row.original);
                           }}
@@ -183,10 +182,11 @@ export const getColumns = ({
                         <DropdownMenuItem
                           data-testid="replications-action-delete-button"
                           variant="critical"
-                          disabled={
-                            service.capabilities.replication?.delete ===
-                            database.service.capability.StateEnum.disabled
-                          }
+                          disabled={isCapabilityDisabled(
+                            service,
+                            'replication',
+                            'delete',
+                          )}
                           onClick={() => {
                             onDeleteClick(row.original);
                           }}

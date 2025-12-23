@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.6.0...@ovh-ux/manager-communication-app@0.6.1) (2025-12-22)
+
+
+### Bug Fixes
+
+* **communication:** bump zod + resolver dependencies ([f3e6087](https://github.com/ovh/manager/commit/f3e60876096073f647e1580689ac6f41412b0cb7))
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.5.2...@ovh-ux/manager-communication-app@0.6.0) (2025-12-22)
+
+
+### Bug Fixes
+
+* **communication:** preserve html head during sanitization ([c075a07](https://github.com/ovh/manager/commit/c075a0752741baa2b89df8fc24c0999ba3881f65)), closes [#MANAGER-20451](https://github.com/ovh/manager/issues/MANAGER-20451)
+
+
+### Features
+
+* **communication:** change label for long format switch ([55e1a72](https://github.com/ovh/manager/commit/55e1a7267e500a1c8c95899564425d059f4b3fb0)), closes [#MANAGER-20440](https://github.com/ovh/manager/issues/MANAGER-20440)
+* **communication:** improve contact status after API change ([89faa9c](https://github.com/ovh/manager/commit/89faa9ca500797eda18529ca83bc5a6cfa41bc6d)), closes [#MANAGER-20450](https://github.com/ovh/manager/issues/MANAGER-20450)
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.5.1...@ovh-ux/manager-communication-app@0.5.2) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-communication-app

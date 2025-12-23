@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.7...@ovh-ux/manager-hub-app@0.28.8) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.28.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.6...@ovh-ux/manager-hub-app@0.28.7) (2025-12-22)
+
+
+### Bug Fixes
+
+* **hub:** open external payment status links in new tab ([0f53184](https://github.com/ovh/manager/commit/0f53184a36b1dcea9b24bdd32310e94e8f845d9a)), closes [#MANAGER-20624](https://github.com/ovh/manager/issues/MANAGER-20624)
+
+
+
+
+
 ## [0.28.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.5...@ovh-ux/manager-hub-app@0.28.6) (2025-12-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

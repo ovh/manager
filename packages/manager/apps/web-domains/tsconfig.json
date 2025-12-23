@@ -2,17 +2,16 @@
   "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
   "compilerOptions": {
     "types": ["vite/client", "node"],
-    "module": "ES2020",
-    "removeComments": true,
     "outDir": "dist",
     "noImplicitAny": true,
     "resolveJsonModule": true,
     "allowJs": true,
     "paths": {
+      "@/public/*": ["./public/*"],
       "@/*": ["./src/*"]
     },
     "baseUrl": "."
   },
-  "include": ["src"],
+  "include": ["src", "public/**/*.json"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }

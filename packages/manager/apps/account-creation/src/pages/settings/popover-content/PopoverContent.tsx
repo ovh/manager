@@ -15,8 +15,8 @@ export default function AccountSettingsPopoverContent({
       <OdsText preset={ODS_TEXT_PRESET.caption}>{description}</OdsText>
       {list?.length && (
         <ol className="list-none space-y-2 pl-0">
-          {list.map((item: string) => (
-            <li>
+          {list.map((item: string, index: number) => (
+            <li key={index}>
               <OdsText preset={ODS_TEXT_PRESET.caption}>{item}</OdsText>
             </li>
           ))}

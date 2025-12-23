@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.0...@ovh-ux/manager-web@19.34.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.33.0...@ovh-ux/manager-web@19.34.0) (2025-12-22)
+
+
+### Bug Fixes
+
+* **web-domains:** fix rediction when user have acces to both app ([29b2373](https://github.com/ovh/manager/commit/29b2373026a33a5e7faf3e698cf6d4f78f636def)), closes [#DCE-1](https://github.com/ovh/manager/issues/DCE-1)
+
+
+### Features
+
+* **web-domains:** domain menu revamp ([ee4b125](https://github.com/ovh/manager/commit/ee4b125f49f3e4209e40c227f5d008a2d4aec953)), closes [#DCE-1](https://github.com/ovh/manager/issues/DCE-1)
+
+
+
+
+
 # [19.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.32.0...@ovh-ux/manager-web@19.33.0) (2025-12-18)
 
 

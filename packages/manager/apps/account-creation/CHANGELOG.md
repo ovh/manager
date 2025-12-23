@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.0...@ovh-ux/manager-account-creation-app@0.9.1) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.8.4...@ovh-ux/manager-account-creation-app@0.9.0) (2025-12-22)
+
+
+### Features
+
+* **account-creation:** disable useMe hook if userid cookie not present ([a4f5e33](https://github.com/ovh/manager/commit/a4f5e332ed167c3e47a02391bc4e2f943b2d0309)), closes [#MANAGER-20043](https://github.com/ovh/manager/issues/MANAGER-20043)
+* **account-creation:** reset phone field on phoneType change ([00fd1f3](https://github.com/ovh/manager/commit/00fd1f30af4589eb5999bba5e6cbb3e256fabb87)), closes [#MANAGER-20510](https://github.com/ovh/manager/issues/MANAGER-20510)
+
+
+
+
+
 ## [0.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.8.3...@ovh-ux/manager-account-creation-app@0.8.4) (2025-12-18)
 
 

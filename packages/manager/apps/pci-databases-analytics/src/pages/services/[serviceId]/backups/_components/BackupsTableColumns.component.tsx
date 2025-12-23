@@ -13,9 +13,9 @@ import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { BackupWithExpiricyDate } from '../Backups.page';
 import { useServiceData } from '../../Service.context';
-import * as database from '@/types/cloud/project/database';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface BackupsTableColumnsProps {
   onForkClick: (backup: BackupWithExpiricyDate) => void;
@@ -115,10 +115,11 @@ export const getColumns = ({
               {service.capabilities.backupRestore?.create && (
                 <DropdownMenuItem
                   data-testid="backups-action-restore-button"
-                  disabled={
-                    service.capabilities.backupRestore.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'backupRestore',
+                    'create',
+                  )}
                   variant="primary"
                   onClick={() => {
                     onRestoreClick(row.original);
@@ -131,10 +132,7 @@ export const getColumns = ({
               {service.capabilities.fork?.create && (
                 <DropdownMenuItem
                   data-testid="backups-action-fork-button"
-                  disabled={
-                    service.capabilities.fork.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(service, 'fork', 'create')}
                   variant="primary"
                   onClick={() => {
                     onForkClick(row.original);

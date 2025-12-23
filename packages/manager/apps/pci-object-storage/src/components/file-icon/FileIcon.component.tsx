@@ -20,7 +20,7 @@ const FileIcon = ({
     : '';
   const Icon = FILE_TYPE_MAP[ext] || File;
 
-  return <Icon className={cn('shrink-0', className)} />;
+  return <Icon className={cn('shrink-0', className)} data-testid="file-icon" />;
 };
 
 export default FileIcon;

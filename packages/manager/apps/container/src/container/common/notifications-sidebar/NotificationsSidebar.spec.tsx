@@ -71,7 +71,8 @@ describe('NotificationsSidebar', () => {
 
   describe('Visibility', () => {
     it('should be displayed according to header context', async () => {
-      renderNotificationsSidebar();
+      const { container } = renderNotificationsSidebar();
+      expect(container).toBeAccessible();
 
       const notificationsSidebar = screen.getByTestId('notifications-sidebar');
 

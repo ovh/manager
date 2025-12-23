@@ -11,6 +11,7 @@ import { getColumns } from './_components/DatabasesTableColumns.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -55,10 +56,11 @@ const Databases = () => {
                 <Button
                   mode="outline"
                   data-testid="add-button"
-                  disabled={
-                    service.capabilities.databases?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'databases',
+                    'create',
+                  )}
                   onClick={() => navigate('./add')}
                 >
                   <Plus className="w-4 h-4" />
