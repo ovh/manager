@@ -88,5 +88,6 @@
   "common_dual_list_target_move": "Delete",
   "common_dual_list_target_move_all": "Delete all",
   "common_dual_list_target_search": "Search target content",
-  "common_save_button_label": "Save"
+  "common_save_button_label": "Save",
+  "common_breadcrumb": "Breadcrumb"
 }

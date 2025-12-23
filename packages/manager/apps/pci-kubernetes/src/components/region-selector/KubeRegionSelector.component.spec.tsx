@@ -12,7 +12,7 @@ import {
 
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
-import { RegionType } from '@/pages/new/steps/LocationStep.component';
+import { RegionType } from '@/pages/new_legacy/steps/LocationStep.component';
 import { wrapper } from '@/wrapperRenders';
 
 import { KubeRegionSelector } from './KubeRegionSelector.component';

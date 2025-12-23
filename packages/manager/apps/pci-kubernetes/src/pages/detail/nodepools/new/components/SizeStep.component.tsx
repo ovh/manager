@@ -2,10 +2,10 @@ import { ReactElement, useEffect } from 'react';
 
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
-import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
-import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
-import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
-import PublicConnectivity from '@/pages/new/steps/node-pool/PublicConnectivity.component';
+import DeploymentZone from '@/pages/new_legacy/steps/node-pool/DeploymentZone.component';
+import NodePoolAntiAffinity from '@/pages/new_legacy/steps/node-pool/NodePoolAntiAffinity.component';
+import NodePoolSize from '@/pages/new_legacy/steps/node-pool/NodePoolSize.component';
+import PublicConnectivity from '@/pages/new_legacy/steps/node-pool/PublicConnectivity.component';
 import { DeploymentMode, TSelectedAvailabilityZones } from '@/types';
 import { TRegionInformations } from '@/types/region';
 

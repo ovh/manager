@@ -24,7 +24,7 @@ import { isScalingValid } from '@/helpers/node-pool';
 import { useTrack } from '@/hooks/track';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
-import PublicConnectivity from '@/pages/new/steps/node-pool/PublicConnectivity.component';
+import PublicConnectivity from '@/pages/new_legacy/steps/node-pool/PublicConnectivity.component';
 import { queryClient } from '@/queryClient';
 import { DeploymentMode, TAttachFloatingIPs, TScalingState } from '@/types';
 
