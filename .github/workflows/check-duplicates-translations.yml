@@ -43,9 +43,17 @@ jobs:
             echo "should_continue=false" >> $GITHUB_OUTPUT
           fi
           # Extract the base branch from the PR event context
-          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+          PR_JSON=$(gh pr list --repo ovh/manager --head $CURRENT_BRANCH --json baseRefName)
+
+          # Check if we got any PR data
+          if [[ -z "$PR_JSON" ]]; then
+            echo "No PR found for the branch $CURRENT_BRANCH"
+            exit 1
+          fi
+
+          # Extract base branch name
+          BASE_BRANCH=$(echo "$PR_JSON" | jq -r '.[0].baseRefName')
           echo "Base Branch is $BASE_BRANCH"
-          PR_JSON=$(gh pr list --repo ovh/manager --head $CURRENT_BRANCH --base $BASE_BRANCH --json number)
           NUMBER_PULL=$(echo "$PR_JSON" | jq -r '.[0].number')
           labels=$(gh pr view $NUMBER_PULL --repo ovh/manager --json labels --jq '.labels[].name')
 
