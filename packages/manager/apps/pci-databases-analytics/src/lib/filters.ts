@@ -36,7 +36,7 @@ export const FilterCategories = {
 };
 
 export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   const getNestedValue = (obj: any, path: string): any => {
     return path.split('.').reduce((acc, key) => {
       const arrayMatch = key.match(/(\w+)\[(\d+)\]/);
