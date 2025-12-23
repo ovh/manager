@@ -129,5 +129,7 @@
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "La copia de seguridad remota sigue la misma rotación que la copia de seguridad local.",
   "pci_instance_creation_backup_setting_help_ui_guide": "<h6>Dónde encontrar sus copias de seguridad</h6><p>Todas sus copias de seguridad son accesibles desde: La interfaz de gestión de su instancia, La sección Copia de Seguridad y Gestión de Flujos de Trabajo.</p><Link>Consultar la guía completa sobre la gestión de copias de seguridad</Link>",
   "pci_instance_creation_backup_setting_action_label": "Crear una copia de seguridad automatizada de una instancia",
-  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mes"
+  "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mes",
+  "pci_instance_creation_backup_setting_local_label": "Copia de seguridad automática (local)",
+  "pci_instance_creation_backup_setting_distant_label": "Copia de seguridad automática (remota)"
 }

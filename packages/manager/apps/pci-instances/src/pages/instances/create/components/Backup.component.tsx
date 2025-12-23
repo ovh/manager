@@ -42,6 +42,8 @@ const Backup: FC = () => {
   }: ToggleCheckedChangeDetail) => {
     const localBackup = items[0]?.value ?? null;
     handleSelectLocalBackup(checked ? localBackup : null);
+
+    if (!checked) setValue('distantBackupLocalization', null);
   };
 
   return (

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FlavorDetails } from '../components/cart/FlavorDetails.component';
 import { useCatalogPrice } from '@ovh-ux/muk';
 import { useInstanceCreation } from './useInstanceCreation';
+import CartOptionDetailItem from '../components/cart/CartOptionDetailItem.component';
 
 export type TCartItem = {
   id: string;
@@ -49,6 +50,7 @@ export const useCartItems = (): TCartItems => {
     sshKeyId,
     networkName,
     name,
+    backupSettingPrices,
   } = instanceData;
 
   const region: TCartItemDetail[] = localizationDetails
@@ -123,6 +125,33 @@ export const useCartItems = (): TCartItems => {
       ]
     : [];
 
+  const backups = backupSettingPrices?.localBackupPrice
+    ? [
+        {
+          name: t('common:pci_instances_common_backup'),
+          description: (
+            <div className="w-full">
+              <CartOptionDetailItem
+                label={t(
+                  'creation:pci_instance_creation_backup_setting_local_label',
+                )}
+                price={backupSettingPrices.localBackupPrice}
+              />
+              {backupSettingPrices.distantBackupPrice && (
+                <CartOptionDetailItem
+                  className="mt-2"
+                  label={t(
+                    'creation:pci_instance_creation_backup_setting_distant_label',
+                  )}
+                  price={backupSettingPrices.distantBackupPrice}
+                />
+              )}
+            </div>
+          ),
+        },
+      ]
+    : [];
+
   const network = networkName
     ? [
         {
@@ -143,6 +172,7 @@ export const useCartItems = (): TCartItems => {
     ...flavor,
     ...distributionImage,
     ...sshKey,
+    ...backups,
     ...network,
   ];
 

@@ -15,6 +15,16 @@ import { useCreateInstance } from '@/data/hooks/useCreateInstance';
 import { isApiErrorResponse } from '@/utils';
 import { useNavigate } from 'react-router-dom';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
+import {
+  selectDistantBackupLocalizations,
+  selectLocalBackups,
+} from '../view-models/backupViewModel';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+
+type TBackupSettingPrices = {
+  localBackupPrice: string | null;
+  distantBackupPrice: string | null;
+};
 
 type TInstanceData = {
   name: string;
@@ -25,6 +35,7 @@ type TInstanceData = {
   localizationDetails: TSelectLocalizationDetails | null;
   flavorDetails: TSelectFlavorDetails | null;
   windowsImageLicensePrice: number | null;
+  backupSettingPrices: TBackupSettingPrices | null;
   networkName?: string;
 };
 
@@ -39,6 +50,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const navigate = useNavigate();
   const projectId = useProjectId();
   const { control } = useFormContext<TInstanceCreationForm>();
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4);
   const [
     name,
     macroRegion,
@@ -54,6 +66,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
     newSshPublicKey,
     newPrivateNetwork,
     billingType,
+    localBackup,
+    distantBackupLocalization,
   ] = useWatch({
     control,
     name: [
@@ -71,6 +85,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'newSshPublicKey',
       'newPrivateNetwork',
       'billingType',
+      'localBackup',
+      'distantBackupLocalization',
     ],
   });
 
@@ -108,6 +124,26 @@ export const useInstanceCreation = (): TInstanceCreation => {
       ),
     [distributionImageOsType, projectId, billingType, flavorId],
   );
+
+  const backupSettingPrices = useMemo(() => {
+    if (!localBackup) return null;
+
+    const { price: localBackupPrice } = selectLocalBackups();
+    const distantBackupLocalizations = selectDistantBackupLocalizations();
+
+    const distantBackupPrice = distantBackupLocalizations
+      .flatMap(({ options }) => options)
+      .find(({ value }) => value === distantBackupLocalization)
+      ?.customRendererData?.backupPrice;
+
+    // TODO: local backup will be formatted here later since it will not be handled by viewModel
+    return {
+      localBackupPrice,
+      distantBackupPrice: distantBackupPrice
+        ? getFormattedMonthlyCatalogPrice(distantBackupPrice)
+        : null,
+    };
+  }, [distantBackupLocalization, getFormattedMonthlyCatalogPrice, localBackup]);
 
   const { networks } = useMemo(() => selectPrivateNetworks(microRegion), [
     microRegion,
@@ -175,6 +211,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     networkName,
     distributionImageVersionName:
       distributionImageVersion.distributionImageVersionName,
+    backupSettingPrices,
   };
 
   return {

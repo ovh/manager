@@ -27,7 +27,11 @@ const BackupDistant: FC = () => {
 
   const handleActivateDistantBackup = ({
     checked,
-  }: ToggleCheckedChangeDetail) => setIsDistantBackupActivate(checked);
+  }: ToggleCheckedChangeDetail) => {
+    setIsDistantBackupActivate(checked);
+
+    if (!checked) setValue('distantBackupLocalization', null);
+  };
 
   const handleSelectDistantBackupLocalization = ({
     items,
