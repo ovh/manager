@@ -9,6 +9,7 @@
   "privateDatabase_dashboard_version_mysql": "MySQL {{version}}",
   "privateDatabase_dashboard_version_postgresql": "PostgreSQL {{version}}",
   "privateDatabase_dashboard_version_redis": "Caching {{version}}",
+  "privateDatabase_dashboard_version_valkey": "Valkey {{version}}",
   "privateDatabase_dashboard_nb_cpu": "Número de CPU",
   "privateDatabase_dashboard_ip": "IP",
   "privateDatabase_dashboard_detached": "Suspendido",
@@ -31,6 +32,8 @@
   "privateDatabase_dashboard_datacenter_gra3": "eu-west-gra",
   "privateDatabase_dashboard_datacenter_bhs": "ca-east-bhs",
   "privateDatabase_dashboard_datacenter_bhs1": "ca-east-bhs",
+  "privateDatabase_dashboard_datacenter_eu-west-gra": "eu-west-gra",
+  "privateDatabase_dashboard_datacenter_ca-east-bhs": "ca-east-bhs",
   "privateDatabase_dashboard_hostname": "Nombre del host",
   "privateDatabase_dashboard_hostname_tooltip": "Utilice el nombre del host proporcionado para conectarse a su instancia, ya que la dirección IP asociada puede cambiar con el tiempo.",
   "privateDatabase_dashboard_host": "Host",
@@ -62,6 +65,7 @@
   "privateDatabase_configurations_general_mysql": "Configuración general de MySQL",
   "privateDatabase_configurations_general_mariadb": "Configuración general de MariaDB",
   "privateDatabase_configurations_general_redis": "Configuración general de Caching",
+  "privateDatabase_configurations_general_valkey": "Configuración general de Valkey",
   "privateDatabase_configurations_general_postgresql": "Configuración general del PostgreSQL",
   "privateDatabase_configurations_general_postgresql_soon": "Pronto disponible para PostgreSQL",
   "privateDatabase_configuration_alert": "Cualquier modificación requiere el reinicio del servidor.",
@@ -502,10 +506,5 @@
   "privateDatabase_tabs_list_extensions_enable_error": "Se ha producido un error al activar la extensión.",
   "privateDatabase_tabs_list_extensions_disable_success": "La extensión se ha desactivado correctamente.",
   "privateDatabase_tabs_list_extensions_disable_error": "Se ha producido un error al desactivar la extensión.",
-  "privateDatabase_order_sql_period_sub_title": "¿Por cuánto tiempo quiere utilizarlas?",
-  "privateDatabase_beta_status": "Beta",
-  "privateDatabase_dashboard_version_valkey": "Valkey {{version}}",
-  "privateDatabase_configurations_general_valkey": "Configuración general de Valkey",
-  "privateDatabase_dashboard_datacenter_eu-west-gra": "eu-west-gra",
-  "privateDatabase_dashboard_datacenter_ca-east-bhs": "ca-east-bhs"
+  "privateDatabase_order_sql_period_sub_title": "¿Por cuánto tiempo quiere utilizarlas?"
 }

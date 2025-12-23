@@ -2,8 +2,6 @@
   "telephony_alias_change_type_title": "Number configuration",
   "telephony_alias_change_type_subtitle": "What is number configuration used for?",
   "telephony_alias_change_type_details": "Every business issue will have its own telephony solution from OVHcloud Telecom. With our VoIP solution, you can set up a strategy for receiving calls that matches your business needs: management of time slots and overflow, redirection of calls to a mobile or internal transfer, and much more. Our customers benefit from many services, while controlling their budget.",
-  "telephony_alias_change_type_show_simple_option": "Switch to simple mode",
-  "telephony_alias_change_type_show_expert_option": "Switch to expert mode",
   "telephony_alias_change_type_set_config": "Configure",
   "telephony_alias_change_type_info_text_1": "Configure your number to your preferences.",
   "telephony_alias_change_type_info_title": "Information",

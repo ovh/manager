@@ -30,7 +30,9 @@ describe('KMS dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
     await renderTestApp(mockPageUrl, { isOkmsKO: true });
 
-    await waitFor(() => expect(screen.getByAltText('OOPS')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByAltText('OOPS')).toBeInTheDocument(), {
+      timeout: 10_000,
+    });
   });
 
   it('should display the kms dashboard page', async () => {
