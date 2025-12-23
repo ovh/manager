@@ -15,8 +15,8 @@
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
-    "test": "manager-test run",
-    "test:coverage": "manager-test run --coverage"
+    "test": "manager-test --config vitest.config.mjs run",
+    "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
   },
   "dependencies": {
     "@ovh-ux/backup-agent": "*",
@@ -45,7 +45,7 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tailwind-config": "*",
-    "@ovh-ux/manager-tests-setup": "*",
+    "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "0.15.5",
     "@tanstack/react-query-devtools": "5.51.21",
     "msw": "^2.11.5",

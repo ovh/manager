@@ -2,7 +2,7 @@ import path from 'path';
 
 import {
   createConfig,
-	defaultDedupedDependencies,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
@@ -13,7 +13,10 @@ export default mergeConfig(
   createConfig({
     test: {
       globals: true,
-      setupFiles: ['@ovh-ux/manager-core-test-utils/src/utils/setup-test.ts', './src/utils/tests/setupTest.ts'],
+      setupFiles: [
+        '@ovh-ux/manager-core-test-utils/src/utils/setup-test.ts',
+        './src/utils/tests/setupTest.ts',
+      ],
       css: false,
       coverage: {
         exclude: [
@@ -30,9 +33,9 @@ export default mergeConfig(
         ],
       },
     },
-    resolve: { dedupe: [...defaultDedupedDependencies, 'react-hook-form'],
+    resolve: {
+      dedupe: [...defaultDedupedDependencies, 'react-hook-form'],
       alias: {
-        // eslint-disable-next-line no-undef
         '@': path.resolve(__dirname, 'src'),
       },
     },
