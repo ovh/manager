@@ -19,7 +19,6 @@ jobs:
     steps:
       - name: Checkout latest code
         uses: actions/checkout@v4
-        ref: ${{ github.head_ref != '' && github.head_ref || github.ref }}
         with:
           fetch-depth: 0
       - name: Use Node.js 22.x
