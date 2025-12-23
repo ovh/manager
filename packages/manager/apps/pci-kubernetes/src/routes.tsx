@@ -193,7 +193,7 @@ export default [
       },
       {
         path: 'new',
-        ...lazyRouteConfig(() => import('@/pages/new/New.page')),
+        ...lazyRouteConfig(() => import('@/pages/new_v2/New.page')),
         children: [],
       },
     ],

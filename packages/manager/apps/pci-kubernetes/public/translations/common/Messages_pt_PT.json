@@ -88,5 +88,6 @@
   "common_dual_list_target_move": "Eliminar",
   "common_dual_list_target_move_all": "Eliminar tudo",
   "common_dual_list_target_search": "Procurar no conteúdo de destino",
-  "common_save_button_label": "Guardar "
+  "common_save_button_label": "Guardar ",
+  "common_breadcrumb": "Migalhas"
 }
