@@ -10,12 +10,34 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
     this.pageSize = PAGE_SIZE;
   }
 
+  $onInit() {
+    super.$onInit();
+    const { identities, resources, actions } = this.getAdvancedSearchParams();
+    this.hasActiveAdvancedSearch =
+      identities.length > 0 || resources.length > 0 || actions.length > 0;
+  }
+
   /**
    * Get the list of policies promise
    * @param {string} cursor The current cursor id
    * @returns {Promise}
    */
   createItemsPromise({ cursor }) {
+    const { identities, resources, actions } = this.getAdvancedSearchParams();
+    return this.IAMService.getPolicies({
+      cursor,
+      readOnly: false,
+      identities,
+      resources,
+      actions,
+    });
+  }
+
+  /**
+   * Helper to format 'advanced search' params obtained from router.
+   * @returns {{identities: *[], resources: *[], actions: *[]}}
+   */
+  getAdvancedSearchParams() {
     let identities = [];
     if (this.identities) {
       identities = [
@@ -36,13 +58,8 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
         ...(this.actions.selection || []).map((d) => d.action),
       ];
     }
-    return this.IAMService.getPolicies({
-      cursor,
-      readOnly: false,
-      identities,
-      resources,
-      actions,
-    });
+
+    return { identities, resources, actions };
   }
 
   /**
@@ -80,7 +97,21 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
     });
   }
 
+  resetAdvancedSearch() {
+    this.trackClick(MY_POLICIES_TRACKING_HITS.RESET_SEARCH);
+    return this.goTo({
+      name: 'iam.policies.myPolicies',
+      params: {
+        ...this.params,
+        identities: null,
+        resources: null,
+        actions: null,
+      },
+    });
+  }
+
   openAdvancedSearchModal() {
+    this.trackClick(MY_POLICIES_TRACKING_HITS.ADVANCED_SEARCH);
     return this.goTo({
       name: 'iam.policies.myPolicies.advancedSearch',
     });

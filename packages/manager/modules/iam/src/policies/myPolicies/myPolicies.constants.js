@@ -23,4 +23,6 @@ export const MY_POLICIES_TRACKING_HITS = {
   DELETE_POLICY_CONFIRM: `${MY_POLICIES_TRACKING_PREFIX}pop-up::button::delete_policy::validate`,
   DELETE_POLICY_SUCCESS: `${MY_POLICIES_TRACKING_PREFIX}banner-info::delete_policy_success`,
   DELETE_POLICY_ERROR: `${MY_POLICIES_TRACKING_PREFIX}banner-info::delete_policy_error`,
+  ADVANCED_SEARCH: `${MY_POLICIES_TRACKING_PREFIX}page::button::advanced_search`,
+  RESET_SEARCH: `${MY_POLICIES_TRACKING_PREFIX}page::button::reset_search`,
 };
