@@ -27,9 +27,9 @@ const init = async (appName: string) => {
   // Initialize i18n with default namespaces
   await initI18n({
     context,
-    reloadOnLocaleChange: true,
+    reloadOnLocaleChange: false,
     defaultNS: appName,
-    ns: ['listing', 'dashboard', 'onboarding'],
+    ns: ['onboarding'],
   });
 
   // Configure tracking per region
