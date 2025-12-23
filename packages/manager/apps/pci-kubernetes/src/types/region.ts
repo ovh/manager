@@ -308,6 +308,7 @@ export type TRegionBase = {
   continentCode: 'ASIA' | 'EU' | 'NA' | 'US' | string;
   datacenter: string;
   enabled: boolean;
+  datacenterLocation: string;
 };
 
 export type TRegion = TRegionBase & {

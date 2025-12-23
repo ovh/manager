@@ -3,8 +3,6 @@ import { useCallback } from 'react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 
-import { RegionSelectorProps } from '@ovh-ux/manager-pci-common';
-
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import { DeploymentMode } from '@/types';
@@ -12,7 +10,7 @@ import { TLocation } from '@/types/region';
 
 import usePlanToRegionAvailability from '../../api/hooks/usePlanToRegionAvailability';
 import './KubeRegionSelector.css';
-import { RegionSelector } from './RegionSelector.component';
+import { RegionSelector, RegionSelectorProps } from './RegionSelector.component';
 
 export interface KubeRegionSelectorProps {
   projectId: string;
