@@ -45,7 +45,9 @@ jobs:
           BASE_BRANCH="origin/master"
           
           echo "Base Branch is $BASE_BRANCH"
-          labels=$(gh pr view $PR_NUMBER --repo ovh/manager --json labels --jq '.labels[].name')
+          PR_JSON=$(gh pr list --repo ovh/manager --head $CURRENT_BRANCH --base $BASE_BRANCH --json number)
+          NUMBER_PULL=$(echo "$PR_JSON" | jq -r '.[0].number')
+          labels=$(gh pr view $NUMBER_PULL --repo ovh/manager --json labels --jq '.labels[].name')
 
           if echo "$labels" | grep -wq "translation required"; then
             echo "✅ Translation required: Check the duplicate translation pls!..."
