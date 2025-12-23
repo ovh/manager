@@ -16,6 +16,7 @@ import { ToggleField } from '@/components/form';
 import { selectLocalBackups } from '../view-models/backupViewModel';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
+import BackupDistant from './backup/BackupDistant.component';
 
 const radioLabelClassname = 'text-lg font-bold text-[--ods-color-heading]';
 
@@ -122,6 +123,9 @@ const Backup: FC = () => {
               </PciCard.Content>
             </PciCard>
           </RadioGroup>
+          <div className="mt-6">
+            <BackupDistant />
+          </div>
         </div>
       )}
     </section>

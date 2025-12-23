@@ -1291,3 +1291,161 @@ export const mockedLocalBackups = [
       'A backup is taken every day between 22:00 and 06:00, and the rotation maintains a log of the 14 latest entries. When the new backup is taken, the previous one is deleted.',
   },
 ];
+
+export const mockedLocalizations = [
+  {
+    label: 'europe',
+    options: [
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+          macroRegionId: 'GRA',
+          backupPrice: 10000,
+        },
+        label: 'GRA7',
+        value: 'GRA7',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+          macroRegionId: 'GRA',
+          backupPrice: 10000,
+        },
+        label: 'INTERNAL.GRA1',
+        value: 'INTERNAL.GRA1',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+          macroRegionId: 'RBX',
+          backupPrice: 10000,
+        },
+        label: 'regions:manager_components_region_RBX',
+        value: 'RBX-A',
+      },
+      {
+        customRendererData: {
+          countryCode: 'pl',
+          deploymentMode: 'region',
+          macroRegionId: 'WAW',
+          backupPrice: 10000,
+        },
+        label: 'regions:manager_components_region_WAW',
+        value: 'WAW1',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+          macroRegionId: 'GRA',
+          backupPrice: 10000,
+        },
+        label: 'GRA-STAGING-A',
+        value: 'GRA-STAGING-A',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+          macroRegionId: 'SBG',
+          backupPrice: 10000,
+        },
+        label: 'SBG5',
+        value: 'SBG5',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+          macroRegionId: 'SBG',
+          backupPrice: 10000,
+        },
+        label: 'SBG7',
+        value: 'SBG7',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+          macroRegionId: 'GRA',
+          backupPrice: 10000,
+        },
+        label: 'GRA11',
+        value: 'GRA11',
+      },
+      {
+        customRendererData: {
+          countryCode: 'de',
+          deploymentMode: 'region',
+          macroRegionId: 'DE',
+          backupPrice: 10000,
+        },
+        label: 'regions:manager_components_region_DE',
+        value: 'DE1',
+      },
+      {
+        customRendererData: {
+          countryCode: 'uk',
+          deploymentMode: 'region',
+          macroRegionId: 'UK',
+          backupPrice: 20000,
+        },
+        label: 'regions:manager_components_region_UK',
+        value: 'UK1',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+          macroRegionId: 'GRA',
+          backupPrice: 10000,
+        },
+        label: 'GRA9',
+        value: 'GRA9',
+      },
+    ],
+  },
+  {
+    label: 'asia_oceania',
+    options: [
+      {
+        customRendererData: {
+          countryCode: 'sg',
+          deploymentMode: 'region',
+          macroRegionId: 'SGP',
+          backupPrice: 10000,
+        },
+        label: 'regions:manager_components_region_SGP',
+        value: 'SGP1',
+      },
+      {
+        customRendererData: {
+          countryCode: 'au',
+          deploymentMode: 'region',
+          macroRegionId: 'SYD',
+          backupPrice: 10000,
+        },
+        label: 'SYD1',
+        value: 'SYD1',
+      },
+    ],
+  },
+  {
+    label: 'north_america',
+    options: [
+      {
+        customRendererData: {
+          countryCode: 'ca',
+          deploymentMode: 'region',
+          macroRegionId: 'BHS',
+          backupPrice: 10000,
+        },
+        label: 'regions:manager_components_region_BHS',
+        value: 'BHS5',
+      },
+    ],
+  },
+];

@@ -131,6 +131,8 @@ export const networkSchema = z
 
 export const localBackupSchema = z.string().nullable();
 
+export const distantBackupLocalizationSchema = z.string().nullable();
+
 export type TAddNetworkForm = z.infer<typeof networkSchema>;
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -154,4 +156,5 @@ export const instanceCreationSchema = z.object({
   newPrivateNetwork: networkSchema,
   billingType: billingTypeSelectionSchema,
   localBackup: localBackupSchema,
+  distantBackupLocalization: distantBackupLocalizationSchema,
 });
