@@ -78,9 +78,6 @@ export default function ServiceKeyDashboard() {
       />
     );
 
-  const kms = okms?.data;
-  const kmsKey = serviceKey?.data;
-
   const tabsList: TabNavigationItem[] = [
     {
       name: 'general-information',
@@ -93,7 +90,7 @@ export default function ServiceKeyDashboard() {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: kms.iam.displayName,
+      label: okms.iam.displayName,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -103,7 +100,7 @@ export default function ServiceKeyDashboard() {
     },
     {
       id: keyId,
-      label: kmsKey.name || kmsKey.id,
+      label: serviceKey.name || serviceKey.id,
       navigateTo: KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, keyId),
     },
     {
@@ -118,7 +115,7 @@ export default function ServiceKeyDashboard() {
       <BaseLayout
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
-          title: kmsKey.name || kmsKey.id,
+          title: serviceKey.name || serviceKey.id,
           headerButton: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
@@ -130,8 +127,8 @@ export default function ServiceKeyDashboard() {
         tabs={<TabNavigation tabs={tabsList} />}
       >
         <DashboardGridLayout>
-          <GeneralInformationTile kms={kms} serviceKey={kmsKey} />
-          <CryptoPropertiesTile serviceKey={kmsKey} />
+          <GeneralInformationTile kms={okms} serviceKey={serviceKey} />
+          <CryptoPropertiesTile serviceKey={serviceKey} />
         </DashboardGridLayout>
         <Outlet />
       </BaseLayout>

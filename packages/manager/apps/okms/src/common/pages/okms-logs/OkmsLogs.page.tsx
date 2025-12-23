@@ -41,7 +41,7 @@ export default function OkmsLogsPage() {
               postSubscription: ['okms:apiovh:log/subscription/create'],
               deleteSubscription: ['okms:apiovh:log/subscription/delete'],
             }}
-            resourceURN={okms.data.iam.urn}
+            resourceURN={okms.iam.urn}
             trackingOptions={{ trackingSuffix: 'kms' }}
           />
         )}

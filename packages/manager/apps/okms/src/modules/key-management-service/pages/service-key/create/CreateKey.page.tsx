@@ -54,7 +54,7 @@ export default function CreateKey() {
     isLoading: serviceKeyReferenceIsLoading,
     error: serviceKeyReferenceError,
     refetch: refetchServiceKeyReference,
-  } = useOkmsServiceKeyReference(okms?.data?.region || '');
+  } = useOkmsServiceKeyReference(okms?.region || '');
 
   const [key, setKey] = React.useState<OkmsServiceKeyReference | undefined>();
   const [keyType, setKeyType] = React.useState<OkmsKeyTypes | undefined>();
@@ -73,7 +73,7 @@ export default function CreateKey() {
   // Set default key reference if available
   useEffect(() => {
     if (!serviceKeyReferenceIsLoading && !key) {
-      servicekeyReference?.data?.forEach((reference) => {
+      servicekeyReference?.forEach((reference) => {
         if (reference.default) {
           setKey(reference);
           setKeyType(reference.type);
@@ -123,7 +123,7 @@ export default function CreateKey() {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms?.data?.iam?.displayName || okmsId,
+      label: okms?.iam?.displayName || okmsId,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -189,7 +189,7 @@ export default function CreateKey() {
                 keyCurve={keyCurve}
                 keySize={keySize}
                 keyType={keyType}
-                region={okms?.data?.region || ''}
+                region={okms?.region || ''}
                 setServiceKey={setKey}
                 setKeyCurve={setKeyCurve}
                 setKeySize={setKeySize}
