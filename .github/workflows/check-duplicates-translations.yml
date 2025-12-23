@@ -77,7 +77,7 @@ jobs:
         with:
           path: |
             node_modules
-          key: ${{ runner.os }}-node22-yarn1-node_modules-${{ hashFiles('yarn.lock', '**/package.json', '.npmrc') }}
+          key: ${{ runner.os }}-node22-yarn1-node_modules-${{ hashFiles('yarn.lock') }}-cold-001
           restore-keys: |
             ${{ runner.os }}-node22-yarn1-node_modules-
 
