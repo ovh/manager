@@ -112,6 +112,7 @@ const VersionListPage = () => {
                 SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
                   okmsId,
                   secretPathDecoded,
+                  secret?.metadata?.currentVersion,
                 ),
               );
               trackClick({
