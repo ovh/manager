@@ -321,40 +321,40 @@ yarn manager-lint src/**/*.{js,jsx,ts,tsx}
 
 ```bash
 # Check for code duplication
-npx manager-code-duplication
+yarn manager-code-duplication
 
 # Run duplication tests
-npx manager-code-duplication-tests
+yarn manager-code-duplication-tests
 ```
 
 #### Performance Budgets
 
 ```bash
 # Check performance budgets
-npx manager-perf-budgets
+yarn manager-perf-budgets
 
 # Run performance budget tests
-npx manager-perf-budgets-tests
+yarn manager-perf-budgets-tests
 ```
 
 #### Test Coverage
 
 ```bash
 # Check test coverage
-npx manager-tests-coverage
+yarn manager-tests-coverage
 
 # Run coverage tests
-npx manager-tests-coverage-tests
+yarn manager-tests-coverage-tests
 ```
 
 #### Type Coverage
 
 ```bash
 # Check TypeScript coverage
-npx manager-types-coverage
+yarn manager-types-coverage
 
 # Run type coverage tests
-npx manager-types-coverage-tests
+yarn manager-types-coverage-tests
 ```
 
 ### Advanced Configuration

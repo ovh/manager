@@ -42,7 +42,7 @@ npm run explain featurename:subfeature -- --all
 Use the `useFeatureAvailability` hook to check feature availability in React components:
 
 ```tsx
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 
 function MyComponent() {
   const { data: features, isLoading } = useFeatureAvailability([

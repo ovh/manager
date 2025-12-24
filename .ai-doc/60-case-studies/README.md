@@ -38,7 +38,7 @@
 // .v6() → use v6 client
 
 // OvhHttp configuration:
-// rootPath: '2api' → use v6 client (2API is v6)
+// rootPath: '2api' → use aapi client
 // rootPath: 'apiv6' → use v6 client
 
 // $http service configuration:
