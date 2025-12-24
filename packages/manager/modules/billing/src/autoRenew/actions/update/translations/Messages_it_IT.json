@@ -1,7 +1,7 @@
 {
   "autorenew_service_update_modal_title": "Configurare il rinnovo",
   "autorenew_service_update_modal_description": "Definisci una frequenza di rinnovo per il tuo servizio: {{ serviceName }} ",
-  "autorenew_service_update_modal_period_manual": "Nessuna frequenza (rinnovo manuale)",
+  "autorenew_service_update_modal_period_manual": "Rinnovo manuale",
   "autorenew_service_update_modal_period_every_month": "Ogni mese",
   "autorenew_service_update_modal_period_every_x_months": "Ogni {{ months }} mesi",
   "autorenew_service_update_modal_period_every_year": "Ogni anno",
