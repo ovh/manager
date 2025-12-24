@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { VmacWithIpType } from '@/data/hooks/ip';
+
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpVmacFilterByIpProps = {
@@ -27,9 +29,7 @@ export const IpVmacFilterByIp = ({
   isLoading,
   enabled = true,
 }: IpVmacFilterByIpProps) => {
-  const vmac = vmacsWithIp.find((vmacs) =>
-    vmacs?.ip?.some((vmacIp) => ip === vmacIp),
-  );
+  const vmac = vmacsWithIp.find((vmacs) => vmacs?.ip?.some((vmacIp) => ip === vmacIp));
 
   return (
     <SkeletonCell isLoading={isLoading} enabled={enabled} ip={ip}>

@@ -1,17 +1,14 @@
-import {
-  useQuery,
-  useQueryClient,
-  useQueries,
-  UseQueryOptions,
-} from '@tanstack/react-query';
+import { UseQueryOptions, useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   IpEdgeFirewallRule,
-  getIpEdgeNetworkFirewallRuleDetailsQueryKey,
+  IpEdgeFirewallRuleState,
   getIpEdgeNetworkFirewallRuleDetails,
+  getIpEdgeNetworkFirewallRuleDetailsQueryKey,
   getIpEdgeNetworkFirewallRuleList,
   getIpEdgeNetworkFirewallRuleListQueryKey,
-  IpEdgeFirewallRuleState,
 } from '@/data/api';
 import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
@@ -49,9 +46,7 @@ export const useIpEdgeNetworkFirewallRules = ({
 
   return useQueries({
     queries: (ruleListQuery?.data?.data || []).map(
-      (
-        sequence,
-      ): UseQueryOptions<ApiResponse<IpEdgeFirewallRule>, ApiError> => {
+      (sequence): UseQueryOptions<ApiResponse<IpEdgeFirewallRule>, ApiError> => {
         const ruleParams = { ip, ipOnFirewall, sequence };
         return {
           queryKey: getIpEdgeNetworkFirewallRuleDetailsQueryKey(ruleParams),
@@ -67,9 +62,7 @@ export const useIpEdgeNetworkFirewallRules = ({
                 }),
               );
               queryClient.removeQueries({
-                queryKey: getIpEdgeNetworkFirewallRuleDetailsQueryKey(
-                  ruleParams,
-                ),
+                queryKey: getIpEdgeNetworkFirewallRuleDetailsQueryKey(ruleParams),
                 exact: true,
               });
               return undefined;
@@ -83,10 +76,8 @@ export const useIpEdgeNetworkFirewallRules = ({
     ),
     combine: (results) => ({
       isError: ruleListQuery.isError || results?.some((query) => query.isError),
-      error:
-        ruleListQuery.error || results?.find((query) => query.error)?.error,
-      isLoading:
-        ruleListQuery.isLoading || results?.some((query) => query.isLoading),
+      error: ruleListQuery.error || results?.find((query) => query.error)?.error,
+      isLoading: ruleListQuery.isLoading || results?.some((query) => query.isLoading),
       data: results
         ?.filter(Boolean)
         ?.map((query) => query?.data?.data)

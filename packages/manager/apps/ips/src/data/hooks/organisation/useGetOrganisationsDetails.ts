@@ -1,16 +1,13 @@
-import {
-  useQuery,
-  useQueries,
-  UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { UseQueryOptions, UseQueryResult, useQueries, useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   OrgDetails,
-  getOrganisationsDetailsQueryKey,
-  getOrganisationsDetails,
-  getOrganisationListQueryKey,
   getOrganisationList,
+  getOrganisationListQueryKey,
+  getOrganisationsDetails,
+  getOrganisationsDetailsQueryKey,
 } from '@/data/api';
 
 export type UseGetOrganisationsDetailsParams = {
@@ -33,9 +30,7 @@ export const useGetOrganisationsDetails = ({
 
   const results = useQueries({
     queries: (organisationList?.data || []).map(
-      (
-        organisationId: string,
-      ): UseQueryOptions<ApiResponse<OrgDetails>, ApiError> => ({
+      (organisationId: string): UseQueryOptions<ApiResponse<OrgDetails>, ApiError> => ({
         queryKey: getOrganisationsDetailsQueryKey({
           organisationId,
         }),
@@ -43,9 +38,7 @@ export const useGetOrganisationsDetails = ({
         enabled: !!organisationList?.data?.length,
       }),
     ),
-    combine: (
-      queriesResults: UseQueryResult<ApiResponse<OrgDetails>, ApiError>[],
-    ) => ({
+    combine: (queriesResults: UseQueryResult<ApiResponse<OrgDetails>, ApiError>[]) => ({
       isPending: queriesResults.some((result) => result.isPending),
       isLoading: queriesResults.some((result) => result.isLoading),
       error: queriesResults.find((result) => result.error)?.error,
@@ -54,9 +47,7 @@ export const useGetOrganisationsDetails = ({
         .sort((a, b) => {
           // Sort in reverse order based on organization ID
           // Assuming newer organizations have higher IDs
-          return (b?.organisationId || '').localeCompare(
-            a?.organisationId || '',
-          );
+          return (b?.organisationId || '').localeCompare(a?.organisationId || '');
         }),
     }),
   });
@@ -67,7 +58,11 @@ export const useGetSingleOrganisationDetail = ({
   organisationId,
   enabled = true,
 }: UseGetOrganisationDetailsParams) => {
-  const { data: organisationDetail, isLoading, isError } = useQuery({
+  const {
+    data: organisationDetail,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: getOrganisationsDetailsQueryKey({
       organisationId,
     }),

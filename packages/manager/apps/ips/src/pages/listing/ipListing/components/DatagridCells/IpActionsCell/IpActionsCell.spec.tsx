@@ -1,25 +1,29 @@
-import React from 'react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import '@testing-library/jest-dom';
 import { act, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 import {
   ShellContext,
   ShellContextType,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenuItem } from '@ovh-ux/manager-react-components';
-import { IpActionsCell, IpActionsCellParams } from './IpActionsCell';
-import { ListingContext } from '@/pages/listing/listingContext';
-import '@testing-library/jest-dom';
-import { IpTypeEnum } from '@/data/constants';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import {
-  IpAntihackType,
-  IpSpamType,
-  IpSpamStateEnum,
   IpAntihackStateEnum,
+  IpAntihackType,
+  IpGameFirewallStateEnum,
+  IpGameFirewallType,
+  IpSpamStateEnum,
+  IpSpamType,
 } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
+import { ListingContext } from '@/pages/listing/listingContext';
+
+import { IpActionsCell, IpActionsCellParams } from './IpActionsCell';
 
 /** TEST CONSTANTS */
 const TEST_IPS = {
@@ -94,7 +98,10 @@ const useGetIpdetailsMock = vi.hoisted(() =>
 );
 
 const useGetIpGameFirewallMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipGameFirewall: undefined, isLoading: false })),
+  vi.fn(() => ({
+    ipGameFirewall: undefined as IpGameFirewallType | undefined,
+    isLoading: false,
+  })),
 );
 
 const useIpHasForcedMitigationMock = vi.hoisted(() =>
@@ -106,6 +113,7 @@ const useGetAttachedServicesMock = vi.hoisted(() =>
     hasCloudServiceAttachedToIP: false,
     hasDedicatedServiceAttachedToIp: false,
     hasHousingServiceAttachedToIp: false,
+    hasVrackAttachedToIp: false,
     isLoading: false,
   })),
 );
@@ -269,6 +277,7 @@ const setupDefaultMocks = () => {
     hasCloudServiceAttachedToIP: false,
     hasDedicatedServiceAttachedToIp: false,
     hasHousingServiceAttachedToIp: false,
+    hasVrackAttachedToIp: false,
     isLoading: false,
   });
   useIpHasVmacMock.mockReturnValue({
@@ -294,11 +303,13 @@ const setupAttachedServicesMock = (overrides?: {
   hasCloudServiceAttachedToIP?: boolean;
   hasDedicatedServiceAttachedToIp?: boolean;
   hasHousingServiceAttachedToIp?: boolean;
+  hasVrackAttachedToIp?: boolean;
 }) => {
   useGetAttachedServicesMock.mockReturnValue({
     hasCloudServiceAttachedToIP: false,
     hasDedicatedServiceAttachedToIp: false,
     hasHousingServiceAttachedToIp: false,
+    hasVrackAttachedToIp: false,
     isLoading: false,
     ...overrides,
   });
@@ -321,9 +332,7 @@ const setupAlertsMock = (overrides?: {
 };
 
 const getMenuItem = (container: HTMLElement, menuItemId: number) =>
-  container.querySelector(
-    `[data-testid="menu-item-${menuItemId}"]`,
-  ) as HTMLElement | null;
+  container.querySelector(`[data-testid="menu-item-${menuItemId}"]`);
 
 const expectMenuItemVisible = (
   container: HTMLElement,
@@ -370,7 +379,6 @@ const expectActionMenuDisabled = (
 };
 
 const setupVrackTest = (
-  serviceName: string,
   mockImplementation?: () => Promise<string> | Promise<never>,
 ) => {
   if (!cachedShellContext) {
@@ -514,14 +522,21 @@ describe('IpActionsCell Component', () => {
       expectMenuItemVisible(container, MENU_ITEM_IDS.REVERSE_DNS);
     });
 
-    it.skip('should show Manage Game Firewall when conditions are met', () => {
+    it('should show Manage Game Firewall when conditions are met', () => {
       setupIpDetailsMock({
         type: IpTypeEnum.ADDITIONAL,
         routedTo: { serviceName: SERVICE_NAMES.DEDICATED_SERVER },
       });
       setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: true });
+
       useGetIpGameFirewallMock.mockReturnValue({
-        ipGameFirewall: [{ id: '1' }],
+        ipGameFirewall: {
+          ipOnGame: '10.0.0.1',
+          firewallModeEnabled: true,
+          maxRules: 20,
+          state: IpGameFirewallStateEnum.OK,
+          supportedProtocols: [],
+        },
         isLoading: false,
       });
 
@@ -534,7 +549,13 @@ describe('IpActionsCell Component', () => {
       setupDefaultMocks();
       setupAttachedServicesMock({ hasCloudServiceAttachedToIP: true });
       useGetIpGameFirewallMock.mockReturnValue({
-        ipGameFirewall: [{ id: '1' }],
+        ipGameFirewall: {
+          ipOnGame: '10.0.0.1',
+          firewallModeEnabled: true,
+          maxRules: 20,
+          state: IpGameFirewallStateEnum.OK,
+          supportedProtocols: [],
+        },
         isLoading: false,
       });
 
@@ -760,8 +781,11 @@ describe('IpActionsCell Component', () => {
         ipDetails: ipv6VrackDetails,
         isLoading: false,
       });
+      setupAttachedServicesMock({
+        hasVrackAttachedToIp: true,
+      });
 
-      const getURLMock = setupVrackTest(SERVICE_NAMES.VRACK_SERVICE);
+      const getURLMock = setupVrackTest();
 
       const { container } = renderWithShellContext({
         ip: TEST_IPS.IPV6_VRACK,
@@ -782,6 +806,7 @@ describe('IpActionsCell Component', () => {
     it('should show Slice BYOIP when canSliceByoipIp returns true', () => {
       setupIpDetailsMock({ bringYourOwnIp: true });
       canSliceByoipIpMock.mockReturnValue(true);
+      setupDefaultMocks();
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
@@ -1032,8 +1057,11 @@ describe('IpActionsCell Component', () => {
         ipDetails: ipv6VrackDetails,
         isLoading: false,
       });
+      setupAttachedServicesMock({
+        hasVrackAttachedToIp: true,
+      });
 
-      const getURLMock = setupVrackTest(SERVICE_NAMES.VRACK_SERVICE);
+      const getURLMock = setupVrackTest();
 
       renderWithShellContext({ ip: TEST_IPS.IPV6_VRACK });
 
@@ -1049,31 +1077,6 @@ describe('IpActionsCell Component', () => {
       );
     });
 
-    it('should handle vRack page URL fetch error', async () => {
-      const ipv6VrackDetails = {
-        ...ipDetailsList[MOCK_DATA_INDICES.IPV6_VRACK],
-        type: IpTypeEnum.VRACK,
-        routedTo: { serviceName: SERVICE_NAMES.VRACK_SERVICE },
-      };
-      useGetIpdetailsMock.mockReturnValue({
-        ipDetails: ipv6VrackDetails,
-        isLoading: false,
-      });
-
-      const getURLMock = setupVrackTest(SERVICE_NAMES.VRACK_SERVICE, () =>
-        Promise.reject(new Error('Failed')),
-      );
-
-      renderWithShellContext({ ip: TEST_IPS.IPV6_VRACK });
-
-      await waitFor(
-        () => {
-          expect(getURLMock).toHaveBeenCalled();
-        },
-        { timeout: TEST_TIMEOUT },
-      );
-    });
-
     it('should not fetch vRack page URL when serviceName is undefined', async () => {
       useGetIpdetailsMock.mockReturnValue({
         ipDetails: {
@@ -1083,7 +1086,7 @@ describe('IpActionsCell Component', () => {
         isLoading: false,
       });
 
-      const getURLMock = setupVrackTest(SERVICE_NAMES.VRACK_SERVICE);
+      const getURLMock = setupVrackTest();
 
       renderWithShellContext({ ip: TEST_IPS.IPV6_VRACK });
 

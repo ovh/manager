@@ -1,17 +1,20 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
+import { urls } from '@/routes/routes.constant';
 import {
-  labels,
   WAIT_FOR_DEFAULT_OPTIONS,
-  getOdsCardByContentText,
-  renderTest,
   getComboboxByName,
+  getOdsCardByContentText,
   getSelectByName,
+  labels,
+  renderTest,
 } from '@/test-utils';
+
 import { IpOffer } from '../pages/order/order.constant';
 import { IpVersion } from '../types';
-import { urls } from '@/routes/routes.constant';
 import { MockParams } from './render-test';
 
 export const goToOrder = async (mockParams: MockParams = {}) => {
@@ -29,9 +32,7 @@ export const selectIpVersion = async (ipVersion: IpVersion) =>
   waitFor(() =>
     userEvent.click(
       screen.getByText(
-        ipVersion === IpVersion.ipv4
-          ? labels.order.ipv4_card_title
-          : labels.order.ipv6_card_title,
+        ipVersion === IpVersion.ipv4 ? labels.order.ipv4_card_title : labels.order.ipv6_card_title,
       ),
     ),
   );
@@ -41,15 +42,13 @@ export const selectService = async ({
   serviceName,
 }: {
   container: HTMLElement;
-  serviceName: string;
+  serviceName?: string;
 }) => {
   const serviceSelect = await getComboboxByName({ container, name: 'service' });
   await waitFor(
     () =>
       expect(
-        serviceSelect.querySelector(
-          `ods-combobox-item[value="${serviceName}"]`,
-        ),
+        serviceSelect.querySelector(`ods-combobox-item[value="${serviceName}"]`),
       ).toBeInTheDocument(),
     WAIT_FOR_DEFAULT_OPTIONS,
   );
@@ -60,9 +59,7 @@ export const selectService = async ({
     detail: { value: serviceName },
   });
 
-  await waitFor(() =>
-    fireEvent((serviceSelect as unknown) as HTMLElement, event),
-  );
+  await waitFor(() => fireEvent(serviceSelect as unknown as HTMLElement, event));
 };
 
 export const selectRegion = async (region: string) => {
@@ -90,8 +87,7 @@ export const selectOffer = async ({
         ? labels.order.additional_ip_block_card_title
         : labels.order.additional_ip_card_title;
 
-    const subcomponent =
-      offer === IpOffer.blockAdditionalIp ? 'ods-select' : 'ods-quantity';
+    const subcomponent = offer === IpOffer.blockAdditionalIp ? 'ods-select' : 'ods-quantity';
     offerOption = await getOdsCardByContentText({
       container,
       text,
@@ -121,17 +117,10 @@ export const selectedOrganisation = async ({
     detail: { value: organisation },
   });
 
-  return waitFor(
-    () => fireEvent(organisationSelect, event),
-    WAIT_FOR_DEFAULT_OPTIONS,
-  );
+  return waitFor(() => fireEvent(organisationSelect, event), WAIT_FOR_DEFAULT_OPTIONS);
 };
 
-export const selectIpv6Option = async ({
-  container,
-}: {
-  container: HTMLElement;
-}) => {
+export const selectIpv6Option = async ({ container }: { container: HTMLElement }) => {
   let ipv6Option: HTMLElement;
   await waitFor(async () => {
     ipv6Option = await getOdsCardByContentText({

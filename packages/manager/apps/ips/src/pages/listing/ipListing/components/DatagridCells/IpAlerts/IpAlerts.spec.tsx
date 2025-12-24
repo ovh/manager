@@ -1,18 +1,16 @@
 import React, { PropsWithChildren } from 'react';
-import { describe, it, vi } from 'vitest';
-import { render } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ListingContext } from '@/pages/listing/listingContext';
+import { render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpAlerts, IpAlertsProps } from './IpAlerts';
-import {
-  IpAntihackType,
-  IpMitigationType,
-  IpSpamStateEnum,
-  IpSpamType,
-} from '@/data/api';
+import { IpAntihackType, IpMitigationType, IpSpamStateEnum, IpSpamType } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { getOdsBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpAlerts, IpAlertsProps } from './IpAlerts';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -38,7 +36,7 @@ const renderComponent = (params: IpAlertsProps) => {
   );
 };
 
-describe('IpAlerts Component', async () => {
+describe('IpAlerts Component', () => {
   it('Should display antihack badge', async () => {
     useIpHasAlertsMock.mockReturnValue({
       hasAlerts: { antihack: [{ ipBlocked: '10.0.0.1' }] } as {

@@ -1,17 +1,11 @@
-import React, {
-  useMemo,
-  useState,
-  PropsWithChildren,
-  createContext,
-} from 'react';
+import React, { PropsWithChildren, createContext, useMemo, useState } from 'react';
+
 import { useSearchParams } from 'react-router-dom';
+
 import { useQueries, useQueryClient } from '@tanstack/react-query';
-import {
-  getIpDetails,
-  getIpDetailsQueryKey,
-  GetIpListParams,
-  getIpListQueryKey,
-} from '@/data/api';
+
+import { GetIpListParams, getIpDetails, getIpDetailsQueryKey, getIpListQueryKey } from '@/data/api';
+
 import { cleanApiFilter, searchToApiFilter } from './listing.utils';
 
 export type ListingContextType = {
@@ -24,8 +18,8 @@ export type ListingContextType = {
   setOnGoingSlicedIps: React.Dispatch<React.SetStateAction<string[]>>;
   onGoingAggregatedIps: string[];
   setOnGoingAggregatedIps: React.Dispatch<React.SetStateAction<string[]>>;
-  onGoingCreatedIps?: string[];
-  setOnGoingCreatedIps?: React.Dispatch<React.SetStateAction<string[]>>;
+  onGoingCreatedIps: string[];
+  setOnGoingCreatedIps: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const ListingContext = createContext<ListingContextType>({
@@ -46,13 +40,9 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
   const queryClient = useQueryClient();
   const [search, setSearch] = useSearchParams();
   const [expiredIps, setExpiredIps] = useState<string[]>([]);
-  const [apiFilter, setApiFilter] = useState<GetIpListParams>(
-    searchToApiFilter(search),
-  );
+  const [apiFilter, setApiFilter] = useState<GetIpListParams>(searchToApiFilter(search));
   const [onGoingSlicedIps, setOnGoingSlicedIps] = useState<string[]>([]);
-  const [onGoingAggregatedIps, setOnGoingAggregatedIps] = useState<string[]>(
-    [],
-  );
+  const [onGoingAggregatedIps, setOnGoingAggregatedIps] = useState<string[]>([]);
   const [onGoingCreatedIps, setOnGoingCreatedIps] = useState<string[]>([]);
 
   useQueries({
@@ -61,13 +51,11 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
       queryFn: async () => {
         const result = await getIpDetails({ ip });
 
-        queryClient.invalidateQueries({
+        await queryClient.invalidateQueries({
           queryKey: getIpListQueryKey(apiFilter),
         });
 
-        setOnGoingCreatedIps((ips) =>
-          ips.filter((ongoingIp) => ongoingIp !== ip),
-        );
+        setOnGoingCreatedIps((ips) => ips.filter((ongoingIp) => ongoingIp !== ip));
         setOnGoingAggregatedIps([]);
         setOnGoingSlicedIps([]);
 
@@ -86,8 +74,7 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
   const setApiFilterWithUrlUpdate = React.useCallback(
     (updater: React.SetStateAction<GetIpListParams>) => {
       setApiFilter((prev) => {
-        const newFilter =
-          typeof updater === 'function' ? updater(prev) : updater;
+        const newFilter = typeof updater === 'function' ? updater(prev) : updater;
         // Let the state update to the next tick to avoid sync issues and warnings about set state during render
         setTimeout(() => {
           setSearch(cleanApiFilter(newFilter), { replace: true });
@@ -95,13 +82,11 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
         return newFilter;
       });
     },
-    [],
+    [setSearch],
   );
 
   const addExpiredIp = React.useCallback((expiredIp: string) => {
-    setExpiredIps((ips) =>
-      ips.indexOf(expiredIp) === -1 ? ips.concat(expiredIp) : ips,
-    );
+    setExpiredIps((ips) => (ips.indexOf(expiredIp) === -1 ? ips.concat(expiredIp) : ips));
   }, []);
 
   const listingContext = useMemo(
@@ -120,16 +105,15 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
     }),
     [
       apiFilter,
+      setApiFilterWithUrlUpdate,
+      search,
       expiredIps,
+      addExpiredIp,
       onGoingAggregatedIps,
       onGoingSlicedIps,
       onGoingCreatedIps,
     ],
   );
 
-  return (
-    <ListingContext.Provider value={listingContext}>
-      {children}
-    </ListingContext.Provider>
-  );
+  return <ListingContext.Provider value={listingContext}>{children}</ListingContext.Provider>;
 };

@@ -1,16 +1,18 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
+
 import {
   ShellContext,
-  initShellContext,
-  initI18n,
   ShellContextType,
+  initI18n,
+  initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+
 import App from './App';
 import './index.scss';
+import { LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
 import './vite-hmr';
-
-import { UNIVERSE, SUB_UNIVERSE, LEVEL2 } from './tracking.constant';
 
 const trackingContext = {
   chapter1: UNIVERSE.toLowerCase(),
@@ -22,10 +24,7 @@ const trackingContext = {
 };
 
 const init = async (appName: string) => {
-  const context = (await initShellContext(
-    appName,
-    trackingContext,
-  )) as ShellContextType;
+  const context = (await initShellContext(appName, trackingContext)) as ShellContextType;
 
   await initI18n({
     context,
@@ -38,7 +37,7 @@ const init = async (appName: string) => {
   context.shell.tracking.setConfig(region, LEVEL2);
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch {
     // nothing to do
   }
 
@@ -51,4 +50,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('ips');
+void init('ips');

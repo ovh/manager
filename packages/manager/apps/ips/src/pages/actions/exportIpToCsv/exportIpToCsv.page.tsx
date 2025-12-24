@@ -1,9 +1,13 @@
 import React, { useContext, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -11,17 +15,15 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 import Loading from '@/components/Loading/Loading';
-import { TRANSLATION_NAMESPACES } from '@/utils';
 import { useExportIpToCsv } from '@/data/hooks';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export default function ExportIpToCsv() {
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.exportIpToCsv,
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.exportIpToCsv, NAMESPACES.ACTIONS]);
   const { apiFilter } = useContext(ListingContext);
   const { addSuccess } = useNotifications();
   const navigate = useNavigate();
@@ -47,7 +49,7 @@ export default function ExportIpToCsv() {
         });
       }
       isOpen.current = false;
-      navigate(`..?${search.toString()}`);
+      void navigate(`..?${search.toString()}`);
     }
   };
 
@@ -59,7 +61,7 @@ export default function ExportIpToCsv() {
     apiFilter,
     onSuccess: (data) => {
       if (isOpen.current) {
-        data.downloadFn();
+        data.downloadFn?.();
         addSuccess(t('exportIpToCsvSuccess'));
         trackPage({
           pageType: PageType.bannerSuccess,

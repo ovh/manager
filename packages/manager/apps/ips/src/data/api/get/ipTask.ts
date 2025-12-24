@@ -1,14 +1,8 @@
-import {
-  v6,
-  fetchIcebergV6,
-  ApiResponse,
-  IcebergFetchResultV6,
-} from '@ovh-ux/manager-core-api';
+import { ApiResponse, IcebergFetchResultV6, fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
+
 import { IpTask, IpTaskFunction, IpTaskStatus } from '@/types';
 
-export const getIcebergIpTaskList = (
-  ip: string,
-): Promise<IcebergFetchResultV6<IpTask>> =>
+export const getIcebergIpTaskList = (ip: string): Promise<IcebergFetchResultV6<IpTask>> =>
   fetchIcebergV6({
     route: `/ip/${encodeURIComponent(ip)}/task`,
     pageSize: 10000,
@@ -43,9 +37,7 @@ export const getIpTaskList = ({
   }
 
   return v6.get(
-    `/ip/${encodeURIComponent(ip)}/task${
-      params.toString() ? '?' : ''
-    }${params.toString()}`,
+    `/ip/${encodeURIComponent(ip)}/task${params.toString() ? '?' : ''}${params.toString()}`,
   );
 };
 

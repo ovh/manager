@@ -1,4 +1,5 @@
 import { IpTypeEnum } from '@/data/constants';
+
 import { useGetProductService } from '../useGetProductService';
 
 export type UseIpHasServicesAttachedParams = {
@@ -19,8 +20,6 @@ export const useIpHasServicesAttached = ({
 
   return {
     hasServiceAttached:
-      productServices?.services?.some(
-        (service) => serviceName === service.serviceName,
-      ) ?? false,
+      productServices?.services?.some((service) => serviceName === service.serviceName) ?? false,
   };
 };

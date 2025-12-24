@@ -1,12 +1,11 @@
 import React from 'react';
-import { Links } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Links } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
 
 export type IpReverseErrorProps = {
@@ -19,11 +18,7 @@ export type IpReverseErrorProps = {
  * @returns React Component
  */
 export const IpReverseError = ({ apiError }: IpReverseErrorProps) => {
-  const { t } = useTranslation([
-    'ip-reverse',
-    TRANSLATION_NAMESPACES.error,
-    'error',
-  ]);
+  const { t } = useTranslation(['ip-reverse', TRANSLATION_NAMESPACES.error, 'error']);
   const { trackClick } = useOvhTracking();
   const { links } = useGuideUtils();
 
@@ -41,9 +36,7 @@ export const IpReverseError = ({ apiError }: IpReverseErrorProps) => {
               actionType: 'action',
               buttonType: ButtonType.link,
               location: PageLocation.page,
-              actions: [
-                `go-to_${links?.configureReverseDnsGuide.trackingLabel}`,
-              ],
+              actions: [`go-to_${links?.configureReverseDnsGuide.trackingLabel}`],
             });
           }}
         />
@@ -54,9 +47,7 @@ export const IpReverseError = ({ apiError }: IpReverseErrorProps) => {
           <span className="inline-block min-w-24 font-bold">
             {t('ip_reverse_update_failure_api_error')}
           </span>
-          <span>
-            {apiError?.response?.data?.message || apiError?.message || null}
-          </span>
+          <span>{apiError?.response?.data?.message || apiError?.message || null}</span>
         </li>
         <li>
           <span className="inline-block min-w-24 font-bold">

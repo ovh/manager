@@ -1,11 +1,16 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { Clipboard } from '@ovh-ux/manager-react-components';
+
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
-import { ByoipContext } from '../Byoip.context';
 import { useGetTokens } from '@/data/hooks/useGetTokens';
+
+import { ByoipContext } from '../Byoip.context';
 
 export const TokenSelectionSection: React.FC = () => {
   const { t } = useTranslation('byoip');
@@ -22,12 +27,8 @@ export const TokenSelectionSection: React.FC = () => {
       isLoading={isLoading}
     >
       <div>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('region_token_description_1')}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('region_token_description_2')}
-        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('region_token_description_1')}</OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('region_token_description_2')}</OdsText>
         <OdsText className="pb-1" preset={ODS_TEXT_PRESET.paragraph}>
           {t('region_token_description_3')}
         </OdsText>

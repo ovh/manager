@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   IpGameFirewallStateEnum,
   IpGameFirewallType,
@@ -29,8 +31,7 @@ export const useGetIpGameFirewall = ({
     retry: false,
     refetchInterval: (query) =>
       // Array can be empty and will trigger the refresh indefinitly
-      query.state.data?.data?.state &&
-      query.state.data?.data?.state !== IpGameFirewallStateEnum.OK
+      query.state.data?.data?.state && query.state.data?.data?.state !== IpGameFirewallStateEnum.OK
         ? refetchInterval
         : undefined,
   });

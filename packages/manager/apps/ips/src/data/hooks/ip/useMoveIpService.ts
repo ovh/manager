@@ -1,43 +1,36 @@
 import { useCallback } from 'react';
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  Query,
-  useQueries,
-} from '@tanstack/react-query';
+
+import { Query, useMutation, useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import {
+  MoveIpAvailableDestinationsResponse,
+  postMoveIp as apiPostMoveIp,
+  getIcebergIpTaskList,
+  getIpDetailsQueryKey,
+  getIpTaskDetails,
+  getIpTaskDetailsQueryKey,
   getMoveIpAvailableDestinations,
   getMoveIpAvailableDestinationsQueryKey,
-  postMoveIp as apiPostMoveIp,
-  getIpDetailsQueryKey,
-  getIpTaskDetailsQueryKey,
-  getIpTaskDetails,
-  MoveIpAvailableDestinationsResponse,
+  getVrackTaskDetails,
+  getVrackTaskDetailsQueryKey,
   getVrackTaskList,
   getVrackTaskQueryKey,
-  getVrackTaskDetailsQueryKey,
-  getVrackTaskDetails,
-  getIcebergIpTaskList,
 } from '@/data/api';
-import {
-  IpTaskStatus,
-  IpTaskFunction,
-  IpTask,
-  VrackTask,
-  VrackTaskStatus,
-  VrackTaskFunction,
-} from '@/types';
-import {
-  getTypeByServiceName,
-  INVALIDATED_REFRESH_PERIOD,
-  TRANSLATION_NAMESPACES,
-} from '@/utils';
 import { IpTypeEnum } from '@/data/constants';
+import {
+  IpTask,
+  IpTaskFunction,
+  IpTaskStatus,
+  VrackTask,
+  VrackTaskFunction,
+  VrackTaskStatus,
+} from '@/types';
+import { INVALIDATED_REFRESH_PERIOD, TRANSLATION_NAMESPACES, getTypeByServiceName } from '@/utils';
 
 const getMoveIpOngoingTasksQueryKey = (ip: string) => [
   'ipMoveOngoingTasks',
@@ -54,20 +47,14 @@ export function useVrackMoveTasks({
   enabled?: boolean;
 }) {
   const queryClient = useQueryClient();
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.ips,
-    TRANSLATION_NAMESPACES.moveIp,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.ips, TRANSLATION_NAMESPACES.moveIp]);
   const { clearNotifications, addSuccess } = useNotifications();
   const { trackPage } = useOvhTracking();
   const { data, isLoading } = useQuery({
     queryKey: getVrackTaskQueryKey({ serviceName }),
     queryFn: () => getVrackTaskList({ serviceName }),
     retry: false,
-    enabled:
-      !!serviceName &&
-      getTypeByServiceName(serviceName) === IpTypeEnum.VRACK &&
-      enabled,
+    enabled: !!serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.VRACK && enabled,
   });
 
   const queries = useQueries({
@@ -89,7 +76,7 @@ export function useVrackMoveTasks({
               pageType: PageType.bannerSuccess,
               pageName: 'move-ip_success',
             });
-            queryClient.invalidateQueries({
+            void queryClient.invalidateQueries({
               queryKey: getIpDetailsQueryKey({ ip }),
             });
             return {} as ApiResponse<VrackTask>;
@@ -100,17 +87,17 @@ export function useVrackMoveTasks({
       refetchInterval: (query: Query<ApiResponse<VrackTask>, ApiError>) => {
         if (
           !query.state.error &&
+          query.state.data?.data?.function &&
           [
             VrackTaskFunction.addBlockToBridgeDomain,
             VrackTaskFunction.removeBlockFromBridgeDomain,
-          ].includes(query.state.data?.data?.function)
+          ].includes(query.state.data.data.function)
         ) {
           if (
-            [
-              VrackTaskStatus.init,
-              VrackTaskStatus.todo,
-              VrackTaskStatus.doing,
-            ].includes(query.state.data?.data?.status)
+            query.state.data?.data?.status &&
+            [VrackTaskStatus.init, VrackTaskStatus.todo, VrackTaskStatus.doing].includes(
+              query.state.data.data.status,
+            )
           ) {
             return INVALIDATED_REFRESH_PERIOD;
           }
@@ -127,7 +114,7 @@ export function useVrackMoveTasks({
               pageType: PageType.bannerSuccess,
               pageName: 'move-ip_success',
             });
-            queryClient.invalidateQueries({
+            void queryClient.invalidateQueries({
               queryKey: getIpDetailsQueryKey({ ip }),
             });
           }
@@ -144,23 +131,13 @@ export function useVrackMoveTasks({
     isVrackTasksLoading: isLoading || queries.some((q) => q.isLoading),
     vrackTasksError: queries.find((q) => q.error)?.error as ApiError,
     hasOnGoingVrackMoveTasks:
-      queries.map((q) => q.data).filter((d): d is ApiResponse<VrackTask> => !!d)
-        .length > 0,
+      queries.map((q) => q.data).filter((d): d is ApiResponse<VrackTask> => !!d).length > 0,
   };
 }
 
-export function useMoveIpTasks({
-  ip,
-  enabled,
-}: {
-  ip: string;
-  enabled?: boolean;
-}) {
+export function useMoveIpTasks({ ip, enabled }: { ip: string; enabled?: boolean }) {
   const queryClient = useQueryClient();
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.ips,
-    TRANSLATION_NAMESPACES.moveIp,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.ips, TRANSLATION_NAMESPACES.moveIp]);
   const { clearNotifications, addError, addSuccess } = useNotifications();
   const { trackPage } = useOvhTracking();
 
@@ -173,14 +150,10 @@ export function useMoveIpTasks({
           .filter(
             (task) =>
               task.function === IpTaskFunction.genericMoveFloatingIp &&
-              [
-                IpTaskStatus.init,
-                IpTaskStatus.todo,
-                IpTaskStatus.doing,
-              ].includes(task.status),
+              [IpTaskStatus.init, IpTaskStatus.todo, IpTaskStatus.doing].includes(task.status),
           )
           .map((task) => task.taskId);
-      } catch (error) {
+      } catch {
         return [];
       }
     },
@@ -195,6 +168,7 @@ export function useMoveIpTasks({
       refetchInterval: (query: Query<ApiResponse<IpTask>, ApiError>) => {
         if (
           !query.state.error &&
+          query.state.data?.data?.status &&
           [IpTaskStatus.init, IpTaskStatus.todo, IpTaskStatus.doing].includes(
             query.state.data?.data?.status,
           )
@@ -203,11 +177,10 @@ export function useMoveIpTasks({
         }
 
         if (
-          [
-            IpTaskStatus.customError,
-            IpTaskStatus.ovhError,
-            IpTaskStatus.cancelled,
-          ].includes(query.state.data?.data?.status)
+          query.state.data?.data?.status &&
+          [IpTaskStatus.customError, IpTaskStatus.ovhError, IpTaskStatus.cancelled].includes(
+            query.state.data?.data?.status,
+          )
         ) {
           clearNotifications();
           addError(
@@ -237,15 +210,11 @@ export function useMoveIpTasks({
           });
         }
 
-        queryClient.setQueryData(
-          getMoveIpOngoingTasksQueryKey(ip),
-          (oldData: number[]) =>
-            !oldData
-              ? oldData
-              : oldData.filter((id) => id !== query.state.data?.data?.taskId),
+        queryClient.setQueryData(getMoveIpOngoingTasksQueryKey(ip), (oldData: number[]) =>
+          !oldData ? oldData : oldData.filter((id) => id !== query.state.data?.data?.taskId),
         );
 
-        queryClient.invalidateQueries({
+        void queryClient.invalidateQueries({
           queryKey: getIpDetailsQueryKey({ ip }),
         });
 
@@ -257,7 +226,7 @@ export function useMoveIpTasks({
   return {
     isTasksLoading: taskQuery.isLoading,
     taskError: taskQuery.error,
-    hasOnGoingMoveIpTask: taskQuery?.data?.length > 0,
+    hasOnGoingMoveIpTask: taskQuery?.data && taskQuery?.data?.length > 0,
   };
 }
 
@@ -271,15 +240,10 @@ export function useMoveIpService({
   onMoveIpSuccess?: () => void;
 }) {
   const queryClient = useQueryClient();
-  const {
-    hasOnGoingVrackMoveTasks,
-    isVrackTasksLoading,
-    vrackTasksError,
-  } = useVrackMoveTasks({
+  const { hasOnGoingVrackMoveTasks, isVrackTasksLoading, vrackTasksError } = useVrackMoveTasks({
     ip,
     serviceName,
-    enabled:
-      !!serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.VRACK,
+    enabled: !!serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.VRACK,
   });
   const { hasOnGoingMoveIpTask, isTasksLoading, taskError } = useMoveIpTasks({
     ip,
@@ -318,26 +282,21 @@ export function useMoveIpService({
 
   const isDedicatedCloudService = useCallback(
     (destination: string) =>
-      !!availableDestinations?.data?.dedicatedCloud.find(
-        ({ service }) => service === destination,
-      ),
+      !!availableDestinations?.data?.dedicatedCloud.find(({ service }) => service === destination),
     [availableDestinations?.data],
   );
 
   const getNextHopList = useCallback(
-    (selectedDestinationService: string) => {
+    (selectedDestinationService?: string) => {
       if (!selectedDestinationService) {
         return [];
       }
 
-      const destinationsList = Object.values(
-        availableDestinations?.data || {},
-      ).flat();
+      const destinationsList = Object.values(availableDestinations?.data || {}).flat();
 
       return (
-        destinationsList.find(
-          ({ service }) => service === selectedDestinationService,
-        )?.nexthop || []
+        destinationsList.find(({ service }) => service === selectedDestinationService)?.nexthop ||
+        []
       );
     },
     [availableDestinations?.data],
@@ -349,8 +308,8 @@ export function useMoveIpService({
     error: moveIpError,
   } = useMutation({
     mutationFn: apiPostMoveIp,
-    onSuccess: async () => {
-      queryClient.invalidateQueries({
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
         queryKey:
           serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.VRACK
             ? getVrackTaskQueryKey({ serviceName })
@@ -362,9 +321,7 @@ export function useMoveIpService({
 
   return {
     isMoveIpServiceLoading: isTasksLoading || isAvailableDestinationsLoading,
-    moveIpServiceError: (availableDestinationsError ||
-      taskError ||
-      moveIpError) as ApiError,
+    moveIpServiceError: (availableDestinationsError || taskError || moveIpError) as ApiError,
     isDedicatedCloudService,
     hasOnGoingMoveIpTask,
     availableDestinations,

@@ -5,9 +5,9 @@ export type UpsertIpDescriptionParams = {
   description: string;
 };
 
-export const upsertIpDescriptionQueryKey = (
-  params: UpsertIpDescriptionParams,
-) => [`put/ip/${encodeURIComponent(params.ip)})}`];
+export const upsertIpDescriptionQueryKey = (params: UpsertIpDescriptionParams) => [
+  `put/ip/${encodeURIComponent(params.ip)})}`,
+];
 
 export const upsertIpDescription = async (
   params: UpsertIpDescriptionParams,

@@ -32,16 +32,14 @@ export const ByoipContext = React.createContext<{
   setAsOwnNumberType: () => {},
 });
 
-export const ByoipContextProvider: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
+export const ByoipContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [ipRir, setIpRir] = React.useState<string>('');
   const [selectedRegion, setSelectedRegion] = React.useState<string>('');
   const [selectedToken, setSelectedToken] = React.useState<string>('');
   const [ipRange, setIpRange] = React.useState<string>('');
   const [asType, setAsType] = React.useState<string>('');
   const [asOwnRirType, setAsOwnRirType] = React.useState<string>('');
-  const [asOwnNumberType, setAsOwnNumberType] = React.useState<number>();
+  const [asOwnNumberType, setAsOwnNumberType] = React.useState<number>(0);
   const value = React.useMemo(
     () => ({
       ipRir,
@@ -59,18 +57,8 @@ export const ByoipContextProvider: React.FC<React.PropsWithChildren> = ({
       asOwnNumberType,
       setAsOwnNumberType,
     }),
-    [
-      ipRir,
-      selectedRegion,
-      selectedToken,
-      ipRange,
-      asType,
-      asOwnRirType,
-      asOwnNumberType,
-    ],
+    [ipRir, selectedRegion, selectedToken, ipRange, asType, asOwnRirType, asOwnNumberType],
   );
 
-  return (
-    <ByoipContext.Provider value={value}>{children}</ByoipContext.Provider>
-  );
+  return <ByoipContext.Provider value={value}>{children}</ByoipContext.Provider>;
 };

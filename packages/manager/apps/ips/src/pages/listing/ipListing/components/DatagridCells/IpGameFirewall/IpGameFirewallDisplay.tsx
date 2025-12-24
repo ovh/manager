@@ -1,16 +1,11 @@
-import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { IpGameFirewallStateEnum } from '@/data/api';
 import { useGetIpGameFirewall, useIpGameFirewallRuleList } from '@/data/hooks';
@@ -35,11 +30,7 @@ export type IpGameFirewallDisplayProps = {
  * @param enabled boolean used to display datas or not
  * @returns React component
  */
-export const IpGameFirewallDisplay = ({
-  ip,
-  ipOnGame,
-  enabled,
-}: IpGameFirewallDisplayProps) => {
+export const IpGameFirewallDisplay = ({ ip, ipOnGame, enabled }: IpGameFirewallDisplayProps) => {
   const id = `gamefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { t } = useTranslation('listing');
   const { trackClick } = useOvhTracking();
@@ -76,10 +67,7 @@ export const IpGameFirewallDisplay = ({
     void navigate(
       `${urls.configureGameFirewall
         .replace(urlDynamicParts.parentId, fromIpToId(ip))
-        .replace(
-          urlDynamicParts.id,
-          fromIpToId(ipOnGame),
-        )}?${search.toString()}`,
+        .replace(urlDynamicParts.id, fromIpToId(ipOnGame))}?${search.toString()}`,
     );
   };
 

@@ -1,15 +1,18 @@
 import React from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { IpVersion, ServiceType } from '@/types';
+
 import { DATACENTER_TO_REGION } from './catalog.utils';
 import { useCatalogIps } from './useCatalogIps';
-import { IpVersion, ServiceType } from '@/types';
 
 export const useAdditionalIpsRegions = ({
   ipVersion,
   serviceType,
 }: {
-  ipVersion: IpVersion;
-  serviceType: ServiceType;
+  ipVersion?: IpVersion;
+  serviceType?: ServiceType;
 }) => {
   const { environment } = React.useContext(ShellContext);
   const { data, ...query } = useCatalogIps({
@@ -24,7 +27,7 @@ export const useAdditionalIpsRegions = ({
 
   return {
     ...query,
-    regionList: data?.data?.plans
+    regionList: (data?.data?.plans
       ? Array.from(
           new Set(
             data.data.plans
@@ -33,8 +36,7 @@ export const useAdditionalIpsRegions = ({
                   case ServiceType.ipParking:
                     return planCode.includes('failover');
                   case ServiceType.vrack:
-                    return environment.user.ovhSubsidiary === 'US' &&
-                      ipVersion === IpVersion.ipv4
+                    return environment.user.ovhSubsidiary === 'US' && ipVersion === IpVersion.ipv4
                       ? planCode.includes('failover')
                       : planCode.includes('ip-v6');
                   default:
@@ -43,18 +45,16 @@ export const useAdditionalIpsRegions = ({
               })
               .map((plan) =>
                 plan.details.product.configurations
-                  .flatMap((config) =>
-                    config.name === configurationName ? config : undefined,
-                  )
+                  ?.flatMap((config) => (config?.name === configurationName ? config : undefined))
                   .filter(Boolean)
-                  .flatMap((config) => config.values),
+                  .flatMap((config) => config?.values),
               )
               .flat(),
           ),
         ).map(
           (regionOrDatacenter) =>
-            DATACENTER_TO_REGION[regionOrDatacenter] || regionOrDatacenter,
+            DATACENTER_TO_REGION[regionOrDatacenter as string] || regionOrDatacenter,
         )
-      : [],
+      : []) as string[],
   };
 };

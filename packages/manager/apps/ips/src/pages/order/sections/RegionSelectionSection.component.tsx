@@ -1,16 +1,17 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { useAdditionalIpsRegions } from '@/data/hooks/catalog';
-import { useIpv6Availability } from '@/data/hooks/useIpv6Availability';
+import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { RegionSelector } from '@/components/RegionSelector/region-selector.component';
+import { useAdditionalIpsRegions } from '@/data/hooks/catalog';
+import { useIpv6Availability } from '@/data/hooks/useIpv6Availability';
+
 import { OrderContext } from '../order.context';
 
 export const RegionSelectionSection: React.FC = () => {
@@ -25,7 +26,7 @@ export const RegionSelectionSection: React.FC = () => {
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation('order');
   const { regionList, isLoading, isError, error } = useAdditionalIpsRegions({
-    ipVersion,
+    ipVersion: ipVersion,
     serviceType: selectedServiceType,
   });
   const {
@@ -43,14 +44,12 @@ export const RegionSelectionSection: React.FC = () => {
   if (hasReachedIpv6Limit) {
     return (
       <OrderSection title={t('region_selection_title')}>
-        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
-          {t('ipv6_limit_reached_error')}
-        </OdsMessage>
+        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>{t('ipv6_limit_reached_error')}</OdsMessage>
       </OrderSection>
     );
   }
 
-  const handleSelectRegion = (updatedRegion: React.SetStateAction<string>) => {
+  const handleSelectRegion = (updatedRegion?: string) => {
     setSelectedRegion(updatedRegion);
     setSelectedOrganisation(undefined);
     trackClick({
@@ -76,14 +75,12 @@ export const RegionSelectionSection: React.FC = () => {
             regionList={regionList}
             selectedRegion={selectedRegion}
             setSelectedRegion={handleSelectRegion}
-            disabledRegions={disabledRegionList?.map(
-              ({ region, has3blocks }) => ({
-                region,
-                message: has3blocks
-                  ? t('ipv6_region_3_blocks_limit_reached_error')
-                  : t('ipv6_region_already_used_error'),
-              }),
-            )}
+            disabledRegions={disabledRegionList?.map(({ region, has3blocks }) => ({
+              region,
+              message: has3blocks
+                ? t('ipv6_region_3_blocks_limit_reached_error')
+                : t('ipv6_region_already_used_error'),
+            }))}
           />
         </React.Suspense>
       )}

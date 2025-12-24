@@ -18,18 +18,14 @@ export type IpEdgeFirewallType = {
 };
 
 export const getIpEdgeFirewallQueryKey = (params: GetIpEdgeFirewallParams) => [
-  `get/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(
-    params.ipOnFirewall,
-  )}`,
+  `get/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(params.ipOnFirewall)}`,
 ];
 
 export const getIpEdgeFirewall = async (
   params: GetIpEdgeFirewallParams,
 ): Promise<ApiResponse<IpEdgeFirewallType>> =>
   v6.get<IpEdgeFirewallType>(
-    `/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(
-      params.ipOnFirewall,
-    )}`,
+    `/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(params.ipOnFirewall)}`,
   );
 
 export const postIpEdgeFirewall = async (params: {
@@ -46,9 +42,7 @@ export const putIpEdgeFirewall = async (params: {
   enabled: boolean;
 }): Promise<void> =>
   v6.put(
-    `/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(
-      params.ipOnFirewall,
-    )}`,
+    `/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(params.ipOnFirewall)}`,
     { enabled: params.enabled },
   );
 
@@ -57,9 +51,7 @@ export const deleteIpEdgeFirewall = async (params: {
   ipOnFirewall: string;
 }): Promise<ApiResponse<string>> =>
   v6.delete(
-    `/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(
-      params.ipOnFirewall,
-    )}`,
+    `/ip/${encodeURIComponent(params.ip)}/firewall/${encodeURIComponent(params.ipOnFirewall)}`,
   );
 
 export const getIpEdgeNetworkFirewallRuleListQueryKey = (params: {
@@ -94,10 +86,8 @@ export enum IpEdgeFirewallProtocol {
   UDP = 'udp',
 }
 
-export function getIpEdgeFirewallProtocolLabelFromValue(protocol: string) {
-  return Object.entries(IpEdgeFirewallProtocol).find(
-    ([, value]) => value === protocol,
-  )?.[0];
+export function getIpEdgeFirewallProtocolLabelFromValue(protocol: IpEdgeFirewallProtocol) {
+  return Object.entries(IpEdgeFirewallProtocol).find(([, value]) => value === protocol)?.[0];
 }
 
 export enum IpEdgeFirewallRuleState {
@@ -129,20 +119,18 @@ export const postIpEdgeNetworkFirewallRule = async ({
   ip: string;
   ipOnFirewall: string;
   action: 'permit' | 'deny';
-  destinationPort: number;
+  destinationPort: number | null;
   protocol: IpEdgeFirewallProtocol;
   sequence: number;
-  source: string;
-  sourcePort: number;
+  source: string | null;
+  sourcePort: number | null;
   tcpOption: {
-    fragments: boolean | null;
-    option: 'established' | 'syn' | null;
-  };
+    fragments?: boolean | null;
+    option?: 'established' | 'syn' | null;
+  } | null;
 }): Promise<ApiResponse<IpEdgeFirewallRule>> =>
   v6.post(
-    `/ip/${encodeURIComponent(ip)}/firewall/${encodeURIComponent(
-      ipOnFirewall,
-    )}/rule`,
+    `/ip/${encodeURIComponent(ip)}/firewall/${encodeURIComponent(ipOnFirewall)}/rule`,
     params,
   );
 

@@ -1,7 +1,9 @@
 import JSURL from 'jsurl';
-import { DEFAULT_PRICING_MODE, IpOffer } from './order.constant';
+
 import { getDatacenterFromRegion } from '@/data/hooks/catalog/catalog.utils';
-import { ServiceType, IpVersion } from '@/types';
+import { IpVersion, ServiceType } from '@/types';
+
+import { DEFAULT_PRICING_MODE, IpOffer } from './order.constant';
 
 export type OrderParams = {
   serviceName: string;
@@ -39,11 +41,9 @@ export const getAdditionalIpsProductSettings = ({
       ipVersion === IpVersion.ipv6 && { label: 'ip_region', value: region },
       region &&
         ipVersion === IpVersion.ipv4 &&
-        ![
-          ServiceType.vps,
-          ServiceType.dedicatedCloud,
-          ServiceType.server,
-        ].includes(serviceType) && {
+        ![ServiceType.vps, ServiceType.dedicatedCloud, ServiceType.server].includes(
+          serviceType,
+        ) && {
           label: 'datacenter',
           value: getDatacenterFromRegion(region),
         },
@@ -51,19 +51,13 @@ export const getAdditionalIpsProductSettings = ({
     duration: 'P1M',
     planCode,
     pricingMode,
-    productId:
-      serviceType === ServiceType.dedicatedCloud ? 'privateCloud' : 'ip',
+    productId: serviceType === ServiceType.dedicatedCloud ? 'privateCloud' : 'ip',
     quantity: offer === IpOffer.blockAdditionalIp ? 1 : quantity,
-    serviceName:
-      serviceType === ServiceType.dedicatedCloud ? serviceName : null,
+    serviceName: serviceType === ServiceType.dedicatedCloud ? serviceName : null,
     datacenter:
       region &&
       ipVersion === IpVersion.ipv4 &&
-      ![
-        ServiceType.vps,
-        ServiceType.dedicatedCloud,
-        ServiceType.server,
-      ].includes(serviceType)
+      ![ServiceType.vps, ServiceType.dedicatedCloud, ServiceType.server].includes(serviceType)
         ? getDatacenterFromRegion(region)
         : null,
   });
@@ -75,11 +69,7 @@ export const offerPossibilitiesByServiceType = {
     ServiceType.ipParking,
     ServiceType.server,
   ],
-  [IpOffer.additionalIp]: [
-    ServiceType.ipParking,
-    ServiceType.server,
-    ServiceType.vps,
-  ],
+  [IpOffer.additionalIp]: [ServiceType.ipParking, ServiceType.server, ServiceType.vps],
 };
 
 /**
@@ -92,16 +82,12 @@ export const hasAdditionalIpOffer = (serviceType: ServiceType) =>
  * Returns true if Additional IP Block is available for this service type
  */
 export const hasAdditionalIpBlockOffer = (serviceType: ServiceType) =>
-  offerPossibilitiesByServiceType[IpOffer.blockAdditionalIp].includes(
-    serviceType,
-  );
+  offerPossibilitiesByServiceType[IpOffer.blockAdditionalIp].includes(serviceType);
 
 /**
  * Returns a function that returns true if the current organisation is available for the provided region
  */
-export const isAvailableOrganisation = (selectedPlanCode: string) => (
-  organisation: string,
-) => {
+export const isAvailableOrganisation = (selectedPlanCode: string) => (organisation: string) => {
   if (selectedPlanCode.includes('ripe')) return organisation.includes('RIPE');
   if (selectedPlanCode.includes('arin')) return organisation.includes('ARIN');
   return true;

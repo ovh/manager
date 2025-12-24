@@ -1,19 +1,15 @@
 import React from 'react';
+
 import ipaddr from 'ipaddr.js';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  isValidIpv4Block,
-  isValidIpv6Block,
-  TRANSLATION_NAMESPACES,
-} from '@/utils';
-import ModalButtonGroup from './ModalButtonGroup.component';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
+import { TRANSLATION_NAMESPACES, isValidIpv4Block, isValidIpv6Block } from '@/utils';
+
 import { VALID_TOKEN_SIZE } from '../importIpFromSys.constant';
+import ModalButtonGroup from './ModalButtonGroup.component';
 
 const isIpValid = (ip?: string) => {
   if (!ip) {
@@ -32,14 +28,7 @@ type Step1Props = {
   setToken: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function Step1({
-  onCancel,
-  onNext,
-  ip,
-  setIp,
-  token,
-  setToken,
-}: Step1Props) {
+export default function Step1({ onCancel, onNext, ip, setIp, token, setToken }: Step1Props) {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.importIpFromSys);
   const isNextButtonDisabled = React.useMemo(
     () => !isIpValid(ip) || !isTokenValid(token),
@@ -49,10 +38,10 @@ export default function Step1({
   return (
     <>
       <div className="flex flex-col">
-        <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
           {t('step1Description')}
         </OdsText>
-        <OdsFormField className="block mb-3">
+        <OdsFormField className="mb-3 block">
           <label htmlFor="ipOrBlock" slot="label">
             {t('step1IpLabel')}
           </label>

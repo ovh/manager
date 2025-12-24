@@ -97,7 +97,5 @@ export type PccCatalogPlan = {
 
 export type PccCatalogResponse = PccCatalogPlan[];
 
-export const getPccCatalog = (
-  serviceName: string,
-): Promise<ApiResponse<PccCatalogResponse>> =>
+export const getPccCatalog = (serviceName: string): Promise<ApiResponse<PccCatalogResponse>> =>
   apiClient.v6.get(`/order/cartServiceOption/privateCloud/${serviceName}`);

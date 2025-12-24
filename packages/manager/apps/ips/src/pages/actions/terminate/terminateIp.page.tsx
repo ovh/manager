@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
-import {
-  DeleteModal,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { DeleteModal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -11,8 +13,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import { fromIdToIp, ipFormatter } from '@/utils';
 
 export default function TerminateIp() {
@@ -26,7 +27,7 @@ export default function TerminateIp() {
   const { trackClick, trackPage } = useOvhTracking();
 
   const closeModal = () => {
-    navigate(`..?${search.toString()}`);
+    void navigate(`..?${search.toString()}`);
   };
 
   const onSuccess = () => {
@@ -35,9 +36,7 @@ export default function TerminateIp() {
       pageName: 'terminate_additional-ip_success',
     });
     const messageKey =
-      ovhSubsidiary === 'US'
-        ? 'listingTerminateIp_ftc_success'
-        : 'listingTerminateIp_success';
+      ovhSubsidiary === 'US' ? 'listingTerminateIp_ftc_success' : 'listingTerminateIp_success';
     addSuccess(t(messageKey, { service: ip }));
     closeModal();
   };

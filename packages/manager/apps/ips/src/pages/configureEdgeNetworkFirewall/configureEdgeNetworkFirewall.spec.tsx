@@ -1,18 +1,12 @@
-import { waitFor, fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { describe } from 'vitest';
-import {
-  assertOdsModalText,
-  assertOdsModalVisibility,
-} from '@ovh-ux/manager-core-test-utils';
-import {
-  getButtonByLabel,
-  getToggleByName,
-  labels,
-  renderTest,
-} from '@/test-utils';
-import { urlDynamicParts, urls } from '@/routes/routes.constant';
-import { fromIpToId } from '@/utils';
+
+import { assertOdsModalText } from '@ovh-ux/manager-core-test-utils';
+
 import { IpEdgeFirewallStateEnum } from '@/data/api';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import { getButtonByLabel, getToggleByName, labels, renderTest } from '@/test-utils';
+import { fromIpToId } from '@/utils';
 
 describe('Configure edge network firewall page', () => {
   it('disable toggle when edge firewall has an ongoing update', async () => {

@@ -1,9 +1,4 @@
-import {
-  ApiResponse,
-  IcebergFetchResultV6,
-  fetchIcebergV6,
-  v6,
-} from '@ovh-ux/manager-core-api';
+import { ApiResponse, IcebergFetchResultV6, fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 
 export type GetIpMitigationParams = {
   /**  */
@@ -44,12 +39,8 @@ export const getIpMitigation = async (
     disableCache: true,
   });
 
-export const getIpMitigationWithoutIcebergQueryKey = (
-  params: GetIpMitigationWithBlockParams,
-) => [
-  `get/ip/${encodeURIComponent(
-    params.ipBlockip,
-  )}/mitigation/${encodeURIComponent(params.ip)}`,
+export const getIpMitigationWithoutIcebergQueryKey = (params: GetIpMitigationWithBlockParams) => [
+  `get/ip/${encodeURIComponent(params.ipBlockip)}/mitigation/${encodeURIComponent(params.ip)}`,
 ];
 
 /**
@@ -59,7 +50,5 @@ export const getIpMitigationWithoutIceberg = async (
   params: GetIpMitigationWithBlockParams,
 ): Promise<ApiResponse<IpMitigationType>> =>
   v6.get<IpMitigationType>(
-    `/ip/${encodeURIComponent(
-      params.ipBlockip,
-    )}/mitigation/${encodeURIComponent(params.ip)}`,
+    `/ip/${encodeURIComponent(params.ipBlockip)}/mitigation/${encodeURIComponent(params.ip)}`,
   );

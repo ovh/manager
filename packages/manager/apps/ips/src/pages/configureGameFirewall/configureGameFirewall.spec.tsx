@@ -1,10 +1,12 @@
-import { waitFor, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { describe } from 'vitest';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertOdsModalText,
-} from '@ovh-ux/manager-core-test-utils';
+
+import { WAIT_FOR_DEFAULT_OPTIONS, assertOdsModalText } from '@ovh-ux/manager-core-test-utils';
+
+import { IpGameFirewallStateEnum } from '@/data/api';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import {
   getButtonByIcon,
   getButtonByLabel,
@@ -13,8 +15,6 @@ import {
   labels,
   renderTest,
 } from '@/test-utils';
-import { urlDynamicParts, urls } from '@/routes/routes.constant';
-import { IpGameFirewallStateEnum } from '@/data/api';
 import { fromIpToId } from '@/utils';
 
 describe('Configure game firewall page', () => {
@@ -34,7 +34,7 @@ describe('Configure game firewall page', () => {
       text: 'serviceName3',
     });
 
-    const row = cell.parentElement;
+    const row = cell.parentElement as HTMLElement;
 
     const menuButton = await getButtonByIcon({
       container: row,
@@ -109,9 +109,7 @@ describe('Configure game firewall page', () => {
     await waitFor(
       () =>
         expect(
-          screen.getByText(
-            labels.gameFirewall.default_deny_strategy_enabled_success_message,
-          ),
+          screen.getByText(labels.gameFirewall.default_deny_strategy_enabled_success_message),
         ).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
@@ -150,10 +148,7 @@ describe('Configure game firewall page', () => {
     await waitFor(() => fireEvent.click(confirmButton));
 
     await waitFor(
-      () =>
-        expect(
-          screen.getByText('game firewall update KO', { exact: false }),
-        ).toBeVisible(),
+      () => expect(screen.getByText('game firewall update KO', { exact: false })).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });

@@ -1,19 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
-import { getMeModelQueryKey, getMeModel } from '@/data/api';
+
+import { ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { getMeModel, getMeModelQueryKey } from '@/data/api';
 
 interface MeModelResponse {
-  data: {
-    models: any;
+  models: {
+    'nichandle.IpRegistryEnum': {
+      enum: string[];
+    };
+    'nichandle.CountryEnum': {
+      enum: string[];
+    };
   };
 }
 
 export const useGetMeModels = () => {
-  const { data: result, isLoading, isError, error } = useQuery<MeModelResponse>(
-    {
-      queryKey: getMeModelQueryKey(),
-      queryFn: getMeModel,
-    },
-  );
+  const {
+    data: result,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<ApiResponse<MeModelResponse>>({
+    queryKey: getMeModelQueryKey(),
+    queryFn: getMeModel,
+  });
 
   return {
     models: result?.data?.models,

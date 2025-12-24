@@ -1,8 +1,7 @@
-import { vi } from 'vitest';
-import React from 'react';
-import '@testing-library/jest-dom';
 import { NavLinkProps } from 'react-router-dom';
-import { ListingContextType } from '@/pages/listing/listingContext';
+
+import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -28,7 +27,20 @@ vi.mock('react-router-dom', async (importOriginal) => {
     useLocation: vi.fn().mockReturnValue({
       pathname: 'pathname',
     }),
-    NavLink: ({ ...params }: NavLinkProps) => <>{params.children}</>,
+    NavLink: (props: NavLinkProps) => {
+      const { children } = props;
+      return (
+        <>
+          {typeof children === 'function'
+            ? children({
+                isActive: false,
+                isPending: false,
+                isTransitioning: false,
+              })
+            : children}
+        </>
+      );
+    },
   };
 });
 

@@ -1,25 +1,21 @@
 import React from 'react';
-import { ByoipContext } from './Byoip.context';
-import {
-  RirSelectionSection,
-  RegionSelectionSection,
-  TokenSelectionSection,
-  IpRangeSelectionSection,
-  AsTypeSelectionSection,
-  OrderButtonSection,
-} from './sections';
+
 import { useGetTokens } from '@/data/hooks/useGetTokens';
+
+import { ByoipContext } from './Byoip.context';
 import { isValidIpRange } from './Byoip.utils';
+import {
+  AsTypeSelectionSection,
+  IpRangeSelectionSection,
+  OrderButtonSection,
+  RegionSelectionSection,
+  RirSelectionSection,
+  TokenSelectionSection,
+} from './sections';
 
 export const ByoipOrder: React.FC = () => {
-  const {
-    ipRir,
-    selectedRegion,
-    ipRange,
-    asType,
-    asOwnRirType,
-    asOwnNumberType,
-  } = React.useContext(ByoipContext);
+  const { ipRir, selectedRegion, ipRange, asType, asOwnRirType, asOwnNumberType } =
+    React.useContext(ByoipContext);
 
   const { token } = useGetTokens({
     campus: selectedRegion,
@@ -32,8 +28,7 @@ export const ByoipOrder: React.FC = () => {
     asTypeSelection: ipRange && isValidIpRange(ipRange),
     asOwnTypeSelection: asType && asType === 'own',
     orderButtonSelection:
-      ((asType && asType === 'ovh_cloud') ||
-        (asOwnRirType && asOwnNumberType)) &&
+      ((asType && asType === 'ovh_cloud') || (asOwnRirType && asOwnNumberType)) &&
       ipRange &&
       isValidIpRange(ipRange),
   };

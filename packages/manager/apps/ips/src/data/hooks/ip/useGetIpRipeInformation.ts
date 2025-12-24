@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import {
   getIpRipeInformation,
   getIpRipeInformationQueryKey,
@@ -13,15 +14,15 @@ export type IpRipeInformation = {
   netname: string;
 };
 
-export const useGetIpRipeInformation = ({
-  ip,
-}: UseGetIpRipeInformationParams) => {
-  const { data: ipRipeInfo, isLoading, isError, error } = useQuery<
-    IpRipeInformation
-  >({
+export const useGetIpRipeInformation = ({ ip }: UseGetIpRipeInformationParams) => {
+  const {
+    data: ipRipeInfo,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<IpRipeInformation>({
     queryKey: getIpRipeInformationQueryKey({ ip }),
-    queryFn: () =>
-      getIpRipeInformation({ ip }).then((response) => response.data),
+    queryFn: () => getIpRipeInformation({ ip }).then((response) => response.data),
     retry: false,
     staleTime: Number.POSITIVE_INFINITY,
   });

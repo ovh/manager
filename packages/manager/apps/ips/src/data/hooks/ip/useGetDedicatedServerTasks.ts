@@ -1,10 +1,7 @@
-import {
-  Query,
-  useQueries,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { Query, useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   DedicatedServerTaskResponse,
   getDedicatedServerTask,
@@ -12,12 +9,12 @@ import {
   getIcebergDedicatedServerTask,
   getIcebergDedicatedServerTasksQueryKey,
 } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 import {
-  getTypeByServiceName,
   INVALIDATED_REFRESH_PERIOD,
   UPDATE_TASKS_QUERY_KEY_PARAMS,
+  getTypeByServiceName,
 } from '@/utils';
-import { IpTypeEnum } from '@/data/constants';
 
 export type UseGetDedicatedServerTasksParams = {
   serviceName: string;
@@ -27,7 +24,7 @@ export type UseGetDedicatedServerTasksParams = {
   queryKeyToInvalidate: string[];
 };
 
-function isUpdateTaskStatus(status: string): boolean {
+function isUpdateTaskStatus(status?: string): boolean {
   return !status || UPDATE_TASKS_QUERY_KEY_PARAMS.statusList.includes(status);
 }
 
@@ -49,21 +46,16 @@ export const useGetDedicatedServerTasks = ({
         return (
           tasks.data
             ?.filter(
-              (task) =>
-                functionList.includes(task.function) &&
-                statusList.includes(task.status),
+              (task) => functionList.includes(task.function) && statusList.includes(task.status),
             )
             .map((task) => task.taskId) ?? []
         );
-      } catch (error) {
+      } catch {
         return [];
       }
     },
     retry: false,
-    enabled:
-      !!serviceName &&
-      getTypeByServiceName(serviceName) === IpTypeEnum.DEDICATED &&
-      enabled,
+    enabled: !!serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.DEDICATED && enabled,
   });
 
   useQueries({
@@ -71,13 +63,8 @@ export const useGetDedicatedServerTasks = ({
       queryKey: getDedicatedServerTaskQueryKey(serviceName, taskId),
       queryFn: () => getDedicatedServerTask(serviceName, taskId),
       retry: false,
-      refetchInterval: (
-        query: Query<ApiResponse<DedicatedServerTaskResponse>, ApiError>,
-      ) => {
-        if (
-          !query.state.error &&
-          isUpdateTaskStatus(query.state.data?.data?.status)
-        ) {
+      refetchInterval: (query: Query<ApiResponse<DedicatedServerTaskResponse>, ApiError>) => {
+        if (!query.state.error && isUpdateTaskStatus(query.state.data?.data?.status)) {
           return INVALIDATED_REFRESH_PERIOD;
         }
 
@@ -85,11 +72,11 @@ export const useGetDedicatedServerTasks = ({
           queryClient.setQueryData(
             getIcebergDedicatedServerTasksQueryKey(serviceName),
             (oldData: number[]) =>
-              !oldData
-                ? oldData
-                : oldData.filter((id) => id !== query.state.data?.data?.taskId),
+              !oldData ? oldData : oldData.filter((id) => id !== query.state.data?.data?.taskId),
           );
-          queryClient.invalidateQueries({ queryKey: queryKeyToInvalidate });
+          void queryClient.invalidateQueries({
+            queryKey: queryKeyToInvalidate,
+          });
         }
 
         return undefined;
@@ -100,6 +87,6 @@ export const useGetDedicatedServerTasks = ({
   return {
     isTasksLoading: taskQuery.isLoading,
     taskError: taskQuery.error,
-    hasOnGoingTask: taskQuery?.data?.length > 0,
+    hasOnGoingTask: taskQuery?.data && taskQuery?.data?.length > 0,
   };
 };

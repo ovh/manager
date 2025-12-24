@@ -1,30 +1,26 @@
 import React from 'react';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
+import { deleteIpGameFirewallRule, getGameFirewallRuleQueryKey } from '@/data/api';
 import { TRANSLATION_NAMESPACES, startCaseFormat } from '@/utils';
-import {
-  deleteIpGameFirewallRule,
-  getGameFirewallRuleQueryKey,
-} from '@/data/api';
+
 import { GameFirewallContext } from '../gamefirewall.context';
 
 export const DeleteRuleModal: React.FC = () => {
-  const {
-    ip,
-    ipOnGame,
-    isConfirmDeleteModalOpen,
-    ruleToDelete,
-    hideConfirmDeleteModal,
-  } = React.useContext(GameFirewallContext);
+  const { ip, ipOnGame, isConfirmDeleteModalOpen, ruleToDelete, hideConfirmDeleteModal } =
+    React.useContext(GameFirewallContext);
   const qc = useQueryClient();
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { trackPage, trackClick } = useOvhTracking();
@@ -35,10 +31,9 @@ export const DeleteRuleModal: React.FC = () => {
   ]);
 
   const { isPending, mutate: deleteRule } = useMutation({
-    mutationFn: () =>
-      deleteIpGameFirewallRule({ ip, ipOnGame, ruleId: ruleToDelete?.id }),
+    mutationFn: () => deleteIpGameFirewallRule({ ip, ipOnGame, ruleId: ruleToDelete?.id }),
     onSuccess: () => {
-      qc.invalidateQueries({
+      void qc.invalidateQueries({
         queryKey: getGameFirewallRuleQueryKey({ ip, ipOnGame }),
       });
       clearNotifications();

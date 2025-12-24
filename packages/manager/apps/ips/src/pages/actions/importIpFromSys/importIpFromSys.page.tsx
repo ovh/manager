@@ -1,9 +1,13 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsModal, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -11,13 +15,16 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { useOrderIpMigration } from '@/data/hooks';
+import { IpMigrationOrder } from '@/types';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
 import Step4 from './components/Step4';
 import Step5 from './components/Step5';
-import { useOrderIpMigration } from '@/data/hooks';
 import { TOTAL_STEP_NUMBER } from './importIpFromSys.constant';
 import './importIpFromSys.scss';
 
@@ -44,7 +51,7 @@ export default function ImportIpFromSys() {
       actionType: 'action',
       actions: ['import_sys-ip', 'cancel'],
     });
-    navigate(`..?${search.toString()}`);
+    void navigate(`..?${search.toString()}`);
   };
 
   const {
@@ -69,10 +76,7 @@ export default function ImportIpFromSys() {
       className="import-ip-from-sys-modal"
     >
       <div className="flex items-center">
-        <OdsText
-          className="block mb-4 mr-3 flex-1"
-          preset={ODS_TEXT_PRESET.heading3}
-        >
+        <OdsText className="mb-4 mr-3 block flex-1" preset={ODS_TEXT_PRESET.heading3}>
           {t('title')}
         </OdsText>
         <OdsText className="ml-auto" preset={ODS_TEXT_PRESET.caption}>
@@ -137,7 +141,7 @@ export default function ImportIpFromSys() {
           <Step5
             onCancel={closeModal}
             onPrevious={() => setCurrentStep(() => 4)}
-            orderData={ipMigrationOrderData?.data}
+            orderData={ipMigrationOrderData?.data as IpMigrationOrder}
             onConfirm={() => {
               trackClick({
                 location: PageLocation.popup,
@@ -145,7 +149,7 @@ export default function ImportIpFromSys() {
                 actionType: 'action',
                 actions: ['import_sys-ip', 'confirm'],
               });
-              window.open(ipMigrationOrderData?.data?.url);
+              window.open(ipMigrationOrderData?.data?.url as string);
               addSuccess(
                 t('step5SuccessMessage', {
                   orderId: ipMigrationOrderData?.data?.orderId,
@@ -155,7 +159,7 @@ export default function ImportIpFromSys() {
                 pageType: PageType.bannerSuccess,
                 pageName: 'import_sys-ip_success',
               });
-              navigate(`..?${search.toString()}`);
+              void navigate(`..?${search.toString()}`);
             }}
           />
         )}

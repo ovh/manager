@@ -1,4 +1,5 @@
-import { PRODUCT_PATHS_AND_CATEGORIES, IpTypeEnum } from '@/data/constants';
+import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
+
 import { useGetProductServices } from '../useGetProductServices';
 
 export type UseGetAttachedServicesParams = {
@@ -29,10 +30,15 @@ export const useGetAttachedServices = ({
     (service) => service.category === IpTypeEnum.HOUSING,
   );
 
+  const hasVrackAttachedToIp = servicesAttached.some(
+    (service) => service.category === IpTypeEnum.VRACK,
+  );
+
   return {
     servicesAttached,
     hasCloudServiceAttachedToIP,
     hasDedicatedServiceAttachedToIp,
     hasHousingServiceAttachedToIp,
+    hasVrackAttachedToIp,
   };
 };
