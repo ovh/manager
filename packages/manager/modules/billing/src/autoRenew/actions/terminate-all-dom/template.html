@@ -4,8 +4,8 @@
     data-primary-label="{{:: 'autorenew_all_dom_terminate_confirm' | translate }}"
     data-primary-disabled="$ctrl.domainsSelected.length > 0"
     data-secondary-label="{{:: 'autorenew_all_dom_terminate_cancel' | translate }}"
-    data-secondary-action="$ctrl.goBack()"
-    data-on-dismiss="$ctrl.goBack()"
+    data-secondary-action="$ctrl.goToAutorenew()"
+    data-on-dismiss="$ctrl.goToAutorenew()"
     data-loading="$ctrl.isLoading"
 >
     <oui-message class="mb-3" data-type="warning">
