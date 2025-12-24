@@ -6812,11 +6812,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/logs-to-customer/-/logs-to-customer-1.10.6.tgz#130f26d442b8eb7ff6e945e5a8a7b12c55f1496c"
   integrity sha512-CYnthYQryyV4iUUWU+l5u4D2S7YOml7qOGylRhiwU6SjonIAgltA+rt8f5r87zvec66Kln43npmNIqe1I8cdpw==
 
-"@ovh-ux/manager-common-translations@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.10.0.tgz#b135fbf4c9fd64a6c2045ad54091a1982fbad2d0"
-  integrity sha512-f4o6TSBloE1VfZQigkulEjPU7IlsMj1VqhKD+VETOIroHMmD0JUaLkWXNQWRlRZ+lFHZmDvSQGdqYwFWmQfNdw==
-
 "@ovh-ux/manager-common-translations@^0.22.2":
   version "0.22.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.22.2.tgz#4543cd343e2b893ebf417a920e55895cec0b56a9"
@@ -6964,19 +6959,6 @@
     "@ovh-ux/url-builder" "^2.0.4"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
-
-"@ovh-ux/muk@0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/muk/-/muk-0.9.0.tgz#873f3d0146c78dd06d20730b8291dcd85311f14d"
-  integrity sha512-6LT51Tj49MDaJ5FBxu/FrXKWWKi2suFquYD7yrdxHbAqJ/qIdMy8eVJNG7MI6yJdiJwZW3fjBrwD+dV5Xekf/w==
-  dependencies:
-    clsx "^2.1.1"
-    dompurify "^3.2.6"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    sass "1.93.0"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
 
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
