@@ -107,7 +107,7 @@ describe('Delete user modal', () => {
     await waitFor(() => {
       expect(usersApi.deleteUser).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'deleteUserToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'deleteUserToastSuccessDescription',
       });
     });

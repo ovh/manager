@@ -26,6 +26,7 @@ export type UserCreation =
   | database.redis.UserCreation
   | database.opensearch.UserCreation
   | database.m3db.UserCreation;
+
 export interface AddUser extends ServiceData {
   user: UserCreation;
 }
@@ -35,7 +36,7 @@ export const addUser = async ({
   serviceId,
   user,
 }: AddUser) =>
-  apiClient.v6.post<GenericUser>(
+  apiClient.v6.post<database.service.UserWithPassword>(
     `/cloud/project/${projectId}/database/${engine}/${serviceId}/user`,
     user,
   );
