@@ -83,7 +83,6 @@
   "terminate_service_legacy_type_vps": "Server Privati Virtuali",
   "terminate_service_legacy_type_xdsl": "Linea xDSL",
   "terminate_service_legacy_type_kube": "Kubernetes",
-  "terminate_service_legacy_type_webcoach": "WebCoach",
   "terminate_service_legacy_comments": "Commenti",
   "terminate_service_legacy_type_MBM": "Managed Bare Metal",
   "terminate_service_legacy_type_nutanix": "Nutanix"

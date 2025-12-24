@@ -153,7 +153,6 @@ export const SERVICE_INFOS_URLS_BY_TYPE = {
   METRICS: `/metrics/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   COWORKING: `/coworking/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   IP_LOADBALANCER: `/ipLoadbalancing/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
-  WEBCOACH: `/webcoach/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   OVH_CLOUD_CONNECT: `/ovhCloudConnect/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   NETAPP: `/storage/netapp/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   NUTANIX: `/nutanix/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
