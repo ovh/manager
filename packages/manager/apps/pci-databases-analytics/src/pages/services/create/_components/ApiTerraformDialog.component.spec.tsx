@@ -1,49 +1,61 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-
+import * as database from '@/types/cloud/project/database';
 import ApiTerraformDialog from '@/pages/services/create/_components/ApiTerraformDialog.component';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import { mockedAvailabilities } from '@/__tests__/helpers/mocks/availabilities';
+import {
+  mockedBasicOrderFunnelFlavor,
+  mockedBasicOrderFunnelPlan,
+  mockedEngineVersion,
+  mockedOrderFunnelEngine,
+  mockedOrderFunnelRegion,
+} from '@/__tests__/helpers/mocks/order-funnel';
+import { NetworkRegionStatusEnum } from '@/types/cloud/network/NetworkRegionStatusEnum';
+import { NetworkStatusEnum } from '@/types/cloud/network/NetworkStatusEnum';
+import { NetworkTypeEnum } from '@/types/cloud/network/NetworkTypeEnum';
+import { useOrderFunnel } from './useOrderFunnel.hook';
 
 const serviceToTerraform = vi.fn().mockName('serviceToTerraform');
 const projectId = 'project-123';
 
 describe('ApiTerraformDialog', () => {
-  const mockFormData = {
-    name: 'myNewPG',
-    nbNodes: 2,
-    flavor: 'db1',
-    region: 'GRA',
-    plan: 'plan-1',
-    engineWithVersion: {
-      engine: 'postgresql',
-      version: '14',
-    },
-    network: {
-      type: 'private',
-      subnetId: 'subnet-123',
-    },
-    additionalStorage: 0,
-  };
-
   const onRequestClose = vi.fn();
 
   const dialogDataMock = {
-    availability: {
-      availability: {
-        engine: 'postgresql',
+    availability: mockedAvailabilities,
+    engine: mockedOrderFunnelEngine,
+    version: mockedEngineVersion,
+    plan: mockedBasicOrderFunnelPlan,
+    region: mockedOrderFunnelRegion,
+    flavor: mockedBasicOrderFunnelFlavor,
+    nodes: 3,
+    additionalStorage: 10,
+    name: 'myNewPG',
+    ipRestrictions: [
+      {
+        ip: 'ips',
+        description: 'IpDescription',
       },
-    },
-    flavor: {
-      storage: {
-        minimum: { value: 50 },
-      },
-    },
+    ],
     network: {
+      type: database.NetworkTypeEnum.public,
       network: {
-        regions: [{ region: 'GRA', openstackId: 'os-123' }],
+        id: 'id1',
+        name: 'network1',
+        regions: [
+          {
+            region: 'GRA',
+            openstackId: 'os-123',
+            status: NetworkRegionStatusEnum.ACTIVE,
+          },
+        ],
+        vlanId: 0,
+        status: NetworkStatusEnum.ACTIVE,
+        type: NetworkTypeEnum.private,
       },
     },
-  };
+  } as ReturnType<typeof useOrderFunnel>['result'];
 
   vi.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -86,7 +98,7 @@ describe('ApiTerraformDialog', () => {
     render(
       <ApiTerraformDialog
         onRequestClose={onRequestClose}
-        dialogData={dialogDataMock as any}
+        dialogData={dialogDataMock}
       />,
       { wrapper: RouterWithQueryClientWrapper },
     );
