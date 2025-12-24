@@ -1,14 +1,29 @@
+## check the duplication transalation in json files
 name: Duplicate translation
+
 on:
   push:
     branches-ignore: [master]
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+    inputs:
+      base-branch:
+        description: 'Base branch to compare'
+        required: false
+        default: 'develop'  # Optional: set default base branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 
 jobs:
   duplicate-translation:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Use Node.js 22.x
@@ -21,16 +36,25 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          CURRENT_BRANCH=$(git branch --show-current)
+          if [ -n "$GITHUB_HEAD_REF" ]; then
+            CURRENT_BRANCH="$GITHUB_HEAD_REF"
+          else
+            CURRENT_BRANCH="${GITHUB_REF##*/}"
+          fi
+
           echo "My branch is $CURRENT_BRANCH"
           if [[ "$CURRENT_BRANCH" == "master" ]]; then
             echo "My branch is master and no unit test to run, exit..."
             echo "should_continue=false" >> $GITHUB_OUTPUT
           fi
-          BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
+          BASE_BRANCH="${{ github.event.pull_request.base.ref || inputs.base-branch }}"
           echo "Base Branch is $BASE_BRANCH"
-
           PR_JSON=$(gh pr list --repo ovh/manager --head $CURRENT_BRANCH --base $BASE_BRANCH --json number)
+          # Check if PR exists
+          if [[ -z "$PR_JSON" ]]; then
+            echo "No PR found for the branch $CURRENT_BRANCH"
+            exit 1
+          fi
           NUMBER_PULL=$(echo "$PR_JSON" | jq -r '.[0].number')
           labels=$(gh pr view $NUMBER_PULL --repo ovh/manager --json labels --jq '.labels[].name')
 

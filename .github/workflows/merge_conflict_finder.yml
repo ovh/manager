@@ -1,6 +1,6 @@
 name: "Merge Conflict Finder"
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   merge_conflict_job:
