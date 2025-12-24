@@ -1,0 +1,380 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Migration Decision Tree",
+  "description": "Decision tree to help AI navigate migration documentation and choose the right approach",
+  "version": "1.0.0",
+  "start_node": "check_source",
+
+  "nodes": {
+    "check_source": {
+      "type": "decision",
+      "question": "Do you have the AngularJS source path?",
+      "description": "The AI must have access to the AngularJS module source code to analyze",
+      "options": {
+        "yes": "analyze_source",
+        "no": "error_need_source"
+      }
+    },
+
+    "error_need_source": {
+      "type": "error",
+      "message": "Cannot proceed without AngularJS source path. Ask user for: packages/manager/modules/{module-name} or packages/manager/apps/{app-name}",
+      "action": "stop"
+    },
+
+    "analyze_source": {
+      "type": "action",
+      "description": "Analyze AngularJS source to detect patterns",
+      "actions": [
+        "Read all *.routing.js files",
+        "Read all *.template.html files",
+        "Read all *.controller.js files",
+        "Read translations/Messages_*.json files"
+      ],
+      "output": "analysis_data",
+      "next": "detect_patterns",
+      "references": [
+        ".ai-doc/90-quickstart/pre-migration-analysis.md",
+        ".ai-doc/50-migration-angular/migration-patterns.md#pattern-detection-rules"
+      ]
+    },
+
+    "detect_patterns": {
+      "type": "action",
+      "description": "Run pattern detection on analyzed source",
+      "patterns_to_detect": [
+        "managerListLayout usage",
+        "OUI components (oui-datagrid, oui-tile, etc.)",
+        "API types (AAPI, Iceberg, v6, v2)",
+        "Routing patterns (states, resolves, redirectTo)",
+        "UI features (search, filter, pagination, etc.)"
+      ],
+      "output": "detected_patterns",
+      "next": "check_migration_type",
+      "references": [
+        ".ai-doc/50-migration-angular/migration-patterns.md#pattern-detection-rules"
+      ]
+    },
+
+    "check_migration_type": {
+      "type": "decision",
+      "question": "What type of migration is this?",
+      "description": "Determine migration approach based on user request",
+      "options": {
+        "automated": "workflow_automated",
+        "manual_us": "workflow_manual_us",
+        "pattern_lookup": "workflow_pattern_lookup"
+      },
+      "decision_help": {
+        "automated": "User wants full automated migration in 2 prompts",
+        "manual_us": "User wants to migrate one user story at a time",
+        "pattern_lookup": "User just needs to understand specific patterns"
+      }
+    },
+
+    "workflow_automated": {
+      "type": "workflow",
+      "name": "Automated Migration (2 Prompts)",
+      "description": "Full automated migration workflow",
+      "steps": ["prompt_1_analysis", "prompt_2_implementation"],
+      "references": [
+        ".ai-doc/50-migration-angular/06-prompts/01-analyze-and-structure.prompt.md",
+        ".ai-doc/50-migration-angular/06-prompts/02-implement-features.prompt.md",
+        ".ai-doc/50-migration-angular/automated-migration-guide.md"
+      ]
+    },
+
+    "prompt_1_analysis": {
+      "type": "action",
+      "name": "Prompt 1: Analysis & Structure",
+      "description": "Generate structure and analysis report",
+      "actions": [
+        "Run all detection patterns",
+        "Generate analysis report",
+        "Create project structure (empty files)",
+        "List all detected features",
+        "Generate TODO comments in files"
+      ],
+      "output_files": [
+        "analysis-report.md",
+        "DETECTED_FEATURES.md",
+        "src/ directory structure"
+      ],
+      "next": "prompt_2_implementation",
+      "references": [
+        ".ai-doc/50-migration-angular/06-prompts/01-analyze-and-structure.prompt.md",
+        ".ai-doc/50-migration-angular/code-templates.md"
+      ]
+    },
+
+    "prompt_2_implementation": {
+      "type": "action",
+      "name": "Prompt 2: Implementation",
+      "description": "Implement all features based on analysis",
+      "inputs": ["analysis-report.md", "DETECTED_FEATURES.md"],
+      "actions": [
+        "Implement routes",
+        "Implement hooks for API calls",
+        "Implement pages with MUK components",
+        "Implement forms",
+        "Add translations",
+        "Add tracking"
+      ],
+      "output_files": [
+        "Complete implementation",
+        "MIGRATION_NOTES.md",
+        "Test files"
+      ],
+      "next": "validate_parity",
+      "references": [
+        ".ai-doc/50-migration-angular/06-prompts/02-implement-features.prompt.md",
+        ".ai-doc/50-migration-angular/angularjs-react-mapping-guide.md",
+        ".ai-doc/20-dependencies/"
+      ]
+    },
+
+    "workflow_manual_us": {
+      "type": "workflow",
+      "name": "Manual US-by-US Migration",
+      "description": "User story by user story migration",
+      "steps": [
+        "identify_user_stories",
+        "select_user_story",
+        "implement_user_story",
+        "validate_user_story",
+        "next_user_story"
+      ],
+      "references": [".ai-doc/50-migration-angular/us-migration-guide.md"]
+    },
+
+    "identify_user_stories": {
+      "type": "action",
+      "description": "Extract user stories from routes",
+      "actions": [
+        "Map each route to a user story",
+        "Prioritize stories (onboarding, listing, dashboard, etc.)",
+        "Create US list with acceptance criteria"
+      ],
+      "output": "user_stories_list",
+      "next": "select_user_story",
+      "references": [
+        ".ai-doc/50-migration-angular/us-migration-guide.md#identify-user-stories"
+      ]
+    },
+
+    "select_user_story": {
+      "type": "decision",
+      "question": "Which user story to implement?",
+      "description": "Choose one US from the list",
+      "options": {
+        "first": "implement_user_story",
+        "specific": "implement_user_story"
+      },
+      "priority_order": [
+        "onboarding",
+        "listing",
+        "dashboard",
+        "detail_pages",
+        "forms"
+      ]
+    },
+
+    "implement_user_story": {
+      "type": "action",
+      "description": "Implement one complete user story",
+      "actions": [
+        "Create route",
+        "Create page component",
+        "Create hooks for data fetching",
+        "Implement UI with MUK",
+        "Add translations",
+        "Add tracking"
+      ],
+      "output": "implemented_us",
+      "next": "validate_user_story",
+      "references": [
+        ".ai-doc/50-migration-angular/us-migration-guide.md#phase-2-migration",
+        ".ai-doc/50-migration-angular/angularjs-react-mapping-guide.md"
+      ]
+    },
+
+    "validate_user_story": {
+      "type": "action",
+      "description": "Validate US has 100% parity",
+      "checks": [
+        "Visual parity (same UI)",
+        "Functional parity (same behavior)",
+        "Technical parity (same API calls)",
+        "Translation parity (same texts)",
+        "Tracking parity (same events)"
+      ],
+      "output": "validation_report",
+      "next": "check_more_us",
+      "references": [".ai-doc/50-migration-angular/parity-validation-guide.md"]
+    },
+
+    "check_more_us": {
+      "type": "decision",
+      "question": "Are there more user stories to migrate?",
+      "options": {
+        "yes": "select_user_story",
+        "no": "migration_complete"
+      }
+    },
+
+    "workflow_pattern_lookup": {
+      "type": "workflow",
+      "name": "Pattern Lookup",
+      "description": "Quick pattern reference for specific needs",
+      "next": "identify_pattern_need"
+    },
+
+    "identify_pattern_need": {
+      "type": "decision",
+      "question": "What pattern do you need?",
+      "options": {
+        "routing": "pattern_routing",
+        "api": "pattern_api",
+        "components": "pattern_components",
+        "forms": "pattern_forms",
+        "state": "pattern_state"
+      }
+    },
+
+    "pattern_routing": {
+      "type": "reference",
+      "name": "Routing Patterns",
+      "description": "AngularJS states → React Router",
+      "references": [
+        ".ai-doc/50-migration-angular/angularjs-react-mapping-guide.md#routing-mappings",
+        ".ai-doc/50-migration-angular/migration-patterns.md#resolve-function-mapping-patterns",
+        ".ai-doc/20-dependencies/react-router-dom.md"
+      ],
+      "examples": [
+        "$stateProvider.state → <Route>",
+        "redirectTo → useNavigate + useEffect",
+        "resolve → custom hook with useQuery"
+      ]
+    },
+
+    "pattern_api": {
+      "type": "reference",
+      "name": "API Patterns",
+      "description": "AngularJS API → React hooks",
+      "references": [
+        ".ai-doc/50-migration-angular/angularjs-react-mapping-guide.md#api-mappings",
+        ".ai-doc/50-migration-angular/migration-patterns.md#aapi-integration-pattern",
+        ".ai-doc/20-dependencies/manager-core-api.md",
+        ".ai-doc/20-dependencies/tanstack-react-query.md"
+      ],
+      "examples": [
+        "OvhApiDedicatedNasha.Aapi() → aapi from manager-core-api",
+        "iceberg().query() → fetchIcebergV6",
+        "$http.get → apiClient.v6.get with useQuery"
+      ]
+    },
+
+    "pattern_components": {
+      "type": "reference",
+      "name": "Component Patterns",
+      "description": "OUI components → MUK components",
+      "references": [
+        ".ai-doc/50-migration-angular/angularjs-react-mapping-guide.md#template-mappings",
+        ".ai-doc/50-migration-angular/migration-patterns.md#template-component-mapping",
+        ".ai-doc/20-dependencies/muk.md"
+      ],
+      "examples": [
+        "<oui-datagrid> → <Datagrid>",
+        "<oui-tile> → <Tile.Root>",
+        "managerListLayout → <BaseLayout> + <Datagrid>"
+      ]
+    },
+
+    "pattern_forms": {
+      "type": "reference",
+      "name": "Form Patterns",
+      "description": "AngularJS forms → React Hook Form",
+      "references": [
+        ".ai-doc/50-migration-angular/migration-patterns.md#form-pattern",
+        ".ai-doc/20-dependencies/react-hook-form.md"
+      ],
+      "examples": [
+        "ng-model → react-hook-form with Controller",
+        "ng-submit → handleSubmit",
+        "form validation → Zod schema with zodResolver"
+      ]
+    },
+
+    "pattern_state": {
+      "type": "reference",
+      "name": "State Management Patterns",
+      "description": "AngularJS state → React state",
+      "references": [
+        ".ai-doc/50-migration-angular/migration-patterns.md#controller-hook",
+        ".ai-doc/20-dependencies/tanstack-react-query.md"
+      ],
+      "examples": [
+        "$scope → useState",
+        "Controller → custom hook",
+        "Service → useQuery hook"
+      ]
+    },
+
+    "validate_parity": {
+      "type": "action",
+      "description": "Validate complete migration has 100% parity",
+      "checks": [
+        "All routes migrated",
+        "All API calls migrated",
+        "All UI components migrated",
+        "All translations migrated",
+        "All tracking events migrated",
+        "Visual parity verified",
+        "Functional parity verified"
+      ],
+      "output": "final_validation_report",
+      "next": "migration_complete",
+      "references": [".ai-doc/50-migration-angular/parity-validation-guide.md"]
+    },
+
+    "migration_complete": {
+      "type": "success",
+      "message": "Migration complete! All user stories migrated with 100% parity.",
+      "final_steps": [
+        "Review MIGRATION_NOTES.md",
+        "Run final tests",
+        "Create pull request",
+        "Document any remaining TODOs"
+      ]
+    }
+  },
+
+  "quick_paths": {
+    "automated_full": [
+      "check_source",
+      "analyze_source",
+      "detect_patterns",
+      "workflow_automated",
+      "prompt_1_analysis",
+      "prompt_2_implementation",
+      "validate_parity",
+      "migration_complete"
+    ],
+    "manual_us_first": [
+      "check_source",
+      "analyze_source",
+      "detect_patterns",
+      "workflow_manual_us",
+      "identify_user_stories",
+      "select_user_story",
+      "implement_user_story",
+      "validate_user_story"
+    ],
+    "pattern_reference": [
+      "check_source",
+      "detect_patterns",
+      "workflow_pattern_lookup",
+      "identify_pattern_need"
+    ]
+  }
+}
