@@ -1,17 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import { ServiceType } from '@/types';
+
 import {
-  DedicatedServerServiceInfos,
-  getDedicatedServerServiceInfos,
-  VrackServiceInfos,
-  getVrackServiceInfos,
-  VpsServiceInfos,
-  getVpsServiceInfos,
   DedicatedCloudServiceInfos,
+  DedicatedServerServiceInfos,
+  OrderableIpResponse,
+  VpsServiceInfos,
+  VrackServiceInfos,
   getDedicatedCloudServiceInfos,
   getDedicatedServerOrderableIp,
-  OrderableIpResponse,
+  getDedicatedServerServiceInfos,
+  getVpsServiceInfos,
+  getVrackServiceInfos,
 } from '../api';
 
 export const useCheckServiceAvailability = ({
@@ -19,9 +22,9 @@ export const useCheckServiceAvailability = ({
   serviceType,
   onServiceUnavailable,
 }: {
-  serviceName?: string;
+  serviceName?: string | null;
   serviceType?: ServiceType;
-  onServiceUnavailable?: (serviceName?: string) => void;
+  onServiceUnavailable?: (serviceName?: string | null) => void;
 }) => {
   const { isLoading, data, isError, error } = useQuery({
     queryKey: [serviceType, serviceName, 'availability'],
@@ -32,8 +35,8 @@ export const useCheckServiceAvailability = ({
           | VpsServiceInfos
           | VrackServiceInfos
           | DedicatedCloudServiceInfos
-        > = null;
-        let orderableIps: ApiResponse<OrderableIpResponse> = null;
+        > | null = null;
+        let orderableIps: ApiResponse<OrderableIpResponse> | null = null;
         switch (serviceType) {
           case ServiceType.server:
             serviceInfos = await getDedicatedServerServiceInfos(serviceName);
@@ -58,12 +61,12 @@ export const useCheckServiceAvailability = ({
           default:
             serviceInfos = null;
         }
-        if (serviceInfos?.data?.status === 'expired') {
+        if (!!serviceName && serviceInfos?.data?.status === 'expired') {
           onServiceUnavailable?.(serviceName);
         }
         return serviceInfos;
       } catch (err) {
-        if ((err as ApiError)?.response?.status === 460) {
+        if ((err as ApiError)?.response?.status === 460 && !!serviceName) {
           onServiceUnavailable?.(serviceName);
         }
         throw err;
@@ -71,6 +74,7 @@ export const useCheckServiceAvailability = ({
     },
     enabled:
       !!serviceName &&
+      !!serviceType &&
       [
         ServiceType.server,
         ServiceType.vrack,

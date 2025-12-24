@@ -1,10 +1,9 @@
-import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import {
   ButtonType,

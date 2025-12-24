@@ -1,11 +1,13 @@
-import { useQuery, useQueries } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   IpDetails,
-  getIpDetailsQueryKey,
   getIpDetails,
-  getIpTaskQueryKey,
+  getIpDetailsQueryKey,
   getIpTaskList,
+  getIpTaskQueryKey,
 } from '@/data/api';
 import { IpTaskFunction, IpTaskStatus } from '@/types';
 
@@ -43,10 +45,12 @@ export const useGetIpOrganisation = ({
     (query) => query.data?.data && query.data.data.length > 0,
   );
 
-  const { data: ipDetailsResponse, isLoading, isError, error } = useQuery<
-    ApiResponse<IpDetails>,
-    ApiError
-  >({
+  const {
+    data: ipDetailsResponse,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<ApiResponse<IpDetails>, ApiError>({
     queryKey: getIpDetailsQueryKey({ ip }),
     queryFn: () => getIpDetails({ ip }),
     enabled:

@@ -1,22 +1,25 @@
-import { useQueries, UseQueryResult } from '@tanstack/react-query';
-import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+import { UseQueryResult, useQueries } from '@tanstack/react-query';
+
+import { IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
+import { IpTypeEnum } from '@/data/constants';
+
 import {
   GetProductServicesParams,
-  getProductServicesQueryKey,
-  getProductServices,
   ProductServicesDetails,
+  getProductServices,
+  getProductServicesQueryKey,
 } from '../api';
-import { IpTypeEnum } from '@/data/constants';
 
 export interface ServiceInfoWithId {
   id: string | undefined;
-  category: string;
+  category: IpTypeEnum;
   serviceName: string;
   displayName: string;
 }
 
 const getDisplayName = (
-  category: string,
+  category: IpTypeEnum,
   service: ProductServicesDetails,
 ): string => {
   let iam;
@@ -41,19 +44,16 @@ export const useGetProductServices = (
 ) => {
   const queriesResults = useQueries({
     queries: productPathsAndCategories.map((params) => ({
-      queryKey: getProductServicesQueryKey(params as GetProductServicesParams),
-      queryFn: () => getProductServices(params as GetProductServicesParams),
+      queryKey: getProductServicesQueryKey(params),
+      queryFn: () => getProductServices(params),
     })),
     combine: (
-      results: UseQueryResult<
-        IcebergFetchResultV6<ProductServicesDetails>,
-        ApiError
-      >[],
+      results: UseQueryResult<IcebergFetchResultV6<ProductServicesDetails>>[],
     ) => {
       const data = results
         .map((result, index) => ({
           data: result?.data?.data || [],
-          category: productPathsAndCategories[index]?.category,
+          category: productPathsAndCategories[index]?.category as IpTypeEnum,
         }))
         .reduce((acc, { category, data: serviceData }) => {
           acc[category] = serviceData.map((service) => {

@@ -1,13 +1,17 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
-  useNotifications,
   Modal,
   ModalProps,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -15,13 +19,15 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { useGetIpdetails, useMoveIpService } from '@/data/hooks';
+import { ipParkingOptionValue } from '@/types';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter } from '@/utils';
+
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
-import { useGetIpdetails, useMoveIpService } from '@/data/hooks';
 import { TOTAL_STEP_NUMBER } from './moveIp.constant';
-import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
-import { ipParkingOptionValue } from '@/types';
 
 export default function MoveIpModal() {
   const { id } = useParams<{ id: string }>();
@@ -46,8 +52,8 @@ export default function MoveIpModal() {
       actionType: 'action',
       actions: ['move_additional-ip', 'cancel'],
     });
-    navigate(`..?${search.toString()}`);
-  }, []);
+    void navigate(`..?${search.toString()}`);
+  }, [trackClick, search, navigate]);
 
   const {
     isLoading: isIpDetailLoading,
@@ -78,24 +84,24 @@ export default function MoveIpModal() {
         pageType: PageType.bannerSuccess,
         pageName: 'move_additional-ip_success',
       });
-      navigate(`..?${search.toString()}`);
+      void navigate(`..?${search.toString()}`);
     },
   });
 
-  const error = React.useMemo(() => ipDetailsError || moveIpServiceError, [
-    ipDetailsError,
-    moveIpServiceError,
-  ]);
+  const error = React.useMemo(
+    () => ipDetailsError || moveIpServiceError,
+    [ipDetailsError, moveIpServiceError],
+  );
 
   const isLoading = React.useMemo(
     () => isIpDetailLoading || isMoveIpServiceLoading,
     [isIpDetailLoading, isMoveIpServiceLoading],
   );
 
-  const nextHopList = React.useMemo(() => getNextHopList(destinationService), [
-    getNextHopList,
-    destinationService,
-  ]);
+  const nextHopList = React.useMemo(
+    () => getNextHopList(destinationService),
+    [getNextHopList, destinationService],
+  );
 
   const props: ModalProps = {
     isOpen: true,
@@ -129,7 +135,7 @@ export default function MoveIpModal() {
         });
         postMoveIp({
           ip,
-          to: destinationService,
+          to: destinationService as string,
           nexthop: nextHop,
           serviceName: ipDetails?.routedTo?.serviceName,
         });
@@ -170,7 +176,7 @@ export default function MoveIpModal() {
         {currentStep === 1 && (
           <Step1
             ip={ipGroup}
-            currentService={ipDetails?.routedTo?.serviceName}
+            currentService={ipDetails?.routedTo?.serviceName as string}
             availableDestinations={availableDestinations?.data}
             destinationService={destinationService}
             setDestinationService={setDestinationService}
@@ -185,7 +191,7 @@ export default function MoveIpModal() {
             destinationService={
               destinationService === ipParkingOptionValue
                 ? t('service_selection_select_ip_parking_option_label')
-                : destinationService
+                : (destinationService as string)
             }
             nextHop={nextHop}
           />

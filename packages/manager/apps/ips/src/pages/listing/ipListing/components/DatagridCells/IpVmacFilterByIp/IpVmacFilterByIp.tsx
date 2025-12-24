@@ -1,11 +1,13 @@
 import React from 'react';
+
 import { VmacWithIpType } from '@/data/hooks/ip';
+
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpVmacFilterByIpProps = {
   ip: string;
   vmacsWithIp: VmacWithIpType[];
-  isLoading: boolean;
+  isLoading?: boolean;
   enabled?: boolean;
 };
 

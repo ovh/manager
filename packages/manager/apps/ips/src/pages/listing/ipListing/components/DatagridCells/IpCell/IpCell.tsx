@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
-import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { ipFormatter } from '@/utils/ipFormatter';
+import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import { useGetIpdetails } from '@/data/hooks/ip';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+import { ipFormatter } from '@/utils/ipFormatter';
 
 export type IpCellProps = {
   ip: string;
@@ -22,11 +25,8 @@ export type IpCellProps = {
  */
 export const IpCell = ({ ip, parentIpGroup }: IpCellProps) => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
-  const {
-    onGoingAggregatedIps,
-    onGoingSlicedIps,
-    onGoingCreatedIps,
-  } = useContext(ListingContext);
+  const { onGoingAggregatedIps, onGoingSlicedIps, onGoingCreatedIps } =
+    useContext(ListingContext);
   const { ipDetails, isLoading } = useGetIpdetails({ ip: parentIpGroup || ip });
 
   return (

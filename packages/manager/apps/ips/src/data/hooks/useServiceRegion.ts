@@ -1,5 +1,9 @@
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { ServiceType } from '@/types';
+
 import {
   DedicatedCloudLocation,
   DedicatedServer,
@@ -8,7 +12,6 @@ import {
   getDedicatedServerData,
   getVpsDatacenter,
 } from '../api';
-import { ServiceType } from '@/types';
 import { DATACENTER_TO_REGION } from './catalog';
 
 export const useServiceRegion = ({
@@ -16,13 +19,13 @@ export const useServiceRegion = ({
   serviceType,
   serviceStatus,
 }: {
-  serviceName?: string;
+  serviceName?: string | null;
   serviceType?: ServiceType;
   serviceStatus?: string;
 }) => {
   const dedicatedServerData = useQuery<ApiResponse<DedicatedServer>, ApiError>({
     queryKey: [ServiceType.server, serviceName],
-    queryFn: async () => getDedicatedServerData(serviceName),
+    queryFn: async () => getDedicatedServerData(serviceName as string),
     enabled:
       !!serviceName &&
       serviceStatus === 'ok' &&
@@ -32,7 +35,7 @@ export const useServiceRegion = ({
 
   const vpsDatacenter = useQuery<ApiResponse<VpsDatacenter>, ApiError>({
     queryKey: [ServiceType.vps, serviceName, 'datacenter'],
-    queryFn: async () => getVpsDatacenter(serviceName),
+    queryFn: async () => getVpsDatacenter(serviceName as string),
     enabled:
       !!serviceName &&
       serviceStatus === 'ok' &&
@@ -45,7 +48,8 @@ export const useServiceRegion = ({
     ApiError
   >({
     queryKey: [ServiceType.dedicatedCloud, serviceName],
-    queryFn: async () => getDedicatedCloudServiceLocation(serviceName),
+    queryFn: async () =>
+      getDedicatedCloudServiceLocation(serviceName as string),
     enabled:
       !!serviceName &&
       serviceStatus === 'ok' &&
@@ -61,7 +65,7 @@ export const useServiceRegion = ({
     region:
       dedicatedServerData?.data?.data?.region ||
       dedicatedCloudLocation?.data?.data?.region ||
-      DATACENTER_TO_REGION[vpsDatacenter?.data?.data?.name] ||
+      DATACENTER_TO_REGION[vpsDatacenter?.data?.data?.name as string] ||
       vpsDatacenter?.data?.data?.name?.toLowerCase(),
     isError:
       dedicatedServerData.isError ||

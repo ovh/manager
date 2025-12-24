@@ -4,23 +4,25 @@ import { toASCII } from 'punycode';
 export function isValidIpv4(ip: string) {
   try {
     return ip && ip.split('.').length === 4 && ipaddr.IPv4.isValid(ip);
-  } catch (e) {
+  } catch {
     return false;
   }
 }
 
 export function isValidIpv4Block(block: string) {
   const split = block?.split('/');
-  const range = parseInt(split[1], 10);
-  return split.length === 2 && isValidIpv4(split[0]) && range > 0 && range < 33;
+  const range = parseInt(split[1] || '', 10);
+  return (
+    split.length === 2 && isValidIpv4(split[0] || '') && range > 0 && range < 33
+  );
 }
 
 export function isValidIpv6Block(block?: string) {
-  const split = block?.split('/');
-  const range = parseInt(split[1], 10);
+  const split = block?.split('/') || [];
+  const range = parseInt(split[1] || '', 10);
   return (
     split.length === 2 &&
-    ipaddr.IPv6.isValid(split[0]) &&
+    ipaddr.IPv6.isValid(split[0] || '') &&
     range > 0 &&
     range < 129
   );
@@ -28,7 +30,7 @@ export function isValidIpv6Block(block?: string) {
 
 export function isIpInsideBlock(ipBlock: string, ip?: string) {
   try {
-    return ipaddr.parse(ip)?.match(ipaddr.parseCIDR(ipBlock));
+    return ipaddr.parse(ip || '')?.match(ipaddr.parseCIDR(ipBlock));
   } catch {
     return false;
   }

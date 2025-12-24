@@ -1,16 +1,20 @@
 import React from 'react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import {
-  initShellContext,
   ShellContext,
   ShellContextType,
+  initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import ExportIpToCsv from './exportIpToCsv.page';
+
 import { useExportIpToCsv } from '@/data/hooks';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import ExportIpToCsv from './exportIpToCsv.page';
 
 const queryClient = new QueryClient();
 
@@ -28,7 +32,7 @@ vi.mock('react-i18next', () => ({
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(),
   useSearchParams: () => ['', vi.fn()],
-  useMatches: () => [] as any[],
+  useMatches: () => [] as string[],
 }));
 
 const renderComponent = async () => {

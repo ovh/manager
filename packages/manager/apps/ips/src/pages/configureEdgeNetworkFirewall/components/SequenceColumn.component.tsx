@@ -1,10 +1,13 @@
 import React from 'react';
+
 import {
   OdsFormField,
-  OdsText,
   OdsSelect,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
+
 import { IpEdgeFirewallRule } from '@/data/api';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 export const validSequenceNumbers = Array.from(Array(20).keys());

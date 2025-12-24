@@ -1,14 +1,18 @@
 import React, { useContext } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsText,
   OdsLink,
   OdsMessage,
   OdsSelect,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -17,22 +21,22 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { getIpDetailsQueryKey } from '@/data/api';
+import { useByoipAggregate } from '@/data/hooks/ip';
+import { ListingContext } from '@/pages/listing/listingContext';
 import {
+  TRANSLATION_NAMESPACES,
   fromIdToIp,
   ipFormatter,
-  TRANSLATION_NAMESPACES,
   useGuideUtils,
 } from '@/utils';
-import { useByoipAggregate } from '@/data/hooks/ip';
-import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
-import { ListingContext } from '@/pages/listing/listingContext';
-import { getIpDetailsQueryKey } from '@/data/api';
 
 export default function AggregateModal() {
   const queryClient = useQueryClient();
-  const { setOnGoingCreatedIps, setOnGoingAggregatedIps } = useContext(
-    ListingContext,
-  );
+  const { setOnGoingCreatedIps, setOnGoingAggregatedIps } =
+    useContext(ListingContext);
   const { parentId } = useParams();
   const { ipGroup } = ipFormatter(fromIdToIp(parentId));
   const { t } = useTranslation([
@@ -47,7 +51,7 @@ export default function AggregateModal() {
   const [aggregationIp, setAggregationIp] = React.useState('');
 
   const closeModal = () => {
-    navigate(`..?${search.toString()}`);
+    void navigate(`..?${search.toString()}`);
   };
 
   const {
@@ -70,7 +74,7 @@ export default function AggregateModal() {
         aggregate.find((a) => a.aggregationIp === aggregationIp)?.childrenIps ||
         [];
 
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getIpDetailsQueryKey({ ip: aggregationIp }),
       });
 
@@ -79,7 +83,7 @@ export default function AggregateModal() {
     },
   });
 
-  const cancel = React.useCallback(() => {
+  const cancel = () => {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
@@ -87,7 +91,7 @@ export default function AggregateModal() {
       actions: ['aggregate', 'cancel'],
     });
     closeModal();
-  }, []);
+  };
 
   React.useEffect(() => {
     if (!aggregationIp && aggregate && aggregate.length > 0) {
@@ -127,7 +131,7 @@ export default function AggregateModal() {
           <div className="inline">
             {t('noAggregateSliceAvailable')}
             <OdsLink
-              href={links.aggreateSliceLink.link}
+              href={links.aggreateSliceLink?.link as string}
               target="_blank"
               rel="noopener"
               label={t('noAggregateLinkLabel')}
@@ -136,7 +140,7 @@ export default function AggregateModal() {
                   actionType: 'action',
                   buttonType: ButtonType.link,
                   location: PageLocation.popup,
-                  actions: [`go-to_${links.aggreateSliceLink.trackingLabel}`],
+                  actions: [`go-to_${links?.aggreateSliceLink?.trackingLabel}`],
                 });
               }}
             />
@@ -145,7 +149,7 @@ export default function AggregateModal() {
       )}
       {aggregate.length > 0 && (
         <>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+          <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
             {t('aggregateModalDescription')}
           </OdsText>
           <OdsSelect
@@ -165,7 +169,7 @@ export default function AggregateModal() {
               </option>
             ))}
           </OdsSelect>
-          <section className="bg-neutral-100 p-4 mb-4">
+          <section className="mb-4 bg-neutral-100 p-4">
             <OdsText>{t('aggregateModalChildrenIpsDescription')}</OdsText>
             <ul>
               {aggregate
