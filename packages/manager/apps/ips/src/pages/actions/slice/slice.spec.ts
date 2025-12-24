@@ -1,8 +1,10 @@
-import { screen, fireEvent, waitFor, within } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-import { getButtonByLabel, labels, renderTest, getModal } from '@/test-utils';
+
 import { urls } from '@/routes/routes.constant';
+import { getButtonByLabel, getModal, labels, renderTest } from '@/test-utils';
 import { fromIpToId } from '@/utils';
 
 describe('SliceModal', () => {
@@ -10,10 +12,7 @@ describe('SliceModal', () => {
     const { container } = await renderTest({
       hasSlices: false,
       nbIp: 6,
-      initialRoute: urls.slice.replace(
-        ':parentId',
-        fromIpToId('241.94.186.48/28'),
-      ),
+      initialRoute: urls.slice.replace(':parentId', fromIpToId('241.94.186.48/28')),
     });
 
     const modal = await getModal(container);
@@ -22,10 +21,7 @@ describe('SliceModal', () => {
       () =>
         expect(
           screen.getByText(
-            labels.aggregateSlice.sliceModalTitle.replace(
-              '{{ ip }}',
-              '241.94.186.48/28',
-            ),
+            labels.aggregateSlice.sliceModalTitle.replace('{{ ip }}', '241.94.186.48/28'),
           ),
         ).toBeVisible(),
       WAIT_FOR_DEFAULT_OPTIONS,
@@ -37,8 +33,7 @@ describe('SliceModal', () => {
         expect(
           within(modal).getByText(
             (content) =>
-              content.length &&
-              labels.aggregateSlice.noAggregateSliceAvailable.includes(content),
+              content.length && labels.aggregateSlice.noAggregateSliceAvailable.includes(content),
           ),
         ).toBeInTheDocument(),
       WAIT_FOR_DEFAULT_OPTIONS,
@@ -49,10 +44,7 @@ describe('SliceModal', () => {
     const { container } = await renderTest({
       hasSlices: true,
       nbIp: 6,
-      initialRoute: urls.slice.replace(
-        ':parentId',
-        fromIpToId('241.94.186.48/28'),
-      ),
+      initialRoute: urls.slice.replace(':parentId', fromIpToId('241.94.186.48/28')),
     });
 
     const modal = await getModal(container);
@@ -74,10 +66,7 @@ describe('SliceModal', () => {
       hasSlices: true,
       isPostSliceKo: true,
       nbIp: 6,
-      initialRoute: urls.slice.replace(
-        ':parentId',
-        fromIpToId('241.94.186.48/28'),
-      ),
+      initialRoute: urls.slice.replace(':parentId', fromIpToId('241.94.186.48/28')),
     });
 
     const modal = await getModal(container);
@@ -90,9 +79,7 @@ describe('SliceModal', () => {
 
     await waitFor(
       () =>
-        within(
-          modal,
-        ).getByText(
+        within(modal).getByText(
           labels.error.managerApiErrorWithoutRequestId.replace(/<br>.*/g, ''),
           { exact: false },
         ),

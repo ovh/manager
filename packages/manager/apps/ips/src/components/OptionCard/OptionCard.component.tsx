@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-  ODS_CARD_COLOR,
-  ODS_TEXT_PRESET,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OdsCard,
-  OdsDivider,
-  OdsText,
-  OdsSpinner,
-  OdsRadio,
-} from '@ovhcloud/ods-components/react';
+
+import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsCard, OdsRadio, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
 import { handleClick } from '@ovh-ux/manager-react-components';
+
 import './option-card.scss';
 
 export type OptionCardProps = React.PropsWithChildren<{
@@ -27,7 +20,7 @@ export type OptionCardProps = React.PropsWithChildren<{
 }>;
 
 export const OptionCard: React.FC<OptionCardProps> = ({
-  className,
+  className = '',
   isDisabled,
   isSelected,
   isLoading,
@@ -41,40 +34,29 @@ export const OptionCard: React.FC<OptionCardProps> = ({
   const stateStyle = isDisabled
     ? 'cursor-not-allowed bg-neutral-100'
     : 'cursor-pointer hover:shadow-md';
-  const borderStyle = isSelected
-    ? 'option_card_selected'
-    : 'option_card m-[1px]';
-  const justifyStyle = hasRadioButton ? 'justify-left' : 'justify-center';
+  const borderStyle = isSelected ? 'option_card_selected' : 'option_card m-[1px]';
+  const justifyStyle = hasRadioButton ? 'justify-start' : 'justify-center';
   return (
     <OdsCard
       tabIndex={0}
       className={`flex flex-col justify-between transition-shadow ${stateStyle} ${borderStyle} ${className}`}
       {...handleClick(() => !isDisabled && onClick?.())}
-      color={ODS_CARD_COLOR.neutral}
+      color="neutral"
     >
       {hasRadioButton ? (
-        <OdsText
-          className="flex justify-left m-4"
-          preset={ODS_TEXT_PRESET.heading4}
-        >
-          <span className="h-full align-middle mr-3">
+        <OdsText className="justify-start m-4 flex" preset={ODS_TEXT_PRESET.heading4}>
+          <span className="mr-3 h-full align-middle">
             <OdsRadio name="" isChecked={isSelected} />
           </span>
           <span>{title}</span>
         </OdsText>
       ) : (
-        <OdsText
-          className="flex justify-center m-4"
-          preset={ODS_TEXT_PRESET.heading4}
-        >
+        <OdsText className="m-4 flex justify-center" preset={ODS_TEXT_PRESET.heading4}>
           {title}
         </OdsText>
       )}
       {subtitle && (
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
-          className={`flex ${justifyStyle} m-4`}
-        >
+        <OdsText preset={ODS_TEXT_PRESET.paragraph} className={`flex ${justifyStyle} m-4`}>
           {subtitle}
         </OdsText>
       )}
@@ -91,9 +73,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({
           <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
         </div>
       ) : (
-        children && (
-          <span className="card-children p-4 rounded-b-md">{children}</span>
-        )
+        children && <span className="card-children rounded-b-md p-4">{children}</span>
       )}
     </OdsCard>
   );

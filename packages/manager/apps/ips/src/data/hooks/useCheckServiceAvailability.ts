@@ -1,17 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import { ServiceType } from '@/types';
+
 import {
-  DedicatedServerServiceInfos,
-  getDedicatedServerServiceInfos,
-  VrackServiceInfos,
-  getVrackServiceInfos,
-  VpsServiceInfos,
-  getVpsServiceInfos,
   DedicatedCloudServiceInfos,
+  DedicatedServerServiceInfos,
+  OrderableIpResponse,
+  VpsServiceInfos,
+  VrackServiceInfos,
   getDedicatedCloudServiceInfos,
   getDedicatedServerOrderableIp,
-  OrderableIpResponse,
+  getDedicatedServerServiceInfos,
+  getVpsServiceInfos,
+  getVrackServiceInfos,
 } from '../api';
 
 export const useCheckServiceAvailability = ({
@@ -21,7 +24,7 @@ export const useCheckServiceAvailability = ({
 }: {
   serviceName?: string;
   serviceType?: ServiceType;
-  onServiceUnavailable?: (serviceName?: string) => void;
+  onServiceUnavailable?: (serviceName: string) => void;
 }) => {
   const { isLoading, data, isError, error } = useQuery({
     queryKey: [serviceType, serviceName, 'availability'],
@@ -71,19 +74,15 @@ export const useCheckServiceAvailability = ({
     },
     enabled:
       !!serviceName &&
-      [
-        ServiceType.server,
-        ServiceType.vrack,
-        ServiceType.vps,
-        ServiceType.dedicatedCloud,
-      ].includes(serviceType),
+      [ServiceType.server, ServiceType.vrack, ServiceType.vps, ServiceType.dedicatedCloud].includes(
+        serviceType,
+      ),
     retry: false,
   });
 
   return {
     isServiceInfoLoading: isLoading,
-    serviceStatus:
-      serviceType === ServiceType.ipParking ? 'ok' : data?.data?.status,
+    serviceStatus: serviceType === ServiceType.ipParking ? 'ok' : data?.data?.status,
     hasServiceInfoError: isError,
     serviceInfoError: error,
   };

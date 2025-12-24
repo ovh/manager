@@ -1,9 +1,9 @@
 import {
+  isValidDomain,
   isValidIpv4Block,
   isValidIpv6Block,
-  isValidDomain,
-  isValidSubDomain,
   isValidReverseDomain,
+  isValidSubDomain,
 } from './validators';
 
 describe('isValidIpv4Block', () => {
@@ -66,9 +66,7 @@ describe('isValidDomain', () => {
   ])(
     `$domain => $isValid (canBeginWithUnderscore: $canBeginWithUnderscore, canBeginWithWildcard: $canBeginWithWildcard)`,
     ({ domain, canBeginWithUnderscore, canBeginWithWildcard, isValid }) => {
-      expect(
-        isValidDomain(domain, { canBeginWithUnderscore, canBeginWithWildcard }),
-      ).toBe(isValid);
+      expect(isValidDomain(domain, { canBeginWithUnderscore, canBeginWithWildcard })).toBe(isValid);
     },
   );
 });

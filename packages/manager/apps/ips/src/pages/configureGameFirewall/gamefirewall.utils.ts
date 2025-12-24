@@ -17,17 +17,8 @@ export const IP_MITIGATION_RULE_PROTOCOL_PORT: {
 export const PORT_MIN = 1;
 export const PORT_MAX = 65535;
 
-export const hasPortRangeError = ({
-  startPort,
-  endPort,
-}: {
-  startPort: number;
-  endPort: number;
-}) =>
-  startPort < PORT_MIN ||
-  startPort > PORT_MAX ||
-  endPort > PORT_MAX ||
-  endPort < PORT_MIN;
+export const hasPortRangeError = ({ startPort, endPort }: { startPort: number; endPort: number }) =>
+  startPort < PORT_MIN || startPort > PORT_MAX || endPort > PORT_MAX || endPort < PORT_MIN;
 
 export const hasConflictingPorts = ({
   startPort,

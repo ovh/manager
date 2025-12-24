@@ -1,17 +1,18 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
-import { useAvailableGeolocationFromPlanCode } from '@/data/hooks/catalog';
-import { OrderContext } from '../order.context';
-import { IpOffer } from '../order.constant';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { CountrySelector } from '@/components/CountrySelector/country-selector.component';
+import { useAvailableGeolocationFromPlanCode } from '@/data/hooks/catalog';
 import { ServiceType } from '@/types';
+
+import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
+import { IpOffer } from '../order.constant';
+import { OrderContext } from '../order.context';
 
 export const GeolocationSection: React.FC = () => {
   const {
@@ -32,8 +33,7 @@ export const GeolocationSection: React.FC = () => {
   const isDisabled =
     !geolocations ||
     geolocations.length < 2 ||
-    (selectedOffer === IpOffer.additionalIp &&
-      ServiceType.ipParking === selectedServiceType);
+    (selectedOffer === IpOffer.additionalIp && ServiceType.ipParking === selectedServiceType);
 
   return (
     <OrderSection

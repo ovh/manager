@@ -1,36 +1,39 @@
-import { describe, it, vi } from 'vitest';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { describe, it, vi } from 'vitest';
+
 import { Subsidiary } from '@ovh-ux/manager-config';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
 import {
-  labels,
-  getButtonByLabel,
-  selectIpVersion,
-  selectService,
-  selectRegion,
-  selectOffer,
-  selectedOrganisation,
-  goToOrder,
-  selectIpv6Option,
-  getOrganisationSelect,
-} from '@/test-utils';
-import {
-  vrackMockList,
   dedicatedCloudMockList,
-  organisationMockList,
   dedicatedServerMockList,
+  organisationMockList,
   vpsMockList,
+  vrackMockList,
 } from '@/__mocks__';
-import { IpOffer } from './order.constant';
+import {
+  getButtonByLabel,
+  getOrganisationSelect,
+  goToOrder,
+  labels,
+  selectIpVersion,
+  selectIpv6Option,
+  selectOffer,
+  selectRegion,
+  selectService,
+  selectedOrganisation,
+} from '@/test-utils';
 import { IpVersion, ipParkingOptionValue } from '@/types';
 
-describe('Order', async () => {
+import { IpOffer } from './order.constant';
+
+describe('Order', () => {
   it.each([
     {
       case: 'vRack',
       ipVersion: IpVersion.ipv4,
-      serviceName: vrackMockList[0].name,
+      serviceName: vrackMockList[0]?.name,
       region: 'eu-west-lim',
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[2],
@@ -41,7 +44,7 @@ describe('Order', async () => {
     {
       case: 'vRack (Without Organisation)',
       ipVersion: IpVersion.ipv4,
-      serviceName: vrackMockList[0].name,
+      serviceName: vrackMockList[0]?.name,
       region: 'eu-west-lim',
       isOrganisationSectionVisible: true,
       offer: IpOffer.blockAdditionalIp,
@@ -51,7 +54,7 @@ describe('Order', async () => {
     {
       case: 'vRack in UK',
       ipVersion: IpVersion.ipv4,
-      serviceName: vrackMockList[1].name,
+      serviceName: vrackMockList[1]?.name,
       region: 'eu-west-eri',
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[3],
@@ -62,7 +65,7 @@ describe('Order', async () => {
     {
       case: 'vRack in CA',
       ipVersion: IpVersion.ipv4,
-      serviceName: vrackMockList[0].name,
+      serviceName: vrackMockList[0]?.name,
       region: 'ca-east-bhs',
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[0],
@@ -104,7 +107,7 @@ describe('Order', async () => {
     {
       case: 'Dedicated Cloud',
       ipVersion: IpVersion.ipv4,
-      serviceName: dedicatedCloudMockList[0].serviceName,
+      serviceName: dedicatedCloudMockList[0]?.serviceName,
       isOrganisationSectionVisible: false,
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
@@ -113,7 +116,7 @@ describe('Order', async () => {
     {
       case: 'Dedicated server (additional IP)',
       ipVersion: IpVersion.ipv4,
-      serviceName: dedicatedServerMockList[0].name,
+      serviceName: dedicatedServerMockList[0]?.name,
       isOrganisationSectionVisible: false,
       offer: IpOffer.additionalIp,
       expectedOrderLink:
@@ -122,7 +125,7 @@ describe('Order', async () => {
     {
       case: 'Dedicated server (Block additional IP)',
       ipVersion: IpVersion.ipv4,
-      serviceName: dedicatedServerMockList[0].name,
+      serviceName: dedicatedServerMockList[0]?.name,
       offer: IpOffer.blockAdditionalIp,
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[0],
@@ -132,7 +135,7 @@ describe('Order', async () => {
     {
       case: 'VPS',
       ipVersion: IpVersion.ipv4,
-      serviceName: vpsMockList[0].name,
+      serviceName: vpsMockList[0]?.name,
       isOrganisationSectionVisible: false,
       offer: IpOffer.additionalIp,
       expectedOrderLink:
@@ -141,7 +144,7 @@ describe('Order', async () => {
     {
       case: 'IPv6 ARIN',
       ipVersion: IpVersion.ipv6,
-      serviceName: vrackMockList[0].name,
+      serviceName: vrackMockList[0]?.name,
       region: 'ca-east-bhs',
       isOrganisationSectionVisible: false,
       expectedOrderLink:
@@ -150,7 +153,7 @@ describe('Order', async () => {
     {
       case: 'IPv6 RIPE',
       ipVersion: IpVersion.ipv6,
-      serviceName: vrackMockList[0].name,
+      serviceName: vrackMockList[0]?.name,
       region: 'eu-west-gra',
       isOrganisationSectionVisible: false,
       expectedOrderLink:
@@ -215,11 +218,7 @@ describe('Order', async () => {
       });
       window.open = vi.fn();
       await waitFor(() => userEvent.click(orderButton));
-      expect(window.open).toHaveBeenCalledWith(
-        expectedOrderLink,
-        '_blank',
-        'noopener,noreferrer',
-      );
+      expect(window.open).toHaveBeenCalledWith(expectedOrderLink, '_blank', 'noopener,noreferrer');
     },
   );
 
@@ -228,11 +227,9 @@ describe('Order', async () => {
 
     await selectIpVersion(IpVersion.ipv4);
 
-    await selectService({ container, serviceName: vrackMockList[0].name });
+    await selectService({ container, serviceName: vrackMockList[0]?.name });
 
-    await assertTextVisibility(
-      labels.order.service_selection_expired_error_message,
-    );
+    await assertTextVisibility(labels.order.service_selection_expired_error_message);
   });
 
   it('displays an error message if the dedicated server cannot order ip', async () => {
@@ -244,12 +241,10 @@ describe('Order', async () => {
 
     await selectService({
       container,
-      serviceName: dedicatedServerMockList[0].name,
+      serviceName: dedicatedServerMockList[0]?.name,
     });
 
-    await assertTextVisibility(
-      labels.order.service_selection_ip_quota_exceeded_error_message,
-    );
+    await assertTextVisibility(labels.order.service_selection_ip_quota_exceeded_error_message);
   });
 
   it.each([
@@ -278,13 +273,12 @@ describe('Order', async () => {
     await selectIpVersion(IpVersion.ipv4);
     await selectService({
       container,
-      serviceName: dedicatedCloudMockList[0].serviceName,
+      serviceName: dedicatedCloudMockList[0]?.serviceName,
     });
 
-    await assertTextVisibility(
-      labels.order.error_message.replace('{{error}}', ''),
-      { exact: false },
-    );
+    await assertTextVisibility(labels.order.error_message.replace('{{error}}', ''), {
+      exact: false,
+    });
   });
 
   it('displays an error if catalog is KO when selecting a region', async () => {
@@ -292,27 +286,25 @@ describe('Order', async () => {
     await selectIpVersion(IpVersion.ipv4);
     await selectService({ container, serviceName: ipParkingOptionValue });
 
-    await assertTextVisibility(
-      labels.order.error_message.replace('{{error}}', ''),
-      { exact: false },
-    );
+    await assertTextVisibility(labels.order.error_message.replace('{{error}}', ''), {
+      exact: false,
+    });
   });
 
   it('displays an error after IP version selection if resource list is KO', async () => {
     await goToOrder({ getVrackKo: true });
     await selectIpVersion(IpVersion.ipv4);
 
-    await assertTextVisibility(
-      labels.order.error_message.replace('{{error}}', ''),
-      { exact: false },
-    );
+    await assertTextVisibility(labels.order.error_message.replace('{{error}}', ''), {
+      exact: false,
+    });
   });
 
   it('displays an error message if we reached IPv6 order limit', async () => {
     const { container } = await goToOrder({ isIpv6LimitReached: true });
     await selectIpVersion(IpVersion.ipv6);
     await selectIpv6Option({ container });
-    await selectService({ container, serviceName: vrackMockList[0].name });
+    await selectService({ container, serviceName: vrackMockList[0]?.name });
 
     await assertTextVisibility(labels.order.ipv6_limit_reached_error);
   });

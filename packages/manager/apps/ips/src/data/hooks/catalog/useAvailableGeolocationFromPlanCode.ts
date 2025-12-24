@@ -1,11 +1,14 @@
 import React from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useCatalogIps } from './useCatalogIps';
-import { ServiceType } from '@/types';
-import { useDedicatedCloudGeolocations } from './useDedicatedCloudGeolocations';
-import { useVpsGeolocations } from './useVpsGeolocations';
+
 import { CatalogIpConfiguration, CatalogIpPlan } from '@/data/api';
+import { ServiceType } from '@/types';
+
+import { useCatalogIps } from './useCatalogIps';
+import { useDedicatedCloudGeolocations } from './useDedicatedCloudGeolocations';
 import { useDedicatedServerGeolocations } from './useDedicatedServerGeolocations';
+import { useVpsGeolocations } from './useVpsGeolocations';
 
 export const useAvailableGeolocationFromPlanCode = ({
   planCode,
@@ -19,15 +22,10 @@ export const useAvailableGeolocationFromPlanCode = ({
   const { environment } = React.useContext(ShellContext);
   const { data, ...query } = useCatalogIps({
     subsidiary: environment.user.ovhSubsidiary,
-    enabled: ![ServiceType.dedicatedCloud, ServiceType.vps].includes(
-      serviceType,
-    ),
+    enabled: ![ServiceType.dedicatedCloud, ServiceType.vps].includes(serviceType),
   });
 
-  const {
-    data: dedicatedServerData,
-    ...dedicatedServerQuery
-  } = useDedicatedServerGeolocations({
+  const { data: dedicatedServerData, ...dedicatedServerQuery } = useDedicatedServerGeolocations({
     serviceName,
     enabled: serviceType === ServiceType.server,
   });

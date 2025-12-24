@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import {
-  ApiError,
-  ApiResponse,
-  IcebergFetchResultV6,
-} from '@ovh-ux/manager-core-api';
-import {
+  IpMitigationStateEnum,
   IpMitigationType,
   getIpMitigation,
   getIpMitigationQueryKey,
@@ -18,14 +17,13 @@ export type UseGetIpMitigationParams = {
   enabled?: boolean;
 };
 
-export const useGetIpMitigation = ({
-  ip,
-  enabled = true,
-}: UseGetIpMitigationParams) => {
-  const { data: ipMitigationResponse, isLoading, isError, error } = useQuery<
-    IcebergFetchResultV6<IpMitigationType>,
-    ApiError
-  >({
+export const useGetIpMitigation = ({ ip, enabled = true }: UseGetIpMitigationParams) => {
+  const {
+    data: ipMitigationResponse,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<IcebergFetchResultV6<IpMitigationType>, ApiError>({
     queryKey: getIpMitigationQueryKey({ ip }),
     queryFn: async () => {
       try {
@@ -39,16 +37,16 @@ export const useGetIpMitigation = ({
             data: [],
           };
         }
-        throw error;
+        throw new Error(err?.message);
       }
     },
-    enabled,
+    enabled: enabled && !!ip,
     staleTime: Number.POSITIVE_INFINITY,
     retry: false,
   });
 
   return {
-    ipMitigation: ipMitigationResponse?.data,
+    ipMitigation: ipMitigationResponse?.data || [],
     isLoading,
     isError,
     error,
@@ -58,13 +56,17 @@ export const useGetIpMitigation = ({
 export const useGetIpMitigationWithoutIceberg = ({
   ip,
   enabled = true,
-}: UseGetIpMitigationParams) => {
-  const { ipGroup, ipAddress } = ipFormatter(ip);
-  const ipBlockip = ipGroup;
-  const { data: ipMitigationResponse, isLoading, isError, error } = useQuery<
-    ApiResponse<IpMitigationType>,
-    ApiError
-  >({
+}: {
+  ip: string;
+  enabled?: boolean;
+}) => {
+  const { ipGroup: ipBlockip, ipAddress } = ipFormatter(ip);
+  const {
+    data: ipMitigationResponse,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<ApiResponse<IpMitigationType>, ApiError>({
     queryKey: getIpMitigationWithoutIcebergQueryKey({
       ipBlockip,
       ip: ipAddress,
@@ -86,8 +88,9 @@ export const useGetIpMitigationWithoutIceberg = ({
     enabled,
     retry: false,
     refetchInterval: (query) =>
-      query.state.data?.data?.state === 'creationPending' ||
-      query.state.data?.data?.state === 'removalPending'
+      [IpMitigationStateEnum.CREATION_PENDING, IpMitigationStateEnum.REMOVAL_PENDING].includes(
+        query.state.data?.data?.state as IpMitigationStateEnum,
+      )
         ? INVALIDATED_REFRESH_PERIOD
         : false,
   });

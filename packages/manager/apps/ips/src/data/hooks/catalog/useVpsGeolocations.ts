@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ServiceType } from '@/types';
+
 import { getVpsOrderableIpCountries } from '../../api';
 
 export const getVpsGeolocationsQueryKey = (serviceName: string) => [

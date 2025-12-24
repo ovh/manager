@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import {
   DedicatedServerVmacType,
   getdedicatedServerVmac,
@@ -9,15 +11,12 @@ import { IpTypeEnum } from '@/data/constants';
 import { getTypeByServiceName } from '@/utils';
 
 export type UseGetIpVmacParams = {
-  serviceName: string;
+  serviceName?: string;
   enabled?: boolean;
 };
 
 // Only for dedicated server for now
-export const useGetIpVmac = ({
-  serviceName,
-  enabled = true,
-}: UseGetIpVmacParams) => {
+export const useGetIpVmac = ({ serviceName, enabled = true }: UseGetIpVmacParams) => {
   const {
     data: dedicatedServerVmacResponse,
     isLoading,
@@ -28,7 +27,7 @@ export const useGetIpVmac = ({
     queryFn: async () => {
       try {
         return await getdedicatedServerVmac({ serviceName });
-      } catch (queryError) {
+      } catch {
         return {
           data: [],
           totalCount: 0,
@@ -36,10 +35,7 @@ export const useGetIpVmac = ({
         };
       }
     },
-    enabled:
-      enabled &&
-      !!serviceName &&
-      getTypeByServiceName(serviceName) === IpTypeEnum.DEDICATED,
+    enabled: enabled && !!serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.DEDICATED,
     staleTime: Number.POSITIVE_INFINITY,
     retry: false,
   });

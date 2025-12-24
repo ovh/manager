@@ -5,13 +5,8 @@ export type DeleteIpReverseParams = {
   ipReverse: string;
 };
 
-export const deleteIpReverseQueryKey = ({
-  ip,
-  ipReverse,
-}: DeleteIpReverseParams) => [
-  `delete/ip/${encodeURIComponent(ip)}/reverse/${encodeURIComponent(
-    ipReverse,
-  )}`,
+export const deleteIpReverseQueryKey = ({ ip, ipReverse }: DeleteIpReverseParams) => [
+  `delete/ip/${encodeURIComponent(ip)}/reverse/${encodeURIComponent(ipReverse)}`,
 ];
 
 /**

@@ -1,20 +1,22 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { urlDynamicParts, urls } from '@/routes/routes.constant';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { IpEdgeFirewallStateEnum, IpEdgeFirewallType } from '@/data/api';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import { fromIpToId, handleEnterAndEscapeKeyDown } from '@/utils';
+
 import { BadgeCell } from '../BadgeCell/BadgeCell';
-import { fromIpToId } from '@/utils';
 
 export type IpEdgeFirewallDetailsProps = {
-  ipEdgeFirewall: IpEdgeFirewallType;
   ip: string;
+  ipEdgeFirewall?: IpEdgeFirewallType;
 };
 
 /**
@@ -25,33 +27,37 @@ export type IpEdgeFirewallDetailsProps = {
  * @param ipEdgeFirewall the edgeFirewall object for given ip (can be null)
  * @returns React component
  */
-export const IpEdgeFirewallDisplay = ({
-  ip,
-  ipEdgeFirewall,
-}: IpEdgeFirewallDetailsProps) => {
+export const IpEdgeFirewallDisplay = ({ ip, ipEdgeFirewall }: IpEdgeFirewallDetailsProps) => {
   const id = `edgefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { trackClick } = useOvhTracking();
 
+  const navigateToConfigureEdgeNetworkFirewall = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['configure_edge-network-firewall'],
+    });
+    void navigate(
+      `${urls.configureEdgeNetworkFirewall.replace(
+        urlDynamicParts.id,
+        fromIpToId(ip),
+      )}?${search.toString()}`,
+    );
+  };
+
   return (
     <div
+      role="button"
+      tabIndex={0}
       className="cursor-pointer"
-      onClick={() => {
-        trackClick({
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['configure_edge-network-firewall'],
-        });
-        navigate(
-          `${urls.configureEdgeNetworkFirewall.replace(
-            urlDynamicParts.id,
-            fromIpToId(ip),
-          )}?${search.toString()}`,
-        );
-      }}
+      onClick={navigateToConfigureEdgeNetworkFirewall}
+      onKeyDown={handleEnterAndEscapeKeyDown({
+        onEnter: navigateToConfigureEdgeNetworkFirewall,
+      })}
     >
       {!ipEdgeFirewall && (
         <BadgeCell
@@ -63,24 +69,22 @@ export const IpEdgeFirewallDisplay = ({
       )}
       {!!ipEdgeFirewall && (
         <div key={ipEdgeFirewall.ipOnFirewall}>
-          {ipEdgeFirewall.state === IpEdgeFirewallStateEnum.OK &&
-            ipEdgeFirewall.enabled && (
-              <BadgeCell
-                badgeColor={ODS_BADGE_COLOR.information}
-                text={t('listingColumnsIpEdgeFirewallEnabled')}
-                tooltip={t('listingColumnsIpEdgeFirewallEnabledTooltip')}
-                trigger={id}
-              />
-            )}
-          {ipEdgeFirewall.state === IpEdgeFirewallStateEnum.OK &&
-            !ipEdgeFirewall.enabled && (
-              <BadgeCell
-                badgeColor={ODS_BADGE_COLOR.neutral}
-                text={t('listingColumnsIpEdgeFirewallDisabled')}
-                tooltip={t('listingColumnsIpEdgeFirewallDisabledTooltip')}
-                trigger={id}
-              />
-            )}
+          {ipEdgeFirewall.state === IpEdgeFirewallStateEnum.OK && ipEdgeFirewall.enabled && (
+            <BadgeCell
+              badgeColor={ODS_BADGE_COLOR.information}
+              text={t('listingColumnsIpEdgeFirewallEnabled')}
+              tooltip={t('listingColumnsIpEdgeFirewallEnabledTooltip')}
+              trigger={id}
+            />
+          )}
+          {ipEdgeFirewall.state === IpEdgeFirewallStateEnum.OK && !ipEdgeFirewall.enabled && (
+            <BadgeCell
+              badgeColor={ODS_BADGE_COLOR.neutral}
+              text={t('listingColumnsIpEdgeFirewallDisabled')}
+              tooltip={t('listingColumnsIpEdgeFirewallDisabledTooltip')}
+              trigger={id}
+            />
+          )}
           {ipEdgeFirewall.state !== IpEdgeFirewallStateEnum.OK && (
             <BadgeCell
               badgeColor={ODS_BADGE_COLOR.warning}

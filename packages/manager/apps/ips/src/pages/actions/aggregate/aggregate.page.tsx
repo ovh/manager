@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsText,
-  OdsLink,
-  OdsMessage,
-  OdsSelect,
-} from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsLink, OdsMessage, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -17,28 +16,19 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  fromIdToIp,
-  ipFormatter,
-  TRANSLATION_NAMESPACES,
-  useGuideUtils,
-} from '@/utils';
-import { useByoipAggregate } from '@/data/hooks/ip';
+
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
-import { ListingContext } from '@/pages/listing/listingContext';
 import { getIpDetailsQueryKey } from '@/data/api';
+import { useByoipAggregate } from '@/data/hooks/ip';
+import { ListingContext } from '@/pages/listing/listingContext';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 
 export default function AggregateModal() {
   const queryClient = useQueryClient();
-  const { setOnGoingCreatedIps, setOnGoingAggregatedIps } = useContext(
-    ListingContext,
-  );
+  const { setOnGoingCreatedIps, setOnGoingAggregatedIps } = useContext(ListingContext);
   const { parentId } = useParams();
   const { ipGroup } = ipFormatter(fromIdToIp(parentId));
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.aggregateSlice,
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.aggregateSlice, NAMESPACES.ACTIONS]);
   const { links } = useGuideUtils();
   const { addSuccess } = useNotifications();
   const navigate = useNavigate();
@@ -47,39 +37,32 @@ export default function AggregateModal() {
   const [aggregationIp, setAggregationIp] = React.useState('');
 
   const closeModal = () => {
-    navigate(`..?${search.toString()}`);
+    void navigate(`..?${search.toString()}`);
   };
 
-  const {
-    aggregate,
-    isLoading,
-    error,
-    aggregateError,
-    isAggregatePending,
-    postAggregate,
-  } = useByoipAggregate({
-    ip: ipGroup,
-    onSuccess: () => {
-      addSuccess(t('aggregateSuccessMessage'));
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: 'aggregate_success',
-      });
-      closeModal();
-      const childrenIps =
-        aggregate.find((a) => a.aggregationIp === aggregationIp)?.childrenIps ||
-        [];
+  const { aggregate, isLoading, error, aggregateError, isAggregatePending, postAggregate } =
+    useByoipAggregate({
+      ip: ipGroup,
+      onSuccess: () => {
+        addSuccess(t('aggregateSuccessMessage'));
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: 'aggregate_success',
+        });
+        closeModal();
+        const childrenIps =
+          aggregate.find((a) => a.aggregationIp === aggregationIp)?.childrenIps || [];
 
-      queryClient.invalidateQueries({
-        queryKey: getIpDetailsQueryKey({ ip: aggregationIp }),
-      });
+        void queryClient.invalidateQueries({
+          queryKey: getIpDetailsQueryKey({ ip: aggregationIp }),
+        });
 
-      setOnGoingCreatedIps((prev) => [...prev, aggregationIp]);
-      setOnGoingAggregatedIps((prev) => [...prev, ...childrenIps]);
-    },
-  });
+        setOnGoingCreatedIps((prev) => [...prev, aggregationIp]);
+        setOnGoingAggregatedIps((prev) => [...prev, ...childrenIps]);
+      },
+    });
 
-  const cancel = React.useCallback(() => {
+  const cancel = () => {
     trackClick({
       location: PageLocation.popup,
       buttonType: ButtonType.button,
@@ -87,13 +70,11 @@ export default function AggregateModal() {
       actions: ['aggregate', 'cancel'],
     });
     closeModal();
-  }, []);
+  };
 
   React.useEffect(() => {
     if (!aggregationIp && aggregate && aggregate.length > 0) {
-      setAggregationIp(
-        aggregate.find((a) => a.childrenIps.length > 0)?.aggregationIp || '',
-      );
+      setAggregationIp(aggregate.find((a) => a.childrenIps.length > 0)?.aggregationIp || '');
     }
   }, [aggregate, aggregationIp]);
 
@@ -145,7 +126,7 @@ export default function AggregateModal() {
       )}
       {aggregate.length > 0 && (
         <>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+          <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
             {t('aggregateModalDescription')}
           </OdsText>
           <OdsSelect
@@ -165,7 +146,7 @@ export default function AggregateModal() {
               </option>
             ))}
           </OdsSelect>
-          <section className="bg-neutral-100 p-4 mb-4">
+          <section className="mb-4 bg-neutral-100 p-4">
             <OdsText>{t('aggregateModalChildrenIpsDescription')}</OdsText>
             <ul>
               {aggregate

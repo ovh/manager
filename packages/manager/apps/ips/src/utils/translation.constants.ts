@@ -14,6 +14,8 @@ export const TRANSLATION_NAMESPACES = {
   regionSelector: 'region-selector',
   importIpFromSys: 'import-ip-from-sys',
   moveIp: 'move-ip',
+  antiSpam: 'anti-spam',
+  antiHack: 'anti-hack',
   exportIpToCsv: 'export-ip-to-csv',
   aggregateSlice: 'aggregate-slice',
   price: 'ips-price',

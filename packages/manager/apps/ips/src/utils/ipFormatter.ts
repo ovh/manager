@@ -1,23 +1,31 @@
 import { Prefix } from 'ip.js';
 import ipaddr from 'ipaddr.js';
 
-export const ipFormatter = (ip: string) => {
+export const ipFormatter = (
+  ip: string,
+): {
+  ip: string;
+  ipAddress: string;
+  ipGroup: string;
+  range?: number;
+  isGroup: boolean;
+} => {
   const [ipAddress, range] = ip.split('/');
   if (!range) {
     return {
-      ip: ipAddress,
-      ipAddress,
+      ip: ipAddress as string,
+      ipAddress: ipAddress as string,
       ipGroup: `${ipAddress}/${ipaddr.IPv4.isIPv4(ip) ? 32 : 128}`,
       isGroup: false,
     };
   }
   if (
-    (range === '32' && ipaddr.IPv4.isIPv4(ipAddress)) ||
-    (range === '128' && ipaddr.IPv6.isIPv6(ipAddress))
+    (range === '32' && ipaddr.IPv4.isIPv4(ipAddress || '')) ||
+    (range === '128' && ipaddr.IPv6.isIPv6(ipAddress || ''))
   ) {
     return {
-      ip: ipAddress,
-      ipAddress,
+      ip: ipAddress as string,
+      ipAddress: ipAddress as string,
       ipGroup: ip,
       isGroup: false,
     };
@@ -28,17 +36,15 @@ export const ipFormatter = (ip: string) => {
     /**
      * Group prefix
      */
-    ipAddress,
-    range,
+    ipAddress: ipAddress as string,
+    range: parseInt(range, 10),
     isGroup: true,
   };
 };
 
-export const fromIpToId = (ip?: string) =>
-  ip?.replace(/\./g, '-')?.replace(/\//g, '_');
+export const fromIpToId = (ip = '') => ip?.replace(/\./g, '-')?.replace(/\//g, '_');
 
-export const fromIdToIp = (id?: string) =>
-  id?.replace(/-/g, '.')?.replace(/_/g, '/');
+export const fromIdToIp = (id = '') => id?.replace(/-/g, '.')?.replace(/_/g, '/');
 
 /**
  * Return list of all ips in the given ipGroup
@@ -48,7 +54,5 @@ export const getIpv4SubIpList = (ipGroup: string) => {
   if (!prefix.isIPv4() || !ipGroup.includes('/') || ipGroup.includes('/32')) {
     return [];
   }
-  return (
-    prefix.slice(32).map((addr) => addr.toString().replace('/32', '')) || []
-  );
+  return prefix.slice(32).map((addr) => addr.toString().replace('/32', '')) || [];
 };

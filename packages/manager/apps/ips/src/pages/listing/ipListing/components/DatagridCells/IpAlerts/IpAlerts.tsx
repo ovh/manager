@@ -1,10 +1,14 @@
+import React, { useContext } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
-import React, { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useIpHasAlerts } from '@/data/hooks/ip';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpAlertsProps = {
   ip: string;
@@ -42,16 +46,10 @@ export const IpAlerts = ({ ip, subIp, isByoipSlice }: IpAlertsProps) => {
     <SkeletonCell isLoading={isLoading}>
       <div className="flex flex-col gap-1">
         {!!hasAlerts?.antihack?.length && (
-          <OdsBadge
-            label={t('listingColumnsIpAlertsAntihack')}
-            color={ODS_BADGE_COLOR.critical}
-          />
+          <OdsBadge label={t('listingColumnsIpAlertsAntihack')} color={ODS_BADGE_COLOR.critical} />
         )}
         {!!hasAlerts?.spam?.length && (
-          <OdsBadge
-            label={t('listingColumnsIpAlertsSpam')}
-            color={ODS_BADGE_COLOR.critical}
-          />
+          <OdsBadge label={t('listingColumnsIpAlertsSpam')} color={ODS_BADGE_COLOR.critical} />
         )}
         {!!hasAlerts?.mitigation?.length && (
           <OdsBadge

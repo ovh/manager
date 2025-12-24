@@ -1,8 +1,9 @@
-import { v6, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
+
 import { VrackTask } from '@/types';
 
 export type GetVrackTaskParams = {
-  serviceName: string;
+  serviceName?: string;
 };
 
 export const getVrackTaskQueryKey = (params: GetVrackTaskParams) => [
@@ -12,17 +13,18 @@ export const getVrackTaskQueryKey = (params: GetVrackTaskParams) => [
 
 export const getVrackTaskList = ({
   serviceName,
-}: GetVrackTaskParams): Promise<ApiResponse<number[]>> =>
-  v6.get(`/vrack/${serviceName}/task`);
+}: GetVrackTaskParams): Promise<ApiResponse<number[]>> => v6.get(`/vrack/${serviceName}/task`);
 
 export type GetVrackTaskDetailsParams = {
-  serviceName: string;
+  serviceName?: string;
   taskId: number;
 };
 
-export const getVrackTaskDetailsQueryKey = (
-  params: GetVrackTaskDetailsParams,
-) => ['vRackTaskDetails', params.serviceName, params.taskId];
+export const getVrackTaskDetailsQueryKey = (params: GetVrackTaskDetailsParams) => [
+  'vRackTaskDetails',
+  params.serviceName,
+  params.taskId,
+];
 
 export const getVrackTaskDetails = ({
   serviceName,

@@ -1,4 +1,4 @@
-import { v6, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
 
 export type MoveIpDestination = {
   service: string;
@@ -14,11 +14,7 @@ export type MoveIpAvailableDestinationsResponse = {
   dedicatedServer: MoveIpDestination[];
 };
 
-export const getMoveIpAvailableDestinationsQueryKey = (ip: string) => [
-  'ip',
-  ip,
-  'move',
-];
+export const getMoveIpAvailableDestinationsQueryKey = (ip: string) => ['ip', ip, 'move'];
 
 export const getMoveIpAvailableDestinations = (
   ip: string,

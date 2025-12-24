@@ -1,10 +1,13 @@
-import { useTranslation } from 'react-i18next';
-import { mkConfig, generateCsv, download } from 'export-to-csv';
 import { useMutation } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { download, generateCsv, mkConfig } from 'export-to-csv';
 import ipaddr from 'ipaddr.js';
+import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { TRANSLATION_NAMESPACES } from '@/utils';
-import { getIpExport, GetIpListParams } from '../api';
+
+import { GetIpListParams, getIpExport } from '../api';
 
 export interface ExportIpToCsvData {
   ipBlock: string;
@@ -55,9 +58,7 @@ export const useExportIpToCsv = ({
     const apiParams = {
       ...(isPartialIp ? apiFilterWithoutIp : apiFilter),
       serviceName:
-        apiFilter['routedTo.serviceName'] === null
-          ? '_PARK'
-          : apiFilter['routedTo.serviceName'],
+        apiFilter['routedTo.serviceName'] === null ? '_PARK' : apiFilter['routedTo.serviceName'],
     };
 
     const result = await getIpExport(apiParams);
@@ -65,9 +66,7 @@ export const useExportIpToCsv = ({
     // Filter results client-side if ip is partial
     let filteredData = result?.data ?? [];
     if (isPartialIp && ip) {
-      filteredData = filteredData.filter((item: ExportIpToCsvData) =>
-        item.ipBlock.includes(ip),
-      );
+      filteredData = filteredData.filter((item: ExportIpToCsvData) => item.ipBlock.includes(ip));
     }
 
     const resultLength = filteredData.length;

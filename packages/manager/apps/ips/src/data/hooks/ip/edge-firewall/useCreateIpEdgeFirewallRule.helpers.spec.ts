@@ -1,12 +1,12 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import {
-  hasPortRangeError,
-  hasDestinationPortLowerThanSourcePortError,
-  hasSourceError,
-  formatSourceValue,
-  IP_EDGE_FIREWALL_PORT_MIN,
   IP_EDGE_FIREWALL_PORT_MAX,
+  IP_EDGE_FIREWALL_PORT_MIN,
+  formatSourceValue,
+  hasDestinationPortLowerThanSourcePortError,
+  hasPortRangeError,
+  hasSourceError,
 } from './useCreateIpEdgeFirewallRule';
 
 describe('useCreateIpEdgeFirewallRule helpers', () => {
@@ -17,12 +17,8 @@ describe('useCreateIpEdgeFirewallRule helpers', () => {
     });
 
     it('returns true for values below min and above max', () => {
-      expect(
-        hasPortRangeError(String(IP_EDGE_FIREWALL_PORT_MIN - 1)),
-      ).toBeTruthy();
-      expect(
-        hasPortRangeError(String(IP_EDGE_FIREWALL_PORT_MAX + 1)),
-      ).toBeTruthy();
+      expect(hasPortRangeError(String(IP_EDGE_FIREWALL_PORT_MIN - 1))).toBeTruthy();
+      expect(hasPortRangeError(String(IP_EDGE_FIREWALL_PORT_MAX + 1))).toBeTruthy();
     });
 
     it('returns false for values inside range and edges', () => {

@@ -1,16 +1,20 @@
 import React from 'react';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import ipaddr from 'ipaddr.js';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsText,
-  OdsLink,
   OdsFormField,
   OdsInput,
+  OdsLink,
   OdsMessage,
   OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -19,20 +23,15 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
-import { isIpInsideBlock, isValidReverseDomain } from '@/utils/validators';
-import {
-  useDeleteIpReverse,
-  useUpdateIpReverse,
-  useGetIpReverse,
-} from '@/data/hooks/ip';
+
 import { IpReverseError } from '@/components/IpReverseError/IpReverseError';
+import { useDeleteIpReverse, useGetIpReverse, useUpdateIpReverse } from '@/data/hooks/ip';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
+import { isIpInsideBlock, isValidReverseDomain } from '@/utils/validators';
 
 export default function ConfigureReverseDns() {
   const { id, parentId } = useParams();
-  const { ipAddress: ip } = id
-    ? ipFormatter(fromIdToIp(id))
-    : { ipAddress: undefined };
+  const { ipAddress: ip } = id ? ipFormatter(fromIdToIp(id)) : { ipAddress: undefined };
   const { ipGroup, isGroup } = ipFormatter(fromIdToIp(parentId));
 
   const { addSuccess } = useNotifications();
@@ -49,13 +48,13 @@ export default function ConfigureReverseDns() {
         actions: ['configure_reverse-dns', 'cancel'],
       });
     }
-    navigate(`..?${search.toString()}`);
+    void navigate(`..?${search.toString()}`);
   };
 
   const { t } = useTranslation([
-    'configure-reverse-dns',
+    TRANSLATION_NAMESPACES.configureReverseDns,
     NAMESPACES.ACTIONS,
-    'error',
+    TRANSLATION_NAMESPACES.error,
   ]);
   const { links } = useGuideUtils();
   const [currentIp, setCurrentIp] = React.useState(isGroup ? ip : '');
@@ -107,10 +106,10 @@ export default function ConfigureReverseDns() {
   });
 
   const cancel = React.useCallback(() => {
-    setReverseDns(data?.data?.reverse);
+    setReverseDns(data?.data?.reverse as string);
     setCurrentIp('');
     closeModal();
-  }, [data?.data?.reverse]);
+  }, [data?.data?.reverse, closeModal]);
 
   const confirm = React.useCallback(() => {
     trackClick({
@@ -119,21 +118,18 @@ export default function ConfigureReverseDns() {
       actionType: 'action',
       actions: ['configure_reverse-dns', 'confirm'],
     });
-    return reverseDns
-      ? updateReverseDns({ reverse: reverseDns })
-      : deleteReverseDns();
-  }, [updateReverseDns, deleteReverseDns, reverseDns]);
+    return reverseDns ? updateReverseDns({ reverse: reverseDns }) : deleteReverseDns();
+  }, [updateReverseDns, deleteReverseDns, reverseDns, trackClick]);
+
+  React.useEffect(() => {
+    setReverseDns(data?.data?.reverse as string);
+  }, [data]);
+
+  const apiError = ipReverseError || updateIpReverseError || deleteIpReverseError;
 
   if (!ipGroup) {
     return cancel();
   }
-
-  React.useEffect(() => {
-    setReverseDns(data?.data?.reverse);
-  }, [data]);
-
-  const apiError =
-    ipReverseError || updateIpReverseError || deleteIpReverseError;
 
   return (
     <Modal
@@ -154,11 +150,11 @@ export default function ConfigureReverseDns() {
         reverseDns === data?.data?.reverse
       }
     >
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+      <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
         {t('reverseDnsModalDescription')}
         <OdsLink
           className="inline"
-          href={links.configureReverseDnsGuide.link}
+          href={links.configureReverseDnsGuide?.link as string}
           target="_blank"
           label="guide"
           onClick={() => {
@@ -166,32 +162,23 @@ export default function ConfigureReverseDns() {
               location: PageLocation.popup,
               buttonType: ButtonType.link,
               actionType: 'action',
-              actions: [
-                `go-to_${links.configureReverseDnsGuide.trackingLabel}`,
-              ],
+              actions: [`go-to_${links.configureReverseDnsGuide?.trackingLabel}`],
             });
           }}
         />
       </OdsText>
       {!id && (
-        <OdsFormField className="block mb-4">
+        <OdsFormField className="mb-4 block">
           <label slot="label">{t('reverseDnsParentIpBlockFieldLabel')}</label>
-          <OdsInput
-            className="block"
-            name="parent-ip"
-            isReadonly
-            value={ipGroup}
-          />
+          <OdsInput className="block" name="parent-ip" isReadonly value={ipGroup} />
         </OdsFormField>
       )}
-      <OdsFormField className="block mb-4" error={currentIpError}>
+      <OdsFormField className="mb-4 block" error={currentIpError}>
         <label slot="label">{t('reverseDnsIpFieldLabel')}</label>
         <OdsInput
           className="block"
           name="current-ip"
-          isReadonly={
-            !isGroup || !!id || updateIpReversePending || deleteIpReversePending
-          }
+          isReadonly={!isGroup || !!id || updateIpReversePending || deleteIpReversePending}
           value={isGroup ? currentIp : ip}
           hasError={!!currentIpError}
           onOdsChange={(event) => {
@@ -210,7 +197,7 @@ export default function ConfigureReverseDns() {
           }}
         />
       </OdsFormField>
-      <OdsFormField className="block mb-4" error={reverseDnsError}>
+      <OdsFormField className="mb-4 block" error={reverseDnsError}>
         <label slot="label">{t('reverseDnsDnsFieldLabel')}</label>
         <OdsInput
           className="block"
@@ -221,9 +208,7 @@ export default function ConfigureReverseDns() {
           onOdsChange={(event) => {
             const newDomain = event.detail.value as string;
             setReverseDnsError(
-              !newDomain || isValidReverseDomain(newDomain)
-                ? ''
-                : t('reverseDnsDnsError'),
+              !newDomain || isValidReverseDomain(newDomain) ? '' : t('reverseDnsDnsError'),
             );
             setReverseDns(newDomain);
           }}
@@ -232,7 +217,7 @@ export default function ConfigureReverseDns() {
       {apiError && (
         <OdsMessage
           isDismissible={false}
-          className={`block mb-4`}
+          className={`mb-4 block`}
           color={ODS_MESSAGE_COLOR.critical}
         >
           <React.Suspense fallback={<OdsSpinner />}>

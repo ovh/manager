@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
+  IpEdgeFirewallStateEnum,
   IpEdgeFirewallType,
   getIpEdgeFirewall,
   getIpEdgeFirewallQueryKey,
-  IpEdgeFirewallStateEnum,
 } from '@/data/api';
 import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
@@ -21,10 +23,12 @@ export const useGetIpEdgeFirewall = ({
   enabled = true,
   refetchInterval = INVALIDATED_REFRESH_PERIOD,
 }: UseGetIpEdgeFirewallParams) => {
-  const { data: ipEdgeFirewallResponse, isLoading, isError, error } = useQuery<
-    ApiResponse<IpEdgeFirewallType>,
-    ApiError
-  >({
+  const {
+    data: ipEdgeFirewallResponse,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<ApiResponse<IpEdgeFirewallType>, ApiError>({
     queryKey: getIpEdgeFirewallQueryKey({ ip, ipOnFirewall }),
     queryFn: async () => {
       try {

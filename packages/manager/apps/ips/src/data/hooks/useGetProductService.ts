@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import {
   GetProductServicesParams,
-  getProductServicesQueryKey,
-  getProductServices,
   ProductServicesDetails,
+  getProductServices,
+  getProductServicesQueryKey,
 } from '../api';
 
 export interface ServiceInfo {
@@ -13,10 +15,7 @@ export interface ServiceInfo {
   displayName: string;
 }
 
-const getDisplayName = (
-  category: string,
-  service: ProductServicesDetails,
-): string => {
+const getDisplayName = (category: string, service: ProductServicesDetails): string => {
   let iam;
   switch (category) {
     case 'CLOUD':
@@ -33,10 +32,7 @@ const getDisplayName = (
  * Fetch the list of available services for a product
  */
 export const useGetProductService = (product: GetProductServicesParams) => {
-  const { data, ...query } = useQuery<
-    IcebergFetchResultV6<ProductServicesDetails>,
-    ApiError
-  >({
+  const { data, ...query } = useQuery<IcebergFetchResultV6<ProductServicesDetails>, ApiError>({
     queryKey: getProductServicesQueryKey(product),
     queryFn: () => getProductServices(product),
   });
@@ -47,8 +43,7 @@ export const useGetProductService = (product: GetProductServicesParams) => {
     return {
       category: product.category,
       serviceName: extractedServiceName,
-      displayName:
-        getDisplayName(product.category, service) || extractedServiceName,
+      displayName: getDisplayName(product.category, service) || extractedServiceName,
     };
   }) as ServiceInfo[];
 

@@ -1,18 +1,25 @@
 import React, { useContext } from 'react';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
 import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Region } from '@ovh-ux/manager-config';
+import { Modal } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Modal } from '@ovh-ux/manager-react-components';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { US_API_CONSOLE_LINK } from '../actions.constants';
+
 import { LinkToOtherApp } from '@/components/LinkToOtherApp/LinkToOtherApp';
+
+import { US_API_CONSOLE_LINK } from '../actions.constants';
 
 export default function TerminateByoip() {
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
@@ -29,7 +36,7 @@ export default function TerminateByoip() {
       actionType: 'action',
       actions: ['terminate_bring-your-own-ip', 'cancel'],
     });
-    navigate(`..?${search.toString()}`);
+    void navigate(`..?${search.toString()}`);
   };
 
   return (
@@ -45,9 +52,7 @@ export default function TerminateByoip() {
           <Trans
             t={t}
             i18nKey={
-              region !== 'US'
-                ? 'listingTerminateByoip_info1'
-                : 'listingTerminateByoip_info2'
+              region !== Region.US ? 'listingTerminateByoip_info1' : 'listingTerminateByoip_info2'
             }
             components={{
               Link: (
@@ -56,7 +61,7 @@ export default function TerminateByoip() {
                   path="#/autorenew/services"
                   params={{ searchText: 'byoip' }}
                   icon={ODS_ICON_NAME.externalLink}
-                  forcedHref={region === 'US' ? US_API_CONSOLE_LINK : undefined}
+                  forcedHref={region === Region.US ? US_API_CONSOLE_LINK : undefined}
                 />
               ),
             }}

@@ -1,5 +1,6 @@
-import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { PathParams } from 'msw';
+
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 
 export const organisationMockDetails = [
   {
@@ -80,9 +81,7 @@ export const getOrganisationMocks = ({
   {
     url: '/me/ipOrganisation/:orgId',
     response: (_: unknown, params: PathParams) => {
-      return organisationMockDetails.find(
-        ({ organisationId }) => organisationId === params.orgId,
-      );
+      return organisationMockDetails.find(({ organisationId }) => organisationId === params.orgId);
     },
     api: 'v6',
   },

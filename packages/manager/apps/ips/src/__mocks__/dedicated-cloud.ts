@@ -1,7 +1,9 @@
-import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { CountryCode } from '@ovh-ux/manager-config';
-import { availableService, expiredService } from './serviceInfo';
+import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { DedicatedCloudLocation } from '@/data/api';
+
+import { availableService, expiredService } from './serviceInfo';
 
 const location: DedicatedCloudLocation = {
   region: 'eu-west-rbx',
@@ -80,9 +82,7 @@ export const getDedicatedCloudMocks = ({
   },
   {
     url: '/dedicatedCloud/:serviceName/serviceInfos',
-    response: isDedicatedCloudServiceExpired
-      ? expiredService
-      : availableService,
+    response: isDedicatedCloudServiceExpired ? expiredService : availableService,
     api: 'v6',
   },
 ];

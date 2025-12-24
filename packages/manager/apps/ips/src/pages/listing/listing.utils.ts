@@ -28,8 +28,7 @@ export function parseSearchValue(value: string) {
 export function searchToApiFilter(search?: URLSearchParams): GetIpListParams {
   const params: Record<string, string | number | boolean | null> = {};
   search?.forEach?.((value, key) => {
-    params[key] =
-      key === 'version' ? parseInt(value, 10) : parseSearchValue(value);
+    params[key] = key === 'version' ? parseInt(value, 10) : parseSearchValue(value);
   });
   return params as GetIpListParams;
 }

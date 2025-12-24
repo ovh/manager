@@ -1,4 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { IpMigrationOrder } from '@/types/ipMigrationOrder';
 
 export const getOrderDedicatedServerInfo = async (
@@ -17,10 +18,7 @@ export const getOrderDedicatedServerIpMigrationAvailableDurations = async ({
   serviceName,
   ip,
   token,
-}: Omit<
-  OrderDedicatedServerIpMigrationParams,
-  'duration'
->): Promise<ApiResponse<string[]>> =>
+}: Omit<OrderDedicatedServerIpMigrationParams, 'duration'>): Promise<ApiResponse<string[]>> =>
   apiClient.v6.get<string[]>(
     `/order/dedicated/server/${serviceName}/ipMigration?ip=${encodeURIComponent(
       ip,
@@ -32,9 +30,9 @@ export const getOrderDedicatedServerIpMigrationDetails = async ({
   ip,
   token,
   duration,
-}: OrderDedicatedServerIpMigrationParams): Promise<ApiResponse<
-  Omit<IpMigrationOrder, 'url' | 'orderId'>
->> =>
+}: OrderDedicatedServerIpMigrationParams): Promise<
+  ApiResponse<Omit<IpMigrationOrder, 'url' | 'orderId'>>
+> =>
   apiClient.v6.get<Omit<IpMigrationOrder, 'url' | 'orderId'>>(
     `/order/dedicated/server/${serviceName}/ipMigration/${duration}?ip=${encodeURIComponent(
       ip,
@@ -46,9 +44,7 @@ export const postOrderDedicatedServerIpMigration = async ({
   ip,
   token,
   duration,
-}: OrderDedicatedServerIpMigrationParams): Promise<ApiResponse<
-  IpMigrationOrder
->> =>
+}: OrderDedicatedServerIpMigrationParams): Promise<ApiResponse<IpMigrationOrder>> =>
   apiClient.v6.post<IpMigrationOrder>(
     `/order/dedicated/server/${serviceName}/ipMigration/${duration}`,
     { ip, token },

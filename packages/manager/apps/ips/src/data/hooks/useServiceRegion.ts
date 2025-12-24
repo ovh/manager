@@ -1,5 +1,9 @@
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { ServiceType } from '@/types';
+
 import {
   DedicatedCloudLocation,
   DedicatedServer,
@@ -8,7 +12,6 @@ import {
   getDedicatedServerData,
   getVpsDatacenter,
 } from '../api';
-import { ServiceType } from '@/types';
 import { DATACENTER_TO_REGION } from './catalog';
 
 export const useServiceRegion = ({
@@ -22,34 +25,22 @@ export const useServiceRegion = ({
 }) => {
   const dedicatedServerData = useQuery<ApiResponse<DedicatedServer>, ApiError>({
     queryKey: [ServiceType.server, serviceName],
-    queryFn: async () => getDedicatedServerData(serviceName),
-    enabled:
-      !!serviceName &&
-      serviceStatus === 'ok' &&
-      serviceType === ServiceType.server,
+    queryFn: async () => getDedicatedServerData(serviceName as string),
+    enabled: !!serviceName && serviceStatus === 'ok' && serviceType === ServiceType.server,
     retry: false,
   });
 
   const vpsDatacenter = useQuery<ApiResponse<VpsDatacenter>, ApiError>({
     queryKey: [ServiceType.vps, serviceName, 'datacenter'],
-    queryFn: async () => getVpsDatacenter(serviceName),
-    enabled:
-      !!serviceName &&
-      serviceStatus === 'ok' &&
-      serviceType === ServiceType.vps,
+    queryFn: async () => getVpsDatacenter(serviceName as string),
+    enabled: !!serviceName && serviceStatus === 'ok' && serviceType === ServiceType.vps,
     retry: false,
   });
 
-  const dedicatedCloudLocation = useQuery<
-    ApiResponse<DedicatedCloudLocation>,
-    ApiError
-  >({
+  const dedicatedCloudLocation = useQuery<ApiResponse<DedicatedCloudLocation>, ApiError>({
     queryKey: [ServiceType.dedicatedCloud, serviceName],
-    queryFn: async () => getDedicatedCloudServiceLocation(serviceName),
-    enabled:
-      !!serviceName &&
-      serviceStatus === 'ok' &&
-      serviceType === ServiceType.dedicatedCloud,
+    queryFn: async () => getDedicatedCloudServiceLocation(serviceName as string),
+    enabled: !!serviceName && serviceStatus === 'ok' && serviceType === ServiceType.dedicatedCloud,
     retry: false,
   });
 
@@ -61,15 +52,10 @@ export const useServiceRegion = ({
     region:
       dedicatedServerData?.data?.data?.region ||
       dedicatedCloudLocation?.data?.data?.region ||
-      DATACENTER_TO_REGION[vpsDatacenter?.data?.data?.name] ||
+      DATACENTER_TO_REGION[vpsDatacenter?.data?.data?.name as string] ||
       vpsDatacenter?.data?.data?.name?.toLowerCase(),
     isError:
-      dedicatedServerData.isError ||
-      vpsDatacenter.isError ||
-      dedicatedCloudLocation?.isError,
-    error:
-      dedicatedServerData?.error ||
-      vpsDatacenter?.error ||
-      dedicatedCloudLocation?.error,
+      dedicatedServerData.isError || vpsDatacenter.isError || dedicatedCloudLocation?.isError,
+    error: dedicatedServerData?.error || vpsDatacenter?.error || dedicatedCloudLocation?.error,
   };
 };

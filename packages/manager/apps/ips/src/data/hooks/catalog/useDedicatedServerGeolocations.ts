@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ServiceType } from '@/types';
+
 import { getDedicatedServerAvailableCountries } from '../../api';
 
 export const getDedicatedServerGeolocationsQueryKey = (serviceName: string) => [

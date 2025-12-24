@@ -1,3 +1,5 @@
+import { Query } from '@tanstack/react-query';
+
 import {
   ApiResponse,
   IcebergFetchResultV6,
@@ -5,7 +7,7 @@ import {
   fetchIcebergV6,
 } from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
-import { Query } from '@tanstack/react-query';
+
 import { ServiceStatus } from '@/types';
 
 export type DedicatedServer = {
@@ -36,9 +38,7 @@ export type DedicatedServer = {
   iam: IamObject;
 };
 
-export const getDedicatedServerData = (
-  serverName: string,
-): Promise<ApiResponse<DedicatedServer>> =>
+export const getDedicatedServerData = (serverName: string): Promise<ApiResponse<DedicatedServer>> =>
   apiClient.v6.get(`/dedicated/server/${serverName}`);
 
 export type DedicatedServerServiceInfos = {
@@ -115,21 +115,14 @@ export type DedicatedServerTaskResponse = {
   note: string | null;
   plannedInterventionId: number | null;
   startDate: string;
-  status:
-    | 'cancelled'
-    | 'doing'
-    | 'done'
-    | 'ovhError'
-    | 'customerError'
-    | 'init'
-    | 'todo';
+  status: 'cancelled' | 'doing' | 'done' | 'ovhError' | 'customerError' | 'init' | 'todo';
   tags: { key: string; value: string }[];
   taskId: number;
   ticketReference: string | null;
 };
 
-const getDedicatedServerTasksBaseQueryKey = (serviceName: string): string =>
-  `get/dedicated/server/${encodeURIComponent(serviceName)}/task`;
+const getDedicatedServerTasksBaseQueryKey = (serviceName?: string): string =>
+  `get/dedicated/server/${serviceName ? encodeURIComponent(serviceName) : ''}/task`;
 
 export const getDedicatedServerTasksQueryKey = ({
   serviceName,
@@ -140,19 +133,15 @@ export const getDedicatedServerTasksQueryKey = ({
   { taskFunction, status },
 ];
 
-export const getDedicatedServerTaskQueryKey = (
-  serviceName: string,
-  taskId: number,
-) => [`get/dedicated/server/${encodeURIComponent(serviceName)}/task/${taskId}`];
+export const getDedicatedServerTaskQueryKey = (serviceName: string, taskId: number) => [
+  `get/dedicated/server/${encodeURIComponent(serviceName)}/task/${taskId}`,
+];
 
-export const createDedicatedServerTasksQueryKeyPredicate = (
-  serviceName: string,
-  functionList: string[],
-) => ({ queryKey }: Query) =>
-  queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
-  functionList.includes(
-    (queryKey[1] as { taskFunction: string })?.taskFunction,
-  );
+export const createDedicatedServerTasksQueryKeyPredicate =
+  (serviceName: string | undefined, functionList: string[]) =>
+  ({ queryKey }: Query) =>
+    queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
+    functionList.includes((queryKey[1] as { taskFunction: string })?.taskFunction);
 
 export const getDedicatedServerTasks = async ({
   serviceName,

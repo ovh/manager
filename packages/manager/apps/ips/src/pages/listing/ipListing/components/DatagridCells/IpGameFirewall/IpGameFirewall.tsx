@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+
 import { useGetIpGameFirewall, useGetIpdetails } from '@/data/hooks/ip';
-import { ipFormatter } from '@/utils/ipFormatter';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { IpGameFirewallDisplay } from './IpGameFirewallDisplay';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { isGameFirewallAvailable } from '../enableCellsUtils';
+import { IpGameFirewallDisplay } from './IpGameFirewallDisplay';
 
 export type IpGameFirewallProps = {
   ip: string;
@@ -36,9 +38,7 @@ export const IpGameFirewall = ({ ip, ipOnGame }: IpGameFirewallProps) => {
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
   const enabled =
-    expiredIps.indexOf(ip) === -1 &&
-    !isIpDetailsLoading &&
-    isGameFirewallAvailable(ipDetails);
+    expiredIps.indexOf(ip) === -1 && !isIpDetailsLoading && isGameFirewallAvailable(ipDetails);
 
   // Get game firewall info
   const { isLoading, error } = useGetIpGameFirewall({
@@ -54,11 +54,7 @@ export const IpGameFirewall = ({ ip, ipOnGame }: IpGameFirewallProps) => {
       error={error}
       ip={ip}
     >
-      <IpGameFirewallDisplay
-        ip={ip}
-        ipOnGame={ipOnGame || ipAddress}
-        enabled={enabled}
-      />
+      <IpGameFirewallDisplay ip={ip} ipOnGame={ipOnGame || ipAddress} enabled={enabled} />
     </SkeletonCell>
   );
 };

@@ -1,28 +1,23 @@
-import {
-  Datagrid,
-  ErrorBanner,
-  RedirectionGuard,
-} from '@ovh-ux/manager-react-components';
 import React, { useContext, useEffect, useState } from 'react';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Datagrid, ErrorBanner, RedirectionGuard } from '@ovh-ux/manager-react-components';
+
 import { useGetIpList } from '@/data/hooks/ip';
-import { ListingContext } from '../../../listingContext';
 import { urls } from '@/routes/routes.constant';
 import { ipFormatter } from '@/utils';
+
+import { ListingContext } from '../../../listingContext';
 import { IpGroupDatagrid } from '../ipGroupDatagrid/ipGroupDatagrid';
 import { useIpDatagridColumns } from './useIpDatagridColumns';
 
 const pageSize = 10;
 
 export const IpDatagrid = () => {
-  const {
-    apiFilter,
-    hasNoApiFilter,
-    onGoingAggregatedIps,
-    onGoingSlicedIps,
-    onGoingCreatedIps,
-  } = useContext(ListingContext);
+  const { apiFilter, hasNoApiFilter, onGoingAggregatedIps, onGoingSlicedIps, onGoingCreatedIps } =
+    useContext(ListingContext);
   const [paginatedIpList, setPaginatedIpList] = useState<{ ip: string }[]>([]);
   const [numberOfPageDisplayed, setNumberOfPageDisplayed] = useState(1);
   const { ipList, isLoading, error, isError } = useGetIpList(apiFilter);
@@ -48,9 +43,7 @@ export const IpDatagrid = () => {
       ? uniqueIpList.filter((ip) => ip.includes(apiFilter.ip))
       : uniqueIpList;
     setFilteredIpList(filtered);
-    setPaginatedIpList(
-      filtered.map((ip) => ({ ip })).slice(0, pageSize * numberOfPageDisplayed),
-    );
+    setPaginatedIpList(filtered.map((ip) => ({ ip })).slice(0, pageSize * numberOfPageDisplayed));
   }, [
     ipList,
     onGoingAggregatedIps,

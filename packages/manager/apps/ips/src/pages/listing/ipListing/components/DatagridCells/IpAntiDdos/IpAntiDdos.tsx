@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
-import { ipFormatter } from '@/utils/ipFormatter';
-import {
-  useGetIpdetails,
-  useGetIpMitigationWithoutIceberg,
-} from '@/data/hooks/ip';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
+import { useContext } from 'react';
+
+import { useGetIpMitigationWithoutIceberg, useGetIpdetails } from '@/data/hooks/ip';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { IpAntiDdosDisplay } from './IpAntiDdosDisplay';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { isAntiDdosAvailable } from '../enableCellsUtils';
+import { IpAntiDdosDisplay } from './IpAntiDdosDisplay';
 
 export type IpAntiDdosProps = {
   ip: string;
@@ -39,9 +38,7 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
 
   // get ip mitigation only if ip is ipv4
   const enabled =
-    expiredIps.indexOf(ip) === -1 &&
-    !isDetailsLoading &&
-    isAntiDdosAvailable(ipDetails);
+    expiredIps.indexOf(ip) === -1 && !isDetailsLoading && isAntiDdosAvailable(ipDetails);
 
   const { ipMitigation, isLoading, error } = useGetIpMitigationWithoutIceberg({
     ip,
@@ -55,11 +52,7 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
       error={error}
       ip={ip}
     >
-      <IpAntiDdosDisplay
-        ipMitigation={ipMitigation}
-        enabled={enabled}
-        ip={ip}
-      />
+      <IpAntiDdosDisplay ipMitigation={ipMitigation} enabled={enabled} ip={ip} />
     </SkeletonCell>
   );
 };
