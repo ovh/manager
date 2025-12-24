@@ -216,7 +216,7 @@ describe('ToggleAcl Component', () => {
         serviceId: 'serviceId',
       });
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'toggleAclSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'toggleAclEnabledSuccessDescription',
       });
     });

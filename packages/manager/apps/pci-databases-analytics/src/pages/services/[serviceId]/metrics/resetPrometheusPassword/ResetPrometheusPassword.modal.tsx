@@ -35,7 +35,7 @@ const ResetPrometheusPassword = () => {
       },
       onSuccess: (prometheusAccess) => {
         toast.toast({
-          title: t('resetUserPasswordToastSuccessTitle'),
+          title: t('userSuccessTitle'),
           description: t('resetUserPasswordToastSuccessDescription', {
             name: prometheusAccess.username,
           }),
@@ -84,7 +84,7 @@ const ResetPrometheusPassword = () => {
               mode="ghost"
               data-testid="reset-password-cancel-button"
             >
-              {t('resetUserPasswordButtonCancel')}
+              {t('userCancelButton')}
             </Button>
           </DialogClose>
           {!newPass && (
@@ -94,7 +94,7 @@ const ResetPrometheusPassword = () => {
               onClick={handleResetPassword}
               data-testid="reset-password-submit-button"
             >
-              {t('resetUserPasswordButtonConfirm')}
+              {t('userConfirmButton')}
             </Button>
           )}
         </DialogFooter>
