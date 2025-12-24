@@ -13,11 +13,13 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { getProjectQueryKey } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useIsDefaultProject } from '@/data/hooks/useProjects';
 import { useTrackingAdditionalData } from '@/hooks/useTracking';
+import queryClient from '@/queryClient';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 import { TProject } from '@/types/pci-common.types';
 
@@ -64,6 +66,10 @@ export default function GeneralInformationSection({
     project.project_id,
     () => {
       clearNotifications();
+
+      void queryClient.invalidateQueries({
+        queryKey: getProjectQueryKey(project.project_id),
+      });
 
       trackPage({
         pageType: PageType.bannerInfo,
