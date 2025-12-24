@@ -1,24 +1,21 @@
 import React from 'react';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import { IpEdgeFirewallRule, IpEdgeFirewallRuleState } from '@/data/api';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 export const ActionColumn = (
   rule: IpEdgeFirewallRule & { isNew?: boolean },
 ) => {
-  const {
-    newProtocol,
-    newSequence,
-    newMode,
-    hideNewRuleRow,
-    showConfirmDeleteModal,
-    createNewRule,
-  } = React.useContext(EdgeNetworkFirewallContext);
+  const { newSequence, hideNewRuleRow, showConfirmDeleteModal, createNewRule } =
+    React.useContext(EdgeNetworkFirewallContext);
 
   return rule?.isNew ? (
     <div className="flex gap-3">

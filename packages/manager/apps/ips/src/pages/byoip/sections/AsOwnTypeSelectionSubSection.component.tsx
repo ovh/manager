@@ -1,21 +1,21 @@
 import React, { Suspense } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsInput, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
-import { getConfigValues } from '../Byoip.utils';
-import { ByoipContext } from '../Byoip.context';
-import { CONFIG_NAME, useGetCatalog } from '@/data/hooks/catalog/useGetCatalog';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+import { CONFIG_NAME, useGetCatalog } from '@/data/hooks/catalog/useGetCatalog';
+
+import { ByoipContext } from '../Byoip.context';
+import { getConfigValues } from '../Byoip.utils';
 
 export const AsOwnTypeSelectionSubSection: React.FC = () => {
   const { t } = useTranslation('byoip');
-  const {
-    asOwnRirType,
-    setAsOwnRirType,
-    asOwnNumberType,
-    setAsOwnNumberType,
-  } = React.useContext(ByoipContext);
+  const { asOwnRirType, setAsOwnRirType, asOwnNumberType, setAsOwnNumberType } =
+    React.useContext(ByoipContext);
   const { data: catalog, isLoading } = useGetCatalog();
   const campusValues = getConfigValues(
     catalog?.details.product.configurations,
@@ -37,7 +37,7 @@ export const AsOwnTypeSelectionSubSection: React.FC = () => {
             />
           ))}
         </div>
-        <div className="flex flex-col mt-3">
+        <div className="mt-3 flex flex-col">
           <OdsText preset={ODS_TEXT_PRESET.span}>
             {t('ip_byoip_as_number_label')}
           </OdsText>

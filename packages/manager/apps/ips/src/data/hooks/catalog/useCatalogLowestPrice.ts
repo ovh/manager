@@ -1,13 +1,21 @@
 import React from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useCatalogIps } from './useCatalogIps';
+
 import { CatalogIpPlan, PccCatalogPlan } from '@/data/api';
+
+import { useCatalogIps } from './useCatalogIps';
 
 const isIpv6Plan = (plan: CatalogIpPlan | PccCatalogPlan) =>
   plan.planCode.includes('ip-v6');
 
 const getLowestPlanPrice = (lowestPrice: number, plan: CatalogIpPlan) => {
-  const currentPrice = plan?.details?.pricings?.default[0].priceInUcents;
+  const currentPrice = plan?.details?.pricings?.default[0]?.priceInUcents;
+
+  if (!currentPrice) {
+    return lowestPrice;
+  }
+
   return currentPrice < lowestPrice ? currentPrice : lowestPrice;
 };
 

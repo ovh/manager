@@ -1,30 +1,31 @@
 import React from 'react';
-import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { IpEdgeFirewallRule } from '@/data/api';
-import { StatusColumn } from './StatusColumn.component';
-import { ProtocolColumn } from './ProtocolColumn.component';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
+import { ActionColumn } from './ActionColumn.component';
+import { ModeColumn } from './ModeColumn.component';
 import {
   DestinationPortColumn,
   SourcePortColumn,
 } from './PortColumn.component';
-import { TRANSLATION_NAMESPACES } from '@/utils';
-import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
+import { ProtocolColumn } from './ProtocolColumn.component';
 import { SequenceColumn } from './SequenceColumn.component';
-import { ModeColumn } from './ModeColumn.component';
 import { SourceColumn } from './SourceColumn.component';
+import { StatusColumn } from './StatusColumn.component';
 import { TcpOptionColumn } from './TcpOptionColumn.component';
-import { ActionColumn } from './ActionColumn.component';
 
 export const RuleDatagrid: React.FC = () => {
-  const {
-    isNewRuleRowDisplayed,
-    isLoading,
-    isRulesLoading,
-    rules,
-  } = React.useContext(EdgeNetworkFirewallContext);
+  const { isNewRuleRowDisplayed, isLoading, isRulesLoading, rules } =
+    React.useContext(EdgeNetworkFirewallContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.edgeNetworkFirewall,
     NAMESPACES.STATUS,
@@ -85,7 +86,12 @@ export const RuleDatagrid: React.FC = () => {
         size={ODS_TABLE_SIZE.sm}
         columns={columns}
         items={
-          (isNewRuleRowDisplayed ? [{ isNew: true }, ...rules] : rules) || []
+          (isNewRuleRowDisplayed
+            ? [
+                { isNew: true } as IpEdgeFirewallRule & { isNew: boolean },
+                ...rules,
+              ]
+            : rules) || []
         }
         totalItems={rules?.length + (isNewRuleRowDisplayed ? 1 : 0)}
         isLoading={isLoading || isRulesLoading}

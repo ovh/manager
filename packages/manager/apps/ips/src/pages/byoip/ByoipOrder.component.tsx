@@ -1,15 +1,17 @@
 import React from 'react';
-import { ByoipContext } from './Byoip.context';
-import {
-  RirSelectionSection,
-  RegionSelectionSection,
-  TokenSelectionSection,
-  IpRangeSelectionSection,
-  AsTypeSelectionSection,
-  OrderButtonSection,
-} from './sections';
+
 import { useGetTokens } from '@/data/hooks/useGetTokens';
+
+import { ByoipContext } from './Byoip.context';
 import { isValidIpRange } from './Byoip.utils';
+import {
+  AsTypeSelectionSection,
+  IpRangeSelectionSection,
+  OrderButtonSection,
+  RegionSelectionSection,
+  RirSelectionSection,
+  TokenSelectionSection,
+} from './sections';
 
 export const ByoipOrder: React.FC = () => {
   const {

@@ -1,27 +1,31 @@
 import React from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { UseQueryResult } from '@tanstack/react-query';
-import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
-import {
-  getContinentKeyFromRegion,
-  isAdditionalIpPlan,
-  isBlockIpPlan,
-} from './catalog.utils';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import {
   isRegionInAp,
   isRegionInCa,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
-import { DEFAULT_PRICING_MODE } from '@/pages/order/order.constant';
-import { useCatalogIps } from './useCatalogIps';
-import { usePccCatalog } from './usePccCatalog';
-import { ServiceType, IpVersion } from '@/types';
 import {
   CatalogIpPlan,
   CatalogIpsResponse,
   PccCatalogPlan,
   PccCatalogResponse,
 } from '@/data/api';
+import { DEFAULT_PRICING_MODE } from '@/pages/order/order.constant';
+import { IpVersion, ServiceType } from '@/types';
+
+import {
+  getContinentKeyFromRegion,
+  isAdditionalIpPlan,
+  isBlockIpPlan,
+} from './catalog.utils';
+import { useCatalogIps } from './useCatalogIps';
+import { usePccCatalog } from './usePccCatalog';
 
 export type Pricing = {
   label: string;
@@ -65,13 +69,24 @@ export const useAdditionalIpPricings = ({
       additionalIpPlanCode: undefined,
       ipBlockPricingList: (pccData?.data
         ?.filter((plan: PccCatalogPlan) => plan.family === 'ip')
-        .sort((planA: PccCatalogPlan, planB: PccCatalogPlan) =>
-          planA.prices[0].price.value > planB.prices[0].price.value ? 1 : -1,
-        )
+        .sort((planA: PccCatalogPlan, planB: PccCatalogPlan) => {
+          if (planA.prices[0]?.price.value === undefined) {
+            return 1;
+          }
+          if (planB.prices[0]?.price.value === undefined) {
+            return -1;
+          }
+          return planA.prices[0]?.price.value > planB.prices[0]?.price.value
+            ? 1
+            : -1;
+        })
         .map((plan: PccCatalogPlan) => ({
-          label: toOptionLabel(plan.productName, plan.prices[0].price.text),
+          label: toOptionLabel(
+            plan.productName,
+            plan.prices[0]?.price.text,
+          ),
           value: plan.planCode,
-          pricingMode: plan.prices[0].pricingMode,
+          pricingMode: plan.prices[0]?.pricingMode,
         })) || []) as Pricing[],
     } as UseAdditionalIpPricingsResult;
   }
@@ -86,7 +101,7 @@ export const useAdditionalIpPricings = ({
       ?.filter(isAdditionalIpPlan)
       ?.find((plan: CatalogIpPlan) =>
         plan.invoiceName.includes(getContinentKeyFromRegion(region)),
-      )?.planCode as string,
+      )?.planCode,
     ipBlockPricingList: (data?.data?.plans
       ?.filter((plan: CatalogIpPlan) =>
         plan.planCode.includes(ipVersion === IpVersion.ipv4 ? 'v4' : 'v6'),
@@ -104,16 +119,22 @@ export const useAdditionalIpPricings = ({
               plan.invoiceName.includes('ASIA')
           : plan.invoiceName.includes('EUROPE');
       })
-      .sort((planA: CatalogIpPlan, planB: CatalogIpPlan) =>
-        planA.details.pricings.default[0].price.value >
-        planB.details.pricings.default[0].price.value
+      .sort((planA: CatalogIpPlan, planB: CatalogIpPlan) => {
+        if (planA.details.pricings.default[0]?.price.value === undefined) {
+          return 1;
+        }
+        if (planB.details.pricings.default[0]?.price.value === undefined) {
+          return -1;
+        }
+        return planA.details.pricings.default[0]?.price.value >
+          planB.details.pricings.default[0]?.price.value
           ? 1
-          : -1,
-      )
+          : -1;
+      })
       .map((plan: CatalogIpPlan) => ({
         label: toOptionLabel(
           plan.invoiceName,
-          plan.details.pricings.default[0].price.text,
+          plan.details.pricings.default[0]?.price.text,
         ),
         value: plan.planCode,
         pricingMode: DEFAULT_PRICING_MODE,

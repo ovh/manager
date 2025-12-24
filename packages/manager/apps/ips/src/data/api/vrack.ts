@@ -1,4 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { ServiceStatus } from '@/types';
 
 export type VrackServiceInfos = {
@@ -12,6 +13,6 @@ export type VrackServiceInfos = {
 };
 
 export const getVrackServiceInfos = (
-  serviceName: string,
+  serviceName?: string | null,
 ): Promise<ApiResponse<VrackServiceInfos>> =>
   apiClient.v6.get(`/vrack/${serviceName}/serviceInfos`);

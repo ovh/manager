@@ -1,16 +1,21 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { addSeconds, isBefore } from 'date-fns';
+import React, { useMemo } from 'react';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TABLE_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addSeconds, isBefore } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TABLE_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  Modal,
-  useNotifications,
-  useFormatDate,
   Datagrid,
+  Modal,
+  useFormatDate,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -18,27 +23,22 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
-  unblockAntiSpamIp,
-  getIpSpamQueryKey,
-  IpSpamStateEnum,
   IpSpamStatType,
+  IpSpamStateEnum,
+  getIpSpamQueryKey,
+  unblockAntiSpamIp,
 } from '@/data/api';
 import { useGetIpSpam, useGetIpSpamStats } from '@/data/hooks';
-import { fromIdToIp, ipFormatter } from '@/utils';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter } from '@/utils';
 
 export default function AntiSpamModal() {
-  const { t } = useTranslation(['anti-spam', NAMESPACES.ACTIONS, 'error']);
-  const [ipBlocked, setIpBlocked] = useState<string | undefined>();
-  const [ipState, setIpState] = useState<string | undefined>();
-  const [blockedSince, setBlockedSince] = useState<string | undefined>();
-  const [estimationUnblockingDate, setEstimationUnblockingDate] = useState<
-    Date
-  >();
-  const [isUnblockingDisabled, setIsUnblockingDisabled] = useState<boolean>(
-    true,
-  );
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.antiSpam,
+    NAMESPACES.ACTIONS,
+    TRANSLATION_NAMESPACES.error,
+  ]);
   const navigate = useNavigate();
   const [search] = useSearchParams();
 
@@ -51,47 +51,51 @@ export default function AntiSpamModal() {
   const { trackClick, trackPage } = useOvhTracking();
   const format = useFormatDate();
 
-  const { ipSpam, isLoading: isIpSpamLoading } = useGetIpSpam({
-    ip: parentIp,
-    enabled: true,
-  });
-
-  useEffect(() => {
-    if (ipSpam) {
-      const toBeUnblocked = ipSpam.find(
+  const { ipSpam, isLoading: isIpSpamLoading } = useGetIpSpam({ ip: parentIp });
+  const toBeUnblocked = useMemo(
+    () =>
+      ipSpam?.find(
         (spam) =>
           spam.ipSpamming === ip && spam.state === IpSpamStateEnum.BLOCKED,
-      );
-      setIpBlocked(toBeUnblocked?.ipSpamming);
-      setIpState(toBeUnblocked?.state);
-      setBlockedSince(toBeUnblocked?.date);
-      const unblockingDate = addSeconds(
-        new Date(toBeUnblocked?.date),
-        toBeUnblocked?.time ?? 0,
-      );
-      setEstimationUnblockingDate(unblockingDate);
-      setIsUnblockingDisabled(isBefore(Date.now(), unblockingDate));
-    }
-  }, [ipSpam]);
+      ),
+    [ipSpam, ip],
+  );
+  const unblockingDate = React.useMemo(
+    () =>
+      toBeUnblocked
+        ? addSeconds(new Date(toBeUnblocked?.date), toBeUnblocked?.time ?? 0)
+        : undefined,
+    [toBeUnblocked],
+  );
 
   const { ipSpamStats, isLoading: isIpSpamStatsLoading } = useGetIpSpamStats({
     ip: parentIp,
-    ipSpamming: ipBlocked,
-    enabled: !!ipBlocked,
+    ipSpamming: toBeUnblocked?.ipSpamming,
+    enabled: !!toBeUnblocked?.ipSpamming,
   });
 
-  const closeModal = () => navigate(`..?${search.toString()}`);
+  const closeModal = () => {
+    navigate(`..?${search.toString()}`);
+  };
 
   const { isPending, mutate: unblockAntiSpamHandler } = useMutation({
-    mutationFn: () => unblockAntiSpamIp({ ip: parentIp, ipBlocked }),
-    onSuccess: async () => {
+    mutationFn: () =>
+      unblockAntiSpamIp({
+        ip: parentIp,
+        ipBlocked: toBeUnblocked?.ipSpamming,
+      }),
+    onSuccess: () => {
       clearNotifications();
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'unblock-anti-spam-success',
       });
-      addSuccess(t('unblock_anti_spam_ip_success', { ipBlocked }));
-      await queryClient.invalidateQueries({
+      addSuccess(
+        t('unblock_anti_spam_ip_success', {
+          ipBlocked: toBeUnblocked?.ipSpamming,
+        }),
+      );
+      queryClient.invalidateQueries({
         queryKey: getIpSpamQueryKey({ ip: parentIp }),
       });
       closeModal();
@@ -105,7 +109,7 @@ export default function AntiSpamModal() {
       closeModal();
       addError(
         t('unblock_anti_spam_ip_error', {
-          ipBlocked,
+          ipBlocked: toBeUnblocked?.ipSpamming,
           error: err?.response?.data?.message,
         }),
         true,
@@ -125,7 +129,7 @@ export default function AntiSpamModal() {
 
   const fields = useMemo(
     () =>
-      !!ipState && !!blockedSince
+      !!toBeUnblocked?.state && !!toBeUnblocked?.date
         ? [
             {
               label: t('anti_spam_status'),
@@ -134,20 +138,25 @@ export default function AntiSpamModal() {
             },
             {
               label: t('anti_spam_blocked_since'),
-              value: format({ date: new Date(blockedSince), format: 'PPPpp' }),
+              value: format({
+                date: new Date(toBeUnblocked.date),
+                format: 'PPPpp',
+              }),
               key: 'blockedSince',
             },
             {
               label: t('anti_spam_estimation_unblocking_date'),
-              value: format({
-                date: new Date(estimationUnblockingDate),
-                format: 'PPPpp',
-              }),
+              value: unblockingDate
+                ? format({
+                    date: new Date(unblockingDate),
+                    format: 'PPPpp',
+                  })
+                : '',
               key: 'estimationUnblockingDate',
             },
           ]
         : [],
-    [ipState, blockedSince, estimationUnblockingDate, format, t],
+    [toBeUnblocked, format, t],
   );
 
   const ipSpamStatsColumnDefinitions = [
@@ -184,7 +193,9 @@ export default function AntiSpamModal() {
     <Modal
       isOpen
       onDismiss={closeHandler}
-      heading={t('unblock_anti_spam_title', { ipBlocked })}
+      heading={t('unblock_anti_spam_title', {
+        ipBlocked: toBeUnblocked?.ipSpamming,
+      })}
       primaryLabel={t('unblock_anti_spam_ip_action')}
       onPrimaryButtonClick={() => {
         trackClick({
@@ -196,16 +207,18 @@ export default function AntiSpamModal() {
         unblockAntiSpamHandler();
       }}
       isPrimaryButtonLoading={isPending}
-      isPrimaryButtonDisabled={isUnblockingDisabled}
+      isPrimaryButtonDisabled={
+        unblockingDate ? isBefore(Date.now(), unblockingDate) : true
+      }
       secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={closeHandler}
       isLoading={isIpSpamLoading}
     >
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         {fields.map(({ label, value, key }) => (
-          <div className="flex mb-2 gap-x-4" key={key}>
+          <div className="mb-2 flex gap-x-4" key={key}>
             <OdsText
-              className="font-semibold text-right w-1/2"
+              className="w-1/2 text-right font-semibold"
               preset={ODS_TEXT_PRESET.heading6}
             >
               {label}
@@ -213,7 +226,7 @@ export default function AntiSpamModal() {
             <OdsText className="w-1/2">{value}</OdsText>
           </div>
         ))}
-        <div className="flex mb-2 overflow-y-auto max-h-56">
+        <div className="mb-2 flex max-h-56 overflow-y-auto">
           <Datagrid
             size={ODS_TABLE_SIZE.sm}
             columns={ipSpamStatsColumnDefinitions}

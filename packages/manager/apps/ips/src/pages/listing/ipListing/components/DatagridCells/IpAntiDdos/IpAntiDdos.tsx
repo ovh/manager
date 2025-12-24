@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
-import { ipFormatter } from '@/utils/ipFormatter';
+import { useContext } from 'react';
+
 import {
-  useGetIpdetails,
   useGetIpMitigationWithoutIceberg,
+  useGetIpdetails,
 } from '@/data/hooks/ip';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { IpAntiDdosDisplay } from './IpAntiDdosDisplay';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { isAntiDdosAvailable } from '../enableCellsUtils';
+import { IpAntiDdosDisplay } from './IpAntiDdosDisplay';
 
 export type IpAntiDdosProps = {
   ip: string;

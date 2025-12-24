@@ -1,9 +1,11 @@
 import { ClientNavigationApi } from '@ovh-ux/shell/dist/types/plugin/navigation';
-import { getTypeByServiceName } from './getTypeByServiceName';
+
 import { IpTypeEnum } from '@/data/constants';
 
+import { getTypeByServiceName } from './getTypeByServiceName';
+
 export type GetLinkByServiceNameParams = {
-  serviceName: string;
+  serviceName?: string | null;
   navigation: ClientNavigationApi;
 };
 
@@ -11,7 +13,10 @@ export const getLinkByServiceName = ({
   serviceName,
   navigation,
 }: GetLinkByServiceNameParams): Promise<string> => {
-  if (!serviceName || !navigation) return Promise.resolve(null);
+  if (!serviceName || !navigation) {
+    return Promise.resolve('#');
+  }
+
   const serviceType = getTypeByServiceName(serviceName);
 
   switch (serviceType) {
@@ -52,6 +57,6 @@ export const getLinkByServiceName = ({
         {},
       ) as Promise<string>;
     default:
-      return Promise.resolve(null);
+      return Promise.resolve('#');
   }
 };

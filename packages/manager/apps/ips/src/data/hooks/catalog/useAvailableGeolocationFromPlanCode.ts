@@ -1,45 +1,50 @@
 import React from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useCatalogIps } from './useCatalogIps';
-import { ServiceType } from '@/types';
-import { useDedicatedCloudGeolocations } from './useDedicatedCloudGeolocations';
-import { useVpsGeolocations } from './useVpsGeolocations';
+
 import { CatalogIpConfiguration, CatalogIpPlan } from '@/data/api';
+import { ServiceType } from '@/types';
+
+import { useCatalogIps } from './useCatalogIps';
+import { useDedicatedCloudGeolocations } from './useDedicatedCloudGeolocations';
 import { useDedicatedServerGeolocations } from './useDedicatedServerGeolocations';
+import { useVpsGeolocations } from './useVpsGeolocations';
 
 export const useAvailableGeolocationFromPlanCode = ({
   planCode,
   serviceName,
   serviceType,
 }: {
-  planCode: string;
-  serviceName: string;
-  serviceType: ServiceType;
+  planCode?: string;
+  serviceName?: string | null;
+  serviceType?: ServiceType;
 }) => {
   const { environment } = React.useContext(ShellContext);
   const { data, ...query } = useCatalogIps({
     subsidiary: environment.user.ovhSubsidiary,
-    enabled: ![ServiceType.dedicatedCloud, ServiceType.vps].includes(
-      serviceType,
-    ),
+    enabled:
+      !!serviceType &&
+      ![ServiceType.dedicatedCloud, ServiceType.vps].includes(serviceType),
   });
 
-  const {
-    data: dedicatedServerData,
-    ...dedicatedServerQuery
-  } = useDedicatedServerGeolocations({
-    serviceName,
-    enabled: serviceType === ServiceType.server,
-  });
+  const { data: dedicatedServerData, ...dedicatedServerQuery } =
+    useDedicatedServerGeolocations({
+      serviceName,
+      enabled:
+        !!serviceName && !!serviceType && serviceType === ServiceType.server,
+    });
 
   const { data: pccData, ...pccQuery } = useDedicatedCloudGeolocations({
     serviceName,
-    enabled: serviceType === ServiceType.dedicatedCloud,
+    enabled:
+      !!serviceName &&
+      !!serviceType &&
+      serviceType === ServiceType.dedicatedCloud,
   });
 
   const { data: vpsData, ...vpsQuery } = useVpsGeolocations({
     serviceName,
-    enabled: serviceType === ServiceType.vps,
+    enabled: !!serviceName && !!serviceType && serviceType === ServiceType.vps,
   });
 
   switch (serviceType) {
@@ -61,12 +66,13 @@ export const useAvailableGeolocationFromPlanCode = ({
     default:
       return {
         ...query,
-        geolocations: data?.data?.plans
-          ?.find((plan: CatalogIpPlan) => plan.planCode === planCode)
-          ?.details.product.configurations.find(
-            (config: CatalogIpConfiguration) => config.name === 'country',
-          )
-          ?.values.map((v: string) => v.toLowerCase()),
+        geolocations:
+          data?.data?.plans
+            ?.find((plan: CatalogIpPlan) => plan.planCode === planCode)
+            ?.details.product.configurations.find(
+              (config: CatalogIpConfiguration) => config.name === 'country',
+            )
+            ?.values.map((v: string) => v.toLowerCase()) || [],
       };
   }
 };
