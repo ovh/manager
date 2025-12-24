@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export type Step2Props = {
@@ -16,7 +19,7 @@ export default function Step2({ ip, destinationService, nextHop }: Step2Props) {
   return (
     <div className="flex items-center">
       <OdsText
-        className="block mb-4 text-center flex-1"
+        className="mb-4 block flex-1 text-center"
         preset={ODS_TEXT_PRESET.paragraph}
       >
         <span
@@ -26,7 +29,11 @@ export default function Step2({ ip, destinationService, nextHop }: Step2Props) {
               nextHop
                 ? 'step2DescriptionWithNextHop'
                 : 'step2DescriptionWithoutNextHop',
-              { ip, destinationService, nextHop },
+              {
+                ip,
+                destinationService,
+                nextHop,
+              },
             ),
           }}
         />

@@ -1,10 +1,15 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { IpEdgeFirewallRule, IpEdgeFirewallRuleState } from '@/data/api';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 const translationKeyByStatus: Record<IpEdgeFirewallRuleState, string> = {
@@ -14,7 +19,7 @@ const translationKeyByStatus: Record<IpEdgeFirewallRuleState, string> = {
 };
 
 export const StatusColumn = (
-  rule?: IpEdgeFirewallRule & { isNew?: boolean },
+  rule: IpEdgeFirewallRule & { isNew?: boolean },
 ) => {
   const { firewallModeEnabled } = React.useContext(EdgeNetworkFirewallContext);
   const { t } = useTranslation([
@@ -23,7 +28,7 @@ export const StatusColumn = (
   ]);
 
   if (!rule || rule?.isNew) {
-    return null;
+    return <></>;
   }
 
   const color =

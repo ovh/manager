@@ -1,10 +1,13 @@
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+
 import { render, waitFor } from '@testing-library/react';
-import { IpVmacFilterByIp, IpVmacFilterByIpProps } from './IpVmacFilterByIp';
-import { ListingContext } from '@/pages/listing/listingContext';
+import { describe, expect, it } from 'vitest';
+
 import { MacAddressTypeEnum } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpVmacFilterByIp, IpVmacFilterByIpProps } from './IpVmacFilterByIp';
 
 /** RENDER */
 const renderComponent = (params: IpVmacFilterByIpProps) => {
@@ -15,7 +18,7 @@ const renderComponent = (params: IpVmacFilterByIpProps) => {
   );
 };
 
-describe('IpVmacFilterByIp Component', async () => {
+describe('IpVmacFilterByIp Component', () => {
   it('Should display vmac if exist for given ip', async () => {
     const { getByText } = renderComponent({
       ip: '123.123.123.160',

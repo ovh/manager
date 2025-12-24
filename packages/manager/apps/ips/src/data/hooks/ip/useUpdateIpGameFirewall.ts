@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { getIpGameFirewallQueryKey, putIpGameFirewall } from '@/data/api';
 
 export type UpdateGameFirewallMutationParams = { firewallModeEnabled: boolean };

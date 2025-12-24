@@ -1,12 +1,14 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   AggregateResponse,
+  SliceResponse,
   getAggregate,
   getSlice,
   postAggregate,
   postSlice,
-  SliceResponse,
 } from '@/data/api';
 import { IpTask } from '@/types';
 
@@ -33,11 +35,11 @@ export function useByoipAggregate({
     retry: false,
   });
 
-  const { mutate, isPending, error: aggregateError } = useMutation<
-    ApiResponse<IpTask>,
-    ApiError,
-    { aggregationIp: string }
-  >({
+  const {
+    mutate,
+    isPending,
+    error: aggregateError,
+  } = useMutation<ApiResponse<IpTask>, ApiError, { aggregationIp: string }>({
     mutationFn: ({ aggregationIp }) => postAggregate({ ip, aggregationIp }),
     onSuccess,
     onError,
@@ -78,11 +80,11 @@ export function useByoipSlice({
     retry: false,
   });
 
-  const { mutate, isPending, error: slicingError } = useMutation<
-    ApiResponse<IpTask>,
-    ApiError,
-    { slicingSize: number }
-  >({
+  const {
+    mutate,
+    isPending,
+    error: slicingError,
+  } = useMutation<ApiResponse<IpTask>, ApiError, { slicingSize: number }>({
     mutationFn: ({ slicingSize }) => postSlice({ ip, slicingSize }),
     onSuccess,
     onError,

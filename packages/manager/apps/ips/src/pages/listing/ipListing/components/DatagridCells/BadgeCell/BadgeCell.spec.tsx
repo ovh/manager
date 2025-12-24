@@ -1,16 +1,20 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
-import { describe, it } from 'vitest';
+
 import { render } from '@testing-library/react';
+import { describe, it } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { BadgeCell, BadgeCellParams } from './BadgeCell';
+
 import { getTooltipByText } from '@/test-utils';
+import '@/test-utils/setupUnitTests';
+
+import { BadgeCell, BadgeCellParams } from './BadgeCell';
 
 const renderComponent = (params: BadgeCellParams) => {
   return render(<BadgeCell {...params} />);
 };
 
-describe('BadgeCell Component', async () => {
+describe('BadgeCell Component', () => {
   it('Should display Tooltip', async () => {
     const { container } = renderComponent({
       badgeColor: ODS_BADGE_COLOR.information,
@@ -18,6 +22,7 @@ describe('BadgeCell Component', async () => {
       tooltip: 'tooltip',
       trigger: 'tooltip-trigger-id',
     });
-    await getTooltipByText({ container, text: 'tooltip' });
+    const tooltip = await getTooltipByText({ container, text: 'tooltip' });
+    expect(tooltip).toBeInTheDocument();
   });
 });

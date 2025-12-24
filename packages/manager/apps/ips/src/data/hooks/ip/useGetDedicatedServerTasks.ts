@@ -4,7 +4,9 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   DedicatedServerTaskResponse,
   getDedicatedServerTask,
@@ -12,22 +14,22 @@ import {
   getIcebergDedicatedServerTask,
   getIcebergDedicatedServerTasksQueryKey,
 } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 import {
-  getTypeByServiceName,
   INVALIDATED_REFRESH_PERIOD,
   UPDATE_TASKS_QUERY_KEY_PARAMS,
+  getTypeByServiceName,
 } from '@/utils';
-import { IpTypeEnum } from '@/data/constants';
 
 export type UseGetDedicatedServerTasksParams = {
-  serviceName: string;
+  serviceName?: string | null;
   functionList: string[];
   statusList: string[];
   enabled: boolean;
   queryKeyToInvalidate: string[];
 };
 
-function isUpdateTaskStatus(status: string): boolean {
+function isUpdateTaskStatus(status?: string): boolean {
   return !status || UPDATE_TASKS_QUERY_KEY_PARAMS.statusList.includes(status);
 }
 
@@ -55,7 +57,7 @@ export const useGetDedicatedServerTasks = ({
             )
             .map((task) => task.taskId) ?? []
         );
-      } catch (error) {
+      } catch {
         return [];
       }
     },
@@ -89,7 +91,9 @@ export const useGetDedicatedServerTasks = ({
                 ? oldData
                 : oldData.filter((id) => id !== query.state.data?.data?.taskId),
           );
-          queryClient.invalidateQueries({ queryKey: queryKeyToInvalidate });
+          queryClient.invalidateQueries({
+            queryKey: queryKeyToInvalidate,
+          });
         }
 
         return undefined;
@@ -100,6 +104,6 @@ export const useGetDedicatedServerTasks = ({
   return {
     isTasksLoading: taskQuery.isLoading,
     taskError: taskQuery.error,
-    hasOnGoingTask: taskQuery?.data?.length > 0,
+    hasOnGoingTask: taskQuery?.data && taskQuery?.data?.length > 0,
   };
 };

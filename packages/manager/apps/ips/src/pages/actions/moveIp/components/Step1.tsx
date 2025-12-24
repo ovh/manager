@@ -1,31 +1,37 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
   OdsCombobox,
   OdsComboboxGroup,
   OdsComboboxItem,
+  OdsFormField,
   OdsInput,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { TRANSLATION_NAMESPACES } from '@/utils';
-import { ipParkingOptionValue } from '@/types';
-import { MoveIpAvailableDestinationsResponse } from '@/data/api';
+
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
-import { useGetProductServices } from '@/data/hooks';
+import { MoveIpAvailableDestinationsResponse } from '@/data/api';
 import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
+import { useGetProductServices } from '@/data/hooks';
+import { ipParkingOptionValue } from '@/types';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 type Step1Props = {
   ip: string;
   currentService: string;
-  availableDestinations: MoveIpAvailableDestinationsResponse;
+  availableDestinations?: MoveIpAvailableDestinationsResponse;
   destinationService?: string;
-  setDestinationService: React.Dispatch<React.SetStateAction<string>>;
+  setDestinationService: React.Dispatch<
+    React.SetStateAction<string | undefined>
+  >;
   nextHopList: string[];
   nextHop?: string;
-  setNextHop: React.Dispatch<React.SetStateAction<string>>;
+  setNextHop: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 export default function Step1({
@@ -45,13 +51,13 @@ export default function Step1({
 
   return (
     <div className="flex flex-col">
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+      <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
         <span
           dangerouslySetInnerHTML={{ __html: t('step1Description', { ip }) }}
         />
       </OdsText>
 
-      <OdsFormField className="w-full mb-7">
+      <OdsFormField className="mb-7 w-full">
         <label htmlFor="service" slot="label">
           {t('step1CurrentServiceLabel')}
         </label>
@@ -71,7 +77,7 @@ export default function Step1({
           name="service"
           className="w-full"
           onOdsChange={(event) => {
-            setDestinationService(event.detail.value as string);
+            setDestinationService(event.detail.value);
             setNextHop(undefined);
           }}
           isClearable
@@ -114,7 +120,7 @@ export default function Step1({
       </OdsFormField>
 
       <OdsFormField
-        className={`w-full mt-7 ${nextHopList.length === 0 ? 'hidden' : ''}`}
+        className={`mt-7 w-full ${nextHopList.length === 0 ? 'hidden' : ''}`}
       >
         <label htmlFor="next-hop" slot="label">
           {t('step1NextHopLabel')}
@@ -123,7 +129,7 @@ export default function Step1({
           id="next-hop"
           name="next-hop"
           className="w-full"
-          onOdsChange={(event) => setNextHop(event.detail.value as string)}
+          onOdsChange={(event) => setNextHop(event.detail.value)}
           isClearable
           allowNewElement={false}
           placeholder={t('select', { ns: NAMESPACES.ACTIONS })}

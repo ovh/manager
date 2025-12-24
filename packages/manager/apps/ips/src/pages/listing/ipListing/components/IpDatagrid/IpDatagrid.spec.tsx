@@ -1,14 +1,18 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { Row } from '@tanstack/react-table';
-import { ListingContext } from '@/pages/listing/listingContext';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import ipList from '@/__mocks__/ip/get-ips.json';
-import { IpDatagrid } from './IpDatagrid';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { getButtonByIcon } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpDatagrid } from './IpDatagrid';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -52,7 +56,7 @@ const renderComponent = () => {
   );
 };
 
-describe('IpDatagrid Component', async () => {
+describe('IpDatagrid Component', () => {
   it('Should display columns', async () => {
     useGetIpListMock.mockReturnValue({
       ipList,
@@ -87,7 +91,7 @@ describe('IpDatagrid Component', async () => {
       iconName: ODS_ICON_NAME.chevronRight,
     });
 
-    await act(() => {
+    await waitFor(() => {
       fireEvent.click(expandButton);
     });
 

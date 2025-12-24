@@ -1,21 +1,25 @@
 import React from 'react';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import {
   deleteIpEdgeNetworkFirewallRule,
   getIpEdgeNetworkFirewallRuleDetailsQueryKey,
   getIpEdgeNetworkFirewallRuleListQueryKey,
 } from '@/data/api';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 export const DeleteRuleModal: React.FC = () => {
@@ -43,7 +47,7 @@ export const DeleteRuleModal: React.FC = () => {
         sequence: ruleToDelete?.sequence,
       }),
     onSuccess: async () => {
-      await qc.removeQueries({
+      qc.removeQueries({
         queryKey: getIpEdgeNetworkFirewallRuleDetailsQueryKey({
           ip,
           ipOnFirewall,

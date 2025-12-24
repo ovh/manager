@@ -1,4 +1,4 @@
-import { v6, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
 
 export type MoveIpDestination = {
   service: string;

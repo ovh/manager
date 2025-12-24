@@ -1,7 +1,9 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import { IpMitigationStateEnum, IpMitigationType } from '@/data/api';
+
 import { BadgeCell } from '../BadgeCell/BadgeCell';
 
 export type IpAntiDdosDisplayProps = {

@@ -1,5 +1,12 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsIcon,
@@ -7,19 +14,17 @@ import {
   OdsToggle,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import { IpGameFirewallStateEnum } from '@/data/api';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import { GameFirewallContext } from '../gamefirewall.context';
 
 export const TopBar: React.FC = () => {
@@ -43,7 +48,7 @@ export const TopBar: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="flex w-full flex-col sm:flex-row justify-between mb-2 gap-2">
+    <div className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row">
       <div className="flex items-center gap-2">
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
@@ -67,10 +72,12 @@ export const TopBar: React.FC = () => {
               id="tooltip-add-rule"
               name={ODS_ICON_NAME.circleQuestion}
               tabIndex={0}
-              className="text-[var(--ods-color-text)] cursor-pointer"
+              className="cursor-pointer text-[var(--ods-color-text)]"
             />
             <OdsTooltip triggerId="tooltip-add-rule" withArrow>
-              <OdsText>{t('max_rules_reached_tooltip')}</OdsText>
+              <OdsText className="p-2">
+                {t('max_rules_reached_tooltip')}
+              </OdsText>
             </OdsTooltip>
           </>
         )}
@@ -81,10 +88,10 @@ export const TopBar: React.FC = () => {
           id="tooltip"
           name={ODS_ICON_NAME.circleQuestion}
           tabIndex={0}
-          className="text-[var(--ods-color-text)] cursor-pointer"
+          className="cursor-pointer text-[var(--ods-color-text)]"
         />
         <OdsTooltip triggerId="tooltip" withArrow>
-          <OdsText>{t('deny_strategy_tooltip')}</OdsText>
+          <OdsText className="p-2">{t('deny_strategy_tooltip')}</OdsText>
         </OdsTooltip>
         <OdsToggle
           name="strategy-default-deny"

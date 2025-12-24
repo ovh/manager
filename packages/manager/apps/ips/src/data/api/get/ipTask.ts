@@ -1,9 +1,10 @@
 import {
-  v6,
-  fetchIcebergV6,
   ApiResponse,
   IcebergFetchResultV6,
+  fetchIcebergV6,
+  v6,
 } from '@ovh-ux/manager-core-api';
+
 import { IpTask, IpTaskFunction, IpTaskStatus } from '@/types';
 
 export const getIcebergIpTaskList = (
@@ -43,9 +44,7 @@ export const getIpTaskList = ({
   }
 
   return v6.get(
-    `/ip/${encodeURIComponent(ip)}/task${
-      params.toString() ? '?' : ''
-    }${params.toString()}`,
+    `/ip/${encodeURIComponent(ip)}/task${params.toString() ? '?' : ''}${params.toString()}`,
   );
 };
 

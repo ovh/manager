@@ -1,12 +1,13 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { catalogIp } from './ip-catalog';
-import { catalogPcc } from './pcc-catalog';
+
 import {
   availableDurations,
   availableOperations,
   ipMigrationOrderRecap,
   ipMigrationPostResponse,
 } from './dedicated-server-catalog';
+import { catalogIp } from './ip-catalog';
+import { catalogPcc } from './pcc-catalog';
 
 export type GetCatalogMocksParams = {
   isIpCatalogKo?: boolean;
