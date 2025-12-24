@@ -1,13 +1,17 @@
 import React from 'react';
-import {
-  OdsText,
-  OdsInput,
-  OdsFormField,
-} from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
+
+import {
+  OdsFormField,
+  OdsInput,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { IpEdgeFirewallRule } from '@/data/api';
+import { TRANSLATION_NAMESPACES, handleEnterAndEscapeKeyDown } from '@/utils';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
-import { handleEnterAndEscapeKeyDown, TRANSLATION_NAMESPACES } from '@/utils';
 
 export const SourceColumn = (
   rule: IpEdgeFirewallRule & { isNew?: boolean },

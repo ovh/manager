@@ -1,20 +1,21 @@
-import { describe, it, vi } from 'vitest';
+import { fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, it } from 'vitest';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import {
   assertOdsModalVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { waitFor, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
-import {
-  getButtonByIcon,
-  labels,
-  renderTest,
-  getButtonByLabel,
-} from '@/test-utils';
 
 import { urls } from '@/routes/routes.constant';
+import {
+  getButtonByIcon,
+  getButtonByLabel,
+  labels,
+  renderTest,
+} from '@/test-utils';
 
 describe('Add Virtual Mac Modal test suite', () => {
   it('should display and close the Add Virtual Mac modal', async () => {

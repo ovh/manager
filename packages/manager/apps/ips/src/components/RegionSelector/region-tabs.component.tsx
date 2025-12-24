@@ -1,13 +1,17 @@
 import React from 'react';
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
-import { handleClick } from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
+
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
+import { handleClick } from '@ovh-ux/manager-react-components';
+
 import {
   RegionFilter,
+  isRegionInAp,
   isRegionInCa,
   isRegionInEu,
   isRegionInUs,
-  isRegionInAp,
 } from './region-selector.utils';
 
 export type RegionTabsProps = {
@@ -38,6 +42,7 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
   return (
     <OdsTabs className="mb-4">
       <OdsTab
+        className="px-3"
         isSelected={currentFilter === RegionFilter.all}
         {...handleClick(removeFilter)}
       >
@@ -45,6 +50,7 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
       </OdsTab>
       {hasEu && (
         <OdsTab
+          className="px-3"
           isSelected={currentFilter === RegionFilter.eu}
           {...handleClick(() => hasEu && setEuFilter())}
         >
@@ -53,6 +59,7 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
       )}
       {hasCa && (
         <OdsTab
+          className="px-3"
           isSelected={currentFilter === RegionFilter.ca}
           {...handleClick(() => hasCa && setCaFilter())}
         >
@@ -61,6 +68,7 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
       )}
       {hasUs && (
         <OdsTab
+          className="px-3"
           isSelected={currentFilter === RegionFilter.us}
           {...handleClick(() => hasUs && setUsFilter())}
         >
@@ -69,6 +77,7 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
       )}
       {hasAp && (
         <OdsTab
+          className="px-3"
           isSelected={currentFilter === RegionFilter.ap}
           {...handleClick(() => hasAp && setApFilter())}
         >

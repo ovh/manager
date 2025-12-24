@@ -1,14 +1,19 @@
 import React from 'react';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { useQueryClient } from '@tanstack/react-query';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { getIpGameFirewallQueryKey } from '@/data/api';
 import { useUpdateIpGameFirewall } from '@/data/hooks';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import { GameFirewallContext } from '../gamefirewall.context';
 
 export const StrategyModal: React.FC = () => {

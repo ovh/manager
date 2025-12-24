@@ -1,25 +1,30 @@
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import {
-  initShellContext,
   ShellContext,
   ShellContextType,
+  initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { ListingContext } from '@/pages/listing/listingContext';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpEdgeFirewall, IpEdgeFirewallProps } from './IpEdgeFirewall';
 import { IpEdgeFirewallStateEnum, IpEdgeFirewallType } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { getOdsBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpEdgeFirewall, IpEdgeFirewallProps } from './IpEdgeFirewall';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpEdgeFirewall = vi.hoisted(() =>
   vi.fn(() => ({
-    ipEdgeFirewall: undefined,
+    ipEdgeFirewall: undefined as IpEdgeFirewallType | undefined,
     isLoading: true,
     error: undefined,
   })),
@@ -36,7 +41,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(),
   useSearchParams: () => ['', vi.fn()],
-  useMatches: () => [] as any[],
+  useMatches: () => [] as string[],
 }));
 
 const renderComponent = async (params: IpEdgeFirewallProps) => {
@@ -52,7 +57,7 @@ const renderComponent = async (params: IpEdgeFirewallProps) => {
   );
 };
 
-describe('IpEdgeFirewall Component', async () => {
+describe('IpEdgeFirewall Component', () => {
   it('Should display enable state if firewall has enable to true', async () => {
     useGetIpEdgeFirewall.mockReturnValue({
       ipEdgeFirewall: {
@@ -63,7 +68,7 @@ describe('IpEdgeFirewall Component', async () => {
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
-      ip: ipDetailsList[0].ip,
+      ip: ipDetailsList[0]?.ip,
     });
     const badge = await getOdsBadgeByLabel({
       container,
@@ -79,12 +84,12 @@ describe('IpEdgeFirewall Component', async () => {
 
   it('Should display disable state if there is no firewall', async () => {
     useGetIpEdgeFirewall.mockReturnValue({
-      ipEdgeFirewall: undefined as IpEdgeFirewallType,
+      ipEdgeFirewall: undefined,
       isLoading: false,
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
-      ip: ipDetailsList[0].ip,
+      ip: ipDetailsList[0]?.ip,
     });
     const badge = await getOdsBadgeByLabel({
       container,
@@ -108,7 +113,7 @@ describe('IpEdgeFirewall Component', async () => {
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
-      ip: ipDetailsList[0].ip,
+      ip: ipDetailsList[0]?.ip,
     });
     const badge = await getOdsBadgeByLabel({
       container,
@@ -132,7 +137,7 @@ describe('IpEdgeFirewall Component', async () => {
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
-      ip: ipDetailsList[0].ip,
+      ip: ipDetailsList[0]?.ip,
     });
     const badge = await getOdsBadgeByLabel({
       container,

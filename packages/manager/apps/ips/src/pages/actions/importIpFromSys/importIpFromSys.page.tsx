@@ -1,9 +1,13 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsModal, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -11,13 +15,15 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { useOrderIpMigration } from '@/data/hooks';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
 import Step4 from './components/Step4';
 import Step5 from './components/Step5';
-import { useOrderIpMigration } from '@/data/hooks';
 import { TOTAL_STEP_NUMBER } from './importIpFromSys.constant';
 import './importIpFromSys.scss';
 
@@ -56,7 +62,7 @@ export default function ImportIpFromSys() {
     ip,
     token,
     serviceName: destinationServer,
-    duration,
+    duration: duration,
     onSuccess: () => setCurrentStep(() => 5),
   });
 
@@ -70,7 +76,7 @@ export default function ImportIpFromSys() {
     >
       <div className="flex items-center">
         <OdsText
-          className="block mb-4 mr-3 flex-1"
+          className="mb-4 mr-3 block flex-1"
           preset={ODS_TEXT_PRESET.heading3}
         >
           {t('title')}

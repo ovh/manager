@@ -1,8 +1,9 @@
-import { v6, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
+
 import { VrackTask } from '@/types';
 
 export type GetVrackTaskParams = {
-  serviceName: string;
+  serviceName?: string | null;
 };
 
 export const getVrackTaskQueryKey = (params: GetVrackTaskParams) => [
@@ -16,7 +17,7 @@ export const getVrackTaskList = ({
   v6.get(`/vrack/${serviceName}/task`);
 
 export type GetVrackTaskDetailsParams = {
-  serviceName: string;
+  serviceName?: string | null;
   taskId: number;
 };
 

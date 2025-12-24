@@ -1,17 +1,21 @@
 import React, {
-  useMemo,
-  useState,
   PropsWithChildren,
   createContext,
+  useMemo,
+  useState,
 } from 'react';
+
 import { useSearchParams } from 'react-router-dom';
+
 import { useQueries, useQueryClient } from '@tanstack/react-query';
+
 import {
+  GetIpListParams,
   getIpDetails,
   getIpDetailsQueryKey,
-  GetIpListParams,
   getIpListQueryKey,
 } from '@/data/api';
+
 import { cleanApiFilter, searchToApiFilter } from './listing.utils';
 
 export type ListingContextType = {
@@ -24,8 +28,8 @@ export type ListingContextType = {
   setOnGoingSlicedIps: React.Dispatch<React.SetStateAction<string[]>>;
   onGoingAggregatedIps: string[];
   setOnGoingAggregatedIps: React.Dispatch<React.SetStateAction<string[]>>;
-  onGoingCreatedIps?: string[];
-  setOnGoingCreatedIps?: React.Dispatch<React.SetStateAction<string[]>>;
+  onGoingCreatedIps: string[];
+  setOnGoingCreatedIps: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const ListingContext = createContext<ListingContextType>({
@@ -61,7 +65,7 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
       queryFn: async () => {
         const result = await getIpDetails({ ip });
 
-        queryClient.invalidateQueries({
+        await queryClient.invalidateQueries({
           queryKey: getIpListQueryKey(apiFilter),
         });
 
@@ -95,7 +99,7 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
         return newFilter;
       });
     },
-    [],
+    [setSearch],
   );
 
   const addExpiredIp = React.useCallback((expiredIp: string) => {
@@ -120,7 +124,10 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
     }),
     [
       apiFilter,
+      setApiFilterWithUrlUpdate,
+      search,
       expiredIps,
+      addExpiredIp,
       onGoingAggregatedIps,
       onGoingSlicedIps,
       onGoingCreatedIps,

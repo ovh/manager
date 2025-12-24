@@ -1,17 +1,22 @@
 import React from 'react';
-import { vi } from 'vitest';
+
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { setupServer } from 'msw/node';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
 import {
   Handler,
-  toMswHandlers,
   WAIT_FOR_DEFAULT_OPTIONS,
+  toMswHandlers,
 } from '@ovh-ux/manager-core-test-utils';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+
 import { ListingContext } from '@/pages/listing/listingContext';
-import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 import { getComboboxByName } from '@/test-utils';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
 import { FilterService } from './FilterService';
 
 const queryClient = new QueryClient();
@@ -21,7 +26,8 @@ const setApiFilter = vi.fn();
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  const original: typeof import('@ovh-ux/manager-react-shell-client') =
+    await importOriginal();
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
@@ -55,9 +61,11 @@ const renderComponent = () => {
 
 describe('FilterService', () => {
   beforeEach(() => {
-    ((global as unknown) as {
-      server: ReturnType<typeof setupServer>;
-    }).server.resetHandlers(
+    (
+      global as unknown as {
+        server: ReturnType<typeof setupServer>;
+      }
+    ).server.resetHandlers(
       ...toMswHandlers(
         [
           '/overTheBox',

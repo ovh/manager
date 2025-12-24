@@ -1,17 +1,22 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   OdsCheckbox,
   OdsFormField,
   OdsLink,
 } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { TRANSLATION_NAMESPACES } from '@/utils';
-import ModalButtonGroup from './ModalButtonGroup.component';
-import { useDedicatedServerIpMigrationDetails } from '@/data/hooks';
+
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { useDedicatedServerIpMigrationDetails } from '@/data/hooks';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import ModalButtonGroup from './ModalButtonGroup.component';
 
 export type Step4Props = {
   onCancel: () => void;
@@ -22,7 +27,7 @@ export type Step4Props = {
   duration: string;
   destinationServer?: string;
   isNextButtonLoading?: boolean;
-  error?: ApiError;
+  error?: ApiError | null;
 };
 
 export default function Step4({
@@ -50,7 +55,7 @@ export default function Step4({
 
   return (
     <>
-      <div className="flex flex-col mt-4 gap-3">
+      <div className="mt-4 flex flex-col gap-3">
         {data?.data?.contracts?.map((contract) => (
           <OdsLink
             key={contract.url}
@@ -62,7 +67,7 @@ export default function Step4({
           />
         ))}
       </div>
-      <OdsFormField className="block mt-7">
+      <OdsFormField className="mt-7 block">
         <div className="flex items-center">
           <OdsCheckbox
             isChecked={isContractChecked}

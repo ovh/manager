@@ -5,20 +5,11 @@ export type UnblockAntiSpamIpParams = {
   ipBlocked: string;
 };
 
-export const unblockAntiSpamIpQueryKey = (params: UnblockAntiSpamIpParams) => [
-  `post/ip/${encodeURIComponent(params.ip)}/spam/${encodeURIComponent(
-    params.ipBlocked,
-  )}/unblock`,
-];
-
 export const unblockAntiSpamIp = async ({
   ip,
   ipBlocked,
-}: UnblockAntiSpamIpParams): Promise<ApiResponse<void>> => {
-  return apiClient.v6.post<void>(
-    `/ip/${encodeURIComponent(ip)}/spam/${encodeURIComponent(
-      ipBlocked,
-    )}/unblock`,
+}: UnblockAntiSpamIpParams): Promise<ApiResponse<void>> =>
+  apiClient.v6.post<void>(
+    `/ip/${encodeURIComponent(ip)}/spam/${encodeURIComponent(ipBlocked)}/unblock`,
     {},
   );
-};

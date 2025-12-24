@@ -1,17 +1,22 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+
 import {
-  labels,
+  assertTextVisibility,
   WAIT_FOR_DEFAULT_OPTIONS,
-  getOdsCardByContentText,
-  renderTest,
+} from '@ovh-ux/manager-core-test-utils';
+
+import { urls } from '@/routes/routes.constant';
+import {
   getComboboxByName,
+  getOdsCardByContentText,
   getSelectByName,
+  labels,
+  renderTest,
 } from '@/test-utils';
+
 import { IpOffer } from '../pages/order/order.constant';
 import { IpVersion } from '../types';
-import { urls } from '@/routes/routes.constant';
 import { MockParams } from './render-test';
 
 export const goToOrder = async (mockParams: MockParams = {}) => {
@@ -41,7 +46,7 @@ export const selectService = async ({
   serviceName,
 }: {
   container: HTMLElement;
-  serviceName: string;
+  serviceName?: string | null;
 }) => {
   const serviceSelect = await getComboboxByName({ container, name: 'service' });
   await waitFor(
@@ -54,14 +59,14 @@ export const selectService = async ({
     WAIT_FOR_DEFAULT_OPTIONS,
   );
 
-  serviceSelect.value = serviceName;
+  serviceSelect.value = serviceName || '';
 
   const event = new CustomEvent('odsValueChange', {
     detail: { value: serviceName },
   });
 
   await waitFor(() =>
-    fireEvent((serviceSelect as unknown) as HTMLElement, event),
+    fireEvent(serviceSelect as unknown as HTMLElement, event),
   );
 };
 

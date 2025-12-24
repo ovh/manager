@@ -12,7 +12,5 @@ export const deleteIpGameFirewallRule = async ({
   ruleId,
 }: DeleteIpGameFirewallRuleParams): Promise<ApiResponse<null>> =>
   apiClient.v6.delete<null>(
-    `/ip/${encodeURIComponent(ip)}/game/${encodeURIComponent(
-      ipOnGame,
-    )}/rule/${ruleId}`,
+    `/ip/${encodeURIComponent(ip)}/game/${encodeURIComponent(ipOnGame)}/rule/${ruleId}`,
   );

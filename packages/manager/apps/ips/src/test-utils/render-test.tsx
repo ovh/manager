@@ -1,50 +1,51 @@
-import React from 'react';
+import { RenderResult, render, screen, waitFor } from '@testing-library/react';
 import { SetupServer } from 'msw/node';
-import { I18nextProvider } from 'react-i18next';
-import type { i18n as I18nType } from 'i18next';
+import { I18nextProvider, I18nextProviderProps } from 'react-i18next';
 import { expect } from 'vitest';
+
+import { Subsidiary } from '@ovh-ux/manager-config';
+import {
+  WAIT_FOR_DEFAULT_OPTIONS,
+  getAuthenticationMocks,
+  initTestI18n,
+  toMswHandlers,
+} from '@ovh-ux/manager-core-test-utils';
+import {
+  GetServicesMocksParams,
+  getServicesMocks,
+} from '@ovh-ux/manager-module-common-api';
 import {
   ShellContext,
   ShellContextType,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { render, waitFor, screen, RenderResult } from '@testing-library/react';
+
 import {
-  getServicesMocks,
-  GetServicesMocksParams,
-} from '@ovh-ux/manager-module-common-api';
-import {
-  initTestI18n,
-  getAuthenticationMocks,
-  toMswHandlers,
-  WAIT_FOR_DEFAULT_OPTIONS,
-} from '@ovh-ux/manager-core-test-utils';
-import { Subsidiary } from '@ovh-ux/manager-config';
-import { translations, labels } from './test-i18n';
-import { TestApp } from './TestApp';
-import {
-  GetIpsMocksParams,
-  getIpsMocks,
-  GetDedicatedMocksParams,
-  getDedicatedMocks,
-  getCatalogMocks,
-  getDedicatedCloudMocks,
-  GetDedicatedCloudMocksParams,
-  getDedicatedServerMocks,
-  GetDedicatedServerMocksParams,
-  getVrackMocks,
-  GetVrackMocksParams,
-  getVpsMocks,
-  GetVpsMocksParams,
-  getOrganisationMocks,
-  GetOrganisationMocksParams,
   GetCatalogMocksParams,
-  getCloudProjectMocks,
-  getIpLoadBalancingMocks,
+  GetDedicatedCloudMocksParams,
+  GetDedicatedMocksParams,
+  GetDedicatedServerMocksParams,
   GetIpLoadBalancingMocksParams,
-  getXdslMocks,
+  GetIpsMocksParams,
+  GetOrganisationMocksParams,
+  GetVpsMocksParams,
+  GetVrackMocksParams,
+  getCatalogMocks,
+  getCloudProjectMocks,
+  getDedicatedCloudMocks,
+  getDedicatedMocks,
+  getDedicatedServerMocks,
+  getIpLoadBalancingMocks,
+  getIpsMocks,
+  getOrganisationMocks,
   getOverTheBoxMocks,
+  getVpsMocks,
+  getVrackMocks,
+  getXdslMocks,
 } from '@/__mocks__';
+
+import { TestApp } from './TestApp';
+import { labels, translations } from './test-i18n';
 
 export type GetUserMocksParams = {
   ovhSubsidiary?: Subsidiary;
@@ -65,13 +66,13 @@ export type MockParams = GetIpsMocksParams &
 const APP_NAME = 'ips';
 
 let context: ShellContextType;
-let i18nState: I18nType;
+let i18nState: I18nextProviderProps['i18n'];
 
 export const renderTest = async ({
   initialRoute,
   ...mockParams
 }: { initialRoute?: string } & MockParams = {}): Promise<RenderResult> => {
-  ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
+  (global as unknown as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers(
       [
         ...getIpsMocks(mockParams),
@@ -105,11 +106,8 @@ export const renderTest = async ({
 
 
   if (!i18nState) {
-  i18nState = (await initTestI18n(
-    APP_NAME,
-    translations,
-  )) as unknown as I18nType;
-}
+    i18nState = await initTestI18n(APP_NAME, translations) as I18nextProviderProps['i18n'];
+  }
 
   const result = render(
     <I18nextProvider i18n={i18nState}>

@@ -1,11 +1,13 @@
 import React from 'react';
-import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
-import { OrderContext } from './order.context';
-import { IpVersion } from '@/types';
-import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
-import { OrderButtonSection } from './sections/OrderButtonSection.component';
-import { AdditionalOptionsSection } from './sections/AdditionalOptionsSection.component';
+
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
+import { IpVersion } from '@/types';
+
+import { OrderContext } from './order.context';
+import { AdditionalOptionsSection } from './sections/AdditionalOptionsSection.component';
+import { OrderButtonSection } from './sections/OrderButtonSection.component';
+import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
+import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
 
 export const Ipv6Order: React.FC = () => {
   const {
@@ -25,9 +27,10 @@ export const Ipv6Order: React.FC = () => {
 
   const visibleSections = {
     ipv6Options: ipVersion === IpVersion.ipv6,
-    service: selectedOptions.length > 0,
+    service: !!selectedOptions && selectedOptions.length > 0,
     region: !!selectedService && serviceStatus === 'ok',
     order:
+      !!selectedOptions &&
       selectedOptions.length > 0 &&
       !!selectedService &&
       !!selectedRegion &&

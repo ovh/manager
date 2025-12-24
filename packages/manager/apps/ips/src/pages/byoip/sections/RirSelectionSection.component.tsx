@@ -1,13 +1,17 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
-import { useGetCatalog, CONFIG_NAME } from '@/data/hooks/catalog/useGetCatalog';
+import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+import { CONFIG_NAME, useGetCatalog } from '@/data/hooks/catalog/useGetCatalog';
+
 import { ByoipContext } from '../Byoip.context';
 import { getConfigValues } from '../Byoip.utils';
 
@@ -18,7 +22,7 @@ export const RirSelectionSection: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   const ipRirValues = getConfigValues(
-    catalog?.details.product.configurations,
+    catalog?.details?.product.configurations,
     CONFIG_NAME.IPRIR,
   ) as string[];
 
@@ -28,7 +32,7 @@ export const RirSelectionSection: React.FC = () => {
       description={t('rir_selection_description')}
       isLoading={isLoading}
     >
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
         {ipRirValues.map((value) => (
           <OptionCard
             key={value}

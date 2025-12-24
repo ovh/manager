@@ -1,16 +1,20 @@
 import React, { useContext } from 'react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { useGetIcebergIpReverse } from '@/data/hooks/ip';
-import { ipFormatter } from '@/utils/ipFormatter';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-import { ListingContext } from '@/pages/listing/listingContext';
-import { useDeleteIpReverse } from '@/data/hooks/ip/useDeleteIpReverse';
-import { useUpdateIpReverse } from '@/data/hooks/ip/useUpdateIpReverse';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { EditInline } from '@/components/EditInline/edit-inline.component';
 import { IpReverseError } from '@/components/IpReverseError/IpReverseError';
+import { useGetIcebergIpReverse } from '@/data/hooks/ip';
+import { useDeleteIpReverse } from '@/data/hooks/ip/useDeleteIpReverse';
+import { useUpdateIpReverse } from '@/data/hooks/ip/useUpdateIpReverse';
+import { ListingContext } from '@/pages/listing/listingContext';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpReverseProps = {
   ip: string;
@@ -59,42 +63,28 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   // Prepare delete mutation with
   // ip: single Ip with mask (ipFormatter remove mask if /32)
   // ipGroup: the parent group for Ip (if /32 ipGroup is same as Ip but with the mask)
-  const {
-    mutate: deleteIpReverse,
-    isPending: pendingDelete,
-  } = useDeleteIpReverse({
-    ip: ipGroup,
-    ipReverse: formattedIp,
-    onError,
-  });
+  const { mutate: deleteIpReverse, isPending: pendingDelete } =
+    useDeleteIpReverse({
+      ip: ipGroup,
+      ipReverse: formattedIp,
+      onError,
+    });
 
   // Prepare update mutation with
   // ip: single Ip with mask (ipFormatter remove mask if /32)
   // ipGroup: the parent group for Ip (if /32 ipGroup is same as Ip but with the mask)
-  const {
-    mutate: updateIpReverse,
-    isPending: pendingUpdate,
-  } = useUpdateIpReverse({
-    ip: ipGroup,
-    ipReverse: formattedIp,
-    onError,
-  });
+  const { mutate: updateIpReverse, isPending: pendingUpdate } =
+    useUpdateIpReverse({
+      ip: ipGroup,
+      ipReverse: formattedIp,
+      onError,
+    });
 
   // Find reverse for ip in list of reverse.
   // Especialy usefull for ipBlock as getIpReverse get all reverse for the block.
   const ipReverse = ipsReverse?.find(
     (ipWithReverse) => ipWithReverse.ipReverse === formattedIp,
   )?.reverse;
-
-  const editIpReverse = (oldReverse: string, newReverse: string) => {
-    if (!!oldReverse && newReverse === '') {
-      // delete
-      deleteIpReverse();
-    } else {
-      // update
-      updateIpReverse({ reverse: newReverse });
-    }
-  };
 
   return (
     <SkeletonCell
@@ -105,7 +95,13 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
     >
       <EditInline
         name="test"
-        onConfirm={(newReverse: string) => editIpReverse(ipReverse, newReverse)}
+        onConfirm={(newReverse: string) => {
+          if (!!ipReverse && newReverse === '') {
+            deleteIpReverse();
+          } else {
+            updateIpReverse({ reverse: newReverse });
+          }
+        }}
         defaultValue={ipReverse}
       >
         {ipReverse || <>-</>}

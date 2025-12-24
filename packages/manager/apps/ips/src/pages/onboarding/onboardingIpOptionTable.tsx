@@ -1,8 +1,12 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText, OdsTable } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsTable, OdsText } from '@ovhcloud/ods-components/react';
+
 import { Links } from '@ovh-ux/manager-react-components';
+
 import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 import { useCatalogLowestPrice } from '@/data/hooks/catalog';
 import { useGuideUtils } from '@/utils';
@@ -98,7 +102,7 @@ export function IpOptionTable() {
         <>
           {t('optionsAvailabilityCheck')}{' '}
           <Links
-            href={links?.presentationLink.link}
+            href={links?.presentationLink?.link}
             label={t('optionsAvailabilityHere')}
             target="_blank"
             rel="noopener"
@@ -121,22 +125,22 @@ export function IpOptionTable() {
         <table className="w-full border-collapse">
           <thead>
             <tr>
-              <th className="text-left pl-4">{t('optionsColumnFeature')}</th>
-              <th className="text-left pl-4">{t('optionsColumnIpv4')}</th>
-              <th className="text-left pl-4">{t('optionsColumnIpv6')}</th>
+              <th className="pl-4 text-left">{t('optionsColumnFeature')}</th>
+              <th className="pl-4 text-left">{t('optionsColumnIpv4')}</th>
+              <th className="pl-4 text-left">{t('optionsColumnIpv6')}</th>
             </tr>
           </thead>
           <tbody>
             {optionList.map((option: IpOptionRowProps) => (
               <tr
                 key={`${option.feature}`}
-                className="border-solid border-[1px] border-[--ods-color-blue-200]"
+                className="border border-solid border-[--ods-color-blue-200]"
               >
-                <td className="text-left pl-4">{option.feature}</td>
-                <td className="text-left pl-4 whitespace-pre-line">
+                <td className="pl-4 text-left">{option.feature}</td>
+                <td className="whitespace-pre-line pl-4 text-left">
                   {option.ipv4}
                 </td>
-                <td className="text-left pl-4 whitespace-pre-line">
+                <td className="whitespace-pre-line pl-4 text-left">
                   {option.ipv6}
                 </td>
               </tr>

@@ -1,7 +1,7 @@
 import {
+  IntervalUnitType,
   OVH_CURRENCY_BY_SUBSIDIARY,
   OvhSubsidiary,
-  IntervalUnitType,
 } from '@ovh-ux/manager-react-components';
 
 export interface PriceProps {
@@ -53,7 +53,7 @@ export const getPriceTextFormatted = (
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(priceValue);
-  } catch (e) {
+  } catch {
     return new Intl.NumberFormat('fr-FR', {
       style: 'currency',
       currency: OVH_CURRENCY_BY_SUBSIDIARY[ovhSubsidiary],

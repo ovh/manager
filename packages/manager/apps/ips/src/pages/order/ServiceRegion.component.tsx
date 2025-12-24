@@ -1,20 +1,21 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsSpinner, OdsMessage } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
+import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 import { OrderContext } from '@/pages/order/order.context';
 import { ServiceType } from '@/types';
-import { useServiceRegion } from '@/data/hooks/useServiceRegion';
-import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const ServiceRegion = () => {
-  const {
-    selectedServiceType,
-    selectedService,
-    addDisabledService,
-  } = React.useContext(OrderContext);
+  const { selectedServiceType, selectedService, addDisabledService } =
+    React.useContext(OrderContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.order,
     NAMESPACES.REGION,
@@ -50,6 +51,7 @@ export const ServiceRegion = () => {
 
   if (
     !region ||
+    !selectedServiceType ||
     ![ServiceType.vps, ServiceType.server, ServiceType.dedicatedCloud].includes(
       selectedServiceType,
     )
