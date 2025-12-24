@@ -1,4 +1,5 @@
 import isFunction from 'lodash/isFunction';
+import { filterIpv4List } from './utils';
 
 export default class BmServerComponentsNetworkTileController {
   /* @ngInject */
@@ -7,10 +8,10 @@ export default class BmServerComponentsNetworkTileController {
     this.$q = $q;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
-    this.totalAssocietedIps = 0;
   }
 
   $onInit() {
+    this.totalAssocietedIps = 0;
     this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.hidePublicBandwidth = this.hidePublicBandwidth || false;
     this.manageIpUrl = this.coreURLBuilder.buildURL(
@@ -29,15 +30,49 @@ export default class BmServerComponentsNetworkTileController {
       .finally(() => {
         this.loading = false;
       });
-
-    this.$http
-      .get(`/ip?routedTo.serviceName=${encodeURIComponent(this.server.name)}`)
-      .then(({ data = [] }) => {
-        this.totalAssocietedIps = data.length;
-      })
-      .catch(() => null);
     this.gameDDosGuide = this.dedicatedServer.gameDDosGuide;
     this.isGameServer = this.dedicatedServer.isGameServer;
+    if (this.isGameServer) this.getGameDDoSStatus();
+  }
+
+  gameDDoSStatusCodes = {
+    noIpConfigured: 'no_ip_configured',
+    someIpsConfigured: 'some_ips_configured',
+    allIpsConfigured: 'all_ips_configured',
+  };
+
+  getGameDDoSStatus() {
+    return this.$http
+      .get(`/ip?routedTo.serviceName=${encodeURIComponent(this.server.name)}`)
+      .catch(() => null)
+      .then(({ data = [] }) => {
+        this.totalAssocietedIps = data.length;
+        const ipv4List = filterIpv4List(data);
+
+        return this.getProtectedGameIpsV4List(ipv4List).then((result = []) => {
+          const protectedIpv4Count = result.reduce(
+            (sum, curr) => (curr ? sum + 1 : sum),
+            0,
+          );
+
+          if (!protectedIpv4Count)
+            this.gameDDoSStatus = this.gameDDoSStatusCodes.noIpConfigured;
+          else if (protectedIpv4Count < result.length)
+            this.gameDDoSStatus = this.gameDDoSStatusCodes.someIpsConfigured;
+          else this.gameDDoSStatus = this.gameDDoSStatusCodes.allIpsConfigured;
+        });
+      });
+  }
+
+  getProtectedGameIpsV4List(ipv4List) {
+    return this.$q.all(
+      ipv4List.map((ip) =>
+        this.$http
+          .get(`/ip/${encodeURIComponent(ip)}/mitigation/${ip.split('/')[0]}`)
+          .then(({ data } = {}) => data?.state === 'ok')
+          .catch(() => false),
+      ),
+    );
   }
 
   loadVrackInfos() {
