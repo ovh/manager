@@ -99,7 +99,7 @@ describe('Reset prometheus user password modal', () => {
     await waitFor(() => {
       expect(prometheusApi.resetPrometheusUserPassword).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'resetUserPasswordToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'resetUserPasswordToastSuccessDescription',
       });
     });
@@ -140,7 +140,7 @@ describe('Reset prometheus user password modal', () => {
     await waitFor(() => {
       expect(prometheusApi.resetPrometheusUserPassword).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'resetUserPasswordToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'resetUserPasswordToastSuccessDescription',
       });
     });
@@ -163,7 +163,7 @@ describe('Reset prometheus user password modal', () => {
     await waitFor(() => {
       expect(prometheusApi.resetPrometheusUserPassword).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'resetUserPasswordToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'resetUserPasswordToastSuccessDescription',
       });
     });
