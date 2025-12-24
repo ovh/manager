@@ -17,8 +17,8 @@
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
-    "test": "manager-test run",
-    "test:watch": "manager-test watch"
+    "test": "manager-test --config vitest.config.mjs run",
+    "test:watch": "manager-test --config vitest.config.mjs watch"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
