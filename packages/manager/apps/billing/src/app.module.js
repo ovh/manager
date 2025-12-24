@@ -13,9 +13,6 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import Billing from '@ovh-ux/manager-billing';
-import config, {
-  getConstants,
-} from '@ovh-ux/manager-billing/src/config/config';
 import dedicatedUniverseComponents from '@ovh-ux/manager-billing/src/dedicatedUniverseComponents';
 import errorPage from './error';
 import TRACKING from './tracking/at-internet.constants';
@@ -52,8 +49,6 @@ export default async (containerEl, shellClient) => {
     shellClient.environment.getEnvironment(),
     shellClient.i18n.getLocale(),
   ]);
-
-  const configConstants = getConstants(environment.getRegion());
 
   const coreCallbacks = {
     onLocaleChange: (lang) => {
@@ -163,25 +158,6 @@ export default async (containerEl, shellClient) => {
     })
     .config(trackingConfig)
     .config(calendarConfigProvider)
-    .constant('constants', {
-      prodMode: config.prodMode,
-      swsProxyRootPath: config.swsProxyRootPath,
-      aapiRootPath: config.aapiRootPath,
-      target: config.target,
-      renew: configConstants.RENEW_URL,
-      urls: configConstants.URLS,
-      UNIVERS: configConstants.UNIVERS,
-      TOP_GUIDES: configConstants.TOP_GUIDES,
-      vmsUrl: configConstants.vmsUrl,
-      statusUrl: configConstants.statusUrl,
-      aapiHeaderName: 'X-Ovh-Session',
-      vrackUrl: configConstants.vrackUrl,
-      REDIRECT_URLS: configConstants.REDIRECT_URLS,
-      DEFAULT_LANGUAGE: configConstants.DEFAULT_LANGUAGE,
-      FALLBACK_LANGUAGE: configConstants.FALLBACK_LANGUAGE,
-      SUPPORT: configConstants.SUPPORT,
-      SECTIONS_UNIVERSE_MAP: configConstants.SECTIONS_UNIVERSE_MAP,
-    })
     .config(
       /* @ngInject */ (ovhPaymentMethodProvider, coreURLBuilderProvider) => {
         ovhPaymentMethodProvider.setPaymentMethodPageUrl(
