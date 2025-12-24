@@ -7,11 +7,10 @@ export default /* @ngInject */ function UserAccountAgreementsService(
   $http,
   $q,
   $translate,
-  constants,
 ) {
   const userAgreementsCache = $cacheFactory('USER_AGREEMENTS');
 
-  const proxyPath = `${constants.swsProxyRootPath}me`;
+  const proxyPath = '/me';
 
   function getSuccessDataOrReject(response) {
     return response.status < 300 ? response.data : $q.reject(response.data);
