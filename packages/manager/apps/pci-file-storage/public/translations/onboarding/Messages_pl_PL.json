@@ -1,25 +1,25 @@
 {
-  "title_fallback": "Witamy w File Storage",
-  "description_part1": "Dowiedz się, jak najlepiej wykorzystać File Storage, ddd.",
-  "description_part2": "Zapoznaj się z naszymi przewodnikami, aby szybko wystartować.",
   "guides": {
-    "guide1": {
-      "category": "Pierwsze kroki",
-      "title": "Rozpocznij pracę z File Storage",
-      "description": "Poznaj podstawy i przejdź do działania.",
-      "cta": "Sprawdź"
+    "learn-more": {
+      "category": "Oferta",
+      "title": "Dowiedz się więcej",
+      "description": "Strona Labs wyjaśniająca funkcjonalność i ceny przechowywania plików.",
+      "link-text": "Dowiedz się więcej"
     },
-    "guide2": {
-      "category": "Tutoriale",
-      "title": "Konfiguracja środowiska",
-      "description": "Postępuj zgodnie z instrukcjami z naszego przewodnika",
-      "cta": "Sprawdź tutorial"
+    "get-started": {
+      "category": "Przewodnik",
+      "title": "Pierwsze kroki",
+      "description": "Dokumentacja krok po kroku, aby pomóc Ci stworzyć swój pierwszy udostępniony zasób.",
+      "link-text": "Dowiedz się więcej"
     },
-    "guide3": {
-      "category": "FAQ",
-      "title": "Najczęściej zadawane pytania",
-      "description": "Znajdź odpowiedzi na często zadawane pytania.",
-      "cta": "Przeczytaj FAQ"
+    "discord": {
+      "category": "Discord",
+      "title": "Bądź na bieżąco z najnowszymi wiadomościami",
+      "description": "Dołącz do nas bezpośrednio na #beta-file-storage: zadawaj pytania i dziel się swoimi uwagami.",
+      "link-text": "Dowiedz się więcej"
     }
-  }
+  },
+  "title": "Wypróbuj przechowywanie plików za darmo!",
+  "description": "Potrzebujesz współdzielonego przechowywania dla swoich klastrów lub instancji? Nasze rozwiązanie przechowywania plików dla Public Cloud w pełni zarządzane oferuje wolumeny NFS od <strong>150 GiB do 10 TiB</strong>, do <strong>16 000 IOPS</strong> i <strong>128 MB/s</strong>. Kompatybilne z <strong>Managed Kubernetes</strong> (PVCs RWX) i <strong>instancjami Public Cloud</strong> (montaże NFS), udostępniaj pliki w sposób przejrzysty między węzłami, strefami i aplikacjami, z przejrzystą taryfikacją.",
+  "action-button": "Odkryj Betę"
 }

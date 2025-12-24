@@ -1,25 +1,25 @@
 {
-  "title_fallback": "Bem-vindo ao File Storage",
-  "description_part1": "Saiba como tirar o máximo partido da File Storage, ddd.",
-  "description_part2": "Siga os nossos guias para começar rapidamente.",
   "guides": {
-    "guide1": {
-      "category": "Descoberta",
-      "title": "Começar com File Storage",
-      "description": "Aprenda o básico para começar.",
-      "cta": "Descobrir"
+    "learn-more": {
+      "category": "Oferta",
+      "title": "Saber mais",
+      "description": "Página Labs explicando a funcionalidade e a tarifação do Armazenamento de Arquivos.",
+      "link-text": "Saber mais"
     },
-    "guide2": {
-      "category": "Tutoriais",
-      "title": "Configurar o seu ambiente",
-      "description": "Siga o nosso guia passo a passo.",
-      "cta": "Consultar o tutorial"
+    "get-started": {
+      "category": "Guia",
+      "title": "Primeiros Passos",
+      "description": "Uma documentação passo a passo para ajudá-lo a criar o seu primeiro compartilhamento.",
+      "link-text": "Saber mais"
     },
-    "guide3": {
-      "category": "FAQ",
-      "title": "Perguntas frequentes",
-      "description": "Encontre as respostas para as perguntas mais habituais.",
-      "cta": "Ler a FAQ"
+    "discord": {
+      "category": "Discord",
+      "title": "Mantenha-se informado(a) sobre as últimas notícias",
+      "description": "Junte-se a nós diretamente no #beta-file-storage: faça suas perguntas e compartilhe seus comentários.",
+      "link-text": "Saber mais"
     }
-  }
+  },
+  "title": "Teste o Armazenamento de Arquivos gratuitamente!",
+  "description": "Precisa de armazenamento compartilhado para seus clusters ou suas instâncias? A nossa solução de Armazenamento de Arquivos para Cloud Pública totalmente gerida oferece volumes NFS que vão de <strong>150 GiB a 10 TiB</strong>, até <strong>16 000 IOPS</strong> e <strong>128 MB/s</strong>. Compatível com <strong>Managed Kubernetes</strong> (PVCs RWX) e <strong>as instâncias de Cloud Pública</strong> (montagens NFS), compartilhe arquivos de forma transparente entre nós, zonas e aplicações, com uma tarifação transparente.",
+  "action-button": "Descobrir a Beta"
 }
