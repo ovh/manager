@@ -1,6 +1,7 @@
 import React from 'react';
-import { EdgeFirewallContextProvider } from './edgeNetworkFirewall.context';
+
 import EdgeNetworkFirewallPage from './components/EdgeNetworkFirewallPage.component';
+import { EdgeFirewallContextProvider } from './edgeNetworkFirewall.context';
 
 export default function ConfigureGameFirewall() {
   return (

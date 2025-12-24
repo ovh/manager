@@ -1,10 +1,15 @@
-import { waitFor, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { describe } from 'vitest';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertOdsModalText,
 } from '@ovh-ux/manager-core-test-utils';
+
+import { IpGameFirewallStateEnum } from '@/data/api';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import {
   getButtonByIcon,
   getButtonByLabel,
@@ -13,8 +18,6 @@ import {
   labels,
   renderTest,
 } from '@/test-utils';
-import { urlDynamicParts, urls } from '@/routes/routes.constant';
-import { IpGameFirewallStateEnum } from '@/data/api';
 import { fromIpToId } from '@/utils';
 
 describe('Configure game firewall page', () => {

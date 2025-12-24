@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { OdsInput } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OdsInput } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
+
 import { ListingContext } from '@/pages/listing/listingContext';
 import { handleEnterAndEscapeKeyDown } from '@/utils';
 

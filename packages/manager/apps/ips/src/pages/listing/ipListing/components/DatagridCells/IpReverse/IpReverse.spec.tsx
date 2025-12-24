@@ -1,22 +1,30 @@
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import {
   ShellContext,
   ShellContextType,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ListingContext } from '@/pages/listing/listingContext';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpReverse, IpReverseProps } from './IpReverse';
 import { IpReverseType } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpReverse, IpReverseProps } from './IpReverse';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIcebergIpReverseMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipsReverse: undefined, isLoading: true, error: undefined })),
+  vi.fn(() => ({
+    ipsReverse: undefined as IpReverseType[] | undefined,
+    isLoading: true,
+    error: undefined,
+  })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
@@ -26,7 +34,7 @@ vi.mock('@/data/hooks/ip', () => ({
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(),
   useSearchParams: () => ['', vi.fn()],
-  useMatches: () => [] as any[],
+  useMatches: () => [] as string[],
 }));
 
 vi.mock('../SkeletonCell/SkeletonCell', () => ({
@@ -46,7 +54,7 @@ const renderComponent = async (params: IpReverseProps) => {
   );
 };
 
-describe('IpReverse Component', async () => {
+describe('IpReverse Component', () => {
   it('Should display reverse if exist', async () => {
     useGetIcebergIpReverseMock.mockReturnValue({
       ipsReverse: [
@@ -62,11 +70,13 @@ describe('IpReverse Component', async () => {
   });
   it('Should display "-" if no reverse exist', async () => {
     useGetIcebergIpReverseMock.mockReturnValue({
-      ipsReverse: [],
+      ipsReverse: [] as IpReverseType[],
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = await renderComponent({ ip: ipDetailsList[3].ip });
+    const { getByText } = await renderComponent({
+      ip: ipDetailsList?.[3]?.ip,
+    });
     await waitFor(() => {
       expect(getByText('-')).toBeDefined();
     });

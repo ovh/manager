@@ -1,8 +1,11 @@
 import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { organisationMockDetails } from '@/__mocks__';
+
 import { ManageOrganisationsDatagrid } from './components/OrganisationsDatagrid/manageOrganisationsDataGrid.component';
 
 const queryClient = new QueryClient();

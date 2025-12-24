@@ -1,18 +1,23 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { RegionCard } from '@/components/RegionCard/RegionCard.component';
-import { useGetCatalog, CONFIG_NAME } from '@/data/hooks/catalog/useGetCatalog';
-import { getConfigValues } from '../Byoip.utils';
-import { ByoipContext } from '../Byoip.context';
 import { DATACENTER_TO_REGION } from '@/data/hooks/catalog';
+import { CONFIG_NAME, useGetCatalog } from '@/data/hooks/catalog/useGetCatalog';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import { ByoipContext } from '../Byoip.context';
+import { getConfigValues } from '../Byoip.utils';
 
 type CampusType = {
   name: string;
@@ -26,7 +31,7 @@ export const RegionSelectionSection: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   const campusValues = getConfigValues(
-    catalog?.details.product.configurations,
+    catalog?.details?.product.configurations,
     CONFIG_NAME.CAMPUS,
   ) as CampusType[];
 
@@ -37,7 +42,7 @@ export const RegionSelectionSection: React.FC = () => {
       isLoading={isLoading}
     >
       <React.Suspense fallback={<OdsSpinner />}>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap items-stretch gap-4">
           {campusValues.map((value) => {
             const region = DATACENTER_TO_REGION[value.name];
             return (

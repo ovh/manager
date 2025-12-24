@@ -1,9 +1,10 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import {
-  ipFormatter,
   fromIdToIp,
   fromIpToId,
   getIpv4SubIpList,
+  ipFormatter,
 } from './ipFormatter';
 
 describe('ipFormatter utilities', () => {
@@ -34,7 +35,7 @@ describe('ipFormatter utilities', () => {
     expect(isGroup).toBe(true);
     expect(ipAddress).toBe('192.0.2.1');
     expect(ip).toBe(input);
-    expect(range).toBe('24');
+    expect(range).toBe(24);
   });
 
   it('should handle IPv6 addresses', () => {

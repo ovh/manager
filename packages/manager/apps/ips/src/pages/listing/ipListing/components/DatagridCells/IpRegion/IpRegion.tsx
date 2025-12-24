@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { useGetIpdetails } from '@/data/hooks/ip';
+
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpRegionProps = {

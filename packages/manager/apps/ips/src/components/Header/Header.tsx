@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   ChangelogButton,
   GuideButton,
@@ -9,6 +10,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import { CHANGELOG_LINKS, useGuideUtils } from '@/utils';
 
 export type Header = {

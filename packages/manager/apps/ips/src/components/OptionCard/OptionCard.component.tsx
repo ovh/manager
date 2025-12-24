@@ -1,17 +1,15 @@
 import React from 'react';
-import {
-  ODS_CARD_COLOR,
-  ODS_TEXT_PRESET,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
+
+import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   OdsCard,
-  OdsDivider,
-  OdsText,
-  OdsSpinner,
   OdsRadio,
+  OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
+
 import { handleClick } from '@ovh-ux/manager-react-components';
+
 import './option-card.scss';
 
 export type OptionCardProps = React.PropsWithChildren<{
@@ -27,7 +25,7 @@ export type OptionCardProps = React.PropsWithChildren<{
 }>;
 
 export const OptionCard: React.FC<OptionCardProps> = ({
-  className,
+  className = '',
   isDisabled,
   isSelected,
   isLoading,
@@ -44,27 +42,27 @@ export const OptionCard: React.FC<OptionCardProps> = ({
   const borderStyle = isSelected
     ? 'option_card_selected'
     : 'option_card m-[1px]';
-  const justifyStyle = hasRadioButton ? 'justify-left' : 'justify-center';
+  const justifyStyle = hasRadioButton ? 'justify-start' : 'justify-center';
   return (
     <OdsCard
       tabIndex={0}
       className={`flex flex-col justify-between transition-shadow ${stateStyle} ${borderStyle} ${className}`}
       {...handleClick(() => !isDisabled && onClick?.())}
-      color={ODS_CARD_COLOR.neutral}
+      color="neutral"
     >
       {hasRadioButton ? (
         <OdsText
-          className="flex justify-left m-4"
+          className="m-4 flex justify-start"
           preset={ODS_TEXT_PRESET.heading4}
         >
-          <span className="h-full align-middle mr-3">
+          <span className="mr-3 h-full align-middle">
             <OdsRadio name="" isChecked={isSelected} />
           </span>
           <span>{title}</span>
         </OdsText>
       ) : (
         <OdsText
-          className="flex justify-center m-4"
+          className="m-4 flex justify-center"
           preset={ODS_TEXT_PRESET.heading4}
         >
           {title}
@@ -92,7 +90,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({
         </div>
       ) : (
         children && (
-          <span className="card-children p-4 rounded-b-md">{children}</span>
+          <span className="card-children rounded-b-md p-4">{children}</span>
         )
       )}
     </OdsCard>

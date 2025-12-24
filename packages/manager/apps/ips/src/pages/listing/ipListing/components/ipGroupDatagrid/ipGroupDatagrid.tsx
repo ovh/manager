@@ -1,21 +1,25 @@
-import { Datagrid } from '@ovh-ux/manager-react-components';
 import React from 'react';
+
 import { Row } from '@tanstack/react-table';
+
+import { Datagrid } from '@ovh-ux/manager-react-components';
+
 import {
   useByoipSlice,
   useGetIcebergIpReverse,
   useGetIpdetails,
 } from '@/data/hooks/ip';
-import { useIpGroupDatagridColumns } from './useIpGroupDatagridColumns';
+import { getIpv4SubIpList, isValidIpv6Block } from '@/utils';
+
 import {
   isAntiDdosAvailable,
   isGameFirewallAvailable,
 } from '../DatagridCells/enableCellsUtils';
-import { getIpv4SubIpList, isValidIpv6Block } from '@/utils';
+import { useIpGroupDatagridColumns } from './useIpGroupDatagridColumns';
 
 type IpGroupDatagridProps = {
   row: Row<{ ip: string }>;
-  parentHeaders: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
+  parentHeaders?: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
 };
 
 export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
@@ -40,13 +44,11 @@ export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
     isByoipSlice: isIpDetailsLoading || !!ipDetails?.bringYourOwnIp,
   });
 
-  const {
-    ipsReverse: ipReverseList,
-    isLoading: isIpReverseLoading,
-  } = useGetIcebergIpReverse({
-    ip: row.original.ip,
-    enabled: isValidIpv6Block(row.original.ip),
-  });
+  const { ipsReverse: ipReverseList, isLoading: isIpReverseLoading } =
+    useGetIcebergIpReverse({
+      ip: row.original.ip,
+      enabled: isValidIpv6Block(row.original.ip),
+    });
 
   const ipList = React.useMemo(() => {
     if (ipDetails?.bringYourOwnIp) {

@@ -1,13 +1,15 @@
-import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import ipaddr from 'ipaddr.js';
-import { ipParkingOptionValue, IpTask } from '@/types';
-import { getTypeByServiceName } from '@/utils';
+
+import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { IpTypeEnum } from '@/data/constants';
+import { IpTask, ipParkingOptionValue } from '@/types';
+import { getTypeByServiceName } from '@/utils';
 
 export type PostMoveIpParams = {
   ip: string;
-  to: string | typeof ipParkingOptionValue;
-  serviceName: string;
+  to: string;
+  serviceName?: string | null;
   nexthop?: string;
 };
 

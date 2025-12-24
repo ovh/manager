@@ -1,12 +1,16 @@
 import React from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsLink, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
-  ODS_LINK_COLOR,
   ODS_ICON_NAME,
+  ODS_LINK_COLOR,
   ODS_LINK_ICON_ALIGNMENT,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import { OdsLink, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const SURVEY_BASE_URL = 'https://survey.ovh.com/index.php/933956';
@@ -39,7 +43,7 @@ export const SurveyLink: React.FC = () => {
         iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
       />
       <OdsTooltip triggerId="survey-link-tooltip-trigger" withArrow>
-        <OdsText>{t('survey_link_tooltip')}</OdsText>
+        <OdsText className="p-2">{t('survey_link_tooltip')}</OdsText>
       </OdsTooltip>
     </>
   );

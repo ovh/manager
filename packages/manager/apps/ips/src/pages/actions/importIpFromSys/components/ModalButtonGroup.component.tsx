@@ -1,8 +1,11 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
   PageLocation,
@@ -40,7 +43,7 @@ export function ModalButtonGroup({
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="flex mt-4 gap-3 z-[2]" slot="actions">
+    <div className="z-[2] mt-4 flex gap-3" slot="actions">
       {onCancel && (
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}

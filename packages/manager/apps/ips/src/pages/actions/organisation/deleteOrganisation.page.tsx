@@ -1,7 +1,12 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -9,8 +14,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
   deleteOrganisation,
   getOrganisationListQueryKey,
@@ -20,13 +24,14 @@ import {
 export default function DeleteOrganisation() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { organisationId } = useParams<{ organisationId: string }>();
+  const params = useParams<{ organisationId: string }>();
+  const organisationId = params.organisationId;
   const { t } = useTranslation(['manage-organisations', NAMESPACES.ACTIONS]);
   const { clearNotifications, addSuccess, addError } = useNotifications();
   const { trackClick, trackPage } = useOvhTracking();
 
   const closeModal = () => {
-    navigate(`..`);
+    navigate('..');
   };
 
   const onSuccess = async () => {

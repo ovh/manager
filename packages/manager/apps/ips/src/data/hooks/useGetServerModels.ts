@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
+  ServerModelsType,
   getServerModels,
   getServerModelsQueryKey,
-  ServerModelsType,
 } from '@/data/api';
 
 export type UseGetServerModelsParams = {
@@ -13,10 +15,12 @@ export type UseGetServerModelsParams = {
 export const useGetServerModels = ({
   enabled = true,
 }: UseGetServerModelsParams) => {
-  const { data: dedicatedServerModels, isLoading, isError, error } = useQuery<
-    ApiResponse<ServerModelsType>,
-    ApiError
-  >({
+  const {
+    data: dedicatedServerModels,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<ApiResponse<ServerModelsType>, ApiError>({
     queryKey: getServerModelsQueryKey(),
     queryFn: () => getServerModels(),
     enabled,
