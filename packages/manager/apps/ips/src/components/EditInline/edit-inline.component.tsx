@@ -1,6 +1,7 @@
+import React, { PropsWithChildren, useState } from 'react';
+
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsButton, OdsInput } from '@ovhcloud/ods-components/react';
-import React, { PropsWithChildren, useState } from 'react';
 
 export type EditInlineProps = {
   name: string;

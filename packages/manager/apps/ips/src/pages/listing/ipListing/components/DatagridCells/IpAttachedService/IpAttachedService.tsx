@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+
+import { IpTypeEnum } from '@/data/constants';
 import {
   useGetIpdetails,
   useMoveIpTasks,
   useVrackMoveTasks,
 } from '@/data/hooks/ip';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { getLinkByServiceName, getTypeByServiceName } from '@/utils';
-import { IpTypeEnum } from '@/data/constants';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpAttachedServiceProps = {
   ip: string;
@@ -48,7 +52,9 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
     getLinkByServiceName({
       serviceName: ipDetails?.routedTo?.serviceName,
       navigation: shell.navigation,
-    }).then(setServiceUrl);
+    })
+      .then(setServiceUrl)
+      .catch(() => setServiceUrl(undefined));
   }, [ipDetails]);
 
   return (

@@ -1,19 +1,23 @@
 import React from 'react';
+
 import ipaddr from 'ipaddr.js';
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
   OdsInput,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import {
+  TRANSLATION_NAMESPACES,
   isValidIpv4Block,
   isValidIpv6Block,
-  TRANSLATION_NAMESPACES,
 } from '@/utils';
-import ModalButtonGroup from './ModalButtonGroup.component';
+
 import { VALID_TOKEN_SIZE } from '../importIpFromSys.constant';
+import ModalButtonGroup from './ModalButtonGroup.component';
 
 const isIpValid = (ip?: string) => {
   if (!ip) {
@@ -27,9 +31,9 @@ type Step1Props = {
   onCancel: () => void;
   onNext: () => void;
   ip?: string;
-  setIp: React.Dispatch<React.SetStateAction<string>>;
+  setIp: React.Dispatch<React.SetStateAction<string | undefined>>;
   token?: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 export default function Step1({
@@ -49,10 +53,10 @@ export default function Step1({
   return (
     <>
       <div className="flex flex-col">
-        <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
           {t('step1Description')}
         </OdsText>
-        <OdsFormField className="block mb-3">
+        <OdsFormField className="mb-3 block">
           <label htmlFor="ipOrBlock" slot="label">
             {t('step1IpLabel')}
           </label>

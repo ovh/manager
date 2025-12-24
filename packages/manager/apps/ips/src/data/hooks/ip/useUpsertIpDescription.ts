@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { getIpDetailsQueryKey, upsertIpDescription } from '@/data/api';
 import { ipFormatter } from '@/utils';
 
@@ -23,9 +25,9 @@ export const useUpsertIpDescription = ({
 
   return useMutation({
     mutationFn: () => upsertIpDescription({ ip: ipGroup, description }),
-    onSuccess: async (data) => {
+    onSuccess: (data) => {
       clearNotifications();
-      await queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: getIpDetailsQueryKey({ ip: ipGroup }),
       });
       onSuccess?.(data);

@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   DedicatedServerVmacDetailsType,
   getDedicatedServerVmacDetails,
@@ -7,9 +9,9 @@ import {
 } from '@/data/api';
 
 export type UseGetIpVmacDetailsParams = {
-  serviceName: string;
-  macAddress: string;
   ip: string;
+  serviceName?: string | null;
+  macAddress?: string;
   enabled?: boolean;
 };
 
@@ -17,7 +19,7 @@ export const useGetIpVmacDetails = ({
   serviceName,
   macAddress,
   ip,
-  enabled,
+  enabled = true,
 }: UseGetIpVmacDetailsParams) => {
   const { data, isLoading, isError } = useQuery<
     ApiResponse<DedicatedServerVmacDetailsType>,
@@ -34,7 +36,7 @@ export const useGetIpVmacDetails = ({
         macAddress,
         ip,
       }),
-    enabled,
+    enabled: Boolean(serviceName) && Boolean(macAddress) && enabled,
     staleTime: Number.POSITIVE_INFINITY,
     retry: false,
   });

@@ -1,17 +1,21 @@
 import React from 'react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   act,
   fireEvent,
   render,
-  waitFor,
   screen,
+  waitFor,
 } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { ListingContext } from '@/pages/listing/listingContext';
-import { QuickFilter } from './FilterQuick';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { QuickFilter } from './FilterQuick';
 
 const queryClient = new QueryClient();
 
@@ -20,7 +24,8 @@ const setApiFilter = vi.fn();
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  const original: typeof import('@ovh-ux/manager-react-shell-client') =
+    await importOriginal();
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),

@@ -1,9 +1,11 @@
 import React from 'react';
-import { describe, it, vi, expect } from 'vitest';
+
+import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
+
 import { RegionSelector } from './region-selector.component';
-import '@testing-library/jest-dom';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({

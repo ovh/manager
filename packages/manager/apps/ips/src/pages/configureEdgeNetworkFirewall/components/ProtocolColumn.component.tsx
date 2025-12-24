@@ -1,25 +1,24 @@
 import React from 'react';
+
 import {
   OdsFormField,
-  OdsText,
   OdsSelect,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
+
 import {
-  IpEdgeFirewallRule,
   IpEdgeFirewallProtocol,
+  IpEdgeFirewallRule,
   getIpEdgeFirewallProtocolLabelFromValue,
 } from '@/data/api';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 export const ProtocolColumn = (
   rule: IpEdgeFirewallRule & { isNew?: boolean },
 ) => {
-  const {
-    newProtocol,
-    setNewProtocol,
-    protocolError,
-    setProtocolError,
-  } = React.useContext(EdgeNetworkFirewallContext);
+  const { newProtocol, setNewProtocol, protocolError, setProtocolError } =
+    React.useContext(EdgeNetworkFirewallContext);
 
   return rule?.isNew ? (
     <OdsFormField className="w-full" error={protocolError}>

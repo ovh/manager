@@ -1,15 +1,18 @@
+import { useContext, useEffect, useState } from 'react';
+
+import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+
 import {
   Datagrid,
   ErrorBanner,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
-import React, { useContext, useEffect, useState } from 'react';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+
 import { useGetIpList } from '@/data/hooks/ip';
-import { ListingContext } from '../../../listingContext';
 import { urls } from '@/routes/routes.constant';
 import { ipFormatter } from '@/utils';
+
+import { ListingContext } from '../../../listingContext';
 import { IpGroupDatagrid } from '../ipGroupDatagrid/ipGroupDatagrid';
 import { useIpDatagridColumns } from './useIpDatagridColumns';
 
@@ -66,7 +69,7 @@ export const IpDatagrid = () => {
       condition={!isLoading && !ipList?.length && hasNoApiFilter}
       route={urls.onboarding}
       isError={isError}
-      errorComponent={<ErrorBanner error={error as ApiError} />}
+      errorComponent={<ErrorBanner error={error} />}
     >
       <Datagrid
         size={ODS_TABLE_SIZE.sm}

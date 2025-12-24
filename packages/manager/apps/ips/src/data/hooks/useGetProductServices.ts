@@ -1,35 +1,36 @@
-import { useQueries, UseQueryResult } from '@tanstack/react-query';
-import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+import { UseQueryResult, useQueries } from '@tanstack/react-query';
+
+import { IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
+import { IpTypeEnum } from '@/data/constants';
+
 import {
   GetProductServicesParams,
-  getProductServicesQueryKey,
-  getProductServices,
   ProductServicesDetails,
+  getProductServices,
+  getProductServicesQueryKey,
 } from '../api';
-import { IpTypeEnum } from '@/data/constants';
 
 export interface ServiceInfoWithId {
   id: string | undefined;
-  category: string;
+  category: IpTypeEnum;
   serviceName: string;
   displayName: string;
 }
 
 const getDisplayName = (
-  category: string,
+  category: IpTypeEnum,
   service: ProductServicesDetails,
 ): string => {
-  let iam;
   switch (category) {
     case IpTypeEnum.CLOUD:
-      return (service?.description as string) || '';
+      return service?.description || '';
     case IpTypeEnum.VRACK:
-      return (service?.name as string) || '';
+      return service?.name || '';
     case IpTypeEnum.PCC:
-      return (service?.description as string) || '';
+      return service?.description || '';
     default:
-      iam = service.iam as { displayName?: string } | undefined;
-      return iam?.displayName || (service.displayName as string) || '';
+      return service?.iam?.displayName || service?.displayName || '';
   }
 };
 
@@ -41,14 +42,11 @@ export const useGetProductServices = (
 ) => {
   const queriesResults = useQueries({
     queries: productPathsAndCategories.map((params) => ({
-      queryKey: getProductServicesQueryKey(params as GetProductServicesParams),
-      queryFn: () => getProductServices(params as GetProductServicesParams),
+      queryKey: getProductServicesQueryKey(params),
+      queryFn: () => getProductServices(params),
     })),
     combine: (
-      results: UseQueryResult<
-        IcebergFetchResultV6<ProductServicesDetails>,
-        ApiError
-      >[],
+      results: UseQueryResult<IcebergFetchResultV6<ProductServicesDetails>>[],
     ) => {
       const data = results
         .map((result, index) => ({

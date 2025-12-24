@@ -1,7 +1,10 @@
-import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { PathParams } from 'msw';
-import { availableService, expiredService } from './serviceInfo';
+
+import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { DedicatedServer } from '@/data/api';
+
+import { availableService, expiredService } from './serviceInfo';
 
 export const dedicatedServerMockList: DedicatedServer[] = [
   {

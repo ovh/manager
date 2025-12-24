@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import {
   GetProductServicesParams,
-  getProductServicesQueryKey,
-  getProductServices,
   ProductServicesDetails,
+  getProductServices,
+  getProductServicesQueryKey,
 } from '../api';
 
 export interface ServiceInfo {
@@ -17,15 +19,13 @@ const getDisplayName = (
   category: string,
   service: ProductServicesDetails,
 ): string => {
-  let iam;
   switch (category) {
     case 'CLOUD':
-      return (service?.description as string) || '';
+      return service?.description || '';
     case 'VRACK':
-      return (service?.name as string) || '';
+      return service?.name || '';
     default:
-      iam = service.iam as { displayName?: string } | undefined;
-      return iam?.displayName || (service.displayName as string) || '';
+      return service?.iam?.displayName || service.displayName || '';
   }
 };
 

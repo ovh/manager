@@ -1,17 +1,20 @@
 import { UseQueryOptions, useQueries } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   DedicatedServerVmacType,
   getDedicatedServerVmacVirtualAddress,
-  getdedicatedServerVmacQueryKey,
   getDedicatedServerVmacVirtualAddressQueryKey,
+  getdedicatedServerVmacQueryKey,
 } from '@/data/api';
-import { useGetDedicatedServerTasks } from './useGetDedicatedServerTasks';
 import { VMAC_UPDATE_TASKS_QUERY_KEY_PARAMS } from '@/utils';
+
+import { useGetDedicatedServerTasks } from './useGetDedicatedServerTasks';
 import { useGetIpVmac } from './useGetIpVmac';
 
 export type UseGetIpVmacWithIpParams = {
-  serviceName: string;
+  serviceName?: string | null;
   enabled?: boolean;
 };
 
@@ -58,11 +61,13 @@ export const useGetIpVmacWithIp = ({
       !!results.find((result) => !!result.isLoading) ||
       hasVmacTasks,
     isError: isError || !!results.find((result) => !!result.isError),
-    vmacsWithIp: results?.map(
-      ({ data }, index): VmacWithIpType => ({
-        ...vmacs?.[index],
-        ip: data?.data,
-      }),
-    ),
+    vmacsWithIp:
+      results?.map(
+        ({ data }, index) =>
+          ({
+            ...vmacs?.[index],
+            ip: data?.data,
+          }) as VmacWithIpType,
+      ) || [],
   };
 };

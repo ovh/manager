@@ -1,4 +1,5 @@
 import { CurrencyCode, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { CatalogIpsResponse } from '@/data/api';
 
 export const catalogIp: CatalogIpsResponse = {

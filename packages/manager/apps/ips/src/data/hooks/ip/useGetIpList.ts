@@ -1,5 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
+import { AxiosHeaders } from 'axios';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import { GetIpListParams, getIpList, getIpListQueryKey } from '@/data/api';
 
 export const useGetIpList = (params: GetIpListParams) => {
@@ -11,13 +14,13 @@ export const useGetIpList = (params: GetIpListParams) => {
         result = await getIpList({ ...params, ip: undefined });
       } catch (err) {
         const error = err as ApiError;
-        if (error.response.data.message.includes('invalid filter')) {
+        if (error.response?.data.message.includes('invalid filter')) {
           result = {
             data: [],
             status: 200,
             statusText: 'OK',
             headers: {},
-            config: error.config,
+            config: { headers: {} as AxiosHeaders },
           };
         } else {
           throw error;
