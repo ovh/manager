@@ -186,8 +186,15 @@
             data-type="options"
             data-filterable
         >
-            <span data-ng-bind-html="::$ctrl.getRenewPeriodTranslation($row)">
-            </span>
+            <div class="d-flex flex-column">
+                <service-renewal-badge service="$row"></service-renewal-badge>
+                <small
+                    data-ng-if="$row.renew.automatic || $row.renew.manualPayment"
+                    class="pl-2"
+                    data-ng-bind-html="::$ctrl.getRenewPeriodTranslation($row)"
+                >
+                </small>
+            </div>
         </oui-datagrid-column>
 
         <oui-datagrid-column
