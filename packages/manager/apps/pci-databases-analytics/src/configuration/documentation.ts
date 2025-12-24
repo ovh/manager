@@ -23,3 +23,7 @@ export function getDocumentationUrl(
 ): string {
   return documentation[locale] ?? documentation.default;
 }
+
+export function getConsoleAPILink(region: string, engine: string): string {
+  return `https://${region.toLowerCase()}.api.ovh.com/console/?section=%2Fcloud&branch=v1#post-/cloud/project/-serviceName-/database/${engine}`;
+}
