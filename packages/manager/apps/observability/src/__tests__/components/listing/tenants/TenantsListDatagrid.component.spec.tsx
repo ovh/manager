@@ -221,6 +221,7 @@ const mockTenants: Tenant[] = [
     resourceStatus: 'READY',
     currentState: {
       title: 'Tenant One',
+      description: 'Test description',
       limits: {
         mimir: {
           compactor_blocks_retention_period: '30d',
@@ -245,6 +246,7 @@ const mockTenants: Tenant[] = [
     resourceStatus: 'READY',
     currentState: {
       title: 'Tenant Two',
+      description: 'Test description',
       limits: {
         mimir: {
           compactor_blocks_retention_period: '7d',
@@ -268,6 +270,7 @@ const mockTenants: Tenant[] = [
     resourceStatus: 'READY',
     currentState: {
       title: 'Tenant Three',
+      description: 'Test description',
       limits: {
         mimir: {
           compactor_blocks_retention_period: '90d',
@@ -522,6 +525,7 @@ describe('TenantsListDatagrid', () => {
           resourceStatus: 'READY',
           currentState: {
             title: 'Incomplete Tenant',
+            description: 'Test description',
             limits: undefined,
             infrastructure: undefined,
           },
@@ -546,6 +550,7 @@ describe('TenantsListDatagrid', () => {
           resourceStatus: 'READY',
           currentState: {
             title: 'No Tags Tenant',
+            description: 'Test description',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '30d',
@@ -577,6 +582,7 @@ describe('TenantsListDatagrid', () => {
           resourceStatus: 'READY',
           currentState: {
             title: 'Empty Tags Tenant',
+            description: 'Test description',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '30d',
@@ -610,6 +616,7 @@ describe('TenantsListDatagrid', () => {
           resourceStatus: 'READY',
           currentState: {
             title: 'No Limits Tenant',
+            description: 'Test description',
             infrastructure: mockInfrastructure,
           },
           iam: {
