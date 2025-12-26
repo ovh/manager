@@ -98,9 +98,7 @@ export const useDomainExportHandler = ({
           await previousPromise;
 
           const batchResults = await Promise.all(
-            batch.map((domain) =>
-              fetchDomainDetails(domain, selection, nichandleInformation),
-            ),
+            batch.map((domain) => fetchDomainDetails(domain, selection)),
           );
 
           exportData.push(...batchResults);
@@ -152,7 +150,6 @@ export const useDomainExportHandler = ({
       setIsDrawerExportOpen,
       fetchDomainDetails,
       fetchAllDomains,
-      nichandleInformation,
       t,
       addError,
     ],

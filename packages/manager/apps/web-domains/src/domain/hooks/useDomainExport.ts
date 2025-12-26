@@ -14,13 +14,6 @@ interface ExportSelection {
   contactColumns: string[];
 }
 
-interface NichandleInfo {
-  nichandle?: string;
-  name?: string;
-  firstname?: string;
-  organisation?: string;
-}
-
 export const useDomainExport = () => {
   const fetchAllDomains = async (): Promise<DomainService[]> => {
     try {
@@ -37,7 +30,6 @@ export const useDomainExport = () => {
   const fetchDomainDetails = async (
     domain: DomainService,
     selection: ExportSelection,
-    nichandleInfo?: NichandleInfo,
   ): Promise<Record<string, string>> => {
     const row: Record<string, string> = {};
     if (selection.domainColumns.includes('domain')) {
@@ -142,15 +134,7 @@ export const useDomainExport = () => {
             return;
           }
 
-          if (nichandleInfo?.nichandle === contactId) {
-            const details =
-              nichandleInfo.organisation ||
-              `${nichandleInfo.name || ''} ${nichandleInfo.firstname ||
-                ''}`.trim();
-            row[`Contact ${contactType}`] = details || contactId;
-          } else {
-            row[`Contact ${contactType}`] = contactId;
-          }
+          row[`Contact ${contactType}`] = contactId;
         },
       );
 

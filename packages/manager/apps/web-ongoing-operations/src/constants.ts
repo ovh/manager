@@ -125,6 +125,7 @@ export const editableArgument: Record<string, z.ZodString> = {
 
 export const iamGetAllDomAction = 'domain:apiovh:alldom/get';
 export const allDomFeatureAvailibility = 'web-domains:alldoms';
+export const domainFeatureAvailibility = 'web-domains:domain';
 
 export const ContactControlProperties = [
   'address.city',
