@@ -491,6 +491,7 @@
   "domain_configuration_dns_entry_add_success": "Rekord został dodany do strefy DNS, ale prosimy o uwzględnienie czasu propagacji (maksymalnie 24 godziny).",
   "domain_configuration_dns_entry_add_fail": "Wystąpił błąd podczas dodawania wpisu do strefy DNS.",
   "domain_configuration_dns_importtext_title": "Wpisz poniżej tekst odnoszący się do stref DNS, które chcesz zaimportować:",
+  "domain_configuration_dns_importtext_iacwarning": "Użytkownicy Terraform lub narzędzi IaC: zmiana strefy w trybie tekstowym powoduje ponowne zainicjowanie wewnętrznego identyfikatora każdego rekordu DNS, co powoduje unieważnienie stanu Terraform.",
   "domain_configuration_dns_importtext_confirm": "Chcesz zaimportować nową konfigurację strefy DNS.",
   "domain_configuration_dns_importtext_propagation_info": "Konfiguracja zostanie zaimportowana w ciągu kilku minut, ale prosimy o uwzględnienie czasu propagacji (maksymalnie 24 godziny).",
   "domain_configuration_dns_importtext_success": "Konfiguracja zostanie zaimportowana w ciągu kilku minut.  Możesz śledzić postęp importu strefy DNS w sekcji „Ostatnie zadania”, ale pamiętaj o czasie propagacji (maksymalnie 24 godziny).",
