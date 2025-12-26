@@ -484,6 +484,15 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
           ),
         },
         {
+          name: 'telephony_group_admin_actions_order_plan',
+          href: 'https://www.ovhcloud.com/fr/phone/voip',
+          external: true,
+          target: '_blank',
+          text: $translate.instant(
+            'telephony_group_billing_dashboard_actions_group_order_plan',
+          ),
+        },
+        {
           name: 'telephony_group_admin_actions_bill',
           sref: 'telecom.telephony.billingAccount.billing.bill',
           text: $translate.instant(
