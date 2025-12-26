@@ -6,5 +6,4 @@ export const createDescriptionSchema = (t: (key: string, options?: { value?: num
   z
     .string()
     .trim()
-    .max(80, t(`${NAMESPACES.FORM}:error_max_chars`, { value: 80 }))
-    .optional();
+    .min(1, t(`${NAMESPACES.FORM}:required_field`));
