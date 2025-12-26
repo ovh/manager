@@ -37,6 +37,36 @@ vi.mock('@ovhcloud/ods-react', () => ({
       })}
     </div>
   ),
+  FormFieldError: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="form-field-error">
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child) && typeof child.type !== 'string') {
+          return React.cloneElement(child as React.ReactElement<{ slot?: string }>, {
+            slot: 'error',
+          });
+        }
+        return child;
+      })}
+    </div>
+  ),
+  Text: ({
+    children,
+    preset,
+    slot,
+  }: {
+    children: React.ReactNode;
+    preset?: string;
+    slot?: string;
+  }) => (
+    <span data-testid={`text-${slot || 'default'}`} data-preset={preset}>
+      {children}
+    </span>
+  ),
+  TEXT_PRESET: {
+    paragraph: 'paragraph',
+    caption: 'caption',
+    label: 'label',
+  },
   Input: React.forwardRef<
     HTMLInputElement,
     {
@@ -118,30 +148,13 @@ vi.mock('@ovhcloud/ods-react', () => ({
 }));
 
 // Mock MUK components (only Text)
-vi.mock('@ovh-ux/muk', () => ({
-  Text: ({
-    children,
-    preset,
-    slot,
-  }: {
-    children: React.ReactNode;
-    preset?: string;
-    slot?: string;
-  }) => (
-    <span data-testid={`text-${slot || 'default'}`} data-preset={preset}>
-      {children}
-    </span>
-  ),
-  TEXT_PRESET: {
-    paragraph: 'paragraph',
-    caption: 'caption',
-  },
-}));
+vi.mock('@ovh-ux/muk', () => ({}));
 
 describe('TextField', () => {
   const defaultProps: TextFieldProps = {
     id: 'test-field',
     label: 'Test Label',
+    helper: 'Test Helper',
   };
 
   beforeEach(() => {
@@ -260,12 +273,12 @@ describe('TextField', () => {
     it('should display error message when error is provided', () => {
       render(<TextField {...defaultProps} error="This field is required" />);
 
-      const errorHelper = screen.getByTestId('form-field-helper');
-      expect(errorHelper).toBeInTheDocument();
-      expect(errorHelper).toHaveTextContent('This field is required');
+      const errorContainer = screen.getByTestId('form-field-error');
+      expect(errorContainer).toBeInTheDocument();
+      expect(errorContainer).toHaveTextContent('This field is required');
 
-      const errorText = screen.getByTestId('text-helper');
-      expect(errorText).toHaveAttribute('data-preset', 'caption');
+      const errorText = screen.getByTestId('text-error');
+      expect(errorText).toHaveAttribute('data-preset', 'label');
     });
 
     it('should set hasError on input when error is provided', () => {
@@ -283,7 +296,9 @@ describe('TextField', () => {
     it('should not display error message when error is not provided', () => {
       render(<TextField {...defaultProps} />);
 
-      expect(screen.queryByTestId('form-field-helper')).not.toBeInTheDocument();
+      const errorContainer = screen.getByTestId('form-field-error');
+      expect(errorContainer).toBeInTheDocument();
+      expect(errorContainer).toHaveTextContent('');
     });
 
     it('should not set hasError when error is not provided', () => {
@@ -295,7 +310,9 @@ describe('TextField', () => {
     it('should not display error message when error is empty string', () => {
       render(<TextField {...defaultProps} error="" />);
 
-      expect(screen.queryByTestId('form-field-helper')).not.toBeInTheDocument();
+      const errorContainer = screen.getByTestId('form-field-error');
+      expect(errorContainer).toBeInTheDocument();
+      expect(errorContainer).toHaveTextContent('');
     });
 
     it('should not set hasError when error is empty string', () => {
@@ -378,11 +395,12 @@ describe('TextField', () => {
       const formField = container.querySelector('[data-testid="form-field"]');
       const children = Array.from(formField?.children || []);
 
-      // Should have label, input, and error in that order
-      expect(children).toHaveLength(3);
+      // Should have label, input, helper, and error in that order
+      expect(children).toHaveLength(4);
       expect(children[0]?.tagName).toBe('LABEL');
       expect(children[1]).toHaveAttribute('data-testid', 'input-field');
       expect(children[2]).toHaveAttribute('data-testid', 'form-field-helper');
+      expect(children[3]).toHaveAttribute('data-testid', 'form-field-error');
     });
 
     it('should render textarea structure correctly', () => {
@@ -393,11 +411,12 @@ describe('TextField', () => {
       const formField = container.querySelector('[data-testid="form-field"]');
       const children = Array.from(formField?.children || []);
 
-      // Should have label, textarea, and error in that order
-      expect(children).toHaveLength(3);
+      // Should have label, textarea, helper, and error in that order
+      expect(children).toHaveLength(4);
       expect(children[0]?.tagName).toBe('LABEL');
       expect(children[1]).toHaveAttribute('data-testid', 'textarea-field');
       expect(children[2]).toHaveAttribute('data-testid', 'form-field-helper');
+      expect(children[3]).toHaveAttribute('data-testid', 'form-field-error');
     });
   });
 
