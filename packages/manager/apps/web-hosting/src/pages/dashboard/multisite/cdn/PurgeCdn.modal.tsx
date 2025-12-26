@@ -44,10 +44,9 @@ export default function PurgeCdnModal() {
   const { t } = useTranslation(['common', 'multisite', NAMESPACES.ERROR, NAMESPACES.ACTIONS]);
   const { state } = useLocation() as Location<PurgeCdnModalState>;
   const { data: cdnProperties } = useGetCDNProperties(state.serviceName);
-
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
-  const { control, handleSubmit, setValue, watch } = useForm<FormValues>({
+  const { control, setValue, watch } = useForm<FormValues>({
     defaultValues: {
       selectedOption: {
         disabled: false,
@@ -57,8 +56,6 @@ export default function PurgeCdnModal() {
       },
     },
   });
-
-  const selectedOption = watch('selectedOption');
 
   const options = useMemo(() => {
     if (!cdnProperties) return [];
@@ -134,7 +131,7 @@ export default function PurgeCdnModal() {
     onError: (error: ApiError) => {
       addError(
         <Text preset={TEXT_PRESET.paragraph}>
-          {t(`multisite:multisite_cdn_modal_purge_success`, {
+          {t('multisite:multisite_cdn_modal_purge_error', {
             message: error?.response?.data?.message,
           })}
         </Text>,
@@ -151,21 +148,12 @@ export default function PurgeCdnModal() {
   }, [navigate]);
 
   const onPrimaryButtonClick = useCallback(() => {
-    const { pattern, patternType } = selectedOption;
-    handleSubmit(() => {
-      flushCdnMutation({
-        pattern: patternType !== PURGE_TYPE_ENUM.ALL ? pattern : undefined,
-        patternType: patternType !== PURGE_TYPE_ENUM.ALL ? patternType : undefined,
-      });
-    })().catch(console.error);
-  }, [selectedOption, flushCdnMutation, handleSubmit]);
-
-  const handleOptionChange = useCallback(
-    (option: CdnFlushOption) => {
-      setValue('selectedOption', option);
-    },
-    [setValue],
-  );
+    const { pattern, patternType } = watch('selectedOption');
+    flushCdnMutation({
+      pattern: patternType !== PURGE_TYPE_ENUM.ALL ? pattern : undefined,
+      patternType: patternType !== PURGE_TYPE_ENUM.ALL ? patternType : undefined,
+    });
+  }, [watch, flushCdnMutation]);
 
   return (
     <Modal
@@ -190,23 +178,29 @@ export default function PurgeCdnModal() {
         <Text className="m-0 mb-4" data-ng-bind={state.domain}>
           {state.domain}
         </Text>
-        <div className="mb-4">
-          {options.map((option) => (
-            <Controller
-              name="selectedOption"
-              control={control}
-              key={option.patternType}
-              render={() => (
-                <div className="mt-4 flex gap-4 leading-none">
-                  <RadioGroup>
-                    <Radio
-                      id={`option-${option.patternType}`}
-                      value={option.patternType}
-                      onChange={() => handleOptionChange(option)}
-                      disabled={option.disabled}
-                      className="mb-2"
-                      input-id={`option-${option.patternType}`}
-                    />
+        <Controller
+          name="selectedOption"
+          control={control}
+          render={({ field }) => (
+            <RadioGroup
+              value={field.value.patternType}
+              onChange={(event) => {
+                const value = (event.target as HTMLInputElement).value;
+
+                const selectedOption = options.find((opt) => opt.patternType === value);
+
+                if (selectedOption) {
+                  field.onChange(selectedOption);
+                }
+              }}
+            >
+              {options.map((option) => (
+                <div key={option.patternType} className="mt-4 flex items-center gap-4 leading-none">
+                  <Radio
+                    value={option.patternType}
+                    disabled={option.disabled}
+                    id={`option-${option.patternType}`}
+                  >
                     <RadioControl />
                     <RadioLabel>
                       <Text preset={TEXT_PRESET.paragraph}>
@@ -215,12 +209,12 @@ export default function PurgeCdnModal() {
                         )}
                       </Text>
                     </RadioLabel>
-                  </RadioGroup>
+                  </Radio>
                 </div>
-              )}
-            />
-          ))}
-        </div>
+              ))}
+            </RadioGroup>
+          )}
+        />
       </div>
     </Modal>
   );
