@@ -26,8 +26,8 @@ export const SshKeyHelper: FC = () => {
             t={t}
             i18nKey={`creation:pci_instance_creation_select_sshKey_help_${key}`}
             components={{
-              ul: <ul />,
-              ol: <ol />,
+              ul: <ul className="my-0 py-3 pe-4" />,
+              ol: <ol className="my-0 py-3 pe-4" />,
               li: <li />,
             }}
           />
