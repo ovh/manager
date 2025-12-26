@@ -88,5 +88,7 @@
   "userCancelButton": "Annulla",
   "userConfirmButton": "Conferma",
   "userCloseButton": "Chiudi",
-  "userSuccessTitle": "Risultato"
+  "userSuccessTitle": "Risultato",
+  "addUserMySQLInfo": "Per impostazione predefinita, un nuovo utente MySQL può connettersi al server di database, ma ha solo privilegi molto limitati. Le sue autorizzazioni devono essere esplicitamente concesse secondo necessità tramite la CLI (ad esempio con i comandi GRANT), rispettando la sintassi definita nella <anchor>documentazione ufficiale di MySQL</anchor>.",
+  "addUserPGInfo": "Per impostazione predefinita, un nuovo utente può connettersi al database e eredita tutti i privilegi concessi a PUBLIC o ai ruoli di cui è membro. Le sue autorizzazioni sono generalmente limitate e devono essere esplicitamente concesse secondo necessità tramite la CLI, seguendo la sintassi della <anchor>documentazione ufficiale di PostgreSQL</anchor>."
 }

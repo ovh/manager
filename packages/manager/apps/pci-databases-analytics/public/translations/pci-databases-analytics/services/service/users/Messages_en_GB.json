@@ -114,5 +114,7 @@
   "userCancelButton": "Cancel",
   "userConfirmButton": "Confirm",
   "userCloseButton": "Close",
-  "userSuccessTitle": "Success"
+  "userSuccessTitle": "Success",
+  "addUserMySQLInfo": "By default, a new MySQL user can connect to the database server, but has very limited privileges. Their permissions must be explicitly granted as needed via the CLI (for example, using the GRANT commands), following the syntax defined in the <anchor>official MySQL documentation</anchor>.",
+  "addUserPGInfo": "By default, a new user can connect to the database and inherits all privileges granted to PUBLIC or roles of which they are a member. Their permissions are generally limited and must be explicitly granted as needed via the CLI, following the syntax of the <anchor>official PostgreSQL documentation</anchor>."
 }
