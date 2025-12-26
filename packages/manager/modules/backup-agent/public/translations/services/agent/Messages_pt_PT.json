@@ -1,0 +1,19 @@
+{
+  "add_configuration": "Adicionar uma configuração",
+  "edit_configuration": "Editar um agente",
+  "service_informations": "Informações sobre o serviço",
+  "link_agent_to_a_server": "Vincular um agente a um servidor existente",
+  "add_server": "Adicionar um servidor",
+  "select_server": "Selecionar o servidor",
+  "product_name": "Nome do produto",
+  "select_os": "Selecionar um sistema operativo",
+  "os": "Sistema operativo",
+  "download_agent": "Baixar o agente",
+  "delete_tenant_banner_error": "Ocorreu um erro. Por favor, aguarde alguns minutos antes de tentar novamente.",
+  "delete_agent_banner_success": "O seu Agente {{agentName}} foi eliminado com sucesso",
+  "delete_agent_banner_error": "Ocorreu um erro. Por favor, aguarde alguns minutos antes de tentar novamente.",
+  "delete_agent_modal_title": "Eliminar o agente",
+  "delete_agent_modal_content": "Tem certeza de que deseja eliminar o agente {{agentName}}? Os dados associados serão mantidos até 14 dias após a eliminação.",
+  "download_agent_with_executable": "Instalar via executável",
+  "download_agent_with_command_line": "Instalar o agente via terminal"
+}

@@ -12,8 +12,10 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import getIcon from './GetIcon';
+import backupAgentLogo from '@/assets/images/sidebar/backup-agent-logo.png';
 
 export const features = [
+  'bmc-backup-agent-baremetal',
   'dedicated-server',
   'vps',
   'managed-bare-metal',
@@ -331,12 +333,13 @@ export default function DedicatedSidebar() {
       });
     }
 
-    if (feature.netapp || feature['dedicated-nasha']) {
+    if (feature.netapp || feature['dedicated-nasha'] || feature['bmc-backup-agent-baremetal']) {
       menu.push({
         id: 'dedicated-storage',
         label: t('sidebar_storage_backup'),
         icon: getIcon('ovh-font ovh-font-cloudnas'),
         routeMatcher: new RegExp('^(/netapp|/(paas/)?nasha)'),
+        pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),
         subItems: [
           feature.netapp && {
             id: 'dedicated-storage-netapp',
@@ -364,6 +367,31 @@ export default function DedicatedSidebar() {
                   `/nasha/${nashaItem.serviceName}`,
                 ),
               }));
+            },
+          },
+          feature['bmc-backup-agent-baremetal'] && {
+            id: 'bmc-backup-agent-baremetal',
+            label: t('sidebar_backup_agent_baremetal'),
+            icon: (
+              <img alt="" src={backupAgentLogo} className="mb-1 w-6 aspect-square" />
+            ),
+            pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),
+            badge: 'new',
+            async loader() {
+              const appId = 'bmc-backup-agent-baremetal';
+              const items = await loadServices('/backup/tenant');
+
+              return [
+                {
+                  id: 'bmc-backup-agent-baremetal-all',
+                  label: t('sidebar_all_bmc-backup-agent-baremetal'),
+                  href: navigation.getURL(appId, '#/'),
+                },
+                ...items.map((service) => ({
+                  ...service,
+                  href: navigation.getURL(appId, `#/dashboard/${service.serviceName}`),
+                })),
+              ];
             },
           },
         ],

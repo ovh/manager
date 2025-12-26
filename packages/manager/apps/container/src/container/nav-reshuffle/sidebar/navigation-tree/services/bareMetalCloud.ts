@@ -1,6 +1,6 @@
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
-import { Node } from '../node';
+import { Node, NodeTag } from '../node';
 
 const baremetalUniverse: Node = {
   id: 'baremetal-cloud',
@@ -146,6 +146,19 @@ baremetalUniverse.children = [
           hash: '#/cda',
         },
         features: ['cloud-disk-array'],
+      },
+      {
+        id: 'bmc-backup-agent-baremetal',
+        universe: baremetalUniverse.id,
+        idAttr: 'bmc-backup-agent-baremetal-link',
+        translation: 'sidebar_backup_agent_baremetal',
+        serviceType: 'BACKUP_AGENT_BAREMETAL',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'bmc-backup-agent-baremetal',
+          hash: '#/',
+        },
+        features: ['bmc-backup-agent-baremetal'],
       },
     ],
   },
