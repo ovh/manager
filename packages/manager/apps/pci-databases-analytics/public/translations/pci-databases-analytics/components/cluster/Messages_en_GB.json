@@ -2,5 +2,6 @@
   "inputNodeLabel": "Select the number of nodes in the cluster",
   "inputStorageLabel": "Select additional storage for the cluster",
   "inputStorageNoneValue": "None",
-  "storageFlavorDescription": "The {{flavor}} node model includes {{includedStorage}} storage, to which you can add up to {{maxAdditionalStorage}} of additional storage in increments of {{step}}."
+  "storageFlavorDescription": "The {{flavor}} node model includes {{includedStorage}} storage, to which you can add up to {{maxAdditionalStorage}} of additional storage in increments of {{step}}.",
+  "inputNodeTooltip": "The number of nodes is pre-defined by the selected offer above and cannot be modified in this case."
 }

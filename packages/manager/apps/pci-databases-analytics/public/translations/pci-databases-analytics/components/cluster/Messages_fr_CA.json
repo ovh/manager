@@ -1,5 +1,6 @@
 {
   "inputNodeLabel": "Sélectionnez le nombre de nœuds du cluster",
+  "inputNodeTooltip": "Le nombre de nœuds est pré-défini par l'offre sélectionnée ci-dessus et n'est pas modifiable dans ce cas",
   "inputStorageLabel": "Sélectionnez le stockage additionnel du cluster",
   "inputStorageNoneValue": "Aucun",
   "storageFlavorDescription": "Votre modèle de nœud {{flavor}} inclut {{includedStorage}} de stockage auxquels vous pouvez ajouter jusqu'à {{maxAdditionalStorage}} de stockage supplémentaire par pas de {{step}}."

@@ -1,6 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Label, Input } from '@datatr-ux/uxlib';
+import {
+  Label,
+  Input,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@datatr-ux/uxlib';
+import { HelpCircle } from 'lucide-react';
 
 interface NodesConfigProps {
   value: number;
@@ -13,12 +20,24 @@ const NodesConfig = React.forwardRef<HTMLInputElement, NodesConfigProps>(
     const { t } = useTranslation('pci-databases-analytics/components/cluster');
     return (
       <div>
-        <Label
-          data-testid="nodes-configuration-label"
-          htmlFor="node-number-select"
-        >
-          {t('inputNodeLabel')}
-        </Label>
+        <div className="flex items-center space-x-2 mb-2">
+          <Label
+            data-testid="nodes-configuration-label"
+            htmlFor="node-number-select"
+          >
+            {t('inputNodeLabel')}
+          </Label>
+          {minimum === maximum && (
+            <Popover>
+              <PopoverTrigger>
+                <HelpCircle className="size-4" />
+              </PopoverTrigger>
+              <PopoverContent className="text-sm">
+                <p>{t('inputNodeTooltip')}</p>
+              </PopoverContent>
+            </Popover>
+          )}
+        </div>
         <Input
           data-testid="nodes-configuration-input"
           ref={ref}
