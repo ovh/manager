@@ -12,7 +12,7 @@ export const VPS_VERSION_2019 = '2019v1';
 
 export const MAX_DISK_SIZE = 400;
 
-export const EXCLUDES_VPS_NAME_REGEX = /vps-starter|vps-le/;
+export const EXCLUDES_VPS_NAME_REGEX = /vps-starter/;
 
 export default {
   EXCLUDES_VPS_NAME_REGEX,
