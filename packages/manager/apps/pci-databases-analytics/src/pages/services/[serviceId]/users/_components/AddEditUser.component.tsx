@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   Button,
   Clipboard,
@@ -45,6 +45,9 @@ import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import RouteModal from '@/components/route-modal/RouteModal';
 import AclsSelect from './formUser/AclsSelect.component';
 import { UserAcl } from '@/types/cloud/project/database/opensearch';
+import A from '@/components/links/A.component';
+import { EngineEnum } from '@/types/cloud/project/database/EngineEnum';
+import { LINKS } from '@/configuration/documentation';
 
 interface AddEditUserModalProps {
   editedUser?: GenericUser;
@@ -139,7 +142,34 @@ const AddEditUserModal = ({
             {t(`${prefix}UserTitle`)}
           </DialogTitle>
           {!newUser && !isEdition && (
-            <DialogDescription>{t('addUserDescription')}</DialogDescription>
+            <>
+              <DialogDescription>{t('addUserDescription')}</DialogDescription>
+              {(service.engine === EngineEnum.mysql ||
+                service.engine === EngineEnum.postgresql) && (
+                <p className="text-sm inline">
+                  <Trans
+                    t={t}
+                    i18nKey={
+                      service.engine === EngineEnum.mysql
+                        ? 'addUserMySQLInfo'
+                        : 'addUserPGInfo'
+                    }
+                    components={{
+                      anchor: (
+                        <A
+                          target="_blank"
+                          href={
+                            service.engine === EngineEnum.mysql
+                              ? LINKS.MySQL_OFFICIAL_DOCUMENTATION
+                              : LINKS.PG_OFFICIAL_DOCUMENTATION
+                          }
+                        ></A>
+                      ),
+                    }}
+                  ></Trans>
+                </p>
+              )}
+            </>
           )}
         </DialogHeader>
         <DialogBody>
