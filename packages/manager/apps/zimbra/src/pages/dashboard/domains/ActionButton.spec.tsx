@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { screen } from '@testing-library/dom';
 import { describe, expect } from 'vitest';
 
 import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
@@ -11,7 +12,7 @@ import ActionButtonDomain from './ActionButton.component';
 
 describe('Domains datagrid action menu', () => {
   it('we have good number of item with good content', () => {
-    const { container } = render(
+    render(
       <ActionButtonDomain
         item={{
           id: '1',
@@ -24,14 +25,11 @@ describe('Domains datagrid action menu', () => {
       />,
     );
 
-    const menuItems = container.querySelectorAll('ods-popover ods-button');
+    const menuItems = screen.getAllByTestId('manager-button');
 
-    expect(menuItems.length).toBe(3);
-
-    expect(menuItems[0]).toHaveAttribute('label', actionsCommonTranslation.configure);
-
-    expect(menuItems[1]).toHaveAttribute('label', commonTranslation.diagnostics);
-
-    expect(menuItems[2]).toHaveAttribute('label', actionsCommonTranslation.delete);
+    expect(menuItems).toHaveLength(3);
+    expect(menuItems[0]).toHaveTextContent(actionsCommonTranslation.configure);
+    expect(menuItems[1]).toHaveTextContent(commonTranslation.diagnostics);
+    expect(menuItems[2]).toHaveTextContent(actionsCommonTranslation.delete);
   });
 });

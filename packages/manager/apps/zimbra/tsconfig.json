@@ -2,6 +2,7 @@
   "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
   "compilerOptions": {
     "baseUrl": ".",
+    "moduleResolution": "bundler",
     "paths": {
       "@/public/*": ["./public/*"],
       "@/*": ["./src/*"]

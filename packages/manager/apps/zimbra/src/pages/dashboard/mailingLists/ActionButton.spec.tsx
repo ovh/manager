@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { screen } from '@testing-library/dom';
 import { describe, expect } from 'vitest';
 
 import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
@@ -13,23 +14,14 @@ import { getMailingListItem } from './MailingLists.page';
 
 describe('MailingLists datagrid action menu', () => {
   it('should display 4 actions buttons', () => {
-    const { container } = render(
-      <ActionButtonMailingList item={getMailingListItem(mailingListMock)} />,
-    );
+    render(<ActionButtonMailingList item={getMailingListItem(mailingListMock)} />);
 
-    const menuItems = container.querySelectorAll('ods-popover ods-button');
+    const menuItems = screen.getAllByTestId('manager-button');
 
     expect(menuItems.length).toBe(4);
-
-    expect(menuItems[0]).toHaveAttribute('label', commonTranslation.edit_mailing_list);
-
-    expect(menuItems[1]).toHaveAttribute('label', commonTranslation.define_members_mailing_list);
-
-    expect(menuItems[2]).toHaveAttribute(
-      'label',
-      commonTranslation.configure_delegation_mailing_list,
-    );
-
-    expect(menuItems[3]).toHaveAttribute('label', actionsCommonTranslation.delete);
+    expect(menuItems[0]).toHaveTextContent(commonTranslation.edit_mailing_list);
+    expect(menuItems[1]).toHaveTextContent(commonTranslation.define_members_mailing_list);
+    expect(menuItems[2]).toHaveTextContent(commonTranslation.configure_delegation_mailing_list);
+    expect(menuItems[3]).toHaveTextContent(actionsCommonTranslation.delete);
   });
 });

@@ -1,7 +1,9 @@
+import { fireEvent, waitFor } from '@testing-library/dom';
+import { act } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 
 import { orderCatalogMock } from '@/data/api';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import OrderCatalogForm from './OrderCatalogForm.component';
 
