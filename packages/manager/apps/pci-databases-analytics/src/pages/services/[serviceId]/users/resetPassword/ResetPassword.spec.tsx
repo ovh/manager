@@ -107,7 +107,7 @@ describe('Reset user password modal', () => {
     await waitFor(() => {
       expect(usersApi.resetUserPassword).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'resetUserPasswordToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'resetUserPasswordToastSuccessDescription',
       });
     });
@@ -156,7 +156,7 @@ describe('Reset user password modal', () => {
     await waitFor(() => {
       expect(usersApi.resetUserPassword).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'resetUserPasswordToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'resetUserPasswordToastSuccessDescription',
       });
     });

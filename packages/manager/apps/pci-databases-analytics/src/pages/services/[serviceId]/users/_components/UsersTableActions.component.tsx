@@ -85,16 +85,19 @@ const UserActions = ({
               </DropdownMenuItem>
             </>
           )}
-          <DropdownMenuSeparator />
+
           {service.capabilities.users?.delete && (
-            <DropdownMenuItem
-              data-testid="user-action-delete-button"
-              variant="critical"
-              disabled={isCapabilityDisabled(service, 'users', 'delete')}
-              onClick={() => onDeleteClicked(user)}
-            >
-              {t('tableActionsMenuDelete')}
-            </DropdownMenuItem>
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                data-testid="user-action-delete-button"
+                variant="critical"
+                disabled={isCapabilityDisabled(service, 'users', 'delete')}
+                onClick={() => onDeleteClicked(user)}
+              >
+                {t('tableActionsMenuDelete')}
+              </DropdownMenuItem>
+            </>
           )}
         </DropdownMenuContent>
       </DropdownMenu>

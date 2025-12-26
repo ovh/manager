@@ -29,7 +29,7 @@ const ToggleAcl = () => {
     },
     onEditSuccess: (updatedService) => {
       toast.toast({
-        title: t('toggleAclSuccessTitle'),
+        title: t('userSuccessTitle'),
         description: updatedService.aclsEnabled
           ? t('toggleAclEnabledSuccessDescription')
           : t('toggleAclADisabledSuccessDescription'),

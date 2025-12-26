@@ -1,10 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { AddUser, GenericUser, addUser } from '@/data/api/database/user.api';
+import { AddUser, addUser } from '@/data/api/database/user.api';
 import { CdbError } from '@/data/api/database';
+import * as database from '@/types/cloud/project/database';
 
 export interface UseAddUser {
   onError: (cause: CdbError) => void;
-  onSuccess: (user: GenericUser) => void;
+  onSuccess: (user: database.service.UserWithPassword) => void;
 }
 export function useAddUser({
   onError,

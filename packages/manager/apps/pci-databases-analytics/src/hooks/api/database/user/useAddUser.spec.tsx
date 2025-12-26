@@ -6,8 +6,8 @@ import * as database from '@/types/cloud/project/database';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import { useAddUser } from './useAddUser.hook';
 import {
-  mockedDatabaseUser,
   mockedDatabaseUserCreation,
+  mockedDatabaseUserWithPassword,
 } from '@/__tests__/helpers/mocks/databaseUser';
 
 vi.mock('@/data/api/database/user.api', () => ({
@@ -27,7 +27,9 @@ describe('useAddUser', () => {
     const onSuccess = vi.fn();
     const onError = vi.fn();
 
-    vi.mocked(databaseAPI.addUser).mockResolvedValue(mockedDatabaseUser);
+    vi.mocked(databaseAPI.addUser).mockResolvedValue(
+      mockedDatabaseUserWithPassword,
+    );
     const { result } = renderHook(() => useAddUser({ onError, onSuccess }), {
       wrapper: QueryClientWrapper,
     });
@@ -42,7 +44,7 @@ describe('useAddUser', () => {
 
     await waitFor(() => {
       expect(databaseAPI.addUser).toHaveBeenCalledWith(addUserProps);
-      expect(onSuccess).toHaveBeenCalledWith(mockedDatabaseUser);
+      expect(onSuccess).toHaveBeenCalledWith(mockedDatabaseUserWithPassword);
     });
   });
 });
