@@ -6,11 +6,21 @@ import { ReactNode } from 'react';
 type FlavorRenderers = {
   renderName: (flavor: TGpuFlavorDataForTable) => ReactNode;
   renderRadio: (id: string, disabled?: boolean) => ReactNode;
+  renderHourlyPrice: (value: number | null) => ReactNode;
+  renderMonthlyPrice: (
+    realMinimumMonthlyPrice: number | null,
+    estimatedMinimumMonthlyPrice: number | null,
+  ) => ReactNode;
 };
 
 export function GpuFlavorRowsBuilder(
   flavors: TGpuFlavorDataForTable[],
-  { renderName, renderRadio }: FlavorRenderers,
+  {
+    renderName,
+    renderRadio,
+    renderMonthlyPrice,
+    renderHourlyPrice,
+  }: FlavorRenderers,
   withUnavailable: boolean,
 ): TableRow[] {
   return flavors
@@ -35,12 +45,14 @@ export function GpuFlavorRowsBuilder(
         prices: (
           <div className="flex flex-col">
             <Text preset={TEXT_PRESET.span} className="font-semibold">
-              {flavor.hourlyPrice ? `${flavor.hourlyPrice.toFixed(4)} €` : '-'}
+              {flavor.realMinimumHourlyPrice &&
+                renderHourlyPrice(flavor.realMinimumHourlyPrice)}
             </Text>
             <Text preset={TEXT_PRESET.span}>
-              {flavor.monthlyPrice
-                ? `~ ${flavor.monthlyPrice.toFixed(2)} €`
-                : '-'}
+              {renderMonthlyPrice(
+                flavor.realMinimumMonthlyPrice,
+                flavor.estimatedMinimumMonthlyPrice,
+              )}
             </Text>
           </div>
         ),

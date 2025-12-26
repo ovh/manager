@@ -15,8 +15,8 @@ import { GpuFlavorRowsBuilder } from '@/pages/instances/create/components/flavor
 import { useFlavorCommon } from '@/pages/instances/create/components/flavor/FlavorRowUtils';
 import {
   selectAvailableFlavorMicroRegions,
+  selectFlavors,
   TCustomRegionItemData,
-  TGpuFlavorDataForTable,
 } from '@/pages/instances/create/view-models/flavorsViewModel';
 import {
   ButtonType,
@@ -28,7 +28,6 @@ import RegionSelectionModal, {
 } from '../RegionSelectionModal.component';
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { selectFlavors } from '../../view-models/flavorsViewModel';
 import { useEffect } from 'react';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
@@ -75,26 +74,25 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   );
   const { trackClick } = useOvhTracking();
 
-  const { flavors, preselecteFlavordId } = useMemo(
+  const { flavors, preselectedFlavordId, isGpu } = useMemo(
     () =>
       selectFlavors(deps)({
         projectId,
+        flavorCategory,
         flavorType,
         microRegionId: microRegion,
         withUnavailable,
       }),
-    [flavorType, microRegion, projectId, withUnavailable],
+    [flavorCategory, flavorType, microRegion, projectId, withUnavailable],
   );
 
   const { columns, rows } = useMemo(() => {
-    if (flavorCategory === 'Cloud GPU') {
-      // TODO: will be changed in future PR
-      const gpuFlavors = (flavors as unknown) as TGpuFlavorDataForTable[];
+    if (isGpu) {
       return {
         columns: GpuFlavorColumnsBuilder(t),
         rows: GpuFlavorRowsBuilder(
-          gpuFlavors,
-          { renderName, renderRadio },
+          flavors,
+          { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice },
           withUnavailable,
         ),
       };
@@ -109,7 +107,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       ),
     };
   }, [
-    flavorCategory,
+    isGpu,
     flavors,
     renderName,
     renderRadio,
@@ -179,9 +177,9 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     );
 
     if (!availablePreviousSelectedFlavor) {
-      setValue('flavorId', preselecteFlavordId);
+      setValue('flavorId', preselectedFlavordId);
     }
-  }, [flavorId, flavors, preselecteFlavordId, setValue]);
+  }, [flavorId, flavors, preselectedFlavordId, setValue]);
 
   useEffect(() => {
     const hasPreviousSelectedBilling = flavorAvailableBillingTypes.some(

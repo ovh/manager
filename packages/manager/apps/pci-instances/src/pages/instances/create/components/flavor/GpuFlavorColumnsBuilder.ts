@@ -19,6 +19,7 @@ export const GpuFlavorColumnsBuilder = (
   {
     key: 'vRamTotal',
     title: t('pci_instance_creation_table_header_vram_total'),
+    subtitle: t('pci_instance_creation_table_header_vram_unit'),
   },
   {
     key: 'memory',

@@ -64,7 +64,7 @@ export const FlavorsTable = memo(
     );
 
     return (
-      <div className="overflow-x-auto max-w-full">
+      <div className="max-w-full overflow-x-auto">
         <Table size={size} variant={variant} className={baseClasses}>
           <caption className="sr-only">{caption}</caption>
           <FlavorsTableHead columns={columns} />

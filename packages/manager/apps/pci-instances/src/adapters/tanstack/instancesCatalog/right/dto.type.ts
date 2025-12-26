@@ -61,6 +61,13 @@ export type TSpecificationsDTO = {
     public: TSpecDetailsDTO;
     private: TSpecDetailsDTO;
   };
+  gpu?: {
+    memory: {
+      interface: string;
+      size: TSpecDetailsDTO;
+    };
+    model: TSpecDetailsDTO;
+  };
 };
 
 export type TFlavorRegionDTO = {

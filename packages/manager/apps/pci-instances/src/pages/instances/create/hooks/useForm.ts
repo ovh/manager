@@ -49,8 +49,9 @@ export const useForm = (projectId: string) => {
   const flavorTypeDefaultValue =
     selectTypes(deps)(projectId, flavorCategoryDefaultValue)[0]?.value ?? null;
 
-  const { preselecteFlavordId } = selectFlavors(deps)({
+  const { preselectedFlavordId } = selectFlavors(deps)({
     projectId,
+    flavorCategory: flavorCategoryDefaultValue,
     flavorType: flavorTypeDefaultValue,
     microRegionId: microRegionDefaultValue,
     withUnavailable: true,
@@ -64,10 +65,10 @@ export const useForm = (projectId: string) => {
         projectId,
         selectedImageType: preselectedOs,
         microRegion: microRegionDefaultValue,
-        regionalizedFlavorId: preselecteFlavordId,
+        regionalizedFlavorId: preselectedFlavordId,
         distributionImageVariantId: null,
       }),
-    [microRegionDefaultValue, preselecteFlavordId, projectId],
+    [microRegionDefaultValue, preselectedFlavordId, projectId],
   );
 
   const sshKeyIdDefaultValue = null;
@@ -87,7 +88,7 @@ export const useForm = (projectId: string) => {
       continent: continentDefaultValue,
       flavorCategory: flavorCategoryDefaultValue,
       flavorType: flavorTypeDefaultValue,
-      flavorId: preselecteFlavordId,
+      flavorId: preselectedFlavordId,
       macroRegion: macroRegionDefaultValue,
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,
