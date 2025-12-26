@@ -5,7 +5,7 @@
     "target": "ESNext",
     "types": ["vite/client", "node", "jest", "@testing-library/jest-dom"],
     "module": "esnext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "removeComments": true,
     "outDir": "dist",
     "esModuleInterop": true,
