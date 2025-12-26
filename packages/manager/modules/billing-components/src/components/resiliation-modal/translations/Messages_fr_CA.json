@@ -1,0 +1,6 @@
+{
+  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Votre service restera actif jusqu'au {{expirationDate}}, soit la fin de la période de facturation en cours.",
+  "resiliation_modal_resiliate_service_terminate": "Votre service sera résilié immédiatement et vous ne serez plus facturé pour ce service.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Votre service restera actif et vous serez facturé jusqu'à la fin de votre engagement le {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_deleteAtExpiration": "Votre service sera résilié immédiatement. Cependant, vous serez toujours facturé des frais mensuels pour ce service jusqu'à la fin de votre engagement le {{commitmentEndDate}}."
+}

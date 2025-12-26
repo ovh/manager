@@ -42,6 +42,10 @@ export default class BmServerComponentsDashboardServiceStatusController {
     );
   }
 
+  canResiliateServiceWithNewFlow() {
+    return this.coreConfig.isRegion('US');
+  }
+
   getVmsLink() {
     return (
       this.constants.vmsUrl[this.coreConfig.getUser().ovhSubsidiary] ||

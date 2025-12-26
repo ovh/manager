@@ -7,6 +7,7 @@ import cancelCommitment from './components/cancel-commitment';
 import cancelResiliation from './components/cancel-resiliation';
 import exchangeRenew from './components/exchange-renew';
 import resiliateModal from './components/resiliate-modal';
+import resiliationModal from './components/resiliation-modal';
 import resiliation from './components/resiliation';
 import cancellationForm from './components/cancellation-form';
 import servicesActions from './components/services-actions';
@@ -27,7 +28,8 @@ import { SERVICE_ACTIONS } from './constants';
 
 const moduleName = 'ovhManagerBilling';
 
-angular.module(moduleName, [
+angular
+  .module(moduleName, [
     cancellationForm,
     commitment,
     commitmentDuration,
@@ -35,7 +37,8 @@ angular.module(moduleName, [
     cancelCommitment,
     cancelResiliation,
     exchangeRenew,
-  resiliateModal,
+    resiliateModal,
+    resiliationModal,
     resiliation,
     servicesActions,
     serviceStatus,

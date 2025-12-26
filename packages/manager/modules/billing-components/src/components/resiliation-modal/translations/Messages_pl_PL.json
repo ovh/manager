@@ -1,0 +1,6 @@
+{
+  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Twoja usługa będzie aktywna do {{expirationDate}}, czyli do końca bieżącego okresu rozliczeniowego.",
+  "resiliation_modal_resiliate_service_terminate": "Twoja usługa zostanie natychmiast anulowana i nie będziesz już obciążany opłatami za tę usługę.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Twoja usługa pozostanie aktywna i będziesz obciążany opłatami do końca swojego zobowiązania w dniu {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_deleteAtExpiration": "Twoja usługa zostanie natychmiast anulowana. Jednak nadal będziesz obciążany miesięcznymi opłatami za tę usługę do końca swojego zobowiązania w dniu {{commitmentEndDate}}."
+}

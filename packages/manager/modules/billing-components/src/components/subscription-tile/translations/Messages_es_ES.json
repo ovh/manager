@@ -33,5 +33,6 @@
   "manager_billing_subscription_resiliate_my_engagement": "Dar de baja el compromiso",
   "manager_billing_subscription_pay_bill": "Regularizar",
   "manager_billing_subscription_pay_bill_renew": "Renovar",
-  "manager_billing_subscription_engagement_commit_cancel": "Cancelar la solicitud de contratación con compromiso de permanencia"
+  "manager_billing_subscription_engagement_commit_cancel": "Cancelar la solicitud de contratación con compromiso de permanencia",
+  "manager_billing_subscription_close_service": "Cancelar mi servicio"
 }

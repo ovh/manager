@@ -33,5 +33,6 @@
   "manager_billing_subscription_resiliate_my_engagement": "Cancel commitment",
   "manager_billing_subscription_pay_bill": "Pay",
   "manager_billing_subscription_pay_bill_renew": "Renew",
-  "manager_billing_subscription_engagement_commit_cancel": "Cancel subscription request"
+  "manager_billing_subscription_engagement_commit_cancel": "Cancel subscription request",
+  "manager_billing_subscription_close_service": "Cancel my service"
 }
