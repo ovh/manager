@@ -2,8 +2,12 @@ name: Lint Code Base
 
 on: [push]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  lint:
     name: Lint Code Base
     runs-on: ubuntu-latest
 
@@ -11,6 +15,9 @@ jobs:
       PNPM_VERSION: "10.17.0" # must match playbook-config.js
 
     steps:
+      # ------------------------------------------
+      # Free disk space
+      # ------------------------------------------
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
@@ -22,44 +29,63 @@ jobs:
           docker-images: false
           swap-storage: true
 
+      # ------------------------------------------
+      # Checkout
+      # ------------------------------------------
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # -------------------------------------------------------
-      # CACHE PNPM (binary only)
-      # -------------------------------------------------------
-      - name: Restore PNPM cache (binary only)
-        uses: actions/cache@v3
-        with:
-          path: |
-            target/pnpm
-          key: ${{ runner.os }}-pnpm-lint-${{ env.PNPM_VERSION }}-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-lint-${{ env.PNPM_VERSION }}-
-            ${{ runner.os }}-pnpm-lint-
+      - name: Clean stale git locks (pre)
+        run: rm -f .git/index.lock
 
-      # -------------------------------------------------------
-      # CACHE YARN (node_modules + yarn global cache)
-      # -------------------------------------------------------
-      - name: Restore Yarn cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-          key: ${{ runner.os }}-yarn-lint-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-lint-
-
+      # ------------------------------------------
+      # Node
+      # ------------------------------------------
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      # ------------------------------------------
+      # pnpm binary cache (tool only)
+      # ------------------------------------------
+      - name: Restore pnpm binary
+        uses: actions/cache@v4
+        with:
+          path: target/pnpm
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-binary-
 
+      # ------------------------------------------
+      # Yarn cache (tarballs only, standard path)
+      # ------------------------------------------
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-cache-node22-
+
+      - name: Ensure yarn cache folder exists
+        run: mkdir -p ~/.cache/yarn
+
+      # ------------------------------------------
+      # Install deps (always deterministic)
+      # ------------------------------------------
+      - name: Install dependencies
+        env:
+          YARN_CACHE_FOLDER: ~/.cache/yarn
+        run: yarn ci:install
+
+      - name: Clean stale git locks (post-install)
+        run: rm -f .git/index.lock
+
+      # ------------------------------------------
+      # Lint
+      # ------------------------------------------
       - name: Lint Code Base
         run: yarn lint

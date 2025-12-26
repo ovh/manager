@@ -1,0 +1,588 @@
+---
+title: UI Component Detection Patterns
+version: 1.0.0
+last_update: 2025-11-28
+tags: [patterns, ui, components, oui, ods, ods-v19, muk]
+ai: true
+---
+
+# UI Component Detection Patterns
+
+## Purpose
+
+Patterns for detecting OUI components in AngularJS templates and mapping them to ODS v19/MUK components in React.
+
+---
+
+## Layout Patterns
+
+### manager_list_layout
+
+**Purpose**: Detect managerListLayout component usage
+
+```yaml
+manager_list_layout:
+  regex: 'component:\s*[''"]managerListLayout[''"]'
+  flags: i
+  groups: []
+  maps_to:
+    muk: '<BaseLayout> + <Datagrid>'
+    reference: '@.ai-doc/20-dependencies/muk.md#baselayout'
+  features_implies:
+    - datagrid
+    - search (often)
+    - filter (often)
+    - pagination (often)
+    - topbar_cta (if resolve has topbarCTA)
+  test_cases:
+    - input: 'component: "managerListLayout"'
+      expected:
+        component: 'managerListLayout'
+        maps_to_muk: 'BaseLayout + Datagrid'
+```
+
+### oui_header
+
+**Purpose**: Detect <header> or oui-header usage
+
+```yaml
+oui_header:
+  regex: '<(?:oui-)?header[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: 'header prop in BaseLayout or custom header component'
+  test_cases:
+    - input: '<header class="oui-header">'
+      expected:
+        tag: 'header'
+    - input: '<oui-header>'
+      expected:
+        tag: 'oui-header'
+```
+
+---
+
+## Datagrid Patterns
+
+### oui_datagrid
+
+**Purpose**: Detect <oui-datagrid> usage
+
+```yaml
+oui_datagrid:
+  regex: '<oui-datagrid[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<Datagrid> from @ovh-ux/muk'
+    reference: '@.ai-doc/20-dependencies/muk.md#datagrid'
+  check_attributes:
+    - 'rows' → 'data prop'
+    - 'columns' → 'columns prop'
+    - 'page-size' → 'pageSize in pagination'
+  test_cases:
+    - input: '<oui-datagrid rows="$ctrl.services" columns="$ctrl.columns">'
+      expected:
+        component: 'oui-datagrid'
+        maps_to_muk: 'Datagrid'
+```
+
+### datagrid_column
+
+**Purpose**: Detect datagrid column definitions
+
+```yaml
+datagrid_column:
+  regex: '\{\s*name:\s*[''"](\w+)[''"]\s*,\s*title:\s*[''"]([^''"]+)[''"]'
+  flags: g
+  groups:
+    - index: 1
+      name: column_id
+      description: Column identifier
+    - index: 2
+      name: column_title
+      description: Column title
+  maps_to:
+    muk: 'DatagridColumn object'
+  test_cases:
+    - input: "{ name: 'serviceName', title: 'Service Name' }"
+      expected:
+        column_id: 'serviceName'
+        column_title: 'Service Name'
+```
+
+---
+
+## Button Patterns
+
+### oui_button
+
+**Purpose**: Detect <oui-button> usage
+
+```yaml
+oui_button:
+  regex: '<oui-button[^>]*>([^<]*)</oui-button>'
+  flags: gi
+  groups:
+    - index: 1
+      name: button_text
+      description: Button text content
+  maps_to:
+    muk: '<Button> from @ovh-ux/muk'
+    reference: '@.ai-doc/20-dependencies/muk.md#button'
+  check_attributes:
+    - 'variant' → 'variant prop'
+    - 'on-click' → 'onClick handler'
+  test_cases:
+    - input: '<oui-button variant="primary" on-click="$ctrl.handleClick()">Add</oui-button>'
+      expected:
+        button_text: 'Add'
+        maps_to_muk: 'Button'
+```
+
+### oui_action_menu
+
+**Purpose**: Detect <oui-action-menu> usage
+
+```yaml
+oui_action_menu:
+  regex: '<oui-action-menu[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<ActionMenu> from @ovh-ux/muk'
+    reference: '@.ai-doc/20-dependencies/muk.md#actionmenu'
+  test_cases:
+    - input: '<oui-action-menu items="$ctrl.menuItems">'
+      expected:
+        component: 'oui-action-menu'
+        maps_to_muk: 'ActionMenu'
+```
+
+---
+
+## Tile Patterns
+
+### oui_tile
+
+**Purpose**: Detect <oui-tile> usage
+
+```yaml
+oui_tile:
+  regex: '<oui-tile[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<Tile.Root> from @ovh-ux/muk'
+    reference: '@.ai-doc/20-dependencies/muk.md#tile'
+  nested_components:
+    - '<oui-tile-definition>' → '<Tile.Item.Term>'
+    - '<oui-tile-description>' → '<Tile.Item.Description>'
+  test_cases:
+    - input: '<oui-tile>'
+      expected:
+        component: 'oui-tile'
+        maps_to_muk: 'Tile.Root'
+```
+
+### oui_tile_definition
+
+**Purpose**: Detect <oui-tile-definition> (tile term)
+
+```yaml
+oui_tile_definition:
+  regex: '<oui-tile-definition[^>]*>([^<]*)</oui-tile-definition>'
+  flags: gi
+  groups:
+    - index: 1
+      name: term_text
+      description: Tile term/label
+  maps_to:
+    muk: '<Tile.Item.Term>'
+  test_cases:
+    - input: '<oui-tile-definition>Service Name</oui-tile-definition>'
+      expected:
+        term_text: 'Service Name'
+        maps_to_muk: 'Tile.Item.Term'
+```
+
+### oui_tile_description
+
+**Purpose**: Detect <oui-tile-description> (tile value)
+
+```yaml
+oui_tile_description:
+  regex: '<oui-tile-description[^>]*>([^<]*)</oui-tile-description>'
+  flags: gi
+  groups:
+    - index: 1
+      name: description_text
+      description: Tile description/value
+  maps_to:
+    muk: '<Tile.Item.Description>'
+  test_cases:
+    - input: '<oui-tile-description>{{ $ctrl.serviceName }}</oui-tile-description>'
+      expected:
+        description_text: '{{ $ctrl.serviceName }}'
+        maps_to_muk: 'Tile.Item.Description'
+```
+
+---
+
+## Modal Patterns
+
+### oui_modal
+
+**Purpose**: Detect <oui-modal> usage
+
+```yaml
+oui_modal:
+  regex: '<oui-modal[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<Modal> from @ovh-ux/muk'
+    reference: '@.ai-doc/20-dependencies/muk.md#modal'
+  check_attributes:
+    - 'on-dismiss' → 'onDismiss prop'
+    - 'title' → 'heading prop'
+  test_cases:
+    - input: '<oui-modal on-dismiss="$ctrl.closeModal()">'
+      expected:
+        component: 'oui-modal'
+        maps_to_muk: 'Modal'
+```
+
+---
+
+## Form Patterns
+
+### oui_field
+
+**Purpose**: Detect <oui-field> (form field wrapper)
+
+```yaml
+oui_field:
+  regex: '<oui-field[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<OdsFormField> from @ovhcloud/ods-components/react'
+    note: 'MUK does not have form field wrapper yet, use ODS temporarily'
+  test_cases:
+    - input: '<oui-field label="Service Name">'
+      expected:
+        component: 'oui-field'
+```
+
+### oui_input
+
+**Purpose**: Detect <oui-input> usage
+
+```yaml
+oui_input:
+  regex: '<oui-input[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<OdsInput> with <Controller> from react-hook-form'
+    reference: '@.ai-doc/20-dependencies/react-hook-form.md#controller'
+  test_cases:
+    - input: '<oui-input ng-model="$ctrl.serviceName">'
+      expected:
+        component: 'oui-input'
+```
+
+### oui_select
+
+**Purpose**: Detect <oui-select> usage
+
+```yaml
+oui_select:
+  regex: '<oui-select[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<OdsSelect> with <Controller> from react-hook-form'
+  test_cases:
+    - input: '<oui-select ng-model="$ctrl.region" items="$ctrl.regions">'
+      expected:
+        component: 'oui-select'
+```
+
+### oui_checkbox
+
+**Purpose**: Detect <oui-checkbox> usage
+
+```yaml
+oui_checkbox:
+  regex: '<oui-checkbox[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<OdsCheckbox> with <Controller> from react-hook-form'
+  test_cases:
+    - input: '<oui-checkbox ng-model="$ctrl.agree">'
+      expected:
+        component: 'oui-checkbox'
+```
+
+---
+
+## Message Patterns
+
+### oui_message
+
+**Purpose**: Detect <oui-message> (alerts/banners)
+
+```yaml
+oui_message:
+  regex: '<oui-message[^>]*type=[''"](\w+)[''"]'
+  flags: gi
+  groups:
+    - index: 1
+      name: message_type
+      description: Message type (info, warning, error, success)
+  maps_to:
+    muk: '<Message> from @ovh-ux/muk'
+    reference: '@.ai-doc/20-dependencies/muk.md#message'
+  test_cases:
+    - input: '<oui-message type="warning">Warning message</oui-message>'
+      expected:
+        message_type: 'warning'
+        maps_to_muk: 'Message'
+```
+
+---
+
+## Spinner/Loader Patterns
+
+### oui_spinner
+
+**Purpose**: Detect <oui-spinner> usage
+
+```yaml
+oui_spinner:
+  regex: '<oui-spinner[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    ods: '<OdsSpinner> from @ovhcloud/ods-react for loading states, or <OdsSkeleton> for content placeholders'
+  test_cases:
+    - input: '<oui-spinner size="s"></oui-spinner>'
+      expected:
+        component: 'oui-spinner'
+        maps_to_ods: 'OdsSpinner or OdsSkeleton'
+```
+
+---
+
+## Tabs Patterns
+
+### oui_tabs
+
+**Purpose**: Detect <oui-tabs> (header tabs)
+
+```yaml
+oui_tabs:
+  regex: '<oui-(?:header-)?tabs[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: 'Tabs component or NavLink in header'
+    reference: '@.ai-doc/20-dependencies/muk.md#tabs'
+  test_cases:
+    - input: '<oui-header-tabs items="$ctrl.tabs">'
+      expected:
+        component: 'oui-header-tabs'
+    - input: '<oui-tabs>'
+      expected:
+        component: 'oui-tabs'
+```
+
+---
+
+## Guide Menu Patterns
+
+### oui_guide_menu
+
+**Purpose**: Detect <oui-guide-menu> usage
+
+```yaml
+oui_guide_menu:
+  regex: '<oui-guide-menu[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<GuideMenu> from @ovh-ux/muk'
+    reference: '@.ai-doc/20-dependencies/muk.md#guidemenu'
+  test_cases:
+    - input: '<oui-guide-menu items="$ctrl.guides"></oui-guide-menu>'
+      expected:
+        component: 'oui-guide-menu'
+        maps_to_muk: 'GuideMenu'
+```
+
+---
+
+## Changelog Patterns
+
+### changelog_button
+
+**Purpose**: Detect <changelog-button> usage
+
+```yaml
+changelog_button:
+  regex: '<changelog-button[^>]*>'
+  flags: gi
+  groups: []
+  maps_to:
+    muk: '<ChangelogMenu> from @ovh-ux/muk'
+    reference: '@.ai-doc/20-dependencies/muk.md#changelogmenu'
+  test_cases:
+    - input: '<changelog-button></changelog-button>'
+      expected:
+        component: 'changelog-button'
+        maps_to_muk: 'ChangelogMenu'
+```
+
+---
+
+## Feature Detection Patterns
+
+### search_input
+
+**Purpose**: Detect search input fields
+
+```yaml
+search_input:
+  regex: '<(?:oui-)?(?:input|search)[^>]*(?:placeholder|ng-model)[^>]*(?:search|filter)[^>]*>'
+  flags: gi
+  groups: []
+  implies_feature: 'search'
+  maps_to:
+    muk: 'search prop in Datagrid'
+  test_cases:
+    - input: '<oui-input ng-model="$ctrl.searchText" placeholder="Search...">'
+      expected:
+        feature: 'search'
+```
+
+### filter_button
+
+**Purpose**: Detect filter button/dropdown
+
+```yaml
+filter_button:
+  regex: '<oui-(?:button|dropdown)[^>]*>.*?(?:filter|filtr)[^<]*<'
+  flags: gi
+  groups: []
+  implies_feature: 'filter'
+  maps_to:
+    muk: 'filters prop in Datagrid'
+  test_cases:
+    - input: '<oui-button>Filter</oui-button>'
+      expected:
+        feature: 'filter'
+```
+
+### pagination
+
+**Purpose**: Detect pagination controls
+
+```yaml
+pagination:
+  regex: '<oui-pagination[^>]*>'
+  flags: gi
+  groups: []
+  implies_feature: 'pagination'
+  maps_to:
+    muk: 'Built into Datagrid with hasNextPage/fetchNextPage'
+  test_cases:
+    - input: '<oui-pagination page-size="$ctrl.pageSize">'
+      expected:
+        feature: 'pagination'
+```
+
+### column_customization
+
+**Purpose**: Detect column customization (gear icon)
+
+```yaml
+column_customization:
+  regex: '<oui-icon[^>]*name=[''"]settings[''"]'
+  flags: gi
+  groups: []
+  implies_feature: 'column_customization'
+  maps_to:
+    muk: 'columnVisibility prop in Datagrid'
+  test_cases:
+    - input: '<oui-icon name="settings"></oui-icon>'
+      expected:
+        feature: 'column_customization'
+```
+
+---
+
+## Usage Instructions
+
+### For AI Assistants
+
+1. **Scan templates**: Read all .template.html files
+2. **Apply patterns**: Use regex to detect OUI components
+3. **Map to MUK**: Use `maps_to.muk` for conversion
+4. **Check features**: Use `implies_feature` to detect UI features
+5. **Generate code**: Create React components with MUK equivalents
+
+### Example Usage
+
+```typescript
+// Load patterns
+const uiPatterns = loadYAML('ui-patterns.yaml');
+
+// Scan template
+const template = readFile('nasha.template.html');
+
+// Detect components
+const datagridPattern = uiPatterns.datagrid.oui_datagrid;
+if (template.match(datagridPattern.regex)) {
+  console.log('Found oui-datagrid');
+  console.log(`Maps to: ${datagridPattern.maps_to.muk}`);
+  console.log(`Reference: ${datagridPattern.maps_to.reference}`);
+}
+
+// Detect features
+const searchPattern = uiPatterns.feature_detection.search_input;
+if (template.match(searchPattern.regex)) {
+  console.log('Feature detected: search');
+  console.log(`Implementation: ${searchPattern.maps_to.muk}`);
+}
+```
+
+---
+
+## Component Migration Policy (ODS v19)
+
+**IMPORTANT**: All OUI components MUST be replaced with ODS/MUK equivalents.
+
+### Decision Flow
+
+```
+1. Check if MUK has component
+   ├─ YES → Use MUK component (preferred for complex patterns like Datagrid, BaseLayout)
+   └─ NO → Check if ODS has component
+       ├─ YES → Use ODS component
+       │        (ODS v19 is the primary design system)
+       └─ NO → Implement custom component
+                Document in MIGRATION_NOTES.md
+```
+
+---
+
+## References
+
+- [MUK Components](@.ai-doc/20-dependencies/muk.md)
+- [ODS Components](@.ai-doc/20-dependencies/ods-components.md)
+- [Migration Patterns](../migration-patterns.md#template-component-mapping)
+- [AngularJS React Mapping Guide](../angularjs-react-mapping-guide.md#template-mappings)

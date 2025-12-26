@@ -1,0 +1,442 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Enhanced Migration Decision Tree v2",
+  "description": "Decision tree with contextual conditions for smarter AI navigation",
+  "version": "2.0.0",
+  "start_node": "check_source",
+
+  "context_schema": {
+    "description": "Context object that AI maintains throughout migration",
+    "properties": {
+      "source_path": { "type": "string" },
+      "detected_patterns": { "type": "array" },
+      "complexity_score": { "type": "number", "min": 1, "max": 10 },
+      "has_datagrid": { "type": "boolean" },
+      "has_forms": { "type": "boolean" },
+      "has_modals": { "type": "boolean" },
+      "has_tabs": { "type": "boolean" },
+      "api_types": { "type": "array", "items": ["aapi", "iceberg", "v6"] },
+      "route_count": { "type": "number" },
+      "resolve_count": { "type": "number" },
+      "translation_files": { "type": "array" }
+    }
+  },
+
+  "nodes": {
+    "check_source": {
+      "type": "decision",
+      "question": "Do you have the AngularJS source path?",
+      "conditions": [
+        {
+          "if": "source_path is provided",
+          "then": "analyze_source",
+          "confidence": 1.0
+        },
+        {
+          "if": "source_path is not provided",
+          "then": "error_need_source",
+          "confidence": 1.0
+        }
+      ]
+    },
+
+    "analyze_source": {
+      "type": "action",
+      "description": "Analyze AngularJS source to detect patterns and build context",
+      "actions": [
+        "Read all *.routing.js files",
+        "Read all *.template.html files",
+        "Read all *.controller.js files",
+        "Read translations/Messages_*.json files",
+        "Count routes and resolves",
+        "Detect UI patterns (datagrid, forms, modals, tabs)"
+      ],
+      "output": "context_object",
+      "next": "assess_complexity"
+    },
+
+    "assess_complexity": {
+      "type": "decision",
+      "question": "What is the migration complexity?",
+      "conditions": [
+        {
+          "if": "route_count <= 3 AND !has_datagrid AND !has_forms",
+          "then": "simple_migration",
+          "complexity_score": 2,
+          "confidence": 0.9,
+          "description": "Simple module with few routes, no complex components"
+        },
+        {
+          "if": "route_count <= 5 AND (has_datagrid OR has_forms) AND !has_modals",
+          "then": "moderate_migration",
+          "complexity_score": 5,
+          "confidence": 0.85,
+          "description": "Medium module with some complexity"
+        },
+        {
+          "if": "route_count > 5 OR (has_datagrid AND has_forms AND has_modals)",
+          "then": "complex_migration",
+          "complexity_score": 8,
+          "confidence": 0.8,
+          "description": "Complex module requiring careful planning"
+        }
+      ]
+    },
+
+    "simple_migration": {
+      "type": "workflow",
+      "name": "Simple Migration Path",
+      "description": "Direct implementation without extensive planning",
+      "recommended_approach": "automated",
+      "estimated_components": "< 10",
+      "next": "workflow_automated",
+      "tips": [
+        "Can often be done in single session",
+        "Minimal pattern detection needed",
+        "Focus on route-by-route implementation"
+      ]
+    },
+
+    "moderate_migration": {
+      "type": "workflow",
+      "name": "Moderate Migration Path",
+      "description": "Structured approach with component focus",
+      "recommended_approach": "automated_with_review",
+      "estimated_components": "10-25",
+      "next": "check_migration_type",
+      "tips": [
+        "Use automated migration with validation checkpoints",
+        "Pay attention to datagrid/form patterns",
+        "Review API patterns carefully"
+      ]
+    },
+
+    "complex_migration": {
+      "type": "workflow",
+      "name": "Complex Migration Path",
+      "description": "US-by-US approach recommended",
+      "recommended_approach": "manual_us",
+      "estimated_components": "> 25",
+      "next": "workflow_manual_us",
+      "tips": [
+        "Break down into user stories",
+        "Validate each US before proceeding",
+        "Consider phased rollout"
+      ]
+    },
+
+    "check_migration_type": {
+      "type": "decision",
+      "question": "What type of migration approach?",
+      "conditions": [
+        {
+          "if": "user_requested == 'automated' OR complexity_score <= 5",
+          "then": "workflow_automated",
+          "confidence": 0.9
+        },
+        {
+          "if": "user_requested == 'manual' OR complexity_score > 5",
+          "then": "workflow_manual_us",
+          "confidence": 0.85
+        },
+        {
+          "if": "user_requested == 'lookup'",
+          "then": "workflow_pattern_lookup",
+          "confidence": 1.0
+        }
+      ]
+    },
+
+    "component_selection": {
+      "type": "decision",
+      "question": "Which MUK component to use?",
+      "component_conditions": [
+        {
+          "if": "has_pagination AND has_sorting AND has_search",
+          "then": "use_datagrid_with_server_pagination",
+          "confidence": 0.95,
+          "reference": ".ai-doc/20-dependencies/muk.md#datagrid"
+        },
+        {
+          "if": "has_pagination AND has_sorting AND !has_server_data",
+          "then": "use_datagrid_client_side",
+          "confidence": 0.9,
+          "reference": ".ai-doc/20-dependencies/muk.md#datagrid"
+        },
+        {
+          "if": "simple_list AND items_count < 20",
+          "then": "use_simple_list",
+          "confidence": 0.85,
+          "reference": ".ai-doc/20-dependencies/ods-components.md"
+        },
+        {
+          "if": "has_row_actions",
+          "then": "use_datagrid_with_action_menu",
+          "confidence": 0.9,
+          "reference": "10-migration-diffs/component-diffs.md#datagrid-with-actions"
+        }
+      ]
+    },
+
+    "api_pattern_selection": {
+      "type": "decision",
+      "question": "Which API pattern to use?",
+      "api_conditions": [
+        {
+          "if": "original_used == 'Aapi' AND aggregated_data",
+          "then": "use_aapi",
+          "confidence": 0.95,
+          "reference": ".ai-doc/20-dependencies/manager-core-api.md#aapi"
+        },
+        {
+          "if": "original_used == 'iceberg' OR needs_pagination",
+          "then": "use_fetchIcebergV6",
+          "confidence": 0.95,
+          "reference": ".ai-doc/20-dependencies/manager-core-api.md#iceberg"
+        },
+        {
+          "if": "original_used == '$http' OR simple_crud",
+          "then": "use_v6",
+          "confidence": 0.9,
+          "reference": ".ai-doc/20-dependencies/manager-core-api.md#v6"
+        },
+        {
+          "if": "mutation_operation",
+          "then": "use_mutation_with_invalidation",
+          "confidence": 1.0,
+          "reference": "09-common-pitfalls/pitfalls-catalog.yaml#missing-query-invalidation"
+        }
+      ]
+    },
+
+    "form_pattern_selection": {
+      "type": "decision",
+      "question": "Which form pattern to use?",
+      "form_conditions": [
+        {
+          "if": "has_complex_validation AND has_multiple_fields",
+          "then": "use_react_hook_form_with_zod",
+          "confidence": 0.95,
+          "reference": ".ai-doc/20-dependencies/react-hook-form.md"
+        },
+        {
+          "if": "simple_form AND fields_count <= 3",
+          "then": "use_controlled_inputs",
+          "confidence": 0.8,
+          "reference": "10-migration-diffs/component-diffs.md#form-simple"
+        },
+        {
+          "if": "has_dynamic_fields OR has_array_fields",
+          "then": "use_react_hook_form_field_array",
+          "confidence": 0.9,
+          "reference": ".ai-doc/20-dependencies/react-hook-form.md#field-arrays"
+        }
+      ]
+    },
+
+    "modal_pattern_selection": {
+      "type": "decision",
+      "question": "Which modal pattern to use?",
+      "modal_conditions": [
+        {
+          "if": "modal_has_route AND needs_direct_access",
+          "then": "use_modal_with_route",
+          "confidence": 0.95,
+          "reference": "modal-avec-route-guide.md"
+        },
+        {
+          "if": "confirmation_modal AND simple_action",
+          "then": "use_confirmation_dialog",
+          "confidence": 0.9,
+          "reference": "10-migration-diffs/component-diffs.md#modal-confirmation"
+        },
+        {
+          "if": "form_in_modal",
+          "then": "use_form_modal",
+          "confidence": 0.85,
+          "reference": "10-migration-diffs/component-diffs.md#modal-form"
+        }
+      ]
+    },
+
+    "workflow_automated": {
+      "type": "workflow",
+      "name": "Automated Migration (2 Prompts)",
+      "steps": [
+        "prompt_1_analysis",
+        "prompt_2_implementation",
+        "validate_parity"
+      ],
+      "checkpoints": [
+        {
+          "after": "prompt_1_analysis",
+          "verify": ["structure_created", "patterns_detected", "no_errors"]
+        },
+        {
+          "after": "prompt_2_implementation",
+          "verify": [
+            "all_routes_implemented",
+            "all_hooks_created",
+            "translations_migrated"
+          ]
+        }
+      ],
+      "references": [
+        "06-prompts/01-analyze-and-structure.prompt.md",
+        "06-prompts/02-implement-features.prompt.md",
+        "automated-migration-guide.md"
+      ]
+    },
+
+    "workflow_manual_us": {
+      "type": "workflow",
+      "name": "Manual US-by-US Migration",
+      "steps": [
+        "identify_user_stories",
+        "prioritize_user_stories",
+        "implement_user_story",
+        "validate_user_story",
+        "repeat_until_complete"
+      ],
+      "priority_order": [
+        "onboarding_flow",
+        "listing_page",
+        "dashboard",
+        "detail_pages",
+        "forms_and_modals"
+      ],
+      "references": ["us-migration-guide.md"]
+    },
+
+    "validate_parity": {
+      "type": "action",
+      "description": "Validate migration has 100% parity",
+      "validation_sequence": [
+        {
+          "step": "check_pitfalls",
+          "action": "Run through 09-common-pitfalls/pitfalls-catalog.yaml",
+          "blocking": true
+        },
+        {
+          "step": "check_routes",
+          "action": "Verify all routes exist with correct paths",
+          "blocking": true
+        },
+        {
+          "step": "check_api",
+          "action": "Verify API patterns match original",
+          "blocking": true
+        },
+        {
+          "step": "check_components",
+          "action": "Verify UI components render correctly",
+          "blocking": true
+        },
+        {
+          "step": "check_translations",
+          "action": "Verify all translation keys exist",
+          "blocking": true
+        },
+        {
+          "step": "check_tracking",
+          "action": "Verify tracking events migrated",
+          "blocking": false
+        }
+      ],
+      "references": [
+        "parity-validation-guide.md",
+        "05-validation/parity-checklist.yaml",
+        "08-verification-protocol/mandatory-verification-steps.yaml"
+      ]
+    },
+
+    "error_need_source": {
+      "type": "error",
+      "message": "Cannot proceed without AngularJS source path",
+      "required_info": "packages/manager/modules/{module-name}",
+      "action": "stop"
+    },
+
+    "migration_complete": {
+      "type": "success",
+      "message": "Migration complete with 100% parity verified",
+      "final_checklist": [
+        "All routes migrated",
+        "All API calls migrated",
+        "All UI components migrated",
+        "All translations migrated",
+        "No pitfalls detected",
+        "Validation passed"
+      ]
+    }
+  },
+
+  "pattern_mappings": {
+    "description": "Quick lookup for pattern decisions",
+    "oui-datagrid": {
+      "target": "Datagrid from @ovh-ux/muk",
+      "decision_node": "component_selection",
+      "diff_reference": "10-migration-diffs/component-diffs.md#datagrid"
+    },
+    "oui-field": {
+      "target": "OdsFormField from @ovhcloud/ods-react",
+      "decision_node": "form_pattern_selection",
+      "diff_reference": "10-migration-diffs/component-diffs.md#form"
+    },
+    "OvhApi*.Aapi()": {
+      "target": "aapi from @ovh-ux/manager-core-api",
+      "decision_node": "api_pattern_selection",
+      "diff_reference": "10-migration-diffs/api-diffs.md#aapi"
+    },
+    "iceberg()": {
+      "target": "fetchIcebergV6 from @ovh-ux/manager-core-api",
+      "decision_node": "api_pattern_selection",
+      "diff_reference": "10-migration-diffs/api-diffs.md#iceberg"
+    },
+    "$http": {
+      "target": "v6 from @ovh-ux/manager-core-api",
+      "decision_node": "api_pattern_selection",
+      "diff_reference": "10-migration-diffs/api-diffs.md#v6"
+    },
+    "$stateProvider.state": {
+      "target": "Route from react-router-dom",
+      "diff_reference": "10-migration-diffs/routing-diffs.md#state-definition"
+    },
+    "$scope": {
+      "target": "useState/useQuery",
+      "diff_reference": "10-migration-diffs/state-diffs.md#scope"
+    }
+  },
+
+  "quick_paths": {
+    "description": "Optimized paths for common scenarios",
+
+    "simple_listing_module": {
+      "conditions": ["has_datagrid", "route_count <= 2", "!has_forms"],
+      "path": ["analyze_source", "simple_migration", "workflow_automated"],
+      "estimated_effort": "low"
+    },
+
+    "crud_module": {
+      "conditions": [
+        "has_datagrid",
+        "has_forms",
+        "has_modals",
+        "route_count <= 5"
+      ],
+      "path": ["analyze_source", "moderate_migration", "workflow_automated"],
+      "estimated_effort": "medium"
+    },
+
+    "complex_dashboard_module": {
+      "conditions": [
+        "has_datagrid",
+        "has_tabs",
+        "route_count > 5",
+        "resolve_count > 5"
+      ],
+      "path": ["analyze_source", "complex_migration", "workflow_manual_us"],
+      "estimated_effort": "high"
+    }
+  }
+}
