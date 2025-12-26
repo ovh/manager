@@ -102,6 +102,20 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('vps.detail.dashboard.cancel-commitment'),
       goToCancelResiliation: /* @ngInject */ ($state) => () =>
         $state.href('vps.detail.dashboard.cancel-resiliation'),
+      goToResiliateService: /* @ngInject */ (
+        $state,
+        shellClient,
+        serviceName,
+      ) => {
+        return shellClient.navigation
+          .getURL(
+            'dedicated',
+            $state.href('vps.detail.dashboard.resiliate', {
+              serviceName,
+            }),
+          )
+          .then((url) => () => url);
+      },
       goToResiliation: /* @ngInject */ ($state, vps) => () =>
         vps.engagement
           ? $state.href('vps.detail.dashboard.resiliation')
@@ -201,5 +215,49 @@ export default /* @ngInject */ ($stateProvider) => {
       atInternet.trackPage({
         name: `vps${hit}`,
       }),
+  });
+
+  $stateProvider.state('vps.detail.dashboard.resiliate', {
+    url: '/resiliate',
+    views: {
+      modal: {
+        component: 'ovhManagerBillingResiliateModalWrapper',
+      },
+    },
+    layout: 'modal',
+    resolve: {
+      capabilities: /* @ngInject */ (service) =>
+        service.billing.lifecycle.capacities.actions,
+      goBack: /* @ngInject */ ($state) => (forceRefresh = false) => {
+        if (forceRefresh) {
+          return $state.go(
+            '^',
+            { refresh: 'true' },
+            { notify: true, reload: true },
+          );
+        }
+        return $state.go('^');
+      },
+      onSuccess: /* @ngInject */ (Alerter, goBack) => (forceRefresh, message) =>
+        goBack(forceRefresh).then(() => {
+          Alerter.success(message);
+        }),
+      onError: /* @ngInject */ (Alerter, goBack) => (message) =>
+        goBack().then(() => {
+          Alerter.error(message);
+        }),
+      serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      service: /* @ngInject */ ($http, serviceId) =>
+        $http
+          .get(`/services/${serviceId}`)
+          .then(({ data }) => ({ ...data, id: serviceId })),
+      serviceTypeLabel: /* @ngInject */ (service) =>
+        service.resource.displayName,
+    },
+    atInternet: {
+      ignore: true,
+    },
   });
 };
