@@ -7,7 +7,7 @@ export default class {
   $onInit() {
     this.expand = {};
 
-    this.availableServices = this.services.available;
+    this.availableServices = this.services.available || [];
     this.unavailableServices = omit(this.services, 'available');
 
     this.servicesCount = flatten(values(this.services)).length;
