@@ -37,6 +37,8 @@ import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import { useGetServiceSubnet } from '@/hooks/api/network/useGetServiceSubnet.hook';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 import A from '@/components/links/A.component';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface MetricTile {
   name: string;
@@ -46,6 +48,7 @@ interface MetricTile {
 const Dashboard = () => {
   const { service, projectId } = useServiceData();
   const vrackQuery = useGetVrack(projectId);
+  const track = useTrackAction();
   const subnet = useGetServiceSubnet(projectId, service);
   const metricsQuery = useGetMetrics(projectId, service.engine, service.id);
   const { t } = useTranslation(
@@ -119,6 +122,7 @@ const Dashboard = () => {
             asChild
           >
             <Link
+              onClick={() => track(TRACKING.dashboard.upgradeOfferClick())}
               className="flex items-center hover:no-underline hover:text-primary-foreground"
               to={'settings#update'}
             >

@@ -45,4 +45,8 @@ export const TRACKING = {
     failure: (engine: database.EngineEnum, localisation: string) =>
       `${APP_TRACKING_PREFIX}::databases::banner-error::delete_databases_error::${engine}_${localisation}`,
   },
+  dashboard: {
+    upgradeOfferClick: () =>
+      `${APP_TRACKING_PREFIX}::page::dashboard::button::upgrade_offer`,
+  },
 };
