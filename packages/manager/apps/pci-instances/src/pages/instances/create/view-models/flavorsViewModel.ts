@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-/* eslint-disable max-lines-per-function */
 import { Deps } from '@/deps/deps';
 import {
   TFlavor,
@@ -16,82 +15,6 @@ import {
   getRegionalizedFlavorId,
   getRegionalizedFlavorOsTypePriceId,
 } from '@/utils';
-
-export type TFlavorData = {
-  id: string;
-  unavailable: boolean;
-  unavailableQuota: boolean;
-  name: string;
-  memory: number;
-  vCore: number;
-  storage: number;
-  bandwidthPublic: string;
-  bandwidthPrivate: string;
-  mode: TDeploymentMode | null;
-  realMinimumHourlyPrice: number | null;
-  realMinimumMonthlyPrice: number | null;
-  estimatedMinimumMonthlyPrice: number | null;
-};
-
-export type TFlavorDataForTable = Omit<
-  TFlavorData,
-  'bandwidthPublic' | 'bandwidthPrivate'
->;
-
-export type TGpuFlavorData = {
-  id: string;
-  unavailable: boolean;
-  unavailableQuota: boolean;
-  name: string;
-  gpu: string;
-  numberOfGpu: number;
-  vRamTotal: number;
-  memory: number;
-  vCore: number;
-  storage: number;
-  bandwidthPublic: string;
-  bandwidthPrivate: string;
-  mode: TDeploymentMode | null;
-  hourlyPrice: number | null;
-  monthlyPrice: number | null;
-};
-
-export type TGpuFlavorDataForTable = Omit<
-  TGpuFlavorData,
-  'bandwidthPublic' | 'bandwidthPrivate'
->;
-
-export const mapFlavorToTable = (flavor: TFlavorData): TFlavorDataForTable => ({
-  id: flavor.id,
-  unavailable: flavor.unavailable,
-  unavailableQuota: flavor.unavailableQuota,
-  name: flavor.name,
-  memory: flavor.memory,
-  vCore: flavor.vCore,
-  storage: flavor.storage,
-  mode: flavor.mode,
-  realMinimumHourlyPrice: flavor.realMinimumHourlyPrice,
-  realMinimumMonthlyPrice: flavor.realMinimumMonthlyPrice,
-  estimatedMinimumMonthlyPrice: flavor.estimatedMinimumMonthlyPrice,
-});
-
-export const mapGpuFlavorToTable = (
-  gpuFlavor: TGpuFlavorData,
-): TGpuFlavorDataForTable => ({
-  id: gpuFlavor.id,
-  unavailable: gpuFlavor.unavailable,
-  unavailableQuota: gpuFlavor.unavailableQuota,
-  name: gpuFlavor.name,
-  gpu: gpuFlavor.gpu,
-  numberOfGpu: gpuFlavor.numberOfGpu,
-  vRamTotal: gpuFlavor.vRamTotal,
-  mode: gpuFlavor.mode,
-  memory: gpuFlavor.memory,
-  vCore: gpuFlavor.vCore,
-  storage: gpuFlavor.storage,
-  hourlyPrice: gpuFlavor.hourlyPrice,
-  monthlyPrice: gpuFlavor.monthlyPrice,
-});
 
 type TSelectFlavorsArgs = {
   projectId: string;
@@ -143,152 +66,153 @@ export const getMinimumPrices = (pricings: TFlavorPrices[]) =>
     },
   );
 
-export type TSelectFlavors = (
-  args: TSelectFlavorsArgs,
-) => { flavors: TFlavorDataForTable[]; preselecteFlavordId: string | null };
-
-const addMicroRegionAvailableFlavor = (
-  acc: TFlavorDataForTable[],
-  entities: TInstancesCatalog['entities'],
-  regionalizedFlavor: TRegionalizedFlavor,
+type TFlavorEnricher<T extends TBaseFlavorDataForTable> = (
+  base: TBaseFlavorDataForTable,
   flavor: TFlavor,
+) => T;
+
+const enrichCpuFlavor: TFlavorEnricher<TFlavorDataForTable> = (base) => base;
+
+const enrichGpuFlavor: TFlavorEnricher<TGpuFlavorDataForTable> = (
+  base,
+  flavor,
+) => ({
+  ...base,
+  gpu: flavor.specifications.gpu?.model.unit,
+  numberOfGpu: flavor.specifications.gpu?.model.value,
+  vRamTotal: flavor.specifications.gpu?.memory.size.value,
+});
+
+type TProcessFlavorContext<T extends TBaseFlavorDataForTable> = {
+  entities: TInstancesCatalog['entities'];
+  microRegionId: string;
+  withUnavailable: boolean;
+  enrichFlavor: TFlavorEnricher<T>;
+};
+
+const processRegionalizedFlavors = <T extends TBaseFlavorDataForTable>(
+  acc: T[],
+  flavor: TFlavor,
+  flavorName: string,
+  context: TProcessFlavorContext<T>,
 ) => {
-  const { microRegions, macroRegions, flavorPrices } = entities;
+  const { entities, microRegionId, withUnavailable, enrichFlavor } = context;
 
-  const macroRegionId = microRegions.byId.get(regionalizedFlavor.regionId)
-    ?.macroRegionId;
-  if (!macroRegionId) return acc;
+  const regionalizedFlavors = flavor.regionalizedFlavorIds.flatMap(
+    (regionalizedFlavorId) =>
+      entities.regionalizedFlavors.byId.get(regionalizedFlavorId) ?? [],
+  );
 
-  const deploymentMode = macroRegions.byId.get(macroRegionId)?.deploymentMode;
-  if (!deploymentMode) return acc;
-
-  const pricings = regionalizedFlavor.osTypes.flatMap((osType) => {
-    const flavorPriceId = getRegionalizedFlavorOsTypePriceId(
-      flavor.name,
-      regionalizedFlavor.regionId,
-      osType,
+  regionalizedFlavors.forEach((regionalizedFlavor, index) => {
+    const regionalizedFlavorId = getRegionalizedFlavorId(
+      flavorName,
+      microRegionId,
     );
-    const pricing = flavorPrices.byId.get(flavorPriceId);
-    return pricing ? [pricing] : [];
+
+    const isFlavorInSelectedMicroRegion =
+      regionalizedFlavor.id === regionalizedFlavorId;
+
+    const isLastRegionalizedFlavorFromList =
+      index === regionalizedFlavors.length - 1;
+
+    const shouldAddUnavailableMicroRegionFlavor =
+      withUnavailable &&
+      isLastRegionalizedFlavorFromList &&
+      !isFlavorInSelectedMicroRegion;
+
+    if (isFlavorInSelectedMicroRegion) {
+      addFlavor(acc, {
+        entities,
+        regionalizedFlavor,
+        flavor,
+        enrichFlavor,
+      });
+    }
+
+    if (shouldAddUnavailableMicroRegionFlavor) {
+      addUnavailableFlavor(acc, flavor, enrichFlavor);
+    }
   });
-
-  const {
-    realMinimumHourlyPrice,
-    realMinimumMonthlyPrice,
-    estimatedMinimumMonthlyPrice,
-  } = getMinimumPrices(pricings);
-
-  acc.push({
-    id: regionalizedFlavor.id,
-    unavailable: !regionalizedFlavor.hasStock,
-    unavailableQuota: !regionalizedFlavor.quota,
-    name: flavor.name,
-    memory: flavor.specifications.ram.value,
-    vCore: flavor.specifications.cpu.value,
-    storage: flavor.specifications.storage.value,
-    mode: deploymentMode,
-    realMinimumHourlyPrice,
-    realMinimumMonthlyPrice,
-    estimatedMinimumMonthlyPrice,
-  });
-
-  return acc;
 };
 
-const addUnavailableMicroRegionFlavor = (
-  acc: TFlavorDataForTable[],
-  flavor: TFlavor,
-) => {
-  const isFlavorAlreadyPresent = acc.find((fl) => fl.name === flavor.name);
+const selectFlavorsInternal = <T extends TBaseFlavorDataForTable>(
+  args: TSelectFlavorsArgs,
+  data: TInstancesCatalog,
+  enrichFlavor: TFlavorEnricher<T>,
+): { flavors: T[]; preselectedFlavordId: string | null } => {
+  const { flavorType, microRegionId, withUnavailable } = args;
 
-  if (isFlavorAlreadyPresent) return acc;
+  if (!flavorType || !microRegionId) {
+    return { flavors: [], preselectedFlavordId: null };
+  }
 
-  acc.push({
-    id: flavor.name,
-    unavailable: true,
-    unavailableQuota: false,
-    name: flavor.name,
-    memory: flavor.specifications.ram.value,
-    vCore: flavor.specifications.cpu.value,
-    storage: flavor.specifications.storage.value,
-    mode: null,
-    realMinimumHourlyPrice: null,
-    realMinimumMonthlyPrice: null,
-    estimatedMinimumMonthlyPrice: null,
-  });
+  const flavorsNames = data.entities.flavorTypes.byId.get(flavorType)?.flavors;
+  if (!flavorsNames) {
+    return { flavors: [], preselectedFlavordId: null };
+  }
 
-  return acc;
+  const context: TProcessFlavorContext<T> = {
+    entities: data.entities,
+    microRegionId,
+    withUnavailable,
+    enrichFlavor,
+  };
+
+  const flavorsData = flavorsNames.reduce<T[]>((acc, flavorName) => {
+    const flavor = data.entities.flavors.byId.get(flavorName);
+    if (!flavor) return acc;
+
+    processRegionalizedFlavors(acc, flavor, flavorName, context);
+
+    return acc;
+  }, []);
+
+  const preselectedFirstAvailableFlavorId =
+    flavorsData.find(
+      (flavor) => !flavor.unavailable && !flavor.unavailableQuota,
+    )?.id ?? null;
+
+  return {
+    flavors: flavorsData,
+    preselectedFlavordId: preselectedFirstAvailableFlavorId,
+  };
 };
+
+type TSelectUnifiedFlavorsArgs = TSelectFlavorsArgs & {
+  flavorCategory: string | null;
+};
+
+type TSelectFlavorsResult = {
+  flavors: TBaseFlavorDataForTable[];
+  preselectedFlavordId: string | null;
+  isGpu: boolean;
+};
+
+export type TSelectFlavors = (
+  args: TSelectUnifiedFlavorsArgs,
+) => TSelectFlavorsResult;
 
 export const selectFlavors: Reader<Deps, TSelectFlavors> = (deps) => {
-  return ({ projectId, flavorType, microRegionId, withUnavailable }) => {
-    const emptyResult = {
-      flavors: [],
-      preselecteFlavordId: null,
-    };
-    if (!flavorType || !microRegionId) return emptyResult;
+  return (args) => {
+    const { flavorCategory, ...rest } = args;
+    const isGpu = flavorCategory === 'Cloud GPU';
 
     const { instancesCatalogPort } = deps;
-    const data = instancesCatalogPort.selectInstancesCatalog(projectId);
-    if (!data) return emptyResult;
+    const data = instancesCatalogPort.selectInstancesCatalog(args.projectId);
 
-    const flavorsNames = data.entities.flavorTypes.byId.get(flavorType)
-      ?.flavors;
-    if (!flavorsNames) return emptyResult;
+    if (!data) {
+      return { flavors: [], preselectedFlavordId: null, isGpu };
+    }
 
-    const flavorsData = flavorsNames.reduce<TFlavorDataForTable[]>(
-      (acc, flavorName) => {
-        const flavor = data.entities.flavors.byId.get(flavorName);
-        if (!flavor) return acc;
-
-        const regionalizedFlavors = flavor.regionalizedFlavorIds.flatMap(
-          (regionalizedFlavorId) =>
-            data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId) ??
-            [],
-        );
-
-        regionalizedFlavors.map((regionalizedFlavor, index) => {
-          const regionalizedFlavorId = getRegionalizedFlavorId(
-            flavorName,
-            microRegionId,
-          );
-
-          const isFlavorInSelectedMicroRegion =
-            regionalizedFlavor.id === regionalizedFlavorId;
-
-          const isLastRegionalizedFlavorFromList =
-            index === regionalizedFlavors.length - 1;
-
-          const shouldAddUnavailableMicroRegionFlavor =
-            withUnavailable &&
-            isLastRegionalizedFlavorFromList &&
-            !isFlavorInSelectedMicroRegion;
-
-          if (isFlavorInSelectedMicroRegion)
-            addMicroRegionAvailableFlavor(
-              acc,
-              data.entities,
-              regionalizedFlavor,
-              flavor,
-            );
-
-          if (shouldAddUnavailableMicroRegionFlavor)
-            addUnavailableMicroRegionFlavor(acc, flavor);
-        });
-
-        return acc;
-      },
-      [],
-    );
-
-    const preselectedFirstAvailableFlavorId =
-      flavorsData.find(
-        (flavor) => !flavor.unavailable && !flavor.unavailableQuota,
-      )?.id ?? null;
+    const enricher = isGpu ? enrichGpuFlavor : enrichCpuFlavor;
+    const result = selectFlavorsInternal(rest, data, enricher);
 
     return {
-      flavors: flavorsData,
-      preselecteFlavordId: preselectedFirstAvailableFlavorId,
+      flavors: isGpu
+        ? (result.flavors as TGpuFlavorDataForTable[])
+        : result.flavors,
+      preselectedFlavordId: result.preselectedFlavordId,
+      isGpu,
     };
   };
 };
@@ -410,4 +334,128 @@ export const selectAvailableFlavorMicroRegions: Reader<
 
     return availableRegions;
   };
+};
+
+export type TBaseFlavorDataForTable = {
+  id: string;
+  unavailable: boolean;
+  unavailableQuota: boolean;
+  name: string;
+  memory: number;
+  vCore: number;
+  storage: number;
+  mode: TDeploymentMode | null;
+  realMinimumHourlyPrice: number | null;
+  realMinimumMonthlyPrice: number | null;
+  estimatedMinimumMonthlyPrice: number | null;
+};
+
+export type TFlavorDataForTable = TBaseFlavorDataForTable;
+
+export type TGpuFlavorDataForTable = TBaseFlavorDataForTable & {
+  gpu?: string;
+  numberOfGpu?: number;
+  vRamTotal?: number;
+};
+
+const buildBaseFlavorForTable = (
+  entities: TInstancesCatalog['entities'],
+  regionalizedFlavor: TRegionalizedFlavor,
+  flavor: TFlavor,
+): TBaseFlavorDataForTable | null => {
+  const { microRegions, macroRegions } = entities;
+
+  const macroRegionId = microRegions.byId.get(regionalizedFlavor.regionId)
+    ?.macroRegionId;
+  if (!macroRegionId) return null;
+
+  const deploymentMode = macroRegions.byId.get(macroRegionId)?.deploymentMode;
+  if (!deploymentMode) return null;
+
+  return {
+    id: regionalizedFlavor.id,
+    unavailable: !regionalizedFlavor.hasStock,
+    unavailableQuota: !regionalizedFlavor.quota,
+    name: flavor.name,
+    memory: flavor.specifications.ram.value,
+    vCore: flavor.specifications.cpu.value,
+    storage: flavor.specifications.storage.value,
+    mode: deploymentMode,
+    realMinimumHourlyPrice: null,
+    realMinimumMonthlyPrice: null,
+    estimatedMinimumMonthlyPrice: null,
+  };
+};
+
+type TAddFlavorParams<T extends TBaseFlavorDataForTable> = {
+  entities: TInstancesCatalog['entities'];
+  regionalizedFlavor: TRegionalizedFlavor;
+  flavor: TFlavor;
+  enrichFlavor: TFlavorEnricher<T>;
+};
+
+const addFlavor = <T extends TBaseFlavorDataForTable>(
+  acc: T[],
+  params: TAddFlavorParams<T>,
+) => {
+  const { entities, regionalizedFlavor, flavor, enrichFlavor } = params;
+  const base = buildBaseFlavorForTable(entities, regionalizedFlavor, flavor);
+  if (!base) return acc;
+
+  const pricings = regionalizedFlavor.osTypes.flatMap((osType) => {
+    const flavorPriceId = getRegionalizedFlavorOsTypePriceId(
+      flavor.name,
+      regionalizedFlavor.regionId,
+      osType,
+    );
+    const pricing = entities.flavorPrices.byId.get(flavorPriceId);
+    return pricing ? [pricing] : [];
+  });
+
+  const {
+    realMinimumHourlyPrice,
+    realMinimumMonthlyPrice,
+    estimatedMinimumMonthlyPrice,
+  } = getMinimumPrices(pricings);
+
+  const enrichedBase = {
+    ...base,
+    realMinimumHourlyPrice,
+    realMinimumMonthlyPrice,
+    estimatedMinimumMonthlyPrice,
+  };
+
+  acc.push(enrichFlavor(enrichedBase, flavor));
+
+  return acc;
+};
+
+const buildUnavailableBaseFlavorForTable = (
+  flavor: TFlavor,
+): TBaseFlavorDataForTable => ({
+  id: flavor.name,
+  unavailable: true,
+  unavailableQuota: false,
+  name: flavor.name,
+  memory: flavor.specifications.ram.value,
+  vCore: flavor.specifications.cpu.value,
+  storage: flavor.specifications.storage.value,
+  mode: null,
+  realMinimumHourlyPrice: null,
+  realMinimumMonthlyPrice: null,
+  estimatedMinimumMonthlyPrice: null,
+});
+
+const addUnavailableFlavor = <T extends TBaseFlavorDataForTable>(
+  acc: T[],
+  flavor: TFlavor,
+  enrichFlavor: TFlavorEnricher<T>,
+) => {
+  const alreadyExists = acc.some((f) => f.name === flavor.name);
+  if (alreadyExists) return acc;
+
+  const base = buildUnavailableBaseFlavorForTable(flavor);
+  acc.push(enrichFlavor(base, flavor));
+
+  return acc;
 };

@@ -82,6 +82,16 @@ type TSpecDetails = {
   value: number;
 };
 
+export type TGpuMemory = {
+  interface: string;
+  size: TSpecDetails;
+};
+
+export type TGpu = {
+  memory: TGpuMemory;
+  model: TSpecDetails;
+};
+
 type TSpecifications = {
   cpu: TSpecDetails;
   ram: TSpecDetails;
@@ -90,6 +100,7 @@ type TSpecifications = {
     public: TSpecDetails;
     private: TSpecDetails;
   };
+  gpu?: TGpu;
 };
 
 export type TPriceDetails = {

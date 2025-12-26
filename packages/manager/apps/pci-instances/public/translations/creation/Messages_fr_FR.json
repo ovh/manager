@@ -37,6 +37,7 @@
   "pci_instance_creation_table_header_gpu": "GPU",
   "pci_instance_creation_table_header_number_of_gpu": "Nombre de GPU",
   "pci_instance_creation_table_header_vram_total": "vRAM totale",
+  "pci_instance_creation_table_header_vram_unit": "(Go)",
   "pci_instance_creation_table_header_memory": "Mémoire",
   "pci_instance_creation_table_header_memory_unit": "(Go)",
   "pci_instance_creation_table_header_vcore": "vCore",
