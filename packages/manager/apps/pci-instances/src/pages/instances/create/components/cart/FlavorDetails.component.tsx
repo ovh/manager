@@ -9,6 +9,7 @@ type TFlavorDetails = {
 };
 
 export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
+  console.log('🚀🚀🚀🚀 ~ FlavorDetails ~ flavor:', flavor);
   const { t } = useTranslation('creation');
 
   return (

@@ -132,6 +132,7 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
 
     if (price === null) return null;
 
+    console.log('🚀 ~ selectFlavorDetails ~ foundFlavor:', foundFlavor);
     // TODO: adapt to GPU
     return {
       id: flavorId,

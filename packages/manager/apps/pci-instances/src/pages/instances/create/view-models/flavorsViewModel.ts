@@ -147,6 +147,13 @@ export type TSelectFlavors = (
   args: TSelectFlavorsArgs,
 ) => { flavors: TFlavorDataForTable[]; preselecteFlavordId: string | null };
 
+export type TSelectGpuFlavors = (
+  args: TSelectFlavorsArgs,
+) => {
+  gpuFlavors: TGpuFlavorDataForTable[];
+  preselecteFlavordId: string | null;
+};
+
 const addMicroRegionAvailableFlavor = (
   acc: TFlavorDataForTable[],
   entities: TInstancesCatalog['entities'],
@@ -407,5 +414,82 @@ export const selectAvailableFlavorMicroRegions: Reader<
     );
 
     return availableRegions;
+  };
+};
+
+export const selectGpuFlavors: Reader<Deps, TSelectGpuFlavors> = (deps) => {
+  return ({ projectId, flavorType, microRegionId, withUnavailable }) => {
+    const emptyResult = {
+      gpuFlavors: [],
+      preselecteFlavordId: null,
+    };
+    if (!flavorType || !microRegionId) return emptyResult;
+
+    const { instancesCatalogPort } = deps;
+    const data = instancesCatalogPort.selectInstancesCatalog(projectId);
+    console.log('🚀🚀🚀 selectGpuFlavors ~ data:', data);
+    if (!data) return emptyResult;
+
+    const flavorsNames = data.entities.flavorTypes.byId.get(flavorType)
+      ?.flavors;
+    if (!flavorsNames) return emptyResult;
+
+    const flavorsData = flavorsNames.reduce<TGpuFlavorDataForTable[]>(
+      (acc, flavorName) => {
+        const flavor = data.entities.flavors.byId.get(flavorName);
+        if (!flavor) return acc;
+
+        const regionalizedFlavors = flavor.regionalizedFlavorIds.flatMap(
+          (regionalizedFlavorId) =>
+            data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId) ??
+            [],
+        );
+
+        regionalizedFlavors.map((regionalizedFlavor, index) => {
+          const regionalizedFlavorId = getRegionalizedFlavorId(
+            flavorName,
+            microRegionId,
+          );
+
+          const isFlavorInSelectedMicroRegion =
+            regionalizedFlavor.id === regionalizedFlavorId;
+
+          const isLastRegionalizedFlavorFromList =
+            index === regionalizedFlavors.length - 1;
+
+          const shouldAddUnavailableMicroRegionFlavor =
+            withUnavailable &&
+            isLastRegionalizedFlavorFromList &&
+            !isFlavorInSelectedMicroRegion;
+
+          if (isFlavorInSelectedMicroRegion)
+            addMicroRegionAvailableFlavor(
+              (acc as unknown) as TFlavorDataForTable[],
+              data.entities,
+              regionalizedFlavor,
+              flavor,
+            );
+
+          if (shouldAddUnavailableMicroRegionFlavor)
+            addUnavailableMicroRegionFlavor(
+              (acc as unknown) as TFlavorDataForTable[],
+              flavor,
+            );
+        });
+
+        return acc;
+      },
+      [],
+    );
+
+    const preselectedFirstAvailableFlavorId =
+      flavorsData.find(
+        (flavor) => !flavor.unavailable && !flavor.unavailableQuota,
+      )?.id ?? null;
+
+    return {
+      gpuFlavors: flavorsData,
+      preselecteFlavordId: preselectedFirstAvailableFlavorId,
+    };
   };
 };
