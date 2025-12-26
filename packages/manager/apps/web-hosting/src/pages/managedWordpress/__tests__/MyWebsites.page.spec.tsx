@@ -5,11 +5,11 @@ import { render } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { describe, expect, vi } from 'vitest';
 
-import { managedWordpressResourceMock } from '@/data/__mocks__/managedWordpress/ressource';
+import { managedWordpressWebsitesMock } from '@/data/__mocks__/managedWordpress/website';
 import ManagedWordpressTranslations from '@/public/translations/common/Messages_fr_FR.json';
 import { createWrapper, i18n } from '@/utils/test.provider';
 
-import ManagedWordpressPage from './ManagedWordpress.page';
+import MyWebsitesPage from '../ManagedWordpressResource/myWebsites/MyWebsites.page';
 
 const testQueryClient = new QueryClient({
   defaultOptions: {
@@ -23,11 +23,27 @@ const testQueryClient = new QueryClient({
 });
 
 vi.mock(
-  '@/data/hooks/managedWordpress/managedWordpressResource/useManagedWordpressResource',
+  '@/data/hooks/managedWordpress/managedWordpressWebsites/useManagedWordpressWebsites',
   () => ({
-    useManagedWordpressResource: vi.fn(() => ({
-      data: managedWordpressResourceMock,
+    useManagedWordpressWebsites: vi.fn(() => ({
+      data: managedWordpressWebsitesMock,
+      fetchNextPage: vi.fn(),
+      hasNextPage: false,
+      isFetchingNextPage: false,
+      fetchAllPages: vi.fn(),
       isLoading: false,
+      isFetching: false,
+      refetch: vi.fn(),
+    })),
+  }),
+);
+
+vi.mock(
+  '@/data/hooks/managedWordpress/managedWordpressResourceDetails/useManagedWordpressResourceDetails',
+  () => ({
+    useManagedWordpressResourceDetails: vi.fn(() => ({
+      data: null,
+      refetch: vi.fn(),
     })),
   }),
 );
@@ -46,13 +62,11 @@ const Wrappers = ({ children }: { children: React.ReactElement }) => {
 
 describe('ManagedWordpressPage Page', () => {
   it('should render page with content', () => {
-    const { getByTestId } = render(<ManagedWordpressPage />, {
-      wrapper: Wrappers as ComponentType,
-    });
-    const sortedRows = getByTestId('header-id');
+    const { getByTestId } = render(<MyWebsitesPage />, { wrapper: Wrappers as ComponentType });
+    const sortedRows = getByTestId('header-defaultFQDN');
 
     expect(sortedRows).toHaveTextContent(
-      ManagedWordpressTranslations.web_hosting_status_header_resource,
+      ManagedWordpressTranslations.web_hosting_status_header_fqdn,
     );
   });
 });

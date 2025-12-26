@@ -1,13 +1,15 @@
 import React, { ComponentType } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { renderHook } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
-import { describe, it } from 'vitest';
+import { describe, expect } from 'vitest';
 
+import { websitesMocks } from '@/data/__mocks__';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { createWrapper, i18n } from '@/utils/test.provider';
 
-import useDatagridColumn from './useDatagridColumn';
+import ActionButtonStatistics from '../ActionButtonStatistics.component';
 
 const testQueryClient = new QueryClient({
   defaultOptions: {
@@ -32,18 +34,17 @@ const Wrappers = ({ children }: { children: React.ReactElement }) => {
   );
 };
 
-describe('useDatagridColumn', () => {
-  it('should return correct columns', () => {
-    const { result } = renderHook(() => useDatagridColumn(), {
+describe('ActionButtonStatistics component', () => {
+  it('should render', () => {
+    const { getByTestId } = render(<ActionButtonStatistics webSiteItem={websitesMocks[0]} />, {
       wrapper: Wrappers as ComponentType,
     });
 
-    const columns = result.current;
+    const actionMenu = getByTestId('action-menu');
+    expect(actionMenu).toBeInTheDocument();
 
-    expect(columns).toHaveLength(5);
-    expect(columns[0].id).toBe('name');
-    expect(columns[1].id).toBe('address');
-    expect(columns[2].id).toBe('email');
-    expect(columns[3].id).toBe('status');
+    const menuItem = getByTestId('action-item-1');
+    expect(menuItem).toBeInTheDocument();
+    expect(menuItem).toHaveTextContent(commonTranslation.web_hosting_dashboard_action_statistics);
   });
 });

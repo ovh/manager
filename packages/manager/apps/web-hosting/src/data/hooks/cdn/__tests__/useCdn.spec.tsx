@@ -2,50 +2,113 @@ import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { attachedDomainDigStatusMock } from '@/data/__mocks__';
-import { cdnOptionMock, cdnPropertiesMock, serviceNameCdnMock } from '@/data/__mocks__/cdn';
+import { CdnOption, CdnOptionType, PatternType, TCdnOptions } from '@/data/types/product/cdn';
 import { wrapper } from '@/utils/test.provider';
 
-import { useGetCDNProperties, useGetCdnOption, useGetServiceNameCdn } from '../useCdn';
+import {
+  useCreateCdnOption,
+  useDeleteCdnOption,
+  useUpdateCdnOption,
+  useUpdateCdnOptions,
+} from '../useCdn';
 
-vi.mock('@ovh-ux/manager-core-api', () => ({
-  v6: {
-    get: vi.fn().mockResolvedValue({ data: attachedDomainDigStatusMock }),
+const mockCdnOption: CdnOption = {
+  config: {
+    patternType: PatternType.EXTENSION,
+    priority: 1,
+    ttl: 3600,
   },
-}));
+  enabled: true,
+  pattern: '/test/*',
+  type: CdnOptionType.BROTLI,
+};
 
-describe('useGetCDNProperties', () => {
+const mockCdnOptions: TCdnOptions = {
+  cdnOptions: [mockCdnOption],
+};
+
+describe('useCreateCdnOption', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should return webhosting cdn properties', async () => {
-    const { result } = renderHook(() => useGetCDNProperties('testServiceName'), { wrapper });
+  it('should create a CDN option and invalidate queries on success', async () => {
+    const onSuccess = vi.fn();
+    const { result } = renderHook(() => useCreateCdnOption('serviceName', 'domain', onSuccess), {
+      wrapper,
+    });
+
+    await result.current.createCdnOptionAsync({
+      option: 'testOption',
+      cdnOption: mockCdnOption,
+    });
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
     });
-
-    expect(result.current.data).toEqual(cdnPropertiesMock);
+    expect(onSuccess).toHaveBeenCalled();
   });
 });
 
-it('useGetServiceNameCdn: should return webhosting cdn', async () => {
-  const { result } = renderHook(() => useGetServiceNameCdn('serviceName'), {
-    wrapper,
+describe('useUpdateCdnOption', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
   });
-  await waitFor(() => {
-    expect(result.current.isSuccess).toBe(true);
+
+  it('should update a CDN option and invalidate queries on success', async () => {
+    const onSuccess = vi.fn();
+    const { result } = renderHook(() => useUpdateCdnOption('serviceName', 'domain', onSuccess), {
+      wrapper,
+    });
+
+    await result.current.updateCdnOptionAsync({
+      option: 'testOption',
+      cdnOption: mockCdnOption,
+    });
+
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(onSuccess).toHaveBeenCalled();
   });
-  expect(result.current.data).toEqual(serviceNameCdnMock);
 });
 
-it('useGetCdnOption: should return webhosting cdn options', async () => {
-  const { result } = renderHook(() => useGetCdnOption('serviceName', 'domain'), {
-    wrapper,
+describe('useUpdateCdnOptions', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
   });
-  await waitFor(() => {
-    expect(result.current.isSuccess).toBe(true);
+
+  it('should update CDN options and invalidate queries on success', async () => {
+    const onSuccess = vi.fn();
+    const { result } = renderHook(() => useUpdateCdnOptions('serviceName', 'domain', onSuccess), {
+      wrapper,
+    });
+
+    await result.current.updateCdnOptionsAsync(mockCdnOptions);
+
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(onSuccess).toHaveBeenCalled();
   });
-  expect(result.current.data).toEqual(cdnOptionMock);
+});
+
+describe('useDeleteCdnOption', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should delete a CDN option and invalidate queries on success', async () => {
+    const onSuccess = vi.fn();
+    const { result } = renderHook(() => useDeleteCdnOption('serviceName', 'domain', onSuccess), {
+      wrapper,
+    });
+
+    result.current.deleteCdnOption('testOption');
+
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(onSuccess).toHaveBeenCalled();
+  });
 });
