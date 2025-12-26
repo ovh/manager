@@ -53,7 +53,7 @@ export const HelpDrawer = ({ children, onOpenChange }: HelperDrawerProps) => {
           position={DRAWER_POSITION.right}
           className="flex h-[unset] w-[450px] max-w-[90vw] flex-col justify-between p-6"
         >
-          <DrawerBody className="flex h-full flex-col pb-3">
+          <DrawerBody className="flex flex-col pb-3">
             <Button
               aria-label={t('close')}
               variant="ghost"
