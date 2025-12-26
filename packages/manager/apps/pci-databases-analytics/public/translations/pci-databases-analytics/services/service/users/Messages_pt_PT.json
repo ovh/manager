@@ -88,5 +88,7 @@
   "userCancelButton": "Anular",
   "userConfirmButton": "Confirmar",
   "userCloseButton": "Fechar",
-  "userSuccessTitle": "Sucesso"
+  "userSuccessTitle": "Sucesso",
+  "addUserMySQLInfo": "Por padrão, um novo utilizador MySQL pode conectar-se ao servidor de base de dados, mas tem apenas privilégios muito limitados. As suas permissões devem ser explicitamente concedidas conforme necessário através da CLI (por exemplo, com os comandos GRANT), respeitando a sintaxe definida na <anchor>documentação oficial do MySQL</anchor>.",
+  "addUserPGInfo": "Por padrão, um novo utilizador pode conectar-se à base de dados e herda todos os privilégios concedidos ao PUBLIC ou aos papéis dos quais é membro. As suas permissões são geralmente limitadas e devem ser explicitamente concedidas conforme necessário através da CLI, seguindo a sintaxe da <anchor>documentação oficial do PostgreSQL</anchor>."
 }

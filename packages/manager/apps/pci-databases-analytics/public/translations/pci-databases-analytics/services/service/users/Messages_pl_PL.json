@@ -88,5 +88,7 @@
   "userCancelButton": "Anuluj",
   "userConfirmButton": "Zatwierdź",
   "userCloseButton": "Zamknij",
-  "userSuccessTitle": "Sukces"
+  "userSuccessTitle": "Sukces",
+  "addUserMySQLInfo": "Domyślnie nowy użytkownik MySQL może połączyć się z serwerem bazy danych, ale ma tylko bardzo ograniczone uprawnienia. Jego uprawnienia muszą być wyraźnie przyznawane w razie potrzeby za pośrednictwem CLI (na przykład za pomocą poleceń GRANT), zgodnie z składnią określoną w <anchor>oficjalnej dokumentacji MySQL</anchor>.",
+  "addUserPGInfo": "Domyślnie nowy użytkownik może połączyć się z bazą danych i dziedziczy wszystkie uprawnienia przyznane PUBLIC lub rolom, których jest członkiem. Jego uprawnienia są zazwyczaj ograniczone i muszą być wyraźnie przyznawane w razie potrzeby za pośrednictwem CLI, zgodnie z składnią <anchor>oficjalnej dokumentacji PostgreSQL</anchor>."
 }
