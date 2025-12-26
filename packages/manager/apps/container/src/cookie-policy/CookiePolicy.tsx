@@ -21,6 +21,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useApplication } from '@/context';
 import links from './links';
 import ovhCloudLogo from '../assets/images/logo-ovhcloud.png';
+import { WEBSITE_PRIVACY_COOKIE_NAME, WEBSITE_TRACKING_CONSENT_VALUE } from './CookiePolicy.constants';
 
 type Props = {
   shell: Shell;
@@ -40,7 +41,7 @@ const ModalContent = ({ label }: { label: string }) => (
 
 const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   const { t } = useTranslation('consent-policy');
-  const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
+  const [cookies, setCookies] = useCookies([WEBSITE_PRIVACY_COOKIE_NAME]);
   const { environment } = useApplication();
   const [show, setShow] = useState(false);
   const { ovhSubsidiary } = shell.getPlugin('environment').getEnvironment().user as User;
@@ -60,7 +61,12 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   ];
 
   const validate = (agreed: boolean) => {
-    setCookies('MANAGER_TRACKING', agreed ? 1 : 0);
+    const expirationDate = new Date();
+    expirationDate.setMonth(expirationDate.getMonth() + 13);
+    setCookies(WEBSITE_PRIVACY_COOKIE_NAME, agreed ? WEBSITE_TRACKING_CONSENT_VALUE : null, {
+      path: '/',
+      expires: expirationDate,
+    });
     trackingPlugin.onUserConsentFromModal(agreed);
     setShow(false);
     onValidate();
@@ -69,16 +75,18 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   useEffect(() => {
     const isRegionUS = environment.getRegion() === 'US';
     trackingPlugin.setRegion(environment.getRegion());
+    const hasConsent = cookies[WEBSITE_PRIVACY_COOKIE_NAME]?.includes(WEBSITE_TRACKING_CONSENT_VALUE) ?? false;
+
     // activate tracking if region is US or if tracking consent cookie is valid
-    if (isRegionUS || cookies.MANAGER_TRACKING === '1') {
+    if (isRegionUS || hasConsent) {
       trackingPlugin.init(true);
-    } else if (cookies.MANAGER_TRACKING == null) {
+    } else if (cookies[WEBSITE_PRIVACY_COOKIE_NAME] == null) {
       trackingPlugin.onConsentModalDisplay();
       setShow(true);
     } else {
       trackingPlugin.setEnabled(false);
     }
-    onValidate(isRegionUS || cookies.MANAGER_TRACKING);
+    onValidate(isRegionUS || hasConsent);
   }, [show]);
 
   return (
