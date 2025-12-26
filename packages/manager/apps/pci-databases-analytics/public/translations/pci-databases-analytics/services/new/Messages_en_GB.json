@@ -100,5 +100,6 @@
   "summaryFieldSourceType-now": "Newest",
   "summaryFieldSourceType-pit": "Specific date",
   "summaryFieldSourceType-backup": "Backup",
-  "summaryFieldSourceBackupNone": "None"
+  "summaryFieldSourceBackupNone": "None",
+  "pciDatabasesAddCommandDialogAPICta": "Click <anchor>here</anchor> to access the OVHCloud API console."
 }
