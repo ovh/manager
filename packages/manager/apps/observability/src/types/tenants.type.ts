@@ -21,7 +21,7 @@ export type TenantInfrastructure = InfrastructureSettings & TIdentifier;
 
 export type TenantState = {
   title: string;
-  description?: string;
+  description: string;
   limits?: TMetricLimits;
   endpoint?: string;
   infrastructure?: TenantInfrastructure;
@@ -35,7 +35,7 @@ export type Tenant = {
 
 export type TenantFormData = {
   title: string;
-  description?: string;
+  description: string;
   infrastructureId: string;
   retentionDuration: string;
   retentionUnit: string;

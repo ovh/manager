@@ -1,10 +1,18 @@
-import React, { RefObject, forwardRef } from 'react';
+import React, { RefObject, forwardRef, useState } from 'react';
 
-import { FormField, FormFieldHelper, FormFieldLabel, Input, Textarea } from '@ovhcloud/ods-react';
-
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
+  Input,
+  TEXT_PRESET,
+  Text,
+  Textarea,
+} from '@ovhcloud/ods-react';
 
 import { TextFieldProps } from '@/components/form/text-field/TextField.props';
+import { DESCRIPTION_MAX_CHARS } from '@/utils/schemas/description.schema';
 
 type TextFieldRefElement = HTMLInputElement | HTMLTextAreaElement;
 
@@ -24,20 +32,26 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
       onChange,
       onBlur,
       error,
+      helper,
     },
     ref,
   ) => {
+    const [count, setCount] = useState(0);
     const handleValueChange = (event: React.ChangeEvent<TextFieldRefElement>) => {
       const newValue = event.target.value;
       onChange?.(newValue);
     };
+    const onInput = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
+      setCount(event.target.value.length);
+
+    const isTextarea = type === 'textarea';
 
     return (
-      <FormField className={className}>
+      <FormField className={className} invalid={!!error}>
         <FormFieldLabel htmlFor={name || id}>
           <Text preset={TEXT_PRESET.paragraph}>{label}</Text>
         </FormFieldLabel>
-        {type === 'textarea' ? (
+        {isTextarea ? (
           <Textarea
             ref={ref as RefObject<HTMLTextAreaElement>}
             id={id}
@@ -50,6 +64,7 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
             onBlur={onBlur}
             invalid={!!error}
             disabled={isDisabled}
+            onInput={onInput}
           />
         ) : (
           <Input
@@ -66,11 +81,19 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
             disabled={isDisabled}
           />
         )}
-        {error && (
-          <FormFieldHelper>
-            <Text preset={TEXT_PRESET.caption}>{error}</Text>
-          </FormFieldHelper>
-        )}
+        <FormFieldHelper className="flex justify-between">
+          <Text preset={TEXT_PRESET.caption}>{helper}</Text>
+          {isTextarea && (
+            <Text preset={TEXT_PRESET.caption}>
+              {count}/{DESCRIPTION_MAX_CHARS}
+            </Text>
+          )}
+        </FormFieldHelper>
+        <FormFieldError>
+          <Text preset={TEXT_PRESET.label} className="text-[--ods-color-error-500]">
+            {error}
+          </Text>
+        </FormFieldError>
       </FormField>
     );
   },
