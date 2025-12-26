@@ -29,7 +29,7 @@
   "server_network_ola_terminate": "Résilier OLA",
   "server_network_ola_mode_vrack_aggregation": "Agrégation privée",
   "server_network_ola_mode_default": "Défaut",
-  "server_network_ola_mode_full_lag": "Actif - Total LAG",
+  "server_network_ola_mode_full_lag": "Actif - Full private",
   "server_network_ola_mode_double_lag": "Actif - Double LAG",
   "server_network_ola_mode_available": "Disponible",
   "server_network_ola_mode_unavailable": "Indisponible",
