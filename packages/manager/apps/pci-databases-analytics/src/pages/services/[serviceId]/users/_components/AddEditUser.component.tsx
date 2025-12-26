@@ -157,16 +157,17 @@ const AddEditUserModal = ({
                     components={{
                       anchor: (
                         <A
-                          target="_blank noopener noreferrer"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           href={
                             service.engine === EngineEnum.mysql
                               ? LINKS.MySQL_OFFICIAL_DOCUMENTATION
                               : LINKS.PG_OFFICIAL_DOCUMENTATION
                           }
-                        ></A>
+                        />
                       ),
                     }}
-                  ></Trans>
+                  />
                 </span>
               )}
             </>
