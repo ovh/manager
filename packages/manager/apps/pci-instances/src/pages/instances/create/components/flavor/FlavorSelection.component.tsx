@@ -15,8 +15,8 @@ import { GpuFlavorRowsBuilder } from '@/pages/instances/create/components/flavor
 import { useFlavorCommon } from '@/pages/instances/create/components/flavor/FlavorRowUtils';
 import {
   selectAvailableFlavorMicroRegions,
+  selectGpuFlavors,
   TCustomRegionItemData,
-  TGpuFlavorDataForTable,
 } from '@/pages/instances/create/view-models/flavorsViewModel';
 import {
   ButtonType,
@@ -86,10 +86,20 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     [flavorType, microRegion, projectId, withUnavailable],
   );
 
+  const { gpuFlavors } = useMemo(
+    () =>
+      selectGpuFlavors(deps)({
+        projectId,
+        flavorType,
+        microRegionId: microRegion,
+        withUnavailable,
+      }),
+    [flavorType, microRegion, projectId, withUnavailable],
+  );
+
   const { columns, rows } = useMemo(() => {
     if (flavorCategory === 'Cloud GPU') {
-      // TODO: will be changed in future PR
-      const gpuFlavors = (flavors as unknown) as TGpuFlavorDataForTable[];
+      console.log('🚀 ~ FlavorSelection ~ gpuFlavors:', gpuFlavors);
       return {
         columns: GpuFlavorColumnsBuilder(t),
         rows: GpuFlavorRowsBuilder(
@@ -117,6 +127,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     renderMonthlyPrice,
     t,
     withUnavailable,
+    gpuFlavors,
   ]);
 
   const availableRegions = useMemo(

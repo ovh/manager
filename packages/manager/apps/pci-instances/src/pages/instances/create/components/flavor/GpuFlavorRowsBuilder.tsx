@@ -13,6 +13,7 @@ export function GpuFlavorRowsBuilder(
   { renderName, renderRadio }: FlavorRenderers,
   withUnavailable: boolean,
 ): TableRow[] {
+  console.log('🚀 ~ GpuFlavorRowsBuilder ~ flavor:', flavors);
   return flavors
     .filter(
       ({ unavailable, unavailableQuota }) =>
