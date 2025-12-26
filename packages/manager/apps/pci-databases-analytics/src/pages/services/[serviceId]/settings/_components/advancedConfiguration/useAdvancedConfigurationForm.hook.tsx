@@ -169,7 +169,12 @@ export const useAdvancedConfigurationForm = ({
     const p: Record<string, string> = {};
     if (!formValues) return p;
     Object.keys(formValues).forEach((key) => {
-      p[key.replaceAll('::', '.')] = `${formValues[key]}`;
+      /* 
+      Following line is to replace ':' back to '.' to match the actual property name
+      replaceAll('::', '.') did not fit advanced configuration property names anymore (originally changed to fix DATATR-2580)
+      This change fixes DATATR-2832
+      */
+      p[key.replace(':', '.')] = `${formValues[key]}`;
     });
     return p;
   }, [formValues]);
