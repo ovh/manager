@@ -36,9 +36,9 @@ export default class SvaWalletService {
       );
   }
 
-  getWalletOnboarding() {
+  getWalletOnboarding(redirectUrl) {
     return this.$http
-      .get('/me/sva/onboarding')
+      .get('/me/sva/onboarding', { params: { redirect_url: redirectUrl } })
       .then(({ data }) => data)
       .catch(() => false);
   }
