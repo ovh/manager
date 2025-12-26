@@ -118,18 +118,9 @@ export function useOrderFunnel(
   const networksData = useVrack(projectId, region, network.networkId);
 
   const [price, setPrice] = useState<ServicePricing>({
-    flavorPrice: {
-      hourly: { price: 0, tax: 0 },
-      monthly: { price: 0, tax: 0 },
-    },
-    servicePrice: {
-      hourly: { price: 0, tax: 0 },
-      monthly: { price: 0, tax: 0 },
-    },
-    storagePrice: {
-      hourly: { price: 0, tax: 0 },
-      monthly: { price: 0, tax: 0 },
-    },
+    flavorPrice: { price: 0, tax: 0 },
+    servicePrice: { price: 0, tax: 0 },
+    storagePrice: { price: 0, tax: 0 },
   });
 
   // Create the list of available engines

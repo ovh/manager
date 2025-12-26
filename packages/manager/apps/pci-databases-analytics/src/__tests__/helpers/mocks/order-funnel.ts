@@ -10,46 +10,24 @@ export const mockedBasicOrderFunnelFlavor: Flavor = {
   ram: { unit: 'GB', value: 40 },
   tags: [database.capabilities.TagEnum.current],
   pricing: {
-    hourly: {
-      capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
-      commitment: 1,
-      description: 'description',
-      interval: 2,
-      intervalUnit: order.cart.DurationUnitEnum.day,
-      mode: 'mode',
-      mustBeCompleted: true,
-      phase: 14,
-      price: 1,
-      quantity: {
-        min: 1,
-      },
-      repeat: {
-        min: 1,
-      },
-      strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
-      tax: 1,
-      type: order.cart.GenericProductPricingTypeEnum.consumption,
+    capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
+    commitment: 1,
+    description: 'description',
+    interval: 2,
+    intervalUnit: order.cart.DurationUnitEnum.day,
+    mode: 'mode',
+    mustBeCompleted: true,
+    phase: 14,
+    price: 1,
+    quantity: {
+      min: 1,
     },
-    monthly: {
-      capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
-      commitment: 1,
-      description: 'description',
-      interval: 2,
-      intervalUnit: order.cart.DurationUnitEnum.day,
-      mode: 'mode',
-      mustBeCompleted: true,
-      phase: 14,
-      price: 30,
-      quantity: {
-        min: 3,
-      },
-      repeat: {
-        min: 10,
-      },
-      strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
-      tax: 1,
-      type: order.cart.GenericProductPricingTypeEnum.consumption,
+    repeat: {
+      min: 1,
     },
+    strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
+    tax: 1,
+    type: order.cart.GenericProductPricingTypeEnum.consumption,
   },
 };
 export const mockedBasicOrderFunnelPlan: Plan = {
@@ -85,46 +63,24 @@ export const mockedOrderFunnelRegionBis: Region = {
 };
 
 export const mockedPricing = {
-  hourly: {
-    capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
-    commitment: 1,
-    description: 'description',
-    interval: 2,
-    intervalUnit: order.cart.DurationUnitEnum.day,
-    mode: 'mode',
-    mustBeCompleted: true,
-    phase: 14,
-    price: 1,
-    quantity: {
-      min: 1,
-    },
-    repeat: {
-      min: 1,
-    },
-    strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
-    tax: 1,
-    type: order.cart.GenericProductPricingTypeEnum.consumption,
+  capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
+  commitment: 1,
+  description: 'description',
+  interval: 2,
+  intervalUnit: order.cart.DurationUnitEnum.day,
+  mode: 'mode',
+  mustBeCompleted: true,
+  phase: 14,
+  price: 1,
+  quantity: {
+    min: 1,
   },
-  monthly: {
-    capacities: [order.cart.GenericProductPricingCapacitiesEnum.consumption],
-    commitment: 1,
-    description: 'description',
-    interval: 2,
-    intervalUnit: order.cart.DurationUnitEnum.day,
-    mode: 'mode',
-    mustBeCompleted: true,
-    phase: 14,
-    price: 30,
-    quantity: {
-      min: 3,
-    },
-    repeat: {
-      min: 10,
-    },
-    strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
-    tax: 1,
-    type: order.cart.GenericProductPricingTypeEnum.consumption,
+  repeat: {
+    min: 1,
   },
+  strategy: order.cart.GenericProductPricingStrategyEnum.stairstep,
+  tax: 1,
+  type: order.cart.GenericProductPricingTypeEnum.consumption,
 };
 
 export const mockedEngineVersion: Version = {
