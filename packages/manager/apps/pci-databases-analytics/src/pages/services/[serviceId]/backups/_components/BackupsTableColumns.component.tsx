@@ -11,15 +11,15 @@ import {
 } from '@datatr-ux/uxlib';
 import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import { BackupWithExpiricyDate } from '../Backups.page';
 import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
+import { BackupWithExpiryDate } from '../Backups.page';
 
 interface BackupsTableColumnsProps {
-  onForkClick: (backup: BackupWithExpiricyDate) => void;
-  onRestoreClick: (backup: BackupWithExpiricyDate) => void;
+  onForkClick: (backup: BackupWithExpiryDate) => void;
+  onRestoreClick: (backup: BackupWithExpiryDate) => void;
 }
 export const getColumns = ({
   onForkClick,
@@ -30,7 +30,7 @@ export const getColumns = ({
   );
   const { service } = useServiceData();
   const { t: tRegions } = useTranslation('regions');
-  const nameColumn: ColumnDef<BackupWithExpiricyDate> = {
+  const nameColumn: ColumnDef<BackupWithExpiryDate> = {
     id: 'name',
     header: ({ column }) => (
       <DataTable.SortableHeader column={column}>
@@ -39,13 +39,13 @@ export const getColumns = ({
     ),
     accessorFn: (row) => row.description,
   };
-  const locationColumn: ColumnDef<BackupWithExpiricyDate> = {
+  const locationColumn: ColumnDef<BackupWithExpiryDate> = {
     id: 'location',
     header: t('tableHeadLocation'),
     accessorFn: (row) =>
       row.regions.map((r) => tRegions(`region_${r.name}`)).join(', '),
   };
-  const creationDateColumn: ColumnDef<BackupWithExpiricyDate> = {
+  const creationDateColumn: ColumnDef<BackupWithExpiryDate> = {
     id: 'Creation date',
     accessorFn: (row) => row.createdAt,
     header: ({ column }) => (
@@ -63,9 +63,9 @@ export const getColumns = ({
       />
     ),
   };
-  const expiryDateColumn: ColumnDef<BackupWithExpiricyDate> = {
+  const expiryDateColumn: ColumnDef<BackupWithExpiryDate> = {
     id: 'Expiry date',
-    accessorFn: (row) => row.expiricyDate,
+    accessorFn: (row) => row.expiryDate,
     header: ({ column }) => (
       <DataTable.SortableHeader column={column}>
         {t('tableHeadNExpiryDate')}
@@ -74,7 +74,7 @@ export const getColumns = ({
     cell: ({ row }) => {
       return (
         <FormattedDate
-          date={row.original.expiricyDate}
+          date={row.original.expiryDate}
           options={{
             dateStyle: 'medium',
             timeStyle: 'medium',
@@ -83,7 +83,7 @@ export const getColumns = ({
       );
     },
   };
-  const statusColumn: ColumnDef<BackupWithExpiricyDate> = {
+  const statusColumn: ColumnDef<BackupWithExpiryDate> = {
     id: 'Status',
     accessorFn: (row) => row.status,
     header: ({ column }) => (
@@ -95,7 +95,7 @@ export const getColumns = ({
       return <UserStatusBadge status={row.original.status} />;
     },
   };
-  const actionsColumn: ColumnDef<BackupWithExpiricyDate> = {
+  const actionsColumn: ColumnDef<BackupWithExpiryDate> = {
     id: MENU_COLUMN_ID,
     cell: ({ row }) => {
       return (

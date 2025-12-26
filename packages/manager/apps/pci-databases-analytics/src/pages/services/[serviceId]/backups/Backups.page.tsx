@@ -3,7 +3,6 @@ import { add } from 'date-fns';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { CopyPlus, DatabaseBackup, Pen } from 'lucide-react';
 import { Button } from '@datatr-ux/uxlib';
-import Link from '@/components/links/Link.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
 import { getColumns } from './_components/BackupsTableColumns.component';
@@ -14,9 +13,10 @@ import { GuideSections } from '@/types/guide';
 import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
 import DataTable from '@/components/data-table';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
+import NavLink from '@/components/links/NavLink.component';
 
-export interface BackupWithExpiricyDate extends database.Backup {
-  expiricyDate: Date;
+export interface BackupWithExpiryDate extends database.Backup {
+  expiryDate: Date;
 }
 const Backups = () => {
   const { t } = useTranslation(
@@ -62,25 +62,31 @@ const Backups = () => {
             </td>
           </tr>
           {/* Ligne BackupTime */}
-          <tr className="border-b border-gray-200">
-            <td className="font-semibold px-4 py-2">
-              {t('detailsBackupTime')}
-            </td>
-            <td className="px-4 py-2">
-              <div className="flex flex-row gap-4 items-center">
-                <span>{service.backups?.time}</span>
-                <Button
-                  type="button"
-                  mode="ghost"
-                  className="rounded-full aspect-square h-6 w-6"
-                >
-                  <Link to="./../settings">
-                    <Pen className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
-            </td>
-          </tr>
+          {service.capabilities.backupTime?.read && (
+            <tr className="border-b border-gray-200">
+              <td className="font-semibold px-4 py-2">
+                {t('detailsBackupTime')}
+              </td>
+              <td className="px-4 py-2">
+                <div className="flex flex-row gap-4 items-center">
+                  <span>{service.backups?.time}</span>
+                  {service.capabilities.backupTime?.update && (
+                    <NavLink
+                      className="rounded-full aspect-square h-6 w-6 pt-1"
+                      to="./../settings"
+                      disabled={isCapabilityDisabled(
+                        service,
+                        'backupTime',
+                        'update',
+                      )}
+                    >
+                      <Pen className="w-4 h-4" />
+                    </NavLink>
+                  )}
+                </div>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
 
@@ -89,7 +95,7 @@ const Backups = () => {
           columns={columns}
           data={backupsQuery.data.map((backup) => ({
             ...backup,
-            expiricyDate: add(new Date(backup.createdAt), {
+            expiryDate: add(new Date(backup.createdAt), {
               days: service.backups.retentionDays,
             }),
           }))}
