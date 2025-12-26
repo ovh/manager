@@ -32,5 +32,8 @@
   "server_network_game_protection": "Game anti-DDoS Protection",
   "server_network_game_protection_no_ip": "Pas d'ip associée",
   "server_network_game_protection_numbers": "{{ total }} addresse(s) IP associée(s) à ce serveur",
-  "server_network_game_protection_button_configure": "Configurer Game Protection"
+  "server_network_game_protection_button_configure": "Configurer Game Protection",
+  "server_network_game_protection_no_ip_configured": "Addresses IP non configurées",
+  "server_network_game_protection_some_ips_configured": "Quelques addresses IP configurées",
+  "server_network_game_protection_all_ips_configured": "Toutes les addresses IP sont configurées"
 }
