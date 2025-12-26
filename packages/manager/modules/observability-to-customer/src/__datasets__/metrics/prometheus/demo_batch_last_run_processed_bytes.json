@@ -1,0 +1,104 @@
+[
+  {
+    "timestamp": 1755875654819,
+    "value1": 0,
+    "value2": 1,
+    "value3": 0
+  },
+  {
+    "timestamp": 1755875714819,
+    "value1": 0,
+    "value2": 2,
+    "value3": 1
+  },
+  {
+    "timestamp": 1755875774819,
+    "value1": 2,
+    "value2": 2,
+    "value3": 3
+  },
+  {
+    "timestamp": 1755875834819,
+    "value1": 0,
+    "value2": 4,
+    "value3": 2
+  },
+  {
+    "timestamp": 1755875894819,
+    "value1": 0,
+    "value2": 1,
+    "value3": 1
+  },
+  {
+    "timestamp": 1755875954819,
+    "value1": 1,
+    "value2": 0,
+    "value3": 2
+  },
+  {
+    "timestamp": 1755876014819,
+    "value1": 0,
+    "value2": 1,
+    "value3": 0
+  },
+  {
+    "timestamp": 1755876074819,
+    "value1": 0,
+    "value2": 2,
+    "value3": 1
+  },
+  {
+    "timestamp": 1755876134819,
+    "value1": 0,
+    "value2": 2,
+    "value3": 3
+  },
+  {
+    "timestamp": 1755876194819,
+    "value1": 0,
+    "value2": 1,
+    "value3": 2
+  },
+  {
+    "timestamp": 1755876254819,
+    "value1": 2,
+    "value2": 4,
+    "value3": 5
+  },
+  {
+    "timestamp": 1755876314819,
+    "value1": 2,
+    "value2": 1,
+    "value3": 3
+  },
+  {
+    "timestamp": 1755876374819,
+    "value1": 0,
+    "value2": 1,
+    "value3": 1
+  },
+  {
+    "timestamp": 1755876434819,
+    "value1": 0,
+    "value2": 1,
+    "value3": 2
+  },
+  {
+    "timestamp": 1755876494819,
+    "value1": 2,
+    "value2": 3,
+    "value3": 4
+  },
+  {
+    "timestamp": 1755876554819,
+    "value1": 3,
+    "value2": 5,
+    "value3": 6
+  },
+  {
+    "timestamp": 1755876614819,
+    "value1": 2,
+    "value2": 4,
+    "value3": 5
+  }
+]
