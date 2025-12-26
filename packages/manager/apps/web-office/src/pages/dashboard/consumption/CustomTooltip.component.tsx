@@ -32,7 +32,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload, locale }) => {
   });
 
   return (
-    <div className="bg-white p-3 rounded-lg shadow-xl border border-gray-300">
+    <div className="rounded-lg border border-gray-300 bg-white p-3 shadow-xl">
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         <span data-testid="relative-date">{relativeDate}</span>
 
