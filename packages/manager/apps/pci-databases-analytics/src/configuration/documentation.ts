@@ -10,6 +10,8 @@ export const LINKS = {
     default:
       'https://docs.ovh.com/gb/en/publiccloud/databases/order-terraform/',
   },
+  PG_OFFICIAL_DOCUMENTATION: 'https://www.postgresql.org/docs/',
+  MySQL_OFFICIAL_DOCUMENTATION: 'https://dev.mysql.com/doc/',
 };
 
 export const DATABASE_CREATION_GUIDES =

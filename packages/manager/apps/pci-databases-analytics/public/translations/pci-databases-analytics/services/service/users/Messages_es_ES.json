@@ -88,5 +88,7 @@
   "userCancelButton": "Cancelar",
   "userConfirmButton": "Confirmar",
   "userCloseButton": "Cerrar",
-  "userSuccessTitle": "Éxito"
+  "userSuccessTitle": "Éxito",
+  "addUserMySQLInfo": "Por defecto, un nuevo usuario de MySQL puede conectarse al servidor de base de datos, pero solo tiene privilegios muy limitados. Sus permisos deben ser otorgados explícitamente según sea necesario a través de la CLI (por ejemplo, con los comandos GRANT), respetando la sintaxis definida en la <anchor>documentación oficial de MySQL</anchor>.",
+  "addUserPGInfo": "Por defecto, un nuevo usuario puede conectarse a la base de datos y hereda todos los privilegios otorgados a PUBLIC o a los roles de los que es miembro. Sus permisos son generalmente limitados y deben ser otorgados explícitamente según sea necesario a través de la CLI, siguiendo la sintaxis de la <anchor>documentación oficial de PostgreSQL</anchor>."
 }

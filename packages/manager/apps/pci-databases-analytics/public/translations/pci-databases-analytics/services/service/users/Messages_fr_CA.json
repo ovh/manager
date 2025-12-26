@@ -41,6 +41,8 @@
   "addUserTitle": "Ajouter un utilisateur",
   "addUserPasswordSuccess": "L'utilisateur a été créé avec succès. Vous trouverez ci-dessous toutes les informations nécessaires à son utilisation",
   "addUserDescription": "Créer et configurer un nouvel utilisateur pour votre service.",
+  "addUserMySQLInfo": "Par défaut, un nouvel utilisateur MySQL peut se connecter au serveur de base de données, mais ne dispose que de privilèges très limités. Ses autorisations doivent être explicitement accordées selon les besoins via la CLI (par exemple avec les commandes GRANT), en respectant la syntaxe définie dans la <anchor>documentation officielle de MySQL</anchor>.",
+  "addUserPGInfo": "Par défaut, un nouvel utilisateur peut se connecter à la base de données et hérite de tous les privilèges accordés à PUBLIC ou aux rôles dont il est membre. Ses permissions sont généralement limitées et doivent être explicitement accordées selon les besoins via la CLI, en suivant la syntaxe de la <anchor>documentation officielle de PostgreSQL</anchor>.",
   "toggleACLsLabel": "Activer les ACLs",
   "toggleAclErrorTitle": "Une erreur est survenue lors de la mise à jour de votre service",
   "toggleAclEnabledSuccessDescription": "Les ACLs sont maintenant activées pour votre service",

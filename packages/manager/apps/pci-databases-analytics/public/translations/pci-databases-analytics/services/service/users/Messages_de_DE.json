@@ -88,5 +88,7 @@
   "userCancelButton": "Abbrechen",
   "userConfirmButton": "Bestätigen",
   "userCloseButton": "Schliessen",
-  "userSuccessTitle": "Erfolg"
+  "userSuccessTitle": "Erfolg",
+  "addUserMySQLInfo": "Standardmäßig kann ein neuer MySQL-Benutzer eine Verbindung zum Datenbankserver herstellen, hat jedoch nur sehr eingeschränkte Berechtigungen. Seine Berechtigungen müssen bei Bedarf ausdrücklich über die CLI (z. B. mit den GRANT-Befehlen) gewährt werden, wobei die in der <anchor>offiziellen MySQL-Dokumentation</anchor> definierte Syntax beachtet werden muss.",
+  "addUserPGInfo": "Standardmäßig kann ein neuer Benutzer auf die Datenbank zugreifen und erbt alle Berechtigungen, die PUBLIC oder den Rollen, deren Mitglied er ist, gewährt wurden. Seine Berechtigungen sind in der Regel eingeschränkt und müssen bei Bedarf ausdrücklich über die CLI gewährt werden, wobei die Syntax der <anchor>offiziellen PostgreSQL-Dokumentation</anchor> beachtet werden muss."
 }
