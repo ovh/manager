@@ -23,15 +23,15 @@ import {
 export const useIpGroupDatagridColumns = ({
   parentIp,
   parentHeaders,
-  isGameFirewallEnabled,
-  isAntiDdosEnabled,
+  isGameFirewallAvailable,
+  isAntiDdosAvailable,
   serviceName,
   isByoipSlice,
 }: {
   parentIp: string;
   parentHeaders: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
-  isGameFirewallEnabled?: boolean;
-  isAntiDdosEnabled?: boolean;
+  isGameFirewallAvailable?: boolean;
+  isAntiDdosAvailable?: boolean;
   serviceName?: string;
   isByoipSlice?: boolean;
 }) => {
@@ -113,7 +113,7 @@ export const useIpGroupDatagridColumns = ({
       cell: (ip: string) => (
         <IpAntiDdosDisplay
           ipMitigation={ipMitigation}
-          enabled={isAntiDdosEnabled}
+          enabled={isAntiDdosAvailable}
           ip={ip}
         />
       ),
@@ -138,7 +138,7 @@ export const useIpGroupDatagridColumns = ({
         <IpGameFirewallDisplay
           ip={parentIp}
           ipOnGame={ip}
-          enabled={isGameFirewallEnabled && !isByoipSlice}
+          enabled={isGameFirewallAvailable && !isByoipSlice}
         />
       ),
       size: parentHeaders.current['ip-game-firewall'].clientWidth,

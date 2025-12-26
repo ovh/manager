@@ -28,13 +28,13 @@
   "listingColumnsIpEdgeFirewallEnabled": "Aktiviert",
   "listingColumnsIpEdgeFirewallDisabled": "Deaktiviert",
   "listingColumnsIpEdgeFirewallPending": "Wird ausgeführt",
-  "listingColumnsIpEdgeFirewallEnabledTooltip": "Network Edge Firewall schützt diese IP derzeit durch Filtern des eingehenden Traffics. Zum Konfigurieren klicken.",
-  "listingColumnsIpEdgeFirewallDisabledTooltip": "Der Traffic durchläuft die Network Edge Firewall nur, wenn ein Angriff erkannt wird. Im Falle eines Angriffs wird diese automatisch aktiviert. Zum Konfigurieren klicken.",
-  "listingColumnsIpEdgeFirewallPendingTooltip": "Die Neukonfiguration der Network Edge Firewall wird ausgeführt und in wenigen Augenblicken angewendet. Zum Konfigurieren klicken.",
+  "listingColumnsIpEdgeFirewallEnabledTooltip": "Network Edge Firewall schützt diese IP derzeit durch Filtern des eingehenden Traffics. Klicken Sie hier, um die Konfiguration vorzunehmen.",
+  "listingColumnsIpEdgeFirewallDisabledTooltip": "Der Traffic durchläuft die Network Edge Firewall nur, wenn ein Angriff erkannt wird. Im Falle eines Angriffs wird diese automatisch aktiviert. Klicken Sie hier, um die Konfiguration vorzunehmen.",
+  "listingColumnsIpEdgeFirewallPendingTooltip": "Die Neukonfiguration der Network Edge Firewall wird ausgeführt und in wenigen Augenblicken angewendet. Klicken Sie hier, um die Konfiguration vorzunehmen.",
   "listingColumnsIpGameFirewallAvailable": "Verfügbar",
   "listingColumnsIpGameFirewallAvailableTooltip": "Die Game-Firewall ist verfügbar, aber derzeit nicht konfiguriert. Konfigurieren Sie Ihre Spielregeln, um den Schutz zu aktivieren. Zum Konfigurieren klicken.",
   "listingColumnsIpGameFirewallPending": "Wird ausgeführt",
-  "listingColumnsIpGameFirewallPendingTooltip": "Die Neukonfiguration der Game-Firewall wird ausgeführt und in wenigen Augenblicken angewendet. Zum Konfigurieren klicken.",
+  "listingColumnsIpGameFirewallPendingTooltip": "Die Neukonfiguration der Game-Firewall wird ausgeführt und in wenigen Augenblicken angewendet. Klicken Sie hier, um die Konfiguration vorzunehmen.",
   "listingColumnsIpAlertsSpam": "Blockierte IP (Spamschutz)",
   "listingColumnsIpAlertsMitigation": "Angegriffene IP (DDoS-Schutz-Abwehr)",
   "listingColumnsIpAlertsAntihack": "Blockierte IP (Hack-Schutz)",
@@ -112,5 +112,7 @@
   "aggregate_in_progress": "Aggregation wird ausgeführt",
   "creation_in_progress": "Wird erstellt",
   "survey_link": "Gefällt Ihnen das?",
-  "survey_link_tooltip": "Gefällt Ihnen diese Seite? Teilen Sie uns Ihre Anmerkungen mit!"
+  "survey_link_tooltip": "Gefällt Ihnen diese Seite? Teilen Sie uns Ihre Anmerkungen mit!",
+  "listingColumnsIpGameFirewallConfigured": "Konfiguriert",
+  "listingColumnsIpGameFirewallConfiguredTooltip": "Die Game Firewall ist konfiguriert. Klicken Sie hier, um die Konfiguration erneut vorzunehmen."
 }
