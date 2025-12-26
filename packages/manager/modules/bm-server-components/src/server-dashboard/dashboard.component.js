@@ -15,6 +15,7 @@ export default {
     goToCancelCommit: '<',
     goToCancelResiliation: '<',
     goToResiliation: '<',
+    goToResiliateService: '<',
     goToSgxIntroduction: '<',
     goToSgxManage: '<',
     goToMonitoringUpdate: '<',
