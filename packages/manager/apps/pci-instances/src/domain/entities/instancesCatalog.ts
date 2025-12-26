@@ -88,6 +88,13 @@ type TSpecifications = {
     public: TSpecDetails;
     private: TSpecDetails;
   };
+  gpu?: {
+    memory: {
+      interface: string;
+      size: TSpecDetails;
+    };
+    model: TSpecDetails;
+  };
 };
 
 export type TPriceDetails = {

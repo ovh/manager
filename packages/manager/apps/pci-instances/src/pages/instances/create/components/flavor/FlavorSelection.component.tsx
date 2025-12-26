@@ -15,8 +15,8 @@ import { GpuFlavorRowsBuilder } from '@/pages/instances/create/components/flavor
 import { useFlavorCommon } from '@/pages/instances/create/components/flavor/FlavorRowUtils';
 import {
   selectAvailableFlavorMicroRegions,
+  selectGpuFlavors,
   TCustomRegionItemData,
-  TGpuFlavorDataForTable,
 } from '@/pages/instances/create/view-models/flavorsViewModel';
 import {
   ButtonType,
@@ -28,7 +28,7 @@ import RegionSelectionModal, {
 } from '../RegionSelectionModal.component';
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { selectFlavors } from '../../view-models/flavorsViewModel';
+import { selectCpuFlavors } from '../../view-models/flavorsViewModel';
 import { useEffect } from 'react';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
@@ -77,7 +77,18 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
 
   const { flavors, preselecteFlavordId } = useMemo(
     () =>
-      selectFlavors(deps)({
+      selectCpuFlavors(deps)({
+        projectId,
+        flavorType,
+        microRegionId: microRegion,
+        withUnavailable,
+      }),
+    [flavorType, microRegion, projectId, withUnavailable],
+  );
+
+  const { gpuFlavors } = useMemo(
+    () =>
+      selectGpuFlavors(deps)({
         projectId,
         flavorType,
         microRegionId: microRegion,
@@ -88,13 +99,11 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
 
   const { columns, rows } = useMemo(() => {
     if (flavorCategory === 'Cloud GPU') {
-      // TODO: will be changed in future PR
-      const gpuFlavors = (flavors as unknown) as TGpuFlavorDataForTable[];
       return {
         columns: GpuFlavorColumnsBuilder(t),
         rows: GpuFlavorRowsBuilder(
           gpuFlavors,
-          { renderName, renderRadio },
+          { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice },
           withUnavailable,
         ),
       };
@@ -117,6 +126,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     renderMonthlyPrice,
     t,
     withUnavailable,
+    gpuFlavors,
   ]);
 
   const availableRegions = useMemo(
