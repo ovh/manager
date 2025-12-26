@@ -26,6 +26,7 @@ export const AVAILABLE_SERVICES = [
   'DEDICATED_CLUSTER',
   'HYCU',
   'ALL_DOM',
+  'NETWORK_SNC',
 ];
 
 export default {
