@@ -1,0 +1,4 @@
+{
+  "ZOD_ERROR_IPV4_OR_IPV4CIDR_INVALID": "Muss eine gültige IPv4-Adresse oder ein IPv4-CIDR sein (z. B. 192.168.0.1 oder 192.168.0.0/24).",
+  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Überlappung mit einem anderen Netzwerkbereich erkannt. Bitte wählen Sie einen anderen Wert aus."
+}
