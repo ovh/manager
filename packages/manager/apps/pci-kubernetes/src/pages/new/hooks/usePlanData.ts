@@ -2,20 +2,19 @@ import { useCallback } from 'react';
 
 import { useCatalog } from '@ovh-ux/manager-pci-common';
 
-import { DeploymentMode, TClusterPlan, TClusterPlanEnum } from '@/types';
+import { TClusterPlanEnum, TPlan } from '@/types';
 
-type TPlan = {
-  title: string;
-  type: DeploymentMode;
-  description: string;
-  content: string[];
-  footer?: string;
-  value: TClusterPlan;
-  code: string;
-  price: number | null;
-};
+enum TClusterCodePlanEnum {
+  FREE = 'mks.free.hour.consumption',
+  STANDARD = 'mks.standard.hour.consumption',
+  STANDARD3AZ = 'mks.standard.hour.consumption.3az',
+  FREE3AZ = 'mks.free.hour.consumption.3az',
+}
 
-const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
+const usePlanData = (
+  codes: string[],
+  isMutiZone: boolean = false,
+): { plans: TPlan[]; isPending: boolean } => {
   const { data: catalog, isPending: isPendingCatalog } = useCatalog();
 
   const pricing = useCallback(
@@ -23,7 +22,7 @@ const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
       if (catalog) {
         const getAddon = catalog.addons.find((add) => add.planCode === code);
 
-        return getAddon?.pricings[0].price ?? null;
+        return getAddon?.pricings[0]?.price ?? null;
       }
       return null;
     },
@@ -44,28 +43,26 @@ const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
         'kube_add_plan_content_free_100',
       ],
       value: TClusterPlanEnum.FREE,
-      type: DeploymentMode.MONO_ZONE,
-      code: 'mks.free.hour.consumption',
+      code: codes.find((code) => code.includes(TClusterCodePlanEnum.FREE)) ?? null,
     },
     {
       title: 'kube_add_plan_title_standard',
       description: 'kube_add_plan_description_standard',
       content: [
-        'kube_add_plan_content_standard_3AZ_control_plane',
-        'kube_add_plan_content_standard_disponibility',
+        `kube_add_plan_content_standard_${!isMutiZone ? '1' : '3'}AZ_control_plane`,
+        ...(isMutiZone ? ['kube_add_plan_content_standard_disponibility'] : []),
         'kube_add_plan_content_standard_SLA',
         'kube_add_plan_content_free_auto_scaling',
         'kube_add_plan_content_standard_ETCD',
         'kube_add_plan_content_standard_version',
         'kube_add_plan_content_standard_500',
       ],
-      type: DeploymentMode.MULTI_ZONES,
       value: TClusterPlanEnum.STANDARD,
-      code: 'mks.standard.hour.consumption.3az',
+      code: codes.find((code) => code.includes(TClusterCodePlanEnum.STANDARD)) ?? null,
     },
   ].map((plan) => ({
     ...plan,
-    price: pricing(plan.code),
+    price: plan.code ? pricing(plan.code) : null,
   }));
 
   return {

@@ -235,12 +235,11 @@ export type TCreateNodePoolParam = {
 
 export type TPlan = {
   title: string;
-  type: DeploymentMode;
   description: string;
   content: string[];
   footer?: string;
   value: TClusterPlan;
-  code: string;
+  code: string | null;
   price: number | null;
 };
 
@@ -269,3 +268,5 @@ export enum ResourceStatus {
   ERROR = 'ERROR',
   ENABLED = 'ENABLED',
 }
+
+export * from './region';
