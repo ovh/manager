@@ -43,10 +43,6 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
   const navigate = useNavigate();
   const { t } = useTranslation('common');
   const { serviceName } = useParams();
-  const associateGitLink = useHostingUrl(
-    serviceName,
-    `multisite/git-association?path=${path ?? ''}`,
-  );
   const configureGitLink = useHostingUrl(
     serviceName,
     `multisite/git-configuration?path=${path ?? ''}`,
@@ -129,7 +125,13 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
         }, */
         actionCondition(canAssociateGit, {
           id: 6,
-          onClick: () => window.location.replace(associateGitLink),
+          onClick: () =>
+            navigate(
+              urls.associateGit
+                .replace(subRoutes.serviceName, serviceName)
+                .replace(subRoutes.path, path ?? ''),
+              { state: { serviceName, path } },
+            ),
           label: t('associate_git'),
         }),
         actionCondition(canConfigureGit, {
@@ -261,7 +263,6 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     path,
     domainId,
     domain,
-    associateGitLink,
     configureGitLink,
     service,
   ]);

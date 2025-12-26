@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+import { REGEX_GIT_REPO } from '@/constants';
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
 import { AssociationType } from '@/data/types/product/website';
 
@@ -53,9 +54,16 @@ export const zForm = (t: (key: string, params?: Record<string, unknown>) => stri
     }),
     phpVersion: z.string().min(1, t(`${NAMESPACES.FORM}:required_field`)),
   });
+  const GIT_ASSOCIATION_FORM_SCHEMA = z.object({
+    repositoryUrl: z
+      .string()
+      .regex(REGEX_GIT_REPO, t('multisite:multisite_git_association_incorrect_url_format')),
+    branch: z.string().min(1, t(`${NAMESPACES.FORM}:min_chars`, { value: 1 })),
+  });
   return {
     ADD_SITE_FORM_SCHEMA,
     CREATE_SITE_FORM_SCHEMA,
+    GIT_ASSOCIATION_FORM_SCHEMA,
   };
 };
 
