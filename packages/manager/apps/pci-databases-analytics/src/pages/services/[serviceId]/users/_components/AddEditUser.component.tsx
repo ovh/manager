@@ -146,7 +146,7 @@ const AddEditUserModal = ({
               <DialogDescription>{t('addUserDescription')}</DialogDescription>
               {(service.engine === EngineEnum.mysql ||
                 service.engine === EngineEnum.postgresql) && (
-                <p className="text-sm inline">
+                <span className="text-sm">
                   <Trans
                     t={t}
                     i18nKey={
@@ -157,7 +157,7 @@ const AddEditUserModal = ({
                     components={{
                       anchor: (
                         <A
-                          target="_blank"
+                          target="_blank noopener noreferrer"
                           href={
                             service.engine === EngineEnum.mysql
                               ? LINKS.MySQL_OFFICIAL_DOCUMENTATION
@@ -167,7 +167,7 @@ const AddEditUserModal = ({
                       ),
                     }}
                   ></Trans>
-                </p>
+                </span>
               )}
             </>
           )}
