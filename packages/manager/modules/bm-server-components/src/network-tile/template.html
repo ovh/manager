@@ -6,7 +6,7 @@
     <div ovh-alert="bandwithError" data-ng-if="bandwithError"></div>
 
     <!-- IPv4 -->
-    <oui-tile-definition term="{{ :: 'server_network_ipv4' | translate }}">
+    <oui-tile-definition data-term="{{ :: 'server_network_ipv4' | translate }}">
         <oui-tile-description>
             <oui-clipboard data-model="$ctrl.server.ip"> </oui-clipboard>
         </oui-tile-description>
@@ -28,7 +28,7 @@
     <!-- Gateway IPv4-->
     <oui-tile-definition
         data-ng-if="$ctrl.specifications.routing.ipv4.gateway"
-        term="{{:: 'server_network_gateway_ipv4' | translate }}"
+        data-term="{{:: 'server_network_gateway_ipv4' | translate }}"
     >
         <oui-tile-description>
             <oui-clipboard
@@ -40,7 +40,7 @@
     </oui-tile-definition>
 
     <!-- IPv6 -->
-    <oui-tile-definition term="{{:: 'server_network_ipv6' | translate }}">
+    <oui-tile-definition data-term="{{:: 'server_network_ipv6' | translate }}">
         <oui-tile-description>
             <oui-clipboard class="ip-clipboard" data-model="$ctrl.server.ipv6">
             </oui-clipboard>
@@ -49,7 +49,7 @@
     <!-- Gateway IPv6-->
     <oui-tile-definition
         data-ng-if="$ctrl.specifications.routing.ipv6.gateway"
-        term="{{:: 'server_network_gateway_ipv6' | translate }}"
+        data-term="{{:: 'server_network_gateway_ipv6' | translate }}"
     >
         <oui-tile-description>
             <oui-clipboard
@@ -63,7 +63,7 @@
     <div data-ng-if="$ctrl.bandwidthInformations.bandwidth">
         <!-- Reverse -->
         <oui-tile-definition
-            term="{{:: 'server_network_reverse' | translate }}"
+            data-term="{{:: 'server_network_reverse' | translate }}"
         >
             <oui-tile-description>
                 <oui-clipboard
@@ -260,13 +260,9 @@
                 data-translate-value-total="{{ $ctrl.totalAssocietedIps }}"
             ></p>
             <p
-                class="oui-badge ng-scope"
-                data-ng-class="{
-                    'oui-badge_success': $ctrl.gameDDoSStatus === $ctrl.gameDDoSStatusCodes.allIpsConfigured,
-                    'oui-badge_warning': $ctrl.gameDDoSStatus === $ctrl.gameDDoSStatusCodes.someIpsConfigured,
-                    'oui-badge_error': $ctrl.gameDDoSStatus === $ctrl.gameDDoSStatusCodes.noIpConfigured
-                }"
-                data-translate="server_network_game_protection_{{ $ctrl.gameDDoSStatus }}"
+                class="oui-badge ng-scope text-wrap"
+                data-ng-class="'oui-badge_' + $ctrl.gameDDoSStatus.badge"
+                data-translate="server_network_game_protection_{{ $ctrl.gameDDoSStatus.text }}"
             ></p>
         </oui-tile-description>
         <oui-action-menu
