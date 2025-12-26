@@ -21,7 +21,14 @@ export default [
   { ...reactEslintConfig, ignores: [...(reactEslintConfig.ignores || []), '**/__tests__/**'] },
   a11yEslintConfig,
   htmlEslintConfig,
-  tailwindJsxConfig,
+  {
+    ...tailwindJsxConfig,
+    rules: {
+      ...tailwindJsxConfig.rules,
+      'tailwindcss/no-arbitrary-value': 'off',
+    },
+    ignores: [...(tailwindJsxConfig.ignores || []), '**/__tests__/**'],
+  },
   tanStackQueryEslintConfig,
   vitestEslintConfig,
   prettierEslintConfig,
