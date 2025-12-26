@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.22.4...@ovh-ux/manager-wiki@0.23.0) (2025-12-26)
+
+
+### Features
+
+* **manager-wiki:** add common issues section ([9aab64b](https://github.com/ovh/manager/commit/9aab64b1cefaf1b7507b13e3f72165677fadb39b)), closes [#MANAGER-20601](https://github.com/ovh/manager/issues/MANAGER-20601)
+
+
+
+
+
 ## [0.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.22.3...@ovh-ux/manager-wiki@0.22.4) (2025-12-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-wiki
