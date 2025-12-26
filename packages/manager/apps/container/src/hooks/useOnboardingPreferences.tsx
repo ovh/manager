@@ -20,7 +20,7 @@ const fetchOnboardingPreferences = (): Promise<OnboardingPreferences> =>
       return JSON.parse(data.value as string) as OnboardingPreferences;
     })
     .catch((error: Record<string, any>) => {
-      if (error.response.status === 404) {
+      if (error?.response?.status === 404) {
         return {
           lastShowDate: undefined,
           numberOfDisplay: 1,
