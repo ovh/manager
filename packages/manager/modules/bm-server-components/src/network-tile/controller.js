@@ -1,5 +1,8 @@
 import isFunction from 'lodash/isFunction';
-import { filterIpv4List } from './utils';
+import ipaddr from 'ipaddr.js';
+
+const parseIpGameUrl = (ipBlock, ip) =>
+  ['/ip', encodeURIComponent(ipBlock), 'game', ip].join('/');
 
 export default class BmServerComponentsNetworkTileController {
   /* @ngInject */
@@ -11,7 +14,6 @@ export default class BmServerComponentsNetworkTileController {
   }
 
   $onInit() {
-    this.totalAssocietedIps = 0;
     this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.hidePublicBandwidth = this.hidePublicBandwidth || false;
     this.manageIpUrl = this.coreURLBuilder.buildURL(
@@ -36,9 +38,18 @@ export default class BmServerComponentsNetworkTileController {
   }
 
   gameDDoSStatusCodes = {
-    noIpConfigured: 'no_ip_configured',
-    someIpsConfigured: 'some_ips_configured',
-    allIpsConfigured: 'all_ips_configured',
+    noIpConfigured: {
+      text: 'no_ip_configured',
+      badge: 'error',
+    },
+    someIpsConfigured: {
+      text: 'some_ips_configured',
+      badge: 'warning',
+    },
+    allIpsConfigured: {
+      text: 'all_ips_configured',
+      badge: 'success',
+    },
   };
 
   getGameDDoSStatus() {
@@ -46,32 +57,82 @@ export default class BmServerComponentsNetworkTileController {
       .get(`/ip?routedTo.serviceName=${encodeURIComponent(this.server.name)}`)
       .catch(() => null)
       .then(({ data = [] }) => {
-        this.totalAssocietedIps = data.length;
-        const ipv4List = filterIpv4List(data);
+        const ipv4Lists = data.reduce(
+          (prev, ipBlock) => {
+            const [ip, block] = ipBlock.split('/');
 
-        return this.getProtectedGameIpsV4List(ipv4List).then((result = []) => {
-          const protectedIpv4Count = result.reduce(
-            (sum, curr) => (curr ? sum + 1 : sum),
-            0,
-          );
+            // filters IPV6
+            if (!ipaddr.IPv4.isValid(ip)) return prev;
+            // case no sub ip to fetch
+            if (!block || block === '32')
+              return {
+                ...prev,
+                withoutSubIP: [
+                  ...prev.withoutSubIP,
+                  parseIpGameUrl(ipBlock, ip),
+                ],
+              };
+            // case sub ips to fetch
+            return {
+              ...prev,
+              withSubIPs: [
+                ...prev.withSubIPs,
+                {
+                  ipBlock,
+                  fetchData: this.$http.get(
+                    `/ip/${encodeURIComponent(ipBlock)}/reverse`,
+                    { serviceType: 'apiv6' },
+                  ),
+                },
+              ],
+            };
+          },
+          { withoutSubIP: [], withSubIPs: [] },
+        );
 
-          if (!protectedIpv4Count)
-            this.gameDDoSStatus = this.gameDDoSStatusCodes.noIpConfigured;
-          else if (protectedIpv4Count < result.length)
-            this.gameDDoSStatus = this.gameDDoSStatusCodes.someIpsConfigured;
-          else this.gameDDoSStatus = this.gameDDoSStatusCodes.allIpsConfigured;
-        });
+        return this.getAllGameIpUrls(ipv4Lists).then((allIpGameUrls = []) =>
+          this.fetchProtectedGameIpV4List(allIpGameUrls).then((result = []) => {
+            this.totalAssocietedIps = result.length;
+            const protectedIpv4Count = result.reduce(
+              (sum, curr) => (curr ? sum + 1 : sum),
+              0,
+            );
+
+            if (!protectedIpv4Count)
+              this.gameDDoSStatus = this.gameDDoSStatusCodes.noIpConfigured;
+            else if (protectedIpv4Count < this.totalAssocietedIps)
+              this.gameDDoSStatus = this.gameDDoSStatusCodes.someIpsConfigured;
+            else
+              this.gameDDoSStatus = this.gameDDoSStatusCodes.allIpsConfigured;
+          }),
+        );
       });
   }
 
-  getProtectedGameIpsV4List(ipv4List) {
+  getAllGameIpUrls({ withoutSubIP, withSubIPs }) {
+    if (!withSubIPs.length) return Promise.resolve(withoutSubIP);
+    return this.$q
+      .all(
+        withSubIPs.map(({ ipBlock, fetchData }) =>
+          fetchData.then(({ data }) =>
+            data.map((ip) => parseIpGameUrl(ipBlock, ip)),
+          ),
+        ),
+      )
+      .then((resp) => [...withoutSubIP, ...resp].flat());
+  }
+
+  fetchProtectedGameIpV4List(ipv4List) {
     return this.$q.all(
-      ipv4List.map((ip) =>
-        this.$http
-          .get(`/ip/${encodeURIComponent(ip)}/mitigation/${ip.split('/')[0]}`)
-          .then(({ data } = {}) => data?.state === 'ok')
-          .catch(() => false),
-      ),
+      ipv4List.map((url) => {
+        return this.$http
+          .get(url, { serviceType: 'apiv6' })
+          .then(
+            ({ data: { firewallModeEnabled, state } } = {}) =>
+              firewallModeEnabled && state === 'ok',
+          )
+          .catch(() => false);
+      }),
     );
   }
 
