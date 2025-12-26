@@ -55,9 +55,13 @@ export const InformationForm = ({
           render={({ field }) => (
             <TextField
               id="description"
-              label={t(`${NAMESPACES.DASHBOARD}:description`)}
+              label={toRequiredLabel(
+                t(`${NAMESPACES.DASHBOARD}:description`),
+                t('shared:mandatory'),
+              )}
               placeholder={descriptionPlaceholder}
               type="textarea"
+              isRequired
               rows={4}
               value={field.value}
               onChange={field.onChange}

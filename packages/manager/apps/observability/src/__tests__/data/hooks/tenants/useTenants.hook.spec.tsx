@@ -46,14 +46,14 @@ describe('useTenants', () => {
         id: '1',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
-        currentState: { title: 'Tenant 1' },
+        currentState: { title: 'Tenant 1', description: 'Tenant description test 1' },
         resourceStatus: 'READY',
       },
       {
         id: '2',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
-        currentState: { title: 'Tenant 2' },
+        currentState: { title: 'Tenant 2', description: 'Tenant description test 2' },
         resourceStatus: 'READY',
       },
     ];
@@ -102,14 +102,14 @@ describe('useTenants', () => {
         id: 'tenant-1',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
-        currentState: { title: 'Test Tenant 1' },
+        currentState: { title: 'Test Tenant 1', description: 'Tenant description test 1' },
         resourceStatus: 'READY',
       },
       {
         id: 'tenant-2',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
-        currentState: { title: 'Test Tenant 2' },
+        currentState: { title: 'Test Tenant 2', description: 'Tenant description test 2' },
         resourceStatus: 'READY',
       },
     ];
