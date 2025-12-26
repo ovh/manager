@@ -176,7 +176,8 @@ export default class ServicesActionsCtrl {
 
   canResiliateService() {
     return (
-      this.serviceInfos.serviceType === 'DEDICATED_SERVER' &&
+      (this.serviceInfos.serviceType === 'DEDICATED_SERVER' ||
+        this.serviceInfos.serviceType === 'VPS') &&
       this.coreConfig.isRegion('US')
     );
   }

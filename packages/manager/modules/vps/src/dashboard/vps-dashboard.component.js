@@ -24,6 +24,7 @@ export default {
     goToCommit: '<',
     goToCancelCommit: '<',
     goToCancelResiliation: '<',
+    goToResiliateService: '<',
     goToResiliation: '<',
     isCommitmentAvailable: '<',
     hasBackupStorage: '<',
