@@ -46,6 +46,7 @@ describe('useDeleteTenant', () => {
     resourceStatus: 'DELETING',
     currentState: {
       title: 'Tenant 123',
+      description: 'Tenant description 123',
     },
   };
 
