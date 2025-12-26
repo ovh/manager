@@ -1,0 +1,6 @@
+{
+  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Your service will remain active until {{expirationDate}}, which is the end of the current billing period.",
+  "resiliation_modal_resiliate_service_terminate": "Your service will be terminated immediately and you will no longer be charged for this service.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Your service will remain active and you will be charged until the end of your commitment on {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_deleteAtExpiration": "Your service will be terminated immediately. However, you will still be charged monthly fees for this service until the end of your commitment on {{commitmentEndDate}}."
+}

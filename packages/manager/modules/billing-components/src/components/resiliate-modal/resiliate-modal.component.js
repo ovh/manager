@@ -7,6 +7,7 @@ export default {
     goBack: '<',
     onSuccess: '<',
     onError: '<',
+    onChange: '<',
     service: '<',
     serviceTypeLabel: '<', // Should be an `@` but we have an issue with ui-router-layout
   },
