@@ -171,8 +171,8 @@ describe('InformationForm', () => {
 
       const descriptionInput = screen.getByTestId('description-input');
       expect(descriptionInput).toHaveAttribute('placeholder', 'Enter description here');
-      expect(descriptionInput).not.toHaveAttribute('required');
-      expect(screen.getByLabelText('dashboard:description')).toBeInTheDocument();
+      expect(descriptionInput).toHaveAttribute('required');
+      expect(screen.getByLabelText('dashboard:description - shared:mandatory')).toBeInTheDocument();
     });
 
     it('should render without description placeholder when not provided', () => {
@@ -240,14 +240,14 @@ describe('InformationForm', () => {
     it('should display field errors when present', () => {
       render(
         <TestWrapper
-          withErrors={{ title: 'Title is required', description: 'Description is too long' }}
+          withErrors={{ title: 'Title is required', description: 'Description is required' }}
         >
           <InformationForm {...defaultProps} />
         </TestWrapper>,
       );
 
       expect(screen.getByTestId('title-error')).toHaveTextContent('Title is required');
-      expect(screen.getByTestId('description-error')).toHaveTextContent('Description is too long');
+      expect(screen.getByTestId('description-error')).toHaveTextContent('Description is required');
     });
   });
 
@@ -265,9 +265,11 @@ describe('InformationForm', () => {
       expect(titleInput).toHaveAttribute('id', 'title');
       expect(descriptionInput).toHaveAttribute('id', 'description');
       expect(screen.getByLabelText('dashboard:name - shared:mandatory')).toBe(titleInput);
-      expect(screen.getByLabelText('dashboard:description')).toBe(descriptionInput);
+      expect(screen.getByLabelText('dashboard:description - shared:mandatory')).toBe(
+        descriptionInput,
+      );
       expect(titleInput).toHaveAttribute('required');
-      expect(descriptionInput).not.toHaveAttribute('required');
+      expect(descriptionInput).toHaveAttribute('required');
     });
   });
 
