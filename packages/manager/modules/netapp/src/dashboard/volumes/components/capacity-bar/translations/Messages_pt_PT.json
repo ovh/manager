@@ -1,0 +1,7 @@
+{
+  "netapp_volumes_dashboard_volume_data_space": "Espaço de dados",
+  "netapp_volumes_dashboard_volume_used": "Utilizado",
+  "netapp_volumes_dashboard_volume_overflow": "Gestão de picos de carga",
+  "netapp_volumes_dashboard_volume_available": "Disponível",
+  "netapp_volumes_dashboard_snapshot_space": "Reserva de Snapshot"
+}
