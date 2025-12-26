@@ -131,16 +131,9 @@ export default function Websites() {
         ),
       },
       {
-        id: 'serviceName',
-        accessorFn: (row) => row.currentState?.hosting?.serviceName ?? '',
-        header: t('web_hosting_status_header_serviceName'),
-        cell: ({ getValue, row }) => (
-          <LinkCell webSiteItem={row.original} label={getValue<string>()} tracking="serviceName" />
-        ),
-      },
-      {
         id: 'displayName',
-        accessorFn: (row) => row.currentState?.hosting?.displayName ?? '',
+        accessorFn: (row) =>
+          row.currentState?.hosting?.displayName ?? row.currentState?.hosting?.serviceName,
         header: t('web_hosting_status_header_displayName'),
         cell: ({ getValue, row }) => (
           <LinkCell webSiteItem={row.original} label={getValue<string>()} tracking="displayName" />
@@ -269,14 +262,10 @@ export default function Websites() {
       getValue: (item) => item?.currentState.path,
     },
     {
-      id: 'serviceName',
-      label: t('web_hosting_status_header_serviceName'),
-      getValue: (item) => item?.currentState.hosting.serviceName,
-    },
-    {
       id: 'displayName',
       label: t('web_hosting_status_header_displayName'),
-      getValue: (item) => item?.currentState.hosting.displayName,
+      getValue: (item) =>
+        item?.currentState.hosting.displayName || item?.currentState.hosting.serviceName,
     },
     {
       id: 'offer',

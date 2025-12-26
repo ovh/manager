@@ -96,10 +96,6 @@ describe('Websites page', () => {
         text: commonTranslation.web_hosting_status_header_path,
       },
       {
-        id: 'header-serviceName',
-        text: commonTranslation.web_hosting_status_header_serviceName,
-      },
-      {
         id: 'header-displayName',
         text: commonTranslation.web_hosting_status_header_displayName,
       },
