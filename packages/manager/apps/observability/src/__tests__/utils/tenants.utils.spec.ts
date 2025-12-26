@@ -22,6 +22,7 @@ describe('tenants.utils', () => {
         resourceStatus: 'READY',
         currentState: {
           title: 'Default Tenant',
+          description: 'Default description',
         },
       };
 
@@ -123,6 +124,7 @@ describe('tenants.utils', () => {
           },
           currentState: {
             title: 'Test Tenant',
+            description: 'Test description',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '30d',
@@ -146,6 +148,7 @@ describe('tenants.utils', () => {
           id: 'tenant-2',
           currentState: {
             title: 'Tenant Without Limits',
+            description: 'This Tenant is without Limits',
             infrastructure: {
               id: 'infra-2',
               entryPoint: 'https://test.com',
@@ -165,6 +168,7 @@ describe('tenants.utils', () => {
           id: 'tenant-3',
           currentState: {
             title: 'Tenant Without Infrastructure',
+            description: 'This Tenant is without Infrastructure',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '7d',
@@ -184,6 +188,7 @@ describe('tenants.utils', () => {
           id: 'tenant-4',
           currentState: {
             title: 'Tenant Without Tags',
+            description: 'This Tenant is without Tags',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '90d',
@@ -212,6 +217,7 @@ describe('tenants.utils', () => {
           id: 'tenant-5',
           currentState: {
             title: 'Tenant With Empty Retention',
+            description: 'This tenant is with empty Retention',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '',
@@ -230,6 +236,7 @@ describe('tenants.utils', () => {
           id: 'tenant-6',
           currentState: {
             title: 'Tenant Without IAM',
+            description: 'This Tenant is without IAM',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '30d',
@@ -260,6 +267,7 @@ describe('tenants.utils', () => {
           id: 'tenant-1',
           currentState: {
             title: 'First Tenant',
+            description: 'First description test',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '30d',
@@ -285,6 +293,7 @@ describe('tenants.utils', () => {
           id: 'tenant-2',
           currentState: {
             title: 'Second Tenant',
+            description: 'Second description test',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '7d',
@@ -366,6 +375,7 @@ describe('tenants.utils', () => {
             id: 'tenant-series',
             currentState: {
               title: 'Tenant With Series',
+              description: 'Description test',
               limits: {
                 mimir: {
                   compactor_blocks_retention_period: '30d',
@@ -431,6 +441,7 @@ describe('tenants.utils', () => {
           id: 'tenant-tags',
           currentState: {
             title: 'Tag Test Tenant',
+            description: 'Description test',
           },
           iam: {
             id: 'iam-tags',
@@ -453,11 +464,11 @@ describe('tenants.utils', () => {
       const mockTenants: Tenant[] = [
         createTenant({
           id: 'unique-id-1',
-          currentState: { title: 'Tenant 1' },
+          currentState: { title: 'Tenant 1', description: 'Description test' },
         }),
         createTenant({
           id: 'unique-id-2',
-          currentState: { title: 'Tenant 2' },
+          currentState: { title: 'Tenant 2', description: 'Description test' },
         }),
       ];
 
@@ -497,6 +508,7 @@ describe('tenants.utils', () => {
           id: 'tenant-with-infra',
           currentState: {
             title: 'Tenant With Infrastructure',
+            description: 'Description test',
             infrastructure: {
               id: 'infra-id',
               entryPoint: 'mimir.m2c.ovh.net',
@@ -520,6 +532,7 @@ describe('tenants.utils', () => {
           id: 'tenant-search',
           currentState: {
             title: 'Search Test',
+            description: 'Description test',
             limits: {
               mimir: {
                 compactor_blocks_retention_period: '30d',

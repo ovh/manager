@@ -1,4 +1,4 @@
-import type { INPUT_TYPE } from '@ovh-ux/muk';
+import type { INPUT_TYPE } from '@ovhcloud/ods-react';
 
 type InputType = `${INPUT_TYPE}`;
 
@@ -6,7 +6,7 @@ export type TextFieldProps = {
   id: string;
   name?: string;
   label: string;
-  type?: InputType | 'textarea'; // TODO no export of InputType from @ovh-ux/muk
+  type?: InputType | 'textarea';
   value?: string;
   placeholder?: string;
   rows?: number;
@@ -16,4 +16,5 @@ export type TextFieldProps = {
   onChange?: (value: string) => void;
   onBlur?: () => void;
   error?: string;
+  helper: string;
 };

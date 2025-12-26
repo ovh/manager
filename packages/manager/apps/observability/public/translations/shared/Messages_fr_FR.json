@@ -4,6 +4,9 @@
   "form":{
     "bounds": {
       "helper": "Le minimum est de {{min}} et le maximum est de {{max}}."
+    },
+    "error": {
+      "max_chars": "Le nombre de caractères autorisé est dépassé ({{value}} caractères maximum)."
     }
   }
 }
