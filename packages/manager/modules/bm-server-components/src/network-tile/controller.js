@@ -1,5 +1,5 @@
 import isFunction from 'lodash/isFunction';
-import { filterIpv4List } from './utils';
+import ipaddr from 'ipaddr.js';
 
 export default class BmServerComponentsNetworkTileController {
   /* @ngInject */
@@ -36,9 +36,18 @@ export default class BmServerComponentsNetworkTileController {
   }
 
   gameDDoSStatusCodes = {
-    noIpConfigured: 'no_ip_configured',
-    someIpsConfigured: 'some_ips_configured',
-    allIpsConfigured: 'all_ips_configured',
+    noIpConfigured: {
+      text: 'no_ip_configured',
+      badge: 'error',
+    },
+    someIpsConfigured: {
+      text: 'some_ips_configured',
+      badge: 'warning',
+    },
+    allIpsConfigured: {
+      text: 'all_ips_configured',
+      badge: 'success',
+    },
   };
 
   getGameDDoSStatus() {
@@ -47,7 +56,10 @@ export default class BmServerComponentsNetworkTileController {
       .catch(() => null)
       .then(({ data = [] }) => {
         this.totalAssocietedIps = data.length;
-        const ipv4List = filterIpv4List(data);
+
+        const ipv4List = data.filter((ip) =>
+          ipaddr.IPv4.isValid(ip.split('/')[0]),
+        );
 
         return this.getProtectedGameIpsV4List(ipv4List).then((result = []) => {
           const protectedIpv4Count = result.reduce(
@@ -69,7 +81,7 @@ export default class BmServerComponentsNetworkTileController {
       ipv4List.map((ip) =>
         this.$http
           .get(`/ip/${encodeURIComponent(ip)}/mitigation/${ip.split('/')[0]}`)
-          .then(({ data } = {}) => data?.state === 'ok')
+          .then(({ data } = {}) => data.state === 'ok')
           .catch(() => false),
       ),
     );
