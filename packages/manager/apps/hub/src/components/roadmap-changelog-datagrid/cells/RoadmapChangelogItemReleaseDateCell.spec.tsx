@@ -10,6 +10,6 @@ describe('RoadmapChangelogItemReleaseDateCell Component', () => {
     const { container } = render(<RoadmapChangelogItemReleaseDateCell item={roadmapItem} />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

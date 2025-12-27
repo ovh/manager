@@ -55,6 +55,6 @@ describe('HubSupportHelp Component', () => {
     const { container } = render(<HubSupportHelp />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

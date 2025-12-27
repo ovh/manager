@@ -14,7 +14,7 @@ const DEFAULT_RESULT: SupportDataResponse = {
 
 export const useFetchHubSupport = (
   options?: Partial<
-    DefinedInitialDataOptions<ApiEnvelope<SupportResponse>, any, SupportDataResponse>
+    DefinedInitialDataOptions<ApiEnvelope<SupportResponse>, Error, SupportDataResponse>
   >,
 ) =>
   useQuery({

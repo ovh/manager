@@ -1,4 +1,4 @@
-import { Suspense, useContext, useEffect, useMemo } from 'react';
+import { Suspense, useContext, useEffect, useMemo, useState } from 'react';
 
 import { Await } from 'react-router-dom';
 
@@ -28,6 +28,8 @@ export default function KycIndiaBanner() {
     enabled: !(isLoading || isFreshCustomer || availability?.[KYC_INDIA_FEATURE]),
   });
 
+  const [hasLink, setHasLink] = useState<boolean>(false);
+
   const shouldBeDisplayed = useMemo(() => data?.status === KycStatuses.REQUIRED, [data]);
 
   useEffect(() => {
@@ -39,10 +41,15 @@ export default function KycIndiaBanner() {
     }
   }, [data]);
 
-  const link = useMemo(
-    () => (data?.ticketId ? null : navigation.getURL('dedicated', '#/identity-documents', {})),
-    [data],
-  );
+  const link = useMemo(() => {
+    if (data?.ticketId) {
+      setHasLink(false);
+      return null;
+    } else {
+      setHasLink(true);
+      return navigation.getURL('dedicated', '#/identity-documents', {});
+    }
+  }, [data]);
 
   const trackLink = () => {
     trackClick({
@@ -53,7 +60,7 @@ export default function KycIndiaBanner() {
 
   return shouldBeDisplayed ? (
     <OsdsMessage
-      className="flex rounded pr-8 mb-4"
+      className="mb-4 flex rounded pr-8"
       type={ODS_MESSAGE_TYPE.info}
       color={ODS_THEME_COLOR_INTENT.info}
       removable={true}
@@ -65,7 +72,7 @@ export default function KycIndiaBanner() {
         className="block"
       >
         {t(`manager_hub_dashboard_kyc_banner_description${data.ticketId ? '_waiting' : ''}`)}
-        {link && (
+        {hasLink && (
           <Suspense fallback={<OsdsSkeleton data-testid="kyc_india_banner_link_skeleton" />}>
             <Await
               resolve={link}

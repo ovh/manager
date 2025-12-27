@@ -1,4 +1,4 @@
-import { aapi, v6 } from '@ovh-ux/manager-core-api';
+import { ApiError, aapi, v6 } from '@ovh-ux/manager-core-api';
 
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
 import {
@@ -18,18 +18,18 @@ export const getLastOrder = async (): Promise<ApiEnvelope<Order>> => {
 };
 
 export const getOrderDetails = async (orderId: number): Promise<OrderDetailsResponse> => {
-  const { data } = await v6.get(`/me/order/${orderId}/details`);
-  return data as OrderDetailsResponse;
+  const { data } = await v6.get<OrderDetailsResponse>(`/me/order/${orderId}/details`);
+  return data;
 };
 
 export const getOrderStatus = async (orderId: number): Promise<OrderStatus> => {
-  const { data } = await v6.get(`/me/order/${orderId}/status`);
-  return data as OrderStatus;
+  const { data } = await v6.get<OrderStatus>(`/me/order/${orderId}/status`);
+  return data;
 };
 
 export const getOrderFollowUp = async (orderId: number): Promise<OrderFollowUpResponse> => {
-  const { data } = await v6.get(`/me/order/${orderId}/followUp`);
-  return data as OrderFollowUpResponse;
+  const { data } = await v6.get<OrderFollowUpResponse>(`/me/order/${orderId}/followUp`);
+  return data;
 };
 
 export const getCompleteHistory = async (
@@ -50,10 +50,11 @@ export const getCompleteHistory = async (
     }
 
     return history;
-  } catch (err) {
-    if (err.response?.status === 404) {
+  } catch (error) {
+    const apiError = error as ApiError;
+    if (apiError.response?.status === 404) {
       return [];
     }
-    throw err;
+    throw error;
   }
 };
