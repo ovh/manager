@@ -1,7 +1,7 @@
 {
   "autorenew_service_update_modal_title": "Configure renewal",
   "autorenew_service_update_modal_description": "How often would you like to renew your {{ serviceName }} service? ",
-  "autorenew_service_update_modal_period_manual": "Rarely (Manual renewal)",
+  "autorenew_service_update_modal_period_manual": "Manual renewal",
   "autorenew_service_update_modal_period_every_month": "Every month",
   "autorenew_service_update_modal_period_every_x_months": "Every {{ months }} months",
   "autorenew_service_update_modal_period_every_year": "Every year",

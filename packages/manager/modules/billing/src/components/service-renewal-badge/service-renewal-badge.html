@@ -1,0 +1,15 @@
+<span
+    data-ng-if="$ctrl.service.renew.automatic && !$ctrl.service.renew.manualPayment"
+    class="oui-badge text-wrap oui-badge_success"
+    data-translate="{{'manager_billing_service_renewal_badge_automatic' | translate}}"
+></span>
+<span
+    data-ng-if="!$ctrl.service.renew.automatic && $ctrl.service.renew.manualPayment"
+    class="oui-badge text-wrap oui-badge_warning"
+    data-translate="{{'manager_billing_service_renewal_badge_manual' | translate}}"
+></span>
+<span
+    data-ng-if="!$ctrl.service.renew.automatic && !$ctrl.service.renew.manualPayment"
+    class="bold pl-2"
+    >-</span
+>
