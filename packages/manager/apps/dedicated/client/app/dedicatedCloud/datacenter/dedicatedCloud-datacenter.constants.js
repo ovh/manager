@@ -43,6 +43,8 @@ export const DATACENTER_NETWORK_SITE_WEB_LINK = {
 export const TRACKING_PREFIX_DATACENTER =
   'Enterprise_solutions::managed_vmware_vsphere::managed_vmware_vsphere::';
 
+export const TRACKING_ACTION_GO_BACK_PREFIX = 'page::link::go_back_';
+
 export default {
   MAX_NSX_EDGES,
   MIN_NSX_EDGES,
