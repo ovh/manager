@@ -76,7 +76,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('current_version')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText preset="span">{secret.metadata.currentVersion}</OdsText>
+          <OdsText preset="span">{secret.metadata.currentVersion ?? t('no_version')}</OdsText>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
     </ManagerTile>

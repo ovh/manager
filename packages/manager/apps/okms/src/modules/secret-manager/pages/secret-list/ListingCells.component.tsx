@@ -7,9 +7,11 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { Link } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
@@ -17,6 +19,7 @@ import { SECRET_LIST_CELL_TEST_IDS } from './ListingCells.constant';
 
 export const DatagridCellPath = (secret: Secret) => {
   const { okmsId } = useRequiredParams('okmsId');
+  const { trackClick } = useOkmsTracking();
   const url = SECRET_MANAGER_ROUTES_URLS.secret(okmsId, secret.path);
 
   return (
@@ -25,6 +28,14 @@ export const DatagridCellPath = (secret: Secret) => {
       label={secret.path}
       isRouterLink
       data-testid={SECRET_LIST_CELL_TEST_IDS.path(secret.path)}
+      onClick={() => {
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['secret'],
+        });
+      }}
     />
   );
 };
@@ -32,7 +43,7 @@ export const DatagridCellPath = (secret: Secret) => {
 export const DatagridCellVersion = (secret: Secret) => {
   return (
     <DataGridTextCell data-testid={SECRET_LIST_CELL_TEST_IDS.version(secret.path)}>
-      {secret.version.id}
+      {secret.version?.id ?? '-'}
     </DataGridTextCell>
   );
 };
@@ -50,6 +61,7 @@ export const DatagridAction = (secret: Secret) => {
   const { okmsId } = useRequiredParams('okmsId');
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
+  const { trackClick } = useOkmsTracking();
 
   const items: ActionMenuItem[] = [
     {
@@ -57,6 +69,12 @@ export const DatagridAction = (secret: Secret) => {
       label: t('reveal_secret'),
       onClick: () => {
         navigate(SECRET_MANAGER_ROUTES_URLS.secretListSecretValueDrawer(okmsId, secret.path));
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['reveal', 'value'],
+        });
       },
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretGet, kmsIamActions.secretVersionGetData],
@@ -65,7 +83,19 @@ export const DatagridAction = (secret: Secret) => {
       id: 2,
       label: t('add_new_version'),
       onClick: () => {
-        navigate(SECRET_MANAGER_ROUTES_URLS.secretListCreateVersionDrawer(okmsId, secret.path));
+        navigate(
+          SECRET_MANAGER_ROUTES_URLS.secretListCreateVersionDrawer(
+            okmsId,
+            secret.path,
+            secret.metadata.currentVersion,
+          ),
+        );
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['create', 'version'],
+        });
       },
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretVersionCreate],
@@ -75,6 +105,12 @@ export const DatagridAction = (secret: Secret) => {
       label: t('access_versions'),
       onClick: () => {
         navigate(SECRET_MANAGER_ROUTES_URLS.versionList(okmsId, secret.path));
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['version', 'list'],
+        });
       },
     },
     {
@@ -82,6 +118,12 @@ export const DatagridAction = (secret: Secret) => {
       label: t('delete_secret'),
       onClick: () => {
         navigate(SECRET_MANAGER_ROUTES_URLS.secretListDeleteSecretModal(okmsId, secret.path));
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: ['delete', 'secret'],
+        });
       },
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretDelete],

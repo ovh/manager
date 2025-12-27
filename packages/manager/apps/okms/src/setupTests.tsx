@@ -59,3 +59,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     )),
   };
 });
+
+vi.mock('@/common/hooks/useOkmsTracking', () => ({
+  useOkmsTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
+}));

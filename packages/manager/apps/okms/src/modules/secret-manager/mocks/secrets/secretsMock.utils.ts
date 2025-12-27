@@ -6,7 +6,7 @@ import { getVersionMockWithData } from '../versions/versionsMock.utils';
 export const getSecretMockWithData = (secret: Secret): SecretWithData => {
   return {
     ...secret,
-    version: getVersionMockWithData(secret.version),
+    version: secret?.version ? getVersionMockWithData(secret.version) : undefined,
   };
 };
 

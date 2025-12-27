@@ -30,9 +30,10 @@ import {
   useDatagridSearchParams,
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
@@ -42,7 +43,7 @@ export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tError } = useTranslation('error');
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const { sorting, setSorting } = useDatagridSearchParams();
   const { okmsId } = useRequiredParams('okmsId');
@@ -126,7 +127,7 @@ export default function Keys() {
             location: PageLocation.page,
             buttonType: ButtonType.button,
             actionType: 'action',
-            actions: ['create_encryption_key'],
+            actions: ['create', 'service-key'],
           });
           navigate(KMS_ROUTES_URLS.serviceKeyCreate(okmsId));
         }}

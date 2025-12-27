@@ -16,9 +16,10 @@ import {
   RedirectionGuard,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendingOkmsOrder';
 
 import kmsListingTestIds from './KmsListing.constants';
@@ -27,7 +28,7 @@ export default function Listing() {
   const { t } = useTranslation(['key-management-service/listing', 'common']);
   const { t: tError } = useTranslation('error');
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const { clearNotifications, notifications } = useNotifications();
   const { hasPendingOrder } = usePendingOkmsOrder();
@@ -84,7 +85,7 @@ export default function Listing() {
                 location: PageLocation.page,
                 buttonType: ButtonType.button,
                 actionType: 'navigation',
-                actions: ['create_kms'],
+                actions: ['create', 'okms'],
               });
               navigate(KMS_ROUTES_URLS.kmsCreate);
             }}
