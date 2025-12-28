@@ -1,4 +1,5 @@
 {
   "terminate_managed_vcd_success": "La demande de résiliation de votre service {{service}} a bien été prise en compte. Vous allez recevoir un e-mail pour la valider.",
-  "terminate_managed_vcd_ftc_success": "La demande de résiliation de votre service {{service}} a bien été prise en compte. Un e-mail de confirmation vous a été envoyé."
+  "terminate_managed_vcd_ftc_success": "La demande de résiliation de votre service {{service}} a bien été prise en compte. Un e-mail de confirmation vous a été envoyé.",
+  "terminate_confirm_deletion_service": "Entrer <1>{{confirmationKeyword}}</1> pour valider votre choix."
 }
