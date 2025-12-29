@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.21.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.5...@ovh-ux/manager-telecom@16.21.6) (2025-12-29)
+
+
+### Bug Fixes
+
+* **telecom:** fix the visiblity of the phonebook tab on Line page ([4952385](https://github.com/ovh/manager/commit/49523853b9fda1ad6c386a1c9822fe6f2e4012ef)), closes [#PRDCOL-324](https://github.com/ovh/manager/issues/PRDCOL-324)
+
+
+
+
+
 ## [16.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.4...@ovh-ux/manager-telecom@16.21.5) (2025-12-23)
 
 
