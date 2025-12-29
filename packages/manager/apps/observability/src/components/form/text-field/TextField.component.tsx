@@ -26,7 +26,7 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
       value,
       placeholder,
       rows = 4,
-      className = 'my-4 w-full',
+      className = 'my-6 w-full',
       isRequired = false,
       isDisabled = false,
       onChange,
