@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import React from 'react';
 import { render, screen, waitFor } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
 import Contacts from '@/domain/components/SubscriptionCards/Contacts';
 import { domainResourceOK } from '@/domain/__mocks__/serviceInfoDetail';
@@ -14,7 +14,7 @@ vi.mock('@/domain/hooks/data/query', () => ({
 
 describe('Contacts component', () => {
   it('renders populated state with contacts information', async () => {
-    (useGetDomainContact as jest.Mock).mockReturnValue({
+    (useGetDomainContact as Mock).mockReturnValue({
       domainResource: null,
       isFetchingDomainResource: true,
     });
