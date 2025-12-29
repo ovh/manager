@@ -46,7 +46,9 @@ describe('BoundsFormFieldHelper', () => {
     ])(
       'should render bounds helper text "$expectedText" when min="$min" and max="$max"',
       ({ min, max, expectedText }) => {
-        render(<BoundsFormFieldHelper min={min} max={max} error={undefined} />);
+        render(
+          <BoundsFormFieldHelper min={min} max={max} error={undefined} hasRetentionError={false} />,
+        );
 
         expect(screen.getByTestId('form-field-helper')).toBeInTheDocument();
         expect(screen.getByText(expectedText)).toBeInTheDocument();
@@ -58,7 +60,9 @@ describe('BoundsFormFieldHelper', () => {
       { min: '7 days', max: undefined, description: 'max is undefined' },
       { min: undefined, max: undefined, description: 'both min and max are undefined' },
     ])('should not render bounds helper text when $description', ({ min, max }) => {
-      render(<BoundsFormFieldHelper min={min} max={max} error={undefined} />);
+      render(
+        <BoundsFormFieldHelper min={min} max={max} error={undefined} hasRetentionError={false} />,
+      );
 
       expect(screen.getByTestId('form-field-helper')).toBeInTheDocument();
       expect(screen.queryByText(/Min:/)).not.toBeInTheDocument();
@@ -73,7 +77,14 @@ describe('BoundsFormFieldHelper', () => {
     ])('should render error message "$message"', ({ message, type }) => {
       const error: FieldError = { type, message };
 
-      render(<BoundsFormFieldHelper min={undefined} max={undefined} error={error} />);
+      render(
+        <BoundsFormFieldHelper
+          min={undefined}
+          max={undefined}
+          error={error}
+          hasRetentionError={true}
+        />,
+      );
 
       expect(screen.getByText(message)).toBeInTheDocument();
     });
@@ -81,7 +92,14 @@ describe('BoundsFormFieldHelper', () => {
     it('should not render error message when error has no message', () => {
       const error: FieldError = { type: 'required' };
 
-      render(<BoundsFormFieldHelper min="7 days" max="400 days" error={error} />);
+      render(
+        <BoundsFormFieldHelper
+          min="7 days"
+          max="400 days"
+          error={error}
+          hasRetentionError={true}
+        />,
+      );
 
       expect(screen.getByText('Min: 7 days, Max: 400 days')).toBeInTheDocument();
       // Only one text element should be present (the bounds helper)
@@ -94,7 +112,7 @@ describe('BoundsFormFieldHelper', () => {
     it('should render both bounds and error message', () => {
       const error: FieldError = { type: 'manual', message: 'Invalid value' };
 
-      render(<BoundsFormFieldHelper min="1" max="100" error={error} />);
+      render(<BoundsFormFieldHelper min="1" max="100" error={error} hasRetentionError={true} />);
 
       expect(screen.getByText('Min: 1, Max: 100')).toBeInTheDocument();
       expect(screen.getByText('Invalid value')).toBeInTheDocument();
@@ -105,7 +123,7 @@ describe('BoundsFormFieldHelper', () => {
     it('should use caption preset for text elements', () => {
       const error: FieldError = { type: 'manual', message: 'Error message' };
 
-      render(<BoundsFormFieldHelper min="1" max="10" error={error} />);
+      render(<BoundsFormFieldHelper min="1" max="10" error={error} hasRetentionError={true} />);
 
       const textElements = screen.getAllByTestId('text');
       textElements.forEach((element) => {
@@ -116,7 +134,14 @@ describe('BoundsFormFieldHelper', () => {
 
   describe('empty state', () => {
     it('should render empty helper when no props have values', () => {
-      render(<BoundsFormFieldHelper min={undefined} max={undefined} error={undefined} />);
+      render(
+        <BoundsFormFieldHelper
+          min={undefined}
+          max={undefined}
+          error={undefined}
+          hasRetentionError={true}
+        />,
+      );
 
       const helper = screen.getByTestId('form-field-helper');
       expect(helper).toBeInTheDocument();

@@ -4,12 +4,17 @@ import { FormFieldHelper, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { BoundsFormFieldHelperProps } from '@/components/form/bounds-form-field-helper/BoundsFormFieldHelper.props';
 
-export const BoundsFormFieldHelper = ({ min, max, error }: BoundsFormFieldHelperProps) => {
+export const BoundsFormFieldHelper = ({
+  min,
+  max,
+  error,
+  hasRetentionError,
+}: BoundsFormFieldHelperProps) => {
   const { t } = useTranslation('shared');
   return (
     <FormFieldHelper>
       {min && max && (
-        <Text preset={TEXT_PRESET.caption}>
+        <Text preset={TEXT_PRESET.caption} className={hasRetentionError ? 'text-red-600' : ''}>
           {t('form.bounds.helper', {
             min,
             max,

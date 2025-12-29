@@ -33,7 +33,7 @@ export const InformationForm = ({
   return (
     <>
       <Text preset={TEXT_PRESET.heading2}>{title}</Text>
-      <div className="mt-6 space-y-4">
+      <div className="mt-6">
         <Controller
           name="title"
           control={control}
