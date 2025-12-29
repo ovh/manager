@@ -8,12 +8,6 @@ const { mockNavigate, mockGetTenantTagsUrl } = vi.hoisted(() => ({
   mockGetTenantTagsUrl: vi.fn(),
 }));
 
-const mockTagsList = vi.fn(
-  (props: { tags?: Record<string, string>; isLoading: boolean; maxVisibleTags: number }) => (
-    <div data-testid="tags-list-props">{JSON.stringify(props)}</div>
-  ),
-);
-
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
@@ -42,6 +36,16 @@ vi.mock('@ovh-ux/muk', () => ({
       ),
     },
   },
+  TagsList: ({ tags }: { tags?: Record<string, string> }) => (
+    <div data-testid="tags-list">
+      {tags &&
+        Object.entries(tags).map(([key, value]) => (
+          <span key={`${key}-${value}`} data-testid={`tag-${key}-${value}`}>
+            {key}:{value}
+          </span>
+        ))}
+    </div>
+  ),
 }));
 
 vi.mock('@ovhcloud/ods-react', () => ({
@@ -50,19 +54,13 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {children}
     </button>
   ),
-}));
-
-vi.mock('@/components/dashboard/TagsList.component', () => ({
-  TagsList: (props: {
-    tags?: Record<string, string>;
-    isLoading: boolean;
-    maxVisibleTags: number;
-  }) => mockTagsList(props),
+  Skeleton: () => <div data-testid="skeleton">Loading...</div>,
 }));
 
 describe('TagsTile.component', () => {
   const baseProps = {
     tenantId: 'tenant-123',
+    title: 'tenant 123',
     tags: {
       environment: 'prod',
     },
@@ -79,13 +77,8 @@ describe('TagsTile.component', () => {
 
     expect(screen.getByText('dashboard.tags_tile.title')).toBeInTheDocument();
     expect(screen.getByText('dashboard.tags_tile.manage_tags')).toBeInTheDocument();
-    expect(mockTagsList).toHaveBeenCalledWith(
-      expect.objectContaining({
-        tags: baseProps.tags,
-        isLoading: baseProps.isLoading,
-        maxVisibleTags: 8,
-      }),
-    );
+    expect(screen.getByTestId('tags-list')).toBeInTheDocument();
+    expect(screen.getByTestId('tag-environment-prod')).toBeInTheDocument();
   });
 
   it('navigates to the tags page when clicking the manage tags link', () => {
