@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.1...@ovh-ux/manager-web-ongoing-operations-app@1.19.2) (2025-12-29)
+
+
+### Bug Fixes
+
+* **web-domains:** fix links ([7cf1906](https://github.com/ovh/manager/commit/7cf190662638b5d30e7ea81c2703d84df79026e9)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+* **web-domains:** fix url route provider regexp ([5848cb8](https://github.com/ovh/manager/commit/5848cb8dc85bff7e13af54c486ca44fb7360e71b)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+
+
+
+
+
 ## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.0...@ovh-ux/manager-web-ongoing-operations-app@1.19.1) (2025-12-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
