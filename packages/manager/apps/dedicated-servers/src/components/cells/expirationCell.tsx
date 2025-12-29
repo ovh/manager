@@ -18,9 +18,7 @@ export const ExpirationCell = (server: DedicatedServer) => {
           : billingInfo?.billing?.renew?.current?.nextDate ||
             billingInfo?.billing?.expirationDate;
         return (
-          <div>
-            {expirationDate ? format(new Date(expirationDate)) : ''}
-          </div>
+          <span>{expirationDate ? format(new Date(expirationDate)) : ''}</span>
         );
       }}
     </DSBilling>

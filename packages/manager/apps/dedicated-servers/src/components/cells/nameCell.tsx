@@ -9,13 +9,11 @@ export const NameCell = (server: DedicatedServer) => {
   const { t } = useTranslation('dedicated-servers');
   const serverUrl = useServerUrl(server);
   return (
-    <div>
-      <OdsLink
-        color="primary"
-        href={serverUrl}
-        label={t(server?.iam?.displayName)}
-      />
-    </div>
+    <OdsLink
+      color="primary"
+      href={serverUrl}
+      label={t(server?.iam?.displayName)}
+    />
   );
 };
 
