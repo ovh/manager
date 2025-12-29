@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Route } from 'react-router-dom';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import NotFound from './pages/404';
 
@@ -15,7 +15,11 @@ export default (
     Component={LayoutPage}
     id={'root'}
     errorElement={
-      <ErrorBoundary redirectionApp="catalog" isPreloaderHide={true} isRouteShellSync={true} />
+      <ErrorBoundary
+        redirectionApp="catalog"
+        isPreloaderHide={true}
+        isRouteShellSync={true}
+      />
     }
   >
     <Route path={'/'} Component={IndexPage} />
