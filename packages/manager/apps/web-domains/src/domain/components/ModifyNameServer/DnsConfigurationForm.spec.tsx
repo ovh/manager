@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import DnsConfigurationForm from './DnsConfigurationForm';
 import {
@@ -18,7 +18,7 @@ vi.mock('@/domain/components/ModifyNameServer/NewDnsConfigModal', () => ({
 describe('DnsConfigurationForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (computeDisplayNameServers as jest.Mock).mockReturnValue([ns1, ns2]);
+    (computeDisplayNameServers as Mock).mockReturnValue([ns1, ns2]);
   });
 
   it(`affiche les serveurs initiaux et la ligne d'ajout`, () => {

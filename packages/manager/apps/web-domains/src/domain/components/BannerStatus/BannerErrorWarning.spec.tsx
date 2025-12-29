@@ -1,6 +1,5 @@
 import '@/common/setupTests';
-import React from 'react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
@@ -17,7 +16,7 @@ vi.mock('@/domain/hooks/data/query', () => ({
 
 describe('BannerCritical component', () => {
   it('renders error banner when TECHNICAL_SUSPEND and SUSPENDED', () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: serviceInfoDetailSuspendedTechnical,
     });
 
@@ -32,7 +31,7 @@ describe('BannerCritical component', () => {
   });
 
   it('renders error banner when ABUSE', () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: serviceInfoNotSuspendedTechnical,
     });
 
@@ -47,7 +46,7 @@ describe('BannerCritical component', () => {
   });
 
   it('renders error banner when RESTORABLE', () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: serviceInfoRestorable,
     });
 

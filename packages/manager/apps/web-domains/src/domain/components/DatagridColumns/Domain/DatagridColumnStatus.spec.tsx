@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, Mock, vi } from 'vitest';
 import { useTranslation } from 'react-i18next';
 import DatagridColumnStatus from './DatagridColumnStatus';
 import { DomainServiceStateEnum } from '@/domain/types/domainResource';
@@ -32,7 +32,7 @@ describe('DatagridColumnStatus', () => {
   const mockT = vi.fn((key: string) => `translated_${key}`);
 
   beforeEach(() => {
-    (useTranslation as jest.Mock).mockReturnValue({
+    (useTranslation as Mock).mockReturnValue({
       t: mockT,
     });
   });

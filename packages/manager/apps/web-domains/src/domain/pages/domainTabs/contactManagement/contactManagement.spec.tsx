@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import { render, screen } from '@/common/utils/test.provider';
-import { vi, describe, it, beforeEach } from 'vitest';
+import { vi, describe, it, beforeEach, Mock } from 'vitest';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 import ContactManagement from './contactManagement';
@@ -33,17 +33,17 @@ describe('ContactManagement Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
-    (useNichandleInformation as jest.Mock).mockReturnValue({
+    (useNichandleInformation as Mock).mockReturnValue({
       nichandleInformation: mockNichandleInfo,
     });
   });
 
   it('should render spinner when loading', () => {
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: null,
       isServiceInfoLoading: true,
     });
