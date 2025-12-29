@@ -12,7 +12,7 @@ const TenantsOutlet = () => {
 
   return (
     <>
-      <div className="flex justify-end">
+      <div className="mb-6 flex items-center justify-end">
         <ServicesDropDown onChange={() => navigate(urls.tenants)} />
         <div className="whitespace-nowrap">
           <GrafanaButton />
