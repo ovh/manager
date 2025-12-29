@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.12...@ovh-ux/manager-vps@2.50.13) (2025-12-29)
+
+
+### Bug Fixes
+
+* **vps-upscale:** allow upscale of vps limite edition ([ca151ae](https://github.com/ovh/manager/commit/ca151ae49f9c03c1fcde8f7f0bf945e50f3605d3)), closes [#PCINT-8097](https://github.com/ovh/manager/issues/PCINT-8097)
+
+
+
+
+
 ## [2.50.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.11...@ovh-ux/manager-vps@2.50.12) (2025-11-17)
 
 
