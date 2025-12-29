@@ -303,6 +303,7 @@ export type TCustomRegionItemData = {
   deploymentMode: TDeploymentMode;
   macroRegionId: string;
   regionalizedFlavorId: string;
+  regionId: string;
 };
 
 type TMicroRegionId = string;
@@ -310,7 +311,6 @@ type TFlavorMicroRegionsData = {
   label: string;
   options: {
     customRendererData: TCustomRegionItemData;
-    label: string;
     value: TMicroRegionId;
   }[];
 };
@@ -324,10 +324,7 @@ const mapToAvailableRegionOption = (
     macroRegion.name,
   );
 
-  const label =
-    macroRegion.microRegions.length > 1
-      ? regionalizedFlavor.regionId
-      : `regions:manager_components_region_${regionName}`;
+  const label = `regions:manager_components_region_${regionName}_micro`;
 
   return {
     customRendererData: {
@@ -335,6 +332,7 @@ const mapToAvailableRegionOption = (
       deploymentMode: macroRegion.deploymentMode,
       macroRegionId: macroRegion.name,
       regionalizedFlavorId: regionalizedFlavor.id,
+      regionId: regionalizedFlavor.regionId,
     },
     label,
     value: regionalizedFlavor.regionId,

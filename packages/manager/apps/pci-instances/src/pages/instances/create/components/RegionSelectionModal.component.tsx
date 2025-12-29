@@ -81,6 +81,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
       <div className="mt-4">
         {children}
         <LocalizationSelect<TCustomRegionItemData>
+          className="mt-4"
           regions={regions}
           onValueChange={handleSelect}
           value={selectRegionValue}
