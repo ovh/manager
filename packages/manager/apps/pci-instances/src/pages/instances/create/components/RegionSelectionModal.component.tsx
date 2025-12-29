@@ -1,21 +1,11 @@
-import Localization from '@/components/localizationCard/Localization.component';
 import Modal from '@/components/modal/Modal.component';
-import {
-  FormField,
-  FormFieldLabel,
-  Select,
-  SelectContent,
-  SelectControl,
-  SelectCustomItemRendererArg,
-  SelectCustomOptionRendererArg,
-  SelectGroupItem,
-  SelectItem,
-} from '@ovhcloud/ods-react';
+import { SelectGroupItem, SelectItem } from '@ovhcloud/ods-react';
 import { FC, PropsWithChildren, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TCustomRegionItemData } from '../view-models/flavorsViewModel';
 import { useFormContext } from 'react-hook-form';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
+import LocalizationSelect from '@/components/localizationCard/LocalizationSelect.component';
 
 export type TCustomRegionSelected = {
   macroRegionId: string;
@@ -34,9 +24,6 @@ type TSelectRegionChangeDetail = {
   items: SelectItem[];
   value: string[];
 };
-
-const continentDividerClassname =
-  '[&>div>div>span]:w-full [&>div:not(:last-child)]:border-solid [&>div]:border-x-0 [&>div]:border-t-0 [&>div]:border-b [&>div]:border-[var(--ods-color-gray-200)] [&>div:not(:last-child)]:pb-4 [&>div:not(:last-child)]:mb-3';
 
 const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
   open,
@@ -93,66 +80,11 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
     >
       <div className="mt-4">
         {children}
-        <FormField className="mt-4">
-          <FormFieldLabel>
-            {t('pci_instance_creation_select_new_region_label')}
-          </FormFieldLabel>
-          <Select
-            items={regions}
-            onValueChange={handleSelect}
-            value={selectRegionValue}
-          >
-            <SelectControl
-              className="h-[2.5em]"
-              placeholder={t(
-                'creation:pci_instance_creation_select_new_region',
-              )}
-              customItemRenderer={({
-                selectedItems,
-              }: SelectCustomItemRendererArg) => (
-                <>
-                  {selectedItems[0] && (
-                    <Localization
-                      name={t(selectedItems[0].label)}
-                      countryCode={
-                        (selectedItems[0]
-                          .customRendererData as TCustomRegionItemData)
-                          .countryCode
-                      }
-                      deploymentMode={
-                        (selectedItems[0]
-                          .customRendererData as TCustomRegionItemData)
-                          .deploymentMode
-                      }
-                    />
-                  )}
-                </>
-              )}
-            />
-            <SelectContent
-              className={continentDividerClassname}
-              customGroupRenderer={({ label }) => (
-                <span>
-                  {t(`common:pci_instances_common_instance_continent_${label}`)}
-                </span>
-              )}
-              customOptionRenderer={({
-                label,
-                customData,
-              }: SelectCustomOptionRendererArg) => (
-                <Localization
-                  name={t(label)}
-                  countryCode={
-                    (customData as TCustomRegionItemData).countryCode
-                  }
-                  deploymentMode={
-                    (customData as TCustomRegionItemData).deploymentMode
-                  }
-                />
-              )}
-            />
-          </Select>
-        </FormField>
+        <LocalizationSelect<TCustomRegionItemData>
+          regions={regions}
+          onValueChange={handleSelect}
+          value={selectRegionValue}
+        />
       </div>
     </Modal>
   );
