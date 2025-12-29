@@ -41,11 +41,7 @@ export const SelectField = ({
         <Skeleton className={className} />
       ) : (
         <>
-          {label && (
-            <FormFieldLabel htmlFor={name}>
-              <Text preset={TEXT_PRESET.paragraph}>{label}</Text>
-            </FormFieldLabel>
-          )}
+          {label && <FormFieldLabel htmlFor={name}>{label}</FormFieldLabel>}
           <Combobox
             className={className}
             value={value ? [value] : []}
