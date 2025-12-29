@@ -7,7 +7,7 @@ import { TableHeaderSortingProps } from './TableHeaderSorting.props';
 export const TableHeaderSorting = <T,>({ header, onSortChange }: TableHeaderSortingProps<T>) => {
   const canSort = header.column.getCanSort();
   const handleClick = onSortChange ? header.column.getToggleSortingHandler() : undefined;
-  const containerClassName = `${canSort ? 'cursor-pointer select-none' : ''} h-[20px]`;
+  const containerClassName = `${canSort ? 'cursor-pointer select-none' : ''} h-[20px]  h-auto`;
 
   return (
     <div
@@ -15,7 +15,9 @@ export const TableHeaderSorting = <T,>({ header, onSortChange }: TableHeaderSort
       data-testid={`header-${header.id}`}
       className={containerClassName}
     >
-      <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
+      <span className="whitespace-normal wrap-break-word" style={{ wordBreak: 'break-word' }}>
+        {flexRender(header.column.columnDef.header, header.getContext())}
+      </span>
       <span className="align-middle inline-block pl-1 -mt-1">
         <Icon
           className={header.column.getIsSorted() ? '' : 'invisible'}
