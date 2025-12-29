@@ -112,6 +112,16 @@ vi.mock('@ovh-ux/muk', () => ({
       </div>
     </div>
   ),
+  TagsList: ({ tags }: { tags?: Record<string, string> }) => (
+    <div data-testid="tags-cell">
+      {tags &&
+        Object.entries(tags).map(([key, value], index) => (
+          <span key={index} data-testid={`tag-${key}-${value}`}>
+            {key}:{value}
+          </span>
+        ))}
+    </div>
+  ),
   useColumnFilters: () => ({
     filters: [],
     addFilter: vi.fn(),
@@ -173,19 +183,6 @@ vi.mock(
     ),
   }),
 );
-
-vi.mock('@/components/dashboard/TagsList.component', () => ({
-  default: ({ tags }: { tags: Record<string, string> }) => (
-    <div data-testid="tags-cell">
-      {tags &&
-        Object.entries(tags).map(([key, value], index) => (
-          <span key={index} data-testid={`tag-${key}-${value}`}>
-            {key}:{value}
-          </span>
-        ))}
-    </div>
-  ),
-}));
 
 // Test wrapper for React Query
 const createWrapper = () => {

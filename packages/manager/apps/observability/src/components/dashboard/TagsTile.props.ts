@@ -1,5 +1,6 @@
 export interface TagsTileProps {
   tenantId: string;
-  tags?: Record<string, string>;
+  title: string;
+  tags: { [key: string]: string };
   isLoading?: boolean;
 }

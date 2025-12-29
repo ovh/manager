@@ -15,12 +15,12 @@ import {
 import {
   Datagrid,
   DatagridColumn,
+  TagsList,
   useColumnFilters,
   useDateFnsLocale,
   useNotifications,
 } from '@ovh-ux/muk';
 
-import TagsList from '@/components/dashboard/TagsList.component';
 import DatagridCellEnpoint from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.component';
 import DatagridCellLink from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component';
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
@@ -123,9 +123,10 @@ export default function TenantsListDatagrid({
         id: 'tags',
         header: t('tenants:listing.tags_cell'),
         label: t('tenants:listing.tags_cell'),
-        accessorFn: (row: TenantListing) => row.tags,
+        accessorFn: (tenant: TenantListing) => tenant,
         cell: ({ getValue }) => {
-          return <TagsList tags={getValue<{ [key: string]: string }>()} />;
+          const { name, tags } = getValue<TenantListing>();
+          return <TagsList tags={tags} modalHeading={name} maxLines={1} />;
         },
         comparator: FilterCategories.Tags,
         type: FilterTypeCategories.Tags,
