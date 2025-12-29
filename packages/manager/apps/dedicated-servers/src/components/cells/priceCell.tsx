@@ -5,11 +5,7 @@ import { DSBilling } from './billingCell';
 export const PriceCell = (server: DedicatedServer) => {
   return (
     <DSBilling server={server}>
-      {(billingInfo) => (
-        <div>
-          {billingInfo?.billing?.pricing?.price?.text}
-        </div>
-      )}
+      {(billingInfo) => <>{billingInfo?.billing?.pricing?.price?.text}</>}
     </DSBilling>
   );
 };
