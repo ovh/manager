@@ -77,7 +77,7 @@ export default function RegionSelector() {
                   ))}
                 </TabList>
               </Tabs>
-              <div className="mt-4 space-y-4">
+              <div className="mb-9 mt-8 space-y-5">
                 {groupedInfrastructures[selectedZone]?.map((infrastructure) => (
                   <RadioCard
                     id={infrastructure.id}
