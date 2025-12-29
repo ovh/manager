@@ -15,6 +15,10 @@ import { PciCard } from '@/components/pciCard/PciCard.component';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import {
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 type TAvailabilityZoneSelection = { availabilityZones: string[] };
 type TChoice = 'companyChoice' | 'userChoice';
@@ -25,6 +29,7 @@ export const AvailabilityZoneSelection = ({
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation']);
   const [choice, setChoice] = useState<TChoice>('companyChoice');
   const guide = useGuideLink('AVAILABILITY_ZONES');
+  const { trackClick } = useOvhTracking();
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const selectedAvailabilityZone = useWatch({
@@ -35,6 +40,17 @@ export const AvailabilityZoneSelection = ({
   const handleAvailabilityZoneChange = (zone: string | null) => {
     if (zone) {
       setValue('availabilityZone', zone);
+      trackClick({
+        location: PageLocation.funnel,
+        actionType: 'action',
+        actions: [
+          'box',
+          'add_instance',
+          'select_location',
+          '3AZ-manually-selected',
+          zone,
+        ],
+      });
     }
   };
 
@@ -44,9 +60,25 @@ export const AvailabilityZoneSelection = ({
   };
 
   const handleChoiceChange = (choice: RadioValueChangeDetail) => {
-    if (choice.value) setChoice(choice.value as TChoice);
-    if (choice.value === 'companyChoice') setValue('availabilityZone', null);
-    if (choice.value === 'userChoice') setDefaultAvailabilityZoneValue();
+    if (choice.value) {
+      setChoice(choice.value as TChoice);
+    }
+    if (choice.value === 'companyChoice') {
+      setValue('availabilityZone', null);
+      trackClick({
+        location: PageLocation.funnel,
+        actionType: 'action',
+        actions: ['box', 'add_instance', 'select_location', '3AZ-automated'],
+      });
+    }
+    if (choice.value === 'userChoice') {
+      setDefaultAvailabilityZoneValue();
+      trackClick({
+        location: PageLocation.funnel,
+        actionType: 'action',
+        actions: ['box', 'add_instance', 'select_location', '3AZ-manually'],
+      });
+    }
   };
 
   useEffect(() => {
