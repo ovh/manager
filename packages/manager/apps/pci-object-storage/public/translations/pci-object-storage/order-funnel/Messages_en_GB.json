@@ -12,7 +12,7 @@
   "labelLocation": "Location",
   "labelContainerType": "Container type",
   "labelOffsiteReplication": "Offsite Replication",
-  "descriptionOffsiteReplication": "Automatically replicate your data to a remote site using an Infrequent Access storage class. &lt;0>Learn more &lt;/0>",
+  "descriptionOffsiteReplication": "Automatically replicate your data to a remote site using an Infrequent Access storage class. <0>Learn more </0>",
   "labelVersioning": "Version management",
   "descriptionVersioning": "Automates the creation of versions of an object to prevent accidental deletion, or simply when a new object is uploaded.",
   "labelUser": "User",
