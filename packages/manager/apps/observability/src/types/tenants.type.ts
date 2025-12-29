@@ -50,6 +50,6 @@ export type TenantListing = {
   infrastructure: TenantInfrastructure | undefined;
   retention: string | undefined;
   numberOfSeries: number | undefined;
-  tags: Record<string, string>;
+  tags: { [key: string]: string };
   search: string;
 } & TIdentifier;
