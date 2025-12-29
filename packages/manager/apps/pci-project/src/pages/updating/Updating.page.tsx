@@ -7,13 +7,13 @@ import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME, ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 
+import { getProjectQueryKey } from '@ovh-ux/manager-pci-common';
 import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import ImageSlider from '@/components/image-slider/ImageSlider';
 import LargeSpinner from '@/components/large-spinner/LargeSpinner';
 import { UPDATING_GUIDE_URLS } from '@/constants';
 import { useDeliveredProjectId, useOrderFollowUpPolling } from '@/data/hooks/useOrder';
-import { getProjectQueryKey } from '@/data/hooks/useProjects';
 import { useParam } from '@/hooks/useParam';
 import queryClient from '@/queryClient';
 import { PROJECTS_TRACKING } from '@/tracking.constant';

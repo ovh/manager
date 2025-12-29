@@ -1,8 +1,10 @@
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { getProjectQueryKey } from '@ovh-ux/manager-pci-common';
+
 import * as api from '@/data/api/projects';
-import { getDefaultProjectQueryKey, getProjectQueryKey } from '@/data/hooks/useProjects';
+import { getDefaultProjectQueryKey } from '@/data/hooks/useProjects';
 import queryClient from '@/queryClient';
 import { createWrapper } from '@/wrapperRenders';
 
