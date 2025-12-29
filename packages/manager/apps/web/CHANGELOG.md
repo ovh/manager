@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.34.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.2...@ovh-ux/manager-web@19.34.3) (2025-12-29)
+
+
+### Bug Fixes
+
+* **web-domains:** fix all_dom menu entry ([0462507](https://github.com/ovh/manager/commit/046250760a7573802ea5f22396343f6ab7b95316)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+* **web-domains:** fix url route provider regexp ([5848cb8](https://github.com/ovh/manager/commit/5848cb8dc85bff7e13af54c486ca44fb7360e71b)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+
+
+
+
+
 ## [19.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.1...@ovh-ux/manager-web@19.34.2) (2025-12-23)
 
 
