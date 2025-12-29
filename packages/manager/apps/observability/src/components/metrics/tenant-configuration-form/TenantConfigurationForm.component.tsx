@@ -154,6 +154,7 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
                 min={settingBounds.retention?.min?.label}
                 max={settingBounds.retention?.max?.label}
                 error={errors.retentionDuration}
+                hasRetentionError={hasRetentionError}
               />
             </FormField>
           )}
@@ -188,6 +189,7 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
                 min={settingBounds.maxSeries?.min?.toString()}
                 max={settingBounds.maxSeries?.max?.toString()}
                 error={errors.maxSeries}
+                hasRetentionError={hasMaxSeriesError}
               />
             </FormField>
           )}
