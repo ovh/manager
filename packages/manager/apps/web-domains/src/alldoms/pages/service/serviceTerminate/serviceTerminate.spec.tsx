@@ -1,6 +1,5 @@
 import '@/common/setupTests';
-import React from 'react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import {
   render,
   waitFor,
@@ -24,12 +23,12 @@ vi.mock('@/alldoms/hooks/data/useGetServices', () => ({
 
 describe('Terminate service', () => {
   it('display the modal', async () => {
-    (useGetAllDomResource as jest.Mock).mockReturnValue({
+    (useGetAllDomResource as Mock).mockReturnValue({
       data: alldomService,
       isLoading: false,
     });
 
-    (useGetServices as jest.Mock).mockReturnValue({
+    (useGetServices as Mock).mockReturnValue({
       data: allDomTerminate,
       isLoading: false,
     });
@@ -49,12 +48,12 @@ describe('Terminate service', () => {
     });
   });
 
-  (useGetAllDomResource as jest.Mock).mockReturnValue({
+  (useGetAllDomResource as Mock).mockReturnValue({
     data: alldomService,
     isLoading: false,
   });
 
-  (useGetServices as jest.Mock).mockReturnValue({
+  (useGetServices as Mock).mockReturnValue({
     data: allDomTerminate,
     isLoading: false,
   });
@@ -76,12 +75,12 @@ describe('Terminate service', () => {
   });
 
   it('should select all checkboxes when the "select all" checkbox is clicked', async () => {
-    (useGetAllDomResource as jest.Mock).mockReturnValue({
+    (useGetAllDomResource as Mock).mockReturnValue({
       data: alldomService,
       isLoading: false,
     });
 
-    (useGetServices as jest.Mock).mockReturnValue({
+    (useGetServices as Mock).mockReturnValue({
       data: allDomTerminate,
       isLoading: false,
     });
