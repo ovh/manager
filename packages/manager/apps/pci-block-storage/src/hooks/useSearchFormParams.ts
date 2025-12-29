@@ -40,6 +40,7 @@ export function useSearchFormParams<
         },
       );
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error('Error while parsing search params into form', e);
     }
   }, [searchParams]);

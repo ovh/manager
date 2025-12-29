@@ -1,7 +1,12 @@
 name: Run tests
+
 on:
   push:
     branches-ignore: [master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -11,6 +16,9 @@ jobs:
       PNPM_VERSION: "10.17.0" # must match playbook-config.js
 
     steps:
+      # ------------------------------------------
+      # Free disk space
+      # ------------------------------------------
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
@@ -22,60 +30,78 @@ jobs:
           docker-images: false
           swap-storage: true
 
+      # ------------------------------------------
+      # Checkout
+      # ------------------------------------------
       - name: Checkout latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Clean stale git locks (pre)
+        run: rm -f .git/index.lock
+
+      # ------------------------------------------
+      # Node
+      # ------------------------------------------
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
       # ------------------------------------------
-      # PNPM CACHE (binary only)
+      # pnpm binary cache (tool only)
       # ------------------------------------------
-      - name: Restore PNPM cache (binary only)
-        uses: actions/cache@v3
+      - name: Restore pnpm binary
+        uses: actions/cache@v4
         with:
-          path: |
-            target/pnpm
-          key: ${{ runner.os }}-pnpm-tests-${{ env.PNPM_VERSION }}-${{ hashFiles('yarn.lock') }}
+          path: target/pnpm
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-tests-${{ env.PNPM_VERSION }}-
-            ${{ runner.os }}-pnpm-tests-
+            ${{ runner.os }}-pnpm-binary-
 
       # ------------------------------------------
-      # YARN CACHE (node_modules + yarn cache)
+      # Yarn cache (tarballs only, standard path)
       # ------------------------------------------
       - name: Restore Yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-          key: ${{ runner.os }}-yarn-tests-${{ hashFiles('yarn.lock') }}
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-tests-
+            ${{ runner.os }}-yarn-cache-node22-
 
+      - name: Ensure yarn cache folder exists
+        run: mkdir -p ~/.cache/yarn
+
+      # ------------------------------------------
+      # Install deps (always deterministic)
+      # ------------------------------------------
       - name: Install repository
-        run: yarn install --frozen-lockfile
+        env:
+          YARN_CACHE_FOLDER: ~/.cache/yarn
+        run: yarn ci:install
+
+      - name: Clean stale git locks (post-install)
+        run: rm -f .git/index.lock
 
       # ------------------------------------------
       # BUILD TARGETED PACKAGES
       # ------------------------------------------
       - name: Build covered packages and dependencies
         run: |
-          yarn build --filter="./packages/manager/core/*" --concurrency=5
-          yarn build --filter="./packages/manager-ui-kit"
-          yarn build --filter="./packages/manager/modules/order"
-          yarn build --filter="./packages/manager/modules/common-api"
-          yarn build --filter="./packages/manager/modules/common-translations"
-          yarn build --filter="./packages/manager/modules/logs-to-customer"
-          yarn build --filter="./packages/manager/modules/vcd-api"
-          yarn build --filter="./packages/manager/modules/manager-pci-common"
-          yarn build --filter="./packages/manager/modules/network-common"
-          yarn build --filter="./packages/components/ovh-payment-method"
+          CORES=$(nproc --ignore=1 || nproc)
+          yarn build --concurrency=$CORES \
+            --filter='./packages/manager/core/*' \
+            --filter='./packages/manager-ui-kit' \
+            --filter='./packages/manager/modules/order' \
+            --filter='./packages/manager/modules/common-api' \
+            --filter='./packages/manager/modules/common-translations' \
+            --filter='./packages/manager/modules/logs-to-customer' \
+            --filter='./packages/manager/modules/vcd-api' \
+            --filter='./packages/manager/modules/manager-pci-common' \
+            --filter='./packages/manager/modules/network-common' \
+            --filter='./packages/components/ovh-payment-method'
 
       # ------------------------------------------
       # RUN TESTS ON CHANGED PACKAGES
@@ -96,16 +122,15 @@ jobs:
           BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
 
           if [[ -z "$BASE_BRANCH" ]]; then
-            export BASE_BRANCH="master"
-            export CURRENT_BRANCH=${BRANCH}
-            echo "NO PR FOUND for branch $BRANCH from ${BASE_BRANCH}"
+            BASE_BRANCH="master"
+            CURRENT_BRANCH="$BRANCH"
+            echo "NO PR FOUND for branch $BRANCH from $BASE_BRANCH"
           else
+            BASE_BRANCH="${BASE_BRANCH//\"/}"
+            CURRENT_BRANCH="${BRANCH//\"/}"
             echo "Base Branch is $BASE_BRANCH"
-            echo "current Branch is ${BRANCH}"
-            export BASE_BRANCH="${BASE_BRANCH//\"/}"
-            export CURRENT_BRANCH="${BRANCH//\"/}"
-            echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
-            echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
+            echo "Current Branch is $CURRENT_BRANCH"
           fi
 
-          yarn test --concurrency=1 --filter=...[origin/${BASE_BRANCH}...origin/${BRANCH}]
+          yarn test --concurrency=1 \
+            --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}]

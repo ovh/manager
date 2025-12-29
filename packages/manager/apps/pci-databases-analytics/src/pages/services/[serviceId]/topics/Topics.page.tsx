@@ -11,6 +11,7 @@ import { getColumns } from './_components/TopicsTableColumns.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { useGetTopics } from '@/hooks/api/database/topic/useGetTopics.hook';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -53,10 +54,7 @@ const Topics = () => {
                 <Button
                   mode="outline"
                   data-testid="add-button"
-                  disabled={
-                    service.capabilities.topic?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(service, 'topic', 'create')}
                   onClick={() => navigate('./add')}
                 >
                   <Plus className="w-4 h-4" />

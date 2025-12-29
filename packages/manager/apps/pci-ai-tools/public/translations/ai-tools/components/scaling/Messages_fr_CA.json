@@ -28,6 +28,7 @@
   "dataLocationPlaceholder": "ex: components.worker.tasks",
   "dataFormatRequired": "Format des données est requis",
   "metricUrlRequired": "URL de la métrique est requise",
+  "metricUrlInvalid": "L'URL de la métrique doit être une URL valide commençant par http:// ou https://",
   "aggregationTypeLabel": "Type d'agrégation",
   "aggregationTypeInfo": " Type d'aggregation à effectuer avant de comparer la valeur de métrique aggrégée à la valeur cible. Par exemple, si vous choisissez AVERAGE, la valeur comparée à la valeur cible pour le scaling sera la moyenne des valeurs de métrique de chaque réplica de votre app AI Deploy",
   "aggregationTypeRequired": "Type d'agrégation est requis"

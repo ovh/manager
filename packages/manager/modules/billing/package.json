@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing",
-  "version": "0.59.0",
+  "version": "0.59.2",
   "private": true,
   "description": "Manager billing section",
   "repository": {
@@ -24,7 +24,6 @@
     "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-config": "^8.0.0",
     "@ovh-ux/manager-core": "^13.0.0",
-    "@ovh-ux/manager-exchange": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-models": "^2.1.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.1",
     "@ovh-ux/ng-at-internet": "^6.0.0",

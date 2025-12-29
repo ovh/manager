@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.174.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.2...@ovh-ux/manager-container-app@0.174.3) (2025-12-29)
+
+
+### Bug Fixes
+
+* **web-domains:** fix links ([7cf1906](https://github.com/ovh/manager/commit/7cf190662638b5d30e7ea81c2703d84df79026e9)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+* **web-domains:** fix url route provider regexp ([5848cb8](https://github.com/ovh/manager/commit/5848cb8dc85bff7e13af54c486ca44fb7360e71b)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+
+
+
+
+
+## [0.174.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.1...@ovh-ux/manager-container-app@0.174.2) (2025-12-22)
+
+
+### Reverts
+
+* **config:** update Telecom domain ([03b1487](https://github.com/ovh/manager/commit/03b1487feba47b27bfcb3636d9a7d605f2816c27))
+* **container:** replace old domain to new domain ([474a74f](https://github.com/ovh/manager/commit/474a74f0e04331a0ed1a8181bb16e1e1d4e69e41))
+* skip labeu url update ([5f68a11](https://github.com/ovh/manager/commit/5f68a112ec1e0d31cd97a04381ceb332bb6eaf22))
+
+
+
+
+
+## [0.174.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.0...@ovh-ux/manager-container-app@0.174.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.174.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.173.0...@ovh-ux/manager-container-app@0.174.0) (2025-12-22)
+
+
+### Features
+
+* **web-domains:** domain menu revamp ([ee4b125](https://github.com/ovh/manager/commit/ee4b125f49f3e4209e40c227f5d008a2d4aec953)), closes [#DCE-1](https://github.com/ovh/manager/issues/DCE-1)
+
+
+
+
+
+# [0.173.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.3...@ovh-ux/manager-container-app@0.173.0) (2025-12-18)
+
+
+### Features
+
+* **container:** remove beta badge for logs to customer ([49df7c4](https://github.com/ovh/manager/commit/49df7c49e4a855356391d8d2d1b85aa096f67e58)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
 ## [0.172.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.2...@ovh-ux/manager-container-app@0.172.3) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

@@ -1408,5 +1408,7 @@
   "hosting_dashboard_service_filer_helper": "El identificador de su servidor de archivos puede sufrir cambios",
   "hosting_dashboard_service_state_TO_CREATE": "Por crear",
   "hosting_tab_DATABASES_configuration__action_button": "Desactivar mi base de datos",
-  "hosting_tab_DATABASES_configuration__available_slot": "Base de datos disponible"
+  "hosting_tab_DATABASES_configuration__available_slot": "Base de datos disponible",
+  "hosting_tab_WEBSITE": "Mis sitios",
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleccionar un dominio"
 }

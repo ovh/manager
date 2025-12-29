@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.5...@ovh-ux/manager-sap-features-hub-app@0.6.6) (2025-12-22)
+
+
+### Bug Fixes
+
+* build issues ([eb61630](https://github.com/ovh/manager/commit/eb616308a5bba274ca7624ee0983254ffee6bbac)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
 ## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.4...@ovh-ux/manager-sap-features-hub-app@0.6.5) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app

@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_storages_blocks_retype_cant_retype": "La funcionalidad de modificación del tipo no está disponible para los volúmenes Classic 3AZ o los volúmenes cifrados",
+  "pci_projects_project_storages_blocks_retype_title": "Modificar su tipo de oferta",
+  "pci_projects_project_storages_blocks_retype_change_type_title": "Seleccionar el tipo",
+  "pci_projects_project_storages_blocks_retype_change_encryption_title": "Seleccionar el cifrado",
+  "pci_projects_project_storages_blocks_retype_encryption_not_available": "El cifrado no está disponible en esta región",
+  "pci_projects_project_storages_blocks_retype_confirm_action_label": "Introduzca \"{{ confirmWord }}\" para confirmar su elección.",
+  "pci_projects_project_storages_blocks_retype_confirm_action_confirm_button": "Confirmar y continuar",
+  "pci_projects_project_storages_blocks_retype_detach_volume_label": "Desvincular su instancia",
+  "pci_projects_project_storages_blocks_retype_detach_volume_warning": "Para modificar su tipo de oferta, debe desvincular el volumen de su instancia {{ instance }}",
+  "pci_projects_project_storages_blocks_retype_detach_volume_error": "Se produjo un error al desvincular la instancia. Le invitamos a visitar &lt;0>la página de almacenamiento en bloque&lt;/0> para desvincular la instancia manualmente.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_label": "Eliminar los snapshots",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_warning": "Para modificar su tipo de oferta, primero debe eliminar los snapshots asociados a su volumen.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_error": "Se produjo un error al eliminar los snapshots. Le invitamos a visitar &lt;0>la página de snapshots&lt;/0> para eliminarlos manualmente.",
+  "pci_projects_project_storages_blocks_retype_retype_success": "El volumen {{ volumeName }} está en proceso de modificación. Esta operación puede tardar varios minutos. Una vez que haya terminado, podrá proceder con las acciones habituales",
+  "pci_projects_project_storages_blocks_retype_retype_error": "Se produjo un error al modificar el tipo de su volumen."
+}

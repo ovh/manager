@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.5.1...@ovh-ux/manager-web-domains-app@1.5.2) (2025-12-29)
+
+
+### Bug Fixes
+
+* **web-domains:** custom action menu closes the popover once drawer is opened ([d3b1c57](https://github.com/ovh/manager/commit/d3b1c57c15a533b9176b16ca7506e869554039d3)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+* **web-domains:** use nichandle ids instead of name / fistname / organization ([abf0490](https://github.com/ovh/manager/commit/abf0490d3e6283441f7bbd0dccc8649451afd87f)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+
+
+
+
+
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.5.0...@ovh-ux/manager-web-domains-app@1.5.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.4.6...@ovh-ux/manager-web-domains-app@1.5.0) (2025-12-22)
+
+
+### Features
+
+* **web-domains:** domain menu revamp ([ee4b125](https://github.com/ovh/manager/commit/ee4b125f49f3e4209e40c227f5d008a2d4aec953)), closes [#DCE-1](https://github.com/ovh/manager/issues/DCE-1)
+
+
+
+
+
 ## [1.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.4.5...@ovh-ux/manager-web-domains-app@1.4.6) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app

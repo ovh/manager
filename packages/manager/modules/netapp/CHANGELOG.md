@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.4...@ovh-ux/manager-netapp@2.17.5) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+## [2.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.3...@ovh-ux/manager-netapp@2.17.4) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4537] ([0e72f25](https://github.com/ovh/manager/commit/0e72f25756f159f8e9f1a4ac26885e5f9e435abb))
+* **i18n:** add missing translations [CDS 4539] ([51255bc](https://github.com/ovh/manager/commit/51255bca683fe2a6c6424cd1c0f9804689f6e005))
+
+
+
+
+
 ## [2.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.2...@ovh-ux/manager-netapp@2.17.3) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

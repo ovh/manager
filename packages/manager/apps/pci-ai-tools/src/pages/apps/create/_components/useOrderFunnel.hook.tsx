@@ -152,7 +152,7 @@ export function useOrderFunnel(
     metricUrl: form.watch('metricUrl') as string | undefined,
     dataFormat: form.watch('dataFormat'),
     dataLocation: form.watch('dataLocation'),
-    targetMetricValue: form.watch('targetMetricValue'),
+    targetMetricValue: form.watch('targetMetricValue') as number | undefined,
     aggregationType: form.watch('aggregationType'),
   };
 

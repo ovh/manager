@@ -12,6 +12,7 @@ import {
   Puzzle,
   Tag,
   User,
+  FolderLock,
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -162,7 +163,7 @@ const OrderSummary = ({
             <>
               <SummarySection
                 label={t('summaryVersionningSection')}
-                onAnchorClicked={() => scrollToDiv('replication')}
+                onAnchorClicked={() => scrollToDiv('versions')}
               >
                 <SummaryItem>
                   <History className="size-4" />
@@ -171,6 +172,21 @@ const OrderSummary = ({
                     storages.VersioningStatusEnum.enabled
                       ? t('summaryVersionningEnabled')
                       : t('summaryVersionningDisabled')}
+                  </span>
+                </SummaryItem>
+              </SummarySection>
+
+              <SummarySection
+                label={t('summaryObjectLockSection')}
+                onAnchorClicked={() => scrollToDiv('object-lock')}
+              >
+                <SummaryItem>
+                  <FolderLock className="size-4" />
+                  <span>
+                    {order.objectLock.status ===
+                    storages.ObjectLockStatusEnum.enabled
+                      ? t('summaryObjectLockEnabled')
+                      : t('summaryObjectLockDisabled')}
                   </span>
                 </SummaryItem>
               </SummarySection>

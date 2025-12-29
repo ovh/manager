@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.7...@ovh-ux/manager-core@13.3.8) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.6...@ovh-ux/manager-core@13.3.7) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
 ## [13.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.5...@ovh-ux/manager-core@13.3.6) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-core

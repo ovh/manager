@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.0...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.6...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.0) (2025-12-18)
+
+
+### Features
+
+* **vmware-vsphere:** remove beta badge for logs to customer ([74df350](https://github.com/ovh/manager/commit/74df350f8ae9234c98dfafc367e9ddbadb80f8f2)), closes [#MAOBS-167](https://github.com/ovh/manager/issues/MAOBS-167)
+
+
+
+
+
 ## [0.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.5...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.6) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app

@@ -13,6 +13,7 @@ import { ExpandableSqlQuery } from './ExpandableSqlQuery.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface CurrentQueriesListColumnsProps {
   onCancelQueryClicked: (query: database.service.currentqueries.Query) => void;
@@ -101,10 +102,11 @@ export const getColumns = ({
                   data-testid="current-queries-action-cancel-button"
                   variant="critical"
                   onClick={() => onCancelQueryClicked(row.original)}
-                  disabled={
-                    service.capabilities.currentQueriesCancel.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'currentQueriesCancel',
+                    'create',
+                  )}
                 >
                   {t('tableCurrentQueriesActionsMenuTerminateQuery')}
                 </DropdownMenuItem>

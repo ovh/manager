@@ -9,6 +9,7 @@ import { useServiceData } from '../../Service.context';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
 import NavLink from '@/components/links/NavLink.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 const UpdateTable = () => {
   const { t } = useTranslation(
@@ -47,23 +48,27 @@ const UpdateTable = () => {
       cell: `${humanizeEngine(service.engine)} ${service.version}`,
       path: './update-version',
       updateButtonDisplayed: availabilitiesVersionQuery.data?.length > 1,
+      disabled: isCapabilityDisabled(service, 'service', 'update'),
     },
     {
       title: t('tablePlan'),
       cell: service.plan,
       path: './update-plan',
       updateButtonDisplayed: availabilitiesPlanQuery.data?.length > 1,
+      disabled: isCapabilityDisabled(service, 'service', 'update'),
     },
     {
       title: t('tableFlavor'),
       cell: service.flavor,
       path: './update-flavor',
       updateButtonDisplayed: availabilitiesFlavorQuery.data?.length > 1,
+      disabled: isCapabilityDisabled(service, 'serviceFlavor', 'update'),
     },
     service.storage?.size.value && {
       title: t('tableStorage'),
       cell: `${formatStorage(service.storage.size)} ${service.storage.type}`,
       path: './update-flavor',
+      disabled: isCapabilityDisabled(service, 'serviceDisk', 'update'),
       updateButtonDisplayed:
         availabilitiesFlavorQuery.data?.length > 0 &&
         availabilitiesFlavorQuery.data[0].specifications.storage &&
@@ -76,7 +81,7 @@ const UpdateTable = () => {
   return (
     <table className="border-b border-gray-200 border-collapse w-full">
       <tbody>
-        {rows.map((row, key) => (
+        {rows.map((row) => (
           <tr key={row.title} className="border-b border-gray-200">
             <td className="font-semibold px-4 py-2">{row.title}</td>
             <td className="px-4 py-2">{row.cell}</td>
@@ -86,10 +91,7 @@ const UpdateTable = () => {
                   data-testid={`update-button-${row.title}`}
                   className="py-0"
                   to={row.path}
-                  disabled={
-                    service.capabilities.service.update ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={row.disabled}
                 >
                   {t('tableUpdateButton')}
                 </NavLink>
@@ -110,10 +112,7 @@ const UpdateTable = () => {
                     variant="critical"
                     className="p-0 h-auto"
                     onClick={() => navigate('./delete-node')}
-                    disabled={
-                      service.capabilities.nodes?.delete ===
-                      database.service.capability.StateEnum.disabled
-                    }
+                    disabled={isCapabilityDisabled(service, 'nodes', 'delete')}
                   >
                     <MinusCircle className="size-4" />
                   </Button>
@@ -124,10 +123,7 @@ const UpdateTable = () => {
                     mode="ghost"
                     className="p-0 h-auto"
                     onClick={() => navigate('./add-node')}
-                    disabled={
-                      service.capabilities.nodes?.create ===
-                      database.service.capability.StateEnum.disabled
-                    }
+                    disabled={isCapabilityDisabled(service, 'nodes', 'create')}
                   >
                     <PlusCircle className="size-4" />
                   </Button>

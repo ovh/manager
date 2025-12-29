@@ -30,13 +30,14 @@ export default /* @ngInject */ ($stateProvider) => {
     ...state,
     resolve: {
       ...state.resolve,
-      goBack: /* @ngInject */ ($state, Alerter, $timeout, atInternet) => (
-        message = false,
-        type = 'success',
-      ) => {
-        const promise = $state.go('app.domain.product.contact', null, {
-          reload: !!message,
-        });
+      goBack: /* @ngInject */ (
+        Alerter,
+        $timeout,
+        atInternet,
+        $transition$,
+        coreURLBuilder,
+      ) => (message = false, type = 'success') => {
+        const serviceName = $transition$.params().productId;
 
         if (message) {
           const replaceValue = {
@@ -45,27 +46,30 @@ export default /* @ngInject */ ($stateProvider) => {
             '{{bannerType}}_error': 'error',
             '{{returnType}}_error': 'error',
           };
-          promise.then(() =>
-            $timeout(() => {
-              Alerter[type](message, 'dashboardContact');
-              atInternet.trackPage({
-                ...CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER,
-                name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.name.replace(
-                  /{{bannerType}}|{{returnType}}/g,
-                  (match) => replaceValue[`${match}_${type}`],
-                ),
-                page: {
-                  name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.page.name.replace(
-                    /{{bannerType}}|{{returnType}}/g,
-                    (match) => replaceValue[`${match}_${type}`],
-                  ),
-                },
-              });
-            }, 2000),
-          );
+          Alerter[type](message, 'dashboardContact');
+          atInternet.trackPage({
+            ...CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER,
+            name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.name.replace(
+              /{{bannerType}}|{{returnType}}/g,
+              (match) => replaceValue[`${match}_${type}`],
+            ),
+            page: {
+              name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.page.name.replace(
+                /{{bannerType}}|{{returnType}}/g,
+                (match) => replaceValue[`${match}_${type}`],
+              ),
+            },
+          });
         }
 
-        return promise;
+        // Redirection vers la page React web-domains avec coreURLBuilder
+        const url = coreURLBuilder.buildURL(
+          'web-domains',
+          `/domain/${serviceName}/contact-management`,
+        );
+
+        window.location.href = url;
+        return Promise.resolve();
       },
     },
   });
@@ -74,13 +78,14 @@ export default /* @ngInject */ ($stateProvider) => {
     ...state,
     resolve: {
       ...state.resolve,
-      goBack: /* @ngInject */ ($state, Alerter, $timeout, atInternet) => (
-        message = false,
-        type = 'success',
-      ) => {
-        const promise = $state.go('app.alldom.domain.contact', null, {
-          reload: !!message,
-        });
+      goBack: /* @ngInject */ (
+        Alerter,
+        $timeout,
+        atInternet,
+        $transition$,
+        coreURLBuilder,
+      ) => (message = false, type = 'success') => {
+        const serviceName = $transition$.params().productId;
 
         if (message) {
           const replaceValue = {
@@ -89,27 +94,30 @@ export default /* @ngInject */ ($stateProvider) => {
             '{{bannerType}}_error': 'error',
             '{{returnType}}_error': 'error',
           };
-          promise.then(() =>
-            $timeout(() => {
-              Alerter[type](message, 'dashboardContact');
-              atInternet.trackPage({
-                ...CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER,
-                name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.name.replace(
-                  /{{bannerType}}|{{returnType}}/g,
-                  (match) => replaceValue[`${match}_${type}`],
-                ),
-                page: {
-                  name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.page.name.replace(
-                    /{{bannerType}}|{{returnType}}/g,
-                    (match) => replaceValue[`${match}_${type}`],
-                  ),
-                },
-              });
-            }, 2000),
-          );
+          Alerter[type](message, 'dashboardContact');
+          atInternet.trackPage({
+            ...CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER,
+            name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.name.replace(
+              /{{bannerType}}|{{returnType}}/g,
+              (match) => replaceValue[`${match}_${type}`],
+            ),
+            page: {
+              name: CONTACT_MANAGEMENT_EDIT_TRACKING.BANNER.page.name.replace(
+                /{{bannerType}}|{{returnType}}/g,
+                (match) => replaceValue[`${match}_${type}`],
+              ),
+            },
+          });
         }
 
-        return promise;
+        // Redirection vers la page React web-domains avec coreURLBuilder
+        const url = coreURLBuilder.buildURL(
+          'web-domains',
+          `/domain/${serviceName}/contact-management`,
+        );
+
+        window.location.href = url;
+        return Promise.resolve();
       },
     },
   });

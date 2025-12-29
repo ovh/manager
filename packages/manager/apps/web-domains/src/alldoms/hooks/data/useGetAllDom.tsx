@@ -1,14 +1,12 @@
 import { useQueries } from '@tanstack/react-query';
-import {
-  getAllDomResource,
-  getServiceInformation,
-} from '@/alldoms/data/api/web-domains';
-import { findContact } from '@/alldoms/utils/utils';
-import {
-  ServiceInfoContactEnum,
-  ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
+import { getAllDomResource } from '@/alldoms/data/api/web-domains';
+import { findContact } from '@/common/utils/utils';
 import { AlldomService } from '@/alldoms/types';
+import { getServiceInformation } from '@/common/data/api/common.api';
+import {
+  ServiceRoutes,
+  ServiceInfoContactEnum,
+} from '@/common/enum/common.enum';
 
 interface UseGetDatagridServiceInfoProps {
   readonly serviceName: string;
@@ -36,7 +34,6 @@ export const useGetAllDom = ({
         return {
           data: {} as AlldomService,
           isLoading: results.some((r) => r.isLoading),
-          isError: true,
         };
       }
 
@@ -49,7 +46,7 @@ export const useGetAllDom = ({
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
-          lifecyclePendingActions: lifecycle?.current.pendingActions ?? [],
+          pendingActions: lifecycle?.current.pendingActions ?? [],
           renewMode: renew?.current?.mode,
           creationDate: lifecycle?.current?.creationDate,
           expirationDate,
@@ -57,6 +54,7 @@ export const useGetAllDom = ({
           serviceId: serviceInfo.serviceId,
         } as AlldomService,
         isLoading: results.some((r) => r.isLoading),
+        isError: results.some((r) => r.isError),
       };
     },
   });

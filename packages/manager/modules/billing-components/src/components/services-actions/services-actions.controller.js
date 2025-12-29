@@ -90,12 +90,14 @@ export default class ServicesActionsCtrl {
         this.canDisplayAnticipateRenewMenuEntry =
           !this.service.isOneShot() &&
           !this.service.hasManualRenew() &&
+          this.getRenewUrl() !== null &&
           this.service.canHandleRenew() &&
           !this.service.canBeEngaged &&
           !this.service.hasPendingEngagement &&
           !this.isUSRegion;
         this.canDisplayRenewManuallyMenuEntry =
           this.service.hasManualRenew() &&
+          this.getRenewUrl() !== null &&
           !(
             typeof this.service.isInDebt === 'function' &&
             this.service.isInDebt()
@@ -181,9 +183,9 @@ export default class ServicesActionsCtrl {
   }
 
   getRenewUrl() {
-    return `${RENEW_URL[this.user.ovhSubsidiary] || RENEW_URL.default}${
-      this.service.serviceId
-    }`;
+    return RENEW_URL[this.user.ovhSubsidiary]
+      ? `${RENEW_URL[this.user.ovhSubsidiary]}${this.service.serviceId}`
+      : null;
   }
 
   getDeleteLink() {

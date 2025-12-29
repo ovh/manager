@@ -93,16 +93,18 @@
             <oui-header-tabs-item
                 data-href="{{ $ctrl.logsUrl }}"
                 data-ng-if=":: $ctrl.isLogsAvailable"
-                ><span data-translate="dedicatedCloud_tab_logs"></span
-                ><span
-                    class="oui-badge oui-badge_beta"
-                    data-ng-bind=":: $ctrl.BETA"
-                ></span>
+                ><span data-translate="dedicatedCloud_tab_logs"></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </header>
 
     <div>
+        <ovh-manager-pcc-dashboard-customer-vcfaas-migration-banner
+            data-ng-if="$ctrl.customerVcfaasMigrationBannerAvailability"
+            data-service-name="$ctrl.dedicatedCloud.serviceName"
+            data-set-message="$ctrl.setMessage"
+            data-vcd-migration-state="$ctrl.dedicatedCloudVCDMigrationState"
+        ></ovh-manager-pcc-dashboard-customer-vcfaas-migration-banner>
         <div data-ovh-alert="dedicatedCloud"></div>
 
         <div data-ui-view="pccView"></div>

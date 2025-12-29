@@ -19,7 +19,7 @@ import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useAddUser } from '@/data/hooks/user/useAddUser.hook';
 import user from '@/types/User';
 import { useGetUser } from '@/data/hooks/user/useGetUser.hook';
-import UserInformation from '@/components/user-information/userInformation.component';
+import UserInformation from '@/components/user-information/UserInformation.component';
 import { POLLING } from '@/configuration/polling.constants';
 import { FormField } from '@/components/form-field/FormField.component';
 import { withPreventDefault } from '@/lib/formHelper';

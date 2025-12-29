@@ -16,7 +16,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: 'common',
-    ns: ['common', 'onboarding'],
+    ns: ['common', 'onboarding', 'multisite', 'dashboard'],
   });
 
   const region = context.environment.getRegion();

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.2.0...@ovh-ux/manager-ips-app@0.2.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-ips-app
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.1.4...@ovh-ux/manager-ips-app@0.2.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* **ips:** missing sub-ips when no associated reverse ([36bc5a9](https://github.com/ovh/manager/commit/36bc5a98c18889b8a6342545a7dcb3943d23d992)), closes [#MANAGER-20548](https://github.com/ovh/manager/issues/MANAGER-20548)
+
+
+### Features
+
+* **ips:** improve edge firewall source ip field ([47c3b5a](https://github.com/ovh/manager/commit/47c3b5a908162de569d94da996cd360289b88f65)), closes [#MANAGER-20556](https://github.com/ovh/manager/issues/MANAGER-20556)
+
+
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.1.3...@ovh-ux/manager-ips-app@0.1.4) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-ips-app

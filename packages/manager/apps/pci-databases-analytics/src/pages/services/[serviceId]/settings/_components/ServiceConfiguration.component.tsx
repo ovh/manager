@@ -4,9 +4,9 @@ import { Badge, Button, useToast } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import TimeUpdate from './serviceConfiguration/TimeUpdate.component';
-import * as database from '@/types/cloud/project/database';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import NavLink from '@/components/links/NavLink.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 const ServiceConfiguration = () => {
   const { t } = useTranslation(
@@ -71,82 +71,6 @@ const ServiceConfiguration = () => {
   };
 
   return (
-    //   <div data-testid="service-configuration-table">
-    //     {service.capabilities.maintenanceTime?.read && (
-    //       <>
-    //         <Separator className="my-2" />
-    //         <div
-    //           className="grid grid-cols-4 gap-x-4 items-center"
-    //           data-testid="maintenance-time"
-    //         >
-    //           <div className="font-semibold col-span-2">
-    //             {t('serviceConfigurationServiceMaintenanceTime')}
-    //           </div>
-    //           <TimeUpdate
-    //             readonly={!service.capabilities.maintenanceTime.update}
-    //             disabled={
-    //               service.capabilities.maintenanceTime?.update ===
-    //               database.service.capability.StateEnum.disabled
-    //             }
-    //             initialValue={convertTimeToDateTime(service.maintenanceTime)}
-    //             onSubmit={onMaintenanceTimeSubmit}
-    //           />
-    //         </div>
-    //       </>
-    //     )}
-
-    //     {service.capabilities.backupTime?.read && (
-    //       <>
-    //         <Separator className="my-2" />
-    //         <div
-    //           className="grid grid-cols-4 gap-x-4 items-center"
-    //           data-testid="backup-time"
-    //         >
-    //           <div className="font-semibold col-span-2">
-    //             {t('serviceConfigurationServiceBackupTime')}
-    //           </div>
-    //           <TimeUpdate
-    //             readonly={!service.capabilities.backupTime.update}
-    //             disabled={
-    //               service.capabilities.backupTime?.update ===
-    //               database.service.capability.StateEnum.disabled
-    //             }
-    //             initialValue={convertTimeToDateTime(service.backups.time)}
-    //             onSubmit={onBackupTimeSubmit}
-    //           />
-    //         </div>
-    //       </>
-    //     )}
-
-    //     {service.capabilities.deletionProtection?.read && (
-    //       <>
-    //         <Separator className="my-2" />
-    //         <div
-    //           className="grid grid-cols-4 gap-x-4 items-center"
-    //         >
-    //           <div className="font-semibold col-span-3">
-    //             {t('serviceConfigurationServiceDeletionProtection')}
-    //           </div>
-    //           <div className="p-0 flex justify-end items-center flex-wrap gap-2">
-    //             <NavLink
-    //               data-testid="service-config-deletion-protection-link"
-    //               className="py-0"
-    //               to={'./deletion-protection'}
-    //               disabled={
-    //                 service.capabilities.deletionProtection?.update ===
-    //                 database.service.capability.StateEnum.disabled
-    //               }
-    //             >
-    //               {!service.deletionProtection
-    //                 ? t('serviceDeletionProtectionActivate')
-    //                 : t('serviceDeletionProtectionActivatedDeactivate')}
-    //             </NavLink>
-    //           </div>
-    //         </div>
-    //       </>
-    //     )}
-    //   </div>
-
     <>
       <div data-testid="service-configuration-table">
         <table className="border-b border-gray-200 border-collapse w-full">
@@ -162,10 +86,11 @@ const ServiceConfiguration = () => {
                 <td className="col-span-2" colSpan={3}>
                   <TimeUpdate
                     readonly={!service.capabilities.maintenanceTime.update}
-                    disabled={
-                      service.capabilities.maintenanceTime?.update ===
-                      database.service.capability.StateEnum.disabled
-                    }
+                    disabled={isCapabilityDisabled(
+                      service,
+                      'maintenanceTime',
+                      'update',
+                    )}
                     initialValue={convertTimeToDateTime(
                       service.maintenanceTime,
                     )}
@@ -185,10 +110,11 @@ const ServiceConfiguration = () => {
                 <td className="col-span-2" colSpan={3}>
                   <TimeUpdate
                     readonly={!service.capabilities.backupTime.update}
-                    disabled={
-                      service.capabilities.backupTime?.update ===
-                      database.service.capability.StateEnum.disabled
-                    }
+                    disabled={isCapabilityDisabled(
+                      service,
+                      'backupTime',
+                      'update',
+                    )}
                     initialValue={convertTimeToDateTime(service.backups.time)}
                     onSubmit={onBackupTimeSubmit}
                   />
@@ -214,10 +140,11 @@ const ServiceConfiguration = () => {
                     data-testid="service-config-deletion-protection-link"
                     className="py-0"
                     to={'./deletion-protection'}
-                    disabled={
-                      service.capabilities.deletionProtection?.update ===
-                      database.service.capability.StateEnum.disabled
-                    }
+                    disabled={isCapabilityDisabled(
+                      service,
+                      'deletionProtection',
+                      'update',
+                    )}
                   >
                     {!service.deletionProtection
                       ? t('serviceDeletionProtectionActivate')
@@ -232,10 +159,7 @@ const ServiceConfiguration = () => {
       {service.capabilities.service?.delete && (
         <Button
           data-testid="service-config-delete-button"
-          disabled={
-            service.capabilities.service?.delete ===
-            database.service.capability.StateEnum.disabled
-          }
+          disabled={isCapabilityDisabled(service, 'service', 'delete')}
           mode="outline"
           variant="critical"
           onClick={() => navigate('./delete')}

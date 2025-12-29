@@ -1,18 +1,24 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  MESSAGE_COLOR,
+  Message,
+  Select,
+  SelectContent,
+  SelectControl,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Modal } from '@ovh-ux/muk';
 
 import { DOMAIN_ORDER_OPTIONS_SERVICE } from '@/constants';
-import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { useWebHostingAttachedDomain } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 export default function SectigoModal() {
@@ -37,34 +43,41 @@ export default function SectigoModal() {
     window.open(certificateLink, '_blank');
     closeModal();
   };
+  const selectItems =
+    data?.map((item) => ({
+      value: item?.currentState?.fqdn,
+      label: item?.currentState?.fqdn,
+    })) || [];
 
   return (
     <Modal
-      onDismiss={closeModal}
-      isOpen
+      onOpenChange={closeModal}
+      open
       heading={t('order_ssl_certificate')}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onPrimaryButtonClick={onConfirm}
-      onSecondaryButtonClick={closeModal}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:validate`),
+        onClick: onConfirm,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: closeModal,
+      }}
     >
-      <div className="flex flex-col space-y-8 mb-10">
-        <OdsSelect
+      <div className="mb-10 flex flex-col space-y-8">
+        <Select
+          id="ssl-select-domain"
           data-testid="ssl-select-domain"
           name="modalDomainName"
-          placeholder={t('select_domain')}
-          onOdsChange={(e) => setSelectedDomain(e?.detail.value)}
+          items={selectItems}
+          onChange={(e) => setSelectedDomain((e.target as HTMLSelectElement).value)}
         >
-          {data?.map((item) => (
-            <option value={item?.currentState?.fqdn} key={item?.id}>
-              {item?.currentState?.fqdn}
-            </option>
-          ))}
-        </OdsSelect>
-        <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
+          <SelectControl placeholder={t('select_domain')} />
+          <SelectContent />
+        </Select>
+        <Message color={MESSAGE_COLOR.warning} dismissible={false}>
           {t('ssl_info_warning')}
-        </OdsMessage>
-        <OdsText>{t('purchase_ssl')}</OdsText>
+        </Message>
+        <Text>{t('purchase_ssl')}</Text>
       </div>
     </Modal>
   );

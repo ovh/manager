@@ -4,7 +4,7 @@ import { RefreshCcw } from 'lucide-react';
 import { ControllerRenderProps } from 'react-hook-form';
 import { generateName } from '@/lib/nameGenerator';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 type NameInputProps = ControllerRenderProps<any, string> &
   React.ComponentPropsWithoutRef<'input'>;
 

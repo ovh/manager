@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.21.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.5...@ovh-ux/manager-telecom@16.21.6) (2025-12-29)
+
+
+### Bug Fixes
+
+* **telecom:** fix the visiblity of the phonebook tab on Line page ([4952385](https://github.com/ovh/manager/commit/49523853b9fda1ad6c386a1c9822fe6f2e4012ef)), closes [#PRDCOL-324](https://github.com/ovh/manager/issues/PRDCOL-324)
+
+
+
+
+
+## [16.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.4...@ovh-ux/manager-telecom@16.21.5) (2025-12-23)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([e593be3](https://github.com/ovh/manager/commit/e593be3add9357a35309d1be6d0bfc696c0910ab))
+
+
+
+
+
+## [16.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.3...@ovh-ux/manager-telecom@16.21.4) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+## [16.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.2...@ovh-ux/manager-telecom@16.21.3) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [16.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.21.1...@ovh-ux/manager-telecom@16.21.2) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

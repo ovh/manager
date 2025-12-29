@@ -41,6 +41,6 @@
   "account_details_field_area": "Region",
   "account_details_field_state": "State",
   "account_details_field_province": "Region",
-  "account_details_field_corporation_firstname": "First name of the legal representative",
-  "account_details_field_corporation_lastname": "Last name of the legal representative"
+  "account_details_field_corporation_firstname": "Last name (legal representative):",
+  "account_details_field_corporation_lastname": "First name (legal representative):"
 }

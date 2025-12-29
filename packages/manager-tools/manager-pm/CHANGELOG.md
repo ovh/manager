@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.43.3...@ovh-ux/manager-pm@0.44.0) (2025-12-26)
+
+
+### Features
+
+* github actions improvements first part ([aedc3d4](https://github.com/ovh/manager/commit/aedc3d4d8c126ee3476438b58d46ba352b045aaf))
+
+
+
+
+
+## [0.43.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.43.2...@ovh-ux/manager-pm@0.43.3) (2025-12-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
+## [0.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.43.1...@ovh-ux/manager-pm@0.43.2) (2025-12-23)
+
+
+### Bug Fixes
+
+* pnpm migration ([5d94816](https://github.com/ovh/manager/commit/5d948165b52899143b14aafdc8f3d50c3aaf9ff9)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
+## [0.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.43.0...@ovh-ux/manager-pm@0.43.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
+# [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.42.2...@ovh-ux/manager-pm@0.43.0) (2025-12-22)
+
+
+### Features
+
+* **web-domains:** domain menu revamp ([ee4b125](https://github.com/ovh/manager/commit/ee4b125f49f3e4209e40c227f5d008a2d4aec953)), closes [#DCE-1](https://github.com/ovh/manager/issues/DCE-1)
+
+
+
+
+
+## [0.42.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.42.1...@ovh-ux/manager-pm@0.42.2) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
 ## [0.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.42.0...@ovh-ux/manager-pm@0.42.1) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm

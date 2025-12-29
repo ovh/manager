@@ -36,7 +36,7 @@ interface DataTableContextValue<TData> {
   rows: Row<TData>[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 const DataTableContext = createContext<DataTableContextValue<any> | null>(null);
 
 export function DataTableProvider<TData, TValue>({

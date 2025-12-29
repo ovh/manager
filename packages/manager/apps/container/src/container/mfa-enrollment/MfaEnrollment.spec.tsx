@@ -47,7 +47,8 @@ describe('MfaEnrollment', () => {
   });
 
   it('should render MFA enrollment text and buttons', () => {
-    setup();
+    const { container } = setup();
+    expect(container).toBeAccessible();
 
     expect(screen.getByText('mfa_enrollment_title')).toBeInTheDocument();
     expect(screen.getByText('mfa_enrollment_info1')).toBeInTheDocument();

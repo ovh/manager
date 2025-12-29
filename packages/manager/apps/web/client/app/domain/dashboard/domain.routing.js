@@ -73,6 +73,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.domain.product.terminate_anycast.confirm'),
       goToContactManagement: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.contact'),
+      isDomainFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web-domains:domains')
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(
+              'web-domains:domains',
+            );
+          }),
     },
     translations: {
       value: [
@@ -134,6 +142,14 @@ export default /* @ngInject */ ($stateProvider) => {
       goToContactManagement: /* @ngInject */ ($state) => () => {
         $state.go('app.alldom.domain.contact');
       },
+      isDomainFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web-domains:domains')
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(
+              'web-domains:domains',
+            );
+          }),
     },
     translations: {
       value: [

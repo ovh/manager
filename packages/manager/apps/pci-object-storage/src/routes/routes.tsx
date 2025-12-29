@@ -370,6 +370,15 @@ export default [
                   ),
                 ),
               },
+              {
+                path: 'object-lock-options',
+                id: 'settings.object-lock',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/dashboard/_components/object-lock-options/ObjectLockOptions.sheet'
+                  ),
+                ),
+              },
             ],
           },
           {

@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
 import { updateService } from '@/alldoms/data/api/web-domains';
+import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
 import {
-  ServiceInfoRenewMode,
-  ServiceInfoUpdateEnum,
+  ServiceInfoRenewModeEnum,
   ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
+} from '@/common/enum/common.enum';
 import { TDomainsInfo } from '@/alldoms/types';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { useCloseModal } from '@/common/hooks/closeModal/useCloseModal';
@@ -45,7 +45,7 @@ export const useCancelAllDomTerminate = (
             (domain) =>
               /* We filter on domains that have automatic renew mode because manual ones have to keep the terminateAtExpirationDate status */
               domain.billing.renew.current.mode ===
-              ServiceInfoRenewMode.Automatic,
+              ServiceInfoRenewModeEnum.Automatic,
           )
           .map((domain) =>
             updateService(

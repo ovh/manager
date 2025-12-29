@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.8.6...@ovh-ux/manager-dedicated-servers-app@0.8.7) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+## [0.8.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.8.5...@ovh-ux/manager-dedicated-servers-app@0.8.6) (2025-12-18)
+
+
+### Bug Fixes
+
+* **dedicated-server:** rollback infinit scroll ([151db38](https://github.com/ovh/manager/commit/151db381e8ce0689009d33ae98c7cdab5a47d508)), closes [#INC0176498](https://github.com/ovh/manager/issues/INC0176498)
+
+
+
+
+
 ## [0.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.8.4...@ovh-ux/manager-dedicated-servers-app@0.8.5) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app

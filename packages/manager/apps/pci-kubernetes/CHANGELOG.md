@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.40.0...@ovh-ux/manager-pci-kubernetes-app@0.40.1) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4541] ([7e9e9ca](https://github.com/ovh/manager/commit/7e9e9ca6a1c9749b13122fae97e1f8f309af4cd3))
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.39.3...@ovh-ux/manager-pci-kubernetes-app@0.40.0) (2025-12-18)
+
+
+### Features
+
+* **pci-kubernetes:** remove beta badge for logs to customer ([8afb4b5](https://github.com/ovh/manager/commit/8afb4b539a21ce30cab9f482d8ebeb20815d9b1d)), closes [#MAOBS-167](https://github.com/ovh/manager/issues/MAOBS-167)
+
+
+
+
+
 ## [0.39.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.39.2...@ovh-ux/manager-pci-kubernetes-app@0.39.3) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

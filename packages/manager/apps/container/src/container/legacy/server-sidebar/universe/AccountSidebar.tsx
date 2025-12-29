@@ -225,7 +225,6 @@ export default function AccountSidebar() {
             label: t('sidebar_security_identity_operations_iam_logs'),
             pathMatcher: new RegExp('^/iam/logs'),
             ignoreSearch: true,
-            badge: 'beta'
           },
         ].filter(Boolean)
 

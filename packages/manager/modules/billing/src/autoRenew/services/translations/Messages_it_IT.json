@@ -8,8 +8,8 @@
   "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Disattivazione richiesta",
   "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Disattivazione richiesta",
   "billing_autorenew_service_modal_debt_warning_title": "Informazione importante",
-  "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "Ci dispiace, ma questa azione non è disponibile.",
-  "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "Ci dispiace, ma questa azione non è disponibile perché ",
+  "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "Ci dispiace, questa azione non è disponibile.",
+  "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "Ci dispiace, questa azione non è disponibile perché ",
   "reason_billing_right": "Non sei il contatto di fatturazione <b>{{contactBilling}}</b>",
   "reason_admin_right": "Non sei il contatto amministratore <b>{{contactAdmin}}</b>"
 }

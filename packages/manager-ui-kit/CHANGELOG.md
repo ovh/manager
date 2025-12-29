@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.8](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.7...@ovh-ux/muk@0.10.8) (2025-12-26)
+
+
+### Bug Fixes
+
+* **muk:** update datagrid header position and text overflow ([6efdb72](https://github.com/ovh/manager/commit/6efdb7208c9e8be447bd0d9f5af4177834b3dfab)), closes [#MANAGER-20626](https://github.com/ovh/manager/issues/MANAGER-20626)
+
+
+
+
+
+## [0.10.7](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.6...@ovh-ux/muk@0.10.7) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
 ## [0.10.6](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.5...@ovh-ux/muk@0.10.6) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/muk

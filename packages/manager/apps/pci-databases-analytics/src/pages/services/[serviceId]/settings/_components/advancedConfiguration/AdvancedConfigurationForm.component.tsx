@@ -39,6 +39,7 @@ import {
 import { useServiceData } from '../../../Service.context';
 import { useEditAdvancedConfiguration } from '@/hooks/api/database/advancedConfiguration/useEditAdvancedConfiguration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface AdvancedConfigurationFormProps {
   advancedConfiguration: Record<string, string>;
@@ -55,9 +56,12 @@ const AdvancedConfigurationForm = ({
   );
   const [value, setValue] = useState('');
   const { projectId, service, serviceQuery } = useServiceData();
-  const isDisabled =
-    service.capabilities.advancedConfiguration?.update ===
-    database.service.capability.StateEnum.disabled;
+  const isDisabled = isCapabilityDisabled(
+    service,
+    'advancedConfiguration',
+    'update',
+  );
+
   const toast = useToast();
   const {
     updateAdvancedConfiguration,

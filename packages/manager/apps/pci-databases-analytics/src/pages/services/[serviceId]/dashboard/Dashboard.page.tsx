@@ -257,7 +257,7 @@ const Dashboard = () => {
             </div>
             <div
               data-testid="dashboard-billing-link"
-              className="flex flex-row gap-1 mt-3"
+              className="flex flex-row gap-1 mt-2"
             >
               <OvhLink
                 application="public-cloud"

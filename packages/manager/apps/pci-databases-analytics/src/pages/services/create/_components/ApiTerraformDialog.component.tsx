@@ -20,6 +20,8 @@ import {
   useToast,
   json as JsonLanguage,
   terraform as TerraformLanguage,
+  DialogBody,
+  DialogFooter,
 } from '@datatr-ux/uxlib';
 import A from '@/components/links/A.component';
 import { useServiceToTerraform } from '@/hooks/api/database/terraform/useServiceToTerraform';
@@ -173,14 +175,14 @@ const ApiTerraformDialog = ({
   const apiEndpoint = `/cloud/project/${projectId}/database/${dialogData.availability.engine}`;
 
   return (
-    <>
-      <Dialog open={true} onOpenChange={onRequestClose}>
-        <DialogContent className="max-w-3xl">
-          <DialogHeader>
-            <DialogTitle>
-              {t('pciDatabasesAddCommandDialogEquivalentOrder')}
-            </DialogTitle>
-          </DialogHeader>
+    <Dialog open={true} onOpenChange={onRequestClose}>
+      <DialogContent variant="information" className="max-w-3xl">
+        <DialogHeader>
+          <DialogTitle>
+            {t('pciDatabasesAddCommandDialogEquivalentOrder')}
+          </DialogTitle>
+        </DialogHeader>
+        <DialogBody>
           <Tabs
             defaultValue={currentTab}
             value={currentTab}
@@ -303,15 +305,17 @@ const ApiTerraformDialog = ({
               </Table>
             </TabsContent>
           </Tabs>
+        </DialogBody>
+        <DialogFooter>
           <Button
             onClick={onRequestClose}
             data-testid="dialog-close-button-footer"
           >
             {t('pciDatabasesAddCommandDialogClose')}
           </Button>
-        </DialogContent>
-      </Dialog>
-    </>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 

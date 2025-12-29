@@ -40,10 +40,10 @@
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "Endpoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Schließen",
-  "pci_projects_project_storages_cold_archive_banner_title": "Neu: Archivieren Sie Objekte einzeln von Ihrem Object Storage-Dashboard!",
+  "pci_projects_project_storages_cold_archive_banner_title": "Neu: Archivieren Sie Objekte individuell über Ihr Object Storage Dashboard!",
   "pci_projects_project_storages_cold_archive_banner_description": "Es ist jetzt möglich, Objekte einzeln zu archivieren, um Ihre Speicherkosten zu optimieren und Ihre Daten besser zu verwalten, ohne den gesamten Container archivieren zu müssen.",
-  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Diese Funktion ist direkt von Ihrem Object Storage-Dashboard aus zugänglich, aus Ihren vorhandenen Containern:",
-  "pci_projects_project_storages_cold_archive_banner_feature_1": "Laden Sie Ihre Objekte, indem Sie sie direkt in das Cold Archive klassifizieren;",
-  "pci_projects_project_storages_cold_archive_banner_feature_2": "oder verwenden Sie Lebenszyklusregeln, um die Daten in die Cold Archive-Klasse zu übertragen.",
+  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Diese Funktion ist direkt über Ihr Object Storage Dashboard aus Ihren vorhandenen Containern abrufbar:",
+  "pci_projects_project_storages_cold_archive_banner_feature_1": "Laden Sie Ihre Objekte hoch, indem Sie sie direkt in Cold Archive klassifizieren",
+  "pci_projects_project_storages_cold_archive_banner_feature_2": "oder verwenden Sie Lebenszyklusregeln, um Daten in die Cold Archive Klasse zu übertragen.",
   "pci_projects_project_storages_cold_archive_banner_cta": "Jetzt testen!"
 }

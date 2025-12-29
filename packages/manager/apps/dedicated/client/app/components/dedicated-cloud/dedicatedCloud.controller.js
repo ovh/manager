@@ -12,7 +12,6 @@ export default class {
     this.constants = constants;
     this.coreURLBuilder = coreURLBuilder;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
-    this.BETA = 'Beta';
   }
 
   $onInit() {

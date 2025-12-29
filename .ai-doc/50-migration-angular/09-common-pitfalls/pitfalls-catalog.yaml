@@ -1,0 +1,480 @@
+---
+title: Migration Pitfalls Catalog
+version: 1.0.0
+last_update: 2025-01-27
+description: |
+  Consolidated catalog of common mistakes discovered during AngularJS → React migrations.
+  AI assistants should proactively check for these patterns and warn developers.
+tags: [pitfalls, errors, anti-patterns, validation]
+ai: true
+---
+
+# Pitfall Categories
+
+categories:
+  - id: api
+    name: API & Data Fetching
+    description: Issues related to API calls and data management
+  - id: state
+    name: State Management
+    description: Issues with React state and hooks
+  - id: ui
+    name: UI Components
+    description: Issues with component implementation
+  - id: i18n
+    name: Translations
+    description: Issues with internationalization
+  - id: routing
+    name: Routing
+    description: Issues with navigation and routes
+  - id: parity
+    name: Parity Violations
+    description: Differences from original AngularJS behavior
+
+# ============================================
+# CRITICAL PITFALLS (Must Fix)
+# ============================================
+critical:
+  - id: missing-loading-state
+    category: state
+    severity: critical
+    title: "Missing Loading State"
+    description: "useQuery used without checking isLoading, causing UI flicker or undefined data access"
+    detection_regex: 'const\s*\{\s*data\s*\}\s*=\s*use(Query|Queries)'
+    correct_pattern: 'const { data, isLoading, isError } = useQuery'
+    symptoms:
+      - "Flash of undefined content"
+      - "TypeError: Cannot read property of undefined"
+      - "UI jumps when data loads"
+    fix_example: |
+      // ❌ Wrong
+      const { data } = useQuery({ queryKey: ['nasha'], queryFn: fetchNasha });
+      return <div>{data.name}</div>;
+
+      // ✅ Correct
+      const { data, isLoading, isError } = useQuery({ queryKey: ['nasha'], queryFn: fetchNasha });
+
+      if (isLoading) return <Loading />;
+      if (isError) return <ErrorMessage />;
+      return <div>{data.name}</div>;
+    fix_reference: "@.ai-doc/20-dependencies/tanstack-react-query.md#loading-states"
+
+  - id: missing-query-invalidation
+    category: api
+    severity: critical
+    title: "Missing Query Invalidation After Mutation"
+    description: "useMutation without invalidateQueries, causing stale data display"
+    detection_regex: 'useMutation\([^)]*\)(?![\s\S]*invalidateQueries)'
+    symptoms:
+      - "UI doesn't update after successful mutation"
+      - "User needs to refresh page to see changes"
+      - "Stale data persists after edit/delete"
+    fix_example: |
+      // ❌ Wrong
+      const mutation = useMutation({
+        mutationFn: deleteNasha,
+      });
+
+      // ✅ Correct
+      const queryClient = useQueryClient();
+      const mutation = useMutation({
+        mutationFn: deleteNasha,
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['nasha'] });
+        },
+      });
+    fix_reference: "@.ai-doc/20-dependencies/tanstack-react-query.md#mutations"
+
+  - id: wrong-api-client
+    category: api
+    severity: critical
+    title: "Wrong API Client Used"
+    description: "Using v6 when AAPI was used, or vice versa, causing different data shapes"
+    detection_regex: 'apiClient\.v6|v6\.(get|post|put|delete)'
+    symptoms:
+      - "Different data structure returned"
+      - "Missing aggregated fields"
+      - "Extra API calls needed"
+    fix_example: |
+      // AngularJS used AAPI:
+      // OvhApiDedicatedNasha.Aapi().get({ serviceName }).$promise
+
+      // ❌ Wrong - Using v6 instead
+      const { data } = useQuery({
+        queryFn: () => v6.get(`/dedicated/nasha/${serviceName}`),
+      });
+
+      // ✅ Correct - Use AAPI
+      const { data } = useQuery({
+        queryFn: () => aapi.get(`/dedicated/nasha/${serviceName}`),
+      });
+    fix_reference: "@.ai-doc/20-dependencies/manager-core-api.md"
+
+  - id: hardcoded-translations
+    category: i18n
+    severity: critical
+    title: "Hardcoded Translation Strings"
+    description: "Text hardcoded instead of using translation keys"
+    detection_regex: '(title|label|description|placeholder|error|message)\s*[:=]\s*["\'][A-Z][^"\']*["\']'
+    symptoms:
+      - "Text not translated for other languages"
+      - "Inconsistent terminology"
+      - "Parity violation with original translations"
+    fix_example: |
+      // ❌ Wrong
+      <OdsButton label="Delete" />
+      <OdsText>Are you sure?</OdsText>
+
+      // ✅ Correct
+      const { t } = useTranslation('nasha');
+      <OdsButton label={t('nasha_delete_action')} />
+      <OdsText>{t('nasha_delete_confirmation')}</OdsText>
+    fix_reference: "@.ai-doc/20-dependencies/react-i18next.md"
+
+  - id: missing-error-handling
+    category: state
+    severity: critical
+    title: "Missing Error Handling"
+    description: "No error state handling for queries or mutations"
+    detection_regex: 'useQuery[^}]*\}[^;]*;(?![\s\S]{0,200}isError)'
+    symptoms:
+      - "Silent failures"
+      - "Infinite loading states on error"
+      - "No user feedback on failure"
+    fix_example: |
+      // ❌ Wrong
+      const { data, isLoading } = useQuery({ ... });
+      if (isLoading) return <Loading />;
+      return <Component data={data} />;
+
+      // ✅ Correct
+      const { data, isLoading, isError, error } = useQuery({ ... });
+      if (isLoading) return <Loading />;
+      if (isError) return <ErrorMessage error={error} />;
+      return <Component data={data} />;
+    fix_reference: "@.ai-doc/20-dependencies/tanstack-react-query.md#error-handling"
+
+# ============================================
+# HIGH PRIORITY PITFALLS
+# ============================================
+high:
+  - id: missing-notification
+    category: ui
+    severity: high
+    title: "Missing Success/Error Notifications"
+    description: "Mutation completes without user feedback"
+    detection_regex: 'onSuccess:\s*\(\)\s*=>\s*\{[^}]*invalidateQueries[^}]*\}'
+    symptoms:
+      - "User doesn't know if action succeeded"
+      - "Different UX from AngularJS version"
+    fix_example: |
+      // ❌ Wrong
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['nasha'] });
+      },
+
+      // ✅ Correct
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['nasha'] });
+        addSuccess(t('nasha_delete_success'));
+      },
+      onError: () => {
+        addError(t('nasha_delete_error'));
+      },
+    fix_reference: "../parity-validation-guide.md#notifications"
+
+  - id: wrong-navigation-pattern
+    category: routing
+    severity: high
+    title: "Wrong Navigation After Action"
+    description: "Not navigating or navigating to wrong route after mutation"
+    symptoms:
+      - "User stays on form after submit"
+      - "User navigates to wrong page"
+      - "Different flow from AngularJS"
+    fix_example: |
+      // Check AngularJS behavior:
+      // $state.go('nasha.directory') after successful creation
+
+      // ❌ Wrong - No navigation
+      onSuccess: () => {
+        addSuccess(t('success'));
+      },
+
+      // ✅ Correct
+      const navigate = useNavigate();
+      onSuccess: () => {
+        addSuccess(t('success'));
+        navigate('..');  // or specific route
+      },
+    fix_reference: "../angularjs-react-mapping-guide.md#navigation-patterns"
+
+  - id: different-pagination-config
+    category: parity
+    severity: high
+    title: "Different Pagination Configuration"
+    description: "Datagrid pagination differs from original (page size, options)"
+    detection_regex: 'pageSize:\s*\d+'
+    symptoms:
+      - "Different number of items per page"
+      - "Missing page size selector"
+      - "Different pagination behavior"
+    fix_example: |
+      // Check AngularJS:
+      // oui-datagrid page-size="10" page-size-options="[10, 25, 50]"
+
+      // ❌ Wrong
+      <Datagrid pageSize={25} />
+
+      // ✅ Correct - Match original config
+      <Datagrid
+        pageSize={10}
+        pageSizeOptions={[10, 25, 50]}
+      />
+    fix_reference: "../07-parity-examples/perfect-parity-examples.md#datagrid-parity"
+
+  - id: missing-data-transformation
+    category: api
+    severity: high
+    title: "Missing Data Transformation"
+    description: "Data transformation from prepare* functions not migrated"
+    symptoms:
+      - "Raw API data displayed instead of formatted"
+      - "Missing computed fields"
+      - "Different data shape in component"
+    fix_example: |
+      // AngularJS had:
+      // function prepareNasha(data, $translate) {
+      //   data.displayName = data.customName || data.serviceName;
+      //   return data;
+      // }
+
+      // ❌ Wrong - Using raw data
+      const { data } = useQuery({ queryFn: fetchNasha });
+
+      // ✅ Correct - Transform data
+      const { data } = useQuery({
+        queryFn: fetchNasha,
+        select: (data) => ({
+          ...data,
+          displayName: data.customName || data.serviceName,
+        }),
+      });
+    fix_reference: "../migration-patterns.md#data-transformation"
+
+  - id: missing-tracking
+    category: parity
+    severity: high
+    title: "Missing Tracking Events"
+    description: "Analytics tracking not migrated from AngularJS"
+    symptoms:
+      - "Missing page view tracking"
+      - "Missing click tracking"
+      - "Analytics gaps"
+    fix_example: |
+      // AngularJS had:
+      // atInternet.trackPage({ name: 'nasha::listing' })
+
+      // ❌ Wrong - No tracking
+      const ListingPage = () => {
+        return <Datagrid />;
+      };
+
+      // ✅ Correct
+      const ListingPage = () => {
+        usePageTracking('nasha::listing');
+        return <Datagrid />;
+      };
+    fix_reference: "@.ai-doc/20-dependencies/manager-react-shell-client.md#tracking"
+
+# ============================================
+# MEDIUM PRIORITY PITFALLS
+# ============================================
+medium:
+  - id: missing-abort-on-unmount
+    category: api
+    severity: medium
+    title: "Missing Abort on Component Unmount"
+    description: "API calls continue after navigation away"
+    symptoms:
+      - "Memory leaks"
+      - "State updates on unmounted component"
+      - "Console warnings"
+    fix_example: |
+      // React Query handles this automatically with signal
+      // But for custom fetches:
+
+      // ✅ Correct with React Query (automatic)
+      const { data } = useQuery({ queryKey: ['nasha'], queryFn: fetchNasha });
+
+      // ✅ Custom fetch with abort
+      useEffect(() => {
+        const controller = new AbortController();
+        fetch(url, { signal: controller.signal });
+        return () => controller.abort();
+      }, []);
+    fix_reference: "@.ai-doc/20-dependencies/tanstack-react-query.md"
+
+  - id: wrong-query-key
+    category: api
+    severity: medium
+    title: "Wrong or Inconsistent Query Keys"
+    description: "Query keys don't include all dependencies, causing stale data"
+    detection_regex: 'queryKey:\s*\[[^\]]*\](?![^}]*serviceName)'
+    symptoms:
+      - "Same data for different entities"
+      - "Cache collisions"
+      - "Stale data after parameter change"
+    fix_example: |
+      // ❌ Wrong - Missing serviceName in key
+      const { data } = useQuery({
+        queryKey: ['nasha'],
+        queryFn: () => fetchNasha(serviceName),
+      });
+
+      // ✅ Correct
+      const { data } = useQuery({
+        queryKey: ['nasha', serviceName],
+        queryFn: () => fetchNasha(serviceName),
+      });
+    fix_reference: "@.ai-doc/20-dependencies/tanstack-react-query.md#query-keys"
+
+  - id: missing-form-validation
+    category: ui
+    severity: medium
+    title: "Missing Form Validation"
+    description: "Form validation from AngularJS not migrated"
+    symptoms:
+      - "No client-side validation"
+      - "Invalid data submitted"
+      - "Different UX from original"
+    fix_example: |
+      // AngularJS had ng-pattern, ng-minlength, etc.
+
+      // ✅ Correct with React Hook Form + Zod
+      const schema = z.object({
+        name: z.string().min(3).max(50),
+        email: z.string().email(),
+      });
+
+      const form = useForm({
+        resolver: zodResolver(schema),
+      });
+    fix_reference: "@.ai-doc/20-dependencies/react-hook-form.md#validation"
+
+  - id: inconsistent-empty-states
+    category: ui
+    severity: medium
+    title: "Inconsistent Empty States"
+    description: "Empty state handling differs from AngularJS"
+    symptoms:
+      - "No message when list is empty"
+      - "Different empty state design"
+      - "Missing 'no results' handling"
+    fix_example: |
+      // Check AngularJS empty state
+
+      // ✅ Correct
+      {data.length === 0 ? (
+        <EmptyState
+          title={t('nasha_no_items')}
+          description={t('nasha_no_items_description')}
+        />
+      ) : (
+        <Datagrid data={data} />
+      )}
+    fix_reference: "../parity-validation-guide.md#empty-states"
+
+  - id: missing-confirmation-dialog
+    category: ui
+    severity: medium
+    title: "Missing Confirmation Dialog"
+    description: "Destructive actions without confirmation"
+    symptoms:
+      - "Delete without confirm"
+      - "Irreversible actions not warned"
+    fix_example: |
+      // AngularJS had confirmation modal
+
+      // ❌ Wrong - Direct delete
+      const handleDelete = () => mutation.mutate();
+
+      // ✅ Correct
+      const handleDelete = () => {
+        openConfirmDialog({
+          title: t('nasha_delete_confirm_title'),
+          onConfirm: () => mutation.mutate(),
+        });
+      };
+    fix_reference: "../modal-avec-route-guide.md"
+
+# ============================================
+# LOW PRIORITY PITFALLS
+# ============================================
+low:
+  - id: inconsistent-date-format
+    category: ui
+    severity: low
+    title: "Inconsistent Date Formatting"
+    description: "Dates formatted differently from AngularJS"
+    symptoms:
+      - "Different date format displayed"
+      - "Timezone issues"
+    fix_example: |
+      // Check AngularJS date filter used
+
+      // ✅ Use consistent formatting
+      import { format } from 'date-fns';
+      format(date, 'dd/MM/yyyy HH:mm');
+    fix_reference: "../parity-validation-guide.md#formatting"
+
+  - id: missing-keyboard-shortcuts
+    category: ui
+    severity: low
+    title: "Missing Keyboard Shortcuts"
+    description: "Keyboard navigation not migrated"
+    symptoms:
+      - "No Enter to submit"
+      - "No Escape to cancel"
+    fix_example: |
+      // ✅ Add keyboard handlers
+      <form onKeyDown={(e) => {
+        if (e.key === 'Escape') onCancel();
+      }}>
+    fix_reference: "../parity-validation-guide.md#accessibility"
+
+  - id: different-sort-order
+    category: parity
+    severity: low
+    title: "Different Default Sort Order"
+    description: "List sorted differently from AngularJS"
+    symptoms:
+      - "Items in different order"
+      - "Default sort column differs"
+    fix_example: |
+      // Check AngularJS default sort
+
+      // ✅ Match original sort
+      <Datagrid
+        defaultSort={{ column: 'name', direction: 'asc' }}
+      />
+    fix_reference: "../07-parity-examples/perfect-parity-examples.md#datagrid-parity"
+
+# ============================================
+# DETECTION UTILITIES
+# ============================================
+detection_order:
+  - critical
+  - high
+  - medium
+  - low
+
+auto_fix_available:
+  - missing-loading-state
+  - wrong-query-key
+  - hardcoded-translations
+
+requires_manual_review:
+  - wrong-api-client
+  - missing-data-transformation
+  - different-pagination-config
