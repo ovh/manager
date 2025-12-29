@@ -17,7 +17,7 @@ import Localization from './Localization.component';
 export type TCustomRegionItemData = {
   countryCode: TCountryIsoCode | null;
   deploymentMode: TDeploymentMode;
-  macroRegionId: string;
+  regionId: string;
 };
 
 type TLocalizationSelectProps<TCustomData extends TCustomRegionItemData> = Omit<
@@ -55,7 +55,10 @@ const LocalizationSelect = <TCustomData extends TCustomRegionItemData>({
             <>
               {selectedItems[0] && (
                 <Localization
-                  name={t(selectedItems[0].label)}
+                  name={t(selectedItems[0].label, {
+                    micro: (selectedItems[0].customRendererData as TCustomData)
+                      .regionId,
+                  })}
                   countryCode={
                     (selectedItems[0].customRendererData as TCustomData)
                       .countryCode
@@ -81,7 +84,9 @@ const LocalizationSelect = <TCustomData extends TCustomRegionItemData>({
             customData,
           }: SelectCustomOptionRendererArg) => (
             <Localization
-              name={t(label)}
+              name={t(label, {
+                micro: (customData as TCustomRegionItemData).regionId,
+              })}
               countryCode={(customData as TCustomData).countryCode}
               deploymentMode={(customData as TCustomData).deploymentMode}
             />
