@@ -8,7 +8,10 @@ import { afterEach, vi } from 'vitest';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
+import countriesCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/countries/Messages_fr_FR.json';
 import dashboardCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import formCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/form/Messages_fr_FR.json';
+import languageCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/language/Messages_fr_FR.json';
 import statusCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
 import '@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup';
 
@@ -27,6 +30,7 @@ import { pendingTask, userDomainMock, usersMock } from '@/data/api/__mocks__/use
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import consumptionTranslation from '@/public/translations/dashboard/consumption/Messages_fr_FR.json';
 import dashboardGeneralInformationTranslation from '@/public/translations/dashboard/general-information/Messages_fr_FR.json';
+import dashboardMcaTranslations from '@/public/translations/dashboard/microsoft-customer-agreement/Messages_fr_FR.json';
 import dashboardUsersTranslation from '@/public/translations/dashboard/users/Messages_fr_FR.json';
 import dashboardUsersOrderLicensesTranslation from '@/public/translations/dashboard/users/order-licenses/Messages_fr_FR.json';
 import dashboardUsersOrderUsersTranslation from '@/public/translations/dashboard/users/order-users/Messages_fr_FR.json';
@@ -42,6 +46,7 @@ i18n.use(initReactI18next).init({
       licenses: licensesTranslation,
       'dashboard/general-information': dashboardGeneralInformationTranslation,
       'dashboard/users': dashboardUsersTranslation,
+      'dashboard/microsoft-customer-agreement': dashboardMcaTranslations,
       'dashboard/consumption': consumptionTranslation,
       'dashboard/users/order-licenses': dashboardUsersOrderLicensesTranslation,
       'dashboard/users/order-users': dashboardUsersOrderUsersTranslation,
@@ -50,6 +55,9 @@ i18n.use(initReactI18next).init({
       [NAMESPACES.ACTIONS]: actionsCommonTranslation,
       [NAMESPACES.STATUS]: statusCommonTranslation,
       [NAMESPACES.DASHBOARD]: dashboardCommonTranslation,
+      [NAMESPACES.FORM]: formCommonTranslation,
+      [NAMESPACES.COUNTRIES]: countriesCommonTranslation,
+      [NAMESPACES.LANGUAGE]: languageCommonTranslation,
     },
   },
   ns: ['dashboard'],
