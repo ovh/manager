@@ -153,10 +153,9 @@ describe('SelectField', () => {
     it('should render with label when provided', () => {
       render(<SelectField {...defaultProps} label="Test Label" />);
 
-      const label = screen.getByTestId('text-label');
+      const label = screen.getByTestId('form-field-label');
       expect(label).toBeInTheDocument();
       expect(label).toHaveTextContent('Test Label');
-      expect(label).toHaveAttribute('data-preset', 'paragraph');
     });
 
     it('should render without label when not provided', () => {
