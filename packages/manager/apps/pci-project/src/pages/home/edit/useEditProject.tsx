@@ -1,9 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
+import { getProjectQueryKey } from '@ovh-ux/manager-pci-common';
+
 import { editProject, setAsDefaultProject, unFavProject } from '@/data/api/projects';
 import { projectsWithServiceQueryKey } from '@/data/api/projects-with-services';
-import { getDefaultProjectQueryKey, getProjectQueryKey } from '@/data/hooks/useProjects';
+import { getDefaultProjectQueryKey } from '@/data/hooks/useProjects';
 import queryClient from '@/queryClient';
 
 type ApiError = AxiosError<{ message: string }>;

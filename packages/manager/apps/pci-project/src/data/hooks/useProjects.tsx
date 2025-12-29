@@ -31,8 +31,6 @@ type DeleteProjectParams = {
 
 export const getDefaultProjectQueryKey = ['me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT'];
 
-export const getProjectQueryKey = (projectId: string) => ['/cloud/project', projectId];
-
 /**
  * Query options for fetching the user's default public cloud project preference.
  * @returns The options object for useQuery.
