@@ -1,7 +1,7 @@
 const bffHostHeader = {
-  eu: 'https://manager.eu.ovhcloud.com',
-  ca: 'https://manager.ca.ovhcloud.com',
-  us: 'https://manager.us.ovhcloud.com',
+  eu: 'manager.eu.ovhcloud.com',
+  ca: 'manager.ca.ovhcloud.com',
+  us: 'manager.us.ovhcloud.com',
 };
 
 const config = {
@@ -20,6 +20,6 @@ module.exports = {
   secure: false,
   logLevel: 'debug',
   headers: {
-    Host: bffHostHeader[process.env.REGION ?? 'EU'],
+    Host: bffHostHeader[process.env.REGION?.toLowerCase() ?? 'EU'],
   },
 };
