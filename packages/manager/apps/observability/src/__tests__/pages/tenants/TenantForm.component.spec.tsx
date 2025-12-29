@@ -61,8 +61,8 @@ vi.mock('@/components/metrics/tenant-configuration-form/TenantConfigurationForm.
 
 // Mock ODS React components
 vi.mock('@ovhcloud/ods-react', () => ({
-  Divider: ({ spacing }: { spacing?: string }) => (
-    <div data-testid="divider" data-spacing={spacing} />
+  Divider: ({ className }: { className?: string }) => (
+    <div data-testid="divider" className={className} />
   ),
 }));
 
@@ -322,7 +322,7 @@ describe('TenantForm', () => {
       const dividers = screen.getAllByTestId('divider');
       expect(dividers).toHaveLength(2);
       dividers.forEach((divider) => {
-        expect(divider).toHaveAttribute('data-spacing', '24');
+        expect(divider).toHaveClass('mb-12 mt-[30px]');
       });
     });
 
