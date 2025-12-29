@@ -76,7 +76,12 @@ export default function TenantsInformationPage() {
               isLoading={isLoading}
             />
 
-            <TagsTile tenantId={currentTenantId} tags={iam?.tags} isLoading={isLoading} />
+            <TagsTile
+              tenantId={currentTenantId}
+              title={title ?? ''}
+              tags={iam?.tags ?? {}}
+              isLoading={isLoading}
+            />
           </div>
 
           <SubscriptionTile tenantId={currentTenantId} subscriptions={5} isLoading={isLoading} />
