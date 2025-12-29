@@ -1,4 +1,4 @@
-import { MockInstance, afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { computeBreadcrumbUrl, getProjectUrl } from './url';
 
@@ -31,9 +31,8 @@ describe('computeBreadcrumbUrl', () => {
 });
 
 describe('getProjectUrl', () => {
-  let baseURIspy: MockInstance<() => string>;
   afterEach(() => {
-    baseURIspy?.mockRestore();
+    vi.unstubAllGlobals();
   });
 
   describe.each([
@@ -74,7 +73,11 @@ describe('getProjectUrl', () => {
     },
   ])('$description', ({ baseURI, expected }) => {
     it(`should return "${expected}"`, () => {
-      baseURIspy = vi.spyOn(document, 'baseURI', 'get').mockReturnValue(baseURI);
+      vi.stubGlobal('top', {
+        location: {
+          href: baseURI,
+        },
+      });
 
       const result = getProjectUrl();
 
