@@ -86,5 +86,12 @@
   "kube_add_name_title": "Name your node pool",
   "kube_add_node_pool_name_already_exist_validation_error": "The nodepool name already exists. Please choose another one.",
   "kubernetes_add_create_cluster": "Create my cluster",
-  "kubernetes_add_name_input_label": "Project Name"
+  "kubernetes_add_name_input_label": "Project name",
+  "kubernetes_add_cluster_name_input_helper": {
+    "introduction": "Must:",
+    "char_number": "contain between 2 and 64 characters",
+    "char_whitelist": "contain only letters, numbers, dashes or underscores",
+    "first_char": "start with a letter",
+    "last_char": "end with an alphanumeric character (a-z, 0 - 9)"
+  }
 }

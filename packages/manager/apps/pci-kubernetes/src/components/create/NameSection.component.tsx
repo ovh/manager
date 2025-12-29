@@ -1,4 +1,3 @@
-import { clsx } from 'clsx';
 import { Path, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -6,12 +5,12 @@ import { FormField, FormFieldHelper, FormFieldLabel, Input, Text } from '@ovhclo
 
 type TNameSectionProps<FormSchema extends object> = {
   fieldName: Path<FormSchema>;
-  fieldHelper: string;
+  helperEntries: Array<string>;
 };
 
 export const NameSection = <FormSchema extends object>({
   fieldName,
-  fieldHelper,
+  helperEntries,
 }: TNameSectionProps<FormSchema>) => {
   const { t } = useTranslation('add');
 
@@ -27,16 +26,15 @@ export const NameSection = <FormSchema extends object>({
       <Text preset="heading-3" className="mb-6">
         {t('kubernetes_add_name')}
       </Text>
-      <FormField>
+      <FormField invalid={!!fieldError}>
         <FormFieldLabel>{t('kubernetes_add_name_input_label')}</FormFieldLabel>
         <Input {...register(fieldName)} className="sm:w-1/2" invalid={!!fieldError} />
-        <FormFieldHelper
-          className={clsx('mt-3 text-[--ods-color-text]', {
-            'text-[--ods-theme-critical-color]': !!fieldError,
-          })}
-          aria-live={fieldError ? 'polite' : undefined}
-        >
-          {fieldHelper}
+        <FormFieldHelper className="flex flex-col">
+          {helperEntries.map((entry, index) => (
+            <Text preset="caption" key={index}>
+              {entry}
+            </Text>
+          ))}
         </FormFieldHelper>
       </FormField>
     </>
