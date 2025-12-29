@@ -155,7 +155,7 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
               <RegionSelector />
             </section>
           )}
-          <Divider spacing="24" />
+          <Divider className="mb-12 mt-[30px]" />
           <section className="mt-6">
             <InformationForm
               title={t('tenants:creation.tenantInformation')}
@@ -163,7 +163,7 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
               descriptionPlaceholder={t('tenants:creation.descriptionPlaceholder')}
             />
           </section>
-          <Divider spacing="24" />
+          <Divider className="mb-12 mt-[30px]" />
           <section className="mt-6">
             <TenantConfigurationForm onBoundsErrorChange={setHasBoundsError} />
           </section>
