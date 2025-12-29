@@ -46,7 +46,7 @@ export const RadioCard = ({
               checked={isChecked}
               onChange={onChange}
               disabled={isDisabled}
-              className="m-0"
+              className="m-0 accent-[--ods-color-primary-500]"
             />
             <Text preset="heading-6">{title}</Text>
             {subTitle && <Text preset="span">{subTitle}</Text>}
