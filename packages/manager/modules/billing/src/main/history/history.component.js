@@ -6,6 +6,7 @@ export default {
   bindings: {
     getBills: '<',
     currentUser: '<',
+    canDownloadInvoices: '<',
     debtAccount: '<',
     exportBills: '<',
     getDebt: '<',
