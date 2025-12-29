@@ -12,4 +12,5 @@ export interface SubRowProps<T = unknown> {
     index: number;
     start: number;
   };
+  hideHeader: boolean;
 }

@@ -3,6 +3,7 @@ import { JSX, memo } from 'react';
 import { SubRowProps } from './SubRow.props';
 
 export const SubRow = ({
+  hideHeader,
   maxRowHeight,
   offset,
   renderSubComponent,
@@ -15,10 +16,10 @@ export const SubRow = ({
     data-index={`${virtualRow.index}-expanded-tr`}
     className={`overflow-hidden absolute top-0 display-table table-layout-fixed h-full`}
     style={{
-      left: -1,
+      left: hideHeader ? 0 : -1,
       height: `${subComponentHeight}px`,
       width: '-webkit-fill-available',
-      transform: `translateY(${virtualRow.start + offset + maxRowHeight - 1}px)`,
+      transform: `translateY(${virtualRow.start + offset + maxRowHeight}px)`,
     }}
   >
     <td className="overflow-hidden p-[8px] text-ellipsis block w-full h-full">
