@@ -1,6 +1,5 @@
 import '@/common/setupTests';
-import React from 'react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, waitFor } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
@@ -13,7 +12,7 @@ vi.mock('@/alldoms/hooks/data/useGetAllDom', () => ({
 
 describe('AllDom datagrid', () => {
   it('displays loading spinner while main request are loading', async () => {
-    (useGetAllDom as jest.Mock).mockReturnValue({
+    (useGetAllDom as Mock).mockReturnValue({
       data: [],
       isLoading: true,
     });
@@ -26,7 +25,7 @@ describe('AllDom datagrid', () => {
   });
 
   it('display the information general pack', async () => {
-    (useGetAllDom as jest.Mock).mockReturnValue({
+    (useGetAllDom as Mock).mockReturnValue({
       data: alldomService,
       isLoading: false,
     });

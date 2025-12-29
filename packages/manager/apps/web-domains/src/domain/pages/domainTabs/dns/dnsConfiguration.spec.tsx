@@ -1,7 +1,6 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, renderHook } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import {
   dnsDatagridMock,
   dnsDatagridMockError,
@@ -19,7 +18,7 @@ vi.mock('@/domain/utils/utils', () => ({
 describe('DomainTabDnsWithError', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (computeDnsDetails as jest.Mock).mockReturnValue(dnsDatagridMockError);
+    (computeDnsDetails as Mock).mockReturnValue(dnsDatagridMockError);
   });
   const { result } = renderHook(() => useDomainDnsDatagridColumns());
   const columns = result.current as Array<{
@@ -66,7 +65,7 @@ describe('DomainTabDnsWithError', () => {
   });
 
   it('should render DNS in the expected order', () => {
-    (computeDnsDetails as jest.Mock).mockReturnValue(dnsDatagridMockError);
+    (computeDnsDetails as Mock).mockReturnValue(dnsDatagridMockError);
 
     const { getAllByTestId } = render(
       <DnsConfigurationTab domainResource={serviceInfoDetail} />,
@@ -89,7 +88,7 @@ describe('DomainTabDnsWithError', () => {
 describe('DomainTabDns', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (computeDnsDetails as jest.Mock).mockReturnValue(dnsDatagridMock);
+    (computeDnsDetails as Mock).mockReturnValue(dnsDatagridMock);
   });
 
   it('should not render a warning message when no DNS has ERROR status', () => {
