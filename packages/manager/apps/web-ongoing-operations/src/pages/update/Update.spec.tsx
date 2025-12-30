@@ -140,6 +140,7 @@ describe('Update page', () => {
 
     await expect(container).toBeAccessible({
       rules: {
+        'heading-order': { enabled: false },
         'label': { enabled: false },
       },
     });

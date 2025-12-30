@@ -3,7 +3,6 @@ import {
   FormField,
   FormFieldLabel,
   Text,
-  TEXT_PRESET,
   Input,
   Message,
   MESSAGE_COLOR,
@@ -12,7 +11,7 @@ import {
   MessageBody,
   FormFieldError,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 import HostIpsSupportedMessage from '@/domain/components/Host/HostIpsSupportedMessage';
 import { THost } from '@/domain/types/host';
@@ -52,14 +51,18 @@ export default function HostForm({
     <section className="flex flex-col gap-y-6" data-testid="host-form">
       <div className="flex flex-col gap-y-6">
         <FormField className="relative" invalid={Boolean(errors.host)}>
-          <FormFieldLabel className="flex gap-x-3">
-            <Text preset={TEXT_PRESET.label} className="text-sm">
-              {t('domain_tab_hosts_drawer_add_form_hostName_label')}
-            </Text>
-            -
-            <Text preset={TEXT_PRESET.paragraph} className="text-sm">
-              {t(`${NAMESPACES.FORM}:required_field`)}
-            </Text>
+          <FormFieldLabel className="flex items-center gap-x-3">
+            <Trans
+              i18nKey="domain_tab_hosts_drawer_add_form_hostName_label"
+              t={t}
+              components={{
+                Required: (
+                  <span className="text-sm font-normal">
+                    {t(`${NAMESPACES.FORM}:required_field`)}
+                  </span>
+                ),
+              }}
+            />
           </FormFieldLabel>
 
           <Input
@@ -89,14 +92,18 @@ export default function HostForm({
         </FormField>
 
         <FormField invalid={Boolean(errors.ips)}>
-          <FormFieldLabel className="flex gap-x-3">
-            <Text preset={TEXT_PRESET.label} className="text-sm">
-              {t('domain_tab_hosts_drawer_add_form_ip_label')}
-            </Text>
-            -
-            <Text preset={TEXT_PRESET.paragraph} className="text-sm">
-              {t(`${NAMESPACES.FORM}:required_field`)}
-            </Text>
+          <FormFieldLabel className="flex items-center gap-x-3">
+            <Trans
+              i18nKey="domain_tab_hosts_drawer_add_form_ip_label"
+              t={t}
+              components={{
+                Required: (
+                  <span className="text-sm font-normal">
+                    {t(`${NAMESPACES.FORM}:required_field`)}
+                  </span>
+                ),
+              }}
+            />
           </FormFieldLabel>
 
           <Input

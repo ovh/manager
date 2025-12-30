@@ -27,7 +27,7 @@ describe('Domain datagrid', () => {
   it('fetch in a good way using useResourcesIcebergV6', async () => {
     (useFeatureAvailability as Mock).mockReturnValue({
       data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
-    }),
+    });
     (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: domain,
       isLoading: false,
@@ -55,7 +55,7 @@ describe('Domain datagrid', () => {
   it('Display the datagrid element', async () => {
     (useFeatureAvailability as Mock).mockReturnValue({
       data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
-    }),
+    });
     (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: domain,
       isLoading: false,

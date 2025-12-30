@@ -1,5 +1,5 @@
 import '@/common/setupTests';
-import { describe, expect, vi } from 'vitest';
+import { describe, expect, vi, it } from 'vitest';
 import { fireEvent, render } from '@/common/utils/test.provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Onboarding from './onboarding';
@@ -18,7 +18,7 @@ describe('Onboarding page', () => {
       </QueryClientProvider>,
     );
 
-    const title = findByText('Créez votre présence en ligne');
+    const title = await findByText('title');
     expect(title).toBeDefined();
     await expect(container).toBeAccessible({ rules: onboardingA11yRules });
   });
@@ -39,5 +39,18 @@ describe('Onboarding page', () => {
 
     expect(spy).toHaveBeenCalledOnce();
     await expect(container).toBeAccessible({ rules: onboardingA11yRules });
+  });
+});
+
+describe('Onboarding page W3C Validation', () => {
+  it('should have valid html', async () => {
+    const { container } = render(
+      <QueryClientProvider client={queryClient}>
+        <Onboarding />
+      </QueryClientProvider>,
+    );
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
   });
 });
