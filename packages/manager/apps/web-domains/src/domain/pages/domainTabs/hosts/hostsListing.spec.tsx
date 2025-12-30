@@ -93,3 +93,36 @@ describe('Host Datagrid', () => {
     });
   });
 });
+
+describe('Host Datagrid W3C Validation', () => {
+  // TODO: Enable when ODS components fix aria-describedby issues
+  // Known issue: ODS input components have empty aria-describedby attributes
+
+  it.skip('should have valid html', async () => {
+    nichandle.auth.account = 'admin-id';
+    const { container } = render(<HostsListing />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
+  it.skip('should have valid html with drawer open', async () => {
+    nichandle.auth.account = 'admin-id';
+    const { getByTestId, container } = render(<HostsListing />, { wrapper });
+
+    const addButton = getByTestId('addButton');
+    fireEvent.click(addButton);
+
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
+  it.skip('should have valid html with warning message', async () => {
+    nichandle.auth.account = 'adminxxx';
+    const { container } = render(<HostsListing />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});
