@@ -33,5 +33,11 @@
   "ok": "OK",
   "optional": "wahlweise",
   "step_number": "Schritt {{step}}",
-  "required": "pflicht"
+  "required": "Pflichtfeld",
+  "all_fields_are_required": "Alle Felder sind Pflichtfelder.",
+  "companyName": "Name der Organisation",
+  "language": "Sprache",
+  "country": "Land",
+  "phone": "Telefon",
+  "email": "E-Mail"
 }
