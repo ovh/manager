@@ -24,7 +24,6 @@
   "kubernetes_select_version_title": "Sélectionnez une version",
   "kubernetes_add_name_title": "Nommez votre cluster",
   "kubernetes_add_name_placeholder": "Nom du cluster",
-  "kubernetes_add_name_input_label": "Nom du projet",
   "kubernetes_add_name": "Nom",
   "kubernetes_add_region_title_region": "Région 1-AZ",
   "kubernetes_add_region_title_region-3-az": "Région 3-AZ",

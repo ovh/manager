@@ -27,7 +27,7 @@ export const NameSection = <FormSchema extends object>({
         {t('kubernetes_add_name')}
       </Text>
       <FormField invalid={!!fieldError}>
-        <FormFieldLabel>{t('kubernetes_add_name_input_label')}</FormFieldLabel>
+        <FormFieldLabel>{t('kubernetes_add_name_placeholder')}</FormFieldLabel>
         <Input {...register(fieldName)} className="sm:w-1/2" invalid={!!fieldError} />
         <FormFieldHelper className="flex flex-col">
           {helperEntries.map((entry, index) => (
