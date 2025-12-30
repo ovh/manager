@@ -131,5 +131,6 @@
   "pci_instance_creation_backup_setting_action_label": "Crear una copia de seguridad automatizada de una instancia",
   "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mes",
   "pci_instance_creation_backup_setting_local_label": "Copia de seguridad automática (local)",
-  "pci_instance_creation_backup_setting_distant_label": "Copia de seguridad automática (remota)"
+  "pci_instance_creation_backup_setting_distant_label": "Copia de seguridad automática (remota)",
+  "pci_instance_creation_select_deployment_mode_helper_title": "Localizaciones"
 }
