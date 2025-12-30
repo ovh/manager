@@ -1,0 +1,11 @@
+{
+  "storageJobTitle": "Eine Synchronisierungsregel erstellen",
+  "storageJobDescription": "Wenden Sie Ihre Replikationskonfiguration rückwirkend an, um die vor der Erstellung der Replikationsregeln hochgeladenen Objekte zu replizieren. Diese Aktion löst einen im Hintergrund ausgeführten Job aus, der dafür verantwortlich ist, Ihre Buckets zu synchronisieren. Um mehr über die asynchrone Replikation zu erfahren, lesen Sie die Dokumentation",
+  "storageJobDescriptionLink": "hier.",
+  "storageJobButtonConfirm": "Vorhandene Objekte replizieren",
+  "storageJobButtonCancel": "Abbrechen",
+  "storageJobToastSuccessTitle": "Synchronisierungsregel erstellt",
+  "storageJobToastSuccessMessage": "Die Synchronisierungsregel wurde erfolgreich erstellt.",
+  "storageJobToastErrorTitle": "Fehler bei der Erstellung",
+  "storageJobToastErrorMessage": "Ein Fehler ist aufgetreten bei der Erstellung der Synchronisierungsregel: {{message}}."
+}
