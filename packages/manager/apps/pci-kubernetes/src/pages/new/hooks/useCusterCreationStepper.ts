@@ -7,7 +7,7 @@ import { TNetworkFormState } from '../steps/NetworkClusterStep.component';
 import { useStep } from './useStep';
 
 export type TClusterCreationForm = {
-  region: TLocation | null;
+  region: TLocation;
   version: string;
   updatePolicy: UpdatePolicy | null;
   network: TNetworkFormState | null;

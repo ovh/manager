@@ -48,7 +48,7 @@ export const SubnetSelector = ({
   showSpinner,
   region,
 }: Readonly<SubnetSelectorProps>) => {
-  const [subnet, setSubnet] = useState<TPrivateNetworkSubnet>(
+  const [subnet, setSubnet] = useState<TPrivateNetworkSubnet | undefined>(
     allowsEmpty ? ({ id: 'none' } as TPrivateNetworkSubnet) : undefined,
   );
   const { t: tAdd } = useTranslation('network-add');
