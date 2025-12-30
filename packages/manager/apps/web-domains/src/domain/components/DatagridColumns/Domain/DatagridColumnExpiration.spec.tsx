@@ -62,7 +62,7 @@ describe('DatagridColumnExpiration', () => {
 
     const textCell = screen.getByTestId('datagrid-text-cell');
     expect(textCell).toBeInTheDocument();
-    expect(textCell).toHaveTextContent('12/31/2024');
+    expect(textCell).toHaveTextContent('31/12/2024');
   });
 
   it('should render empty when no service info', () => {

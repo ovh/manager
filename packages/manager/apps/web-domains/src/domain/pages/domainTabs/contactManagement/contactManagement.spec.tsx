@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import { render, screen } from '@/common/utils/test.provider';
-import { vi, describe, it, beforeEach } from 'vitest';
+import { vi, describe, it, beforeEach, expect } from 'vitest';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 import ContactManagement from './contactManagement';
@@ -52,8 +52,8 @@ describe('ContactManagement Component', () => {
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 
-  it('should render contact management title and subtitle', () => {
-    render(<ContactManagement />);
+  it('should render contact management title and subtitle', async () => {
+    const { container } = render(<ContactManagement />);
 
     expect(
       screen.getByText('domain_tab_contact_management_tile_title'),
@@ -66,27 +66,41 @@ describe('ContactManagement Component', () => {
         'domain_tab_contact_management_configuration_information',
       ),
     ).toBeInTheDocument();
+
+    await expect(container).toBeAccessible({
+      rules: { 'heading-order': { enabled: false } },
+    });
   });
 
-  it('should render HolderCard with correct props', () => {
-    render(<ContactManagement />);
+  it('should render HolderCard with correct props', async () => {
+    const { container } = render(<ContactManagement />);
 
     expect(screen.getByTestId('holder-card')).toBeInTheDocument();
+    await expect(container).toBeAccessible({
+      rules: { 'heading-order': { enabled: false } },
+    });
   });
 
-  it('should render NichandleCard for each contact type', () => {
-    render(<ContactManagement />);
+  it('should render NichandleCard for each contact type', async () => {
+    const { container } = render(<ContactManagement />);
 
     expect(screen.getAllByTestId('nichandle-card')).toHaveLength(3);
+    await expect(container).toBeAccessible({
+      rules: { 'heading-order': { enabled: false } },
+    });
   });
 
-  it('should render grid layout with correct spacing', () => {
-    render(<ContactManagement />);
+  it('should render grid layout with correct spacing', async () => {
+    const { container } = render(<ContactManagement />);
 
     const grid = screen.getByTestId('contact-management-grid');
     expect(grid).toHaveClass('grid');
     expect(grid).toHaveClass('grid-cols-3');
     expect(grid).toHaveClass('grid-rows-2');
     expect(grid).toHaveClass('gap-6');
+
+    await expect(container).toBeAccessible({
+      rules: { 'heading-order': { enabled: false } },
+    });
   });
 });

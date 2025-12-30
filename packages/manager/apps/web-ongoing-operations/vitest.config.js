@@ -24,6 +24,7 @@ export default mergeConfig(
           inline: ['@ovhcloud/ods-react'],
         },
       },
+      environment: "jsdom",
     },
     resolve: {
       dedupe: [...defaultDedupedDependencies],

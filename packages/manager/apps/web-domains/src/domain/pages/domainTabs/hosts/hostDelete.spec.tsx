@@ -102,15 +102,16 @@ describe('HostDelete', () => {
     (useNavigate as any).mockReturnValue(navigate);
   });
 
-  it('renders modal with correct heading', () => {
-    render(<HostDelete />, { wrapper });
+  it('renders modal with correct heading', async () => {
+    const { container } = render(<HostDelete />, { wrapper });
     expect(
       screen.getByText('domain_tab_hosts_modal_delete_title'),
     ).toBeInTheDocument();
+    await expect(container).toBeAccessible();
   });
 
-  it('calls updateDomain with filtered hosts on delete click', () => {
-    render(<HostDelete />, { wrapper });
+  it('calls updateDomain with filtered hosts on delete click', async () => {
+    const { container } = render(<HostDelete />, { wrapper });
     fireEvent.click(screen.getByRole('button', { name: /actions:delete/i }));
 
     expect(updateDomain).toHaveBeenCalledTimes(1);
@@ -119,10 +120,11 @@ describe('HostDelete', () => {
       hostsConfiguration: { hosts: [{ host: 'ns2.foobar', ips: ['2.2.2.2'] }] },
     });
     expect(call.checksum).toBe('xyz');
+    await expect(container).toBeAccessible();
   });
 
-  it('calls addSuccess + navigate on delete success', () => {
-    render(<HostDelete />, { wrapper });
+  it('calls addSuccess + navigate on delete success', async () => {
+    const { container } = render(<HostDelete />, { wrapper });
     fireEvent.click(screen.getByRole('button', { name: /actions:delete/i }));
 
     const { onSuccess, onSettled } = updateDomain.mock.calls[0][1];
@@ -131,10 +133,11 @@ describe('HostDelete', () => {
 
     expect(addSuccess).toHaveBeenCalledTimes(1);
     expect(navigate).toHaveBeenCalledWith('/domain/foobar/hosts');
+    await expect(container).toBeAccessible();
   });
 
-  it('calls addError on delete error', () => {
-    render(<HostDelete />, { wrapper });
+  it('calls addError on delete error', async () => {
+    const { container } = render(<HostDelete />, { wrapper });
     fireEvent.click(screen.getByRole('button', { name: /actions:delete/i }));
 
     const { onError, onSettled } = updateDomain.mock.calls[0][1];
@@ -143,11 +146,13 @@ describe('HostDelete', () => {
 
     expect(addError).toHaveBeenCalledTimes(1);
     expect(navigate).toHaveBeenCalledWith('/domain/foobar/hosts');
+    await expect(container).toBeAccessible();
   });
 
-  it('navigates back on cancel click', () => {
-    render(<HostDelete />, { wrapper });
+  it('navigates back on cancel click', async () => {
+    const { container } = render(<HostDelete />, { wrapper });
     fireEvent.click(screen.getByRole('button', { name: /actions:cancel/i }));
     expect(navigate).toHaveBeenCalledWith('/domain/foobar/hosts');
+    await expect(container).toBeAccessible();
   });
 });

@@ -1,7 +1,6 @@
 import '@/setupTests';
-import React from 'react';
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { vi, expect } from 'vitest';
 import { useFeatureAvailability, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { domain } from '@/__mocks__/domain';
@@ -16,7 +15,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 describe('Domain datagrid', () => {
-  it('fetch in a good way using useResourcesIcebergV6', () => {
+  it('fetch in a good way using useResourcesIcebergV6', async () => {
     (useFeatureAvailability as jest.Mock).mockReturnValue({
       data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
     }),
@@ -31,7 +30,7 @@ describe('Domain datagrid', () => {
       },
     });
 
-    render(<Domain />, { wrapper });
+    const { container } = render(<Domain />, { wrapper });
 
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -41,6 +40,16 @@ describe('Domain datagrid', () => {
         queryKey: taskMeDomain,
       }),
     );
+    await expect(container).toBeAccessible({
+      rules: {
+        'select-name': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'button-name': { enabled: false },
+        'label': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
+    });
   });
 
   it('Display the datagrid element', async () => {
@@ -66,7 +75,7 @@ describe('Domain datagrid', () => {
       }),
     }));
 
-    render(<Domain />, { wrapper });
+    const { container } = render(<Domain />, { wrapper });
 
     expect(screen.getByTestId('datagrid')).toBeInTheDocument();
 
@@ -80,5 +89,16 @@ describe('Domain datagrid', () => {
     const buttons = screen.getAllByTestId('navigation-action-trigger-action');
     expect(buttons[0]).toHaveAttribute('is-disabled', 'true');
     expect(buttons[1]).toBeEnabled();
+    
+    await expect(container).toBeAccessible({
+      rules: {
+        'select-name': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'button-name': { enabled: false },
+        'label': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
+    });
   });
 });

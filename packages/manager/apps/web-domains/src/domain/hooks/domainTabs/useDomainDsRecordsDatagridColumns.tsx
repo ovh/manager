@@ -29,7 +29,6 @@ export const useDomainDsRecordsDatagridColumns = ({
   const { t } = useTranslation(['domain', NAMESPACES.STATUS]);
   const [isPublicKeyExpanded, setisPublicKeyExpanded] = useState<boolean>(true);
   const isActionsDisplayed = isDsRecordActionDisabled(activeConfiguration);
-  const navigate = useNavigate();
   const columns = [
     {
       id: 'keyTag',
@@ -107,6 +106,7 @@ export const useDomainDsRecordsDatagridColumns = ({
           isCompact
           variant={ODS_BUTTON_VARIANT.ghost}
           isDisabled={isActionsDisplayed}
+          label=""
         />
       ),
       label: '',

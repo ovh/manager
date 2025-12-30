@@ -1,7 +1,6 @@
 import '@/setupTests';
-import React from 'react';
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { vi, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { useFeatureAvailability, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { dns } from '@/__mocks__/dns';
@@ -26,7 +25,7 @@ vi.mock('@/hooks/data/query', () => ({
 }));
 
 describe('Dns datagrid', () => {
-  it('fetch in a good way using useResourcesIcebergV6', () => {
+  it('fetch in a good way using useResourcesIcebergV6', async () => {
     (useFeatureAvailability as jest.Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
         }),
@@ -44,7 +43,7 @@ describe('Dns datagrid', () => {
       data: serviceInfo,
     });
 
-    render(<Dns />, { wrapper });
+    const { container } = render(<Dns />, { wrapper });
 
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -54,6 +53,16 @@ describe('Dns datagrid', () => {
         queryKey: taskMeDns,
       }),
     );
+    await expect(container).toBeAccessible({
+      rules: {
+        'select-name': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'button-name': { enabled: false },
+        'label': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
+    });
   });
 
   it('Display the datagrid element', async () => {
@@ -74,7 +83,7 @@ describe('Dns datagrid', () => {
       data: serviceInfo,
     });
 
-    render(<Dns />, { wrapper });
+    const { container } = render(<Dns />, { wrapper });
     await waitFor(() => {
       expect(screen.getByTestId('datagrid')).toBeInTheDocument();
       const dnsName = screen.getByTestId('testpuwebdomain.us');
@@ -83,6 +92,16 @@ describe('Dns datagrid', () => {
         'href',
         'https://ovh.test/#/web/domain/testpuwebdomain.us/information',
       );
+    });
+    await expect(container).toBeAccessible({
+      rules: {
+        'select-name': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'button-name': { enabled: false },
+        'label': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
     });
   });
 
@@ -104,7 +123,7 @@ describe('Dns datagrid', () => {
       data: undefined,
     });
 
-    render(<Dns />, { wrapper });
+    const { container } = render(<Dns />, { wrapper });
     await waitFor(() => {
       expect(screen.getByTestId('datagrid')).toBeInTheDocument();
       const dnsName = screen.getByTestId('testpuwebdomain.us');
@@ -113,6 +132,16 @@ describe('Dns datagrid', () => {
         'href',
         'https://ovh.test/#/web/zone/testpuwebdomain.us',
       );
+    });
+    await expect(container).toBeAccessible({
+      rules: {
+        'select-name': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'button-name': { enabled: false },
+        'label': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
     });
   });
 });

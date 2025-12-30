@@ -85,8 +85,8 @@ describe('DS Records Columns', () => {
 });
 
 describe('DS Records Datagrid', () => {
-  it('should display the content of host datagrid', () => {
-    const { getByTestId } = render(<DsRecordsListing />, {
+  it('should display the content of host datagrid', async () => {
+    const { getByTestId, container } = render(<DsRecordsListing />, {
       wrapper,
     });
     expect(getByTestId('datagrid')).toBeInTheDocument();
@@ -98,5 +98,13 @@ describe('DS Records Datagrid', () => {
 
     const drawer = getByTestId('drawer');
     expect(drawer).toBeInTheDocument();
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+      },
+    });
   });
 });

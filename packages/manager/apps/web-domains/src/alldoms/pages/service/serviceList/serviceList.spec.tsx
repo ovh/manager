@@ -1,6 +1,5 @@
 import '@/common/setupTests';
-import React from 'react';
-import { vi } from 'vitest';
+import { vi, expect } from 'vitest';
 import { fireEvent, waitFor, act } from '@/common/utils/test.provider';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
@@ -29,7 +28,7 @@ describe('AllDom datagrid', () => {
       data: [serviceInfo],
       listLoading: false,
     });
-    const { getByTestId } = render(<ServiceList />, { wrapper });
+    const { getByTestId, container } = render(<ServiceList />, { wrapper });
     await waitFor(() => {
       expect(getByTestId('datagrid')).toBeInTheDocument();
 
@@ -62,6 +61,17 @@ describe('AllDom datagrid', () => {
         'href',
         'https://ovh.test/#/account/contacts/services/edit',
       );
+    });
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'select-name': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'button-name': { enabled: false },
+        label: { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
     });
   });
 });
