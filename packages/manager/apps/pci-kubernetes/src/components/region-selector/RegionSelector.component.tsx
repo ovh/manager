@@ -18,6 +18,14 @@ import { RegionList } from './RegionList.component';
 import { RegionTile } from './RegionTile.component';
 import { useRegionSelector } from './useRegionSelector';
 
+const getPlansFromRegionCodes = (codes?: string[] | null): TClusterPlanEnum[] => {
+  return (
+    codes?.map((code) =>
+      code.includes(TClusterPlanEnum.STANDARD) ? TClusterPlanEnum.STANDARD : TClusterPlanEnum.FREE,
+    ) ?? [TClusterPlanEnum.FREE]
+  );
+};
+
 export type RegionSelectorProps = {
   projectId: string;
   onSelectRegion: (region: TLocation | null) => void;
@@ -80,13 +88,7 @@ export function RegionSelector({
                 region={region}
                 isSelected={isSelected}
                 isCompact={compactMode}
-                plans={
-                  region.codes?.map((code) =>
-                    code.includes(TClusterPlanEnum.STANDARD)
-                      ? TClusterPlanEnum.STANDARD
-                      : TClusterPlanEnum.FREE,
-                  ) ?? [TClusterPlanEnum.FREE]
-                }
+                plans={getPlansFromRegionCodes(region.codes)}
               />
             )}
           />

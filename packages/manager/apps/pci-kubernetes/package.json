@@ -40,7 +40,6 @@
     "i18next": "23.8.2",
     "i18next-http-backend": "2.5.2",
     "lodash": "^4.17.15",
-    "lucide-react": "^0.334.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.52.2",

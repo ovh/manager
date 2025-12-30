@@ -27,8 +27,9 @@ describe('ClusterNetwork Component', () => {
       privateNetworkId: 'network-123',
       nodesSubnetId: 'subnet-123',
       loadBalancersSubnetId: 'subnet-456',
+      plan: 'free',
     },
-  } as ClusterNetworkProps;
+  } as unknown as ClusterNetworkProps;
 
   beforeEach(() => {
     vi.mocked(useRegionSubnets as Mock).mockReturnValue({
@@ -48,8 +49,9 @@ describe('ClusterNetwork Component', () => {
         region: 'region-1',
         privateNetworkId: null,
         privateNetworkConfiguration: null,
+        plan: 'free',
       },
-    } as ClusterNetworkProps;
+    } as unknown as ClusterNetworkProps;
 
     render(<ClusterNetwork {...props} />, { wrapper });
 
@@ -68,8 +70,9 @@ describe('ClusterNetwork Component', () => {
           privateNetworkRoutingAsDefault: true,
         },
         attachedTo: 'Attached Network',
+        plan: 'free',
       },
-    } as ClusterNetworkProps;
+    } as unknown as ClusterNetworkProps;
 
     render(<ClusterNetwork {...props} />, { wrapper });
 
@@ -89,28 +92,17 @@ describe('ClusterNetwork Component', () => {
         region: 'BHS',
         privateNetworkId: 'network-123',
         status: 'PROCESSING',
+        plan: 'free',
       },
-    } as ClusterNetworkProps;
+    } as unknown as ClusterNetworkProps;
 
     render(<ClusterNetwork {...props} />, { wrapper });
 
     const editButton = screen.getByTestId('cluster-network-edit-button');
     expect(editButton).toHaveAttribute('variant', 'ghost');
   });
-  it('does not show the button when regions are multi-zone', () => {
-    vi.mocked(useRegionInformations as Mock).mockReturnValue({
-      data: { type: 'region-3-az' },
-      isPending: false,
-    });
 
-    expect(screen.queryByTestId('cluster-network-edit-button')).toBeNull();
-    vi.mocked(useRegionInformations as Mock).mockReturnValue({
-      data: { type: 'region' },
-      isPending: false,
-    });
-  });
-
-  it('must show the button when regions are mono-zone', async () => {
+  it('does not show the button when plan is STANDARD', () => {
     vi.mocked(useRegionInformations as Mock).mockReturnValue({
       data: { type: 'region' },
       isPending: false,
@@ -121,22 +113,44 @@ describe('ClusterNetwork Component', () => {
         region: 'BHS',
         privateNetworkId: 'network-123',
         status: 'OK',
+        plan: 'standard',
       },
-    } as ClusterNetworkProps;
+    } as unknown as ClusterNetworkProps;
+
+    render(<ClusterNetwork {...props} />, { wrapper });
+
+    expect(screen.queryByTestId('cluster-network-edit-button')).toBeNull();
+  });
+
+  it('must show the button when regions are mono-zone and plan is not STANDARD', async () => {
+    vi.mocked(useRegionInformations as Mock).mockReturnValue({
+      data: { type: 'region' },
+      isPending: false,
+    });
+    const props = {
+      projectId: 'project-123',
+      kubeDetail: {
+        region: 'BHS',
+        privateNetworkId: 'network-123',
+        status: 'OK',
+        plan: 'free',
+      },
+    } as unknown as ClusterNetworkProps;
 
     render(<ClusterNetwork {...props} />, { wrapper });
     await waitFor(() =>
       expect(screen.getByTestId('cluster-network-edit-button')).toBeInTheDocument(),
     );
   });
-  it.each(PROCESSING_STATUS)('must disable the button when the status is not %s', (status) => {
+
+  it.each(PROCESSING_STATUS)('must disable the button when the status is %s', (status) => {
     const props = {
       ...initialProps,
       kubeDetail: {
-        ...initialProps.kubeDetail,
+        ...(initialProps as { kubeDetail: Record<string, unknown> }).kubeDetail,
         status,
       },
-    };
+    } as unknown as ClusterNetworkProps;
     render(<ClusterNetwork {...props} />, { wrapper });
     expect(screen.getByTestId('cluster-network-edit-button')).toHaveAttribute('disabled');
   });
@@ -149,8 +163,9 @@ describe('ClusterNetwork Component', () => {
         privateNetworkId: 'network-123',
         nodesSubnetId: 'subnet-123',
         loadBalancersSubnetId: 'subnet-456',
+        plan: 'free',
       },
-    } as ClusterNetworkProps;
+    } as unknown as ClusterNetworkProps;
 
     vi.mocked(useRegionSubnets as Mock).mockReturnValue({
       data: [
@@ -187,8 +202,9 @@ describe('ClusterNetwork Component', () => {
           privateNetworkId,
           nodesSubnetId,
           loadBalancersSubnetId: 'subnet-456',
+          plan: 'free',
         },
-      } as ClusterNetworkProps;
+      } as unknown as ClusterNetworkProps;
       vi.mocked(useRegionInformations).mockReturnValue({
         data: { type: regionType },
         isPending: false,

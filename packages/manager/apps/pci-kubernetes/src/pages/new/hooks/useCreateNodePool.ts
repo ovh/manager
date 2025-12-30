@@ -47,7 +47,7 @@ const hasInvalidConfig = (
 ): boolean => {
   if (!isNodePoolValid) return true;
   if (!type) return false;
-  return hasInvalidScalingOrAntiAffinityConfig(type, {
+  return hasInvalidScalingOrAntiAffinityConfig({
     scaling: nodePoolState.scaling,
     antiAffinity: nodePoolState.antiAffinity,
     selectedAvailabilityZones: nodePoolState.selectedAvailabilityZones ?? null,
