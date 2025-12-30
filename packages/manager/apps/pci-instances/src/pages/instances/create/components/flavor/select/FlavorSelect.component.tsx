@@ -117,7 +117,7 @@ const FlavorSelect = ({ option, items }: TFlavorSelectOption) => {
               )}
             />
             <SelectContent
-              className="[&>div>span:first-child]:w-full"
+              className="z-[1000] [&>div>span:first-child]:w-full"
               customOptionRenderer={({
                 customData,
                 label,
