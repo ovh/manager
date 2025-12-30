@@ -39,26 +39,50 @@ export default function ExpiryDateInput({
   const [hours, setHours] = useState<number>(1);
   const [days, setDays] = useState<number>(1);
 
-  const setExpiresIn = (expiryUnit: Unit, value: number) => {
+  const setExpiresIn = (expiryUnit: Unit, value: number | null) => {
     if (!model.active || model.mode !== 'duration') {
       return;
     }
+    if (value === null) {
+      setModel({ ...model, expiresIn: 0, invalid: true });
+      return;
+    }
+
     switch (expiryUnit) {
       case Unit.MINUTES:
-        setModel({ ...model, expiresIn: value * SECONDS_IN_MINUTE });
+        setModel({
+          ...model,
+          expiresIn: value * SECONDS_IN_MINUTE,
+          invalid: false,
+        });
         setMinutes(value);
         break;
       case Unit.HOURS:
-        setModel({ ...model, expiresIn: value * SECONDS_IN_HOUR });
+        setModel({
+          ...model,
+          expiresIn: value * SECONDS_IN_HOUR,
+          invalid: false,
+        });
         setHours(value);
         break;
       case Unit.DAYS:
-        setModel({ ...model, expiresIn: value * SECONDS_IN_DAY });
+        setModel({
+          ...model,
+          expiresIn: value * SECONDS_IN_DAY,
+          invalid: false,
+        });
         setDays(value);
         break;
       default:
         break;
     }
+  };
+
+  const setExpiresAt = (value: Date | null) => {
+    if (!model.active || model.mode !== 'date') {
+      return;
+    }
+    setModel({ ...model, expiresAt: value, invalid: !value });
   };
 
   return (
@@ -194,9 +218,7 @@ export default function ExpiryDateInput({
             name="ExpiryDateValue"
             data-testid="ExpiryDateValue"
             value={model.expiresAt}
-            onOdsChange={(e) =>
-              setModel({ ...model, expiresAt: e.detail.value || null })
-            }
+            onOdsChange={(e) => setExpiresAt(e.detail.value || null)}
             isDisabled={!model.active}
           />
         )}

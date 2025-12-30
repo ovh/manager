@@ -141,6 +141,7 @@ export default function PermanentTokensAdd() {
     goBack();
   };
 
+  const isFormValid = !!name && !expiryModel.invalid;
   return (
     <Modal
       type={ODS_MODAL_COLOR.neutral}
@@ -153,7 +154,9 @@ export default function PermanentTokensAdd() {
         ns: NAMESPACES.ACTIONS,
       })}
       onPrimaryButtonClick={handleSubmit}
-      isPrimaryButtonDisabled={isCreationPending || isUpdatePending}
+      isPrimaryButtonDisabled={
+        isCreationPending || isUpdatePending || !isFormValid
+      }
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={handleCancel}
       onDismiss={handleCancel}
