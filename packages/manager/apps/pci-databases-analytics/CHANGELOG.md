@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.38.1...@ovh-ux/manager-pci-databases-analytics-app@1.39.0) (2025-12-30)
+
+
+### Bug Fixes
+
+* **pci.db:** add missing capabilities to update backup time in dedicated tabs ([256e593](https://github.com/ovh/manager/commit/256e59365ea93b6c1946681dfcef7ce1b74f5f78)), closes [#DATATTR-2828](https://github.com/ovh/manager/issues/DATATTR-2828)
+* **pci.db:** advanced config is not working ([55280e7](https://github.com/ovh/manager/commit/55280e7f10368480703c48b16cec3401df7c1c83)), closes [#DATATR-2832](https://github.com/ovh/manager/issues/DATATR-2832)
+* **pci.db:** copy icons is missing in dashboard ([bf150ef](https://github.com/ovh/manager/commit/bf150ef5846d04171a35e54700635256d1149047)), closes [#DATATR-2827](https://github.com/ovh/manager/issues/DATATR-2827)
+
+
+### Features
+
+* **pci.db:** add console API link in API Terraform equivalent modal ([a4f7735](https://github.com/ovh/manager/commit/a4f773571ddb283a724f71862f5fcd1198349712)), closes [#DATATR-2444](https://github.com/ovh/manager/issues/DATATR-2444)
+* **pci.db:** add new RBX and MUMBAI flag ([ffd6242](https://github.com/ovh/manager/commit/ffd6242402e1ca54e6fb63f322054670cf719bd6)), closes [#DATATR-2830](https://github.com/ovh/manager/issues/DATATR-2830)
+* **pci.db:** add pg and mysql in user creation modal ([f1b53ff](https://github.com/ovh/manager/commit/f1b53ff92931f8326914228d18dc772ac81815c1)), closes [#DATATR-2600](https://github.com/ovh/manager/issues/DATATR-2600)
+* **pci.db:** add tracking into upgrade offer banner in dashboard ([c45312f](https://github.com/ovh/manager/commit/c45312fb3357cbe79d1df1c3379858ab02cefa13)), closes [#DATATR-2683](https://github.com/ovh/manager/issues/DATATR-2683)
+* **pci.db:** display password at user creation ([0356ee6](https://github.com/ovh/manager/commit/0356ee6f9811a504b099ea44ba5b1613301639bd)), closes [#DATATR-2414](https://github.com/ovh/manager/issues/DATATR-2414)
+* **pic.db:** add tooltip in node label ([4dd962f](https://github.com/ovh/manager/commit/4dd962fd67a010c1420714a303d79f8692fee90b)), closes [#DATATR-2684](https://github.com/ovh/manager/issues/DATATR-2684)
+
+
+
+
+
 ## [1.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.38.0...@ovh-ux/manager-pci-databases-analytics-app@1.38.1) (2025-12-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
