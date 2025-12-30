@@ -1,5 +1,5 @@
 import '@/setupTests';
-import { describe, it, Mock, vi } from 'vitest';
+import { describe, it, Mock, vi, expect } from 'vitest';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import {
@@ -31,10 +31,16 @@ describe('dashboard test', () => {
     });
 
     globalThis.HTMLElement.prototype.scrollIntoView = vi.fn();
-    render(<DashboardPage />, { wrapper });
+    const { container } = render(<DashboardPage />, { wrapper });
 
     const tab = screen.getByText('domain_operations_dashboard_title');
     expect(tab).toBeInTheDocument();
     expect(tab).not.toHaveAttribute('active');
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'aria-valid-attr-value': { enabled: false },
+      },
+    });
   });
 });

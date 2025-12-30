@@ -30,6 +30,7 @@ export default mergeConfig(
           inline: ['@ovhcloud/ods-react', '@ovh-ux/manager-react-shell-client', '@ovh-ux/muk'],
         },
       },
+      environment: "jsdom",
     },
     resolve: { dedupe: [...defaultDedupedDependencies],
       alias: {

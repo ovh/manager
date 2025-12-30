@@ -15,37 +15,47 @@ vi.mock('@/domain/hooks/data/query', () => ({
 }));
 
 vi.mock('@/domain/components/AnycastOrder/AnycastOrder', () => ({
-  default: () => <div>Anycast Order Component</div>,
+  default: () => (
+    <div data-testid="anycast-order-component">Anycast Order Component</div>
+  ),
 }));
 
 describe('Anycast Order Page', () => {
-  it('Render Anycast order page loading', () => {
+  it('Render Anycast order page loading', async () => {
     (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
       isFetchingDomainZone: true,
     });
     (useGetDomainResource as Mock).mockReturnValue({
       domainResource: {},
-      isFetchingDomainZone: true,
+      isFetchingDomainResource: true,
     });
-    const { getByTestId } = render(<AnycastOrder />, {
+    const { getByTestId, container } = render(<AnycastOrder />, {
       wrapper,
     });
     expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+      },
+    });
   });
 
-  it('Render Anycast order page', () => {
+  it('Render Anycast order page', async () => {
     (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
       isFetchingDomainZone: false,
     });
     (useGetDomainResource as Mock).mockReturnValue({
       domainResource: serviceInfoDetail,
-      isFetchingDomainZone: false,
+      isFetchingDomainResource: false,
     });
-    const { getByTestId } = render(<AnycastOrder />, {
+    const { getByTestId, container } = render(<AnycastOrder />, {
       wrapper,
     });
     expect(getByTestId('order-component')).toBeInTheDocument();
+    await expect(container).toBeAccessible({
+      rules: { 'heading-order': { enabled: false } },
+    });
   });
 });

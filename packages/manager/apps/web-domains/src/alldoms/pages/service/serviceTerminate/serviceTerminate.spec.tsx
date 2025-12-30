@@ -1,5 +1,5 @@
 import '@/common/setupTests';
-import { Mock, vi } from 'vitest';
+import { Mock, vi, expect } from 'vitest';
 import {
   render,
   waitFor,
@@ -33,7 +33,7 @@ describe('Terminate service', () => {
       isLoading: false,
     });
 
-    render(<ServiceTerminate />, { wrapper });
+    const { container } = render(<ServiceTerminate />, { wrapper });
 
     await waitFor(() => {
       expect(screen.getByTestId('modal')).toBeInTheDocument();
@@ -46,6 +46,8 @@ describe('Terminate service', () => {
         screen.getByText('allDom_modal_step_one_message'),
       ).toBeInTheDocument();
     });
+
+    await expect(container).toBeAccessible();
   });
 
   (useGetAllDomResource as Mock).mockReturnValue({
@@ -60,7 +62,7 @@ describe('Terminate service', () => {
 
   allDomTerminate.forEach((domain) => {
     it(`should render ${domain.resource.name} checkbox`, async () => {
-      render(<ServiceTerminate />, { wrapper });
+      const { container } = render(<ServiceTerminate />, { wrapper });
       await waitFor(async () => {
         const checkbox = await screen.findByTestId(
           `checkbox-${domain.resource.name}`,
@@ -71,6 +73,7 @@ describe('Terminate service', () => {
         fireEvent.click(input!);
         expect(input?.checked).toBe(true);
       });
+      await expect(container).toBeAccessible();
     });
   });
 
@@ -85,7 +88,7 @@ describe('Terminate service', () => {
       isLoading: false,
     });
 
-    render(<ServiceTerminate />, { wrapper });
+    const { container } = render(<ServiceTerminate />, { wrapper });
 
     const selectAllCheckbox = await screen.findByTestId('checkbox-alldomains');
 
@@ -104,5 +107,7 @@ describe('Terminate service', () => {
         }),
       );
     });
+
+    await expect(container).toBeAccessible();
   });
 });

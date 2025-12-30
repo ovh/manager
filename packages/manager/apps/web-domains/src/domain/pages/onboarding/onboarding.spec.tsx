@@ -7,8 +7,8 @@ import Onboarding from './onboarding';
 const queryClient = new QueryClient();
 
 describe('Onboarding page', () => {
-  it('should display page correctly', () => {
-    const { findByText } = render(
+  it('should display page correctly', async () => {
+    const { findByText, container } = render(
       <QueryClientProvider client={queryClient}>
         <Onboarding />
       </QueryClientProvider>,
@@ -16,10 +16,15 @@ describe('Onboarding page', () => {
 
     const title = findByText('Créez votre présence en ligne');
     expect(title).toBeDefined();
+    await expect(container).toBeAccessible({
+      rules: {
+        'link-name': { enabled: false },
+      },
+    });
   });
 
-  it('should call window open on click', () => {
-    const { getByTestId } = render(
+  it('should call window open on click', async () => {
+    const { getByTestId, container } = render(
       <QueryClientProvider client={queryClient}>
         <Onboarding />
       </QueryClientProvider>,
@@ -33,5 +38,10 @@ describe('Onboarding page', () => {
     fireEvent.click(button);
 
     expect(spy).toHaveBeenCalledOnce();
+    await expect(container).toBeAccessible({
+      rules: {
+        'link-name': { enabled: false },
+      },
+    });
   });
 });

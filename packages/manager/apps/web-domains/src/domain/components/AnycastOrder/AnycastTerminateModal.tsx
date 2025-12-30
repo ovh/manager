@@ -1,5 +1,4 @@
 import { Text } from '@ovhcloud/ods-react';
-import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Modal, useFormatDate } from '@ovh-ux/manager-react-components';
 import { ODS_MODAL_COLOR as MODAL_COLOR } from '@ovhcloud/ods-components';

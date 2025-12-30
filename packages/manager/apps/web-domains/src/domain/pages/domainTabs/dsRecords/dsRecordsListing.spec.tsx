@@ -134,7 +134,7 @@ describe('DS Records Datagrid', () => {
     const message = getByTestId('internalConfigMessage');
     expect(message).toBeInTheDocument();
   });
-  it('should display the content of host datagrid and an allow actions when the config is not internal', () => {
+  it('should display the content of host datagrid and an allow actions when the config is not internal', async () => {
     const domainResourceWWithExternalConfig: TDomainResource = {
       ...serviceInfoDetail,
       currentState: {
@@ -152,7 +152,7 @@ describe('DS Records Datagrid', () => {
       domainResourceError: null,
     });
 
-    const { getByTestId } = render(<DsRecordsListing />, {
+    const { getByTestId, container } = render(<DsRecordsListing />, {
       wrapper,
     });
     expect(getByTestId('datagrid')).toBeInTheDocument();
@@ -164,5 +164,13 @@ describe('DS Records Datagrid', () => {
 
     const drawer = getByTestId('drawer');
     expect(drawer).toBeInTheDocument();
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+      },
+    });
   });
 });
