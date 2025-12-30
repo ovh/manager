@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { Translation, useTranslation } from 'react-i18next';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';

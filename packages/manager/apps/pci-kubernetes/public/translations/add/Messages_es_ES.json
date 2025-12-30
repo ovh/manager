@@ -86,5 +86,6 @@
   "kube_add_name_title": "Asigne un nombre al pool de nodos",
   "kube_add_node_pool_name_already_exist_validation_error": "El nombre de nodepool ya está en uso. Por favor, elija un dominio distinto.",
   "kube_add_plan_content_standard_1AZ_control_plane": "Plan de control gestionado, altamente disponible (1-AZ) y dedicado, con recursos garantizados",
-  "kube_add_plan_content_not_available": "no disponible en la región"
+  "kube_add_plan_content_not_available": "no disponible en la región",
+  "kubernetes_add_region_plan_select": "Filtrar por planes"
 }

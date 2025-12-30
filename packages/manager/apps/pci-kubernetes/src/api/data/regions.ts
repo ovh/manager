@@ -15,3 +15,8 @@ export const addProjectRegion = async (projectId: string, region: string): Promi
   });
   return data;
 };
+
+export const getKubeRegions = async (projectId: string): Promise<string[]> => {
+  const { data } = await v6.get<string[]>(`/cloud/project/${projectId}/capabilities/kube/regions`);
+  return data;
+};

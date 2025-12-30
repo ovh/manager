@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { TLocation } from '@/types';
+import { TLocation } from '@/types/region';
 
 import { addProjectRegion } from '../data/regions';
 
