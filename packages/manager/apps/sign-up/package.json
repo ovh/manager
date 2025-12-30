@@ -48,6 +48,7 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^7.2.1",
     "glob": "^7.1.4",
+    "babel-loader": "^9.1.0",
     "webpack": "^5.76.2",
     "webpack-merge": "^5.0.2"
   },
