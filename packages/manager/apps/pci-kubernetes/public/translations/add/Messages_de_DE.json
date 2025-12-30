@@ -86,5 +86,6 @@
   "kube_add_name_title": "Node-Pool benennen",
   "kube_add_node_pool_name_already_exist_validation_error": "Der Node-Pool-Name wird bereits verwendet. Bitte wählen Sie einen anderen aus.",
   "kube_add_plan_content_standard_1AZ_control_plane": "Verwalteter, hochverfügbarer (1-AZ) und dedizierter Kontrollplan mit garantierten Ressourcen",
-  "kube_add_plan_content_not_available": "nicht verfügbar in der Region"
+  "kube_add_plan_content_not_available": "nicht verfügbar in der Region",
+  "kubernetes_add_region_plan_select": "Nach Plänen filtern"
 }

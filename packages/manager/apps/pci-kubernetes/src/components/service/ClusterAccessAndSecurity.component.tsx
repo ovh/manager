@@ -28,9 +28,8 @@ import { useParam } from '@ovh-ux/manager-pci-common';
 import { ActionMenu, Clipboard, LinkType, Links } from '@ovh-ux/manager-react-components';
 
 import { useClusterRestrictions, useOidcProvider } from '@/api/hooks/useKubernetes';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import { KUBECONFIG_URL, PROCESSING_STATUS } from '@/constants';
-import { getValidOptionalKeys, isMultiDeploymentZones, isOptionalValue } from '@/helpers';
+import { getValidOptionalKeys, isOptionalValue, isStandardPlan } from '@/helpers';
 import { TKube } from '@/types';
 
 import { ClusterConfigFileActions } from './ClusterConfigFileActions.component';
@@ -65,7 +64,6 @@ export default function ClusterAccessAndSecurity({
   );
 
   const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
-  const { data: regionInformations } = useRegionInformations(projectId, kubeDetail?.region);
 
   const validOptionalKeys = useMemo(
     () => (oidcProvider ? getValidOptionalKeys(oidcProvider) : []),
@@ -97,7 +95,7 @@ export default function ClusterAccessAndSecurity({
           value={<Clipboard aria-label="clipboard" value={kubeDetail?.url} />}
         />
 
-        {regionInformations?.type && !isMultiDeploymentZones(regionInformations.type) && (
+        {kubeDetail.plan && !isStandardPlan(kubeDetail.plan) && (
           <TileLine
             title={t('service:kube_service_cluster_nodes_url')}
             value={<Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />}

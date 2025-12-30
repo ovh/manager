@@ -86,5 +86,6 @@
   "kube_add_name_title": "Nadaj nazwę puli węzłów",
   "kube_add_node_pool_name_already_exist_validation_error": "Nazwa puli węzłów jest już używana. Wybierz inną.",
   "kube_add_plan_content_standard_1AZ_control_plane": "Zarządzany plan kontrolny, wysoko dostępny (1-AZ) i dedykowany, z gwarantowanymi zasobami",
-  "kube_add_plan_content_not_available": "niedostępne w regionie"
+  "kube_add_plan_content_not_available": "niedostępne w regionie",
+  "kubernetes_add_region_plan_select": "Filtruj według planów"
 }

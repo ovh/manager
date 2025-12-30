@@ -1,8 +1,6 @@
 import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
 import { DeploymentMode, TScalingState } from '@/types';
 
-import { isMonoDeploymentZone } from '.';
-
 type TScalingStateTest = {
   antiAffinity: boolean;
   scaling: TScalingState;
@@ -12,9 +10,9 @@ type TScalingStateTest = {
 export const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
 
 export const isZoneAzChecked = (
-  type: DeploymentMode,
   selectedAvailabilityZones: { checked: boolean; zone: string }[] | null,
-) => !!isMonoDeploymentZone(type) || !!selectedAvailabilityZones?.some((zone) => zone.checked);
+) =>
+  !selectedAvailabilityZones?.length || !!selectedAvailabilityZones?.some((zone) => zone.checked);
 
 export const isScalingValid = (scaling: TScalingState) => {
   if (!scaling) return true;
@@ -44,16 +42,13 @@ export const hasMax5NodesAntiAffinity = ({
   (antiAffinity && scaling && scaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES) ||
   false;
 
-export const hasInvalidScalingOrAntiAffinityConfig = (
-  type: DeploymentMode,
-  nodePoolState: TScalingStateTest,
-) =>
+export const hasInvalidScalingOrAntiAffinityConfig = (nodePoolState: TScalingStateTest) =>
   !isScalingValid(nodePoolState.scaling) ||
   !hasMax5NodesAntiAffinity({
     antiAffinity: nodePoolState?.antiAffinity,
     scaling: nodePoolState.scaling,
   }) ||
-  !isZoneAzChecked(type, nodePoolState.selectedAvailabilityZones);
+  !isZoneAzChecked(nodePoolState.selectedAvailabilityZones);
 
 export const getPlanCodeFloatingIps = (
   time: 'hour' | 'month',

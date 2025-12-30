@@ -1,7 +1,8 @@
 import { act, renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { TLocation, UpdatePolicy } from '@/types';
+import { UpdatePolicy } from '@/types';
+import { TLocation } from '@/types/region';
 
 import { useClusterCreationStepper } from './useCusterCreationStepper';
 

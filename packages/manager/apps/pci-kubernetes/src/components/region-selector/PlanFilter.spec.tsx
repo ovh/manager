@@ -51,7 +51,7 @@ describe('PlanFilter', () => {
     it('should render the filter label', () => {
       render(<PlanFilter />);
 
-      expect(screen.getByText('pci_projects_project_filter_by_region')).toBeInTheDocument();
+      expect(screen.getByText('add:kubernetes_add_region_plan_select')).toBeInTheDocument();
     });
 
     it('should render all plan options', () => {
