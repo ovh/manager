@@ -26,7 +26,6 @@ import {
   useToast,
   FieldLabel,
 } from '@datatr-ux/uxlib';
-import { Check } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
 import storages from '@/types/Storages';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';

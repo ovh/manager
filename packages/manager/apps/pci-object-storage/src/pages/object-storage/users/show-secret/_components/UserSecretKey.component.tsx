@@ -83,7 +83,11 @@ const UserSecretKey = ({ user }: SecretKeyProps) => {
       </DialogBody>
       <DialogFooter className="flex justify-end">
         <DialogClose asChild>
-          <Button type="button" mode="ghost">
+          <Button
+            type="button"
+            mode="ghost"
+            data-testid="show-secret-close-button"
+          >
             {t('useSecretButtonClose')}
           </Button>
         </DialogClose>
