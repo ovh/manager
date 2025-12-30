@@ -1,0 +1,11 @@
+{
+  "storageJobTitle": "Utwórz regułę synchronizacji",
+  "storageJobDescription": "Zastosuj retroaktywnie swoją konfigurację replikacji, aby zreplikować obiekty przesłane przed utworzeniem reguł replikacji. Ta akcja uruchamia zadanie wykonywane w tle, które ma na celu synchronizację twoich bucketów. Aby dowiedzieć się więcej o replikacji asynchronicznej, zapoznaj się z dokumentacją",
+  "storageJobDescriptionLink": "tutaj.",
+  "storageJobButtonConfirm": "Replikuj istniejące obiekty",
+  "storageJobButtonCancel": "Anuluj",
+  "storageJobToastSuccessTitle": "Utworzona reguła synchronizacji",
+  "storageJobToastSuccessMessage": "Reguła synchronizacji została pomyślnie utworzona.",
+  "storageJobToastErrorTitle": "Błąd podczas tworzenia",
+  "storageJobToastErrorMessage": "Wystąpił błąd podczas tworzenia reguły synchronizacji: {{message}}."
+}
