@@ -16,9 +16,20 @@ import { OsdsIcon, OsdsLink, OsdsMessage, OsdsText } from '@ovhcloud/ods-compone
 
 import { KUBECONFIG_3AZ_GATEWAY } from '@/constants';
 
-const MultiZoneInfo = () => {
+type TMultiZoneInfoProps = {
+  isStandard?: boolean;
+  isMultiZones?: boolean;
+};
+
+const MultiZoneInfo = ({ isStandard = false, isMultiZones = false }: TMultiZoneInfoProps) => {
   const { t } = useTranslation(['network-add', 'service']);
-  return (
+
+  const translationKey =
+    isStandard && !isMultiZones
+      ? 'kubernetes_network_form_notify_users_standard'
+      : 'kubernetes_network_form_notify_users';
+
+  return isStandard || isMultiZones ? (
     <OsdsMessage
       type={ODS_MESSAGE_TYPE.info}
       color={ODS_TEXT_COLOR_INTENT.info}
@@ -30,7 +41,7 @@ const MultiZoneInfo = () => {
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {t('kubernetes_network_form_notify_users')}{' '}
+          {t(translationKey)}{' '}
         </OsdsText>
         <OsdsLink
           target={OdsHTMLAnchorElementTarget._blank}
@@ -48,7 +59,7 @@ const MultiZoneInfo = () => {
         </OsdsLink>
       </div>
     </OsdsMessage>
-  );
+  ) : null;
 };
 
 export default MultiZoneInfo;
