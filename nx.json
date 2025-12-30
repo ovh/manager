@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-
+  "cacheDirectory": ".nx/cache",
+  "defaultBase": "master",
   "plugins": [
     {
       "plugin": "@nx/eslint/plugin",
@@ -9,11 +10,6 @@
       }
     }
   ],
-
-  "tui": {
-    "enabled": false
-  },
-
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
@@ -37,7 +33,6 @@
       { "env": "VERSION" }
     ]
   },
-
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
@@ -92,9 +87,5 @@
       "inputs": ["default", "^default"],
       "cache": true
     }
-  },
-
-  "cacheDirectory": ".nx/cache",
-
-  "defaultBase": "develop"
+  }
 }
