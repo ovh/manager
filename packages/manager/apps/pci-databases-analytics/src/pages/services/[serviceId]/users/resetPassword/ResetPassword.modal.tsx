@@ -54,7 +54,7 @@ const ResetUserPassword = () => {
     },
     onSuccess: (userWithPassword) => {
       toast.toast({
-        title: t('resetUserPasswordToastSuccessTitle'),
+        title: t('userSuccessTitle'),
         description: t('resetUserPasswordToastSuccessDescription', {
           name: userWithPassword.username,
         }),
@@ -132,7 +132,9 @@ const ResetUserPassword = () => {
                   <Clipboard
                     value={`${selectedEndpoint?.uri.replace(
                       '<username>:<password>',
-                      `${user.username.replace(/@.*/, '')}:${newPass}`,
+                      `${encodeURIComponent(
+                        user.username.replace(/@.*/, ''),
+                      )}:${encodeURIComponent(newPass)}`,
                     )}`}
                   />
                 </div>
@@ -147,7 +149,7 @@ const ResetUserPassword = () => {
               mode="ghost"
               data-testid="reset-password-close-button"
             >
-              {t('resetUserPasswordButtonCancel')}
+              {t(newPass ? 'userCloseButton' : 'userCancelButton')}
             </Button>
           </DialogClose>
           {!newPass && (
@@ -157,7 +159,7 @@ const ResetUserPassword = () => {
               onClick={handleResetPassword}
               data-testid="reset-password-submit-button"
             >
-              {t('resetUserPasswordButtonConfirm')}
+              {t('userConfirmButton')}
             </Button>
           )}
         </DialogFooter>

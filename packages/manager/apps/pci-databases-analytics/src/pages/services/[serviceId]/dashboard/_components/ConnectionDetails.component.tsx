@@ -96,10 +96,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
           <p className="font-semibold">
             {t('connectionDetailsTableHeaderSSLMode')}
           </p>
-          <Clipboard
-            value={`${selectedEndpoint.sslMode}`}
-            showCopiedIcon={false}
-          />
+          <Clipboard value={`${selectedEndpoint.sslMode}`} />
         </div>
       )}
 
