@@ -1,7 +1,6 @@
 import '@/setupTests';
-import React from 'react';
 import '@testing-library/jest-dom';
-import { Mock, vi } from 'vitest';
+import { Mock, vi, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import {
   useAuthorizationIam,
@@ -62,7 +61,7 @@ describe('alldom datagrid', () => {
       data: { [allDomFeatureAvailibility]: true },
     });
 
-    render(<AllDom />, { wrapper });
+    const { container } = render(<AllDom />, { wrapper });
     await waitFor(() => {
       expect(screen.getByTestId('datagrid')).toBeInTheDocument();
       const allDomName = screen.getByTestId('allDom-test');
@@ -71,6 +70,15 @@ describe('alldom datagrid', () => {
         'href',
         'https://ovh.test/#/web-domains/alldoms/allDom-test',
       );
+    });
+    await expect(container).toBeAccessible({
+      rules: {
+        'select-name': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'button-name': { enabled: false },
+        label: { enabled: false },
+      },
     });
   });
 });

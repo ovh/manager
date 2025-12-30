@@ -50,34 +50,36 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   };
 });
 
+const mockTargetSpec = {
+  dnsConfiguration: {
+    nameServers: ['ns1.example.com', 'ns2.example.com'],
+  },
+  hostsConfiguration: {
+    hosts: [
+      { host: 'ns1.foobar', ips: ['1.1.1.1'] },
+      { host: 'ns2.foobar', ips: ['2.2.2.2'] },
+    ],
+  },
+  dnssecConfiguration: {
+    dnssecSupported: true,
+    dsData: [
+      {
+        algorithm: 8,
+        keyTag: 0,
+        flags: 0,
+        publicKey:
+          'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+      },
+    ],
+    supportedAlgorithms,
+  },
+};
+
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(() => ({
     domainResource: {
       checksum: 'xyz',
-      targetSpec: {
-        dnsConfiguration: {
-          nameServers: ['ns1.example.com', 'ns2.example.com'],
-        },
-        hostsConfiguration: {
-          hosts: [
-            { host: 'ns1.foobar', ips: ['1.1.1.1'] },
-            { host: 'ns2.foobar', ips: ['2.2.2.2'] },
-          ],
-        },
-        dnssecConfiguration: {
-          dnssecSupported: true,
-          dsData: [
-            {
-              algorithm: 8,
-              keyTag: 0,
-              flags: 0,
-              publicKey:
-                'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
-            },
-          ],
-          supportedAlgorithms,
-        },
-      },
+      targetSpec: mockTargetSpec,
       isFetchingDomainResource: false,
     },
   })),
@@ -101,11 +103,13 @@ describe('HostDelete', () => {
     (useNavigate as any).mockReturnValue(navigate);
   });
 
-  it('renders modal with correct heading', () => {
-    render(<HostDelete />, { wrapper });
+  it('renders modal with correct heading', async () => {
+    const { container } = render(<HostDelete />, { wrapper });
     expect(
       screen.getByText('domain_tab_hosts_modal_delete_title'),
     ).toBeInTheDocument();
+
+    await expect(container).toBeAccessible();
   });
 
   it('calls updateDomain with filtered hosts on delete click', () => {
@@ -114,6 +118,7 @@ describe('HostDelete', () => {
 
     expect(updateDomain).toHaveBeenCalledTimes(1);
     const call = updateDomain.mock.calls[0][0];
+    expect(call.currentTargetSpec).toEqual(mockTargetSpec);
     expect(call.updatedSpec).toEqual({
       hostsConfiguration: { hosts: [{ host: 'ns2.foobar', ips: ['2.2.2.2'] }] },
     });
