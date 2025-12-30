@@ -4,21 +4,13 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import useMfaEnrollment from '@/container/mfa-enrollment';
+import { getComponentWrapper } from '@/utils/tests/component-wrapper';
 import NavReshuffleContainer from '.';
 
-vi.mock('@/context', () => ({
-  useShell: () => ({
-    getPlugin: vi.fn().mockReturnValue({
-      getEnvironment: vi.fn().mockReturnValue({
-        getApplications: vi.fn().mockReturnValue([]),
-        getRegion: vi.fn().mockReturnValue('EU'),
-      }),
-      getURL: vi.fn().mockReturnValue('https://www.mocked-mfa-url.com'),
-      getLocale: vi.fn().mockReturnValue('fr_FR'),
-    }),
-    setMessageBus: vi.fn(),
-  }),
-}));
+const wrapper = getComponentWrapper({
+  withPreloaderProvider: true,
+  configuration: {}
+});
 
 vi.mock('@/core/product-nav-reshuffle', () => ({
   default: vi.fn(() => ({
@@ -78,13 +70,8 @@ vi.mock('@/core/routing', () => ({
   IFrameAppRouter: () => <div data-testid="iframe-router" />,
 }));
 
-function renderWithProviders(ui: React.ReactNode) {
-  const queryClient = new QueryClient();
-  return render(
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>
-    </BrowserRouter>,
-  );
+function renderWithProviders(ui: JSX.Element) {
+  return render(wrapper(ui));
 }
 
 describe('NavReshuffleContainer - MFA Enrollment behavior', () => {

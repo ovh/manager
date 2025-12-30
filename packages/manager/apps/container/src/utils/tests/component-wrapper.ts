@@ -3,11 +3,13 @@ import { TestWrapperFactory } from "./context-wrapper.factory";
 
 export type GetComponentWrapperParams = {
   withQueryClientProvider?: boolean;
+  withPreloaderProvider?: boolean;
   configuration?: ApplicationProviderOptions;
 };
 
 export const getComponentWrapper = ({
   withQueryClientProvider,
+  withPreloaderProvider,
   configuration,
 }: GetComponentWrapperParams) => {
 
@@ -17,6 +19,9 @@ export const getComponentWrapper = ({
   }
   if (configuration) {
     wrapperFactory.withApplicationProvider(configuration);
+  }
+  if (withPreloaderProvider) {
+    wrapperFactory.withPreloaderProvider();
   }
 
   return wrapperFactory.build();
