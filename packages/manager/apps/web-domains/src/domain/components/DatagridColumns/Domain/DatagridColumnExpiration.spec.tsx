@@ -1,9 +1,9 @@
+import '@/common/setupTests';
 import React from 'react';
-import { render, screen } from '@/common/utils/test.provider';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import DatagridColumnExpiration from './DatagridColumnExpiration';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
-import { wrapper } from '@/common/utils/test.provider';
 
 vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),

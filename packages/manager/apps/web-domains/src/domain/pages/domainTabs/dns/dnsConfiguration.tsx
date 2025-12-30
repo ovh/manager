@@ -109,7 +109,11 @@ export default function DnsConfigurationTab({
         </MessageBody>
       </Message>
       <div className="flex gap-4 my-6">
-        <Button size={BUTTON_SIZE.sm} onClick={() => navigate('dns-modify')}>
+        <Button
+          size={BUTTON_SIZE.sm}
+          onClick={() => navigate('dns-modify')}
+          name="modify-dns-button"
+        >
           {t('domain_dns_tab_button_modify_dns')}
         </Button>
         <AnycastOrderButtonComponent
