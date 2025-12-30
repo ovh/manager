@@ -1,12 +1,18 @@
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { FC } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link, Text } from '@ovhcloud/ods-react';
+import { DrawerOpenChangeDetail, Link, Text } from '@ovhcloud/ods-react';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 export const SshKeyHelper: FC = () => {
   const { t } = useTranslation('creation');
   const guide = useGuideLink('SSH_KEY');
+  const { trackClick } = useOvhTracking();
 
   const HELPER_TRANSLATION_KEYS = [
     'description',
@@ -15,8 +21,19 @@ export const SshKeyHelper: FC = () => {
     'how_to',
   ];
 
+  const handleTracking = ({ open }: DrawerOpenChangeDetail) => {
+    if (open) {
+      trackClick({
+        location: PageLocation.popup,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: ['add_instance', 'see-helper_ssh_key'],
+      });
+    }
+  };
+
   return (
-    <HelpDrawer>
+    <HelpDrawer onOpenChange={handleTracking}>
       <Text preset="heading-2">
         {t('creation:pci_instance_creation_select_sshKey_help_title')}
       </Text>
