@@ -13,6 +13,9 @@ jobs:
 
     env:
       PNPM_VERSION: "10.17.0" # must match playbook-config.js
+      CI: "true"
+      NX_TUI: "false"
+      NX_DAEMON: "false"
 
     steps:
       # ------------------------------------------
