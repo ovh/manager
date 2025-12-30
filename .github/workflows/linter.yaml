@@ -38,6 +38,19 @@ jobs:
           fetch-depth: 0
 
       # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
+
+      # ------------------------------------------
       # Node
       # ------------------------------------------
       - name: Use Node.js 22.x
