@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { DeploymentMode } from '@/types';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
 import { TRegionInformations } from '@/types/region';
 import { wrapper } from '@/wrapperRenders';
 
@@ -39,6 +39,7 @@ const mockStepper = {
     region: {
       name: 'eu-west-1',
     },
+    plan: null,
   },
 } as unknown as ReturnType<typeof useClusterCreationStepper>;
 
@@ -55,7 +56,7 @@ describe('NodePoolStep Component', () => {
   });
 
   it('should render without error', () => {
-    render(<NodePoolStep stepper={mockStepper} />, { wrapper });
+    render(<NodePoolStep stepper={mockStepper} plan={TClusterPlanEnum.FREE} />, { wrapper });
     const toTest = [
       'kubernetes_add_nodepool_name_placeholder',
       'kube_common_node_pool_model_type_selector',
@@ -74,12 +75,12 @@ describe('NodePoolStep Component', () => {
         availabilityZones: ['zone-1', 'zone-2'],
       },
     } as QueryObserverSuccessResult<TRegionInformations, Error>);
-    render(<NodePoolStep stepper={mockStepper} />, { wrapper });
+    render(<NodePoolStep stepper={mockStepper} plan={TClusterPlanEnum.FREE} />, { wrapper });
 
     expect(screen.getByText('node-pool:kube_common_add_node_pool_plural')).toBeInTheDocument();
   });
 
   it('should render zones', () => {
-    render(<NodePoolStep stepper={mockStepper} />, { wrapper });
+    render(<NodePoolStep stepper={mockStepper} plan={TClusterPlanEnum.FREE} />, { wrapper });
   });
 });

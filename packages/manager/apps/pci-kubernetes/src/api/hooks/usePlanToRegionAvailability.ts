@@ -3,7 +3,8 @@ import { useMemo } from 'react';
 import { useProductAvailability } from '@ovh-ux/manager-pci-common';
 
 import useStandardPlanAvailable from '@/hooks/useStandardPlanAvailable';
-import { TClusterPlanCodeEnum, TProductAvailability, TRegionCodes } from '@/types';
+import { TClusterPlanCodeEnum } from '@/types';
+import { TProductAvailability, TRegionCodes } from '@/types/region';
 
 export const transformToRegions = (
   data?: TProductAvailability,

@@ -27,21 +27,17 @@ describe('exceedsMaxNodes', () => {
 
 describe('zoneAZisChecked', () => {
   it('returns true if mono deployment zone', () => {
-    expect(isZoneAzChecked(DeploymentMode.MONO_ZONE, null)).toBe(true);
+    expect(isZoneAzChecked(null)).toBe(true);
   });
 
   it('returns true if availability zone is selected', () => {
     const selectedAvailabilityZones = [{ zone: 'zone-a', checked: true }];
-    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, selectedAvailabilityZones)).toBe(true);
+    expect(isZoneAzChecked(selectedAvailabilityZones)).toBe(true);
   });
   it('returns false if availability zone is not selected', () => {
     const selectedAvailabilityZones = [{ zone: 'zone-a', checked: false }];
 
-    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, selectedAvailabilityZones)).toBe(false);
-  });
-
-  it('returns false otherwise', () => {
-    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, null)).toBe(false);
+    expect(isZoneAzChecked(selectedAvailabilityZones)).toBe(false);
   });
 });
 
@@ -81,9 +77,7 @@ describe('hasInvalidScalingOrAntiAffinityConfig', () => {
       selectedAvailabilityZones: [{ zone: 'zone-1', checked: false }],
     };
 
-    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
-      true,
-    );
+    expect(hasInvalidScalingOrAntiAffinityConfig(nodePoolState)).toBe(true);
   });
 
   it('returns true if antiAffinity config is invalid', () => {
@@ -93,21 +87,7 @@ describe('hasInvalidScalingOrAntiAffinityConfig', () => {
       selectedAvailabilityZones: [{ zone: 'zone', checked: false }],
     };
 
-    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
-      true,
-    );
-  });
-
-  it('returns true if zone is not selected and not mono', () => {
-    const nodePoolState = {
-      scaling: { isAutoscale: false, quantity: { desired: 5 } } as TScalingState,
-      antiAffinity: false,
-      selectedAvailabilityZones: null,
-    };
-
-    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
-      true,
-    );
+    expect(hasInvalidScalingOrAntiAffinityConfig(nodePoolState)).toBe(true);
   });
 
   it('returns false if everything is valid', () => {
@@ -117,9 +97,7 @@ describe('hasInvalidScalingOrAntiAffinityConfig', () => {
       selectedAvailabilityZones: [{ zone: 'zone', checked: true }],
     };
 
-    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
-      false,
-    );
+    expect(hasInvalidScalingOrAntiAffinityConfig(nodePoolState)).toBe(false);
   });
   it('returns true if no checkbox is checked', () => {
     const nodePoolState = {
@@ -128,8 +106,6 @@ describe('hasInvalidScalingOrAntiAffinityConfig', () => {
       selectedAvailabilityZones: [{ zone: 'zone', checked: false }],
     };
 
-    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
-      true,
-    );
+    expect(hasInvalidScalingOrAntiAffinityConfig(nodePoolState)).toBe(true);
   });
 });

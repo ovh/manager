@@ -19,7 +19,7 @@ const PlanFilter = ({
   selectedPlan?: TClusterPlanEnum;
   onSelectPlan?: (plan: TClusterPlanEnum) => void;
 }) => {
-  const { t } = useTranslation('region-selector');
+  const { t } = useTranslation(['region-selector', 'add']);
 
   const plans = [TClusterPlanEnum.ALL, TClusterPlanEnum.FREE, TClusterPlanEnum.STANDARD];
 
@@ -32,7 +32,7 @@ const PlanFilter = ({
         slot="label"
         className="font-semibold"
       >
-        {t('pci_projects_project_filter_by_region')}
+        {t('add:kubernetes_add_region_plan_select')}
       </OsdsText>
 
       <OsdsRadioGroup

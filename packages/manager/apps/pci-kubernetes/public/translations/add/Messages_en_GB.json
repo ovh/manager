@@ -86,5 +86,6 @@
   "kube_add_name_title": "Name your node pool",
   "kube_add_node_pool_name_already_exist_validation_error": "The nodepool name already exists. Please choose another one.",
   "kube_add_plan_content_standard_1AZ_control_plane": "Managed control plan, highly available (1-AZ) and dedicated, with guaranteed resources",
-  "kube_add_plan_content_not_available": "unavailable in the region"
+  "kube_add_plan_content_not_available": "unavailable in the region",
+  "kubernetes_add_region_plan_select": "Filter by plans"
 }
