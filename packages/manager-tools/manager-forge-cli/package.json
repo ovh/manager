@@ -27,7 +27,7 @@
     "tsc-alias": "^1.8.16"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
+    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@types/figlet": "^1.7.0",
