@@ -131,5 +131,6 @@
   "pci_instance_creation_backup_setting_action_label": "Utwórz zautomatyzowaną kopię zapasową instancji",
   "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/miesiąc",
   "pci_instance_creation_backup_setting_local_label": "Automatyczne kopie zapasowe (lokalne)",
-  "pci_instance_creation_backup_setting_distant_label": "Automatyczne kopie zapasowe (zdalne)"
+  "pci_instance_creation_backup_setting_distant_label": "Automatyczne kopie zapasowe (zdalne)",
+  "pci_instance_creation_select_deployment_mode_helper_title": "Lokalizacje"
 }
