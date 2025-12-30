@@ -86,7 +86,14 @@ jobs:
         run: |
           CORES=$(nproc --ignore=1 || nproc)
           yarn build --concurrency=$CORES \
-            --filter='./packages/manager/core/*' \
+            --filter='./packages/manager/core/api' \
+            --filter='./packages/manager/core/application' \
+            --filter='./packages/manager/core/ovh-product-icons' \
+            --filter='./packages/manager/core/request-tagger' \
+            --filter='./packages/manager/core/shell-client' \
+            --filter='./packages/manager/core/sso' \
+            --filter='./packages/manager/core/url-builder' \
+            --filter='./packages/manager/core/utils' \
             --filter='./packages/manager-ui-kit' \
             --filter='./packages/manager/modules/order' \
             --filter='./packages/manager/modules/common-api' \
