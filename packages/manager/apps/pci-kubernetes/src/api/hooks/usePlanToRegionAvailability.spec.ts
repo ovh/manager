@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { TClusterPlanCodeEnum, TProductAvailability } from '@/types';
+import { TClusterPlanCodeEnum } from '@/types';
+import { TProductAvailability } from '@/types/region';
 
 import { transformToRegions } from './usePlanToRegionAvailability';
 

@@ -186,7 +186,7 @@ export default function NewPage(): ReactElement {
           label: t('common_stepper_next_button_label'),
           isDisabled: !!(
             regionInformations?.type &&
-            hasInvalidScalingOrAntiAffinityConfig(regionInformations.type, {
+            hasInvalidScalingOrAntiAffinityConfig({
               scaling: store.scaling,
               antiAffinity: billingState.antiAffinity.isChecked,
               selectedAvailabilityZones: store.selectedAvailabilityZones,
@@ -202,6 +202,7 @@ export default function NewPage(): ReactElement {
         render: () => (
           <SizeStep
             regionInformations={regionInformations}
+            plan={cluster?.plan}
             selectedAvailabilityZones={store.selectedAvailabilityZones}
             antiAffinity={billingState.antiAffinity.isChecked}
             onAttachFloatingIPs={(enabled) => store.set.attachFloatingIps({ enabled })}

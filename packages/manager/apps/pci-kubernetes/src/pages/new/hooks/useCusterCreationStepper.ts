@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
 import { NodePoolPrice } from '@/api/data/kubernetes';
-import { TClusterPlan, TLocation, UpdatePolicy } from '@/types';
+import { TClusterPlan, UpdatePolicy } from '@/types';
+import { TLocation } from '@/types/region';
 
 import { TNetworkFormState } from '../steps/NetworkClusterStep.component';
 import { useStep } from './useStep';
 
 export type TClusterCreationForm = {
-  region: TLocation | null;
+  region: TLocation;
   version: string;
   updatePolicy: UpdatePolicy | null;
   network: TNetworkFormState | null;

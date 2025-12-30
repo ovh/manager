@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { useParams } from 'react-router-dom';
-
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 
+import { useParam } from '@ovh-ux/manager-pci-common';
+
 import { TNetworkRegion } from '@/api/data/network';
-import { TGateway, TPrivateNetworkSubnet } from '@/api/data/subnets';
+import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import { useAvailablePrivateNetworks, useListGateways } from '@/api/hooks/useNetwork';
 import LoadBalancerSelect from '@/components/create/LoadBalancerSelect.component';
 import PrivateNetworkSelect from '@/components/create/PrivateNetworkSelect.component';
@@ -18,31 +18,31 @@ import {
 import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
 import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
 import NoGatewayLinkedMessage from '@/components/network/NoGatewayLinkedWarning.component';
-import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
-import { DeploymentMode } from '@/types';
+import { isStandardPlan } from '@/helpers';
+import { isValidGateway } from '@/helpers/networks';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
 
 export type TNetworkFormState = {
   privateNetwork?: TNetworkRegion;
-  subnet?: TPrivateNetworkSubnet;
+  subnet?: TPrivateNetworkSubnet | null;
   gateway?: GatewaySelectorState;
-  loadBalancersSubnet?: TPrivateNetworkSubnet;
+  loadBalancersSubnet?: TPrivateNetworkSubnet | null;
 };
 
 export type NetworkClusterStepProps = {
   region: string;
   type: DeploymentMode;
+  plan: TClusterPlanEnum;
   onChange: (networkForm: TNetworkFormState) => void;
 };
-
-export const isValidGateway3AZ = (type: DeploymentMode, gateways: TGateway[]) =>
-  isMultiDeploymentZones(type) && Array.isArray(gateways) && gateways.length;
 
 export default function NetworkClusterStep({
   region,
   type,
+  plan,
   onChange,
 }: Readonly<NetworkClusterStepProps>) {
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const [form, setForm] = useState<TNetworkFormState>({});
 
   const { data: availablePrivateNetworks, isPending } = useAvailablePrivateNetworks(
@@ -63,17 +63,17 @@ export default function NetworkClusterStep({
   useEffect(() => {
     setForm((network) => ({
       ...network,
-      gateway: { isEnabled: !!isValidGateway3AZ(type, gateways) },
+      gateway: { isEnabled: isStandardPlan(plan) && isValidGateway(gateways ?? []) },
     }));
-  }, [form.subnet?.id, isLoadingGateways, gateways]);
+  }, [form.subnet?.id, isLoadingGateways, gateways, plan]);
 
-  const shouldWarnSubnet = form.subnet && !form.subnet?.gatewayIp && !isMultiDeploymentZones(type);
+  const shouldWarnSubnet = form.subnet && !form.subnet?.gatewayIp && !isStandardPlan(plan);
 
   const shouldWarnLoadBalancerSubnet =
     form.subnet?.gatewayIp &&
     form.loadBalancersSubnet &&
     !form.loadBalancersSubnet?.gatewayIp &&
-    !isMultiDeploymentZones(type);
+    !isStandardPlan(plan);
 
   return (
     <>
@@ -81,30 +81,33 @@ export default function NetworkClusterStep({
         <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="block text-center" />
       ) : (
         <>
-          {isMultiDeploymentZones(type) && (
-            <>
-              <MultiZoneInfo />
+          <MultiZoneInfo isStandard={isStandardPlan(plan)} />
 
+          {isStandardPlan(plan) && (
+            <>
               <NoGatewayLinkedMessage
-                type={type}
+                plan={plan}
                 gateways={gateways}
-                network={availablePrivateNetworks}
+                network={availablePrivateNetworks ?? []}
               />
             </>
           )}
           <PrivateNetworkSelect
             region={region}
             type={type}
+            plan={plan}
             network={form.privateNetwork}
             subnet={form.subnet}
             networks={availablePrivateNetworks}
             onSelect={(privateNetwork) => {
-              setForm((network) => ({
-                ...network,
-                privateNetwork,
-                subnet: null,
-                loadBalancersSubnet: null,
-              }));
+              if (privateNetwork) {
+                setForm((network) => ({
+                  ...network,
+                  privateNetwork,
+                  subnet: null,
+                  loadBalancersSubnet: null,
+                }));
+              }
             }}
           />
           {form.privateNetwork && (
@@ -125,7 +128,7 @@ export default function NetworkClusterStep({
               {shouldWarnSubnet && <LoadBalancerWarning />}
             </div>
           )}
-          {form.privateNetwork && form.subnet && isMonoDeploymentZone(type) && (
+          {form.privateNetwork && form.subnet && !isStandardPlan(plan) && (
             <>
               <GatewaySelector
                 className="mt-2"
