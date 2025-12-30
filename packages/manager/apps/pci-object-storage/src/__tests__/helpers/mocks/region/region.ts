@@ -11,7 +11,7 @@ export const mockedRegion: cloud.Region = {
   services: [
     {
       endpoint: 'myEndpoint',
-      name: 'myService',
+      name: 'storage',
       status: cloud.ServiceStatusEnum.UP,
     },
   ],

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useObjectStorageData } from '../../ObjectStorage.context';
-import UserSecretKey from './UserSecretKey.component';
+import UserSecretKey from './_components/UserSecretKey.component';
 import { useGetUserS3Credentials } from '@/data/hooks/user/useGetUserS3Credentials.hook';
 
 const UserSecret = () => {
