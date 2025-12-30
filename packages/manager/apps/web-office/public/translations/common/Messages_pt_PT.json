@@ -50,5 +50,8 @@
   "state_deleting": "Eliminação em curso",
   "state_suspended": "Suspenso",
   "state_suspending": "Suspensão em curso",
-  "error_message": "O seu pedido não foi bem-sucedido. {{ error }}"
+  "error_message": "O seu pedido não foi bem-sucedido. {{ error }}",
+  "agreement": "Assinatura do contrato",
+  "contract_signature": "Assinatura do contrato",
+  "contract_signature_tooltip": "Para aceder ao seu serviço, deve aceitar o contrato do utilizador da Microsoft"
 }
