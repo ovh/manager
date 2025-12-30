@@ -1,17 +1,19 @@
-import { useQueryClient, useMutation } from '@tanstack/react-query';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import ipaddr from 'ipaddr.js';
+import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import {
+  IpEdgeFirewallProtocol,
   getIpEdgeFirewallQueryKey,
   getIpEdgeNetworkFirewallRuleListQueryKey,
-  IpEdgeFirewallProtocol,
   postIpEdgeFirewall,
   postIpEdgeNetworkFirewallRule,
 } from '@/data/api';
-import { isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
+import { TRANSLATION_NAMESPACES, isValidIpv4Block } from '@/utils';
 
 export const IP_EDGE_FIREWALL_PORT_MIN = 0;
 export const IP_EDGE_FIREWALL_PORT_MAX = 65535;
@@ -56,16 +58,16 @@ export const hasSourceError = (source?: string) => {
     return false;
   }
 
-  return source.includes('/')
+  return source?.includes('/')
     ? !isValidIpv4Block(source)
-    : !ipaddr.IPv4.isValid(source);
+    : !ipaddr.IPv4.isValid(source as string);
 };
 
 export const formatSourceValue = (source?: string) => {
   if (isValidEmptySourceValue(source)) {
     return null;
   }
-  return !source.includes('/') ? `${source}/32` : source;
+  return !source?.includes('/') ? `${source}/32` : source;
 };
 
 export type CreateFirewallRuleParams = {
@@ -173,7 +175,7 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
           pageType: PageType.bannerError,
           pageName: 'edge_firewall_add_rule_error',
         });
-        return Promise.reject();
+        return Promise.reject(new Error('Validation errors'));
       }
 
       if (hasNoFirewall) {
@@ -201,7 +203,7 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
     },
     onSuccess: () => {
       clearNotifications();
-      qc.invalidateQueries({
+      void qc.invalidateQueries({
         queryKey: getIpEdgeNetworkFirewallRuleListQueryKey({
           ip,
           ipOnFirewall,
@@ -209,7 +211,7 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
       });
 
       if (hasNoFirewall) {
-        qc.invalidateQueries({
+        void qc.invalidateQueries({
           queryKey: getIpEdgeFirewallQueryKey({ ip, ipOnFirewall }),
         });
       }

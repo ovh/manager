@@ -1,15 +1,19 @@
+import React, { useContext, useEffect, useState } from 'react';
+
+import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   ErrorBanner,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
-import React, { useContext, useEffect, useState } from 'react';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+
 import { useGetIpList } from '@/data/hooks/ip';
-import { ListingContext } from '../../../listingContext';
 import { urls } from '@/routes/routes.constant';
 import { ipFormatter } from '@/utils';
+
+import { ListingContext } from '../../../listingContext';
 import { IpGroupDatagrid } from '../ipGroupDatagrid/ipGroupDatagrid';
 import { useIpDatagridColumns } from './useIpDatagridColumns';
 
@@ -45,7 +49,7 @@ export const IpDatagrid = () => {
 
     // filter by apiFilter.ip if exists
     const filtered = apiFilter?.ip
-      ? uniqueIpList.filter((ip) => ip.includes(apiFilter.ip))
+      ? uniqueIpList.filter((ip) => ip.includes(apiFilter.ip as string))
       : uniqueIpList;
     setFilteredIpList(filtered);
     setPaginatedIpList(

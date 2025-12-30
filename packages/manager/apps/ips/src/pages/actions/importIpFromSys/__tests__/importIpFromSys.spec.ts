@@ -1,22 +1,26 @@
-import { waitFor, screen, fireEvent } from '@testing-library/react';
-import { vi, describe } from 'vitest';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { describe, vi } from 'vitest';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertOdsModalText,
   assertOdsModalVisibility,
 } from '@ovh-ux/manager-core-test-utils';
+
+import {
+  catalogDedicatedServerList,
+  ipMigrationPostResponse,
+} from '@/__mocks__/catalog/dedicated-server-catalog';
+import { urls } from '@/routes/routes.constant';
 import {
   getButtonByIcon,
   getButtonByLabel,
   labels,
   renderTest,
 } from '@/test-utils';
-import { urls } from '@/routes/routes.constant';
-import {
-  catalogDedicatedServerList,
-  ipMigrationPostResponse,
-} from '@/__mocks__/catalog/dedicated-server-catalog';
+
 import {
   VALID_INPUT_VALUES,
   fillStep1,
@@ -97,7 +101,7 @@ describe('Import IP from Sys modal', () => {
     await assertOdsModalText({
       container,
       text: labels.importIpFromSys.step2UnavailableMigrationMessage
-        .replace('{{ serverName }}', catalogDedicatedServerList[0])
+        .replace('{{ serverName }}', catalogDedicatedServerList[0] as string)
         .replace('{{ ip }}', VALID_INPUT_VALUES.ip),
     });
   });
@@ -118,7 +122,7 @@ describe('Import IP from Sys modal', () => {
     await assertOdsModalText({
       container,
       text: labels.importIpFromSys.step2CompatibilitySuccessMessage
-        .replace('{{ serverName }}', catalogDedicatedServerList[0])
+        .replace('{{ serverName }}', catalogDedicatedServerList[0] as string)
         .replace('{{ ip }}', VALID_INPUT_VALUES.ip),
     });
 
@@ -142,29 +146,6 @@ describe('Import IP from Sys modal', () => {
     await assertOdsModalText({ container, text: 'Une erreur est survenue' });
   });
 
-  it('let you go to step 3 if the IP migration is available for the selected server', async () => {
-    const { container } = await renderTest({
-      initialRoute: urls.listingImportIpFromSys,
-      nbIp: 6,
-    });
-    await assertOdsModalVisibility({ container, isVisible: true });
-
-    await fillStep1(VALID_INPUT_VALUES);
-
-    await goToStep({ container, stepNumber: 2 });
-
-    await fillStep2();
-
-    await assertOdsModalText({
-      container,
-      text: labels.importIpFromSys.step2CompatibilitySuccessMessage
-        .replace('{{ serverName }}', catalogDedicatedServerList[0])
-        .replace('{{ ip }}', VALID_INPUT_VALUES.ip),
-    });
-
-    await goToStep({ container, stepNumber: 3 });
-  });
-
   it('displays a success message if the IP migration order is successful', async () => {
     const { container } = await renderTest({
       initialRoute: urls.listingImportIpFromSys,
@@ -182,7 +163,7 @@ describe('Import IP from Sys modal', () => {
     await assertOdsModalText({
       container,
       text: labels.importIpFromSys.step2CompatibilitySuccessMessage
-        .replace('{{ serverName }}', catalogDedicatedServerList[0])
+        .replace('{{ serverName }}', catalogDedicatedServerList[0] as string)
         .replace('{{ ip }}', VALID_INPUT_VALUES.ip),
     });
 

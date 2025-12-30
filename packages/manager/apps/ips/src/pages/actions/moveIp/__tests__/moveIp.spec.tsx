@@ -1,20 +1,24 @@
-import { within, waitFor, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { describe } from 'vitest';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertOdsModalText,
   assertOdsModalVisibility,
 } from '@ovh-ux/manager-core-test-utils';
+
+import moveIpResponse from '@/__mocks__/ip/get-ip-move.json';
+import ipList from '@/__mocks__/ip/get-ips.json';
+import { urls } from '@/routes/routes.constant';
 import {
   getButtonByIcon,
   getButtonByLabel,
   labels,
   renderTest,
 } from '@/test-utils';
-import { urls } from '@/routes/routes.constant';
-import ipList from '@/__mocks__/ip/get-ips.json';
-import moveIpResponse from '@/__mocks__/ip/get-ip-move.json';
+
 import { fillStep1, openMoveIpModal } from './moveIp.test-utils';
 
 describe('Move IP modal', () => {
@@ -62,7 +66,10 @@ describe('Move IP modal', () => {
   it('lets you go to step 2 if you fill correctly destination service and next hop', async () => {
     const { container } = await openMoveIpModal();
 
-    const { service, nexthop } = moveIpResponse.cloudProject[0];
+    const { service, nexthop } = moveIpResponse.cloudProject[0] as {
+      service: string;
+      nexthop: string[];
+    };
     await fillStep1({
       container,
       destinationService: service,
@@ -80,11 +87,11 @@ describe('Move IP modal', () => {
       /<b>.*/,
       '',
     );
-    const confirmNode = await screen.getByText(confirmText, { exact: false });
+    const confirmNode = screen.getByText(confirmText, { exact: false });
     await waitFor(
       () =>
         expect(
-          within(confirmNode.parentElement).getByText(service),
+          within(confirmNode.parentElement as HTMLElement).getByText(service),
         ).toBeInTheDocument(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
@@ -93,7 +100,9 @@ describe('Move IP modal', () => {
   it('displays a success message if the IP migration order is successful', async () => {
     const { container } = await openMoveIpModal();
 
-    const { service } = moveIpResponse.dedicatedServer[0];
+    const { service } = moveIpResponse.dedicatedServer[0] as {
+      service: string;
+    };
     await fillStep1({
       container,
       destinationService: service,
@@ -110,11 +119,11 @@ describe('Move IP modal', () => {
       /<b>.*/,
       '',
     );
-    const confirmNode = await screen.getByText(confirmText, { exact: false });
+    const confirmNode = screen.getByText(confirmText, { exact: false });
     await waitFor(
       () =>
         expect(
-          within(confirmNode.parentElement).getByText(service),
+          within(confirmNode.parentElement as HTMLElement).getByText(service),
         ).toBeInTheDocument(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
@@ -131,7 +140,7 @@ describe('Move IP modal', () => {
       () =>
         screen.getByText(
           labels.moveIp.moveIpSuccessMessage
-            .replace('{{ip}}', ipList[0])
+            .replace('{{ip}}', ipList[0] as string)
             .replace('{{destinationService}}', service),
         ),
       WAIT_FOR_DEFAULT_OPTIONS,

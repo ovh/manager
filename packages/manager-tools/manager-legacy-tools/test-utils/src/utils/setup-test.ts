@@ -1,8 +1,17 @@
 import { SetupServer, setupServer } from 'msw/node';
+import { vi } from 'vitest';
 import { toMswHandlers } from './msw';
 import { getAuthenticationMocks } from '../auth';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
+
+window.ResizeObserver =
+  window.ResizeObserver ||
+  vi.fn().mockImplementation(() => ({
+    disconnect: vi.fn(),
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+  }));
 
 declare global {
   // eslint-disable-next-line vars-on-top, no-var

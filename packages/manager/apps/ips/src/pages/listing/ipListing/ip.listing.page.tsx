@@ -1,14 +1,18 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
+
 import { useQueryClient } from '@tanstack/react-query';
-import { useNavigate, Outlet, useSearchParams } from 'react-router-dom';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -16,12 +20,14 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import Loading from '@/components/Loading/Loading';
 import { urls } from '@/routes/routes.constant';
-import { IpDatagrid } from './components';
-import { IpFilter, QuickFilter, FilterService } from './components/filters';
-import { ListingContextProvider } from '../listingContext';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import { ListingContextProvider } from '../listingContext';
+import { IpDatagrid } from './components';
+import { FilterService, IpFilter, QuickFilter } from './components/filters';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -44,7 +50,7 @@ export default function IpListingPage() {
           {t('listingTabIpDescription')}
         </OdsText>
       </div>
-      <div className="flex mb-4 gap-2">
+      <div className="mb-4 flex gap-2">
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
@@ -56,7 +62,7 @@ export default function IpListingPage() {
               actionType: 'action',
               actions: ['order_ip'],
             });
-            navigate(urls.order);
+            void navigate(urls.order);
           }}
           label={t('orderIpsButtonLabel')}
         />
@@ -71,14 +77,14 @@ export default function IpListingPage() {
               actionType: 'action',
               actions: ['bring-your-own_ip'],
             });
-            navigate(urls.byoip);
+            void navigate(urls.byoip);
           }}
           label={t('orderByoipButtonLabel')}
         />
       </div>
 
       <div className="flex flex-row">
-        <div className="flex flex-col flex-1 mr-2 md:mr-8 md:flex-row gap-2">
+        <div className="mr-2 flex flex-1 flex-col gap-2 md:mr-8 md:flex-row">
           <IpFilter className="min-w-[200px] max-w-[400px] flex-1" />
           <FilterService className="min-w-[200px] max-w-[400px] flex-1" />
           <OdsButton
@@ -92,14 +98,14 @@ export default function IpListingPage() {
                 actionType: 'action',
                 actions: ['refresh_ip'],
               });
-              queryClient.invalidateQueries();
+              void queryClient.invalidateQueries();
             }}
             label=""
           />
         </div>
 
-        <div className="flex flex-col items-end ml-auto gap-2">
-          <div className="flex items-end ml-auto gap-2">
+        <div className="ml-auto flex flex-col items-end gap-2">
+          <div className="ml-auto flex items-end gap-2">
             <ActionMenu
               id="settings"
               icon={ODS_ICON_NAME.cog}
@@ -116,7 +122,7 @@ export default function IpListingPage() {
                       actionType: 'action',
                       actions: ['import_sys-ip'],
                     });
-                    navigate(
+                    void navigate(
                       `${urls.listingImportIpFromSys}?${search.toString()}`,
                     );
                   },
@@ -134,7 +140,9 @@ export default function IpListingPage() {
                   actionType: 'action',
                   actions: ['download_export_ip'],
                 });
-                navigate(`${urls.listingExportIpToCsv}?${search.toString()}`);
+                void navigate(
+                  `${urls.listingExportIpToCsv}?${search.toString()}`,
+                );
               }}
               label=""
             />

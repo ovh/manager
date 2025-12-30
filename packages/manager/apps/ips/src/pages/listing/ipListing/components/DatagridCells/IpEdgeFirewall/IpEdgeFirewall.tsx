@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { ipFormatter } from '@/utils/ipFormatter';
+
 import { useGetIpEdgeFirewall } from '@/data/hooks/ip';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { IpEdgeFirewallDisplay } from './IpEdgeFirewallDisplay';
 
 export type IpEdgeFirewallProps = {
@@ -33,7 +35,7 @@ export const IpEdgeFirewall = ({
       ((isGroup && !!ipOnFirewall) || !isGroup) &&
       expiredIps.indexOf(ip) === -1 &&
       !isByoipSlice,
-    [isGroup, ipOnFirewall, ip, expiredIps],
+    [isGroup, ipOnFirewall, ip, expiredIps, isByoipSlice],
   );
 
   // Get edge firewall details

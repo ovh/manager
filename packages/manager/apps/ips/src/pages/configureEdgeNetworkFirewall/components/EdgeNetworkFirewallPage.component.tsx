@@ -1,31 +1,37 @@
 import React from 'react';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
   ErrorBanner,
   GuideButton,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { Trans, useTranslation } from 'react-i18next';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
+import { IpEdgeFirewallProtocol } from '@/data/api';
 import { urls } from '@/routes/routes.constant';
 import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
-import { RuleDatagrid } from './RuleDatagrid.component';
-import { EnableEdgeNetworkFirewallModal } from './EnableEdgeNetworkFirewallModal.component';
+
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
-import { TopBar } from './TopBar.component';
 import { DeleteRuleModal } from './DeleteRuleModal.component';
-import { IpEdgeFirewallProtocol } from '@/data/api';
+import { EnableEdgeNetworkFirewallModal } from './EnableEdgeNetworkFirewallModal.component';
+import { RuleDatagrid } from './RuleDatagrid.component';
 import { validSequenceNumbers } from './SequenceColumn.component';
+import { TopBar } from './TopBar.component';
 
 export default function EdgeNetworkFirewallPage() {
   const {
@@ -57,7 +63,7 @@ export default function EdgeNetworkFirewallPage() {
   const breadcrumbMapper = (_: BreadcrumbItem, index: number) =>
     index === 0
       ? {
-          label: ipOnFirewall,
+          label: ipOnFirewall as string,
           onClick: () => navigate(`${urls.listing}?ip=${ipOnFirewall}`),
         }
       : { label: t('title') };
@@ -80,17 +86,19 @@ export default function EdgeNetworkFirewallPage() {
           ns: NAMESPACES.ACTIONS,
           value: `“${t('title', { ns: TRANSLATION_NAMESPACES.listing })}”`,
         })}
-        onClickReturn={() => navigate(`${urls.listing}?${search.toString()}`)}
+        onClickReturn={() => {
+          void navigate(`${urls.listing}?${search.toString()}`);
+        }}
         breadcrumb={<Breadcrumb mapper={breadcrumbMapper} />}
         header={{
           ...header,
-          changelogButton: null,
+          changelogButton: <></>,
           headerButton: (
             <GuideButton
               items={[
                 {
                   id: 0,
-                  href: links.configureEdgeNetworkFirewall.link,
+                  href: links.configureEdgeNetworkFirewall?.link as string,
                   target: '_blank',
                   label: t('title'),
                   onClick: () => {
@@ -99,7 +107,7 @@ export default function EdgeNetworkFirewallPage() {
                       buttonType: ButtonType.link,
                       location: PageLocation.page,
                       actions: [
-                        `go-to_${links.configureEdgeNetworkFirewall.trackingLabel}`,
+                        `go-to_${links.configureEdgeNetworkFirewall?.trackingLabel}`,
                       ],
                     });
                   },
@@ -110,45 +118,47 @@ export default function EdgeNetworkFirewallPage() {
         }}
         message={<Notifications />}
       >
-        <OdsText className="block mb-3">{t('description')}</OdsText>
-        <OdsText className="block mb-3">{t('subDescription')}</OdsText>
-        <OdsText className="block mb-3">{t('tcpNoteDescription')}</OdsText>
-        {rules.length > 0 && rules.every((rule) => rule?.action === 'permit') && (
-          <OdsMessage
-            className="my-3"
-            color={ODS_MESSAGE_COLOR.warning}
-            isDismissible={false}
-          >
-            <div className="block">
-              <Trans
-                t={t}
-                i18nKey="only_permit_rules_warning"
-                components={{
-                  Link: (
-                    <OdsLink
-                      href="!#"
-                      label={t('only_permit_rule_link_label')}
-                      isDisabled={maxRulesReached}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setNewProtocol(IpEdgeFirewallProtocol.IPv4);
-                        const latestValidSequence = validSequenceNumbers
-                          .map((num) => num)
-                          .reverse()
-                          .find(
-                            (sequence) => !ruleSequenceList.includes(sequence),
-                          );
-                        setNewSequence(latestValidSequence);
-                        setNewMode('deny');
-                        showNewRuleRow();
-                      }}
-                    />
-                  ),
-                }}
-              />
-            </div>
-          </OdsMessage>
-        )}
+        <OdsText className="mb-3 block">{t('description')}</OdsText>
+        <OdsText className="mb-3 block">{t('subDescription')}</OdsText>
+        <OdsText className="mb-3 block">{t('tcpNoteDescription')}</OdsText>
+        {rules.length > 0 &&
+          rules.every((rule) => rule?.action === 'permit') && (
+            <OdsMessage
+              className="my-3"
+              color={ODS_MESSAGE_COLOR.warning}
+              isDismissible={false}
+            >
+              <div className="block">
+                <Trans
+                  t={t}
+                  i18nKey="only_permit_rules_warning"
+                  components={{
+                    Link: (
+                      <OdsLink
+                        href="!#"
+                        label={t('only_permit_rule_link_label')}
+                        isDisabled={maxRulesReached}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setNewProtocol(IpEdgeFirewallProtocol.IPv4);
+                          const latestValidSequence = validSequenceNumbers
+                            .map((num) => num)
+                            .reverse()
+                            .find(
+                              (sequence) =>
+                                !ruleSequenceList.includes(sequence),
+                            );
+                          setNewSequence(latestValidSequence);
+                          setNewMode('deny');
+                          showNewRuleRow();
+                        }}
+                      />
+                    ),
+                  }}
+                />
+              </div>
+            </OdsMessage>
+          )}
         <TopBar />
         <RuleDatagrid />
       </BaseLayout>

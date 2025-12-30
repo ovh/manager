@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import {
   GetProductServicesParams,
-  getProductServicesQueryKey,
-  getProductServices,
   ProductServicesDetails,
+  getProductServices,
+  getProductServicesQueryKey,
 } from '../api';
 
 export interface ServiceInfo {

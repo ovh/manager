@@ -1,7 +1,11 @@
 import { IpTypeEnum } from '@/data/constants';
 
-export const getTypeByServiceName = (serviceName: string): IpTypeEnum => {
-  if (!serviceName) return null;
+export const getTypeByServiceName = (
+  serviceName?: string | null,
+): IpTypeEnum | null => {
+  if (!serviceName) {
+    return null;
+  }
 
   const dedicatedRegex = new RegExp(/^([a-z]{2}\d+.ip-[\d-]+.\w+)/);
   const pccRegex = new RegExp(/^(pcc[\d-]+)/);

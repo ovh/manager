@@ -1,19 +1,24 @@
 import React, { startTransition, useContext } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   OdsCombobox,
   OdsComboboxGroup,
   OdsComboboxItem,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
-import { ListingContext } from '@/pages/listing/listingContext';
+
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
+import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 import { useGetProductServices } from '@/data/hooks/useGetProductServices';
+import { ListingContext } from '@/pages/listing/listingContext';
 
 const serviceOrder = [
   IpTypeEnum.ADDITIONAL,
@@ -34,7 +39,7 @@ const productParamList = Object.values(PRODUCT_PATHS_AND_CATEGORIES);
 export const FilterService = ({ className }: { className?: string }) => {
   const { t } = useTranslation('listing');
   const { apiFilter, setApiFilter } = useContext(ListingContext);
-  const [filterValueLabel, setFilterValueLabel] = React.useState('');
+  const [filterValueLabel, setFilterValueLabel] = React.useState<string>('');
   const { serviceByCategory } = useGetProductServices(productParamList);
   const { trackClick } = useOvhTracking();
 
@@ -46,12 +51,11 @@ export const FilterService = ({ className }: { className?: string }) => {
           [t(getAllItemLabelKeyFromType(category))]: category,
         }),
         {
-          [t(
-            getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL),
-          )]: IpTypeEnum.ADDITIONAL,
+          [t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))]:
+            IpTypeEnum.ADDITIONAL,
         } as Record<string, IpTypeEnum>,
       ),
-    [],
+    [t],
   );
 
   React.useEffect(() => {
@@ -91,7 +95,7 @@ export const FilterService = ({ className }: { className?: string }) => {
           });
         }
 
-        setFilterValueLabel(value);
+        setFilterValueLabel(value || '');
 
         if (!value) {
           return setApiFilter((prev) => {
@@ -121,13 +125,15 @@ export const FilterService = ({ className }: { className?: string }) => {
       }}
     >
       <OdsComboboxGroup>
-        <span slot="title">
+        <span className="pl-3" slot="title">
           {t(`listingColumnsType_${IpTypeEnum.ADDITIONAL}`)}
         </span>
         <OdsComboboxItem
           value={t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))}
         >
-          {t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))}
+          <OdsText className="pl-3">
+            {t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))}
+          </OdsText>
         </OdsComboboxItem>
       </OdsComboboxGroup>
       {Object.values(PRODUCT_PATHS_AND_CATEGORIES)
@@ -143,9 +149,13 @@ export const FilterService = ({ className }: { className?: string }) => {
         )
         .map(({ category }) => (
           <OdsComboboxGroup key={category}>
-            <span slot="title">{t(`listingColumnsType_${category}`)}</span>
+            <span className="pl-3" slot="title">
+              {t(`listingColumnsType_${category}`)}
+            </span>
             <OdsComboboxItem value={t(getAllItemLabelKeyFromType(category))}>
-              {t(getAllItemLabelKeyFromType(category))}
+              <OdsText className="pl-3">
+                {t(getAllItemLabelKeyFromType(category))}
+              </OdsText>
             </OdsComboboxItem>
             {serviceByCategory?.[category]?.map(
               ({ serviceName, displayName }) => (
