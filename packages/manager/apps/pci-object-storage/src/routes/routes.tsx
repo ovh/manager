@@ -457,6 +457,15 @@ export default [
                   ),
                 ),
               },
+              {
+                path: 'storage-job',
+                id: 'replication.storage-job',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/replication/storage-job/StorageJob.modal'
+                  ),
+                ),
+              },
             ],
           },
         ],

@@ -4,5 +4,5 @@
   "objectClass_HIGH_PERF": "High Performance",
   "objectClass_DEEP_ARCHIVE": "Cold Archive",
   "objectClass_STANDARD_IA": "Infrequent Access",
-  "objectClass_GLACIER_IR": "Active Archive"
+  "objectClass_GLACIER_IR": "Aktives Archiv"
 }

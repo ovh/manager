@@ -295,3 +295,18 @@ export const bulkDeleteS3Objects = async ({
     `/cloud/project/${projectId}/region/${region}/storage/${name}/bulkDeleteObjects`,
     { objects },
   );
+export interface CreateStorageJobParams {
+  projectId: string;
+  region: string;
+  name: string;
+}
+
+export const createStorageJob = async ({
+  projectId,
+  region,
+  name,
+}: CreateStorageJobParams) => {
+  return apiClient.v6.post(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/job/replication`,
+  );
+};
