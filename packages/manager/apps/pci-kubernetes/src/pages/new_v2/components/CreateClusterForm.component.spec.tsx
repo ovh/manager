@@ -23,7 +23,7 @@ describe('CreateClusterForm name management', () => {
     user = userEvent.setup();
     renderedDom = render(<CreateClusterForm />);
 
-    const field = renderedDom.getByRole('textbox', { name: 'kubernetes_add_name_input_label' });
+    const field = renderedDom.getByRole('textbox', { name: 'kubernetes_add_name_placeholder' });
     if (!field) throw new Error('Unable to find name field');
 
     await user.clear(field);

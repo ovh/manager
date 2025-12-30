@@ -86,7 +86,6 @@
   "kube_add_name_title": "Nadaj nazwę puli węzłów",
   "kube_add_node_pool_name_already_exist_validation_error": "Nazwa puli węzłów jest już używana. Wybierz inną.",
   "kubernetes_add_create_cluster": "Utwórz mój klaster",
-  "kubernetes_add_name_input_label": "Nazwa projektu",
   "kubernetes_add_cluster_name_input_helper": {
     "introduction": "Musisz:",
     "char_number": "zawierać od 2 do 64 znaków",

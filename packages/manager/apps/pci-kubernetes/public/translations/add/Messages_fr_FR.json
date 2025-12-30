@@ -24,7 +24,6 @@
   "kubernetes_select_version_title": "Sélectionnez une version",
   "kubernetes_add_name_title": "Nommez votre cluster",
   "kubernetes_add_name_placeholder": "Nom du cluster",
-  "kubernetes_add_name_input_label": "Nom du projet",
   "kubernetes_add_name": "Nom",
   "kubernetes_add_region_title_region": "Région 1-AZ",
   "kubernetes_add_region_title_region-3-az": "Région 3-AZ",
@@ -37,8 +36,10 @@
     "char_number": "contenir entre 2 et 64 caractères",
     "char_whitelist": "contenir uniquement des lettres, chiffres, tirets ou underscores",
     "first_char": "commencer par une lettre",
-    "last_char": "se terminer par un caractère alphanumérique (a-z, 0 - 9)"
+    "last_char": "se terminer par un caractère alphanumérique (a-z, A-Z, 0-9)"
   },
+  "kubernetes_add_cluster_name_input_error": "Le nom du cluster est invalide",
+  "kubernetes_add_cluster_name_input_error_empty": "Le nom du cluster est requis",
   "kubernetes_add_billing_type_description": "Tous les nœuds futurs de ce pool de nœuds seront soumis à ce mode de facturation.",
   "kubernetes_add_billing_type_description_monthly": "Vous pourrez ultérieurement passer chacun de vos nœuds individuellement de la facturation horaire à la facturation mensuelle.",
   "kubernetes_add_billing_auto_scaling_monthly_warning": "Attention : Vous activez simultanément l'autoscaling et le forfait mensuel pour ce nodepool. Chaque création de nœud par l'autoscaling va entrainer la facturation immédiate d'un nœud au prorata du temps restant sur le mois en cours. Nous vous conseillons d'éviter cette combinaison si vous anticipez que la taille de votre nodepool sera fréquemment réduite.",
