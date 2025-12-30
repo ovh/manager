@@ -10,6 +10,10 @@
     }
   ],
 
+  "tui": {
+    "enabled": false
+  },
+
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
