@@ -223,7 +223,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
         )}
       />
       <RegionSelectionModal
-        open={!!unavailableFlavor}
+        open={!!unavailableFlavor && availableRegions.length > 0}
         regions={availableRegions}
         onClose={handleCloseSelectRegion}
         onValidateSelect={handleSelectFlavorNewRegion}

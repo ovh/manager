@@ -397,7 +397,9 @@ export const selectAvailableFlavorMicroRegions: Reader<
           regionalizedFlavorId,
         );
 
-        return regionalizedFlavor?.hasStock ? [regionalizedFlavor] : [];
+        return regionalizedFlavor?.hasStock && regionalizedFlavor.quota
+          ? [regionalizedFlavor]
+          : [];
       },
     );
 
