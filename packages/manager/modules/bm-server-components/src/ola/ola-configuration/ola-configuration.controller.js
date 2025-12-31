@@ -62,21 +62,11 @@ export default class {
       displayedMacAdresses: nic.displayedMacAdresses,
       uploadBandwidth: nic.isPublic()
         ? this.specifications.bandwidth.OvhToInternet
-        : this.specifications.vrack.bandwidth,
+        : this.specifications.vrack.realNicBandwidth,
       downloadBandwidth: nic.isPublic()
         ? this.specifications.connection
-        : this.specifications.vrack.bandwidth,
+        : this.specifications.vrack.realNicBandwidth,
     }));
-
-    const hasExistingVrackAggregation = this.interfaces.some(
-      (nic) => nic.type === OLA_MODES.VRACK_AGGREGATION,
-    );
-    const previewBandwidth = hasExistingVrackAggregation
-      ? {
-          ...this.specifications.vrack.bandwidth,
-          value: this.specifications.vrack.bandwidth.value * 2,
-        }
-      : this.specifications.vrack.bandwidth;
 
     this.previewAggregatedInterfaces = [
       {
@@ -87,8 +77,9 @@ export default class {
           (adresses, nic) => adresses.concat(nic.displayedMacAdresses),
           [],
         ),
-        uploadBandwidth: previewBandwidth,
-        downloadBandwidth: previewBandwidth,
+        uploadBandwidth: this.specifications.vrack.realNicBandwidth,
+        downloadBandwidth: this.specifications.vrack.realNicBandwidth,
+        nbNics: this.ola.nbNICs() * 2,
       },
     ];
 

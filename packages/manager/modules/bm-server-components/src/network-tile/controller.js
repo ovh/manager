@@ -29,7 +29,7 @@ export default class BmServerComponentsNetworkTileController {
       .finally(() => {
         this.loading = false;
       });
-    this.olaMode = this.ola.getCurrentMode();
+    this.olaMode = this.ola?.getCurrentMode();
   }
 
   loadVrackInfos() {

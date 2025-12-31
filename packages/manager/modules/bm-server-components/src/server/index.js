@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import '@ovh-ux/ui-kit';
 import 'angular-translate';
-
+import { serverBandwidth } from '@ovh-ux/manager-components';
 import bandwidthVrackOrderService from './server.bandwidth-vrack-order.service';
 import component from './server.component';
 import featureAvailability from './server.feature-availability';
@@ -12,7 +12,7 @@ import './server.less';
 const moduleName = 'ovhManagerBmServerComponentsServer';
 
 angular
-  .module(moduleName, ['oui', 'pascalprecht.translate'])
+  .module(moduleName, ['oui', 'pascalprecht.translate', serverBandwidth])
   .component('serverMainPage', component)
   .service('Server', service)
   .service('BandwidthVrackOrderService', bandwidthVrackOrderService)
