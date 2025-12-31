@@ -57,7 +57,8 @@
     "ovh-api-services": "^17.0.0",
     "ovh-ui-kit-bs": "^4.1.8",
     "regenerator-runtime": "0.13.5",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "URIjs": "^1.14.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^7.2.2",
