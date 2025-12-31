@@ -1,6 +1,8 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PropsWithChildren } from 'react';
+
+import { QueryClient, QueryClientProvider, onlineManager } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getOrderDetails } from '@/data/api/order/order';
 import { OrderDetail } from '@/types/order.type';
@@ -11,15 +13,32 @@ vi.mock('@/data/api/order/order', () => ({
   getOrderDetails: vi.fn(),
 }));
 
-const queryClient = new QueryClient();
+const createWrapper = () => {
+  onlineManager.setOnline(true);
+
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
+
+  const wrapper = ({ children }: PropsWithChildren) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+
+  return { wrapper, queryClient };
+};
 
 describe('useOrderDetails', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    queryClient.clear();
   });
 
   it('should return order details when orderId is provided', async () => {
+    const { wrapper } = createWrapper();
+
     const mockedDetails: OrderDetail[] = [
       {
         orderDetailId: 1,
@@ -28,16 +47,8 @@ describe('useOrderDetails', () => {
         detailType: 'domain',
         cancelled: false,
         quantity: '1',
-        totalPrice: {
-          currencyCode: 'EUR',
-          text: '10.00 €',
-          value: 10,
-        },
-        unitPrice: {
-          currencyCode: 'EUR',
-          text: '10.00 €',
-          value: 10,
-        },
+        totalPrice: { currencyCode: 'EUR', text: '10.00 €', value: 10 },
+        unitPrice: { currencyCode: 'EUR', text: '10.00 €', value: 10 },
       },
       {
         orderDetailId: 2,
@@ -46,41 +57,32 @@ describe('useOrderDetails', () => {
         detailType: 'domain',
         cancelled: false,
         quantity: '1',
-        totalPrice: {
-          currencyCode: 'EUR',
-          text: '10.00 €',
-          value: 10,
-        },
-        unitPrice: {
-          currencyCode: 'EUR',
-          text: '10.00 €',
-          value: 10,
-        },
+        totalPrice: { currencyCode: 'EUR', text: '10.00 €', value: 10 },
+        unitPrice: { currencyCode: 'EUR', text: '10.00 €', value: 10 },
       },
     ];
+
     vi.mocked(getOrderDetails).mockResolvedValue(mockedDetails);
 
-    const { result } = renderHook(() => useOrderDetails(1), {
-      wrapper: ({ children }) => (
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-      ),
-    });
+    const { result } = renderHook(() => useOrderDetails(1), { wrapper });
 
-    await waitFor(() => !result.current.isLoading);
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual(mockedDetails);
     expect(result.current.error).toBeNull();
-    expect(result.current.isLoading).toBe(false);
+    expect(getOrderDetails).toHaveBeenCalledTimes(1);
+    expect(getOrderDetails).toHaveBeenCalledWith(1);
   });
 
-  it('should not run the query when orderId is undefined', () => {
+  it('should not run the query when orderId is undefined', async () => {
+    const { wrapper } = createWrapper();
+
     const { result } = renderHook(() => useOrderDetails(undefined as unknown as number), {
-      wrapper: ({ children }) => (
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-      ),
+      wrapper,
     });
 
     expect(result.current.data).toBeUndefined();
     expect(result.current.isLoading).toBe(false);
+    expect(getOrderDetails).not.toHaveBeenCalled();
   });
 });
