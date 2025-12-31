@@ -1,24 +1,17 @@
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
 import {
   assertOdsModalText,
   assertOdsModalVisibility,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import {
-  datacentreList,
-  organizationList,
-} from '@ovh-ux/manager-module-vcd-api';
-import { vi } from 'vitest';
 
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import {
-  labels,
-  mockEditInputValue,
-  mockSubmitNewValue,
-  renderTest,
-} from '../../../../test-utils';
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
 
+import { labels, mockEditInputValue, mockSubmitNewValue, renderTest } from '../../../../test-utils';
 import TEST_IDS from '../../../../utils/testIds.constants';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -31,23 +24,24 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-describe('Datacentre General Information Page Updates', () => {
-  it('display the datacentre dashboard general page', async () => {
-    await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
-    });
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+};
+const initialRoute = `/${config.org.id}/virtual-datacenters/${config.vdc.id}`;
+const editDescriptionRoute = `${initialRoute}/edit-description`;
 
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_general_information,
-    );
+describe('Datacentre General Information Page Display', () => {
+  it('display the datacentre dashboard general page', async () => {
+    await renderTest({ initialRoute });
+
+    await assertTextVisibility(labels.dashboard.managed_vcd_dashboard_general_information);
   });
 });
 
 describe('Datacentre General Information Page Updates', () => {
   it.skip('update the description of the datacentre', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
-    });
+    const { container } = await renderTest({ initialRoute });
 
     await assertTextVisibility(labels.datacentres.managed_vcd_vdc_vcpu_count);
 
@@ -61,19 +55,14 @@ describe('Datacentre General Information Page Updates', () => {
     await assertOdsModalVisibility({ container, isVisible: false });
 
     expect(
-      screen.queryByText(
-        labels.dashboard.managed_vcd_dashboard_edit_description_modal_success,
-      ),
+      screen.queryByText(labels.dashboard.managed_vcd_dashboard_edit_description_modal_success),
     ).toBeVisible();
   });
 
   it('display helper message when the description input is invalid', async () => {
-    const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
-    });
+    const { container } = await renderTest({ initialRoute: editDescriptionRoute });
     const expectedError =
-      labels.dashboard
-        .managed_vcd_dashboard_edit_description_modal_helper_error;
+      labels.dashboard.managed_vcd_dashboard_edit_description_modal_helper_error;
 
     await assertOdsModalVisibility({ container, isVisible: true });
     const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
@@ -89,7 +78,7 @@ describe('Datacentre General Information Page Updates', () => {
 
   it.skip('display an error if update datacentre service is KO', async () => {
     const { container } = await renderTest({
-      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/edit-description`,
+      initialRoute: editDescriptionRoute,
       isDatacentreUpdateKo: true,
     });
 

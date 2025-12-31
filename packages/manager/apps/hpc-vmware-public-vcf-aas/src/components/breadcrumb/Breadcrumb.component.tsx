@@ -1,7 +1,5 @@
-import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
+import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+
 import { useBreadcrumb } from '@/hooks/breadcrumb/useBreadcrumb';
 import appConfig from '@/vmware-public-vcf-aas.config';
 

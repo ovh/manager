@@ -1,5 +1,6 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+
+import { useQueryClient } from '@tanstack/react-query';
 
 type AutoRefetchProps = {
   queryKey: string[];
@@ -7,23 +8,18 @@ type AutoRefetchProps = {
   interval?: number;
 };
 
-export const useAutoRefetch = ({
-  queryKey,
-  enabled,
-  interval = 10_000,
-}: AutoRefetchProps) => {
+export const useAutoRefetch = ({ queryKey, enabled, interval = 10_000 }: AutoRefetchProps) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled) return undefined;
 
     const refetchQueries = () => {
-      queryClient.invalidateQueries({ queryKey });
+      void queryClient.invalidateQueries({ queryKey });
     };
 
     const refetchInterval = setInterval(() => refetchQueries(), interval);
 
-    // eslint-disable-next-line consistent-return
     return () => clearInterval(refetchInterval);
   }, [enabled, interval, queryKey, queryClient]);
 };
