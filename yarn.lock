@@ -6814,6 +6814,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.24.10.tgz#88926c05c7a5e0622605f651661d9a8ae633af17"
   integrity sha512-S8b0RO/KaVTgapWGxR21aqQe5jLe7BGy9KPPKDq5fZ+v+NGd0itieNAaeS9Cj8sohp7wiCpQmjUP9RIkaABSrw==
 
+"@ovh-ux/ovh-at-internet@^0.28.2":
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.28.3.tgz#8d09ee974cb62c492f5a792ba0cd4a93e565db13"
+  integrity sha512-6Af3L+zdsCxBNmk1DXQZb3GS4oAqeL/grwAkbgVbxEw9BCzaRdrjbzFHS7GBGtNMfARsLIIHJxQIO4O5hcoaeQ==
+
 "@ovh-ux/request-tagger@^0.4.0", "@ovh-ux/request-tagger@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.4.1.tgz#ae77381d54f345e657a5c6c3195ece119fe375a8"

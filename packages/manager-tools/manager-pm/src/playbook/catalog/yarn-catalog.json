@@ -42,6 +42,7 @@
   "packages/manager/apps/vrack-services",
   "packages/manager/apps/web",
   "packages/manager/core/api",
+  "packages/manager/core/shell-client",
   "packages/manager/core/application",
   "packages/manager/core/ovh-product-icons",
   "packages/manager/core/request-tagger",

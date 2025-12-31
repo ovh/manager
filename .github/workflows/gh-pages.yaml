@@ -26,6 +26,19 @@ jobs:
           fetch-depth: 0
 
       # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
+
+      # ------------------------------------------
       # Node
       # ------------------------------------------
       - name: Use Node.js 22.x
@@ -74,15 +87,8 @@ jobs:
       - name: Build documentation packages
         run: |
           CORES=$(nproc --ignore=1 || nproc)
-          yarn build --concurrency=$CORES \
-            --filter="./packages/manager/core/api" \
-            --filter="./packages/manager/core/url-builder" \
-            --filter="./packages/components/ovh-shell" \
-            --filter="./packages/components/ovh-reket" \
-            --filter="./packages/components/ovh-at-internet" \
-            --filter="./packages/manager/modules/config" \
-            --filter="./packages/manager/modules/common-translations" \
-            --filter="./packages/manager-ui-kit" --runner nx
+          FILTERS="@ovh-ux/manager-core-api,@ovh-ux/url-builder,@ovh-ux/shell,@ovh-ux/ovh-reket,@ovh-ux/ovh-at-internet,@ovh-ux/manager-config,@ovh-ux/manager-common-translations,@ovh-ux/muk"
+          yarn build --concurrency=$CORES --filter="$FILTERS" --runner nx
 
       # ------------------------------------------
       # Generate docs (pnpm-based)
