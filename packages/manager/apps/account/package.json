@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-app",
-  "version": "0.6.10",
+  "version": "0.6.11",
   "private": true,
   "description": "User account and contacts management application",
   "repository": {
@@ -15,7 +15,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-account": "^0.19.9",
+    "@ovh-ux/manager-account": "^0.19.10",
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^8.8.5",
     "@ovh-ux/manager-core": "^13.3.8",
@@ -38,7 +38,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.2",
     "@ovh-ux/ng-ui-router-layout": "^4.3.6",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/shell": "^4.10.1",
+    "@ovh-ux/shell": "^4.10.2",
     "@ovh-ux/sign-up": "^3.3.15",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
