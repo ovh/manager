@@ -3,6 +3,7 @@ import {
   sharedConfig,
   mergeConfig,
   createConfig,
+  defaultDedupedDependencies,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
@@ -17,7 +18,7 @@ export default mergeConfig(
         threads: { singleThread: true },
       },
     },
-    resolve: {
+    resolve: { dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
