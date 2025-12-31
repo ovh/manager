@@ -2,14 +2,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "cacheDirectory": ".nx/cache",
   "defaultBase": "master",
-  "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    }
-  ],
+  "plugins": [],
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
