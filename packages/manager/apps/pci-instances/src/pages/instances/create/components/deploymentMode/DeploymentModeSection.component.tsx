@@ -16,6 +16,11 @@ export const DeploymentModeSection = () => {
           {t('creation:pci_instance_creation_select_deployment_mode_title')}
         </Text>
         <HelpDrawer>
+          <Text preset="heading-2" className="mb-4">
+            {t(
+              'creation:pci_instance_creation_select_deployment_mode_helper_title',
+            )}
+          </Text>
           <Text preset="paragraph" className="mb-4">
             {t('creation:pci_instance_creation_select_deployment_mode_help_p1')}
           </Text>

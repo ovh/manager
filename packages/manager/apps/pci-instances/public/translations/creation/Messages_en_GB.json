@@ -131,5 +131,6 @@
   "pci_instance_creation_backup_setting_action_label": "Create an automated backup of an instance",
   "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} ex VAT/month",
   "pci_instance_creation_backup_setting_local_label": "Auto backup (local)",
-  "pci_instance_creation_backup_setting_distant_label": "Auto backup (remote)"
+  "pci_instance_creation_backup_setting_distant_label": "Auto backup (remote)",
+  "pci_instance_creation_select_deployment_mode_helper_title": "Locations"
 }
