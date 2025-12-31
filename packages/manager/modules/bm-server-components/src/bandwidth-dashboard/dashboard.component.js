@@ -14,5 +14,6 @@ export default {
     server: '<',
     specifications: '<',
     isOldCluster: '<',
+    nbNics: '<',
   },
 };
