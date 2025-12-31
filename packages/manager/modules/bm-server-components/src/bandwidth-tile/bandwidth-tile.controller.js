@@ -8,7 +8,7 @@ export default class BandwidthTileCtrl {
   $onInit() {
     const { OLA_MODES } = this.olaConstants;
     const currentOlaMode = this.ola.getCurrentMode();
-    const nbNICs = this.ola.nbNICs();
+    this.nbNICs = this.ola.nbNICs();
     this.olaModeTanslateCode = `dedicated_server_interfaces_bandwidth_server_ola_mode_${currentOlaMode}`;
 
     const olaBadgeClass = {
@@ -27,7 +27,7 @@ export default class BandwidthTileCtrl {
     const olaTooltipTranslateCode = {
       [OLA_MODES.DOUBLE_LAG]:
         'dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag_tooltip',
-      [OLA_MODES.FULL_LAG]: `dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_${nbNICs}_tooltip`,
+      [OLA_MODES.FULL_LAG]: `dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_${this.nbNICs}_tooltip`,
     }[currentOlaMode];
 
     this.tooltipText =

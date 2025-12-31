@@ -9,5 +9,6 @@ export default class BMNetworkInterfaceController {
 
   $onInit() {
     this.isFullyAggregated = this.ola.getCurrentMode() === OLA_MODES.FULL_LAG;
+    this.nbNics = this.ola.nbNICs();
   }
 }
