@@ -6,10 +6,14 @@ import { useTranslation } from 'react-i18next';
 import { TContinent } from '@ovh-ux/manager-pci-common';
 import { getMacroRegion, useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 
+import { regionsQueryKey } from '@/adapters/tanstack/regions/queryKey';
+import { TRegions } from '@/domain/entities/regions';
 import { isLocalDeploymentZone } from '@/helpers';
+import { useParam } from '@/hooks/useParam';
+import { TSelectOptions } from '@/types/query';
 import { TLocation, TProjectLocation, TRegion, TRegionCodes } from '@/types/region';
 
-import { getProjectRegions } from '../../api/data/regions';
+import { getProjectRegions, getRegions } from '../../api/data/regions';
 import usePlanToRegionAvailability from './usePlanToRegionAvailability';
 
 export const getRegionQueryKey = (projectId: string) => ['project', projectId, 'region'];
@@ -122,4 +126,14 @@ export const useProjectLocalisation = (projectId: string, product: string) => {
     localisationData,
     isPending,
   };
+};
+
+export const useRegions = <TData>({ select }: TSelectOptions<TRegions, TData>) => {
+  const projectId = useParam('projectId');
+
+  return useQuery({
+    queryKey: regionsQueryKey(projectId),
+    queryFn: () => getRegions(projectId),
+    select,
+  });
 };

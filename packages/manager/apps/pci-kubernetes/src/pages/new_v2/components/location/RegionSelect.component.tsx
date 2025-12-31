@@ -6,23 +6,13 @@ import { useTranslation } from 'react-i18next';
 import { RadioGroup } from '@ovhcloud/ods-react';
 
 import { RegionCard } from '@/components/location/RegionCard.component';
-import { TContinentCode } from '@/domain/entities/regions';
 import { isCountryCode } from '@/helpers/location';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
+import { TRegionCard } from '../../view-models/location.viewmodel';
 
 type TRegionSelectProps = {
-  // TODO (TAPC-5549) : mock format, will be updated or removed
-  regions: Array<{
-    id: string;
-    title: string;
-    datacenter: string;
-    country: string;
-    continent: TContinentCode;
-    microRegions: string[];
-    plans: string[];
-    disabled: boolean;
-  }>;
+  regions: Array<TRegionCard> | undefined;
 };
 
 export const RegionSelect = ({ regions }: TRegionSelectProps) => {
@@ -35,7 +25,7 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
   });
 
   const handleSelectMacroRegion = (macroRegionId: string | null) => {
-    const macroRegion = regions.find(({ id }) => id === macroRegionId);
+    const macroRegion = regions?.find(({ id }) => id === macroRegionId);
     const firstMicroRegion = macroRegion?.microRegions.at(0);
 
     if (!macroRegion || !firstMicroRegion) return;
@@ -46,13 +36,13 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
 
   const regionOptions = useMemo(
     () =>
-      regions.map((region) => ({
+      regions?.map((region) => ({
         ...region,
         country: isCountryCode(region.country) ? region.country : null,
         datacenterDetails: region.microRegions.length > 1 ? region.id : region.microRegions.at(0),
-        plans: region.plans.map((plan) =>
+        plans: [] /* region.plans.map((plan) =>
           plan === 'free' ? t('kube_add_plan_title_free') : t('kube_add_plan_title_standard'),
-        ),
+        ), */,
       })),
     [regions, t],
   );
@@ -68,10 +58,10 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
           onValueChange={({ value }) => handleSelectMacroRegion(value)}
           className="grid w-full grid-cols-2 gap-6 lg:grid-cols-3 xxl:grid-cols-4"
         >
-          {regionOptions.map((region) => (
+          {regionOptions?.map((region) => (
             <RegionCard
               key={region.id}
-              city={region.title}
+              city={region.label}
               regionId={region.id}
               datacenterDetails={region.datacenterDetails ?? ''}
               countryCode={region.country}

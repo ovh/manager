@@ -1,3 +1,5 @@
+import { TNormalizedEntity } from '@/types';
+
 export const DEPLOYMENT_MODES = ['region', 'localzone', 'region-3-az'] as const;
 export type TDeploymentMode = (typeof DEPLOYMENT_MODES)[number];
 
@@ -23,3 +25,61 @@ export const COUNTRY_CODES = [
   /* eslint-enable prettier/prettier */
 ] as const;
 export type TCountryCode = (typeof COUNTRY_CODES)[number];
+
+export type TMacroRegionName = string;
+export type TMacroRegionID = TMacroRegionName;
+export type TMicroRegionName = string;
+export type TMicroRegionID = TMicroRegionName;
+
+export type TOpenstackRegionStatus = 'DOWN' | 'MAINTENANCE' | 'UP';
+
+export type TServiceStatus = 'DOWN' | 'UP';
+export type TService = {
+  endpoint: string;
+  name: string;
+  status: TServiceStatus;
+};
+
+export type TMacroRegion = {
+  name: string;
+  countryCode: TCountryCode;
+  deploymentMode: TDeploymentMode;
+  continentCode: TContinentCode;
+  microRegionIds: Array<TMicroRegionID>;
+  availabilityZones: string[];
+  disabled: boolean;
+};
+
+export type TMicroRegion = {
+  name: string;
+  ipCountries: Array<IpCountry>;
+  macroRegionId: TMacroRegionID;
+  services: TService[];
+};
+
+export type TRegions = {
+  entities: {
+    macroRegions: TNormalizedEntity<TMacroRegionID, TMacroRegion>;
+    microRegions: TNormalizedEntity<TMicroRegionID, TMicroRegion>;
+  };
+};
+
+export type IpCountry =
+  | 'au'
+  | 'be'
+  | 'ca'
+  | 'cz'
+  | 'de'
+  | 'es'
+  | 'fi'
+  | 'fr'
+  | 'ie'
+  | 'in'
+  | 'it'
+  | 'lt'
+  | 'nl'
+  | 'pl'
+  | 'pt'
+  | 'sg'
+  | 'uk'
+  | 'us';

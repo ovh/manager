@@ -1,12 +1,20 @@
+import { TCountryCode, TMacroRegion, TRegions } from '@/domain/entities/regions';
+
 import { TCreateClusterSchema, createClusterFormContinentCodes } from '../CreateClusterForm.schema';
-import { TMockRegion } from '../mocks/regions.mock';
+
+export type TRegionCard = {
+  label: string;
+  id: string;
+  microRegions: string[];
+  disabled: boolean;
+  country: TCountryCode;
+};
 
 type ContinentOption = {
   labelKey: string;
   continentCode: TCreateClusterSchema['location']['continent'];
 };
 
-// TODO (TAPC-5549): Make this a real select based on API data
 export const selectContinentOptions = (): Array<ContinentOption> => {
   return createClusterFormContinentCodes.map((code) => ({
     labelKey: `common_continent_label_${code}`,
@@ -19,7 +27,6 @@ type PlanOption = {
   plan: TCreateClusterSchema['location']['plan'];
 };
 
-// TODO (TAPC-5549): Make this a real select based on API data
 export const selectPlanOptions = (): Array<PlanOption> => {
   return [
     { labelKey: 'kubernetes_add_region_plan_all', plan: 'all' },
@@ -28,16 +35,33 @@ export const selectPlanOptions = (): Array<PlanOption> => {
   ];
 };
 
+export const selectMacroRegions = (regions?: TRegions) => {
+  return regions ? [...regions.entities.macroRegions.byId.values()] : undefined;
+};
+
 export const filterMacroRegions =
   (
     continent: TCreateClusterSchema['location']['continent'],
     plan: TCreateClusterSchema['location']['plan'],
   ) =>
-  (macroRegions: TMockRegion[]) => {
-    return macroRegions.filter((region) => {
-      const isContinentAllowed = continent === 'ALL' || region.continent === continent;
-      const isPlanAllowed = plan === 'all' || !plan || region.plans.includes(plan);
+  (regions?: Array<TMacroRegion>) => {
+    if (!regions) return undefined;
+
+    return regions.filter((region) => {
+      const isContinentAllowed = continent === 'ALL' || region.continentCode === continent;
+      const isPlanAllowed = plan === 'all' || !plan; // || region.plans.includes(plan);
 
       return isContinentAllowed && isPlanAllowed;
     });
   };
+
+export const mapMacroRegionForCards =
+  (translateRegionName: (region: string) => string) =>
+  (regions?: TMacroRegion[]): TRegionCard[] | undefined =>
+    regions?.map((region) => ({
+      label: translateRegionName(region.name),
+      id: region.name,
+      microRegions: region.microRegionIds,
+      disabled: region.disabled,
+      country: region.countryCode,
+    }));

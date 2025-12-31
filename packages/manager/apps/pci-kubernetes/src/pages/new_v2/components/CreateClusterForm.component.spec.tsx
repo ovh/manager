@@ -6,12 +6,68 @@ import { CreateClusterForm } from './CreateClusterForm.component';
 const validClusterName = 'my_magical_cluster';
 const invalidClusterName = '---';
 
+const mockMacroRegions = [
+  {
+    name: 'BHS',
+    countryCode: 'ca' as const,
+    deploymentMode: 'region' as const,
+    continentCode: 'NA' as const,
+    microRegionIds: ['BHS5'],
+    availabilityZones: [],
+  },
+  {
+    name: 'UK1',
+    countryCode: 'uk' as const,
+    deploymentMode: 'region' as const,
+    continentCode: 'EU' as const,
+    microRegionIds: ['UK1'],
+    availabilityZones: [],
+  },
+  {
+    name: 'GRA',
+    countryCode: 'fr' as const,
+    deploymentMode: 'region' as const,
+    continentCode: 'EU' as const,
+    microRegionIds: ['GRA5', 'GRA7'],
+    availabilityZones: [],
+  },
+];
+
+const mockRegions = {
+  entities: {
+    macroRegions: {
+      byId: new Map(mockMacroRegions.map((region) => [region.name, region])),
+      allIds: mockMacroRegions.map((region) => region.name),
+    },
+    microRegions: {
+      byId: new Map(),
+      allIds: [],
+    },
+  },
+};
+
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useCatalogPrice: vi.fn().mockReturnValue({
     getTextPrice: vi.fn((price: number) => `${price}`),
     getFormattedHourlyCatalogPrice: vi.fn(),
     getFormattedMonthlyCatalogPrice: vi.fn(),
   }),
+  useTranslatedMicroRegions: vi.fn().mockReturnValue({
+    translateMacroRegion: (name: string) => {
+      const translations: Record<string, string> = {
+        BHS: 'Beauharnois',
+        UK1: 'Londres',
+        GRA: 'Gravelines',
+      };
+      return translations[name] || name;
+    },
+    translateMicroRegion: (name: string) => name,
+    translateContinentRegion: (name: string) => name,
+  }),
+}));
+
+vi.mock('@/api/hooks/useRegions', () => ({
+  useRegions: vi.fn(),
 }));
 
 describe('CreateClusterForm name management', () => {
@@ -46,8 +102,19 @@ describe('CreateClusterForm name management', () => {
 });
 
 describe('CreateClusterForm location management', () => {
-  // TODO (TAPC-5549) :  add data mock once the API logic is implemented
   it('keeps synchronized location selection and cart display', async () => {
+    const { useRegions } = await import('@/api/hooks/useRegions');
+
+    vi.mocked(useRegions).mockImplementation(
+      ({ select }: any) =>
+        ({
+          data: select ? select(mockRegions) : mockRegions,
+          isPending: false,
+          isError: false,
+          error: null,
+        }) as any,
+    );
+
     let user = userEvent.setup();
     const renderedDom = render(<CreateClusterForm />);
 
