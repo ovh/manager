@@ -126,7 +126,7 @@
     "moment": "^2.24.0",
     "ng-csv": "^0.3.6",
     "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
-    "ngSmoothScroll": "d-oliveros/angular-smooth-scroll#~1.7.1",
+    "ngSmoothScroll": "d-oliveros/angular-smooth-scroll#v1.7.1",
     "oclazyload": "^1.1.0",
     "office-ui-fabric-core": "^11.0.0",
     "os-browserify": "^0.3.0",
@@ -146,6 +146,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^7.2.2",
+    "babel-loader": "^9.1.0",
     "glob": "^7.1.4",
     "webpack": "^5.76.2",
     "webpack-merge": "^5.0.2"
