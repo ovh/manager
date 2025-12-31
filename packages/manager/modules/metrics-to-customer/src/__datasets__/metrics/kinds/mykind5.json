@@ -1,15 +1,12 @@
 {
-    "id": "11111111-1111-1111-1111-111111111104",
+    "id": "11111111-1111-1111-1111-111111111105",
     "currentState": {
         "chart": {
-            "id": "libvirtd_domain_block_write_requests",
-            "title": "Disk write IOPS",
-            "unit": "IOPS",
-            "colspan": 2,
-            "tooltip": {                
-                "title": "The average number of completed write operations over a specific period of time."
-            },
-            "query": "ovhcloud_libvirtd_domain_local_block_write_requests{resource_urn=<resource_urn>}",
+            "id": "libvirtd_domain_cpu_time",
+            "title": "CPU utilization",
+            "unit": "percent",
+            "colspan": 2,            
+            "query": "ovhcloud_libvirtd_domain_cpu_time_ns{resource_urn=<resource_urn>}",
             "chart": {
                 "type": "TimeSeries",
                 "curveType": "linear",

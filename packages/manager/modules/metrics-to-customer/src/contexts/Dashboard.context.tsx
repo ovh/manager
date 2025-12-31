@@ -1,21 +1,19 @@
-import React, { ReactNode, createContext, useContext, useState } from 'react';
+import React, { ReactNode, createContext, useContext, useMemo, useState } from 'react';
 
 import { defaultTimeRangeOptions } from '@/components/timeControls/TimeRangeOption.constants';
+import { DashboardContextType } from '@/contexts/Dashboard.context.type';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
+import { calculateDateTimeRange } from '@/utils/dateTimeUtils';
 
 export interface DashboardState {
   resourceName: string | undefined;
   productType: string | undefined;
+  resourceURN: string | undefined;
   isLoading: string | undefined;
-  startDateTime: number | undefined;
-  endDateTime: number | undefined;
+  startDateTime: number;
+  endDateTime: number;
   selectedTimeOption: TimeRangeOption;
   refreshInterval: number;
-}
-
-interface DashboardContextType {
-  state: DashboardState;
-  setState: React.Dispatch<React.SetStateAction<DashboardState>>;
 }
 
 export const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
@@ -39,24 +37,53 @@ export const DashboardProvider = ({ children, context = {} }: DashboardProviderP
   const {
     resourceName,
     productType,
+    resourceURN,
     isLoading = undefined,
-    selectedTimeOption = defaultTimeRangeOptions[0] as TimeRangeOption,
     refreshInterval = 15,
+    selectedTimeOption,
     startDateTime,
     endDateTime,
   } = context;
 
+  const initialSelectedTimeOption =
+    selectedTimeOption ?? (defaultTimeRangeOptions[0] as TimeRangeOption);
+  const { startDateTime: initialStartDateTime, endDateTime: initialEndDateTime } =
+    calculateDateTimeRange(initialSelectedTimeOption, endDateTime, startDateTime);
+
   const [state, setState] = useState<DashboardState>({
     resourceName,
     productType,
+    resourceURN,
     isLoading,
-    startDateTime,
-    endDateTime,
-    selectedTimeOption,
     refreshInterval,
+    selectedTimeOption: initialSelectedTimeOption,
+    startDateTime: initialStartDateTime,
+    endDateTime: initialEndDateTime,
   });
 
+  const { startDateTime: derivedStartDateTime, endDateTime: derivedEndDateTime } = useMemo(() => {
+    if (state.selectedTimeOption.value === 'custom') {
+      return {
+        startDateTime: state.startDateTime,
+        endDateTime: state.endDateTime,
+      };
+    }
+
+    return calculateDateTimeRange(state.selectedTimeOption);
+  }, [state.selectedTimeOption, state.startDateTime, state.endDateTime]);
+
   return (
-    <DashboardContext.Provider value={{ state, setState }}>{children}</DashboardContext.Provider>
+    <DashboardContext.Provider
+      value={{
+        state: {
+          ...state,
+          startDateTime: derivedStartDateTime,
+          endDateTime: derivedEndDateTime,
+        },
+        setState,
+      }}
+    >
+      {children}
+    </DashboardContext.Provider>
   );
 };
