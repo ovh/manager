@@ -15,7 +15,7 @@
                 <!-- Outgoing Bandwidth -->
                 <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
                 <span
-                    data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | serverBandwidth"
+                    data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | serverBandwidth:$ctrl.nbNics"
                 ></span>
                 <span
                     data-translate="dedicated_server_bandwidth_outgoing"
@@ -37,7 +37,7 @@
                 <!-- Incoming Bandwidth -->
                 <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
                 <span
-                    data-ng-bind="$ctrl.specifications.bandwidth.InternetToOvh | serverBandwidth"
+                    data-ng-bind="$ctrl.specifications.bandwidth.InternetToOvh | serverBandwidth:$ctrl.nbNics"
                 ></span>
                 <span
                     data-translate="dedicated_server_bandwidth_incoming"

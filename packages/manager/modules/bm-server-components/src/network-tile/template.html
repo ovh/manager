@@ -103,6 +103,7 @@
             data-is-old-cluster="$ctrl.isOldCluster"
             data-specifications="$ctrl.specifications"
             data-service-id="$ctrl.serviceInfos.serviceId"
+            data-nb-nics="::$ctrl.ola.nbNICs()"
         >
         </server-bandwidth-dashboard>
 
@@ -160,6 +161,7 @@
 
         <!-- OLA -->
         <oui-tile-definition
+            data-ng-if="$ctrl.ola"
             data-term="{{:: 'server_network_ola' | translate}}"
         >
             <oui-tile-description>
