@@ -6786,13 +6786,6 @@
   dependencies:
     lodash "^4.17.21"
 
-"@ovh-ux/ng-ovh-user-pref@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-2.1.1.tgz#cc036939600ba54da1d777b0c82928c798ee4570"
-  integrity sha512-LvxWv+ER5p8hKHntejrcbxPNA6s9MqcAxnnDfvxPTeo292ZVERy6rDZ1ukuV8w6BhRKGGU/IXL8jILgLS6drKg==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/ovh-at-internet@^0.21.6":
   version "0.21.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.21.8.tgz#91f6b35e77eb60839a715d787e6ab9a22e7ec183"
