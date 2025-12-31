@@ -24,7 +24,9 @@ export default class Server {
     Polling,
     WucApi,
     icebergUtils,
+    ServerBandwidthService,
   ) {
+    this.ServerBandwidthService = ServerBandwidthService;
     this.$cacheFactory = $cacheFactory;
     this.$http = $http;
     this.$q = $q;
@@ -1000,7 +1002,16 @@ export default class Server {
     return this.get(productId, 'specifications/network', {
       proxypass: true,
     })
-      .then((data) => data)
+      .then((data) => {
+        const specifications = data;
+        if (data.vrack.bandwidth) {
+          specifications.vrack.realNicBandwidth = this.ServerBandwidthService.constructor.compareBandwidths(
+            data.vrack.bandwidth,
+            data.connection,
+          );
+        }
+        return specifications;
+      })
       .catch((err) => {
         if (err.status === 404 || err.status === 460) {
           return {};

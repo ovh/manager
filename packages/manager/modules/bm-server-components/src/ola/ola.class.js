@@ -36,8 +36,10 @@ export default class Ola {
 
   nbNICs() {
     const formattedInterfaces = this.getFormattedInterfaces();
-    return formattedInterfaces[this.constants.OLA_MODES.VRACK_AGGREGATION]
-      ?.length;
+    return (
+      formattedInterfaces[this.constants.OLA_MODES.VRACK_AGGREGATION]?.length ||
+      1
+    );
   }
 
   isActivated() {
