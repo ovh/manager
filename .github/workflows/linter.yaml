@@ -13,7 +13,6 @@ jobs:
 
     env:
       PNPM_VERSION: "10.17.0" # must match playbook-config.js
-      NX_DAEMON: "false"
 
     steps:
       # ------------------------------------------
@@ -63,7 +62,7 @@ jobs:
       - name: Use Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: 22.14.0
+          node-version: 22
 
       # ------------------------------------------
       # pnpm binary cache (tool only)
@@ -103,16 +102,6 @@ jobs:
       # ------------------------------------------
       - name: Clean stale git locks (post-install)
         run: rm -f .git/index.lock
-
-      # ------------------------------------------
-      # Debugging NX versions
-      # ------------------------------------------
-      - name: Debug versions
-        run: |
-          node -v
-          yarn -v
-          yarn nx --version
-          yarn nx report || true
 
       # ------------------------------------------
       # Lint
