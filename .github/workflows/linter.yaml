@@ -13,6 +13,7 @@ jobs:
 
     env:
       PNPM_VERSION: "10.17.0" # must match playbook-config.js
+      NX_DAEMON: "false"
 
     steps:
       # ------------------------------------------
@@ -37,9 +38,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      # ------------------------------------------
+      # Cleaning stale git index (pre install)
+      # ------------------------------------------
       - name: Clean stale git locks (pre)
         run: rm -f .git/index.lock
-      
+
       # ------------------------------------------
       # Derive NX_BASE / NX_HEAD
       # ------------------------------------------
@@ -59,7 +63,7 @@ jobs:
       - name: Use Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.14.0
 
       # ------------------------------------------
       # pnpm binary cache (tool only)
@@ -94,12 +98,25 @@ jobs:
           YARN_CACHE_FOLDER: ~/.cache/yarn
         run: yarn ci:install
 
+      # ------------------------------------------
+      # Cleaning stale git index (post install)
+      # ------------------------------------------
       - name: Clean stale git locks (post-install)
         run: rm -f .git/index.lock
+
+      # ------------------------------------------
+      # Debugging NX versions
+      # ------------------------------------------
+      - name: Debug versions
+        run: |
+          node -v
+          yarn -v
+          yarn nx --version
+          yarn nx report || true
 
       # ------------------------------------------
       # Lint
       # ------------------------------------------
       - name: Lint Code Base
         run: |
-          yarn lint --runner nx
+          yarn lint --runner nx --verbose
