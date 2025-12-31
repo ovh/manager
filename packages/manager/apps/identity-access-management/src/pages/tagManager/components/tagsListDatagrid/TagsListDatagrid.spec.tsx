@@ -47,7 +47,7 @@ vi.mock('@/data/hooks/useGetIamTags', () => ({
 }));
 
 vi.mock('./tagTypeCell/tagTypeCell.component', () => ({
-  default: (item: IamTagListItem) => <div>{item.type}</div>,
+  default: (item: IamTagListItem) => <div>{`tagType_${item.type}`}</div>,
 }));
 
 vi.mock('./tagsListActions/tagsListActions.component', () => ({
