@@ -7,8 +7,28 @@
   "author": "OVH SAS",
   "sideEffects": false,
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/src/lib.d.ts",
+      "import": "./dist/src/lib.js",
+      "default": "./dist/src/lib.js"
+    },
+    "./vite-config": {
+      "import": "./vite-config-consumer.mjs"
+    },
+    "./tailwind-config": {
+      "import": "./tailwind-config-consumer.mjs",
+      "default": "./tailwind-config-consumer.mjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "main": "dist/src/lib.js",
   "types": "dist/types/src/lib.d.ts",
+  "files": [
+    "dist",
+    "vite-config-consumer.mjs",
+    "tailwind-config-consumer.mjs"
+  ],
   "scripts": {
     "build": "vite build",
     "dev": "vite build",

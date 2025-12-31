@@ -1,13 +1,3 @@
-/** @type {import('tailwindcss').Config} */
+const { metricsToCustomerTwConfig } = require("./tailwind-config-consumer.mjs");
 
-const metricsToCustomerTailwindConfig = {
-  safelist: [
-    {
-      pattern: /(col|row)-span-(1|2|3|4|5|6)/,
-      variants: ['sm', 'md', 'lg', 'xl'],
-    },
-  ],
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
-};
-
-module.exports = metricsToCustomerTailwindConfig;
+module.exports = metricsToCustomerTwConfig;
