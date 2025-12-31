@@ -34,5 +34,5 @@
   "packages/manager/apps/pci-workflow",
   "packages/manager/apps/web-domains",
   "packages/manager/modules/logs-to-customer",
-  "packages/manager/modules/observability-to-customer"
+  "packages/manager/modules/metrics-to-customer"
 ]
