@@ -100,7 +100,7 @@ if (runner === 'nx') {
     modernCmd = ['nx', 'run', `${appName}:${modernTask}`];
   } else {
     // All projects
-    modernCmd = ['nx', 'run-many', `--target=${modernTask}`, '--all'];
+    modernCmd = ['nx', 'run-many', `--target=${modernTask}`, '--all', '--verbose'];
   }
 } else {
   // Default: turbo (existing behavior)
