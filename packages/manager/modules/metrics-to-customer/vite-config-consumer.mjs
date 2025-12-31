@@ -2,7 +2,7 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 /**
- * Get the Vite configuration fragment for observability-to-customer module
+ * Get the Vite configuration fragment for metrics-to-customer module
  * This should be merged with getBaseConfig() in consumer apps
  * 
  * @returns {Object} Configuration object with staticCopyTargets
@@ -10,13 +10,13 @@ import { fileURLToPath } from 'url';
 export function getMetricsToCustomerConfig() {
   // Get the directory of this config file (logs-to-customer package root)
   const packageRoot = dirname(fileURLToPath(import.meta.url));
-  const translationsSourcePath = resolve(packageRoot, 'dist/observability-to-customer/translations');
+  const translationsSourcePath = resolve(packageRoot, 'dist/metrics-to-customer/translations');
 
   return {
     staticCopyTargets: [
       {
         src: `${translationsSourcePath}/*`,
-        dest: 'translations/observability-to-customer',
+        dest: 'translations/metrics-to-customer',
       },
     ],    
   };
