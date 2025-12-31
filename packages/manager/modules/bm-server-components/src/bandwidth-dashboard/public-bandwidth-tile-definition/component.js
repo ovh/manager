@@ -6,5 +6,6 @@ export default {
     bandwidthOption: '<',
     specifications: '<',
     isCluster: '<',
+    nbNics: '<',
   },
 };
