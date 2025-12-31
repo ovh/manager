@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useCatalogPrice } from '@ovh-ux/muk';
 
 type TPriceLabelProps = {
   type: 'hour' | 'month' | 'licence' | string;
