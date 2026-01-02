@@ -5,6 +5,17 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { nichandle } from './__mocks__/nichandle';
 import { Path, To } from 'react-router-dom';
 
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  ShellContext: React.createContext({}),
+  useNavigationGetUrl: vi.fn(() => ({ data: '' })),
+  useShell: vi.fn(() => ({
+    environment: {
+      getUser: () => Promise.resolve(nichandle),
+    },
+    shell: {},
+  })),
+}));
+
 vi.mock('react-i18next', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-i18next')>();
   return {
