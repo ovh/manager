@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 

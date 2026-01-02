@@ -74,7 +74,7 @@ export default function Products({ services }: ProductsProps) {
     <>
       {products.length > 0 && (
         <OsdsText
-          className="inline-block my-6"
+          className="my-6 inline-block"
           level={ODS_TEXT_LEVEL.heading}
           size={ODS_TEXT_SIZE._500}
           hue={ODS_TEXT_COLOR_HUE._800}
@@ -85,16 +85,16 @@ export default function Products({ services }: ProductsProps) {
         </OsdsText>
       )}
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-3 mb-4"
+        className="mb-4 grid grid-cols-1 gap-5 pt-3 md:grid-cols-2 lg:grid-cols-3"
         data-testid="products-list-container"
       >
         {products.map((product) => (
           <div className="w-full" key={`product_${product.type}_services_list`}>
             <OsdsTile className="p-0">
-              <div className="ovh-manager-hub-tile w-full flex flex-col p-6">
-                <div className="flex mb-2 gap-4 items-start ovh-manager-hub-tile__header">
+              <div className="ovh-manager-hub-tile flex w-full flex-col p-6">
+                <div className="ovh-manager-hub-tile__header mb-2 flex items-start gap-4">
                   <OsdsText
-                    className="block flex-1 mb-6"
+                    className="mb-6 block flex-1"
                     level={ODS_TEXT_LEVEL.subheading}
                     size={ODS_TEXT_SIZE._200}
                     hue={ODS_TEXT_COLOR_HUE._800}
@@ -134,7 +134,7 @@ export default function Products({ services }: ProductsProps) {
                                   name={ODS_ICON_NAME.ARROW_RIGHT}
                                   size={ODS_ICON_SIZE.xs}
                                   color={ODS_THEME_COLOR_INTENT.text}
-                                  className="self-center ml-4"
+                                  className="ml-4 self-center"
                                 />
                               </span>
                             </OsdsLink>
@@ -147,7 +147,7 @@ export default function Products({ services }: ProductsProps) {
                   </Suspense>
                 </div>
                 <div>
-                  <ul className="list-none m-0 p-0" data-testid="product_services_list">
+                  <ul className="m-0 list-none p-0" data-testid="product_services_list">
                     {product.data.map((service) => (
                       <li
                         className="services-list"

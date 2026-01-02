@@ -38,7 +38,7 @@ export default function Catalog() {
   return (
     <>
       <OsdsText
-        className="block my-6"
+        className="my-6 block"
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
         size={ODS_TEXT_SIZE._500}
         hue={ODS_TEXT_COLOR_HUE._800}
@@ -48,7 +48,7 @@ export default function Catalog() {
         {t('manager_hub_catalog_title')}
       </OsdsText>
       <OsdsText
-        className="block my-6"
+        className="my-6 block"
         level={ODS_TEXT_LEVEL.body}
         size={ODS_TEXT_SIZE._400}
         color={ODS_THEME_COLOR_INTENT.default}
@@ -63,7 +63,7 @@ export default function Catalog() {
             return (
               <div key={`${category}_products_list`} data-testid="catalog_products_list">
                 <OsdsText
-                  className="block mb-4 mt-6"
+                  className="mb-4 mt-6 block"
                   level={ODS_TEXT_LEVEL.subheading}
                   size={ODS_TEXT_SIZE._200}
                   hue={ODS_THEME_COLOR_HUE._800}
@@ -71,7 +71,7 @@ export default function Catalog() {
                 >
                   {category}
                 </OsdsText>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 pt-3">
+                <div className="grid grid-cols-1 gap-5 pt-3 md:grid-cols-2 lg:grid-cols-3">
                   {items.map((item: CatalogItem) => (
                     <Card
                       key={`${item.productName}-${item.universe}`}

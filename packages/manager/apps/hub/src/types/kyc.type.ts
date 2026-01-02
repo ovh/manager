@@ -10,6 +10,6 @@ export enum KycStatuses {
 }
 
 export type KycStatus = {
-  status: string;
+  status: KycStatuses;
   ticketId?: string;
 };

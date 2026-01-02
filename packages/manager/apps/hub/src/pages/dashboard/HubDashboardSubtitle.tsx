@@ -18,7 +18,7 @@ export default function HubDashboardSubtitle() {
   const { t } = useTranslation();
 
   return (
-    <div className="inline-block my-6 h-[32px]">
+    <div className="my-6 inline-block h-[32px]">
       {isLoading ? (
         <OsdsSkeleton size={ODS_SKELETON_SIZE.md} inline className="p-4"></OsdsSkeleton>
       ) : (
