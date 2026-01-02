@@ -48,9 +48,9 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
-    "@ovh-ux/manager-vite-config": "^0.15.5",
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "*",
     "@tanstack/react-query-devtools": "^5.90.2"
   },
   "regions": [
