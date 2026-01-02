@@ -5,15 +5,21 @@ import {
   SecretSmartConfig,
 } from '@secret-manager/utils/secretSmartConfig';
 import { render, screen } from '@testing-library/react';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { labels as allLabels, initTestI18n } from '@/common/utils/tests/init.i18n';
+import { labels as allLabels } from '@/common/utils/tests/init.i18n';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import { SettingsTile } from './SettingsTile.component';
 
 const labels = allLabels.secretManager;
+
+// Mock EditMetatdataLink component
+const editMetadataTestId = 'edit-metadata-link';
+vi.mock('./EditMetadataLink.component', async (original) => ({
+  ...(await original()),
+  EditMetadataLink: vi.fn(() => <div data-testid={editMetadataTestId} />),
+}));
 
 // Mock the useSecretSmartConfig hook
 const mockUseSecretSmartConfig = vi.fn();
@@ -50,18 +56,10 @@ const mockSecretSmartConfig: SecretSmartConfig = {
   maxVersionsDefault: 10,
 };
 
-let i18nValue: i18n;
+const renderComponent = async () => {
+  const wrapper = await testWrapperBuilder().withI18next().build();
 
-const renderComponent = async (secret: Secret) => {
-  if (!i18nValue) {
-    i18nValue = await initTestI18n();
-  }
-
-  return render(
-    <I18nextProvider i18n={i18nValue}>
-      <SettingsTile secret={secret} />
-    </I18nextProvider>,
-  );
+  return render(<SettingsTile secret={mockSecret} />, { wrapper });
 };
 
 describe('Secrets Settings Tile component tests suite', () => {
@@ -79,7 +77,7 @@ describe('Secrets Settings Tile component tests suite', () => {
     });
 
     it('should display settings tile with all data and origin labels', async () => {
-      await renderComponent(mockSecret);
+      await renderComponent();
 
       // Check title
       expect(screen.getByText(labels.settings)).toBeVisible();
@@ -95,6 +93,9 @@ describe('Secrets Settings Tile component tests suite', () => {
       // Check CAS with description
       expect(screen.getByText(labels.cas_with_description)).toBeVisible();
       expect(screen.getByText(`${labels.activated} (${labels.setting_domain})`)).toBeVisible();
+
+      // Check EditMetadataButton
+      expect(screen.getByTestId(editMetadataTestId)).toBeVisible();
     });
 
     it('should display SECRET origin label when origin is SECRET', async () => {
@@ -112,7 +113,7 @@ describe('Secrets Settings Tile component tests suite', () => {
         secretConfig: secretConfigWithSecretOrigin,
       });
 
-      await renderComponent(mockSecret);
+      await renderComponent();
 
       expect(screen.getByText('10')).toBeVisible();
       // SECRET origin should not display any label
@@ -135,7 +136,7 @@ describe('Secrets Settings Tile component tests suite', () => {
         secretConfig: secretConfigWithDefaultOrigin,
       });
 
-      await renderComponent(mockSecret);
+      await renderComponent();
 
       expect(screen.getByText(`20 (${labels.setting_default})`)).toBeVisible();
     });
@@ -155,7 +156,7 @@ describe('Secrets Settings Tile component tests suite', () => {
         secretConfig: secretConfigWithNeverExpire,
       });
 
-      await renderComponent(mockSecret);
+      await renderComponent();
 
       expect(screen.getByText(`${labels.never_expire} (${labels.setting_default})`)).toBeVisible();
     });
@@ -175,7 +176,7 @@ describe('Secrets Settings Tile component tests suite', () => {
         secretConfig: secretConfigWithCasDisabled,
       });
 
-      await renderComponent(mockSecret);
+      await renderComponent();
 
       expect(
         screen.getByText(`${allLabels.common.status.disabled} (${labels.setting_default})`),
@@ -193,7 +194,7 @@ describe('Secrets Settings Tile component tests suite', () => {
     });
 
     it('should display skeleton loaders for all fields', async () => {
-      await renderComponent(mockSecret);
+      await renderComponent();
 
       // Check title is still visible
       expect(screen.getByText(labels.settings)).toBeVisible();
@@ -214,7 +215,7 @@ describe('Secrets Settings Tile component tests suite', () => {
     });
 
     it('should not render anything when there is an error', async () => {
-      const { container } = await renderComponent(mockSecret);
+      const { container } = await renderComponent();
 
       // Component should return null when there's an error
       expect(container.firstChild).toBeNull();
