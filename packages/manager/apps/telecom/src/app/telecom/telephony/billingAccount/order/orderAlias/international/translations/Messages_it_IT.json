@@ -1,0 +1,7 @@
+{
+  "telephony_order_international_title": "Ordina un numero internazionale",
+  "telephony_order_international_order_success": "Numero(i) internazionale(i) ordinato(i). Effettua il saldo.",
+  "telephony_order_international_order_error": "L'ordine dei numeri geografici non è andato a buon fine. Ti preghiamo di riprovare più tardi.",
+  "telephony_order_international_countries_error": "Impossibile recuperare la lista dei paesi",
+  "telephony_order_international_address_message": "Per poter disporre del vostro numero, vi preghiamo di inserire delle coordinate valide nel paese interessato."
+}
