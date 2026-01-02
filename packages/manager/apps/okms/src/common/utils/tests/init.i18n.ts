@@ -55,7 +55,7 @@ function addTranslations() {
     });
 }
 
-export const getTesti18nParams = (): InitOptions<unknown> => ({
+const i18nParams: InitOptions = {
   lng: defaultLocale,
   defaultNS: APP_NAME,
   ns: [],
@@ -64,11 +64,11 @@ export const getTesti18nParams = (): InitOptions<unknown> => ({
   interpolation: {
     escapeValue: false,
   },
-});
+};
 
 export const initTestI18n = () =>
   new Promise<i18n>((resolve) => {
-    i18next.init(getTesti18nParams()).catch((error) => console.error(error));
+    i18next.init(i18nParams).catch((error) => console.error(error));
 
     if (i18next.isInitialized) {
       addTranslations();

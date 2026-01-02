@@ -47,44 +47,7 @@ export default function SecretListPage() {
   const { okmsId } = useRequiredParams('okmsId');
   const { trackClick } = useOkmsTracking();
 
-  const columns: DatagridColumn<Secret>[] = [
-    {
-      id: 'path',
-      cell: DatagridCellPath,
-      label: PATH_LABEL,
-    },
-    {
-      id: 'version',
-      cell: DatagridCellVersion,
-      label: t('version'),
-    },
-    {
-      id: 'createdAt',
-      cell: DatagridCreationDate,
-      label: t('creation_date', { ns: NAMESPACES.DASHBOARD }),
-    },
-    {
-      id: 'actions',
-      cell: DatagridAction,
-      label: '',
-    },
-  ];
-
-  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
-    useSecretList({ okmsId });
-
   const okmsListUrl = useBackToOkmsListUrl();
-
-  if (error)
-    return (
-      <ErrorBanner
-        error={isErrorResponse(error) ? error.response : {}}
-        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
-        onReloadPage={refetch}
-      />
-    );
-
-  const secrets = data?.pages.flatMap((page) => page.data);
 
   return (
     <BaseLayout
@@ -125,34 +88,7 @@ export default function SecretListPage() {
             }}
           />
         </div>
-        <Datagrid
-          columns={columns}
-          items={secrets || []}
-          totalItems={secrets?.length ?? 0}
-          isLoading={isPending}
-          hasNextPage={hasNextPage}
-          onFetchNextPage={fetchNextPage}
-          sorting={sorting}
-          onSortChange={setSorting}
-          contentAlignLeft
-          topbar={
-            <OdsButton
-              label={t('create_a_secret')}
-              onClick={() => {
-                navigate({
-                  pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
-                  search: `?${SECRET_MANAGER_SEARCH_PARAMS.okmsId}=${okmsId}`,
-                });
-                trackClick({
-                  location: PageLocation.page,
-                  buttonType: ButtonType.button,
-                  actionType: 'navigation',
-                  actions: ['create', 'secret'],
-                });
-              }}
-            />
-          }
-        />
+        <SecretDatagrid okmsId={okmsId} />
       </div>
       <Suspense>
         <Outlet />
@@ -160,3 +96,77 @@ export default function SecretListPage() {
     </BaseLayout>
   );
 }
+
+const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
+  const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
+  const navigate = useNavigate();
+
+  const { trackClick } = useOkmsTracking();
+
+  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
+    useSecretList({ okmsId });
+
+  if (error)
+    return (
+      <ErrorBanner
+        error={isErrorResponse(error) ? error.response : {}}
+        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
+        onReloadPage={refetch}
+      />
+    );
+
+  const secrets = data?.pages.flatMap((page) => page.data);
+
+  const columns: DatagridColumn<Secret>[] = [
+    {
+      id: 'path',
+      cell: DatagridCellPath,
+      label: PATH_LABEL,
+    },
+    {
+      id: 'version',
+      cell: DatagridCellVersion,
+      label: t('version'),
+    },
+    {
+      id: 'createdAt',
+      cell: DatagridCreationDate,
+      label: t('creation_date', { ns: NAMESPACES.DASHBOARD }),
+    },
+    {
+      id: 'actions',
+      cell: DatagridAction,
+      label: '',
+    },
+  ];
+  return (
+    <Datagrid
+      columns={columns}
+      items={secrets || []}
+      totalItems={secrets?.length ?? 0}
+      isLoading={isPending}
+      hasNextPage={hasNextPage}
+      onFetchNextPage={fetchNextPage}
+      sorting={sorting}
+      onSortChange={setSorting}
+      contentAlignLeft
+      topbar={
+        <OdsButton
+          label={t('create_a_secret')}
+          onClick={() => {
+            navigate({
+              pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
+              search: `?${SECRET_MANAGER_SEARCH_PARAMS.okmsId}=${okmsId}`,
+            });
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: ['create', 'secret'],
+            });
+          }}
+        />
+      }
+    />
+  );
+};
