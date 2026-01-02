@@ -246,3 +246,5 @@ export const IAM_AUTHENTICATION_INFOS = {
   WS: 'https://help.ovhcloud.com/csm/es-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050169',
   US: 'https://support.us.ovhcloud.com/hc/en-us/articles/21134381741715-Concepts-Additional-IP-or-Floating-IP',
 };
+
+export type KubeconfigPricingRegion = keyof typeof PLAN_DOC_LINKS;

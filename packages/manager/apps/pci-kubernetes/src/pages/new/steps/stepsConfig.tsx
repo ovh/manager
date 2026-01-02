@@ -50,7 +50,11 @@ const stepsConfig = ({
     component: PlanStep,
     titleKey: 'kubernetes_add_plan_title',
     condition: are3AZRegions,
-    extraProps: { type: stepper.form.region?.type },
+    extraProps: {
+      type: stepper.form.region?.type,
+      codes: stepper.form.region?.codes,
+      plan: stepper.form.plan,
+    },
   },
   {
     key: 'version',
@@ -64,6 +68,7 @@ const stepsConfig = ({
     extraProps: {
       region: stepper.form.region?.name,
       type: stepper.form.region?.type,
+      plan: stepper.form.plan,
     },
   },
   {
@@ -81,6 +86,7 @@ const stepsConfig = ({
       nodePools: stepper.form.nodePools,
       type: stepper.form.region?.type,
       plan: stepper.form.plan,
+      codes: stepper.form.region?.codes,
       onSubmit: () => {
         stepper.confirm.step.lock();
         createNewCluster();
