@@ -120,19 +120,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          get_changed_packages() {
-            BASE_BRANCH=${{ steps.gate.outputs.base_branch }}
-            CURRENT_BRANCH=${{ steps.gate.outputs.current_branch }}
+          BASE_BRANCH=${{ steps.gate.outputs.base_branch }}
+          CURRENT_BRANCH=${{ steps.gate.outputs.current_branch }}
 
-            yarn -s build --dry-run=json \
-              --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
+          echo "[INFO] Computing changed packages with Nx…"
 
-            tail -n +2 output.json > tmp.json && mv tmp.json output.json
-            jq -r '.packages[]' output.json
-          }
-
-          echo "[INFO] Computing changed packages..."
-          CHANGED_PACKAGES=$(get_changed_packages)
+          CHANGED_PACKAGES=$(yarn nx show projects \
+            --affected \
+            --base=origin/${BASE_BRANCH} \
+            --head=origin/${CURRENT_BRANCH} \
+            --with-target=build)
 
           echo "$CHANGED_PACKAGES"
 
