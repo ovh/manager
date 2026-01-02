@@ -8,22 +8,29 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  MODAL_COLOR,
+  SPINNER_SIZE,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
@@ -63,8 +70,8 @@ export const AddEditOrganizationModal = () => {
   const { addError, addSuccess } = useNotifications();
 
   // @TODO refactor when ods modal overflow is fixed
-  const modalRef = useRef<HTMLOdsModalElement>(undefined);
-  useOdsModalOverflowHack(modalRef);
+  const modalRef = useRef<HTMLDivElement>(undefined);
+  useOdsModalOverflowHack(modalRef as any);
 
   const { data: domains, isLoading: isLoadingDomains } = useDomains({
     enabled: !accountId && !redirectionId,
@@ -112,9 +119,7 @@ export const AddEditOrganizationModal = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_redirections_add_success_message')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_redirections_add_success_message')}</Text>,
         true,
       );
     },
@@ -124,11 +129,11 @@ export const AddEditOrganizationModal = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('zimbra_redirections_add_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -168,68 +173,73 @@ export const AddEditOrganizationModal = () => {
 
   return (
     <Modal
-      type={ODS_MODAL_COLOR.information}
+      type={MODAL_COLOR.information}
       ref={modalRef}
-      isOpen
+      open
       heading={t(redirectionId ? 'common:edit_redirection' : 'common:add_redirection')}
-      onDismiss={onClose}
-      isLoading={isLoadingAccount}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      primaryButtonTestId="confirm-btn"
-      onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
-      isPrimaryButtonDisabled={!isDirty || !isValid}
-      isPrimaryButtonLoading={isLoadingDomains || isLoadingAccount || isSending}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
-      secondaryButtonTestId="cancel-btn"
+      onOpenChange={onClose}
+      loading={isLoadingAccount}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
+        testId: 'confirm-btn',
+        onClick: handleSubmit(handleConfirmClick),
+        disabled: !isDirty || !isValid,
+        loading: isLoadingDomains || isLoadingAccount || isSending,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+        testId: 'cancel-btn',
+      }}
     >
       <form
         data-testid="redirection-form"
         className="flex flex-col gap-4"
         onSubmit={handleSubmit(handleConfirmClick)}
       >
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('zimbra_redirections_add_header')}</OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t(`${NAMESPACES.FORM}:mandatory_fields`)}
-        </OdsText>
+        <Text preset={TEXT_PRESET.paragraph}>{t('zimbra_redirections_add_header')}</Text>
+        <Text preset={TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
         <Controller
           control={control}
           name="account"
-          render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+          render={({
+            field: { name, value, onChange, onBlur },
+            fieldState: { isDirty, isTouched },
+          }) => (
+            <FormField className="w-full" invalid={(isDirty || isTouched) && !!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_redirections_add_form_input_from')} *
-              </label>
+              </FormFieldLabel>
               {accountId || redirectionId ? (
-                <OdsInput
-                  type={ODS_INPUT_TYPE.email}
+                <Input
+                  type={INPUT_TYPE.email}
                   data-testid="input-from"
                   id={name}
                   name={name}
                   value={accountDetail?.currentState?.email}
-                  isDisabled
-                  isReadonly
+                  disabled
+                  readOnly
                 />
               ) : (
                 <div className="flex">
-                  <OdsInput
-                    type={ODS_INPUT_TYPE.text}
+                  <Input
+                    type={INPUT_TYPE.text}
                     placeholder={t('common:account_name')}
                     data-testid="input-account"
                     className="flex-1"
                     id={name}
                     name={name}
-                    hasError={!!errors[name]}
+                    invalid={(isDirty || isTouched) && !!errors[name]}
                     value={value}
-                    onOdsBlur={onBlur}
-                    onOdsChange={onChange}
-                  ></OdsInput>
-                  <OdsInput
-                    type={ODS_INPUT_TYPE.text}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                  ></Input>
+                  <Input
+                    type={INPUT_TYPE.text}
                     name="@"
                     value="@"
-                    isReadonly
-                    isDisabled
+                    readOnly
+                    disabled
                     className="input-at w-10"
                   />
                   <Controller
@@ -237,54 +247,67 @@ export const AddEditOrganizationModal = () => {
                     name="domain"
                     render={({ field }) => (
                       <>
-                        <OdsSelect
+                        <Select
+                          items={domains?.map((domain) => ({
+                            label: domain?.currentState.name,
+                            value: domain?.currentState.name,
+                          }))}
                           id={field.name}
                           name={field.name}
-                          hasError={!!errors[field.name]}
-                          value={field.value}
+                          invalid={(isDirty || isTouched) && !!errors[field.name]}
+                          value={[field.value]}
                           className="w-1/2"
-                          placeholder={t('common:select_domain')}
-                          onOdsChange={field.onChange}
-                          onOdsBlur={field.onBlur}
-                          isDisabled={isLoadingDomains}
+                          onValueChange={(detail) => field.onChange(detail.value[0])}
+                          onBlur={field.onBlur}
+                          disabled={isLoadingDomains}
                           data-testid="select-domain"
                         >
-                          {domains?.map(({ currentState: domain }) => (
-                            <option key={domain.name} value={domain.name}>
-                              {domain.name}
-                            </option>
-                          )) || []}
-                        </OdsSelect>
+                          <SelectControl placeholder={t('common:select_domain')} />
+                          <SelectContent />
+                        </Select>
                         {isLoadingDomains && (
-                          <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
+                          <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                         )}
                       </>
                     )}
                   />
                 </div>
               )}
-            </OdsFormField>
+              {(isDirty || isTouched) && errors?.[name]?.message && (
+                <FormFieldError>{errors[name].message}</FormFieldError>
+              )}
+            </FormField>
           )}
         />
         <Controller
           control={control}
           name="to"
-          render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField data-testid="field-to" className="w-full" error={errors?.[name]?.message}>
+          render={({
+            field: { name, value, onChange, onBlur },
+            fieldState: { isDirty, isTouched },
+          }) => (
+            <FormField
+              data-testid="field-to"
+              className="w-full"
+              invalid={(isDirty || isTouched) && !!errors?.[name]}
+            >
               <label htmlFor={name} slot="label">
                 {t('zimbra_redirections_add_form_input_to')} *
               </label>
-              <OdsInput
+              <Input
                 data-testid="input-to"
-                type={ODS_INPUT_TYPE.text}
+                type={INPUT_TYPE.text}
                 id={name}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={(isDirty || isTouched) && !!errors[name]}
                 value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
-              ></OdsInput>
-            </OdsFormField>
+                onBlur={onBlur}
+                onChange={onChange}
+              />
+              {(isDirty || isTouched) && errors?.[name]?.message && (
+                <FormFieldError>{errors[name].message}</FormFieldError>
+              )}
+            </FormField>
           )}
         />
       </form>
