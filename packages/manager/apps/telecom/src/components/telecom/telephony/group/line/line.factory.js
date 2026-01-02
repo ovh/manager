@@ -54,6 +54,7 @@ export default /* @ngInject */ (
     // from API
     this.serviceType = options.serviceType;
     this.description = options.description;
+    this.rio = options.rio;
 
     this.infrastructure = options.infrastructure;
     this.offers = options.offers || [];
