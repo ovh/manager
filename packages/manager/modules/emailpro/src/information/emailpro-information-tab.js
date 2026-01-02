@@ -8,7 +8,6 @@ export default class EmailProTabInformationCtrl {
   constructor(
     $q,
     $scope,
-    $state,
     $stateParams,
     $translate,
     coreURLBuilder,
@@ -19,7 +18,6 @@ export default class EmailProTabInformationCtrl {
   ) {
     this.$q = $q;
     this.$scope = $scope;
-    this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.coreURLBuilder = coreURLBuilder;
@@ -54,11 +52,6 @@ export default class EmailProTabInformationCtrl {
         redirections: this.$scope.currentRegionCA
           ? this.$q.when({})
           : this.getRedirections(),
-      });
-
-      this.upgradeLink = this.$state.href('mxplan.dashboard.upgrade', {
-        productId: this.$stateParams.productId,
-        domain: this.$scope.exchange.associatedDomainName,
       });
     }
 
