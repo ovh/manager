@@ -3,17 +3,17 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 const moduleName =
-  'ovhManagerTelecomTelephonyBillingAccountOrderProductLazyLoading';
+  'ovhManagerTelecomTelephonyBillingAccountOrderAliasLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('telecom.telephony.billingAccount.orderProduct.**', {
-      url: '/orderProduct',
+    $stateProvider.state('telecom.telephony.billingAccount.orderAlias.**', {
+      url: '/orderAlias',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
         return import(
-          /* webpackChunkName: "orderProduct" */ './order-product.module'
+          /* webpackChunkName: "orderAlias" */ './order-alias.module'
         ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });

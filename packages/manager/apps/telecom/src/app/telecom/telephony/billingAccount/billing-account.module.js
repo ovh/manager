@@ -17,9 +17,10 @@ import convertToVoiceFax from './convertToVoicefax';
 import dashboard from './dashboard';
 import guides from './guides';
 import manageContacts from './manageContacts';
-import orderAlias from './orderAlias';
+import orderAlias from './orderAlias/order';
 import phonebook from './phonebook';
 import services from './services';
+import orderProduct from './orderAlias';
 
 import routing from './billingAccount.routing';
 
@@ -37,7 +38,7 @@ angular
     carrierSip,
     fax,
     line,
-
+    orderProduct,
     abbreviatedNumbers,
     administration,
     billing,

@@ -1,0 +1,19 @@
+{
+  "telephony_order_nongeographical_title": "Contratar un número no geográfico",
+  "telephony_order_nongeographical_submit_title": "Contratar un número no geográfico",
+  "telephony_order_nongeographical_amount_title": "Cantidad de números:",
+  "telephony_order_nongeographical_specific_title": "Elección del número",
+  "telephony_order_nongeographical_retractation_title": "Derecho de desistimiento",
+  "telephony_order_nongeographical_address_title": "Información del titular del número",
+  "telephony_order_nongeographical_zone_tip": "Localidad o código postal",
+  "telephony_order_nongeographical_numbers_error": "No se ha podido cargar la lista de preselecciones de números.",
+  "telephony_order_nongeographical_order_error": "No se ha podido enviar el pedido de números no geográficos. Por favor, vuelva a intentarlo más tarde.",
+  "telephony_order_nongeographical_order_error_city": "{{city}} no pertenece a la zona ({{zone}})",
+  "telephony_order_nongeographical_order_success": "Se ha enviado el pedido de números no geográficos. Por favor, acepte las condiciones generales de venta y abone el pedido.",
+  "telephony_order_nongeographical_order_alias": "Toutes les configurations",
+  "telephony_order_nongeographical_order_sda_only": "Uniquement redirections (SDAs)",
+  "telephony_order_nongeographical_prices_error": "Impossible de récupérer le tarif pour le numéro fixe SDA Redirection",
+  "telephony_order_nongeographical_order_periodicy": "Commandez ({{total}} TTC / {{period}})",
+  "telephony_order_nongeographical_order_periodicy_annual": "año",
+  "telephony_order_nongeographical_order_periodicy_month": "mes(es)"
+}
