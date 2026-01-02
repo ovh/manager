@@ -7,4 +7,6 @@ export interface RefreshTimeControlProps {
   defaultRefreshInterval: number;
   isLoading: boolean;
   onStateChange: <TValue>(key: string, value: TValue) => void;
+  onRefresh: () => void;
+  onCancel: () => void;
 }
