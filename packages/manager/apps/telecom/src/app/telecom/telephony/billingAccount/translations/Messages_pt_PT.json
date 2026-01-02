@@ -12,5 +12,10 @@
   "telephony_group_rename_error": "Impossible de renommer votre compte de facturation {{billingAccount}}.",
   "telephony_group_termination_warning": "Le groupe sera supprimé le <strong>{{ date }}</strong>.",
   "telephony_group_termination_warning_link": "Vous pouvez annuler en cliquant ici",
-  "telephony_group_tab_services": "Serviços"
+  "telephony_group_tab_services": "Serviços",
+  "telephony_group_order_product_label": "Que produto deseja encomendar?",
+  "telephony_group_order_number": "Encomendar um número",
+  "telephony_group_order_link_voip": "Encomendar uma linha VoIP",
+  "telephony_group_order_link_sip": "Encomendar um canal SIP Trunk",
+  "telephony_group_order_link_accessory": "Encomendar um acessório"
 }
