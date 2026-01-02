@@ -36,6 +36,7 @@ const createTestQueryClient = () =>
   });
 
 /**
+ * @deprecated use testWrapperBuilder
  * Render a component with a test query client
  */
 export function renderWithClient(ui: React.ReactElement): ReturnType<typeof render> & {
@@ -53,6 +54,7 @@ export function renderWithClient(ui: React.ReactElement): ReturnType<typeof rend
 }
 
 /**
+ * @deprecated use testWrapperBuilder
  * Create a wrapper with QueryClient for hooks
  */
 export const createHookWrapper = () => {
@@ -64,6 +66,7 @@ export const createHookWrapper = () => {
 };
 
 /**
+ * @deprecated use testWrapperBuilder
  * Renders a hook with QueryClient provider wrapper
  * @param callback - The hook function to test
  * @param options - Additional render options (excluding wrapper since we provide it)
@@ -80,6 +83,7 @@ export const renderHookWithClient = <TProps, TResult>(
 };
 
 /**
+ * @deprecated use testWrapperBuilder
  * Render a component with I18n provider
  */
 let i18nValue: i18n;
@@ -94,6 +98,7 @@ export const renderWithI18n = async (ui: React.ReactElement) => {
 };
 
 /**
+ * @deprecated use testWrapperBuilder
  * Renders a hook with i18n provider wrapper
  * @param callback - The hook function to test
  * @param options - Additional render options (excluding wrapper since we provide it)
