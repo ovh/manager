@@ -1,8 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
-import { useTranslation } from 'react-i18next';
 
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
@@ -13,9 +10,12 @@ import { Link } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
-import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { SECRET_LIST_CELL_TEST_IDS } from './ListingCells.constant';
+import { useAccessVersionMenuItem } from './actions/access-versions/useAccessVersionsMenuItem';
+import { useAddVersionMenuItem } from './actions/addVersion/useAddVersionMenuItem';
+import { useDeleteSecretMenuItem } from './actions/delete-secret/useDeleteSecretMenuItem';
+import { useRevealSecretMenuItem } from './actions/reveal-secret/useRevealSecretMenuItem';
 
 export const DatagridCellPath = (secret: Secret) => {
   const { okmsId } = useRequiredParams('okmsId');
@@ -59,75 +59,17 @@ export const DatagridCreationDate = (secret: Secret) => {
 
 export const DatagridAction = (secret: Secret) => {
   const { okmsId } = useRequiredParams('okmsId');
-  const { t } = useTranslation('secret-manager');
-  const navigate = useNavigate();
-  const { trackClick } = useOkmsTracking();
+
+  const revealValueItem = useRevealSecretMenuItem({ id: 1, okmsId, secret });
+  const addVersionItem = useAddVersionMenuItem({ id: 2, okmsId, secret });
+  const accessVersionsItem = useAccessVersionMenuItem({ id: 3, okmsId, secret });
+  const deleteSecretItem = useDeleteSecretMenuItem({ id: 4, okmsId, secret });
 
   const items: ActionMenuItem[] = [
-    {
-      id: 1,
-      label: t('reveal_secret'),
-      onClick: () => {
-        navigate(SECRET_MANAGER_ROUTES_URLS.secretListSecretValueDrawer(okmsId, secret.path));
-        trackClick({
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.link,
-          actionType: 'navigation',
-          actions: ['reveal', 'value'],
-        });
-      },
-      urn: secret.iam.urn,
-      iamActions: [kmsIamActions.secretGet, kmsIamActions.secretVersionGetData],
-    },
-    {
-      id: 2,
-      label: t('add_new_version'),
-      onClick: () => {
-        navigate(
-          SECRET_MANAGER_ROUTES_URLS.secretListCreateVersionDrawer(
-            okmsId,
-            secret.path,
-            secret.metadata.currentVersion,
-          ),
-        );
-        trackClick({
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.link,
-          actionType: 'navigation',
-          actions: ['create', 'version'],
-        });
-      },
-      urn: secret.iam.urn,
-      iamActions: [kmsIamActions.secretVersionCreate],
-    },
-    {
-      id: 3,
-      label: t('access_versions'),
-      onClick: () => {
-        navigate(SECRET_MANAGER_ROUTES_URLS.versionList(okmsId, secret.path));
-        trackClick({
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.link,
-          actionType: 'navigation',
-          actions: ['version', 'list'],
-        });
-      },
-    },
-    {
-      id: 4,
-      label: t('delete_secret'),
-      onClick: () => {
-        navigate(SECRET_MANAGER_ROUTES_URLS.secretListDeleteSecretModal(okmsId, secret.path));
-        trackClick({
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.link,
-          actionType: 'navigation',
-          actions: ['delete', 'secret'],
-        });
-      },
-      urn: secret.iam.urn,
-      iamActions: [kmsIamActions.secretDelete],
-    },
+    revealValueItem,
+    addVersionItem,
+    accessVersionsItem,
+    deleteSecretItem,
   ];
 
   return (
