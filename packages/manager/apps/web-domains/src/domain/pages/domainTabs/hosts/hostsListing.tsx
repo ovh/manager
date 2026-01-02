@@ -27,9 +27,11 @@ import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import { DrawerActionEnum } from '@/common/enum/common.enum';
 import { DrawerBehavior } from '@/common/types/common.types';
+import { GUIDES_LIST } from '@/domain/constants/guideLinks';
+import { getLanguageKey } from '@/domain/utils/utils';
 
 export default function HostsListingTab() {
-  const { t } = useTranslation([
+  const { t, i18n } = useTranslation([
     'domain',
     NAMESPACES.ACTIONS,
     NAMESPACES.FORM,
@@ -39,6 +41,7 @@ export default function HostsListingTab() {
   const [isLoading, setIsLoading] = useState(true);
   const { serviceName } = useParams<{ serviceName: string }>();
   const navigate = useNavigate();
+  const langCode = getLanguageKey(i18n.language);
 
   const [drawer, setDrawer] = useState<DrawerBehavior>({
     isOpen: false,
@@ -147,8 +150,14 @@ export default function HostsListingTab() {
             <Text>{t('domain_tab_hosts_information_banner_1')}</Text>
             <Text>{t('domain_tab_hosts_information_banner_2')}</Text>
             <div className="flex items-center gap-x-4">
-              <Link>{t(`${NAMESPACES.ONBOARDING}:find_out_more`)}</Link>
-              <Icon name={ICON_NAME.externalLink} />
+              <Link
+                href={GUIDES_LIST.host.url[langCode]}
+                className="text-[--ods-color-primary-500]"
+                target="_blank"
+              >
+                {t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
+                <Icon name={ICON_NAME.externalLink} />
+              </Link>
             </div>
           </MessageBody>
         </Message>

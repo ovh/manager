@@ -21,9 +21,11 @@ const helpRoot = 'https://help.ovhcloud.com/csm/';
 const baseGuideUrl = `${helpRoot}{{lang}}-documentation-web-cloud-domains?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955&kb_category=54441955f49801102d4ca4d466a7fdb2`;
 const modifyDnsGuideUrl = `${helpRoot}{{lang}}-dns-servers-edit?id=kb_article_view&sysparm_article=KB0063455`;
 const manualRenewGuideUrl = `${helpRoot}{{lang}}-fr-billing-automatic-renewal?id=kb_article_view&sysparm_article=KB0042839`;
+const hostGuideUrl = `${helpRoot}{{lang}}-dns-glue-registry?id=kb_article_view&sysparm_article=KB0051754`;
 export const WEB_DOMAINS = generateGuideLinks(baseGuideUrl);
 export const MODIFY_DNS = generateGuideLinks(modifyDnsGuideUrl);
 export const MANUAL_RENEW_URL = generateGuideLinks(manualRenewGuideUrl);
+export const HOST = generateGuideLinks(hostGuideUrl);
 export const GUIDES_LIST = {
   domains: {
     key: 'web_domains',
@@ -36,5 +38,9 @@ export const GUIDES_LIST = {
   manualRenew: {
     key: 'manual_renew',
     url: MANUAL_RENEW_URL,
+  },
+  host: {
+    key: 'host',
+    url: HOST,
   },
 };
