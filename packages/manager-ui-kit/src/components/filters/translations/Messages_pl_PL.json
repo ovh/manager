@@ -19,5 +19,6 @@
   "common_criteria_adder_operator_NEQ": "nie jest",
   "common_criteria_adder_operator_EXISTS": "istnieje",
   "common_criteria_adder_operator_NEXISTS": "nie istnieje",
-  "common_criteria_adder_key_label": "Klucz"
+  "common_criteria_adder_key_label": "Klucz",
+  "common_criteria_adder_operator_is_in": "jest w"
 }
