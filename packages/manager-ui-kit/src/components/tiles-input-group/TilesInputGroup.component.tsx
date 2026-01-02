@@ -46,6 +46,8 @@ function TilesInputGroupComponent<T, S = void, G = void>({
     return newGroups;
   }, [items, group]);
 
+  const groupKeys = useMemo(() => Array.from(groups.keys()), [groups]);
+
   const handleGroupChange = useCallback(
     (g: G) => {
       if (!isEqual(state.selectedGroup, g)) {
@@ -55,35 +57,53 @@ function TilesInputGroupComponent<T, S = void, G = void>({
         }
       }
     },
-    [state.selectedGroup, group?.onChange],
+    [state.selectedGroup, group],
+  );
+
+  const handleStackChange = useCallback(
+    (s: S) => {
+      if (stack?.onChange) {
+        stack.onChange(s);
+      }
+    },
+    [stack],
+  );
+
+  const memoizedStack = useMemo(
+    () =>
+      stack
+        ? {
+            ...stack,
+            onChange: handleStackChange,
+          }
+        : undefined,
+    [stack, handleStackChange],
+  );
+
+  const titleElement = useCallback(
+    ({ item }: { item: G }) => <>{group?.label(item, groups.get(item) || [])}</>,
+    [group, groups],
+  );
+
+  const contentElement = ({ item }: { item: G }) => (
+    <TilesInputComponent
+      id={id}
+      items={groups.get(item) || []}
+      value={value}
+      onInput={onInput}
+      label={label}
+      tileClass={tileClass}
+      stack={memoizedStack}
+    />
   );
 
   return (
     <>
       {group ? (
         <TilesInputGroupTabs<G>
-          items={[...(groups?.keys?.() || [])]}
-          titleElement={({ item }: { item: G }) => <>{group.label(item, groups.get(item) || [])}</>}
-          contentElement={({ item }: { item: G }) => (
-            <TilesInputComponent
-              id={id}
-              items={groups.get(item) || []}
-              value={value}
-              onInput={onInput}
-              label={label}
-              tileClass={tileClass}
-              stack={
-                stack
-                  ? {
-                      ...stack,
-                      onChange: (s) => {
-                        if (stack?.onChange) stack?.onChange(s);
-                      },
-                    }
-                  : undefined
-              }
-            />
-          )}
+          items={groupKeys}
+          titleElement={titleElement}
+          contentElement={contentElement}
           onChange={handleGroupChange}
         />
       ) : (
