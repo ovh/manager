@@ -10,7 +10,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { deleteManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
 import { createWrapper, i18n } from '@/utils/test.provider';
 
-import DeleteModal from './Delete.modal';
+import DeleteModal from '../ManagedWordpressResource/delete/Delete.modal';
 
 const testQueryClient = new QueryClient({
   defaultOptions: {

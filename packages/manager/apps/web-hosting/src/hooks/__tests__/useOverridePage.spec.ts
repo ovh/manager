@@ -6,7 +6,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { RouteMatch } from '@/routes/routes';
 
-import { useOverridePage } from './useOverridePage';
+import { useOverridePage } from '../overridePage/useOverridePage';
 
 const makeMatch = (isOverridePage?: boolean): RouteMatch =>
   ({

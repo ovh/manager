@@ -12,7 +12,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { postManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
 import { createWrapper, i18n } from '@/utils/test.provider';
 
-import ImportForm from './ImportForm.component';
+import ImportForm from '../ManagedWordpressResource/import/importForm/ImportForm.component';
 
 const testQueryClient = new QueryClient({
   defaultOptions: {
@@ -72,9 +72,9 @@ describe('ImportForm Component', () => {
   it.skip('should enable the submit button and make an API call on valid input for step 1', async () => {
     const { getByTestId } = render(<ImportForm />, { wrapper: Wrappers as ComponentType });
 
-    const adminURLInput = getByTestId('input-admin-url') as HTMLInputElement;
-    const adminLoginInput = getByTestId('input-admin-login') as HTMLInputElement;
-    const adminPasswordInput = getByTestId('input-admin-password') as HTMLInputElement;
+    const adminURLInput = getByTestId('input-admin-url');
+    const adminLoginInput = getByTestId('input-admin-login');
+    const adminPasswordInput = getByTestId('input-admin-password');
     const submitButton = getByTestId('import-step1');
 
     act(() => {

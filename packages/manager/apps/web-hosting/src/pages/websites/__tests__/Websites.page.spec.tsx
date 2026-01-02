@@ -10,7 +10,7 @@ import { attachedDomainDigStatusMock, websitesMocks } from '@/data/__mocks__';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { createWrapper, i18n } from '@/utils/test.provider';
 
-import Websites from './Websites.page';
+import Websites from '../Websites.page';
 
 const testQueryClient = new QueryClient({
   defaultOptions: {
