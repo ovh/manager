@@ -11,14 +11,15 @@ import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
-import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
 
 import { useTenantDashboardTabs } from './_hooks/useTenantDashboardTabs';
+import {useBackupVSPCTenantDetails} from "@/data/hooks/tenants/useVspcTenantDetails";
+import {useRequiredParams} from "@/hooks/useRequiredParams";
 
 export default function DashboardPage() {
   const { appName } = useContext(BackupAgentContext);
-  const { tenantId } = useParams<{ tenantId: string }>();
-  const { data: tenantResource } = useBackupTenantDetails({ tenantId: tenantId! });
+  const { tenantId } = useRequiredParams("tenantId");
+  const { data: tenantResource } = useBackupVSPCTenantDetails({ tenantId: tenantId });
   const { t } = useTranslation([NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 

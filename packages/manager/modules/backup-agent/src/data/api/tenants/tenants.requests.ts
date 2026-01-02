@@ -9,7 +9,7 @@ import { Resource } from '@/types/Resource.type';
 import { Tenant } from '@/types/Tenant.type';
 import { VSPCTenant } from '@/types/VspcTenant.type';
 import {
-  BACKUP_SERVICES_ROUTE,
+  BACKUP_SERVICES_ROUTE, getBackupBaseRoute,
   getVspcTenantDetailsRoute,
   getVspcTenantsRoute,
 } from '@/utils/apiRoutes';
@@ -20,9 +20,9 @@ export const getBackupTenants = async (
 ): Promise<IcebergFetchResultV2<Resource<Tenant>>> =>
   fetchIcebergV2({ ...params, route: BACKUP_SERVICES_ROUTE });
 
-export const getTenantDetails = async (backupServicesId: string, vspcTenantId: string) => {
+export const getTenantDetails = async (backupServicesId: string) => {
   const { data } = await v2.get<Resource<Tenant>>(
-    getVspcTenantDetailsRoute(backupServicesId, vspcTenantId),
+    getBackupBaseRoute(backupServicesId),
   );
   return data;
 };
