@@ -102,7 +102,7 @@ export default function ModalOrderLicenses() {
       onPrimaryButtonClick={() => void handleSubmit(onSubmit)()}
     >
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
-        <div className="flex flex-wrap justify-between mb-4">
+        <div className="mb-4 flex flex-wrap justify-between">
           <OdsFormField className="w-full md:w-3/5">
             <label slot="label" htmlFor="form-product-type">
               {t('dashboard_users_order_licences_type')}
@@ -151,7 +151,7 @@ export default function ModalOrderLicenses() {
             />
           </OdsFormField>
         </div>
-        <OdsMessage className="mt-4 mb-6" isDismissible={false}>
+        <OdsMessage className="mb-6 mt-4" isDismissible={false}>
           <div>
             <span className="block">{t('dashboard_users_order_licences_message_1')}</span>
             <span>{t('dashboard_users_order_licences_message_2')}</span>

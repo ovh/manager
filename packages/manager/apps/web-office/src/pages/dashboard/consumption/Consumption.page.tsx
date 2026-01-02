@@ -147,9 +147,9 @@ export default function Consumption() {
     }[];
   }) => {
     return (
-      <div className="flex justify-center flex-wrap mt-12">
+      <div className="mt-12 flex flex-wrap justify-center">
         {payload.map((entry) => (
-          <div key={entry.value} className="flex items-center mx-4">
+          <div key={entry.value} className="mx-4 flex items-center">
             <OdsCheckbox
               name={entry.value}
               inputId={entry.value}

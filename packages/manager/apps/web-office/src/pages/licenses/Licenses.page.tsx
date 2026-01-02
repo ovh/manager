@@ -12,6 +12,7 @@ import {
   Links,
   OvhSubsidiary,
   useDatagridSearchParams,
+  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import type { DatagridColumn } from '@ovh-ux/manager-react-components';
 import {
@@ -46,6 +47,7 @@ export default function Licenses() {
   ]);
   const { trackClick } = useOvhTracking();
   const { data, isLoading } = useLicenses();
+  const { data: availability } = useFeatureAvailability(['web-office:order']);
 
   const { sorting, setSorting } = useDatagridSearchParams();
 
@@ -145,13 +147,15 @@ export default function Licenses() {
         sorting={sorting}
         onSortChange={setSorting}
         topbar={
-          <OdsButton
-            color={ODS_BUTTON_COLOR.primary}
-            variant={ODS_BUTTON_VARIANT.outline}
-            onClick={goToOrder}
-            label={t(`${NAMESPACES.ACTIONS}:order`)}
-            data-testid="licenses-order-button"
-          ></OdsButton>
+          availability?.['web-office:order'] && (
+            <OdsButton
+              color={ODS_BUTTON_COLOR.primary}
+              variant={ODS_BUTTON_VARIANT.outline}
+              onClick={goToOrder}
+              label={t(`${NAMESPACES.ACTIONS}:order`)}
+              data-testid="licenses-order-button"
+            ></OdsButton>
+          )
         }
         isLoading={isLoading}
       />

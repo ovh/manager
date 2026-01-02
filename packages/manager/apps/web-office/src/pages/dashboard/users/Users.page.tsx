@@ -6,7 +6,7 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/od
 import { OdsButton, OdsIcon, OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, ManagerButton } from '@ovh-ux/manager-react-components';
+import { Datagrid, ManagerButton, useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import type { DatagridColumn } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
@@ -30,6 +30,7 @@ export default function Users() {
     NAMESPACES.FORM,
     NAMESPACES.ACTIONS,
   ]);
+  const { data: availability } = useFeatureAvailability(['web-office:order']);
   const { trackClick } = useOvhTracking();
   const { data: dataUsers, isLoading: isLoadingUsers } = useUsers();
 
@@ -149,23 +150,27 @@ export default function Users() {
         items={dataUsers || []}
         totalItems={dataUsers?.length || 0}
         topbar={
-          !dataLicenceDetail?.serviceType ? (
-            <OdsButton
-              data-testid="licenses-order-button"
-              label={t('common:users_order_licenses')}
-              onClick={onOrderLicenses}
-              variant={ODS_BUTTON_VARIANT.outline}
-            />
-          ) : (
-            <ManagerButton
-              id={dataLicenceDetail.id as string}
-              data-testid="users-order-button"
-              label={t(`${NAMESPACES.ACTIONS}:order_users`)}
-              urn={dataLicenceDetail?.iam.urn}
-              onClick={onOrderUsers}
-              variant={ODS_BUTTON_VARIANT.outline}
-              iamActions={[IAM_ACTIONS.user.create]}
-            />
+          availability?.['web-office:order'] && (
+            <>
+              {!dataLicenceDetail?.serviceType ? (
+                <OdsButton
+                  data-testid="licenses-order-button"
+                  label={t('common:users_order_licenses')}
+                  onClick={onOrderLicenses}
+                  variant={ODS_BUTTON_VARIANT.outline}
+                />
+              ) : (
+                <ManagerButton
+                  id={dataLicenceDetail.id as string}
+                  data-testid="users-order-button"
+                  label={t(`${NAMESPACES.ACTIONS}:order_users`)}
+                  urn={dataLicenceDetail?.iam.urn}
+                  onClick={onOrderUsers}
+                  variant={ODS_BUTTON_VARIANT.outline}
+                  iamActions={[IAM_ACTIONS.user.create]}
+                />
+              )}
+            </>
           )
         }
         isLoading={isLoadingUsers || isLoadingLicenceDetail}
