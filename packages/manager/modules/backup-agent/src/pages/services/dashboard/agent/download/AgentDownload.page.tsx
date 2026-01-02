@@ -33,7 +33,7 @@ export default function DownloadAgentPage() {
   const { tenantId } = useRequiredParams('tenantId');
   const { data: downloadLink, isLoading } = useBackupVSPCTenantAgentDownloadLink({
     tenantId,
-    os: osSelected ?? undefined,
+    os: osSelected,
   });
 
   const handleChangeDownloadLink = (osKey: OS) => {
