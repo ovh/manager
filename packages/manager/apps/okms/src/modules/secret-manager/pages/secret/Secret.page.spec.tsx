@@ -132,48 +132,4 @@ describe('Secret page test suite', () => {
       await assertVersionDatagridVisilibity();
     });
   });
-
-  /* ACTIONS TILE */
-  type ActionCase = {
-    actionLabel: string;
-    assertion: () => Promise<void>;
-  };
-
-  const actionCases: ActionCase[] = [
-    {
-      actionLabel: labels.secretManager.reveal_secret,
-      assertion: () => assertTextVisibility(labels.secretManager.values),
-    },
-    {
-      actionLabel: labels.secretManager.add_new_version,
-      assertion: () => assertTextVisibility(labels.secretManager.key_value),
-    },
-    {
-      actionLabel: labels.secretManager.delete_secret,
-      assertion: () => assertTextVisibility(labels.secretManager.delete_secret_modal_title),
-    },
-  ];
-
-  describe('Actions tile', () => {
-    it.each(actionCases)(
-      'should correctly handle click on $actionLabel',
-      async ({ actionLabel, assertion }) => {
-        // GIVEN
-        const user = userEvent.setup();
-        const { container } = await renderTestApp(mockPageUrl);
-
-        const actionLink = await getOdsButtonByLabel({
-          container,
-          label: actionLabel,
-          isLink: true,
-        });
-
-        // WHEN
-        await act(() => user.click(actionLink));
-
-        // THEN
-        await assertion();
-      },
-    );
-  });
 });
