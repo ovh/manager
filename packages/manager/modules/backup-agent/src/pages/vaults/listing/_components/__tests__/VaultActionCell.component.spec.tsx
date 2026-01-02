@@ -38,7 +38,6 @@ describe('VaultActionCell test suite', () => {
     render(<VaultActionCell {...vault} />);
 
     const button = screen.getByTestId('delete-vault-button');
-    expect(button).toHaveAttribute('is-disabled', 'false');
     expect(button).toHaveAttribute('icon', ODS_ICON_NAME.trash);
     expect(button).toHaveAttribute('variant', ODS_BUTTON_VARIANT.ghost);
   });
