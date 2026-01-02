@@ -9,16 +9,13 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
-import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
 
+import { AddVersionButton } from './AddVersionButton.component';
 import { VersionCellAction } from './VersionCellAction.component';
 import {
   VersionCreatedAtCell,
@@ -31,8 +28,6 @@ const VersionListPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS, NAMESPACES.DASHBOARD]);
   const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
-  const secretPathDecoded = decodeSecretPath(secretPath);
-  const { trackClick } = useOkmsTracking();
 
   const { secret } = useOutletContext<SecretPageOutletContext>();
   const hasVersions = secret?.metadata?.currentVersion !== undefined;
@@ -40,7 +35,7 @@ const VersionListPage = () => {
   const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
     useSecretVersionList({
       okmsId,
-      path: secretPathDecoded,
+      path: decodeSecretPath(secretPath),
       // If the secret has no versions, don't fetch them to avoid a 500 error
       // TODO: Remove this once the API is fixed
       enabled: hasVersions,
@@ -75,9 +70,8 @@ const VersionListPage = () => {
       cell: (version: SecretVersion) =>
         VersionCellAction({
           okmsId,
-          secretPath: secretPathDecoded,
+          secret,
           version,
-          urn: secret?.iam?.urn,
         }),
       label: '',
     },
@@ -104,27 +98,7 @@ const VersionListPage = () => {
         sorting={sorting}
         onSortChange={setSorting}
         contentAlignLeft
-        topbar={
-          <OdsButton
-            label={t('add_new_version')}
-            onClick={() => {
-              navigate(
-                SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
-                  okmsId,
-                  secretPathDecoded,
-                  secret?.metadata?.currentVersion,
-                ),
-              );
-              trackClick({
-                location: PageLocation.page,
-                buttonType: ButtonType.button,
-                actionType: 'navigation',
-                actions: ['create', 'version'],
-              });
-            }}
-            icon={'plus'}
-          />
-        }
+        topbar={<AddVersionButton okmsId={okmsId} secret={secret} />}
       />
       <Suspense>
         <Outlet />
