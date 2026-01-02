@@ -53,5 +53,11 @@
   "fieldConfigurationPrivacyLabel": "Confidencialidad",
   "sshKeyConfigurationHelperBis": "Utilice la siguiente lista desplegable para asociar llaves SSH a su notebook",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
-  "qpuQubits": "Cúbits"
+  "qpuQubits": "Cúbits",
+  "defaultAutoRestartInfo": "El cuaderno se detendrá automáticamente después de 7 días. Su configuración y sus datos se guardarán.",
+  "fieldTimeOutLabel": "Expiración",
+  "fieldAutoRestartLabel": "Reinicio automático",
+  "fieldAutoRestartDescription": "Si está activado, el cuaderno se reiniciará automáticamente cada 7 días. Si está desactivado, el cuaderno se detendrá automáticamente después de 7 días. En ambos casos, su configuración y sus datos se guardarán.",
+  "filedEnable": "Activado",
+  "filedDisable": "Desactivado"
 }
