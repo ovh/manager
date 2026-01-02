@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.19.40...@ovh-ux/manager-pci-public-ip-app@0.19.41) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
+
+
+
+
+
 ## [0.19.40](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.19.39...@ovh-ux/manager-pci-public-ip-app@0.19.40) (2025-12-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

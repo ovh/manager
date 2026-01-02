@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.29.1...@ovh-ux/ovh-at-internet@0.29.2) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
 ## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.29.0...@ovh-ux/ovh-at-internet@0.29.1) (2025-12-22)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

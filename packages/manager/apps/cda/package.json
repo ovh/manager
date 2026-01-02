@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cda-app",
-  "version": "3.0.69",
+  "version": "3.0.70",
   "private": true,
   "repository": {
     "type": "git",
@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@ovh-ux/manager-cda": "^1.10.1",
-    "@ovh-ux/manager-config": "^8.8.5",
-    "@ovh-ux/manager-core": "^13.3.8",
+    "@ovh-ux/manager-config": "^8.8.6",
+    "@ovh-ux/manager-core": "^13.3.9",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
-    "@ovh-ux/ng-at-internet": "^6.0.42",
+    "@ovh-ux/ng-at-internet": "^6.0.43",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.5",
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.6",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
@@ -59,7 +59,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.2.1",
+    "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },

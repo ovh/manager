@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange-app",
-  "version": "0.13.38",
+  "version": "0.13.39",
   "private": true,
   "repository": {
     "type": "git",
@@ -15,12 +15,12 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.6",
-    "@ovh-ux/manager-config": "^8.8.5",
-    "@ovh-ux/manager-core": "^13.3.8",
+    "@ovh-ux/manager-config": "^8.8.6",
+    "@ovh-ux/manager-core": "^13.3.9",
     "@ovh-ux/manager-exchange": "^4.17.0",
     "@ovh-ux/manager-log-to-customer": "^2.8.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
-    "@ovh-ux/ng-at-internet": "^6.0.42",
+    "@ovh-ux/ng-at-internet": "^6.0.43",
     "@ovh-ux/ng-log-live-tail": "^2.7.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-chart": "^1.3.4",
@@ -71,7 +71,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.2.1",
+    "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
