@@ -19,8 +19,10 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
 
@@ -29,6 +31,7 @@ export default function OkmsListPage() {
   const navigate = useNavigate();
   const { notifications } = useNotifications();
   const { region } = useRequiredParams('region');
+  const { trackClick } = useOkmsTracking();
 
   const { data, error, isPending, refetch } = useOkmsDatagridList({
     pageSize: 100,
@@ -93,6 +96,12 @@ export default function OkmsListPage() {
               label={t('create_a_secret')}
               onClick={() => {
                 navigate(SECRET_MANAGER_ROUTES_URLS.createSecret);
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.button,
+                  actionType: 'navigation',
+                  actions: ['create', 'secret'],
+                });
               }}
             />
           }

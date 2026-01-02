@@ -72,11 +72,11 @@ export const updateSecretVersion = async ({
   version,
   state,
 }: UpdateSecretVersionParams) => {
-  const { data: response } = await apiClient.v2.put<UpdateSecretVersionResponse>(
+  const { data } = await apiClient.v2.put<UpdateSecretVersionResponse>(
     `okms/resource/${okmsId}/secret/${encodeURIComponent(path)}/version/${version}`,
     {
       state,
     },
   );
-  return response;
+  return data;
 };

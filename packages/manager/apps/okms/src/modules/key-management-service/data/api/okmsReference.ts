@@ -4,10 +4,11 @@ import apiClient from '@ovh-ux/manager-core-api';
 
 export const getServiceKeyReference = async (
   okmsRegion: string,
-): Promise<{
-  data: OkmsServiceKeyReference[];
-}> => {
-  return apiClient.v2.get(`okms/reference/serviceKey?region=${okmsRegion}`);
+): Promise<OkmsServiceKeyReference[]> => {
+  const { data } = await apiClient.v2.get<OkmsServiceKeyReference[]>(
+    `okms/reference/serviceKey?region=${okmsRegion}`,
+  );
+  return data;
 };
 
 export const getOkmsServiceKeyReferenceQueryKey = (okmsRegion: string) => [

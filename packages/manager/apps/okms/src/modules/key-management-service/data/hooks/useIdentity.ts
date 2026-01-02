@@ -5,7 +5,7 @@ import {
 } from '@key-management-service/types/identity.type';
 import { UseQueryOptions, useQueries, useQuery } from '@tanstack/react-query';
 
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiError } from '@ovh-ux/manager-core-api';
 
 import {
   getIdentityGroup,
@@ -24,9 +24,9 @@ import {
 
 const useIdentityList = <T>(
   idsQueryKeyFn: () => unknown[],
-  idsQueryFn: () => Promise<ApiResponse<string[]>>,
+  idsQueryFn: () => Promise<string[]>,
   detailsQueryKeyFn: (id: string) => unknown[],
-  detailsQueryFn: (id: string) => Promise<ApiResponse<T>>,
+  detailsQueryFn: (id: string) => Promise<T>,
 ) => {
   const {
     data: listData,
@@ -34,7 +34,7 @@ const useIdentityList = <T>(
     isPending: isListPending,
     isError: isListError,
     error: listError,
-  } = useQuery<ApiResponse<string[]>, ApiError>({
+  } = useQuery<string[], ApiError>({
     queryKey: idsQueryKeyFn(),
     queryFn: idsQueryFn,
   });
@@ -42,8 +42,8 @@ const useIdentityList = <T>(
   const detailsQueries = useQueries({
     queries:
       !isListPending && !isListError
-        ? listData.data.map(
-            (id): UseQueryOptions<ApiResponse<T>, ApiError> => ({
+        ? listData.map(
+            (id): UseQueryOptions<T, ApiError> => ({
               retry: false,
               queryKey: detailsQueryKeyFn(id),
               queryFn: () => detailsQueryFn(id),
@@ -57,7 +57,7 @@ const useIdentityList = <T>(
     isError: isListError || detailsQueries.some(({ isError }) => isError),
     error: listError || detailsQueries.find(({ error }) => error)?.error,
     identitiesInError: detailsQueries
-      .map(({ isError }, index) => (isError ? listData?.data?.[index] : null))
+      .map(({ isError }, index) => (isError ? listData?.[index] : null))
       .filter(Boolean),
   };
 
@@ -65,7 +65,7 @@ const useIdentityList = <T>(
     !resultStatus.isLoading && !resultStatus.isError
       ? detailsQueries.reduce((acc, { data }) => {
           if (data) {
-            return acc.concat(data?.data);
+            return acc.concat(data);
           }
           return acc;
         }, [] as T[])
