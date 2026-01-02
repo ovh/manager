@@ -59,7 +59,7 @@ export const TableBody = <T,>({
     const total = rows.reduce((acc, row) => {
       return acc + maxRowHeight + (row.getIsExpanded() ? subComponentHeight : 0);
     }, 0);
-    return isLoading ? total + (pageSize - 1) * maxRowHeight : total + rows.length;
+    return isLoading ? total + (pageSize - 1) * maxRowHeight : total;
   }, [rows, maxRowHeight, subComponentHeight, isLoading, expanded]);
 
   if (rows?.length === 0 && !isLoading) {
@@ -74,13 +74,13 @@ export const TableBody = <T,>({
         height: totalHeight,
       }}
     >
-      {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+      {rowVirtualizer.getVirtualItems().map((virtualRow, index) => {
         const row = rows[virtualRow?.index];
         if (!row) return null;
         const offset = renderSubComponent ? getOffset(virtualRow?.index) : 0;
-        const translateY = hideHeader
-          ? virtualRow.start + offset - virtualRow?.index + 1
-          : virtualRow.start + offset - virtualRow?.index - 1;
+        const translateY = !hideHeader
+          ? virtualRow.start + offset - index - 1
+          : virtualRow.start + offset;
         const width = !hideHeader ? '100%' : 'calc(100% - 1px)';
         const leftPosition = !hideHeader ? -1 : 0;
         return (
@@ -91,7 +91,7 @@ export const TableBody = <T,>({
               ref={rowVirtualizer.measureElement}
               className={`table overflow-hidden absolute top-0 table table-fixed`}
               style={{
-                left: leftPosition,
+                left: browserName === 'Safari' ? 0 : leftPosition,
                 height: `${maxRowHeight}px`,
                 transform:
                   browserName === 'Safari' && !hideHeader
@@ -128,6 +128,7 @@ export const TableBody = <T,>({
                 renderSubComponent={renderSubComponent}
                 subComponentHeight={subComponentHeight}
                 maxRowHeight={virtualRow?.size ?? maxRowHeight}
+                hideHeader={hideHeader}
               />
             )}
           </Fragment>
