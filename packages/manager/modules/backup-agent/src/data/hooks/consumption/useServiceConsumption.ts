@@ -1,19 +1,16 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-
-import { useServiceDetailsQueryOption } from '@ovh-ux/manager-module-common-api';
+import { useQuery } from '@tanstack/react-query';
 
 import { getServiceConsumption } from '@/data/api/services/consumption';
+import { useGetBackupServicesId } from '@/data/hooks/backup/useBackupServicesId';
 
 export const useServiceConsumption = (resourceName: string) => {
-  const queryClient = useQueryClient();
-  const serviceQueryOptions = useServiceDetailsQueryOption({ resourceName });
+  const getBackupServiceId = useGetBackupServicesId();
 
   return useQuery({
     queryKey: ['services', 'consumption', resourceName],
     queryFn: async () => {
-      const res = await queryClient.fetchQuery(serviceQueryOptions);
-      const serviceId = res.data.serviceId;
-      return getServiceConsumption(serviceId);
+      const serviceId = await getBackupServiceId();
+      return getServiceConsumption(Number(serviceId));
     },
   });
 };
