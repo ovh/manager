@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { fireEvent, waitFor, act } from '@/common/utils/test.provider';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
@@ -15,7 +15,7 @@ vi.mock('@/alldoms/hooks/data/useGetServices', () => ({
 
 describe('AllDom datagrid', () => {
   it('display the datagrid data', async () => {
-    (useResourcesIcebergV2 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV2 as Mock).mockReturnValue({
       flattenData: [alldomService],
       isLoading: false,
       search: {
@@ -25,7 +25,7 @@ describe('AllDom datagrid', () => {
       },
     });
 
-    (useGetServices as jest.Mock).mockReturnValue({
+    (useGetServices as Mock).mockReturnValue({
       data: [serviceInfo],
       listLoading: false,
     });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, Mock, vi } from 'vitest';
 import { useTranslation } from 'react-i18next';
 import DatagridColumnDnssec from './DatagridColumnDnssec';
 import { useGetDnssecStatus } from '@/domain/hooks/data/query';
@@ -43,13 +43,13 @@ describe('DatagridColumnDnssec', () => {
   const mockT = vi.fn((key: string) => `translated_${key}`);
 
   beforeEach(() => {
-    (useTranslation as jest.Mock).mockReturnValue({
+    (useTranslation as Mock).mockReturnValue({
       t: mockT,
     });
   });
 
   it('should render unsupported badge when dnssecStatus is null', () => {
-    (useGetDnssecStatus as jest.Mock).mockReturnValue({
+    (useGetDnssecStatus as Mock).mockReturnValue({
       dnssecStatus: null,
     });
 
@@ -65,7 +65,7 @@ describe('DatagridColumnDnssec', () => {
   });
 
   it('should render enabled badge when DNSSEC is enabled', () => {
-    (useGetDnssecStatus as jest.Mock).mockReturnValue({
+    (useGetDnssecStatus as Mock).mockReturnValue({
       dnssecStatus: { status: 'ENABLED' },
     });
 
@@ -79,7 +79,7 @@ describe('DatagridColumnDnssec', () => {
   });
 
   it('should render disabled badge when DNSSEC is disabled', () => {
-    (useGetDnssecStatus as jest.Mock).mockReturnValue({
+    (useGetDnssecStatus as Mock).mockReturnValue({
       dnssecStatus: { status: 'DISABLED' },
     });
 
@@ -93,7 +93,7 @@ describe('DatagridColumnDnssec', () => {
   });
 
   it('should call useGetDnssecStatus with correct service name', () => {
-    (useGetDnssecStatus as jest.Mock).mockReturnValue({
+    (useGetDnssecStatus as Mock).mockReturnValue({
       dnssecStatus: null,
     });
 

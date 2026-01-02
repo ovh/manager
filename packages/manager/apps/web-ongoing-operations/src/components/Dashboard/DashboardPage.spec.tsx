@@ -1,5 +1,5 @@
 import '@/setupTests';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { useFeatureAvailability, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import React from 'react';
@@ -23,10 +23,10 @@ vi.mock('@/hooks/data/query', () => ({
 
 describe('Datagrid template', () => {
   it('Display the datagrid domain element', async () => {
-    (useFeatureAvailability as jest.Mock).mockReturnValue({
+    (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
         }),
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: domain,
       isLoading: false,
       search: {
@@ -36,7 +36,7 @@ describe('Datagrid template', () => {
       },
     });
 
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
+    (useGetDomainInformation as Mock).mockReturnValue({
       data: serviceInfo,
     });
 

@@ -1,7 +1,6 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { wrapper } from '@/common/utils/test.provider';
 import DnssecToggleStatus from './DnssecToggleStatus';
@@ -87,7 +86,7 @@ describe('DnssecToggleStatus component', () => {
   };
 
   it('renders loading state', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isAuthorized: true,
     });
     render(
@@ -104,7 +103,7 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders unauthorized state', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: false,
     });
@@ -124,7 +123,7 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC enabled', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: true,
     });
@@ -145,7 +144,7 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC disabled', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: true,
     });
@@ -166,7 +165,7 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC not supported', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: true,
     });
