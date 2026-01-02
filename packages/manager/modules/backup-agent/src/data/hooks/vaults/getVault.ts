@@ -14,10 +14,10 @@ export const useBackupVaultsList = (
     pageSize: number;
   } = { pageSize: 9999 },
 ) => {
-  const { backupServicesId } = useBackupServicesId();
+  const { data: backupServicesId } = useBackupServicesId();
 
   return useResourcesIcebergV2<VaultResource>({
-    route: getVaultsRoute(backupServicesId),
+    route: getVaultsRoute(backupServicesId!),
     queryKey: BACKUP_VAULTS_LIST_QUERY_KEY,
     pageSize,
     enabled: !!backupServicesId,

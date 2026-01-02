@@ -1,19 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
+import { queryOptions, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { getBackupServices } from '@/data/api/backup/backupServices.requests';
 
-export const useBackupServicesId = () => {
-  const { data, isPending, error } = useQuery({
+const ONE_DAY_HOURS_IN_MS = 1000 * 60 * 60 * 24;
+
+export const getBackupServicesOptions = () => {
+  return queryOptions({
     queryFn: () => getBackupServices(),
     queryKey: ['backupServiceId'],
-    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+    staleTime: ONE_DAY_HOURS_IN_MS,
   });
+};
 
-  const id = data?.[0]?.id || '';
+export const useBackupServicesId = () => {
+  return useQuery({
+    ...getBackupServicesOptions(),
+    select: (data) => data[0]?.id,
+  });
+};
 
-  return {
-    backupServicesId: id,
-    isPending,
-    error,
-  };
+export const useGetBackupServicesId = () => {
+  const queryClient = useQueryClient();
+
+  return async () => (await queryClient.ensureQueryData(getBackupServicesOptions()))[0]?.id;
 };
