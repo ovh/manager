@@ -8,10 +8,11 @@ import { buildDeleteTenantUrl } from '@/utils/buildSearchQuery.utils';
 
 import { GeneralInformationTenantTile } from './_components/general-information-tenant-tile/GeneralInformationTenantTile.component';
 import SubscriptionTile from './_components/subscription-tile/SubscriptionTile.component';
+import {useBackupVSPCTenantDetails} from "@/data/hooks/tenants/useVspcTenantDetails";
 
 export default function GeneralInformationPage() {
   const { tenantId } = useRequiredParams('tenantId');
-  const { data: tenantResource } = useBackupTenantDetails({ tenantId: tenantId });
+  const { data: tenantResource } = useBackupVSPCTenantDetails({ tenantId: tenantId });
   const navigate = useNavigate();
 
   return (

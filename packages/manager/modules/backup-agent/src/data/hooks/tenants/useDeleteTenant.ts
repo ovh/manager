@@ -8,7 +8,7 @@ import { deleteVSPCTenant } from '../../api/tenants/tenants.requests';
 import { GET_VSPC_TENANTS_QUERY_KEY } from './useVspcTenants';
 
 type UseDeleteVSPCTenantParams = Partial<
-  UseMutationOptions<string, ApiError, { backupServicesId: string; vspcTenantId: string }>
+  UseMutationOptions<string, ApiError, string>
 >;
 
 export const useDeleteVSPCTenant = (
@@ -18,7 +18,7 @@ export const useDeleteVSPCTenant = (
   const getBackupServiceId = useGetBackupServicesId();
 
   return useMutation({
-    mutationFn: async ({ vspcTenantId }) => {
+    mutationFn: async (vspcTenantId) => {
       const backupServicesId = await getBackupServiceId();
 
       return deleteVSPCTenant(backupServicesId!, vspcTenantId);
