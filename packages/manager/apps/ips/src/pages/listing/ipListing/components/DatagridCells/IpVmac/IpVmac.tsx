@@ -3,7 +3,7 @@ import { useGetIpdetails, useGetIpVmacWithIp } from '@/data/hooks';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { isVmacEnabled } from '../enableCellsUtils';
+import { isVmacAvailable } from '../enableCellsUtils';
 
 export type IpVmacProps = {
   ip: string;
@@ -34,7 +34,7 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
   const enabled =
     expiredIps.indexOf(ip) === -1 &&
     !isIpDetailsLoading &&
-    isVmacEnabled(ipDetails);
+    isVmacAvailable(ipDetails);
 
   // get vmacs if ip is routed to a dedicated server
   const serviceName = ipDetails?.routedTo?.serviceName;

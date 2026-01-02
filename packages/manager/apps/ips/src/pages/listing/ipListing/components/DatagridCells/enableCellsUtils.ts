@@ -10,11 +10,11 @@ export const isLinkedServiceNameDedicated = (ipDetails: IpDetails) =>
   getTypeByServiceName(ipDetails?.routedTo?.serviceName) ===
   IpTypeEnum.DEDICATED;
 
-export const isGameFirewallEnabled = (ipDetails: IpDetails) =>
+export const isGameFirewallAvailable = (ipDetails: IpDetails) =>
   isAdditionalOrDedicated(ipDetails) && isLinkedServiceNameDedicated(ipDetails);
 
-export const isAntiDdosEnabled = (ipDetails: IpDetails) =>
+export const isAntiDdosAvailable = (ipDetails: IpDetails) =>
   ipDetails?.version === 4;
 
-export const isVmacEnabled = (ipDetails: IpDetails) =>
+export const isVmacAvailable = (ipDetails: IpDetails) =>
   isAdditionalOrDedicated(ipDetails) && isLinkedServiceNameDedicated(ipDetails);
