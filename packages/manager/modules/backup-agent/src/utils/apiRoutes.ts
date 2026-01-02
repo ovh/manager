@@ -8,7 +8,7 @@ export type GetBackupAgentParams = {
 export const BACKUP_SERVICES_ROUTE = '/backupServices/tenant';
 
 // Base route
-const getBackupBaseRoute = (backupServicesId: string) =>
+export const getBackupBaseRoute = (backupServicesId: string) =>
   `/backupServices/tenant/${backupServicesId}`;
 
 // Vaults

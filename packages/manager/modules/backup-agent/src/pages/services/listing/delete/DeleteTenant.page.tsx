@@ -47,7 +47,7 @@ export default function DeleteTenantPage() {
       isOpen
       heading={t('delete_tenant_modal_title')}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      onPrimaryButtonClick={() => tenantId && deleteTenant(tenantId)}
+      onPrimaryButtonClick={() => tenantId && deleteTenant(tenantId!)}
       isPrimaryButtonLoading={isPending}
       isPrimaryButtonDisabled={isPending || !isDeleteTenantFeatureAvailable}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}

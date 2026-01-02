@@ -9,29 +9,29 @@ import { mapTenantResourceToTenantResourceWithRegion } from '@/utils/mappers/map
 import { useGetBackupServicesId } from '../backup/useBackupServicesId';
 import { BACKUP_TENANTS_QUERY_KEY } from './useBackupTenants';
 
-export const BACKUP_TENANT_DETAILS_QUERY_KEY = (tenantId: string) => [
+export const BACKUP_TENANT_DETAILS_QUERY_KEY = [
   ...BACKUP_TENANTS_QUERY_KEY,
-  tenantId,
+  'details'
 ];
 
 export const useBackupTenantDetails = ({
-  tenantId,
-}: { tenantId: string } & Partial<
+  ...options
+}: Partial<
   Omit<
     DefinedInitialDataOptions<Resource<Tenant>, unknown, Resource<WithRegion<Tenant>>>,
     'queryKey' | 'queryFn'
   >
->) => {
+> = {}) => {
   const getBackupServiceId = useGetBackupServicesId();
 
   return useQuery({
     queryFn: async () => {
       const backupServicesId = await getBackupServiceId();
-      return getTenantDetails(backupServicesId!, tenantId);
+      return getTenantDetails(backupServicesId!);
     },
-    queryKey: BACKUP_TENANT_DETAILS_QUERY_KEY(tenantId),
-    enabled: !!tenantId,
+    queryKey: BACKUP_TENANT_DETAILS_QUERY_KEY,
     select: (data): Resource<WithRegion<Tenant>> =>
       mapTenantResourceToTenantResourceWithRegion(data),
+    ...options,
   });
 };
