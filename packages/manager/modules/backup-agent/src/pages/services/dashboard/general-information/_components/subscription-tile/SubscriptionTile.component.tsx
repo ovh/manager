@@ -23,11 +23,11 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
     NAMESPACES.BILLING,
     BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD,
   ]);
-  const { data, isLoading } = useBackupTenantDetails({ tenantId: tenantId! });
+  const { data, isLoading } = useBackupTenantDetails();
   const billingHref = useHref(urls.listingBilling);
   const { connectedVaultsText, installedAgentsText } = useTenantBackupStats({
     tenantDetails: data,
-    vspcTenants: data?.currentState.vspcTenants,
+    vspcTenantIds: [tenantId ?? ''].filter(Boolean),
   });
 
   return (

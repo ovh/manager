@@ -138,7 +138,7 @@ const AddConfigurationPage = () => {
           )}
         </section>
 
-        <section className="flex flex-col gap-4 mt-8 max-w-fit">
+        <section className="flex flex-col gap-4 mt-8 max-w-fit max-w-full">
           <OdsText id={FORM_ID} preset="heading-3">
             {t('download_agent')}
           </OdsText>
@@ -152,6 +152,7 @@ const AddConfigurationPage = () => {
           </a>
           {!isLoadingDownloadLink && (
             <DownloadCode
+              className="break-all"
               downloadLink={isDownloadEnabled ? downloadLink : '...'}
               canCopy={isDownloadEnabled}
             />
