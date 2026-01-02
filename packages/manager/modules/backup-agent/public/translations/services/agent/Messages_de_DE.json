@@ -1,0 +1,19 @@
+{
+  "add_configuration": "Eine Konfiguration hinzufügen",
+  "edit_configuration": "Einen Agenten bearbeiten",
+  "service_informations": "Informationen zum Dienst",
+  "link_agent_to_a_server": "Einen Agenten mit einem bestehenden Server verknüpfen",
+  "add_server": "Einen Server hinzufügen",
+  "select_server": "Den Server auswählen",
+  "product_name": "Produktname",
+  "select_os": "Ein Betriebssystem auswählen",
+  "os": "Betriebssystem",
+  "download_agent": "Den Agenten herunterladen",
+  "delete_tenant_banner_error": "Es ist ein Fehler aufgetreten. Bitte warten Sie einige Minuten, bevor Sie es erneut versuchen.",
+  "delete_agent_banner_success": "Ihr Agent {{agentName}} wurde erfolgreich gelöscht",
+  "delete_agent_banner_error": "Es ist ein Fehler aufgetreten. Bitte warten Sie einige Minuten, bevor Sie es erneut versuchen.",
+  "delete_agent_modal_title": "Den Agenten löschen",
+  "delete_agent_modal_content": "Möchten Sie den Agenten {{agentName}} wirklich löschen? Die zugehörigen Daten werden bis zu 14 Tage nach der Löschung aufbewahrt.",
+  "download_agent_with_executable": "Über ausführbare Datei installieren",
+  "download_agent_with_command_line": "Den Agenten über das Terminal installieren"
+}
