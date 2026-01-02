@@ -22,18 +22,48 @@ type UseRedirectionsParams = Omit<
   redirection?: string;
   redirectionTargetId?: string;
   organizationLabel?: string;
+  organizationId?: string;
   shouldFetchAll?: boolean;
 };
 
+export const useFetchAllPages = (
+  allPages: boolean,
+  setAllPages: React.Dispatch<React.SetStateAction<boolean>>,
+  query: UseInfiniteQueryResult<RedirectionType[], unknown>,
+) => {
+  const fetchAllPages = useCallback(() => {
+    if (!allPages) {
+      setAllPages(true);
+    }
+  }, [allPages, setAllPages]);
+
+  useEffect(() => {
+    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
+      query.fetchNextPage();
+    }
+  }, [allPages, query.hasNextPage, query.isFetchingNextPage, query.fetchNextPage]);
+
+  return fetchAllPages;
+};
+
 export const useRedirections = (props: UseRedirectionsParams = {}) => {
-  const { redirection, redirectionTargetId, organizationLabel, shouldFetchAll, ...options } = props;
-  const [allPages, setAllPages] = useState(!!shouldFetchAll);
+  const {
+    redirection,
+    redirectionTargetId,
+    organizationLabel,
+    organizationId,
+    shouldFetchAll,
+    ...options
+  } = props;
+
   const { platformId } = useParams();
+  const [allPages, setAllPages] = useState(!!shouldFetchAll);
 
   const urlSearchParams = buildURLSearchParams({
     redirection,
     redirectionTargetId,
     organizationLabel,
+    organizationId,
   });
 
   const query = useInfiniteQuery({
@@ -57,17 +87,7 @@ export const useRedirections = (props: UseRedirectionsParams = {}) => {
       data?.pages.flatMap((page: UseInfiniteQueryResult<RedirectionType[]>) => page.data),
   });
 
-  const fetchAllPages = useCallback(() => {
-    if (!allPages) {
-      setAllPages(true);
-    }
-  }, [allPages, setAllPages]);
-
-  useEffect(() => {
-    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
-      query.fetchNextPage();
-    }
-  }, [query.data, allPages]);
+  const fetchAllPages = useFetchAllPages(allPages, setAllPages, query);
 
   // reset when searchParams changes
   useEffect(() => {
