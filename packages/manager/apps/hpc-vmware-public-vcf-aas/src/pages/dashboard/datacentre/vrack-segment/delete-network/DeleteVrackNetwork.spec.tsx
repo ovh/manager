@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, fireEvent } from '@testing-library/react';
 import {
   organizationList,
   datacentreList,
@@ -42,10 +42,25 @@ describe('Delete Vrack Network Page', () => {
     await waitFor(() => checkModalContent(), { timeout: 10_000 });
     const modal = screen.getByTestId('modal');
 
+    const confirmKeyword = 'DELETE';
+    const confirmInput = screen.getByPlaceholderText(confirmKeyword);
+
+    fireEvent(
+      confirmInput,
+      new CustomEvent('odsChange', {
+        bubbles: true,
+        detail: { value: confirmKeyword },
+      } as CustomEventInit),
+    );
+
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
-    expect(submitCta).toBeEnabled();
-    await act(() => userEvent.click(submitCta));
+
+    await waitFor(() => expect(submitCta).toBeEnabled(), {
+      timeout: 10_000,
+    });
+
+    fireEvent.click(submitCta);
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), {
