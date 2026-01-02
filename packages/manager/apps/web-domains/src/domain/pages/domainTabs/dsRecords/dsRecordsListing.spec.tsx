@@ -20,6 +20,10 @@ vi.mock('@/domain/hooks/data/query', () => ({
     domainZone: domainZoneMock,
     isFetchingDomainZone: false,
   })),
+  useUpdateDnssecService: vi.fn(() => ({
+    updateServiceDnssec: vi.fn(),
+    isUpdateIsPending: false,
+  })),
 }));
 
 vi.mock('@/domain/utils/utils', async () => {

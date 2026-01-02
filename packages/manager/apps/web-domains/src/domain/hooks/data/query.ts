@@ -158,8 +158,6 @@ export const useTerminateAnycastMutation = (
 
 export const useUpdateDomainResource = (serviceName: string) => {
   const queryClient = useQueryClient();
-  const { addSuccess, addError } = useNotifications();
-  const { t } = useTranslation(['domain', 'web-domains/error']);
 
   const { mutate, isPending, error, reset } = useMutation<
     void,
@@ -391,10 +389,10 @@ export const useUpdateDnssecService = (
       });
       addSuccess(t('domain_tab_general_information_dnssec_result'));
     },
-    onError: (error: Error) => {
+    onError: (error: DomainUpdateApiError) => {
       addError(
         t('domain_tab_general_information_dnssec_error', {
-          error: error.message,
+          error: error.response.data.message,
         }),
       );
     },
