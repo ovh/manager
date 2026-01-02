@@ -18,10 +18,10 @@ export const BACKUP_AGENTS_LIST_QUERY_KEY = (tenantId: string) => [
 ];
 
 export const useBackupAgentList = ({ tenantId, pageSize = 9999 }: UseBackupAgentListParams) => {
-  const { backupServicesId } = useBackupServicesId();
+  const { data: backupServicesId } = useBackupServicesId();
 
   return useResourcesIcebergV2<Resource<Agent>>({
-    route: getBackupAgentsRoute(backupServicesId, tenantId),
+    route: getBackupAgentsRoute(backupServicesId!, tenantId),
     queryKey: BACKUP_AGENTS_LIST_QUERY_KEY(tenantId),
     enabled: !!backupServicesId && !!tenantId,
     pageSize,
