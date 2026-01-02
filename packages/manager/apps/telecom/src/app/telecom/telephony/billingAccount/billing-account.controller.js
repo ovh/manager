@@ -14,6 +14,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   guidesLink,
   manageContactsLink,
   orderAliasLink,
+  orderProductLink,
   phonebookLink,
   servicesLink,
   shellClient,
@@ -38,6 +39,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
   self.guidesLink = guidesLink;
   self.manageContactsLink = manageContactsLink;
   self.orderAliasLink = orderAliasLink;
+  self.orderProductLink = orderProductLink;
   self.phonebookLink = phonebookLink;
   self.servicesLink = servicesLink;
 
@@ -144,6 +146,10 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountCtrl(
     });
   }
 
+  self.isOrderProductActive = function() {
+    const active = self.currentActiveLink();
+    return active === self.orderProductLink || active === self.orderAliasLink;
+  };
   /* -----  End of INITIALIZATION  ------*/
 
   init();

@@ -1,0 +1,7 @@
+{
+  "telephony_order_international_title": "Contratar un número internacional",
+  "telephony_order_international_order_success": "Número(s) internacional(es) contratado(s). Por favor, abone su pedido.",
+  "telephony_order_international_order_error": "El pedido de número(s) geográfico(s) ha fallado. Por favor, vuelva a intentarlo más adelante.",
+  "telephony_order_international_countries_error": "No se ha podido cargar la lista de países",
+  "telephony_order_international_address_message": "Para poder disponer de su número, introduzca los datos de contacto válidos en el país en cuestión."
+}
