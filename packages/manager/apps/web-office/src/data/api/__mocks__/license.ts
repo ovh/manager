@@ -10,6 +10,7 @@ export const licensesMock: LicenseType[] = [
     displayName: 'user123.o365.ovh.com',
     firstName: 'John',
     lastName: 'Doe',
+    mcaAgreed: true,
     phone: '0033123456789',
     serviceName: 'user123.o365.ovh.com',
     serviceType: 'payAsYouGo',
@@ -23,6 +24,7 @@ export const licensesMock: LicenseType[] = [
   },
   {
     address: '12345 Main St',
+    mcaAgreed: true,
     city: 'Lille',
     creationDate: '2020-01-15T12:00:00+02:00',
     displayName: 'user123.o365.ovh.com',

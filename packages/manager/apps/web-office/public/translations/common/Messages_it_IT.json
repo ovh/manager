@@ -50,5 +50,8 @@
   "state_deleting": "Eliminazione in corso...",
   "state_suspended": "Sospeso",
   "state_suspending": "Sospensione in corso",
-  "error_message": "La tua richiesta non è andata a buon fine: {{ error }}"
+  "error_message": "La tua richiesta non è andata a buon fine: {{ error }}",
+  "agreement": "Firma del contratto",
+  "contract_signature": "Firma del contratto",
+  "contract_signature_tooltip": "Per accedere al tuo servizio, devi accettare il contratto utente Microsoft"
 }

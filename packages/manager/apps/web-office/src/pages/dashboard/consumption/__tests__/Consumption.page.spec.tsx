@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { licensesMock } from '@/data/api/__mocks__/license';
 import { mockOfficeLicenseServiceInfos } from '@/data/api/__mocks__/serviceInfos';
 import { mockUsageStatistics } from '@/data/api/__mocks__/usageStatistics';
-import { render } from '@/utils/Test.provider';
+import { renderWithRouter } from '@/utils/Test.provider';
 
 import Consumption from '../Consumption.page';
 
@@ -29,12 +29,12 @@ describe('Consumption Component', () => {
   });
 
   it('should render the component correctly', () => {
-    const { getByTestId } = render(<Consumption />);
+    const { getByTestId } = renderWithRouter(<Consumption />);
     expect(getByTestId('period-select')).toBeInTheDocument();
   });
 
   it('should render the responsive chart container', () => {
-    const { container } = render(<Consumption />);
+    const { container } = renderWithRouter(<Consumption />);
 
     const chartContainer = container.querySelector('.recharts-responsive-container');
     expect(chartContainer).toBeInTheDocument();
@@ -42,9 +42,14 @@ describe('Consumption Component', () => {
 });
 
 describe('Consumption W3C Validation', () => {
-  // issue with ods on ods-select and option child element
+  // issue with ods on select:
+  // expected HTML to be valid, but got:
+  // Bad value “combobox” for attribute “role” on element “button”.
+  // Bad value “” for attribute “aria-describedby” on element “button”: An IDREFS value must contain at least one non-whitespace character.
+  // The “aria-controls” attribute must point to an element in the same document.
+  // The “aria-labelledby” attribute must point to an element in the same document
   it.skip('should have a valid html', async () => {
-    const { container } = render(<Consumption />);
+    const { container } = renderWithRouter(<Consumption />);
     const html = container.innerHTML;
 
     await expect(html).toBeValidHtml();

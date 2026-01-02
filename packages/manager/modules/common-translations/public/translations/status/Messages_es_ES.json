@@ -22,5 +22,6 @@
   "unconfigured": "No configurado",
   "unPaid": "Factura impagada",
   "error": "Error",
-  "ready": "Activo"
+  "ready": "Activo",
+  "awaiting_signature": "Esperando firma"
 }

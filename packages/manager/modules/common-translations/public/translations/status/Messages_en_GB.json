@@ -22,5 +22,6 @@
   "unconfigured": "Not configured",
   "unPaid": "Unpaid bill",
   "error": "Error",
-  "ready": "Active"
+  "ready": "Active",
+  "awaiting_signature": "Waiting for signature"
 }

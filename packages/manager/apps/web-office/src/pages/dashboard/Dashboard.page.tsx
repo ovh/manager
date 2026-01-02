@@ -1,23 +1,18 @@
 import { useContext } from 'react';
 
-import { Outlet, useResolvedPath } from 'react-router-dom';
+import { Outlet, useNavigate, useResolvedPath } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  BaseLayout,
-  GuideButton,
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import type { GuideItem } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, GuideMenu, Notifications, useNotifications } from '@ovh-ux/muk';
+import type { GuideMenuItem } from '@ovh-ux/muk';
 
 import { GUIDES_LIST } from '@/Guides.constants';
 import { GUIDES } from '@/Tracking.constants';
@@ -41,7 +36,7 @@ export default function DashboardPage() {
   const { trackClick } = useOvhTracking();
   const { data } = useParentTenant();
   const serviceName = data?.serviceName;
-  const { t } = useTranslation(['common', NAMESPACES.DASHBOARD]);
+  const { t } = useTranslation(['common', NAMESPACES.DASHBOARD, NAMESPACES.ACTIONS]);
   const { notifications } = useNotifications();
   const basePath = useResolvedPath('').pathname;
   const context = useContext(ShellContext);
@@ -49,6 +44,7 @@ export default function DashboardPage() {
   function computePathMatchers(routes: string[]) {
     return routes.map((path) => new RegExp(path.replace(':serviceName', serviceName)));
   }
+  const navigate = useNavigate();
   const tabsList: DashboardTabItemProps[] = [
     {
       name: 'general-information',
@@ -70,13 +66,13 @@ export default function DashboardPage() {
     },
   ];
 
-  const guideItems: GuideItem[] = [
+  const guideItems: GuideMenuItem[] = [
     {
       id: 1,
       href: GUIDES_LIST.office_guides.url[ovhSubsidiary] || GUIDES_LIST.office_guides.url.DEFAULT,
       target: '_blank',
-      label: t('common_guides_header'),
-      onClickReturn: () => {
+      children: t('common_guides_header'),
+      onClick: () => {
         trackClick({
           location: PageLocation.page,
           buttonType: ButtonType.externalLink,
@@ -86,15 +82,23 @@ export default function DashboardPage() {
       },
     },
   ];
-  const header = {
-    title: data?.serviceName,
-    headerButton: <GuideButton items={guideItems} />,
-  };
+
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb />}
-      header={header}
-      tabs={<TabsPanel tabs={tabsList} />}
+      backLink={
+        data?.mcaAgreed
+          ? null
+          : {
+              label: t(`${NAMESPACES.ACTIONS}:back_to`, { value: t('common_office_title') }),
+              onClick: () => navigate(urls.listing),
+            }
+      }
+      header={{
+        title: data?.mcaAgreed ? data?.serviceName : t('contract_signature'),
+        guideMenu: <GuideMenu items={guideItems} />,
+      }}
+      tabs={data?.mcaAgreed ? <TabsPanel tabs={tabsList} /> : null}
       message={
         // temporary fix margin even if empty
         notifications.length ? <Notifications /> : null

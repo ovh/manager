@@ -1,0 +1,10 @@
+{
+  "signatory_informations": "Informazioni del firmatario",
+  "signatory_informations_description": "Per rilasciare le tue licenze, devi accettare il contratto cliente Microsoft. Si prega di verificare che le informazioni qui sotto corrispondano al firmatario.",
+  "signatory_informations_message": "Cliccando su \"Conferma\", verrai reindirizzato al sito Microsoft per convalidare la tua richiesta. Dopo la convalida, chiudi la scheda e torna a questo tunnel di configurazione.",
+  "signatory_step2_description": "Per consegnare il tuo servizio, conferma di aver firmato il tuo contratto con Microsoft.",
+  "signatory_step2_link": "Collegamento a Microsoft",
+  "signatory_step2_button": "Ho firmato il contratto Microsoft",
+  "signatory_success_message": "Il tuo servizio è stato consegnato con successo ed è ora disponibile!",
+  "signatory_success_link": "I tuoi primi passi con Microsoft 365"
+}

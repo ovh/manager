@@ -2,17 +2,16 @@ import { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import { GUIDES_LIST } from '@/Guides.constants';
 import { GO_TO, ORDER_OFFICE } from '@/Tracking.constants';
@@ -33,9 +32,9 @@ export default function Onboarding() {
         alt: '',
       }}
       description={
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="text-center">
+        <Text preset={TEXT_PRESET.paragraph} className="text-center">
           {t('web_office_onboarding_description')}
-        </OdsText>
+        </Text>
       }
       orderButtonLabel={t(`${NAMESPACES.ACTIONS}:order`)}
       onOrderButtonClick={() => {
@@ -55,7 +54,7 @@ export default function Onboarding() {
       }}
     >
       {[1, 2, 3].map((value: number) => (
-        <Card
+        <LinkCard
           key={GUIDES_LIST[`office_onboarding${value}_guides`].key}
           href={
             GUIDES_LIST[`office_onboarding${value}_guides`].url[ovhSubsidiary] ||
@@ -66,6 +65,7 @@ export default function Onboarding() {
             description: t(`web_office_onboarding_guide${value}_description`),
             category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
           }}
+          externalHref={true}
           onClick={() => {
             trackClick({
               location: PageLocation.tile,
