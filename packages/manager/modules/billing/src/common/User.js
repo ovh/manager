@@ -19,19 +19,15 @@ export default /* @ngInject */ function BillingUserService(
    */
   this.getUser = () =>
     this.getMe().then((result) => ({
-      nichandle: result.nichandle,
-      email: result.email,
+      ...result,
       firstName: result.firstname,
       lastName: result.name,
       billingCountry: result.country,
-      ovhSubsidiary: result.ovhSubsidiary,
-      spareEmail: result.spareEmail,
+      // FIXME: this cannot work as billingCountry does not exist on result
       canHaveInvoicesByPostalMail: () =>
         result.billingCountry === 'FR' && result.legalform === 'individual',
       hasAutorenew2016: () =>
         AUTORENEW_2016_SUBSIDIARIES.includes(result.ovhSubsidiary),
-      auth: result.auth,
-      language: result.language,
     }));
 
   this.getMe = () => $q.when(coreConfig.getUser());
