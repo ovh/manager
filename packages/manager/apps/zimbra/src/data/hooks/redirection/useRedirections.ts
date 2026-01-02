@@ -25,6 +25,7 @@ type UseRedirectionsParams = Omit<
   shouldFetchAll?: boolean;
 };
 
+// eslint-disable-next-line max-lines-per-function
 export const useRedirections = (props: UseRedirectionsParams = {}) => {
   const { destination, source, organizationId, shouldFetchAll, ...options } = props;
   const [allPages, setAllPages] = useState(!!shouldFetchAll);
