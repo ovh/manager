@@ -1,0 +1,15 @@
+{
+  "telephony_order_special_title": "Ordina un numero speciale",
+  "telephony_order_special_submit_title": "Ordina un numero speciale",
+  "telephony_order_special_amount_title": "Numero di numeri:",
+  "telephony_order_special_range_title": "Classe",
+  "telephony_order_special_typology_title": "Tipo:",
+  "telephony_order_special_specific_title": "Scelta del numero",
+  "telephony_order_special_retractation_title": "Diritto di recesso",
+  "telephony_order_special_address_title": "Coordinate del titolare del numero",
+  "telephony_order_special_zone_tip": "Città o CAP",
+  "telephony_order_special_numbers_error": "Impossibile caricare la lista di preselezione dei numeri.",
+  "telephony_order_special_order_error": "L'ordine dei numeri speciali non è riuscito. Ti preghiamo di riprovare più tardi.",
+  "telephony_order_special_order_success": "Numero/i geografico/i ordinato/i. Effettua il saldo.",
+  "telephony_order_special_range_error": "Impossibile caricare gli intervalli di numeri."
+}
