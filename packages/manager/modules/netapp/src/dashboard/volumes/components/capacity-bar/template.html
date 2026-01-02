@@ -1,0 +1,121 @@
+<div id="capacity-bar">
+    <div class="container">
+        <div class="bar">
+            <div
+                data-ng-if="$ctrl.usedData"
+                class="segment used"
+                data-ng-style="{ width: $ctrl.percentages.usedData }"
+            ></div>
+            <div
+                data-ng-if="$ctrl.availableData"
+                class="segment available"
+                data-ng-style="{ width: $ctrl.percentages.availableData }"
+            ></div>
+            <div
+                data-ng-if="$ctrl.overflow"
+                class="segment overflow"
+                data-ng-style="{ width: $ctrl.percentages.overflow }"
+            ></div>
+            <div
+                data-ng-if="$ctrl.reserveSpace"
+                class="segment separator"
+            ></div>
+            <div
+                data-ng-if="$ctrl.availableReserve"
+                class="segment available"
+                data-ng-style="{ width: $ctrl.percentages.availableReserve }"
+            ></div>
+            <div
+                data-ng-if="$ctrl.usedReserve"
+                class="segment used-reserve"
+                data-ng-style="{ width: $ctrl.percentages.usedReserve }"
+            ></div>
+        </div>
+    </div>
+    <div class="info-section">
+        <div class="info-item">
+            <strong
+                data-translate="netapp_volumes_dashboard_volume_data_space"
+            ></strong>
+            <strong
+                data-translate="netapp_volumes_dashboard_volume_capacity_bar_size"
+                data-translate-values="{size: $ctrl.space}"
+            >
+            </strong>
+        </div>
+
+        <div class="info-item">
+            <span
+                class="capacity-label used"
+                data-translate="netapp_volumes_dashboard_volume_used"
+            >
+            </span>
+            <span
+                data-translate="netapp_volumes_dashboard_volume_capacity_bar_size"
+                data-translate-values="{size: $ctrl.usedData}"
+            >
+            </span>
+        </div>
+        <div class="info-item">
+            <span
+                class="capacity-label overflow"
+                data-translate="netapp_volumes_dashboard_volume_overflow"
+            >
+            </span>
+            <span
+                data-translate="netapp_volumes_dashboard_volume_capacity_bar_size"
+                data-translate-values="{size: $ctrl.overflow}"
+            >
+            </span>
+        </div>
+        <div class="info-item">
+            <span
+                class="capacity-label available"
+                data-translate="netapp_volumes_dashboard_volume_available"
+            >
+            </span>
+            <span
+                data-translate="netapp_volumes_dashboard_volume_capacity_bar_size"
+                data-translate-values="{size: $ctrl.availableData}"
+            >
+            </span>
+        </div>
+
+        <div class="info-item">
+            <strong
+                data-translate="netapp_volumes_dashboard_snapshot_space"
+            ></strong>
+            <strong
+                data-translate="netapp_volumes_dashboard_volume_capacity_bar_size"
+                data-translate-values="{size: $ctrl.reserveSpace}"
+            >
+            </strong>
+        </div>
+
+        <div class="info-item">
+            <span
+                class="capacity-label used-reserve"
+                data-translate="netapp_volumes_dashboard_volume_used"
+            >
+            </span>
+            <span
+                data-translate="netapp_volumes_dashboard_volume_capacity_bar_size"
+                data-translate-values="{size: $ctrl.usedReserve}"
+            >
+            </span>
+        </div>
+
+        <div class="info-item">
+            <span
+                class="capacity-label available"
+                data-translate="netapp_volumes_dashboard_volume_available"
+            >
+            </span>
+            <span
+                data-translate="netapp_volumes_dashboard_volume_capacity_bar_size"
+                data-translate-values="{size: $ctrl.availableReserve}"
+            >
+            </span>
+        </div>
+    </div>
+</div>
