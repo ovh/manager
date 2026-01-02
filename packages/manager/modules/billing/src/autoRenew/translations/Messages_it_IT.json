@@ -169,5 +169,6 @@
   "billing_autorenew_service_every_x_months": "Ogni {{ months }} mesi",
   "billing_autorenew_service_every_year": "Ogni anno",
   "billing_autorenew_service_every_x_years": "Ogni {{ years }} anni",
-  "billing_autorenew_engagement_none": "Senza impegno contrattuale"
+  "billing_autorenew_engagement_none": "Senza impegno contrattuale",
+  "billing_autorenew_service_type_DOMAIN_RESELLER": "Programma Rivenditori di domini"
 }

@@ -169,5 +169,6 @@
   "billing_autorenew_service_every_x_months": "Every {{ months }} months",
   "billing_autorenew_service_every_year": "Every year",
   "billing_autorenew_service_every_x_years": "Every {{ years }} years",
-  "billing_autorenew_engagement_none": "No commitment"
+  "billing_autorenew_engagement_none": "No commitment",
+  "billing_autorenew_service_type_DOMAIN_RESELLER": "Domain Name Reseller Program"
 }
