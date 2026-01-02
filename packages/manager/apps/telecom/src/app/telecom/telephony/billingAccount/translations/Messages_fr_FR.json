@@ -12,5 +12,10 @@
   "telephony_group_loading_error": "Impossible de charger les informations relatives à votre compte de facturation ({{billingAccount}}).",
   "telephony_group_rename_error": "Impossible de renommer votre compte de facturation {{billingAccount}}.",
   "telephony_group_termination_warning": "Le groupe sera supprimé le <strong>{{ date }}</strong>.",
-  "telephony_group_termination_warning_link": "Vous pouvez annuler en cliquant ici"
+  "telephony_group_termination_warning_link": "Vous pouvez annuler en cliquant ici",
+  "telephony_group_order_product_label": "Quel produit souhaitez-vous commander ?",
+  "telephony_group_order_number": "Commander un numéro",
+  "telephony_group_order_link_voip": "Commander une ligne VoIP",
+  "telephony_group_order_link_sip": "Commander un canal SIP Trunk",
+  "telephony_group_order_link_accessory": "Commander un accessoire"
 }

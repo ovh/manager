@@ -1,0 +1,37 @@
+<div>
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <div class="mt-4">
+        <h3
+            class="oui-tile__title oui-heading_2"
+            data-translate="telephony_group_order_product_label"
+        ></h3>
+
+        <div data-ng-repeat="action in $ctrl.actions track by action.name">
+            <!-- external link -->
+            <a
+                data-ng-if="action.external && action.visible"
+                class="oui-tile__button oui-button oui-button_ghost"
+                data-ng-href="{{action.href}}"
+                target="{{action.target}}"
+            >
+                <span data-ng-bind="action.text"></span>
+                <i class="oui-icon oui-icon-arrow-right"></i>
+            </a>
+
+            <!-- internal link -->
+            <a
+                data-ng-if="!action.external && action.visible"
+                class="oui-tile__button oui-button oui-button_ghost"
+                data-ui-sref="{{action.sref}}"
+            >
+                <span data-translate="{{action.text}}"></span>
+                <i class="oui-icon oui-icon-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
