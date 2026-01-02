@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@5.1.11...@ovh-ux/manager-pci-app@5.1.12) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-app
+
+
+
+
+
 ## [5.1.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-app@5.1.10...@ovh-ux/manager-pci-app@5.1.11) (2025-12-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-app

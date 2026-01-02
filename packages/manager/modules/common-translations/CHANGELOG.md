@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.25.2...@ovh-ux/manager-common-translations@0.26.0) (2026-01-02)
+
+
+### Features
+
+* **common-translation:** add namespace area ([742c172](https://github.com/ovh/manager/commit/742c172896667747cfbf4de1762ea05b850759a5)), closes [#MANAGER-20194](https://github.com/ovh/manager/issues/MANAGER-20194)
+
+
+
+
+
 ## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.25.1...@ovh-ux/manager-common-translations@0.25.2) (2025-12-16)
 
 

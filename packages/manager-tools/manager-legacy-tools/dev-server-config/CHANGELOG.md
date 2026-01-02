@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@6.2.2...@ovh-ux/manager-dev-server-config@6.2.3) (2026-01-02)
+
+
+### Bug Fixes
+
+* **dev-server-config:** add correct bff host header ([9c35173](https://github.com/ovh/manager/commit/9c35173f621fb44f8852ccfc337749f71cb97ae5)), closes [#MANAGER-20603](https://github.com/ovh/manager/issues/MANAGER-20603)
+
+
+
+
+
 ## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@6.2.1...@ovh-ux/manager-dev-server-config@6.2.2) (2025-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-dev-server-config

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.8...@ovh-ux/muk@0.11.0) (2026-01-02)
+
+
+### Features
+
+* **muk:** create new hooks useHelpLink ([921028e](https://github.com/ovh/manager/commit/921028e19bfe23e5ab5529a3c219507131c70fc8)), closes [#20958](https://github.com/ovh/manager/issues/20958)
+
+
+
+
+
 ## [0.10.8](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.7...@ovh-ux/muk@0.10.8) (2025-12-26)
 
 

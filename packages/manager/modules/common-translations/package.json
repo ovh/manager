@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-common-translations",
-  "version": "0.25.2",
+  "version": "0.26.0",
   "description": "Common translations for Manager µ-apps",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-vite-config": "^0.15.5",
+    "@ovh-ux/manager-vite-config": "^0.15.6",
     "vite-plugin-dts": "^4.5.4"
   }
 }
