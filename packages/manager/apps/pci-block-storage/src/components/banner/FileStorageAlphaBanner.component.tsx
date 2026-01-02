@@ -19,7 +19,7 @@ export const FileStorageAlphaBanner = () => {
         iconName="circle-info"
         dismissible
         onRemove={onRemove}
-        className="w-full"
+        className="max-w-[800px]"
       >
         <div className="w-full flex flex-col gap-4 items-start">
           <h4 className="m-0">
