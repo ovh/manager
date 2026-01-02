@@ -20,16 +20,12 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
     NAMESPACES.REGION,
     'dashboard',
   ]);
-  const {
-    data: vault,
-    isLoading: isLoadingVault,
-    isLoadingBackupServicesId,
-  } = useBackupVaultDetails({ vaultId });
+  const { data: vault, isLoading: isLoadingVault } = useBackupVaultDetails({ vaultId });
   const { data: locationData, isLoading: isLocationLoading } = useLocationDetails(
     vault?.currentState.region,
   );
 
-  const isLoading = isLoadingVault || isLoadingBackupServicesId;
+  const isLoading = isLoadingVault;
 
   /*
   The code below is a copy of GeneralInformationTile component, made specifically for vaults.

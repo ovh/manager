@@ -23,7 +23,6 @@ export const VaultActionCell = (vaultResource: VaultResource) => {
         label=""
         icon="trash"
         variant="ghost"
-        isDisabled={false}
         data-testid="delete-vault-button"
         onClick={() => {
           navigate(`${subRoutes.delete}${queryParams}`);
