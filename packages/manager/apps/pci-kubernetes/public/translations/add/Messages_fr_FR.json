@@ -1,5 +1,5 @@
 {
-  "kubernetes_add": "Créer un cluster Kubernetes",
+  "kubernetes_add": "Créer un cluster MKS",
   "kubernetes_add_success": "Votre cluster a bien été créé",
   "kubernetes_add_error": "Une erreur est survenue lors de la création de votre cluster : {{ message }}",
   "kubernetes_add_error_InsufficientVCPUsQuota": "Le quota de vCPUs de votre projet est insuffisant pour réaliser l'opération. Merci d'augmenter votre quota ou demander moins de ressources.",
@@ -25,6 +25,8 @@
   "kubernetes_add_name_title": "Nommez votre cluster",
   "kubernetes_add_name_placeholder": "Nom du cluster",
   "kubernetes_add_name": "Nom",
+  "kubernetes_add_location": "Localisation",
+  "kubernetes_add_location_subtitle": "Choisir un mode de déploiement",
   "kubernetes_add_region_title_region": "Région 1-AZ",
   "kubernetes_add_region_title_region-3-az": "Région 3-AZ",
   "kubernetes_add_deployment_mode_card_beta": "Beta",

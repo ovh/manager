@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Divider, Text } from '@ovhcloud/ods-react';
 
 import { useCreateClusterForm } from '../hooks/useCreateClusterForm/useCreateClusterForm';
+import { ClusterLocationSection } from './ClusterLocationSection.component';
 import { ClusterNameSection } from './ClusterNameSection.component';
 import { CreationCart } from './CreationCart.component';
 
@@ -22,6 +23,8 @@ export const CreateClusterForm = () => {
             {t('kubernetes_add')}
           </Text>
           <ClusterNameSection />
+          <Divider spacing={dividerSpacing} />
+          <ClusterLocationSection />
           <Divider spacing={dividerSpacing} />
         </section>
         <aside className="flex-1">
