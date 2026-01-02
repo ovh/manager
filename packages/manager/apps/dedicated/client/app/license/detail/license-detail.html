@@ -53,8 +53,8 @@
                         <dd>
                             <span
                                 data-ng-show="license.type != licenseTypes.SPLA"
-                                data-translate="{{:: license.description || 'license_designation_' + license.type + '_version_' + license.version}}"
-                                data-translate-default="{{:: license.description ? undefined : formatName(license) }}"
+                                data-translate="{{:: 'license_designation_' + license.type + '_version_' + license.version}}"
+                                data-translate-default="{{:: license.description ? license.description : formatName(license) }}"
                             >
                             </span>
                             <span
