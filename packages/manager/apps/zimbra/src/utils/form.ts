@@ -123,6 +123,21 @@ export const baseEmailAccountSchema = z.object({
   hideInGal: z.boolean().optional(),
   forceChangePasswordAfterLogin: z.boolean().optional(),
   slotId: z.string().optional(),
+  contactInformation: z
+    .object({
+      company: z.string().optional(),
+      service: z.string().optional(),
+      profession: z.string().optional(),
+      office: z.string().optional(),
+      street: z.string().optional(),
+      mobileNumber: z.string().optional(),
+      postcode: z.string().optional(),
+      city: z.string().optional(),
+      phoneNumber: z.string().optional(),
+      faxNumber: z.string().optional(),
+      country: z.string().optional(),
+    })
+    .optional(),
 });
 
 export const addEmailAccountSchema = baseEmailAccountSchema.merge(withPassword).merge(withOffer);
