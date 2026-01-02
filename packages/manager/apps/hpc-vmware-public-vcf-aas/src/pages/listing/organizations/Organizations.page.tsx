@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useHref } from 'react-router-dom';
+import { Outlet, useHref, useResolvedPath } from 'react-router-dom';
 
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -42,7 +42,23 @@ const organizationMapper = (vdcOrgs?: VCDOrganization[]) => {
 const DatagridIdCell = (
   vdcOrg: VCDOrganization['currentState'] & { id: string },
 ) => {
-  const vcdDashboard = useHref(urls.dashboard);
+  const vcdDashboard = useHref({
+    // Make sure the pathname includes the FULL path from root
+    pathname: urls.dashboard.replace(subRoutes.dashboard, vdcOrg.id),
+  });
+
+  const resolved = useResolvedPath({
+    // Make sure the pathname includes the FULL path from root
+    pathname: urls.dashboard.replace(subRoutes.dashboard, vdcOrg.id),
+  });
+
+  console.log('resolved==>', resolved);
+  console.log('vcdDashboard==>', vcdDashboard);
+
+  const href = `${window.location.origin}${window.location.pathname}#${resolved.pathname}`;
+
+  console.log('href==>', href);
+
   const { trackClick } = useOvhTracking();
   return (
     <DataGridTextCell>
@@ -50,7 +66,7 @@ const DatagridIdCell = (
         onClickReturn={() => {
           trackClick(TRACKING.listing.details);
         }}
-        href={vcdDashboard.replace(subRoutes.dashboard, vdcOrg.id)}
+        href={href}
         label={vdcOrg?.fullName}
         data-testid={TEST_IDS.listingVcdNameLink}
       ></Links>
