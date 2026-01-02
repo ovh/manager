@@ -23,10 +23,19 @@ type UseRedirectionsParams = Omit<
   redirectionTargetId?: string;
   organizationLabel?: string;
   shouldFetchAll?: boolean;
+  organizationId?: string;
 };
 
+// eslint-disable-next-line max-lines-per-function
 export const useRedirections = (props: UseRedirectionsParams = {}) => {
-  const { redirection, redirectionTargetId, organizationLabel, shouldFetchAll, ...options } = props;
+  const {
+    redirection,
+    redirectionTargetId,
+    organizationLabel,
+    organizationId,
+    shouldFetchAll,
+    ...options
+  } = props;
   const [allPages, setAllPages] = useState(!!shouldFetchAll);
   const { platformId } = useParams();
 
@@ -34,6 +43,7 @@ export const useRedirections = (props: UseRedirectionsParams = {}) => {
     redirection,
     redirectionTargetId,
     organizationLabel,
+    organizationId,
   });
 
   const query = useInfiniteQuery({
