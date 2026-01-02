@@ -51,6 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         partitionName,
         partitions,
+        nasha,
       ) => {
         const [partition] = partitions.filter(
           ({ partitionName: name }) => name === partitionName,
@@ -59,18 +60,16 @@ export default /* @ngInject */ ($stateProvider) => {
         if (!partition) {
           return $state.go('nasha.dashboard', { serviceName });
         }
-
-        return partition;
-      },
-      partitions: /* @ngInject */ (
-        serviceName,
-        preparePartition,
-        OvhApiDedicatedNashaAapi,
-      ) => {
-        OvhApiDedicatedNashaAapi.resetCache();
-        return OvhApiDedicatedNashaAapi.partitions({
-          serviceName,
-        }).$promise.then((partitions) => partitions.map(preparePartition));
+        /* The back-end returns a wrong value: 0. So we have to cumulate the partitions' usedbysnapshots &
+          to cumulate usedbysnapshots + used.value
+        */
+        return {
+          ...partition,
+          use: {
+            ...partition.use,
+            totalUsed: nasha.use.totalUsed,
+          },
+        };
       },
       partitionApiUrl: /* @ngInject */ (nashaApiUrl, partitionName) =>
         `${nashaApiUrl}/partition/${partitionName}`,
