@@ -1,6 +1,7 @@
 export const VALIDATION_MANUAL_CASES = {
   // Core + tools
   '@ovh-ux/manager-core-test-utils': 'packages/manager-tools/manager-legacy-tools/test-utils',
+  '@ovh-ux/manager-documentation': 'docs',
   '@ovh-ux/manager-react-core-application': 'packages/manager/core/application',
   '@ovh-ux/manager-react-shell-client': 'packages/manager/core/shell-client',
   '@ovh-ux/muk': 'packages/manager-ui-kit',
