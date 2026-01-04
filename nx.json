@@ -1,0 +1,84 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "cacheDirectory": ".nx/cache",
+  "defaultBase": "master",
+  "plugins": [],
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/**/*.spec.tsx",
+      "!{projectRoot}/**/*.test.ts",
+      "!{projectRoot}/**/*.test.tsx"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/nx.json",
+      "{workspaceRoot}/turbo.json",
+      "{workspaceRoot}/yarn.lock",
+      "{workspaceRoot}/pnpm-lock.yaml"
+    ],
+    "buildEnv": [
+      { "env": "VERSION" }
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "{projectRoot}/dist/**",
+        "{projectRoot}/types/**"
+      ],
+      "inputs": ["production", "^production", "buildEnv"],
+      "cache": true
+    },
+
+    "test": {
+      "dependsOn": ["^test", "@ovh-ux/manager-static-analysis-kit#build"],
+      "outputs": [],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+
+    "dev": {
+      "dependsOn": ["^dev"],
+      "outputs": [
+        "{projectRoot}/dist/**",
+        "{projectRoot}/types/**"
+      ],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+
+    "dev:watch": {
+      "dependsOn": ["^dev:watch"],
+      "outputs": [
+        "{projectRoot}/dist/**",
+        "{projectRoot}/types/**"
+      ],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+
+    "start": {
+      "dependsOn": ["^dev"],
+      "cache": false
+    },
+
+    "lint:modern": {
+      "dependsOn": ["^lint:modern", "^build"],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+
+    "lint:modern:fix": {
+      "dependsOn": ["^lint:modern", "^build"],
+      "inputs": ["default", "^default"],
+      "cache": true
+    }
+  }
+}
