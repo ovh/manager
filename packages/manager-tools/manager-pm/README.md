@@ -205,14 +205,26 @@ Each reference (`--app` or `--module`) may be:
 manager-pm --type pnpm --action <action> [--runner <turbo|nx|binary>] [options] [-- <passthrough>]
 ```
 
-**Common flags**
+### Common flags
 
 - `--type <pnpm>`: package manager type (future-proof, default: `pnpm`).
 - `--action <name>`: command to run.
-- `--runner <turbo|nx|binary>`: task runner to use (default: `turbo`).
+- `--runner <turbo|nx|binary>`: task runner to use (**default: `turbo`**).
 - `--app <name|workspace|path>`: single-app operations (build/test/lint).
 - `--module <name|workspace|path>`: single-module operations (build/test/lint).
-- `--filter <expr>`: task-runner filter for CI commands (Turbo-specific; forwarded as-is for other runners).
+- `--filter <expr>`: CI selector.
+  - **Turbo (default runner):** forwarded to Turbo as-is (`--filter=...`).
+  - **Nx (`--runner nx`):** Turbo-style filter is **normalized**:
+    - `--filter="<project|path|glob>"` → converted to `--projects=<specifier>` (quotes removed, leading `./` stripped).
+    - `--filter="...[base...head]"` (or `--filter="[base...head]"`) → interpreted as SCM range and triggers **affected mode** (`--base=<base> --head=<head>`).
+    - `--filter="...[HEAD^1]"` (or `--filter="[HEAD^1]"`) → base=`HEAD^1`, head=`HEAD`.
+    - If `--projects` is already provided, it takes precedence and `--filter` will **not** override it.
+- `--base <ref>` / `--head <ref>`: SCM refs (Nx-oriented; also accepted by the wrapper).
+  - If provided, they **force affected mode** for Nx CI actions.
+  - They override SCM refs derived from `--filter="[base...head]"`.
+- `--dry-run=json` / `--dry=json`: machine-readable planning mode.
+  - **Turbo:** returns Turbo plan JSON (tasks + packages).
+  - **Nx:** returns a JSON array of project names (from `nx show projects --json`).
 - `--container`: hint for “start” (container mode).
 - `--region <code>`: informational; surfaced in logs.
 - `--version` / `-V`: print CLI version.
@@ -220,7 +232,7 @@ manager-pm --type pnpm --action <action> [--runner <turbo|nx|binary>] [options] 
 
 ---
 
-### Single app / module
+## Single app / module
 
 ```bash
 # Build / Test / Lint one app (Turbo by default)
@@ -254,9 +266,6 @@ yarn pm:lint:app --app web
 
 # Single app, Nx
 yarn pm:lint:app --app web --runner nx
-
-# Single module (assuming lintModule wired) with Nx
-yarn pm:lint:app --module @ovh-ux/manager-core-api --runner nx
 ```
 
 Under the hood:
@@ -269,15 +278,15 @@ Under the hood:
 Resolvers (`resolveApplicationBuildFilter` / `resolveModuleBuildFilter`) map `--app` / `--module` to:
 
 - Turbo `--filter` expressions, or
-- Nx project names, depending on the selected `--runner`.
+- Nx project names / selectors, depending on the selected `--runner`.
 
 ---
 
-### CI — Task runner passthrough (Turbo / Nx / …)
+## CI — Task runner passthrough (Turbo / Nx / …)
 
 `buildCI` and `testCI` are generic CI entrypoints that delegate to the configured runner.
 
-#### Turbo
+### Turbo
 
 ```bash
 # Using --filter (Turbo)
@@ -296,36 +305,83 @@ turbo run build [extra turbo flags...]
 turbo run test  [extra turbo flags...]
 ```
 
-#### Nx
+### Nx
 
-When `--runner nx` is used, `buildCI` / `testCI` call `nx run-many`:
+When `--runner nx` is used, `buildCI` / `testCI` run Nx in one of **three modes** depending on your flags:
+
+#### A) Default mode → `nx run-many`
 
 ```bash
 # All projects (default)
 yarn manager-pm --action buildCI --runner nx
 yarn manager-pm --action testCI  --runner nx
-
-# With Nx-specific flags
-yarn manager-pm --action buildCI --runner nx --parallel=4
-yarn manager-pm --action testCI  --runner nx --projects=web,account --parallel=3
 ```
 
-Under the hood (Nx):
+Under the hood:
 
-- If you **don’t** provide `--projects` or `--all`:
+```bash
+nx run-many --target=build --all [extra nx flags...]
+nx run-many --target=test  --all [extra nx flags...]
+```
 
-  ```bash
-  nx run-many --target=build --all [extra nx flags...]
-  nx run-many --target=test  --all [extra nx flags...]
-  ```
+If you provide `--projects=...` or `--all`, `manager-pm` **does not** inject `--all` again — it forwards your selection.
 
-- If you provide `--projects=...` or `--all`, `manager-pm` **does not** add its own `--all` and simply forwards your options.
+#### B) SCM / affected mode → `nx affected`
 
-Any extra options you pass to `manager-pm` (except internal ones like `--action`, `--type`, `--runner`, `--silent`) are forwarded directly to the runner.
+Affected mode is triggered by **either**:
+
+- Turbo SCM filter:
+  - `--filter="...[base...head]"` (or `--filter="[base...head]"`)
+  - `--filter="...[HEAD^1]"` (or `--filter="[HEAD^1]"`)
+- Or explicit:
+  - `--base=<ref> --head=<ref>`
+
+Examples:
+
+```bash
+# Turbo-style SCM filter (normalized for Nx)
+yarn pm:build:ci --runner nx --filter="...[develop...origin/feat/MANAGER-123]"
+
+# Explicit base/head (accepted by the wrapper)
+yarn pm:build:ci --runner nx --base=develop --head=origin/feat/MANAGER-123
+```
+
+Under the hood:
+
+```bash
+nx affected --target=build --base=develop --head=origin/feat/MANAGER-123
+```
+
+#### C) Planning mode (`--dry-run=json` / `--dry=json`) → `nx show projects --json`
+
+This is the Nx equivalent of Turbo’s `--dry-run=json`, meant for CI pipelines and `jq` parsing.
+
+```bash
+# Get affected projects as JSON (Nx)
+yarn pm:build:ci --runner nx --dry-run=json --filter="...[develop...origin/feat/MANAGER-123]"
+yarn -s pm:build:ci --silent --runner nx --dry-run=json --filter="...[develop...origin/feat/MANAGER-123]"
+```
+
+Under the hood:
+
+```bash
+nx show projects --json --with-target=build --affected --base=develop --head=origin/feat/MANAGER-123
+```
+
+✅ Output format (Nx planning mode): **JSON array of project names**.
+
+#### Nx option normalization
+
+To preserve Turbo-compatible pipelines, `manager-pm` normalizes some options when `--runner nx`:
+
+- `--concurrency <n>` / `--concurrency=<n>` → `--parallel <n>` / `--parallel=<n>`
+- `--filter=<path>` strips leading `./` (workspace-relative normalization)
+- Turbo-only log flags are ignored for Nx:
+  - `--output-logs`, `--log-order`, `--log-prefix`, `--log-level`
 
 ---
 
-### Global actions
+## Global actions
 
 ```bash
 # Turbo (default runner)
@@ -361,11 +417,11 @@ yarn manager-pm --type pnpm --action cli migrations-status --type routes
 
 ---
 
-### Module management (PNPM catalogs)
+## Module management (PNPM catalogs)
 
 `manager-pm` also manages PNPM catalogs for private modules.
 
-#### Migrate a **Private Module** to PNPM
+### Migrate a **Private Module** to PNPM
 
 Private modules (e.g. `@ovh-ux/manager-core-*`, `@ovh-ux/manager-modules-*`) can be migrated to PNPM in **isolated mode** using the `--private` flag.  
 This ensures that the module is also registered in the **private PNPM catalog** (`src/playbook/catalog/pnpm-private-modules.json`), allowing task runners and PNPM to correctly link local builds instead of fetching from the registry.
@@ -398,17 +454,7 @@ yarn pm:add:module --module @ovh-ux/manager-core-utils --private
 - `yarn install` is executed automatically to restore merged catalogs
 - The migration summary is displayed with next steps
 
-Example CLI output:
-
-```text
-📦 Adding module: packages/manager/core/utils (private)
-➕ Added @ovh-ux/manager-core-utils to PNPM catalog
-🔒 Marking module as private in package.json
-➕ Added private module to catalog: --filter @ovh-ux/manager-core-utils (packages/manager/core/utils)
-✅ Migration complete
-```
-
-#### Roll Back a **Private Module** to Yarn
+### Roll Back a **Private Module** to Yarn
 
 To revert a private module back to Yarn-managed mode:
 
@@ -427,27 +473,18 @@ yarn pm:remove:module --module @ovh-ux/manager-core-utils --private
 - Yarn workspaces are restored
 - A final cleanup banner confirms rollback success
 
-Example output:
+### Private Catalog Overview
 
-```text
-🗑️  Removing module: packages/manager/core/utils (private)
-🗑️  Removed private module from catalog: --filter @ovh-ux/manager-core-utils (packages/manager/core/utils)
-✔ Rollback complete
-```
-
-#### Private Catalog Overview
-
-| Catalog                    | Path                                         | Purpose                                              |
-|---------------------------|----------------------------------------------|------------------------------------------------------|
-| **PNPM Catalog**          | `src/playbook/catalog/pnpm-catalog.json`     | Tracks all PNPM-managed apps & modules               |
-| **Private Modules Catalog** | `src/playbook/catalog/pnpm-private-modules.json` | Tracks all locally linked, non-published private packages |
-| **Yarn Catalog**          | `src/playbook/catalog/yarn-catalog.json`     | Tracks Yarn-managed apps & modules                   |
+| Catalog                      | Path                                                  | Purpose                                                      |
+|-----------------------------|-------------------------------------------------------|--------------------------------------------------------------|
+| **PNPM Catalog**            | `src/playbook/catalog/pnpm-catalog.json`              | Tracks all PNPM-managed apps & modules                       |
+| **Private Modules Catalog** | `src/playbook/catalog/pnpm-private-modules.json`      | Tracks all locally linked, non-published private packages    |
+| **Yarn Catalog**            | `src/playbook/catalog/yarn-catalog.json`              | Tracks Yarn-managed apps & modules                           |
 
 Private modules listed in `pnpm-private-modules.json` are automatically:
-
 - Linked as `link:` dependencies for PNPM apps
 - Excluded from npm registry publishing
-- Available as Turbo/Nx filters for incremental builds
+- Available as Turbo/Nx selectors for incremental builds
 - Built locally from their `dist/` outputs during `postinstall`
 
 Example private catalog entry:
@@ -485,13 +522,17 @@ yarn manager-pm --type pnpm --action full-test  --runner nx
 ### CI with fine-grained filters
 
 ```bash
-# Turbo
+# Turbo (default)
 yarn manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web --cache-dir=.turbo
 yarn manager-pm --type pnpm --action testCI  --filter=packages/manager/apps/web --continue=always
 
-# Nx
+# Nx (build/test execution)
 yarn manager-pm --type pnpm --action buildCI --runner nx --parallel=4
 yarn manager-pm --type pnpm --action testCI  --runner nx --projects=web,account --parallel=3
+
+# Nx (planning / changed projects)
+yarn manager-pm --type pnpm --action buildCI --runner nx --dry-run=json \
+  --filter="...[develop...origin/${GIT_BRANCH}]"
 ```
 
 ---
@@ -512,13 +553,11 @@ Because the monorepo runs **Yarn at the root** and **PNPM per-app**, you must fo
    ```
 
 2. **Run `yarn install` from the root:** this updates the root lockfile and triggers `manager-pm` hooks to:
-
 - normalize versions
 - rebuild PNPM overrides
 - re-install PNPM apps if necessary
 
 3. **Verify**
-
 - For Yarn apps: `yarn workspace <app> why <dep>`
 - For PNPM apps: `manager-pm --type pnpm --action build --app <app>`
 
@@ -586,15 +625,16 @@ These are already aliased in the root `package.json`:
 
 ## Silent & Machine-Readable Mode
 
-By default, `manager-pm` logs version, context, and execution details (useful for humans).  
+By default, `manager-pm` logs version, context, and execution details (useful for humans).
 
 When automating tasks (e.g., in CI/CD pipelines or JSON parsers), you can suppress these logs with `--silent`.
 
 ### Behavior
+
 | Mode | Output | Use Case |
-|------|---------|----------|
+|------|--------|----------|
 | Default (verbose) | Context summary, logs, task info | Local debugging, interactive runs |
-| `--silent` | Only raw tool output (Turbo, Lerna, etc.) | Parsing JSON or feeding results to `jq`, `grep`, etc. |
+| `--silent` | Only raw tool output (Turbo, Nx, Lerna, etc.) | Parsing JSON or feeding results to `jq`, `grep`, etc. |
 | `yarn -s` + `--silent` | Fully quiet Yarn + CLI output | Machine-readable pipelines |
 
 ### Examples
@@ -610,7 +650,29 @@ yarn manager-pm --silent --action lerna list --all --json --toposort
 yarn -s manager-pm --silent --action lerna list --all --json --toposort | jq -r '.[].name'
 ```
 
+### Machine-readable CI planning (`--dry-run=json` / `--dry=json`)
+
+`manager-pm` supports a runner-agnostic “planning” switch used in CI pipelines.
+
+- **Turbo:** `--dry-run=json` returns Turbo plan JSON (tasks + packages).
+- **Nx:** `--dry-run=json` returns a JSON array of project names (from `nx show projects --json`).
+
+Examples:
+
+```bash
+# Turbo (default runner): list changed packages
+yarn -s manager-pm --silent --action buildCI --dry-run=json --output-logs=none \
+  --filter="...[${CDS_BUILD_BASE_BRANCH}...origin/${GIT_BRANCH}]" \
+  | jq -r '.packages[]'
+
+# Nx: list changed projects (array)
+yarn -s manager-pm --silent --runner nx --action buildCI --dry-run=json \
+  --filter="...[${CDS_BUILD_BASE_BRANCH}...origin/${GIT_BRANCH}]" \
+  | jq -r '.[]'
+```
+
 ### Notes
+
 - Works with **all actions** (e.g., `lerna`, `cli`, `release`, `buildCI`, etc.).
 - Internally switches logger to `silent` mode (`stderr` and `stdout` suppressed except raw tool output).
 - Recommended for pipelines where you parse output, e.g.:
@@ -626,8 +688,6 @@ yarn -s manager-pm --silent --action lerna list --all --json --toposort | jq -r 
 When you only need to use the **manager-pm CLI** — for example, in **CI/CD pipelines** or local debugging — running a full monorepo install (with PNPM hooks and Turbo rebuilds) is wasteful and slow.  
 The **isolated install mode** solves this by installing dependencies *only for* `manager-pm`, skipping all other workspaces and scripts.
 
----
-
 ### Command
 
 ```bash
@@ -635,6 +695,7 @@ yarn pm:isolated:install
 ```
 
 **Defined in `package.json`:**
+
 ```json
 {
   "scripts": {
@@ -643,48 +704,30 @@ yarn pm:isolated:install
 }
 ```
 
----
-
 ### What it does
 
 1. Temporarily modifies the root `package.json` to include **only**:
+
    ```json
    {
      "workspaces": { "packages": ["packages/manager-tools/manager-pm"] }
    }
    ```
+
 2. Runs:
+
    ```bash
    yarn install --ignore-scripts
    ```
+
    to install `manager-pm`’s dependencies **without** triggering any Yarn or PNPM lifecycle scripts.
+
 3. Restores the original root workspace configuration afterward.
-
----
-
-### Example output
-
-```
-🚀 manager-pm pm:isolated:install CLI started...
-📦 Isolated workspaces to: packages/manager-tools/manager-pm
-✔ Dependencies installed for isolated modules.
-🧹 Restored original root workspaces.
-✅ manager-pm pm:isolated:install completed in 87.12s
-✨  Done in 87.94s.
-```
-
-After the process:
-
-- Only `packages/manager-tools/manager-pm/node_modules` exists.
-- No `postinstall`, PNPM bootstrap, or Turbo tasks are triggered.
-- The root `package.json` is automatically restored.
-
----
 
 ### Why this matters
 
 | Scenario | Benefit |
-|-----------|----------|
+|----------|---------|
 | **CI/CD pipelines** | Speeds up runs where only `manager-pm` CLI is needed |
 | **Developer onboarding** | Enables using `manager-pm` without waiting for full monorepo install |
 | **Hotfix and release tooling** | Allows quick access to CLI scripts (publish, release, catalog sync) |
@@ -692,279 +735,174 @@ After the process:
 
 ---
 
-### Behavior summary
-
-| Step | Description |
-|------|--------------|
-| 🧭 **Read** | Reads the current root `package.json` |
-| ✏️ **Rewrite** | Sets `workspaces.packages = ['packages/manager-tools/manager-pm']` |
-| 📦 **Install** | Runs `yarn install --ignore-scripts` |
-| 🧹 **Restore** | Calls `clearRootWorkspaces()` to revert to the original configuration |
-
----
-
-### Typical CI/CD usage
-
-```bash
-# Install only manager-pm dependencies
-yarn pm:isolated:install
-
-# Run manager-pm CLI immediately
-yarn manager-pm --action buildCI --filter=@ovh-ux/manager-web --silent
-```
-
-This reduces setup time from 15+ minutes to under 2 minutes in large repos —  
-ideal for quick CI runners, release automation, or script-driven catalog operations.
-
----
-
 ## Continuous Delivery (CDS)
 
-In our previous workflow, Continuous Delivery jobs relied on **direct Lerna invocations** such as:
+CDS jobs need three CI-friendly variables derived from a Git diff (base ref → head ref):
+
+- **`AFFECTED_PKGS`**: affected workspace package names (typically `@ovh-ux/*`)
+- **`PACKAGES_TO_BUILD`**: affected **application directories** under `packages/manager/apps/...`
+- **`IMPACTED_UNIVERSES`**: a small universe list inferred from `PACKAGES_TO_BUILD` (e.g. `dedicated`, `public-cloud`, `telecom`, `web`)
+
+`manager-pm` is the recommended entrypoint because it prepares/cleans the hybrid workspace (Yarn + PNPM catalogs, private package linking, per-app PNPM workspace, etc.) consistently before any runner executes.
+
+### Turbo runner (reference)
+
+Turbo remains the **reference planning format** because it produces a structured plan:
 
 ```bash
-node_modules/.bin/lerna list   --all   --json   --toposort   | jq -r '.[].location | select(. | test("/packages/manager/apps"))'
+yarn -s manager-pm --silent --action buildCI --dry-run=json \
+  --filter="...[${CDS_BUILD_BASE_BRANCH}...origin/${GIT_BRANCH}]"
 ```
 
-This worked but bypassed the hybrid logic of `manager-pm`.  
+The output is JSON containing (at least):
 
-Now, all Lerna calls should go **through `manager-pm`**, ensuring that catalogs and hybrid workspaces are prepared/cleaned consistently.
+- `packages[]`: affected workspace package names
+- `tasks[]`: planned tasks with `package` + `directory`
 
-### New recommended usage
+### CDS strict `PACKAGES_TO_BUILD` derivation
+
+CDS historically used a stricter algorithm (`get_paths_changed_packages()`), which is **not** just “all tasks under `apps/`”.
+
+The strict algorithm is:
+
+1. take `.packages[]`
+2. keep only entries that also exist in `.tasks[].package`
+3. map those packages to their `.tasks[].directory`
+4. keep only directories under `packages/manager/apps`
+
+This is implemented in the validation suite (`yarn manager-pm-cds-validation`) and is the recommended reference for CDS exports.
+
+### Nx runner (optional)
+
+With `--runner nx`, `--dry-run=json` commonly returns a JSON array produced by `nx show projects --json`:
 
 ```bash
-yarn -s manager-pm --silent --action lerna list --all --json --toposort --loglevel silent   | jq -r '.[].location | select(test("/packages/manager/apps"))'
+yarn -s manager-pm --silent --runner nx --action buildCI --dry-run=json \
+  --filter="...[${CDS_BUILD_BASE_BRANCH}...origin/${GIT_BRANCH}]"
 ```
 
-Or equivalently:
+Because Nx planning output is usually **project identifiers**, CDS must translate `project -> root directory`. Two safe approaches:
+
+#### Option A — per-project root lookup (pure shell)
 
 ```bash
-node node_modules/.bin/manager-pm --silent --action lerna list --all --json --toposort --loglevel silent   | jq -r '.[].location | select(test("/packages/manager/apps"))'
+CHANGED_PROJECTS=$(
+  yarn -s manager-pm --silent --runner nx --action buildCI --dry-run=json \
+    --filter="...[${CDS_BUILD_BASE_BRANCH}...origin/${GIT_BRANCH}]"
+)
+
+echo "$CHANGED_PROJECTS" | jq -r '.[]' | while read -r project; do
+  yarn -s nx show project "$project" --json | jq -r '.root'
+done | grep -E '^packages/manager/apps/'
 ```
 
-Both commands guarantee:
-- Correct workspace preparation/cleanup before and after the run.
-- Silent Yarn headers/footers suppressed (so JSON remains parseable).
-- Full passthrough of flags and options to **Lerna**.
+#### Option B — use the built-in normalization from `manager-pm-cds-validation`
 
-### Passing arbitrary Lerna options
+`yarn manager-pm-cds-validation` runs Nx planning in two ways (`--filter` and `--base/--head`) and **normalizes** Nx output into a Turbo-like schema by mapping:
 
-`manager-pm` exposes a **Lerna passthrough mode**, so you can use any existing Lerna subcommand:
+- exact workspace `package.json` names → directory
+- folder-name fallback when Nx uses folder-style IDs
+- `packages/...` “path-like” IDs (when returned)
+
+This gives you the same downstream primitives (`packages[]` + `tasks[].directory`) to compute strict `PACKAGES_TO_BUILD`.
+
+### Recommended CDS usage
+
+- Use **Turbo dry-run** as the source of truth for exported variables.
+- Run **`yarn manager-pm-cds-validation`** in CI to continuously validate:
+  - Turbo dry-run schema stays parseable and stable
+  - Nx planning is consistent across `--filter` and `--base/--head` (when Nx is enabled)
+  - Nx/Turbo parity meets a configurable overlap threshold (so differences are detectable but not flaky)
+
+
+#### CDS reference shell snippets (what the pipeline is doing)
+
+These are the *canonical* CDS steps you quoted, mapped to the **manager-pm** workflows documented above.
+
+**Turbo – get_changed_packages()**
 
 ```bash
-# Help
-yarn -s manager-pm --silent --action lerna --help
+# Preferred (no sed needed): keep output strictly JSON
+yarn -s pm:build:ci \
+  --filter="...[$CDS_BUILD_BASE_BRANCH...origin/${GIT_BRANCH}]" \
+  --dry-run=json \
+  --output-logs=none \
+  > output.json
 
-# Info
-yarn -s manager-pm --silent --action lerna info  
-
-# Version
-yarn -s manager-pm --silent --action lerna -version
-
-# List packages
-yarn -s manager-pm --silent --action lerna list --all --json --toposort
-
-# Publish from local versions
-yarn -s manager-pm --silent --action lerna publish from-package --yes
-
-# Version with conventional commits
-yarn -s manager-pm --silent --action lerna version --conventional-commits
+jq -r '.packages[]' output.json
 ```
 
-This ensures **CD pipelines and developers** use a single, unified CLI (`manager-pm`), regardless of whether the repo is Yarn-only, PNPM-only, or hybrid.
+> CDS historically used `sed '1,2d'` / `sed '$d'` to strip log wrappers.  
+> If you keep `--silent` (`-s`) + `--output-logs=none` (or use `manager-pm --silent`), you typically get **pure JSON** and can drop the `sed` step.
 
-Example:
+**Nx – equivalent “affected projects” list**
 
 ```bash
-yarn -s manager-pm --silent --action lerna -version
-5.6.2
-
-yarn -s manager-pm --silent --action lerna info    
-lerna notice cli v5.6.2
-lerna info versioning independent
-
- Environment info:
-
-  System:
-  ...
-  
-yarn -s manager-pm --silent --action lerna list    
-lerna notice cli v5.6.2
-lerna info versioning independent
-@ovh-ux/ng-at-internet-ui-router-plugin
-@ovh-ux/ng-log-live-tail
-@ovh-ux/ng-ovh-actions-menu
-@ovh-ux/ng-ovh-browser-alert
-...
-
+yarn nx show projects   --affected   --base=origin/develop   --head=origin/feat/MANAGER-20638-nx   --with-target=build   --json
 ```
 
-### 🟡 Staging
+With manager-pm this is what `--runner nx --action buildCI --dry-run=json` is meant to produce (an array of project identifiers), which we then **normalize** into `{packages,tasks}` for downstream CDS checks.
 
-#### Detect changed packages (apps only)
-
-**Before**
+**Turbo – get_paths_changed_packages() (strict PACKAGES_TO_BUILD)**
 
 ```bash
-PACKAGES_TO_BUILD=$(node_modules/.bin/lerna changed   --all   --include-merged-tags   --json --toposort   | jq -r '.[].location | select(. | test("/packages/manager/apps"))')
+# list1 = tasks[].package
+jq -r '.tasks[].package' output.json > /tmp/list1.txt
+
+# list2 = packages[]
+jq -r '.packages[]' output.json > /tmp/list2.txt
+
+# intersection(list2, list1) -> directories under packages/manager/apps
+while read -r pkg; do
+  if grep -qw "$pkg" /tmp/list1.txt; then
+    jq -r --arg package "$pkg" '.tasks[] | select(.package == $package) | .directory' output.json |
+      grep '^packages/manager/apps'
+  fi
+done < /tmp/list2.txt
 ```
 
-**Now**
+This is exactly what the validation suite’s `computePathsChangedPackages()` function mirrors.
+
+#### CDS debug vs quiet execution (per-package builds)
+
+CDS often runs builds in two modes:
 
 ```bash
-PACKAGES_TO_BUILD=$(yarn -s manager-pm --silent --action lerna changed   --all   --include-merged-tags   --json --toposort   | jq -r '.[].location | select(test("/packages/manager/apps"))')
+if DEBUG; then
+  yarn pm:build:ci --filter="${package_name}..." --output-logs="new-only"
+else
+  yarn pm:build:ci --filter="${package_name}..." &> /dev/null
+fi
 ```
 
-Example:
+Equivalent knobs with manager-pm:
+- `--silent` (or `yarn -s …`) for quiet mode
+- `--output-logs=new-only` (Turbo) when you want actionable logs without the full noise
+
+#### CDS: upload “packages to deploy” list + release step
+
+**Produce a deploy list from Lerna changed**
 
 ```bash
-yarn -s manager-pm --silent --action lerna changed   --all   --include-merged-tags   --json --toposort   | jq -r '.[].location | select(test("/packages/manager/apps"))'
+packages=$(
+  yarn -s manager-pm --silent --action lerna changed --all -l --json |
+    jq -r '.[].name'
+)
 
-/packages/manager/apps/restricted
-/packages/manager/apps/billing
-/packages/manager/apps/carbon-calculator
-/packages/manager/apps/carrier-sip
-/packages/manager/apps/cda
-/packages/manager/apps/cloud-connect
-/packages/manager/apps/container
-/packages/manager/apps/dbaas-logs
-/packages/manager/apps/dedicated
-/packages/manager/apps/email-domain
-/packages/manager/apps/email-pro
-/packages/manager/apps/exchange
-/packages/manager/apps/freefax
-/packages/manager/apps/iam
-/packages/manager/apps/iplb
-/packages/manager/apps/metrics
-/packages/manager/apps/nasha
-/packages/manager/apps/netapp
-/packages/manager/apps/nutanix
-/packages/manager/apps/order-tracking
-/packages/manager/apps/overthebox
-/packages/manager/apps/pci
-/packages/manager/apps/pci-ai-tools
-/packages/manager/apps/pci-databases-analytics
-/packages/manager/apps/pci-dataplatform
-/packages/manager/apps/procedures
-/packages/manager/apps/public-cloud
-/packages/manager/apps/sign-up
-/packages/manager/apps/sms
-/packages/manager/apps/support
-/packages/manager/apps/telecom
-/packages/manager/apps/telecom-dashboard
-/packages/manager/apps/telecom-task
-/packages/manager/apps/veeam-enterprise
-/packages/manager/apps/vps
-/packages/manager/apps/vrack
-/packages/manager/apps/web
-/packages/manager/apps/account
-/packages/manager/apps/catalog
-/packages/manager/apps/communication
-/packages/manager/apps/dedicated-servers
-/packages/manager/apps/hpc-vmware-public-vcf-aas
-/packages/manager/apps/hub
-/packages/manager/apps/hycu
-/packages/manager/apps/identity-access-management
-/packages/manager/apps/key-management-service
-/packages/manager/apps/okms
-/packages/manager/apps/pci-ai-endpoints
-/packages/manager/apps/pci-billing
-/packages/manager/apps/pci-block-storage
-/packages/manager/apps/pci-cold-archive
-/packages/manager/apps/pci-gateway
-/packages/manager/apps/pci-instances
-/packages/manager/apps/pci-kubernetes
-/packages/manager/apps/pci-load-balancer
-/packages/manager/apps/pci-object-storage
-/packages/manager/apps/pci-private-network
-/packages/manager/apps/pci-private-registry
-/packages/manager/apps/pci-public-ip
-/packages/manager/apps/pci-quota
-/packages/manager/apps/pci-rancher
-/packages/manager/apps/pci-savings-plan
-/packages/manager/apps/pci-ssh-keys
-/packages/manager/apps/pci-users
-/packages/manager/apps/pci-volume-backup
-/packages/manager/apps/pci-volume-snapshot
-/packages/manager/apps/pci-vouchers
-/packages/manager/apps/pci-workflow
-/packages/manager/apps/sap-features-hub
-/packages/manager/apps/veeam-backup
-/packages/manager/apps/vrack-services
-/packages/manager/apps/web-domains
-/packages/manager/apps/web-hosting
-/packages/manager/apps/web-office
-/packages/manager/apps/web-ongoing-operations
-/packages/manager/apps/zimbra
+printf "%s
+" "$packages" > packages_to_deploy.txt
+
+if is_ci; then
+  worker upload --tag="list-packages" packages_to_deploy.txt
+fi
+
+rm -f packages_to_deploy.txt
 ```
 
-#### Search an existing app on the list
-
-**Before**
+**Run the release action (seeded)**
 
 ```bash
-app_path="$(node_modules/.bin/lerna list   --all   --parseable   --toposort   --long | grep ":${app}:" | cut -d: -f1)"
-```
-
-**Now**
-
-```bash
-app_path="$(yarn -s manager-pm --silent --action lerna list   --all   --parseable   --toposort   --long | grep ":${app}:" | cut -d: -f1)"
-```
-
-Example:
-
-```bash
-yarn -s manager-pm --silent --action lerna list   --all   --parseable   --toposort   --long | grep "zimbra" | cut -d: -f1
-
-/packages/manager/apps/zimbra
-```
-
-### 🔵 Production
-
-#### Changed packages on the release
-
-**Before**
-
-```bash
-packages=$(node_modules/.bin/lerna changed --all -l --json | jq -r '.[].name')
-```
-
-**Now**
-
-```bash
-packages=$(yarn -s manager-pm --silent --action lerna changed --all -l --json | jq -r '.[].name')
-```
-
-Example:
-
-```bash
-yarn -s manager-pm --silent --action lerna changed --all -l --json | jq -r '.[].name'
-
-@ovh-ux/manager-documentation
-@ovh-ux/ng-at-internet-ui-router-plugin
-@ovh-ux/ng-at-internet
-@ovh-ux/ng-log-live-tail
-@ovh-ux/ng-ovh-actions-menu
-@ovh-ux/ng-ovh-browser-alert
-@ovh-ux/ng-ovh-chart
-@ovh-ux/ng-ovh-checkbox-table
-@ovh-ux/ng-ovh-contact
-...
-```
-
-#### Get changed package in build pipeline
-
-**Before**
-
-```bash
-package_path=$(node_modules/.bin/lerna list -ap --scope="XXX")
-```
-
-**Now**
-
-```bash
-package_path=$(yarn -s manager-pm --silent --action lerna list -ap --scope="XXX")
+yarn -s manager-pm --silent --action release "${opts}" -s "${CDS_APP_CODENAME_SEED}"
 ```
 
 ---
@@ -977,6 +915,7 @@ package_path=$(yarn -s manager-pm --silent --action lerna list -ap --scope="XXX"
 yarn pm:add:app --app <name|package|path>
 yarn install
 ```
+
 What happens:
 - App is moved from **Yarn catalog** → **PNPM catalog**
 - React/test deps normalized; Vitest config patched if needed
@@ -985,228 +924,15 @@ What happens:
 - Per-app `pnpm-workspace.yaml` generated and **PNPM install** executed
 - Root workspaces restored
 
----
-
-### Roll back and application to Yarn
+### Roll back an application to Yarn
 
 ```bash
 yarn pm:remove:app --app <name|package|path>
 yarn install
 ```
+
 - App is moved back to **Yarn catalog**
 - PNPM leftovers cleaned; root restored
-
----
-
-### Migrate a **Private Module** to PNPM
-
-Private modules (e.g. `@ovh-ux/manager-core-*`, `@ovh-ux/manager-modules-*`) can now be migrated to PNPM in **isolated mode** using the `--private` flag.  
-This ensures that the module is also registered in the **private PNPM catalog** (`src/playbook/catalog/pnpm-private-modules.json`), allowing Turbo and PNPM to correctly link local builds instead of fetching from the registry.
-
-```bash
-# Example: migrate a core module as private
-yarn pm:add:module --module packages/manager/core/utils --private
-
-# Alternative (by package name)
-yarn pm:add:module --module @ovh-ux/manager-core-utils --private
-```
-
-**What happens under the hood:**
-
-- Module is moved from **Yarn catalog → PNPM catalog**
-- Critical dependencies are normalized (`react`, `vitest`, etc.)
-- If `--private` is provided:
-  - The module is automatically added to `pnpm-private-modules.json`
-  - Its entry includes both Turbo and PNPM filters:
-    ```json
-    {
-      "turbo": "--filter @ovh-ux/manager-core-utils",
-      "pnpm": "packages/manager/core/utils"
-    }
-    ```
-  - This catalog is used by `manager-pm` to link local builds and exclude private packages from publishing or remote installs
-- Artifacts are cleaned (`node_modules`, `dist`, `.turbo`)
-- `yarn install` is executed automatically to restore merged catalogs
-- The migration summary is displayed with next steps
-
-Example CLI output:
-```bash
-📦 Adding module: packages/manager/core/utils (private)
-➕ Added @ovh-ux/manager-core-utils to PNPM catalog
-🔒 Marking module as private in package.json
-➕ Added private module to catalog: --filter @ovh-ux/manager-core-utils (packages/manager/core/utils)
-✅ Migration complete
-```
-
----
-
-### Roll Back a **Private Module** to Yarn
-
-To revert a private module back to Yarn-managed mode:
-
-```bash
-yarn pm:remove:module --module packages/manager/core/utils --private
-```
-
-or
-
-```bash
-yarn pm:remove:module --module @ovh-ux/manager-core-utils --private
-```
-
-**Behavior:**
-
-- Module is moved from **PNPM → Yarn catalog**
-- PNPM artifacts (`dist`, `.turbo`, `node_modules`) are cleaned
-- If `--private` is provided:
-  - The entry is **removed** from `pnpm-private-modules.json`
-- Yarn workspaces are restored
-- A final cleanup banner confirms rollback success
-
-Example output:
-```bash
-🗑️  Removing module: packages/manager/core/utils (private)
-🗑️  Removed private module from catalog: --filter @ovh-ux/manager-core-utils (packages/manager/core/utils)
-✔ Rollback complete
-```
-
----
-
-### Private Catalog Overview
-
-| Catalog | Path | Purpose |
-|----------|------|----------|
-| **PNPM Catalog** | `src/playbook/catalog/pnpm-catalog.json` | Tracks all PNPM-managed apps & modules |
-| **Private Modules Catalog** | `src/playbook/catalog/pnpm-private-modules.json` | Tracks all locally linked, non-published private packages |
-| **Yarn Catalog** | `src/playbook/catalog/yarn-catalog.json` | Tracks Yarn-managed apps & modules |
-
-Private modules listed in `pnpm-private-modules.json` are automatically:
-- Linked as `link:` dependencies for PNPM apps
-- Excluded from npm registry publishing
-- Available as Turbo filters for incremental builds
-- Built locally from their `dist/` outputs during `postinstall`
-
-Example private catalog entry:
-```json
-[
-  {
-    "turbo": "--filter @ovh-ux/manager-core-application",
-    "pnpm": "packages/manager/core/application"
-  },
-  {
-    "turbo": "--filter @ovh-ux/manager-core-utils",
-    "pnpm": "packages/manager/core/utils"
-  }
-]
-```
-
----
-
-### Build / Test everything
-
-```bash
-# Uses a merged view of Yarn+PNPM catalogs for Turbo
-yarn manager-pm --type pnpm --action full-build
-yarn manager-pm --type pnpm --action full-test
-yarn manager-pm --type pnpm --action full-lint
-```
-
----
-
-### CI with fine-grained filters
-
-```bash
-yarn manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web --cache-dir=.turbo
-yarn manager-pm --type pnpm --action testCI  --filter=packages/manager/apps/web --continue=always
-```
-
----
-
-## Adding dependencies
-
-Because the monorepo runs **Yarn at the root** and **PNPM per-app**, you must follow a strict workflow so the two stay in sync:
-
-1. **Manually edit the app's `package.json`**  
-   Add your new dependency (`dependencies` / `devDependencies`) directly in the target app folder, e.g.:
-
-   ```json
-   {
-     "dependencies": {
-       "lodash": "^4.17.21"
-     }
-   }
-   ```
-
-2. **Run `yarn install` from the root:** this updates the root lockfile and triggers `manager-pm` hooks to:
-
-- normalize versions
-- rebuild PNPM overrides
-- re-install PNPM apps if necessary
-
-3. **Verify**
-
-- For Yarn apps: `yarn workspace <app> why <dep>`
-- For PNPM apps: `manager-pm --type pnpm --action build --app <app>`
-
----
-
-⚠️ **Warning about `yarn add`**
-
-- Running `yarn add` **does trigger** the same `preinstall`/`postinstall` hooks as a full `yarn install`.
-- This means it *can* keep Yarn and PNPM in sync — but with caveats:
-  - Yarn still defaults to adding dependencies at the **root workspace**, not the target app.
-  - Hooks cannot distinguish between *install* and *add*, so catalogs/overrides may not update correctly in all cases.
-- To avoid inconsistencies, prefer the **manual edit + `yarn install`** workflow described above.
-- If you do use `yarn add`, always double-check that:
-  - the dependency was added to the **right `package.json`**, and
-  - PNPM apps still re-installed correctly.
-
-⚠️ `publish` and `release` **depend on repo-level scripts** under `scripts/`.
-
----
-
-## Legacy Yarn Workspace (prepare/remove)
-
-Since we're in hybrid phase and Yarn will eventually be removed, it's not recommended to use `yarn workspace`, but if you still require manipulating the **root Yarn workspace configuration**, `manager-pm` exposes a dedicated `workspace` action with two modes: `prepare` and `remove`.
-
-### Commands
-
-```bash
-# Prepare legacy workspaces (merge PNPM+Yarn catalogs into root)
-yarn pm:prepare:legacy:workspace
-
-# Remove legacy workspaces (clear merged entries, restore root)
-yarn pm:remove:legacy:workspace
-```
-
-### What happens
-
-- **Prepare (`--mode prepare`)**  
-  Calls `updateRootWorkspacesFromCatalogs()`  
-  → merges Yarn + PNPM catalogs into `package.json > workspaces.packages` at the root, so Turbo can see **all apps** at once.
-
-- **Remove (`--mode remove`)**  
-  Calls `clearRootWorkspaces()`  
-  → clears the merged workspace entries, restoring the root `package.json` to its safe Yarn-only state.
-
-### When to use
-
-- Use `prepare` **before running full builds/tests** if you suspect missing workspaces in Turbo.
-- Use `remove` **after builds/tests** or when cleaning up lockfile issues.
-- Both are safe to run multiple times; operations are idempotent.
-
-### Package.json integration
-
-These are already aliased in the root `package.json`:
-
-```json
-{
-  "scripts": {
-    "pm:prepare:legacy:workspace": "manager-pm --action workspace --mode prepare",
-    "pm:remove:legacy:workspace": "manager-pm --action workspace --mode remove"
-  }
-}
-```
 
 ---
 
@@ -1218,7 +944,7 @@ These are already aliased in the root `package.json`:
 - **`privateWorkspaces`** – roots scanned for private packages to build & link.
 - **`applicationsBasePath`** – where apps are discovered (default: `packages/manager/apps`).
 - **`cleanupDirectories`** – folders removed during clean (`node_modules`, `dist`, `.turbo`, `target`).
-- **`containerPackageName`** – used by the interactive `start` action (e.g. `@ovh-ux/manager-container-app`).
+- **`containerPackageName`** – used by the interactive `start` action (e.g., `@ovh-ux/manager-container-app`).
 
 To change behavior, update this file and commit.
 
@@ -1252,126 +978,92 @@ node ./packages/manager-tools/manager-pm/src/manager-pm-deep-clean.js
 - Logs progress through `manager-pm`’s unified `logger`
 - Gracefully exits if `node_modules` (and thus `shelljs`) is already missing — with helpful reinstall instructions.
 
-### Example output
-
-```text
-🧽 Starting deep cleanup...
-🧹 Removing 145 'node_modules' directories...
-   • packages/manager/apps/web/node_modules
-   • packages/manager/core/utils/node_modules
-   • packages/manager/modules/foo/node_modules
-   ...and 142 more.
-✅ Deep cleanup complete!
-```
-
-If dependencies were already removed:
-
-```text
-⚠️  It looks like node_modules were already removed during a previous cleanup.
-
-👉 Please reinstall dependencies:
-   yarn install
-
-Then re-run your command if needed:
-   yarn clean:deep
-```
-
-### Typical usage
-
-| Situation                         | Command                           | Purpose                                                 |
-|-----------------------------------|-----------------------------------|---------------------------------------------------------|
-| Full reset after migration        | `yarn clean:deep && yarn install` | Clears all artifacts and restores PNPM/Yarn hybrid     |
-| After branch switch               | `yarn clean:deep`                 | Removes stale `.turbo` caches and mismatched modules   |
-| Before CI debugging               | `yarn clean:deep`                 | Cleans all build outputs and binary stores             |
-| Rebuild private packages from scratch | `yarn clean:deep && yarn build`     | Forces complete rebuild from fresh state               |
-
 ---
 
 ## 🧩 Validation Tests
 
-Before any push, release, or migration, the **validation suite** ensures the hybrid ecosystem remains consistent, deterministic, and CI/CD-ready.
+The validation suite is designed to prevent regressions while we support:
+- Hybrid Yarn + PNPM catalogs
+- Multi-runner orchestration (Turbo default, Nx optional)
+- Machine-readable CI planning (`--dry-run=json`)
 
-Two complementary validation commands exist:
+### `yarn validate:cli`
 
-| Command                         | Description                                                             | Purpose                                |
-|---------------------------------|-------------------------------------------------------------------------|----------------------------------------|
-| `yarn manager-pm-validation`    | Runs local integrity tests (catalogs, private package linking, version normalization, workspace safety) | Guarantees internal coherence          |
-| `yarn manager-pm-cds-validation`| Simulates Continuous Delivery (CDS) build pipeline with dry-run validation and report export            | Guarantees CI/CD reproducibility       |
+Runs a comprehensive CLI + catalog test matrix:
 
-### 1️⃣ `yarn manager-pm-validation`
+**Turbo (default runner)**
+- `buildCI`, `testCI` (verbose + silent)
+- `--dry-run=json` produces valid Turbo JSON
+- workspace prepare/remove safety checks
 
-Validates **local workspace integrity**:
+**Nx (`--runner nx`)** — auto-detected and skipped if Nx is not available
+- `--dry-run=json` maps to `nx show projects --json`
+- Turbo-style SCM filters `--filter="...[base...head]"` map to Nx affected selection (`--base/--head`)
+- explicit `--base/--head` forces affected mode
+- `--concurrency` maps to `--parallel`
+- directory filters normalize `./path` → `path`
+- Turbo-only logging flags are not forwarded to Nx
+- `.nx` cache directory existence after execution
 
-- Catalog synchronization (Yarn, PNPM, Private)
-- PNPM binary version pinning and availability
-- Root workspace safety (Yarn + PNPM merged view)
-- Private package linking and dependency normalization
+It also validates:
+- PNPM/Yarn catalogs path existence
+- private module catalog integrity (`pnpm-private-modules.json`)
+- duplicate detection across catalogs
+- critical private modules presence
 
-✅ **Pass Criteria:**  
-All checks return “✅” in the final summary.
+✅ The suite is intentionally runner-parity focused: it checks that the wrapper produces the expected runner command shape and outputs remain parseable under `--silent` + `jq`.
 
-Example:
 
-```text
-📊 Manager-PM Validation Summary
-✅ Catalog integrity
-✅ PNPM binary version 10.17.0
-✅ Linked private modules
-✅ Safe root workspaces state
-🎉 All validation tests passed
-```
+### `yarn manager-pm-cds-validation`
 
-### 2️⃣ `yarn manager-pm-cds-validation`
+Runs an **end-to-end simulation of the CDS “changed packages” logic** and validates that hybrid orchestration remains deterministic across runners.
 
-Performs a **full CDS pipeline simulation** — deterministic and CI-ready.
+What it validates:
 
-It runs from the repo root and executes the following sequence:
+- `manager-pm` executable is available (`--version`)
+- **Turbo planning** (`buildCI --dry-run=json`) can be parsed and contains `packages[]` + `tasks[]`
+- **Nx planning** is executed when available (`--runner nx`) using:
+  - SCM filter: `--filter="...[base...head]"`
+  - explicit refs: `--base=<base> --head=<head>`
+- Nx output is normalized into a Turbo-like schema so the same downstream checks can run
+- Computes CDS-equivalent variables:
+  - `AFFECTED_PKGS`
+  - `PACKAGES_TO_BUILD`
+    - **loose**: any `tasks[].directory` under `packages/manager/apps`
+    - **strict (CDS)**: mirrors `get_paths_changed_packages()` (packages∩tasks.package → tasks.directory → apps-only)
+  - `IMPACTED_UNIVERSES` (derived from `PACKAGES_TO_BUILD`)
+- Ensures `dist/client` and universe folders can be created (CDS expectations)
+- Writes CI-friendly artifacts:
+  - **Snapshots** (for debugging / reproducibility) under `test-results/cds/`
+  - **Reports** under `test-results/cds/reports/`:
+    - `validation-results.json`
+    - `validation-results.xml` (JUnit)
 
-1. CLI sanity check (`manager-pm --version`)
-2. Dry-run execution (`--action buildCI --dry-run=json`)
-3. Validation of exported variables (`AFFECTED_PKGS`, `PACKAGES_TO_BUILD`, `IMPACTED_UNIVERSES`)
-4. Universe folder and dist folder verification
-5. Package existence validation across the entire monorepo
-6. Snapshot persistence and cleanup
-7. Structured report generation (`validation-results.json`, `validation-results.xml`)
+#### Parity & consistency model (Turbo vs Nx)
 
-Output directory:
+Nx and Turbo can legitimately differ when Nx does **not** model all workspaces as projects (or when targets are missing).  
+So the suite uses a configurable parity model:
 
-```text
-test-results/cds/reports/
- ├─ validation-results.json
- ├─ validation-results.xml
- └─ dry-run-snapshot.json
-```
+- **`overlap`** (recommended): require a minimum overlap coverage between sets  
+  `coverage = |A ∩ B| / min(|A|,|B|)`
+- **`subset`**: require `Nx ⊆ Turbo` (strict; can fail depending on runner semantics)
+- **`equal`**: require `Nx == Turbo` (very strict)
 
-✅ **Pass Criteria:**
+Nx is also run twice (`--filter` and `--base/--head`) and checked for **internal consistency** using the same overlap metric.
 
-```text
-📊 CDS Validation Summary
-✅ Passed: 13
-❌ Failed: 0
-🎉 All CDS validation tests passed successfully!
-```
+All knobs are **constants inside the script** (no `process.env`, no CLI flags).  
+Edit the `config` block at the top of:
 
-If any test fails, CI exits with code 1 and detailed failure information is available in the exported reports.
+- `packages/manager-tools/manager-pm/bin/manager-pm-cds-validation.js`
 
----
+Key tuning options:
 
-## 🧭 When to Run Validation Tests
+- `nxParity`: `'overlap' | 'subset' | 'equal'`
+- `nxMinCoverage`: minimum overlap threshold (0..1) for parity checks
+- `nxConsistencyMinCoverage`: minimum overlap between Nx(filter) and Nx(base/head)
+- `baseBranch`, `gitBranch`: default refs used in the SCM range
 
-| Scenario                              | Command                             | Purpose                                         |
-|--------------------------------------|-------------------------------------|-------------------------------------------------|
-| Before merging any migration branch  | `yarn manager-pm-cds-validation`    | Ensure PNPM apps don’t break CDS pipelines      |
-| Before publishing a new release      | `yarn manager-pm-validation`        | Confirm catalogs and linking consistency        |
-| After refactoring `manager-pm` internals | Both                              | Detect regressions early                        |
-| During CI/CD pipeline runs           | `yarn -s manager-pm --silent --action buildCI` + `yarn manager-pm-cds-validation` | Reproducible build validation |
-
----
-
-## ✅ Rule of Thumb
-
-> If both `manager-pm-validation` and `manager-pm-cds-validation` pass from the repository root,  
-> you are safe to **push, release, or evolve** the toolchain.
+Tip: If you want `equal` parity to pass consistently, ensure Nx discovers *all* relevant workspace packages as projects and each has the required targets (`build`, `test`, etc.) via `project.json` / `package.json` or Nx plugins.
 
 ---
 

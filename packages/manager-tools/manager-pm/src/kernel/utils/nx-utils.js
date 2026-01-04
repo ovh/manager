@@ -1,13 +1,3 @@
-import {
-  buildApplicationWorkspacePath,
-  getPackageNameFromApplication,
-} from '../helpers/apps-workspace-helper.js';
-import {
-  buildModuleWorkspacePath,
-  getPackageNameFromModule,
-} from '../helpers/modules-workspace-helper.js';
-import { logger } from './log-manager.js';
-
 /**
  * @typedef {Object} NxCiState
  * @property {string[]} normalizedOptions
@@ -15,6 +5,9 @@ import { logger } from './log-manager.js';
  * @property {boolean} hasProjectsFlag
  * @property {boolean} hasParallelFlag
  * @property {{base: string, head: string} | null} scmFilter
+ * @property {string|null} base
+ * @property {string|null} head
+ * @property {boolean} dryRunJson
  */
 
 /**
@@ -29,6 +22,9 @@ function createNxCiState() {
     hasProjectsFlag: false,
     hasParallelFlag: false,
     scmFilter: null,
+    base: null,
+    head: null,
+    dryRunJson: false,
   };
 }
 
@@ -36,11 +32,12 @@ function createNxCiState() {
  * Normalize a project specifier for Nx:
  * - strip surrounding quotes
  * - strip leading "./" so Turbo-style directory filters still work
+ * - strip turbo "..." suffix/prefix (not an Nx selector)
  *
  * @param {string} input
  * @returns {string}
  */
-function normalizeNxProjectSpecifier(input) {
+export function normalizeNxProjectSpecifier(input) {
   let value = input.trim();
 
   // Remove surrounding quotes if present
@@ -56,6 +53,11 @@ function normalizeNxProjectSpecifier(input) {
   if (value.startsWith('./')) {
     value = value.slice(2);
   }
+
+  // Turbo selectors like "pkg..." or "...pkg" are not Nx project selectors.
+  // We keep the project name/path only.
+  if (value.endsWith('...')) value = value.slice(0, -3);
+  if (value.startsWith('...')) value = value.slice(3);
 
   return value;
 }
@@ -76,7 +78,7 @@ function normalizeNxProjectSpecifier(input) {
  * @param {string} raw
  * @returns {{type: "projects", value: string} | {type: "scm", base: string, head: string}}
  */
-function normalizeNxOptions(raw) {
+export function normalizeNxOptions(raw) {
   let value = raw.trim();
 
   // Remove surrounding quotes if present: "...", '...'
@@ -112,6 +114,50 @@ function normalizeNxOptions(raw) {
 
   // Everything else: treat as project/name/directory specifier
   return { type: 'projects', value };
+}
+
+/**
+ * Capture explicit SCM args:
+ * - --base / --base=...
+ * - --head / --head=...
+ *
+ * These should NOT be forwarded to `nx run-many`; they trigger `nx affected`.
+ *
+ * @param {string} opt
+ * @param {string[]} options
+ * @param {number} index
+ * @param {NxCiState} state
+ * @returns {number | null}
+ */
+function handleNxBaseHeadOption(opt, options, index, state) {
+  const readNext = () => {
+    const next = options[index + 1];
+    return typeof next === 'string' && !next.startsWith('-') ? next : null;
+  };
+
+  if (opt === '--base') {
+    const v = readNext();
+    if (v) state.base = v;
+    return v ? index + 1 : index;
+  }
+
+  if (opt.startsWith('--base=')) {
+    state.base = opt.slice('--base='.length);
+    return index;
+  }
+
+  if (opt === '--head') {
+    const v = readNext();
+    if (v) state.head = v;
+    return v ? index + 1 : index;
+  }
+
+  if (opt.startsWith('--head=')) {
+    state.head = opt.slice('--head='.length);
+    return index;
+  }
+
+  return null;
 }
 
 /**
@@ -210,7 +256,7 @@ function handleNxParallelAndConcurrencyOption(opt, options, index, state) {
 /**
  * Handle Turbo's --filter / --filter=...:
  *  - projects/dirs → --projects=<spec>
- *  - [HEAD^1] or [base...head] → record scmFilter for nx affected
+ *  - [HEAD^1] or [base...head] → record scmFilter for nx affected/show
  *
  * @param {string} opt
  * @param {string[]} options
@@ -249,17 +295,93 @@ function handleNxFilterOption(opt, options, index, state) {
 }
 
 /**
+ * Detect dry-run JSON mode.
+ * Supports both:
+ *  - --dry-run=json
+ *  - --dry=json
+ *  - --dry-run json
+ *  - --dry json
+ *
+ * @param {string} opt
+ * @param {string[]} options
+ * @param {number} index
+ * @param {NxCiState} state
+ * @returns {number | null}
+ */
+function handleDryRunJsonOption(opt, options, index, state) {
+  if (opt === '--dry-run=json' || opt === '--dry=json') {
+    state.dryRunJson = true;
+    return index;
+  }
+
+  if (opt === '--dry-run' || opt === '--dry') {
+    const next = options[index + 1];
+    if (next === 'json') {
+      state.dryRunJson = true;
+      return index + 1;
+    }
+    state.dryRunJson = true;
+    return index;
+  }
+
+  return null;
+}
+
+/**
+ * Consume turbo-only logging flags so they don't get forwarded to Nx:
+ * - --output-logs / --output-logs=...
+ * - --log-order / --log-order=...
+ * - --log-prefix / --log-prefix=...
+ * - --log-level / --log-level=...
+ *
+ * @param {string} opt
+ * @param {string[]} options
+ * @param {number} index
+ * @returns {number | null}
+ */
+function handleTurboLogFlags(opt, options, index) {
+  const consumeWithValue = () => {
+    const next = options[index + 1];
+    if (typeof next === 'string' && !next.startsWith('-')) return index + 1;
+    return index;
+  };
+
+  if (
+    opt === '--output-logs' ||
+    opt === '--log-order' ||
+    opt === '--log-prefix' ||
+    opt === '--log-level'
+  ) {
+    return consumeWithValue();
+  }
+
+  if (
+    opt.startsWith('--output-logs=') ||
+    opt.startsWith('--log-order=') ||
+    opt.startsWith('--log-prefix=') ||
+    opt.startsWith('--log-level=')
+  ) {
+    return index;
+  }
+
+  return null;
+}
+
+/**
  * Normalize CI options for Nx:
  * - keep Nx-native flags as-is
  * - map `--concurrency` → `--parallel`
  * - map `--filter` → `--projects` or SCM filter metadata
+ * - capture `--base/--head` (explicit SCM args)
+ * - capture `--dry-run=json` and drop turbo log flags
  *
  * @param {string[]} options
  * @returns {{
  *   normalizedOptions: string[],
  *   hasAll: boolean,
  *   hasProjectsFlag: boolean,
- *   scmFilter: { base: string, head: string } | null
+ *   scmFilter: { base: string, head: string } | null,
+ *   dryRunJson: boolean
  * }}
  */
 function normalizeNxCiOptions(options = []) {
@@ -270,6 +392,9 @@ function normalizeNxCiOptions(options = []) {
 
     // Try each handler in order; if one consumes it, continue
     const handlers = [
+      handleDryRunJsonOption,
+      handleTurboLogFlags,
+      handleNxBaseHeadOption,
       handleNxAllAndProjectsOption,
       handleNxParallelAndConcurrencyOption,
       handleNxFilterOption,
@@ -291,20 +416,75 @@ function normalizeNxCiOptions(options = []) {
     }
   }
 
-  const { normalizedOptions, hasAll, hasProjectsFlag, scmFilter } = state;
-  return { normalizedOptions, hasAll, hasProjectsFlag, scmFilter };
+  // Promote explicit --base/--head into scmFilter (explicit flags override filter-derived values).
+  if (state.base || state.head) {
+    state.scmFilter = {
+      base: state.base || state.scmFilter?.base || 'main',
+      head: state.head || state.scmFilter?.head || 'HEAD',
+    };
+  }
+
+  const { normalizedOptions, hasAll, hasProjectsFlag, scmFilter, dryRunJson } = state;
+
+  return { normalizedOptions, hasAll, hasProjectsFlag, scmFilter, dryRunJson };
+}
+
+/**
+ * `nx show projects` accepts fewer flags than `nx affected` / `nx run-many`.
+ * Keep only safe ones here.
+ *
+ * @param {string[]} normalizedOptions
+ * @returns {string[]}
+ */
+function filterOptionsForNxShowProjects(normalizedOptions) {
+  return normalizedOptions.filter((option) => {
+    return (
+      option === '--all' ||
+      option === '--affected' ||
+      option.startsWith('--projects') || // --projects / --projects=...
+      option === '--exclude' ||
+      option.startsWith('--exclude=') ||
+      option === '--type' ||
+      option.startsWith('--type=')
+    );
+  });
 }
 
 /**
  * Build Nx-specific CI args from normalized options.
+ *
+ * Behavior:
+ * - if `--dry-run=json` / `--dry=json`: emit `nx show projects ... --json` (planning)
+ * - if SCM range detected (filter [base...head] or explicit --base/--head): emit `nx affected`
+ * - else: emit `nx run-many`
  *
  * @param {"build"|"test"} task
  * @param {string[]} options
  * @returns {string[]}
  */
 export function buildNxCiArgs(task, options = []) {
-  const { normalizedOptions, hasAll, hasProjectsFlag, scmFilter } = normalizeNxCiOptions(options);
+  const { normalizedOptions, hasAll, hasProjectsFlag, scmFilter, dryRunJson } =
+    normalizeNxCiOptions(options);
 
+  // Turbo dry-run=json equivalent for Nx: list matching projects as JSON.
+  if (dryRunJson) {
+    const safe = filterOptionsForNxShowProjects(normalizedOptions);
+
+    const args = ['show', 'projects', ...safe, '--json', `--with-target=${task}`];
+
+    if (scmFilter) {
+      const base = scmFilter.base || 'main';
+      const head = scmFilter.head || 'HEAD';
+      args.push('--affected', `--base=${base}`, `--head=${head}`);
+    } else if (!hasAll && !hasProjectsFlag) {
+      // Keep symmetry with your run-many behavior
+      args.push('--all');
+    }
+
+    return args;
+  }
+
+  // SCM mode → nx affected (base/head are only meaningful here)
   if (scmFilter) {
     const base = scmFilter.base || 'main';
     const head = scmFilter.head || 'HEAD';
@@ -318,6 +498,7 @@ export function buildNxCiArgs(task, options = []) {
     ];
   }
 
+  // Default mode → nx run-many
   const args = ['run-many', `--target=${task}`, ...normalizedOptions];
 
   if (!hasAll && !hasProjectsFlag) {
@@ -325,105 +506,4 @@ export function buildNxCiArgs(task, options = []) {
   }
 
   return args;
-}
-
-/**
- * Internal helper: derive the best Turbo filter value for a given `appRef`.
- *
- * - Prefers the package name (`@scope/name`) if available.
- * - Falls back to the last path segment of the canonical workspace path.
- *
- * @param {string} appRef - Application reference (name, package name, or path).
- * @returns {string|null} The filter string for Turbo, or `null` if unresolved.
- */
-export function resolveApplicationBuildFilter(appRef) {
-  logger.debug(`resolveApplicationBuildFilter(appRef="${appRef}")`);
-
-  if (!appRef) {
-    logger.warn('⚠️ No appRef provided, returning null.');
-    return null;
-  }
-
-  try {
-    const packageName = getPackageNameFromApplication(appRef);
-    if (packageName) {
-      logger.info(`📦 Resolved build filter to package name: ${packageName}`);
-      return packageName; // Prefer the package name (@scope/name)
-    }
-
-    const applicationWorkspacePath = buildApplicationWorkspacePath(appRef); // packages/manager/apps/<name>
-    const applicationPathParts = applicationWorkspacePath.split('/');
-    const applicationBuildFilter = applicationPathParts[applicationPathParts.length - 1] || null;
-
-    if (!applicationBuildFilter) {
-      logger.error(
-        `❌ Failed to resolve build filter for appRef="${appRef}". Path: ${applicationWorkspacePath}`,
-      );
-      return null;
-    }
-
-    logger.info(`📂 Resolved build filter to workspace segment: ${applicationBuildFilter}`);
-
-    return applicationBuildFilter;
-  } catch (err) {
-    logger.error(`❌ Exception in resolveBuildFilter for appRef="${appRef}": ${err.message}`);
-    logger.debug(`Stack trace: ${err.stack}`);
-    return null;
-  }
-}
-
-/**
- * Internal helper: derive the best Turbo build filter for a given `moduleRef`.
- *
- * - Prefers the package name (`@scope/name`) if available.
- * - Falls back to the last path segment of the canonical workspace path.
- * - Handles modules under any of the supported roots:
- *   - `packages/manager-tools/**`
- *   - `packages/manager/core/**`
- *   - `packages/manager/modules/**`
- *
- * Example:
- * ```bash
- * yarn manager-pm --action build --module @ovh-ux/manager-core-api
- * yarn manager-pm --action test --module packages/manager/modules/foo
- * yarn manager-pm --action lint --module core-shell-client
- * ```
- *
- * @param {string} moduleRef - Module reference (name, package name, or path).
- * @returns {string|null} The Turbo filter string (usually a package name or last path segment),
- *                        or `null` if resolution failed.
- */
-export function resolveModuleBuildFilter(moduleRef) {
-  logger.debug(`resolveModuleBuildFilter(moduleRef="${moduleRef}")`);
-
-  if (!moduleRef) {
-    logger.warn('⚠️ No moduleRef provided, returning null.');
-    return null;
-  }
-
-  try {
-    // Prefer package name if resolvable
-    const pkgName = getPackageNameFromModule(moduleRef);
-    if (pkgName) {
-      logger.info(`📦 Resolved module build filter to package name: ${pkgName}`);
-      return pkgName;
-    }
-
-    // Fallback to workspace path segment
-    const rel = buildModuleWorkspacePath(moduleRef); // e.g. packages/manager/core/api
-    const parts = rel.split('/');
-    const lastSegment = parts[parts.length - 1] || null;
-
-    if (!lastSegment) {
-      logger.error(`❌ Failed to resolve build filter for moduleRef="${moduleRef}". Path: ${rel}`);
-      return null;
-    }
-
-    logger.info(`📂 Resolved module build filter to workspace segment: ${lastSegment}`);
-    return lastSegment;
-  } catch (err) {
-    logger.error(`❌ Exception in resolveModuleBuildFilter for "${moduleRef}": ${err.message}`);
-    logger.debug(`Stack trace: ${err.stack}`);
-    return null;
-  }
 }
