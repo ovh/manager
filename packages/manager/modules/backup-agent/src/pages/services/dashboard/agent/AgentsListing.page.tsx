@@ -13,7 +13,7 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useBackupAgentList } from '@/data/hooks/agents/getAgents';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { urlParams, urls } from '@/routes/Routes.constants';
+import { urlParams, urls } from '@/routes/routes.constants';
 
 import { useAgentsListingColumnsHooks } from './_hooks/useAgentsListingColumns.hooks';
 import {ResourceStatus} from "@/types/Resource.type";

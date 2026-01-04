@@ -4,7 +4,7 @@ import { useHref } from 'react-router-dom';
 
 import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
 
-import { urlParams, urls } from '@/routes/Routes.constants';
+import { urlParams, urls } from '@/routes/routes.constants';
 import { VaultResource } from '@/types/Vault.type';
 
 export const VaultIdCell = (vaultResource: VaultResource) => {
