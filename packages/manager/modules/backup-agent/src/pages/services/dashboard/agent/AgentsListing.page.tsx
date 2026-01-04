@@ -16,6 +16,7 @@ import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { urlParams, urls } from '@/routes/Routes.constants';
 
 import { useAgentsListingColumnsHooks } from './_hooks/useAgentsListingColumns.hooks';
+import {ResourceStatus} from "@/types/Resource.type";
 
 export default function AgentsListingPage() {
   const { tenantId } = useRequiredParams('tenantId');
