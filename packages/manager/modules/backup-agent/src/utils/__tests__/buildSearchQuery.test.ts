@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { urlParams, urls } from '@/routes/Routes.constants';
+import { urlParams, urls } from '@/routes/routes.constants';
 
 import {
   TBuildDeleteAgentUrlParams,

@@ -9,7 +9,7 @@ import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
-import { urls } from '@/routes/Routes.constants';
+import { urls } from '@/routes/routes.constants';
 
 import { useTenantBackupStats } from './_hooks/useTenantBackupStats';
 

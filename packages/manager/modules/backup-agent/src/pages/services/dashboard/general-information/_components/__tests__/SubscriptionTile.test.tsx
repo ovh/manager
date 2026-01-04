@@ -1,6 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 
-import { urls } from '@/routes/Routes.constants';
+import { urls } from '@/routes/routes.constants';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 

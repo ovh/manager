@@ -1,6 +1,6 @@
 import { RenderResult, render } from '@testing-library/react';
 
-import { urls } from '@/routes/Routes.constants';
+import { urls } from '@/routes/routes.constants';
 
 import { TestApp } from './TestApp';
 import { MockParams, setupMswMock } from './setupMsw';

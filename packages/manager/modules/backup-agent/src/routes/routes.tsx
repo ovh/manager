@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import { subRoutes, urlParams } from './Routes.constants';
+import { subRoutes, urlParams } from './routes.constants';
 
 const MainLayout = React.lazy(() => import('../pages/MainLayout.component'));
 

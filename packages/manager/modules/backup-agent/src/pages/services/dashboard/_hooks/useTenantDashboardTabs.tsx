@@ -5,7 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { TENANT_LAYOUT_NAV_TABS, urlParams } from '@/routes/Routes.constants';
+import { TENANT_LAYOUT_NAV_TABS, urlParams } from '@/routes/routes.constants';
 import { DashboardTabType } from '@/types/Dashboard.type';
 import { tabsWithActiveTabOrDefault } from '@/utils/tabsWithActiveTabOrDefault';
 

@@ -5,7 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { MAIN_LAYOUT_NAV_TABS } from '@/routes/Routes.constants';
+import { MAIN_LAYOUT_NAV_TABS } from '@/routes/routes.constants';
 import { DashboardTabType } from '@/types/Dashboard.type';
 
 export function useDashboardTabs(): DashboardTabType[] {
