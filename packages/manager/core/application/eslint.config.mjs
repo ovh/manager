@@ -36,10 +36,6 @@ export default [
       'react-hooks/exhaustive-deps': 'off',
       'react/no-children-prop': 'off',
       'react/prop-types': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-unsafe-call': 'off',
-      '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/no-unsafe-argument': 'off',
     },
   },
 ];
