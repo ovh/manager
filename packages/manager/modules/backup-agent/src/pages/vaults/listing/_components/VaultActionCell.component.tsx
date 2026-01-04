@@ -6,7 +6,7 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
-import { subRoutes } from '@/routes/Routes.constants';
+import { subRoutes } from '@/routes/routes.constants';
 import { VaultResource } from '@/types/Vault.type';
 import { buildSearchQuery } from '@/utils/buildSearchQuery.utils';
 
