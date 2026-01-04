@@ -4,4 +4,4 @@ import { vaultStatusColor } from '@/components/ResourceStatusBadge/_utils/resour
 import { AlternativeStatus, ResourceStatus } from '@/types/Resource.type';
 
 export const getColorResourceStatus = (status: ResourceStatus | AlternativeStatus) =>
-  vaultStatusColor[status] ?? ODS_BADGE_COLOR.information;
+  vaultStatusColor[status.toUpperCase() as ResourceStatus] ?? ODS_BADGE_COLOR.information;
