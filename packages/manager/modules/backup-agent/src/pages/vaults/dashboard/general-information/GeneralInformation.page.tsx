@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
 
 import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
-import { subRoutes } from '@/routes/Routes.constants';
+import { subRoutes } from '@/routes/routes.constants';
 
 import { GeneralInformationVaultTile } from './_components/general-information-vault-tile/GeneralInformationVaultTile.component';
 import { SubscriptionTile } from './_components/subscription-tile/SubscriptionTile.component';

@@ -1,4 +1,4 @@
-import { urlParams, urls } from '@/routes/Routes.constants';
+import { urlParams, urls } from '@/routes/routes.constants';
 
 export const buildSearchQuery = (
   params: Record<string, string | number | boolean | undefined>,

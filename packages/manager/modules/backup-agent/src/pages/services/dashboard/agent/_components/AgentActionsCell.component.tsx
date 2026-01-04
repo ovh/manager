@@ -10,7 +10,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { urlParams, urls } from '@/routes/Routes.constants';
+import { urlParams, urls } from '@/routes/routes.constants';
 
 export type AgentActionsCellProps = {
   tenantId: string;

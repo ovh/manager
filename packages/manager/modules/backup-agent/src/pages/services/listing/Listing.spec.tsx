@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
-import { urls } from '@/routes/Routes.constants';
+import { urls } from '@/routes/routes.constants';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 
