@@ -75,7 +75,7 @@ const webShopConfig = (
         tracking: 'web::orders::email-microsoft-exchange::order',
       }
     : null,
-  features['web-office'] && ORDER_URLS[region].orderOffice
+  features['web-office:order'] && ORDER_URLS[region].orderOffice
     ? {
         label: 'order_item_office',
         icon: OFFICE365_SVG,
