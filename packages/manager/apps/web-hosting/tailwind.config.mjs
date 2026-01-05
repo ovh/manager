@@ -5,12 +5,9 @@ import baseConfig from '@ovh-ux/manager-tailwind-config';
 
 const require = createRequire(import.meta.url);
 const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
-const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
+const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx,cjs,mjs}`;
 
 const reactComponentsDir = pkgDir('@ovh-ux/muk');
-const pciCommonDir = pkgDir('@ovh-ux/manager-pci-common');
-
-const isPciConfig = '{{isPci}}';
 
 const baseTailwindConfig = [
   ...(baseConfig.content ?? []),
@@ -18,12 +15,12 @@ const baseTailwindConfig = [
   toGlob(reactComponentsDir),
 ];
 
-export const pciTailwindConfig = [...baseTailwindConfig, toGlob(pciCommonDir)];
+export const pciTailwindConfig = [...baseTailwindConfig];
 
 /** @type {import('tailwindcss').Config} */
 export default {
   ...baseConfig,
-  content: isPciConfig === 'true' ? pciTailwindConfig : baseTailwindConfig,
+  content: baseTailwindConfig,
   corePlugins: {
     preflight: false,
   },
