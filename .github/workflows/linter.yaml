@@ -1,6 +1,9 @@
 name: Lint Code Base
 
-on: [push]
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}

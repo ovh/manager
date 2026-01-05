@@ -1,6 +1,9 @@
 name: "Merge Conflict Finder"
 
-on: [push]
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}

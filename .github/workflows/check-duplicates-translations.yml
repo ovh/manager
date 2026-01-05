@@ -3,6 +3,8 @@ name: Duplicate translation
 on:
   push:
     branches-ignore: [master]
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
