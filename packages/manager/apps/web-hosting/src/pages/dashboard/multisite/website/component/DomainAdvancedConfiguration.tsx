@@ -133,7 +133,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
           className="w-1/3 p-4"
           color={controlValues.firewall ? CARD_COLOR.primary : CARD_COLOR.neutral}
         >
-          <div className="flew-row flex">
+          <div className="flex flex-row">
             <Controller
               name="firewall"
               control={control}
@@ -164,7 +164,7 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
           className="w-1/3 p-4"
           color={controlValues.cdn ? CARD_COLOR.primary : CARD_COLOR.neutral}
         >
-          <div className="flew-row flex">
+          <div className="flex flex-row">
             <Controller
               name="cdn"
               control={control}

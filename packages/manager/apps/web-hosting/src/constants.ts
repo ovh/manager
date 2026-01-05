@@ -154,3 +154,4 @@ export const GIT_WEBHOOK_GUIDE_LINK = {
   WS: `${PREFIX_GITHUB_DOCS_URL}es${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
   DEFAULT: `${PREFIX_GITHUB_DOCS_URL}en${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
 };
+export const VIDEO_MANAGER_LABS_URL = 'https://labs.ovhcloud.com/en/video-webhosting';

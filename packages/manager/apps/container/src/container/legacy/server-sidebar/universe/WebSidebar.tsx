@@ -252,7 +252,14 @@ export default function WebSidebar() {
         },
       });
     }
-
+    menu.push({
+      id: 'web-hosting-video-center',
+      label: t('sidebar_web_hosting_video_center'),
+      icon: getIcon('ovh-font ovh-font-play'),
+      badge: t('sidebar_tag_new'),
+      routeMatcher: new RegExp('^/video-center'),
+      href: navigation.getURL('web-hosting', '#/video-center'),
+    });
     if (features.zimbra) {
       menu.push({
         id: 'zimbra',
