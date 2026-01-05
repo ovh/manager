@@ -11,8 +11,12 @@ concurrency:
 
 jobs:
   merge_conflict_job:
-    runs-on: ubuntu-latest
     name: Find merge conflicts
+    if: >
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'push' && github.event.pull_request == null)
+    runs-on: ubuntu-latest
+
     steps:
       # Checkout the source code so we have some files to look at.
       - uses: actions/checkout@v4

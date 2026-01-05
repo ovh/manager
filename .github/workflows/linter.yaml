@@ -12,6 +12,9 @@ concurrency:
 jobs:
   lint:
     name: Lint Code Base
+    if: >
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'push' && github.event.pull_request == null)
     runs-on: ubuntu-latest
 
     env:
