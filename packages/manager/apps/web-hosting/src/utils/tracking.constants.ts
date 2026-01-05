@@ -75,6 +75,9 @@ export const CDN_CONFIRMATION = 'cdn-confirmation';
 export const ADD_MODULE = 'add-module';
 export const DELETE_MODULE = 'delete-module';
 
+// site
+export const DELETE_SITE = 'delete-site';
+
 // ssl
 export const DISABLE_SSL = 'disable-ssl';
 export const IMPORT_SSL = 'import-ssl';
