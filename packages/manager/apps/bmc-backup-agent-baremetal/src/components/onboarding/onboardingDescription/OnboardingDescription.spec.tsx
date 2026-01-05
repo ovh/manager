@@ -34,7 +34,7 @@ describe('specs:onboarding', () => {
     });
 
     const { container } = render(<OnboardingDescription />);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
     await expect(container).toBeAccessible();
 
     expect(screen.getByText('translated_onboarding:description_part1_MyTestApp')).toBeVisible();
