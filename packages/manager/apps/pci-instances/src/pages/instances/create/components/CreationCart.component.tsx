@@ -1,5 +1,5 @@
 import { Cart } from '@/components/cart/Cart.component';
-import { useCartItems } from '../hooks/useCartIems';
+import { useCartItems } from '../hooks/useCartItems';
 
 export const CreationCart = () => {
   const { cartItems, cartActions } = useCartItems();

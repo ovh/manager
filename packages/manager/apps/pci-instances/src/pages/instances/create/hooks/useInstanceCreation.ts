@@ -43,6 +43,7 @@ type TInstanceCreation = {
   instanceData: TInstanceData;
   isCreationEnabled: boolean;
   handleCreateInstance: () => void;
+  isCreatingInstance: boolean;
 };
 
 // eslint-disable-next-line max-lines-per-function
@@ -166,7 +167,10 @@ export const useInstanceCreation = (): TInstanceCreation => {
     console.error(errorMessage);
   };
 
-  const { mutate: createInstance } = useCreateInstance({
+  const {
+    mutate: createInstance,
+    isPending: isCreatingInstance,
+  } = useCreateInstance({
     projectId,
     callbacks: { onSuccess: handleSuccess, onError: handleError },
   });
@@ -218,5 +222,6 @@ export const useInstanceCreation = (): TInstanceCreation => {
     instanceData,
     isCreationEnabled,
     handleCreateInstance,
+    isCreatingInstance,
   };
 };

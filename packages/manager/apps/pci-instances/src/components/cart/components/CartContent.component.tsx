@@ -1,4 +1,4 @@
-import { TCartItem } from '@/pages/instances/create/hooks/useCartIems';
+import { TCartItem } from '@/pages/instances/create/hooks/useCartItems';
 import { Accordion, AccordionChangeDetail } from '@ovhcloud/ods-react';
 import { ReactNode, useState } from 'react';
 

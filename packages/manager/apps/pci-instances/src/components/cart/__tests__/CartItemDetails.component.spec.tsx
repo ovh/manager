@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { Accordion, AccordionItem } from '@ovhcloud/ods-react';
 import { CartItemDetails } from '../components';
-import { TCartItemDetail } from '@/pages/instances/create/hooks/useCartIems';
+import { TCartItemDetail } from '@/pages/instances/create/hooks/useCartItems';
 
 const imageName = 'image';
 const imageDescriptionName = 'Linux';

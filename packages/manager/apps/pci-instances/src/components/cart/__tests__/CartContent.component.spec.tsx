@@ -5,7 +5,7 @@ import { CartItem } from '../components';
 import {
   TCartItemDetail,
   TCartItem,
-} from '@/pages/instances/create/hooks/useCartIems';
+} from '@/pages/instances/create/hooks/useCartItems';
 
 const instanceItemTitle = 'instance';
 const instanceItemName = 'instance_01';

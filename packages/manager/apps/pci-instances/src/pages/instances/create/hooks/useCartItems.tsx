@@ -37,6 +37,7 @@ export const useCartItems = (): TCartItems => {
   const {
     instanceData,
     isCreationEnabled,
+    isCreatingInstance,
     handleCreateInstance,
   } = useInstanceCreation();
 
@@ -188,7 +189,11 @@ export const useCartItems = (): TCartItems => {
 
   const ActionButtons = (
     <>
-      <Button onClick={handleCreateInstance} disabled={!isCreationEnabled}>
+      <Button
+        loading={isCreatingInstance}
+        onClick={handleCreateInstance}
+        disabled={!isCreationEnabled}
+      >
         {t('creation:pci_instance_creation_create_my_instance')}
       </Button>
       <Button variant="outline">

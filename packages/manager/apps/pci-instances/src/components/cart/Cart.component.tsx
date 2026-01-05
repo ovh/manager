@@ -13,7 +13,7 @@ import { CartContent } from './components/CartContent.component';
 import {
   TCartItem,
   TCartItemDetail,
-} from '@/pages/instances/create/hooks/useCartIems';
+} from '@/pages/instances/create/hooks/useCartItems';
 
 export type TCartProps = {
   items: TCartItem[];
