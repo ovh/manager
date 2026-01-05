@@ -6,7 +6,7 @@ import {
   EditTenantPayload,
   GetTenantPayload,
 } from '@/data/api/tenants.props';
-import { Tenant } from '@/types/tenants.type';
+import { Tenant, TenantSubscription } from '@/types/tenants.type';
 
 export const getTenants = async ({
   resourceName,
@@ -28,6 +28,20 @@ export const getTenant = async ({
 }: GetTenantPayload): Promise<Tenant> => {
   const { data } = await apiClient.v2.get<Tenant>(
     `/observability/resource/${resourceName}/metric/tenant/${tenantId}`,
+    {
+      signal,
+    },
+  );
+  return data;
+};
+
+export const getTenantSubscriptions = async ({
+  resourceName,
+  tenantId,
+  signal,
+}: GetTenantPayload): Promise<TenantSubscription[]> => {
+  const { data } = await apiClient.v2.get<TenantSubscription[]>(
+    `/observability/resource/${resourceName}/metric/tenant/${tenantId}/subscription`,
     {
       signal,
     },
