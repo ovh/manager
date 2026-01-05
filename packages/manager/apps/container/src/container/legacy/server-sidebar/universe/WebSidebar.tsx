@@ -227,6 +227,16 @@ export default function WebSidebar() {
         ),
       });
     }
+     menu.push({
+      id: 'web-hosting-video-manager-center',
+      label: t('sidebar_web_hosting_video_manager_center'),
+      badge: t('sidebar_tag_new'),
+      routeMatcher: new RegExp('^/video-manager-center'),
+      href: navigation.getURL(
+        'web-hosting',
+        '#/video-manager-center',
+      ),
+    });
     if (features['private-database']) {
       menu.push({
         id: 'privateDatabases',

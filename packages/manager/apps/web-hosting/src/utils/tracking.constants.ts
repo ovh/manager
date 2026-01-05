@@ -98,4 +98,9 @@ export const REMOVE_SEO_SUBSCIPTION = 'remove-seo-subscription';
 export const WORDPRESS_MANAGED = 'managed-wordpress';
 export const WORDPRESS_MANAGED_SERVICE = 'managed-wordpress_service';
 
+// video manager center
+export const VIDEO_MANAGER_CENTER = 'video-manager-center';
+export const VIDEO_MANAGER_DASHBOARD = 'video-manager-dashboard';
+export const VIDEO_MANAGER_ONBOARDING = 'video-manager-onboarding';
+
 export const GO_TO = (link: string) => `go-to-${link}_${WEBSITE}`;
