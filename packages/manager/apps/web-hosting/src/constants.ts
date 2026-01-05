@@ -105,3 +105,4 @@ export const SHARED_CDN_OPTIONS = {
 
 export const CDN_ADVANCED = 'cdn-advanced';
 export const MAX_URL_ENTRIES = 100;
+export const VIDEO_MANAGER_LABS_URL = 'https://labs.ovhcloud.com/en/video-webhosting';
