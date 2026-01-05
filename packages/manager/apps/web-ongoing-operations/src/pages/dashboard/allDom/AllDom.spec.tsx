@@ -1,7 +1,7 @@
 import '@/setupTests';
 import React from 'react';
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import {
   useAuthorizationIam,
