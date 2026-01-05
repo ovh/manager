@@ -23,8 +23,7 @@ export function useTenantBackupStats({
     connectedVaultCount,
   });
 
-  console.log({tenantDetails, vspcTenantIds})
-  const { installedBackupAgents } = useInstalledBackupAgents({ vspcTenantIds });
+  const { installedBackupAgents, isPending } = useInstalledBackupAgents({ vspcTenantIds });
 
   const installedAgentsText = t('number_of_installed_agents', {
     installedAgentsCount: installedBackupAgents,
@@ -33,5 +32,6 @@ export function useTenantBackupStats({
   return {
     connectedVaultsText,
     installedAgentsText,
+    isPending
   };
 }

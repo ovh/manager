@@ -6,7 +6,9 @@ import { countBackupAgents } from '@/utils/countBackupAgents';
 import { getVSPCTenants } from '../../api/tenants/tenants.requests';
 import { useGetBackupServicesId } from '../backup/useBackupServicesId';
 import { BACKUP_TENANTS_QUERY_KEY } from './useBackupTenants';
-import {useBackupVSPCTenantDetailsOptions} from "@/data/hooks/tenants/useVspcTenantDetails";
+import {
+  useGetBackupVSPCTenantDetailsOptions
+} from "@/data/hooks/tenants/useVspcTenantDetails";
 
 export const GET_VSPC_TENANTS_QUERY_KEY = [...BACKUP_TENANTS_QUERY_KEY, 'vspc'];
 
@@ -28,8 +30,9 @@ export const useInstalledBackupAgents = ({
 }: Readonly<{
   vspcTenantIds: readonly string[];
 }>) => {
+  const getBackupVspcOptions = useGetBackupVSPCTenantDetailsOptions();
   return useQueries({
-    queries: vspcTenantIds.map((vspcTenantId) => useBackupVSPCTenantDetailsOptions({ tenantId: vspcTenantId })),
+    queries: vspcTenantIds.map((vspcTenantId) => getBackupVspcOptions({ tenantId: vspcTenantId })),
     combine: (results) => {
       const tenants = results
         .map((r) => r.data?.currentState)
