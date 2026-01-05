@@ -1,7 +1,8 @@
 {
-  "mandatory":"obligatoire",
-  "service":"Service <strong>{{serviceName}}</strong>",
-  "form":{
+  "mandatory": "obligatoire",
+  "service": "Service <strong>{{serviceName}}</strong>",
+  "coming_soon": "Prochainement",
+  "form": {
     "bounds": {
       "helper": "Le minimum est de {{min}} et le maximum est de {{max}}."
     },
