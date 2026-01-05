@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import DataGridCellLink from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component';
-import { DataGridCellLinkProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.props';
+import DataGridCellLink from '@/components/listing/common/datagrid/datagrid-cell-link/DataGridCellLink.component';
+import { DataGridCellLinkProps } from '@/components/listing/common/datagrid/datagrid-cell-link/DataGridCellLink.props';
 
 const { mockGetTenantDashboardUrl } = vi.hoisted(() => ({
   mockGetTenantDashboardUrl: vi.fn(

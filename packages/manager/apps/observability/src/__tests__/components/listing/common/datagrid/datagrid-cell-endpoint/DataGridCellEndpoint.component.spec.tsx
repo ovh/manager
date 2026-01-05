@@ -4,8 +4,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import DataGridCellEndpoint from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.component';
-import { DatagridCellEnpointProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.props';
+import DataGridCellEndpoint from '@/components/listing/common/datagrid/datagrid-cell-endpoint/DataGridCellEndpoint.component';
+import { DatagridCellEnpointProps } from '@/components/listing/common/datagrid/datagrid-cell-endpoint/DataGridCellEndpoint.props';
 import { useLocation } from '@/data/hooks/infrastructures/useLocations.hook';
 import { TenantInfrastructure } from '@/types/tenants.type';
 
