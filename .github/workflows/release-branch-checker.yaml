@@ -1,7 +1,9 @@
 name: 'Check for Release Branch'
+
 on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -13,9 +15,35 @@ jobs:
     steps:
       - name: Check branch name
         uses: actions/github-script@v6
-        if: github.base_ref == 'master'
         with:
           script: |
-            if(!context.payload.pull_request.head.ref.startsWith('release/') && context.payload.pull_request.head.ref !== 'develop' ) {
+            // PR event -> direct
+            let pr = context.payload.pull_request;
+
+            // workflow_dispatch -> find PR for this branch
+            if (!pr) {
+              const head = `${context.repo.owner}:${process.env.GITHUB_REF_NAME}`;
+              const { data } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head,
+                state: 'open',
+                per_page: 1,
+              });
+              if (!data?.length) {
+                core.info('No PR found for this branch; skipping.');
+                return;
+              }
+              const { data: fullPr } = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: data[0].number,
+              });
+              pr = fullPr;
+            }
+
+            if (pr.base.ref !== 'master') return;
+
+            if (!pr.head.ref.startsWith('release/') && pr.head.ref !== 'develop') {
               throw new Error(`Only "release/**" or "develop" branches can be merged to "master".`);
             }

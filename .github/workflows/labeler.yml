@@ -1,6 +1,8 @@
 name: "Pull Request Labeler"
+
 on:
-- pull_request_target
+  pull_request_target:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -10,11 +12,39 @@ jobs:
   label:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-    - uses: TimonVS/pr-labeler-action@v4
-      with:
-        configuration-path: .github/branch-name-labeler.yml
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Resolve PR number (dispatch-safe)
+        id: pr
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // PR event -> direct
+            let prNumber = context.payload.pull_request?.number;
+
+            // workflow_dispatch -> find PR for this branch
+            if (!prNumber) {
+              const head = `${context.repo.owner}:${process.env.GITHUB_REF_NAME}`;
+              const { data } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head,
+                state: 'open',
+                per_page: 1,
+              });
+              prNumber = data?.[0]?.number;
+            }
+
+            core.setOutput('number', prNumber || '');
+            if (!prNumber) core.info('No PR found for this branch; labeling skipped.');
+
+      - uses: actions/labeler@v6
+        if: ${{ steps.pr.outputs.number != '' }}
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          pr-number: ${{ steps.pr.outputs.number }}
+
+      - uses: TimonVS/pr-labeler-action@v4
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        with:
+          configuration-path: .github/branch-name-labeler.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,5 +1,8 @@
 name: Check package.json metadatas
-on: [push]
+
+on:
+  push:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}

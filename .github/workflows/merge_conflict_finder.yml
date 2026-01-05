@@ -1,6 +1,8 @@
 name: "Merge Conflict Finder"
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}

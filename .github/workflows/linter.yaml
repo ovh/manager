@@ -1,6 +1,8 @@
 name: Lint Code Base
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}

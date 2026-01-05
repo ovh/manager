@@ -1,5 +1,9 @@
 name: Lint Commit Messages
-on: [pull_request, push]
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}

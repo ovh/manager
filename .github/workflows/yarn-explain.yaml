@@ -1,5 +1,8 @@
 name: Yarn Lock Changes
-on: [pull_request]
+
+on:
+  pull_request:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}

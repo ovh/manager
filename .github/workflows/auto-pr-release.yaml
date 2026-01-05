@@ -1,9 +1,16 @@
 name: "Develop to master"
+
 on:
   push:
     branches:
     - develop
     - "release/*"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -23,3 +30,12 @@ jobs:
         pr_label: "release"
         pr_draft: true
         pr_template: ".github/RELEASE_TEMPLATE.md"
+
+    # OPTIONAL: if you need checks to run for this PR too, dispatch your CI workflows explicitly
+    - name: Trigger CI workflows (workflow_dispatch)
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          # Replace with the workflows you need as required checks
+          gh workflow run ci.yml --ref "${{ github.ref_name }}" || true
+          # gh workflow run lint.yml --ref "${{ github.ref_name }}" || true

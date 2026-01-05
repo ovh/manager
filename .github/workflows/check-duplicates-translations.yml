@@ -3,6 +3,7 @@ name: Duplicate translation
 on:
   push:
     branches-ignore: [master]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -41,7 +42,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          CURRENT_BRANCH=$(git branch --show-current)
+          CURRENT_BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
           echo "My branch is $CURRENT_BRANCH"
 
           if [[ "$CURRENT_BRANCH" == "master" ]]; then

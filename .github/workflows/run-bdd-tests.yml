@@ -3,6 +3,7 @@ name: Run tests
 on:
   push:
     branches-ignore: [master]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -111,7 +112,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          BRANCH=$(git branch --show-current)
+          BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
           echo "Current branch is $BRANCH"
 
           if [[ "$BRANCH" == "master" ]]; then
