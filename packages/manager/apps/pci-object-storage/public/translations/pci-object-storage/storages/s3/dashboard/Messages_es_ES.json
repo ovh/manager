@@ -65,5 +65,6 @@
   "editObjectLockToastSuccessDescription": "Las opciones de bloqueo de objetos han sido actualizadas",
   "errorDurationMin": "La duración mínima es de 1 día.",
   "errorDurationMax": "La duración máxima es de 100 años o 36500 días.",
-  "errorRuleRequired": "Se debe definir una regla de retención para activar el bloqueo de objetos por defecto."
+  "errorRuleRequired": "Se debe definir una regla de retención para activar el bloqueo de objetos por defecto.",
+  "deleteBucketButton": "Eliminar el bucket"
 }

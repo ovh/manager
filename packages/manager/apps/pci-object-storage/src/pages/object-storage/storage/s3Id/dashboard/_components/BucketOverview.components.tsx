@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import {
+  Button,
   Clipboard,
   Popover,
   PopoverContent,
@@ -21,6 +23,7 @@ const BucketOverview = () => {
   const isLocaleZone = useIsLocaleZone(s3, regions);
   const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
   const toast = useToast();
+  const navigate = useNavigate();
   const onCopy = () => toast.toast({ title: t('copyLabel') });
 
   const endpoint = regions
@@ -69,6 +72,15 @@ const BucketOverview = () => {
           </div>
         </>
       )}
+      <Button
+        data-testid="s3-bucket-delete-button"
+        variant="critical"
+        mode="outline"
+        className="mt-4"
+        onClick={() => navigate('./delete')}
+      >
+        {t('deleteBucketButton')}
+      </Button>
     </div>
   );
 };

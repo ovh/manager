@@ -65,5 +65,6 @@
   "editObjectLockToastSuccessDescription": "Les options d'Object Lock ont été mises à jour",
   "errorDurationMin": "La durée minimale est de 1 jour.",
   "errorDurationMax": "La durée maximale est de 100 ans ou 36500 jours.",
-  "errorRuleRequired": "Une règle de rétention doit être définie pour activer l'Object Lock par défaut."
+  "errorRuleRequired": "Une règle de rétention doit être définie pour activer l'Object Lock par défaut.",
+  "deleteBucketButton": "Supprimer le bucket"
 }
