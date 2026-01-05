@@ -15,12 +15,12 @@ export const BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY = (vspcTenantID: string) => [
 ];
 
 
-export const useBackupVSPCTenantDetailsOptions = ({
-                                             tenantId,
-                                           }: UseVSPCTenantDetailsParams) => {
+export const useGetBackupVSPCTenantDetailsOptions = () => {
   const getBackupServiceId = useGetBackupServicesId();
 
-  return queryOptions({
+  return ({
+            tenantId,
+          }: UseVSPCTenantDetailsParams) => queryOptions({
     queryFn: async () => {
       const backupServicesId = await getBackupServiceId();
 
@@ -35,5 +35,5 @@ export const useBackupVSPCTenantDetailsOptions = ({
 export const useBackupVSPCTenantDetails = ({
   tenantId,
 }: UseVSPCTenantDetailsParams) => {
-  return useQuery(useBackupVSPCTenantDetailsOptions({ tenantId }));
+  return useQuery(useGetBackupVSPCTenantDetailsOptions()({ tenantId }));
 };
