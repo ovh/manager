@@ -1,17 +1,37 @@
 {
-  "title": "Com as nossas bases de dados geridas, concentre-se nas suas aplicações",
-  "description1": "Explore a potência dos seus dados mantendo o controlo dos seus recursos.",
-  "description2": "Escolha o motor da base de dados mais adequada a partir de uma vasta gama e implemente-o em alguns minutos. A OVHcloud gere a infraestrutura e a administração dos seus serviços geridos.",
-  "description3": "Poupa tempo, dinheiro e pode concentrar-se nos seus desenvolvimentos e no valor que as suas aplicações acrescentam aos seus clientes.",
-  "createServiceButton": "Criar uma base de dados gerida",
-  "cardGuidestitle": "Manuais",
-  "cardGuidesDescription": "Documentação das bases de dados",
-  "cardGuidesContent": "Descubra todos os manuais e tutoriais sobre as nossas bases de dados geridas",
-  "cardQuickStartTitle": "Quick Start",
-  "cardQuickStartDescription": "Implemente a sua primeira base de dados",
-  "cardQuickStartContent": "Saiba como instalar rapidamente a sua primeira base de dados gerida",
-  "cardFreeTierTitle": "Free Tier",
-  "cardFreeTierTescription": "Experimente a oferta MongoDB gratuita",
-  "cardFreeTierContent": "Beneficie de um cluster MongoDB gerido 100% gratuito para sempre",
-  "cardLink": "Saber mais"
+  "databases.title": "Desenvolva as suas bases de dados em vez de se preocupar com elas.",
+  "databases.subtitle": "Com as nossas bases de dados totalmente geridas, liberte-se das restrições administrativas e concentre-se nas suas aplicações e produtos.",
+  "databases.description1": "SQL, NoSQL ou cache: temos a solução. Implemente o seu motor de base de dados preferido em minutos com a nossa gama de soluções geridas: <strong>PostgreSQL, MySQL, MongoDB e Valkey</strong>.",
+  "databases.description2": "As nossas equipas gerem a infraestrutura, as cópias de segurança e a monitorização para que se possa concentrar no desenvolvimento de aplicações de alto desempenho, e não na manutenção de servidores.",
+  "databases.description3": "Além disso, comece pequeno e dimensione facilmente à medida que os seus dados crescem, tudo com <strong>preços previsíveis</strong>, <strong>soberania de dados</strong> e <strong>alta disponibilidade</strong> integrada.",
+  "databases.createServiceButton": "Criar a sua base de dados gerida",
+
+  "databases.tile.quickStart.title": "Início rápido",
+  "databases.tile.quickStart.content": "Encontre todos os guias e tutoriais das nossas bases de dados geridas",
+
+  "databases.tile.documentation.title": "Documentação e tutoriais",
+  "databases.tile.documentation.content": "Aprenda a implementar rapidamente a sua primeira base de dados gerida.",
+
+  "databases.tile.freeTier.title": "MongoDB Free Tier",
+  "databases.tile.freeTier.content": "Obtenha o seu primeiro cluster MongoDB gerido gratuito para sempre.",
+  "databases.tile.freeTier.cta": "Criar a sua instância MongoDB em dois cliques",
+
+  "analytics.title": "Transforme os seus dados em informações acionáveis, não em fontes de problemas.",
+  "analytics.subtitle": "Com os nossos motores de análise totalmente geridos, liberte-se das restrições administrativas e concentre-se nas suas aplicações e produtos.",
+  "analytics.description1": "Analise, pesquise e monitore os seus dados em grande escala, sem gerir infraestrutura complexa.",
+  "analytics.description2": "Implemente <strong>Kafka, ClickHouse, OpenSearch e Grafana</strong> em minutos para otimizar os seus fluxos de dados, análises e cargas de trabalho de observabilidade.",
+  "analytics.description3": "Desde dashboards até pipelines de dados, <strong>ganhe visibilidade e desempenho</strong> mantendo o <strong>controlo total e a soberania dos seus dados</strong>.",
+  "analytics.createServiceButton": "Criar o seu serviço de análise gerido",
+
+  "analytics.tile.quickStart.title": "Início rápido",
+  "analytics.tile.quickStart.content": "Aprenda a implementar rapidamente os seus pipelines e dashboards geridos.",
+
+  "analytics.tile.documentation.title": "Documentação e tutoriais",
+  "analytics.tile.documentation.content": "Encontre todos os guias e tutoriais dos nossos motores de análise geridos",
+
+  "analytics.tile.integrations.title": "Integrações",
+  "analytics.tile.integrations.content": "Conecte-se facilmente com as suas bases de dados, Object Storage ou clusters Kubernetes.",
+  "analytics.tile.integrations.cta": "Experimentar agora",
+
+  "common.cardLink": "Saber mais"
 }

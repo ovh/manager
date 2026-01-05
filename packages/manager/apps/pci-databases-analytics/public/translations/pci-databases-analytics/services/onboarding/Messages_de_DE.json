@@ -1,17 +1,37 @@
 {
-  "title": "Mit unseren gemanagten Datenbanken können Sie sich ganz auf Ihre Anwendungen konzentrieren.",
-  "description1": "Nutzen Sie das gesamte Potenzial Ihrer Daten und behalten Sie dabei die Kontrolle über Ihre Ressourcen.",
-  "description2": "Wählen Sie aus einer breiten Palette von Datenbank-Engines die für Sie passende Option aus und stellen Sie diese in wenigen Minuten bereit. Wir kümmern uns um die Infrastruktur und die Administration Ihrer gemanagten Dienste.",
-  "description3": "Sie sparen Zeit und Geld und können sich ganz auf Ihre Entwicklungen und den Mehrwert Ihrer Anwendungen für Ihre Kund:innen konzentrieren.",
-  "createServiceButton": "Managed Database erstellen",
-  "cardGuidestitle": "Guides",
-  "cardGuidesDescription": "Datenbankdokumentation",
-  "cardGuidesContent": "Hier finden Sie alle Guides und Tutorials zu unseren gemanagten Datenbanken.",
-  "cardQuickStartTitle": "Quick Start",
-  "cardQuickStartDescription": "Erste Datenbank deployen",
-  "cardQuickStartContent": "Erfahren Sie, wie Sie Ihre erste gemanagte Datenbank schnell installieren können.",
-  "cardFreeTierTitle": "Free Tier",
-  "cardFreeTierTescription": "Testen Sie das kostenlose MongoDB-Angebot.",
-  "cardFreeTierContent": "Profitieren Sie von einem komplett kostenlosen gemanagten MongoDB-Cluster.",
-  "cardLink": "Mehr erfahren"
+  "databases.title": "Entwickeln Sie Ihre Datenbanken, anstatt sich Sorgen zu machen.",
+  "databases.subtitle": "Mit unseren vollständig verwalteten Datenbanken befreien Sie sich von administrativen Zwängen und konzentrieren Sie sich auf Ihre Anwendungen und Produkte.",
+  "databases.description1": "SQL, NoSQL oder Caching: Wir haben die Lösung. Stellen Sie Ihre bevorzugte Datenbank-Engine in wenigen Minuten mit unserer Palette an verwalteten Lösungen bereit: <strong>PostgreSQL, MySQL, MongoDB und Valkey</strong>.",
+  "databases.description2": "Unsere Teams verwalten die Infrastruktur, Backups und Überwachung, damit Sie sich auf die Entwicklung leistungsstarker Anwendungen konzentrieren können, nicht auf die Wartung von Servern.",
+  "databases.description3": "Außerdem starten Sie klein und skalieren problemlos, wenn Ihre Daten wachsen, alles mit <strong>vorhersehbaren Preisen</strong>, <strong>Datensouveränität</strong> und integrierter <strong>hoher Verfügbarkeit</strong>.",
+  "databases.createServiceButton": "Erstellen Sie Ihre verwaltete Datenbank",
+
+  "databases.tile.quickStart.title": "Quick Start",
+  "databases.tile.quickStart.content": "Finden Sie alle Anleitungen und Tutorials für unsere verwalteten Datenbanken",
+
+  "databases.tile.documentation.title": "Dokumentation & Tutorials",
+  "databases.tile.documentation.content": "Erfahren Sie, wie Sie Ihre erste verwaltete Datenbank schnell bereitstellen.",
+
+  "databases.tile.freeTier.title": "MongoDB Free Tier",
+  "databases.tile.freeTier.content": "Erhalten Sie Ihren ersten verwalteten MongoDB-Cluster kostenlos für immer.",
+  "databases.tile.freeTier.cta": "Erstellen Sie Ihre MongoDB-Instanz mit zwei Klicks",
+
+  "analytics.title": "Verwandeln Sie Ihre Daten in verwertbare Erkenntnisse, nicht in Problemquellen.",
+  "analytics.subtitle": "Mit unseren vollständig verwalteten Analytics-Engines befreien Sie sich von administrativen Zwängen und konzentrieren Sie sich auf Ihre Anwendungen und Produkte.",
+  "analytics.description1": "Analysieren, durchsuchen und überwachen Sie Ihre Daten in großem Maßstab, ohne komplexe Infrastruktur zu verwalten.",
+  "analytics.description2": "Stellen Sie <strong>Kafka, ClickHouse, OpenSearch und Grafana</strong> in wenigen Minuten bereit, um Ihre Datenflüsse, Analysen und Observability-Workloads zu optimieren.",
+  "analytics.description3": "Von Dashboards bis zu Datenpipelines: <strong>Gewinnen Sie Transparenz und Leistung</strong> bei gleichzeitiger Aufrechterhaltung der <strong>vollen Kontrolle und Datensouveränität</strong>.",
+  "analytics.createServiceButton": "Erstellen Sie Ihren verwalteten Analytics-Service",
+
+  "analytics.tile.quickStart.title": "Quick Start",
+  "analytics.tile.quickStart.content": "Erfahren Sie, wie Sie Ihre verwalteten Pipelines und Dashboards schnell bereitstellen.",
+
+  "analytics.tile.documentation.title": "Dokumentation und Tutorials",
+  "analytics.tile.documentation.content": "Finden Sie alle Anleitungen und Tutorials für unsere verwalteten Analytics-Engines",
+
+  "analytics.tile.integrations.title": "Integrationen",
+  "analytics.tile.integrations.content": "Verbinden Sie sich einfach mit Ihren Datenbanken, Object Storage oder Kubernetes-Clustern.",
+  "analytics.tile.integrations.cta": "Jetzt ausprobieren",
+
+  "common.cardLink": "Mehr erfahren"
 }

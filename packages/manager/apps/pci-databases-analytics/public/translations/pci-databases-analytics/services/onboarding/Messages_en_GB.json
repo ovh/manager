@@ -1,17 +1,37 @@
 {
-  "title": "With our managed databases, you can focus on your applications",
-  "description1": "Harness the power of your data by maintaining control of your resources.",
-  "description2": "Choose the right database engine for you from our wide range, and deploy it in minutes. We manage the infrastructure and administration of your managed services.",
-  "description3": "You save time, money, and are able to focus on your developments and the value your applications bring to your customers.",
-  "createServiceButton": "Create a managed database",
-  "cardGuidestitle": "Guides",
-  "cardGuidesDescription": "Database documentation",
-  "cardGuidesContent": "Find all the guides and tutorials for our managed databases",
-  "cardQuickStartTitle": "Quick Start",
-  "cardQuickStartDescription": "Deploy your first database",
-  "cardQuickStartContent": "Find out how to quickly install your first managed database",
-  "cardFreeTierTitle": "Free Tier",
-  "cardFreeTierTescription": "Try the MongoDB solution for free",
-  "cardFreeTierContent": "Get a managed MongoDB cluster for free, for life",
-  "cardLink": "Find out more"
+  "databases.title": "Develop your databases instead of worrying about them.",
+  "databases.subtitle": "With our fully managed databases, free yourself from administrative constraints and focus on your applications and products.",
+  "databases.description1": "SQL, NoSQL or caching: we have the solution. Deploy your preferred database engine in minutes with our range of managed solutions: <strong>PostgreSQL, MySQL, MongoDB and Valkey</strong>.",
+  "databases.description2": "Our teams manage the infrastructure, backups and monitoring so you can focus on developing high-performance applications, not on server maintenance.",
+  "databases.description3": "Plus, start small and scale easily as your data grows, all with <strong>predictable pricing</strong>, <strong>data sovereignty</strong> and built-in <strong>high availability</strong>.",
+  "databases.createServiceButton": "Create your managed database",
+
+  "databases.tile.quickStart.title": "Quick Start",
+  "databases.tile.quickStart.content": "Find all the guides and tutorials for our managed databases",
+
+  "databases.tile.documentation.title": "Documentation & tutorials",
+  "databases.tile.documentation.content": "Learn how to quickly deploy your first managed database.",
+
+  "databases.tile.freeTier.title": "MongoDB Free Tier",
+  "databases.tile.freeTier.content": "Get your first managed MongoDB cluster free for life.",
+  "databases.tile.freeTier.cta": "Create your MongoDB instance in two clicks",
+
+  "analytics.title": "Turn your data into actionable insights, not sources of problems.",
+  "analytics.subtitle": "With our fully managed analytics engines, free yourself from administrative constraints and focus on your applications and products.",
+  "analytics.description1": "Analyse, search and monitor your data at scale, without managing complex infrastructure.",
+  "analytics.description2": "Deploy <strong>Kafka, ClickHouse, OpenSearch and Grafana</strong> in minutes to optimise your data flows, analytics and observability workloads.",
+  "analytics.description3": "From dashboards to data pipelines, <strong>gain visibility and performance</strong> while maintaining <strong>full control and data sovereignty</strong>.",
+  "analytics.createServiceButton": "Create your managed analytics service",
+
+  "analytics.tile.quickStart.title": "Quick Start",
+  "analytics.tile.quickStart.content": "Learn how to quickly deploy your managed pipelines and dashboards.",
+
+  "analytics.tile.documentation.title": "Documentation and tutorials",
+  "analytics.tile.documentation.content": "Find all the guides and tutorials for our managed Analytics engines",
+
+  "analytics.tile.integrations.title": "Integrations",
+  "analytics.tile.integrations.content": "Easily connect with your databases, Object Storage, or Kubernetes clusters.",
+  "analytics.tile.integrations.cta": "Try now",
+
+  "common.cardLink": "Learn more"
 }
