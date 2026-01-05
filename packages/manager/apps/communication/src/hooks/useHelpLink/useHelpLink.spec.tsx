@@ -6,7 +6,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { Region, User } from '@ovh-ux/manager-config';
 import useHelpLink from './useHelpLink';
-import { HELP_ROOT, HELP_URL } from './useHelpLink.constants';
+import { HELP_ROOT, HELP_INDEX_PATHS } from './useHelpLink.constants';
 
 describe('useHelpLink', () => {
   const customRenderHook = (mockShell: ShellContextType) => {
@@ -33,7 +33,11 @@ describe('useHelpLink', () => {
         },
       } as unknown) as ShellContextType;
       const { result } = customRenderHook(mockShell);
-      expect(result.current).toBe(HELP_URL[region as Region][subsidiary]);
+      if (region === 'US') {
+        expect(result.current).toBe(HELP_INDEX_PATHS.US[subsidiary]);
+      } else {
+        expect(result.current).toBe(`${HELP_ROOT}/${HELP_INDEX_PATHS[region as Region]?.[subsidiary]}`);
+      }
     },
   );
 
