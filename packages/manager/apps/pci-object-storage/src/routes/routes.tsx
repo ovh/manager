@@ -353,6 +353,15 @@ export default [
             ),
             children: [
               {
+                path: 'delete',
+                id: 's3.dashboard.delete',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/dashboard/delete/Delete.modal'
+                  ),
+                ),
+              },
+              {
                 path: 'active-encryption',
                 id: 'settings.encryption',
                 ...lazyLoadRoute(() =>
