@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Route } from 'react-router-dom';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import {
   DELETE_ACCOUNT,
@@ -20,6 +20,7 @@ import { urls } from '@/routes/Routes.constants';
 const LayoutPage = React.lazy(() => import('@/pages/layout'));
 const LicensesPage = React.lazy(() => import('@/pages/licenses/Licenses.page'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+const McaPage = React.lazy(() => import('@/pages/dashboard/microsoft-customer-agreement/Mca.page'));
 const GeneralInformationPage = React.lazy(
   () => import('@/pages/dashboard/general-information/GeneralInformation.page'),
 );
@@ -68,6 +69,16 @@ export default (
       }}
     />
     <Route path={urls.dashboard} Component={DashboardPage}>
+      <Route
+        path={urls.mca}
+        Component={McaPage}
+        handle={{
+          tracking: {
+            pageName: 'agreement',
+            pageType: PageType.funnel,
+          },
+        }}
+      />
       <Route
         path={''}
         Component={GeneralInformationPage}

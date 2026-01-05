@@ -50,5 +50,8 @@
   "state_deleting": "Trwa usuwanie",
   "state_suspended": "Zawieszona",
   "state_suspending": "Zawieszanie w trakcie",
-  "error_message": "Wykonanie Twojej dyspozycji nie powiodło się. {{error}}"
+  "error_message": "Wykonanie Twojej dyspozycji nie powiodło się. {{error}}",
+  "agreement": "Podpisanie umowy",
+  "contract_signature": "Podpisanie umowy",
+  "contract_signature_tooltip": "Aby uzyskać dostęp do swojej usługi, musisz zaakceptować umowę użytkownika Microsoft"
 }

@@ -2,6 +2,7 @@
   "step_number": "Étape {{step}}",
   "stepPlaceholder": "Étape {{current}} sur {{total}}",
   "mandatory_fields": "Les champs mentionnés avec un astérisque * sont obligatoires.",
+  "all_fields_are_required": "Tous les champs sont obligatoires.",
   "max_chars": "{{ value }} caractères maximum",
   "min_chars": "{{ value }} caractères minimum",
   "required_field": "Champ obligatoire",
@@ -24,6 +25,11 @@
   "lastname": "Nom",
   "firstname": "Prénom",
   "login": "Identifiant",
+  "companyName": "Nom de l'organisation",
+  "language": "Langue",
+  "country": "Pays",
+  "phone": "Téléphone",
+  "email": "Email",
   "change_password_label_password": "Nouveau mot de passe",
   "change_password_label_confirm_password": "Confirmation du nouveau mot de passe",
   "change_password_helper1": "Attention, le mot de passe doit respecter les conditions suivantes :",
@@ -32,5 +38,6 @@
   "yes": "Oui",
   "no": "Non",
   "ok": "OK",
-  "optional": "facultatif"
+  "optional": "facultatif",
+  "required": "obligatoire"
 }
