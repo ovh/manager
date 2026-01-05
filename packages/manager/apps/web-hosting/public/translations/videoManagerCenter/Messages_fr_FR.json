@@ -1,0 +1,16 @@
+{
+  "video_manager_page_title": "Video Center",
+  "video_manager_ga": "GA",
+  "video_manager_service_video_count": "Nombre de vidéos",
+  "video_manager_service_video_count_label": "{{allocated}}/{{max}} vidéos",
+  "video_manager_service_video_duration": "Nombre de minutes",
+  "video_manager_service_video_duration_label": "{{allocated}}/{{max}} min.",
+  "video_manager_service_subscription_renewal": "Renouvellement automatique prévu en",
+  "video_manager_service_tips": "Astuces",
+  "video_manager_service_tips_tutorial": "Lien vers premier tutoriel",
+  "video_manager_service_support": "Support",
+  "video_manager_service_support_standard": "Support standard",
+  "video_manager_service_support_ticket": "Créer un ticket",
+  "video_manager_service_download_first_video": "Télécharger votre première vidéo",
+  "video_manager_service_description": "Avec notre Video Center, publiez vos vidéos sur une plateforme sans publicité, respectueuse de la vie privée et entièrement intégrée à votre hébergement web. Importez vos vidéos, intégrez-les facilement à votre site et gardez un contrôle total sur vos contenus."
+}
