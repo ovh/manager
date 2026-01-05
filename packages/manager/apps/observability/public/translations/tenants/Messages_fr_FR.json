@@ -87,6 +87,11 @@
       "title": "Objet lié",
       "subscriptions": "Souscriptions",
       "access_subscription_page": "Accéder à la page de Souscription"
-    }    
+    },
+    "subscription_listing": {
+      "create_subscription": "Configurer la souscription",
+      "kind_cell": "Type de produit",
+      "resource_cell": "Ressource"
+    }
   }
 }
