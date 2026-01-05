@@ -32,6 +32,7 @@ export default class NetAppDashboardService {
     ];
     this.coreConfig = coreConfig;
     this.activesNFS = [];
+    this.replicationsSelectedVolumes = [];
   }
 
   /**
@@ -378,5 +379,9 @@ export default class NetAppDashboardService {
             activesNFS: [],
           }));
       });
+  }
+
+  hasAvailableReplicationsServices() {
+    return !!this.replicationsAvaibleServices.length;
   }
 }
