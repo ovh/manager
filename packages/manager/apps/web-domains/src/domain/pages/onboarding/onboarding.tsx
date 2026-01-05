@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Card,
@@ -9,13 +9,8 @@ import { Text } from '@ovhcloud/ods-react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
 import onboardingImgSrc from './onboarding.svg?url';
-import {
-  ORDER_LINK,
-  WEBSITE_LINK,
-  TRANSFER_LINK,
-  ORDER_API_LINK,
-  FAQ_LINK,
-} from './onboarding.constants';
+import { ORDER_LINK, WEBSITE_LINK } from './onboarding.constants';
+import { useLinks } from '@/domain/constants/guideLinks';
 
 export default function Onboarding() {
   const { t } = useTranslation('domain/onboarding');
@@ -23,6 +18,7 @@ export default function Onboarding() {
   const { ovhSubsidiary } = context.environment.getUser();
   const region = context.environment.getRegion();
   const orderBaseURL = getOrderURL('orderDomain', region, ovhSubsidiary);
+  const guideUrls = useLinks(ovhSubsidiary);
 
   const tileList = [
     {
@@ -32,9 +28,7 @@ export default function Onboarding() {
         description: t('guideTransferDescription'),
         category: t('guideCategory'),
       },
-      href: useMemo(() => {
-        return TRANSFER_LINK[ovhSubsidiary] || TRANSFER_LINK.DEFAULT;
-      }, [ovhSubsidiary]),
+      href: guideUrls.TRANSFER_LINK,
     },
     {
       id: 2,
@@ -43,9 +37,7 @@ export default function Onboarding() {
         description: t('guideOrderAPIDescription'),
         category: t('guideCategory'),
       },
-      href: useMemo(() => {
-        return ORDER_API_LINK[ovhSubsidiary] || ORDER_API_LINK.DEFAULT;
-      }, [ovhSubsidiary]),
+      href: guideUrls.ORDER_API_LINK,
     },
     {
       id: 3,
@@ -54,9 +46,7 @@ export default function Onboarding() {
         description: t('guideFAQDescription'),
         category: t('guideCategory'),
       },
-      href: useMemo(() => {
-        return FAQ_LINK[ovhSubsidiary] || FAQ_LINK.DEFAULT;
-      }, [ovhSubsidiary]),
+      href: guideUrls.FAQ_LINK,
     },
   ];
 
