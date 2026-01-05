@@ -1,7 +1,7 @@
 import { Skeleton } from '@ovhcloud/ods-react';
 import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { DatagridCellEnpointProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.props';
+import { DatagridCellEnpointProps } from '@/components/listing/common/datagrid/datagrid-cell-endpoint/DataGridCellEndpoint.props';
 import { useLocation } from '@/data/hooks/infrastructures/useLocations.hook';
 
 export default function DatagridCellEnpoint({
