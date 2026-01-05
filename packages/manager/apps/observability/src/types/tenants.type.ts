@@ -1,6 +1,8 @@
 import { InfrastructureSettings } from '@/types/infrastructures.type';
 import { TIdentifier, TObservabilityResource } from '@/types/observability.type';
 
+import { Resource } from './resource.type';
+
 type TMetricLimits = {
   mimir: {
     compactor_blocks_retention_period: string;
@@ -50,6 +52,26 @@ export type TenantListing = {
   infrastructure: TenantInfrastructure | undefined;
   retention: string | undefined;
   numberOfSeries: number | undefined;
+  tags: { [key: string]: string };
+  search: string;
+} & TIdentifier;
+
+export type TenantSubscription = {
+  resourceStatus: TenantResourceStatus;
+  currentState: {
+    kind: string;
+    link: string;
+    resource: Resource;
+  };
+  targetSpec?: {
+    kind: string;
+    resource: Resource;
+  };
+} & TObservabilityResource;
+
+export type TenantSubscriptionListing = {
+  resourceStatus: TenantResourceStatus;
+  resource: Resource;
   tags: { [key: string]: string };
   search: string;
 } & TIdentifier;
