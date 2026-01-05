@@ -13,6 +13,7 @@ import SubscriptionTile from '@/components/dashboard/SubscriptionTile.component'
 import TagsTile from '@/components/dashboard/TagsTile.component';
 import GrafanaButton from '@/components/metrics/grafana-button/GrafanaButton.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
+import { useTenantSubscriptions } from '@/data/hooks/tenants/useTenantSubscriptions.hook';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
 
 export default function TenantsInformationPage() {
@@ -25,6 +26,10 @@ export default function TenantsInformationPage() {
   const { tenantId = '' } = useParams<{ tenantId: string }>();
 
   const { data: tenant, isLoading, error, isError } = useTenant(resourceName, tenantId);
+  const { data: subscriptions, isLoading: isSubscriptionsLoading } = useTenantSubscriptions(
+    resourceName,
+    tenantId,
+  );
 
   const tenantState = tenant?.currentState;
   const resourceStatus = tenant?.resourceStatus;
@@ -87,8 +92,8 @@ export default function TenantsInformationPage() {
           <SubscriptionTile
             tenantId={tenantId}
             resourceName={resourceName}
-            subscriptions={5} // TODO: add subscriptions count
-            isLoading={isLoading}
+            subscriptions={subscriptions?.length ?? 0}
+            isLoading={isSubscriptionsLoading}
           />
         </div>
       </div>
