@@ -172,6 +172,16 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
             ),
           label: t('delete_git'),
         }),
+        {
+          id: 11,
+          onClick: () =>
+            navigate(
+              urls.deleteSite
+                .replace(subRoutes.serviceName, serviceName)
+                .replace(subRoutes.path, path ?? ''),
+            ),
+          label: t('delete_my_website'),
+        },
       ].filter(Boolean);
 
       return siteActions;
