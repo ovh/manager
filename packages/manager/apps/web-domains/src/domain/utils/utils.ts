@@ -1,6 +1,5 @@
 import { z } from 'zod/v4';
 import { TFunction } from 'i18next';
-import { GUIDES_LIST, LangCode } from '@/domain/constants/guideLinks';
 import {
   TDatagridDnsDetails,
   TDomainResource,
@@ -18,13 +17,6 @@ import { THost } from '@/domain/types/host';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { algorithm_RSASHZA3457 } from '@/domain/constants/dsRecords';
 import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
-
-export function getLanguageKey(lang: string): LangCode {
-  const code = lang.split(/[-_]/)[0].toUpperCase();
-  const isSupported = code in GUIDES_LIST.domains.url;
-
-  return isSupported ? (code as LangCode) : 'DEFAULT';
-}
 
 export function computeDnsDetails(
   domainResource: TDomainResource,

@@ -15,7 +15,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { StatusEnum } from '@/domain/enum/Status.enum';
@@ -27,11 +27,11 @@ import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import { DrawerActionEnum } from '@/common/enum/common.enum';
 import { DrawerBehavior } from '@/common/types/common.types';
-import { GUIDES_LIST } from '@/domain/constants/guideLinks';
-import { getLanguageKey } from '@/domain/utils/utils';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useLinks } from '@/domain/constants/guideLinks';
 
 export default function HostsListingTab() {
-  const { t, i18n } = useTranslation([
+  const { t } = useTranslation([
     'domain',
     NAMESPACES.ACTIONS,
     NAMESPACES.FORM,
@@ -41,7 +41,9 @@ export default function HostsListingTab() {
   const [isLoading, setIsLoading] = useState(true);
   const { serviceName } = useParams<{ serviceName: string }>();
   const navigate = useNavigate();
-  const langCode = getLanguageKey(i18n.language);
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const guideUrls = useLinks(ovhSubsidiary);
 
   const [drawer, setDrawer] = useState<DrawerBehavior>({
     isOpen: false,
@@ -151,7 +153,7 @@ export default function HostsListingTab() {
             <Text>{t('domain_tab_hosts_information_banner_2')}</Text>
             <div className="flex items-center gap-x-4">
               <Link
-                href={GUIDES_LIST.host.url[langCode]}
+                href={guideUrls.HOST_LINK}
                 className="text-[--ods-color-primary-500]"
                 target="_blank"
               >
