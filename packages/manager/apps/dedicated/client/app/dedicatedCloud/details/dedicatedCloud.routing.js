@@ -7,7 +7,6 @@ import uniq from 'lodash/uniq';
 
 import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
 import { NEW_PRODUCT_LINK } from './dedicatedCloud.constants';
-
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
