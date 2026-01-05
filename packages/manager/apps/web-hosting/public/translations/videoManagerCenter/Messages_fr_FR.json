@@ -1,0 +1,20 @@
+{
+  "video_manager_page_title": "Video Center",
+  "video_manager_service_name": "Nom du service",
+  "video_manager_service_offer": "Offre",
+  "video_manager_service_offer_label": "Mon offre",
+  "video_manager_service_video_count": "Nombre de vidéos",
+  "video_manager_service_video_count_label": "{{allocated}}/{{max}} vidéos",
+  "video_manager_service_video_duration": "Nombre de minutes",
+  "video_manager_service_video_duration_label": "{{allocated}}/{{max}} min.",
+  "video_manager_service_subscription": "Abonnement",
+  "video_manager_service_subscription_date": "Date de création",
+  "video_manager_service_subscription_renewal": "Renouvellement automatique prévu en",
+  "video_manager_service_subscription_contacts": "Contacts",
+  "video_manager_service_tips": "Astuces",
+  "video_manager_service_tips_tutorial": "Lien vers premier tutoriel",
+  "video_manager_service_support": "Support",
+  "video_manager_service_support_standard": "Support standard",
+  "video_manager_service_support_ticket": "Créer un ticket",
+  "video_manager_service_download_first_video": "Télécharger votre première vidéo"
+}

@@ -3,6 +3,7 @@ export const subRoutes = {
   domain: ':domain',
   locationId: ':locationId',
   path: ':path',
+  serviceId: ':serviceId',
 };
 
 export const urls = {
@@ -69,4 +70,9 @@ export const urls = {
   // MODULE
   addModule: `/${subRoutes.serviceName}/multisite/add-module`,
   deleteModule: `/${subRoutes.serviceName}/multisite/delete-module/${subRoutes.path}`,
+
+  // VIDEO MANAGER CENTER
+  videoManagerCenter: '/video-manager-center',
+  videoManagerDashboard: `/video-manager-center/${subRoutes.serviceId}`,
+  videoManagerOnboarding: `/video-manager-center/${subRoutes.serviceId}/onboarding`,
 };

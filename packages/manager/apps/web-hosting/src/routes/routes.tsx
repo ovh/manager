@@ -46,6 +46,9 @@ import {
   SSL,
   TASK,
   TASKS,
+  VIDEO_MANAGER_CENTER,
+  VIDEO_MANAGER_DASHBOARD,
+  VIDEO_MANAGER_ONBOARDING,
   WEBSITE,
   WORDPRESS_MANAGED,
   WORDPRESS_MANAGED_SERVICE,
@@ -88,6 +91,11 @@ import {
 import { AddModuleModal, DeleteModuleModal } from './pages/module';
 import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
+import {
+  VideoManagerCenterPage,
+  VideoManagerDashboardPage,
+  VideoManagerOnboardingPage,
+} from './pages/videoManagerCenter';
 import { AddWebsitePage, UpdateDisplayNameModalComponent } from './pages/website';
 import { urls } from './routes.constants';
 
@@ -127,6 +135,48 @@ export default (
         },
         breadcrumb: {
           label: 'managed_wordpress',
+        },
+      }}
+    />
+
+    <Route
+      id={VIDEO_MANAGER_CENTER}
+      path={urls.videoManagerCenter}
+      Component={VideoManagerCenterPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'video_manager_center',
+        },
+      }}
+    />
+
+    <Route
+      id={VIDEO_MANAGER_DASHBOARD}
+      path={urls.videoManagerDashboard}
+      Component={VideoManagerDashboardPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'video_manager_dashboard',
+        },
+      }}
+    />
+
+    <Route
+      id={VIDEO_MANAGER_ONBOARDING}
+      path={urls.videoManagerOnboarding}
+      Component={VideoManagerOnboardingPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'video_manager_dashboard',
         },
       }}
     />

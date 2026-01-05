@@ -1,6 +1,6 @@
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/web-cloud.png';
-import { Node } from '../node';
+import { Node, NodeTag } from '../node';
 
 const webCloudUniverse: Node = {
   id: 'web-cloud',
@@ -147,6 +147,18 @@ webCloudUniverse.children = [
           hash: '#/managed-hosting-for-wordpress',
         },
         features: ['web-hosting:managed-wordpress'],
+      },
+      {
+        id: 'video-manager-center',
+        idAttr: 'video-manager-center-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_web_hosting_video_manager_center',
+        serviceType: 'WEB_HOSTING',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'web-hosting',
+          hash: '#/video-manager-center',
+        },
       },
     ],
   },
