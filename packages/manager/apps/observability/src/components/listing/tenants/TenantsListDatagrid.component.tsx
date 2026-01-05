@@ -1,28 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 
-import { VisibilityState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 
-import { TABLE_SIZE } from '@ovhcloud/ods-react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  FilterCategories,
-  FilterComparator,
-  FilterTypeCategories,
-  applyFilters,
-} from '@ovh-ux/manager-core-api';
-import {
-  Datagrid,
-  DatagridColumn,
-  TagsList,
-  useColumnFilters,
-  useDateFnsLocale,
-  useNotifications,
-} from '@ovh-ux/muk';
+import { FilterCategories, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { DatagridColumn, TagsList, useDateFnsLocale, useNotifications } from '@ovh-ux/muk';
 
-import DatagridCellEnpoint from '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.component';
-import DatagridCellLink from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component';
+import DatagridCellEnpoint from '@/components/listing/common/datagrid/datagrid-cell-endpoint/DataGridCellEndpoint.component';
+import DatagridCellLink from '@/components/listing/common/datagrid/datagrid-cell-link/DataGridCellLink.component';
+import FilteredDatagrid from '@/components/listing/common/datagrid/filtered-datagrid/FilteredDatagrid.component';
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
 import TenantsListActions from '@/components/listing/tenants/actions/TenantsListActions.component';
 import TenantsListTopbar from '@/components/listing/tenants/top-bar/TenantsListTopbar.component';
@@ -38,15 +24,6 @@ export default function TenantsListDatagrid({
   error,
   isError,
 }: TenantsListDatagridProps) {
-  const [searchInput, setSearchInput] = useState<string>('');
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
-    name: true,
-    endpoint: true,
-    retention: true,
-    'active-metrics': true,
-    tags: true,
-    actions: true,
-  });
   const { t } = useTranslation(['tenants', NAMESPACES.DASHBOARD, NAMESPACES.ERROR]);
   const { addError } = useNotifications();
   const dateFnsLocale = useDateFnsLocale();
@@ -161,71 +138,25 @@ export default function TenantsListDatagrid({
     }
   }, [addError, error, isError, t]);
 
-  const { filters, addFilter: add, removeFilter: remove } = useColumnFilters();
-
   const listingTenants = useMemo(() => {
     if (!tenantsList) return [];
     return mapTenantsToListing(tenantsList, dateFnsLocale);
   }, [tenantsList, dateFnsLocale]);
 
-  const filteredTenants = useMemo(() => {
-    return applyFilters(listingTenants, filters);
-  }, [listingTenants, filters]);
-
   const topbar = useMemo(() => <TenantsListTopbar />, []);
-
-  const columnVisibilityProps = useMemo(
-    () => ({ columnVisibility, setColumnVisibility }),
-    [columnVisibility, setColumnVisibility],
-  );
-
-  const filtersProps = useMemo(() => ({ filters, add, remove }), [filters, add, remove]);
-
-  const onSearch = useCallback(
-    (newSearch: string) => {
-      if (newSearch && newSearch.length) {
-        add({
-          key: 'search',
-          label: t(`tenants:listing.filter_search_key`),
-          value: newSearch,
-          comparator: FilterComparator.Includes,
-        });
-        setSearchInput('');
-      }
-    },
-    [add, t],
-  );
-
-  const searchProps = useMemo(
-    () => ({
-      searchInput,
-      setSearchInput,
-      onSearch,
-    }),
-    [searchInput, setSearchInput, onSearch],
-  );
 
   if (!tenantsList) {
     return null;
   }
 
   return (
-    <React.Suspense>
-      <Datagrid
-        key={filteredTenants.length}
-        topbar={topbar}
-        columns={columns}
-        columnVisibility={columnVisibilityProps}
-        data={filteredTenants}
-        totalCount={filteredTenants.length}
-        filters={filtersProps}
-        search={searchProps}
-        containerHeight={725} //TOFIX: waiting muk fixes
-        size={TABLE_SIZE.lg}
-        contentAlignLeft={true}
-        isLoading={isLoading}
-        resourceType={RESOURCE_TYPES.TENANT}
-      />
-    </React.Suspense>
+    <FilteredDatagrid<TenantListing>
+      topbar={topbar}
+      columns={columns}
+      data={listingTenants}
+      isLoading={isLoading}
+      resourceType={RESOURCE_TYPES.TENANT}
+      searchFilterLabel={t('tenants:listing.filter_search_key')}
+    />
   );
 }
