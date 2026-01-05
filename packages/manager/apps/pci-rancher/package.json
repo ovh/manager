@@ -22,10 +22,10 @@
   "dependencies": {
     "@ovh-ux/manager-config": "8.8.0",
     "@ovh-ux/manager-core-api": "0.20.2",
-    "@ovh-ux/manager-core-utils": "0.4.10",
+    "@ovh-ux/manager-core-utils": "0.5.0",
     "@ovh-ux/manager-pci-common": "0.17.0",
     "@ovh-ux/manager-react-components": "1.48.0",
-    "@ovh-ux/manager-react-core-application": "0.13.7",
+    "@ovh-ux/manager-react-core-application": "0.14.3",
     "@ovh-ux/manager-react-shell-client": "1.0.1",
     "@ovh-ux/request-tagger": "0.5.10",
     "@ovh-ux/shell": "^4.10.3",
