@@ -105,4 +105,9 @@ export const WORDPRESS_MANAGED = 'managed-wordpress';
 export const WORDPRESS_MANAGED_SERVICE = 'managed-wordpress_service';
 export const WORDPRESS_MANAGED_ONBOARDING = 'managed-wordpress_onboarding';
 
+// video center
+export const VIDEO_CENTER = 'video-center';
+export const VIDEO_CENTER_DASHBOARD = 'video-center-dashboard';
+export const VIDEO_CENTER_ONBOARDING = 'video-center-onboarding';
+
 export const GO_TO = (link: string) => `go-to-${link}_${WEBSITE}`;
