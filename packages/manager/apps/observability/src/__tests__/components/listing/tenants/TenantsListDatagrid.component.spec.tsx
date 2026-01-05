@@ -45,86 +45,6 @@ vi.mock('@/utils/duration.utils', () => ({
 }));
 
 vi.mock('@ovh-ux/muk', () => ({
-  Datagrid: ({
-    topbar,
-    columns,
-    data,
-    isLoading,
-  }: {
-    topbar?: React.ReactNode;
-    columns: Array<{
-      id: string;
-      accessorKey?: string;
-      accessorFn?: (row: unknown) => unknown;
-      cell?:
-        | ((context: { row: { original: unknown }; getValue: () => unknown }) => React.ReactNode)
-        | React.ReactNode;
-    }>;
-    data?: unknown[];
-    isLoading?: boolean;
-  }) => (
-    <div data-testid="datagrid">
-      {topbar && <div data-testid="datagrid-topbar">{topbar}</div>}
-      <div data-testid="datagrid-content">
-        {isLoading && <div data-testid="loading-indicator">Loading...</div>}
-        <div data-testid="datagrid-items">
-          {data?.map((item: unknown, index: number) => (
-            <div key={index} data-testid={`datagrid-item-${index}`}>
-              {columns.map((column) => {
-                // Mock the CellContext structure that TanStack Table provides
-                const cellContext = {
-                  row: { original: item },
-                  getValue: () => {
-                    // Get the value for this specific column
-                    if (column.accessorFn) {
-                      return column.accessorFn(item);
-                    }
-                    if (column.accessorKey) {
-                      return (item as Record<string, unknown>)[column.accessorKey];
-                    }
-                    return item;
-                  },
-                };
-
-                let cellContent: React.ReactNode;
-                if (typeof column.cell === 'function') {
-                  cellContent = column.cell(cellContext);
-                } else if (column.cell) {
-                  cellContent = column.cell;
-                } else if (column.accessorFn) {
-                  const value = column.accessorFn(item);
-                  cellContent =
-                    typeof value === 'string' ||
-                    typeof value === 'number' ||
-                    typeof value === 'boolean'
-                      ? value
-                      : null;
-                } else if (column.accessorKey) {
-                  // If no custom cell function, render the value from accessorKey
-                  const value = (item as Record<string, unknown>)[column.accessorKey];
-                  // Convert to renderable content (primitives only)
-                  cellContent =
-                    typeof value === 'string' ||
-                    typeof value === 'number' ||
-                    typeof value === 'boolean'
-                      ? value
-                      : null;
-                } else {
-                  cellContent = null;
-                }
-
-                return (
-                  <div key={column.id} data-testid={`column-${column.id}`}>
-                    {cellContent}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  ),
   TagsList: ({ tags }: { tags?: Record<string, string> }) => (
     <div data-testid="tags-cell">
       {tags &&
@@ -135,22 +55,99 @@ vi.mock('@ovh-ux/muk', () => ({
         ))}
     </div>
   ),
-  useColumnFilters: () => ({
-    filters: [],
-    addFilter: vi.fn(),
-    removeFilter: vi.fn(),
-  }),
   useNotifications: vi.fn(() => ({
     addError: vi.fn(),
   })),
   useDateFnsLocale: () => 'en-US',
 }));
 
+vi.mock(
+  '@/components/listing/common/datagrid/filtered-datagrid/FilteredDatagrid.component',
+  () => ({
+    default: ({
+      topbar,
+      columns,
+      data,
+      isLoading,
+    }: {
+      topbar?: React.ReactNode;
+      columns: Array<{
+        id: string;
+        accessorKey?: string;
+        accessorFn?: (row: unknown) => unknown;
+        cell?:
+          | ((context: { row: { original: unknown }; getValue: () => unknown }) => React.ReactNode)
+          | React.ReactNode;
+      }>;
+      data?: unknown[];
+      isLoading?: boolean;
+    }) => (
+      <div data-testid="datagrid">
+        {topbar && <div data-testid="datagrid-topbar">{topbar}</div>}
+        <div data-testid="datagrid-content">
+          {isLoading && <div data-testid="loading-indicator">Loading...</div>}
+          <div data-testid="datagrid-items">
+            {data?.map((item: unknown, index: number) => (
+              <div key={index} data-testid={`datagrid-item-${index}`}>
+                {columns.map((column) => {
+                  // Mock the CellContext structure that TanStack Table provides
+                  const cellContext = {
+                    row: { original: item },
+                    getValue: () => {
+                      // Get the value for this specific column
+                      if (column.accessorFn) {
+                        return column.accessorFn(item);
+                      }
+                      if (column.accessorKey) {
+                        return (item as Record<string, unknown>)[column.accessorKey];
+                      }
+                      return item;
+                    },
+                  };
+
+                  let cellContent: React.ReactNode;
+                  if (typeof column.cell === 'function') {
+                    cellContent = column.cell(cellContext);
+                  } else if (column.cell) {
+                    cellContent = column.cell;
+                  } else if (column.accessorFn) {
+                    const value = column.accessorFn(item);
+                    cellContent =
+                      typeof value === 'string' ||
+                      typeof value === 'number' ||
+                      typeof value === 'boolean'
+                        ? value
+                        : null;
+                  } else if (column.accessorKey) {
+                    // If no custom cell function, render the value from accessorKey
+                    const value = (item as Record<string, unknown>)[column.accessorKey];
+                    // Convert to renderable content (primitives only)
+                    cellContent =
+                      typeof value === 'string' ||
+                      typeof value === 'number' ||
+                      typeof value === 'boolean'
+                        ? value
+                        : null;
+                  } else {
+                    cellContent = null;
+                  }
+
+                  return (
+                    <div key={column.id} data-testid={`column-${column.id}`}>
+                      {cellContent}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+  }),
+);
+
 vi.mock('@ovh-ux/manager-core-api', () => ({
-  applyFilters: (items: unknown[]) => items,
-  FilterComparator: {
-    Includes: 'includes',
-  },
   FilterCategories: {
     String: 'string',
     Tags: 'tags',
@@ -174,7 +171,7 @@ vi.mock('@/components/listing/tenants/top-bar/TenantsListTopbar.component', () =
 }));
 
 vi.mock(
-  '@/components/listing/common/datagrid-cells/datagrid-cell-endpoint/DataGridCellEndpoint.component',
+  '@/components/listing/common/datagrid/datagrid-cell-endpoint/DataGridCellEndpoint.component',
   () => ({
     default: ({ infrastructure }: { infrastructure: InfrastructureSettings | undefined }) => (
       <div data-testid="endpoint-cell">{infrastructure?.entryPoint || 'No endpoint'}</div>
@@ -187,7 +184,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock(
-  '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component',
+  '@/components/listing/common/datagrid/datagrid-cell-link/DataGridCellLink.component',
   () => ({
     default: ({ tenantId, label }: { tenantId: string; resourceName: string; label: string }) => (
       <div data-testid={`link-cell-${tenantId}`}>

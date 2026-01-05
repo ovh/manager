@@ -1,9 +1,14 @@
 import { Locale } from 'date-fns';
 import { describe, expect, it, vi } from 'vitest';
 
-import { Tenant, TenantListing } from '@/types/tenants.type';
+import {
+  Tenant,
+  TenantListing,
+  TenantSubscription,
+  TenantSubscriptionListing,
+} from '@/types/tenants.type';
 import { formatObservabilityDuration } from '@/utils/duration.utils';
-import { mapTenantsToListing } from '@/utils/tenants.utils';
+import { mapSubscriptionsToListing, mapTenantsToListing } from '@/utils/tenants.utils';
 
 // Mock formatObservabilityDuration to return a predictable value
 vi.mock('@/utils/duration.utils', () => ({
@@ -350,10 +355,35 @@ describe('tenants.utils', () => {
       ]);
     });
 
-    it('should handle empty tenant array', () => {
-      const mockTenants: Tenant[] = [];
-      const result = mapTenantsToListing(mockTenants, mockDateFnsLocale);
-      expect(result).toEqual([]);
+    it.each([
+      {
+        description: 'empty tenant array',
+        tenants: [] as Tenant[],
+        expectedLength: 0,
+        expectations: () => {},
+      },
+      {
+        description: 'single tenant',
+        tenants: [
+          createTenant({
+            id: 'tenant-single',
+            currentState: {
+              title: 'Single Tenant',
+              description: 'Description test',
+            },
+          }),
+        ],
+        expectedLength: 1,
+        expectations: (result: TenantListing[]) => {
+          expect(result[0]?.id).toBe('tenant-single');
+          expect(result[0]?.name).toBe('Single Tenant');
+        },
+      },
+    ])('should handle $description', ({ tenants, expectedLength, expectations }) => {
+      const result = mapTenantsToListing(tenants, mockDateFnsLocale);
+
+      expect(result).toHaveLength(expectedLength);
+      expectations(result);
     });
 
     it.each([
@@ -460,70 +490,50 @@ describe('tenants.utils', () => {
       expect(firstResult?.search).toContain(expectedSearch);
     });
 
-    it('should preserve tenant ids correctly', () => {
-      const mockTenants: Tenant[] = [
-        createTenant({
-          id: 'unique-id-1',
-          currentState: { title: 'Tenant 1', description: 'Description test' },
-        }),
-        createTenant({
-          id: 'unique-id-2',
-          currentState: { title: 'Tenant 2', description: 'Description test' },
-        }),
-      ];
-
-      const result = mapTenantsToListing(mockTenants, mockDateFnsLocale);
-
-      expect(result).toEqual([
-        {
-          id: 'unique-id-1',
-          name: 'Tenant 1',
-          infrastructure: undefined,
-          entryPoint: undefined,
-          endpoint: undefined,
-          retention: undefined,
-          numberOfSeries: undefined,
-          resourceStatus: 'READY',
-          tags: {},
-          search: 'Tenant 1    ',
+    it.each([
+      {
+        description: 'tenant ids',
+        tenants: [
+          createTenant({
+            id: 'unique-id-1',
+            currentState: { title: 'Tenant 1', description: 'Description test' },
+          }),
+          createTenant({
+            id: 'unique-id-2',
+            currentState: { title: 'Tenant 2', description: 'Description test' },
+          }),
+        ],
+        expectations: (result: TenantListing[]) => {
+          expect(result.map((t) => t.id)).toEqual(['unique-id-1', 'unique-id-2']);
+          expect(result.map((t) => t.name)).toEqual(['Tenant 1', 'Tenant 2']);
         },
-        {
-          id: 'unique-id-2',
-          name: 'Tenant 2',
-          infrastructure: undefined,
-          entryPoint: undefined,
-          endpoint: undefined,
-          retention: undefined,
-          numberOfSeries: undefined,
-          resourceStatus: 'READY',
-          tags: {},
-          search: 'Tenant 2    ',
-        },
-      ]);
-    });
-
-    it('should handle tenant with infrastructure', () => {
-      const mockTenants: Tenant[] = [
-        createTenant({
-          id: 'tenant-with-infra',
-          currentState: {
-            title: 'Tenant With Infrastructure',
-            description: 'Description test',
-            infrastructure: {
-              id: 'infra-id',
-              entryPoint: 'mimir.m2c.ovh.net',
-              location: 'GRA11',
-              type: 'SHARED',
+      },
+      {
+        description: 'infrastructure',
+        tenants: [
+          createTenant({
+            id: 'tenant-with-infra',
+            currentState: {
+              title: 'Tenant With Infrastructure',
+              description: 'Description test',
+              infrastructure: {
+                id: 'infra-id',
+                entryPoint: 'mimir.m2c.ovh.net',
+                location: 'GRA11',
+                type: 'SHARED',
+              },
             },
-          },
-        }),
-      ];
+          }),
+        ],
+        expectations: (result: TenantListing[]) => {
+          expect(result[0]?.entryPoint).toBe('mimir.m2c.ovh.net');
+          expect(result[0]?.infrastructure).toBeDefined();
+        },
+      },
+    ])('should preserve $description correctly', ({ tenants, expectations }) => {
+      const result = mapTenantsToListing(tenants, mockDateFnsLocale);
 
-      const result = mapTenantsToListing(mockTenants, mockDateFnsLocale);
-
-      expect(result).toHaveLength(1);
-      expect(result[0]?.entryPoint).toBe('mimir.m2c.ovh.net');
-      expect(result[0]?.infrastructure).toBeDefined();
+      expectations(result);
     });
 
     it('should format search string correctly with all optional fields', () => {
@@ -562,6 +572,277 @@ describe('tenants.utils', () => {
       expect(result[0]?.search).toBe(
         'Search Test search.example.com formatted-30d 42 env:prod;team:backend',
       );
+    });
+  });
+
+  describe('mapSubscriptionsToListing', () => {
+    const createSubscription = (overrides: Partial<TenantSubscription>): TenantSubscription => {
+      const baseSubscription: TenantSubscription = {
+        id: 'subscription-default',
+        createdAt: '2025-01-01T00:00:00.000Z',
+        updatedAt: '2025-01-01T00:00:00.000Z',
+        resourceStatus: 'READY',
+        currentState: {
+          kind: 'logs',
+          link: 'https://logs.example.com',
+          resource: {
+            name: 'default-resource',
+            type: 'logs',
+          },
+        },
+      };
+
+      return {
+        ...baseSubscription,
+        ...overrides,
+        currentState: {
+          ...baseSubscription.currentState,
+          ...overrides.currentState,
+        },
+      };
+    };
+
+    it('should map subscriptions to listing format with all properties', () => {
+      const mockSubscription = createSubscription({
+        id: 'subscription-1',
+        resourceStatus: 'READY',
+        currentState: {
+          kind: 'metrics',
+          link: 'https://metrics.example.com',
+          resource: {
+            name: 'metrics-resource',
+            type: 'prometheus',
+          },
+        },
+        iam: {
+          id: 'iam-1',
+          urn: 'urn:v1:subscription:1',
+          tags: {
+            environment: 'production',
+            team: 'monitoring',
+          },
+        },
+      });
+
+      const result: TenantSubscriptionListing[] = mapSubscriptionsToListing([mockSubscription]);
+
+      expect(result).toEqual([
+        {
+          id: 'subscription-1',
+          resourceStatus: 'READY',
+          resource: {
+            name: 'metrics-resource',
+            type: 'prometheus',
+          },
+          tags: {
+            environment: 'production',
+            team: 'monitoring',
+          },
+          search: 'environment:production;team:monitoring metrics-resource prometheus',
+        },
+      ]);
+    });
+
+    it.each([
+      {
+        description: 'subscription without iam',
+        subscription: createSubscription({
+          id: 'subscription-no-iam',
+          currentState: {
+            kind: 'logs',
+            link: 'https://logs.example.com',
+            resource: { name: 'logs-resource', type: 'loki' },
+          },
+        }),
+        expectedTags: {},
+      },
+      {
+        description: 'subscription with empty tags',
+        subscription: createSubscription({
+          id: 'subscription-empty-tags',
+          iam: {
+            id: 'iam-empty',
+            urn: 'urn:v1:subscription:empty',
+            tags: {},
+          },
+        }),
+        expectedTags: {},
+      },
+      {
+        description: 'subscription with undefined tags',
+        subscription: createSubscription({
+          id: 'subscription-undefined-tags',
+          iam: {
+            id: 'iam-undefined',
+            urn: 'urn:v1:subscription:undefined',
+          },
+        }),
+        expectedTags: {},
+      },
+    ])('should handle $description', ({ subscription, expectedTags }) => {
+      const result = mapSubscriptionsToListing([subscription]);
+
+      expect(result).toHaveLength(1);
+      expect(result[0]?.tags).toEqual(expectedTags);
+    });
+
+    it.each([
+      ['READY', 'READY'],
+      ['UPDATING', 'UPDATING'],
+      ['ERROR', 'ERROR'],
+      ['DELETING', 'DELETING'],
+      ['CREATING', 'CREATING'],
+    ] as const)('should preserve resourceStatus %s', (status, expected) => {
+      const subscription = createSubscription({
+        id: 'subscription-status',
+        resourceStatus: status,
+      });
+
+      const result = mapSubscriptionsToListing([subscription]);
+
+      expect(result[0]?.resourceStatus).toBe(expected);
+    });
+
+    it.each([
+      {
+        description: 'empty array',
+        subscriptions: [] as TenantSubscription[],
+        expectedLength: 0,
+        expectations: () => {},
+      },
+      {
+        description: 'single subscription',
+        subscriptions: [
+          createSubscription({
+            id: 'subscription-single',
+            currentState: {
+              kind: 'logs',
+              link: 'https://logs.example.com',
+              resource: { name: 'single-resource', type: 'loki' },
+            },
+          }),
+        ],
+        expectedLength: 1,
+        expectations: (result: TenantSubscriptionListing[]) => {
+          expect(result[0]?.id).toBe('subscription-single');
+          expect(result[0]?.resource.name).toBe('single-resource');
+        },
+      },
+      {
+        description: 'multiple subscriptions',
+        subscriptions: [
+          createSubscription({
+            id: 'subscription-1',
+            currentState: {
+              kind: 'logs',
+              link: 'https://logs.example.com',
+              resource: { name: 'logs-resource', type: 'loki' },
+            },
+            iam: {
+              id: 'iam-1',
+              urn: 'urn:v1:subscription:1',
+              tags: { env: 'prod' },
+            },
+          }),
+          createSubscription({
+            id: 'subscription-2',
+            currentState: {
+              kind: 'traces',
+              link: 'https://traces.example.com',
+              resource: { name: 'traces-resource', type: 'tempo' },
+            },
+            iam: {
+              id: 'iam-2',
+              urn: 'urn:v1:subscription:2',
+              tags: { env: 'staging', team: 'backend' },
+            },
+          }),
+        ],
+        expectedLength: 2,
+        expectations: (result: TenantSubscriptionListing[]) => {
+          expect(result[0]?.id).toBe('subscription-1');
+          expect(result[0]?.resource.name).toBe('logs-resource');
+          expect(result[1]?.id).toBe('subscription-2');
+          expect(result[1]?.resource.name).toBe('traces-resource');
+        },
+      },
+    ])('should handle $description', ({ subscriptions, expectedLength, expectations }) => {
+      const result = mapSubscriptionsToListing(subscriptions);
+
+      expect(result).toHaveLength(expectedLength);
+      expectations(result);
+    });
+
+    it.each([
+      {
+        description: 'single tag',
+        tags: { tag1: 'value1' } as Record<string, string> | undefined,
+        expectedSearch: 'tag1:value1 resource-name resource-type',
+      },
+      {
+        description: 'multiple tags',
+        tags: { tag1: 'value1', tag2: 'value2' } as Record<string, string> | undefined,
+        expectedSearch: 'tag1:value1;tag2:value2 resource-name resource-type',
+      },
+      {
+        description: 'no tags',
+        tags: undefined as Record<string, string> | undefined,
+        expectedSearch: ' resource-name resource-type',
+      },
+    ])('should format search string correctly with $description', ({ tags, expectedSearch }) => {
+      const subscription = createSubscription({
+        id: 'subscription-search',
+        currentState: {
+          kind: 'metrics',
+          link: 'https://example.com',
+          resource: { name: 'resource-name', type: 'resource-type' },
+        },
+        iam: tags ? { id: 'iam-search', urn: 'urn:v1:search', tags } : undefined,
+      });
+
+      const result = mapSubscriptionsToListing([subscription]);
+
+      expect(result[0]?.search).toBe(expectedSearch);
+    });
+
+    it.each([
+      {
+        description: 'resource object',
+        subscriptions: [
+          createSubscription({
+            id: 'subscription-resource',
+            currentState: {
+              kind: 'custom',
+              link: 'https://custom.example.com',
+              resource: {
+                name: 'my-custom-resource',
+                type: 'custom-type',
+              },
+            },
+          }),
+        ],
+        expectations: (result: TenantSubscriptionListing[]) => {
+          expect(result[0]?.resource).toEqual({
+            name: 'my-custom-resource',
+            type: 'custom-type',
+          });
+        },
+      },
+      {
+        description: 'subscription ids',
+        subscriptions: [
+          createSubscription({ id: 'unique-id-1' }),
+          createSubscription({ id: 'unique-id-2' }),
+          createSubscription({ id: 'unique-id-3' }),
+        ],
+        expectations: (result: TenantSubscriptionListing[]) => {
+          expect(result.map((s) => s.id)).toEqual(['unique-id-1', 'unique-id-2', 'unique-id-3']);
+        },
+      },
+    ])('should preserve $description correctly', ({ subscriptions, expectations }) => {
+      const result = mapSubscriptionsToListing(subscriptions);
+
+      expectations(result);
     });
   });
 });

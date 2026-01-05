@@ -4,7 +4,7 @@ import {
   EditTenantPayload,
   GetTenantPayload,
 } from '@/data/api/tenants.props';
-import { Tenant } from '@/types/tenants.type';
+import { Tenant, TenantSubscription } from '@/types/tenants.type';
 
 const tenantsDataset: Tenant[] = [
   {
@@ -103,6 +103,54 @@ export const getTenant = async ({ resourceName, tenantId }: GetTenantPayload): P
   return Promise.resolve(tenant);
 };
 
+export const getTenantSubscriptions = async ({
+  resourceName,
+  tenantId,
+}: GetTenantPayload): Promise<TenantSubscription[]> => {
+  console.info(
+    `[MOCK-ADAPTER][getTenantSubscriptions] mock fetching of tenant subscriptions for ${resourceName}`,
+  );
+  console.info(`[MOCK-ADAPTER][getTenantSubscriptions] tenantId ->`, tenantId);
+  return Promise.resolve([
+    {
+      id: '1',
+      createdAt: '2025-11-21T14:26:14.041Z',
+      updatedAt: '2025-11-21T14:26:14.041Z',
+      resourceStatus: 'READY',
+      iam: {
+        id: tenantId,
+        tags: {
+          'ovh:metrics:name': resourceName,
+          environment: 'Prod',
+        },
+        urn: `urn:v1:eu:resource:ldp:${resourceName}`,
+      },
+      currentState: {
+        kind: 'Subscription',
+        link: `https://api.ovh.com/v2/observability/resource/${resourceName}/metric/tenant/${tenantId}/subscription`,
+        resource: { name: `${resourceName}-${tenantId}-subscription-1`, type: 'PCI/Instance' },
+      },
+    },
+    {
+      id: '2',
+      createdAt: '2025-11-21T14:26:14.041Z',
+      updatedAt: '2025-11-21T14:26:14.041Z',
+      resourceStatus: 'READY',
+      iam: {
+        id: tenantId,
+        tags: {
+          environment: 'Dev',
+        },
+        urn: `urn:v1:eu:resource:ldp:${resourceName}`,
+      },
+      currentState: {
+        kind: 'Subscription',
+        link: `https://api.ovh.com/v2/observability/resource/${resourceName}/metric/tenant/${tenantId}/subscription`,
+        resource: { name: `${resourceName}-${tenantId}-subscription-2`, type: 'PCI/Instance' },
+      },
+    },
+  ] as TenantSubscription[]);
+};
 export const deleteTenant = async ({
   resourceName,
   tenantId,

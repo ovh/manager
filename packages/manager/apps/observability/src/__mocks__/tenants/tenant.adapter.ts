@@ -4,6 +4,7 @@ import {
   deleteTenant as deleteTenantFromMock,
   editTenant as editTenantFromMock,
   getTenant as getTenantFromMock,
+  getTenantSubscriptions as getTenantSubscriptionsFromMock,
   getTenants as getTenantsFromMock,
 } from '@/__mocks__/tenants/tenant.mock';
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
@@ -12,6 +13,7 @@ import {
   deleteTenant as deleteTenantFromApi,
   editTenant as editTenantFromApi,
   getTenant as getTenantFromApi,
+  getTenantSubscriptions as getTenantSubscriptionsFromApi,
   getTenants as getTenantsFromApi,
 } from '@/data/api/tenants.api';
 import {
@@ -19,7 +21,7 @@ import {
   EditTenantPayload,
   GetTenantPayload,
 } from '@/data/api/tenants.props';
-import { Tenant } from '@/types/tenants.type';
+import { Tenant, TenantSubscription } from '@/types/tenants.type';
 
 export const getTenants = async (params: ObservabilityServiceParams): Promise<Tenant[]> => {
   const isMockEnabled = apiConfig.tenant === 'mock';
@@ -31,6 +33,15 @@ export const getTenant = async (params: GetTenantPayload): Promise<Tenant> => {
   const isMockEnabled = apiConfig.tenant === 'mock';
   console.info('[MOCK-ADAPTER][getTenant] Mock enabled -> ', isMockEnabled);
   return isMockEnabled ? getTenantFromMock(params) : getTenantFromApi(params);
+};
+export const getTenantSubscriptions = async (
+  params: GetTenantPayload,
+): Promise<TenantSubscription[]> => {
+  const isMockEnabled = apiConfig.tenantSubscription === 'mock';
+  console.info('[MOCK-ADAPTER][getTenantSubscriptions] Mock enabled -> ', isMockEnabled);
+  return isMockEnabled
+    ? getTenantSubscriptionsFromMock(params)
+    : getTenantSubscriptionsFromApi(params);
 };
 
 export const deleteTenant = async (params: GetTenantPayload): Promise<Tenant> => {
