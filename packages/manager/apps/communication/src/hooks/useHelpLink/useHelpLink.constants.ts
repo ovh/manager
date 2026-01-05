@@ -1,38 +1,31 @@
 import { Region } from '@ovh-ux/manager-config';
-
+import type { HelpPath } from './useHelpLink.type';
 export const HELP_ROOT = 'https://help.ovhcloud.com/csm';
-const homeIndex = '-home?id=csm_index';
 
-type HelpUrl = Record<
-  Region,
-  {
-    [subsidiaryKey: string]: string;
-  }
->;
 
-export const HELP_URL: HelpUrl = {
+export const HELP_INDEX_PATHS: HelpPath = {
   EU: {
-    DE: `${HELP_ROOT}/de${homeIndex}`,
-    ES: `${HELP_ROOT}/es${homeIndex}`,
-    FR: `${HELP_ROOT}/fr${homeIndex}`,
-    GB: `${HELP_ROOT}/en-gb${homeIndex}`,
-    IE: `${HELP_ROOT}/en-ie${homeIndex}`,
-    IT: `${HELP_ROOT}/it${homeIndex}`,
-    MA: `${HELP_ROOT}/fr-ma${homeIndex}`,
-    NL: `${HELP_ROOT}/en-ie${homeIndex}`,
-    PL: `${HELP_ROOT}/pl${homeIndex}`,
-    PT: `${HELP_ROOT}/pt${homeIndex}`,
-    SN: `${HELP_ROOT}/fr-sn${homeIndex}`,
-    TN: `${HELP_ROOT}/fr-tn${homeIndex}`,
+    DE: `de-home?id=csm_index`,
+    ES: `es-home?id=csm_index`,
+    FR: `fr-home?id=csm_index`,
+    GB: `en-gb-home?id=csm_index`,
+    IE: `en-ie-home?id=csm_index`,
+    IT: `it-home?id=csm_index`,
+    MA: `fr-ma-home?id=csm_index`,
+    NL: `en-ie-home?id=csm_index`,
+    PL: `pl-home?id=csm_index`,
+    PT: `pt-home?id=csm_index`,
+    SN: `fr-sn-home?id=csm_index`,
+    TN: `fr-tn-home?id=csm_index`,
   },
   CA: {
-    ASIA: `${HELP_ROOT}/asia${homeIndex}`,
-    AU: `${HELP_ROOT}/en-au${homeIndex}`,
-    CA: `${HELP_ROOT}/en-ca${homeIndex}`,
-    QC: `${HELP_ROOT}/fr-ca${homeIndex}`,
-    SG: `${HELP_ROOT}/en-sg${homeIndex}`,
-    WE: `${HELP_ROOT}/en${homeIndex}`,
-    WS: `${HELP_ROOT}/es${homeIndex}`,
+    ASIA: `asia-home?id=csm_index`,
+    AU: `en-au-home?id=csm_index`,
+    CA: `en-ca-home?id=csm_index`,
+    QC: `fr-ca-home?id=csm_index`,
+    SG: `en-sg-home?id=csm_index`,
+    WE: `en-home?id=csm_index`,
+    WS: `es-home?id=csm_index`,
   },
   US: {
     US: 'https://us.ovhcloud.com/support',
