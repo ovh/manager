@@ -1,6 +1,11 @@
 import { Locale } from 'date-fns';
 
-import { Tenant, TenantListing } from '@/types/tenants.type';
+import {
+  Tenant,
+  TenantListing,
+  TenantSubscription,
+  TenantSubscriptionListing,
+} from '@/types/tenants.type';
 import { formatObservabilityDuration } from '@/utils/duration.utils';
 
 export const mapTenantsToListing = (tenants: Tenant[], dateFnsLocale: Locale): TenantListing[] => {
@@ -30,4 +35,22 @@ export const mapTenantsToListing = (tenants: Tenant[], dateFnsLocale: Locale): T
     };
   });
   return result;
+};
+
+export const mapSubscriptionsToListing = (
+  subscriptions: TenantSubscription[],
+): TenantSubscriptionListing[] => {
+  return subscriptions.map(({ id, resourceStatus, currentState: { resource }, iam }) => ({
+    id,
+    resourceStatus,
+    resource,
+    tags: iam?.tags ?? {},
+    search: [
+      Object.entries(iam?.tags ?? {})
+        .map(([key, value]) => `${key}:${value}`)
+        .join(';'),
+      resource.name,
+      resource.type,
+    ].join(' '),
+  }));
 };
