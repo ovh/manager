@@ -1,4 +1,4 @@
-import { TCartItemDetail } from '@/pages/instances/create/hooks/useCartIems';
+import { TCartItemDetail } from '@/pages/instances/create/hooks/useCartItems';
 import { AccordionContent, Divider, Text } from '@ovhcloud/ods-react';
 
 type TCartItemsDetailsProps = {
