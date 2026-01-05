@@ -1,5 +1,5 @@
 import '@/setupTests';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { OdsFileUpload } from '@ovhcloud/ods-components/react';
 import {
