@@ -23,9 +23,9 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
     NAMESPACES.BILLING,
     BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD,
   ]);
-  const { data, isLoading } = useBackupTenantDetails();
+  const { data, isPending } = useBackupTenantDetails();
   const billingHref = useHref(urls.listingBilling);
-  const { connectedVaultsText, installedAgentsText } = useTenantBackupStats({
+  const { connectedVaultsText, installedAgentsText, isPending: isStatsPending } = useTenantBackupStats({
     tenantDetails: data,
     vspcTenantIds: [tenantId ?? ''].filter(Boolean),
   });
@@ -39,7 +39,7 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
           {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:installed_agents`)}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{installedAgentsText}</OdsText>}
+          {isPending || isStatsPending ? <OdsSkeleton /> : <OdsText>{installedAgentsText}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
@@ -48,7 +48,7 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
           {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:connected_vaults`)}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{connectedVaultsText}</OdsText>}
+          {isPending || isStatsPending ? <OdsSkeleton /> : <OdsText>{connectedVaultsText}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
