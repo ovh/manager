@@ -98,7 +98,6 @@ jobs:
             --draft || true
 
           gh pr edit "$BRANCH" --add-label "pnpm-migration" || true
-          gh pr edit "$BRANCH" --add-label "$TICKET" || true
           gh pr edit "$BRANCH" --add-reviewer helabenkhalfallah || true
 
       - name: Trigger checks (workflow_dispatch)
@@ -106,9 +105,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          gh workflow run linter.yml --ref "$BRANCH" || true
-          gh workflow run run-bdd-tests.yml --ref "$BRANCH" || true
-          gh workflow run commitlint.yml --ref "$BRANCH" || true
-          gh workflow run check-translations.yml --ref "$BRANCH" || true
-          gh workflow run labeler.yml --ref "$BRANCH" || true
-          gh workflow run auto-label-merge-conflicts.yml --ref "$BRANCH" || true
+          gh workflow run auto-label-merge-conflicts.yaml --ref "$BRANCH" || true
+          gh workflow run linter.yaml --ref "$BRANCH" || true
+          gh workflow run run-bdd-tests.yaml --ref "$BRANCH" || true
+          gh workflow run commitlint.yaml --ref "$BRANCH" || true
+          gh workflow run check-translations.yaml --ref "$BRANCH" || true
+          gh workflow run labeler.yaml --ref "$BRANCH" || true
+
