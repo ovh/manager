@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import {
   Icon,
   ICON_NAME,
@@ -10,31 +10,32 @@ import {
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
-import { GUIDES_LIST } from '@/domain/constants/guideLinks';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ServiceRoutes,
   ServiceInfoRenewModeEnum,
 } from '@/common/enum/common.enum';
-import { getLanguageKey } from '@/domain/utils/utils';
+import { useLinks } from '@/domain/constants/guideLinks';
 
 interface BannerInfoProps {
   readonly serviceName: string;
 }
 
 export default function BannerInfo({ serviceName }: BannerInfoProps) {
-  const { t, i18n } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
+  const { t } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
     'domain',
     serviceName,
     ServiceRoutes.Domain,
   );
 
+  const guideUrls = useLinks(ovhSubsidiary);
+
   if (isServiceInfoLoading) {
     return <></>;
   }
-
-  const langCode = getLanguageKey(i18n.language);
-  const guideUrl = GUIDES_LIST.manualRenew.url[langCode];
 
   if (
     isServiceInfoLoading ||
@@ -59,7 +60,7 @@ export default function BannerInfo({ serviceName }: BannerInfoProps) {
           t={t}
           components={{
             Link: (
-              <Link href={guideUrl}>
+              <Link href={guideUrls.MANUAL_RENEW_LINK}>
                 <Icon name={ICON_NAME.arrowRight} />
                 {t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
               </Link>
