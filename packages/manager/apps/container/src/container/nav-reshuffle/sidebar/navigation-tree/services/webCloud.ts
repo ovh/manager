@@ -162,6 +162,18 @@ webCloudUniverse.children = [
           hash: '#/managed-hosting-for-wordpress',
         },
       },
+      {
+        id: 'video-center',
+        idAttr: 'video-center-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_web_hosting_video_center',
+        serviceType: 'WEB_HOSTING',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'web-hosting',
+          hash: '#/video-center',
+        },
+      },
     ],
   },
   {
