@@ -64,26 +64,24 @@ export default function ServerListing() {
           condition={dedicatedServer && dedicatedServer?.length === 0}
           route={urls.onboarding}
         >
-          <React.Suspense>
-            {flattenData && (
-              <div>
-                <Datagrid
-                  columns={columns}
-                  data={flattenData}
-                  totalCount={totalCount || 0}
-                  hasNextPage={hasNextPage && !isLoading}
-                  onFetchNextPage={fetchNextPage}
-                  sorting={sorting}
-                  isLoading={isLoading}
-                  filters={filters}
-                  columnVisibility={{ columnVisibility, setColumnVisibility }}
-                  search={search}
-                  topbar={<OrderMenu exportCsvData={{ columns, totalCount }} />}
-                  resourceType="dedicatedServer"
-                />
-              </div>
-            )}
-          </React.Suspense>
+          {flattenData && (
+            <div>
+              <Datagrid
+                columns={columns}
+                data={flattenData}
+                totalCount={totalCount || 0}
+                hasNextPage={hasNextPage && !isLoading}
+                onFetchNextPage={fetchNextPage}
+                sorting={sorting}
+                isLoading={isLoading}
+                filters={filters}
+                columnVisibility={{ columnVisibility, setColumnVisibility }}
+                search={search}
+                topbar={<OrderMenu exportCsvData={{ columns, totalCount }} />}
+                resourceType="dedicatedServer"
+              />
+            </div>
+          )}
         </RedirectionGuard>
       )}
     </>
