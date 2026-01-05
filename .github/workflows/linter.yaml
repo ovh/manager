@@ -1,7 +1,6 @@
 name: Lint Code Base
 
 on:
-  push:
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -12,9 +11,6 @@ concurrency:
 jobs:
   lint:
     name: Lint Code Base
-    if: >
-      github.event_name == 'pull_request' ||
-      (github.event_name == 'push' && github.event.pull_request == null)
     runs-on: ubuntu-latest
 
     env:

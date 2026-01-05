@@ -1,8 +1,6 @@
 name: Run tests
 
 on:
-  push:
-    branches-ignore: [master]
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -12,9 +10,6 @@ concurrency:
 
 jobs:
   test:
-    if: >
-      github.event_name == 'pull_request' ||
-      (github.event_name == 'push' && github.event.pull_request == null)
     runs-on: ubuntu-latest
 
     env:
