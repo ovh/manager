@@ -105,10 +105,28 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          gh workflow run auto-label-merge-conflicts.yaml --ref "$BRANCH" || true
-          gh workflow run linter.yaml --ref "$BRANCH" || true
-          gh workflow run run-bdd-tests.yaml --ref "$BRANCH" || true
-          gh workflow run commitlint.yaml --ref "$BRANCH" || true
-          gh workflow run check-translations.yaml --ref "$BRANCH" || true
-          gh workflow run labeler.yaml --ref "$BRANCH" || true
+
+          dispatch () {
+            local id="$1"
+            local label="$2"
+            echo "Dispatching: $label ($id) on ref=$BRANCH"
+            gh workflow run "$id" --ref "$BRANCH" -R "$GITHUB_REPOSITORY" || true
+          }
+
+          dispatch 12916843  "Auto-label merge conflicts"
+          dispatch 13241433  "Develop to master"
+          dispatch 182921041  "Duplicate translation"
+          dispatch 203809233  "Duplicate translation"
+          dispatch 45402750  "Check package.json metadatas"
+          dispatch 121811487 "Check Translations"
+          dispatch 20485426  "Lint Commit Messages"
+          dispatch 5919519   "Pull Request Labeler"
+          dispatch 22085879  "Lint Code Base"
+          dispatch 19905326  "Run tests"
+          dispatch 10524442  "Merge Conflict Finder"
+          dispatch 142750010 "Check for Release Branch"
+          dispatch 13244149 "Yarn Lock Changes"
+
+          # UXMAN required checks (build/install)
+          dispatch 182017592 "recommended-checks-tests"
 
