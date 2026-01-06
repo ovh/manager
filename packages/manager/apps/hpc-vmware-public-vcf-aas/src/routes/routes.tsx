@@ -117,7 +117,7 @@ export default (
     >
       <Route
         id={'listing'}
-        path={urls.listing}
+        path={''}
         Component={ListingPage}
         handle={{
           tracking: {
@@ -152,7 +152,7 @@ export default (
         >
           <Route
             id={'edit-name'}
-            path={urls.editName}
+            path={subRoutes.editName}
             Component={OrganizationEditNamePage}
             handle={{
               tracking: {
@@ -163,7 +163,7 @@ export default (
           />
           <Route
             id={'edit-description'}
-            path={urls.editDescription}
+            path={subRoutes.editDescription}
             Component={OrganizationEditDescriptionPage}
             handle={{
               tracking: {
@@ -174,7 +174,7 @@ export default (
           />
           <Route
             id={'reset-password'}
-            path={urls.resetPassword}
+            path={subRoutes.resetPassword}
             Component={OrganizationResetPasswordPage}
             handle={{
               tracking: {
@@ -197,7 +197,7 @@ export default (
         </Route>
         <Route
           id={'datacentres'}
-          path={urls.datacentres}
+          path={subRoutes.virtualDatacenters}
           Component={DatacentresPage}
           handle={{
             tracking: {
@@ -230,7 +230,7 @@ export default (
         >
           <Route
             id={'vdc-edit-description'}
-            path={urls.datacentreEditDescription}
+            path={subRoutes.editDescription}
             Component={DatacentreEditDescriptionPage}
             handle={{
               tracking: {
@@ -242,7 +242,7 @@ export default (
         </Route>
         <Route
           id={'vDcStorage'}
-          path={urls.datacentreStorage}
+          path={subRoutes.datacentreStorage}
           Component={DatacentreStoragePage}
           handle={{
             tracking: {
@@ -253,7 +253,7 @@ export default (
         />
         <Route
           id={'vDcStorage-order'}
-          path={urls.datacentreStorageOrder}
+          path={`${subRoutes.datacentreStorage}/${subRoutes.datacentreStorageOrder}`}
           Component={DatacentreStorageOrderPage}
           handle={{
             tracking: {
