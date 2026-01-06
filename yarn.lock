@@ -3392,7 +3392,7 @@
   dependencies:
     regexp-match-indices "1.0.2"
 
-"@cucumber/cucumber@^10.0.1", "@cucumber/cucumber@^10.3.1":
+"@cucumber/cucumber@^10.0.1":
   version "10.4.0"
   resolved "https://registry.yarnpkg.com/@cucumber/cucumber/-/cucumber-10.4.0.tgz#e65fb751d7bfbe1d62d91215672e6d9158358487"
   integrity sha512-pFPu4tCzHJUm1S4GfWUlhJYYqfbVPCmYCADehuhNU+MR29mvy49DQE6WS6aVdwABPawzpBs0H8EuQYA8Vh9Yqw==
@@ -6833,11 +6833,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.10.5.tgz#cdde47452edb326aa1224eb447ed40ae2b169b81"
   integrity sha512-0PrFAOM0/ylPlVeC6hsJMHGe+pWB/ooMrjQySH5ytqsPYZrvzuiLoecEZHmX8VbnAJ6nF63sFLGp/DuicaSiCQ==
 
-"@ovh-ux/url-builder@^1.3.0-alpha.0":
-  version "1.3.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/url-builder/-/url-builder-1.3.0-alpha.0.tgz#4627fd845c97cdabc7e78e78bbf00e45d094555a"
-  integrity sha512-2454x+qlS+vnpc+c/L829RG/BlNmjBAymcciNx5ZEW4ivYhY1gZ9m2QxGO6tO1AH2FD5fzlskIVTOM7iaAlm7Q==
-
 "@ovhcloud/ods-common-core@17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.2.1.tgz#c5cc5ec6dede4ddf7b8e45a52bbc3eeab5bd6812"
@@ -7072,11 +7067,6 @@
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
-
-"@pkgr/core@^0.1.0":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.1.1.tgz#1ec17e2edbec25c8306d424ecfbf13c7de1aaa31"
-  integrity sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==
 
 "@pkgr/core@^0.2.4":
   version "0.2.7"
@@ -9395,14 +9385,6 @@
     lodash "^4.17.21"
     redent "^3.0.0"
 
-"@testing-library/react-hooks@^8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-8.0.1.tgz#0924bbd5b55e0c0c0502d1754657ada66947ca12"
-  integrity sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-    react-error-boundary "^3.1.0"
-
 "@testing-library/react@^14.1.2", "@testing-library/react@^14.2.1":
   version "14.2.2"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-14.2.2.tgz#74f855215c57d423282486a395a4348a837d3c5a"
@@ -9753,14 +9735,6 @@
   version "29.5.12"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.12.tgz#7f7dc6eb4cf246d2474ed78744b05d06ce025544"
   integrity sha512-eDC8bTvT/QhYdxJAulQikueigY5AsdBRH2yDKW3yveW7svY3+DzN84/2NUgkw10RTiJbWqZrTtoGVdYlvFJdLw==
-  dependencies:
-    expect "^29.0.0"
-    pretty-format "^29.0.0"
-
-"@types/jest@^29.5.13":
-  version "29.5.13"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.13.tgz#8bc571659f401e6a719a7bf0dbcb8b78c71a8adc"
-  integrity sha512-wd+MVEZCHt23V0/L642O5APvspWply/rGY5BcW4SUETo2UzPU3Z26qr8jC2qxpimI2jjx9h7+2cj2FwIr01bXg==
   dependencies:
     expect "^29.0.0"
     pretty-format "^29.0.0"
@@ -17388,14 +17362,6 @@ eslint-plugin-prettier@^3.1.1:
   integrity sha512-htg25EUYUeIhKHXjOinK4BgCcDwtLHjqaxCDsMy5nbnUMkKFvIhMVCp+5GFUXQ4Nr8lBsPqtGAqBenbpFqAA2g==
   dependencies:
     prettier-linter-helpers "^1.0.0"
-
-eslint-plugin-prettier@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-5.2.1.tgz#d1c8f972d8f60e414c25465c163d16f209411f95"
-  integrity sha512-gH3iR3g4JfF+yYPaJYkN7jEl9QbweL/YfkoRlNnuIEHEz1vHVlCmWOS+eGGiRuzHQXdJFCOTxRgvju9b8VUmrw==
-  dependencies:
-    prettier-linter-helpers "^1.0.0"
-    synckit "^0.9.1"
 
 eslint-plugin-prettier@^5.5.4:
   version "5.5.4"
@@ -25523,13 +25489,6 @@ react-dom@^19.0.0:
   dependencies:
     scheduler "^0.27.0"
 
-react-error-boundary@^3.1.0:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-3.1.4.tgz#255db92b23197108757a888b01e5b729919abde0"
-  integrity sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-
 react-fast-compare@^3.0.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
@@ -28557,14 +28516,6 @@ synckit@^0.11.7:
   dependencies:
     "@pkgr/core" "^0.2.4"
 
-synckit@^0.9.1:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/synckit/-/synckit-0.9.2.tgz#a3a935eca7922d48b9e7d6c61822ee6c3ae4ec62"
-  integrity sha512-vrozgXDQwYO72vHjUb/HnFbQx1exDjoKzqx23aXEg2a9VIg2TSFZ8FmeZpTjUCFMYw7mpX4BE2SFu8wI7asYsw==
-  dependencies:
-    "@pkgr/core" "^0.1.0"
-    tslib "^2.6.2"
-
 systemjs@^6.12.1:
   version "6.14.3"
   resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.14.3.tgz#c1d6e4ff5f9ff7106e5bb3d451360b1a066bde8a"
@@ -29256,11 +29207,6 @@ tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.4
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
-
-tslib@^2.6.2:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.7.0.tgz#d9b40c5c40ab59e8738f297df3087bf1a2690c01"
-  integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==
 
 tsutils@3, tsutils@^3.21.0:
   version "3.21.0"
