@@ -4,15 +4,31 @@ import cloud from '@/types/Cloud';
 export const mockedAvailability: ProductAvailability = {
   plans: [
     {
-      code: 'plan-1',
+      code: 'storage',
       regions: [
         {
-          availabilityZones: ['GRA1', 'GRA2'],
+          availabilityZones: ['BHS1', 'BHS2', 'BHS3'],
           continentCode: cloud.RegionContinentEnum.EU,
-          datacenter: 'Gravelines',
+          datacenter: 'BHS',
           enabled: true,
-          name: 'GRA',
+          name: 'BHS',
+          type: cloud.RegionTypeEnum.region,
+        },
+        {
+          availabilityZones: ['EU-WEST-PAR'],
+          continentCode: cloud.RegionContinentEnum.EU,
+          datacenter: 'EU-WEST-PAR',
+          enabled: true,
+          name: 'EU-WEST-PAR',
           type: cloud.RegionTypeEnum['region-3-az'],
+        },
+        {
+          availabilityZones: ['RBX'],
+          continentCode: cloud.RegionContinentEnum.EU,
+          datacenter: 'RBX',
+          enabled: true,
+          name: 'RBX',
+          type: cloud.RegionTypeEnum.localzone,
         },
       ],
     },
@@ -22,11 +38,19 @@ export const mockedAvailability: ProductAvailability = {
       name: 'object-storage',
       regions: [
         {
-          availabilityZones: ['GRA1', 'GRA2'],
+          availabilityZones: ['BHS1', 'BHS2', 'BHS3'],
           continentCode: cloud.RegionContinentEnum.EU,
-          datacenter: 'Gravelines',
+          datacenter: 'BHS',
           enabled: true,
-          name: 'GRA',
+          name: 'BHS',
+          type: cloud.RegionTypeEnum.region,
+        },
+        {
+          availabilityZones: ['EU-WEST-PAR'],
+          continentCode: cloud.RegionContinentEnum.EU,
+          datacenter: 'EU-WEST-PAR',
+          enabled: true,
+          name: 'EU-WEST-PAR',
           type: cloud.RegionTypeEnum['region-3-az'],
         },
       ],

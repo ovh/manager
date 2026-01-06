@@ -36,7 +36,7 @@ const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
       enabled: !!currentUser?.id,
     });
     return (
-      <div>
+      <div data-testid="user-step-container">
         <Combobox value={`${value}`} onValueChange={(val) => onChange?.(+val)}>
           <ComboboxTrigger ref={ref}>
             <ComboboxValue
