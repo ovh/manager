@@ -34,7 +34,10 @@ import {
 } from '@/hooks/redirection/useSettingsRedirecions';
 import { useSettingsSchema } from '@/hooks/settings/useSettings';
 import { useTrackError } from '@/hooks/tracking/useTracking';
-import { DEFAULT_REDIRECT_URL, WEBSITE_LABEL_BY_LOCALE } from './settings.constants';
+import {
+  DEFAULT_REDIRECT_URL,
+  WEBSITE_LABEL_BY_LOCALE,
+} from './settings.constants';
 import AccountSettingsPopoverContent from './popover-content/PopoverContent';
 
 type SettingsFormData = {
@@ -177,14 +180,11 @@ export default function Settings() {
       <div className={'flex flex-col gap-5'}>
         <OdsText preset={ODS_TEXT_PRESET.heading1}>{t('title')}</OdsText>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          <Trans
-            t={t}
-            i18nKey="description"
-            components={{
-              Link: (
-                <OdsLink href={redirectToLoginUrl || DEFAULT_REDIRECT_URL} onClick={() => trackAuthLinkClick()} />
-              ),
-            }}
+          <span className="mr-2">{t('description')}</span>
+          <OdsLink
+            href={redirectToLoginUrl || DEFAULT_REDIRECT_URL}
+            onClick={() => trackAuthLinkClick()}
+            label={t('connect')}
           />
         </OdsText>
       </div>
