@@ -30,7 +30,6 @@
   "packages/manager/apps/procedures",
   "packages/manager/apps/restricted",
   "packages/manager/apps/sap-features-hub",
-  "packages/manager/apps/sign-up",
   "packages/manager/apps/sms",
   "packages/manager/apps/support",
   "packages/manager/apps/telecom",
