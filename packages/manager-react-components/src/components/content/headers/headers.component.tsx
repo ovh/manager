@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { Subtitle } from '../../typography';
@@ -14,6 +14,7 @@ export interface HeadersProps {
   description?: string;
   headerButton?: React.ReactElement;
   changelogButton?: React.ReactElement;
+  surveyLink?: React.ReactElement;
 }
 
 export const Headers: React.FC<HeadersProps> = ({
@@ -23,6 +24,7 @@ export const Headers: React.FC<HeadersProps> = ({
   description,
   headerButton,
   changelogButton,
+  surveyLink,
 }) => {
   return (
     <div className="flex items-start justify-between">
@@ -44,10 +46,11 @@ export const Headers: React.FC<HeadersProps> = ({
           </OdsText>
         )}
       </div>
-      {(headerButton || changelogButton) && (
+      {(headerButton || changelogButton || surveyLink) && (
         <div className="flex flex-wrap justify-end items-center">
           {changelogButton}
           {headerButton}
+          {surveyLink}
         </div>
       )}
     </div>
