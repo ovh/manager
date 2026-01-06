@@ -1,4 +1,4 @@
-import { MODAL_COLOR } from '@ovh-ux/muk';
+import { MODAL_COLOR } from '@ovhcloud/ods-react';
 
 export interface ConfirmationModalProps {
   title: string;
