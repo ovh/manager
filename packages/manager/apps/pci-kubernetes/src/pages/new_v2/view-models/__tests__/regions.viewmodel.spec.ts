@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { TContinentCode, TMacroRegion, TPlanCode, TRegions } from '@/domain/entities/regions';
+import { TClusterPlanEnum } from '@/types';
 
 import {
   filterMacroRegions,
@@ -32,7 +33,7 @@ describe('regions.viewmodel', () => {
         createMockMacroRegion('BHS', 'NA', ['mks.free.hour.consumption']),
       ];
 
-      const filter = filterMacroRegions('EU', 'all');
+      const filter = filterMacroRegions('EU', TClusterPlanEnum.ALL);
       const result = filter(regions);
 
       expect(result).toHaveLength(1);
@@ -46,7 +47,7 @@ describe('regions.viewmodel', () => {
         createMockMacroRegion('BHS', 'NA', ['mks.free.hour.consumption']),
       ];
 
-      const filter = filterMacroRegions('EU', 'free');
+      const filter = filterMacroRegions('EU', TClusterPlanEnum.FREE);
       const result = filter(regions);
 
       expect(result).toHaveLength(1);
@@ -61,11 +62,11 @@ describe('regions.viewmodel', () => {
         ]),
       ];
 
-      const filterFree = filterMacroRegions('ALL', 'free');
+      const filterFree = filterMacroRegions('ALL', TClusterPlanEnum.FREE);
       const resultFree = filterFree(regions);
       expect(resultFree).toHaveLength(1);
 
-      const filterStandard = filterMacroRegions('ALL', 'standard');
+      const filterStandard = filterMacroRegions('ALL', TClusterPlanEnum.STANDARD);
       const resultStandard = filterStandard(regions);
       expect(resultStandard).toHaveLength(1);
     });
@@ -78,7 +79,7 @@ describe('regions.viewmodel', () => {
         ]),
       ];
 
-      const filter = filterMacroRegions('ALL', 'all');
+      const filter = filterMacroRegions('ALL', TClusterPlanEnum.ALL);
       const result = filter(regions);
       expect(result).toHaveLength(1);
     });
@@ -88,7 +89,7 @@ describe('regions.viewmodel', () => {
         createMockMacroRegion('GRA', 'EU', ['mks.free.hour.consumption']),
       ];
 
-      const filter = filterMacroRegions('NA', 'standard');
+      const filter = filterMacroRegions('NA', TClusterPlanEnum.STANDARD);
       const result = filter(regions);
 
       expect(result).toHaveLength(0);
