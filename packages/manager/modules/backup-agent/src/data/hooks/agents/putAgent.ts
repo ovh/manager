@@ -6,13 +6,17 @@ import {
   EditBackupAgentConfigParams,
   editConfigurationBackupAgents,
 } from '@/data/api/agents/agents.requests';
+import { useGetBackupServicesId } from '@/data/hooks/backup/useBackupServicesId';
 
 import { GET_VSPC_TENANTS_QUERY_KEY } from '../tenants/useVspcTenants';
-import {useGetBackupServicesId} from "@/data/hooks/backup/useBackupServicesId";
 
 type EditBackupConfigPayload = EditBackupAgentConfigParams;
 type UseEditConfigurationVSPCTenantAgentParams = Partial<
-  UseMutationOptions<ApiResponse<string>, ApiError, Omit<EditBackupConfigPayload, "backupServicesId">>
+  UseMutationOptions<
+    ApiResponse<string>,
+    ApiError,
+    Omit<EditBackupConfigPayload, 'backupServicesId'>
+  >
 >;
 export const useEditConfigurationVSPCTenantAgent = (
   options: UseEditConfigurationVSPCTenantAgentParams = {},
@@ -21,10 +25,10 @@ export const useEditConfigurationVSPCTenantAgent = (
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (payload: Omit<EditBackupConfigPayload, "backupServicesId">) => {
+    mutationFn: async (payload: Omit<EditBackupConfigPayload, 'backupServicesId'>) => {
       const backupServicesId = await getBackupServiceId();
 
-      return editConfigurationBackupAgents({ backupServicesId: backupServicesId!, ...payload })
+      return editConfigurationBackupAgents({ backupServicesId: backupServicesId!, ...payload });
     },
     ...options,
     onSuccess: async (...params) => {

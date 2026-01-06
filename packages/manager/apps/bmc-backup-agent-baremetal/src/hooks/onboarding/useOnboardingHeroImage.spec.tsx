@@ -25,9 +25,9 @@ describe('useOnboardingHeroImage', () => {
       description: 'useOnboardingHeroImage should return the correct hero image gived',
       onboardingContent: {
         productName: 'MyTestApp',
-        heroImage: { src: '/hero.png', alt: 'Hero' },
+        heroImage: { src: '/hero.png', alt: 'Hero', width: 300 },
       },
-      expected: { src: '/hero.png', alt: 'Hero' },
+      expected: { src: '/hero.png', alt: 'Hero', width: 300 },
     },
     {
       description:
@@ -39,6 +39,7 @@ describe('useOnboardingHeroImage', () => {
       expected: {
         src: '/hero.png',
         alt: 'translated_onboarding:hero_alt_MyTestApp',
+        width: 300,
       },
     },
     {
