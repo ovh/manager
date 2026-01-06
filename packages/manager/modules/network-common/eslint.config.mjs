@@ -1,16 +1,15 @@
 /* eslint-disable import/no-unresolved */
-import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
-
-import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
-import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import {
   complexityJsxTsxConfig,
   complexityTsJsConfig,
 } from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
-import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
 import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
+import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
+import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
+import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
+import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
+import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
   javascriptEslintConfig,
@@ -23,10 +22,10 @@ export default [
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {
-    files: ["**/*.ts", "**/*.tsx"],
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parserOptions: {
-        project: "./tsconfig.eslint.json",
+        project: './tsconfig.eslint.json',
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -43,7 +42,15 @@ export default [
       'max-lines': 'off',
       'no-undef': 'off',
       'react/display-name': 'off',
-      'react-hooks/exhaustive-deps': 'off'
+      'react-hooks/exhaustive-deps': 'off',
+    },
+  },
+  {
+    files: ['**/*.spec.*'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
     },
   },
 ];
