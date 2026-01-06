@@ -79,6 +79,7 @@ import {
   getCatalogKmsMocks,
 } from '@/common/mocks/catalog/catalog.handler';
 import { getLocationsMock } from '@/common/mocks/locations/locations.handler';
+import { getReferenceRegionsMock } from '@/common/mocks/reference-regions/referenceRegions.handler';
 
 import { TestApp } from './TestApp';
 import { initTestI18n } from './init.i18n';
@@ -131,6 +132,7 @@ export const renderTestApp = async (initialRoute = '/', mockParams: RenderTestMo
         ...getIdentityUserIds(),
         ...getIdentityUsers(),
         ...getLocationsMock(),
+        ...getReferenceRegionsMock(),
         ...getSecretsMock(mockParams),
         ...getSecretMock(mockParams),
         ...createSecretsMock(mockParams),
