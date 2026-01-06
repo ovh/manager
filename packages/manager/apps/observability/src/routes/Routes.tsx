@@ -6,9 +6,8 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/muk';
 
 import NotFound from '@/pages/not-found/404.page';
-
-import { redirectionApp, subroutes, urls } from './Routes.constants';
-import { DeleteTenantModal, TenantsPage } from './lazy-parallel/tenants/listing.lazy';
+import { redirectionApp, subroutes, urls } from '@/routes/Routes.constants';
+import { DeleteTenantModal, TenantsPage } from '@/routes/lazy-parallel/tenants/listing.lazy';
 
 const MainLayout = React.lazy(() => import('@/pages/Main.layout'));
 
@@ -33,6 +32,10 @@ const TenantGeneralInformationPage = React.lazy(
 const TenantSubscriptionPage = React.lazy(
   () => import('@/pages/tenants/dashboard/subscription/TenantSubscription.page'),
 );
+const DeleteTenantSubscriptionPage = React.lazy(
+  () => import('@/pages/tenants/dashboard/subscription/DeleteTenantSubscription.page'),
+);
+
 const TenantTagsPage = React.lazy(() => import('@/pages/tenants/dashboard/tags/TenantTags.page'));
 
 export default (
@@ -160,7 +163,17 @@ export default (
                     pageName: 'tenant-subscription-tab',
                   },
                 }}
-              />
+              >
+                <Route
+                  path={subroutes.deleteTenantSubscription}
+                  Component={DeleteTenantSubscriptionPage}
+                  handle={{
+                    tracking: {
+                      pageName: 'tenant-subscription-delete',
+                    },
+                  }}
+                />
+              </Route>
               <Route
                 path={subroutes.tags}
                 Component={TenantTagsPage}
