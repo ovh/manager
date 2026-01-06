@@ -34,6 +34,16 @@ describe('sanitizeUrl', () => {
         expect(sanitizeUrl(url)).toBe(url);
       });
 
+      it('should accept valid build-ovh HTTPS URL', () => {
+        const url = 'https://www.build-ovh.com/';
+        expect(sanitizeUrl(url)).toBe(url);
+      });
+
+      it('should accept valid build-ovhcloud HTTPS URL', () => {
+        const url = 'https://www.build-ovhcloud.com/';
+        expect(sanitizeUrl(url)).toBe(url);
+      });
+
       it('should accept OVH URL with subdomain', () => {
         const url = 'https://api.ovh.com/console';
         expect(sanitizeUrl(url)).toBe(url);
