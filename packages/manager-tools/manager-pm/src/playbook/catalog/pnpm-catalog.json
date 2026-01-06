@@ -7,7 +7,6 @@
   "packages/manager/apps/web-hosting",
   "packages/manager/apps/web-ongoing-operations",
   "packages/manager/apps/zimbra",
-  "packages/manager/apps/billing",
   "packages/manager/apps/carbon-calculator",
   "packages/manager/apps/catalog",
   "packages/manager/apps/container",
