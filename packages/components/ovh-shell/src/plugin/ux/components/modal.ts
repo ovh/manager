@@ -84,7 +84,7 @@ export class UxModal {
     this.options.content = options.content;
     this.elements.appendTo = document.querySelector(this.options.appendTo);
     if (this.options.content) {
-      this.elements.body.removeChild(this.elements.body.firstElementChild);
+      this.elements.body.firstElementChild?.remove();
       this.elements.body.append(this.options.content);
     }
   }
@@ -129,8 +129,8 @@ export class UxModal {
   hide(): UxModal {
     document.body.classList.remove('modal-open');
     this.elements.container.style.display = 'none';
-    this.elements?.backdrop?.parentNode?.removeChild(this.elements?.backdrop);
-    this.elements?.container?.parentNode?.removeChild(this.elements?.container);
+    this.elements.backdrop?.remove();
+    this.elements.container?.remove();
 
     return this;
   }

@@ -73,11 +73,18 @@ const UserAccountMenu = ({
   useEffect(() => {
     const fetchData = async () => {
       let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await fetchFeatureAvailabilityData([
+      const appsToCheck = Array.from(new Set(links.map((link) => link.app)));
+      const featuresToCheck = [
+        ...appsToCheck,
         'identity-documents',
         'procedures:fraud',
         'communication',
-      ]);
+      ];
+
+      const featureAvailability = await fetchFeatureAvailabilityData(
+        featuresToCheck,
+      );
+
       if (featureAvailability['identity-documents']) {
         try {
           const identityProcedure = await fetchProcedureStatus(Procedures.INDIA);
@@ -90,6 +97,10 @@ const UserAccountMenu = ({
           setIsDocumentsVisible(fraudProcedure?.status && ['required', 'open'].includes(fraudProcedure?.status));
         } catch {}
       }
+
+      const filteredLinks = links.filter(
+        (link: UserLink) => featureAvailability[link.app],
+      );
 
       const myIdentityDocuments = isIdentityDocumentsAvailable
         ? [
@@ -114,7 +125,11 @@ const UserAccountMenu = ({
           ]
         : [];
 
-      setAllLinks([...links, ...myIdentityDocuments, ...communicationLink].filter((link: UserLink) => !link.region || link.region.includes(region)));
+      setAllLinks(
+        [...filteredLinks, ...myIdentityDocuments, ...communicationLink].filter(
+          (link: UserLink) => !link.region || link.region.includes(region),
+        ),
+      );
     };
 
     fetchData();
