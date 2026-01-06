@@ -1,11 +1,11 @@
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 
+import { BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useVspcTenantDetails';
 import { Agent } from '@/types/Agent.type';
 import { Resource } from '@/types/Resource.type';
 import { getBackupAgentsRoute } from '@/utils/apiRoutes';
 
 import { useBackupServicesId } from '../backup/useBackupServicesId';
-import {BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY} from "@/data/hooks/tenants/useVspcTenantDetails";
 
 type UseBackupAgentListParams = {
   tenantId: string;

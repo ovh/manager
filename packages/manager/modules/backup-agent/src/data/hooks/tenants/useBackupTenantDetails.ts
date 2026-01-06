@@ -9,10 +9,7 @@ import { mapTenantResourceToTenantResourceWithRegion } from '@/utils/mappers/map
 import { useGetBackupServicesId } from '../backup/useBackupServicesId';
 import { BACKUP_TENANTS_QUERY_KEY } from './useBackupTenants';
 
-export const BACKUP_TENANT_DETAILS_QUERY_KEY = [
-  ...BACKUP_TENANTS_QUERY_KEY,
-  'details'
-];
+export const BACKUP_TENANT_DETAILS_QUERY_KEY = [...BACKUP_TENANTS_QUERY_KEY, 'details'];
 
 export const useBackupTenantDetails = ({
   ...options

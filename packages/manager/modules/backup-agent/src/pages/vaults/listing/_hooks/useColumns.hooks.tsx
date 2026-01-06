@@ -6,10 +6,11 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ResourceLocationCell } from '@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.component';
 import { ResourceRegionCell } from '@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.component';
 import { ResourceStatusCell } from '@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.component';
+import { VaultIdCell } from '@/pages/vaults/listing/_components/VaultIdCell.component';
+import { VaultReferenceCell } from '@/pages/vaults/listing/_components/VaultReferenceCell.component';
 import { Resource } from '@/types/Resource.type';
 import { Vault } from '@/types/Vault.type';
 
-import { VaultBucketsCell, VaultIdCell, VaultReferenceCell } from '../_components';
 import { VaultActionCell } from '../_components/VaultActionCell.component';
 
 export const useColumns = () => {
@@ -39,11 +40,6 @@ export const useColumns = () => {
         <ResourceRegionCell region={vaultResource.currentState.region} />
       ),
       label: t('region_label'),
-    },
-    {
-      id: 'currentState.buckets',
-      cell: VaultBucketsCell,
-      label: t('buckets_label'),
     },
     {
       id: 'resourceStatus',

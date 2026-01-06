@@ -2,13 +2,12 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
 
-import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
+import { useBackupVSPCTenantDetails } from '@/data/hooks/tenants/useVspcTenantDetails';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { buildDeleteTenantUrl } from '@/utils/buildSearchQuery.utils';
 
 import { GeneralInformationTenantTile } from './_components/general-information-tenant-tile/GeneralInformationTenantTile.component';
 import SubscriptionTile from './_components/subscription-tile/SubscriptionTile.component';
-import {useBackupVSPCTenantDetails} from "@/data/hooks/tenants/useVspcTenantDetails";
 
 export default function GeneralInformationPage() {
   const { tenantId } = useRequiredParams('tenantId');
