@@ -4,6 +4,8 @@ import clsx from 'clsx';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 
+import { RADIO_CARD_TEST_IDS } from './RadioCard.constants';
+
 type RadioCardProps = {
   id: string;
   name: string;
@@ -33,6 +35,7 @@ export const RadioCard = ({
     <label
       key={id}
       htmlFor={id}
+      data-testid={RADIO_CARD_TEST_IDS.card(id)}
       className={clsx(
         'flex rounded-md border border-solid px-3 py-4',
         !isDisabled && 'cursor-pointer',

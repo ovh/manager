@@ -31,6 +31,7 @@ import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-clie
 import { REGION_PICKER_TEST_IDS } from '@/common/components/region-picker/regionPicker.constants';
 import * as locationApi from '@/common/data/api/location';
 import { getOrderCatalogOkms } from '@/common/data/api/orderCatalogOkms';
+import { useReferenceRegions } from '@/common/data/hooks/useReferenceRegions';
 import {
   REGION_EU_WEST_GRA,
   REGION_EU_WEST_RBX,
@@ -38,6 +39,7 @@ import {
   catalogMock,
 } from '@/common/mocks/catalog/catalog.mock';
 import { locationsMock } from '@/common/mocks/locations/locations.mock';
+import { referenceRegionsMock } from '@/common/mocks/reference-regions/referenceRegions.mock';
 import { ErrorResponse } from '@/common/types/api.type';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
@@ -67,6 +69,16 @@ vi.mock('react-router-dom', async (importOriginal) => {
     useSearchParams: vi.fn(),
   };
 });
+
+vi.mock('@/common/data/hooks/useReferenceRegions', () => ({
+  useReferenceRegions: vi.fn(),
+}));
+
+vi.mocked(useReferenceRegions).mockReturnValue({
+  data: referenceRegionsMock,
+  isPending: false,
+  error: null,
+} as unknown as ReturnType<typeof useReferenceRegions>);
 
 vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
   const module: typeof import('@ovh-ux/manager-module-common-api') = await importOriginal();
