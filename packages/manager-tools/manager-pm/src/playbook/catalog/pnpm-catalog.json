@@ -11,6 +11,7 @@
   "packages/manager/apps/carbon-calculator",
   "packages/manager/apps/catalog",
   "packages/manager/apps/cda",
+  "packages/manager/apps/cloud-connect",
   "packages/manager/apps/container",
   "packages/manager/apps/communication",
   "packages/manager/apps/dedicated",

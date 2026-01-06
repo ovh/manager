@@ -3,7 +3,6 @@
   "packages/manager-ui-kit",
   "packages/manager-wiki",
   "packages/manager/apps/carrier-sip",
-  "packages/manager/apps/cloud-connect",
   "packages/manager/apps/cloud-shell",
   "packages/manager/apps/dbaas-logs",
   "packages/manager/apps/hpc-vmware-public-vcf-aas",
