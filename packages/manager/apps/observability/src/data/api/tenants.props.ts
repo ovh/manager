@@ -25,3 +25,8 @@ export type EditTenantPayload = {
   tenantId: string;
   targetSpec: TTargetSpecPayload;
 } & ObservabilityServiceParams;
+
+export type DeleteTenantSubscriptionPayload = {
+  tenantId: string;
+  subscriptionId: string;
+} & ObservabilityServiceParams;

@@ -2,6 +2,7 @@ import { apiConfig } from '@/__mocks__/mock.config';
 import {
   createTenant as createTenantsFromMock,
   deleteTenant as deleteTenantFromMock,
+  deleteTenantSubscription as deleteTenantSubscriptionFromMock,
   editTenant as editTenantFromMock,
   getTenant as getTenantFromMock,
   getTenantSubscriptions as getTenantSubscriptionsFromMock,
@@ -11,6 +12,7 @@ import { ObservabilityServiceParams } from '@/data/api/observability.props';
 import {
   createTenants as createTenantsFromApi,
   deleteTenant as deleteTenantFromApi,
+  deleteTenantSubscription as deleteTenantSubscriptionFromApi,
   editTenant as editTenantFromApi,
   getTenant as getTenantFromApi,
   getTenantSubscriptions as getTenantSubscriptionsFromApi,
@@ -18,6 +20,7 @@ import {
 } from '@/data/api/tenants.api';
 import {
   CreateTenantsPayload,
+  DeleteTenantSubscriptionPayload,
   EditTenantPayload,
   GetTenantPayload,
 } from '@/data/api/tenants.props';
@@ -48,6 +51,16 @@ export const deleteTenant = async (params: GetTenantPayload): Promise<Tenant> =>
   const isMockEnabled = apiConfig.tenant === 'mock';
   console.info('[MOCK-ADAPTER][deleteTenant] Mock enabled -> ', isMockEnabled);
   return isMockEnabled ? deleteTenantFromMock(params) : deleteTenantFromApi(params);
+};
+
+export const deleteTenantSubscription = async (
+  params: DeleteTenantSubscriptionPayload,
+): Promise<TenantSubscription> => {
+  const isMockEnabled = apiConfig.tenantSubscription === 'mock';
+  console.info('[MOCK-ADAPTER][deleteTenantSubscription] Mock enabled -> ', isMockEnabled);
+  return isMockEnabled
+    ? deleteTenantSubscriptionFromMock(params)
+    : deleteTenantSubscriptionFromApi(params);
 };
 
 export const createTenants = async (payload: CreateTenantsPayload): Promise<Tenant> => {

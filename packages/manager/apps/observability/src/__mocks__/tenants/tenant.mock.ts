@@ -1,6 +1,7 @@
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
 import {
   CreateTenantsPayload,
+  DeleteTenantSubscriptionPayload,
   EditTenantPayload,
   GetTenantPayload,
 } from '@/data/api/tenants.props';
@@ -185,4 +186,34 @@ export const editTenant = async ({
   console.info(`[MOCK-ADAPTER][editTenant] tenantId ->`, tenantId);
   console.info(`[MOCK-ADAPTER][editTenant] targetSpec ->`, targetSpec);
   return Promise.resolve(tenantsDataset[0]!);
+};
+
+export const deleteTenantSubscription = async ({
+  resourceName,
+  tenantId,
+  subscriptionId,
+}: DeleteTenantSubscriptionPayload): Promise<TenantSubscription> => {
+  console.info(
+    `[MOCK-ADAPTER][deleteTenantSubscription] mock deletion of tenant subscription for ${resourceName}`,
+  );
+  console.info(`[MOCK-ADAPTER][deleteTenantSubscription] tenantId ->`, tenantId);
+  console.info(`[MOCK-ADAPTER][deleteTenantSubscription] subscriptionId ->`, subscriptionId);
+  return Promise.resolve({
+    id: '2',
+    createdAt: '2025-11-21T14:26:14.041Z',
+    updatedAt: '2025-11-21T14:26:14.041Z',
+    resourceStatus: 'READY',
+    iam: {
+      id: tenantId,
+      tags: {
+        environment: 'Dev',
+      },
+      urn: `urn:v1:eu:resource:ldp:${resourceName}`,
+    },
+    currentState: {
+      kind: 'Subscription',
+      link: `https://api.ovh.com/v2/observability/resource/${resourceName}/metric/tenant/${tenantId}/subscription`,
+      resource: { name: `${resourceName}-${tenantId}-subscription-2`, type: 'PCI/Instance' },
+    },
+  });
 };
