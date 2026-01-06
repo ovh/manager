@@ -56,10 +56,9 @@ export function Breadcrumb({
 
   return (
     <OdsBreadcrumb>
-      {breadcrumbItems?.map((item, index) => (
+      {breadcrumbItems?.map((item, idx) => (
         <OdsBreadcrumbItem
-          key={`breadcrumb-key-${item.label}-${index}`}
-          className="ips-breadcrumb-item"
+          key={`breadcrumb-key-${item.label}-${idx}`}
           href={item.href}
           label={item.label}
           onClick={item.onClick}

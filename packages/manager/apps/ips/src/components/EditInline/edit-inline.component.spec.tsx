@@ -1,58 +1,127 @@
-import { fireEvent, render, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-
-import { getButtonByIcon } from '@/test-utils';
-import '@/test-utils/setupUnitTests';
+import { MouseEventHandler } from 'react';
+import { render, fireEvent, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { EditInline } from './edit-inline.component';
 
-describe('EditInline Component', () => {
-  it('Should edit value', async () => {
-    const spy = vi.fn();
-    const { getByText, container, getByTestId } = render(
-      <EditInline onConfirm={spy} name="test" defaultValue="test-value">
-        {'test-value'}
+// Mock external UI library components to keep tests deterministic
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  ManagerButton: (props: { id: string; onClick: MouseEventHandler }) => (
+    <button
+      data-testid={`manager-button-${props.id}`}
+      onClick={props.onClick}
+      aria-label="manager-button"
+    />
+  ),
+}));
+
+vi.mock('@ovhcloud/ods-components/react', () => ({
+  OdsInput: (props: {
+    'data-testid': string;
+    defaultValue: string;
+    onOdsChange: (e: { detail: { value: string } }) => void;
+  }) => (
+    <input
+      data-testid={props['data-testid'] || 'ods-input'}
+      defaultValue={props.defaultValue}
+      onChange={(e) =>
+        props.onOdsChange &&
+        props.onOdsChange({ detail: { value: e.target.value } })
+      }
+    />
+  ),
+  OdsButton: (props: {
+    onClick: MouseEventHandler;
+    icon: string;
+    label: string;
+  }) => (
+    <button onClick={props.onClick} aria-label={props.icon}>
+      {props.label}
+    </button>
+  ),
+}));
+
+describe('EditInline', () => {
+  it('renders children and manager button', () => {
+    const onConfirm = vi.fn();
+    render(
+      <EditInline name="test" defaultValue="default" onConfirm={onConfirm}>
+        {'display-value'}
       </EditInline>,
     );
 
-    const editButton = await getButtonByIcon({
-      container,
-      iconName: ODS_ICON_NAME.pen,
-    });
+    expect(screen.getByText('display-value')).toBeDefined();
+    expect(screen.getByTestId('manager-button-test')).toBeDefined();
+  });
 
-    await waitFor(() => {
-      expect(getByText('test-value')).toBeDefined();
-    }, WAIT_FOR_DEFAULT_OPTIONS);
-
-    await waitFor(() => {
-      fireEvent.click(editButton);
-    }, WAIT_FOR_DEFAULT_OPTIONS);
-
-    const submitButton = await getButtonByIcon({
-      container,
-      iconName: ODS_ICON_NAME.check,
-    });
-
-    const editInput = getByTestId('edit-inline-input');
-
-    editButton.nodeValue = 'test-value-2';
-    const event = new CustomEvent('odsChange', {
-      detail: { value: 'test-value-2' },
-    });
-
-    await waitFor(() => fireEvent(editInput, event), WAIT_FOR_DEFAULT_OPTIONS);
-
-    await waitFor(
-      () => fireEvent.click(submitButton),
-      WAIT_FOR_DEFAULT_OPTIONS,
+  it('opens input when manager button is clicked', () => {
+    const onConfirm = vi.fn();
+    render(
+      <EditInline name="test" defaultValue="default" onConfirm={onConfirm}>
+        {'display-value'}
+      </EditInline>,
     );
 
-    await waitFor(() => {
-      expect(spy).toHaveBeenCalledWith('test-value-2');
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    fireEvent.click(screen.getByTestId('manager-button-test'));
+
+    expect(screen.getByTestId('edit-inline-input')).toBeDefined();
+  });
+
+  it('calls onConfirm with changed value and hides input', () => {
+    const onConfirm = vi.fn();
+    render(
+      <EditInline name="test" defaultValue="default" onConfirm={onConfirm}>
+        {'display-value'}
+      </EditInline>,
+    );
+
+    // open
+    fireEvent.click(screen.getByTestId('manager-button-test'));
+
+    const input = screen.getByTestId('edit-inline-input');
+    fireEvent.change(input, { target: { value: 'new-value' } });
+
+    // confirm button uses aria-label equal to icon prop (mocked)
+    const confirmButton = screen.getByLabelText('check');
+    fireEvent.click(confirmButton);
+
+    expect(onConfirm).toHaveBeenCalledWith('new-value');
+    // input should be hidden after confirm
+    expect(screen.queryByTestId('edit-inline-input')).toBeNull();
+  });
+
+  it('calls onConfirm with default value when nothing changed', () => {
+    const onConfirm = vi.fn();
+    render(
+      <EditInline name="test" defaultValue="default" onConfirm={onConfirm}>
+        {'display-value'}
+      </EditInline>,
+    );
+
+    // open
+    fireEvent.click(screen.getByTestId('manager-button-test'));
+
+    const confirmButton = screen.getByLabelText('check');
+    fireEvent.click(confirmButton);
+
+    expect(onConfirm).toHaveBeenCalledWith('default');
+  });
+
+  it('cancels editing when xmark button is clicked', () => {
+    const onConfirm = vi.fn();
+    render(
+      <EditInline name="test" defaultValue="default" onConfirm={onConfirm}>
+        {'display-value'}
+      </EditInline>,
+    );
+
+    fireEvent.click(screen.getByTestId('manager-button-test'));
+
+    const cancelButton = screen.getByLabelText('xmark');
+    fireEvent.click(cancelButton);
+
+    // input should be hidden and onConfirm not called
+    expect(screen.queryByTestId('edit-inline-input')).toBeNull();
+    expect(onConfirm).not.toHaveBeenCalled();
   });
 });
