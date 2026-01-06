@@ -13,11 +13,10 @@ import {
   BannerResult,
   ComboRule,
   StatusDetails,
-  TransferLockStatusEnum,
 } from '@/domain/types/domainResource';
-import { DnssecStatusEnum } from '../enum/dnnecStatus.enum';
 import { LifecycleCapacitiesEnum } from '@/common/enum/common.enum';
 import { ProtectionStateEnum } from '../enum/protectionState.enum';
+import { DnssecStatusEnum } from '../enum/dnssecStatus.enum';
 
 export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
   {
@@ -77,11 +76,15 @@ export const changelogLinks: ChangelogLinks = {
     'https://github.com/ovh/hosting-domain-names-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
 
-export const ongoingOperationLink: [
-  string,
-  string,
-  Record<string, ParamValueType>,
-] = ['web-ongoing-operations', '/domain', {}];
+export type TOngoingOperationTarget = 'alldom' | 'dns' | 'domain';
+
+export const ongoingOperationLink = (
+  target: TOngoingOperationTarget,
+): [string, string, Record<string, ParamValueType>] => [
+  'web-ongoing-operations',
+  `/${target}`,
+  {},
+];
 
 export const ERROR_RULES: ComboRule[] = [
   {
@@ -93,7 +96,7 @@ export const ERROR_RULES: ComboRule[] = [
       type: 'error',
       i18nKey: 'domain_tab_general_information_banner_technical_suspended',
       link: {
-        linkDetails: ongoingOperationLink,
+        linkDetails: ongoingOperationLink('domain'),
         linki18n:
           'domain_tab_general_information_banner_link_ongoing_operations',
       },
@@ -153,7 +156,7 @@ export const WARNING_RULES: ComboRule[] = [
       type: 'warning',
       i18nKey: 'domain_tab_general_information_banner_technical_not_suspended',
       link: {
-        linkDetails: ongoingOperationLink,
+        linkDetails: ongoingOperationLink('domain'),
         linki18n:
           'domain_tab_general_information_banner_link_ongoing_operations',
       },

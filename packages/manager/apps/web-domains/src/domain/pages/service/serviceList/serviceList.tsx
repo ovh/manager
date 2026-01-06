@@ -19,6 +19,7 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { VisibilityState } from '@tanstack/react-table';
+import { Datagrid } from '@ovh-ux/muk';
 import {
   useDomainDatagridColumns,
   DomainResourceDatagridData,
@@ -30,7 +31,6 @@ import TopBarCTA from './topBarCTA';
 import ExportDrawer from './modalDrawer/exportDrawer';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
 import DomainGuideButton from './guideButton';
-import { Datagrid } from '@ovh-ux/muk';
 
 export default function ServiceList() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
@@ -215,7 +215,7 @@ export default function ServiceList() {
         isLoading={isFetching || isLoading}
         sorting={sorting}
         columns={domainColumns}
-        data={(domainResources ?? []) as DomainResourceDatagridData[]}
+        data={domainResources ?? ([] as DomainResourceDatagridData[])}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
         totalCount={totalCount}

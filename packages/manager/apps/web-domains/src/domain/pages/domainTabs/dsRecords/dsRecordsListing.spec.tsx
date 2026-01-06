@@ -26,17 +26,6 @@ vi.mock('@/domain/hooks/data/query', () => ({
   })),
 }));
 
-vi.mock('@/domain/utils/utils', async () => {
-  const actual = await vi.importActual<typeof import('@/domain/utils/utils')>(
-    '@/domain/utils/utils',
-  );
-
-  return {
-    ...actual,
-    isDsRecordActionDisabled: vi.fn(() => false),
-  };
-});
-
 describe('DS Records Columns', () => {
   const setDrawer = vi.fn();
   const setDsRecordsData = vi.fn();
