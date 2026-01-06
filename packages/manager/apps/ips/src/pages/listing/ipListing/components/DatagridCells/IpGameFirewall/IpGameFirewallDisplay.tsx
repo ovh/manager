@@ -1,17 +1,23 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { urlDynamicParts, urls } from '@/routes/routes.constant';
-import { fromIpToId } from '@/utils';
+
 import { IpGameFirewallStateEnum } from '@/data/api';
+import { useGetIpGameFirewall, useIpGameFirewallRuleList } from '@/data/hooks';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import { fromIpToId, handleEnterAndEscapeKeyDown } from '@/utils';
+
 import { BadgeCell } from '../BadgeCell/BadgeCell';
-import { useGetIpGameFirewall } from '@/data/hooks';
 
 export type IpGameFirewallDisplayProps = {
   ip: string;
@@ -26,7 +32,6 @@ export type IpGameFirewallDisplayProps = {
  * If game firewall state is not ok we display the pending state to user
  * @param ip the block ip if there is one
  * @param ipOnGame the original ip used for gameFirewall request
- * @param ipEdgeFirewall the gameFirewall object for given ip (can be null)
  * @param enabled boolean used to display datas or not
  * @returns React component
  */
@@ -47,44 +52,74 @@ export const IpGameFirewallDisplay = ({
     enabled,
   });
 
+  const { data: ruleListQuery } = useIpGameFirewallRuleList({
+    ip,
+    ipOnGame,
+    enabled,
+  });
+
+  if (!enabled || !ipGameFirewall) {
+    return null;
+  }
+
+  if (!ruleListQuery) {
+    return <OdsSkeleton />;
+  }
+
+  const navigateToConfigureGameFirewall = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['configure_game-firewall'],
+    });
+    void navigate(
+      `${urls.configureGameFirewall
+        .replace(urlDynamicParts.parentId, fromIpToId(ip))
+        .replace(
+          urlDynamicParts.id,
+          fromIpToId(ipOnGame),
+        )}?${search.toString()}`,
+    );
+  };
+
   return (
     <div
+      role="button"
+      tabIndex={0}
       className="cursor-pointer"
-      onClick={() => {
-        trackClick({
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['configure_game-firewall'],
-        });
-        navigate(
-          `${urls.configureGameFirewall
-            .replace(urlDynamicParts.parentId, fromIpToId(ip))
-            .replace(
-              urlDynamicParts.id,
-              fromIpToId(ipOnGame),
-            )}?${search.toString()}`,
-        );
-      }}
+      onKeyDown={handleEnterAndEscapeKeyDown({
+        onEnter: navigateToConfigureGameFirewall,
+      })}
+      onClick={navigateToConfigureGameFirewall}
     >
-      {enabled && ipGameFirewall?.state === IpGameFirewallStateEnum.OK && (
-        <BadgeCell
-          badgeColor={ODS_BADGE_COLOR.information}
-          text={t('listingColumnsIpGameFirewallAvailable')}
-          tooltip={t('listingColumnsIpGameFirewallAvailableTooltip')}
-          trigger={id}
-        />
-      )}
-      {enabled &&
-        !!ipGameFirewall &&
-        ipGameFirewall.state !== IpGameFirewallStateEnum.OK && (
+      {ipGameFirewall?.state === IpGameFirewallStateEnum.OK &&
+        ruleListQuery?.data?.length === 0 && (
           <BadgeCell
-            badgeColor={ODS_BADGE_COLOR.warning}
-            text={t('listingColumnsIpGameFirewallPending')}
-            tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
+            badgeColor={ODS_BADGE_COLOR.neutral}
+            text={t('listingColumnsIpGameFirewallAvailable')}
+            tooltip={t('listingColumnsIpGameFirewallAvailableTooltip')}
             trigger={id}
           />
         )}
+      {ipGameFirewall?.state === IpGameFirewallStateEnum.OK &&
+        ruleListQuery?.data &&
+        ruleListQuery.data.length > 0 && (
+          <BadgeCell
+            badgeColor={ODS_BADGE_COLOR.success}
+            text={t('listingColumnsIpGameFirewallConfigured')}
+            tooltip={t('listingColumnsIpGameFirewallConfiguredTooltip')}
+            trigger={id}
+          />
+        )}
+      {ipGameFirewall?.state !== IpGameFirewallStateEnum.OK && (
+        <BadgeCell
+          badgeColor={ODS_BADGE_COLOR.information}
+          text={t('listingColumnsIpGameFirewallPending')}
+          tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
+          trigger={id}
+        />
+      )}
     </div>
   );
 };

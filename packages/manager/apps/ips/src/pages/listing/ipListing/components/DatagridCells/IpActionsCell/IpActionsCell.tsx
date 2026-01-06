@@ -15,7 +15,7 @@ import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { fromIpToId, ipFormatter } from '@/utils';
 import { IpTypeEnum } from '@/data/constants';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { isGameFirewallEnabled } from '../enableCellsUtils';
+import { isGameFirewallAvailable } from '../enableCellsUtils';
 import {
   useGetIpdetails,
   useGetIpGameFirewall,
@@ -151,14 +151,14 @@ export const IpActionsCell = ({
   }, [serviceName, shell.navigation]);
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
-  const enabledGetGameFirewall =
-    !isIpExpired && !isLoading && isGameFirewallEnabled(ipDetails);
+  const availableGetGameFirewall =
+    !isIpExpired && !isLoading && isGameFirewallAvailable(ipDetails);
 
   // Get game firewall info
   const { ipGameFirewall } = useGetIpGameFirewall({
     ip: parentIpGroup || ip,
     ipOnGame: parentIpGroup ? ip : ipAddress,
-    enabled: enabledGetGameFirewall && !isByoipSlice,
+    enabled: availableGetGameFirewall && !isByoipSlice,
   });
 
   const { hasForcedMitigation } = useIpHasForcedMitigation({

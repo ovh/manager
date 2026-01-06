@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.2.3...@ovh-ux/manager-ips-app@0.3.0) (2026-01-06)
+
+
+### Bug Fixes
+
+* **ips:** fix guides for PL ([d7f6d38](https://github.com/ovh/manager/commit/d7f6d38a8bdd2fa8e9524d3e2ff3369e3b48582a)), closes [#MANAGER-20637](https://github.com/ovh/manager/issues/MANAGER-20637)
+
+
+### Features
+
+* **ips:** improve gamefirewall status ([637850d](https://github.com/ovh/manager/commit/637850d92485b7c11fa23dd6ffbd768bd1ee2202)), closes [#MANAGER-20417](https://github.com/ovh/manager/issues/MANAGER-20417)
+
+
+
+
+
 ## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.2.2...@ovh-ux/manager-ips-app@0.2.3) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-ips-app

@@ -14,6 +14,21 @@ import {
 } from '@/data/api';
 import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
+export const useIpGameFirewallRuleList = ({
+  ip,
+  ipOnGame,
+  enabled = true,
+}: {
+  ip?: string;
+  ipOnGame?: string;
+  enabled?: boolean;
+}) =>
+  useQuery<ApiResponse<number[]>, ApiError>({
+    queryKey: getGameFirewallRuleQueryKey({ ip, ipOnGame }),
+    queryFn: () => getGameFirewallRuleList({ ip, ipOnGame }),
+    enabled: !!ip && !!ipOnGame && enabled,
+  });
+
 export const useIpGameFirewallRules = ({
   refetchInterval = INVALIDATED_REFRESH_PERIOD,
   ip,
@@ -24,11 +39,7 @@ export const useIpGameFirewallRules = ({
   refetchInterval?: number;
 }) => {
   const queryClient = useQueryClient();
-  const ruleListQuery = useQuery<ApiResponse<number[]>, ApiError>({
-    queryKey: getGameFirewallRuleQueryKey({ ip, ipOnGame }),
-    queryFn: () => getGameFirewallRuleList({ ip, ipOnGame }),
-    enabled: !!ip && !!ipOnGame,
-  });
+  const ruleListQuery = useIpGameFirewallRuleList({ ip, ipOnGame });
 
   const ruleQueries = useQueries({
     queries:
