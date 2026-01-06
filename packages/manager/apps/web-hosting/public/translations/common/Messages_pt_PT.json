@@ -166,5 +166,8 @@
   "hosting_dashboard_ssl_delete_error": "Ocorreu um erro ao remover um certificado SSL. {{error}}",
   "hosting_tab_DOMAINS_configuration_remove_failure": "Ocorreu um erro ao desanexar o domínio da sua hospedagem partilhada. {{error}}",
   "hosting_tab_DOMAINS_configuration_remove_success": "O domínio será desvinculado do seu alojamento partilhado.",
-  "activate_cdn": "Ativar o CDN"
+  "activate_cdn": "Ativar o CDN",
+  "multisite_delete_site_modal_description_part1": "Para remover este site, você deve primeiro desvincular todos os domínios associados a ele.",
+  "multisite_delete_site_modal_description_part2": "Seu site será então automaticamente desativado.",
+  "multisite_delete_site_modal_description_part3": "Os diretórios e arquivos não serão removidos."
 }
