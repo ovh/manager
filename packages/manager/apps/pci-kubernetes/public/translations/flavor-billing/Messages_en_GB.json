@@ -3,14 +3,14 @@
   "pci_project_flavors_billing_monthly": "Monthly",
   "pci_project_flavors_billing_price_hourly": "{{price}} excl. VAT/hour",
   "pci_project_flavors_billing_price_monthly": "{{price}} excl. VAT/month",
-  "pci_project_flavors_billing_price_hourly_price_label": "Price:",
+  "pci_project_flavors_billing_price_hourly_price_label": "Price: ",
   "pci_project_flavors_billing_addons_price_monthly": "{{price}} ex. VAT/month",
-  "pci_project_flavors_billing_price_monthly_instance_price_label": "Price:",
-  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway:",
-  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IP:",
-  "pci_projects_project_instances_add_total_price_label": "Total:",
+  "pci_project_flavors_billing_price_monthly_instance_price_label": "Price: ",
+  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway: ",
+  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IPs: ",
+  "pci_projects_project_instances_add_total_price_label": "Total: ",
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} ex. VAT/hour",
   "pci_projects_project_instances_configure_billing_type": "Set billing type",
-  "pci_projects_project_instances_configure_billing_type_description": "You can switch from hourly billing to a monthly package for each node in the node pool edit view.",
-  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Price including the cost of Floating IPs"
+  "pci_projects_project_instances_configure_billing_type_description": "You can switch from hourly billing to monthly billing for each node in the node pool edit view.",
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "The price includes the cost of Floating IPs"
 }

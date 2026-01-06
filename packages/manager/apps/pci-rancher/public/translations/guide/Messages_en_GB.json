@@ -5,5 +5,6 @@
   "guides_pci_rancher_header_first_steps_with_instances": "Getting started with instances",
   "pci_rancher_header_update_managed_rancher": "Update a Managed Rancher cluster",
   "pci_rancher_header_iam_rancher": "Identity and Access Management (IAM)",
-  "pci_rancher_header_authentification_iam": "Enable IAM authentication (EN)"
+  "pci_rancher_header_authentification_iam": "Enable IAM authentication (EN)",
+  "pci_rancher_header_first_steps_with_instances": "Getting started with instances"
 }
