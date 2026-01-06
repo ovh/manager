@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.26.0...@ovh-ux/manager-common-translations@0.27.0) (2026-01-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 965] ([439e0b7](https://github.com/ovh/manager/commit/439e0b7ecf8e08646cb9eb05c09c3e989ecb5d2b))
+* **web-office:** add the status await signature ([71d4c04](https://github.com/ovh/manager/commit/71d4c0446e6f64154f0fd86352615c3fa6bb0988)), closes [#PRDCOL-292](https://github.com/ovh/manager/issues/PRDCOL-292)
+* **web-office:** migration ods 19 and muk ([81ce2eb](https://github.com/ovh/manager/commit/81ce2eb240fee743cdc2ad687f3ed97539c1941c)), closes [#PRDCOL-236](https://github.com/ovh/manager/issues/PRDCOL-236) [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410) [#PRDCOL-297](https://github.com/ovh/manager/issues/PRDCOL-297)
+
+
+### Features
+
+* **web-office:** agreement form for csp1 ([4715621](https://github.com/ovh/manager/commit/47156215e3b2eee64a40295a45ce8a54c0a1a953)), closes [#PRDCOL-293](https://github.com/ovh/manager/issues/PRDCOL-293)
+
+
+
+
+
 # [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.25.2...@ovh-ux/manager-common-translations@0.26.0) (2026-01-02)
 
 

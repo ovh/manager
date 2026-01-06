@@ -1,0 +1,10 @@
+{
+  "signatory_informations": "Informacje o sygnatariuszu",
+  "signatory_informations_description": "Aby wydać swoje licencje, musisz zaakceptować umowę klienta Microsoft. Proszę sprawdzić, czy poniższe informacje odpowiadają sygnatariuszowi.",
+  "signatory_informations_message": "Klikając \"Potwierdź\", zostaniesz przekierowany na stronę Microsoft w celu zatwierdzenia swojego wniosku. Po zatwierdzeniu zamknij kartę, a następnie wróć do tego tunelu konfiguracji.",
+  "signatory_step2_description": "Aby dostarczyć swoją usługę, potwierdź, że podpisałeś swoją umowę z Microsoft.",
+  "signatory_step2_link": "Link do Microsoft",
+  "signatory_step2_button": "Podpisałem umowę Microsoft",
+  "signatory_success_message": "Twoja usługa została pomyślnie dostarczona i jest teraz dostępna!",
+  "signatory_success_link": "Moje pierwsze kroki z Microsoft 365"
+}

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.6.8...@ovh-ux/manager-web-office-app@0.7.0) (2026-01-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 965] ([439e0b7](https://github.com/ovh/manager/commit/439e0b7ecf8e08646cb9eb05c09c3e989ecb5d2b))
+* **web-office:** add the status await signature ([71d4c04](https://github.com/ovh/manager/commit/71d4c0446e6f64154f0fd86352615c3fa6bb0988)), closes [#PRDCOL-292](https://github.com/ovh/manager/issues/PRDCOL-292)
+* **web-office:** add unit test for mca csp1 ([dfeb3e3](https://github.com/ovh/manager/commit/dfeb3e3ae51860168d532ce17a9529649dabc6e9)), closes [#PRDCOL-325](https://github.com/ovh/manager/issues/PRDCOL-325)
+* **web-office:** migration ods 19 and muk ([81ce2eb](https://github.com/ovh/manager/commit/81ce2eb240fee743cdc2ad687f3ed97539c1941c)), closes [#PRDCOL-236](https://github.com/ovh/manager/issues/PRDCOL-236) [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410) [#PRDCOL-297](https://github.com/ovh/manager/issues/PRDCOL-297)
+
+
+### Features
+
+* **web-office:** add success banner after agreement validation ([8739ae2](https://github.com/ovh/manager/commit/8739ae2537aa7721206444d7e64a73a215cc57b2)), closes [#PRDCOL-295](https://github.com/ovh/manager/issues/PRDCOL-295)
+* **web-office:** agreement form for csp1 ([4715621](https://github.com/ovh/manager/commit/47156215e3b2eee64a40295a45ce8a54c0a1a953)), closes [#PRDCOL-293](https://github.com/ovh/manager/issues/PRDCOL-293)
+* **web-office:** csp1 valid signature ([817c4ed](https://github.com/ovh/manager/commit/817c4ed44f808cc02afee89b845ab4e3e519dcca)), closes [#PRDCOL-294](https://github.com/ovh/manager/issues/PRDCOL-294)
+
+
+
+
+
 ## [0.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.6.7...@ovh-ux/manager-web-office-app@0.6.8) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app
