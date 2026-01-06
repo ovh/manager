@@ -13,6 +13,7 @@ import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.compon
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useTenantSubscriptions } from '@/data/hooks/tenants/useTenantSubscriptions.hook';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
+import UnsubscribeLink from '@/pages/tenants/dashboard/subscription/UnsubscribeLink.component';
 import { LocationPathParams } from '@/routes/Routes.constants';
 import { TenantSubscriptionListing } from '@/types/tenants.type';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
@@ -24,20 +25,20 @@ export default function SubscriptionPage() {
 
   const { selectedService } = useObservabilityServiceContext();
   const resourceName = selectedService?.id ?? '';
-  const { tenantId } = useParams<LocationPathParams>();
+  const { tenantId = '' } = useParams<LocationPathParams>();
 
   const {
     data: subscriptions,
     isLoading,
     isError,
     error,
-  } = useTenantSubscriptions(resourceName, tenantId ?? '');
+  } = useTenantSubscriptions(resourceName, tenantId);
   const {
     data: tenant,
     isLoading: isTenantLoading,
     isError: isTenantError,
     error: errorTenant,
-  } = useTenant(resourceName, tenantId ?? '');
+  } = useTenant(resourceName, tenantId);
 
   const columns: DatagridColumn<TenantSubscriptionListing>[] = useMemo(
     () => [
@@ -97,13 +98,19 @@ export default function SubscriptionPage() {
         id: 'actions',
         header: '',
         accessorFn: (row: TenantSubscriptionListing) => row.id,
-        cell: () => <span className="text-sm text-gray-500">TODO</span>,
+        cell: ({ getValue }) => (
+          <UnsubscribeLink
+            tenantId={tenantId}
+            resourceName={resourceName}
+            subscription={getValue<TenantSubscriptionListing>()}
+          />
+        ),
         isSearchable: false,
         isFilterable: false,
-        size: 80,
+        size: 100,
       },
     ],
-    [t],
+    [t, tenantId, resourceName],
   );
 
   useEffect(() => {
