@@ -1,5 +1,5 @@
 {
-  "status":{
+  "status": {
     "title": "Statut",
     "READY": "Actif",
     "UPDATING": "Mise à jour",
@@ -27,7 +27,7 @@
   },
   "delete": {
     "delete_tenant_title": "Supprimer le Tenant",
-    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant \"{{tenantName}}\"",
+    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant \"{{tenantName}}\" ?",
     "success": "Le tenant est en cours de suppression"
   },
   "onboarding": {
@@ -38,8 +38,8 @@
     "title": "Créer un tenant",
     "success": "Le tenant est en cours de création",
     "tenantInformation": "Saisir les informations du tenant",
-    "namePlaceholder": "Nom du tenant", 
-    "description":"Description (optionnelle)",
+    "namePlaceholder": "Nom du tenant",
+    "description": "Description (optionnelle)",
     "descriptionPlaceholder": "Ajoutez une description des metrics que vous allez écrire dans ce tenant"
   },
   "edition": {
@@ -49,7 +49,7 @@
   },
   "configuration": {
     "title": "Configurez votre tenant",
-    "retention":{
+    "retention": {
       "title": "Rétention"
     },
     "limit": {
@@ -63,14 +63,14 @@
     "tags_tab": "Tags",
     "explore_in_grafana_button": "Explorer dans Grafana®",
     "general_information_tile": {
-      "title": "Informations générales",      
+      "title": "Informations générales",
       "name": "Nom du tenant",
       "description": "Description",
       "id": "ID",
       "urn": "URN",
       "endpoint": "Endpoint",
       "created_at": "Date de création",
-      "updated_at": "Date de la dernière modification",      
+      "updated_at": "Date de la dernière modification",
       "edit_information": "Modifier les informations"
     },
     "configuration_tile": {
@@ -91,7 +91,15 @@
     "subscription_listing": {
       "create_subscription": "Configurer la souscription",
       "kind_cell": "Type de produit",
-      "resource_cell": "Ressource"
+      "resource_cell": "Ressource",
+      "unsubscribe": {
+        "cta": "Se désabonner",
+        "title": "Se désabonner ?",
+        "confirm": "Oui, se désabonner",
+        "cancel": "Non, annuler",
+        "warning":"Se désabonner au tenant de métriques pour cette ressource entraînera l'arrêt définitif de la collecte et la suppression des données associées.",
+        "success": "La souscription est en cours de suppression"
+      }
     }
   }
 }
