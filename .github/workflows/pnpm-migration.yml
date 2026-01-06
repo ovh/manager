@@ -75,13 +75,13 @@ jobs:
 
       - name: Push branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PNPM_MIGRATION_TOKEN }}
         run: |
           git push origin "$BRANCH" --force-with-lease
 
       - name: Create draft PR with reviewer and label
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PNPM_MIGRATION_TOKEN }}
         run: |
           gh pr create \
             --title "refactor(${SCOPE}): migrate ${SCOPE} to pnpm" \
