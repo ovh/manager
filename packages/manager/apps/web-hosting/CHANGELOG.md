@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.14.1...@ovh-ux/manager-web-hosting-app@0.14.2) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.14.0...@ovh-ux/manager-web-hosting-app@0.14.1) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.13.3...@ovh-ux/manager-web-hosting-app@0.14.0) (2025-12-31)
+
+
+### Features
+
+* **web-hosting:** increase the height of the ssl certificate table ([edd8eed](https://github.com/ovh/manager/commit/edd8eed3a2aa1892787dc895e23b5547bc328a83)), closes [#PUWEBPT-178](https://github.com/ovh/manager/issues/PUWEBPT-178)
+
+
+
+
+
+## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.13.2...@ovh-ux/manager-web-hosting-app@0.13.3) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
 ## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.13.1...@ovh-ux/manager-web-hosting-app@0.13.2) (2025-12-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app

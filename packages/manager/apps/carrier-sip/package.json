@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip-app",
-  "version": "4.0.52",
+  "version": "4.0.53",
   "private": true,
   "description": "Carrier SIP Trunk standalone application.",
   "repository": {
@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@ovh-ux/manager-carrier-sip": "^2.3.1",
-    "@ovh-ux/manager-config": "^8.8.5",
-    "@ovh-ux/manager-core": "^13.3.8",
+    "@ovh-ux/manager-config": "^8.8.6",
+    "@ovh-ux/manager-core": "^13.3.9",
     "@ovh-ux/manager-telecom-styles": "^4.8.7",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.6",
@@ -72,7 +72,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.2.1",
+    "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },

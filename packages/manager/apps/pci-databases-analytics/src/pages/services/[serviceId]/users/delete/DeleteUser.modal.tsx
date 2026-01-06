@@ -41,7 +41,7 @@ const DeleteUser = () => {
     },
     onSuccess: () => {
       toast.toast({
-        title: t('deleteUserToastSuccessTitle'),
+        title: t('userSuccessTitle'),
         description: t('deleteUserToastSuccessDescription', {
           name: deletedUser.username,
         }),
@@ -81,7 +81,7 @@ const DeleteUser = () => {
               mode="ghost"
               data-testid="delete-user-cancel-button"
             >
-              {t('deleteUserButtonCancel')}
+              {t('userCancelButton')}
             </Button>
           </DialogClose>
           <Button
@@ -90,7 +90,7 @@ const DeleteUser = () => {
             onClick={handleDelete}
             data-testid="delete-user-submit-button"
           >
-            {t('deleteUserButtonConfirm')}
+            {t('userConfirmButton')}
           </Button>
         </DialogFooter>
       </DialogContent>

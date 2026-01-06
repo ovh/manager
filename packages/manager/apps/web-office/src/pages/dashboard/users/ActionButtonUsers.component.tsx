@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu } from '@ovh-ux/muk';
 
 import { APP_NAME, DELETE_ACCOUNT, EDIT_ACCOUNT, EDIT_PASSWORD } from '@/Tracking.constants';
 import { UserStateEnum } from '@/data/api/ApiType';
@@ -71,7 +71,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({ usersItem, licenc
   const actionItems = [
     {
       id: 1,
-      onclick: handleEditUserClick,
+      onClick: handleEditUserClick,
       label: t(`${NAMESPACES.ACTIONS}:edit_account`),
       urn: licenceDetail.iam.urn,
       iamActions: [
@@ -84,7 +84,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({ usersItem, licenc
       ? [
           {
             id: 2,
-            onclick: handlePasswordChangeClick,
+            onClick: handlePasswordChangeClick,
             label: t(`${NAMESPACES.ACTIONS}:change_password`),
             urn: licenceDetail.iam.urn,
             iamActions: [
@@ -99,7 +99,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({ usersItem, licenc
       ? [
           {
             id: 3,
-            onclick: handleDeleteUserClick,
+            onClick: handleDeleteUserClick,
             label: t(`${NAMESPACES.ACTIONS}:delete_account`),
             urn: licenceDetail.iam.urn,
             iamActions: [
@@ -107,7 +107,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({ usersItem, licenc
                 ? [IAM_ACTIONS.user.delete]
                 : [IAM_ACTIONS.licencePrepaid.unconfigure]),
             ],
-            color: ODS_BUTTON_COLOR.critical,
+            color: BUTTON_COLOR.critical,
           },
         ]
       : []),
@@ -117,7 +117,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({ usersItem, licenc
       id={usersItem.activationEmail.replace(/@|\./g, '_')}
       isDisabled={usersItem.status !== UserStateEnum.OK}
       items={actionItems}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       isCompact
     />
   );

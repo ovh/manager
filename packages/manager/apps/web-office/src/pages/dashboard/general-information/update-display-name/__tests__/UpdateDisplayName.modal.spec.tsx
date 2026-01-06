@@ -6,7 +6,7 @@ import { describe, expect, vi } from 'vitest';
 
 import { licensesMock } from '@/data/api/__mocks__/license';
 import dashboardGeneralInformationTranslation from '@/public/translations/dashboard/general-information/Messages_fr_FR.json';
-import { render } from '@/utils/Test.provider';
+import { renderWithRouter } from '@/utils/Test.provider';
 
 import UpdateDisplayNameModal from '../UpdateDisplayName.modal';
 
@@ -16,7 +16,7 @@ describe('GeneralInformation page', () => {
       serviceName: licensesMock[0].serviceName,
     });
 
-    const { findByText } = render(<UpdateDisplayNameModal />);
+    const { findByText } = renderWithRouter(<UpdateDisplayNameModal />);
 
     expect(
       await findByText(dashboardGeneralInformationTranslation.dashboard_modal_update_headline),

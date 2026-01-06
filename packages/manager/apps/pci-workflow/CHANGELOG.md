@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.9...@ovh-ux/manager-pci-workflow-app@0.11.10) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.8...@ovh-ux/manager-pci-workflow-app@0.11.9) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
 ## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.7...@ovh-ux/manager-pci-workflow-app@0.11.8) (2025-12-22)
 
 

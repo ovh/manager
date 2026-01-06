@@ -1,38 +1,35 @@
+import { waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
+import dashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
 
-import { render, waitFor } from '@/utils/Test.provider';
+import { renderWithRouter } from '@/utils/Test.provider';
 
 import Licenses from '../Licenses.page';
 
 describe('Licenses Page', () => {
   it('should render page with content', async () => {
-    const { getByTestId } = render(<Licenses />);
+    const { getByTestId } = renderWithRouter(<Licenses />);
 
     await waitFor(() => {
       expect(getByTestId('licenses-order-button')).toBeInTheDocument();
     });
 
     const orderButton = getByTestId('licenses-order-button');
+    expect(orderButton.className).contain('--primary');
+    expect(orderButton).toHaveTextContent(actions.order);
+
     const sortedRows = getByTestId('header-serviceName');
-
-    expect(orderButton).toBeInTheDocument();
-    expect(orderButton).toHaveAttribute('label', actions.order);
-
-    expect(orderButton).toHaveAttribute('color', 'primary');
-    expect(orderButton).toHaveAttribute('variant', 'outline');
-
-    expect(sortedRows).toHaveTextContent('service_name');
+    expect(sortedRows).toHaveTextContent(dashboard.service_name);
   });
 });
 
 describe('Licenses W3C Validation', () => {
-  // issue with ods on label and input (for / id)
+  // issue with dropdown ods The “aria-controls” attribute must point to an element in the same document.
   it.skip('should have a valid html', async () => {
-    const { container } = render(<Licenses />);
+    const { container } = renderWithRouter(<Licenses />);
     const html = container.innerHTML;
-
     await expect(html).toBeValidHtml();
   });
 });

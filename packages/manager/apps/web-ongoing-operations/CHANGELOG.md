@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.4...@ovh-ux/manager-web-ongoing-operations-app@1.19.5) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.3...@ovh-ux/manager-web-ongoing-operations-app@1.19.4) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.2...@ovh-ux/manager-web-ongoing-operations-app@1.19.3) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
 ## [1.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.1...@ovh-ux/manager-web-ongoing-operations-app@1.19.2) (2025-12-29)
 
 

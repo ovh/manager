@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.2...@ovh-ux/manager-pci-object-storage-app@0.28.3) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.1...@ovh-ux/manager-pci-object-storage-app@0.28.2) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.0...@ovh-ux/manager-pci-object-storage-app@0.28.1) (2025-12-30)
+
+
+### Bug Fixes
+
+* **object-storage:** trasnlation issue ([c546b0f](https://github.com/ovh/manager/commit/c546b0ffa7729c6ff0f19f079dfd01e3857520a2)), closes [#DATATR-2829](https://github.com/ovh/manager/issues/DATATR-2829)
+
+
+
+
+
 # [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.27.0...@ovh-ux/manager-pci-object-storage-app@0.28.0) (2025-12-23)
 
 

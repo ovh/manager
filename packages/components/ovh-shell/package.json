@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "4.10.1",
+  "version": "4.10.3",
   "description": "Communication and interaction between applications",
   "repository": {
     "type": "git",
@@ -25,12 +25,12 @@
     "test:ci": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.8.5",
-    "@ovh-ux/manager-core-api": "^0.21.0",
-    "@ovh-ux/manager-core-sso": "^0.7.0",
-    "@ovh-ux/ovh-at-internet": "^0.29.1",
+    "@ovh-ux/manager-config": "^8.8.6",
+    "@ovh-ux/manager-core-api": "^0.21.1",
+    "@ovh-ux/manager-core-sso": "^0.7.1",
+    "@ovh-ux/ovh-at-internet": "^0.29.2",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/url-builder": "^2.4.0",
+    "@ovh-ux/url-builder": "^2.4.1",
     "dompurify": "^3.2.4",
     "nanoid": "^3.1.25"
   },

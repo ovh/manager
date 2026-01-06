@@ -28,9 +28,16 @@ const useGetIpGameFirewall = vi.hoisted(() =>
   })),
 );
 
+const useIpGameFirewallRuleList = vi.hoisted(() =>
+  vi.fn(() => ({
+    data: { data: [] },
+  })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useGetIpGameFirewall,
+  useIpGameFirewallRuleList,
 }));
 
 vi.mock('react-router-dom', () => ({
@@ -57,29 +64,33 @@ const renderComponent = async (params: IpGameFirewallProps) => {
   );
 };
 
-describe.skip('IpGameFirewall Component', async () => {
+describe('IpGameFirewall Component', async () => {
   it('Should display available state if firewall exist', async () => {
+    const ip = ipDetailsList[0].ip;
+    const ipOnGame = ip.split('/')[0];
+
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0],
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
-      ipGameFirewall: [
-        { state: IpGameFirewallStateEnum.OK },
-      ] as IpGameFirewallType[],
+      ipGameFirewall: {
+        state: IpGameFirewallStateEnum.OK,
+        firewallModeEnabled: true,
+        ipOnGame,
+        maxRules: 20,
+        supportedProtocols: [],
+      } as IpGameFirewallType,
       isLoading: false,
       error: undefined,
     });
-    const { container } = await renderComponent({
-      ip: ipDetailsList[0].ip,
-      ipOnGame: ipDetailsList[0].ip.split('/')[0],
-    });
+    const { container } = await renderComponent({ ip, ipOnGame });
     const badge = await getOdsBadgeByLabel({
       container,
-      label: 'listingColumnsIpGameFirewallPendingTooltip',
+      label: 'listingColumnsIpGameFirewallAvailable',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.information);
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
     });
   });
 
@@ -89,9 +100,9 @@ describe.skip('IpGameFirewall Component', async () => {
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
-      ipGameFirewall: [
-        { state: IpGameFirewallStateEnum.PENDING_CLEAN_RULE },
-      ] as IpGameFirewallType[],
+      ipGameFirewall: {
+        state: IpGameFirewallStateEnum.PENDING_CLEAN_RULE,
+      } as IpGameFirewallType,
       isLoading: false,
       error: undefined,
     });
@@ -104,10 +115,42 @@ describe.skip('IpGameFirewall Component', async () => {
       label: 'listingColumnsIpGameFirewallPending',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.information);
       expect(
         getByText(`listingColumnsIpGameFirewallPendingTooltip`),
       ).toBeDefined();
+    });
+  });
+
+  it('Should display configured state if firewall exist and contains rules', async () => {
+    const ip = ipDetailsList[0].ip;
+    const ipOnGame = ip.split('/')[0];
+
+    useGetIpDetailsMock.mockReturnValue({
+      ipDetails: ipDetailsList[0],
+      isLoading: false,
+    });
+    useGetIpGameFirewall.mockReturnValue({
+      ipGameFirewall: {
+        state: IpGameFirewallStateEnum.OK,
+        firewallModeEnabled: true,
+        ipOnGame,
+        maxRules: 20,
+        supportedProtocols: [],
+      } as IpGameFirewallType,
+      isLoading: false,
+      error: undefined,
+    });
+    useIpGameFirewallRuleList.mockReturnValue({
+      data: { data: [{ id: 'rule1' }] },
+    });
+    const { container } = await renderComponent({ ip, ipOnGame });
+    const badge = await getOdsBadgeByLabel({
+      container,
+      label: 'listingColumnsIpGameFirewallConfigured',
+    });
+    await waitFor(() => {
+      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.success);
     });
   });
 
@@ -117,9 +160,9 @@ describe.skip('IpGameFirewall Component', async () => {
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
-      ipGameFirewall: [
-        { state: IpGameFirewallStateEnum.PENDING_CLEAN_RULE },
-      ] as IpGameFirewallType[],
+      ipGameFirewall: {
+        state: IpGameFirewallStateEnum.PENDING_CLEAN_RULE,
+      } as IpGameFirewallType,
       isLoading: false,
       error: undefined,
     });
@@ -151,7 +194,7 @@ describe.skip('IpGameFirewall Component', async () => {
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
-      ipGameFirewall: [] as IpGameFirewallType[],
+      ipGameFirewall: null,
       isLoading: false,
       error: undefined,
     });
