@@ -8,6 +8,7 @@ import {
   filterMacroRegionsByKubeRegions,
   selectMacroRegions,
 } from '@/domain/services/regions.service';
+import { TClusterPlanEnum } from '@/types';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { TViewPlan, mapPlanCodeToDeploymentMode, mapPlanCodeToViewPlan } from './plans.viewmodel';
@@ -42,9 +43,15 @@ export const filterMacroRegions =
 
     return regions.filter((region) => {
       const regionViewPlans = region.plans.map(mapPlanCodeToViewPlan);
-      const isPlanAllowed = plan === 'all' || !plan || regionViewPlans.includes(plan);
-
       const isContinentAllowed = continent === 'ALL' || region.continentCode === continent;
+
+      if (plan === TClusterPlanEnum.ALL || !plan) {
+        return isContinentAllowed;
+      }
+
+      const isPlanAllowed =
+        (plan === TClusterPlanEnum.FREE && regionViewPlans.includes('free')) ||
+        (plan === TClusterPlanEnum.STANDARD && regionViewPlans.includes('standard'));
 
       return isContinentAllowed && isPlanAllowed;
     });
