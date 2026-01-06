@@ -225,10 +225,6 @@ export const makeIpsValidator = (
   };
 };
 
-export const isDsRecordActionDisabled = (
-  activeConfiguration: ActiveConfigurationTypeEnum,
-) => activeConfiguration === ActiveConfigurationTypeEnum.INTERNAL;
-
 export const translateRenewPeriod = (renewPeriod: string, t: TFunction) => {
   if (renewPeriod) {
     const matches = renewPeriod.match(/P(\d+)Y/);

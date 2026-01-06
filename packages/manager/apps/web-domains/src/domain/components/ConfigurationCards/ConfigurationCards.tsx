@@ -19,7 +19,6 @@ import DnssecToggleStatus from './DnssecToggleStatus';
 import TransferToggleStatus from './TransferToggleStatus';
 import TransferModal from './TransferModal';
 import TransferAuthInfoModal from './TransferAuthInfoModal';
-import { TUpdateDNSConfigError } from '@/domain/types/error';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import TransferTagModal from './TagModal';
 import DataProtection from './DataProtection';
@@ -66,15 +65,14 @@ export default function ConfigurationCards({
     setTransferAuthInfoModalOpened,
   ] = React.useState<boolean>(false);
   const { dnssecStatus, isDnssecStatusLoading } = useGetDnssecStatus(
-    serviceName,
+    domainResource?.currentState,
+    domainResource?.targetSpec,
   );
   const { addError, addSuccess } = useNotifications();
 
   const { updateServiceDnssec } = useUpdateDnssecService(
     serviceName,
-    dnssecStatus?.status === DnssecStatusEnum.ENABLED
-      ? DnssecStatusEnum.DISABLED
-      : DnssecStatusEnum.ENABLED,
+    dnssecStatus === DnssecStatusEnum.DISABLED,
   );
 
   const {
@@ -158,7 +156,7 @@ export default function ConfigurationCards({
         onSuccess: () => {
           setTransferModalOpened(false);
         },
-        onError: (error: TUpdateDNSConfigError) => {
+        onError: () => {
           setTransferModalOpened(false);
         },
       },
@@ -217,7 +215,7 @@ export default function ConfigurationCards({
     setDnssecModalOpened(!dnssecModalOpened);
   };
 
-  if (!domainResource && !dnssecStatus) {
+  if (!domainResource) {
     return <></>;
   }
 
@@ -261,7 +259,7 @@ export default function ConfigurationCards({
           setTagModalOpened={setTagModalOpened}
         />
         <DnssecModal
-          action={dnssecStatus?.status}
+          isEnableDnssecAction={dnssecStatus === DnssecStatusEnum.DISABLED}
           open={dnssecModalOpened}
           updateDnssec={updateDnssec}
           onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
