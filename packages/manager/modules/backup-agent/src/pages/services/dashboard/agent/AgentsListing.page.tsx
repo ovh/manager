@@ -16,7 +16,6 @@ import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { urlParams, urls } from '@/routes/routes.constants';
 
 import { useAgentsListingColumnsHooks } from './_hooks/useAgentsListingColumns.hooks';
-import {ResourceStatus} from "@/types/Resource.type";
 
 export default function AgentsListingPage() {
   const { tenantId } = useRequiredParams('tenantId');
@@ -46,7 +45,7 @@ export default function AgentsListingPage() {
               <div className="flex flex-row gap-4">
                 <OdsButton
                   size={ODS_BUTTON_SIZE.md}
-                  label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_configuration`)}
+                  label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_server`)}
                   onClick={handleAddConfiguration}
                 />
                 <OdsButton

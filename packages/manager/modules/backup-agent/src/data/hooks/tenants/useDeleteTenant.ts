@@ -7,9 +7,7 @@ import { useGetBackupServicesId } from '@/data/hooks/backup/useBackupServicesId'
 import { deleteVSPCTenant } from '../../api/tenants/tenants.requests';
 import { GET_VSPC_TENANTS_QUERY_KEY } from './useVspcTenants';
 
-type UseDeleteVSPCTenantParams = Partial<
-  UseMutationOptions<string, ApiError, string>
->;
+type UseDeleteVSPCTenantParams = Partial<UseMutationOptions<string, ApiError, string>>;
 
 export const useDeleteVSPCTenant = (
   options: Omit<UseDeleteVSPCTenantParams, 'backupServicesId'> = {},

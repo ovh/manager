@@ -28,7 +28,7 @@ describe('[INTEGRATION] - Tenant agent add configuration page', () => {
     await waitFor(
       () => {
         expect(container.querySelector(`ods-text[preset="heading-2"]`)).toHaveTextContent(
-          labels.servicesAgent.add_configuration,
+          labels.servicesAgent.add_server,
         );
       },
       { timeout: 10_000 },
