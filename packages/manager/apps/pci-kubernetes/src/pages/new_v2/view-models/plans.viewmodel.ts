@@ -1,4 +1,5 @@
 import { TDeploymentMode, TMacroRegion, TPlanCode } from '@/domain/entities/regions';
+import { TClusterPlanEnum } from '@/types';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { filterMacroRegions } from './regions.viewmodel';
@@ -25,7 +26,7 @@ export const mapPlanCodeToDeploymentMode = (planCode: TPlanCode): TDeploymentMod
 
 const ALL_PLAN_OPTION: PlanOption = {
   labelKey: 'kubernetes_add_region_plan_all',
-  plan: 'all',
+  plan: TClusterPlanEnum.ALL,
 };
 
 export const selectAvailablePlanOptions =
@@ -35,7 +36,7 @@ export const selectAvailablePlanOptions =
       return [ALL_PLAN_OPTION];
     }
 
-    const filteredRegions = filterMacroRegions(continentField, 'all')(regions);
+    const filteredRegions = filterMacroRegions(continentField, TClusterPlanEnum.ALL)(regions);
 
     const uniquePlans = new Set<TViewPlan>();
     filteredRegions?.forEach((region) => {
@@ -45,7 +46,7 @@ export const selectAvailablePlanOptions =
 
     const options = [...uniquePlans].map((plan) => ({
       labelKey: plan === 'standard' ? 'kube_add_plan_title_standard' : 'kube_add_plan_title_free',
-      plan: plan,
+      plan: plan === 'standard' ? TClusterPlanEnum.STANDARD : TClusterPlanEnum.FREE,
     }));
 
     return [ALL_PLAN_OPTION, ...options];
