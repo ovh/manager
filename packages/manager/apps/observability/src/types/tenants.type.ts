@@ -1,7 +1,6 @@
 import { InfrastructureSettings } from '@/types/infrastructures.type';
 import { TIdentifier, TObservabilityResource } from '@/types/observability.type';
-
-import { Resource } from './resource.type';
+import { Resource } from '@/types/resource.type';
 
 type TMetricLimits = {
   mimir: {
@@ -74,4 +73,5 @@ export type TenantSubscriptionListing = {
   resource: Resource;
   tags: { [key: string]: string };
   search: string;
+  urn: string;
 } & TIdentifier;

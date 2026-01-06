@@ -2,21 +2,21 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
-  BUTTON_COLOR,
   BUTTON_VARIANT,
   Button,
   MODAL_COLOR,
   Message,
-  Modal,
   SPINNER_SIZE,
   Spinner,
   TEXT_PRESET,
   Text,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
 
-import { ConfirmationModalProps } from './ConfirmationModal.props';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Modal } from '@ovh-ux/muk';
+
+import { ConfirmationModalProps } from '@/components/listing/common/confirmation-modal/ConfirmationModal.props';
 
 export const ConfirmationModal = ({
   title,
@@ -60,22 +60,20 @@ export const ConfirmationModal = ({
           <div className="flex justify-end gap-2">
             <Button
               data-testid={'cancel-button-test-id'}
-              color={BUTTON_COLOR.critical}
+              color={type}
               onClick={onDismiss}
               variant={BUTTON_VARIANT.ghost}
-              type="button"
             >
               {cancelButtonLabel || t('cancel')}
             </Button>
 
             <Button
               data-testid={'confirm-button-test-id'}
-              color={BUTTON_COLOR.critical}
+              color={type}
               onClick={onConfirm}
               disabled={isConfirmButtonDisabled || isConfirmButtonLoading}
               loading={isConfirmButtonLoading}
               variant={BUTTON_VARIANT.default}
-              type="button"
             >
               {confirmButtonLabel || t('confirm')}
             </Button>
