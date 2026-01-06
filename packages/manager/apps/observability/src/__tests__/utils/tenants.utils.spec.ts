@@ -638,6 +638,7 @@ describe('tenants.utils', () => {
             environment: 'production',
             team: 'monitoring',
           },
+          urn: 'urn:v1:subscription:1',
           search: 'environment:production;team:monitoring metrics-resource prometheus',
         },
       ]);
@@ -655,6 +656,7 @@ describe('tenants.utils', () => {
           },
         }),
         expectedTags: {},
+        expectedUrn: '',
       },
       {
         description: 'subscription with empty tags',
@@ -667,6 +669,7 @@ describe('tenants.utils', () => {
           },
         }),
         expectedTags: {},
+        expectedUrn: 'urn:v1:subscription:empty',
       },
       {
         description: 'subscription with undefined tags',
@@ -678,12 +681,14 @@ describe('tenants.utils', () => {
           },
         }),
         expectedTags: {},
+        expectedUrn: 'urn:v1:subscription:undefined',
       },
-    ])('should handle $description', ({ subscription, expectedTags }) => {
+    ])('should handle $description', ({ subscription, expectedTags, expectedUrn }) => {
       const result = mapSubscriptionsToListing([subscription]);
 
       expect(result).toHaveLength(1);
       expect(result[0]?.tags).toEqual(expectedTags);
+      expect(result[0]?.urn).toBe(expectedUrn);
     });
 
     it.each([
