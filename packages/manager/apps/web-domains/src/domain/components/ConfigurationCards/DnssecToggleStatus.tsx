@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  fetchAuthorizationCheck,
   ManagerTile,
   useAuthorizationIam,
 } from '@ovh-ux/manager-react-components';
@@ -20,12 +19,12 @@ import {
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ConfigurationDnssecBadgeColorAndContent } from '@/domain/constants/configuration.card';
-import { DnssecStatus } from '@/domain/types/domainZone';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { TDomainResource } from '@/domain/types/domainResource';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 interface DnssecToggleStatusProps {
-  readonly dnssecStatus: DnssecStatus;
+  readonly dnssecStatus: DnssecStatusEnum;
   readonly isDnssecStatusLoading: boolean;
   readonly domainResource: TDomainResource;
   readonly dnssecModalOpened: boolean;
@@ -58,7 +57,7 @@ export default function DnssecToggleStatus({
           <TooltipContent>
             {t(
               ConfigurationDnssecBadgeColorAndContent[
-                dnssecStatus?.status ?? DnssecStatusEnum.NOT_SUPPORTED
+                dnssecStatus ?? DnssecStatusEnum.NOT_SUPPORTED
               ].i18nkeyTooltip,
             )}
           </TooltipContent>
@@ -72,15 +71,21 @@ export default function DnssecToggleStatus({
             withLabels={true}
             className="items-end"
             disabled={
-              !domainResource.currentState.dnsConfiguration.dnssecSupported ||
+              !domainResource.currentState.dnssecConfiguration
+                ?.dnssecSupported ||
               ConfigurationDnssecBadgeColorAndContent[
-                dnssecStatus?.status ?? DnssecStatusEnum.NOT_SUPPORTED
+                dnssecStatus ?? DnssecStatusEnum.NOT_SUPPORTED
               ].toggleStatus === 'disabled' ||
-              !isAuthorized
+              !isAuthorized ||
+              // Customer should not be able to activate OVH dnssec with an external or mixed DNS configuration
+              domainResource.currentState.dnsConfiguration.configurationType ===
+                DnsConfigurationTypeEnum.MIXED ||
+              domainResource.currentState.dnsConfiguration.configurationType ===
+                DnsConfigurationTypeEnum.EXTERNAL
             }
             checked={
-              dnssecStatus?.status === DnssecStatusEnum.ENABLED ||
-              dnssecStatus?.status === DnssecStatusEnum.DISABLE_IN_PROGRESS
+              dnssecStatus === DnssecStatusEnum.ENABLED ||
+              dnssecStatus === DnssecStatusEnum.DISABLE_IN_PROGRESS
             }
             onCheckedChange={() => setDnssecModalOpened(!dnssecModalOpened)}
             data-testid={'toggle'}
@@ -92,15 +97,13 @@ export default function DnssecToggleStatus({
                   <ToggleLabel>
                     <Badge
                       color={
-                        ConfigurationDnssecBadgeColorAndContent[
-                          dnssecStatus?.status ?? DnssecStatusEnum.NOT_SUPPORTED
-                        ].color
+                        ConfigurationDnssecBadgeColorAndContent[dnssecStatus]
+                          .color
                       }
                     >
                       {t(
-                        ConfigurationDnssecBadgeColorAndContent[
-                          dnssecStatus?.status ?? DnssecStatusEnum.NOT_SUPPORTED
-                        ].i18nkeyContent,
+                        ConfigurationDnssecBadgeColorAndContent[dnssecStatus]
+                          .i18nkeyContent,
                       )}
                     </Badge>
                   </ToggleLabel>
@@ -113,7 +116,7 @@ export default function DnssecToggleStatus({
               )}
             </Tooltip>
           </Toggle>
-          {dnssecStatus?.status === DnssecStatusEnum.NOT_SUPPORTED && (
+          {dnssecStatus === DnssecStatusEnum.NOT_SUPPORTED && (
             <Text>
               {t('domain_tab_general_information_dnssec_not_supported_details')}
             </Text>

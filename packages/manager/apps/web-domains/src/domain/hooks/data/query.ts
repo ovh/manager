@@ -22,6 +22,7 @@ import {
   ServiceType,
   TDomainOption,
   TDomainResource,
+  TCurrentState,
   TTargetSpec,
   TUpdateDomainVariables,
 } from '@/domain/types/domainResource';
@@ -53,6 +54,7 @@ import {
 } from '@/domain/data/api/hosting';
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -354,22 +356,75 @@ export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
   });
 }
 
-export const useGetDnssecStatus = (serviceName: string) => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['domain', 'zone', 'dnssec', serviceName],
-    queryFn: () => getServiceDnssec(serviceName),
+export const useGetDnssecStatus = (
+  resourceCurrentState: TCurrentState,
+  resourceTargetSpec: TTargetSpec,
+) => {
+  if (!resourceCurrentState.dnssecConfiguration?.dnssecSupported) {
+    return {
+      dnssecStatus: DnssecStatusEnum.NOT_SUPPORTED,
+      isDnssecStatusLoading: false,
+    };
+  }
+
+  if (
+    resourceCurrentState?.dnsConfiguration?.configurationType ===
+      DnsConfigurationTypeEnum.EXTERNAL ||
+    resourceCurrentState?.dnsConfiguration?.configurationType ===
+      DnsConfigurationTypeEnum.MIXED
+  ) {
+    // If the configuration is not hosted by OVH, check the registry declaration to know whether DNSSEC is activated
+    let status: DnssecStatusEnum;
+    const isCurrentDsData =
+      resourceCurrentState?.dnssecConfiguration?.dsData?.length > 0;
+    const isTargetDsData =
+      resourceTargetSpec?.dnssecConfiguration?.dsData?.length > 0;
+
+    if (isCurrentDsData) {
+      if (isTargetDsData) {
+        // DNSSEC is enabled and not being deleted
+        status = DnssecStatusEnum.ENABLED;
+      } else {
+        // DNSSEC is enabled and disabling has been asked
+        status = DnssecStatusEnum.DISABLE_IN_PROGRESS;
+      }
+    }
+
+    if (!isCurrentDsData) {
+      if (isTargetDsData) {
+        // DNSSEC is not enabled yet, but enabling has been asked
+        status = DnssecStatusEnum.ENABLE_IN_PROGRESS;
+      } else {
+        // DNSSEC is not enabled and activation has not been asked
+        status = DnssecStatusEnum.DISABLED;
+      }
+    }
+
+    return {
+      dnssecStatus: status,
+      isDnssecStatusLoading: false,
+    };
+  }
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['domain', 'zone', 'dnssec', resourceCurrentState.name],
+    queryFn: () => getServiceDnssec(resourceCurrentState.name),
     retry: false,
   });
 
+  // This call ends up in error if the customer has not registered their DNS zone yet.
+  // In this case, the DNSSEC status should be "DISABLED"
+  const dnssecStatus = isError ? DnssecStatusEnum.DISABLED : data?.status;
+
   return {
-    dnssecStatus: data,
+    dnssecStatus,
     isDnssecStatusLoading: isLoading,
   };
 };
 
 export const useUpdateDnssecService = (
   serviceName: string,
-  action: DnssecStatusEnum,
+  isEnableDnssecAction: boolean,
 ) => {
   const queryClient = useQueryClient();
   const { addSuccess, addError } = useNotifications();
@@ -377,7 +432,7 @@ export const useUpdateDnssecService = (
 
   const { mutate, isPending } = useMutation({
     mutationFn: () => {
-      if (action === DnssecStatusEnum.ENABLED) {
+      if (isEnableDnssecAction) {
         return activateServiceDnssec(serviceName);
       }
 
