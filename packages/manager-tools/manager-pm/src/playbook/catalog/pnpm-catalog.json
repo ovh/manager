@@ -19,6 +19,7 @@
   "packages/manager/apps/public-cloud",
   "packages/manager/apps/pci-cold-archive",
   "packages/manager/apps/pci-contacts",
+  "packages/manager/apps/pci-project",
   "packages/manager/apps/pci-databases-analytics",
   "packages/manager/apps/pci-dataplatform",
   "packages/manager/apps/pci-gateway",
