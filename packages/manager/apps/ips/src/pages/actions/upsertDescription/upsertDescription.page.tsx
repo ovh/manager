@@ -76,7 +76,8 @@ export default function UpsertDescriptionModal() {
   });
 
   useEffect(() => {
-    setDescription(ipDetails?.description || '');
+    setDescription(ipDetails?.description ?? '');
+    setCharacterCount(ipDetails?.description?.length ?? 0);
   }, [ipDetails?.description]);
 
   const handleDescriptionChange = (
