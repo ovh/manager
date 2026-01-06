@@ -13,7 +13,6 @@
   "packages/manager/apps/email-domain",
   "packages/manager/apps/email-pro",
   "packages/manager/apps/exchange",
-  "packages/manager/apps/freefax",
   "packages/manager/apps/hpc-vmware-public-vcf-aas",
   "packages/manager/apps/hub",
   "packages/manager/apps/iam",
