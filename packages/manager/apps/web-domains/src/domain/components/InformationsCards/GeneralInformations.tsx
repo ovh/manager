@@ -2,7 +2,6 @@ import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import {
   Badge,
-  BADGE_COLOR,
   Icon,
   ICON_NAME,
   Tooltip,
