@@ -132,5 +132,12 @@
   "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mese",
   "pci_instance_creation_backup_setting_local_label": "Backup automatico (locale)",
   "pci_instance_creation_backup_setting_distant_label": "Backup automatico (remoto)",
-  "pci_instance_creation_select_deployment_mode_helper_title": "Localizzazioni"
+  "pci_instance_creation_select_deployment_mode_helper_title": "Localizzazioni",
+  "pci_instance_creation_backup_setting_rotation_7_label": "Rotazione 7",
+  "pci_instance_creation_backup_setting_rotation_14_label": "Rotazione 14",
+  "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizzato",
+  "pci_instance_creation_backup_setting_rotation_description": {
+    "predefined": "Un backup viene eseguito ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle ultime {{ numEntries }} voci. Quando il nuovo backup è completato, il più vecchio viene eliminato.",
+    "custom": "Scegli tu stesso la pianificazione (formato UNIX Cron), il numero di rotazioni e le esecuzioni massime che desideri."
+  }
 }

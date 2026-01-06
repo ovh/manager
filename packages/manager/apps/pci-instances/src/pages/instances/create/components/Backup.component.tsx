@@ -27,21 +27,21 @@ const Backup: FC = () => {
   const { t } = useTranslation(['creation', 'common']);
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const selectedLocalBackup = useWatch({
+  const selectedLocalBackupRotation = useWatch({
     control,
-    name: 'localBackup',
+    name: 'localBackupRotation',
   });
 
   const { price, items } = useMemo(() => selectLocalBackups(), []);
 
-  const handleSelectLocalBackup = (value: string | null) =>
-    setValue('localBackup', value);
+  const handleSelectLocalBackup = (rotation: string | null) =>
+    setValue('localBackupRotation', rotation);
 
   const handleDeactivateLocalBackup = ({
     checked,
   }: ToggleCheckedChangeDetail) => {
-    const localBackup = items[0]?.value ?? null;
-    handleSelectLocalBackup(checked ? localBackup : null);
+    const localBackupRotation = items[0]?.rotation ?? null;
+    handleSelectLocalBackup(checked ? localBackupRotation : null);
 
     if (!checked) setValue('distantBackupLocalization', null);
   };
@@ -63,7 +63,7 @@ const Backup: FC = () => {
         label={t(
           'creation:pci_instance_creation_backup_setting_auto_backup_checkbox_label',
         )}
-        checked={!!selectedLocalBackup}
+        checked={!!selectedLocalBackupRotation}
         badges={[
           {
             label: t('common:pci_instances_common_recommanded'),
@@ -71,59 +71,58 @@ const Backup: FC = () => {
         ]}
         onCheckedChange={handleDeactivateLocalBackup}
       />
-      {selectedLocalBackup && (
+      {selectedLocalBackupRotation && (
         <div className="mt-6">
           <Text className="font-semibold">
             {t('creation:pci_instance_creation_backup_billing_label')} {price}
           </Text>
           <RadioGroup
             className="mt-6 grid grid-cols-3 gap-6"
-            {...(selectedLocalBackup && { value: selectedLocalBackup })}
+            value={selectedLocalBackupRotation}
             onValueChange={({ value }) => handleSelectLocalBackup(value)}
           >
-            {items.map(({ value, label, description }) => (
+            {items.map(({ rotation, isEnabled, badge }) => (
               <PciCard
-                key={value}
+                key={rotation}
                 selectable
-                selected={selectedLocalBackup === value}
-                onClick={() => handleSelectLocalBackup(value)}
+                selected={selectedLocalBackupRotation === rotation}
+                onClick={() => handleSelectLocalBackup(rotation)}
+                disabled={!isEnabled}
               >
                 <PciCard.Header>
-                  <Radio value={value}>
+                  <Radio disabled={!isEnabled} value={rotation}>
                     <RadioControl />
                     <RadioLabel className={radioLabelClassname}>
-                      {label}
+                      {t(
+                        `creation:pci_instance_creation_backup_setting_rotation_${rotation}_label`,
+                      )}
                     </RadioLabel>
                   </Radio>
+                  {badge && (
+                    <Badge className={badgeClassname} color="neutral">
+                      {badge}
+                      <Icon
+                        className="!text-[--ods-color-element-text-selected]"
+                        name="circle-info"
+                      />
+                    </Badge>
+                  )}
                 </PciCard.Header>
                 <PciCard.Content>
-                  <Text>{description}</Text>
+                  <Text>
+                    {t(
+                      [
+                        `creation:pci_instance_creation_backup_setting_rotation_description.${rotation}`,
+                        'creation:pci_instance_creation_backup_setting_rotation_description.predefined',
+                      ],
+                      {
+                        numEntries: rotation,
+                      },
+                    )}
+                  </Text>
                 </PciCard.Content>
               </PciCard>
             ))}
-            <PciCard disabled>
-              <PciCard.Header>
-                <Radio disabled value="">
-                  <RadioControl />
-                  <RadioLabel className={radioLabelClassname}>
-                    Custom
-                  </RadioLabel>
-                </Radio>
-                <Badge className={badgeClassname} color="neutral">
-                  Coming soon
-                  <Icon
-                    className="!text-[--ods-color-element-text-selected]"
-                    name="circle-info"
-                  />
-                </Badge>
-              </PciCard.Header>
-              <PciCard.Content>
-                <Text>
-                  Choose the scheduling yourself (in UNIX Cron format), the
-                  number of rotations, and the maximum executions you want.
-                </Text>
-              </PciCard.Content>
-            </PciCard>
           </RadioGroup>
           <div className="mt-6">
             <BackupDistant />

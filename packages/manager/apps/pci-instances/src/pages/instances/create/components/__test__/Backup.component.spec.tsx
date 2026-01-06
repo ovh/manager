@@ -1,6 +1,6 @@
 import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
 import { describe, expect, it, vi } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   ButtonType,
@@ -8,28 +8,23 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import Backup from '../Backup.component';
-import {
-  selectLocalBackups,
-  selectDistantBackupLocalizations,
-} from '../../view-models/backupViewModel';
-import { mockedLocalBackups } from '@/__mocks__/instance/constants';
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 
-const selectLocalBackupsMock = vi.fn();
+vi.mock('../../view-models/backupViewModel', async (importOriginal) => {
+  const original: typeof import('../../view-models/backupViewModel') = await importOriginal();
 
-vi.mock('../../view-models/backupViewModel');
-vi.mocked(selectLocalBackups).mockImplementation(selectLocalBackupsMock);
-vi.mocked(selectDistantBackupLocalizations).mockReturnValue([]);
+  return {
+    ...original,
+    selectDistantBackupLocalizations: vi.fn(),
+  };
+});
 
 const setupTest = () => {
-  selectLocalBackupsMock.mockReturnValue({
-    items: mockedLocalBackups,
-    price: '~0,015 € HT/mois/Go',
-  });
-
   renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper
-      defaultValues={{ localBackup: mockedLocalBackups[0]?.value ?? null }}
+      defaultValues={{
+        localBackupRotation: '7',
+      }}
     >
       <Backup />
     </TestCreateInstanceFormWrapper>,
@@ -40,11 +35,7 @@ describe('Considering Backup component', () => {
   it('should track when helper is opened', async () => {
     setupTest();
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByText('common:pci_instances_common_help'),
-      );
-    });
+    await userEvent.click(screen.getByText('common:pci_instances_common_help'));
 
     await waitFor(() =>
       expect(useOvhTracking().trackClick).toHaveBeenCalledWith({
@@ -56,7 +47,7 @@ describe('Considering Backup component', () => {
     );
   });
 
-  it('should checked by default the auto backup local', async () => {
+  it('should be checked by default the auto backup local', async () => {
     setupTest();
 
     await waitFor(() =>
@@ -74,7 +65,7 @@ describe('Considering Backup component', () => {
     await waitFor(() => {
       expect(
         screen.getByText(
-          /creation:pci_instance_creation_backup_billing_label\s+~0,015.*HT\/mois\/Go/,
+          /creation:pci_instance_creation_backup_billing_label\s+~0,011.*HT\/mois\/Go/,
         ),
       ).toBeVisible();
     });
@@ -84,44 +75,60 @@ describe('Considering Backup component', () => {
     setupTest();
 
     await waitFor(() =>
-      expect(screen.getByLabelText(/Custom/i)).toBeDisabled(),
+      expect(
+        screen.getByLabelText(
+          /creation:pci_instance_creation_backup_setting_rotation_custom_label/i,
+        ),
+      ).toBeDisabled(),
     );
   });
 
-  it('should display all backup items and select by default the first item', async () => {
+  it.each([{ rotation: 7 }, { rotation: 14 }, { rotation: 'custom' }])(
+    'should display backup item with rotation $rotation',
+    async ({ rotation }) => {
+      setupTest();
+
+      await waitFor(() => {
+        expect(
+          screen.getByLabelText(
+            `creation:pci_instance_creation_backup_setting_rotation_${rotation}_label`,
+          ),
+        ).toBeVisible();
+
+        expect(
+          screen.getByText(
+            `creation:pci_instance_creation_backup_setting_rotation_description.${rotation}creation:pci_instance_creation_backup_setting_rotation_description.predefined`,
+          ),
+        ).toBeVisible();
+      });
+    },
+  );
+
+  it('should select by default the first backup item', async () => {
     setupTest();
 
     await waitFor(() => {
-      const [selectedBackup] = mockedLocalBackups;
-
-      // eslint-disable-next-line max-nested-callbacks
-      mockedLocalBackups.forEach(({ label, value, description }) => {
-        const input = screen.getByLabelText(new RegExp(label, 'i'));
-
-        expect(input).toBeVisible();
-        expect(screen.getByText(description)).toBeVisible();
-        expect(input).toHaveAttribute('value', value);
-
-        if (selectedBackup?.value === value) expect(input).toBeChecked();
-      });
+      expect(
+        screen.getByLabelText(
+          /creation:pci_instance_creation_backup_setting_rotation_7_label/i,
+        ),
+      ).toBeChecked();
     });
   });
 
-  it('should not display hide all backup config when auto backup local is unchecked', async () => {
+  it('should hide all backup config when auto backup local is unchecked', async () => {
     setupTest();
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByLabelText(
-          /creation:pci_instance_creation_backup_setting_auto_backup_checkbox_label/i,
-        ),
-      );
-    });
+    await userEvent.click(
+      screen.getByLabelText(
+        /creation:pci_instance_creation_backup_setting_auto_backup_checkbox_label/i,
+      ),
+    );
 
     await waitFor(() => {
       expect(
         screen.queryByText(
-          /creation:pci_instance_creation_backup_billing_label\s+~0,015.*HT\/mois\/Go/,
+          /creation:pci_instance_creation_backup_billing_label\s+~0,011.*HT\/mois\/Go/,
         ),
       ).not.toBeInTheDocument();
 
@@ -129,7 +136,7 @@ describe('Considering Backup component', () => {
     });
   });
 
-  it('should unchecked by default the remote backup', async () => {
+  it('should be unchecked by default the remote backup', async () => {
     setupTest();
 
     await waitFor(() =>

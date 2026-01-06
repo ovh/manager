@@ -132,5 +132,12 @@
   "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/miesiąc",
   "pci_instance_creation_backup_setting_local_label": "Automatyczne kopie zapasowe (lokalne)",
   "pci_instance_creation_backup_setting_distant_label": "Automatyczne kopie zapasowe (zdalne)",
-  "pci_instance_creation_select_deployment_mode_helper_title": "Lokalizacje"
+  "pci_instance_creation_select_deployment_mode_helper_title": "Lokalizacje",
+  "pci_instance_creation_backup_setting_rotation_7_label": "Rotacja 7",
+  "pci_instance_creation_backup_setting_rotation_14_label": "Rotacja 14",
+  "pci_instance_creation_backup_setting_rotation_custom_label": "Spersonalizowana",
+  "pci_instance_creation_backup_setting_rotation_description": {
+    "predefined": "Kopia zapasowa jest wykonywana codziennie między 22:00 a 6:00 (UTC) i rotacja utrzymuje historię ostatnich {{ numEntries }} wpisów. Gdy nowa kopia zapasowa jest zakończona, najstarsza jest usuwana.",
+    "custom": "Wybierz samodzielnie harmonogram (format UNIX Cron), liczbę rotacji i maksymalne wykonania, które chcesz."
+  }
 }

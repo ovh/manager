@@ -67,7 +67,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     newSshPublicKey,
     newPrivateNetwork,
     billingType,
-    localBackup,
+    localBackupRotation,
     distantBackupLocalization,
   ] = useWatch({
     control,
@@ -86,7 +86,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'newSshPublicKey',
       'newPrivateNetwork',
       'billingType',
-      'localBackup',
+      'localBackupRotation',
       'distantBackupLocalization',
     ],
   });
@@ -127,7 +127,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
   );
 
   const backupSettingPrices = useMemo(() => {
-    if (!localBackup) return null;
+    if (!localBackupRotation) return null;
 
     const { price: localBackupPrice } = selectLocalBackups();
     const distantBackupLocalizations = selectDistantBackupLocalizations();
@@ -144,7 +144,11 @@ export const useInstanceCreation = (): TInstanceCreation => {
         ? getFormattedMonthlyCatalogPrice(distantBackupPrice)
         : null,
     };
-  }, [distantBackupLocalization, getFormattedMonthlyCatalogPrice, localBackup]);
+  }, [
+    distantBackupLocalization,
+    getFormattedMonthlyCatalogPrice,
+    localBackupRotation,
+  ]);
 
   const { networks } = useMemo(() => selectPrivateNetworks(microRegion), [
     microRegion,

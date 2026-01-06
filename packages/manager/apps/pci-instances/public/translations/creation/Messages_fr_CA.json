@@ -133,5 +133,12 @@
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "La sauvegarde distante suit la même rotation que la sauvegarde locale.",
   "pci_instance_creation_backup_setting_action_label": "Créer une sauvegarde automatisée d'une instance",
   "pci_instance_creation_backup_setting_local_label": "Sauvegarde auto (local)",
-  "pci_instance_creation_backup_setting_distant_label": "Sauvegarde auto (distant)"
+  "pci_instance_creation_backup_setting_distant_label": "Sauvegarde auto (distant)",
+  "pci_instance_creation_backup_setting_rotation_7_label": "Rotation 7",
+  "pci_instance_creation_backup_setting_rotation_14_label": "Rotation 14",
+  "pci_instance_creation_backup_setting_rotation_custom_label": "Personnalisé",
+  "pci_instance_creation_backup_setting_rotation_description": {
+    "predefined": "Une sauvegarde est effectuée tous les jours entre 22h00 et 6h00 (UTC) et la rotation maintient un historique des {{ numEntries }} dernières entrées. Lorsque la nouvelle sauvegarde est terminée, la plus ancienne est supprimée.",
+    "custom": "Choisissez vous-même l'ordonnancement (format UNIX Cron), le nombre de rotations et les exécutions maximales que vous souhaitez."
+  }
 }

@@ -132,5 +132,12 @@
   "pci_instance_creation_windows_image_monthly_license_price": "+ {{ price }} HT/mes",
   "pci_instance_creation_backup_setting_local_label": "Copia de seguridad automática (local)",
   "pci_instance_creation_backup_setting_distant_label": "Copia de seguridad automática (remota)",
-  "pci_instance_creation_select_deployment_mode_helper_title": "Localizaciones"
+  "pci_instance_creation_select_deployment_mode_helper_title": "Localizaciones",
+  "pci_instance_creation_backup_setting_rotation_7_label": "Rotación 7",
+  "pci_instance_creation_backup_setting_rotation_14_label": "Rotación 14",
+  "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizado",
+  "pci_instance_creation_backup_setting_rotation_description": {
+    "predefined": "Una copia de seguridad se realiza todos los días entre las 22:00 y las 6:00 (UTC) y la rotación mantiene un historial de las {{ numEntries }} últimas entradas. Cuando se completa la nueva copia de seguridad, se elimina la más antigua.",
+    "custom": "Elija usted mismo la programación (formato UNIX Cron), el número de rotaciones y las ejecuciones máximas que desee."
+  }
 }

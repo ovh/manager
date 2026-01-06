@@ -129,7 +129,7 @@ export const networkSchema = z
   })
   .nullable();
 
-export const localBackupSchema = z.string().nullable();
+export const localBackupRotationSchema = z.string().nullable();
 
 export const distantBackupLocalizationSchema = z.string().nullable();
 
@@ -155,6 +155,6 @@ export const instanceCreationSchema = z.object({
   networkId: networkIdSchema,
   newPrivateNetwork: networkSchema,
   billingType: billingTypeSelectionSchema,
-  localBackup: localBackupSchema,
+  localBackupRotation: localBackupRotationSchema,
   distantBackupLocalization: distantBackupLocalizationSchema,
 });
