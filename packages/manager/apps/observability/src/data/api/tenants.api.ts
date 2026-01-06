@@ -3,6 +3,7 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
 import {
   CreateTenantsPayload,
+  DeleteTenantSubscriptionPayload,
   EditTenantPayload,
   GetTenantPayload,
 } from '@/data/api/tenants.props';
@@ -81,5 +82,18 @@ export const editTenant = async ({
     { targetSpec },
   );
 
+  return data;
+};
+
+export const deleteTenantSubscription = async ({
+  resourceName,
+  tenantId,
+  subscriptionId,
+  signal,
+}: DeleteTenantSubscriptionPayload): Promise<TenantSubscription> => {
+  const { data } = await apiClient.v2.delete<TenantSubscription>(
+    `/observability/resource/${resourceName}/metric/tenant/${tenantId}/subscription/${subscriptionId}`,
+    { signal },
+  );
   return data;
 };
