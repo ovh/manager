@@ -1,4 +1,3 @@
-import { Text } from '@ovhcloud/ods-react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 

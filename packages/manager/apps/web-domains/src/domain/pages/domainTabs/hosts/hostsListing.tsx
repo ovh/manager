@@ -5,9 +5,7 @@ import {
   BUTTON_SIZE,
   ICON_NAME,
   Message,
-  MESSAGE_COLOR,
   Text,
-  TEXT_PRESET,
   MessageBody,
   MessageIcon,
   Link,
@@ -27,6 +25,7 @@ import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import { DrawerActionEnum } from '@/common/enum/common.enum';
 import { DrawerBehavior } from '@/common/types/common.types';
+import UnauthorizedBanner from '@/domain/components/UnauthorizedBanner/UnauthorizedBanner';
 
 export default function HostsListingTab() {
   const { t } = useTranslation([
@@ -110,7 +109,7 @@ export default function HostsListingTab() {
 
   const columns = useHostsDatagridColumns({
     setDrawer,
-    setHostData: setHostData,
+    setHostData,
   });
 
   if (isLoading && nichandleInformation) {
@@ -122,23 +121,7 @@ export default function HostsListingTab() {
     id,
   } = domainResource?.currentState?.contactsConfiguration?.contactAdministrator;
 
-  return id !== account ? (
-    <Message
-      color={MESSAGE_COLOR.warning}
-      className="w-full"
-      data-testid="warningMessage"
-      dismissible={false}
-    >
-      <MessageIcon name={ICON_NAME.triangleExclamation} />
-      <MessageBody>
-        <Text preset={TEXT_PRESET.heading6}>
-          {t('domain_tab_hosts_listing_warning_title')}
-        </Text>
-        <Text>{t('domain_tab_hosts_listing_warning_sub_1')}</Text>
-        <Text>{t('domain_tab_hosts_listing_warning_sub_2')}</Text>
-      </MessageBody>
-    </Message>
-  ) : (
+  return id === account ? (
     <section>
       <div className="flex flex-col gap-y-4 mb-6">
         <Message dismissible={false}>
@@ -194,5 +177,7 @@ export default function HostsListingTab() {
       />
       <Outlet />
     </section>
+  ) : (
+    <UnauthorizedBanner />
   );
 }

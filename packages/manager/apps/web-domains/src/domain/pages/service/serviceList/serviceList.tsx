@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   BaseLayout,
@@ -7,7 +7,7 @@ import {
   Notifications,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import {
   ModalOpenChangeDetail,
   ProgressBar,
@@ -19,6 +19,7 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { VisibilityState } from '@tanstack/react-table';
+import { Datagrid } from '@ovh-ux/muk';
 import {
   useDomainDatagridColumns,
   DomainResourceDatagridData,
@@ -30,7 +31,6 @@ import TopBarCTA from './topBarCTA';
 import ExportDrawer from './modalDrawer/exportDrawer';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
 import DomainGuideButton from './guideButton';
-import { Datagrid } from '@ovh-ux/muk';
 
 export default function ServiceList() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
@@ -212,7 +212,7 @@ export default function ServiceList() {
         autoScroll
         isLoading={isLoading}
         columns={domainColumns}
-        data={(domainResources ?? []) as DomainResourceDatagridData[]}
+        data={domainResources ?? ([] as DomainResourceDatagridData[])}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
         sorting={sorting}

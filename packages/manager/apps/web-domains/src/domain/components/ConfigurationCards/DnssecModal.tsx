@@ -11,39 +11,37 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 
 interface DnssecModalProps {
-  readonly action: string;
+  readonly isEnableDnssecAction: boolean;
   readonly open: boolean;
   readonly updateDnssec: () => void;
   readonly onClose: () => void;
 }
 
 export default function DnssecModal({
-  action,
+  isEnableDnssecAction,
   open,
   updateDnssec,
   onClose,
 }: DnssecModalProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
 
-  const isActivation = action === DnssecStatusEnum.DISABLED;
-
-  const modalColor = isActivation
-    ? MODAL_COLOR.information
-    : MODAL_COLOR.critical;
-  const buttonColor = isActivation
-    ? BUTTON_COLOR.information
-    : BUTTON_COLOR.critical;
-
-  const titleKey = isActivation
-    ? 'domain_tab_general_information_dnssec_activation_modal'
-    : 'domain_tab_general_information_dnssec_deactivate_modal';
-
-  const contentKey = isActivation
-    ? 'domain_tab_general_information_dnssec_content_activation_modal'
-    : 'domain_tab_general_information_dnssec_content_deactivate_modal';
+  const { modalColor, buttonColor, titleKey, contentKey } = isEnableDnssecAction
+    ? {
+        modalColor: MODAL_COLOR.information,
+        buttonColor: BUTTON_COLOR.information,
+        titleKey: 'domain_tab_general_information_dnssec_activation_modal',
+        contentKey:
+          'domain_tab_general_information_dnssec_content_activation_modal',
+      }
+    : {
+        modalColor: MODAL_COLOR.critical,
+        buttonColor: BUTTON_COLOR.critical,
+        titleKey: 'domain_tab_general_information_dnssec_deactivate_modal',
+        contentKey:
+          'domain_tab_general_information_dnssec_content_deactivate_modal',
+      };
 
   return (
     <Modal open={open}>

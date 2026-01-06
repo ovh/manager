@@ -1,9 +1,8 @@
 import '@/common/setupTests';
 import React from 'react';
-import { render, screen } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
-import { wrapper } from '@/common/utils/test.provider';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import DnssecToggleStatus from './DnssecToggleStatus';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { TDomainResource } from '@/domain/types/domainResource';
@@ -92,7 +91,7 @@ describe('DnssecToggleStatus component', () => {
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.DISABLED }}
+        dnssecStatus={DnssecStatusEnum.DISABLED}
         isDnssecStatusLoading={true}
         domainResource={mockDomainResource}
         dnssecModalOpened={false}
@@ -110,7 +109,7 @@ describe('DnssecToggleStatus component', () => {
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.DISABLED }}
+        dnssecStatus={DnssecStatusEnum.DISABLED}
         isDnssecStatusLoading={false}
         domainResource={mockDomainResource}
         dnssecModalOpened={false}
@@ -130,7 +129,7 @@ describe('DnssecToggleStatus component', () => {
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.ENABLED }}
+        dnssecStatus={DnssecStatusEnum.ENABLED}
         isDnssecStatusLoading={false}
         domainResource={mockDomainResource}
         dnssecModalOpened={false}
@@ -151,7 +150,7 @@ describe('DnssecToggleStatus component', () => {
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.DISABLED }}
+        dnssecStatus={DnssecStatusEnum.DISABLED}
         isDnssecStatusLoading={false}
         domainResource={mockDomainResource}
         dnssecModalOpened={false}
@@ -172,7 +171,7 @@ describe('DnssecToggleStatus component', () => {
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.DISABLED }}
+        dnssecStatus={DnssecStatusEnum.DISABLED}
         isDnssecStatusLoading={false}
         domainResource={{
           ...mockDomainResource,

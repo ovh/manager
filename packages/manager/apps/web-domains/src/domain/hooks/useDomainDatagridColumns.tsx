@@ -8,7 +8,12 @@ import {
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
 import DatagridColumnServiceName from '@/domain/components/DatagridColumns/Domain/DatagridColumnServiceName';
-import { StatusDetails, TDomainResource } from '@/domain/types/domainResource';
+import {
+  StatusDetails,
+  TDomainResource,
+  TCurrentState,
+  TTargetSpec,
+} from '@/domain/types/domainResource';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/Domain/DatagridColumnStatus';
 import {
   DOMAIN_STATE,
@@ -25,6 +30,8 @@ import DatagridColumnDnsType from '@/domain/components/DatagridColumns/Domain/Da
 import DatagridColumnDns from '@/domain/components/DatagridColumns/Domain/DatagridColumnDns';
 import DatagridColumnActions from '@/domain/components/DatagridColumns/Domain/DatagridColumnActions';
 import { DomainStateEnum } from '@/domain/enum/domainState.enum';
+import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
+import { ProtectionStateEnum } from '../enum/protectionState.enum';
 
 interface DomainDatagridColumnsProps {
   readonly openModal: (serviceNames: string[]) => void;
@@ -147,7 +154,7 @@ export const useDomainDatagridColumns = ({
             const state = getValue<string | undefined>();
             return state ? (
               <DatagridColumnStatus
-                state={state as any}
+                state={state as ProtectionStateEnum}
                 mapping={DOMAIN_TRANSFER_LOCK_STATUS}
               />
             ) : (
@@ -211,12 +218,26 @@ export const useDomainDatagridColumns = ({
         },
         {
           id: 'dnssec',
-          accessorFn: (row: DomainResourceDatagridData) => row.id,
+          accessorFn: (row: DomainResourceDatagridData) => {
+            return {
+              currentState: row.currentState,
+              targetSpec: row.targetSpec,
+            };
+          },
           cell: ({
             getValue,
-          }: CellContext<DomainResourceDatagridData, unknown>) => (
-            <DatagridColumnDnssec serviceName={getValue<string>()} />
-          ),
+          }: CellContext<DomainResourceDatagridData, unknown>) => {
+            const { currentState, targetSpec } = getValue<{
+              currentState: TCurrentState;
+              targetSpec: TTargetSpec;
+            }>();
+            return (
+              <DatagridColumnDnssec
+                resourceCurrentState={currentState}
+                resourceTargetSpec={targetSpec}
+              />
+            );
+          },
           header: t('domain_table_header_dnssec'),
           isFilterable: false,
           enableHiding: true,
@@ -324,7 +345,7 @@ export const useDomainDatagridColumns = ({
           }: CellContext<DomainResourceDatagridData, unknown>) => {
             const type = getValue<string | undefined>();
             return type ? (
-              <DatagridColumnDnsType type={type as any} />
+              <DatagridColumnDnsType type={type as DnsConfigurationTypeEnum} />
             ) : (
               <span>-</span>
             );
