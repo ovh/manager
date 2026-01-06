@@ -1,6 +1,7 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+import { LABELS } from '@/module.constants';
 import { urlToStringRegex } from '@/utils/urlToStringRegex';
 
 export const subRoutes = Object.freeze({
@@ -52,7 +53,7 @@ export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
   },
   {
     name: 'vaults',
-    title: `${BACKUP_AGENT_NAMESPACES.COMMON}:vaults`,
+    title: LABELS.VAULTS,
     to: `${urls.root}${subRoutes.vaults}`,
     pathMatchers: [/^\/vaults\/[^/]+$/],
     trackingActions: ['click::vaults-tile-tab'],

@@ -75,7 +75,7 @@ const AddConfigurationPage = () => {
     >
       <Drawer
         isOpen
-        heading={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_configuration`)}
+        heading={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_server`)}
         onDismiss={goBack}
         secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
         onSecondaryButtonClick={goBack}

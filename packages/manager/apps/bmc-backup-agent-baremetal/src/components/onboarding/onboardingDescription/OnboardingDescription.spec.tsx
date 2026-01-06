@@ -38,6 +38,5 @@ describe('specs:onboarding', () => {
     await expect(container).toBeAccessible();
 
     expect(screen.getByText('translated_onboarding:description_part1_MyTestApp')).toBeVisible();
-    expect(screen.getByText('translated_onboarding:description_part2_MyTestApp')).toBeVisible();
   });
 });

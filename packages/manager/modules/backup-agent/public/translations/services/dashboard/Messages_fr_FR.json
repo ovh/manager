@@ -1,7 +1,6 @@
 {
-  "installed_agents": "Agents installés",
-  "connected_vaults": "Vaults connectés",
-  "billing_more_info": "Plus d'information sur la facturation",
-  "number_of_connected_vaults": "{{connectedVaultCount}} connecté(s)",
-  "number_of_installed_agents": "{{installedAgentsCount}} installé(s)"
+  "linked_server": "Serveurs Liés",
+  "linked_vaults": "Vaults Liés",
+  "number_of_linked_vaults": "{{connectedVaultCount}} lié(s)",
+  "number_of_linked_server": "{{installedAgentsCount}} lié(s)"
 }
