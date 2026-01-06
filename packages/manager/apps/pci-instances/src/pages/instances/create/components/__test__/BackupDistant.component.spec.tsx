@@ -7,13 +7,15 @@ import {
   selectDistantBackupLocalizations,
   TDistantBackupLocalizationItemData,
 } from '../../view-models/backupViewModel';
-import { mockedLocalizations } from '@/__mocks__/instance/constants';
+import { mockedDistantBackupLocalizations } from '@/__mocks__/instance/constants';
 import { SelectGroupItem } from '@ovhcloud/ods-react';
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 
 vi.mock('../../view-models/backupViewModel');
 vi.mocked(selectDistantBackupLocalizations).mockReturnValue(
-  mockedLocalizations as SelectGroupItem<TDistantBackupLocalizationItemData>[],
+  mockedDistantBackupLocalizations as SelectGroupItem<
+    TDistantBackupLocalizationItemData
+  >[],
 );
 
 describe('Considering BackupDistant component', () => {
@@ -47,7 +49,7 @@ describe('Considering BackupDistant component', () => {
         ),
       ).toBeVisible();
 
-      mockedLocalizations
+      mockedDistantBackupLocalizations
         // eslint-disable-next-line max-nested-callbacks
         .flatMap(({ options: localization }) => localization)
         // eslint-disable-next-line max-nested-callbacks

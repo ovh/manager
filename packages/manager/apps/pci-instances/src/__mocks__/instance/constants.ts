@@ -1277,22 +1277,7 @@ export const mockedOvhPrivateNetwork = {
   enableDhcp: true,
 };
 
-export const mockedLocalBackups = [
-  {
-    label: 'Rotation 7',
-    value: 'rotation7-id',
-    description:
-      'A backup is taken every day between 22:00 and 06:00, and the rotation maintains a log of the 7 latest entries. When the new backup is taken, the previous one is deleted.',
-  },
-  {
-    label: 'Rotation 14',
-    value: 'rotation14-id',
-    description:
-      'A backup is taken every day between 22:00 and 06:00, and the rotation maintains a log of the 14 latest entries. When the new backup is taken, the previous one is deleted.',
-  },
-];
-
-export const mockedLocalizations = [
+export const mockedDistantBackupLocalizations = [
   {
     label: 'europe',
     options: [
@@ -1301,6 +1286,7 @@ export const mockedLocalizations = [
           countryCode: 'fr',
           deploymentMode: 'region',
           regionId: 'GRA9',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_GRA_micro',
         value: 'GRA9',
@@ -1310,6 +1296,7 @@ export const mockedLocalizations = [
           countryCode: 'uk',
           deploymentMode: 'region',
           regionId: 'UK1',
+          backupPrice: 20000,
         },
         label: 'regions:manager_components_region_UK_micro',
         value: 'UK1',
@@ -1319,6 +1306,7 @@ export const mockedLocalizations = [
           countryCode: 'pl',
           deploymentMode: 'region',
           regionId: 'WAW1',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_WAW_micro',
         value: 'WAW1',
@@ -1328,6 +1316,7 @@ export const mockedLocalizations = [
           countryCode: 'de',
           deploymentMode: 'region',
           regionId: 'DE1',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_DE_micro',
         value: 'DE1',
@@ -1337,6 +1326,7 @@ export const mockedLocalizations = [
           countryCode: 'fr',
           deploymentMode: 'region',
           regionId: 'INTERNAL.GRA1',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_GRA_micro',
         value: 'INTERNAL.GRA1',
@@ -1346,6 +1336,7 @@ export const mockedLocalizations = [
           countryCode: 'fr',
           deploymentMode: 'region',
           regionId: 'RBX-A',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_RBX_micro',
         value: 'RBX-A',
@@ -1355,6 +1346,7 @@ export const mockedLocalizations = [
           countryCode: 'fr',
           deploymentMode: 'region',
           regionId: 'GRA7',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_GRA_micro',
         value: 'GRA7',
@@ -1364,6 +1356,7 @@ export const mockedLocalizations = [
           countryCode: 'fr',
           deploymentMode: 'region',
           regionId: 'GRA11',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_GRA_micro',
         value: 'GRA11',
@@ -1373,6 +1366,7 @@ export const mockedLocalizations = [
           countryCode: 'fr',
           deploymentMode: 'region',
           regionId: 'GRA-STAGING-A',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_GRA_micro',
         value: 'GRA-STAGING-A',
@@ -1382,6 +1376,7 @@ export const mockedLocalizations = [
           countryCode: 'fr',
           deploymentMode: 'region',
           regionId: 'SBG5',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_SBG_micro',
         value: 'SBG5',
@@ -1391,6 +1386,7 @@ export const mockedLocalizations = [
           countryCode: 'fr',
           deploymentMode: 'region',
           regionId: 'SBG7',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_SBG_micro',
         value: 'SBG7',
@@ -1405,6 +1401,7 @@ export const mockedLocalizations = [
           countryCode: 'sg',
           deploymentMode: 'region',
           regionId: 'SGP1',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_SGP_micro',
         value: 'SGP1',
@@ -1414,6 +1411,7 @@ export const mockedLocalizations = [
           countryCode: 'au',
           deploymentMode: 'region',
           regionId: 'SYD1',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_SYD_micro',
         value: 'SYD1',
@@ -1428,6 +1426,7 @@ export const mockedLocalizations = [
           countryCode: 'ca',
           deploymentMode: 'region',
           regionId: 'BHS5',
+          backupPrice: 10000,
         },
         label: 'regions:manager_components_region_BHS_micro',
         value: 'BHS5',
