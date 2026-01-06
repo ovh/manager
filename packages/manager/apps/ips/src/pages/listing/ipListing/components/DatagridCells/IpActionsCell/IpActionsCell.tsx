@@ -12,7 +12,7 @@ import {
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ipaddr from 'ipaddr.js';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
-import { fromIpToId, ipFormatter } from '@/utils';
+import { fromIpToId, IAM_ACTION, ipFormatter } from '@/utils';
 import { IpTypeEnum } from '@/data/constants';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { isGameFirewallAvailable } from '../enableCellsUtils';
@@ -175,6 +175,8 @@ export const IpActionsCell = ({
       trackingLabel: ipDetails?.description
         ? 'edit_description'
         : 'add_description',
+      iamActions: [IAM_ACTION.ipEdit],
+      urn: ipDetails?.iam?.urn,
       onClick: () =>
         navigate(
           `${urls.upsertDescription
@@ -189,6 +191,8 @@ export const IpActionsCell = ({
       id: 1,
       label: t('listingMenuReverseDns'),
       trackingLabel: 'configure_reverse-dns',
+      iamActions: [IAM_ACTION.reverseCreate, IAM_ACTION.reverseDelete],
+      urn: ipDetails?.iam?.urn,
       onClick: () =>
         navigate(
           `${urls.listingConfigureReverseDns

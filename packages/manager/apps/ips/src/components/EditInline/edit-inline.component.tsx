@@ -1,17 +1,22 @@
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsButton, OdsInput } from '@ovhcloud/ods-components/react';
 import React, { PropsWithChildren, useState } from 'react';
+import { ManagerButton } from '@ovh-ux/manager-react-components';
 
 export type EditInlineProps = {
   name: string;
   defaultValue?: string;
   onConfirm: (newValue: string) => void;
+  iamActions?: string[];
+  urn?: string;
 };
 
 export const EditInline: React.FC<PropsWithChildren<EditInlineProps>> = ({
   name,
   defaultValue = '',
   onConfirm,
+  iamActions,
+  urn,
   children,
 }) => {
   const [showInput, setShowInput] = useState<boolean>(false);
@@ -27,7 +32,10 @@ export const EditInline: React.FC<PropsWithChildren<EditInlineProps>> = ({
       {!showInput && (
         <div className="flex items-center justify-between">
           <span>{children}</span>
-          <OdsButton
+          <ManagerButton
+            id={name}
+            iamActions={iamActions}
+            urn={urn}
             icon={ODS_ICON_NAME.pen}
             variant={ODS_BUTTON_VARIANT.ghost}
             label=""

@@ -19,8 +19,17 @@ const useGetIcebergIpReverseMock = vi.hoisted(() =>
   vi.fn(() => ({ ipsReverse: undefined, isLoading: true, error: undefined })),
 );
 
+const useGetIpdetailsMock = vi.hoisted(() =>
+  vi.fn(() => ({
+    ipDetails: { iam: { urn: 'urn1' } },
+    isLoading: false,
+    error: undefined,
+  })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIcebergIpReverse: useGetIcebergIpReverseMock,
+  useGetIpdetails: useGetIpdetailsMock,
 }));
 
 vi.mock('react-router-dom', () => ({
