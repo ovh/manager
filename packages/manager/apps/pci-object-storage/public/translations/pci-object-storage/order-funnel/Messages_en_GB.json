@@ -88,12 +88,12 @@
   "nameInputInfo": "The container name must be between 3 and 63 characters, must start and end with lower-case alphanumeric characters (a to z and 0 to 9), and may include the following punctuation marks: ‘.’ and ‘-’.",
   "summaryEncryptionPlaintext": "None",
   "labelObjectLock": "Object Lock",
-  "descriptionObjectLock": "With Object Lock, store objects in WORM (Write Once, Read Many) mode, ensuring their integrity by preventing any modification or deletion after writing. <0>Learn more</0>",
-  "objectLockTypeDisabledPopover": "To enable the Object Lock feature, versioning must be enabled",
-  "objectLockCannotDisableAlert": "At this stage, only the activation of the feature is offered. The detailed configuration of Object Lock (mode, retention period, etc.) will take place after the bucket is created. Please note that this action is irreversible: once enabled, Object Lock cannot be disabled on the bucket.",
+  "descriptionObjectLock": "Using Object Lock, you can store objects in WORM (Write Once, Read Many) mode, which ensures their immutability by blocking any changes or deletions once saved. &lt;0>Learn more&lt;/0>",
+  "objectLockTypeDisabledPopover": "To turn on the Object Lock feature, you need to enable versioning",
+  "objectLockCannotDisableAlert": "At this stage, only this feature can be enabled. The complete Object Lock configuration (mode, retention period, etc.) will be done after the bucket has been created. Please note that this action cannot be undone: once enabled, Object Lock can no longer be disabled on the bucket.",
   "summaryObjectLockSection": "Object Lock",
   "summaryObjectLockEnabled": "Object Lock enabled",
   "summaryObjectLockDisabled": "Object Lock disabled",
-  "objectLockAcknowledgementLabel": "I understand how the Object Lock feature works and its implications. <0>Learn more</0>",
-  "objectLockAcknowledgementRequired": "You must acknowledge how Object Lock works before continuing"
+  "objectLockAcknowledgementLabel": "I understand how and what it means to enable the Object Lock feature. &lt;0>Learn more&lt;/0>",
+  "objectLockAcknowledgementRequired": "Ensure you understand how the Object Lock works before you continue"
 }

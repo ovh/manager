@@ -52,7 +52,8 @@
   "serviceConfigurationServiceDeletionProtection": " Delete protection",
   "serviceDeletionProtectionActivated": "Enabled",
   "serviceDeletionProtectionActivatedDeactivated": "Disabled",
-  "serviceDeletionProtectionActivate": "Activate",
+  "serviceDeletionProtectionActivate": "Enable",
   "serviceDeletionProtectionActivatedDeactivate": "Deactivate",
-  "serviceDeletionProtectionDeactivate": "Deactivate"
+  "serviceDeletionProtectionDeactivate": "Disable",
+  "serviceDeletionProtectionDeactivated": "Disabled"
 }
