@@ -135,7 +135,7 @@ describe('Create.page', () => {
     });
   });
 
-  it('renders skeleton whilde loading', async () => {
+  it('renders skeleton while loading', async () => {
     render(<Service />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('order-funnel-skeleton')).toBeTruthy();
   });
@@ -243,7 +243,7 @@ describe('Create.page', () => {
     });
   });
 
-  it('Order S3 3AZ and trigger object lock acknwledgement error on submit button click', async () => {
+  it('Order S3 3AZ and trigger object lock acknowledgement error on submit button click', async () => {
     render(<Service />, { wrapper: RouterWithQueryClientWrapper });
 
     act(() => {
