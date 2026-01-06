@@ -20,6 +20,7 @@ const {
   managed_vcd_dashboard_vrack_delete_segment_content: content,
   managed_vcd_dashboard_vrack_delete_segment_success: success,
   managed_vcd_dashboard_vrack_delete_segment_error: error,
+  managed_vcd_dashboard_vrack_column_segment_vrack_label: labelVrack,
 } = labels.datacentresVrackSegment;
 
 const checkModalContent = () => {
@@ -28,6 +29,7 @@ const checkModalContent = () => {
 };
 
 const WAIT_OPTIONS = { timeout: 10_000 };
+const varRegex = (key: string) => new RegExp(`\\{\\{\\s*${key}\\s*\\}\\}`, 'g');
 
 describe('Delete Vrack Network Page', () => {
   it('should delete the network and display a success banner', async () => {
@@ -58,7 +60,15 @@ describe('Delete Vrack Network Page', () => {
     await waitFor(() => expect(modal).not.toBeInTheDocument(), WAIT_OPTIONS);
 
     // check success banner
-    expect(screen.getByText(success)).toBeVisible();
+
+    expect(
+      screen.getByText(
+        success.replace(
+          varRegex('vrack'),
+          labelVrack.replace(varRegex('vlanId'), testVrack.currentState.vlanId),
+        ),
+      ),
+    ).toBeVisible();
   });
 
   // TODO : unskip when page is unmocked

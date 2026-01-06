@@ -43,7 +43,12 @@ export default function DeleteVrackNetwork() {
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({
-        content: t('managed_vcd_dashboard_vrack_delete_network_success'),
+        content: t('managed_vcd_dashboard_vrack_delete_network_success', {
+          subnet: decodeVrackNetwork(vrackNetworkId),
+          vrack: t('managed_vcd_dashboard_vrack_column_segment_vrack_label', {
+            vlanId: vrackSegment?.currentState?.vlanId,
+          }),
+        }),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
