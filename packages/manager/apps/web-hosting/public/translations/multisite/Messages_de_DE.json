@@ -118,7 +118,7 @@
   "multisite_git_association_ssh_url_repo_help": "Geben Sie die URL Ihres Git-Repositorys ({{ httpsRepo }}) an oder ob SSH aktiviert ist ({{ sshRepo }})",
   "multisite_git_association_ssh_key_internal_error_message": "Die Erstellung Ihres SSH-Schlüssels ist fehlgeschlagen, bitte versuchen Sie es später erneut oder kontaktieren Sie den Support",
   "multisite_git_association_apply_configuration_status_error": "Ihre letzte Konfiguration ist fehlgeschlagen. Um Git zu konfigurieren, müssen Sie Ihre Konfiguration erneut anwenden.",
-  "multisite_git_association_error_message": "Git konnte nicht aktiviert werden {{ errorMessage }}",
+  "multisite_git_association_error_message": "Git konnte nicht aktiviert werden {{ error }}",
   "multisite_git_association_success_message": "Git wird aktiviert. Sie können die Aktivierung über die laufenden Aufgaben verfolgen",
   "multisite_git_association_ssh_branches_names": "Geben Sie den Namen des Branches Ihres Repositorys an, der repliziert werden soll ({{ branchesNames }})",
   "multisite_git_association_configure": "Konfigurieren Sie Ihr Deployment",
@@ -139,7 +139,7 @@
   "multisite_git_association_guide_configure_tutorial": "Konfigurationstutorial",
   "multisite_git_association_reconfigure_success": "Sie müssen Ihren Branch neu bereitstellen, damit die Änderungen berücksichtigt werden.",
   "multisite_git_association_reconfigure_warning_url_tooltip": "Die URL des Repositories kann nicht geändert werden. Um ein anderes Repository in diesem Verzeichnis bereitzustellen, müssen Sie zuerst die zugehörige Git-Konfiguration löschen und dann neu erstellen.",
-  "multisite_git_association_reconfigure_error": "Die Änderung ist fehlgeschlagen.",
+  "multisite_git_association_reconfigure_error": "Die Änderung ist fehlgeschlagen. {{ error }}",
   "multisite_git_association_webhook_url": "Webhook-URL",
   "multisite_git_association_apply_configuration": "Konfiguration anwenden",
   "multisite_git_association_ssh_key_description": "Unten finden Sie den SSH-Schlüssel Ihres Hostings."

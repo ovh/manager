@@ -118,7 +118,7 @@
   "multisite_git_association_ssh_url_repo_help": "Indique a URL do seu repositório Git ({{ httpsRepo }}) ou se o SSH está ativado ({{ sshRepo }})",
   "multisite_git_association_ssh_key_internal_error_message": "A geração da sua chave SSH falhou, por favor tente novamente mais tarde ou contacte o suporte",
   "multisite_git_association_apply_configuration_status_error": "A sua última configuração falhou. Para configurar o Git, você deve aplicar novamente a sua configuração.",
-  "multisite_git_association_error_message": "O Git não pôde ser ativado {{ errorMessage }}",
+  "multisite_git_association_error_message": "O Git não pôde ser ativado {{ error }}",
   "multisite_git_association_success_message": "O Git está a ser ativado. Você pode acompanhar a sua ativação a partir das tarefas em curso",
   "multisite_git_association_ssh_branches_names": "Indique o nome da branch do seu repositório que será replicada ({{ branchesNames }})",
   "multisite_git_association_configure": "Configurar o seu deployment",
@@ -139,7 +139,7 @@
   "multisite_git_association_guide_configure_tutorial": "Tutorial de configuração",
   "multisite_git_association_reconfigure_success": "Você deve reimplantar seu ramo para que as alterações sejam consideradas",
   "multisite_git_association_reconfigure_warning_url_tooltip": "A URL do repositório não pode ser alterada. Para implantar outro repositório neste diretório, você deve primeiro remover e depois recriar a configuração git associada a este diretório.",
-  "multisite_git_association_reconfigure_error": "A modificação falhou.",
+  "multisite_git_association_reconfigure_error": "A modificação falhou. {{ error }}",
   "multisite_git_association_webhook_url": "URL do webhook",
   "multisite_git_association_apply_configuration": "Aplicar a configuração",
   "multisite_git_association_ssh_key_description": "Encontre abaixo a chave SSH da sua hospedagem."
