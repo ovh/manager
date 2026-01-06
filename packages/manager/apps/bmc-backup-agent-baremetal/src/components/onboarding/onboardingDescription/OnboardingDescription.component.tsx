@@ -19,7 +19,6 @@ export const OnboardingDescription = () => {
           brand,
         })}
       </OdsText>
-      <OdsText>{t('onboarding:description_part2', { productName })}</OdsText>
     </section>
   );
 };

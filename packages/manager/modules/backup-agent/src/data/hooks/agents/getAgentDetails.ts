@@ -2,7 +2,7 @@ import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import { getBackupAgentsDetails } from '@/data/api/agents/agents.requests';
 import { useGetBackupServicesId } from '@/data/hooks/backup/useBackupServicesId';
-import {BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY} from "@/data/hooks/tenants/useVspcTenantDetails";
+import { BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useVspcTenantDetails';
 
 export type GetBackupAgentDetailsParams = {
   vspcTenantId: string;

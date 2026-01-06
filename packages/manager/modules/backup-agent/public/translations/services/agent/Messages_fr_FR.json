@@ -1,5 +1,4 @@
 {
-  "add_configuration": "Ajouter une configuration",
   "edit_configuration": "Éditer un agent",
   "service_informations": "Informations sur le service",
   "link_agent_to_a_server": "Lier un agent à un serveur existant",
@@ -8,7 +7,7 @@
   "product_name": "Nom du produit",
   "select_os": "Sélectionner un système d'exploitation",
   "os": "Système d'exploitation",
-  "download_agent": "Télécharger l'agent",
+  "download_agent": "Télécharger Agent",
   "add_agent_banner_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer.",
   "add_agent_banner_success": "Serveur ajouté avec succès pour la sauvegarde.",
   "delete_tenant_banner_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer.",

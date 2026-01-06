@@ -17,7 +17,6 @@ const COLUMNS_EXPECTED = [
   `${NAMESPACES.DASHBOARD}:reference`,
   'location_label',
   'region_label',
-  'buckets_label',
   'status_label',
   ACTION_COLUMN_LABEL,
 ];
