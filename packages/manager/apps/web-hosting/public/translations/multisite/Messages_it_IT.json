@@ -118,7 +118,7 @@
   "multisite_git_association_ssh_url_repo_help": "Indica l'URL del tuo repository Git ({{ httpsRepo }}) o se SSH è attivato ({{ sshRepo }})",
   "multisite_git_association_ssh_key_internal_error_message": "La generazione della tua chiave SSH è fallita, riprova più tardi o contatta il supporto",
   "multisite_git_association_apply_configuration_status_error": "La tua ultima configurazione è fallita. Per configurare Git, devi applicare nuovamente la tua configurazione.",
-  "multisite_git_association_error_message": "Git non è stato attivato {{ errorMessage }}",
+  "multisite_git_association_error_message": "Git non è stato possibile attivare {{ error }}",
   "multisite_git_association_success_message": "Git è in fase di attivazione. Puoi seguire la sua attivazione dalle attività in corso",
   "multisite_git_association_ssh_branches_names": "Indica il nome del ramo del tuo repository che sarà replicato ({{ branchesNames }})",
   "multisite_git_association_configure": "Configura il tuo deployment",
@@ -139,7 +139,7 @@
   "multisite_git_association_guide_configure_tutorial": "Guida alla configurazione",
   "multisite_git_association_reconfigure_success": "Devi ridistribuire il tuo ramo affinché le modifiche vengano prese in considerazione",
   "multisite_git_association_reconfigure_warning_url_tooltip": "L'url del repository non può essere modificato. Per distribuire un altro repository su questo directory, devi prima rimuovere e poi ricreare la configurazione git associata a questo directory.",
-  "multisite_git_association_reconfigure_error": "La modifica è fallita.",
+  "multisite_git_association_reconfigure_error": "La modifica è fallita. {{ error }}",
   "multisite_git_association_webhook_url": "Url del webhook",
   "multisite_git_association_apply_configuration": "Applica la configurazione",
   "multisite_git_association_ssh_key_description": "Trova qui sotto la chiave SSH del tuo hosting."
