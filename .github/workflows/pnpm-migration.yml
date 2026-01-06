@@ -32,6 +32,8 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.ref_name }}
+          token: ${{ secrets.PNPM_MIGRATION_TOKEN }}
+          persist-credentials: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -74,14 +76,21 @@ jobs:
             || echo "No changes to commit"
 
       - name: Push branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.PNPM_MIGRATION_TOKEN }}
         run: |
           git push origin "$BRANCH" --force-with-lease
 
+      # Optional but recommended for fast diagnosis
+      - name: Debug PAT access
+        env:
+          GH_TOKEN: ${{ secrets.PNPM_MIGRATION_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api user -q .login
+          gh api repos/ovh/manager -q '.full_name'
+
       - name: Create draft PR with reviewer and label
         env:
-          GITHUB_TOKEN: ${{ secrets.PNPM_MIGRATION_TOKEN }}
+          GH_TOKEN: ${{ secrets.PNPM_MIGRATION_TOKEN }}
         run: |
           gh pr create \
             --title "refactor(${SCOPE}): migrate ${SCOPE} to pnpm" \
