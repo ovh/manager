@@ -8,7 +8,7 @@
   "product_name": "Product name",
   "select_os": "Select an operating system",
   "os": "Operating system",
-  "download_agent": "Download the agent",
+  "download_agent": "Download Agent",
   "delete_tenant_banner_error": "An error occurred. Please wait a few minutes before trying again.",
   "delete_agent_banner_success": "Your Agent {{agentName}} has been successfully deleted",
   "delete_agent_banner_error": "An error occurred. Please wait a few minutes before trying again.",
