@@ -45,6 +45,7 @@ export const mapSubscriptionsToListing = (
     resourceStatus,
     resource,
     tags: iam?.tags ?? {},
+    urn: iam?.urn ?? '',
     search: [
       Object.entries(iam?.tags ?? {})
         .map(([key, value]) => `${key}:${value}`)
