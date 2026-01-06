@@ -29,17 +29,6 @@ jobs:
           docker-images: false
           swap-storage: true
 
-      # -------------------------------------------------------
-      # FORCE CLEANUP (always)
-      # -------------------------------------------------------
-      - name: Force cleanup git state
-        if: always()
-        run: |
-          echo "Cleaning git state"
-          rm -f .git/index.lock
-          git reset --hard
-          git clean -fd
-
       # ------------------------------------------
       # Checkout
       # ------------------------------------------
@@ -48,8 +37,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clean stale git locks (pre)
-        run: rm -f .git/index.lock
+      # -------------------------------------------------------
+      # FORCE Git CLEANUP
+      # -------------------------------------------------------
+      - name: Force cleanup git state
+        if: always()
+        run: |
+          echo "Cleaning git state"
+          rm -f .git/index.lock
+          git reset --hard
+          git clean -fd
 
       # ------------------------------------------
       # Node
