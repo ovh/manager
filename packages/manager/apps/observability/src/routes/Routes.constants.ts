@@ -4,6 +4,7 @@ import { getRoot } from '@/routes/Routes.base';
 export const URL_PARAMS = {
   tenantId: ':tenantId',
   resourceName: ':resourceName',
+  subscriptionId: ':subscriptionId',
 };
 
 export const subroutes = {
@@ -13,6 +14,7 @@ export const subroutes = {
   onboarding: 'onboarding',
   dashboards: 'dashboards',
   deleteTenant: `delete/${URL_PARAMS.tenantId}`,
+  deleteTenantSubscription: `delete/${URL_PARAMS.subscriptionId}`,
   edit: 'edit',
   creation: 'creation',
   tenant: URL_PARAMS.tenantId,
@@ -33,12 +35,13 @@ export const urls = {
   tenantCreation: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.creation}`,
   tenantDashboard: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}`,
   tenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.subscription}`,
+  deleteTenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.subscription}/${subroutes.deleteTenantSubscription}`,
   tenantTags: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.tags}`,
   onboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.onboarding}`,
 } as const;
 
 export type LocationPathParams = {
-  [K in keyof typeof URL_PARAMS]: string;
+  [K in keyof typeof URL_PARAMS]?: string;
 };
 
 export type UrlValue = (typeof urls)[keyof typeof urls];
