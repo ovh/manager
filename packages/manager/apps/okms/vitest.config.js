@@ -1,10 +1,13 @@
+/* eslint-disable no-undef */
 import path from 'path';
+
 import {
-  sharedConfig,
-  mergeConfig,
+  INLINE_DEPS,
   createConfig,
   defaultDedupedDependencies,
   defaultExcludedFiles,
+  mergeConfig,
+  sharedConfig,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
@@ -13,7 +16,7 @@ export default mergeConfig(
     test: {
       setupFiles: './src/setupTests.tsx',
       deps: {
-        inline: ['@ovh-ux/logs-to-customer', '@ovhcloud/ods-components'],
+        inline: ['@ovh-ux/logs-to-customer', '@ovhcloud/ods-components', ...INLINE_DEPS],
       },
       coverage: {
         exclude: [
@@ -31,14 +34,8 @@ export default mergeConfig(
       dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        '@secret-manager': path.resolve(
-          __dirname,
-          'src/modules/secret-manager',
-        ),
-        '@key-management-service': path.resolve(
-          __dirname,
-          'src/modules/key-management-service',
-        ),
+        '@secret-manager': path.resolve(__dirname, 'src/modules/secret-manager'),
+        '@key-management-service': path.resolve(__dirname, 'src/modules/key-management-service'),
       },
     },
   }),
