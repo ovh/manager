@@ -1,22 +1,23 @@
 import { appName } from '@/App.constants';
-
-import { getRoot } from './Routes.base';
+import { getRoot } from '@/routes/Routes.base';
 
 export const URL_PARAMS = {
   tenantId: ':tenantId',
+  resourceName: ':resourceName',
 };
 
 export const subroutes = {
-  tenants: 'tenants' as const,
-  metrics: 'metrics' as const,
-  onboarding: 'onboarding' as const,
-  dashboards: 'dashboards' as const,
-  delete: `delete/${URL_PARAMS.tenantId}` as const,
-  edit: `${URL_PARAMS.tenantId}/edit` as const,
-  creation: 'creation' as const,
-  dashboard: `${URL_PARAMS.tenantId}` as const,
-  subscription: 'subscription' as const,
-  tags: 'tags' as const,
+  tenants: 'tenants',
+  resource: URL_PARAMS.resourceName,
+  metrics: 'metrics',
+  onboarding: 'onboarding',
+  dashboards: 'dashboards',
+  deleteTenant: `delete/${URL_PARAMS.tenantId}`,
+  edit: 'edit',
+  creation: 'creation',
+  tenant: URL_PARAMS.tenantId,
+  subscription: 'subscription',
+  tags: 'tags',
 } as const;
 
 export const urls = {
@@ -27,17 +28,19 @@ export const urls = {
   tenantsOnboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${
     subroutes.onboarding
   }`,
-  deleteTenant: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.delete}`,
-  editTenant: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.edit}`,
-  tenantsCreation: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.creation}`,
-  tenantDashboard: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.dashboard}`,
-  tenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.dashboard}/${subroutes.subscription}`,
-  tenantTags: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.dashboard}/${subroutes.tags}`,
+  deleteTenant: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.deleteTenant}`,
+  editTenant: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.edit}`,
+  tenantCreation: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.creation}`,
+  tenantDashboard: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}`,
+  tenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.subscription}`,
+  tenantTags: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.tags}`,
   onboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.onboarding}`,
 } as const;
 
 export type LocationPathParams = {
   [K in keyof typeof URL_PARAMS]: string;
 };
+
+export type UrlValue = (typeof urls)[keyof typeof urls];
 
 export const redirectionApp = appName;
