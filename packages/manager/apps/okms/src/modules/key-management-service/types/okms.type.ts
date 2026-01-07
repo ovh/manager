@@ -1,5 +1,3 @@
-import { ColumnSort } from '@ovh-ux/manager-react-components';
-
 export type OKMS = {
   iam: IAM;
   id: string;
@@ -27,8 +25,4 @@ export type IAM = {
   urn: string;
   tags?: Record<string, string>;
   state?: OkmsServiceState;
-};
-
-export type OKMSOptions = {
-  sorting: ColumnSort;
 };

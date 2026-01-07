@@ -103,8 +103,7 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
 
   const { trackClick } = useOkmsTracking();
 
-  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
-    useSecretList({ okmsId });
+  const { data, error, hasNextPage, fetchNextPage, isPending, refetch } = useSecretList({ okmsId });
 
   if (error)
     return (
@@ -147,8 +146,6 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
       isLoading={isPending}
       hasNextPage={hasNextPage}
       onFetchNextPage={fetchNextPage}
-      sorting={sorting}
-      onSortChange={setSorting}
       contentAlignLeft
       topbar={
         <OdsButton
