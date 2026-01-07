@@ -22,9 +22,9 @@ export default function TenantsInformationPage() {
 
   const { selectedService } = useObservabilityServiceContext();
   const resourceName = selectedService?.id ?? '';
-  const { tenantId } = useParams<{ tenantId: string }>();
+  const { tenantId = '' } = useParams<{ tenantId: string }>();
 
-  const { data: tenant, isLoading, error, isError } = useTenant(resourceName, tenantId ?? '');
+  const { data: tenant, isLoading, error, isError } = useTenant(resourceName, tenantId);
 
   const tenantState = tenant?.currentState;
   const resourceStatus = tenant?.resourceStatus;
@@ -36,8 +36,6 @@ export default function TenantsInformationPage() {
   const endpoint = tenantState?.endpoint;
 
   const limits = tenantState?.limits;
-
-  const currentTenantId = tenantId ?? '';
 
   useEffect(() => {
     if (isError) {
@@ -58,7 +56,8 @@ export default function TenantsInformationPage() {
       <div className="block w-full">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-start lg:gap-6">
           <GeneralInformationTile
-            tenantId={currentTenantId}
+            tenantId={tenantId}
+            resourceName={resourceName}
             title={title}
             description={description}
             iam={iam}
@@ -77,14 +76,20 @@ export default function TenantsInformationPage() {
             />
 
             <TagsTile
-              tenantId={currentTenantId}
+              tenantId={tenantId}
+              resourceName={resourceName}
               title={title ?? ''}
               tags={iam?.tags ?? {}}
               isLoading={isLoading}
             />
           </div>
 
-          <SubscriptionTile tenantId={currentTenantId} subscriptions={5} isLoading={isLoading} />
+          <SubscriptionTile
+            tenantId={tenantId}
+            resourceName={resourceName}
+            subscriptions={5} // TODO: add subscriptions count
+            isLoading={isLoading}
+          />
         </div>
       </div>
     </section>

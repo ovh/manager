@@ -54,6 +54,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
 describe('SubscriptionTile.component', () => {
   const baseProps = {
     tenantId: 'tenant-123',
+    resourceName: 'resource-123',
     subscriptions: 5,
   };
 
@@ -82,7 +83,10 @@ describe('SubscriptionTile.component', () => {
 
     fireEvent.click(screen.getByTestId('tile-link'));
 
-    expect(mockGetTenantSubscriptionUrl).toHaveBeenCalledWith(baseProps.tenantId);
+    expect(mockGetTenantSubscriptionUrl).toHaveBeenCalledWith({
+      tenantId: baseProps.tenantId,
+      resourceName: baseProps.resourceName,
+    });
     expect(mockNavigate).toHaveBeenCalledWith(targetUrl);
   });
 });

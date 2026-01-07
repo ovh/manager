@@ -15,7 +15,20 @@ vi.mock('@/data/hooks/infrastructures/useLocations.hook', () => ({
 }));
 
 vi.mock('@/contexts/ObservabilityService.context', () => ({
-  useObservabilityServiceContext: vi.fn(),
+  useObservabilityServiceContext: vi.fn(() => ({
+    selectedService: {
+      id: 'test-service',
+      createdAt: '2025-01-01T00:00:00Z',
+      updatedAt: '2025-01-01T00:00:00Z',
+      currentState: { displayName: 'Test Service' },
+      iam: { id: 'test-service', urn: 'urn:ovh:service:test-service' },
+    },
+    setSelectedService: vi.fn(),
+    services: [],
+    isLoading: false,
+    isSuccess: true,
+    error: null,
+  })),
 }));
 
 vi.mock('react-i18next', () => ({
@@ -176,9 +189,9 @@ vi.mock('react-router-dom', () => ({
 vi.mock(
   '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.component',
   () => ({
-    default: ({ id, label }: { id: string; label: string }) => (
-      <div data-testid={`link-cell-${id}`}>
-        <span data-testid={`link-label-${id}`}>{label}</span>
+    default: ({ tenantId, label }: { tenantId: string; resourceName: string; label: string }) => (
+      <div data-testid={`link-cell-${tenantId}`}>
+        <span data-testid={`link-label-${tenantId}`}>{label}</span>
       </div>
     ),
   }),
