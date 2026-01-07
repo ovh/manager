@@ -2,25 +2,19 @@ import {
   Datagrid,
   DatagridColumn,
   DataGridTextCell,
-  useFormatDate,
 } from '@ovh-ux/manager-react-components';
+import { useFormatDate, Link as ManagerLink, LinkType } from '@ovh-ux/muk';
 import {
   FilterTypeCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import {
-  OdsButton,
-  OdsLink,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { Button, Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/ods-react';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Notification } from '@/data/types';
 import { urls } from '@/routes/routes.constant';
-
 import NotificationPriorityChip from '@/components/notificationPriorityChip/NotificationPriorityChip.component';
 import {
   useNotificationHistory,
@@ -52,21 +46,26 @@ function CommunicationsPage() {
       isSortable: false,
       label: t('table_column_subject'),
       cell: (notification) => (
-        <DataGridTextCell>
-          <OdsLink
-            label={notification.title}
-            href={`#${urls.communication.detailTo(notification.id)}`}
-            onClick={() =>
-              trackClick({
-                location: PageLocation.datagrid,
-                buttonType: ButtonType.button,
-                actionType: 'navigation',
-                actions: ['detail_subject'],
-                subApp: TrackingSubApps.Communications,
-              })
-            }
-          />
-        </DataGridTextCell>
+        <div className="!min-w-min">
+          <DataGridTextCell>
+            <Link
+              as={RouterLink}
+              to={urls.communication.detailTo(notification.id)}
+              onClick={() =>
+                trackClick({
+                  location: PageLocation.datagrid,
+                  buttonType: ButtonType.button,
+                  actionType: 'navigation',
+                  actions: ['detail_subject'],
+                  subApp: TrackingSubApps.Communications,
+                })
+              }
+              className="max-w-fit inline"
+            >
+              {notification.title}
+            </Link>
+          </DataGridTextCell>
+          </div>
       ),
     },
     {
@@ -78,7 +77,6 @@ function CommunicationsPage() {
         <DataGridTextCell>
           <NotificationContactStatus
             contacts={notification.contacts}
-            notificationId={notification.id}
           />
         </DataGridTextCell>
       ),
@@ -125,7 +123,7 @@ function CommunicationsPage() {
         value: name,
       })),
       cell: (notification) => (
-        <div className="min-w-[200px] max-w-min">
+        <div className="!min-w-min max-w-[200px]">
           <DataGridTextCell>
             {useCategories(tCommon, notification.categories)}
           </DataGridTextCell>
@@ -155,13 +153,13 @@ function CommunicationsPage() {
 
   return (
     <>
-      <OdsText className="mb-6">
+      <Text className="mb-6">
         <Trans
           i18nKey="description"
           t={tCommon}
           components={{
             anchor: (
-              <OdsLink
+              <ManagerLink
                 href={helpLink}
                 onClick={() =>
                   trackClick({
@@ -173,22 +171,27 @@ function CommunicationsPage() {
                   })
                 }
                 target="_blank"
-                label={tCommon('assistance_link_label')}
-                icon="external-link"
-              />
+                type={LinkType.external}
+              >
+                {tCommon('assistance_link_label')}
+              </ManagerLink>
             ),
           }}
         />
-      </OdsText>
+      </Text>
       {!isLoading && !isAuthorized && (
-        <OdsMessage
+        <Message
           color="warning"
-          isDismissible={false}
+          dismissible={false}
           className="mb-8 w-full"
         >
-          {tCommon('iam_display_content_message')}
-        </OdsMessage>
+          <MessageIcon name="circle-info" />
+          <MessageBody>
+            {tCommon('iam_display_content_message')}
+          </MessageBody>
+        </Message>
       )}
+      <div className="box-border">
       <Datagrid
         items={flattenData}
         columns={columns}
@@ -198,21 +201,22 @@ function CommunicationsPage() {
         search={search}
         filters={filters}
         topbar={
-          <OdsButton
+          <Button
             variant="outline"
-            icon="refresh"
-            label=""
             aria-label={tActions('refresh')}
-            isLoading={isRefetching}
+            loading={isRefetching}
             size="sm"
             onClick={() => refetch()}
-          />
+          >
+            <Icon name="refresh" />
+          </Button>
         }
         totalItems={flattenData?.length || 0}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
         manualSorting={true}
       />
+      </div>
     </>
   );
 }

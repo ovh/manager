@@ -1,6 +1,7 @@
-import { OdsDrawer, OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { Button, Drawer, DRAWER_POSITION, DrawerBody, DrawerContent, Icon, ICON_NAME, Text, Link } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { useFormatDate } from '@ovh-ux/manager-react-components';
+import { Link as RouterLink } from 'react-router-dom';
+import { useFormatDate } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -12,7 +13,6 @@ import Steps from '@/components/Steps/Steps.component';
 import { getCleanEmail } from '@/utils/notifications';
 import { urls } from '@/routes/routes.constant';
 import './contactHistory.scss';
-import AuthLink from '@/components/authLink/AuthLink.component';
 import { useTracking } from '@/hooks/useTracking/useTracking';
 import { TrackingSubApps } from '@/tracking.constant';
 
@@ -38,57 +38,63 @@ export default function ContactHistory({ contacts, isOpen, onClose }: Props) {
   }, [isOpen]);
 
   return (
-    <OdsDrawer
-      title={t('history_overlay_headline')}
-      isOpen={isOpen}
-      position="right"
-      className="contact-history-drawer"
-    >
-      <OdsButton
-        variant="ghost"
-        label=""
-        aria-label={t('history_overlay_close')}
-        icon="xmark"
-        size="sm"
-        color="neutral"
-        className="-ml-4"
-        onClick={onClose}
-      />
-      <OdsText preset="heading-4">{t('history_overlay_headline')}</OdsText>
-      <OdsText>{t('history_overlay_description')}</OdsText>
-      <AuthLink
-        href={urls.routing.listing}
-        onClick={() => {
-          trackClick({
-            location: PageLocation.popup,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: [
-              'view_history-mailings',
-              'access_communication-parameters',
-            ],
-            subApp: TrackingSubApps.Communications,
-          });
-        }}
+    <Drawer open={isOpen}>
+      <DrawerContent
+        position={DRAWER_POSITION.right}
+        className="contact-history-drawer"
+        title={t('history_overlay_headline')}
       >
-        {t('history_overlay_settings_link')}
-      </AuthLink>
+        <DrawerBody className="flex flex-col gap-4">
+          <div>
+            <Button
+              variant="ghost"
+              aria-label={t('history_overlay_close')}
+              size="sm"
+              color="neutral"
+              className="-ml-4"
+              onClick={onClose}
+              >
+              <Icon name={ICON_NAME.xmark} />
+            </Button>
+          </div>
+          <Text preset="heading-4">{t('history_overlay_headline')}</Text>
+          <Text>{t('history_overlay_description')}</Text>
+          <Link
+            as={RouterLink}
+            href={urls.routing.listing}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.popup,
+                buttonType: ButtonType.link,
+                actionType: 'navigation',
+                actions: [
+                  'view_history-mailings',
+                  'access_communication-parameters',
+                ],
+                subApp: TrackingSubApps.Communications,
+              });
+            }}
+          >
+            {t('history_overlay_settings_link')}
+          </Link>
 
-      <Steps
-        steps={contacts.map((contact) => ({
-          isActive: true,
-          children: (
-            <>
-              <OdsText preset="paragraph">
-                {formatDate({ date: contact.sentAt, format: 'Pp' })}
-              </OdsText>
-              <OdsText preset="paragraph" className="underline">
-                {getCleanEmail(contact.to)}
-              </OdsText>
-            </>
-          ),
-        }))}
-      />
-    </OdsDrawer>
+          <Steps
+            steps={contacts.map((contact) => ({
+              isActive: true,
+              children: (
+                <>
+                  <Text preset="paragraph">
+                    {formatDate({ date: contact.sentAt, format: 'Pp' })}
+                  </Text>
+                  <Text preset="paragraph" className="underline">
+                    {getCleanEmail(contact.to)}
+                  </Text>
+                </>
+              ),
+            }))}
+          />
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   );
 }

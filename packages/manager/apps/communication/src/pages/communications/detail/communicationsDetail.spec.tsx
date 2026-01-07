@@ -21,11 +21,29 @@ const mockedNotification = vi.hoisted(() => ({
   ],
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useFormatDate: vi.fn().mockReturnValue(() => '2025-01-01'),
+vi.mock('@ovh-ux/muk', () => ({
+  useFormatDate: vi.fn(() => () => '2025-01-01'),
+  Link: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => (
+    <a {...props}>{children}</a>
+  ),
+  LinkType: {
+    external: 'external',
+    internal: 'internal',
+  },
   RedirectionGuard: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  ButtonType: {
+    button: 'button',
+    externalLink: 'externalLink',
+  },
+  PageLocation: {
+    datagrid: 'datagrid',
+    page: 'page',
+  },
 }));
 
 vi.mock('react-router-dom', () => ({
@@ -46,12 +64,6 @@ vi.mock('@/hooks', async (original) => ({
 
 vi.mock('@/components', async (original) => ({
   ...(await original()),
-  AuthLink: ({ children }: { children: React.ReactNode }) => (
-    <div>{children}</div>
-  ),
-  ClickLink: ({ children }: { children: React.ReactNode }) => (
-    <div>{children}</div>
-  ),
   ContactHistory: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),

@@ -1,6 +1,6 @@
 import { useGuidedTour } from '@/hooks/useGuidedTour';
 import { useTranslation } from 'react-i18next';
-import { Button, BUTTON_SIZE, BUTTON_VARIANT, Icon, ICON_NAME, Popover, POPOVER_POSITION, PopoverContent, PopoverTrigger, Link as OdsLink } from '@ovh-ux/muk';
+import { Button, BUTTON_SIZE, BUTTON_VARIANT, Icon, ICON_NAME, Popover, POPOVER_POSITION, PopoverContent, PopoverTrigger, Link} from '@ovhcloud/ods-react';
 
 export const GuideMenu = () => {
 
@@ -28,9 +28,9 @@ export const GuideMenu = () => {
       </PopoverTrigger>
       <PopoverContent>
         <div className="flex flex-col gap-2 py-1">
-          <OdsLink onClick={onClickStartGuide}>
+          <Link onClick={onClickStartGuide}>
             {t('guide_menu_start_guide')}
-          </OdsLink>
+          </Link>
         </div>
       </PopoverContent>
     </Popover>

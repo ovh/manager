@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { OdsSwitch, OdsSwitchItem } from '@ovhcloud/ods-components/react';
+import { Switch, SwitchItem } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Notification } from '@/data/types';
@@ -72,9 +72,9 @@ export default function EmailDisplay({ notification, header }: Props) {
     >
       <div className="flex flex-row gap-6 items-center justify-between">
         <div className="flex-grow">{header}</div>
-        <OdsSwitch
-          name="format"
-          onOdsChange={() => {
+        <Switch
+          value={format}
+          onValueChange={() => {
             trackClick({
               location: PageLocation.page,
               buttonType: ButtonType.button,
@@ -85,28 +85,28 @@ export default function EmailDisplay({ notification, header }: Props) {
           }}
         >
           {notification.shortText && (
-            <OdsSwitchItem
-              isChecked={format === 'SHORT'}
+            <SwitchItem
+              value="SHORT"
               onClick={() => setFormat('SHORT')}
             >
               {t('format_switch_short')}
-            </OdsSwitchItem>
+            </SwitchItem>
           )}
-          <OdsSwitchItem
-            isChecked={format === 'LONG'}
+          <SwitchItem
+            value="LONG"
             onClick={() => setFormat('LONG')}
           >
             {t('format_switch_long')}
-          </OdsSwitchItem>
+          </SwitchItem>
           {notification.html && (
-            <OdsSwitchItem
-              isChecked={format === 'HTML'}
+            <SwitchItem
+              value="HTML"
               onClick={() => setFormat('HTML')}
             >
               {t('format_switch_html')}
-            </OdsSwitchItem>
+            </SwitchItem>
           )}
-        </OdsSwitch>
+        </Switch>
       </div>
       {notification.html && (
         <HtmlViewer

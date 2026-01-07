@@ -1,13 +1,12 @@
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { ContactMeanStatus } from '@/data/types/contact-mean.type';
 
-const STATUS_COLOR: Record<ContactMeanStatus, ODS_BADGE_COLOR> = {
-  ERROR: ODS_BADGE_COLOR.critical,
-  DISABLED: ODS_BADGE_COLOR.critical,
-  VALID: ODS_BADGE_COLOR.success,
-  TO_VALIDATE: ODS_BADGE_COLOR.information,
+const STATUS_COLOR: Record<ContactMeanStatus, BADGE_COLOR> = {
+  ERROR: BADGE_COLOR.critical,
+  DISABLED: BADGE_COLOR.critical,
+  VALID: BADGE_COLOR.success,
+  TO_VALIDATE: BADGE_COLOR.information,
 };
 
 export default function ContactMeanStatusChip({
@@ -17,9 +16,10 @@ export default function ContactMeanStatusChip({
 }) {
   const { t } = useTranslation('common');
   return (
-    <OdsBadge
+    <Badge
       color={STATUS_COLOR[status]}
-      label={t(`status_${status.toLowerCase()}`)}
-    />
+    >
+      {t(`status_${status.toLowerCase()}`)}
+    </Badge>
   );
 }

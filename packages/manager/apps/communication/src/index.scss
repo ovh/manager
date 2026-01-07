@@ -1,6 +1,8 @@
 @tailwind utilities;
 
 @import '@ovhcloud/ods-themes/default';
+@import '@ovhcloud/ods-themes/default/css';
+@import '@ovhcloud/ods-themes/default/fonts';
 
 html {
   font-family: var(--ods-font-family-default);
@@ -8,4 +10,13 @@ html {
 
 .text-error::part(text) {
   color: var(--ods-color-critical-500);
+}
+
+.ods-table--md table thead tr th,
+.ods-table--md table thead tr td,
+.ods-table--md table tbody tr th,
+.ods-table--md table tbody tr td,
+.ods-table--md table tfoot tr th,
+.ods-table--md table tfoot tr td  {
+  min-width: min-content !important;
 }

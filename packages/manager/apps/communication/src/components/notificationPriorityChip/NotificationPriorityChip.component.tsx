@@ -1,12 +1,11 @@
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { NotificationPriority } from '@/data/types';
 
-export const PRIORITY_COLOR: Record<NotificationPriority, ODS_BADGE_COLOR> = {
-  HIGH: ODS_BADGE_COLOR.critical,
-  MEDIUM: ODS_BADGE_COLOR.warning,
-  LOW: ODS_BADGE_COLOR.information,
+export const PRIORITY_COLOR: Record<NotificationPriority, BADGE_COLOR> = {
+  HIGH: BADGE_COLOR.critical,
+  MEDIUM: BADGE_COLOR.warning,
+  LOW: BADGE_COLOR.information,
 };
 
 export default function NotificationPriorityChip({
@@ -16,9 +15,10 @@ export default function NotificationPriorityChip({
 }) {
   const { t } = useTranslation('common');
   return (
-    <OdsBadge
+    <Badge
       color={PRIORITY_COLOR[priority]}
-      label={t(`priority_${priority.toLowerCase()}`)}
-    />
+    >
+      {t(`priority_${priority.toLowerCase()}`)}
+    </Badge>
   );
 }

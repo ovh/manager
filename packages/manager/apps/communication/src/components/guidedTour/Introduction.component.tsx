@@ -1,7 +1,7 @@
 import { useAddMePreferences, useMePreferences } from '@/data/hooks/useMePreferences/useMePreferences';
 import { useGuidedTour } from '@/hooks/useGuidedTour';
 import { GUIDED_TOUR_DONE_PREFERENCE } from './GuidedTour.constants';
-import { Card, Text, Button, BUTTON_VARIANT, BUTTON_SIZE, TEXT_PRESET } from '@ovh-ux/muk';
+import { Card, Text, Button, BUTTON_VARIANT, BUTTON_SIZE, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 
 export default function Introduction() {
