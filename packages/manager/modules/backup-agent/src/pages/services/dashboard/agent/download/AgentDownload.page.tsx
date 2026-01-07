@@ -88,6 +88,7 @@ export default function DownloadAgentPage() {
             <OdsSpinner />
           ) : (
             <DownloadCode
+              className="break-all"
               downloadLink={isDownloadEnabled ? downloadLink : '...'}
               canCopy={isDownloadEnabled}
             />
