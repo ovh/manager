@@ -2,14 +2,17 @@ name: Lint Code Base
 
 on: [push]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
-  cancel-in-progress: true
-
 jobs:
   lint:
     name: Lint Code Base
     runs-on: ubuntu-latest
+
+    # ------------------------------------------
+    # Job-level concurrency (no cancellation)
+    # ------------------------------------------
+    concurrency:
+      group: lint-${{ github.ref }}
+      cancel-in-progress: false
 
     env:
       PNPM_VERSION: "10.17.0" # must match playbook-config.js
