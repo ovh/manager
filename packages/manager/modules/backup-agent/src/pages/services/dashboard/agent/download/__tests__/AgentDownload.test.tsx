@@ -147,7 +147,7 @@ describe('AgentDownload', () => {
 
     expect(useBackupVSPCTenantAgentDownloadLinkMock).toHaveBeenCalledWith({
       tenantId: TENANTS_MOCKS[0]!.id,
-      os: undefined,
+      os: null,
     });
 
     expect(screen.getAllByTestId(codeTestId)[0]).toHaveTextContent(emptyLinkLabel);

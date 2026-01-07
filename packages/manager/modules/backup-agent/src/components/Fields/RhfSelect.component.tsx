@@ -4,9 +4,7 @@ import { OdsSelect } from '@ovhcloud/ods-components/react';
 
 import { useRhfFieldContext } from './RhfField.context';
 
-export function RhfSelect(
-  props: Readonly<Omit<ComponentProps<typeof OdsSelect>, 'id' | 'name'>>,
-) {
+export function RhfSelect(props: Readonly<Omit<ComponentProps<typeof OdsSelect>, 'id' | 'name'>>) {
   const {
     id,
     controller: {

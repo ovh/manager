@@ -120,5 +120,6 @@ RhfField.Helper = RhfHelper;
 RhfField.HelperAuto = RhfHelperAuto;
 RhfField.Combobox = RhfCombobox;
 RhfField.ComboboxItem = OdsComboboxItem;
+RhfField.Select = RhfSelect;
 RhfField.Quantity = RhfQuantity;
 RhfField.Input = RhfInput;
