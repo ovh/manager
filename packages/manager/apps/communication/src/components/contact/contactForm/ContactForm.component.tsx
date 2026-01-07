@@ -1,9 +1,4 @@
-import {
-  OdsFormField,
-  OdsSelect,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { FormField, Select, Input, Text, FormFieldLabel, SelectContent, SelectControl, FormFieldError } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -79,38 +74,35 @@ const ContactForm = forwardRef(
           control={control}
           name="type"
           render={({ field: { onChange, value, onBlur, name } }) => (
-            <OdsFormField>
-              <label
-                htmlFor={name}
-                slot="label"
-                aria-label={t('contact_form_type_label')}
-              >
+            <FormField invalid={!!errors.type}>
+              <FormFieldLabel htmlFor={name}>
                 {t('contact_form_type_label')}*
-              </label>
-              <OdsSelect
+              </FormFieldLabel>
+              <Select
                 name={name}
                 defaultValue={ContactMeanType.EMAIL}
-                value={value}
-                isDisabled={!!contactMean}
+                value={[value]}
+                disabled={!!contactMean}
                 onBlur={onBlur}
-                onOdsChange={onChange}
-                hasError={!!errors.type}
-                isRequired
+                onValueChange={onChange}
+                invalid={!!errors.type}
+                required
+                items={Object.values(ContactMeanType).map((type) => ({
+                  value: type,
+                  label: t(`type_${type.toLowerCase()}`),
+                }))}
               >
-                {Object.values(ContactMeanType).map((type) => (
-                  <option key={type} value={type}>
-                    {t(`type_${type.toLowerCase()}`)}
-                  </option>
-                ))}
-              </OdsSelect>
+                <SelectControl />
+                <SelectContent />
+              </Select>
               {errors.type && (
-                <OdsText className="text-error">
+                <FormFieldError>
                   {t(errors.type.message || 'error_required_field', {
                     ns: NAMESPACES.FORM,
                   })}
-                </OdsText>
+                </FormFieldError>
               )}
-            </OdsFormField>
+            </FormField>
           )}
         />
 
@@ -118,31 +110,27 @@ const ContactForm = forwardRef(
           control={control}
           name="email"
           render={({ field: { onChange, value, onBlur, name } }) => (
-            <OdsFormField>
-              <label
-                htmlFor={name}
-                slot="label"
-                aria-label={t('contact_form_type_email_label')}
-              >
+            <FormField invalid={!!errors.email}>
+              <FormFieldLabel htmlFor={name}>
                 {t('contact_form_type_email_label')}*
-              </label>
-              <OdsInput
+              </FormFieldLabel>
+              <Input
                 name={name}
                 defaultValue={value}
-                onOdsChange={onChange}
-                isDisabled={!!contactMean}
+                onChange={onChange}
+                disabled={!!contactMean}
                 onBlur={onBlur}
-                hasError={!!errors.email}
-                isRequired
+                invalid={!!errors.email}
+                required
               />
               {errors.email && (
-                <OdsText className="text-error">
+                <FormFieldError>
                   {t(errors.email.message || 'error_required_field', {
                     ns: NAMESPACES.FORM,
                   })}
-                </OdsText>
+                </FormFieldError>
               )}
-            </OdsFormField>
+            </FormField>
           )}
         />
 
@@ -150,29 +138,25 @@ const ContactForm = forwardRef(
           control={control}
           name="description"
           render={({ field: { onChange, value, onBlur, name } }) => (
-            <OdsFormField>
-              <label
-                htmlFor={name}
-                slot="label"
-                aria-label={t('contact_form_name_label')}
-              >
+            <FormField invalid={!!errors.description}>
+              <FormFieldLabel htmlFor={name}>
                 {t('contact_form_name_label')}
-              </label>
-              <OdsInput
+              </FormFieldLabel>
+              <Input
                 name={name}
-                value={value}
-                onOdsChange={onChange}
+                value={value ?? undefined}
+                onChange={onChange}
                 onBlur={onBlur}
-                hasError={!!errors.description}
+                invalid={!!errors.description}
               />
               {errors.description && (
-                <OdsText className="text-error">
+                <FormFieldError>
                   {t(errors.description.message || 'error_pattern', {
                     ns: NAMESPACES.FORM,
                   })}
-                </OdsText>
+                </FormFieldError>
               )}
-            </OdsFormField>
+            </FormField>
           )}
         />
       </form>
