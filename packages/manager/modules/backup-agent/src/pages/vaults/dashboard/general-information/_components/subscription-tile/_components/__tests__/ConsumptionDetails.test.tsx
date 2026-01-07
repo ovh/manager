@@ -5,13 +5,21 @@ import { VAULT_PLAN_CODE } from '@/module.constants';
 
 import { ConsumptionDetails } from '../ConsumptionDetails.component';
 
-const { useServiceConsumptionMock } = vi.hoisted(() => ({
-  useServiceConsumptionMock: vi.fn(),
+const { useQuery } = vi.hoisted(() => ({
+  useQuery: vi.fn(),
 }));
+
 
 vi.mock('@/data/hooks/consumption/useServiceConsumption', () => {
   return {
-    useServiceConsumption: useServiceConsumptionMock,
+    useGetServiceConsumptionOptions: vi.fn().mockReturnValue(vi.fn()),
+  };
+});
+
+
+vi.mock('@tanstack/react-query', () => {
+  return {
+    useQuery: useQuery,
   };
 });
 
@@ -25,7 +33,7 @@ vi.mock('@/hooks/useRequiredParams', () => {
 
 describe('ConsumptionDetails component a11y', () => {
   it('Should render ConsumptionDetails component', async () => {
-    useServiceConsumptionMock.mockReturnValue({
+    useQuery.mockReturnValue({
       data: [{ planCode: VAULT_PLAN_CODE, quantity: 100 }],
       isPending: false,
     });
