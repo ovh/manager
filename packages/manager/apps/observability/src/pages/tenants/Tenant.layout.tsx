@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Outlet, useMatches, useParams } from 'react-router-dom';
 
 import { Trans, useTranslation } from 'react-i18next';
@@ -24,9 +26,15 @@ type RouteHandle = {
 
 export default function TenantLayout() {
   const { t } = useTranslation(['tenants', 'shared']);
+  const { selectedService, setSelectedService, services } = useObservabilityServiceContext();
+  const { tenantId, resourceName } = useParams<LocationPathParams>();
 
-  const { selectedService } = useObservabilityServiceContext();
-  const { tenantId } = useParams<LocationPathParams>();
+  useEffect(() => {
+    if (resourceName && !selectedService) {
+      setSelectedService(services?.find((service) => service.id === resourceName) ?? undefined);
+    }
+  }, [resourceName, selectedService, services, setSelectedService]);
+
   const { data: tenant } = useTenant(selectedService?.id ?? '', tenantId ?? '');
   const matches = useMatches();
   const currentMatch = matches.find((match) => (match.handle as RouteHandle)?.titleKey);

@@ -1,23 +1,33 @@
-import { urls } from './Routes.constants';
+import { LocationPathParams, URL_PARAMS, UrlValue, urls } from '@/routes/Routes.constants';
 
-export { getRoot } from './Routes.base';
+export { getRoot } from '@/routes/Routes.base';
 
-export function getDeleteTenantUrl(tenantId: string) {
-  return urls.deleteTenant.replace(':tenantId', tenantId);
+export function getDeleteTenantUrl(params: LocationPathParams) {
+  return getURL(urls.deleteTenant, params);
 }
 
-export function getEditTenantUrl(tenantId: string) {
-  return urls.editTenant.replace(':tenantId', tenantId);
+export function getEditTenantUrl(params: LocationPathParams) {
+  return getURL(urls.editTenant, params);
 }
 
-export function getTenantDashboardUrl(tenantId: string) {
-  return urls.tenantDashboard.replace(':tenantId', tenantId);
+export function getTenantDashboardUrl(params: LocationPathParams) {
+  return getURL(urls.tenantDashboard, params);
 }
 
-export function getTenantSubscriptionUrl(tenantId: string) {
-  return urls.tenantSubscription.replace(':tenantId', tenantId);
+export function getTenantCreationUrl(params: Pick<LocationPathParams, 'resourceName'>) {
+  return urls.tenantCreation.replace(URL_PARAMS.resourceName, params.resourceName);
 }
 
-export function getTenantTagsUrl(tenantId: string) {
-  return urls.tenantTags.replace(':tenantId', tenantId);
+export function getTenantSubscriptionUrl(params: LocationPathParams) {
+  return getURL(urls.tenantSubscription, params);
+}
+
+export function getTenantTagsUrl(params: LocationPathParams) {
+  return getURL(urls.tenantTags, params);
+}
+
+function getURL(url: UrlValue, params: LocationPathParams) {
+  return url
+    .replace(URL_PARAMS.resourceName, params.resourceName)
+    .replace(URL_PARAMS.tenantId, params.tenantId);
 }
