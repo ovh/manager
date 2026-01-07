@@ -41,15 +41,6 @@ const webShopConfig = (
         tracking: 'web::orders::web-hosting::order',
       }
     : null,
-  features['cloud-web'] && ORDER_URLS[region].orderCloudWeb
-    ? {
-        label: 'order_item_cloudWeb',
-        icon: HOSTING_SVG,
-        url: getOrderURL('orderCloudWeb', region, sub),
-        external: true,
-        tracking: 'web::orders::cloud-web::order',
-      }
-    : null,
   features.zimbra && ORDER_URLS[region]?.zimbra
     ? {
         label: 'order_item_zimbra',
