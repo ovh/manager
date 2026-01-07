@@ -38,9 +38,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clean stale git locks (pre)
-        run: rm -f .git/index.lock
-
       # ------------------------------------------
       # Node
       # ------------------------------------------
@@ -81,9 +78,6 @@ jobs:
         env:
           YARN_CACHE_FOLDER: ~/.cache/yarn
         run: yarn ci:install
-
-      - name: Clean stale git locks (post-install)
-        run: rm -f .git/index.lock
 
       # ------------------------------------------
       # BUILD TARGETED PACKAGES
