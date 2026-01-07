@@ -9,13 +9,13 @@ import { TagsList, Tile } from '@ovh-ux/muk';
 import { TagsTileProps } from '@/components/dashboard/TagsTile.props';
 import { getTenantTagsUrl } from '@/routes/Routes.utils';
 
-export const TagsTile = ({ tenantId, title, tags, isLoading }: TagsTileProps) => {
+export const TagsTile = ({ tenantId, resourceName, title, tags, isLoading }: TagsTileProps) => {
   const { t } = useTranslation('tenants');
 
   const navigate = useNavigate();
 
   const onClickManageTagsLink = () => {
-    navigate(getTenantTagsUrl(tenantId));
+    navigate(getTenantTagsUrl({ tenantId, resourceName }));
   };
 
   return (
