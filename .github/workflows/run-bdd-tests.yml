@@ -4,16 +4,13 @@ on:
   push:
     branches-ignore: [master]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    # ------------------------------------------
-    # Job-level concurrency (no cancellation)
-    # ------------------------------------------
-    concurrency:
-      group: test-${{ github.ref }}
-      cancel-in-progress: false
 
     env:
       PNPM_VERSION: "10.17.0" # must match playbook-config.js
