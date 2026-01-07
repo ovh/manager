@@ -1,7 +1,9 @@
 {
   "netapp_volumes_dashboard_actives_nfs_breadcrumb": "NFS",
+  "netapp_volumes_dashboard_actives_nfs_no_connection_subtitle": "(pas de connection vue durant les dernières 48 heures)",
+  "netapp_volumes_dashboard_actives_nfs_connection_subtitle": "({{ totalActivesNfs }} connections vues durant les dernières 48 heures)",
   "netapp_volumes_dashboard_actives_nfs_ip": "Addresse IP du client",
   "netapp_volumes_dashboard_actives_nfs_version": "Version NFS",
-  "netapp_volumes_dashboard_actives_nfs_last_connection": "Dernière connexion",
+  "netapp_volumes_dashboard_actives_nfs_last_connection": "Dernière requête",
   "netapp_volumes_dashboard_actives_nfs_description": "La liste des clients NFS connectés récemment."
 }
