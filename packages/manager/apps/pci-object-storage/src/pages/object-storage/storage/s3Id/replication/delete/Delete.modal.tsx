@@ -61,7 +61,7 @@ const DeleteReplication = () => {
     });
   };
 
-  if (!existingRule) return navigate('./');
+  if (!existingRule) navigate('./');
 
   return (
     <RouteModal isLoading={s3Query.isLoading}>

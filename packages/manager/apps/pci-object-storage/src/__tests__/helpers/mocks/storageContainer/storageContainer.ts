@@ -1,4 +1,5 @@
 import cloud from '@/types/Cloud';
+import { mockedReplicationRule } from './replication';
 
 export const mockedStorageContainer: cloud.StorageContainer = {
   createdAt: '2024-08-04',
@@ -17,5 +18,15 @@ export const mockedStorageContainer: cloud.StorageContainer = {
   },
   encryption: {
     sseAlgorithm: cloud.storage.EncryptionAlgorithmEnum.plaintext,
+  },
+};
+
+export const mockedS3WithReplication: cloud.StorageContainer = {
+  ...mockedStorageContainer,
+  versioning: {
+    status: cloud.storage.VersioningStatusEnum.enabled,
+  },
+  replication: {
+    rules: [mockedReplicationRule],
   },
 };
