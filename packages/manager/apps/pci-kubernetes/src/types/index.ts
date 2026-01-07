@@ -278,3 +278,8 @@ export enum ResourceStatus {
 }
 
 export * from './region';
+
+export type TNormalizedEntity<ID, Entity> = {
+  byId: Map<ID, Entity>;
+  allIds: ID[];
+};

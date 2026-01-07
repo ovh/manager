@@ -36,6 +36,7 @@ export default mergeConfig(
       dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
+        '@public': path.resolve(__dirname, 'public'),
       },
     },
   }),

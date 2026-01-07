@@ -15,6 +15,7 @@ export const useCreateClusterForm = () => {
     resolver: createClusterResolver,
     defaultValues: {
       name: defaultName,
+      deploymentMode: 'region-3-az',
     },
   });
 };

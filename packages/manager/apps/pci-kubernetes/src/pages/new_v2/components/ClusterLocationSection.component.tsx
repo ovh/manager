@@ -7,6 +7,15 @@ import { Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/o
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
 
+import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
+
+/* 
+  TODO : 
+    - Default value 3AZ (1AZ for US)
+    - Hide mode selector for US
+    - Badges 1-AZ/3-AZ en haut des cards si Sam veut les garder
+*/
+
 export const ClusterLocationSection: FC = () => {
   const { t } = useTranslation('add');
 
@@ -29,6 +38,7 @@ export const ClusterLocationSection: FC = () => {
           </Link>
         </MessageBody>
       </Message>
+      <DeploymentModeSelect />
     </>
   );
 };
