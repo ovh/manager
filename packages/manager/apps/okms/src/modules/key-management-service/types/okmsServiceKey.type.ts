@@ -1,7 +1,6 @@
-import { ColumnSort, IamObject } from '@ovh-ux/manager-react-components';
+import { IamObject } from '@ovh-ux/manager-react-components';
 
 export type OkmsServiceKeyOptions = {
-  sorting: ColumnSort;
   okmsId: string;
 };
 
