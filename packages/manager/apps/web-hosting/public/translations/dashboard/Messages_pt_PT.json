@@ -1,6 +1,6 @@
 {
   "hosting_tab_GENERAL_INFORMATIONS": "Informações gerais",
-  "hosting_tab_MULTISITE": "Meus sites",
+  "hosting_tab_MULTISITE": "Multisite",
   "hosting_tab_SSL": "Certificados SSL",
   "hosting_tab_MODULE": "Módulos \"1 clique\"",
   "hosting_tab_USER_LOGS": "Estatísticas e logs",
@@ -215,5 +215,6 @@
   "deploy_git": "Implantar GIT",
   "deploy_git_description": "Você está prestes a implantar ou atualizar manualmente o conteúdo do seu repositório remoto em sua hospedagem.",
   "deploy_git_overwrite_local_changes": "Em caso de conflito de modificação, forçar as modificações remotas em seu repositório local.",
-  "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Criar um subdomínio"
+  "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Criar um subdomínio",
+  "hosting_tab_WEBSITE": "Meus sites"
 }
