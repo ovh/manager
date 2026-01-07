@@ -32,14 +32,13 @@ const VersionListPage = () => {
   const { secret } = useOutletContext<SecretPageOutletContext>();
   const hasVersions = secret?.metadata?.currentVersion !== undefined;
 
-  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
-    useSecretVersionList({
-      okmsId,
-      path: decodeSecretPath(secretPath),
-      // If the secret has no versions, don't fetch them to avoid a 500 error
-      // TODO: Remove this once the API is fixed
-      enabled: hasVersions,
-    });
+  const { data, error, hasNextPage, fetchNextPage, isPending, refetch } = useSecretVersionList({
+    okmsId,
+    path: decodeSecretPath(secretPath),
+    // If the secret has no versions, don't fetch them to avoid a 500 error
+    // TODO: Remove this once the API is fixed
+    enabled: hasVersions,
+  });
 
   const versions = data?.pages.flatMap((page) => page.data);
 
@@ -95,8 +94,6 @@ const VersionListPage = () => {
         isLoading={isPending}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
-        sorting={sorting}
-        onSortChange={setSorting}
         contentAlignLeft
         topbar={<AddVersionButton okmsId={okmsId} secret={secret} />}
       />

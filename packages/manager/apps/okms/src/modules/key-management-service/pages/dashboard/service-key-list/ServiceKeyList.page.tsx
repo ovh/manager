@@ -23,12 +23,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
-import {
-  Datagrid,
-  ErrorBanner,
-  ManagerButton,
-  useDatagridSearchParams,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, ErrorBanner, ManagerButton } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
@@ -45,16 +40,8 @@ export default function Keys() {
   const navigate = useNavigate();
   const { trackClick } = useOkmsTracking();
 
-  const { sorting, setSorting } = useDatagridSearchParams();
   const { okmsId } = useRequiredParams('okmsId');
-  const {
-    error,
-    data: okmsServiceKey,
-    isLoading,
-  } = useOkmsServiceKeys({
-    sorting,
-    okmsId,
-  });
+  const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({ okmsId });
   const { okms } = useOutletContext<KmsDashboardOutletContext>();
 
   if (isLoading) return <Loading />;
@@ -135,14 +122,7 @@ export default function Keys() {
         iamActions={[kmsIamActions.serviceKeyCreate]}
         label={t('key_management_service_service-keys_cta_create')}
       />
-      <Datagrid
-        columns={columns}
-        items={okmsServiceKey || []}
-        totalItems={0}
-        sorting={sorting}
-        onSortChange={setSorting}
-        contentAlignLeft
-      />
+      <Datagrid columns={columns} items={okmsServiceKey || []} totalItems={0} contentAlignLeft />
       <Outlet />
     </div>
   );
