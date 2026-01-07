@@ -1,14 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { Plus, X } from 'lucide-react';
 import { Button, Input } from '@datatr-ux/uxlib';
-import { TagMap, TagValidationErrors } from '../../../../../../../types/Tag';
+import { Tag } from '@/types/Tag';
 
 type TagInputProps = {
-  tags: TagMap;
-  setTags: (tags: TagMap) => void;
+  tags: Tag[];
+  setTags: (tags: Tag[]) => void;
   isPending: boolean;
   disabled?: boolean;
-  validationErrors?: TagValidationErrors;
 };
 
 export const TagInput = ({
@@ -16,29 +15,25 @@ export const TagInput = ({
   setTags,
   isPending,
   disabled = false,
-  validationErrors = {},
 }: TagInputProps) => {
   const { t } = useTranslation('pci-object-storage/storages/s3/replication');
 
-  const removeTag = (id: number) => {
-    const nextTags = { ...tags };
-    delete nextTags[id];
-    setTags(nextTags);
+  const removeTag = (index: number) => {
+    setTags(tags.filter((_, i) => i !== index));
   };
 
-  const updateTag = (id: number, field: 'key' | 'value', value: string) => {
-    setTags({
-      ...tags,
-      [id]: { ...tags[id], [field]: value },
-    });
+  const updateTag = (
+    index: number,
+    field: 'key' | 'value',
+    newValue: string,
+  ) => {
+    setTags(
+      tags.map((tag, i) => (i === index ? { ...tag, [field]: newValue } : tag)),
+    );
   };
 
   const addNewTag = () => {
-    const nextId = Math.max(0, ...Object.keys(tags).map(Number)) + 1;
-    setTags({
-      ...tags,
-      [nextId]: { key: '', value: '' },
-    });
+    setTags([...tags, { key: '', value: '' }]);
   };
 
   const isDisabled = isPending || disabled;
@@ -52,39 +47,23 @@ export const TagInput = ({
       </div>
 
       <div className="space-y-2">
-        {Object.entries(tags).map(([id, tag]) => (
-          <div key={id} className="flex gap-2 items-start">
+        {tags.map((tag, index) => (
+          <div key={index} className="flex gap-2 items-start">
             <div className="flex-1">
               <Input
                 placeholder={t('tagKeyPlaceholder')}
                 value={tag.key}
-                onChange={(e) => updateTag(Number(id), 'key', e.target.value)}
+                onChange={(e) => updateTag(index, 'key', e.target.value)}
                 disabled={isDisabled}
-                className={
-                  validationErrors[Number(id)]?.key ? 'border-red-500' : ''
-                }
               />
-              {validationErrors[Number(id)]?.key && (
-                <p className="text-xs text-red-500 mt-1">
-                  {validationErrors[Number(id)].key}
-                </p>
-              )}
             </div>
             <div className="flex-1">
               <Input
                 placeholder={t('tagValuePlaceholder')}
                 value={tag.value}
-                onChange={(e) => updateTag(Number(id), 'value', e.target.value)}
+                onChange={(e) => updateTag(index, 'value', e.target.value)}
                 disabled={isDisabled}
-                className={
-                  validationErrors[Number(id)]?.value ? 'border-red-500' : ''
-                }
               />
-              {validationErrors[Number(id)]?.value && (
-                <p className="text-xs text-red-500 mt-1">
-                  {validationErrors[Number(id)].value}
-                </p>
-              )}
             </div>
             <Button
               type="button"
@@ -92,7 +71,7 @@ export const TagInput = ({
               variant="critical"
               size="menu"
               className="mt-1"
-              onClick={() => removeTag(Number(id))}
+              onClick={() => removeTag(index)}
               disabled={isDisabled}
             >
               <X className="h-4 w-4" />
