@@ -21,7 +21,7 @@ const Encryption = () => {
       : 'enable';
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" data-testid="encryption-container">
       <div className="flex flex-row justify-between">
         <Badge
           className="h-6"
@@ -35,6 +35,7 @@ const Encryption = () => {
         </Badge>
         {s3.encryption.sseAlgorithm === EncryptionAlgorithmEnum.plaintext && (
           <Button
+            data-testid="activate-encryption-button"
             className="h-6"
             mode="outline"
             size="sm"

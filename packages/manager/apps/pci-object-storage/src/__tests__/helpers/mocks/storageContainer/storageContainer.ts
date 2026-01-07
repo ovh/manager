@@ -9,4 +9,13 @@ export const mockedStorageContainer: cloud.StorageContainer = {
   ownerId: 3,
   region: 'BHS',
   virtualHost: 'virtualHost',
+  versioning: {
+    status: cloud.storage.VersioningStatusEnum.disabled,
+  },
+  objectLock: {
+    status: cloud.storage.ObjectLockStatusEnum.disabled,
+  },
+  encryption: {
+    sseAlgorithm: cloud.storage.EncryptionAlgorithmEnum.plaintext,
+  },
 };

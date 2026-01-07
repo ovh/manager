@@ -32,7 +32,11 @@ const ObjectLock = () => {
           {t(`${prefix}Label`)}
         </Badge>
         {isObjectLockEnabled && (
-          <Link to={'./object-lock-options'} className="flex items-center">
+          <Link
+            to={'./object-lock-options'}
+            className="flex items-center"
+            data-testid="object-lock-link"
+          >
             {t('objectLockOptionsButton')}
             <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
