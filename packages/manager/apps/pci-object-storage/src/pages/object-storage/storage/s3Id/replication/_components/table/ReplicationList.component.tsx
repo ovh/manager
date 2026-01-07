@@ -40,7 +40,7 @@ export default function ReplicationList({
   return (
     <DataTable.Provider columns={columns} data={replicationRules} pageSize={25}>
       {availableDestinations.length === 0 && !isLoading && (
-        <Alert variant="warning">
+        <Alert variant="warning" data-testid="no-available-destinations-alert">
           <AlertDescription className="flex gap-2 items-center">
             <AlertTriangle className="size-4" />
             {t('noAvailableDestinationContainersAlert')}
@@ -48,7 +48,10 @@ export default function ReplicationList({
         </Alert>
       )}
       {!isVersioningEnabled && (
-        <Alert variant="warning">
+        <Alert
+          variant="warning"
+          data-testid="replication-requires-versioning-alert"
+        >
           <AlertDescription className="flex gap-2 items-center">
             <AlertTriangle className="size-4" />
             {t('replicationRequiresVersioningAlert')}

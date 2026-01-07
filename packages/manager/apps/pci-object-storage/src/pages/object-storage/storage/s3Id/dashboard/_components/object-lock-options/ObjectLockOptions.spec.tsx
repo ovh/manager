@@ -10,9 +10,8 @@ import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
 import storages from '@/types/Storages';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import ObjectLockOptions from './ObjectLockOptions.sheet';
-import { Locale } from '@/hooks/useLocale';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import cloud from '@/types/Cloud';
 import * as s3Api from '@/data/api/storage/s3Storage.api';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
@@ -54,26 +53,7 @@ vi.mock('@/data/api/storage/s3Storage.api', () => ({
 describe('ObjectLockOptions Sheet', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
+    mockManagerReactShellClient();
   });
 
   afterEach(() => {
