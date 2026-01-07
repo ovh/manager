@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.12...@ovh-ux/manager-account-app@0.6.13) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
 ## [0.6.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.11...@ovh-ux/manager-account-app@0.6.12) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-app

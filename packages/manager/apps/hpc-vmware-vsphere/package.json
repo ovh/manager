@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-vsphere-app",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "description": "Managed VMware vsphere services",
   "repository": {
