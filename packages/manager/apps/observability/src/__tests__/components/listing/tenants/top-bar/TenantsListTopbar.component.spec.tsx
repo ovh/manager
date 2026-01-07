@@ -147,7 +147,7 @@ describe('TenantsListTopbar', () => {
 
       // Assert
       expect(mockNavigate).toHaveBeenCalledTimes(1);
-      expect(mockNavigate).toHaveBeenCalledWith('/metrics/tenants/creation');
+      expect(mockNavigate).toHaveBeenCalledWith('/metrics/tenants/test-service/creation');
     });
 
     it('should handle multiple clicks', () => {
@@ -163,7 +163,7 @@ describe('TenantsListTopbar', () => {
 
       // Assert
       expect(mockNavigate).toHaveBeenCalledTimes(3);
-      expect(mockNavigate).toHaveBeenCalledWith('/metrics/tenants/creation');
+      expect(mockNavigate).toHaveBeenCalledWith('/metrics/tenants/test-service/creation');
     });
   });
 

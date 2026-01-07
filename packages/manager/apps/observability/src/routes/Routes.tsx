@@ -85,7 +85,7 @@ export default (
             }}
           >
             <Route
-              path={`${subroutes.delete}`}
+              path={subroutes.deleteTenant}
               Component={DeleteTenantModal}
               handle={{
                 tracking: {
@@ -108,64 +108,69 @@ export default (
             }}
           />
         </Route>
+
         {/* Tenant layout */}
         <Route path={subroutes.tenants} Component={TenantLayout}>
-          <Route
-            path={subroutes.creation}
-            Component={TenantsCreationPage}
-            handle={{
-              titleKey: 'creation.title',
-              tracking: {
-                pageName: 'tenants-creation',
-              },
-            }}
-          />
-          <Route
-            path={`${subroutes.edit}`}
-            Component={EditTenantPage}
-            handle={{
-              titleKey: 'edition.title',
-              tracking: {
-                pageName: 'tenant-edit',
-              },
-            }}
-          />
-          <Route
-            path={subroutes.dashboard}
-            Component={TenantDashboardPage}
-            handle={{
-              tracking: {
-                pageName: 'tenant-dashboard',
-              },
-            }}
-          >
+          <Route path={subroutes.resource}>
+            {/* no dedicated page (only a dropdown) → redirect to tenants */}
+            <Route index element={<Navigate to={urls.tenants} replace />} />
             <Route
-              path=""
-              Component={TenantGeneralInformationPage}
+              path={subroutes.creation}
+              Component={TenantsCreationPage}
               handle={{
+                titleKey: 'creation.title',
                 tracking: {
-                  pageName: 'tenant-general-information-tab',
+                  pageName: 'tenants-creation',
                 },
               }}
             />
             <Route
-              path={subroutes.subscription}
-              Component={TenantSubscriptionPage}
+              path={subroutes.tenant}
+              Component={TenantDashboardPage}
               handle={{
                 tracking: {
-                  pageName: 'tenant-subscription-tab',
+                  pageName: 'tenant-dashboard',
                 },
               }}
-            />
-            <Route
-              path={subroutes.tags}
-              Component={TenantTagsPage}
-              handle={{
-                tracking: {
-                  pageName: 'tenant-tags-tab',
-                },
-              }}
-            />
+            >
+              <Route
+                path=""
+                Component={TenantGeneralInformationPage}
+                handle={{
+                  tracking: {
+                    pageName: 'tenant-general-information-tab',
+                  },
+                }}
+              />
+              <Route
+                path={subroutes.edit}
+                Component={EditTenantPage}
+                handle={{
+                  titleKey: 'edition.title',
+                  tracking: {
+                    pageName: 'tenant-edit',
+                  },
+                }}
+              />
+              <Route
+                path={subroutes.subscription}
+                Component={TenantSubscriptionPage}
+                handle={{
+                  tracking: {
+                    pageName: 'tenant-subscription-tab',
+                  },
+                }}
+              />
+              <Route
+                path={subroutes.tags}
+                Component={TenantTagsPage}
+                handle={{
+                  tracking: {
+                    pageName: 'tenant-tags-tab',
+                  },
+                }}
+              />
+            </Route>
           </Route>
         </Route>
       </Route>
