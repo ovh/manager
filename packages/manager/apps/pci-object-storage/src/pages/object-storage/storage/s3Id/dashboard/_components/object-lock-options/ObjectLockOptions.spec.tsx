@@ -44,7 +44,6 @@ const mockedStorageContainerBis: cloud.StorageContainer = {
   ...mockedStorageContainer,
   objectLock: {
     status: storages.ObjectLockStatusEnum.disabled,
-    // rule: { mode: storages.ObjectLockModeEnum.compliance, period: 'P1Y' },
   },
 };
 vi.mock('@/data/api/storage/s3Storage.api', () => ({
@@ -95,7 +94,7 @@ describe('ObjectLockOptions Sheet', () => {
     });
   });
 
-  it('Render sheet, enabled retention mode and throw api error on Error', async () => {
+  it('Render sheet, enabled retention mode and throw api error', async () => {
     vi.mocked(s3Api.updateS3Storage).mockImplementation(() => {
       throw mockedObjStoError;
     });
