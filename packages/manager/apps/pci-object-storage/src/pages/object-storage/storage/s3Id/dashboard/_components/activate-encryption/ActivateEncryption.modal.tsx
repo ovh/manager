@@ -62,7 +62,7 @@ const ActivateEncryption = () => {
     <RouteModal isLoading={!s3Query.data?.name}>
       <DialogContent variant="information">
         <DialogHeader>
-          <DialogTitle data-testid="s3-policy-modal">
+          <DialogTitle data-testid="activate-encryption-modal">
             {t('activateEncryptionTitle')}
           </DialogTitle>
         </DialogHeader>
@@ -91,7 +91,12 @@ const ActivateEncryption = () => {
               {t('cancelButton')}
             </Button>
           </DialogClose>
-          <Button type="button" onClick={onSubmit} disabled={isPending}>
+          <Button
+            type="button"
+            onClick={onSubmit}
+            disabled={isPending}
+            data-testid="activate-encryption-confirm-button"
+          >
             {t('confirmButton')}
           </Button>
         </DialogFooter>
