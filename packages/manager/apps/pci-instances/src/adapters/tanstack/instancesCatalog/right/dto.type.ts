@@ -1,7 +1,7 @@
 export type TRegionDeploymentModeDTO = 'region' | 'localzone' | 'region-3-az';
 type TOsTypeDTO = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
 
-type TImageCategoryDTO = 'apps' | 'linux' | 'snapshot' | 'unknown' | 'windows';
+type TImageCategoryDTO = 'apps' | 'linux' | 'windows' | 'unknown' | 'snapshot';
 type TImageOsType = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
 
 export type TDeploymentModeDTO = {

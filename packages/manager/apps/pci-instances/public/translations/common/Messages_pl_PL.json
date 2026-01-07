@@ -34,5 +34,6 @@
   "pci_instances_common_apps_image_type": "Dystrybucje + aplikacje",
   "pci_instances_common_windows_image_type": "Dystrybucje Windows",
   "pci_instances_common_recommanded": "Rekomendujemy",
-  "pci_instances_common_backup": "Kopia zapasowa"
+  "pci_instances_common_backup": "Kopia zapasowa",
+  "pci_instances_common_unavailable": "Niedostępny"
 }

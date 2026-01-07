@@ -1,15 +1,11 @@
 import { useCallback, useEffect } from 'react';
 import {
-  Badge,
   FormField,
   FormFieldLabel,
   Select,
-  SelectContent,
   SelectControl,
-  SelectCustomOptionRendererArg,
   SelectOptionItem,
   SelectValueChangeDetail,
-  Text,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
@@ -23,6 +19,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import { DistributionImageOption } from './DistributionImageOption.component';
 
 type TDistributionVersionList = {
   versions: SelectOptionItem<TCustomData>[];
@@ -96,27 +93,7 @@ const DistributionVersionList = ({ versions }: TDistributionVersionList) => {
             onValueChange={handleSelectVersion}
           >
             <SelectControl />
-            <SelectContent
-              className="[&>div>span:first-child]:w-full"
-              customOptionRenderer={({
-                label,
-                customData,
-              }: SelectCustomOptionRendererArg) => (
-                <div className="flex w-full items-center justify-between py-4">
-                  <Text>{label}</Text>
-                  {!(customData as TCustomData).available && (
-                    <Badge
-                      className="bg-[--ods-color-neutral-500] text-xs text-[--ods-color-element-text-selected]"
-                      color="neutral"
-                    >
-                      {t(
-                        'creation:pci_instance_creation_select_image_distribution_version_unavailable',
-                      )}
-                    </Badge>
-                  )}
-                </div>
-              )}
-            />
+            <DistributionImageOption badgeKey="creation:pci_instance_creation_select_image_distribution_version_unavailable" />
           </Select>
         </FormField>
       )}

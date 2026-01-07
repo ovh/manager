@@ -10,6 +10,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { deps } from '@/deps/deps';
 import { selectImages } from '../view-models/imagesViewModel';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
+import { TImageTypeName } from '@/domain/entities/instancesCatalog';
 
 const DistributionImage: FC = () => {
   const projectId = useProjectId();
@@ -32,26 +33,27 @@ const DistributionImage: FC = () => {
 
   const { images: imageVariants, versions } = useMemo(
     () =>
-      selectImages(deps)(
+      /**
+       * TODO: remove this cast when image backups implementation will be done:
+       * we have 4 image type options in select: linux, apps, windows, backups
+       * but we will have 2 different selectors: 1 for the selected images type (linux, apps, windows)
+       * and another one for backups images.
+       *  */
+
+      selectImages(deps)({
         projectId,
-        distributionImageType,
+        selectedImageType: distributionImageType as TImageTypeName,
         microRegion,
-        flavorId,
-      ),
-    [distributionImageType, flavorId, microRegion, projectId],
-  );
-
-  const versionOptions = useMemo(
-    () =>
-      distributionImageVariantId
-        ? versions.get(distributionImageVariantId)
-        : [],
-    [distributionImageVariantId, versions],
-  );
-
-  const showVersions = useMemo(
-    () => !!versionOptions?.filter((version) => !version.disabled).length,
-    [versionOptions],
+        regionalizedFlavorId: flavorId,
+        distributionImageVariantId,
+      }),
+    [
+      distributionImageType,
+      flavorId,
+      microRegion,
+      projectId,
+      distributionImageVariantId,
+    ],
   );
 
   return (
@@ -64,10 +66,10 @@ const DistributionImage: FC = () => {
         <ImageHelper />
       </div>
       <DistributionImageType />
-      <DistributionImageVariants variants={imageVariants} />
-      {versionOptions && showVersions && (
-        <DistributionVersionList versions={versionOptions} />
+      {!!imageVariants.length && (
+        <DistributionImageVariants variants={imageVariants} />
       )}
+      {!!versions.length && <DistributionVersionList versions={versions} />}
     </section>
   );
 };

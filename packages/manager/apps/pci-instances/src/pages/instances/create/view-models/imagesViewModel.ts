@@ -1,34 +1,121 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 import { Deps } from '@/deps/deps';
 import {
+  TImageTypeName,
   TImage,
   TInstancesCatalog,
   TOsType,
   TRegionalizedFlavor,
   TRegionalizedFlavorOsType,
   TRegionalizedImage,
+  IMAGE_TYPES,
 } from '@/domain/entities/instancesCatalog';
 import { Reader } from '@/types/utils.type';
 import { SelectOptionItem } from '@ovhcloud/ods-react';
 
-export type TOption = { labelKey: string; value: string };
+export type TOption = { labelKey: string; value: string; disabled: boolean };
+export type TImageTypeOption = TOption & {
+  value: 'linux' | 'apps' | 'windows';
+};
 
-type TSelectImageTypesData = (projectId: string) => TOption[];
+type TSelectAvailableImageTypesData = (
+  projectId: string,
+  regionalizedFlavorId: string | null,
+  microRegion: string | null,
+) => TImageTypeOption[];
 
-type TSelectImageTypes = Reader<Deps, TSelectImageTypesData>;
+type TSelectAvailableImageTypes = Reader<Deps, TSelectAvailableImageTypesData>;
 
-export const selectImagesTypes: TSelectImageTypes = (deps) => (projectId) => {
+type TGetImageTypeAvailabilityArgs = {
+  entities: TInstancesCatalog['entities'];
+  regionalizedFlavorId: string;
+  microRegion: string;
+};
+
+const getImageTypeAvailability = ({
+  entities,
+  regionalizedFlavorId,
+  microRegion,
+}: TGetImageTypeAvailabilityArgs): Record<TImageTypeName, boolean> => {
+  const typeAvailability = {
+    linux: false,
+    apps: false,
+    windows: false,
+  };
+
+  IMAGE_TYPES.forEach((type) => {
+    const osForImageType: TImageTypeName =
+      type === 'windows' ? 'windows' : 'linux';
+
+    const isTypeAcceptedByFlavor = isSelectedImageTypeAcceptedByFlavor(
+      entities.regionalizedFlavors.byId,
+      regionalizedFlavorId,
+      osForImageType,
+    );
+
+    if (!isTypeAcceptedByFlavor) return;
+
+    const imageIds = entities.imageTypes.byId.get(type)?.imageIds ?? [];
+
+    typeAvailability[type] = imageIds.some((imageId) => {
+      const image = entities.images.byId.get(imageId);
+      if (!image) return false;
+
+      if (!entities.regionalizedImages.byId.has(`${image.id}_${microRegion}`)) {
+        return false;
+      }
+
+      return (
+        hasAvailableImageOsInSelectedFlavor(
+          entities.regionalizedFlavors.byId,
+          regionalizedFlavorId,
+          image.osType,
+        ) &&
+        hasImageOsTypeStockAvailable(
+          regionalizedFlavorId,
+          image.osType,
+          entities.regionalizedFlavorOsTypes.byId,
+        )
+      );
+    });
+  });
+
+  return typeAvailability;
+};
+
+export const selectAvailableImagesTypes: TSelectAvailableImageTypes = (
+  deps,
+) => (projectId, regionalizedFlavorId, microRegion) => {
   const { instancesCatalogPort } = deps;
   const entities = instancesCatalogPort.selectInstancesCatalog(projectId)
     ?.entities;
 
-  if (!entities) return [];
+  if (!entities || !regionalizedFlavorId) return [];
 
-  return entities.imageTypes.allIds.map((type) => ({
-    labelKey: `pci_instances_common_${type}_image_type`,
+  if (!microRegion) {
+    return entities.imageTypes.allIds.map((type) => ({
+      labelKey: `pci_instances_common_${type}_image_type`,
+      value: type,
+      disabled: true,
+    }));
+  }
 
-    value: type,
-  }));
+  const typeAvailability = getImageTypeAvailability({
+    entities,
+    regionalizedFlavorId,
+    microRegion,
+  });
+
+  return entities.imageTypes.allIds.map((type) => {
+    const disabled = !typeAvailability[type];
+
+    return {
+      labelKey: `pci_instances_common_${type}_image_type`,
+      value: type,
+      disabled,
+    };
+  });
 };
 
 export type TImageOsType = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
@@ -48,25 +135,28 @@ export type TAvailableOption = SelectOptionItem<TCustomData>;
 
 export type TSelectImagesOptions = {
   images: TImageOption[];
-  versions: Map<string, TAvailableOption[]>;
+  versions: TAvailableOption[];
   preselected: {
     preselectedFirstAvailableVariantId: string | null;
     preselectedFirstAvailableVersion: TAvailableOption | null;
   };
 };
 
-type TSelectImageData = (
-  projectId: string,
-  selectedImageType: string | null,
-  microRegion: string | null,
-  regionalizedFlavorId: string | null,
-) => TSelectImagesOptions;
+type TSelectImageDataArgs = {
+  projectId: string;
+  selectedImageType: TImageTypeName;
+  microRegion: string | null;
+  regionalizedFlavorId: string | null;
+  distributionImageVariantId: string | null;
+};
 
-type TselectImages = Reader<Deps, TSelectImageData>;
+type TSelectImageData = (args: TSelectImageDataArgs) => TSelectImagesOptions;
+
+type TSelectImages = Reader<Deps, TSelectImageData>;
 
 const emptyResult = {
   images: [],
-  versions: new Map<string, TAvailableOption[]>(),
+  versions: [],
   preselected: {
     preselectedFirstAvailableVariantId: null,
     preselectedFirstAvailableVersion: null,
@@ -76,8 +166,15 @@ const emptyResult = {
 const getOptions = (
   variantOptionsMap: Map<string, TImageOption>,
   imagesVersionsMap: Map<string, TAvailableOption[]>,
+  distributionImageVariantId: string | null,
 ) => {
   const variants = [...variantOptionsMap.values()];
+
+  const hasAtLeastOneAvailableVariant = variants.some(
+    (variant) => variant.available,
+  );
+
+  const variantsOptions = hasAtLeastOneAvailableVariant ? variants : [];
 
   const preselectedFirstAvailableVariantId =
     variants.find((variant) => variant.available)?.value ?? null;
@@ -88,9 +185,22 @@ const getOptions = (
         ?.find((version) => !version.disabled) ?? null
     : null;
 
+  const variant =
+    distributionImageVariantId ?? preselectedFirstAvailableVariantId;
+
+  const versions: TAvailableOption[] = variant
+    ? imagesVersionsMap.get(variant) ?? []
+    : [];
+
+  const hasAtLeastOneAvailableVersion = versions.some(
+    (version) => !version.disabled,
+  );
+
+  const versionsOptions = hasAtLeastOneAvailableVersion ? versions : [];
+
   return {
-    images: variants,
-    versions: imagesVersionsMap,
+    images: variantsOptions,
+    versions: versionsOptions,
     preselected: {
       preselectedFirstAvailableVariantId,
       preselectedFirstAvailableVersion,
@@ -136,6 +246,33 @@ const hasImageOsTypeStockAvailable = (
     regionalizedFlavorOsTypesById.get(regionalizedFlavorOsTypeId)?.hasStock ??
     false
   );
+};
+
+const getCorrespondingTypes = (
+  flavorAvailableOsTypes: TImageOsType[],
+): TImageTypeName[] =>
+  flavorAvailableOsTypes.map((flavorOsType) => {
+    switch (flavorOsType) {
+      case 'baremetal-linux':
+      case 'bsd':
+      case 'linux':
+        return 'linux';
+      case 'windows':
+        return 'windows';
+    }
+  });
+
+const isSelectedImageTypeAcceptedByFlavor = (
+  regionalizedFlavorsById: Map<string, TRegionalizedFlavor>,
+  regionalizedFlavorId: string,
+  imageType: TImageTypeName,
+) => {
+  const flavorAvailableOsTypes =
+    regionalizedFlavorsById.get(regionalizedFlavorId)?.osTypes ?? [];
+
+  const correspondingTypes = getCorrespondingTypes(flavorAvailableOsTypes);
+  const type = imageType === 'windows' ? 'windows' : 'linux';
+  return correspondingTypes.includes(type);
 };
 
 const hasAvailableImageOsInSelectedFlavor = (
@@ -256,18 +393,18 @@ const createWindowsImageVariant = (
   return acc;
 };
 
-export const selectImages: TselectImages = (deps) => (
+export const selectImages: TSelectImages = (deps) => ({
   projectId,
   selectedImageType,
   microRegion,
   regionalizedFlavorId,
-) => {
+  distributionImageVariantId,
+}) => {
   const { instancesCatalogPort } = deps;
   const entities = instancesCatalogPort.selectInstancesCatalog(projectId)
     ?.entities;
 
-  if (!entities || !selectedImageType || !microRegion || !regionalizedFlavorId)
-    return emptyResult;
+  if (!entities || !microRegion || !regionalizedFlavorId) return emptyResult;
 
   const imagesVersionIds =
     entities.imageTypes.byId.get(selectedImageType)?.imageIds ?? [];
@@ -326,5 +463,9 @@ export const selectImages: TselectImages = (deps) => (
     });
   }, new Map<string, TImageOption>());
 
-  return getOptions(variantOptionsMap, imagesVersionsMap);
+  return getOptions(
+    variantOptionsMap,
+    imagesVersionsMap,
+    distributionImageVariantId,
+  );
 };
