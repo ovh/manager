@@ -3,7 +3,7 @@ import {
   Commitment,
   Service,
 } from '@ovh-ux/manager-models';
-import { DEFAULT_DURATION, DEFAULT_TYPE } from './constants';
+import { DEFAULT_DURATION, DEFAULT_TYPE, SERVICE_TYPE } from './constants';
 
 export default class BillingService {
   /* @ngInject */
@@ -123,6 +123,11 @@ export default class BillingService {
   }
 
   shouldSkipConfirmation(service) {
-    return this.coreConfig.isRegion('US') || service.domain.startsWith('byoip');
+    const isDomain = service.serviceType === SERVICE_TYPE.DOMAIN;
+    return (
+      this.coreConfig.isRegion('US') ||
+      service.domain.startsWith('byoip') ||
+      isDomain
+    );
   }
 }
