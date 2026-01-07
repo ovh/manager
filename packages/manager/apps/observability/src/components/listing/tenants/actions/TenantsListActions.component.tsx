@@ -14,11 +14,10 @@ import {
   POPOVER_POSITION,
 } from '@ovh-ux/muk';
 
-import { getDeleteTenantUrl, getEditTenantUrl } from '@/routes/Routes.utils';
+import { LocationPathParams } from '@/routes/Routes.constants';
+import { getDeleteTenantUrl, getEditTenantUrl, getTenantDashboardUrl } from '@/routes/Routes.utils';
 
-import { TenantsListActionsProps } from './TenantsListActions.props';
-
-export default function TenantsListActions({ tenantId }: TenantsListActionsProps) {
+export default function TenantsListActions(params: LocationPathParams) {
   const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
@@ -28,14 +27,14 @@ export default function TenantsListActions({ tenantId }: TenantsListActionsProps
       id: 1,
       label: t('tenants:listing.details_action'),
       onClick: () => {
-        navigate(tenantId);
+        navigate(getTenantDashboardUrl(params));
       },
     },
     {
       id: 2,
       label: t(`${NAMESPACES.ACTIONS}:modify`),
       onClick: () => {
-        navigate(getEditTenantUrl(tenantId));
+        navigate(getEditTenantUrl(params));
       },
     },
     {
@@ -55,7 +54,7 @@ export default function TenantsListActions({ tenantId }: TenantsListActionsProps
       label: t(`${NAMESPACES.ACTIONS}:delete`),
       color: BUTTON_COLOR.critical,
       onClick: () => {
-        navigate(getDeleteTenantUrl(tenantId));
+        navigate(getDeleteTenantUrl(params));
       },
     },
   ];
@@ -68,7 +67,7 @@ export default function TenantsListActions({ tenantId }: TenantsListActionsProps
         variant={BUTTON_VARIANT.ghost}
         icon={ICON_NAME.ellipsisVertical}
         popoverPosition={POPOVER_POSITION.bottomEnd}
-        id={`actions-${tenantId}`}
+        id={`actions-${params.tenantId}`}
       />
     </div>
   );
