@@ -1,4 +1,4 @@
-import { PACK_XDSL } from './pack-xdsl.constant';
+import { PACK_XDSL, FEATURES } from './pack-xdsl.constant';
 
 export default class PackXdslCtrl {
   /* @ngInject */
@@ -33,6 +33,7 @@ export default class PackXdslCtrl {
   $onInit() {
     this.animTime = 1500;
     this.noModemStatus = 404;
+    this.isLogsAvailable = this.features.isFeatureAvailable(FEATURES.LOGS);
 
     this.loading = {
       init: false,
@@ -104,7 +105,8 @@ export default class PackXdslCtrl {
       if (
         state.name === 'telecom.packs.pack.xdsl.line' ||
         state.name === 'telecom.packs.pack.xdsl.line.modem' ||
-        state.name === 'telecom.packs.pack.xdsl.line.tasks'
+        state.name === 'telecom.packs.pack.xdsl.line.tasks' ||
+        state.name === 'telecom.packs.pack.xdsl.line.logs'
       ) {
         this.setAnim('anim');
         return;
@@ -133,6 +135,7 @@ export default class PackXdslCtrl {
           this.content.accessType = xdsl.accessType;
         });
         break;
+      case 'telecom.packs.pack.xdsl.line.logs':
       case 'telecom.packs.pack.xdsl.line.modem':
       case 'telecom.packs.pack.xdsl.line.tasks':
       case 'telecom.packs.pack.xdsl.line':

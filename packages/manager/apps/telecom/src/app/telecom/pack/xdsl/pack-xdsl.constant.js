@@ -3,6 +3,12 @@ export const PACK_XDSL = {
   sdsl: 'sdsl',
 };
 
+const APP = 'telecom';
+export const FEATURES = {
+  APP,
+  LOGS: `${APP}:logs`,
+};
+
 export default {
   PACK_XDSL,
 };
