@@ -77,11 +77,19 @@ vi.mock('@ovh-ux/muk', () => ({
 }));
 
 vi.mock('@/routes/Routes.utils', () => ({
-  getDeleteTenantUrl: (tenantId: string) => `/metrics/tenants/delete/${tenantId}`,
+  getDeleteTenantUrl: (params: { tenantId: string; resourceName: string }) =>
+    `/metrics/tenants/delete/${params.tenantId}`,
+  getEditTenantUrl: (params: { tenantId: string; resourceName: string }) =>
+    `/metrics/tenants/${params.resourceName}/${params.tenantId}/edit`,
+  getTenantDashboardUrl: (params: { tenantId: string; resourceName: string }) =>
+    `/metrics/tenants/${params.resourceName}/${params.tenantId}`,
 }));
 
 describe('TenantsListActions', () => {
-  const testTenantId: string = 'test-tenant-123';
+  const testParams = {
+    tenantId: 'test-tenant-123',
+    resourceName: 'test-resource',
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -89,7 +97,7 @@ describe('TenantsListActions', () => {
 
   describe('Rendering', () => {
     it('should render action menu with correct props', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const actionMenu = screen.getByTestId('action-menu');
       expect(actionMenu).toBeInTheDocument();
@@ -97,11 +105,11 @@ describe('TenantsListActions', () => {
       expect(actionMenu).toHaveAttribute('data-variant', 'ghost');
       expect(actionMenu).toHaveAttribute('data-icon', 'ellipsis-vertical');
       expect(actionMenu).toHaveAttribute('data-position', 'bottom-end');
-      expect(actionMenu).toHaveAttribute('data-id', `actions-${testTenantId}`);
+      expect(actionMenu).toHaveAttribute('data-id', `actions-${testParams.tenantId}`);
     });
 
     it('should render all action items', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       expect(screen.getByTestId('action-item-1')).toBeInTheDocument();
       expect(screen.getByTestId('action-item-2')).toBeInTheDocument();
@@ -112,7 +120,7 @@ describe('TenantsListActions', () => {
     });
 
     it('should render action labels correctly', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       expect(screen.getByText(`tenants:listing.details_action`)).toBeInTheDocument();
       expect(
@@ -127,7 +135,7 @@ describe('TenantsListActions', () => {
     });
 
     it('should have correct container styling', () => {
-      const { container } = render(<TenantsListActions tenantId={testTenantId} />);
+      const { container } = render(<TenantsListActions {...testParams} />);
 
       const containerDiv = container.querySelector('.flex.justify-end');
       expect(containerDiv).toBeInTheDocument();
@@ -136,29 +144,36 @@ describe('TenantsListActions', () => {
 
   describe('Navigation Actions', () => {
     it('should navigate to tenant details when details action is clicked', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const detailsButton = screen.getByTestId('action-item-1');
       fireEvent.click(detailsButton);
 
       expect(mockNavigate).toHaveBeenCalledTimes(1);
-      expect(mockNavigate).toHaveBeenCalledWith(testTenantId);
+      expect(mockNavigate).toHaveBeenCalledWith(
+        `/metrics/tenants/${testParams.resourceName}/${testParams.tenantId}`,
+      );
     });
 
     it('should navigate with different tenant IDs', () => {
-      const differentTenantId = 'different-tenant-456';
-      render(<TenantsListActions tenantId={differentTenantId} />);
+      const differentParams = {
+        tenantId: 'different-tenant-456',
+        resourceName: 'different-resource',
+      };
+      render(<TenantsListActions {...differentParams} />);
 
       const detailsButton = screen.getByTestId('action-item-1');
       fireEvent.click(detailsButton);
 
-      expect(mockNavigate).toHaveBeenCalledWith(differentTenantId);
+      expect(mockNavigate).toHaveBeenCalledWith(
+        `/metrics/tenants/${differentParams.resourceName}/${differentParams.tenantId}`,
+      );
     });
   });
 
   describe('Action Items Configuration', () => {
     it('should have correct action item IDs', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       expect(screen.getByTestId('action-item-1')).toBeInTheDocument();
       expect(screen.getByTestId('action-item-2')).toBeInTheDocument();
@@ -169,14 +184,14 @@ describe('TenantsListActions', () => {
     });
 
     it('should have delete action with critical color', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const deleteButton = screen.getByTestId('action-item-6');
       expect(deleteButton).toHaveAttribute('data-color', 'critical');
     });
 
     it('should not have color attribute for non-critical actions', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const detailsButton = screen.getByTestId('action-item-1');
       const editButton = screen.getByTestId('action-item-2');
@@ -190,7 +205,7 @@ describe('TenantsListActions', () => {
 
   describe('Non-Navigation Actions', () => {
     it('should render edit action without onClick handler', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const editButton = screen.getByTestId('action-item-2');
       expect(editButton).toBeInTheDocument();
@@ -198,7 +213,7 @@ describe('TenantsListActions', () => {
     });
 
     it('should render grafana action without onClick handler', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const grafanaButton = screen.getByTestId('action-item-3');
       expect(grafanaButton).toBeInTheDocument();
@@ -206,7 +221,7 @@ describe('TenantsListActions', () => {
     });
 
     it('should render copy UID action without onClick handler', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const copyButton = screen.getByTestId('action-item-4');
       expect(copyButton).toBeInTheDocument();
@@ -214,7 +229,7 @@ describe('TenantsListActions', () => {
     });
 
     it('should render generate token action without onClick handler', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const tokenButton = screen.getByTestId('action-item-5');
       expect(tokenButton).toBeInTheDocument();
@@ -222,7 +237,7 @@ describe('TenantsListActions', () => {
     });
 
     it('should render delete action without onClick handler', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const deleteButton = screen.getByTestId('action-item-6');
       expect(deleteButton).toBeInTheDocument();
@@ -232,7 +247,7 @@ describe('TenantsListActions', () => {
 
   describe('Edge Cases', () => {
     it('should handle empty tenant ID', () => {
-      render(<TenantsListActions tenantId="" />);
+      render(<TenantsListActions tenantId="" resourceName="" />);
 
       const actionMenu = screen.getByTestId('action-menu');
       expect(actionMenu).toHaveAttribute('data-id', 'actions-');
@@ -240,7 +255,7 @@ describe('TenantsListActions', () => {
 
     it('should handle special characters in tenant ID', () => {
       const specialTenantId = 'tenant-with-special-chars-123!@#';
-      render(<TenantsListActions tenantId={specialTenantId} />);
+      render(<TenantsListActions tenantId={specialTenantId} resourceName="resource" />);
 
       const actionMenu = screen.getByTestId('action-menu');
       expect(actionMenu).toHaveAttribute('data-id', `actions-${specialTenantId}`);
@@ -248,7 +263,7 @@ describe('TenantsListActions', () => {
 
     it('should handle very long tenant ID', () => {
       const longTenantId = 'a'.repeat(100);
-      render(<TenantsListActions tenantId={longTenantId} />);
+      render(<TenantsListActions tenantId={longTenantId} resourceName="resource" />);
 
       const actionMenu = screen.getByTestId('action-menu');
       expect(actionMenu).toHaveAttribute('data-id', `actions-${longTenantId}`);
@@ -257,7 +272,7 @@ describe('TenantsListActions', () => {
 
   describe('Component Structure', () => {
     it('should have correct DOM structure', () => {
-      const { container } = render(<TenantsListActions tenantId={testTenantId} />);
+      const { container } = render(<TenantsListActions {...testParams} />);
 
       const flexContainer = container.querySelector('.flex.justify-end');
       const actionMenu = flexContainer?.querySelector('[data-testid="action-menu"]');
@@ -267,7 +282,7 @@ describe('TenantsListActions', () => {
     });
 
     it('should render all action items in correct order', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const actionItems = screen.getAllByTestId(/action-item-/);
       expect(actionItems).toHaveLength(6);
@@ -287,7 +302,7 @@ describe('TenantsListActions', () => {
 
   describe('Accessibility', () => {
     it('should render action items as buttons', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const actionItems = screen.getAllByTestId(/action-item-/);
       actionItems.forEach((item) => {
@@ -296,7 +311,7 @@ describe('TenantsListActions', () => {
     });
 
     it('should have proper button semantics', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const actionItems = screen.getAllByTestId(/action-item-/);
       actionItems.forEach((item) => {
@@ -307,19 +322,19 @@ describe('TenantsListActions', () => {
 
   describe('Performance', () => {
     it('should not re-render unnecessarily with same tenant ID', () => {
-      const { rerender } = render(<TenantsListActions tenantId={testTenantId} />);
+      const { rerender } = render(<TenantsListActions {...testParams} />);
 
       const initialActionMenu = screen.getByTestId('action-menu');
 
       // Re-render with same props
-      rerender(<TenantsListActions tenantId={testTenantId} />);
+      rerender(<TenantsListActions {...testParams} />);
 
       const rerenderedActionMenu = screen.getByTestId('action-menu');
       expect(rerenderedActionMenu).toBe(initialActionMenu);
     });
 
     it('should handle multiple clicks on navigation action', () => {
-      render(<TenantsListActions tenantId={testTenantId} />);
+      render(<TenantsListActions {...testParams} />);
 
       const detailsButton = screen.getByTestId('action-item-1');
 
@@ -329,7 +344,9 @@ describe('TenantsListActions', () => {
       fireEvent.click(detailsButton);
 
       expect(mockNavigate).toHaveBeenCalledTimes(3);
-      expect(mockNavigate).toHaveBeenCalledWith(testTenantId);
+      expect(mockNavigate).toHaveBeenCalledWith(
+        `/metrics/tenants/${testParams.resourceName}/${testParams.tenantId}`,
+      );
     });
   });
 });
