@@ -20,6 +20,7 @@ export const GeneralInformationTile = ({
   updatedAt,
   isLoading,
   resourceStatus,
+  resourceName,
 }: GeneralInformationTileProps) => {
   const { t } = useTranslation('tenants');
 
@@ -28,7 +29,7 @@ export const GeneralInformationTile = ({
   const formatDate = useFormatDate();
 
   const onClickEditTenantLink = () => {
-    navigate(getEditTenantUrl(tenantId));
+    navigate(getEditTenantUrl({ tenantId, resourceName }));
   };
 
   return (
