@@ -110,13 +110,14 @@ const AddConfigurationPage = () => {
           className="w-full"
         >
           <RhfField.Label>{t('select_os')}</RhfField.Label>
-          <RhfField.Combobox placeholder={t('select_os')} isRequired allowNewElement={false}>
+
+          <RhfField.Select placeholder={t('select_os')} isRequired>
             {Object.keys(OS_LABELS).map((osKey) => (
-              <RhfField.ComboboxItem key={osKey} value={osKey}>
+              <option key={osKey} value={osKey}>
                 {OS_LABELS[osKey as OS]}
-              </RhfField.ComboboxItem>
+              </option>
             ))}
-          </RhfField.Combobox>
+          </RhfField.Select>
         </RhfField>
         <OdsButton
           type="submit"
