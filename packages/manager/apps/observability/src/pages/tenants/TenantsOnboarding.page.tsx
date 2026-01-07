@@ -9,6 +9,7 @@ import { OnboardingLayout, RedirectionGuard, Text } from '@ovh-ux/muk';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { urls } from '@/routes/Routes.constants';
+import { getTenantCreationUrl } from '@/routes/Routes.utils';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { LABELS } from '@/utils/labels.constants';
 import { ONBOARDING_IMG_SRC } from '@/utils/onboarding.constants';
@@ -37,7 +38,9 @@ const TenantsOnboarding: React.FC = () => {
           displayTooltip: true,
         }}
         orderButtonLabel={t('tenants:onboarding.orderButtonLabel')}
-        onOrderButtonClick={() => navigate(urls.tenantsCreation)}
+        onOrderButtonClick={() =>
+          navigate(getTenantCreationUrl({ resourceName: selectedService?.id ?? '' }))
+        }
         moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
         moreInfoHref={'https://www.ovh.com'} // TODO
       />
