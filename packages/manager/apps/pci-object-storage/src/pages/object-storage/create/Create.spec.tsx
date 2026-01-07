@@ -8,6 +8,11 @@ import {
 } from '@testing-library/react';
 import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import Service, { breadcrumb as Breadcrumb } from './Create.page';
 import {
   mocked3AZRegion,
@@ -18,8 +23,6 @@ import {
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 import { mockedAvailability } from '@/__tests__/helpers/mocks/availability/availability';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { Locale } from '@/hooks/useLocale';
 import * as s3Api from '@/data/api/storage/s3Storage.api';
 import * as swiftApi from '@/data/api/storage/swiftStorage.api';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
@@ -36,58 +39,18 @@ vi.mock('react-i18next', async (importOriginal) => {
   };
 });
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual<typeof import('react-router-dom')>(
-    'react-router-dom',
-  );
-  return {
-    ...mod,
-    useParams: () => ({ projectId: 'projectId' }),
-  };
-});
-
 vi.mock('@/data/hooks/project/usePciProject.hook', () => ({
   default: () => ({
     data: { project_id: 'projectId' },
   }),
 }));
 
-const mockedUsedNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-    }),
-    useNavigate: () => mockedUsedNavigate,
-  };
-});
-
 describe('Create.page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
+    mockedUsedNavigate();
+    setMockedUseParams({ projectId: 'projectId' });
+    mockManagerReactShellClient();
 
     vi.mock('@/data/api/region/region.api', () => ({
       getRegions: vi.fn(() => [

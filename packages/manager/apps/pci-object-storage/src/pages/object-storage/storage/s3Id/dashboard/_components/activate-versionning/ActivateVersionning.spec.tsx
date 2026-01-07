@@ -13,6 +13,10 @@ import cloud from '@/types/Cloud';
 import * as s3StorageAPI from '@/data/api/storage/s3Storage.api';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import ActivateVersionning from './ActivateVersionning.modal';
 
 vi.mock('@/hooks/useLocale', () => ({
@@ -24,23 +28,15 @@ vi.mock('@/data/api/storage/s3Storage.api', () => ({
   updateS3Storage: vi.fn(() => mockedStorageContainer),
 }));
 
-const mockedUsedNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      region: 'BHS',
-      s3Name: 'containerName',
-    }),
-    useNavigate: () => mockedUsedNavigate,
-  };
-});
-
 describe('ActivateVersionning.modal', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
+      region: 'BHS',
+      s3Name: 'containerName',
+    });
   });
 
   afterEach(() => {
