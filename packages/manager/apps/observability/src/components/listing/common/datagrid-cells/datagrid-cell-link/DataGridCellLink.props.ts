@@ -1,4 +1,5 @@
-export interface DataGridCellLinkProps {
-  id: string;
+import { LocationPathParams } from '@/routes/Routes.constants';
+
+export interface DataGridCellLinkProps extends LocationPathParams {
   label: string;
 }
