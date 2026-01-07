@@ -131,11 +131,23 @@ export const postIpEdgeNetworkFirewallRule = async ({
   ip: string;
   ipOnFirewall: string;
   action: 'permit' | 'deny';
-  destinationPort: number | null;
+  sourcePort?: number | null;
+  destinationPort?: number | null;
+  sourcePortRange?: {
+    from: number;
+    to: number;
+  };
+  destinationPortRange?: {
+    from: number;
+    to: number;
+  };
+  l3PacketLength?: {
+    from: number;
+    to: number;
+  };
   protocol: IpEdgeFirewallProtocol;
   sequence: number;
   source: string | null;
-  sourcePort: number | null;
   tcpOption: {
     fragments?: boolean | null;
     option?: 'established' | 'syn' | null;

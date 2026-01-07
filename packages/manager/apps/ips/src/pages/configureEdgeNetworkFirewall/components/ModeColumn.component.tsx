@@ -22,7 +22,7 @@ export const ModeColumn = (rule: IpEdgeFirewallRule & { isNew?: boolean }) => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.edgeNetworkFirewall);
 
   return rule?.isNew ? (
-    <OdsFormField className="min-w-[90px]" error={modeError}>
+    <OdsFormField className="flex min-w-[90px]" error={modeError}>
       <OdsSelect
         className="block"
         name="action-select"
