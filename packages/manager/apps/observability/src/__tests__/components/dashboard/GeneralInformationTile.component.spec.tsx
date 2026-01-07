@@ -72,6 +72,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
 describe('GeneralInformationTile.component', () => {
   const baseProps = {
     tenantId: 'tenant-id',
+    resourceName: 'resource-name',
     title: 'tenant-name',
     description: 'tenant description',
     iam: {
@@ -112,6 +113,6 @@ describe('GeneralInformationTile.component', () => {
 
     fireEvent.click(screen.getByTestId('edit-link'));
 
-    expect(mockNavigate).toHaveBeenCalledWith(getEditTenantUrl(baseProps.tenantId));
+    expect(mockNavigate).toHaveBeenCalledWith(getEditTenantUrl(baseProps));
   });
 });

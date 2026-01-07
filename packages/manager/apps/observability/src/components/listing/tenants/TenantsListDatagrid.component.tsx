@@ -27,6 +27,7 @@ import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsLi
 import TenantsListActions from '@/components/listing/tenants/actions/TenantsListActions.component';
 import TenantsListTopbar from '@/components/listing/tenants/top-bar/TenantsListTopbar.component';
 import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.component';
+import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { TenantListing } from '@/types/tenants.type';
 import { RESOURCE_TYPES } from '@/utils/iam.constants';
 import { mapTenantsToListing } from '@/utils/tenants.utils';
@@ -49,7 +50,8 @@ export default function TenantsListDatagrid({
   const { t } = useTranslation(['tenants', NAMESPACES.DASHBOARD, NAMESPACES.ERROR]);
   const { addError } = useNotifications();
   const dateFnsLocale = useDateFnsLocale();
-
+  const { selectedService } = useObservabilityServiceContext();
+  const resourceName = selectedService?.id ?? '';
   const columns: DatagridColumn<TenantListing>[] = useMemo(
     () => [
       {
@@ -59,7 +61,7 @@ export default function TenantsListDatagrid({
         accessorFn: (row: TenantListing) => row,
         cell: ({ getValue }) => {
           const { id, name } = getValue() as TenantListing;
-          return <DatagridCellLink id={id} label={name} />;
+          return <DatagridCellLink tenantId={id} label={name} resourceName={resourceName} />;
         },
         comparator: FilterCategories.String,
         type: FilterTypeCategories.String,
@@ -137,14 +139,16 @@ export default function TenantsListDatagrid({
       {
         id: 'actions',
         header: '',
-        accessorFn: (row: TenantListing) => row.id,
-        cell: ({ getValue }) => <TenantsListActions tenantId={getValue<string>()} />,
+        accessorKey: 'id',
+        cell: ({ getValue }) => (
+          <TenantsListActions tenantId={getValue<string>()} resourceName={resourceName} />
+        ),
         isSearchable: false,
         isFilterable: false,
         size: 40,
       },
     ],
-    [t],
+    [t, resourceName],
   );
 
   useEffect(() => {

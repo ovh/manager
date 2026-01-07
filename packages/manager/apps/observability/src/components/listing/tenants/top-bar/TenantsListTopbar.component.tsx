@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { BUTTON_VARIANT, Button } from '@ovh-ux/muk';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { urls } from '@/routes/Routes.constants';
+import { getTenantCreationUrl } from '@/routes/Routes.utils';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
 export default function TenantsListTopbar() {
@@ -17,10 +17,9 @@ export default function TenantsListTopbar() {
   const { selectedService, isLoading } = useObservabilityServiceContext();
 
   const addNewTenant = () => {
-    navigate(urls.tenantsCreation);
+    navigate(getTenantCreationUrl({ resourceName: selectedService?.id ?? '' }));
   };
 
-  // FIXME: fix warning "React does not recognize the `isIamTrigger` prop on a DOM element."
   return (
     <div className="mb-4 mr-4 flex w-full items-center justify-between">
       <Button
