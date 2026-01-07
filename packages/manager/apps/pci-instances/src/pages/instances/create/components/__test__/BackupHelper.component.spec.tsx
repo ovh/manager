@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import BackupHelper from '../backup/BackupHelper.component';
 import {
   ButtonType,
@@ -14,11 +14,7 @@ describe('Considering BackupHelper component', () => {
   it('should display default auto backup text guide', async () => {
     renderWithMockedWrappers(<BackupHelper />);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByText('common:pci_instances_common_help'),
-      );
-    });
+    await userEvent.click(screen.getByText('common:pci_instances_common_help'));
 
     await waitFor(() => {
       expect(
@@ -56,11 +52,7 @@ describe('Considering BackupHelper component', () => {
   it('should display link to workflow management', async () => {
     renderWithMockedWrappers(<BackupHelper />);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByText('common:pci_instances_common_help'),
-      );
-    });
+    await userEvent.click(screen.getByText('common:pci_instances_common_help'));
 
     const links = screen.getAllByRole('link');
     const guideLink = links.find(
@@ -73,11 +65,7 @@ describe('Considering BackupHelper component', () => {
   it('should track the guide link', async () => {
     renderWithMockedWrappers(<BackupHelper />);
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByText('common:pci_instances_common_help'),
-      );
-    });
+    await userEvent.click(screen.getByText('common:pci_instances_common_help'));
 
     const links = screen.getAllByRole('link');
     const guideLink = links.find(
@@ -86,9 +74,7 @@ describe('Considering BackupHelper component', () => {
 
     expect(guideLink).toBeDefined();
 
-    await act(async () => {
-      await userEvent.click(guideLink!);
-    });
+    await userEvent.click(guideLink!);
 
     await waitFor(() => {
       expect(useOvhTracking().trackClick).toHaveBeenCalledWith({
