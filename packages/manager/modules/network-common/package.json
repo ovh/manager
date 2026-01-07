@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-network-common",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "private": true,
   "description": "OVHcloud manager module common network",
   "repository": {

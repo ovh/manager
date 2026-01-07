@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.11.1...@ovh-ux/muk@0.12.0) (2026-01-07)
+
+
+### Features
+
+* **muk:** fix datagrid virtualization and scrollbar ([fd0fd72](https://github.com/ovh/manager/commit/fd0fd7260abd035983bcbe1689184098483b49ef)), closes [#MANAGER-20626](https://github.com/ovh/manager/issues/MANAGER-20626)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.11.0...@ovh-ux/muk@0.11.1) (2026-01-05)
 
 **Note:** Version bump only for package @ovh-ux/muk
