@@ -10,21 +10,17 @@ import { getTenantDashboardUrl } from '@/routes/Routes.utils';
 
 const EditTenantPage = () => {
   const { selectedService, isLoading, isSuccess } = useObservabilityServiceContext();
-  const resourceName = selectedService?.id;
+  const resourceName = selectedService?.id ?? '';
 
-  const { tenantId } = useParams<LocationPathParams>();
-  const currentTenantId = tenantId ?? '';
+  const { tenantId = '' } = useParams<LocationPathParams>();
 
-  const { data: tenant, isLoading: isTenantLoading } = useTenant(
-    resourceName ?? '',
-    tenantId ?? '',
-  );
+  const { data: tenant, isLoading: isTenantLoading } = useTenant(resourceName, tenantId);
 
   return (
     <RedirectionGuard
       condition={!resourceName && isSuccess}
       isLoading={isLoading || isTenantLoading}
-      route={getTenantDashboardUrl(currentTenantId)}
+      route={getTenantDashboardUrl({ tenantId, resourceName })}
     >
       <TenantForm tenant={tenant} />
     </RedirectionGuard>
