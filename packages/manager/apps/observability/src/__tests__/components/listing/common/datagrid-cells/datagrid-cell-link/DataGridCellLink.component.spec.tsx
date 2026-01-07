@@ -5,7 +5,10 @@ import DataGridCellLink from '@/components/listing/common/datagrid-cells/datagri
 import { DataGridCellLinkProps } from '@/components/listing/common/datagrid-cells/datagrid-cell-link/DataGridCellLink.props';
 
 const { mockGetTenantDashboardUrl } = vi.hoisted(() => ({
-  mockGetTenantDashboardUrl: vi.fn((tenantId: string) => `/mocked/${tenantId}`),
+  mockGetTenantDashboardUrl: vi.fn(
+    (params: { tenantId: string; resourceName: string }) =>
+      `/mocked/${params.resourceName}/${params.tenantId}`,
+  ),
 }));
 vi.mock('@/routes/Routes.utils', () => ({
   getTenantDashboardUrl: mockGetTenantDashboardUrl,
@@ -39,7 +42,8 @@ vi.mock('@ovhcloud/ods-react', () => ({
 
 describe('DataGridCellLink', () => {
   const defaultProps: DataGridCellLinkProps = {
-    id: 'test-id',
+    tenantId: 'test-id',
+    resourceName: 'test-resource',
     label: 'Test Label',
   };
 
@@ -56,10 +60,10 @@ describe('DataGridCellLink', () => {
       expect(link).toHaveTextContent('Test Label');
     });
 
-    it('should render with custom id', () => {
+    it('should render with custom tenantId', () => {
       const customProps = {
         ...defaultProps,
-        id: 'custom-id',
+        tenantId: 'custom-id',
       };
 
       render(<DataGridCellLink {...customProps} />);
@@ -84,28 +88,35 @@ describe('DataGridCellLink', () => {
       render(<DataGridCellLink {...defaultProps} />);
 
       const link = screen.getByTestId('cell-link-test-id');
-      expect(link).toHaveAttribute('href', '/mocked/test-id');
-      expect(mockGetTenantDashboardUrl).toHaveBeenCalledWith('test-id');
+      expect(link).toHaveAttribute('href', '/mocked/test-resource/test-id');
+      expect(mockGetTenantDashboardUrl).toHaveBeenCalledWith({
+        tenantId: 'test-id',
+        resourceName: 'test-resource',
+      });
     });
 
-    it('should have unique href based on id', () => {
+    it('should have unique href based on tenantId', () => {
       const customProps = {
         ...defaultProps,
-        id: 'custom-id',
+        tenantId: 'custom-id',
       };
 
       render(<DataGridCellLink {...customProps} />);
 
       const link = screen.getByTestId('cell-link-custom-id');
-      expect(link).toHaveAttribute('href', '/mocked/custom-id');
-      expect(mockGetTenantDashboardUrl).toHaveBeenCalledWith('custom-id');
+      expect(link).toHaveAttribute('href', '/mocked/test-resource/custom-id');
+      expect(mockGetTenantDashboardUrl).toHaveBeenCalledWith({
+        tenantId: 'custom-id',
+        resourceName: 'test-resource',
+      });
     });
   });
 
   describe('Props Validation', () => {
     it('should handle empty string props', () => {
       const emptyProps = {
-        id: '',
+        tenantId: '',
+        resourceName: '',
         label: '',
       };
 
@@ -118,7 +129,8 @@ describe('DataGridCellLink', () => {
 
     it('should handle special characters in props', () => {
       const specialProps = {
-        id: 'id-with-special-chars-123',
+        tenantId: 'id-with-special-chars-123',
+        resourceName: 'resource-special',
         label: 'Label with "quotes" & <tags>',
       };
 
@@ -130,7 +142,8 @@ describe('DataGridCellLink', () => {
 
     it('should handle very long strings', () => {
       const longProps = {
-        id: 'a'.repeat(100),
+        tenantId: 'a'.repeat(100),
+        resourceName: 'b'.repeat(100),
         label: 'A'.repeat(200),
       };
 
@@ -144,7 +157,8 @@ describe('DataGridCellLink', () => {
   describe('Edge Cases', () => {
     it('should handle undefined props gracefully', () => {
       const undefinedProps = {
-        id: undefined as unknown as string,
+        tenantId: undefined as unknown as string,
+        resourceName: undefined as unknown as string,
         label: undefined as unknown as string,
       };
 
@@ -155,7 +169,8 @@ describe('DataGridCellLink', () => {
 
     it('should handle null props gracefully', () => {
       const nullProps = {
-        id: null as unknown as string,
+        tenantId: null as unknown as string,
+        resourceName: null as unknown as string,
         label: null as unknown as string,
       };
 
@@ -166,19 +181,20 @@ describe('DataGridCellLink', () => {
 
     it('should handle numeric props', () => {
       const numericProps = {
-        id: 123 as unknown as string,
-        label: 456 as unknown as string,
+        tenantId: 123 as unknown as string,
+        resourceName: 456 as unknown as string,
+        label: 789 as unknown as string,
       };
 
       render(<DataGridCellLink {...numericProps} />);
 
       expect(screen.getByTestId('cell-link-123')).toBeInTheDocument();
-      expect(screen.getByText('456')).toBeInTheDocument();
+      expect(screen.getByText('789')).toBeInTheDocument();
     });
   });
 
   describe('Component Integration', () => {
-    it('should work with different id formats', () => {
+    it('should work with different tenantId formats', () => {
       const testCases = [
         'simple-id',
         'id-with-dashes',
@@ -188,10 +204,10 @@ describe('DataGridCellLink', () => {
         'ID-WITH-UPPERCASE',
       ];
 
-      testCases.forEach((id) => {
-        const { unmount } = render(<DataGridCellLink {...defaultProps} id={id} />);
+      testCases.forEach((tenantId) => {
+        const { unmount } = render(<DataGridCellLink {...defaultProps} tenantId={tenantId} />);
 
-        expect(screen.getByTestId(`cell-link-${id}`)).toBeInTheDocument();
+        expect(screen.getByTestId(`cell-link-${tenantId}`)).toBeInTheDocument();
         unmount();
       });
     });
