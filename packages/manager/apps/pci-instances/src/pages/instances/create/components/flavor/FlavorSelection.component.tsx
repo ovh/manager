@@ -189,15 +189,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     );
 
     if (!hasPreviousSelectedBilling) resetField('billingType');
-  }, [
-    billingType,
-    flavorAvailableBillingTypes,
-    flavorId,
-    flavors,
-    preselecteFlavordId,
-    resetField,
-    setValue,
-  ]);
+  }, [billingType, flavorAvailableBillingTypes, resetField]);
 
   return (
     <section className="mt-8">

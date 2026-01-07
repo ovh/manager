@@ -15,9 +15,10 @@ import {
   TFlavorPrices,
   TPrice,
   TRegionalizedFlavorOsType,
-  TImageType,
   TImage,
   TRegionalizedImage,
+  TImageType,
+  TImageTypeID,
 } from '@/domain/entities/instancesCatalog';
 import {
   TContinentRegionsDTO,
@@ -437,12 +438,15 @@ const normalizeFlavor = ({
   );
 
 type TImages = {
-  imageTypes: TNormalizedEntity<string, TImageType>;
+  imageTypes: TNormalizedEntity<TImageTypeID, TImageType>;
   images: TNormalizedEntity<string, TImage>;
   regionalizedImages: TNormalizedEntity<string, TRegionalizedImage>;
 };
 
 const mapImageTypeDTOToImageEntity = (imageDTO: TImageDTO, acc: TImages) => {
+  if (imageDTO.category === 'unknown' || imageDTO.category === 'snapshot')
+    return acc;
+
   const foundImageType = acc.imageTypes.byId.get(imageDTO.category);
   if (!foundImageType)
     acc.imageTypes.byId.set(imageDTO.category, {
@@ -478,6 +482,9 @@ const mapImageTypeDTOToImageEntity = (imageDTO: TImageDTO, acc: TImages) => {
 const normalizeFlavorImage = (imagesDTO: TImageDTO[]) =>
   imagesDTO.reduce<TImages>(
     (acc, imageDTO) => {
+      if (imageDTO.category === 'unknown' || imageDTO.category === 'snapshot')
+        return acc;
+
       if (!acc.imageTypes.allIds.includes(imageDTO.category))
         acc.imageTypes.allIds.push(imageDTO.category);
 
@@ -586,5 +593,6 @@ export const mapInstancesCatalogDtoToEntity = (
       ),
     },
   };
+
   return catalog;
 };

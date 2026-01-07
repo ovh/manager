@@ -33,7 +33,12 @@ export const quantitySchema = z
   .min(quantityRules.min)
   .max(quantityRules.max);
 
-export const distributionImageTypeSchema = z.string().nullable();
+export const distributionImageTypeSchema = z.enum([
+  'linux',
+  'apps',
+  'windows',
+  'snapshot',
+]);
 
 export const distributionImageVariantIdSchema = z.string().nullable();
 

@@ -64,12 +64,13 @@ export const useForm = (projectId: string) => {
 
   const { preselected } = useMemo(
     () =>
-      selectImages(deps)(
+      selectImages(deps)({
         projectId,
-        preselectedOs,
-        microRegionDefaultValue,
-        preselecteFlavordId,
-      ),
+        selectedImageType: preselectedOs,
+        microRegion: microRegionDefaultValue,
+        regionalizedFlavorId: preselecteFlavordId,
+        distributionImageVariantId: null,
+      }),
     [microRegionDefaultValue, preselecteFlavordId, projectId],
   );
 

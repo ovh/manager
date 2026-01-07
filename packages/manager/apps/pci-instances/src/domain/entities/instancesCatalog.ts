@@ -19,6 +19,8 @@ type TFlavorTypeName = string;
 export type TFlavorTypeID = TFlavorTypeName;
 
 export type TOsType = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
+export const IMAGE_TYPES = ['linux', 'apps', 'windows'] as const;
+export type TImageTypeName = typeof IMAGE_TYPES[number];
 
 type TFlavorName = string;
 export type TFlavorID = TFlavorName;
@@ -26,13 +28,13 @@ export type TRegionalizedFlavorID = TFlavorID;
 export type TRegionalizedFlavorOsTypeID = TFlavorID;
 export type TFlavorPricesID = TRegionalizedFlavorID;
 
-type TImageTypeName = string;
 type TImageVariantName = string;
 type TImageVersionName = string;
 export type TRegionalizedImageVersionID = string;
 export type TImageTypeID = TImageTypeName;
-export type TImageID = TImageTypeID;
-export type TRegionalizedImageID = TImageTypeID;
+
+export type TImageID = string;
+export type TRegionalizedImageID = string;
 export type TImageVariantID = TImageVariantName;
 export type TImageVersionID = TImageVersionName;
 
@@ -210,11 +212,14 @@ export type TInstancesCatalog = {
       byId: Map<TFlavorPricesID, TFlavorPrices>;
       allIds: TFlavorPricesID[];
     };
-    imageTypes: { byId: Map<TImageTypeID, TImageType>; allIds: TImageTypeID[] };
+    imageTypes: {
+      byId: Map<TImageTypeID, TImageType>;
+      allIds: TImageTypeID[];
+    };
     images: { byId: Map<TImageID, TImage>; allIds: TImageID[] };
     regionalizedImages: {
-      byId: Map<TImageTypeID, TRegionalizedImage>;
-      allIds: TImageTypeID[];
+      byId: Map<TRegionalizedImageID, TRegionalizedImage>;
+      allIds: TRegionalizedImageID[];
     };
   };
   relations: {

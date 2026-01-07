@@ -14,34 +14,38 @@ import {
   FormField,
   FormFieldLabel,
   Select,
-  SelectContent,
   SelectControl,
   SelectValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { useMemo } from 'react';
-import { selectImagesTypes } from '../../view-models/imagesViewModel';
+import { useEffect, useMemo } from 'react';
+import { selectAvailableImagesTypes } from '../../view-models/imagesViewModel';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import { DistributionImageOption } from './DistributionImageOption.component';
 
 const DistributionImageType = () => {
   const projectId = useProjectId();
   const { t } = useTranslation(['common', 'creation']);
   const { trackClick } = useOvhTracking();
-  const { control } = useFormContext<TInstanceCreationForm>();
-  const selectedImageType = useWatch({
+  const { control, resetField } = useFormContext<TInstanceCreationForm>();
+  const [selectedImageType, flavorId, microRegion] = useWatch({
     control,
-    name: 'distributionImageType',
+    name: ['distributionImageType', 'flavorId', 'microRegion'],
   });
 
   const imageTypes = useMemo(
     () =>
-      selectImagesTypes(deps)(projectId).map((typeOption) => ({
-        label: t(`common:${typeOption.labelKey}`),
-        value: typeOption.value,
-      })),
-    [projectId, t],
+      selectAvailableImagesTypes(deps)(projectId, flavorId, microRegion).map(
+        ({ labelKey, value, disabled }) => ({
+          label: t(`common:${labelKey}`),
+          value,
+          disabled,
+          customRendererData: { available: !disabled },
+        }),
+      ),
+    [projectId, flavorId, microRegion, t],
   );
 
   const handleImageTypeChange = (
@@ -64,13 +68,21 @@ const DistributionImageType = () => {
     });
   };
 
+  useEffect(() => {
+    const foundImageType = imageTypes.find(
+      (type) => type.value === selectedImageType,
+    );
+    if (!foundImageType || foundImageType.disabled)
+      resetField('distributionImageType');
+  }, [imageTypes, resetField, selectedImageType]);
+
   return (
     <div className="mt-4">
       <Controller
         name="distributionImageType"
         control={control}
         render={({ field }) => (
-          <FormField className="max-w-[32%]">
+          <FormField className="w-auto max-w-[32%]">
             <FormFieldLabel>
               {t(
                 'creation:pci_instance_creation_select_image_distribution_type_label',
@@ -78,11 +90,11 @@ const DistributionImageType = () => {
             </FormFieldLabel>
             <Select
               items={imageTypes}
-              value={selectedImageType ? [selectedImageType] : []}
+              value={[selectedImageType]}
               onValueChange={handleImageTypeChange(field)}
             >
               <SelectControl />
-              <SelectContent />
+              <DistributionImageOption badgeKey="common:pci_instances_common_unavailable" />
             </Select>
           </FormField>
         )}
