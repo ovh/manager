@@ -97,7 +97,7 @@ describe('Replication Page without destination and versionning', () => {
     });
   });
 
-  it('renders skeletton while loading', () => {
+  it('renders skeleton while loading', () => {
     vi.mocked(useS3Data).mockReturnValue({
       projectId: 'projectId',
       s3: mockedStorageContainer,
