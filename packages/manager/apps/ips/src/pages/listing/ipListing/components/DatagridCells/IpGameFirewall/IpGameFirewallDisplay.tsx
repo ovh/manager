@@ -93,7 +93,7 @@ export const IpGameFirewallDisplay = ({
       onClick={navigateToConfigureGameFirewall}
     >
       {ipGameFirewall?.state === IpGameFirewallStateEnum.OK &&
-        ruleListQuery?.data?.length === 0 && (
+        !ruleListQuery?.data?.length && (
           <BadgeCell
             badgeColor={ODS_BADGE_COLOR.neutral}
             text={t('listingColumnsIpGameFirewallAvailable')}
