@@ -55,12 +55,4 @@ describe('ObjectLock Component', () => {
       expect(screen.getByTestId('object-lock-link')).toBeTruthy();
     });
   });
-
-  it('renders Object lock component', async () => {
-    render(<ObjectLock />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByTestId('object-lock-container')).toBeTruthy();
-      expect(screen.getByTestId('object-lock-link')).toBeTruthy();
-    });
-  });
 });
