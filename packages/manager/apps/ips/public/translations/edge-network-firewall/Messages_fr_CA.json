@@ -25,8 +25,8 @@
   "modeColumnLabel": "Mode",
   "protocolColumnLabel": "Protocole",
   "sourceColumnLabel": "Adresse IP source",
-  "sourcePortColumnLabel": "Port source",
-  "destinationPortColumnLabel": "Port de destination",
+  "sourcePortColumnLabel": "Port source (plage)",
+  "destinationPortColumnLabel": "Port de destination (plage)",
   "tcpOptionsColumnLabel": "État TCP",
   "permit_action": "Autoriser",
   "deny_action": "Refuser",
@@ -40,5 +40,6 @@
   "firewall_not_created_tooltip": "Le firewall ne peut pas être activé tant qu'une 1ère règle n'a pas été créée.",
   "destinationPortLowerThanSourcePortError": "Le port de destination ne peut pas être inférieur au port source",
   "createRuleErrorMessage": "Il y a des erreurs dans les données saisies, veuillez vérifier les champs signalés en rouge.",
-  "requiredFieldError": "Ce champ est requis"
+  "requiredFieldError": "Ce champ est requis",
+  "port_format_tooltip": "Le format du port peut être fourni soit sous forme d'un seul chiffre (par exemple : \"123\"), soit sous forme d'une plage de ports (par exemple : \"123-125\")."
 }
