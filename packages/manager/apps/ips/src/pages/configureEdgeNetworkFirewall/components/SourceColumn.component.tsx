@@ -27,7 +27,7 @@ export const SourceColumn = (
   const { t } = useTranslation(TRANSLATION_NAMESPACES.edgeNetworkFirewall);
 
   return rule?.isNew ? (
-    <OdsFormField error={sourceError}>
+    <OdsFormField className="flex" error={sourceError}>
       <OdsInput
         className="w-full"
         name="source-input"

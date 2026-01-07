@@ -25,8 +25,8 @@
   "modeColumnLabel": "Modus",
   "protocolColumnLabel": "Protokoll",
   "sourceColumnLabel": "Quell-IP-Adresse",
-  "sourcePortColumnLabel": "Quell-Port",
-  "destinationPortColumnLabel": "Ziel-Port",
+  "sourcePortColumnLabel": "Hafenquelle (Bereich)",
+  "destinationPortColumnLabel": "Zielhafen (Bereich)",
   "tcpOptionsColumnLabel": "TCP-Status",
   "permit_action": "Erlauben",
   "deny_action": "Verbieten",
@@ -40,5 +40,6 @@
   "firewall_not_created_tooltip": "Die Firewall kann erst aktiviert werden, wenn eine erste Regel erstellt wurde.",
   "destinationPortLowerThanSourcePortError": "Der Zielport darf nicht kleiner als der Quellport sein.",
   "createRuleErrorMessage": "Die eingegebenen Daten enthalten Fehler. Bitte überprüfen Sie die rot markierten Felder.",
-  "requiredFieldError": "Dieses Feld muss ausgefüllt werden."
+  "requiredFieldError": "Dieses Feld muss ausgefüllt werden.",
+  "port_format_tooltip": "Das Format des Hafens kann entweder als einzelne Zahl (zum Beispiel: \"123\"), oder als Bereich von Häfen (zum Beispiel: \"123-125\")."
 }
