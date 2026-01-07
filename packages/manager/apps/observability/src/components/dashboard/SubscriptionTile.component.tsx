@@ -9,13 +9,18 @@ import { Tile } from '@ovh-ux/muk';
 import { SubscriptionTileProps } from '@/components/dashboard/SubscriptionTile.props';
 import { getTenantSubscriptionUrl } from '@/routes/Routes.utils';
 
-export const SubscriptionTile = ({ tenantId, subscriptions, isLoading }: SubscriptionTileProps) => {
+export const SubscriptionTile = ({
+  tenantId,
+  resourceName,
+  subscriptions,
+  isLoading,
+}: SubscriptionTileProps) => {
   const { t } = useTranslation('tenants');
 
   const navigate = useNavigate();
 
   const onClickAccessSubscriptionPageLink = () => {
-    navigate(getTenantSubscriptionUrl(tenantId));
+    navigate(getTenantSubscriptionUrl({ tenantId, resourceName }));
   };
 
   return (
