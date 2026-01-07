@@ -152,7 +152,7 @@ const AddConfigurationPage = () => {
           </a>
           {!isLoadingDownloadLink && (
             <DownloadCode
-              className="break-all"
+              className="break-all [&::part(tooltip)]:hidden"
               downloadLink={isDownloadEnabled ? downloadLink : '...'}
               canCopy={isDownloadEnabled}
             />
