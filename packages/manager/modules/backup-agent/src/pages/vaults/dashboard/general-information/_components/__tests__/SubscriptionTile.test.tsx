@@ -16,18 +16,27 @@ const LABELS_VISIBLES = [
   `${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:type_billing`,
 ];
 
-const { useBackupVaultDetailsMock, useServiceConsumptionMock } = vi.hoisted(() => ({
+vi.mock('@/data/hooks/consumption/useServiceConsumption', () => {
+  return {
+    useGetServiceConsumptionOptions: vi.fn().mockReturnValue(vi.fn()),
+  };
+});
+
+
+const { useBackupVaultDetailsMock, useQuery } = vi.hoisted(() => ({
   useBackupVaultDetailsMock: vi.fn(),
-  useServiceConsumptionMock: vi.fn(),
+  useQuery: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/vaults/getVaultDetails', () => ({
   useBackupVaultDetails: useBackupVaultDetailsMock,
 }));
 
-vi.mock('@/data/hooks/consumption/useServiceConsumption', () => ({
-  useServiceConsumption: useServiceConsumptionMock,
-}));
+vi.mock('@tanstack/react-query', () => {
+  return {
+    useQuery: useQuery,
+  };
+});
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn().mockReturnValue({
@@ -46,8 +55,8 @@ vi.mock('@/hooks/useRequiredParams', () => {
 describe('SubscriptionTile', () => {
   it('Should render SubscriptionTile component', async () => {
     useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: false });
-    useServiceConsumptionMock.mockReturnValue({
-      data: [{ planCode: VAULT_PLAN_CODE, quantity: 100 }],
+    useQuery.mockReturnValue({
+      data: [{ planCode: VAULT_PLAN_CODE, quantity: 100, price: { text: '100 €'} }],
       isPending: false,
     });
     const { container } = render(<SubscriptionTile vaultId={mockVaults[0]!.id} />);

@@ -45,5 +45,5 @@ export const getManagementAgentsRoute = (backupServicesId: string, vspcTenantId:
   `${getBackupBaseRoute(backupServicesId)}/vspc/${vspcTenantId}/managementAgent`;
 
 // Service Consumption
-export const getServiceConsumptionRoute = (resourceName: string) =>
-  `/services/${resourceName}/consumption/element`;
+export const getServiceConsumptionRoute = (serviceId: string) =>
+  `/services/${serviceId}/consumption/element`;
