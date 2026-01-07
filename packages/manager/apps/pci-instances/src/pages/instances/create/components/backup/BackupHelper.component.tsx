@@ -6,7 +6,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { DrawerOpenChangeDetail, Icon, Link, Text } from '@ovhcloud/ods-react';
+import { DrawerOpenChangeDetail, Text } from '@ovhcloud/ods-react';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 import GuideLink from '@/components/guideLink/GuideLink.component';
@@ -59,25 +59,8 @@ const BackupHelper: FC = () => {
             components={{
               h6: <Text preset="heading-6" />,
               p: <Text preset="paragraph" className="py-6" />,
-              CreateBackupAction: (
-                <Link
-                  href={`${projectUrl}/workflow`}
-                  className="mb-6 visited:text-[var(--ods-color-primary-500)]"
-                  role="link"
-                >
-                  {t(
-                    'creation:pci_instance_creation_backup_setting_action_label',
-                  )}
-                  <Icon name="arrow-right" />
-                </Link>
-              ),
-              Link: (
-                <GuideLink
-                  href={guide}
-                  onClick={handleOpenGuideLink}
-                  target="_blank"
-                />
-              ),
+              CreateBackupAction: <GuideLink href={`${projectUrl}/workflow`} />,
+              Link: <GuideLink href={guide} onClick={handleOpenGuideLink} />,
             }}
           />
         </article>
