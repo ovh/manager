@@ -14,6 +14,11 @@ export const mockedRegion: cloud.Region = {
       name: 'storage',
       status: cloud.ServiceStatusEnum.UP,
     },
+    {
+      endpoint: 'my2ndEndpoint',
+      name: 'storage-s3-standard',
+      status: cloud.ServiceStatusEnum.UP,
+    },
   ],
   status: cloud.RegionStatusEnum.UP,
   type: cloud.RegionTypeEnum.region,
