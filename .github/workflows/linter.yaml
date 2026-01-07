@@ -82,4 +82,4 @@ jobs:
       # Lint
       # ------------------------------------------
       - name: Lint Code Base
-        run: yarn lint || [ "$?" = "143" ]
+        run: yarn lint
