@@ -10,6 +10,10 @@ import {
 import { EncryptionAlgorithmEnum } from '@datatr-ux/ovhcloud-types/cloud/storage';
 import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import ActivateEncryption from './ActivateEncryption.modal';
 import * as s3StorageAPI from '@/data/api/storage/s3Storage.api';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
@@ -24,23 +28,15 @@ vi.mock('@/data/api/storage/s3Storage.api', () => ({
   updateS3Storage: vi.fn(() => mockedStorageContainer),
 }));
 
-const mockedUsedNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      region: 'BHS',
-      s3Name: 'containerName',
-    }),
-    useNavigate: () => mockedUsedNavigate,
-  };
-});
-
 describe('ActivateEncryption.modal', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
+      region: 'BHS',
+      s3Name: 'containerName',
+    });
   });
 
   afterEach(() => {

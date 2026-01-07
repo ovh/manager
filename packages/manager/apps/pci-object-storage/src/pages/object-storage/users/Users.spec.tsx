@@ -9,6 +9,7 @@ import {
 import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedStorages } from '@/__tests__/helpers/mocks/storageContainer/storages';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import UsersList from './_components/UserListTable.component';
 import {
   mockedCloudUser,
@@ -71,21 +72,10 @@ vi.mock('../../ObjectStorage.context', () => ({
   })),
 }));
 
-const mockedUsedNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-    }),
-    useNavigate: () => mockedUsedNavigate,
-  };
-});
-
 describe('Users List page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
   });
 
   afterEach(() => {

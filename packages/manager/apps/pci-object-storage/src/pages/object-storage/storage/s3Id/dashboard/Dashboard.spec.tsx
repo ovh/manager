@@ -7,6 +7,8 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import Dashboard, { breadcrumb as Breadcrumb } from './Dashboard.page';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
@@ -15,8 +17,6 @@ import {
   mockedLZRegion,
   mockedRegion,
 } from '@/__tests__/helpers/mocks/region/region';
-import { Locale } from '@/hooks/useLocale';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
 
 vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   useObjectStorageData: vi.fn(() => ({
@@ -40,41 +40,11 @@ vi.mock('@/data/api/storage/s3Storage.api', () => ({
   getS3Storage: vi.fn(),
 }));
 
-const mockedUsedNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-    }),
-    useNavigate: () => mockedUsedNavigate,
-  };
-});
-
 describe('Dashboard.page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
+    mockedUsedNavigate();
+    mockManagerReactShellClient();
   });
 
   afterEach(() => {
