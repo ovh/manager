@@ -5,5 +5,6 @@
   "xdsl_tabs_line": "Mon accès",
   "xdsl_tabs_tasks": "Tarefas",
   "xdsl_rename_error": "Impossible de renommer votre accès {{serviceName}}.",
-  "xdsl_back_to_pack": "Detalhes do pack"
+  "xdsl_back_to_pack": "Detalhes do pack",
+  "xdsl_tabs_logs": "Logs"
 }

@@ -12,5 +12,7 @@ export default {
     packName: '<',
     serviceName: '<',
     goBack: '<',
+    features: '<',
+    logsLink: '<',
   },
 };
