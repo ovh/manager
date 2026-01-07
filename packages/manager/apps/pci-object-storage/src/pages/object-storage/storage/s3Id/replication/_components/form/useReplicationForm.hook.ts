@@ -5,11 +5,10 @@ import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TagMap } from '../../../../../../../types/Tag';
 import storages from '@/types/Storages';
+import { Tag } from '@/types/Tag';
 import { getContainerHelper } from '@/data/hooks/s3-storage/getContainerHelper';
 import { useS3Data } from '../../../S3.context';
-import { transformTagsFromApi } from '@/lib/transformTagsHelper';
 
 const validIdRegex = /^[\x20-\x7E]{3,255}$/;
 const validPrefixRegex = /^[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}](?:[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}]{0,255})?$/u;
@@ -19,7 +18,7 @@ type BuildReplicationFormValues<T extends z.ZodTypeAny> = Omit<
   InferSchema<T>,
   'tags' | 'status' | 'storageClass' | 'deleteMarkerReplication'
 > & {
-  tags?: TagMap;
+  tags: Tag[];
   status: storages.ReplicationRuleStatusEnum;
   storageClass: storages.StorageClassEnum;
   deleteMarkerReplication: storages.ReplicationRuleDeleteMarkerReplicationStatusEnum;
@@ -71,14 +70,8 @@ export const useReplicationForm = ({
         ),
       isReplicationApplicationLimited: z.boolean().default(false),
       tags: z
-        .record(
-          z.coerce.number(),
-          z.object({
-            key: z.string(),
-            value: z.string(),
-          }),
-        )
-        .default({}),
+        .array(z.object({ key: z.string(), value: z.string() }))
+        .default([]),
     })
     .superRefine(async (data, ctx) => {
       if (!data.destination.name || !data.destination.region) {
@@ -125,6 +118,8 @@ export const useReplicationForm = ({
       }
     });
 
+  const emptyTags: Tag[] = [];
+
   const defaultValues = useMemo(() => {
     const base = {
       ruleId: '',
@@ -137,7 +132,7 @@ export const useReplicationForm = ({
       deleteMarkerReplication:
         storages.ReplicationRuleDeleteMarkerReplicationStatusEnum.disabled,
       isReplicationApplicationLimited: false,
-      tags: {},
+      tags: emptyTags,
     };
 
     if (!existingRule) {
@@ -160,7 +155,9 @@ export const useReplicationForm = ({
         storages.StorageClassEnum.STANDARD,
       deleteMarkerReplication: existingRule.deleteMarkerReplication,
       isReplicationApplicationLimited: !!existingRule.filter,
-      tags: transformTagsFromApi(existingRule.filter?.tags),
+      tags: Object.entries(
+        existingRule.filter?.tags ?? {},
+      ).map(([key, value]) => ({ key, value })),
     };
   }, [existingRule]);
 
