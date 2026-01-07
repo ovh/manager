@@ -1,5 +1,3 @@
-import { useHref } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
