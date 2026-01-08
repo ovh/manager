@@ -330,9 +330,13 @@
   "domain_tab_dsrecords_drawer_modify_error": "Wykryto błąd podczas modyfikacji rekordu DS: {{ error }}",
   "domain_tab_dsrecords_drawer_form_error_empty": "Puste pole",
   "domain_tab_dsrecords_add_disabled": "Obecna konfiguracja DNS nie pozwala na dodanie rekordu DS",
-  "domain_tab_dsrecords_actions_disabled": "Obecna konfiguracja DNS nie pozwala ani na dodanie, ani na modyfikację rekordu DS",
+  "domain_tab_dsrecords_actions_disabled": "Obecna konfiguracja DNS nie pozwala na dodawanie ani modyfikowanie rekordów DS.",
   "domain_tab_dsrecords_modal_delete_title": "Usuń wpis",
   "domain_tab_dsrecords_modal_delete_subtitle": "Czy na pewno chcesz usunąć ten wpis?",
   "domain_tab_dsrecords_modal_delete_success_message": "Rekord DS jest w trakcie usuwania",
-  "domain_tab_dsrecords_modal_delete_error_message": "Wystąpił błąd podczas usuwania rekordu DS"
+  "domain_tab_dsrecords_modal_delete_error_message": "Wystąpił błąd podczas usuwania rekordu DS",
+  "domain_tab_dsrecords_message_information_content": "Te rekordy DS są dostarczane w celach informacyjnych i są zarządzane automatycznie przez OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC jest w trakcie {{action}}: możesz śledzić postęp swojej prośby na stronie operacji w toku. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacji",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacji"
 }

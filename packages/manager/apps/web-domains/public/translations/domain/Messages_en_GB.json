@@ -330,9 +330,13 @@
   "domain_tab_dsrecords_drawer_modify_error": "An error was detected while modifying the DS record: {{ error }}",
   "domain_tab_dsrecords_drawer_form_error_empty": "Empty field",
   "domain_tab_dsrecords_add_disabled": "The current DNS configuration does not allow the addition of DS records",
-  "domain_tab_dsrecords_actions_disabled": "The current DNS configuration does not allow either the addition or modification of DS records",
+  "domain_tab_dsrecords_actions_disabled": "The current DNS configuration does not allow for the addition or modification of DS records.",
   "domain_tab_dsrecords_modal_delete_title": "Delete the entry",
   "domain_tab_dsrecords_modal_delete_subtitle": "Are you sure you want to delete this entry?",
   "domain_tab_dsrecords_modal_delete_success_message": "The DS record is being deleted",
-  "domain_tab_dsrecords_modal_delete_error_message": "An error occurred while deleting the DS record"
+  "domain_tab_dsrecords_modal_delete_error_message": "An error occurred while deleting the DS record",
+  "domain_tab_dsrecords_message_information_content": "These DS records are provided for informational purposes and are managed automatically by OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC is currently {{action}}: you can track the progress of your request from the ongoing operations page. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "of activation",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "of deactivation"
 }

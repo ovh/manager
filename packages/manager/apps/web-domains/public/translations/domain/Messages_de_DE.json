@@ -330,9 +330,13 @@
   "domain_tab_dsrecords_drawer_modify_error": "Ein Fehler wurde bei der Änderung des DS-Datensatzes festgestellt: {{ error }}",
   "domain_tab_dsrecords_drawer_form_error_empty": "Leeres Feld",
   "domain_tab_dsrecords_add_disabled": "Die aktuelle DNS-Konfiguration erlaubt das Hinzufügen von DS-Datensätzen nicht",
-  "domain_tab_dsrecords_actions_disabled": "Die aktuelle DNS-Konfiguration erlaubt weder das Hinzufügen noch die Änderung von DS-Datensätzen",
+  "domain_tab_dsrecords_actions_disabled": "Die aktuelle DNS-Konfiguration erlaubt weder das Hinzufügen noch das Ändern von DS-Einträgen.",
   "domain_tab_dsrecords_modal_delete_title": "Den Eintrag löschen",
   "domain_tab_dsrecords_modal_delete_subtitle": "Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?",
   "domain_tab_dsrecords_modal_delete_success_message": "Der DS-Datensatz wird gelöscht",
-  "domain_tab_dsrecords_modal_delete_error_message": "Beim Löschen des DS-Datensatzes ist ein Fehler aufgetreten"
+  "domain_tab_dsrecords_modal_delete_error_message": "Beim Löschen des DS-Datensatzes ist ein Fehler aufgetreten",
+  "domain_tab_dsrecords_message_information_content": "Diese DS-Einträge werden zu Informationszwecken bereitgestellt und von OVHcloud automatisch verwaltet.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC wird {{action}}: Sie können den Fortschritt Ihrer Anfrage auf der Seite der laufenden Operationen verfolgen. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "Aktivierung",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "Deaktivierung"
 }
