@@ -14,5 +14,6 @@ export const useGetServiceConsumptionOptions = () => {
 
         return getServiceConsumption(serviceIds.data[0]!);
       },
+      retry: false,
     });
 };
