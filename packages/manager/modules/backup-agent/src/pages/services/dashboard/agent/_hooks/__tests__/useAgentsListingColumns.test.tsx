@@ -15,7 +15,7 @@ const COLUMNS_EXPECTED = [
   'status_label',
   'address_ip_label',
   'policy_label',
-  'creation_date_label',
+  'data_location_label',
   ACTION_COLUMN_LABEL,
 ];
 

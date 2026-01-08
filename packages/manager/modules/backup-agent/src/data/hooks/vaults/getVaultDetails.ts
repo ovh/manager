@@ -15,13 +15,13 @@ export const BACKUP_VAULT_DETAILS_QUERY_KEY = (vaultId: string) => [
 export const useGetBackupVaultDetailsOptions = () => {
   const getBackupServiceId = useGetBackupServicesId();
 
-  return ({ vaultId }: { vaultId: string }) =>
+  return ({ vaultId }: { vaultId?: string }) =>
     queryOptions({
       queryFn: async () => {
         const backupServicesId = await getBackupServiceId();
-        return getVaultDetails(backupServicesId!, vaultId);
+        return getVaultDetails(backupServicesId!, vaultId!);
       },
-      queryKey: BACKUP_VAULT_DETAILS_QUERY_KEY(vaultId),
+      queryKey: BACKUP_VAULT_DETAILS_QUERY_KEY(vaultId!),
       enabled: !!vaultId,
     });
 };
@@ -29,7 +29,7 @@ export const useGetBackupVaultDetailsOptions = () => {
 export const useBackupVaultDetails = ({
   vaultId,
 }: {
-  vaultId: string;
+  vaultId?: string;
 } & Partial<
   Omit<
     DefinedInitialDataOptions<VaultResource, Error, VaultResource, QueryKey>,

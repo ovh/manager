@@ -8,16 +8,19 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ResourceStatusCell } from '@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.component';
-import { AgentCreatedAtDateCell } from '@/pages/services/dashboard/agent/_components/AgentCreatedAtDateCell.component';
+import { AgentActionsCell } from '@/pages/services/dashboard/agent/_components/AgentActionsCell.component';
+import { AgentDataLocationCell } from '@/pages/services/dashboard/agent/_components/AgentDataLocationCell.component';
+import { AgentIpsCell } from '@/pages/services/dashboard/agent/_components/AgentIpsCell.component';
+import { AgentNameCell } from '@/pages/services/dashboard/agent/_components/AgentNameCell.component';
+import { AgentPolicyCell } from '@/pages/services/dashboard/agent/_components/AgentPolicyCell.component';
 import { Agent } from '@/types/Agent.type';
 import { Resource } from '@/types/Resource.type';
-
-import { AgentActionsCell, AgentIpsCell, AgentNameCell, AgentPolicyCell } from '../_components';
 
 export function useAgentsListingColumnsHooks() {
   const { tenantId } = useParams();
   const { t } = useTranslation([
     BACKUP_AGENT_NAMESPACES.COMMON,
+    BACKUP_AGENT_NAMESPACES.SERVICE_LISTING,
     NAMESPACES.DASHBOARD,
     NAMESPACES.SYSTEM,
     NAMESPACES.STATUS,
@@ -56,11 +59,11 @@ export function useAgentsListingColumnsHooks() {
         label: t(`${BACKUP_AGENT_NAMESPACES.COMMON}:policy`),
       },
       {
-        id: 'createdAt',
+        id: 'currentState.vaultId',
         cell: (agentResource: Resource<Agent>) => (
-          <AgentCreatedAtDateCell date={agentResource.createdAt} />
+          <AgentDataLocationCell vaultId={agentResource.currentState.vaultId} />
         ),
-        label: t(`${NAMESPACES.DASHBOARD}:creation_date`),
+        label: t(`${BACKUP_AGENT_NAMESPACES.SERVICE_LISTING}:data_location`),
       },
       {
         id: 'action',
