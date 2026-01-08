@@ -1,0 +1,33 @@
+{
+    "id": "11111111-1111-1111-1111-111111111111",
+    "currentState": {
+        "chart": {
+            "id": "libvirtd_domain_block_read_bytes",
+            "title": "Disk Read Bytes",
+            "unit": "KiB/s",
+            "colspan": 2,
+            "tooltip": {                
+                "title": "Average number of read bytes over a specific period of time",
+                "content": "Bytes read from all instance store volumes available to the instance. This metric is used to determine the volume of the data the application reads from the hard disk of the instance. This can be used to determine the speed of the application. The number reported is the number of bytes received during the period. If you are using basic (5-minute) monitoring, you can divide this number by 300 to find Bytes/second. If you have detailed (1-minute) monitoring, divide it by 60. You can also use the CloudWatch metric math function"
+            },
+            "query": "rate(ovhcloud_libvirtd_domain_local_block_read_bytes{resource_urn=<resource_urn>}[5m]) / 1024",
+            "chart": {
+                "type": "TimeSeries",
+                "curveType": "linear",
+                "XAxis": {
+                    "dataKey": "timestamp",
+                    "formatter": "formatTimestamp",
+                    "interval": 10
+                },
+                "YAxis": {
+                    "dataKeys": [
+                        "value"
+                    ],
+                    "formatter": "formatLargeNumber"
+                }
+            }
+        },
+        "displayName": "My kind 1",
+        "name": "mykind1"
+    }
+}

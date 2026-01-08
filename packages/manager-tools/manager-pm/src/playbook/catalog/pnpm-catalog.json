@@ -1,5 +1,4 @@
 [
-  "packages/manager/apps/observability",
   "packages/manager/apps/web-office",
   "packages/manager/apps/web-hosting",
   "packages/manager/apps/web-ongoing-operations",
@@ -30,9 +29,8 @@
   "packages/manager/apps/pci-volume-backup",
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/pci-vouchers",
-  "packages/manager/apps/pci-users",
   "packages/manager/apps/pci-workflow",
   "packages/manager/apps/web-domains",
   "packages/manager/modules/logs-to-customer",
-  "packages/manager/modules/observability-to-customer"
+  "packages/manager/modules/metrics-to-customer"
 ]
