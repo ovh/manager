@@ -18,4 +18,5 @@ export type VSPCTenant = {
   name: string;
   status: ResourceStatus;
   vaults: (Omit<Vault, 'vspcTenants' | 'buckets'> & Pick<Bucket, 'performance'>)[];
+  accessUrl: string;
 };
