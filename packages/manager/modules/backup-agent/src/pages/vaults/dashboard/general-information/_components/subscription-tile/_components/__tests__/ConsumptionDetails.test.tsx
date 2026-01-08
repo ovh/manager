@@ -9,13 +9,11 @@ const { useQuery } = vi.hoisted(() => ({
   useQuery: vi.fn(),
 }));
 
-
 vi.mock('@/data/hooks/consumption/useServiceConsumption', () => {
   return {
     useGetServiceConsumptionOptions: vi.fn().mockReturnValue(vi.fn()),
   };
 });
-
 
 vi.mock('@tanstack/react-query', () => {
   return {
