@@ -43,6 +43,8 @@ export default function DnssecToggleStatus({
     ['dnsZone:apiovh:dnssec/create', 'dnsZone:apiovh:dnssec/delete'],
     `urn:v1:eu:resource:dnsZone:${domainResource.id}`,
   );
+  console.log(dnssecStatus);
+  console.log(ConfigurationDnssecBadgeColorAndContent[dnssecStatus]);
   return (
     <ManagerTile.Item>
       <ManagerTile.Item.Label>
@@ -55,11 +57,11 @@ export default function DnssecToggleStatus({
             />
           </TooltipTrigger>
           <TooltipContent>
-            {t(
-              ConfigurationDnssecBadgeColorAndContent[
-                dnssecStatus ?? DnssecStatusEnum.NOT_SUPPORTED
-              ].i18nkeyTooltip,
-            )}
+            {dnssecStatus &&
+              t(
+                ConfigurationDnssecBadgeColorAndContent[dnssecStatus]
+                  .i18nkeyTooltip,
+              )}
           </TooltipContent>
         </Tooltip>
       </ManagerTile.Item.Label>

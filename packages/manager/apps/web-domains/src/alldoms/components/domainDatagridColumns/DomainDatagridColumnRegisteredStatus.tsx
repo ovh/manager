@@ -34,7 +34,10 @@ export default function DomainDatagridColumnRegisteredStatus({
         {!isRegistered && (
           <Tooltip>
             <TooltipTrigger asChild>
-              <Icon name={ICON_NAME.circleQuestion} />
+              <Icon
+                name={ICON_NAME.circleQuestion}
+                className="text-[--ods-color-primary-500] pl-3"
+              />
             </TooltipTrigger>
             <TooltipContent>
               <Text preset={TEXT_PRESET.paragraph}>

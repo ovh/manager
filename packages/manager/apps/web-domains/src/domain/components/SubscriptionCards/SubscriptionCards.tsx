@@ -81,7 +81,10 @@ export default function SubscriptionCards({
             {t('domain_tab_general_information_subscription_renew_frequency')}
             <Tooltip>
               <TooltipTrigger asChild>
-                <Icon className="pl-3" name={ICON_NAME.circleQuestion} />
+                <Icon
+                  className="text-[--ods-color-primary-500] pl-3"
+                  name={ICON_NAME.circleQuestion}
+                />
               </TooltipTrigger>
               <TooltipContent>
                 {t('domain_tab_general_information_tooltip_domain_state')}
@@ -136,7 +139,10 @@ export default function SubscriptionCards({
               {t('domain_tab_general_information_subscription_premium')}
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Icon className="pl-3" name={ICON_NAME.circleQuestion} />
+                  <Icon
+                    className="text-[--ods-color-primary-500] pl-3"
+                    name={ICON_NAME.circleQuestion}
+                  />
                 </TooltipTrigger>
                 <TooltipContent>
                   {t(

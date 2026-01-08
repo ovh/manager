@@ -19,10 +19,7 @@ import {
   DomainUpdateApiError,
   TDomainResource,
 } from '@/domain/types/domainResource';
-import {
-  translateContactType,
-  translateContactField,
-} from '@/domain/utils/dataProtection';
+import { translateContactType } from '@/domain/utils/dataProtection';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 
 interface DataProtectionDrawerProps {

@@ -62,7 +62,7 @@ export const ConfigurationTransferBadgeColorAndContent = [
     result: {
       color: BADGE_COLOR.success,
       toggleStatus: 'active',
-      i18nkeyContent: `${NAMESPACES.SERVICE}:service_state_enabled`,
+      i18nkeyContent: `domain_tab_general_information_data_protection_status_enabled`,
       i18nkeyTooltip: 'domain_tab_general_information_transfer_activated',
     },
   },
@@ -87,7 +87,7 @@ export const ConfigurationTransferBadgeColorAndContent = [
     result: {
       color: BADGE_COLOR.critical,
       toggleStatus: 'active',
-      i18nkeyContent: `${NAMESPACES.STATUS}:disabled`,
+      i18nkeyContent: `domain_tab_general_information_data_protection_status_disabled`,
       i18nkeyTooltip: 'domain_tab_general_information_transfer_disabled',
     },
   },

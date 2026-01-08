@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React from 'react';
 import {
   render,
   screen,
@@ -19,6 +18,18 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual<
+    typeof import('@ovh-ux/manager-react-components')
+  >('@ovh-ux/manager-react-components');
+
+  return {
+    ...actual,
+    useAuthorizationIam: vi.fn(),
+  };
+});
 
 describe('TransferToggleStatus component', () => {
   const mockDomainResource: TDomainResource = {
@@ -100,6 +111,13 @@ describe('TransferToggleStatus component', () => {
   const mockSetTransferModalOpened = vi.fn();
   const mockSetTransferAuthInfoModalOpened = vi.fn();
   const mockSetTagModalOpened = vi.fn();
+
+  beforeEach(() => {
+    (useAuthorizationIam as jest.Mock).mockReturnValue({
+      isPending: false,
+      isAuthorized: true,
+    });
+  });
 
   afterEach(() => {
     vi.clearAllMocks();

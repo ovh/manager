@@ -35,7 +35,7 @@ import DomainGuideButton from './guideButton';
 export default function ServiceList() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { notifications } = useNotifications();
-  const [isModalOpenned, setIsModalOpened] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
   const [rowSelection, setRowSelection] = useState({});
   const [isDrawerExportOpen, setIsDrawerExportOpen] = useState(false);
   const [modalServiceNames, setModalServiceNames] = useState<string[]>([]);
@@ -237,7 +237,7 @@ export default function ServiceList() {
         filters={filtersProps}
       />
       <RenewRestoreModal
-        isModalOpenned={isModalOpenned}
+        isModalOpenned={isModalOpened}
         serviceNames={modalServiceNames}
         onOpenChange={onOpenChange}
       />

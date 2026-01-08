@@ -25,7 +25,7 @@ describe('transferStatusFromState', () => {
       color: 'success',
       toggleStatus: 'active',
       i18nkeyContent:
-        '@ovh-ux/manager-common-translations/service:service_state_enabled',
+        'domain_tab_general_information_data_protection_status_enabled',
       i18nkeyTooltip: 'domain_tab_general_information_transfer_activated',
     });
   });
@@ -52,7 +52,8 @@ describe('transferStatusFromState', () => {
     expect(result).toEqual({
       color: 'critical',
       toggleStatus: 'active',
-      i18nkeyContent: '@ovh-ux/manager-common-translations/status:disabled',
+      i18nkeyContent:
+        'domain_tab_general_information_data_protection_status_disabled',
       i18nkeyTooltip: 'domain_tab_general_information_transfer_disabled',
     });
   });

@@ -15,8 +15,8 @@ import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 import { translateRenewPeriod } from '@/domain/utils/utils';
 
 interface RenewFrequencyProps {
-  serviceInfo: TServiceInfo;
-  serviceName: string;
+  readonly serviceInfo: TServiceInfo;
+  readonly serviceName: string;
 }
 export default function RenewFrequency({
   serviceInfo,
@@ -40,7 +40,10 @@ export default function RenewFrequency({
           {serviceInfo.billing?.renew?.current.mode ===
             ServiceInfoRenewModeEnum.Manual && (
             <TooltipTrigger asChild>
-              <Icon className="pl-3" name={ICON_NAME.circleQuestion} />
+              <Icon
+                className="pl-3 text-[--ods-color-primary-500]"
+                name={ICON_NAME.circleQuestion}
+              />
             </TooltipTrigger>
           )}
           <TooltipContent>

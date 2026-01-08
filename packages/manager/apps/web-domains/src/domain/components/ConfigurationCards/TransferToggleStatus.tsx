@@ -1,7 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import {
+  ManagerTile,
+  useAuthorizationIam,
+} from '@ovh-ux/manager-react-components';
 import {
   Badge,
   Icon,
@@ -43,6 +46,10 @@ export default function TransferToggleStatus({
     NAMESPACES.STATUS,
     NAMESPACES.SERVICE,
   ]);
+  const { isAuthorized } = useAuthorizationIam(
+    ['domain:apiovh:name/edit'],
+    `urn:v1:eu:resource:domain:${domainResource.id}`,
+  );
   const transferStatus = transferStatusFromState(
     domainResource?.currentState?.protectionState,
     domainResource?.targetSpec?.protectionState,
@@ -65,7 +72,7 @@ export default function TransferToggleStatus({
         <Toggle
           withLabels={true}
           className="items-end"
-          disabled={transferStatus.toggleStatus === 'disabled'}
+          disabled={transferStatus.toggleStatus === 'disabled' || !isAuthorized}
           checked={
             domainResource?.currentState?.protectionState ===
             ProtectionStateEnum.PROTECTED
@@ -73,12 +80,23 @@ export default function TransferToggleStatus({
           onCheckedChange={() => setTransferModalOpened(!transferModalOpened)}
           data-testid={'toggle'}
         >
-          <ToggleControl data-testid={'toggle-control'} />
-          <ToggleLabel>
-            <Badge color={transferStatus.color} className="mt-4">
-              {t(transferStatus.i18nkeyContent)}
-            </Badge>
-          </ToggleLabel>
+          <Tooltip>
+            <TooltipTrigger asChild disabled={!isAuthorized}>
+              <div className="flex items-end gap-4">
+                <ToggleControl data-testid={'toggle-control'} />
+                <ToggleLabel>
+                  <Badge color={transferStatus.color} className="mt-4">
+                    {t(transferStatus.i18nkeyContent)}
+                  </Badge>
+                </ToggleLabel>
+              </div>
+            </TooltipTrigger>
+            {!isAuthorized && (
+              <TooltipContent>
+                {t(`${NAMESPACES.IAM}:iam_actions_message`)}
+              </TooltipContent>
+            )}
+          </Tooltip>
         </Toggle>
         {!domainResource?.currentState?.authInfoSupported && (
           <Text>
