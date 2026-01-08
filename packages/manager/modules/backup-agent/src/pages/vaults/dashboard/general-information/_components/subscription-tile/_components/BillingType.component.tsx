@@ -12,19 +12,27 @@ import { VAULT_PLAN_CODE } from '@/module.constants';
 
 import { CONSUMPTION_MAX_VALUE_IN_TB } from '../SubscriptionTile.component';
 
+const PAY_AS_TO_GO_LABEL = 'Pay as you go';
+
 export const BillingType = () => {
-  const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD, NAMESPACES.BYTES]);
+  const { t } = useTranslation([
+    BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD,
+    NAMESPACES.BYTES,
+    BACKUP_AGENT_NAMESPACES.COMMON,
+  ]);
   const { vaultId } = useRequiredParams('vaultId');
   const { data: consumptionData, isPending } = useQuery(useGetServiceConsumptionOptions()(vaultId));
 
   const bundleSize = `${CONSUMPTION_MAX_VALUE_IN_TB}${t(`${NAMESPACES.BYTES}:unit_size_TB`)}`;
-  const priceTTCText =
+  const priceHTText =
     consumptionData?.find((consumption) => consumption.planCode === VAULT_PLAN_CODE)?.price.text ??
     '-';
 
   return (
     <div>
-      <OdsText class="block">Bundle - {bundleSize}</OdsText>
+      <OdsText class="block">
+        {PAY_AS_TO_GO_LABEL} - {bundleSize}
+      </OdsText>
 
       {isPending ? (
         <OdsSkeleton />
@@ -34,12 +42,12 @@ export const BillingType = () => {
           color="primary"
         >
           {t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:vault_price`, {
-            vaultPrice: priceTTCText,
+            vaultPrice: priceHTText,
           })}
         </OdsText>
       )}
       <OdsText className="block [&::part(text)]:font-light">
-        {t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:without_engagement`)}
+        {t(`${BACKUP_AGENT_NAMESPACES.COMMON}:without_engagement`)}
       </OdsText>
     </div>
   );
