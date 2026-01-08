@@ -12,6 +12,7 @@ import useLinkUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
 import ExportCsv from './exportCsv';
 import { ExportCsvDataType } from './exportCsv/types';
+import { ManageViewButton } from './manageView';
 
 export const OrderMenu: React.FC<{ exportCsvData: ExportCsvDataType }> = ({
   exportCsvData,
@@ -33,7 +34,7 @@ export const OrderMenu: React.FC<{ exportCsvData: ExportCsvDataType }> = ({
   };
 
   return (
-    <div className="w-min">
+    <div>
       <div className="flex">
         <OdsButton
           icon={ODS_ICON_NAME.plus}
@@ -44,6 +45,7 @@ export const OrderMenu: React.FC<{ exportCsvData: ExportCsvDataType }> = ({
           label={tCommon('order')}
         />
         <ExportCsv exportCsvData={exportCsvData} />
+        <ManageViewButton />
       </div>
       <OdsPopover
         triggerId="server-orders-action"
