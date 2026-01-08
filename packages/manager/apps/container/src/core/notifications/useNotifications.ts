@@ -1,4 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { useApplication } from '@/context';
 import transformNotification, {
@@ -6,10 +7,14 @@ import transformNotification, {
   Notification,
 } from './notification';
 import { MAX_NOTIFICATIONS, NOTIFICATION_STATUS_ENUM } from './constants';
+import { useGetHelpUrl } from './useGetHelpUrl'
 
 const useNotifications = () => {
   const { environment } = useApplication();
   const queryClient = useQueryClient();
+  const { availability, href } = useGetHelpUrl()
+  const { t } = useTranslation(['notifications-sidebar']);
+
 
   const getNotifications = async (): Promise<Notification[]> => {
     try {
@@ -20,8 +25,23 @@ const useNotifications = () => {
         },
       }).catch(() => ({ data: [] }));
 
+      let mockedNotification = [
+        ...apiNotifications,
+        ...(availability ? [{
+          date: '2026-01-15',
+          id: '1',
+          status: 'delivered',
+          subject: t('notification_sender_email_title'),
+          description: t('notification_sender_email_description'),
+          updating: true,
+          urlDetails: { href },
+          level: 'HIGH',
+        }] : [])
+      ];
+
+
       const newNotifications: APINotification[] = [];
-      apiNotifications.forEach((notif: APINotification) => {
+      mockedNotification.forEach((notif: APINotification) => {
         newNotifications.push({
           ...notif,
           urlDetails: {
@@ -51,7 +71,7 @@ const useNotifications = () => {
   // UPDATE NOTIFICATIONS
 
   const updateNotications = (status: unknown): Promise<unknown> => {
-    return aapi.post('/notification', status).catch(() => {});
+    return aapi.post('/notification', status).catch(() => { });
   };
 
   const updateNotificationReadStatus = (
