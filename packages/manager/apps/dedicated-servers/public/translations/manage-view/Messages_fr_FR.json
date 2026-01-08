@@ -1,0 +1,14 @@
+{
+  "manage_view": "Gérer la vue",
+  "current_view": "Vue actuelle",
+  "configure_current_view": "Configurer la vue actuelle",
+  "delete_current_view": "Supprimer la vue actuelle",
+  "views": "Vues",
+  "add_new_view": "Ajouter une nouvelle vue",
+  "standard_view": "Vue standard",
+  "default": "Par défaut",
+  "new_view": "Nouvelle vue",
+  "set_as_default": "Définir par défaut",
+  "edit_view_name": "Modifier le nom de la vue",
+  "maximum_views_number_reached": "Le nombre de vues maximale est atteint (5)"
+}
