@@ -2,14 +2,14 @@ import { Suspense } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import Breadcrumb from '@key-management-service/components/breadcrumb/KmsBreadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { getOkmsServiceKeyResourceQueryKey } from '@key-management-service/data/api/okmsServiceKey';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -87,7 +87,7 @@ export default function ServiceKeyDashboard() {
     },
   ];
 
-  const breadcrumbItems: BreadcrumbItem[] = [
+  const breadcrumbItems: KmsBreadcrumbItem[] = [
     {
       id: okmsId,
       label: okms.iam.displayName,

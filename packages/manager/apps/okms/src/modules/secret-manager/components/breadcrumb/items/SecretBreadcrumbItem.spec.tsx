@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
@@ -39,15 +39,20 @@ vi.mock('@secret-manager/utils/secretPath', async (importOriginal) => {
 });
 
 describe('SecretBreadcrumbItem test suite', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('should have the correct label and href link', async () => {
     // GIVEN
     // WHEN
     await renderWithI18n(<SecretBreadcrumbItem />);
     const breadcrumbItem = screen.getByTestId(BREADCRUMB_ITEM_TEST_IDS.SECRET);
+    const link = within(breadcrumbItem).getByRole('link');
 
     // THEN
-    expect(breadcrumbItem).toHaveAttribute('label', decodedSecretPath);
-    expect(breadcrumbItem).toHaveAttribute(
+    expect(link).toHaveTextContent(decodedSecretPath);
+    expect(link).toHaveAttribute(
       'href',
       SECRET_MANAGER_ROUTES_URLS.secret(mockedOkms.id, secretPath),
     );

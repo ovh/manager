@@ -3,7 +3,8 @@ import { useHref } from 'react-router-dom';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 
-import { OdsBreadcrumbItem, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { BreadcrumbItem, BreadcrumbLink } from '@ovhcloud/ods-react';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
@@ -22,12 +23,11 @@ const Item = ({ okmsId }: { okmsId: string }) => {
     );
 
   return (
-    <OdsBreadcrumbItem
-      data-testid={BREADCRUMB_ITEM_TEST_IDS.OKMS}
-      key={okmsId}
-      label={error ? okmsId : okms?.iam?.displayName || okmsId}
-      href={link}
-    />
+    <BreadcrumbItem data-testid={BREADCRUMB_ITEM_TEST_IDS.OKMS} key={okmsId}>
+      <BreadcrumbLink href={link}>
+        {error ? okmsId : okms?.iam?.displayName || okmsId}
+      </BreadcrumbLink>
+    </BreadcrumbItem>
   );
 };
 

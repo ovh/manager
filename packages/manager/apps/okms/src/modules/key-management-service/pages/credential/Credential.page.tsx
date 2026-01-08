@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 
-import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import Breadcrumb from '@key-management-service/components/breadcrumb/KmsBreadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
@@ -10,7 +10,7 @@ import {
   getOkmsCredentialQueryKey,
   useOkmsCredentialById,
 } from '@key-management-service/data/hooks/useOkmsCredential';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
@@ -67,7 +67,7 @@ const CredentialDashboard = () => {
     );
   }
 
-  const breadcrumbItems: BreadcrumbItem[] = [
+  const breadcrumbItems: KmsBreadcrumbItem[] = [
     {
       id: okmsId,
       label: okms.iam.displayName,
