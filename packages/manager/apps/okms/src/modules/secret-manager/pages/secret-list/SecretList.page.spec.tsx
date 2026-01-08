@@ -15,6 +15,7 @@ import {
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { PATH_LABEL } from '@/constants';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
 
@@ -27,7 +28,7 @@ const renderPage = async () => {
   const results = await renderTestApp(mockPageUrl);
 
   // Check title
-  await assertTextVisibility(labels.secretManager.secret_manager);
+  await assertPageTitleVisibility(labels.secretManager.secret_manager, 3000);
 
   return results;
 };
@@ -37,14 +38,14 @@ const assertDatagridIsLoaded = async (container: HTMLElement) => {
   await waitFor(() => {
     const skeletons = container.querySelectorAll<HTMLElement>('ods-skeleton');
     expect(skeletons.length).toBe(0);
-  });
+  }, WAIT_FOR_DEFAULT_OPTIONS);
 };
 
 describe('Secret list page test suite', () => {
   it('should display the secrets list page', async () => {
     await renderPage();
 
-    await assertTextVisibility(labels.secretManager.secret_manager);
+    await assertPageTitleVisibility(labels.secretManager.secret_manager, 3000);
   });
 
   it('should display the breadcrumb', async () => {
@@ -120,7 +121,7 @@ describe('Secret list page test suite', () => {
     await act(() => user.click(manageOkmsButton));
 
     // THEN
-    await assertTextVisibility(labels.secretManager.okms_dashboard_title);
+    await assertPageTitleVisibility(labels.secretManager.okms_dashboard_title, 3000);
   });
 
   /* DATAGRID ACTIONS */

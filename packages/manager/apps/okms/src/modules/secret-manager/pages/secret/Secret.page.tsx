@@ -11,7 +11,7 @@ import { useSecret } from '@secret-manager/data/hooks/useSecret';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { Breadcrumb as OdsBreadcrumb } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BaseLayout, Error, HeaderProps, Notifications, useNotifications } from '@ovh-ux/muk';

@@ -101,7 +101,9 @@ describe('Okms List page test suite', () => {
       await user.click(okmsNameLink);
     });
 
-    await assertTextVisibility(labels.secretManager.secret_manager);
+    expect(
+      (await screen.findAllByText(labels.secretManager.secret_manager)).length,
+    ).toBeGreaterThan(0);
   });
 
   describe('should redirect to the default region page', () => {

@@ -12,6 +12,7 @@ import { assertOdsModalVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-c
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const WAIT_TIMEOUT = { timeout: 5000 };
 const mockOkmsItem: OKMS = {
@@ -32,14 +33,10 @@ const renderPage = async (options: { fromCSR: boolean }) => {
     fromCSR: options.fromCSR,
   });
 
-  // Check title
-  expect(
-    await screen.findByText(
-      labels.credentials.key_management_service_credential_create_title,
-      {},
-      WAIT_TIMEOUT,
-    ),
-  ).toBeVisible();
+  await assertPageTitleVisibility(
+    labels.credentials.key_management_service_credential_create_title,
+    3000,
+  );
 
   return { container };
 };
@@ -191,9 +188,7 @@ const testContentStep3 = async (container: HTMLElement) => {
 };
 
 const assertCredentialListPageVisibility = async () => {
-  // Check kms display name
-  expect(await screen.findByText(mockOkmsItem.iam.displayName, {}, WAIT_TIMEOUT)).toBeVisible();
-
+  await assertPageTitleVisibility(mockOkmsItem.iam.displayName, 3000);
   // Check headline on credentials list page
   expect(
     await screen.findByText(labels.credentials.key_management_service_credential_headline),
