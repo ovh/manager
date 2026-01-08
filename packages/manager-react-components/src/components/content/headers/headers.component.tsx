@@ -14,6 +14,7 @@ export interface HeadersProps {
   description?: string;
   headerButton?: React.ReactElement;
   changelogButton?: React.ReactElement;
+  surveyButton?: React.ReactElement;
 }
 
 export const Headers: React.FC<HeadersProps> = ({
@@ -23,6 +24,7 @@ export const Headers: React.FC<HeadersProps> = ({
   description,
   headerButton,
   changelogButton,
+  surveyButton,
 }) => {
   return (
     <div className="flex items-start justify-between">
@@ -44,10 +46,11 @@ export const Headers: React.FC<HeadersProps> = ({
           </OdsText>
         )}
       </div>
-      {(headerButton || changelogButton) && (
+      {(headerButton || changelogButton || surveyButton) && (
         <div className="flex flex-wrap justify-end items-center">
           {changelogButton}
           {headerButton}
+          {surveyButton}
         </div>
       )}
     </div>
