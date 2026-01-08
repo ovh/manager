@@ -336,5 +336,9 @@
   "domain_tab_dsrecords_modal_delete_success_message": "Der DS-Eintrag wird gelöscht.",
   "domain_tab_dsrecords_modal_delete_error_message": "Beim Löschen des DS-Eintrags ist ein Fehler aufgetreten",
   "domain_table_state_error": "Fehler",
-  "domain_tab_general_information_update_success": "Ihre Updateanforderung wurde erfolgreich verarbeitet."
+  "domain_tab_general_information_update_success": "Ihre Updateanforderung wurde erfolgreich verarbeitet.",
+  "domain_tab_dsrecords_message_information_content": "Diese DS-Einträge werden zu Informationszwecken bereitgestellt und von OVHcloud automatisch verwaltet.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC wird {{action}}: Sie können den Fortschritt Ihrer Anfrage auf der Seite der laufenden Operationen verfolgen. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "Aktivierung",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "Deaktivierung"
 }

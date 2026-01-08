@@ -336,5 +336,9 @@
   "domain_tab_dsrecords_modal_delete_success_message": "Trwa usuwanie rekordu DS",
   "domain_tab_dsrecords_modal_delete_error_message": "Wystąpił błąd podczas usuwania rekordu DS",
   "domain_table_state_error": "Błąd",
-  "domain_tab_general_information_update_success": "Zlecenie aktualizacji zostało przetworzone."
+  "domain_tab_general_information_update_success": "Zlecenie aktualizacji zostało przetworzone.",
+  "domain_tab_dsrecords_message_information_content": "Te rekordy DS są dostarczane w celach informacyjnych i są zarządzane automatycznie przez OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC jest w trakcie {{action}}: możesz śledzić postęp swojej prośby na stronie operacji w toku. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacji",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacji"
 }
