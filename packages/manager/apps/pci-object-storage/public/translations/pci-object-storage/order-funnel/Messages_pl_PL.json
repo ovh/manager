@@ -88,12 +88,12 @@
   "showAllRegions": "Wyświetl wszystkie regiony",
   "summaryEncryptionPlaintext": "Brak",
   "labelObjectLock": "Object Lock",
-  "descriptionObjectLock": "Z funkcją Object Lock przechowuj obiekty w trybie WORM (Write Once, Read Many), zapewniając ich integralność poprzez uniemożliwienie jakiejkolwiek modyfikacji lub usunięcia po zapisaniu. <0>Dowiedz się więcej</0>",
-  "objectLockTypeDisabledPopover": "Aby włączyć funkcję Object Lock, należy aktywować wersjonowanie",
-  "objectLockCannotDisableAlert": "Na tym etapie oferowane jest tylko włączenie funkcji. Szczegółowa konfiguracja Object Lock (tryb, okres przechowywania itp.) nastąpi po utworzeniu koszyka. Proszę pamiętać, że ta akcja jest nieodwracalna: po włączeniu, Object Lock nie może być wyłączony w koszyku.",
+  "descriptionObjectLock": "Object Lock służy do przechowywania obiektów w trybie WORM (Write Once, Read Many) i zapewnia ich integralność przez uniemożliwienie modyfikacji lub usuwania po zapisaniu. &lt;0>Więcej informacji&lt;/0>",
+  "objectLockTypeDisabledPopover": "Aby włączyć funkcję Object Lock, należy włączyć wersjonowanie",
+  "objectLockCannotDisableAlert": "Na tym etapie proponowana jest wyłącznie aktywacja funkcji. Szczegółowa konfiguracja Object Lock (tryb, okres retencji, etc.) zostanie przeprowadzona po utworzeniu bucketu. Pamiętaj, że ta operacja jest nieodwracalna: po aktywacji funkcji Object Lock nie można jej wyłączyć w buckecie.",
   "summaryObjectLockSection": "Object Lock",
   "summaryObjectLockEnabled": "Object Lock włączony",
   "summaryObjectLockDisabled": "Object Lock wyłączony",
-  "objectLockAcknowledgementLabel": "Rozumiem działanie i konsekwencje włączenia funkcji Object Lock. <0>Dowiedz się więcej</0>",
-  "objectLockAcknowledgementRequired": "Musisz uznać działanie Object Lock przed kontynuowaniem"
+  "objectLockAcknowledgementLabel": "Zrozumiałam/-em działanie i konsekwencje aktywacji funkcji Object Lock. &lt;0>Dowiedz się więcej&lt;/0>",
+  "objectLockAcknowledgementRequired": "Potwierdź, że rozumiesz działanie Object Lock, aby móc kontynuować"
 }
