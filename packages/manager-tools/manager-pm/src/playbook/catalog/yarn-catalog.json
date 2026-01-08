@@ -5,7 +5,6 @@
   "packages/manager/apps/billing",
   "packages/manager/apps/carrier-sip",
   "packages/manager/apps/cda",
-  "packages/manager/apps/cloud-connect",
   "packages/manager/apps/cloud-shell",
   "packages/manager/apps/communication",
   "packages/manager/apps/dbaas-logs",
