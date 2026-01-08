@@ -1,8 +1,8 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, useMemo } from 'react';
 
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { OdsBadge, OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Badge, Tab, TabList, Tabs, TabsValueChangeEvent } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
@@ -15,7 +15,7 @@ export type TabNavigationItem = {
   title: string;
   badge?: {
     label: string;
-    color: ComponentProps<typeof OdsBadge>['color'];
+    color: ComponentProps<typeof Badge>['color'];
   };
   tracking: TrackingTags[];
 };
@@ -25,65 +25,64 @@ export type TabNavigationProps = {
 };
 
 /**
- * Get the index of the active tab based on the current path.
+ * Get the name of the active tab based on the current path.
  */
-function getActiveTab(tabs: TabNavigationItem[], currentPath: string): number {
+function getActiveTab(tabs: TabNavigationItem[], currentPath: string): string | undefined {
   // Find the tab with the longest matching URL prefix
-  let bestMatchIndex = -1;
+  let bestMatchTab: TabNavigationItem | undefined;
   let bestMatchLength = 0;
 
-  tabs.forEach((tab, index) => {
+  tabs.forEach((tab) => {
     if (currentPath.startsWith(tab.url) && tab.url.length > bestMatchLength) {
-      bestMatchIndex = index;
+      bestMatchTab = tab;
       bestMatchLength = tab.url.length;
     }
   });
 
-  return bestMatchIndex;
+  return bestMatchTab?.name;
 }
 
 export const TabNavigation = ({ tabs }: TabNavigationProps) => {
   const { trackClick } = useOkmsTracking();
   const location = useLocation();
-  const activeTabIndex = getActiveTab(tabs, location.pathname);
+  const navigate = useNavigate();
+  const value = useMemo(
+    () => getActiveTab(tabs, location.pathname) ?? tabs[0]?.name ?? '',
+    [tabs, location.pathname],
+  );
 
-  const handleTrackClickTab = (actions: TrackingTags[]) =>
-    trackClick({
-      location: PageLocation.page,
-      buttonType: ButtonType.tab,
-      actionType: 'navigation',
-      actions,
-    });
+  const handleTabClicked = (event: TabsValueChangeEvent) => {
+    const selectedTab = tabs.find((tab) => tab.name === event.value);
+    if (selectedTab) {
+      navigate(selectedTab.url);
+      trackClick({
+        location: PageLocation.page,
+        buttonType: ButtonType.tab,
+        actionType: 'navigation',
+        actions: selectedTab.tracking,
+      });
+    }
+  };
 
   return (
-    <OdsTabs>
-      {tabs.map((tab, index) => (
-        <NavLink
-          key={`osds-tab-bar-item-${tab.name}`}
-          to={tab.url}
-          className="no-underline"
-          tabIndex={-1}
-        >
-          <OdsTab
-            id={tab.name}
+    <Tabs value={value} onValueChange={handleTabClicked}>
+      <TabList>
+        {tabs.map((tab) => (
+          <Tab
+            key={`osds-tab-bar-item-${tab.name}`}
+            value={tab.name}
             data-testid={tab.name}
-            role="tab"
-            isSelected={activeTabIndex === index}
             className="space-x-1"
-            onClick={() => handleTrackClickTab(tab.tracking)}
           >
             <span>{tab.title}</span>
             {tab.badge && (
-              <OdsBadge
-                label={tab.badge.label}
-                color={tab.badge.color}
-                size="sm"
-                className="font-normal"
-              />
+              <Badge color={tab.badge.color} size="sm" className="font-normal">
+                {tab.badge.label}
+              </Badge>
             )}
-          </OdsTab>
-        </NavLink>
-      ))}
-    </OdsTabs>
+          </Tab>
+        ))}
+      </TabList>
+    </Tabs>
   );
 };
