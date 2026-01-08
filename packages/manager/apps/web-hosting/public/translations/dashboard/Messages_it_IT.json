@@ -1,6 +1,6 @@
 {
   "hosting_tab_GENERAL_INFORMATIONS": "Informazioni generali",
-  "hosting_tab_MULTISITE": "I miei siti",
+  "hosting_tab_MULTISITE": "Multisito",
   "hosting_tab_SSL": "Certificati SSL",
   "hosting_tab_MODULE": "CMS in 1 click",
   "hosting_tab_USER_LOGS": "Statistiche e log",
@@ -215,5 +215,6 @@
   "deploy_git": "Distribuire GIT",
   "deploy_git_description": "Stai per distribuire o aggiornare manualmente il contenuto del tuo repository remoto sul tuo hosting.",
   "deploy_git_overwrite_local_changes": "In caso di conflitto di modifica, forzare le modifiche remote sul tuo repository locale.",
-  "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Crea un sottodominio"
+  "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Crea un sottodominio",
+  "hosting_tab_WEBSITE": "I miei siti"
 }

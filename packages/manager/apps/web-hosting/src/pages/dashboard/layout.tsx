@@ -20,6 +20,7 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import {
   BaseLayout,
@@ -50,6 +51,7 @@ export default function Layout() {
   const { t } = useTranslation('dashboard');
   const isOverridedPage = useOverridePage();
   const { data } = useGetHostingService(serviceName);
+  const { data: availability } = useFeatureAvailability(['web-hosting:multisite-react']);
 
   const { flattenData } = useDataApi<EmailOptionType>({
     version: 'v6',
@@ -64,7 +66,10 @@ export default function Layout() {
   const { pathname, hash } = useLocation();
 
   const generalUrl = useHostingUrl(serviceName);
-  const multisiteUrl = `#/${serviceName}/multisite`;
+  const multisiteHostingUrl = useHostingUrl(serviceName, 'multisite');
+  const multisiteUrl = availability?.['web-hosting:multisite-react']
+    ? `#/${serviceName}/multisite`
+    : multisiteHostingUrl;
   const sslPathname = `#/${serviceName}/ssl`;
   const logsUrl = useHostingUrl(serviceName, 'user-logs');
   const ftpUrl = useHostingUrl(serviceName, 'ftp');
@@ -86,7 +91,9 @@ export default function Layout() {
       },
       {
         name: 'multisite',
-        title: t('hosting_tab_MULTISITE'),
+        title: availability?.['web-hosting:multisite-react']
+          ? t('hosting_tab_WEBSITE')
+          : t('hosting_tab_MULTISITE'),
         to: multisiteUrl,
       },
       {
