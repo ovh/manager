@@ -1,5 +1,3 @@
-import Logo1AZ from '@public/assets/1AZ.svg?url';
-import Logo3AZ from '@public/assets/3AZ.svg?url';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -9,6 +7,8 @@ import { PciCard } from '@/components/pciCard/PciCard.component';
 import { TDeploymentMode } from '@/domain/entities/regions';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
+import Logo1AZ from '/assets/1AZ.svg?url';
+import Logo3AZ from '/assets/3AZ.svg?url';
 
 type TDeploymentModeCardInfos = {
   mode: TDeploymentMode;

@@ -7,16 +7,15 @@ import { Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/o
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
 
+import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
+import { PlanSelect } from './location/PlanSelect.component';
 
-/* 
-  TODO : 
-    - Default value 3AZ (1AZ for US)
-    - Hide mode selector for US
-    - Badges 1-AZ/3-AZ en haut des cards si Sam veut les garder
-*/
+type TClusterLocationSectionProps = {
+  is3azAvailable: boolean;
+};
 
-export const ClusterLocationSection: FC = () => {
+export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3azAvailable }) => {
   const { t } = useTranslation('add');
 
   return (
@@ -29,16 +28,24 @@ export const ClusterLocationSection: FC = () => {
         <HelpDrawerDivider />
         <HelpDrawer></HelpDrawer>
       </Text>
-      <Message dismissible={false}>
-        <MessageIcon name="circle-info" />
-        <MessageBody className="flex flex-col gap-4">
-          TODO : Reprendre le contenu après la MEP du plan standard
-          <Link href="https://ovhcloud.com" target="_blank">
-            Todo : Récupérer liens et clés de trad <Icon name="external-link"></Icon>
-          </Link>
-        </MessageBody>
-      </Message>
-      <DeploymentModeSelect />
+      {is3azAvailable && (
+        <>
+          <Message dismissible={false}>
+            <MessageIcon name="circle-info" />
+            <MessageBody className="flex flex-col gap-4">
+              TODO : Reprendre le contenu après la MEP du plan standard
+              <Link href="https://ovhcloud.com" target="_blank">
+                Todo : Récupérer liens et clés de trad <Icon name="external-link"></Icon>
+              </Link>
+            </MessageBody>
+          </Message>
+          <DeploymentModeSelect />
+          <div className="my-6 grid items-end gap-6 sm:grid-cols-2 lg:w-max">
+            <ContinentSelect />
+            <PlanSelect />
+          </div>
+        </>
+      )}
     </>
   );
 };
