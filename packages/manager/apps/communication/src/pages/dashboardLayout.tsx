@@ -14,7 +14,7 @@ import { urls } from '@/routes/routes.constant';
 import { useTracking } from '@/hooks/useTracking/useTracking';
 import { TrackingSubApps } from '@/tracking.constant';
 import { GuidePlacement, GuidedTourProvider, GuideStep } from '@/hooks/useGuidedTour';
-
+import SenderEmailBanner from '@/components/senderEmailBanner/SenderEmailBanner.component'
 import { GuideMenu } from '@/components/guideMenu/GuideMenu.component';
 import GuidedTour from '@/components/guidedTour/GuidedTour.component';
 import GuidedTourIntroduction from '@/components/guidedTour/Introduction.component';
@@ -133,6 +133,8 @@ export default function DashboardLayout() {
           </OdsTabs>
         }
       >
+        <SenderEmailBanner />
+
         <Outlet />
         <GuidedTourIntroduction />
       </BaseLayout>
