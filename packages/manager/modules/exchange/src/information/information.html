@@ -87,13 +87,27 @@
                             </oui-tile-description>
                         </oui-tile-definition>
                         <oui-tile-definition
-                            data-term="{{:: 'exchange_dashboard_ssl_expiration' | translate}}"
-                            data-ng-if="ctrl.exchange.sslExpirationDate"
+                            data-term="{{:: 'exchange_dashboard_ssl_certificate' | translate}}"
+                            data-ng-if="ctrl.exchange.sslExpirationDate || ctrl.exchangeServiceInfrastructure.isDedicated()"
                         >
                             <oui-tile-description>
-                                <span
-                                    data-ng-bind="ctrl.exchange.sslExpirationDate | date:'mediumDate'"
-                                ></span>
+                                <div class="d-block">
+                                    <span
+                                        class="oui-badge oui-badge_success"
+                                        data-ng-if="ctrl.exchange.sslExpirationDate && !ctrl.messageSSL"
+                                        data-translate="exchange_dashboard_ssl_certificate_ok"
+                                    ></span>
+                                </div>
+                                <div
+                                    data-ng-if="ctrl.exchange.sslExpirationDate"
+                                >
+                                    <strong
+                                        data-translate="exchange_dashboard_ssl_expiration"
+                                    ></strong>
+                                    <span
+                                        data-ng-bind="ctrl.exchange.sslExpirationDate | date:'mediumDate'"
+                                    ></span>
+                                </div>
                                 <oui-message
                                     data-type="info"
                                     data-ng-if="ctrl.messageSSL"
@@ -131,15 +145,29 @@
                         data-heading="{{:: 'exchange_tab_INFORMATIONS_stats' | translate}}"
                     >
                         <oui-tile-definition
+                            data-term="{{:: 'exchange_dashboard_accounts' | translate}}"
+                        >
+                            <oui-tile-description>
+                                <progress
+                                    class="oui-progress oui-progress_info"
+                                    value="{{ ctrl.exchange.accountsNumber - ctrl.exchange.unconfiguredAccountNumber }}"
+                                    max="{{ ctrl.exchange.accountsNumber }}"
+                                ></progress>
+                                <span
+                                    data-ng-bind="ctrl.exchange.accountsNumber - ctrl.exchange.unconfiguredAccountNumber"
+                                ></span
+                                >/<span
+                                    data-ng-bind="ctrl.exchange.accountsNumber"
+                                ></span>
+                            </oui-tile-description>
+                        </oui-tile-definition>
+
+                        <oui-tile-definition
                             data-term="{{:: 'exchange_dashboard_domains' | translate}}"
                             data-description="{{:: ctrl.exchange.domainsNumber}}"
                         >
                         </oui-tile-definition>
-                        <oui-tile-definition
-                            data-term="{{:: 'exchange_dashboard_accounts' | translate}}"
-                            data-description="{{:: ctrl.exchange.accountsNumber}}"
-                        >
-                        </oui-tile-definition>
+
                         <oui-tile-definition
                             data-term="{{:: 'exchange_dashboard_tasks' | translate}}"
                             data-description="{{:: ctrl.exchange.tasksNumber}}"
@@ -261,14 +289,10 @@
                         </a>
                     </oui-tile-description>
                 </oui-tile-definition>
-            </oui-tile>
-
-            <oui-tile
-                class="h-100 mb-5"
-                data-ng-if=":: ctrl.canVeeamBackup()"
-                data-heading="{{ :: 'exchange_tab_INFORMATIONS_backup' | translate }}"
-            >
-                <oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'exchange_tab_INFORMATIONS_backup' | translate}}"
+                    data-ng-if=":: ctrl.canVeeamBackup()"
+                >
                     <oui-tile-description class="pt-2">
                         <a
                             class="oui-link_icon"
