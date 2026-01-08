@@ -170,3 +170,14 @@ export const clickJsonEditorToggle = async (user: UserEvent) => {
   const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
   await act(() => user.click(jsonToggle));
 };
+
+export const assertPageTitleVisibility = async (title: string, timeout?: number) => {
+  await waitFor(
+    () => {
+      const titleElement = document.querySelector('.ods-text[preset="heading-1"]');
+      expect(titleElement).toBeInTheDocument();
+      expect(titleElement).toHaveTextContent(title);
+    },
+    { timeout: timeout ?? 3000 },
+  );
+};

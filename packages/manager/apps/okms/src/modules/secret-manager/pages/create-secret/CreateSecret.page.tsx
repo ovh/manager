@@ -9,7 +9,7 @@ import { SecretManagerChangelogButton } from '@secret-manager/components/secret-
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 
@@ -34,9 +34,9 @@ export default function SecretCreatePage() {
         headerButton: <SecretManagerGuidesButton />,
       }}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
     >

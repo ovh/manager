@@ -11,7 +11,8 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import {
   BaseLayout,
@@ -79,9 +80,9 @@ export default function OkmsListPage() {
         headerButton: <SecretManagerGuidesButton />,
       }}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
     >
