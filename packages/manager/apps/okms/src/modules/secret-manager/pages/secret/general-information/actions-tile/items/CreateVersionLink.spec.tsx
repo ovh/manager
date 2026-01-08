@@ -84,7 +84,7 @@ describe('CreateVersionLink test suite', () => {
       await waitFor(() => {
         expect(link).not.toHaveAttribute('is-disabled');
       });
-      expect(link).toHaveAttribute('label', labels.secretManager.add_new_version);
+      expect(link).toHaveTextContent(labels.secretManager.add_new_version);
       expect(link).toHaveAttribute(
         'href',
         SECRET_MANAGER_ROUTES_URLS.secretCreateVersionDrawer(
@@ -110,7 +110,7 @@ describe('CreateVersionLink test suite', () => {
       const link = screen.getByTestId(CREATE_VERSION_TEST_IDS.createVersionLink);
 
       await waitFor(() => {
-        expect(link).toHaveAttribute('is-disabled', 'true');
+        expect(link).toHaveAttribute('disabled');
       });
     });
   });

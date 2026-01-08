@@ -1,9 +1,14 @@
-import { useId } from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import {
+  Badge,
+  BadgeColor,
+  Icon,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 import { LocationType } from '@/common/types/location.type';
 
@@ -12,15 +17,15 @@ type RegionTypeBadgeProps = {
 };
 
 const bgColors: Record<LocationType, string> = {
-  'LOCAL-ZONE': '[&::part(badge)]:bg-[--ods-color-primary-100]',
-  'REGION-1-AZ': '[&::part(badge)]:bg-[--ods-color-primary-400]',
-  'REGION-3-AZ': '[&::part(badge)]:bg-[--ods-color-primary-700]',
+  'LOCAL-ZONE': 'bg-[--ods-color-primary-100]',
+  'REGION-1-AZ': 'bg-[--ods-color-primary-400]',
+  'REGION-3-AZ': 'bg-[--ods-color-primary-700]',
 };
 
-const textColors: Record<LocationType, ODS_BADGE_COLOR> = {
-  'LOCAL-ZONE': ODS_BADGE_COLOR.information,
-  'REGION-1-AZ': ODS_BADGE_COLOR.promotion,
-  'REGION-3-AZ': ODS_BADGE_COLOR.promotion,
+const textColors: Record<LocationType, BadgeColor> = {
+  'LOCAL-ZONE': 'information',
+  'REGION-1-AZ': 'promotion',
+  'REGION-3-AZ': 'promotion',
 };
 
 const badgeLabels: Record<LocationType, string> = {
@@ -30,7 +35,6 @@ const badgeLabels: Record<LocationType, string> = {
 };
 
 export const RegionTypeBadge = ({ type }: RegionTypeBadgeProps) => {
-  const tooltipId = useId();
   const { t } = useTranslation('common');
 
   const tooltipLabels: Record<LocationType, string> = {
@@ -40,21 +44,20 @@ export const RegionTypeBadge = ({ type }: RegionTypeBadgeProps) => {
   };
 
   return (
-    <div className={'relative'}>
-      <OdsBadge
-        id={tooltipId}
-        label={badgeLabels[type]}
-        color={textColors[type]}
-        className={bgColors[type]}
-        icon="circle-info"
-        iconAlignment="right"
-        size="sm"
-      />
-      <OdsTooltip triggerId={tooltipId} position="right" withArrow>
-        <OdsText preset="caption" className="w-56">
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Badge color={textColors[type]} className={bgColors[type]} size="sm">
+          <>
+            {badgeLabels[type]}
+            <Icon name="circle-info" />
+          </>
+        </Badge>
+      </TooltipTrigger>
+      <TooltipContent className="w-56">
+        <Text preset="small">
           <span>{tooltipLabels[type]}</span>
-        </OdsText>
-      </OdsTooltip>
-    </div>
+        </Text>
+      </TooltipContent>
+    </Tooltip>
   );
 };

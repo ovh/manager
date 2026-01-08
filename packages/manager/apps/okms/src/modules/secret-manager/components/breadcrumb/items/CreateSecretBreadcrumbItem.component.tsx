@@ -6,7 +6,7 @@ import {
 } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+import { BreadcrumbItem, BreadcrumbLink } from '@ovhcloud/ods-react';
 
 import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 
@@ -15,11 +15,11 @@ export const CreateSecretBreadcrumbItem = () => {
   const { t } = useTranslation('secret-manager');
 
   return (
-    <OdsBreadcrumbItem
+    <BreadcrumbItem
       data-testid={BREADCRUMB_ITEM_TEST_IDS.CREATE_SECRET}
       key={SECRET_MANAGER_ROUTES_URIS.root}
-      label={t('create_a_secret')}
-      href={link}
-    />
+    >
+      <BreadcrumbLink href={link}>{t('create_a_secret')}</BreadcrumbLink>
+    </BreadcrumbItem>
   );
 };

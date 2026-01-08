@@ -3,7 +3,8 @@ import { Secret } from '@secret-manager/types/secret.type';
 import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsRadio, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsRadio } from '@ovhcloud/ods-components/react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -48,7 +49,7 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
             data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE}
           />
           <label htmlFor={`${field.name}-active`}>
-            <OdsText preset="paragraph">{t('activated')}</OdsText>
+            <Text preset="paragraph">{t('activated')}</Text>
           </label>
         </div>
         <div className="flex items-center gap-2">
@@ -61,7 +62,7 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
             data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE}
           />
           <label htmlFor={`${field.name}-inactive`}>
-            <OdsText preset="paragraph">{t('disabled', { ns: NAMESPACES.STATUS })}</OdsText>
+            <Text preset="paragraph">{t('disabled', { ns: NAMESPACES.STATUS })}</Text>
           </label>
         </div>
       </div>
@@ -83,15 +84,15 @@ const FormHelper = ({ secret, okmsId }: { secret?: Secret; okmsId: string }) => 
 
   const { secretConfig, isPending, error } = useSecretSmartConfig({ secret, okmsId });
 
-  if (isPending) return <OdsSkeleton />;
+  if (isPending) return <Skeleton />;
 
   if (error) return null;
 
   if (secretConfig.isCasRequiredSetOnOkms) {
     return (
-      <OdsText slot="helper" preset="caption">
+      <Text slot="helper" preset="caption">
         {t('form_helper_cas_required_okms')}
-      </OdsText>
+      </Text>
     );
   }
 

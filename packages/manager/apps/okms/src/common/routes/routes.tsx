@@ -5,7 +5,7 @@ import kmsRoutes from '@key-management-service/routes/routes';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import secretManagerRoutes from '@secret-manager/routes/routes';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/App.constants';
 

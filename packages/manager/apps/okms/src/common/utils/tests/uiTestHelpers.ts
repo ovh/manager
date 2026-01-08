@@ -1,135 +1,17 @@
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value/secretValueToggle.constants';
-import { act, fireEvent, screen, waitFor, waitForOptions } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { UserEvent } from '@testing-library/user-event';
+import { expect } from 'vitest';
 
-import { OdsIcon } from '@ovhcloud/ods-components/react';
+import { BadgeColor } from '@ovhcloud/ods-react';
 
-const WAIT_FOR_DEFAULT_OPTIONS = { timeout: 3000 };
-
-/* GET BY LABEL */
-
-type GetOdsButtonParams = {
-  container: HTMLElement;
-  label?: string;
-  altLabel?: string;
-  iconName?: React.ComponentProps<typeof OdsIcon>['name'];
-  disabled?: boolean;
-  isLink?: boolean;
-  nth?: number;
-} & waitForOptions;
-
-const getOdsButton = async ({
-  container,
-  label,
-  altLabel,
-  iconName,
-  disabled,
-  isLink,
-  nth = 0,
-  ...options
-}: GetOdsButtonParams) => {
-  let button: HTMLOdsLinkElement | HTMLOdsButtonElement | undefined;
-  await waitFor(
-    () => {
-      const htmlTag = isLink ? 'ods-link' : 'ods-button';
-      const buttonList = container.querySelectorAll(htmlTag);
-
-      if (iconName) {
-        // filter by icon
-        button = Array.from(buttonList).filter((btn) => btn.getAttribute('icon') === iconName)[nth];
-      } else {
-        // filter by label or altLabel
-        button = Array.from(buttonList).filter((btn) =>
-          [label, altLabel].includes(btn.getAttribute('label') ?? ''),
-        )[nth];
-      }
-
-      // If disabled is undefined, we do not do more checks
-      if (disabled === undefined) {
-        return true;
-      }
-
-      if (isLink) {
-        return disabled
-          ? expect(button).toHaveAttribute('is-disabled', 'true')
-          : expect(button).not.toHaveAttribute('is-disabled', 'true');
-      }
-      return disabled
-        ? expect(button).toHaveAttribute('disabled')
-        : expect(button).not.toHaveAttribute('disabled');
-    },
-    { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
-  );
-  if (!button) {
-    throw new Error(`Button ${label ?? altLabel ?? iconName ?? ''} not found`);
-  }
-  return button;
-};
-
-type GetOdsButtonByLabelParams = Omit<GetOdsButtonParams, 'iconName'> & {
-  label: string;
-};
-
-export const getOdsButtonByLabel = async ({
-  container,
-  label,
-  altLabel,
-  disabled,
-  isLink,
-  nth = 0,
-  ...options
-}: GetOdsButtonByLabelParams) => {
-  return getOdsButton({
-    container,
-    label,
-    altLabel,
-    disabled,
-    isLink,
-    nth,
-    ...options,
-  });
-};
-
-type GetOdsButtonByIconParams = Omit<GetOdsButtonParams, 'label' | 'altLabel'>;
-
-export const getOdsButtonByIcon = async ({
-  container,
-  iconName,
-  disabled,
-  isLink,
-  nth = 0,
-  ...options
-}: GetOdsButtonByIconParams) => {
-  return getOdsButton({
-    container,
-    iconName,
-    disabled,
-    isLink,
-    nth,
-    ...options,
-  });
+export const TIMEOUT = {
+  DEFAULT: 3000,
+  MEDIUM: 5000,
+  LONG: 10000,
 };
 
 /* GET BY TEST ID */
-
-type GetOdsLinkByTestIdParams = {
-  testId: string;
-  disabled?: boolean;
-};
-
-export const getOdsLinkByTestId = async ({ testId, disabled }: GetOdsLinkByTestIdParams) => {
-  let link: HTMLElement | undefined;
-  await waitFor(() => {
-    link = screen.getByTestId(testId);
-    expect(link).toBeInTheDocument();
-
-    return disabled
-      ? expect(link).toHaveAttribute('is-disabled', 'true')
-      : expect(link).not.toHaveAttribute('is-disabled', 'true');
-  });
-
-  return link;
-};
 
 export const changeOdsInputValueByTestId = async (inputTestId: string, value: string) => {
   // First try to get the input directly
@@ -154,13 +36,73 @@ export const changeOdsInputValueByTestId = async (inputTestId: string, value: st
   });
 };
 
-type GetOdsClipboardByValueParams = {
-  container: HTMLElement;
-  value: string;
+export const assertClipboardVisibility = async (value: string, timeout?: number) => {
+  const clipboardInput = await screen.findByDisplayValue(value, {}, { timeout: timeout ?? 3000 });
+  expect(clipboardInput).toHaveAttribute('data-ods', 'clipboard-control');
+  expect(clipboardInput).toBeVisible();
+  return clipboardInput;
 };
 
-export const getOdsClipboardByValue = ({ container, value }: GetOdsClipboardByValueParams) => {
-  return container.querySelector(`ods-clipboard[value="${value}"]`);
+type AssertModalVisibilityProps = {
+  role: 'alertdialog' | 'dialog';
+  state?: 'visible' | 'hidden';
+  timeout?: number;
+};
+
+export const assertModalVisibility = async ({
+  role,
+  state = 'visible',
+  timeout = TIMEOUT.DEFAULT,
+}: AssertModalVisibilityProps) => {
+  let modal: HTMLElement | null = null;
+  await waitFor(
+    () => {
+      modal = screen.queryByRole(role);
+      if (state === 'visible') {
+        expect(modal).toBeInTheDocument();
+      } else {
+        expect(modal).not.toBeInTheDocument();
+      }
+    },
+    { timeout },
+  );
+  return modal as unknown as HTMLElement;
+};
+
+export const assertDrawerVisibility = async ({
+  state = 'visible',
+  timeout = TIMEOUT.DEFAULT,
+}: Omit<AssertModalVisibilityProps, 'role'>) => {
+  let drawer: HTMLElement | null = null;
+  await waitFor(
+    () => {
+      drawer = screen.queryByTestId('drawer');
+      if (state === 'visible') {
+        expect(drawer).toBeInTheDocument();
+      } else {
+        expect(drawer).not.toBeInTheDocument();
+      }
+    },
+    { timeout },
+  );
+  return drawer as unknown as HTMLElement;
+};
+
+type AssertTitleVisibilityParams = {
+  title: string;
+  level: number;
+  timeout?: number;
+};
+
+export const assertTitleVisibility = async ({
+  title,
+  level,
+  timeout = TIMEOUT.DEFAULT,
+}: AssertTitleVisibilityParams) => {
+  await waitFor(
+    () => expect(screen.getByRole('heading', { level, name: title })).toBeInTheDocument(),
+    { timeout },
+  );
 };
 
 /**
@@ -169,4 +111,16 @@ export const getOdsClipboardByValue = ({ container, value }: GetOdsClipboardByVa
 export const clickJsonEditorToggle = async (user: UserEvent) => {
   const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
   await act(() => user.click(jsonToggle));
+};
+
+/**
+ * Asserts that a badge element has the expected color class in its className
+ * @param badge - The badge element to check
+ * @param color - The expected color value
+ */
+export const assertBadgeColor = (badge: HTMLElement, color: BadgeColor) => {
+  const colorClassFragment = `_badge--${color}_`;
+  const className = badge.className || '';
+
+  expect(className).toContain(colorClassFragment);
 };

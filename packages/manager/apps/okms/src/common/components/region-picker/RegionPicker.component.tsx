@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Spinner } from '@ovhcloud/ods-react';
 
 import { RegionCertificationBadges } from '@/common/components/region-certification-badge/RegionCertificationBadges.component';
 import { RegionTypeBadge } from '@/common/components/region-type-badge/RegionTypeBadge.component';
@@ -50,7 +50,7 @@ export const RegionPicker = ({ selectedRegion, setSelectedRegion }: RegionPicker
   if (isPending) {
     return (
       <div>
-        <OdsSpinner size="md" data-testid={REGION_PICKER_TEST_IDS.SPINNER} />
+        <Spinner data-testid={REGION_PICKER_TEST_IDS.SPINNER} />
       </div>
     );
   }

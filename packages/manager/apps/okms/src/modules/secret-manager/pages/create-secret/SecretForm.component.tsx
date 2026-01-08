@@ -20,11 +20,13 @@ import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-for
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { PATH_LABEL } from '@/constants';
@@ -113,9 +115,9 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
     <FormProvider {...form}>
       <form className="flex flex-col gap-8" onSubmit={handleSubmit(handleConfirmClick)}>
         <div className="flex flex-col gap-5">
-          <OdsText preset="heading-2">{t('create_secret_form_secret_section_title')}</OdsText>
+          <Text preset="heading-2">{t('create_secret_form_secret_section_title')}</Text>
           <div className="flex flex-col gap-3">
-            <OdsText preset="heading-4">{PATH_LABEL}</OdsText>
+            <Text preset="heading-4">{PATH_LABEL}</Text>
             <Controller
               name="path"
               control={control}
@@ -129,15 +131,15 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
                     onOdsChange={onChange}
                     data-testid={SECRET_FORM_TEST_IDS.INPUT_PATH}
                   />
-                  <OdsText slot="helper" preset="caption">
+                  <Text slot="helper" preset="caption">
                     {t('path_field_helper')}
-                  </OdsText>
+                  </Text>
                 </OdsFormField>
               )}
             />
           </div>
           <div className="flex flex-col gap-3">
-            <OdsText preset="heading-4">{t('values')}</OdsText>
+            <Text preset="heading-4">{t('values')}</Text>
             <SecretDataFormField name={'data'} control={control} />
           </div>
           {/* TEMP: waiting for custom metadata */}
@@ -145,7 +147,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
             <OdsText preset="heading-4">{t('custom_metadata_title')}</OdsText>
           </div> */}
           <div className="flex flex-col gap-3">
-            <OdsText preset="heading-4">{t('settings_default')}</OdsText>
+            <Text preset="heading-4">{t('settings_default')}</Text>
             <SecretDeactivateVersionAfterFormField
               name="deactivateVersionAfter"
               control={control}
@@ -160,11 +162,10 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
       </div> */}
         <div className="flex items-center justify-between py-3">
           <SecretFormBackLink />
-          <OdsButton
+          <Button
             type="submit"
-            isDisabled={!isDirty || !isValid || !okmsId}
-            isLoading={isPending}
-            label={t('create', { ns: NAMESPACES.ACTIONS })}
+            disabled={!isDirty || !isValid || !okmsId}
+            loading={isPending}
             data-testid={SECRET_FORM_TEST_IDS.SUBMIT_BUTTON}
             onClick={() => {
               trackClick({
@@ -174,7 +175,9 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
                 actions: ['create', 'secret'],
               });
             }}
-          />
+          >
+            {t('create', { ns: NAMESPACES.ACTIONS })}
+          </Button>
         </div>
       </form>
     </FormProvider>

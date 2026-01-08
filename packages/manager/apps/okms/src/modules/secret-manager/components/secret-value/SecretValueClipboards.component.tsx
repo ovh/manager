@@ -3,9 +3,10 @@ import { SecretData } from '@secret-manager/types/secret.type';
 import { isKeyValueObject, objectToKeyValuePairs } from '@secret-manager/utils/key-value/keyValue';
 import { useTranslation } from 'react-i18next';
 
-import { OdsClipboard, OdsFormField } from '@ovhcloud/ods-components/react';
+import { OdsFormField } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { KEY_VALUES_TEST_IDS } from './secretValueClipboards.constants';
 
@@ -37,7 +38,7 @@ export const SecretValueClipboards = ({ data }: SecretValueClipboardsProps) => {
             <label htmlFor={item.key} slot="label">
               {t('key')}
             </label>
-            <OdsClipboard value={item.key} />
+            <Clipboard value={item.key} />
           </OdsFormField>
           <OdsFormField
             className="flex w-full flex-col space-y-1"
@@ -46,7 +47,7 @@ export const SecretValueClipboards = ({ data }: SecretValueClipboardsProps) => {
             <label htmlFor={item.value} slot="label">
               {t('value')}
             </label>
-            <OdsClipboard value={item.value} />
+            <Clipboard value={item.value} />
           </OdsFormField>
         </div>
       ))}

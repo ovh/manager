@@ -82,9 +82,9 @@ describe('EditMetaodataLink test suite', () => {
       const link = screen.getByTestId(EDIT_METADATA_LINK_TEST_IDS.editMetadataLink);
 
       await waitFor(() => {
-        expect(link).not.toHaveAttribute('is-disabled');
+        expect(link).not.toHaveAttribute('disabled');
       });
-      expect(link).toHaveAttribute('label', labels.secretManager.edit_metadata);
+      expect(link).toHaveTextContent(labels.secretManager.edit_metadata);
       expect(link).toHaveAttribute(
         'href',
         SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(OKMS_OK_MOCK.id, SECRET_MOCK.path),
@@ -106,7 +106,7 @@ describe('EditMetaodataLink test suite', () => {
       const link = screen.getByTestId(EDIT_METADATA_LINK_TEST_IDS.editMetadataLink);
 
       await waitFor(() => {
-        expect(link).toHaveAttribute('is-disabled', 'true');
+        expect(link).toHaveAttribute('disabled');
       });
     });
   });

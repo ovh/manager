@@ -1,14 +1,35 @@
+import React from 'react';
+
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { SetupServer, setupServer } from 'msw/node';
 import { vi } from 'vitest';
 
+import { Button as OdsButton } from '@ovhcloud/ods-react';
+
 import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
+import { ActionMenuProps, ButtonProps, LinkProps } from '@ovh-ux/muk';
 
 declare global {
   var server: SetupServer;
   var __VERSION__: string;
 }
+
+// Patch for ODS - PointerEvent polyfill for jsdom
+vi.stubGlobal('PointerEvent', MouseEvent);
+
+// Mock ResizeObserver
+global.ResizeObserver = class ResizeObserver {
+  observe() {
+    // Mock implementation
+  }
+  unobserve() {
+    // Mock implementation
+  }
+  disconnect() {
+    // Mock implementation
+  }
+} as typeof ResizeObserver;
 
 const server = setupServer(
   ...toMswHandlers([...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' })]),
@@ -38,28 +59,91 @@ afterEach(() => {
   server.resetHandlers();
 });
 
-type DrawerProps = {
-  children?: React.ReactNode;
-  className?: string;
-  'data-testid'?: string;
-  heading?: React.ReactNode;
-  isLoading?: boolean;
-};
-
-// Mocking ODS Drawer component
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const original = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...original,
-    Drawer: vi.fn(({ children, className, ...props }: DrawerProps) => (
-      <div data-testid={props['data-testid']} className={className}>
-        <header>{props.heading}</header>
-        {!props.isLoading && children}
-      </div>
-    )),
-  };
-});
-
 vi.mock('@/common/hooks/useOkmsTracking', () => ({
   useOkmsTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
 }));
+
+// Mocking ODS components
+vi.mock('@ovh-ux/muk', async () => {
+  const original = await vi.importActual('@ovh-ux/muk');
+  return {
+    ...original,
+    Button: vi.fn((props: ButtonProps & { 'data-testid'?: string }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { iamActions, isIamTrigger, displayTooltip, tooltipPosition, loading, ...htmlProps } =
+        props;
+      return (
+        <OdsButton data-testid={props['data-testid']} data-loading={loading} {...htmlProps}>
+          {props.children}
+        </OdsButton>
+      );
+    }),
+    Link: vi.fn((props: LinkProps & { 'data-testid'?: string }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { iamActions, isIamTrigger, displayTooltip, ...htmlProps } = props;
+      return (
+        <a data-testid={props['data-testid']} href={htmlProps.href} {...htmlProps}>
+          {props.children}
+        </a>
+      );
+    }),
+    ActionMenu: vi.fn((props: ActionMenuProps) => {
+      const [isOpen, setIsOpen] = React.useState(false);
+      const { items, id, label, isCompact, isDisabled, isLoading } = props;
+
+      return (
+        <div data-testid={`action-menu-${id}`}>
+          <button
+            data-testid={`action-menu-trigger-${id}`}
+            onClick={() => setIsOpen(!isOpen)}
+            disabled={isDisabled || isLoading}
+            type="button"
+          >
+            {!isCompact && (label || 'Actions')}
+            {isCompact && '⋯'}
+          </button>
+          {isOpen && (
+            <div data-testid={`action-menu-content-${id}`} role="menu">
+              <ul className="menu-item-ul">
+                {items.map((item) => (
+                  <li key={item.id}>
+                    {item.href ? (
+                      <a
+                        data-testid={`action-menu-item-${item.id}`}
+                        href={item.href}
+                        onClick={() => {
+                          item.onClick?.();
+                          setIsOpen(false);
+                        }}
+                        download={item.download}
+                        target={item.target}
+                        rel={item.rel}
+                        className={item.className}
+                        aria-disabled={item.isDisabled}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <button
+                        data-testid={`action-menu-item-${item.id}`}
+                        onClick={() => {
+                          item.onClick?.();
+                          setIsOpen(false);
+                        }}
+                        disabled={item.isDisabled}
+                        type="button"
+                        className={item.className}
+                      >
+                        {item.label}
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      );
+    }),
+  };
+});
