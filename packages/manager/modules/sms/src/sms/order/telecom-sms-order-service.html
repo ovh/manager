@@ -20,6 +20,29 @@
         </oui-header>
 
         <form name="smsOrderForm">
+            <div
+                class="d-inline-block mb-2"
+                data-ng-if="$ctrl.smsFeatureAvailability.isFeatureAvailable('sms:time2chat') && $ctrl.availableAccounts.length === 1"
+            >
+                <oui-message data-type="warning">
+                    <p data-translate="sms_order_info_message"></p>
+                    <div
+                        class="oui-link_icon"
+                        data-ng-repeat="action in $ctrl.actions track by action.name"
+                    >
+                        <a
+                            class="oui-link"
+                            data-ng-href="{{ action.href }}"
+                            target="_blank"
+                        >
+                            <span data-translate="{{ action.text }}"></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                            ></span>
+                        </a>
+                    </div>
+                </oui-message>
+            </div>
             <div class="row">
                 <!-- ACCOUNT -->
                 <div class="col-sm-12">

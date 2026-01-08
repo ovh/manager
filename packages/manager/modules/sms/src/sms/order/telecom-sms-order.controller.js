@@ -72,6 +72,20 @@ export default class {
       }
     });
 
+    this.actions = [
+      {
+        name: 'sms_order_info_welcome',
+        href: 'https://www.ovhtelecom.fr/sms20free.xml',
+        text: this.$translate.instant('sms_order_info_welcome_link'),
+      },
+      {
+        name: 'sms_order_info_guide',
+        href:
+          'https://help.ovhcloud.com/csm/fr-sms-time-2-chat?id=kb_article_view&sysparm_article=KB0073733',
+        text: this.$translate.instant('sms_order_info_guide_link'),
+      },
+    ];
+
     this.loading.init = true;
     this.TucSmsMediator.initAll()
       .then(() => {
