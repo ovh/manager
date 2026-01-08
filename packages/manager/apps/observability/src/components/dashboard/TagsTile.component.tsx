@@ -9,7 +9,14 @@ import { TagsList, Tile } from '@ovh-ux/muk';
 import { TagsTileProps } from '@/components/dashboard/TagsTile.props';
 import { getTenantTagsUrl } from '@/routes/Routes.utils';
 
-export const TagsTile = ({ tenantId, resourceName, title, tags, isLoading }: TagsTileProps) => {
+export const TagsTile = ({
+  tenantId,
+  resourceName,
+  title,
+  tags,
+  isLoading,
+  hideLink = false,
+}: TagsTileProps) => {
   const { t } = useTranslation('tenants');
 
   const navigate = useNavigate();
@@ -21,11 +28,17 @@ export const TagsTile = ({ tenantId, resourceName, title, tags, isLoading }: Tag
   return (
     <Tile.Root title={t('dashboard.tags_tile.title')}>
       <Tile.Item.Root>
-        {isLoading ? <Skeleton /> : <TagsList tags={tags} modalHeading={title} maxLines={1} />}
+        {isLoading ? (
+          <Skeleton />
+        ) : (
+          <TagsList displayInternalTags={hideLink} tags={tags} modalHeading={title} maxLines={1} />
+        )}
 
-        <Link onClick={onClickManageTagsLink}>
-          <span>{t('dashboard.tags_tile.manage_tags')}</span>
-        </Link>
+        {!hideLink && (
+          <Link onClick={onClickManageTagsLink}>
+            <span>{t('dashboard.tags_tile.manage_tags')}</span>
+          </Link>
+        )}
       </Tile.Item.Root>
     </Tile.Root>
   );

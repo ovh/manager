@@ -86,6 +86,7 @@ export default function TenantsInformationPage() {
               title={title ?? ''}
               tags={iam?.tags ?? {}}
               isLoading={isLoading}
+              hideLink={true}
             />
           </div>
 
