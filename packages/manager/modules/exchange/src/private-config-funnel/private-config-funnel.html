@@ -1,0 +1,78 @@
+<div class="container-fluid mx-0 px-0">
+    <div class="row align-items-center">
+        <div class="d-flex w-100 justify-content-center">
+            <div class="w-50">
+                <div class="p-5 d-flex justify-content-center">
+                    <img data-ng-src="{{:: $ctrl.logo }}" alt="" />
+                </div>
+
+                <h2 class="mb-5 text-center" data-translate="exchange_private_config_funnel_title"></h2>
+                <oui-message class="mb-5" type="success">
+                    <strong data-translate="exchange_private_config_funnel_message_title"></strong>
+                    <p class="mb-0" data-translate="exchange_private_config_funnel_message_description"></p>
+                </oui-message>
+
+                <h3 class="mb-5" data-translate="exchange_private_config_funnel_subtitle"></h3>
+
+                <div data-ng-if="$ctrl.loading" class="text-center">
+                    <oui-spinner size="s"></oui-spinner>
+                </div>
+                <form data-ng-if="!$ctrl.loading" novalidate name="$ctrl.privateConfigFunnelForm">
+                    <div class="d-flex justify-content-around">
+                        <oui-field class="w-50 pr-2"
+                            label="{{ 'exchange_private_config_funnel_label_subdomain' | translate }}"
+                            label-popover="{{ 'exchange_private_config_funnel_label_subdomain_helper' | translate }}">
+                            <div class="oui-input-group"><input class="oui-input" name="subdomain" type="text"
+                                    data-ng-model="$ctrl.subdomain" data-oui-autocomplete="$ctrl.PREDEFINED_SUBDOMAIN"
+                                    data-ng-change="$ctrl.checkSubdomain()" data-ng-model-options="{ debounce: 500 }"
+                                    required></div>
+                        </oui-field>
+                        <div class="align-self-baseline mt-4">.</div><oui-field class="w-50 pl-2"
+                            label="{{ 'exchange_private_config_funnel_label_domain' | translate }}">
+                            <input class="oui-input" name="domain" type="text" data-ng-model="$ctrl.domain"
+                                data-oui-autocomplete="$ctrl.zones" data-ng-change="$ctrl.checkDomain()"
+                                data-ng-model-options="{ debounce: 500 }" required>
+                        </oui-field>
+                    </div>
+                    <oui-message type="warning"
+                        data-ng-if="$ctrl.isValidDomain && (!$ctrl.isOvhDomain || $ctrl.isIdnDomainName)">
+                        <p data-ng-if="$ctrl.isIdnDomainName" class="mb-0"
+                            data-translate="exchange_private_config_funnel_warning_punycode"></p>
+                        <p data-ng-if="!$ctrl.isOvhDomain" class="mb-0"
+                            data-translate="exchange_private_config_funnel_info_no_ovhdomain"></p>
+                    </oui-message>
+                    <oui-message data-ng-if="$ctrl.isValidDomain && $ctrl.isOvhDomain" type="info">
+                        <p class="mb-0" data-translate="exchange_private_config_funnel_info_ovhdomain"></p>
+                    </oui-message>
+                    <div data-ovh-alert></div>
+                    <div class="d-flex justify-content-center mt-5">
+                        <oui-spinner size="m" data-ng-if="$ctrl.isSubmitting"></oui-spinner>
+                        <oui-form-actions data-ng-if="!$ctrl.isSubmitting"
+                            data-submit-text="{{ 'common_next' | translate }}"
+                            data-on-submit="$ctrl.isOpenValidationModal = true"
+                            data-disabled="$ctrl.privateConfigFunnelForm.$invalid || !$ctrl.isValidDomain || !$ctrl.isValidSubDomain"></oui-form-actions>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-ng-if="$ctrl.isOpenValidationModal">
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <oui-modal data-heading="{{ :: 'exchange_private_config_funnel_modal_title' | translate }}"
+                    data-type="info" data-primary-label="{{:: 'common_confirm' | translate }}"
+                    data-primary-action="$ctrl.submitChangeHostname()"
+                    data-secondary-action="$ctrl.isOpenValidationModal = false"
+                    data-secondary-label="{{:: 'common_cancel' | translate }}"
+                    on-dismiss="$ctrl.isOpenValidationModal = false">
+                    <p data-translate="exchange_private_config_funnel_modal_description"
+                        data-translate-values="{subdomain: $ctrl.subdomain, domain: $ctrl.domain}"></p>
+                    <strong data-translate="exchange_private_config_funnel_modal_warning"></strong>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
