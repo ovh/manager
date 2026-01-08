@@ -3,13 +3,25 @@ import { useTranslation } from 'react-i18next';
 
 import { Divider, Text } from '@ovhcloud/ods-react';
 
+import { TClusterPlanCodeEnum } from '@/types';
+
 import { useCreateClusterForm } from '../hooks/useCreateClusterForm/useCreateClusterForm';
 import { ClusterNameSection } from './ClusterNameSection.component';
+import { ClusterPlanSection } from './ClusterPlanSection.component';
 import { CreationCart } from './CreationCart.component';
 
 const dividerSpacing = '64';
 
-export const CreateClusterForm = () => {
+type CreateClusterFormProps = {
+  planCodes?: TClusterPlanCodeEnum[];
+};
+
+const DEFAULT_PLAN_CODES: TClusterPlanCodeEnum[] = [
+  TClusterPlanCodeEnum.FREE1AZ,
+  TClusterPlanCodeEnum.STANDARD3AZ,
+];
+
+export const CreateClusterForm = ({ planCodes = DEFAULT_PLAN_CODES }: CreateClusterFormProps) => {
   const { t } = useTranslation('add');
 
   const form = useCreateClusterForm();
@@ -23,7 +35,10 @@ export const CreateClusterForm = () => {
           </Text>
           <ClusterNameSection />
           <Divider spacing={dividerSpacing} />
+          <ClusterPlanSection fieldName="plan" planCodes={planCodes} />
+          <Divider spacing={dividerSpacing} />
         </section>
+
         <aside className="flex-1">
           <CreationCart />
         </aside>

@@ -78,6 +78,7 @@
   "kube_add_plan_content_standard_500": "Up to 500 nodes per cluster",
   "kube_add_plan_content_standard_disponibility": "High availability and resilience ensured by a three-availability-zone (3-AZ) distributed architecture.",
   "kube_add_plan_content_coming_very_soon": "Coming soon",
+  "kube_add_plan_content_not_available_AZ":  "Indisponible pour {{mode}}",
   "kube_add_plan_subtitle": "Choose the right plan for your needs. Pick from a wide selection of instances (Kubernetes nodes), billed by the hour or via a subscription.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Name your node pool",
