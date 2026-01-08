@@ -8,7 +8,7 @@ type GuideLinkProps = PropsWithChildren<
 
 const GuideLink = ({ children, withIcon = true, ...props }: GuideLinkProps) => (
   <Link
-    className="mb-6 visited:text-[var(--ods-color-primary-500)]"
+    className="mb-6 max-w-full visited:text-[var(--ods-color-primary-500)]"
     role="link"
     target="_blank"
     {...props}

@@ -1,13 +1,14 @@
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { FC } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { DrawerOpenChangeDetail, Link, Text } from '@ovhcloud/ods-react';
+import { DrawerOpenChangeDetail, Text } from '@ovhcloud/ods-react';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import GuideLink from '@/components/guideLink/GuideLink.component';
 
 export const SshKeyHelper: FC = () => {
   const { t } = useTranslation('creation');
@@ -50,15 +51,11 @@ export const SshKeyHelper: FC = () => {
           />
         </div>
       ))}
-      <Link
-        className="visited:text-[var(--ods-color-primary-500)]"
-        href={guide}
-        target="_blank"
-      >
+      <GuideLink href={guide}>
         {t(
           'creation:pci_instance_creation_select_sshKey_help_read_complete_guide',
         )}
-      </Link>
+      </GuideLink>
     </HelpDrawer>
   );
 };
