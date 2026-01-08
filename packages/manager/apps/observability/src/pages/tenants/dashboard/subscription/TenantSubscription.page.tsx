@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import { Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { FilterCategories, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { BUTTON_VARIANT, Button, DatagridColumn, TagsList, useNotifications } from '@ovh-ux/muk';
@@ -20,7 +22,7 @@ import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { mapSubscriptionsToListing } from '@/utils/tenants.utils';
 
 export default function SubscriptionPage() {
-  const { t } = useTranslation(['tenants', NAMESPACES.DASHBOARD, NAMESPACES.ERROR]);
+  const { t } = useTranslation(['tenants', NAMESPACES.DASHBOARD, NAMESPACES.ERROR, 'shared']);
   const { addError } = useNotifications();
 
   const { selectedService } = useObservabilityServiceContext();
@@ -137,19 +139,24 @@ export default function SubscriptionPage() {
 
   const topbar = useMemo(
     () => (
-      <Button
-        id="create-tenant"
-        onClick={() => {}}
-        variant={BUTTON_VARIANT.default}
-        urn={tenant?.iam?.urn ?? ''}
-        iamActions={IAM_ACTIONS.EDIT_TENANT}
-        isIamTrigger={true}
-        displayTooltip={true}
-        disabled={isTenantLoading}
-        loading={isTenantLoading}
-      >
-        {t('tenants:dashboard.subscription_listing.create_subscription')}
-      </Button>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            id="create-tenant-subscription"
+            onClick={() => {}}
+            variant={BUTTON_VARIANT.default}
+            urn={tenant?.iam?.urn ?? ''}
+            iamActions={IAM_ACTIONS.EDIT_TENANT}
+            isIamTrigger={true}
+            displayTooltip={true}
+            disabled={true}
+            loading={isTenantLoading}
+          >
+            {t('tenants:dashboard.subscription_listing.create_subscription')}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>{t('shared:coming_soon')}</TooltipContent>
+      </Tooltip>
     ),
     [t, isTenantLoading, tenant],
   );
