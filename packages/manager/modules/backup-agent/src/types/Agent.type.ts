@@ -7,4 +7,5 @@ export type Agent = {
   productResourceName: string;
   policy: string; // vspc backup policy configured for agent
   type: AgentType; // Backup Agent target Product type
+  vaultId?: string;
 };
