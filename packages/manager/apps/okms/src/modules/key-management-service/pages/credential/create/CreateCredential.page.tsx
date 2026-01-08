@@ -2,12 +2,12 @@ import { Suspense, useState } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import Breadcrumb from '@key-management-service/components/breadcrumb/KmsBreadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { useCreateOkmsCredential } from '@key-management-service/data/hooks/useCreateOkmsCredential';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { IdentityDataProvider } from '@key-management-service/hooks/credential/useIdentityData';
 import CreateAddIdentities from '@key-management-service/pages/credential/create/CreateAddIdentities.component';
 import CreateGeneralInformations from '@key-management-service/pages/credential/create/CreateGeneralInformations.component';
@@ -62,7 +62,7 @@ const CreateCredential = () => {
     },
   });
 
-  const breadcrumbItems: BreadcrumbItem[] = [
+  const breadcrumbItems: KmsBreadcrumbItem[] = [
     {
       id: okmsId,
       label: okms?.iam?.displayName || '',

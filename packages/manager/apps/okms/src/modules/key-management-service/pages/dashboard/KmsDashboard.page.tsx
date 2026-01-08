@@ -2,12 +2,12 @@ import { Suspense } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import Breadcrumb from '@key-management-service/components/breadcrumb/KmsBreadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
@@ -96,7 +96,7 @@ export default function DashboardPage() {
 
   const { displayName } = okms.iam;
 
-  const breadcrumbItems: BreadcrumbItem[] = [
+  const breadcrumbItems: KmsBreadcrumbItem[] = [
     {
       id: okmsId,
       label: displayName,

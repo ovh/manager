@@ -11,7 +11,7 @@ import { SecretManagerChangelogButton } from '@secret-manager/components/secret-
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import {
   BaseLayout,
@@ -92,11 +92,11 @@ export default function OkmsDashboardPage() {
       backLinkLabel={t('back_to_secret_list')}
       onClickReturn={() => navigate('..')}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
           <OkmsBreadcrumbItem />
           <OkmsDashboardBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
       tabs={<TabNavigation tabs={tabsList} />}

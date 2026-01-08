@@ -15,7 +15,8 @@ import {
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -57,10 +58,10 @@ export default function SecretListPage() {
         headerButton: <SecretManagerGuidesButton />,
       }}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
           <OkmsBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
       onClickReturn={() => {

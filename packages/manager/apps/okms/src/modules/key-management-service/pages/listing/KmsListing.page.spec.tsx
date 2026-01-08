@@ -3,14 +3,11 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { WAIT_FOR_DEFAULT_OPTIONS, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 const mockOkmsFirst = okmsRoubaix1Mock;
@@ -24,19 +21,13 @@ describe('KMS listing test suite', () => {
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    expect(
-      screen.queryByText(labels.listing.key_management_service_listing_title),
-    ).not.toBeInTheDocument();
+    await assertPageTitleVisibility(labels.listing.key_management_service_listing_title);
   });
 
   it('should display the kms listing page', async () => {
     await renderTestApp(KMS_ROUTES_URLS.kmsListing);
 
-    await waitFor(
-      () =>
-        expect(screen.getByText(labels.listing.key_management_service_listing_title)).toBeVisible(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertPageTitleVisibility(labels.listing.key_management_service_listing_title);
 
     expect(screen.queryByText(labels.onboarding.description)).not.toBeInTheDocument();
   });
@@ -44,11 +35,7 @@ describe('KMS listing test suite', () => {
   it('should display the listing table with all columns', async () => {
     await renderTestApp(KMS_ROUTES_URLS.kmsListing);
 
-    await waitFor(
-      () =>
-        expect(screen.getByText(labels.listing.key_management_service_listing_title)).toBeVisible(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await assertPageTitleVisibility(labels.listing.key_management_service_listing_title);
 
     const tableHeaders = [
       labels.listing.key_management_service_listing_name_cell,
@@ -75,7 +62,7 @@ describe('KMS listing test suite', () => {
 
     await waitFor(() => userEvent.click(button));
 
-    await assertTextVisibility(labels.create.key_management_service_create_title);
+    await assertPageTitleVisibility(labels.create.key_management_service_create_title);
   });
 
   it('should navigate to a kms dashboard on click on kms name', async () => {

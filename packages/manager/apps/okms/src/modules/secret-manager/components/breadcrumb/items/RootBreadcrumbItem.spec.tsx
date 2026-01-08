@@ -1,5 +1,5 @@
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
@@ -22,9 +22,10 @@ describe('RootBreadcrumbItem test suite', () => {
     // WHEN
     await renderWithI18n(<RootBreadcrumbItem />);
     const breadcrumbItem = screen.getByTestId(BREADCRUMB_ITEM_TEST_IDS.ROOT);
+    const link = within(breadcrumbItem).getByRole('link');
 
     // THEN
-    expect(breadcrumbItem).toHaveAttribute('label', labels.secretManager.secret_manager);
-    expect(breadcrumbItem).toHaveAttribute('href', SECRET_MANAGER_ROUTES_URLS.root);
+    expect(link).toHaveTextContent(labels.secretManager.secret_manager);
+    expect(link).toHaveAttribute('href', SECRET_MANAGER_ROUTES_URLS.root);
   });
 });
