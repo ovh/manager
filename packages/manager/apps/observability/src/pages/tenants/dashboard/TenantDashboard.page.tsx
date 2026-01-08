@@ -5,15 +5,15 @@ import { Outlet, useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Link, LinkType } from '@ovh-ux/muk';
+import { BADGE_COLOR, Link, LinkType } from '@ovh-ux/muk';
 
 import { TabNavigation } from '@/components/dashboard/tab-navigation/TabNavigation.component';
 import { TabNavigationItem } from '@/components/dashboard/tab-navigation/TabNavigationItem.type';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { urls } from '@/routes/Routes.constants';
+import { subroutes, urls } from '@/routes/Routes.constants';
 
 export default function TenantDashboardPage() {
-  const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS, 'shared']);
   const href = useHref(urls.tenants);
   const { selectedService } = useObservabilityServiceContext();
 
@@ -27,12 +27,17 @@ export default function TenantDashboardPage() {
       {
         name: 'subscription',
         title: t('tenants:dashboard.subscription_tab'),
-        url: 'subscription',
+        url: subroutes.subscription,
       },
       {
         name: 'tags',
         title: t('tenants:dashboard.tags_tab'),
-        url: 'tags',
+        url: subroutes.tags,
+        disabled: true,
+        badge: {
+          label: t('shared:coming_soon'),
+          color: BADGE_COLOR.neutral,
+        },
       },
     ],
     [t],
