@@ -67,8 +67,8 @@
   "successCreatingAppDescription": "Ihre App wurde erfolgreich erstellt.",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
   "summaryCustomMetricsUrlLabel": "URL: ",
-  "summaryCustomMetricsFormatLabel": "Format : {{for}}",
-  "summaryCustomMetricsLocationLabel": "Emplacement: ",
-  "summaryCustomMetricsTargetValueLabel": "Valeur : {{val}}",
+  "summaryCustomMetricsFormatLabel": "Format: {{for}}",
+  "summaryCustomMetricsLocationLabel": "Ort: ",
+  "summaryCustomMetricsTargetValueLabel": "Wert: {{val}}",
   "warningCLITitle": "Es ist unmöglich, das CLI-Äquivalent zu generieren."
 }
