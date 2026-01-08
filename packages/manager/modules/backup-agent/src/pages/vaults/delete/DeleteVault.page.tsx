@@ -23,12 +23,18 @@ export default function DeleteVaultPage() {
   const { flattenData: vaults } = useBackupVaultsList();
 
   const vaultId = searchParams.get('vaultId');
-  const vaultName = vaults?.find(({ id }) => id === vaultId)?.currentState.resourceName;
+  const vault = vaults?.find(({ id }) => id === vaultId);
+  const vaultName = vault?.currentState.resourceName;
+
   const { DELETE_VAULT: deleteVaultFeatureName } = useGetFeaturesAvailabilityNames([
     'DELETE_VAULT',
   ]);
   const { data: featureAvailabilities } = useFeatureAvailability([deleteVaultFeatureName]);
+
   const isDeleteVaultFeatureAvailable = featureAvailabilities?.[deleteVaultFeatureName] ?? false;
+  const doesVaultHaveVSPCTenants = !!vault?.currentState.vspcTenants.length;
+
+  const canDeleteVault = isDeleteVaultFeatureAvailable && !doesVaultHaveVSPCTenants;
 
   const { mutate: deleteVault, isPending } = useDeleteVault({
     onSuccess: () => addSuccess(t('delete_vault_banner_success', { vaultName })),
@@ -43,7 +49,7 @@ export default function DeleteVaultPage() {
       primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
       onPrimaryButtonClick={() => vaultId && deleteVault(vaultId)}
       isPrimaryButtonLoading={isPending}
-      isPrimaryButtonDisabled={isPending || !isDeleteVaultFeatureAvailable}
+      isPrimaryButtonDisabled={isPending || !canDeleteVault}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={closeModal}
       onDismiss={closeModal}
@@ -55,8 +61,13 @@ export default function DeleteVaultPage() {
             {t('unable_to_delete_vault_feature_unavailable')}
           </OdsMessage>
         )}
+        {isDeleteVaultFeatureAvailable && doesVaultHaveVSPCTenants && (
+          <OdsMessage color="warning" isDismissible={false}>
+            {t('delete_vault_disabled_tooltip')}
+          </OdsMessage>
+        )}
         <OdsText>{t('delete_vault_modal_content', { vaultName })}</OdsText>
-        {isDeleteVaultFeatureAvailable && (
+        {isDeleteVaultFeatureAvailable && !doesVaultHaveVSPCTenants && (
           <OdsMessage color="warning" isDismissible={false}>
             {t('delete_vault_modal_warning')}
           </OdsMessage>

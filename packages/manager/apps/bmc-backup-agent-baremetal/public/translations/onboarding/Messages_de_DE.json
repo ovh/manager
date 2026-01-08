@@ -1,27 +1,28 @@
 {
-  "title_fallback": "Willkommen bei app-gen-test",
-  "description_part1": "Erfahren Sie, wie Sie das Beste aus app-gen-test herausholen können, ddd.",
+  "title_fallback": "Die Sicherung, ganz einfach",
+  "description_part1": "Erhalten Sie eine Backup-Lösung mit täglichen automatischen Remote-Backups, proaktiven Warnungen und zentraler Überwachung, alles sicher in einem Vault im OVHcloud Object Storage gespeichert. Installieren Sie den Backup-Agenten in weniger als 5 Minuten, kostenlos. Sie zahlen nur für den Object Storage, den Sie nutzen.",
   "description_part2": "Befolgen Sie unsere Anleitungen, um schnell zu starten.",
   "guides": {
     "guide1": {
-      "category": "Entdeckung",
-      "title": "Beginnen Sie mit app-gen-test",
-      "description": "Lernen Sie die Grundlagen, um zu starten.",
+      "category": "Kosten",
+      "title": "Kosten und Abrechnung",
+      "description": "Dokumentation, die die Kosten und die Abrechnung des Backup-Agenten erklärt.",
       "cta": "Mehr dazu"
     },
     "guide2": {
-      "category": "Tutorials ",
-      "title": "Konfigurieren Sie Ihre Umgebung",
-      "description": "Befolgen Sie unseren Schritt-für-Schritt-Leitfaden.",
+      "category": "Tutorial",
+      "title": "Gut starten",
+      "description": "Ein Schritt-für-Schritt-Video, das Ihnen hilft, Ihr erstes Backup einzurichten und auszuführen.",
       "cta": "Tutorial ansehen "
     },
     "guide3": {
       "category": "FAQ",
       "title": "Häufig gestellte Fragen",
-      "description": "Finden Sie Antworten auf häufige Fragen.",
-      "cta": "Lesen Sie die FAQ"
+      "description": "Ein Leitfaden mit häufig gestellten Fragen zu den häufigsten Problemen.",
+      "cta": "FAQ lesen"
     }
   },
-  "no_baremetal_available": "Kein Bare Metal verfügbar",
-  "select_baremetal": "Wählen Sie Ihren BareMetal-Server"
+  "no_baremetal_available": "Bestellen Sie einen Bare-Metal-Server und schützen Sie ihn mit dem Backup-Agenten",
+  "select_baremetal": "Wählen Sie Ihren BareMetal-Server",
+  "save_a_baremetal_server": "Einen Bare-Metal-Server sichern"
 }

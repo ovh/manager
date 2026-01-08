@@ -1,6 +1,7 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+import { LABELS } from '@/module.constants';
 import { urlToStringRegex } from '@/utils/urlToStringRegex';
 
 export const subRoutes = Object.freeze({
@@ -26,7 +27,9 @@ export const urls = {
   root: `/`,
   onboarding: `/onboarding`,
   listingVaults: `/${subRoutes.vaults}`,
+  listingVaultsDelete: `/${subRoutes.vaults}/${subRoutes.delete}`,
   dashboardVaults: `/${subRoutes.vaults}/${subRoutes.dashboard}/${urlParams.vaultId}`,
+  dashboardVaultsDelete: `/${subRoutes.vaults}/${subRoutes.dashboard}/${urlParams.vaultId}/${subRoutes.delete}`,
   listingVaultBuckets: `/${subRoutes.vaults}/${subRoutes.dashboard}/${urlParams.vaultId}/${subRoutes.buckets}`,
   listingTenants: `/${subRoutes.services}`,
   dashboardTenants: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}`,
@@ -36,7 +39,7 @@ export const urls = {
   editAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.configure}/${urlParams.agentId}`,
   downloadAgentBackup: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.download}`,
   listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
-  dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${subRoutes.delete}`,
+  dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.delete}`,
   listingBilling: `/${subRoutes.billing}`,
 } as const;
 
@@ -50,7 +53,7 @@ export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
   },
   {
     name: 'vaults',
-    title: `${BACKUP_AGENT_NAMESPACES.COMMON}:vaults`,
+    title: LABELS.VAULTS,
     to: `${urls.root}${subRoutes.vaults}`,
     pathMatchers: [/^\/vaults\/[^/]+$/],
     trackingActions: ['click::vaults-tile-tab'],

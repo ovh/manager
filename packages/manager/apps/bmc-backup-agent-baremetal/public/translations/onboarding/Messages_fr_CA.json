@@ -1,27 +1,28 @@
 {
-  "title_fallback": "Bienvenue sur app-gen-test",
-  "description_part1": "Découvrez comment tirer le meilleur parti de app-gen-test, ddd.",
+  "title_fallback": "La Sauvegarde, En Toute Simplicité",
+  "description_part1": "Obtenez une solution de sauvegarde avec des sauvegardes distantes automatiques quotidiennes, des alertes proactives et une surveillance centralisée, le tout stocké de manière sécurisée dans un Vault sur l'OVHcloud Object Storage. Installez l'agent de sauvegarde en moins de 5 minutes, sans frais. Vous ne payez que pour le stockage Object Storage que vous utilisez.",
   "description_part2": "Suivez nos guides pour démarrer rapidement.",
   "guides": {
     "guide1": {
-      "category": "Découverte",
-      "title": "Commencer avec app-gen-test",
-      "description": "Apprenez les bases pour démarrer.",
+      "category": "Coût",
+      "title": "Coût et Facturation",
+      "description": "Documentation expliquant le coût et la facturation de Backup Agent.",
       "cta": "Découvrir"
     },
     "guide2": {
-      "category": "Tutoriels",
-      "title": "Configurer votre environnement",
-      "description": "Suivez notre guide pas à pas.",
+      "category": "Tutoriel",
+      "title": "Bien démarrer",
+      "description": "Une vidéo étape par étape pour vous aider à mettre en place et exécuter votre première sauvegarde.",
       "cta": "Voir le tutoriel"
     },
     "guide3": {
       "category": "FAQ",
       "title": "Questions fréquentes",
-      "description": "Trouvez les réponses aux questions courantes.",
+      "description": "Un guide avec les questions fréquentes traitant des problématiques les plus communes.",
       "cta": "Lire la FAQ"
     }
   },
-  "no_baremetal_available": "Aucun Bare Metal disponible",
-  "select_baremetal": "Sélectionner votre serveur BareMetal"
+  "no_baremetal_available": "Commander un serveur Bare Metal, et protéger le avec Backup Agent",
+  "select_baremetal": "Sélectionner votre serveur BareMetal",
+  "save_a_baremetal_server": "Sauvegarder un serveur Bare Metal"
 }

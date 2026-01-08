@@ -30,7 +30,6 @@ export const ONBOARDING_CONFIG: OnboardingConfigType = {
     tutorial: docUrl,
     faq: docUrl,
   },
-  title: productName,
   heroImage: { src: backupAgentImage },
 };
 

@@ -25,7 +25,7 @@ import { OS } from '@/types/Os.type';
 
 export default function DownloadAgentPage() {
   const selectOsId = useId();
-  const [osSelected, setOsSelected] = useState<OS>('LINUX');
+  const [osSelected, setOsSelected] = useState<OS | null>(null);
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.AGENT, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
@@ -39,6 +39,8 @@ export default function DownloadAgentPage() {
   const handleChangeDownloadLink = (osKey: OS) => {
     setOsSelected(osKey);
   };
+
+  const isDownloadEnabled = !!downloadLink && !!osSelected;
 
   return (
     <Modal
@@ -57,6 +59,7 @@ export default function DownloadAgentPage() {
             name="os"
             value={osSelected}
             onOdsChange={(e) => handleChangeDownloadLink(e.target.value as OS)}
+            placeholder={t(`${NAMESPACES.ACTIONS}:select`)}
           >
             {Object.keys(OS_LABELS).map((osKey) => (
               <option key={osKey} value={osKey}>
@@ -68,8 +71,12 @@ export default function DownloadAgentPage() {
         <div className="flex flex-col gap-4">
           <OdsText>{t(`${BACKUP_AGENT_NAMESPACES.AGENT}:download_agent_with_executable`)}</OdsText>
           <div className="flex justify-center align-center">
-            <a href={downloadLink} download>
-              <OdsButton label={t(`${NAMESPACES.ACTIONS}:download`)} isLoading={isLoading} />
+            <a href={isDownloadEnabled ? downloadLink : undefined} download>
+              <OdsButton
+                label={t(`${NAMESPACES.ACTIONS}:download`)}
+                isLoading={isLoading}
+                isDisabled={!isDownloadEnabled}
+              />
             </a>
           </div>
         </div>
@@ -80,7 +87,11 @@ export default function DownloadAgentPage() {
           {isLoading && downloadLink ? (
             <OdsSpinner />
           ) : (
-            <DownloadCode downloadLink={downloadLink ?? '...'} />
+            <DownloadCode
+              className="break-all"
+              downloadLink={isDownloadEnabled ? downloadLink : '...'}
+              canCopy={isDownloadEnabled}
+            />
           )}
         </div>
       </section>

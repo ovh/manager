@@ -1,14 +1,30 @@
-import { useId } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { OdsProgressBar, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 
-export const ConsumptionRegionsList = () => {
-  const idLabel = useId();
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+
+type ConsumptionRegionsListProps = {
+  primaryRegion: string;
+  secondaryRegion?: string;
+};
+
+export const ConsumptionRegionsList = ({
+  primaryRegion,
+  secondaryRegion,
+}: ConsumptionRegionsListProps) => {
+  const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.COMMON]);
 
   return (
-    <section aria-labelledby={idLabel} className="flex flex-col gap-2">
-      <OdsText id={idLabel}>500 Go / 10 To (5.00%)</OdsText>
-      <OdsProgressBar value={5} className="[&::part(progress)]:w-full" />
-    </section>
+    <ul className="flex gap-2 list-none p-0">
+      <li>
+        <OdsBadge color="information" label={`${t('primary')} : ${primaryRegion}`} />
+      </li>
+      {secondaryRegion && (
+        <li>
+          <OdsBadge color="information" label={`${t('secondary')} : ${secondaryRegion}`} />
+        </li>
+      )}
+    </ul>
   );
 };

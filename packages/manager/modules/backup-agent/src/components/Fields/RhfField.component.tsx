@@ -5,6 +5,7 @@ import { Control, FieldValues, Path, UseControllerProps, useController } from 'r
 import { OdsComboboxItem, OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
 
 import { RhfCombobox } from '@/components/Fields/RhfCombobox.component';
+import { RhfSelect } from '@/components/Fields/RhfSelect.component';
 
 import { RhfFieldContext, RhfFieldContextParams, useRhfFieldContext } from './RhfField.context';
 import { RhfInput } from './RhfInput.component';
@@ -119,5 +120,6 @@ RhfField.Helper = RhfHelper;
 RhfField.HelperAuto = RhfHelperAuto;
 RhfField.Combobox = RhfCombobox;
 RhfField.ComboboxItem = OdsComboboxItem;
+RhfField.Select = RhfSelect;
 RhfField.Quantity = RhfQuantity;
 RhfField.Input = RhfInput;

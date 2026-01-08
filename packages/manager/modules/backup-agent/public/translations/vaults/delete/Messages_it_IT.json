@@ -5,5 +5,5 @@
   "delete_vault_banner_success": "Il tuo Vault {{vaultName}} è stato eliminato correttamente.",
   "delete_vault_banner_error": "Si è verificato un errore. Si prega di attendere alcuni minuti prima di riprovare.",
   "delete_vault_disabled_tooltip": "Non puoi eliminare un Vault collegato a Tenant VSPC.",
-  "unable_to_delete_vault_feature_unavailable": "L'eliminazione di un Vault non è disponibile tramite l'interfaccia. Se desideri eliminare un Vault, contatta il supporto tramite il tuo Spazio Client."
+  "unable_to_delete_vault_feature_unavailable": "La rimozione di un Vault non è disponibile dall'interfaccia per motivi di sicurezza. Se desideri rimuovere un Vault, ti preghiamo di contattare il supporto."
 }

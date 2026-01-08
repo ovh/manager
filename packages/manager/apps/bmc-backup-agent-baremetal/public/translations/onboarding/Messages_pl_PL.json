@@ -1,27 +1,28 @@
 {
-  "title_fallback": "Witamy w app-gen-test",
-  "description_part1": "Dowiedz się, jak w pełni wykorzystać app-gen-test, ddd.",
+  "title_fallback": "Proste tworzenie kopii zapasowych",
+  "description_part1": "Uzyskaj rozwiązanie do tworzenia kopii zapasowych z automatycznymi codziennymi kopiami zapasowymi, proaktywnymi powiadomieniami i centralnym monitorowaniem, wszystko przechowywane w bezpiecznym Vault na OVHcloud Object Storage. Zainstaluj agenta kopii zapasowej w mniej niż 5 minut, bez opłat. Płacisz tylko za przechowywanie Object Storage, które wykorzystujesz.",
   "description_part2": "Śledź nasze przewodniki, aby szybko zacząć.",
   "guides": {
     "guide1": {
-      "category": "Odkrycie",
-      "title": "Rozpocznij z app-gen-test",
-      "description": "Poznaj podstawy, aby zacząć.",
+      "category": "Koszt",
+      "title": "Koszt i fakturowanie",
+      "description": "Dokumentacja wyjaśniająca koszt i fakturowanie Backup Agent.",
       "cta": "Sprawdź"
     },
     "guide2": {
-      "category": "Tutoriale",
-      "title": "Skonfiguruj swoje środowisko",
-      "description": "Śledź nasz przewodnik krok po kroku.",
+      "category": "Samouczek",
+      "title": "Dobrze zacząć",
+      "description": "Film instruktażowy krok po kroku, który pomoże Ci skonfigurować i wykonać swoją pierwszą kopię zapasową.",
       "cta": "Sprawdź dokumentację"
     },
     "guide3": {
       "category": "FAQ",
       "title": "Najczęstsze pytania",
-      "description": "Znajdź odpowiedzi na często zadawane pytania.",
+      "description": "Przewodnik z najczęściej zadawanymi pytaniami dotyczącymi najczęstszych problemów.",
       "cta": "Przeczytaj FAQ"
     }
   },
-  "no_baremetal_available": "Brak dostępnych Bare Metal",
-  "select_baremetal": "Wybierz swój serwer BareMetal"
+  "no_baremetal_available": "Zamów serwer Bare Metal i zabezpiecz go za pomocą Backup Agent",
+  "select_baremetal": "Wybierz swój serwer BareMetal",
+  "save_a_baremetal_server": "Zrób kopię zapasową serwera Bare Metal"
 }

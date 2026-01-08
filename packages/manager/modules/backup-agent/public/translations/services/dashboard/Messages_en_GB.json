@@ -3,5 +3,9 @@
   "connected_vaults": "Connected vaults",
   "billing_more_info": "More information on billing",
   "number_of_connected_vaults": "{{connectedVaultCount}} connected(s)",
-  "number_of_installed_agents": "{{installedAgentsCount}} installed(s)"
+  "number_of_installed_agents": "{{installedAgentsCount}} installed(s)",
+  "linked_server": "Linked Servers",
+  "linked_vaults": "Linked Vaults",
+  "number_of_linked_vaults": "{{connectedVaultCount}} linked(s)",
+  "number_of_linked_server": "{{installedAgentsCount}} linked(s)"
 }

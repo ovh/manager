@@ -16,6 +16,11 @@
       "import": "./package.json",
       "require": "./package.json"
     },
+    "./routes/routes.constants": {
+      "types": "./dist/types/src/routes/routes.constants.d.ts",
+      "import": "./dist/src/routes/routes.constants",
+      "require": "./dist/src/routes/routes.constants.js"
+    },
     "./data/hooks/baremetal/useBaremetalsList": {
       "types": "./dist/types/src/data/hooks/baremetal/useBaremetalsList.d.ts",
       "import": "./dist/src/data/hooks/baremetal/useBaremetalsList",

@@ -8,7 +8,7 @@
   "product_name": "Nombre del producto",
   "select_os": "Seleccionar un sistema operativo",
   "os": "Sistema operativo",
-  "download_agent": "Descargar el agente",
+  "download_agent": "Descargar Agente",
   "delete_tenant_banner_error": "Se ha producido un error. Por favor, espere unos minutos antes de volver a intentarlo.",
   "delete_agent_banner_success": "Su Agente {{agentName}} ha sido eliminado correctamente",
   "delete_agent_banner_error": "Se ha producido un error. Por favor, espere unos minutos antes de volver a intentarlo.",

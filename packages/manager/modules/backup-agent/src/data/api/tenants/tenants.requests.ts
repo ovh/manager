@@ -1,5 +1,4 @@
 import {
-  ApiResponse,
   IcebergFetchParamsV2,
   IcebergFetchResultV2,
   fetchIcebergV2,
@@ -9,31 +8,47 @@ import {
 import { Resource } from '@/types/Resource.type';
 import { Tenant } from '@/types/Tenant.type';
 import { VSPCTenant } from '@/types/VspcTenant.type';
+import {
+  BACKUP_SERVICES_ROUTE,
+  getBackupBaseRoute,
+  getVspcTenantDetailsRoute,
+  getVspcTenantsRoute,
+} from '@/utils/apiRoutes';
 
-export const GET_BACKUP_TENANTS_ROUTE = '/backup/tenants';
-export const GET_VSPC_TENANTS_ROUTE = `${GET_BACKUP_TENANTS_ROUTE}/vspc`;
-
-export const getDetailsTenantRoute = (tenantId: string) =>
-  `${GET_BACKUP_TENANTS_ROUTE}/${tenantId}`;
-
-export const getDetailsVspcTenantRoute = (tenantId: string) =>
-  `${GET_VSPC_TENANTS_ROUTE}/${tenantId}`;
-
+// Backup Tenants
 export const getBackupTenants = async (
   params?: Omit<IcebergFetchParamsV2, 'route'>,
 ): Promise<IcebergFetchResultV2<Resource<Tenant>>> =>
-  fetchIcebergV2({ ...params, route: GET_BACKUP_TENANTS_ROUTE });
+  fetchIcebergV2({ ...params, route: BACKUP_SERVICES_ROUTE });
 
-export const getTenantDetails = async (tenantId: string) =>
-  (await v2.get<Tenant>(getDetailsTenantRoute(tenantId))).data;
+export const getTenantDetails = async (backupServicesId: string) => {
+  const { data } = await v2.get<Resource<Tenant>>(getBackupBaseRoute(backupServicesId));
+  return data;
+};
 
-export const getVSPCTenantDetails = async (vspcTenantId: string) =>
-  (await v2.get<VSPCTenant>(getDetailsVspcTenantRoute(vspcTenantId))).data;
+// Backup VSPC Tenants
+export const getVSPCTenants = async ({
+  backupServicesId,
+  ...params
+}: { backupServicesId: string } & Omit<IcebergFetchParamsV2, 'route'>): Promise<
+  IcebergFetchResultV2<Resource<VSPCTenant>>
+> => fetchIcebergV2({ ...params, route: getVspcTenantsRoute(backupServicesId) });
 
-export const getVSPCTenants = async (
-  params?: Omit<IcebergFetchParamsV2, 'route'>,
-): Promise<IcebergFetchResultV2<Resource<VSPCTenant>>> =>
-  fetchIcebergV2({ ...params, route: GET_VSPC_TENANTS_ROUTE });
+export const getVSPCTenantDetails = async (backupServicesId: string, vspcTenantId: string) => {
+  const { data } = await v2.get<Resource<VSPCTenant>>(
+    getVspcTenantDetailsRoute(backupServicesId, vspcTenantId),
+  );
 
-export const deleteVSPCTenant = async (vspcTenantId: string): Promise<ApiResponse<string>> =>
-  v2.delete(`${GET_VSPC_TENANTS_ROUTE}/${vspcTenantId}`);
+  return data;
+};
+
+export const deleteVSPCTenant = async (
+  backupServicesId: string,
+  vspcTenantId: string,
+): Promise<string> => {
+  const { data } = await v2.delete<string>(
+    getVspcTenantDetailsRoute(backupServicesId, vspcTenantId),
+  );
+
+  return data;
+};

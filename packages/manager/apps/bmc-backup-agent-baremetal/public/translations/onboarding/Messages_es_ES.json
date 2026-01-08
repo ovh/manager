@@ -1,27 +1,28 @@
 {
-  "title_fallback": "Bienvenido a app-gen-test",
-  "description_part1": "Descubre cómo aprovechar al máximo app-gen-test, ddd.",
+  "title_fallback": "La Copia de Seguridad, En Toda Simplicidad",
+  "description_part1": "Obtenga una solución de copia de seguridad con copias de seguridad automáticas diarias a distancia, alertas proactivas y monitoreo centralizado, todo almacenado de manera segura en un Vault en el Almacenamiento de Objetos de OVHcloud. Instale el agente de copia de seguridad en menos de 5 minutos, sin costo. Solo paga por el almacenamiento de Objetos que utiliza.",
   "description_part2": "Sigue nuestras guías para comenzar rápidamente.",
   "guides": {
     "guide1": {
-      "category": "Descubrimiento",
-      "title": "Comenzar con app-gen-test",
-      "description": "Aprende lo básico para empezar.",
+      "category": "Coste",
+      "title": "Costo y Facturación",
+      "description": "Documentación que explica el costo y la facturación del Agente de Copia de Seguridad.",
       "cta": "Descubrir"
     },
     "guide2": {
-      "category": "Tutoriales",
-      "title": "Configura tu entorno",
-      "description": "Sigue nuestra guía paso a paso.",
+      "category": "Tutorial",
+      "title": "Primeros pasos",
+      "description": "Un video paso a paso para ayudarle a configurar y ejecutar su primera copia de seguridad.",
       "cta": "Ver el tutorial"
     },
     "guide3": {
       "category": "Preguntas frecuentes",
       "title": "Preguntas frecuentes",
-      "description": "Encuentra respuestas a preguntas comunes.",
+      "description": "Una guía con preguntas frecuentes que abordan los problemas más comunes.",
       "cta": "Leer la FAQ"
     }
   },
-  "no_baremetal_available": "Ningún Bare Metal disponible",
-  "select_baremetal": "Selecciona tu servidor BareMetal"
+  "no_baremetal_available": "Solicitar un servidor Bare Metal y protegerlo con el Agente de Copia de Seguridad",
+  "select_baremetal": "Selecciona tu servidor BareMetal",
+  "save_a_baremetal_server": "Hacer una copia de seguridad de un servidor Bare Metal"
 }

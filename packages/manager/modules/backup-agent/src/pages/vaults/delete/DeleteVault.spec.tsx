@@ -38,7 +38,14 @@ describe('[INTEGRATION] - Delete Vault page', () => {
         config.vault?.currentState.resourceName,
       ),
     ];
-    modalElements.forEach((el) => expect(screen.getByText(new RegExp(el))).toBeVisible());
+
+    await waitFor(
+      () =>
+        modalElements
+          // eslint-disable-next-line max-nested-callbacks
+          .forEach((el) => expect(screen.getByText(new RegExp(el))).toBeVisible()),
+      { timeout: 5_000 },
+    );
 
     // and modal buttons
     const modalButtons = [

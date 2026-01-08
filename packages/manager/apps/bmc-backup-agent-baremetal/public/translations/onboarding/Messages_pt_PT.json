@@ -1,27 +1,28 @@
 {
-  "title_fallback": "Bem-vindo ao app-gen-test",
-  "description_part1": "Descubra como tirar o máximo proveito do app-gen-test, ddd.",
+  "title_fallback": "O Backup, de forma simples",
+  "description_part1": "Obtenha uma solução de backup com backups automáticos diários remotos, alertas proativos e monitorização centralizada, tudo armazenado de forma segura em um Vault no OVHcloud Object Storage. Instale o agente de backup em menos de 5 minutos, sem custos. Você só paga pelo armazenamento do Object Storage que utiliza.",
   "description_part2": "Siga nossos guias para começar rapidamente.",
   "guides": {
     "guide1": {
-      "category": "Descoberta",
-      "title": "Começar com o app-gen-test",
-      "description": "Aprenda o básico para começar.",
+      "category": "Custo",
+      "title": "Custo e Faturação",
+      "description": "Documentação explicando o custo e a faturação do Backup Agent.",
       "cta": "Descobrir"
     },
     "guide2": {
-      "category": "Tutoriais",
-      "title": "Configure o seu ambiente",
-      "description": "Siga nosso guia passo a passo.",
+      "category": "Tutorial",
+      "title": "Começar bem",
+      "description": "Um vídeo passo a passo para ajudá-lo a configurar e executar o seu primeiro backup.",
       "cta": "Consultar o tutorial"
     },
     "guide3": {
       "category": "FAQ",
       "title": "Questões frequentes",
-      "description": "Encontre as respostas para perguntas comuns.",
-      "cta": "Leia a FAQ"
+      "description": "Um guia com perguntas frequentes abordando as questões mais comuns.",
+      "cta": "Ler a FAQ"
     }
   },
-  "no_baremetal_available": "Nenhum Bare Metal disponível",
-  "select_baremetal": "Selecione o seu servidor BareMetal"
+  "no_baremetal_available": "Encomendar um servidor Bare Metal e protegê-lo com o Backup Agent",
+  "select_baremetal": "Selecione o seu servidor BareMetal",
+  "save_a_baremetal_server": "Fazer backup de um servidor Bare Metal"
 }

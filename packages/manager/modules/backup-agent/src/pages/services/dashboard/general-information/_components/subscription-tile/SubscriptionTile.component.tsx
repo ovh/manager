@@ -1,15 +1,12 @@
-import { useHref } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
+import { ManagerTile } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
-import { urls } from '@/routes/Routes.constants';
 
 import { useTenantBackupStats } from './_hooks/useTenantBackupStats';
 
@@ -23,11 +20,14 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
     NAMESPACES.BILLING,
     BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD,
   ]);
-  const { data, isLoading } = useBackupTenantDetails({ tenantId: tenantId! });
-  const billingHref = useHref(urls.listingBilling);
-  const { connectedVaultsText, installedAgentsText } = useTenantBackupStats({
+  const { data, isPending } = useBackupTenantDetails();
+  const {
+    connectedVaultsText,
+    installedAgentsText,
+    isPending: isStatsPending,
+  } = useTenantBackupStats({
     tenantDetails: data,
-    vspcTenants: data?.currentState.vspcTenants,
+    vspcTenantIds: [tenantId ?? ''].filter(Boolean),
   });
 
   return (
@@ -36,28 +36,20 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>
-          {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:installed_agents`)}
+          {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:linked_server`)}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{installedAgentsText}</OdsText>}
+          {isPending || isStatsPending ? <OdsSkeleton /> : <OdsText>{installedAgentsText}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>
-          {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:connected_vaults`)}
+          {t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:linked_vaults`)}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{connectedVaultsText}</OdsText>}
+          {isPending || isStatsPending ? <OdsSkeleton /> : <OdsText>{connectedVaultsText}</OdsText>}
         </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <Links
-          href={billingHref}
-          label={t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:billing_more_info`)}
-          type={LinkType.external}
-        />
       </ManagerTile.Item>
     </ManagerTile>
   );

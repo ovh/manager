@@ -4,6 +4,7 @@ import { Resource, ResourceStatus } from '@/types/Resource.type';
 export type VaultBillingType = 'BUNDLE' | 'PAYGO';
 export interface Vault {
   region: string;
+  secondaryRegion?: string;
   id: string;
   name: string;
   resourceName: string;

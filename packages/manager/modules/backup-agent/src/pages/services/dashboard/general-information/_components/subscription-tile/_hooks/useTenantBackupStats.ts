@@ -3,34 +3,35 @@ import { useTranslation } from 'react-i18next';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useInstalledBackupAgents } from '@/data/hooks/tenants/useVspcTenants';
 import { Resource } from '@/types/Resource.type';
-import { AssociatedTenantVSPC, Tenant } from '@/types/Tenant.type';
+import { Tenant } from '@/types/Tenant.type';
 import { WithRegion } from '@/types/Utils.type';
 
 type UseTenantBackupStatsProps = {
   tenantDetails?: Resource<WithRegion<Tenant>>;
-  vspcTenants?: AssociatedTenantVSPC[];
+  vspcTenantIds?: string[];
 };
 
 export function useTenantBackupStats({
   tenantDetails,
-  vspcTenants = [],
+  vspcTenantIds = [],
 }: UseTenantBackupStatsProps) {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD]);
 
   const connectedVaultCount = tenantDetails?.currentState.vaults.length ?? 0;
 
-  const connectedVaultsText = t('number_of_connected_vaults', {
+  const connectedVaultsText = t('number_of_linked_vaults', {
     connectedVaultCount,
   });
 
-  const { installedBackupAgents } = useInstalledBackupAgents({ vspcTenants });
+  const { installedBackupAgents, isPending } = useInstalledBackupAgents({ vspcTenantIds });
 
-  const installedAgentsText = t('number_of_installed_agents', {
+  const installedAgentsText = t('number_of_linked_server', {
     installedAgentsCount: installedBackupAgents,
   });
 
   return {
     connectedVaultsText,
     installedAgentsText,
+    isPending,
   };
 }

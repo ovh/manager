@@ -3,6 +3,7 @@ import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 
 import { BackupAgentRoutes } from '@ovh-ux/backup-agent';
+import { urls as BackupAgentUrls } from '@ovh-ux/backup-agent/routes/routes.constants';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
@@ -16,7 +17,7 @@ const FirstOrderPage = React.lazy(() => import('@/pages/first-order/FirstOrder.p
 
 export default (
   <>
-    <Route path="/" element={<Navigate to={urls.onboarding} replace />} />
+    <Route path="/" element={<Navigate to={BackupAgentUrls.listingTenants} replace />} />
     <Route
       id="root"
       path={urls.root}

@@ -1,12 +1,12 @@
 import { GeneralInformationTile } from '@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component';
-import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
+import { useBackupVSPCTenantDetails } from '@/data/hooks/tenants/useVspcTenantDetails';
 
 type GeneralInformationTenantTileProps = {
   tenantId: string;
 };
 
 export function GeneralInformationTenantTile({ tenantId }: GeneralInformationTenantTileProps) {
-  const { data, isLoading } = useBackupTenantDetails({ tenantId });
+  const { data, isLoading } = useBackupVSPCTenantDetails({ tenantId });
 
   return <GeneralInformationTile resourceDetails={data} isLoading={isLoading} />;
 }

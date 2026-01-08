@@ -22,15 +22,21 @@ export const BillingInformationsTileStandardContent = ({
   onResiliateLinkClick,
 }: Pick<BillingInformationsTileProps, 'onResiliateLinkClick'>) => {
   const { t } = useTranslation('billing-informations-tile');
-  const { data: serviceDetails, isLoading } = useBillingInformationsContextServiceDetails();
+  const {
+    data: serviceDetails,
+    isLoading,
+  } = useBillingInformationsContextServiceDetails();
 
   const billingDetails = useMemo(
-    () => (isLoading ? undefined : new BillingDetails(serviceDetails || ({} as ServiceDetails))),
+    () =>
+      isLoading
+        ? undefined
+        : new BillingDetails(serviceDetails || ({} as ServiceDetails)),
     [serviceDetails],
   );
 
   return (
-    <OdsCard className="w-full flex-col p-[1rem]" color="neutral">
+    <OdsCard className="w-full flex-col p-[1rem] h-fit" color="neutral">
       <BillingInformationsTile.Title>
         {t('billing_informations_title')}
       </BillingInformationsTile.Title>
@@ -40,12 +46,15 @@ export const BillingInformationsTileStandardContent = ({
       <BillingInformationsTile.State />
       <BillingInformationsTile.Divider />
       <BillingInformationsTile.NextBillingDate />
-      {!billingDetails?.isResiliated() && !billingDetails?.shouldDeleteAtExpiration() && (
-        <>
-          <BillingInformationsTile.Divider />
-          <BillingInformationsTile.ResiliateLink onClickReturn={onResiliateLinkClick} />
-        </>
-      )}
+      {!billingDetails?.isResiliated() &&
+        !billingDetails?.shouldDeleteAtExpiration() && (
+          <>
+            <BillingInformationsTile.Divider />
+            <BillingInformationsTile.ResiliateLink
+              onClickReturn={onResiliateLinkClick}
+            />
+          </>
+        )}
     </OdsCard>
   );
 };
@@ -61,8 +70,12 @@ export const BillingInformationsTileStandard = ({
     [resourceName],
   );
   return (
-    <BillingInformationsTileContext.Provider value={BillingInformationsTileContextValues}>
-      <BillingInformationsTileStandardContent onResiliateLinkClick={onResiliateLinkClick} />
+    <BillingInformationsTileContext.Provider
+      value={BillingInformationsTileContextValues}
+    >
+      <BillingInformationsTileStandardContent
+        onResiliateLinkClick={onResiliateLinkClick}
+      />
     </BillingInformationsTileContext.Provider>
   );
 };

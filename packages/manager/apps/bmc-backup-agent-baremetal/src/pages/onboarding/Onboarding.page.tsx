@@ -33,7 +33,7 @@ export default function OnboardingPage() {
       title={title ?? t('onboarding:title_fallback', { productName })}
       img={img}
       description={<OnboardingDescription />}
-      orderButtonLabel={t(`${NAMESPACES.ACTIONS}:start`)}
+      orderButtonLabel={t(`onboarding:save_a_baremetal_server`)}
       onOrderButtonClick={() => {}}
       moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
       onMoreInfoButtonClick={() => {}}

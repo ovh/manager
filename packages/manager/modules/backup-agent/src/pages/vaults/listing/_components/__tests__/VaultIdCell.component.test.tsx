@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { mockVaults } from '@/mocks/vaults/vaults';
-import { urlParams, urls } from '@/routes/Routes.constants';
+import { urlParams, urls } from '@/routes/routes.constants';
 
 import { VaultIdCell } from '../VaultIdCell.component';
 

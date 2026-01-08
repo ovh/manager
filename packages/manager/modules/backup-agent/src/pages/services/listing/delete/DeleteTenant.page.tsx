@@ -13,7 +13,7 @@ import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useDeleteVSPCTenant } from '@/data/hooks/tenants/useDeleteTenant';
-import { useVSPCTenantsMocks } from '@/data/hooks/tenants/useVspcTenants';
+import { useVSPCTenants } from '@/data/hooks/tenants/useVspcTenants';
 import { useGetFeaturesAvailabilityNames } from '@/hooks/useGetFeatureAvailability';
 
 export default function DeleteTenantPage() {
@@ -28,7 +28,7 @@ export default function DeleteTenantPage() {
   const { data: featureAvailabilities } = useFeatureAvailability([deleteAgentFeatureName]);
   const isDeleteTenantFeatureAvailable = featureAvailabilities?.[deleteAgentFeatureName] ?? false;
 
-  const { data: tenants } = useVSPCTenantsMocks();
+  const { data: tenants } = useVSPCTenants();
 
   const tenantId = searchParams.get('tenantId');
   const tenantName = useMemo(

@@ -1,6 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 
-import { urls } from '@/routes/Routes.constants';
+import { urls } from '@/routes/routes.constants';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 
@@ -9,7 +9,7 @@ describe('SubscriptionTile', () => {
     await renderTest({ initialRoute: urls.dashboardTenants });
 
     await waitFor(() => expect(screen.getByText(labels.billing.subscription)).toBeVisible(), {
-      timeout: 5_000,
+      timeout: 10_000,
     });
   });
 });

@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import { subRoutes, urlParams } from './Routes.constants';
+import { subRoutes, urlParams } from './routes.constants';
 
 const MainLayout = React.lazy(() => import('../pages/MainLayout.component'));
 
@@ -102,7 +102,9 @@ export default (
     </Route>
     <Route path={subRoutes.services}>
       <Route path={`${subRoutes.dashboard}/${urlParams.tenantId}`} Component={TenantDashboardPage}>
-        <Route path="" Component={TenantGeneralInformationPage} />
+        <Route path="" Component={TenantGeneralInformationPage}>
+          <Route path={subRoutes.delete} Component={DeleteTenantPage} />
+        </Route>
         <Route path={subRoutes.agents} Component={AgentListingPage}>
           <Route path={subRoutes.add} Component={AgentAddConfigurationPage} />
           <Route
@@ -121,13 +123,10 @@ export default (
 
     <Route path={subRoutes.vaults}>
       <Route path={`${subRoutes.dashboard}/${urlParams.vaultId}`} Component={VaultDashboardPage}>
-        <Route path="" Component={VaultGeneralInformationPage} />
+        <Route path="" Component={VaultGeneralInformationPage}>
+          <Route path={subRoutes.delete} Component={VaultDeletePage} />
+        </Route>
         <Route path={subRoutes.buckets} Component={VaultBucketsPage} />
-        <Route
-          path={subRoutes.delete}
-          Component={VaultDeletePage}
-          handle={{ tracking: { pageName: 'delete-vault', pageType: PageType.popup } }}
-        />
       </Route>
     </Route>
   </>

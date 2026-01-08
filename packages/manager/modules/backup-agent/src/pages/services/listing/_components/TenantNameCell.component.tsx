@@ -2,7 +2,7 @@ import { useHref } from 'react-router-dom';
 
 import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
 
-import { subRoutes, urls } from '@/routes/Routes.constants';
+import { subRoutes, urls } from '@/routes/routes.constants';
 import { Resource } from '@/types/Resource.type';
 import { Tenant } from '@/types/Tenant.type';
 import { VSPCTenant } from '@/types/VspcTenant.type';
