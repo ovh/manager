@@ -7,5 +7,6 @@
   "policy": "Policy",
   "actions": "Actions",
   "primary": "Primaire",
-  "secondary": "Secondaire"
+  "secondary": "Secondaire",
+  "without_engagement": "sans engagement"
 }

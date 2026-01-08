@@ -1,12 +1,13 @@
 import { useId } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsProgressBar, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { useServiceConsumption } from '@/data/hooks/consumption/useServiceConsumption';
+import { useGetServiceConsumptionOptions } from '@/data/hooks/consumption/useServiceConsumption';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { VAULT_PLAN_CODE } from '@/module.constants';
 
@@ -16,7 +17,7 @@ export const ConsumptionDetails = () => {
   const idLabel = useId();
   const { t } = useTranslation([NAMESPACES.BYTES]);
   const { vaultId } = useRequiredParams('vaultId');
-  const { data: consumptionData, isPending } = useServiceConsumption(vaultId);
+  const { data: consumptionData, isPending } = useQuery(useGetServiceConsumptionOptions()(vaultId));
 
   if (isPending) {
     return (

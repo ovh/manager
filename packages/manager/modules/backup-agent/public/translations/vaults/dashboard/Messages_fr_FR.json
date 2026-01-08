@@ -17,5 +17,6 @@
   "general-information": "Informations générales",
   "help": "Aide",
   "type_billing": "Type de facturation",
+  "vault_price": "Soit {{vaultPrice}} HT/mois",
   "consumption_tooltip": "Le stockage supplémentaire n'est pas disponible en libre-service. Pour augmenter votre capacité de stockage, veuillez contacter le support."
 }

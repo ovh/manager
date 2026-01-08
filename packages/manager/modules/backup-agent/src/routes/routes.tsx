@@ -8,8 +8,6 @@ import { subRoutes, urlParams } from './routes.constants';
 
 const MainLayout = React.lazy(() => import('../pages/MainLayout.component'));
 
-const ListingPage = React.lazy(() => import('../pages/listing/Listing.page'));
-
 const VaultListingPage = React.lazy(() => import('../pages/vaults/listing/Listing.page'));
 
 const ServiceListingPage = React.lazy(() => import('../pages/services/listing/Listing.page'));
@@ -49,6 +47,8 @@ const VaultBucketsPage = React.lazy(
 const AgentDeletePage = React.lazy(
   () => import('@/pages/services/dashboard/agent/delete/DeleteAgent.page'),
 );
+
+const BillingListingPage = React.lazy(() => import('../pages/billing/listing/Listing.page'));
 
 export default (
   <>
@@ -91,7 +91,7 @@ export default (
       </Route>
       <Route
         path={subRoutes.billing}
-        Component={ListingPage}
+        Component={BillingListingPage}
         handle={{
           tracking: {
             pageName: 'billing',
