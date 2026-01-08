@@ -1,5 +1,5 @@
 import { SecretData } from '@secret-manager/types/secret.type';
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
@@ -29,9 +29,6 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
   const original = await vi.importActual('@ovhcloud/ods-components/react');
   return {
     ...original,
-    OdsClipboard: vi.fn(({ value }: { value: string }) => (
-      <div data-testid="ods-clipboard">{value}</div>
-    )),
     OdsFormField: vi.fn(
       ({
         children,
@@ -91,8 +88,13 @@ describe('SecretValueClipboards', () => {
       await renderTest(mockData.validMultiple);
 
       // Then
-      const clipboards = screen.getAllByTestId('ods-clipboard');
-      expect(clipboards).toHaveLength(6); // 3 pairs × 2 (key + value)
+      // Check that all key and value fields are rendered (3 pairs × 2 fields = 6 fields)
+      expect(screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemKey(0))).toBeInTheDocument();
+      expect(screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemValue(0))).toBeInTheDocument();
+      expect(screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemKey(1))).toBeInTheDocument();
+      expect(screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemValue(1))).toBeInTheDocument();
+      expect(screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemKey(2))).toBeInTheDocument();
+      expect(screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemValue(2))).toBeInTheDocument();
 
       expect(screen.getByTestId(KEY_VALUES_TEST_IDS.pairItem(0))).toBeInTheDocument();
       expect(screen.getByTestId(KEY_VALUES_TEST_IDS.pairItem(1))).toBeInTheDocument();
@@ -107,14 +109,33 @@ describe('SecretValueClipboards', () => {
       await renderTest(mockData.validMultiple);
 
       // Then
-      const clipboards = screen.getAllByTestId('ods-clipboard');
       const mockedKeys = Object.keys(mockData.validMultiple);
-      expect(clipboards[0]).toHaveTextContent(mockedKeys[0] as string);
-      expect(clipboards[1]).toHaveTextContent(mockData.validMultiple.key1);
-      expect(clipboards[2]).toHaveTextContent(mockedKeys[1] as string);
-      expect(clipboards[3]).toHaveTextContent(mockData.validMultiple.key2);
-      expect(clipboards[4]).toHaveTextContent(mockedKeys[2] as string);
-      expect(clipboards[5]).toHaveTextContent(mockData.validMultiple.key3);
+
+      // Check "key" clipboards values
+      const keyField0 = screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemKey(0));
+      expect(within(keyField0).getByDisplayValue(mockedKeys[0] as string)).toBeInTheDocument();
+
+      const keyField1 = screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemKey(1));
+      expect(within(keyField1).getByDisplayValue(mockedKeys[1] as string)).toBeInTheDocument();
+
+      const keyField2 = screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemKey(2));
+      expect(within(keyField2).getByDisplayValue(mockedKeys[2] as string)).toBeInTheDocument();
+
+      // Check "value" clipboards values
+      const valueField0 = screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemValue(0));
+      expect(
+        within(valueField0).getByDisplayValue(mockData.validMultiple.key1),
+      ).toBeInTheDocument();
+
+      const valueField1 = screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemValue(1));
+      expect(
+        within(valueField1).getByDisplayValue(mockData.validMultiple.key2),
+      ).toBeInTheDocument();
+
+      const valueField2 = screen.getByTestId(KEY_VALUES_TEST_IDS.pairItemValue(2));
+      expect(
+        within(valueField2).getByDisplayValue(mockData.validMultiple.key3),
+      ).toBeInTheDocument();
     });
   });
 

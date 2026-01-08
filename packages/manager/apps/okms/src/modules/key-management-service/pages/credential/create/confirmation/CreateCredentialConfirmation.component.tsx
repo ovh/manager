@@ -6,8 +6,7 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { Button } from '@ovh-ux/muk';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
@@ -33,12 +32,15 @@ const CreateCredentialConfirmation = ({ okmsCredential }: CreateCredentialConfir
         isKeyDownloaded={isKeyDownloaded}
         setIsKeyDownloaded={setIsKeyDownloaded}
       />
-      <OdsButton
-        color={ODS_BUTTON_COLOR.primary}
-        isDisabled={!isKeyDownloaded}
-        onClick={() => navigate(KMS_ROUTES_URLS.credentialListing(okmsId))}
-        label={t('key_management_service_credential_create_confirmation_button_done_label')}
-      />
+      <div>
+        <Button
+          color="primary"
+          disabled={!isKeyDownloaded}
+          onClick={() => navigate(KMS_ROUTES_URLS.credentialListing(okmsId))}
+        >
+          {t('key_management_service_credential_create_confirmation_button_done_label')}
+        </Button>
+      </div>
     </div>
   );
 };

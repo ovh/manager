@@ -30,7 +30,7 @@ describe('useGuideItemQuickStart test suite', () => {
       expect.objectContaining({
         id: MOCKED_ID,
         href: MOCKED_LINK,
-        label: labels.guide.guides_header_quick_start,
+        children: labels.guide.guides_header_quick_start,
         target: '_blank',
       }),
     );

@@ -6,7 +6,7 @@ import {
 } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+import { BreadcrumbItem, BreadcrumbLink } from '@ovhcloud/ods-react';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
@@ -17,12 +17,12 @@ const Item = ({ okmsId }: { okmsId: string }) => {
   const link = useHref(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId));
 
   return (
-    <OdsBreadcrumbItem
+    <BreadcrumbItem
       data-testid={BREADCRUMB_ITEM_TEST_IDS.OKMS_DASHBOARD}
       key={SECRET_MANAGER_ROUTES_URIS.dashboard}
-      label={t('okms_dashboard_title')}
-      href={link}
-    />
+    >
+      <BreadcrumbLink href={link}>{t('okms_dashboard_title')}</BreadcrumbLink>
+    </BreadcrumbItem>
   );
 };
 

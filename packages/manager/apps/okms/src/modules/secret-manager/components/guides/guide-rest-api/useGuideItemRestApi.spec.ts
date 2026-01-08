@@ -25,7 +25,7 @@ describe('useGuideItemRestApi test suite', () => {
     expect(result.current).toStrictEqual({
       id: MOCKED_ID,
       href: MOCKED_LINK,
-      label: labels.secretManager.guide_use_with_rest_api,
+      children: labels.secretManager.guide_use_with_rest_api,
       target: '_blank',
     });
   });

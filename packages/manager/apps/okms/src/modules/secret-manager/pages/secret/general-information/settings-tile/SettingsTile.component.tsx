@@ -6,10 +6,10 @@ import {
 } from '@secret-manager/utils/secretSmartConfig';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Tile } from '@ovh-ux/muk';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
@@ -42,57 +42,57 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
   }
 
   return (
-    <ManagerTile>
-      <ManagerTile.Title>{t('settings')}</ManagerTile.Title>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('maximum_number_of_versions')}</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
+    <Tile.Root title={t('settings')}>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('maximum_number_of_versions')} />
+        <Tile.Item.Description>
           {isPending ? (
-            <OdsSkeleton />
+            <Skeleton data-testid="skeleton" />
           ) : (
-            <OdsText preset="span" data-testid={SETTINGS_TILE_TEST_IDS.MAX_VERSIONS}>
+            <Text preset="span" data-testid={SETTINGS_TILE_TEST_IDS.MAX_VERSIONS}>
               {secretConfig.maxVersions.value} {labels[secretConfig.maxVersions.origin]}
-            </OdsText>
+            </Text>
           )}
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('deactivate_version_after')}</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('deactivate_version_after')} />
+        <Tile.Item.Description>
           {isPending ? (
-            <OdsSkeleton />
+            <Skeleton data-testid="skeleton" />
           ) : (
-            <OdsText preset="span" data-testid={SETTINGS_TILE_TEST_IDS.DEACTIVATE_VERSION_AFTER}>
+            <Text preset="span" data-testid={SETTINGS_TILE_TEST_IDS.DEACTIVATE_VERSION_AFTER}>
               {secretConfig.deactivateVersionAfter.value === NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER
                 ? t('never_expire')
                 : secretConfig.deactivateVersionAfter.value}{' '}
               {labels[secretConfig.deactivateVersionAfter.origin]}
-            </OdsText>
+            </Text>
           )}
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label tooltip={t('cas_with_description_tooltip')}>
-          {t('cas_with_description')}
-        </ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term
+          label={t('cas_with_description')}
+          tooltip={t('cas_with_description_tooltip')}
+        />
+        <Tile.Item.Description>
           {isPending ? (
-            <OdsSkeleton />
+            <Skeleton data-testid="skeleton" />
           ) : (
-            <OdsText preset="span" data-testid={SETTINGS_TILE_TEST_IDS.CAS_REQUIRED}>
+            <Text preset="span" data-testid={SETTINGS_TILE_TEST_IDS.CAS_REQUIRED}>
               {secretConfig.casRequired.value
                 ? t('activated')
                 : t('disabled', { ns: NAMESPACES.STATUS })}{' '}
               {labels[secretConfig.casRequired.origin]}
-            </OdsText>
+            </Text>
           )}
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-      <ManagerTile.Divider />
-      <EditMetadataLink secret={secret} />
-    </ManagerTile>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Description divider={false}>
+          <EditMetadataLink secret={secret} />
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+    </Tile.Root>
   );
 };

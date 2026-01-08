@@ -57,23 +57,17 @@ export const createOkmsCredentialQueryKey = ({ okmsId }: { okmsId: string }) => 
  *  delete okms Credential
  */
 
+export type DeleteOkmsCredentialParams = {
+  okmsId: string;
+  credentialId: string;
+};
+
 export const deleteOkmsCredential = async ({
   okmsId,
   credentialId,
-}: {
-  okmsId: string;
-  credentialId: string;
-}) => {
+}: DeleteOkmsCredentialParams) => {
   const { data } = await apiClient.v2.delete<OkmsCredential>(
     `okms/resource/${okmsId}/credential/${credentialId}`,
   );
   return data;
 };
-
-export const deleteOkmsCredentialQueryKey = ({
-  okmsId,
-  credentialId,
-}: {
-  okmsId: string;
-  credentialId: string;
-}) => [`/okms/resource/${okmsId}/credential/${credentialId}`];
