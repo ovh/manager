@@ -1,4 +1,4 @@
-import { vi, it, describe } from 'vitest';
+import { vi, it, describe, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import AssistanceSidebar, { AssistanceProps } from '.';
 import { mockShell } from '../mocks/sidebarMocks';
@@ -17,9 +17,13 @@ vi.mock('@/core/product-nav-reshuffle', () => ({
   }),
 }));
 
+const mockSetAIChatbotOpen = vi.fn();
+
 vi.mock('@/core/container', () => ({
   default: () => ({
-    setChatBotReduced: (bool: boolean) => vi.fn().mockResolvedValue(bool),
+    setChatbotReduced: (bool: boolean) => vi.fn().mockResolvedValue(bool),
+    setAIChatbotOpen: mockSetAIChatbotOpen,
+    chatbotOpen: false,
   }),
 }));
 
@@ -59,6 +63,10 @@ const renderAssistanceSidebar = (props: AssistanceProps) => {
 const id = 'assistance-sidebar';
 
 describe('AssistanceSidebar.component', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('should render', () => {
     const { queryByTestId } = renderAssistanceSidebar(props);
     const assistanceSidebar = queryByTestId(id);
@@ -81,5 +89,29 @@ describe('AssistanceSidebar.component', () => {
     expect(
       screen.queryAllByTestId('short-assistance-link-popover-anchor'),
     ).not.toBeNull();
+  });
+
+  describe('AI Chatbot Integration', () => {
+    it('should include AI chatbot entry in the tree', () => {
+      const aiChatbotNode = assistanceTree.children.find(
+        (node) => node.id === 'ai_chatbot',
+      );
+      expect(aiChatbotNode).toBeDefined();
+      expect(aiChatbotNode?.features).toContain('ai-chatbot');
+    });
+
+    it('should have correct region restrictions for AI chatbot', () => {
+      const aiChatbotNode = assistanceTree.children.find(
+        (node) => node.id === 'ai_chatbot',
+      );
+      expect(aiChatbotNode?.region).toEqual(['EU', 'CA']);
+    });
+
+    it('should have correct translation key for AI chatbot', () => {
+      const aiChatbotNode = assistanceTree.children.find(
+        (node) => node.id === 'ai_chatbot',
+      );
+      expect(aiChatbotNode?.translation).toBe('sidebar_assistance_ai_chatbot');
+    });
   });
 });
