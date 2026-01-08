@@ -7,6 +7,13 @@ import NotificationsButton from './NotificationsButton';
 import { Environment } from '@ovh-ux/manager-config';
 import { Shell } from '@ovh-ux/shell';
 
+vi.mock('@/core/notifications/useGetHelpUrl', () => ({
+  useGetHelpUrl: vi.fn(() => ({
+    availability: false,
+    href: 'https://help.ovhcloud.com/csm',
+  })),
+}));
+
 let notificationsVisible = false;
 const setIsNotificationsSidebarVisible = vi.fn((visibility) => { notificationsVisible = visibility; });
 const postNotificationsUpdate = vi.fn(() => Promise.resolve(null));

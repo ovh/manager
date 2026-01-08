@@ -4,5 +4,7 @@
   "table_column_priority": "Priorité",
   "table_column_date": "Date",
   "table_column_categories": "Catégories",
-  "contact_status_warning": "Il semble y avoir un soucis avec le moyen de réception {{ contactType }}. Vous pouvez <anchor>gérer vos paramètres de réception</anchor> pour corriger ce problème."
+  "contact_status_warning": "Il semble y avoir un soucis avec le moyen de réception {{ contactType }}. Vous pouvez <anchor>gérer vos paramètres de réception</anchor> pour corriger ce problème.",
+  "sender_email_banner_text": "Nos adresses d'expédition d'e-mails évoluent. Pour vérifier l'authenticité de nos communications, ",
+  "sender_email_banner_link": "consultez nos conseils anti-phishing."
 }
