@@ -6,6 +6,7 @@ import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 import { initSso } from '@/core/sso';
+import { initAIChatbotModule } from '@/utils/module-federation-runtime';
 
 import App from './App';
 
@@ -23,6 +24,7 @@ if (__VERSION__) {
 }
 
 initSso();
+initAIChatbotModule();
 
 const queryClient = new QueryClient();
 

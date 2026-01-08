@@ -7,6 +7,7 @@ export const getFeatureAvailabilityMocks = (
     suggestions?: boolean;
     pnr?: boolean;
     livechat?: boolean;
+    aiChatbot?: boolean;
   } = {},
 ): Handler[] => {
   const {
@@ -15,6 +16,7 @@ export const getFeatureAvailabilityMocks = (
     suggestions = true,
     pnr = true,
     livechat = true,
+    aiChatbot = false,
   } = params;
 
   const mocks: Handler[] = [];
@@ -52,7 +54,7 @@ export const getFeatureAvailabilityMocks = (
     });
   }
 
-  // we currently request the pnr together with the livechat in ContainerProvider
+  // we currently request the pnr together with the livechat and ai-chatbot in ContainerProvider
   if (pnr) {
     mocks.push(
       {
@@ -65,9 +67,11 @@ export const getFeatureAvailabilityMocks = (
         delay: 0,
       },
       {
-        url: 'feature/livechat,pnr/availability',
+        url: 'feature/livechat,pnr,ai-chatbot/availability',
         response: {
           pnr: true,
+          livechat: true,
+          'ai-chatbot': aiChatbot,
         },
         api: 'aapi',
         method: 'get',
