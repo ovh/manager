@@ -34,7 +34,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['dedicated-servers', 'cluster', 'onboarding'],
+    ns: ['dedicated-servers', 'cluster', 'onboarding', 'manage-view'],
   });
 
   const region = context.environment.getRegion();
