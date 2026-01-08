@@ -112,7 +112,7 @@
   "pci_instance_creation_create_my_instance": "Launch my instance",
   "pci_instance_creation_select_billing_choice_title": "Invoicing",
   "pci_instance_creation_windows_image_hourly_price": "+ {{ price }} ex VAT/hour",
-  "pci_instance_creation_select_billing_hourly": "Schedule",
+  "pci_instance_creation_select_billing_hourly": "Hourly",
   "pci_instance_creation_select_billing_monthly": "Monthly",
   "pci_instance_creation_select_billing_choice_subtext_hourly": "Pay as you go, based on actual usage time.",
   "pci_instance_creation_select_billing_choice_subtext_monthly": "Pay monthly, with fixed costs",
