@@ -25,7 +25,7 @@
   },
   "delete": {
     "delete_tenant_title": "Supprimer le Tenant",
-    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant \"{{tenantName}}\"",
+    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant \"{{tenantName}}\" ?",
     "success": "Le tenant est en cours de suppression"
   },
   "onboarding": {
@@ -91,7 +91,11 @@
       "kind_cell": "Type de produit",
       "resource_cell": "Ressource",
       "unsubscribe": {
-        "title": "Se désabonner",
+        "cta": "Se désabonner",
+        "title": "Se désabonner ?",
+        "confirm": "Oui, se désabonner",
+        "cancel": "Non, annuler",
+        "warning":"Se désabonner au tenant de métriques pour cette ressource entraînera l'arrêt définitif de la collecte et la suppression des données associées.",
         "success": "La souscription est en cours de suppression"
       }
     }

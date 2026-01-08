@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -99,7 +99,7 @@ export default function SubscriptionPage() {
       {
         id: 'actions',
         header: '',
-        accessorFn: (row: TenantSubscriptionListing) => row.id,
+        accessorFn: (row: TenantSubscriptionListing) => row,
         cell: ({ getValue }) => (
           <UnsubscribeLink
             tenantId={tenantId}
@@ -174,6 +174,7 @@ export default function SubscriptionPage() {
         isLoading={isLoading}
         searchFilterLabel={t('tenants:listing.filter_search_key')}
       />
+      <Outlet />
     </section>
   );
 }
