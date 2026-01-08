@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.14.3...@ovh-ux/manager-web-hosting-app@0.15.0) (2026-01-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 969] ([c061010](https://github.com/ovh/manager/commit/c061010542b7e49b685cb11fe214f2364682ec07))
+* **i18n:** add missing translations [CDS 972] ([7d9612f](https://github.com/ovh/manager/commit/7d9612f7bdd0d23e3476c25a9e8f849dc3199e64))
+* **i18n:** add missing translations [CDS 977] ([7282608](https://github.com/ovh/manager/commit/7282608fd763450bb7d60f9f0d8a5149f1503066))
+* **i18n:** add missing translations [CDS 979] ([180ef5f](https://github.com/ovh/manager/commit/180ef5f904412592240edbe34ecc8763d829b86a))
+* **web-hosting:** fix muk css ([f2dc99d](https://github.com/ovh/manager/commit/f2dc99daead4569660e6404e1a804355e0c976fa)), closes [#PUWEBPT-182](https://github.com/ovh/manager/issues/PUWEBPT-182)
+* **web-hosting:** purge cdn ([87e2b8c](https://github.com/ovh/manager/commit/87e2b8cab7f74ab75e18b497f4dc25ef14dc591f)), closes [#PUWEBPT-51](https://github.com/ovh/manager/issues/PUWEBPT-51)
+
+
+### Features
+
+* **web-hosting:** add delete website modal ([d74ae6a](https://github.com/ovh/manager/commit/d74ae6a5818fcaad6e592cc735d58ad228420015)), closes [#PUWEBPT-174](https://github.com/ovh/manager/issues/PUWEBPT-174)
+* **web-hosting:** add feature flipping for multisite on layout ([9d57e4c](https://github.com/ovh/manager/commit/9d57e4c266155ddbae244cd1f07cb98ebeb073f2)), closes [#PUWEBPT-185](https://github.com/ovh/manager/issues/PUWEBPT-185)
+* **web-hosting:** manage git configuration redirection ([bbdda9c](https://github.com/ovh/manager/commit/bbdda9ce8db763d5e20352a7cbec763407bd4887)), closes [#PUWEBPT-72](https://github.com/ovh/manager/issues/PUWEBPT-72)
+* **web-hosting:** migrate association git to react ([664124e](https://github.com/ovh/manager/commit/664124e235d18d4dc94b42a5b10c885d04de9f78)), closes [#PUWEBPT-69](https://github.com/ovh/manager/issues/PUWEBPT-69)
+* **web-hosting:** remove servicename column on website datagrid ([6804e20](https://github.com/ovh/manager/commit/6804e2079aac3af932a31020775e717a8f585221)), closes [#PUWEBPT-99](https://github.com/ovh/manager/issues/PUWEBPT-99)
+* **web-hosting:** resfresh datagrid ([afffcde](https://github.com/ovh/manager/commit/afffcdecb658e854a9a1108a47b58575bd7661cc)), closes [#PUWEBPT-174](https://github.com/ovh/manager/issues/PUWEBPT-174)
+
+
+
+
+
 ## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.14.2...@ovh-ux/manager-web-hosting-app@0.14.3) (2026-01-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
