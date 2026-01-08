@@ -255,6 +255,7 @@ export default function DsRecordsListing() {
                   color={MESSAGE_COLOR.information}
                   dismissible={false}
                   className="w-full"
+                  data-testid="internalConfigMessage"
                 >
                   <MessageIcon name={ICON_NAME.circleInfo} />
                   <MessageBody className="flex flex-col items-start">
