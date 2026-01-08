@@ -4,5 +4,7 @@
   "table_column_priority": "Prioridade",
   "table_column_date": "Data",
   "table_column_categories": "Categorias",
-  "contact_status_warning": "Parece haver um problema com o método de receção {{ contactType }}. Pode <anchor>gerir as definições de receção</anchor> para resolver este problema."
+  "contact_status_warning": "Parece haver um problema com o método de receção {{ contactType }}. Pode <anchor>gerir as definições de receção</anchor> para resolver este problema.",
+  "sender_email_banner_text": "Os nossos endereços de correio eletrónico estão a mudar. Para verificar a autenticidade das nossas comunicações, ",
+  "sender_email_banner_link": "consulte as nossas dicas de combate ao phishing."
 }
