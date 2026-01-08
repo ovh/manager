@@ -3,21 +3,17 @@ import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_ICON_NAME,
-  ODS_LINK_COLOR,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsCard,
-  OdsCheckbox,
-  OdsFormField,
-  OdsLink,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  Card,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  FormField,
+  Icon,
+  Message,
+  Text,
+} from '@ovhcloud/ods-react';
 
-import { Subtitle } from '@ovh-ux/manager-react-components';
+import { MukLink } from '@/common/components/link/Link.component';
 
 type CreateCredentialConfirmationPrivateKeyProps = {
   privateKey?: string;
@@ -39,47 +35,44 @@ const CreateCredentialConfirmationPrivateKey = ({
   }
 
   return (
-    <OdsCard className="p-4">
+    <Card className="p-4">
       <div className="flex w-full flex-col gap-4 md:gap-5">
-        <Subtitle>
+        <Text preset="heading-3">
           {t('key_management_service_credential_create_confirmation_private-key_title')}
-        </Subtitle>
-        <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
+        </Text>
+        <Message color="warning" dismissible={false}>
           {t('key_management_service_credential_create_confirmation_private-key_warn')}
-        </OdsMessage>
-        <OdsLink
-          icon={ODS_ICON_NAME.download}
-          color={ODS_LINK_COLOR.primary}
+        </Message>
+        <MukLink
           href={`data:text/plain;charset=utf-8,${encodeURIComponent(
             privateKey.replace(/\n/g, '\r\n'),
           )}`}
           download={`${credentialId}_privatekey.pem`}
-          label={t(
-            'key_management_service_credential_create_confirmation_private-key_download_label',
-          )}
-        />
-        <OdsFormField className="flex flex-row items-center">
-          <OdsCheckbox
+        >
+          <>
+            {t('key_management_service_credential_create_confirmation_private-key_download_label')}
+            <Icon name="download" />
+          </>
+        </MukLink>
+        <FormField>
+          <Checkbox
             data-testid="confirmation-private-key"
             name="confirmation-private-key"
-            inputId="confirmation-private-key"
-            isChecked={isKeyDownloaded}
-            onOdsChange={() => setIsKeyDownloaded(!isKeyDownloaded)}
-          />
-          <label
-            data-testid="confirmation-private-key-label"
-            className="ml-2 cursor-pointer"
-            htmlFor="confirmation-private-key"
+            checked={isKeyDownloaded}
+            onCheckedChange={() => setIsKeyDownloaded(!isKeyDownloaded)}
           >
-            <OdsText preset={ODS_TEXT_PRESET.span}>
-              {t(
-                'key_management_service_credential_create_confirmation_private-key_checkbox_label',
-              )}
-            </OdsText>
-          </label>
-        </OdsFormField>
+            <CheckboxControl />
+            <CheckboxLabel data-testid="confirmation-private-key-label">
+              <Text preset={'span'}>
+                {t(
+                  'key_management_service_credential_create_confirmation_private-key_checkbox_label',
+                )}
+              </Text>
+            </CheckboxLabel>
+          </Checkbox>
+        </FormField>
       </div>
-    </OdsCard>
+    </Card>
   );
 };
 

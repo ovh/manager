@@ -4,8 +4,8 @@ import {
 } from '@key-management-service/utils/credential/validateCredentialDescription';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsText, OdsTextarea } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsTextarea } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 type CreateGeneralInformationsDescriptionProps = {
   description: string | null;
@@ -33,9 +33,9 @@ const CreateGeneralInformationsDescription = ({
 
   return (
     <OdsFormField error={getDescriptionErrorMessage(credentialDescriptionError)}>
-      <OdsText slot="label" preset={ODS_TEXT_PRESET.heading5} className="mb-2">
+      <Text slot="label" preset="heading-5" className="mb-2">
         {t('key_management_service_credential_create_general_information_description_title')}
-      </OdsText>
+      </Text>
       <OdsTextarea
         name="description"
         aria-label="description"
@@ -45,9 +45,9 @@ const CreateGeneralInformationsDescription = ({
         onOdsChange={(e) => setDescription(e.detail.value)}
         rows={4}
       />
-      <OdsText slot="visual-hint" preset={ODS_TEXT_PRESET.caption}>
+      <Text slot="visual-hint" preset="caption">
         {description?.length || 0}/{CredentialDescriptionMaxCharacters}
-      </OdsText>
+      </Text>
     </OdsFormField>
   );
 };

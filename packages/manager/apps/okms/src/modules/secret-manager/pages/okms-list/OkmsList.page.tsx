@@ -11,15 +11,11 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
-import {
-  BaseLayout,
-  ErrorBanner,
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, Button, Error, Notifications } from '@ovh-ux/muk';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -63,7 +59,7 @@ export default function OkmsListPage() {
 
   if (error) {
     return (
-      <ErrorBanner
+      <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
         onReloadPage={refetch}
@@ -76,12 +72,12 @@ export default function OkmsListPage() {
       header={{
         title: t('okms_list'),
         changelogButton: <SecretManagerChangelogButton />,
-        headerButton: <SecretManagerGuidesButton />,
+        guideMenu: <SecretManagerGuidesButton />,
       }}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
     >
@@ -92,8 +88,7 @@ export default function OkmsListPage() {
           isLoading={isPending}
           okmsList={okmsList}
           topbar={
-            <OdsButton
-              label={t('create_a_secret')}
+            <Button
               onClick={() => {
                 navigate(SECRET_MANAGER_ROUTES_URLS.createSecret);
                 trackClick({
@@ -103,7 +98,9 @@ export default function OkmsListPage() {
                   actions: ['create', 'secret'],
                 });
               }}
-            />
+            >
+              {t('create_a_secret')}
+            </Button>
           }
         />
       </div>

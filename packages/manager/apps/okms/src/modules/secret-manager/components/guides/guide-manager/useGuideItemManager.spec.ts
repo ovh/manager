@@ -25,7 +25,7 @@ describe('useGuideManager test suite', () => {
     expect(result.current).toStrictEqual({
       id: MOCKED_ID,
       href: MOCKED_LINK,
-      label: labels.secretManager.guide_use_in_manager,
+      children: labels.secretManager.guide_use_in_manager,
       target: '_blank',
     });
   });

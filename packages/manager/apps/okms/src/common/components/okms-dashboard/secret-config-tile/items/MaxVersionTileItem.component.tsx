@@ -2,9 +2,9 @@ import { SecretConfig } from '@secret-manager/types/secret.type';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Tile } from '@ovh-ux/muk';
 
 import { ErrorResponse } from '@/common/types/api.type';
 
@@ -20,18 +20,18 @@ export const MaxVersionTileItem = ({ data, isPending, isError }: MaxVersionTileI
   }
 
   return (
-    <ManagerTile.Item>
-      <ManagerTile.Item.Label>{t('maximum_number_of_versions')}</ManagerTile.Item.Label>
-      <ManagerTile.Item.Description>
+    <Tile.Item.Root>
+      <Tile.Item.Term label={t('maximum_number_of_versions')} />
+      <Tile.Item.Description>
         {isPending ? (
-          <OdsSkeleton
+          <Skeleton
             data-testid={SECRET_CONFIG_TILE_TEST_IDS.skeleton}
             className="block h-5 content-center"
           />
         ) : (
-          <OdsText preset="span">{data.maxVersions}</OdsText>
+          <Text preset="span">{data.maxVersions}</Text>
         )}
-      </ManagerTile.Item.Description>
-    </ManagerTile.Item>
+      </Tile.Item.Description>
+    </Tile.Item.Root>
   );
 };

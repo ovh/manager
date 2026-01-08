@@ -9,7 +9,6 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 
-import { labels } from '@/common/utils/tests/init.i18n';
 import { removeHandlersDelay } from '@/common/utils/tests/msw';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
@@ -69,7 +68,7 @@ describe('CreateVersionLink test suite', () => {
       const button = screen.getByTestId(ADD_VERSION_BUTTON_TEST_ID);
 
       expect(button).toBeVisible();
-      expect(button).toHaveAttribute('is-loading', 'true');
+      expect(button).toHaveAttribute('data-loading', 'true');
     });
   });
 
@@ -89,9 +88,8 @@ describe('CreateVersionLink test suite', () => {
 
       await waitFor(() => {
         const button = screen.getByTestId(ADD_VERSION_BUTTON_TEST_ID);
-        // expect(button).not.toHaveAttribute('disabled');
-        expect(button).toHaveAttribute('is-disabled', 'false');
-        expect(button).toHaveAttribute('label', labels.secretManager.add_new_version);
+        expect(button).not.toHaveAttribute('disabled');
+        expect(button).toHaveAttribute('data-loading', 'false');
       });
     });
 
@@ -135,7 +133,8 @@ describe('CreateVersionLink test suite', () => {
 
       await waitFor(() => {
         const button = screen.getByTestId(ADD_VERSION_BUTTON_TEST_ID);
-        expect(button).toHaveAttribute('is-disabled', 'false');
+        expect(button).not.toHaveAttribute('disabled');
+        expect(button).toHaveAttribute('data-loading', 'false');
       });
 
       const button = screen.getByTestId(ADD_VERSION_BUTTON_TEST_ID);

@@ -16,9 +16,9 @@ describe('OKMS Kmip Object count Tile Item test suite', () => {
     await renderWithI18n(<KmipObjectCountTileItem okms={okmsMocked} />);
 
     // THEN
-    expect(screen.getByText(labels.dashboard.okms_kmip_object_count)).toBeVisible();
-    expect(screen.getByText(labels.dashboard.okms_kmip_object_count_tooltip)).toBeVisible();
+    expect(screen.getByText(labels.dashboard.okms_kmip_object_count)).toBeInTheDocument();
+    expect(screen.getByText(labels.dashboard.okms_kmip_object_count_tooltip)).toBeInTheDocument();
 
-    expect(screen.getByText(okmsMocked.kmipObjectCount)).toBeVisible();
+    expect(screen.getByText(okmsMocked.kmipObjectCount)).toBeInTheDocument();
   });
 });

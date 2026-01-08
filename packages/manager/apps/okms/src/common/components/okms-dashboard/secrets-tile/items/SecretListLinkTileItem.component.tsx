@@ -4,9 +4,10 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Tile } from '@ovh-ux/muk';
 
+import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 type SecretListLinkTileItemProps = {
@@ -19,11 +20,10 @@ export const SecretListLinkTileItem = ({ okms }: SecretListLinkTileItemProps) =>
   const { t } = useTranslation('key-management-service/common');
 
   return (
-    <ManagerTile.Item>
-      <Links
-        type={LinkType.next}
-        label={t('manage_secrets_link')}
-        onClickReturn={() => {
+    <Tile.Item.Root>
+      <MukLink
+        type={MukLinkType.next}
+        onClick={() => {
           navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okms.id));
           trackClick({
             location: PageLocation.tile,
@@ -32,7 +32,9 @@ export const SecretListLinkTileItem = ({ okms }: SecretListLinkTileItemProps) =>
             actions: ['secret', 'list'],
           });
         }}
-      />
-    </ManagerTile.Item>
+      >
+        {t('manage_secrets_link')}
+      </MukLink>
+    </Tile.Item.Root>
   );
 };

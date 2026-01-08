@@ -7,9 +7,9 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 export const SecretFormBackLink = () => {
@@ -26,11 +26,10 @@ export const SecretFormBackLink = () => {
   const backLink = useHref(url);
 
   return (
-    <Links
-      label={t('back', { ns: NAMESPACES.ACTIONS })}
-      type={LinkType.back}
+    <MukLink
+      type={MukLinkType.back}
       href={backLink}
-      onClickReturn={() => {
+      onClick={() => {
         trackClick({
           location: PageLocation.funnel,
           buttonType: ButtonType.button,
@@ -38,6 +37,8 @@ export const SecretFormBackLink = () => {
           actions: ['cancel'],
         });
       }}
-    />
+    >
+      {t('back', { ns: NAMESPACES.ACTIONS })}
+    </MukLink>
   );
 };
