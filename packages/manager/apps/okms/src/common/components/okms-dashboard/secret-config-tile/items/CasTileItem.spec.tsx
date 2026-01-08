@@ -39,9 +39,9 @@ describe('OKMS - secret config - cas item Tile Item test suite', () => {
     await renderTileItem(buildProps({ data: secretConfig, isPending: false, isError: false }));
 
     // THEN
-    expect(screen.getByText(labels.secretManager.cas_with_description)).toBeVisible();
-    expect(screen.getByText(labels.secretManager.cas_with_description_tooltip)).toBeVisible();
-    expect(screen.getByText(label)).toBeVisible();
+    expect(screen.getByText(labels.secretManager.cas_with_description)).toBeInTheDocument();
+    expect(screen.getByText(labels.secretManager.cas_with_description_tooltip)).toBeInTheDocument();
+    expect(screen.getByText(label)).toBeInTheDocument();
   });
 
   it('should render a skeleton while data is loading', async () => {

@@ -9,13 +9,12 @@ import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.cons
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
-import { Drawer } from '@ovh-ux/manager-react-components';
+import { Drawer } from '@ovh-ux/muk';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
-import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 import { CreateVersionDrawerForm } from './CreateVersionDrawerForm.component';
 
 export default function CreateVersionDrawerPage() {
@@ -58,18 +57,15 @@ export default function CreateVersionDrawerPage() {
   };
 
   return (
-    <Drawer
-      isOpen
-      heading={t('add_new_version')}
-      onDismiss={handleDismiss}
-      isLoading={isLoading && !error}
-      data-testid={CREATE_VERSION_DRAWER_TEST_IDS.drawer}
-    >
+    <Drawer.Root isOpen onDismiss={handleDismiss} isLoading={isLoading && !error}>
+      <Drawer.Header title={t('add_new_version')} />
       <Suspense>
         {error && (
-          <OdsMessage color="danger" className="mb-4" isDismissible={false}>
-            {error?.response?.data?.message}
-          </OdsMessage>
+          <Drawer.Content>
+            <Message color="critical" className="mb-4" dismissible={false}>
+              {error?.response?.data?.message}
+            </Message>
+          </Drawer.Content>
         )}
         {!error && !isLoading && secretConfig && (
           <CreateVersionDrawerForm
@@ -82,6 +78,6 @@ export default function CreateVersionDrawerPage() {
           />
         )}
       </Suspense>
-    </Drawer>
+    </Drawer.Root>
   );
 }

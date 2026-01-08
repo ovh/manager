@@ -6,22 +6,23 @@ import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
-import { ActionMenu, Clipboard, DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
+import { Clipboard } from '@ovh-ux/muk';
 
+import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
-import { ServiceKeyStatus } from '../service-key/service-key-status/serviceKeyStatus.component';
+import { ServiceKeyStatus } from '../service-key/service-key-status-badge/ServiceKeyStatusBadge.component';
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const navigate = useNavigate();
   const { trackClick } = useOkmsTracking();
 
   return (
-    <Links
-      onClickReturn={() => {
+    <MukLink
+      onClick={() => {
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
@@ -30,9 +31,10 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
         });
         navigate(`${props?.id}`);
       }}
-      label={props?.name}
       data-testid={`service-key-link-${props.id}`}
-    />
+    >
+      {props?.name}
+    </MukLink>
   );
 };
 
@@ -82,8 +84,8 @@ export const DatagridServiceKeyActionMenu = (serviceKey: OkmsServiceKey, okms: O
     <ActionMenu
       id={`service-key-actions-${serviceKey.id}`}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
-      icon={ODS_ICON_NAME.ellipsisVertical}
+      variant={BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
       items={actionsWithId}
     />
   );

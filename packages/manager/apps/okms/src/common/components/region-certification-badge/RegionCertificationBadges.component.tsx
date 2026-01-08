@@ -1,5 +1,4 @@
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge } from '@ovhcloud/ods-react';
 
 type RegionCertificationBadgesProps = {
   certifications: string[];
@@ -13,13 +12,9 @@ export const RegionCertificationBadges = ({ certifications }: RegionCertificatio
   return (
     <div className="flex items-center gap-2">
       {certifications.map((certification) => (
-        <OdsBadge
-          key={certification}
-          label={formatLabel(certification)}
-          color={ODS_BADGE_COLOR.neutral}
-          className="[&::part(badge)]:bg-[--ods-color-neutral-100]"
-          size="sm"
-        />
+        <Badge key={certification} color="neutral" size="sm">
+          {formatLabel(certification)}
+        </Badge>
       ))}
     </div>
   );

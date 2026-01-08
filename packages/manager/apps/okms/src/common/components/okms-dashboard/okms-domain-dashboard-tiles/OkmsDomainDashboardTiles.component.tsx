@@ -1,9 +1,9 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 
 import { SECRET_MANAGER_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 
@@ -42,7 +42,7 @@ export const OkmsDomainDashboardTiles = ({ okms }: OkmsDomainDashboardTilesProps
         {features?.[SECRET_MANAGER_FEATURES.PRODUCT] && <SecretConfigTile okms={okms} />}
       </section>
       <section className="flex flex-col gap-4">
-        <OdsText preset="heading-3">{t('okms_services')}</OdsText>
+        <Text preset="heading-3">{t('okms_services')}</Text>
         <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-2 xxl:grid-cols-4">
           <BillingTile okms={okms} />
           {features?.[SECRET_MANAGER_FEATURES.PRODUCT] && <SecretsTile okms={okms} />}

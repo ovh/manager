@@ -18,15 +18,6 @@ const errorLabels = allLabels.common.error;
 vi.mock('@secret-manager/data/hooks/useSecretVersion');
 const mockUseSecretVersionWithData = vi.mocked(useSecretVersionWithData);
 
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsSpinner: vi.fn(() => <div data-testid="ods-spinner">Loading...</div>),
-  };
-});
-
 // Mock child components
 vi.mock('./SecretValueClipboards.component', () => ({
   SecretValueClipboards: vi.fn(() => (
@@ -75,7 +66,7 @@ describe('SecretValue', () => {
       await renderTest();
 
       // Then
-      expect(screen.getByTestId('ods-spinner')).toBeInTheDocument();
+      expect(screen.getByTestId('spinner')).toBeInTheDocument();
       expect(screen.queryByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.toggle)).not.toBeInTheDocument();
     });
   });
@@ -118,8 +109,7 @@ describe('SecretValue', () => {
 
       // Then
       expect(screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.toggle)).toBeInTheDocument();
-      expect(screen.queryByTestId('ods-spinner')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('ods-message')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('spinner')).not.toBeInTheDocument();
     });
 
     test('should initialize toggle state as key-value for valid key-value objects', async () => {

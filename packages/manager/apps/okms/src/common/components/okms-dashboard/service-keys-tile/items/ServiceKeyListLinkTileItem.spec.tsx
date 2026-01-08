@@ -4,8 +4,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { LinkType, LinksProps } from '@ovh-ux/manager-react-components';
-
+import { MukLinkType } from '@/common/components/link/Link.component';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
@@ -22,16 +21,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
-  return {
-    ...actual,
-    Links: ({ onClickReturn, ...rest }: LinksProps) => (
-      <a data-testid={'service-key-list-link'} onClick={onClickReturn} {...rest} />
-    ),
-  };
-});
-
 describe('OKMS Service Key List link Tile Item test suite', () => {
   it('should render the tile item correctly', async () => {
     const user = userEvent.setup();
@@ -41,11 +30,10 @@ describe('OKMS Service Key List link Tile Item test suite', () => {
     await renderWithI18n(<ServiceKeyListLinkTileItem okms={okmsMocked} />);
 
     // THEN
-    const secretListLink = screen.getByTestId('service-key-list-link');
+    const secretListLink = screen.getByText(labels.kmsCommon.manage_service_keys_link);
 
     expect(secretListLink).toBeVisible();
-    expect(secretListLink).toHaveAttribute('label', labels.kmsCommon.manage_service_keys_link);
-    expect(secretListLink).toHaveAttribute('type', LinkType.next);
+    expect(secretListLink).toHaveAttribute('type', MukLinkType.next);
 
     await user.click(secretListLink);
     expect(mockNavigate).toHaveBeenCalledWith(KMS_ROUTES_URLS.serviceKeyListing(okmsMocked.id));

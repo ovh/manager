@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { ErrorResponse } from '@/common/types/api.type';
 import { isErrorResponse } from '@/common/utils/api/api';

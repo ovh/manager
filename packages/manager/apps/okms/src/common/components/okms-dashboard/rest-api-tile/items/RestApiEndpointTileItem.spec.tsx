@@ -7,7 +7,7 @@ import {
   DownloadOkmsPublicCaLinkProps,
 } from '@/common/components/download-okms-public-ca-link/DownloadOkmsPublicCaLink';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
-import { getOdsClipboardByValue } from '@/common/utils/tests/uiTestHelpers';
+import { assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { ENPOINT_LABEL } from '@/constants';
 
 import { RestApiEndpointTileItem } from './RestApiEndpointTileItem.component';
@@ -27,11 +27,11 @@ describe('OKMS Rest API endpoint Tile Item test suite', () => {
     // GIVEN okmsMocked
 
     // WHEN
-    const { container } = await renderWithI18n(<RestApiEndpointTileItem okms={okmsMocked} />);
+    await renderWithI18n(<RestApiEndpointTileItem okms={okmsMocked} />);
 
     // THEN
     expect(screen.getByText(ENPOINT_LABEL)).toBeVisible();
-    expect(getOdsClipboardByValue({ container, value: okmsMocked.restEndpoint })).toBeVisible();
+    await assertClipboardVisibility(okmsMocked.restEndpoint);
 
     expect(DownloadOkmsPublicCaLink).toHaveBeenCalledTimes(1);
     expect(

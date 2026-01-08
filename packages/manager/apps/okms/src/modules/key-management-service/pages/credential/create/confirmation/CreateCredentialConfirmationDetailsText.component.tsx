@@ -1,5 +1,4 @@
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 type CreateCredentialConfirmationDetailsTextProps = {
   label: string;
@@ -12,8 +11,8 @@ const CreateCredentialConfirmationDetailsText = ({
 }: CreateCredentialConfirmationDetailsTextProps) => {
   return (
     <div className="grid grid-cols-2">
-      <OdsText preset={ODS_TEXT_PRESET.span}>{`${label}:`}</OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.span}>{value}</OdsText>
+      <Text preset="span">{`${label}:`}</Text>
+      <Text preset="span">{value}</Text>
     </div>
   );
 };

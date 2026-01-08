@@ -1,31 +1,36 @@
-import React from 'react';
+import { type ComponentPropsWithRef } from 'react';
 
-import { useHref, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { Link, type LinkProp } from '@ovhcloud/ods-react';
 
-type OdsLinkProps = React.ComponentProps<typeof OdsLink> & {
-  /** Display a OdsLink but uses the router for navigation */
-  isRouterLink?: boolean;
-};
+import { Link as MukLink, LinkProps as MukLinkProps, LinkType as MukLinkType } from '@ovh-ux/muk';
 
-export const Link = ({ isRouterLink, ...props }: OdsLinkProps) => {
-  const navigate = useNavigate();
-  const href = useHref(props.href);
+type InternalLinkProps = Omit<ComponentPropsWithRef<typeof RouterLink>, 'as'> &
+  LinkProp<typeof RouterLink>;
 
-  if (!isRouterLink) {
-    return <OdsLink {...props} href={props.href} />;
-  }
+/**
+ * InternalLink
+ * Wrapper around the design-system Link component that uses React Router for client-side navigation.
+ */
+export function InternalLink({ ...props }: InternalLinkProps) {
+  return <Link as={RouterLink} {...props} />;
+}
 
-  return (
-    <OdsLink
-      {...props}
-      href={href}
-      onClick={(event) => {
-        event.preventDefault();
-        props.onClick?.(event);
-        navigate(props.href);
-      }}
-    />
-  );
-};
+/**
+ * ExternalLink
+ * Use MukLink component for external links.
+ */
+export function ExternalLink({ ...props }: MukLinkProps) {
+  return <MukLink type={MukLinkType.external} {...props} target="_blank" />;
+}
+
+/**
+ * MukLink
+ * Export the Manager UI Kit Link component.
+ * This is a temporary solution, the goal is to use only the InternalLink component for internal navigation.
+ * TODO: Use MukLink in InternalLink to have only one link component for internal navigation.
+ *       MukLink needs to be fixed to allow proper polymorphism.
+ */
+export { Link as MukLink } from '@ovh-ux/muk';
+export { LinkType as MukLinkType } from '@ovh-ux/muk';

@@ -10,14 +10,10 @@ import {
 import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_TEXT_PRESET,
-  OdsSelectChangeEventDetail,
-  OdsSelectCustomEvent,
-} from '@ovhcloud/ods-components';
-import { OdsFormField, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsSelectChangeEventDetail, OdsSelectCustomEvent } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsSelect } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
-import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -79,23 +75,25 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
   return (
     <>
       <div className="flex flex-col gap-3 md:gap-4">
-        <Subtitle>{t('key_management_service_service-keys_create_crypto_title')}</Subtitle>
+        <Text preset="heading-3">
+          {t('key_management_service_service-keys_create_crypto_title')}
+        </Text>
         <div className="space-y-2">
-          <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+          <Text className="block" preset="heading-5">
             {t('key_management_service_service-keys_create_crypto_origin_title')}
-          </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          </Text>
+          <Text preset="paragraph">
             {t('key_management_service_service-keys_create_crypto_origin_subtitle')}
-          </OdsText>
+          </Text>
         </div>
         <OdsFormField>
           <div slot="label" className="mb-2 space-y-2">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            <Text className="block" preset="heading-5">
               {t('key_management_service_service-keys_create_crypto_field_type_title')}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text preset="paragraph">
               {t('key_management_service_service-keys_create_crypto_field_type_subtitle')}
-            </OdsText>
+            </Text>
           </div>
           <div className="grid gap-3">
             {servicekeyReferenceList?.map((reference) => (
@@ -115,12 +113,12 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
       {serviceKey && [OkmsKeyTypes.oct, OkmsKeyTypes.RSA].includes(serviceKey.type) && (
         <OdsFormField key={serviceKey.type}>
           <div slot="label" className="mb-2 space-y-2">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            <Text className="block" preset="heading-5">
               {t('key_management_service_service-keys_create_crypto_field_size_title')}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text preset="paragraph">
               {t('key_management_service_service-keys_create_crypto_field_size_subtitle')}
-            </OdsText>
+            </Text>
           </div>
           <OdsSelect name="keySize" value={keySize?.toString()} onOdsChange={handleSelectKeySize}>
             {serviceKey?.sizes.map((size) => (
@@ -140,12 +138,12 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
       {serviceKey?.type === OkmsKeyTypes.EC && (
         <OdsFormField>
           <div slot="label" className="mb-2 space-y-2">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            <Text className="block" preset="heading-5">
               {t('key_management_service_service-keys_create_crypto_field_curve_title')}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text preset="paragraph">
               {t('key_management_service_service-keys_create_crypto_field_curve_subtitle')}
-            </OdsText>
+            </Text>
           </div>
           <OdsSelect
             name="keyCurve"

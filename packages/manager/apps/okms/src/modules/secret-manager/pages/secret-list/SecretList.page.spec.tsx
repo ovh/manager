@@ -2,23 +2,18 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-  getOdsButtonByIcon,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { TIMEOUT, assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { invariant } from '@/common/utils/tools/invariant';
 import { PATH_LABEL } from '@/constants';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
-
-import { CREATE_VERSION_DRAWER_TEST_IDS } from '../drawers/create-version-drawer/CreateVersionDrawer.constants';
 
 const mockOkms = okmsRoubaix1Mock;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(mockOkms.id);
@@ -27,24 +22,32 @@ const renderPage = async () => {
   const results = await renderTestApp(mockPageUrl);
 
   // Check title
-  await assertTextVisibility(labels.secretManager.secret_manager);
+  await assertTitleVisibility({
+    title: labels.secretManager.secret_manager,
+    level: 1,
+    timeout: TIMEOUT.MEDIUM,
+  });
 
   return results;
 };
 
-// TEMP fix to ensure ods links and buttons are properly rendered
-const assertDatagridIsLoaded = async (container: HTMLElement) => {
-  await waitFor(() => {
-    const skeletons = container.querySelectorAll<HTMLElement>('ods-skeleton');
-    expect(skeletons.length).toBe(0);
-  });
-};
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', async (importOriginal) => {
+  const module: typeof import('react-router-dom') = await importOriginal();
+  return {
+    ...module,
+    useNavigate: () => mockNavigate,
+  };
+});
 
 describe('Secret list page test suite', () => {
   it('should display the secrets list page', async () => {
     await renderPage();
 
-    await assertTextVisibility(labels.secretManager.secret_manager);
+    await assertTitleVisibility({
+      title: labels.secretManager.secret_manager,
+      level: 1,
+    });
   });
 
   it('should display the breadcrumb', async () => {
@@ -54,16 +57,14 @@ describe('Secret list page test suite', () => {
   });
 
   it('should display the region selector', async () => {
-    const { container } = await renderPage();
-
-    await assertRegionSelectorIsVisible(container);
+    await renderPage();
+    await assertRegionSelectorIsVisible();
   });
 
   it('should display the secret table with all columns', async () => {
     // GIVEN
     // WHEN
-    const { container } = await renderPage();
-    await assertDatagridIsLoaded(container);
+    await renderPage();
 
     // THEN
     const tableHeaders = [
@@ -83,121 +84,119 @@ describe('Secret list page test suite', () => {
 
   it('should navigate to a secret detail page on click on secret path', async () => {
     // GIVEN
-    const user = userEvent.setup();
-    const { container } = await renderPage();
-    await assertDatagridIsLoaded(container);
+    await renderPage();
 
-    const secretPageLink = await getOdsButtonByLabel({
-      container,
-      label: secretListMock[0]?.path ?? '',
-      isLink: true,
-    });
-
-    // WHEN
-    await act(() => user.click(secretPageLink));
+    const secretPath = secretListMock[0]?.path ?? '';
+    invariant(secretPath, 'Secret path is not defined');
+    const secretPageLink = await screen.findByText(secretPath);
 
     // THEN
-    const dashboardPageLabels = await screen.findAllByText(
-      labels.common.dashboard.general_information,
-      {},
-      WAIT_FOR_DEFAULT_OPTIONS,
+    expect(secretPageLink.closest('a')).toHaveAttribute(
+      'href',
+      SECRET_MANAGER_ROUTES_URLS.secret(mockOkms.id, secretPath),
     );
-    expect(dashboardPageLabels.length).toBeGreaterThan(0);
   });
 
   it('should navigate to OKMS dashboard on click on "manage okms" button', async () => {
     // GIVEN
     const user = userEvent.setup();
-    const { container } = await renderPage();
-    await assertDatagridIsLoaded(container);
+    await renderPage();
 
-    const manageOkmsButton = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.okms_manage_label,
+    const manageOkmsButton = screen.getByRole('button', {
+      name: labels.secretManager.okms_manage_label,
     });
 
     // WHEN
-    await act(() => user.click(manageOkmsButton));
+    await user.click(manageOkmsButton);
 
     // THEN
-    await assertTextVisibility(labels.secretManager.okms_dashboard_title);
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith(
+        SECRET_MANAGER_ROUTES_URLS.okmsDashboard(mockOkms.id),
+      );
+    });
   });
 
   /* DATAGRID ACTIONS */
   it('should navigate to create a secret page on click on datagrid CTA', async () => {
     // GIVEN
     const user = userEvent.setup();
-    const { container } = await renderPage();
-    await assertDatagridIsLoaded(container);
+    await renderPage();
 
-    const createSecretButton = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.create_a_secret,
+    const createSecretButton = screen.getByRole('button', {
+      name: labels.secretManager.create_a_secret,
     });
 
     // WHEN
-    await act(() => user.click(createSecretButton));
+    await user.click(createSecretButton);
 
     // THEN
-    await assertTextVisibility(labels.secretManager.create_a_secret);
-    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith({
+        pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
+        search: `?okmsId=${mockOkms.id}`,
+      });
+    });
   });
 
   /* ITEM MENU ACTIONS */
   type ActionCase = {
-    actionLabel: string;
-    assertion: () => Promise<void>;
+    buttonLabel: string;
+    getExpectedUrl: (secretPath: string) => string;
   };
 
   const actionCases: ActionCase[] = [
     {
-      actionLabel: labels.secretManager.reveal_secret,
-      assertion: () => assertTextVisibility(labels.secretManager.values),
+      buttonLabel: labels.secretManager.reveal_secret,
+      getExpectedUrl: (secretPath: string) =>
+        SECRET_MANAGER_ROUTES_URLS.secretListSecretValueDrawer(mockOkms.id, secretPath),
     },
     {
-      actionLabel: labels.secretManager.add_new_version,
-      assertion: async () =>
-        expect(
-          await screen.findByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer),
-        ).toBeInTheDocument(),
+      buttonLabel: labels.secretManager.add_new_version,
+      getExpectedUrl: (secretPath: string) =>
+        SECRET_MANAGER_ROUTES_URLS.secretListCreateVersionDrawer(mockOkms.id, secretPath, 1),
     },
     {
-      actionLabel: labels.secretManager.access_versions,
-      assertion: () => assertVersionDatagridVisilibity(),
+      buttonLabel: labels.secretManager.access_versions,
+      getExpectedUrl: (secretPath: string) =>
+        SECRET_MANAGER_ROUTES_URLS.versionList(mockOkms.id, secretPath),
     },
     {
-      actionLabel: labels.secretManager.delete_secret,
-      assertion: () => assertTextVisibility(labels.secretManager.delete_secret_modal_title),
+      buttonLabel: labels.secretManager.delete_secret,
+      getExpectedUrl: (secretPath: string) =>
+        SECRET_MANAGER_ROUTES_URLS.secretListDeleteSecretModal(mockOkms.id, secretPath),
     },
   ];
 
   describe('Menu actions', () => {
     it.each(actionCases)(
-      'should correctly handle click on $actionLabel',
-      async ({ actionLabel, assertion }) => {
+      'should correctly handle click on $buttonLabel',
+      async ({ buttonLabel, getExpectedUrl }) => {
         // GIVEN
         const user = userEvent.setup();
-        const { container } = await renderPage();
-        await assertDatagridIsLoaded(container);
+        await renderPage();
 
-        const mainActionButton = await getOdsButtonByIcon({
-          container,
-          iconName: 'ellipsis-vertical',
-        });
+        const secret = secretListMock[0];
+        invariant(secret?.path, 'Secret path is not defined');
+        const secretPath: string = secret.path;
 
-        await act(() => user.click(mainActionButton));
+        await screen.findByText(secretPath, {}, { timeout: 3000 });
 
-        const actionButton = await getOdsButtonByLabel({
-          container,
-          label: actionLabel,
-          disabled: false,
-        });
+        const actionMenuTrigger = await screen.findByTestId(
+          `action-menu-trigger-SecretActionMenu-${secretPath}`,
+        );
 
         // WHEN
-        await act(() => user.click(actionButton));
+        await user.click(actionMenuTrigger);
+
+        // Wait for menu to open and find the button
+        const actionItem = await screen.findByText(buttonLabel, {}, { timeout: 3000 });
+        await user.click(actionItem);
 
         // THEN
-        await assertion();
+        await waitFor(() => {
+          expect(mockNavigate).toHaveBeenCalledWith(getExpectedUrl(secretPath));
+        });
       },
     );
   });

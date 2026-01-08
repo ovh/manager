@@ -9,17 +9,12 @@ import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { getOkmsServiceKeyResourceQueryKey } from '@key-management-service/data/api/okmsServiceKey';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import {
-  BaseLayout,
-  DashboardGridLayout,
-  ErrorBanner,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
+import { BaseLayout, Error, GridLayout, Notifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -53,7 +48,7 @@ export default function ServiceKeyDashboard() {
 
   if (okmsError) {
     return (
-      <ErrorBanner
+      <Error
         error={okmsError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
@@ -67,7 +62,7 @@ export default function ServiceKeyDashboard() {
 
   if (serviceKeyError)
     return (
-      <ErrorBanner
+      <Error
         error={serviceKeyError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
@@ -87,7 +82,7 @@ export default function ServiceKeyDashboard() {
     },
   ];
 
-  const breadcrumbItems: BreadcrumbItem[] = [
+  const breadcrumbItems: KmsBreadcrumbItem[] = [
     {
       id: okmsId,
       label: okms.iam.displayName,
@@ -116,20 +111,22 @@ export default function ServiceKeyDashboard() {
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: serviceKey.name || serviceKey.id,
-          headerButton: <KmsGuidesHeader />,
+          guideMenu: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
-        onClickReturn={() => {
-          navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
+        backLink={{
+          label: t('key_management_service_service_keys_back_link'),
+          onClick: () => {
+            navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
+          },
         }}
-        backLinkLabel={t('key_management_service_service_keys_back_link')}
         message={<Notifications />}
         tabs={<TabNavigation tabs={tabsList} />}
       >
-        <DashboardGridLayout>
+        <GridLayout>
           <GeneralInformationTile kms={okms} serviceKey={serviceKey} />
           <CryptoPropertiesTile serviceKey={serviceKey} />
-        </DashboardGridLayout>
+        </GridLayout>
         <Outlet />
       </BaseLayout>
     </Suspense>

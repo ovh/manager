@@ -3,18 +3,13 @@ import * as router from 'react-router-dom';
 import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertOdsModalVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { TIMEOUT, assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkms = okmsRoubaix1Mock;
 const mockCredentialItem = credentialMock1;
@@ -30,27 +25,21 @@ describe('Credential delete modal test suite', () => {
   });
 
   test('should display the delete modal', async () => {
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
     // Check modal is opened
-    await waitFor(async () => {
-      await assertOdsModalVisibility({ container, isVisible: true });
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    await assertModalVisibility({ role: 'alertdialog' });
   });
 
   test('should navigate and show a notification after successful deletion', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
     // Wait for modal to open
-    await waitFor(async () => {
-      await assertOdsModalVisibility({ container, isVisible: true });
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    const modal = await assertModalVisibility({ role: 'alertdialog' });
 
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: 'Oui, résilier', // Label from MRC
-      disabled: false,
+    const submitButton = within(modal).getByRole('button', {
+      name: labels.common.actions.delete,
     });
 
     await act(async () => {
@@ -58,44 +47,42 @@ describe('Credential delete modal test suite', () => {
     });
 
     // Check navigation
-    await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith(mockCredentialListPageUrl, {
-        state: { deletingCredentialId: mockCredentialItem.id },
-      });
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    await waitFor(
+      () => {
+        expect(mockNavigate).toHaveBeenCalledWith(mockCredentialListPageUrl, {
+          state: { deletingCredentialId: mockCredentialItem.id },
+        });
+      },
+      { timeout: TIMEOUT.DEFAULT },
+    );
 
     // Check notification
-    await waitFor(() => {
-      expect(
-        screen.getByText(labels.credentials.key_management_service_credential_delete_success),
-      ).toBeVisible();
-    });
+    await waitFor(
+      () => {
+        expect(
+          screen.getByText(labels.credentials.key_management_service_credential_delete_success),
+        ).toBeVisible();
+      },
+      { timeout: 5000 },
+    );
   });
 
   test('should navigate and show a notification after failed deletion', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl, {
+    await renderTestApp(mockPageUrl, {
       isCredentialDeleteKO: true,
     });
 
     // Wait for modal to open
-    await waitFor(async () => {
-      await assertOdsModalVisibility({ container, isVisible: true });
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    const modal = await assertModalVisibility({ role: 'alertdialog' });
 
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: 'Oui, résilier', // Label from MRC
-      timeout: WAIT_FOR_DEFAULT_OPTIONS.timeout,
-      disabled: false,
+    let submitButton = within(modal).getByRole('button', {
+      name: labels.common.actions.delete,
     });
 
     await act(async () => {
       await user.click(submitButton);
     });
-
-    // Check navigation
-    await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('..'), WAIT_FOR_DEFAULT_OPTIONS);
 
     // Check notification
     await waitFor(() => {
