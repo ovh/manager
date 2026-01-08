@@ -14,16 +14,17 @@ type GeneralInformationTenantTileProps = {
 
 export function GeneralInformationTenantTile({ tenantId }: GeneralInformationTenantTileProps) {
   const { t } = useTranslation(BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD);
-  const { data, isPending } = useBackupVSPCTenantDetails({ tenantId });
+  const { data, isPending, isError } = useBackupVSPCTenantDetails({ tenantId });
 
   return (
     <GeneralInformationTile resourceDetails={data} isLoading={isPending}>
       <ManagerTile.Item>
-        {isPending || !data ? (
+        {isPending ? (
           <OdsSkeleton />
         ) : (
           <OdsLink
-            href={`https://${data.currentState.accessUrl}`}
+            isDisabled={isError}
+            href={`https://${data?.currentState.accessUrl}`}
             label={t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:access_to_vspc`)}
             icon="external-link"
             target="_blank"
