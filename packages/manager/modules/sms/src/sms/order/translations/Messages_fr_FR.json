@@ -27,5 +27,8 @@
   "sms_order_more_info": "En savoir plus",
   "sms_order_retract_info": "Vous pouvez exercer votre droit de rétractation, sans avoir à justifier de motifs ni à payer de pénalités, dans un délai de quatorze (14) jours à compter de la souscription du contrat, par courrier postal ou par message adressé au Service client OVH par le biais de votre Interface de gestion.",
   "sms_order_header_guide": "Guides",
-  "sms_order_header_guide_start_with_sms": "Débuter avec les SMS OVHcloud"
+  "sms_order_header_guide_start_with_sms": "Débuter avec les SMS OVHcloud",
+  "sms_order_info_message": "Attention : un compte est nécessaire pour Time2Chat. Si vous n'en avez pas, activez l'offre de bienvenue 20 SMS offerts pour créer votre compte, puis souscrivez à Time2Chat.",
+  "sms_order_info_welcome_link": "Recevez vos 20 SMS gratuits maintenant",
+  "sms_order_info_guide_link": "Besoin d'aide ? Suivez le guide"
 }
