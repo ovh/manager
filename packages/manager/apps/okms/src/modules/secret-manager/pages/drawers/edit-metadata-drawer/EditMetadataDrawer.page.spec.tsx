@@ -2,14 +2,17 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+import { describe, expect, it } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+import {
+  TIMEOUT,
+  assertDrawerVisibility,
+  changeOdsInputValueByTestId,
+} from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockSecret = mockSecret1;
@@ -21,9 +24,7 @@ const renderPage = async (mockParams = {}) => {
   const { container } = await renderTestApp(mockPageUrl, mockParams);
 
   // Check if the drawer is open
-  expect(
-    await screen.findByTestId('edit-metadata-drawer', {}, { timeout: 10_000 }),
-  ).toBeInTheDocument();
+  await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.MEDIUM });
 
   return { user, container };
 };
@@ -32,8 +33,15 @@ describe('Edit Metadata Drawer page test suite', () => {
   it('should display the edit metadata drawer', async () => {
     await renderPage();
 
+    const drawer = await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.MEDIUM });
+
     // Should show the drawer title
-    expect(screen.getByText(labels.secretManager.edit_metadata)).toBeInTheDocument();
+    await waitFor(
+      () => {
+        expect(within(drawer).getByText(labels.secretManager.edit_metadata)).toBeInTheDocument();
+      },
+      { timeout: TIMEOUT.MEDIUM },
+    );
   });
 
   it('should display error message when secret smart config fetch fails', async () => {
@@ -51,7 +59,7 @@ describe('Edit Metadata Drawer page test suite', () => {
   });
 
   it('should render form with correct data when everything loads successfully', async () => {
-    const { container } = await renderPage();
+    await renderPage();
 
     // Wait for form to be rendered
     const maxVersions = mockSecret.metadata.maxVersions.toString();
@@ -64,15 +72,15 @@ describe('Edit Metadata Drawer page test suite', () => {
     expect(screen.getByDisplayValue(maxVersions)).toBeInTheDocument();
 
     // Check submit button is present
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
+    expect(submitButton).toBeEnabled();
     expect(submitButton).toBeInTheDocument();
   });
 
   it('should handle form submission and navigation flow', async () => {
-    const { user, container } = await renderPage();
+    const { user } = await renderPage();
 
     // Change the data input value
     await changeOdsInputValueByTestId(
@@ -81,36 +89,37 @@ describe('Edit Metadata Drawer page test suite', () => {
     );
 
     // Submit form
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
-    await act(() => user.click(submitButton));
+
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Wait for drawer to close (navigation)
-    await waitFor(() => {
-      expect(screen.queryByTestId('edit-metadata-drawer')).not.toBeInTheDocument();
-    });
+    await assertDrawerVisibility({ state: 'hidden' });
   });
 
   it('should handle form submission errors', async () => {
-    const { user, container } = await renderPage({ isUpdateSecretKO: true });
+    const { user } = await renderPage({ isUpdateSecretKO: true });
 
     // Wait for form to load
     const maxVersions = mockSecret.metadata.maxVersions.toString();
     expect(await screen.findByDisplayValue(maxVersions)).toBeInTheDocument();
 
     // Submit form
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
-    await act(() => user.click(submitButton));
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Verify error is displayed
     expect(await screen.findByText('update-secret-error-message')).toBeInTheDocument();
 
     // Drawer should still be open
-    expect(screen.getByTestId('edit-metadata-drawer')).toBeInTheDocument();
+    await assertDrawerVisibility({ state: 'visible' });
   });
 });

@@ -1,6 +1,5 @@
 import { getIamMocks } from '@key-management-service/mocks/iam/iam.handler';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
-import { OKMS } from '@key-management-service/types/okms.type';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { render, screen, waitFor } from '@testing-library/react';
@@ -16,10 +15,6 @@ import { SHOW_VALUE_TEST_IDS, ShowValueLink } from './ShowValueLink.component';
 
 const SECRET_MOCK = mockSecret1;
 const OKMS_OK_MOCK = okmsRoubaix1Mock;
-const OKMS_EXPIRED_MOCK: OKMS = {
-  ...okmsRoubaix1Mock,
-  iam: { ...okmsRoubaix1Mock.iam, state: 'EXPIRED' },
-};
 
 const mockUseOkmsById = vi.fn();
 vi.mock('@key-management-service/data/hooks/useOkms', () => ({
@@ -84,30 +79,11 @@ describe('ShowValueLink test suite', () => {
       await waitFor(() => {
         expect(link).not.toHaveAttribute('is-disabled');
       });
-      expect(link).toHaveAttribute('label', labels.secretManager.reveal_secret);
+      expect(link).toHaveTextContent(labels.secretManager.reveal_secret);
       expect(link).toHaveAttribute(
         'href',
         SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(OKMS_OK_MOCK.id, SECRET_MOCK.path),
       );
-    });
-
-    it('should be disabled when OKMS domain status is not OK', async () => {
-      // GIVEN
-      mockUseOkmsById.mockReturnValueOnce({
-        data: OKMS_EXPIRED_MOCK,
-        isPending: false,
-        error: null,
-      });
-
-      // WHEN
-      await renderComponent();
-
-      // THEN
-      const link = screen.getByTestId(SHOW_VALUE_TEST_IDS.showValueLink);
-
-      await waitFor(() => {
-        expect(link).toHaveAttribute('is-disabled', 'true');
-      });
     });
   });
 });

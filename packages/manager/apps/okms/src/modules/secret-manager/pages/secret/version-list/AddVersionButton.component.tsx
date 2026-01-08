@@ -5,8 +5,10 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+import { Icon } from '@ovhcloud/ods-react';
+
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -26,10 +28,9 @@ export const AddVersionButton = ({ okmsId, secret }: AddVersionButtonProps) => {
   const { data: okms, isPending } = useOkmsById(okmsId);
 
   return (
-    <ManagerButton
+    <Button
       data-testid={ADD_VERSION_BUTTON_TEST_ID}
       id={secret.path}
-      label={t('add_new_version')}
       onClick={() => {
         navigate(
           SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
@@ -45,11 +46,15 @@ export const AddVersionButton = ({ okmsId, secret }: AddVersionButtonProps) => {
           actions: ['create', 'version'],
         });
       }}
-      icon={'plus'}
-      isDisabled={!isOkmsActive(okms)}
-      isLoading={isPending}
+      disabled={!isOkmsActive(okms)}
+      loading={isPending}
       urn={okms?.iam?.urn}
       iamActions={[kmsIamActions.secretVersionCreate]}
-    />
+    >
+      <>
+        <Icon name="plus" />
+        {t('add_new_version')}
+      </>
+    </Button>
   );
 };

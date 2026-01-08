@@ -12,7 +12,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenuItemProps } from '@ovh-ux/muk';
 
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
@@ -49,8 +49,8 @@ vi.mock('@secret-manager/data/hooks/useUpdateSecretVersion', () => ({
 }));
 
 const mockAddError = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/muk', async () => {
+  const actual = await vi.importActual('@ovh-ux/muk');
   return {
     ...actual,
     useNotifications: () => ({
@@ -59,7 +59,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   };
 });
 
-const deactivateMenuItem: ActionMenuItem = {
+const deactivateMenuItem: ActionMenuItemProps = {
   id: MOCKED_ID,
   label: labels.secretManager.version_state_deactivate,
   isDisabled: false,
@@ -81,7 +81,7 @@ describe('useDeactivateVersionMenuItem test suite', () => {
 
   type TestCase = {
     version: SecretVersion;
-    returned: ActionMenuItem | null;
+    returned: ActionMenuItemProps | null;
   };
 
   const testCases: TestCase[] = [
@@ -107,7 +107,7 @@ describe('useDeactivateVersionMenuItem test suite', () => {
 
       // THEN
       if (returned === null) expect(result.current).toBeNull();
-      else expect(result.current).toMatchObject<ActionMenuItem>(returned);
+      else expect(result.current).toMatchObject<ActionMenuItemProps>(returned);
     },
   );
 
@@ -125,7 +125,7 @@ describe('useDeactivateVersionMenuItem test suite', () => {
     await waitFor(() => result.current);
 
     // THEN
-    expect(result.current).toMatchObject<ActionMenuItem>({
+    expect(result.current).toMatchObject<ActionMenuItemProps>({
       ...deactivateMenuItem,
       isDisabled: true,
     });

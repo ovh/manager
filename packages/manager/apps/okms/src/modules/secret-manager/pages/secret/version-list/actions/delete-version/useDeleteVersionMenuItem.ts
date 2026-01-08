@@ -5,10 +5,8 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { Secret, SecretVersion } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-
-import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenuItemProps, BUTTON_COLOR } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -26,7 +24,7 @@ export const useDeleteVersionItem = ({
   okmsId,
   secret,
   version,
-}: UseDeleteVersionParams): ActionMenuItem | null => {
+}: UseDeleteVersionParams): ActionMenuItemProps | null => {
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
   const { trackClick } = useOkmsTracking();
@@ -50,7 +48,7 @@ export const useDeleteVersionItem = ({
       label: t('version_state_delete'),
       isDisabled: !isOkmsActive(okms),
       isLoading: isPending,
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
       onClick: handleDeleteVersion,
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretVersionUpdate, kmsIamActions.secretVersionDelete],
@@ -62,7 +60,7 @@ export const useDeleteVersionItem = ({
       id,
       label: t('version_state_delete'),
       isDisabled: true,
-      color: ODS_BUTTON_COLOR.critical,
+      color: BUTTON_COLOR.critical,
     };
   }
 

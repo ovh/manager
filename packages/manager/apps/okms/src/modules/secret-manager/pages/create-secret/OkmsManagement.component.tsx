@@ -7,7 +7,8 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { Message, Spinner } from '@ovhcloud/ods-react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -53,16 +54,16 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
 
   if (okmsError) {
     return (
-      <OdsMessage color="danger">
+      <Message color="critical">
         {t('error_message', {
           message: okmsError.response?.data?.message,
         })}
-      </OdsMessage>
+      </Message>
     );
   }
 
   if (isOkmsListLoading) {
-    return <OdsSpinner data-testid="regionsSpinner" />;
+    return <Spinner data-testid="regionsSpinner" />;
   }
 
   return (
@@ -103,7 +104,7 @@ export const OkmsManagementContent = ({
   return (
     <div className="space-y-10">
       <div className="space-y-5">
-        <OdsText preset="heading-2">{t('create_secret_form_region_section_title')}</OdsText>
+        <Text preset="heading-2">{t('create_secret_form_region_section_title')}</Text>
         <RegionPicker selectedRegion={selectedRegion} setSelectedRegion={handleRegionSelection} />
       </div>
       <OkmsSelector

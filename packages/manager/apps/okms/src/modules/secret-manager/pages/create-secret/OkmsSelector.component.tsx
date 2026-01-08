@@ -1,15 +1,14 @@
 import { Suspense } from 'react';
 
-import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { TagsList } from '@ovh-ux/manager-react-components';
 
+import { OkmsServiceState } from '@/common/components/okms-service-state-badge/OkmsServiceStateBadge.component';
 import { RadioCard } from '@/common/components/radio-card/RadioCard.component';
 
 import { ActivateRegion } from './ActivateRegion.component';
@@ -23,11 +22,11 @@ const OkmsStatus = ({ id }: { id: string }) => {
     resourceName: id,
   });
 
-  if (isPending) return <OdsSkeleton />;
+  if (isPending) return <Skeleton />;
 
   if (isError) return null;
 
-  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} size={ODS_BADGE_SIZE.sm} />;
+  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} size="sm" />;
 };
 
 type OkmsSelectorProps = {
@@ -58,7 +57,7 @@ export const OkmsSelector = ({
   return (
     <Suspense>
       <div className="flex flex-col gap-3">
-        <OdsText preset="heading-4">{t('create_secret_form_okms_selector_title')}</OdsText>
+        <Text preset="heading-4">{t('create_secret_form_okms_selector_title')}</Text>
         <div className="space-y-3">
           {okmsList.map((okms) => (
             <RadioCard
