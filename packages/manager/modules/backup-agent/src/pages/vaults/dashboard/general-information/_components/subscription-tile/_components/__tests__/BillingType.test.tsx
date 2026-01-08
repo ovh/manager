@@ -1,9 +1,9 @@
-import { vi } from "vitest";
 import { render } from '@testing-library/react';
+import { vi } from 'vitest';
 
-import {mockVaults} from "@/mocks/vaults/vaults";
+import { mockVaults } from '@/mocks/vaults/vaults';
+
 import { BillingType } from '../BillingType.component';
-
 
 const { useQuery } = vi.hoisted(() => ({
   useQuery: vi.fn(),
@@ -29,11 +29,9 @@ vi.mock('@/data/hooks/consumption/useServiceConsumption', () => {
   };
 });
 
-
-
 describe('BillingType component a11y', () => {
   it('Should render BillingType component', async () => {
-    useQuery.mockReturnValue({ data: [], isPending: false })
+    useQuery.mockReturnValue({ data: [], isPending: false });
     const { container } = render(<BillingType />);
 
     await expect(container).toBeAccessible();

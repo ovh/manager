@@ -22,7 +22,6 @@ vi.mock('@/data/hooks/consumption/useServiceConsumption', () => {
   };
 });
 
-
 const { useBackupVaultDetailsMock, useQuery } = vi.hoisted(() => ({
   useBackupVaultDetailsMock: vi.fn(),
   useQuery: vi.fn(),
@@ -56,7 +55,7 @@ describe('SubscriptionTile', () => {
   it('Should render SubscriptionTile component', async () => {
     useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: false });
     useQuery.mockReturnValue({
-      data: [{ planCode: VAULT_PLAN_CODE, quantity: 100, price: { text: '100 €'} }],
+      data: [{ planCode: VAULT_PLAN_CODE, quantity: 100, price: { text: '100 €' } }],
       isPending: false,
     });
     const { container } = render(<SubscriptionTile vaultId={mockVaults[0]!.id} />);

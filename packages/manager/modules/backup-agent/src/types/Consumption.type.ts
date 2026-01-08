@@ -17,7 +17,6 @@ export type CurrencyCode =
 
 export type Price = {
   currencyCode: CurrencyCode;
-  priceInUcents: number | null;
   text: string;
   value: number;
 };
@@ -32,7 +31,7 @@ export type ServiceConsumption = {
   endDate: string | null;
   pricingMode: string;
   quantity: number;
-  metadata?: ServiceMetadata;
+  metadata?: ServiceMetadata | null;
   planCode: string;
   planFamily: string;
   price: Price;
