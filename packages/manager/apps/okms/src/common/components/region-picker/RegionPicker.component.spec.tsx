@@ -252,6 +252,19 @@ describe('RegionPicker', () => {
   describe('display certifications', () => {
     const mockLabelPciDss = 'PCI-DSS';
     const mockLabelIso666 = 'ISO-666';
+    const certificationLabels = [mockLabelPciDss, mockLabelIso666];
+
+    const getCertificationBadges = (regionCard: HTMLElement): string[] => {
+      // Query for span elements with data-ods="badge" attribute
+      const badges = regionCard.querySelectorAll<HTMLElement>('span[data-ods="badge"]');
+      return (
+        Array.from(badges)
+          // Keep only text content
+          .map((badge) => badge.textContent?.trim() || '')
+          // And keep only certification badges
+          .filter((text) => certificationLabels.includes(text))
+      );
+    };
 
     it('should display one certification', async () => {
       render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
@@ -261,12 +274,10 @@ describe('RegionPicker', () => {
         const regionCard = screen.getByTestId(testId);
         expect(regionCard).toBeInTheDocument();
 
-        // Query for ods-badge elements within the region card
-        const badges = regionCard.querySelectorAll('ods-badge');
-        const badgeLabels = Array.from(badges).map((badge) => badge.getAttribute('label'));
+        const certificationBadges = getCertificationBadges(regionCard);
 
-        expect(badgeLabels).toContain(mockLabelPciDss);
-        expect(badgeLabels).not.toContain(mockLabelIso666);
+        expect(certificationBadges).toContain(mockLabelPciDss);
+        expect(certificationBadges).not.toContain(mockLabelIso666);
       });
     });
 
@@ -278,12 +289,10 @@ describe('RegionPicker', () => {
         const regionCard = screen.getByTestId(testId);
         expect(regionCard).toBeInTheDocument();
 
-        // Query for ods-badge elements within the region card
-        const badges = regionCard.querySelectorAll('ods-badge');
-        const badgeLabels = Array.from(badges).map((badge) => badge.getAttribute('label'));
+        const certificationBadges = getCertificationBadges(regionCard);
 
-        expect(badgeLabels).toContain(mockLabelPciDss);
-        expect(badgeLabels).toContain(mockLabelIso666);
+        expect(certificationBadges).toContain(mockLabelPciDss);
+        expect(certificationBadges).toContain(mockLabelIso666);
       });
     });
 
@@ -295,13 +304,10 @@ describe('RegionPicker', () => {
         const regionCard = screen.getByTestId(testId);
         expect(regionCard).toBeInTheDocument();
 
-        // Query for ods-badge elements within the region card
-        // Note: There might be other badges (like region type badge), so we filter for certification badges
-        const badges = regionCard.querySelectorAll('ods-badge');
-        const badgeLabels = Array.from(badges).map((badge) => badge.getAttribute('label'));
+        const certificationBadges = getCertificationBadges(regionCard);
 
-        expect(badgeLabels).not.toContain(mockLabelPciDss);
-        expect(badgeLabels).not.toContain(mockLabelIso666);
+        expect(certificationBadges).not.toContain(mockLabelPciDss);
+        expect(certificationBadges).not.toContain(mockLabelIso666);
       });
     });
   });

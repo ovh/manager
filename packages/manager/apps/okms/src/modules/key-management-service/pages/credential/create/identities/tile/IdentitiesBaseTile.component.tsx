@@ -2,8 +2,8 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 import clsx from 'clsx';
 
-import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCard, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_CARD_COLOR } from '@ovhcloud/ods-components';
+import { Card, Text } from '@ovhcloud/ods-react';
 
 type IdentitiesBaseTileProps = {
   title: string;
@@ -20,7 +20,7 @@ const IdentitiesBaseTile = ({
   setIsChecked,
   children,
 }: IdentitiesBaseTileProps) => (
-  <OdsCard
+  <Card
     className={clsx(
       'cursor-pointer p-3',
       !isChecked && 'border-[--ods-color-form-element-border-default]',
@@ -33,9 +33,11 @@ const IdentitiesBaseTile = ({
       updateCallback(!isChecked);
     }}
   >
-    <OdsText preset={ODS_TEXT_PRESET.heading5}>{title}</OdsText>
-    <div className="grid gap-1">{children}</div>
-  </OdsCard>
+    <Text preset="heading-5" className="mb-2">
+      {title}
+    </Text>
+    {children}
+  </Card>
 );
 
 export default IdentitiesBaseTile;

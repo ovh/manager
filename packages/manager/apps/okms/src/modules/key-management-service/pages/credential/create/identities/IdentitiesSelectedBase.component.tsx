@@ -5,15 +5,10 @@ import {
 } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+import { Button } from '@ovh-ux/muk';
 
 type IdentityType = IdentityUser | IdentityGroup | IdentityOauthClient;
 
@@ -39,25 +34,22 @@ function IdentitiesSelectedBase<T extends IdentityType>({
   const { t } = useTranslation('key-management-service/credential');
   return (
     <div className="grid gap-4">
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{title}</OdsText>
+      <Text preset="heading-4">{title}</Text>
       <div className="flex gap-3">
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.outline}
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_BUTTON_COLOR.primary}
-          isDisabled={identityURNs.length > 25}
+        <Button
+          variant="outline"
+          size="sm"
+          color="primary"
+          disabled={identityURNs.length > 25}
           onClick={addCallback}
-          label={addButtonLabel}
-        />
-        <OdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_BUTTON_COLOR.critical}
-          isDisabled={items.length === 0}
-          onClick={deleteCallback}
-          label={t(
+        >
+          {addButtonLabel}
+        </Button>
+        <Button size="sm" color="critical" disabled={items.length === 0} onClick={deleteCallback}>
+          {t(
             'key_management_service_credential_create_identities_users_list_button_delete_all_label',
           )}
-        />
+        </Button>
       </div>
       <Datagrid
         columns={datagridColumns}

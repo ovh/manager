@@ -1,6 +1,6 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Tile } from '@ovh-ux/muk';
 
 import { useProductType } from '@/common/hooks/useProductType';
 import { SERVICE_KEYS_LABEL } from '@/constants';
@@ -16,16 +16,9 @@ export const ServiceKeysTile = ({ okms }: ServiceKeysTileProps) => {
   const productType = useProductType();
 
   return (
-    <ManagerTile>
-      <ManagerTile.Title>{SERVICE_KEYS_LABEL}</ManagerTile.Title>
-      <ManagerTile.Divider />
-      <ServiceKeyCountTileItem okms={okms} />
-      {productType === 'secret-manager' && (
-        <>
-          <ManagerTile.Divider />
-          <ServiceKeyListLinkTileItem okms={okms} />
-        </>
-      )}
-    </ManagerTile>
+    <Tile.Root title={SERVICE_KEYS_LABEL}>
+      <ServiceKeyCountTileItem okms={okms} divider={productType === 'secret-manager'} />
+      {productType === 'secret-manager' && <ServiceKeyListLinkTileItem okms={okms} />}
+    </Tile.Root>
   );
 };

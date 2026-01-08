@@ -10,10 +10,10 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -83,7 +83,7 @@ export const useServiceKeyActionsList = (
     items.push({
       name: 'deactivate_encryption_key',
       label: t('key_management_service_service-keys_link_deactivate_key'),
-      color: ODS_BUTTON_COLOR.primary,
+      color: BUTTON_COLOR.primary,
       onClick: () => {
         trackClick({
           location: trackLocation,
@@ -97,7 +97,7 @@ export const useServiceKeyActionsList = (
       },
       iamActions: [kmsIamActions.serviceKeyUpdate, kmsIamActions.serviceKeyDeactivate],
       urn: okmsKey?.iam.urn,
-      icon: ODS_ICON_NAME.lockClose,
+      icon: ICON_NAME.lockClose,
     });
   }
 
@@ -105,8 +105,8 @@ export const useServiceKeyActionsList = (
     items.push({
       name: 'reactivate_encryption_key',
       label: t('key_management_service_service-keys_link_reactivate_key'),
-      color: ODS_BUTTON_COLOR.primary,
-      isLoading: updateIsPending,
+      color: BUTTON_COLOR.primary,
+      loading: updateIsPending,
       iamActions: [kmsIamActions.serviceKeyUpdate, kmsIamActions.serviceKeyActivate],
       urn: okmsKey?.iam.urn,
       onClick: () => {
@@ -118,7 +118,7 @@ export const useServiceKeyActionsList = (
         });
         updateKmsServiceKey({ state: OkmsServiceKeyState.active });
       },
-      icon: ODS_ICON_NAME.refresh,
+      icon: ICON_NAME.refresh,
     });
   }
 
@@ -130,9 +130,9 @@ export const useServiceKeyActionsList = (
     items.push({
       name: 'delete_encryption_key',
       label: t('key_management_service_service-keys_link_delete_key'),
-      color: ODS_BUTTON_COLOR.primary,
-      isDisabled: okmsKey?.state === OkmsServiceKeyState.active,
-      isLoading: deleteIsPending,
+      color: BUTTON_COLOR.primary,
+      disabled: okmsKey?.state === OkmsServiceKeyState.active,
+      loading: deleteIsPending,
       iamActions: [kmsIamActions.serviceKeyDelete],
       urn: okmsKey?.iam.urn,
       onClick: () => {
@@ -144,7 +144,7 @@ export const useServiceKeyActionsList = (
         });
         deleteKmsServiceKey();
       },
-      icon: ODS_ICON_NAME.trash,
+      icon: ICON_NAME.trash,
     });
   }
 

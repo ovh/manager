@@ -1,6 +1,6 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Tile } from '@ovh-ux/muk';
 
 import { KMIP_LABEL } from '@/constants';
 
@@ -13,12 +13,9 @@ type KmipTileProps = {
 
 export const KmipTile = ({ okms }: KmipTileProps) => {
   return (
-    <ManagerTile>
-      <ManagerTile.Title>{KMIP_LABEL}</ManagerTile.Title>
-      <ManagerTile.Divider />
+    <Tile.Root title={KMIP_LABEL}>
       <KmipEndpointTileItem okms={okms} />
-      <ManagerTile.Divider />
       <KmipEndpointRsaTileItem okms={okms} />
-    </ManagerTile>
+    </Tile.Root>
   );
 };

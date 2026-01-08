@@ -5,10 +5,10 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { initiateTextFileDownload } from '@/common/utils/dom/download';
@@ -45,10 +45,10 @@ export const useServiceKeyDownload = ({
     label: t(
       'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
     ),
-    isLoading: isFetching,
-    isDisabled: keyState !== OkmsServiceKeyState.active,
-    icon: ODS_ICON_NAME.download,
-    color: ODS_BUTTON_COLOR.primary,
+    loading: isFetching,
+    disabled: keyState !== OkmsServiceKeyState.active,
+    icon: ICON_NAME.download,
+    color: BUTTON_COLOR.primary,
     onClick: async () => {
       const { data: key } = await refetch();
       if (!key) {

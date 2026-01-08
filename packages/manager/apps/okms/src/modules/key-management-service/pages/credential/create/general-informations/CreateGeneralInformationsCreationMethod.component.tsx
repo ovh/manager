@@ -2,8 +2,8 @@ import { CertificateType } from '@key-management-service/types/okmsCredential.ty
 import { CredentialCreationMethodErrorsType } from '@key-management-service/utils/credential/validateCredentialCreationMethod';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsRadio, OdsText, OdsTextarea } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsRadio, OdsTextarea } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
@@ -44,14 +44,14 @@ const CreateGeneralInformationsCreationMethod = ({
     <>
       <OdsFormField>
         <div slot="label" className="mb-2 space-y-2">
-          <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+          <Text className="block" preset="heading-5">
             {t('key_management_service_credential_create_general_creation_method_title')}
-          </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          </Text>
+          <Text preset="paragraph">
             {t(
               'key_management_service_credential_create_general_information_creation_method_subtitle',
             )}
-          </OdsText>
+          </Text>
         </div>
         <div className="flex items-center gap-3">
           <OdsRadio
@@ -70,16 +70,16 @@ const CreateGeneralInformationsCreationMethod = ({
             }}
           />
           <label htmlFor="radio-method-no-key">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+            <Text className="block" preset="paragraph">
               {t(
                 'key_management_service_credential_create_general_information_creation_method_no_key',
               )}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.caption}>
+            </Text>
+            <Text preset="caption">
               {t(
                 `key_management_service_credential_create_general_information_creation_method_no_key_desc`,
               )}
-            </OdsText>
+            </Text>
           </label>
         </div>
         <div className="flex items-center gap-3">
@@ -99,28 +99,28 @@ const CreateGeneralInformationsCreationMethod = ({
             }}
           />
           <label htmlFor="radio-method-key">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+            <Text className="block" preset="paragraph">
               {t(
                 'key_management_service_credential_create_general_information_creation_method_key',
               )}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.caption}>
+            </Text>
+            <Text preset="caption">
               {t(
                 `key_management_service_credential_create_general_information_creation_method_key_desc`,
               )}
-            </OdsText>
+            </Text>
           </label>
         </div>
       </OdsFormField>
       {isCustomCsr ? (
         <OdsFormField error={getCreationMethodErrorMessage(credentialCreationMethodError)}>
           <div slot="label" className="mb-2 space-y-2">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            <Text className="block" preset="heading-5">
               {t('key_management_service_credential_create_general_information_csr_title')}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text preset="paragraph">
               {t('key_management_service_credential_create_general_information_csr_subtitle')}
-            </OdsText>
+            </Text>
           </div>
           <OdsTextarea
             name="credentialCreationMethod"
@@ -135,16 +135,16 @@ const CreateGeneralInformationsCreationMethod = ({
       ) : (
         <OdsFormField className="flex flex-col gap-4">
           <div slot="label" className="flex flex-col gap-2">
-            <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            <Text className="block" preset="heading-5">
               {t(
                 'key_management_service_credential_create_general_information_certificate_type_title',
               )}
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text preset="paragraph">
               {t(
                 'key_management_service_credential_crate_general_information_certificate_type_subtitle',
               )}
-            </OdsText>
+            </Text>
           </div>
           <div className="flex items-center gap-2">
             <OdsRadio
@@ -159,11 +159,11 @@ const CreateGeneralInformationsCreationMethod = ({
               }}
             ></OdsRadio>
             <label htmlFor="certificateTypeECDSA">
-              <OdsText preset={ODS_TEXT_PRESET.span}>
+              <Text preset="span">
                 {t(
                   'key_management_service_credential_crate_general_information_certificate_type_ec_radio_label',
                 )}
-              </OdsText>
+              </Text>
             </label>
           </div>
           <div className="flex items-center gap-2">
@@ -179,11 +179,11 @@ const CreateGeneralInformationsCreationMethod = ({
               }}
             ></OdsRadio>
             <label htmlFor="certificateTypeRSA">
-              <OdsText preset={ODS_TEXT_PRESET.span}>
+              <Text preset="span">
                 {t(
                   'key_management_service_credential_crate_general_information_certificate_type_rsa_radio_label',
                 )}
-              </OdsText>
+              </Text>
             </label>
           </div>
         </OdsFormField>
