@@ -336,5 +336,9 @@
   "domain_tab_dsrecords_modal_delete_success_message": "Eliminando el registro DS...",
   "domain_tab_dsrecords_modal_delete_error_message": "Se ha producido un error al eliminar el registro DS",
   "domain_table_state_error": "En error",
-  "domain_tab_general_information_update_success": "La solicitud de actualización se ha procesado correctamente."
+  "domain_tab_general_information_update_success": "La solicitud de actualización se ha procesado correctamente.",
+  "domain_tab_dsrecords_message_information_content": "Estos registros DS se proporcionan a título informativo y son gestionados automáticamente por OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC está en curso {{action}}: puedes seguir el progreso de tu solicitud desde la página de operaciones en curso. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "de activación",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de desactivación"
 }
