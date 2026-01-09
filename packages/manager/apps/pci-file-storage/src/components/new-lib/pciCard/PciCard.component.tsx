@@ -1,9 +1,9 @@
 import { Card, CardProp } from '@ovhcloud/ods-react';
 import { PropsWithChildren } from 'react';
 import clsx from 'clsx';
-import { PciCardHeader } from '@/components/pciCard/PciCardHeader.component';
-import { PciCardContent } from '@/components/pciCard/PciCardContent.component';
-import { PciCardFooter } from '@/components/pciCard/PciCardFooter.component';
+import { PciCardHeader } from '@/components/new-lib/pciCard/PciCardHeader.component';
+import { PciCardContent } from '@/components/new-lib/pciCard/PciCardContent.component';
+import { PciCardFooter } from '@/components/new-lib/pciCard/PciCardFooter.component';
 
 export type TPciCardProps = CardProp &
   React.HTMLAttributes<HTMLDivElement> &

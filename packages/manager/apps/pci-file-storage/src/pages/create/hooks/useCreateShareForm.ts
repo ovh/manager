@@ -11,10 +11,10 @@ export const useCreateShareForm = () => {
     resolver: zodResolver(createShareSchema),
     defaultValues: {
       name: '',
-      deploymentMode: '',
+      deploymentModes: [],
       continent: '',
-      macroRegion: '',
-      microRegion: '',
+      city: '',
+      dataCenter: '',
       availabilityZone: '',
     },
     mode: 'onChange',

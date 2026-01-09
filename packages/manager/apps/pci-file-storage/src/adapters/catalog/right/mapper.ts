@@ -4,11 +4,12 @@ import type {
   TContinent,
   TContinentId,
   TDataCenter,
-  TDeployment, TDeploymentModeId,
-  TFileCatalog,
+  TDeployment,
+  TDeploymentModeId,
+  TShareCatalog,
 } from '@/domain/entities/catalog.entity';
 import type { TContinentRegionsDTO, TDeploymentModeDTO, TRegionDTO, TShareCatalogDTO } from './dto.type';
-import { iscountryISOCode } from '@/components/flag/country-iso-code';
+import { iscountryISOCode } from '@/components/new-lib/flag/country-iso-code';
 
 type TNormalizedEntity<ID, Entity> = {
   byId: Map<ID, Entity>;
@@ -68,7 +69,7 @@ type TNormalizeRegionMappers = {
   dataCenterMapper: (arg: TRegionDTO) => TDataCenter;
 };
 
-const normalizeRegion = (mappers: TNormalizeRegionMappers) => (
+const normalizeRegions = (mappers: TNormalizeRegionMappers) => (
   regions: TRegionDTO[],
 ) =>
   regions.reduce<TRegions>(
@@ -133,6 +134,7 @@ const normalizeContinent = (
 ) =>
   continentRegions.reduce<TNormalizedEntity<string, TContinent>>(
     (acc, continentRegion) => {
+      debugger;
       if (!acc.allIds.includes(continentRegion.name))
         acc.allIds.push(continentRegion.name);
       const continent = mapContinentDTOToEntity(continentRegion, regionsDTO);
@@ -158,22 +160,30 @@ const getContinentIdsByDeploymentModeId = (regions: TRegionDTO[]) =>
 
     return acc;
   }, new Map<TDeploymentModeId, TContinentId[]>());
-
 export const mapCatalogDTOToCatalog = (
   catalogDto: TShareCatalogDTO,
-): TFileCatalog => ({
-  entities: {
-    ...normalizeRegion({
-      cityMapper: mapRegionDTOtoRegionEntity,
-      dataCenterMapper: mapRegionDTOtoMicroRegionEntity,
-    })(catalogDto.regions),
-    deploymentModes: normalizeData(
-      catalogDto.filters.deployments,
-      mapDeploymentModeDTOToEntity,
-    ),
-    continents: normalizeContinent(
-      catalogDto.filters.regions,
-      catalogDto.regions,
-    ),
-  },
-});
+): TShareCatalog =>{
+  debugger;
+  console.log('mapCatalogDTOToCatalog', normalizeContinent(
+    catalogDto.filters.region,
+    catalogDto.regions,
+  ));
+  // console.log('map', { catalogDto });
+  return ({
+    entities: {
+      ...normalizeRegions({
+        cityMapper: mapRegionDTOtoRegionEntity,
+        dataCenterMapper: mapRegionDTOtoMicroRegionEntity,
+      })(catalogDto.regions),
+      deploymentModes: normalizeData(
+        catalogDto.filters.deployment,
+        mapDeploymentModeDTOToEntity,
+      ),
+      continents: { allIds: [], byId: new Map<TContinentId, TContinent>()}
+      // continents: normalizeContinent(
+      //   catalogDto.filters.region,
+      //   catalogDto.regions,
+      // ),
+    },
+  });
+};

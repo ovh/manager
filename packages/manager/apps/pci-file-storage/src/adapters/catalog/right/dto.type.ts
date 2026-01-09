@@ -28,8 +28,8 @@ export type TContinentRegionsDTO = {
 };
 
 export type TFiltersDTO = {
-  deployments: TDeploymentModeDTO[];
-  regions: TContinentRegionsDTO[];
+  deployment: TDeploymentModeDTO[];
+  region: TContinentRegionsDTO[];
 };
 
 export type TShareCatalogDTO = {

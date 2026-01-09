@@ -1,4 +1,4 @@
-import { TCountryIsoCode } from '@/components/flag/country-iso-code';
+import { TCountryIsoCode } from '@/components/new-lib/flag/country-iso-code';
 
 export const DEPLOYMENT_MODES = ['region', 'localzone', 'region-3-az'] as const;
 export type TDeploymentMode = typeof DEPLOYMENT_MODES[number];
@@ -41,7 +41,7 @@ export type TDeployment = {
   tags: TTags;
 };
 
-export type TFileCatalog = {
+export type TShareCatalog = {
   entities: {
     continents: {
       byId: Map<TContinentId, TContinent>;
