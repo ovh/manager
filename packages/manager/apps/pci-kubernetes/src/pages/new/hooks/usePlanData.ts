@@ -14,7 +14,7 @@ type TPlan = {
   code: string;
   price: number | null;
 };
-
+// test
 const usePlanData = (): { plans: TPlan[]; isPending: boolean } => {
   const { data: catalog, isPending: isPendingCatalog } = useCatalog();
 
