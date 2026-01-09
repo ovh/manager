@@ -167,22 +167,24 @@ export const useUpdateDomainResource = (serviceName: string) => {
     TUpdateDomainVariables
   >({
     mutationKey: ['domain', 'resource', 'update', serviceName],
-    mutationFn: ({
-      checksum,
-      currentTargetSpec,
-      updatedSpec,
-    }: {
-      checksum: string;
-      currentTargetSpec: TTargetSpec;
-      updatedSpec: Partial<TTargetSpec>;
-    }) => {
+    mutationFn: async ({ currentTargetSpec, updatedSpec }) => {
+      await queryClient.refetchQueries({
+        queryKey: ['domain', 'resource', serviceName],
+        exact: true,
+      });
+
+      const domainResource = await queryClient.ensureQueryData({
+        queryKey: ['domain', 'resource', serviceName],
+        queryFn: () => getDomainResource(serviceName),
+      });
+
       const newTargetSpec: TTargetSpec = {
         ...currentTargetSpec,
         ...updatedSpec,
       };
 
       return updateDomainResource(serviceName, {
-        checksum,
+        checksum: domainResource.checksum,
         targetSpec: newTargetSpec,
       });
     },

@@ -95,7 +95,6 @@ export default function HostDrawer({
       onPrimaryButtonClick={handleSubmit((values) => {
         updateDomain(
           {
-            checksum,
             currentTargetSpec: targetSpec,
             updatedSpec: {
               hostsConfiguration: {
