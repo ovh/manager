@@ -1,5 +1,5 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid } from '@ovh-ux/manager-react-components';
+import { Datagrid, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   Button,
   BUTTON_SIZE,
@@ -106,6 +106,13 @@ export default function HostsListingTab() {
     setHostsArray([...hostsWithStatus, ...activatingHosts]);
     setIsLoading(false);
   }, [domainResource]);
+
+  const { clearNotifications } = useNotifications();
+  useEffect(() => {
+    return () => {
+      clearNotifications();
+    };
+  }, []);
 
   const columns = useHostsDatagridColumns({
     setDrawer,

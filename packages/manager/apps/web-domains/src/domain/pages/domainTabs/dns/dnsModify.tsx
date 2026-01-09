@@ -33,6 +33,7 @@ import {
 import DnsConfigurationRadio from '@/domain/components/ModifyNameServer/DnsConfigurationRadio';
 import { TNameServer } from '@/domain/types/domainResource';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useEffect } from 'react';
 
 export default function DnsModifyPage() {
   const { t, i18n } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
@@ -67,6 +68,13 @@ export default function DnsModifyPage() {
   const currentNameServers: string[] = domainResource.currentState?.dnsConfiguration?.nameServers.map(
     (ns: TNameServer) => ns.nameServer,
   );
+
+  const { clearNotifications } = useNotifications();
+  useEffect(() => {
+    return () => {
+      clearNotifications();
+    };
+  }, []);
 
   return (
     <BaseLayout

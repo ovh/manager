@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import {
   Datagrid,
   useAuthorizationIam,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
   Button,
@@ -146,6 +147,13 @@ export default function DsRecordsListing() {
     setItems([...currentWithStatus, ...activatingDs]);
     setIsLoading(false);
   }, [domainResource]);
+
+  const { clearNotifications } = useNotifications();
+  useEffect(() => {
+    return () => {
+      clearNotifications();
+    };
+  }, []);
 
   const activeConfiguration = computeActiveConfiguration(
     domainResource,

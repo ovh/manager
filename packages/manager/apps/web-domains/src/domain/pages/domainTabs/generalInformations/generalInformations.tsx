@@ -4,9 +4,18 @@ import GeneralInformationsCards from '@/domain/components/InformationsCards/Gene
 import SubscriptionCards from '@/domain/components/SubscriptionCards/SubscriptionCards';
 import AssociatedServicesCards from '@/domain/components/AssociatedServicesCards/AssociatedServicesCards';
 import ConfigurationCards from '@/domain/components/ConfigurationCards/ConfigurationCards';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useEffect } from 'react';
 
 export default function GeneralInformations() {
   const { serviceName } = useParams<{ serviceName: string }>();
+
+  const { clearNotifications } = useNotifications();
+  useEffect(() => {
+    return () => {
+      clearNotifications();
+    };
+  }, []);
 
   return (
     <div className="flex flex-col min-h-0">
