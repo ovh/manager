@@ -133,8 +133,8 @@ describe('ObservabilityServiceContext', () => {
         wrapper: createWrapper(),
       });
 
-      // Assert
-      expect(getByTestId('selected-service')).toHaveTextContent('none');
+      // Assert - selectedService is auto-initialized to first service when services are loaded
+      expect(getByTestId('selected-service')).toHaveTextContent('service-1');
       expect(getByTestId('services-count')).toHaveTextContent('2');
       expect(getByTestId('is-loading')).toHaveTextContent('false');
       expect(getByTestId('is-success')).toHaveTextContent('true');
@@ -315,11 +315,10 @@ describe('ObservabilityServiceContext', () => {
         wrapper: createWrapper(),
       });
 
-      // Assert
+      // Assert - selectedService is auto-initialized to first service when services are loaded
       expect(result.current).toEqual({
-        selectedService: undefined,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        setSelectedService: expect.any(Function),
+        selectedService: mockServices[0],
+        setSelectedService: expect.any(Function) as unknown,
         services: mockServices,
         isLoading: false,
         isSuccess: true,
