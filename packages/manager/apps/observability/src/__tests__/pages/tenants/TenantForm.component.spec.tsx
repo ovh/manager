@@ -762,9 +762,6 @@ describe('TenantForm', () => {
               targetSpec: expect.objectContaining({
                 title: 'Test Tenant',
                 description: 'Test Description',
-                infrastructure: {
-                  id: 'infra-1',
-                },
                 limits: {
                   mimir: {
                     compactor_blocks_retention_period: '30d',

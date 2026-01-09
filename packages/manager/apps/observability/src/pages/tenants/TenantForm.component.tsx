@@ -82,9 +82,11 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
       const targetSpec = {
         title: data.title,
         description: data.description,
-        infrastructure: {
-          id: data.infrastructureId,
-        },
+        ...(!isEditionMode && {
+          infrastructure: {
+            id: data.infrastructureId,
+          },
+        }),
         limits: {
           mimir: {
             compactor_blocks_retention_period: `${data.retentionDuration}${data.retentionUnit}`,
