@@ -506,22 +506,20 @@ const mapContinentDTOToEntity = (
   continentRegion: TContinentRegionsDTO,
   regionsDTO: TRegionDTO[],
 ): TContinent => {
-  const regionsDatacenters = continentRegion.regions.reduce<string[]>(
-    (acc, regionID) => {
-      const foundRegion = regionsDTO.find(
-        (regionDTO) => regionDTO.name === regionID,
-      );
-      if (!foundRegion) return acc;
-      if (!acc.includes(foundRegion.datacenter))
-        acc.push(foundRegion.datacenter);
-      return acc;
-    },
-    [],
-  );
+  const continentMicroRegionsSet = new Set(continentRegion.regions);
+
+  const datacenterIds = regionsDTO.reduce<string[]>((acc, regionDTO) => {
+    if (!continentMicroRegionsSet.has(regionDTO.name)) return acc;
+
+    if (acc.includes(regionDTO.datacenter)) return acc;
+
+    acc.push(regionDTO.datacenter);
+    return acc;
+  }, []);
 
   return {
     name: continentRegion.name,
-    datacenterIds: regionsDatacenters,
+    datacenterIds,
     tags: continentRegion.tags,
   };
 };
