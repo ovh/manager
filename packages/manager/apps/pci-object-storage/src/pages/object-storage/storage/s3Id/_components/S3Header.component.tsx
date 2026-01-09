@@ -17,7 +17,7 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
   const region = regions?.find((reg) => reg.name === s3.region);
   return (
     <div
-      data-testid="notebook-header-container"
+      data-testid="s3-header-container"
       className="flex gap-2 items-center mt-4 mb-6 justify-between"
     >
       <div className="flex gap-2 items-center">

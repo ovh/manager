@@ -13,7 +13,7 @@ const Onboarding = () => {
   const locale = useLocale();
   return (
     <div
-      data-testid="onboarding-container-test"
+      data-testid="onboarding-container"
       className="flex flex-col items-center gap-4"
     >
       <div className="w-full flex flex-row justify-end">

@@ -57,7 +57,7 @@ const ActivateVersionning = () => {
     <RouteModal isLoading={!s3Query.data?.name}>
       <DialogContent variant="information">
         <DialogHeader>
-          <DialogTitle data-testid="s3-policy-modal">
+          <DialogTitle data-testid="activate-versionning-modal">
             {t('activateVersionningTitle')}
           </DialogTitle>
         </DialogHeader>
@@ -70,7 +70,12 @@ const ActivateVersionning = () => {
               {t('cancelButton')}
             </Button>
           </DialogClose>
-          <Button type="button" onClick={onSubmit} disabled={isPending}>
+          <Button
+            type="button"
+            onClick={onSubmit}
+            disabled={isPending}
+            data-testid="activate-versionning-confirm-button"
+          >
             {t('confirmButton')}
           </Button>
         </DialogFooter>

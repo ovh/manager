@@ -10,7 +10,11 @@ interface UserInformationProps {
   access: string;
   secret: string;
 }
-const UserInformation = ({ newUser, access = "", secret = "" }: UserInformationProps) => {
+const UserInformation = ({
+  newUser,
+  access = '',
+  secret = '',
+}: UserInformationProps) => {
   const { t } = useTranslation('pci-object-storage/users/create');
   const toast = useToast();
   const { download } = useDownload();

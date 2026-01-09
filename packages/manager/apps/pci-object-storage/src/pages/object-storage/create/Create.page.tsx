@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { Card, CardContent } from '@datatr-ux/uxlib';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import OrderFunnel from './_components/OrderFunnel.component';
 import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';

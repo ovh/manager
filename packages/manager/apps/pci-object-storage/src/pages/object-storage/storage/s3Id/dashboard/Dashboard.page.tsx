@@ -96,7 +96,7 @@ const Dashboard = () => {
               <Tags />
             </CardContent>
           </Card>
-          <Card className="w-full">
+          <Card className="w-full" data-testid="access-logs-card">
             <CardHeader>
               <h4>{t('accessLogsTitle')}</h4>
             </CardHeader>
@@ -107,7 +107,7 @@ const Dashboard = () => {
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="w-full">
+        <Card className="w-full" data-testid="lifecycle-card">
           <CardHeader>
             <h4>{t('lifecycleTitle')}</h4>
           </CardHeader>
@@ -116,7 +116,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         {!isLocaleZone && (
-          <Card className="w-full">
+          <Card className="w-full" data-testid="static-website-hosting-card">
             <CardHeader>
               <h4>{t('staticWebsiteHostingTitle')}</h4>
             </CardHeader>

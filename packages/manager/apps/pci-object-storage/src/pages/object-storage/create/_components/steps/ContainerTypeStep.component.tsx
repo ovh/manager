@@ -24,14 +24,14 @@ const ContainerTypeStep = React.forwardRef<
   ];
   return (
     <RadioGroup
-      data-testid="offer-select-container"
+      data-testid="swift-type-container"
       ref={ref}
       className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
       value={value}
       onValueChange={onChange}
     >
       {CONTAINER_TYPES.map((type) => (
-        <RadioTile data-testid="offer-radio-tile-s3-api" value={type}>
+        <RadioTile data-testid={`swift-type-radio-tile-${type}`} value={type}>
           <div className="flex h-full flex-col">
             <div className="flex justify-between w-full">
               <div className="flex items-center gap-2">

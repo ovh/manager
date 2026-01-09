@@ -20,7 +20,6 @@ export function getColumns({
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
   );
-
   return [
     {
       id: 'id',

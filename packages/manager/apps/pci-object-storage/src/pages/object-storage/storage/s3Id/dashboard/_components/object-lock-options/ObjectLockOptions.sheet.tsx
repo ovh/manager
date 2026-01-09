@@ -112,8 +112,8 @@ const ObjectLockOptions = () => {
             ? {
                 mode: values.rule?.mode,
                 period: toISO8601(
-                  values.rule?.durationValue!,
-                  values.rule?.durationUnit!,
+                  values.rule?.durationValue,
+                  values.rule?.durationUnit,
                 ),
               }
             : undefined,
@@ -158,6 +158,7 @@ const ObjectLockOptions = () => {
                     <div className="flex-1" key={option.value}>
                       <div className="flex items-center gap-3">
                         <RadioGroupItem
+                          data-testid={`object-lock-retention-${option.id}-option`}
                           value={option.value}
                           id={`object-lock-retention-${option.id}-option`}
                         />
@@ -177,6 +178,7 @@ const ObjectLockOptions = () => {
             <FormField name="rule.mode" form={form}>
               {(field) => (
                 <RadioGroup
+                  data-testid="retention-mode-radio-group"
                   value={field.value}
                   onValueChange={field.onChange}
                   disabled={!form.getValues('retention')}
@@ -192,6 +194,7 @@ const ObjectLockOptions = () => {
                     <div key={option.value} className="flex-1">
                       <div className="flex items-start gap-3">
                         <RadioGroupItem
+                          data-testid={`object-lock-mode-${option.id}-option`}
                           value={option.value}
                           id={`object-lock-mode-${option.id}-option`}
                           className="mt-1"
@@ -303,6 +306,7 @@ const ObjectLockOptions = () => {
             </Button>
           </SheetClose>
           <Button
+            data-testid="edit-object-lock-confirm-button"
             type="submit"
             disabled={isPending}
             form="object-lock-options-form"

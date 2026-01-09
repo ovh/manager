@@ -13,6 +13,7 @@ const NameInput = React.forwardRef<HTMLInputElement, NameInputProps>(
     return (
       <div className="flex w-full items-end ring-offset-background focus-within:ring-2 focus-within:outline-none focus-within:ring-[#000e9c] focus-within:ring-offset-2 rounded-md">
         <Input
+          data-testid="name-input"
           ref={ref}
           value={value}
           onChange={(e) => onChange?.(e.target.value)}

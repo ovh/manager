@@ -15,7 +15,7 @@ const Versionning = () => {
       : 'disable';
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" data-testid="versionning-container">
       <div className="flex flex-row justify-between">
         <Badge
           className="h-6"
@@ -29,6 +29,7 @@ const Versionning = () => {
         </Badge>
         {s3.versioning.status !== VersioningStatusEnum.enabled && (
           <Button
+            data-testid="activate-versionning-button"
             mode="outline"
             className="h-6"
             size="sm"
