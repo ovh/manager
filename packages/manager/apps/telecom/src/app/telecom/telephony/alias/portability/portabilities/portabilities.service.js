@@ -100,4 +100,25 @@ export default class TelecomTelephonyAliasPortabilitiesService {
       .then(({ data }) => data)
       .catch(() => null);
   }
+
+  getCityAvailable(zipCode, country) {
+    return this.$http
+      .get('/telephony/directories/cities', {
+        params: {
+          country,
+          zipCode,
+        },
+      })
+      .then(({ data }) => data)
+      .catch(() => null);
+  }
+
+  getStreetsAvailable(inseeCode) {
+    return this.$http
+      .post('/connectivity/eligibility/search/streets', {
+        inseeCode,
+      })
+      .then(({ data }) => data)
+      .catch(() => null);
+  }
 }
