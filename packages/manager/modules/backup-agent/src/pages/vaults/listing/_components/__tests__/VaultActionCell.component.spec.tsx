@@ -8,6 +8,23 @@ import { VaultResource } from '@/types/Vault.type';
 
 import { VaultActionCell } from '../VaultActionCell.component';
 
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const { ...actual } = await vi.importActual('@ovh-ux/manager-react-components');
+
+  return {
+    ...actual,
+    ManagerButton: ({
+      icon,
+      variant,
+      'data-testid': dataTestId,
+    }: {
+      icon: string;
+      variant: string;
+      'data-testid': string;
+    }) => <button data-icon={icon} data-variant={variant} data-testid={dataTestId} />,
+  };
+});
+
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(),
 }));
@@ -38,7 +55,7 @@ describe('VaultActionCell test suite', () => {
     render(<VaultActionCell {...vault} />);
 
     const button = screen.getByTestId('delete-vault-button');
-    expect(button).toHaveAttribute('icon', ODS_ICON_NAME.trash);
-    expect(button).toHaveAttribute('variant', ODS_BUTTON_VARIANT.ghost);
+    expect(button).toHaveAttribute('data-icon', ODS_ICON_NAME.trash);
+    expect(button).toHaveAttribute('data-variant', ODS_BUTTON_VARIANT.ghost);
   });
 });
