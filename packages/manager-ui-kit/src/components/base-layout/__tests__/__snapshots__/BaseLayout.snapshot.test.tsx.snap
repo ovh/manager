@@ -82,6 +82,7 @@ exports[`BaseLayout - Snapshot Tests > renders complete layout with all props > 
         target=_self
       >
         <span
+          aria-hidden=true
           class=_icon _icon--arrow-left
           data-ods=icon
           role=presentation
