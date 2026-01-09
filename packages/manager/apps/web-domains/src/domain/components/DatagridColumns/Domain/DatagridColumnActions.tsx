@@ -1,9 +1,8 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps, BUTTON_COLOR } from '@ovh-ux/muk';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import {
   LifecycleCapacitiesEnum,
@@ -46,7 +45,7 @@ export default function DatagridColumnActions({
   );
 
   const actions = useMemo(() => {
-    const actionsList: ActionMenuItem[] = [
+    const actionsList: ActionMenuItemProps[] = [
       {
         id: 1,
         label: t(`${NAMESPACES.ACTIONS}:see_details`),
@@ -119,13 +118,13 @@ export default function DatagridColumnActions({
       actionsList.push({
         id: 6,
         label: t('domain_action_terminate'),
+        color: BUTTON_COLOR.critical,
         onClick: () =>
           navigateTo('billing', '/autorenew/services/resiliate', {
             selectedType: 'DOMAIN',
             searchText: serviceName,
             serviceId: serviceInfo?.serviceId,
           }),
-        color: ODS_BUTTON_COLOR.critical,
       });
     }
 
