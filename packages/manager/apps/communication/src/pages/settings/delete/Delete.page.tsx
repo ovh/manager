@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ModalOpenChangeDetail, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { Modal, MODAL_COLOR } from '@ovh-ux/muk';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { useDeleteRouting } from '@/data/hooks/useNotificationRouting/useNotificationRouting';
 import { useAuthorization, usePendingRedirect } from '@/hooks';
@@ -75,21 +75,25 @@ export default function DeleteContactPage() {
 
   return (
     <Modal
-      isOpen
-      type={ODS_MODAL_COLOR.warning}
       heading={t('delete_routing_modal_title')}
-      onDismiss={() => navigate(urls.routing.listing)}
-      onSecondaryButtonClick={() => {
-        trackButtonClick(['delete_rule', 'cancel']);
-        navigate(urls.routing.listing);
+      open
+      type={MODAL_COLOR.warning}
+      loading={isPending}
+      onOpenChange={(detail?: ModalOpenChangeDetail) => (detail?.open === false) && navigate(urls.routing.listing)}
+      primaryButton={{
+        label: t('confirm', { ns: NAMESPACES.ACTIONS }),
+        onClick: onConfirm,
+        loading: isPending,
       }}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={onConfirm}
-      isPrimaryButtonLoading={isPending}
-      isLoading={isPending}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: () => {
+          trackButtonClick(['delete_rule', 'cancel']);
+          navigate(urls.routing.listing);
+        },
+      }}
     >
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <Trans
           t={t}
           i18nKey="delete_routing_modal_info"
@@ -100,7 +104,7 @@ export default function DeleteContactPage() {
             routingName: routing?.name,
           }}
         />
-      </OdsText>
+      </Text>
     </Modal>
   );
 }

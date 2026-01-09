@@ -1,7 +1,7 @@
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk'
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { OdsMessage, OdsText, OdsLink } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import {
@@ -9,8 +9,7 @@ import {
   PageLocation,
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { Button } from '@ovh-ux/muk';
+import { ICON_NAME, Message, MESSAGE_COLOR, MessageBody, MessageIcon, ModalOpenChangeDetail, Text,TEXT_PRESET, Link, Button } from '@ovhcloud/ods-react';
 import { urls } from '@/routes/routes.constant';
 import ContactForm from '@/components/contact/contactForm/ContactForm.component';
 import { ContactMean, CreateContactMean } from '@/data/types/contact-mean.type';
@@ -199,34 +198,44 @@ export default function CreateContactPage() {
   return (
     <Modal
       heading={modalHeading}
-      isOpen={true}
-      isLoading={isLoadingAuthorization}
-      onDismiss={onCancel}
-      primaryLabel={modalPrimaryLabel}
-      secondaryLabel={modalSecondaryLabel}
-      onSecondaryButtonClick={onCancel}
-      onPrimaryButtonClick={modalPrimaryButtonClick}
-      isPrimaryButtonLoading={isPending}
+      open={true}
+      loading={isLoadingAuthorization}
+      onOpenChange={(detail?: ModalOpenChangeDetail) => (detail?.open === false) && onCancel()}
+      primaryButton={{
+        label: modalPrimaryLabel,
+        onClick: modalPrimaryButtonClick,
+        loading: isPending,
+      }}
+      secondaryButton={modalSecondaryLabel ? {
+        label: modalSecondaryLabel,
+        onClick: onCancel,
+      }: undefined}
     >
       <div className="flex flex-col gap-4 my-4">
         {currentStage === CreateContactStage.CREATE && (
-          <OdsMessage
+          <Message
             color="information"
-            isDismissible={false}
+            dismissible={false}
             className="w-full"
           >
-            {t('add_contact_modal_info')}
-          </OdsMessage>
+            <MessageIcon name="circle-info" />
+            <MessageBody>
+              {t('add_contact_modal_info')}
+            </MessageBody>
+          </Message>
         )}
         {statusMessage && (
-          <OdsMessage
-            color={statusMessage.type as ODS_MESSAGE_COLOR}
-            isDismissible={true}
+          <Message
+            color={statusMessage.type as MESSAGE_COLOR}
+            dismissible={true}
             className="w-full"
-            onOdsRemove={() => setStatusMessage(null)}
+            onRemove={() => setStatusMessage(null)}
           >
-            {statusMessage.message}
-          </OdsMessage>
+            <MessageIcon name={statusMessage.type === 'danger' ? ICON_NAME.triangleExclamation : ICON_NAME.circleInfo} />
+            <MessageBody>
+              {statusMessage.message}
+            </MessageBody>
+          </Message>
         )}
         {currentStage === CreateContactStage.CREATE && (
           <ContactForm
@@ -245,7 +254,7 @@ export default function CreateContactPage() {
         )}
         {currentStage === CreateContactStage.VALIDAION_PENDING && (
           <>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <Text preset={TEXT_PRESET.paragraph}>
               <Trans
                 t={t}
                 i18nKey="validation_pending_contact_email_info"
@@ -253,7 +262,7 @@ export default function CreateContactPage() {
                   email: createdContactMean?.email,
                 }}
               />
-            </OdsText>
+            </Text>
 
             <div className="flex flex-col gap-2 items-center">
               <Button
@@ -279,7 +288,7 @@ export default function CreateContactPage() {
         )}
         {currentStage === CreateContactStage.VALIDATE && (
           <>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <Text preset={TEXT_PRESET.paragraph}>
               <Trans
                 t={t}
                 i18nKey="verify_contact_contact_email_info"
@@ -287,26 +296,23 @@ export default function CreateContactPage() {
                   email: createdContactMean?.email,
                 }}
               />
-            </OdsText>
+            </Text>
             <ContactValidateForm ref={formRef} onSubmit={onSubmitValidate} />
             <div className="flex flex-row justify-center my-4">
-              <OdsLink
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  restartValidationContactMean();
-                  return false;
-                }}
-                label={t('verify_contact_link_label')}
-              />
+              <Link onClick={() => restartValidationContactMean()}>
+                {t('verify_contact_link_label')}
+              </Link>
             </div>
-            <OdsMessage
+            <Message
               color="information"
-              isDismissible={false}
+              dismissible={false}
               className="w-full"
             >
-              {t('verify_contact_info')}
-            </OdsMessage>
+              <MessageIcon name="circle-info" />
+              <MessageBody>
+                {t('verify_contact_info')}
+              </MessageBody>
+            </Message>
           </>
         )}
       </div>
