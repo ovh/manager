@@ -1,4 +1,4 @@
-import React, { ReactNode, createContext, useContext, useMemo, useState } from 'react';
+import React, { ReactNode, createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 import { useObservabilityServices } from '@/data/hooks/services/useObservabilityServices.hook';
 import { ObservabilityService } from '@/types/observability.type';
@@ -23,10 +23,19 @@ interface ObservabilityServiceProviderProps {
 export const ObservabilityServiceProvider: React.FC<ObservabilityServiceProviderProps> = ({
   children,
 }) => {
-  const [selectedService, setSelectedService] = useState<ObservabilityService | undefined>(
-    undefined,
-  );
   const { data: services, isLoading, error, isSuccess } = useObservabilityServices();
+  const [selectedServiceState, setSelectedServiceState] = useState<
+    ObservabilityService | undefined
+  >();
+  const [isInitialised, setIsInitialised] = useState(false);
+
+  // Use explicitly selected service, or initialise the first time with first service from query
+  const selectedService = isInitialised ? selectedServiceState : services?.[0];
+
+  const setSelectedService = useCallback((service: ObservabilityService | undefined) => {
+    setIsInitialised(true);
+    setSelectedServiceState(service);
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -37,7 +46,7 @@ export const ObservabilityServiceProvider: React.FC<ObservabilityServiceProvider
       isSuccess,
       error,
     }),
-    [selectedService, services, isLoading, isSuccess, error],
+    [selectedService, setSelectedService, services, isLoading, isSuccess, error],
   );
 
   return (

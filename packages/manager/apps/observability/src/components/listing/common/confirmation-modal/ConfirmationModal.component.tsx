@@ -3,6 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
+  BUTTON_COLOR,
   BUTTON_VARIANT,
   Button,
   MODAL_COLOR,
@@ -16,6 +17,7 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/muk';
 
+import ErrorMessage from '@/components/error/ErrorMessage.component';
 import { ConfirmationModalProps } from '@/components/listing/common/confirmation-modal/ConfirmationModal.props';
 
 export const ConfirmationModal = ({
@@ -43,7 +45,7 @@ export const ConfirmationModal = ({
             className="w-full"
             data-testid="confirmation-modal-error-message"
           >
-            {error}
+            <ErrorMessage error={error} />
           </Message>
         )}
 
@@ -60,7 +62,7 @@ export const ConfirmationModal = ({
           <div className="flex justify-end gap-2">
             <Button
               data-testid={'cancel-button-test-id'}
-              color={type}
+              color={BUTTON_COLOR.primary}
               onClick={onDismiss}
               variant={BUTTON_VARIANT.ghost}
             >
@@ -69,7 +71,7 @@ export const ConfirmationModal = ({
 
             <Button
               data-testid={'confirm-button-test-id'}
-              color={type}
+              color={type === MODAL_COLOR.critical ? BUTTON_COLOR.critical : BUTTON_COLOR.primary}
               onClick={onConfirm}
               disabled={isConfirmButtonDisabled || isConfirmButtonLoading}
               loading={isConfirmButtonLoading}
