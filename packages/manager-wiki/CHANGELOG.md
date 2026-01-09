@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.23.4...@ovh-ux/manager-wiki@0.24.0) (2026-01-09)
+
+
+### Features
+
+* **manager-wiki:** add correct issue tailwind ([8dc44f4](https://github.com/ovh/manager/commit/8dc44f4238e22f9d06252bc3ff16e4eb33348173)), closes [#MANAGER-20649](https://github.com/ovh/manager/issues/MANAGER-20649)
+
+
+
+
+
 ## [0.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.23.3...@ovh-ux/manager-wiki@0.23.4) (2026-01-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-wiki

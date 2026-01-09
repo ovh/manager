@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.6.4...@ovh-ux/manager-communication-app@0.6.5) (2026-01-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 983] ([7617a72](https://github.com/ovh/manager/commit/7617a7288b651d7e540c486f566dc58a742f242c))
+
+
+
+
+
 ## [0.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.6.3...@ovh-ux/manager-communication-app@0.6.4) (2026-01-07)
 
 
