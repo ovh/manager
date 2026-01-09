@@ -5,8 +5,6 @@ import {
 } from '@ovh-ux/manager-react-components';
 import {
   Badge,
-  Icon,
-  ICON_NAME,
   Skeleton,
   Text,
   Toggle,
@@ -22,6 +20,7 @@ import { ConfigurationDnssecBadgeColorAndContent } from '@/domain/constants/conf
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
 
 interface DnssecToggleStatusProps {
   readonly dnssecStatus: DnssecStatusEnum;
@@ -47,21 +46,14 @@ export default function DnssecToggleStatus({
     <ManagerTile.Item>
       <ManagerTile.Item.Label>
         {t('domain_tab_general_information_dnssec')}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Icon
-              className="pl-3 text-[--ods-color-primary-500]"
-              name={ICON_NAME.circleQuestion}
-            />
-          </TooltipTrigger>
-          <TooltipContent>
-            {t(
-              ConfigurationDnssecBadgeColorAndContent[
-                dnssecStatus ?? DnssecStatusEnum.NOT_SUPPORTED
-              ].i18nkeyTooltip,
-            )}
-          </TooltipContent>
-        </Tooltip>
+
+        <CircleQuestionTooltip
+          translatedMessage={t(
+            ConfigurationDnssecBadgeColorAndContent[
+              dnssecStatus ?? DnssecStatusEnum.NOT_SUPPORTED
+            ].i18nkeyTooltip,
+          )}
+        />
       </ManagerTile.Item.Label>
       {isDnssecStatusLoading ? (
         <Skeleton data-testid={'loading-skeleton'} />

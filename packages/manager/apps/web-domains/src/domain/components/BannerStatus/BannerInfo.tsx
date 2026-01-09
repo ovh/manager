@@ -61,8 +61,8 @@ export default function BannerInfo({ serviceName }: BannerInfoProps) {
           components={{
             Link: (
               <Link href={guideUrls.MANUAL_RENEW_LINK}>
-                <Icon name={ICON_NAME.arrowRight} />
                 {t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
+                <Icon name={ICON_NAME.arrowRight} />
               </Link>
             ),
           }}
