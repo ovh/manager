@@ -166,7 +166,8 @@ export default class BillingLinksService {
           } else if (autorenewLink) {
             links.resiliateLink =
               service.isByoipService() ||
-              service.serviceType === SERVICE_TYPE.DOMAIN
+              service.serviceType === SERVICE_TYPE.DOMAIN ||
+              service.serviceType === SERVICE_TYPE.DOMAIN_RESELLER
                 ? this.buildResiliateModalLink(autorenewLink, service)
                 : `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
           }
