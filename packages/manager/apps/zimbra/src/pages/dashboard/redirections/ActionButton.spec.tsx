@@ -17,8 +17,9 @@ describe('Redirections datagrid action menu', () => {
           id: '1',
           from: 'testFrom',
           to: 'testTo',
-          organization: 'TestOrganization',
+          organizationLabel: 'TestOrganization',
           status: ResourceStatus.READY,
+          organizationId: '1',
         }}
       />,
     );
