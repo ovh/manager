@@ -153,6 +153,7 @@ export const LocalizationSelection = () => {
                               onSelect={() =>
                                 updateSelection(macroRegion, microRegion)
                               }
+                              selected={selectedMacroRegion === macroRegion}
                               disabled={!isRegionAvailable(macroRegion)}
                             />
                           </div>
