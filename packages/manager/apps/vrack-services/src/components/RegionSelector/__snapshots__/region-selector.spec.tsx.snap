@@ -13,41 +13,136 @@ exports[`RegionSelector component > does not break if there is no region at all 
 exports[`RegionSelector component > renders correctly 1`] = `
 <DocumentFragment>
   <div>
-    <ods-tabs
+    <div
       class="mb-4"
+      data-ods="tabs"
+      data-orientation="horizontal"
+      data-part="root"
+      data-scope="tabs"
+      dir="ltr"
+      id="tabs::r0:"
     >
-      <ods-tab
-        is-selected="true"
+      <div
+        class="_tab-list_gq3ln_6"
+        data-ods="tab-list"
       >
-        region-selector-all-locations
-      </ods-tab>
-      <ods-tab
-        is-selected="false"
-      >
-        region-selector-eu-filter
-      </ods-tab>
-      <ods-tab
-        is-selected="false"
-      >
-        region-selector-ca-filter
-      </ods-tab>
-      <ods-tab
-        is-selected="false"
-      >
-        region-selector-us-filter
-      </ods-tab>
-      <ods-tab
-        is-selected="false"
-      >
-        region-selector-ap-filter
-      </ods-tab>
-    </ods-tabs>
+        <div
+          class="_tab-list__container_gq3ln_69 _tab-list__container--md_gq3ln_94 _tab-list__container--default_gq3ln_80"
+          tabindex="-1"
+        >
+          <div
+            aria-orientation="horizontal"
+            class="_tab-list__container__tabs_gq3ln_103"
+            data-orientation="horizontal"
+            data-part="list"
+            data-scope="tabs"
+            dir="ltr"
+            id="tabs::r0::list"
+            role="tablist"
+          >
+            <button
+              aria-controls="tabs::r0::content-all"
+              aria-selected="true"
+              class="_tab_r0pgc_6 _tab--md_r0pgc_77 _tab--default_r0pgc_56"
+              data-focus=""
+              data-ods="tab"
+              data-orientation="horizontal"
+              data-ownedby="tabs::r0::list"
+              data-part="trigger"
+              data-scope="tabs"
+              data-selected=""
+              data-ssr=""
+              data-value="all"
+              dir="ltr"
+              id="tabs::r0::trigger-all"
+              role="tab"
+              tabindex="0"
+              type="button"
+            >
+              region-selector-all-locations
+            </button>
+            <button
+              aria-selected="false"
+              class="_tab_r0pgc_6 _tab--md_r0pgc_77 _tab--default_r0pgc_56"
+              data-ods="tab"
+              data-orientation="horizontal"
+              data-ownedby="tabs::r0::list"
+              data-part="trigger"
+              data-scope="tabs"
+              data-ssr=""
+              data-value="eu"
+              dir="ltr"
+              id="tabs::r0::trigger-eu"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              region-selector-eu-filter
+            </button>
+            <button
+              aria-selected="false"
+              class="_tab_r0pgc_6 _tab--md_r0pgc_77 _tab--default_r0pgc_56"
+              data-ods="tab"
+              data-orientation="horizontal"
+              data-ownedby="tabs::r0::list"
+              data-part="trigger"
+              data-scope="tabs"
+              data-ssr=""
+              data-value="ca"
+              dir="ltr"
+              id="tabs::r0::trigger-ca"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              region-selector-ca-filter
+            </button>
+            <button
+              aria-selected="false"
+              class="_tab_r0pgc_6 _tab--md_r0pgc_77 _tab--default_r0pgc_56"
+              data-ods="tab"
+              data-orientation="horizontal"
+              data-ownedby="tabs::r0::list"
+              data-part="trigger"
+              data-scope="tabs"
+              data-ssr=""
+              data-value="us"
+              dir="ltr"
+              id="tabs::r0::trigger-us"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              region-selector-us-filter
+            </button>
+            <button
+              aria-selected="false"
+              class="_tab_r0pgc_6 _tab--md_r0pgc_77 _tab--default_r0pgc_56"
+              data-ods="tab"
+              data-orientation="horizontal"
+              data-ownedby="tabs::r0::list"
+              data-part="trigger"
+              data-scope="tabs"
+              data-ssr=""
+              data-value="ap"
+              dir="ltr"
+              id="tabs::r0::trigger-ap"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              region-selector-ap-filter
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       class="flex flex-wrap gap-4"
     >
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -56,27 +151,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-par
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-par
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow region_selector_selected w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow region_selector_selected sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -85,27 +182,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-gra
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-gra
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -114,27 +213,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-rbx
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-rbx
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -143,27 +244,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-sbg
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-sbg
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -172,27 +275,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_de
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-lim
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-lim
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -201,27 +306,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_it
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-south-mil
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-south-mil
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -230,27 +337,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_pl
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-central-waw
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-central-waw
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -259,27 +368,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_gb
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-eri
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-eri
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -288,27 +399,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-east-vin
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-east-vin
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -317,27 +430,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-west-hil
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-west-hil
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -346,27 +461,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_ca
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_ca-east-bhs
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             ca-east-bhs
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -375,27 +492,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_sg
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_ap-southeast-sgp
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             ap-southeast-sgp
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -404,27 +523,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_au
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_ap-southeast-syd
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             ap-southeast-syd
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -433,27 +554,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-rbx-snc
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-rbx-snc
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -462,27 +585,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-sbg-snc
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-sbg-snc
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -491,27 +616,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_ca
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_ca-east-tor
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             ca-east-tor
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -520,27 +647,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_in
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_ap-south-mum
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             ap-south-mum
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -549,27 +678,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_labeu-west-1-preprod
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             labeu-west-1-preprod
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -578,27 +709,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_labeu-west-1-dev-2
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             labeu-west-1-dev-2
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -607,27 +740,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_labeu-west-1-dev-1
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             labeu-west-1-dev-1
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -636,27 +771,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_be
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-lz-bru
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-lz-bru
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -665,27 +802,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_es
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-lz-mad
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-lz-mad
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -694,27 +833,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-gra-snc
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-gra-snc
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -723,27 +864,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-east-lz-dal
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-east-lz-dal
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -752,27 +895,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-west-lz-lax
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-west-lz-lax
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -781,27 +926,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-east-lz-chi
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-east-lz-chi
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -810,27 +957,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-east-lz-nyc
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-east-lz-nyc
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -839,27 +988,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-east-lz-mia
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-east-lz-mia
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -868,27 +1019,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-west-lz-pao
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-west-lz-pao
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -897,27 +1050,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-west-lz-den
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-west-lz-den
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -926,27 +1081,29 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_us
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_us-east-lz-atl
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             us-east-lz-atl
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
-      <ods-card
-        class="flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md w-full sm:w-[245px]"
-        color="neutral"
+      </div>
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 flex items-center p-3 cursor-pointer transition-shadow m-[1px] hover:shadow-md sm:w-[245px]"
+        data-ods="card"
       >
         <span
           class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
@@ -955,24 +1112,26 @@ exports[`RegionSelector component > renders correctly 1`] = `
         <div
           class="flex flex-col"
         >
-          <ods-text
-            class="block"
-            preset="heading-4"
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38 block"
+            data-ods="text"
           >
             region-selector-country-name_fr
-          </ods-text>
-          <ods-text
-            preset="span"
+          </h4>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             region-selector-city-name_eu-west-lz-mrs
-          </ods-text>
-          <ods-text
-            preset="span"
+          </span>
+          <span
+            class="_text_b5nz7_6 _text--span_b5nz7_72"
+            data-ods="text"
           >
             eu-west-lz-mrs
-          </ods-text>
+          </span>
         </div>
-      </ods-card>
+      </div>
     </div>
   </div>
 </DocumentFragment>

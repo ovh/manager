@@ -1,8 +1,10 @@
 import path from 'path';
 import {
+  INLINE_DEPS,
   sharedConfig,
   mergeConfig,
   createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
 } from '@ovh-ux/manager-tests-setup';
 
@@ -23,8 +25,17 @@ export default mergeConfig(
           'src/tracking.constant.ts',
         ],
       },
+      deps: {
+        inline: INLINE_DEPS,
+      },
+      server: {
+        deps: {
+          inline: INLINE_DEPS,
+        },
+      },
     },
     resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },

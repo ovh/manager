@@ -2,15 +2,20 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Text,
+} from '@ovhcloud/ods-react';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getEligibleManagedServiceListQueryKey,
@@ -75,36 +80,43 @@ export default function EndpointsDeleteModal() {
 
   return (
     <Modal
-      isOpen
-      onDismiss={onClose}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['delete_endpoints', 'confirm'],
-        });
-        deleteEndpoint({ vs, urnToDelete });
-      }}
+      defaultOpen={true}
+      closeOnInteractOutside={true}
+      onOpenChange={onClose}
       heading={t('modalDeleteServiceEndpointHeadline')}
-      onSecondaryButtonClick={onClose}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      primaryLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
-      isPrimaryButtonLoading={isPending}
-      isLoading={isLoading}
+      primaryButton={{
+        label: t('delete', { ns: NAMESPACES.ACTIONS }),
+        loading: isPending || isLoading,
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['delete_endpoints', 'confirm'],
+          });
+          deleteEndpoint({ vs, urnToDelete });
+        },
+      }}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: onClose,
+      }}
     >
-      <OdsText>{t('modalDeleteEndpointDescription')}</OdsText>
+      <Text>{t('modalDeleteEndpointDescription')}</Text>
       {isError && (
-        <OdsMessage
-          className="block mb-8"
-          color={ODS_MESSAGE_COLOR.critical}
-          isDismissible={false}
+        <Message
+          className="mb-8"
+          color={MESSAGE_COLOR.critical}
+          dismissible={false}
         >
-          {t('modalError', {
-            error: updateError?.response?.data?.message,
-            ns: TRANSLATION_NAMESPACES.common,
-          })}
-        </OdsMessage>
+          <MessageIcon name="hexagon-exclamation" />
+          <MessageBody>
+            {t('modalError', {
+              error: updateError?.response?.data?.message,
+              ns: TRANSLATION_NAMESPACES.common,
+            })}
+          </MessageBody>
+        </Message>
       )}
     </Modal>
   );

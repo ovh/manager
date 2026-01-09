@@ -5,7 +5,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { Link } from '@ovhcloud/ods-react';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { EditButton } from './EditButton.component';
 import { urls } from '@/routes/routes.constants';
@@ -26,11 +26,10 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
 
   return isListing ? (
     <div className="flex">
-      <OdsLink
+      <Link
         className="overflow-hidden text-ellipsis max-w-[200px]"
-        label={name}
         href=""
-        onClick={(event) => {
+        onClick={(event: React.MouseEvent) => {
           event.preventDefault();
           trackClick({
             location: PageLocation.datagrid,
@@ -40,7 +39,9 @@ export const DisplayName: React.FC<DisplayNameProps> = ({
           });
           navigate(urls.overview.replace(':id', vs.id));
         }}
-      />
+      >
+        {name}
+      </Link>
       <InfoIcon className="ml-4" vs={vs} />
     </div>
   ) : (

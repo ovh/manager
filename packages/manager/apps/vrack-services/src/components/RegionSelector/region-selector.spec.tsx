@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, vi, expect } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { RegionSelector } from './region-selector.component';
 import '@testing-library/jest-dom';
@@ -57,7 +57,7 @@ describe('RegionSelector component', () => {
       />,
     );
 
-    expect(container.querySelectorAll('ods-card')).toHaveLength(
+    expect(container.querySelectorAll('div[data-ods=card]')).toHaveLength(
       regionList.length,
     );
     expect(asFragment()).toMatchSnapshot();
@@ -80,12 +80,14 @@ describe('RegionSelector component', () => {
     const filterTab = getByText(label);
     await waitFor(() => userEvent.click(filterTab));
 
-    expect(container.querySelectorAll('ods-card')).toHaveLength(cardNb);
+    expect(container.querySelectorAll('div[data-ods=card]')).toHaveLength(
+      cardNb,
+    );
 
     await waitFor(() =>
       userEvent.click(getByText('region-selector-all-locations')),
     );
-    expect(container.querySelectorAll('ods-card')).toHaveLength(
+    expect(container.querySelectorAll('div[data-ods=card]')).toHaveLength(
       regionList.length,
     );
   });
@@ -106,7 +108,7 @@ describe('RegionSelector component', () => {
       />,
     );
 
-    expect(container.querySelectorAll('ods-card')).toHaveLength(3);
+    expect(container.querySelectorAll('div[data-ods=card]')).toHaveLength(3);
     expect(queryByText('region-selector-eu-filter')).not.toBeInTheDocument();
     expect(queryByText('region-selector-ca-filter')).not.toBeInTheDocument();
     expect(queryByText('region-selector-us-filter')).not.toBeInTheDocument();
@@ -146,9 +148,11 @@ describe('RegionSelector component', () => {
     },
   ])(
     'hide filters if there is no corresponding regions',
-    ({ list, missingFilters }) => {
-      const { queryByText } = render(
-        <RegionSelector regionList={list} setSelectedRegion={vi.fn()} />,
+    async ({ list, missingFilters }) => {
+      const { queryByText } = await act(() =>
+        render(
+          <RegionSelector regionList={list} setSelectedRegion={vi.fn()} />,
+        ),
       );
 
       missingFilters.forEach((tab) => {

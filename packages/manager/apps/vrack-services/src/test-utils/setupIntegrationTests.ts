@@ -1,10 +1,15 @@
-import { beforeAll, afterAll, vi } from 'vitest';
+import { beforeAll, afterAll, vi, Mock } from 'vitest';
 import { setupServer } from 'msw/node';
 import {
   toMswHandlers,
   getAuthenticationMocks,
 } from '@ovh-ux/manager-core-test-utils';
 import 'element-internals-polyfill';
+import { NavLinkProps, useParams } from 'react-router-dom';
+import {
+  vrackListMocks,
+  vrackServicesListMocks,
+} from '@ovh-ux/manager-network-common';
 
 declare const global: any;
 
@@ -20,6 +25,14 @@ beforeAll(() => {
   delete global.server;
   global.__VERSION__ = null;
   global.server = server;
+});
+
+beforeEach(() => {
+  (useParams as Mock).mockReturnValue({
+    id: vrackServicesListMocks[0].id,
+    vrackId: vrackListMocks[0],
+    urn: '',
+  });
 });
 
 afterAll(() => {
@@ -88,6 +101,8 @@ const mockState: CustomStateSet = {
 
 if (!HTMLElement.prototype.attachInternals) {
   console.log('🔧 attachInternals polyfill used');
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   HTMLElement.prototype.attachInternals = () => ({
     labels: mockLabels,
     validity: mockValidity,
@@ -144,8 +159,62 @@ if (!HTMLElement.prototype.attachInternals) {
     reportValidity: vi.fn(),
     setValidity: vi.fn(),
     validationMessage: null,
+    ariaActiveDescendantElement: null,
+    ariaControlsElements: [],
+    ariaDescribedByElements: [],
+    ariaDetailsElements: [],
+    ariaErrorMessageElements: [],
+    ariaFlowToElements: [],
+    ariaLabelledByElements: [],
+    ariaOwnsElements: []
   });
 }
 
 process.on('unhandledRejection', () => {});
 process.on('uncaughtException', () => {});
+
+// Mock the ResizeObserver
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
+// Stub the global ResizeObserver
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const original = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
+  };
+});
+
+vi.mock('@ovh-ux/manager-module-common-api', async () => {
+  const original = await vi.importActual('@ovh-ux/manager-module-common-api');
+  return {
+    ...original,
+    useDeleteService: vi.fn().mockReturnValue({
+      terminateService: vi.fn(),
+      isPending: false,
+      error: false,
+      isError: false,
+    }),
+  };
+});
+
+vi.mock('react-router-dom', async () => {
+  const original = await vi.importActual('react-router-dom');
+  return {
+    ...original,
+    Navigate: vi.fn(),
+    useNavigate: () => vi.fn(),
+    useSearchParams: () => [{ get: (str: string) => str }],
+    useLocation: vi.fn().mockReturnValue({
+      pathname: 'pathname',
+    }),
+    useParams: vi.fn(),
+    NavLink: ({ ...params }: NavLinkProps) => params.children,
+  };
+});

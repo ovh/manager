@@ -1,6 +1,10 @@
 import React from 'react';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import {
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+} from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { DetailedOrder } from '@ovh-ux/manager-module-order';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
@@ -29,18 +33,21 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
         }${min}`;
 
         return (
-          <OdsMessage
-            className="block mt-5"
-            color={ODS_MESSAGE_COLOR.information}
+          <Message
+            className="mt-5"
+            color={MESSAGE_COLOR.information}
             key={`delivering-message-${order.orderId}`}
-            isDismissible={false}
+            dismissible={false}
           >
-            {t(messageKey, {
-              date: date.toLocaleDateString(i18n.language.replace('_', '-')),
-              time,
-              status: t(`orderStatus-${order.status}`),
-            })}
-          </OdsMessage>
+            <MessageIcon name="circle-info" />
+            <MessageBody>
+              {t(messageKey, {
+                date: date.toLocaleDateString(i18n.language.replace('_', '-')),
+                time,
+                status: t(`orderStatus-${order.status}`),
+              })}
+            </MessageBody>
+          </Message>
         );
       })}
     </>

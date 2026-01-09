@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useOvhTracking, ButtonType } from '@ovh-ux/manager-react-shell-client';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import { Error } from '@ovh-ux/muk';
 import {
   useVrackService,
   useVrackServicesList,
@@ -86,7 +86,7 @@ export default function DashboardWrapper() {
   );
 
   if (isError) {
-    return <ErrorBanner error={error} />;
+    return <Error error={error} />;
   }
 
   if (
