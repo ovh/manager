@@ -9,7 +9,7 @@ export default {
     './src/**/*.{js,jsx,ts,tsx}',
     path.join(
       path.dirname(require.resolve('@ovh-ux/muk')),
-      '**/*.{js,jsx,ts,tsx}',
+      '**/*.{js,jsx,ts,tsx,cjs}',
     ),
   ],
   theme: {
