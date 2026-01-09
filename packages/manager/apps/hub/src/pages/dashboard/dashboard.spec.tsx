@@ -675,6 +675,13 @@ describe('Layout.page', () => {
     });
 
     describe('With billing management', () => {
+      beforeAll(() => {
+        mocks.hubContext.availability['billing:management'] = true;
+      });
+      afterAll(() => {
+        mocks.hubContext.availability['billing:management'] = false;
+      });
+
       it('should render "see all" link', async () => {
         const { findAllByText, findByTestId } = renderComponent(<PaymentStatus />);
 
@@ -694,15 +701,17 @@ describe('Layout.page', () => {
     });
 
     describe('Without billing management', () => {
-      it('should not render "see all" link', async () => {
+      beforeAll(() => {
         mocks.hubContext.availability['billing:management'] = false;
+      });
+
+      it('should not render "see all" link', async () => {
         const { queryAllByTestId, queryByTestId } = renderComponent(<PaymentStatus />);
         expect(queryByTestId('my_services_link_skeleton')).not.toBeInTheDocument();
         expect(queryAllByTestId('services_actions_skeleton').length).toBe(0);
       });
 
       it('should have a valid html', () => {
-        mocks.hubContext.availability['billing:management'] = false;
         const { container } = renderComponent(<PaymentStatus />);
         const html = container.innerHTML;
 
