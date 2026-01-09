@@ -36,7 +36,7 @@ export default function CreateVersionDrawerPage() {
     secretConfig,
     isPending: isSecretSmartConfigPending,
     error: secretSmartConfigError,
-  } = useSecretSmartConfig(secret);
+  } = useSecretSmartConfig({ secret, okmsId });
 
   // Version data is used to prefill the form with the previous value
   // Version is fetched only if versionId is provided

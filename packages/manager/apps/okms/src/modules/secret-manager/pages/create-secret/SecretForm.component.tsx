@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  SecretCasRequiredFormField,
+  formValueToCasRequired,
+} from '@secret-manager/components/form/SecretCasRequiredFormField.component';
+import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
+import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
 import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
 import { secretQueryKeys } from '@secret-manager/data/api/secrets';
 import { useCreateSecret } from '@secret-manager/data/hooks/useCreateSecret';
@@ -8,6 +14,7 @@ import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/Secret
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { SecretVersionDataField } from '@secret-manager/types/secret.type';
 import { useSecretDataSchema, useSecretPathSchema } from '@secret-manager/validation';
+import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
 import { useQueryClient } from '@tanstack/react-query';
 import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -38,7 +45,14 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   /* Form */
   const pathSchema = useSecretPathSchema();
   const dataSchema = useSecretDataSchema();
-  const secretSchema = z.object({ path: pathSchema, data: dataSchema });
+  const metadataSchema = useSecretConfigSchema();
+  const secretSchema = z.object({
+    path: pathSchema,
+    data: dataSchema,
+    deactivateVersionAfter: metadataSchema.shape.deactivateVersionAfter.optional(),
+    maxVersions: metadataSchema.shape.maxVersions.optional(),
+    casRequired: metadataSchema.shape.casRequired.optional(),
+  });
   type SecretSchema = z.infer<typeof secretSchema>;
 
   const form = useForm({
@@ -73,13 +87,26 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
 
   const handleConfirmClick: SubmitHandler<SecretSchema> = (formData) => {
     if (!okmsId) return;
-    createSecret({
+
+    // Transform the flat form data into the nested structure expected by the API
+    const transformedData = {
       okmsId,
       data: {
         path: formData.path,
-        version: { data: JSON.parse(formData.data) as SecretVersionDataField },
+        version: {
+          data: JSON.parse(formData.data) as SecretVersionDataField,
+        },
+        metadata: {
+          casRequired: formData?.casRequired
+            ? formValueToCasRequired(formData.casRequired)
+            : undefined,
+          deactivateVersionAfter: formData.deactivateVersionAfter,
+          maxVersions: formData.maxVersions,
+        },
       },
-    });
+    };
+
+    createSecret(transformedData);
   };
 
   return (
@@ -113,13 +140,19 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
             <OdsText preset="heading-4">{t('values')}</OdsText>
             <SecretDataFormField name={'data'} control={control} />
           </div>
-          {/* TEMP: waiting for metadata management */}
+          {/* TEMP: waiting for custom metadata */}
           {/* <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{t('custom_metadata_title')}</OdsText>
-        </div>
-        <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{t('settings_default')}</OdsText>
-        </div> */}
+            <OdsText preset="heading-4">{t('custom_metadata_title')}</OdsText>
+          </div> */}
+          <div className="flex flex-col gap-3">
+            <OdsText preset="heading-4">{t('settings_default')}</OdsText>
+            <SecretDeactivateVersionAfterFormField
+              name="deactivateVersionAfter"
+              control={control}
+            />
+            <SecretMaxVersionsFormField name="maxVersions" control={control} okmsId={okmsId} />
+            <SecretCasRequiredFormField name="casRequired" control={control} okmsId={okmsId} />
+          </div>
         </div>
         {/* TEMP: waiting for payment informations */}
         {/* <div className="flex flex-col gap-5">

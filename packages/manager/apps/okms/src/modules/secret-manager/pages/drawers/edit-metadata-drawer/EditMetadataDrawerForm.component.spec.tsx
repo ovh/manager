@@ -2,14 +2,15 @@ import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { Secret } from '@secret-manager/types/secret.type';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
-import { createErrorResponseMock, renderWithI18n } from '@/common/utils/tests/testUtils';
+import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 import { EditMetadataDrawerForm } from './EditMetadataDrawerForm.component';
@@ -22,6 +23,11 @@ const mockUseUpdateSecret = vi.fn();
 
 vi.mock('@secret-manager/data/hooks/useUpdateSecret', () => ({
   useUpdateSecret: (): unknown => mockUseUpdateSecret(),
+}));
+
+const mockUseOkmsById = vi.fn();
+vi.mock('@key-management-service/data/hooks/useOkms', () => ({
+  useOkmsById: (okmsId: string): unknown => mockUseOkmsById(okmsId),
 }));
 
 const mockSecret: Secret = mockSecret1;
@@ -44,9 +50,16 @@ const mockSecretConfig: SecretSmartConfig = {
 
 const mockOnDismiss = vi.fn();
 
-const renderComponent = async () => {
-  const user = userEvent.setup();
+// Mock the useSecretSmartConfig hook
+vi.mock('@secret-manager/hooks/useSecretSmartConfig', () => ({
+  useSecretSmartConfig: (): unknown => ({
+    isPending: false,
+    isError: false,
+    secretConfig: mockSecretConfig,
+  }),
+}));
 
+const renderComponent = async () => {
   const defaultProps = {
     secret: mockSecret,
     okmsId: 'test-okms-id',
@@ -55,12 +68,9 @@ const renderComponent = async () => {
     onDismiss: mockOnDismiss,
   };
 
-  const renderResult = await renderWithI18n(<EditMetadataDrawerForm {...defaultProps} />);
+  const wrapper = await testWrapperBuilder().withI18next().withQueryClient().build();
 
-  return {
-    user,
-    ...renderResult,
-  };
+  return render(<EditMetadataDrawerForm {...defaultProps} />, { wrapper });
 };
 
 const submitForm = async (container: HTMLElement, user: UserEvent) => {
@@ -141,10 +151,11 @@ describe('EditMetadataDrawerForm component test suite', () => {
     });
 
     it('should call onDismiss after successful update', async () => {
+      const user = userEvent.setup();
       // GIVEN
       mockUpdateSecret.mockResolvedValue({});
 
-      const { container, user } = await renderComponent();
+      const { container } = await renderComponent();
 
       // WHEN
       await submitForm(container, user);
@@ -175,10 +186,11 @@ describe('EditMetadataDrawerForm component test suite', () => {
     });
 
     it('should not call onDismiss when update fails', async () => {
+      const user = userEvent.setup();
       // GIVEN
       mockUpdateSecret.mockRejectedValue(new Error('Update failed'));
 
-      const { container, user } = await renderComponent();
+      const { container } = await renderComponent();
 
       // WHEN
       await submitForm(container, user);
@@ -192,6 +204,7 @@ describe('EditMetadataDrawerForm component test suite', () => {
 
   describe('when update is pending', () => {
     it('should show loading state on submit button during update', async () => {
+      const user = userEvent.setup();
       // GIVEN
       mockUseUpdateSecret.mockReturnValue({
         mutateAsync: mockUpdateSecret,
@@ -200,7 +213,7 @@ describe('EditMetadataDrawerForm component test suite', () => {
       });
 
       // WHEN
-      const { container, user } = await renderComponent();
+      const { container } = await renderComponent();
 
       // THEN
       const submitButton = await submitForm(container, user);
@@ -210,7 +223,8 @@ describe('EditMetadataDrawerForm component test suite', () => {
 
   describe('form validation', () => {
     it('should display form errors', async () => {
-      const { container, user } = await renderComponent();
+      const user = userEvent.setup();
+      const { container } = await renderComponent();
 
       await changeOdsInputValueByTestId(
         SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER,

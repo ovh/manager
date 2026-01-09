@@ -10,7 +10,7 @@ import {
   buildSecretSmartConfig,
 } from './secretSmartConfig';
 
-describe('getSecretSmartConfig', () => {
+describe('buildSecretSmartConfig', () => {
   const createMockSecret = (overrides: Partial<Secret['metadata']> = {}): Secret => ({
     ...mockSecret1,
     metadata: {
@@ -56,7 +56,7 @@ describe('getSecretSmartConfig', () => {
         const secret = createMockSecret(secretOverrides);
         const secretConfigOkms = createMockSecretConfig(domainOverrides);
 
-        const result = buildSecretSmartConfig(secret, secretConfigOkms, mockSecretConfigReference);
+        const result = buildSecretSmartConfig(secretConfigOkms, mockSecretConfigReference, secret);
 
         expect(result[testedProperty].value).toBe(expectedValue);
         expect(result[testedProperty].origin).toBe(expectedOrigin);
@@ -211,5 +211,115 @@ describe('getSecretSmartConfig', () => {
     ];
 
     runTests(testCases);
+  });
+
+  describe('When secret is undefined', () => {
+    // Test case type for undefined secret scenarios
+    type UndefinedSecretTestCase = {
+      description: string;
+      domainOverrides: Partial<SecretConfig>;
+      expectedValue: string | number | boolean;
+      expectedOrigin: 'DOMAIN' | 'DEFAULT';
+      expectedIsCasRequiredSetOnOkms: boolean;
+      expectedMaxVersionsDefault?: number;
+      testedProperty: Exclude<
+        keyof SecretSmartConfig,
+        'isCasRequiredSetOnOkms' | 'maxVersionsDefault'
+      >;
+    };
+
+    const runUndefinedSecretTests = (testCases: UndefinedSecretTestCase[]) => {
+      it.each(testCases)(
+        '$description',
+        ({
+          domainOverrides,
+          expectedValue,
+          expectedOrigin,
+          expectedIsCasRequiredSetOnOkms,
+          expectedMaxVersionsDefault,
+          testedProperty,
+        }) => {
+          const secretConfigOkms = createMockSecretConfig(domainOverrides);
+
+          const result = buildSecretSmartConfig(
+            secretConfigOkms,
+            mockSecretConfigReference,
+            undefined,
+          );
+
+          expect(result[testedProperty].value).toBe(expectedValue);
+          expect(result[testedProperty].origin).toBe(expectedOrigin);
+          expect(result.isCasRequiredSetOnOkms).toBe(expectedIsCasRequiredSetOnOkms);
+          if (expectedMaxVersionsDefault) {
+            expect(result.maxVersionsDefault).toBe(expectedMaxVersionsDefault);
+          }
+        },
+      );
+    };
+
+    describe('and domain config is not set', () => {
+      const testCases: UndefinedSecretTestCase[] = [
+        {
+          description: 'uses default maxVersion',
+          domainOverrides: { maxVersions: NOT_SET_VALUE_MAX_VERSIONS },
+          expectedValue: 10,
+          expectedOrigin: 'DEFAULT',
+          expectedIsCasRequiredSetOnOkms: false,
+          expectedMaxVersionsDefault: 10,
+          testedProperty: 'maxVersions',
+        },
+        {
+          description: 'uses default deactivateVersionAfter',
+          domainOverrides: {
+            deactivateVersionAfter: NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
+          },
+          expectedValue: NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
+          expectedOrigin: 'DEFAULT',
+          expectedIsCasRequiredSetOnOkms: false,
+          testedProperty: 'deactivateVersionAfter',
+        },
+        {
+          description: 'uses default casRequired',
+          domainOverrides: { casRequired: false },
+          expectedValue: false,
+          expectedOrigin: 'DEFAULT',
+          expectedIsCasRequiredSetOnOkms: false,
+          testedProperty: 'casRequired',
+        },
+      ];
+
+      runUndefinedSecretTests(testCases);
+    });
+
+    describe('and domain config is set', () => {
+      const testCases: UndefinedSecretTestCase[] = [
+        {
+          description: 'uses domain maxVersion',
+          domainOverrides: { maxVersions: 15 },
+          expectedValue: 15,
+          expectedOrigin: 'DOMAIN',
+          expectedIsCasRequiredSetOnOkms: false,
+          testedProperty: 'maxVersions',
+        },
+        {
+          description: 'uses domain deactivateVersionAfter',
+          domainOverrides: { deactivateVersionAfter: '2h' },
+          expectedValue: '2h',
+          expectedOrigin: 'DOMAIN',
+          expectedIsCasRequiredSetOnOkms: false,
+          testedProperty: 'deactivateVersionAfter',
+        },
+        {
+          description: 'uses domain casRequired',
+          domainOverrides: { casRequired: true },
+          expectedValue: true,
+          expectedOrigin: 'DOMAIN',
+          expectedIsCasRequiredSetOnOkms: true,
+          testedProperty: 'casRequired',
+        },
+      ];
+
+      runUndefinedSecretTests(testCases);
+    });
   });
 });

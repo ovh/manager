@@ -11,6 +11,8 @@ import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+
 import { EditMetadataLink } from './EditMetadataLink.component';
 
 export const SETTINGS_TILE_TEST_IDS = {
@@ -25,7 +27,9 @@ type SettingsTileProps = {
 
 export const SettingsTile = ({ secret }: SettingsTileProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS]);
-  const { secretConfig, isPending, isError } = useSecretSmartConfig(secret);
+  const { okmsId } = useRequiredParams('okmsId');
+
+  const { secretConfig, isPending, isError } = useSecretSmartConfig({ secret, okmsId });
 
   const labels: Record<SecretSmartConfigOrigin, string | null> = {
     SECRET: null,

@@ -3,7 +3,6 @@ import { Suspense } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 
 import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
-import { useSecretConfigReference } from '@secret-manager/data/hooks/useSecretConfigReference';
 import { useTranslation } from 'react-i18next';
 
 import { OdsMessage } from '@ovhcloud/ods-components/react';
@@ -21,20 +20,7 @@ const OkmsEditSecretConfigDrawer = () => {
   const navigate = useNavigate();
   const { okms } = useOutletContext<OkmsDashboardOutletContext>();
 
-  const {
-    data: okmsSecretConfig,
-    isPending: isOkmsSecretConfigPending,
-    error: okmsSecretConfigError,
-  } = useSecretConfigOkms(okms.id);
-
-  const {
-    data: secretConfigReference,
-    isPending: isSecretConfigReferencePending,
-    error: secreConfigtReferenceError,
-  } = useSecretConfigReference(okms.region);
-
-  const isPending = isOkmsSecretConfigPending || isSecretConfigReferencePending;
-  const error = okmsSecretConfigError || secreConfigtReferenceError;
+  const { data: okmsSecretConfig, isPending, error } = useSecretConfigOkms(okms.id);
 
   const handleDismiss = () => {
     navigate('..');
@@ -58,7 +44,6 @@ const OkmsEditSecretConfigDrawer = () => {
           <EditOkmsSecretConfigDrawerForm
             okmsId={okms.id}
             secretConfig={okmsSecretConfig}
-            secretConfigReference={secretConfigReference}
             onDismiss={handleDismiss}
           />
         )}

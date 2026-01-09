@@ -31,7 +31,7 @@ export default function EditMetadataDrawerPage() {
     secretConfig,
     isPending: isSecretSmartConfigPending,
     error: secretSmartConfigError,
-  } = useSecretSmartConfig(secret);
+  } = useSecretSmartConfig({ secret, okmsId });
 
   const isPending = isSecretPending || isSecretSmartConfigPending;
   const error = secretError || secretSmartConfigError;
