@@ -73,7 +73,7 @@ export const IpGameFirewallDisplay = ({
       actionType: 'action',
       actions: ['configure_game-firewall'],
     });
-    void navigate(
+    navigate(
       `${urls.configureGameFirewall
         .replace(urlDynamicParts.parentId, fromIpToId(ip))
         .replace(
@@ -94,7 +94,7 @@ export const IpGameFirewallDisplay = ({
       onClick={navigateToConfigureGameFirewall}
     >
       {ipGameFirewall?.state === IpGameFirewallStateEnum.OK &&
-        ruleListQuery?.data?.length === 0 && (
+        !ruleListQuery?.data?.length && (
           <BadgeCell
             badgeColor={ODS_BADGE_COLOR.neutral}
             text={t('listingColumnsIpGameFirewallAvailable')}
