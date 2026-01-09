@@ -8,7 +8,7 @@ import { HelpIconWithTooltip } from '@/common/components/help-icon-with-tooltip/
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type FormFieldInput = {
-  deactivateVersionAfter: string;
+  deactivateVersionAfter?: string;
 };
 
 export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>({
@@ -27,7 +27,7 @@ export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>(
       <OdsInput
         id={field.name}
         name={field.name}
-        value={field.value.toString()}
+        value={field.value?.toString()}
         onOdsBlur={field.onBlur}
         onOdsChange={field.onChange}
         data-testid={SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER}
