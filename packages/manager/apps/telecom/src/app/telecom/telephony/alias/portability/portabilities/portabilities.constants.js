@@ -23,6 +23,46 @@ export const PORTABILITY_STEPS_STATUS = {
 
 export const REGEX = {
   siret: /^\d{14}$/,
+  phoneNumber: /^(?:(?:00|\+)33[1-9]\d{8}|(?:00|\+)32[1-9]\d{7,8}|(?:00|\+)41[1-9]\d{8})$/,
+};
+
+export const STREET_NUMBER_EXTRA = [
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'S',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
+];
+
+export const PORTABILITY_STREET_NUMBER_EXTRA_ENUM = {
+  BE: ['&nbsp;', 'A', 'B', 'C', ...STREET_NUMBER_EXTRA],
+  OTHER: [
+    '&nbsp;',
+    'bis',
+    'ter',
+    'quater',
+    'quinquies',
+    'sexto',
+    'septimo',
+    'octimo',
+    'nono',
+    'A',
+    ...STREET_NUMBER_EXTRA,
+  ],
 };
 
 export default {
