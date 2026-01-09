@@ -8,6 +8,7 @@ import DataTable from '@/components/data-table';
 import { useS3Data } from '../../../S3.context';
 import storages from '@/types/Storages';
 import { useGetAvailableDestinationsContainers } from '../form/useGetDestinationContainers';
+import { hasDeletedDestination } from './replicationRules.utils';
 
 interface ReplicationListProps {
   replicationRules: storages.ReplicationRule[];
@@ -37,6 +38,7 @@ export default function ReplicationList({
     isLoading,
   } = useGetAvailableDestinationsContainers();
 
+  const hasInconsistentRules = replicationRules.some(hasDeletedDestination);
   return (
     <DataTable.Provider columns={columns} data={replicationRules} pageSize={25}>
       {availableDestinations.length === 0 && !isLoading && (
@@ -55,6 +57,14 @@ export default function ReplicationList({
           </AlertDescription>
         </Alert>
       )}
+      {hasInconsistentRules && (
+        <Alert variant="warning">
+          <AlertDescription className="flex gap-2 items-center">
+            <AlertTriangle className="size-4" />
+            {t('inconsistentReplicationRulesAlert')}
+          </AlertDescription>
+        </Alert>
+      )}
       <DataTable.Header>
         <DataTable.Action>
           <Button
@@ -65,7 +75,8 @@ export default function ReplicationList({
             disabled={
               !isVersioningEnabled ||
               isLoading ||
-              availableDestinations.length === 0
+              availableDestinations.length === 0 ||
+              hasInconsistentRules
             }
           >
             <Plus className="size-6" />
