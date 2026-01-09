@@ -10,6 +10,6 @@ describe('RoadmapChangelogItemDescriptionCell Component', () => {
     const { container } = render(<RoadmapChangelogItemDescriptionCell item={roadmapItem} />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

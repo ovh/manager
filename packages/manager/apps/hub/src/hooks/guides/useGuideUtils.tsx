@@ -31,7 +31,7 @@ function useGuideUtils(guides: Record<string, Partial<Record<CountryCode, string
       const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
       setList(guideList);
     };
-    getSubSidiary();
+    void getSubSidiary();
   }, []);
   return list as Record<string, string>;
 }

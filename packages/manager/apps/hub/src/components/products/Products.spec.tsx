@@ -72,7 +72,7 @@ const renderComponent = (services: ProductList) => {
 };
 
 describe('Products.component', () => {
-  it('should display a skeleton while loading', async () => {
+  it('should display a skeleton while loading', () => {
     const { getByTestId } = renderComponent({ count: 3, data: {} });
 
     const container = getByTestId('products-list-container');
@@ -80,7 +80,7 @@ describe('Products.component', () => {
     expect(container.children.length).toBe(0);
   });
 
-  it('should display nothing if user has no services', async () => {
+  it('should display nothing if user has no services', () => {
     const { getByTestId } = renderComponent({ count: 3, data: {} });
 
     const container = getByTestId('products-list-container');
