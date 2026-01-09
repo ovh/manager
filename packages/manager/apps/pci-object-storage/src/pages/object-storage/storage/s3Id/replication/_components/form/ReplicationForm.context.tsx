@@ -52,11 +52,7 @@ export const ReplicationFormProvider = ({
   const regionsQuery = useGetRegions(projectId);
   const formValues = form.watch();
 
-  const hasTags =
-    formValues.tags &&
-    Object.values(formValues.tags).some(
-      (tag) => tag.key.trim() !== '' || tag.value.trim() !== '',
-    );
+  const hasTags = formValues.tags?.some((tag) => tag.key.trim() !== '');
   const isDeleteMarkerEnabled =
     formValues.deleteMarkerReplication === 'enabled';
 
