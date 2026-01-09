@@ -2,6 +2,8 @@ import ai from '@/types/AI';
 import { PrivacyEnum } from '@/types/orderFunnel';
 
 export const APP_TRACKING_PREFIX = 'PublicCloud::ai_machine_learning';
+export const QUANTUM_APP_TRACKING_PREFIX = 'PublicCloud::quantum';
+
 export const NOTEBOOK_TRACKING = `${APP_TRACKING_PREFIX}::ai_notebooks`;
 export const DEPLOY_TRACKING = `${APP_TRACKING_PREFIX}::ai_deploy`;
 export const TRAINING_TRACKING = `${APP_TRACKING_PREFIX}::ai_training`;
@@ -14,16 +16,8 @@ export const TRACKING = {
         `${NOTEBOOK_TRACKING}::page::button::create_ai_notebooks`,
     },
     listing: {
-      createNotebooksClick: () =>
-        `${NOTEBOOK_TRACKING}::page::button::create_ai_notebooks`,
-      stopNotebooksDataGridClick: () =>
-        `${NOTEBOOK_TRACKING}::datagrid::button::stop_ai_notebooks`,
-      startNotebooksDataGridClick: () =>
-        `${NOTEBOOK_TRACKING}::datagrid::button::start_ai_notebooks`,
-      deleteNotebooksDataGridClick: () =>
-        `${NOTEBOOK_TRACKING}::datagrid::button::delete_ai_notebooks`,
-      manageNotebooksDataGridClick: () =>
-        `${NOTEBOOK_TRACKING}::datagrid::button::manage_ai_notebooks`,
+      manageNotebooksDataGridClick: (option: string) =>
+        `${NOTEBOOK_TRACKING}::datagrid::button::${option}_ai_notebooks`,
       DatagridLinkClick: (columnId: string) =>
         `${NOTEBOOK_TRACKING}::link::details_${columnId}`,
     },
@@ -141,6 +135,96 @@ export const TRACKING = {
         access: PrivacyEnum,
       ) =>
         `${DEPLOY_TRACKING}::banner-info::create_ai_deploy_error::datacenter_${region}::ressource_type_${ressourceType}::access_${access}`,
+    },
+  },
+
+  emulators: {
+    guide: {
+      guideClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::guides::button::guides`,
+      guideLinkClick: (guideName: string) =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::guides::link::${guideName}`,
+    },
+    onboarding: {
+      createNotebookClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::button::create_notebook`,
+    },
+    listing: {
+      createNotebooksClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::button::create_notebook`,
+      manageNotebooksDataGridClick: (option: string) =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::datagrid::button::${option}_emulators`,
+      DatagridLinkClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::datagrid::link::details_emulators`,
+      DatagridEditorLinkClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::datagrid::external-link::editor_emulators`,
+    },
+    funnel: {
+      advancedConfigurationClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::funnel::advanced-configuration_notebook`,
+      configureSshKeyClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::funnel::configure_ssh-key`,
+      confirmNotebookClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::funnel::confirm_notebook`,
+    },
+    popup: {
+      configureSshKeyClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::pop-up::configure_ssh-key::${action}`,
+    },
+    banner: {
+      createNotebookBanner: (type: 'info' | 'error', status: string) =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::banner-${type}::create_notebook::${status}`,
+      configureSshKeyBanner: (type: 'info' | 'error', status: string) =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::banner-${type}::configure_ssh-key::${status}`,
+    },
+    roadmap: {
+      linkClick: (linkType: 'roadmap' | 'changelog' | 'feature-request') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::page::external-link::go-to-${linkType}`,
+    },
+  },
+
+  qpus: {
+    guide: {
+      guideClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::guides::button::guides`,
+      guideLinkClick: (guideName: string) =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::guides::link::${guideName}`,
+    },
+    onboarding: {
+      createNotebookClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::button::create_notebook`,
+    },
+    listing: {
+      createNotebooksClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::button::create_notebook`,
+      manageNotebooksDataGridClick: (option: string) =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::datagrid::button::${option}_qpus`,
+      DatagridLinkClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::datagrid::link::details_qpus`,
+      DatagridEditorLinkClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::datagrid::external-link::editor_qpus`,
+    },
+    funnel: {
+      advancedConfigurationClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::funnel::advanced-configuration_notebook`,
+      configureSshKeyClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::funnel::configure_ssh-key`,
+      confirmNotebookClick: () =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::funnel::confirm_notebook`,
+    },
+    popup: {
+      configureSshKeyClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::pop-up::configure_ssh-key::${action}`,
+    },
+    banner: {
+      createNotebookBanner: (type: 'info' | 'error', status: string) =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::banner-${type}::create_notebook::${status}`,
+      configureSshKeyBanner: (type: 'info' | 'error', status: string) =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::banner-${type}::configure_ssh-key::${status}`,
+    },
+    roadmap: {
+      linkClick: (linkType: 'roadmap' | 'changelog' | 'feature-request') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::page::external-link::go-to-${linkType}`,
     },
   },
 };
