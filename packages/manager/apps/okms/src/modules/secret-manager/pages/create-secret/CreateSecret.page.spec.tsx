@@ -10,6 +10,7 @@ import {
 import { waitFor } from '@testing-library/dom';
 import { act, fireEvent, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
+import { describe, expect } from 'vitest';
 
 import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
