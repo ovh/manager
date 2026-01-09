@@ -7,6 +7,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Alpha',
     type: 'VMware',
     vspcTenant: 'tenant-001',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-002',
@@ -14,6 +15,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Bravo',
     type: 'HyperV',
     vspcTenant: 'tenant-001',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-003',
@@ -21,6 +23,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Charlie',
     type: 'Linux',
     vspcTenant: 'tenant-002',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-004',
@@ -28,6 +31,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Delta',
     type: 'Windows',
     vspcTenant: 'tenant-003',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-005',
@@ -35,6 +39,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Echo',
     type: 'VMware',
     vspcTenant: 'tenant-002',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-006',
@@ -42,6 +47,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Foxtrot',
     type: 'HyperV',
     vspcTenant: 'tenant-003',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-007',
@@ -49,6 +55,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Golf',
     type: 'Linux',
     vspcTenant: 'tenant-004',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-008',
@@ -56,6 +63,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Hotel',
     type: 'Windows',
     vspcTenant: 'tenant-004',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-009',
@@ -63,6 +71,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent India',
     type: 'VMware',
     vspcTenant: 'tenant-005',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-010',
@@ -70,6 +79,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Juliett',
     type: 'HyperV',
     vspcTenant: 'tenant-005',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-011',
@@ -77,6 +87,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Kilo',
     type: 'Linux',
     vspcTenant: 'tenant-006',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-012',
@@ -84,6 +95,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Lima',
     type: 'Windows',
     vspcTenant: 'tenant-006',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-013',
@@ -91,6 +103,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Mike',
     type: 'VMware',
     vspcTenant: 'tenant-007',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-014',
@@ -98,6 +111,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent November',
     type: 'HyperV',
     vspcTenant: 'tenant-007',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-015',
@@ -105,6 +119,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Oscar',
     type: 'Linux',
     vspcTenant: 'tenant-008',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-016',
@@ -112,6 +127,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Papa',
     type: 'Windows',
     vspcTenant: 'tenant-008',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-017',
@@ -119,6 +135,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Quebec',
     type: 'VMware',
     vspcTenant: 'tenant-009',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-018',
@@ -126,6 +143,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Romeo',
     type: 'HyperV',
     vspcTenant: 'tenant-009',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-019',
@@ -133,6 +151,7 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Sierra',
     type: 'Linux',
     vspcTenant: 'tenant-010',
+    productResourceName: 'my-resource-name',
   },
   {
     id: 'agent-020',
@@ -140,5 +159,6 @@ export const mockBackupVspcAgents: VSPCBackupAgent[] = [
     name: 'Backup Agent Tango',
     type: 'Windows',
     vspcTenant: 'tenant-010',
+    productResourceName: 'my-resource-name',
   },
 ];
