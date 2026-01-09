@@ -104,3 +104,34 @@ describe('ContactManagement Component', () => {
     });
   });
 });
+
+describe('ContactManagement W3C Validation', () => {
+  const mockServiceInfo = {
+    customer: {
+      contacts: [
+        { type: 'Administrator', nichandle: 'ADMIN123' },
+        { type: 'Technical', nichandle: 'TECH456' },
+        { type: 'Billing', nichandle: 'BILL789' },
+      ],
+    },
+  };
+  const mockNichandleInfo = { nichandle: 'ADMIN123' };
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (useGetServiceInformation as jest.Mock).mockReturnValue({
+      serviceInfo: mockServiceInfo,
+      isServiceInfoLoading: false,
+    });
+    (useNichandleInformation as jest.Mock).mockReturnValue({
+      nichandleInformation: mockNichandleInfo,
+    });
+  });
+
+  it('should have valid html', async () => {
+    const { container } = render(<ContactManagement />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

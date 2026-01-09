@@ -1,4 +1,5 @@
 import '@/common/setupTests';
+import React from 'react';
 import { render, renderHook } from '@/common/utils/test.provider';
 import { vi, expect } from 'vitest';
 import {
@@ -46,13 +47,12 @@ describe('DomainTabDnsWithError', () => {
   });
 
   it('should display the content of DNS datagrid', async () => {
-    const {
-      getByTestId,
-      getAllByTestId,
-      container,
-    } = render(<DnsConfigurationTab domainResource={serviceInfoDetail} />, {
-      wrapper,
-    });
+    const { getByTestId, getAllByTestId, container } = render(
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
+      {
+        wrapper,
+      },
+    );
     expect(getByTestId('datagrid')).toBeInTheDocument();
     expect(getAllByTestId('status').length).toBe(4);
     await expect(container).toBeAccessible({
@@ -145,5 +145,39 @@ describe('DomainTabDns', () => {
         'button-name': { enabled: false },
       },
     });
+  });
+});
+
+describe('DomainTabDnsWithError W3C Validation', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (computeDnsDetails as jest.Mock).mockReturnValue(dnsDatagridMockError);
+  });
+
+  it('should have valid html', async () => {
+    const { container } = render(
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
+      { wrapper },
+    );
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});
+
+describe('DomainTabDns W3C Validation', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (computeDnsDetails as jest.Mock).mockReturnValue(dnsDatagridMock);
+  });
+
+  it('should have valid html', async () => {
+    const { container } = render(
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
+      { wrapper },
+    );
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
   });
 });
