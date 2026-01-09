@@ -22,10 +22,6 @@ describe('Translation files', () => {
       .filter(({ content }) => content.includes('&lt;'))
       .map(({ file }) => file.replace(`${TRANSLATIONS_PATH}/`, ''));
 
-    expect(issues, `Files containing "&lt;": ${issues.join(', ')}`).toEqual([
-      'order-funnel/Messages_en_GB.json',
-      'storages/s3/dashboard/Messages_en_GB.json',
-      'storages/s3/objects/Messages_en_GB.json',
-    ]);
+    expect(issues, `Files containing "&lt;": ${issues.join(', ')}`).toEqual([]);
   });
 });
