@@ -14,12 +14,15 @@ import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useStopNotebook } from '@/data/hooks/ai/notebook/useStopNotebook.hook';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface StopNotebookProps {
   notebook: ai.notebook.Notebook;
   onSuccess?: () => void;
   onError?: (notebook: Error) => void;
   onClose?: () => void;
+  trackingCategory?: string;
 }
 
 const StopNotebook = ({
@@ -27,12 +30,14 @@ const StopNotebook = ({
   onError,
   onSuccess,
   onClose,
+  trackingCategory,
 }: StopNotebookProps) => {
   const { projectId } = useParams();
 
   const { t } = useTranslation('ai-tools/notebooks/notebook');
   const toast = useToast();
   const { mode } = useQuantum();
+  const track = useTrackAction();
 
   const { stopNotebook, isPending } = useStopNotebook({
     onError: (err) => {
@@ -59,6 +64,14 @@ const StopNotebook = ({
   });
 
   const handleStop = () => {
+    if (mode === 'emulators') {
+      track(
+        TRACKING.emulators.popup.stopNotebookClick('confirm'),
+        trackingCategory,
+      );
+    } else if (mode === 'qpu') {
+      track(TRACKING.qpus.popup.stopNotebookClick('confirm'), trackingCategory);
+    }
     stopNotebook({
       projectId,
       notebookId: notebook.id,
@@ -123,6 +136,19 @@ const StopNotebook = ({
               data-testid="stop-notebook-cancel-button"
               type="button"
               mode="outline"
+              onClick={() => {
+                if (mode === 'emulators') {
+                  track(
+                    TRACKING.emulators.popup.stopNotebookClick('cancel'),
+                    trackingCategory,
+                  );
+                } else if (mode === 'qpu') {
+                  track(
+                    TRACKING.qpus.popup.stopNotebookClick('cancel'),
+                    trackingCategory,
+                  );
+                }
+              }}
             >
               {t('notebookButtonCancel')}
             </Button>

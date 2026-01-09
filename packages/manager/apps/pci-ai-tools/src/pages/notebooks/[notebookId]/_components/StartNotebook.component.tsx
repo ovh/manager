@@ -13,12 +13,16 @@ import ai from '@/types/AI';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useStartNotebook } from '@/data/hooks/ai/notebook/useStartNotebook.hook';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 interface StartNotebookProps {
   notebook: ai.notebook.Notebook;
   onSuccess?: () => void;
   onError?: (notebook: Error) => void;
   onClose?: () => void;
+  trackingCategory?: string;
 }
 
 const StartNotebook = ({
@@ -26,11 +30,14 @@ const StartNotebook = ({
   onError,
   onSuccess,
   onClose,
+  trackingCategory,
 }: StartNotebookProps) => {
   const { projectId } = useParams();
 
   const { t } = useTranslation('ai-tools/notebooks/notebook');
   const toast = useToast();
+  const track = useTrackAction();
+  const { mode } = useQuantum();
 
   const { startNotebook, isPending } = useStartNotebook({
     onError: (err) => {
@@ -57,6 +64,17 @@ const StartNotebook = ({
   });
 
   const handleStart = () => {
+    if (mode === 'emulators') {
+      track(
+        TRACKING.emulators.popup.startNotebookClick('confirm'),
+        trackingCategory,
+      );
+    } else if (mode === 'qpu') {
+      track(
+        TRACKING.qpus.popup.startNotebookClick('confirm'),
+        trackingCategory,
+      );
+    }
     startNotebook({
       projectId,
       notebookId: notebook.id,
@@ -82,6 +100,19 @@ const StartNotebook = ({
               data-testid="start-notebook-cancel-button"
               type="button"
               mode="outline"
+              onClick={() => {
+                if (mode === 'emulators') {
+                  track(
+                    TRACKING.emulators.popup.startNotebookClick('cancel'),
+                    trackingCategory,
+                  );
+                } else if (mode === 'qpu') {
+                  track(
+                    TRACKING.qpus.popup.startNotebookClick('cancel'),
+                    trackingCategory,
+                  );
+                }
+              }}
             >
               {t('notebookButtonCancel')}
             </Button>

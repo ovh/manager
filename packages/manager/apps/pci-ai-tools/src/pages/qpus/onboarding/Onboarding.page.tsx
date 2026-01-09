@@ -2,9 +2,12 @@ import { Button } from '@datatr-ux/uxlib';
 import Link from '@/components/links/Link.component';
 import onboardingQuantumImgSrc from '@/../public/assets/quantum-notebooks-qpu.png';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 const Onboarding = () => {
   const { t } = useQuantum('ai-tools/qpu/onboarding');
+  const track = useTrackAction();
 
   return (
     <div
@@ -18,6 +21,9 @@ const Onboarding = () => {
       <p>{t('Description3')}</p>
       <Button data-testid="create-notebook-link" asChild>
         <Link
+          onClick={() => {
+            track(TRACKING.qpus.onboarding.createNotebookClick(), 'onboarding');
+          }}
           to="../new"
           className="hover:no-underline hover:text-primary-foreground"
         >
