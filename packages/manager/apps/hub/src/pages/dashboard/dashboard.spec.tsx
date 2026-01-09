@@ -4,14 +4,24 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { OdsSelectValueChangeEventDetail, OsdsSelect } from '@ovhcloud/ods-components';
+import {
+  OdsSelectValueChangeEventDetail,
+  OsdsSelect,
+} from '@ovhcloud/ods-components';
 
 import { User } from '@ovh-ux/manager-config';
 import * as ReactComponentsModule from '@ovh-ux/manager-react-components';
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
-import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 
-import { FourServices, NoServices, TwoServices } from '@/__mocks__/billingServices';
+import {
+  FourServices,
+  NoServices,
+  TwoServices,
+} from '@/__mocks__/billingServices';
 import { catalogData } from '@/__mocks__/catalog';
 import * as UseBillingServicesHook from '@/data/hooks/billingServices/useBillingServices';
 import * as UseBillsHook from '@/data/hooks/bills/useBills';
@@ -137,7 +147,10 @@ const mocks: any = vi.hoisted(() => ({
       },
       navigation: {
         getURL: vi.fn(
-          () => new Promise((resolve) => setTimeout(() => resolve('https://fake-link.com'), 50)),
+          () =>
+            new Promise((resolve) =>
+              setTimeout(() => resolve('https://fake-link.com'), 50),
+            ),
         ),
       },
       tracking: {
@@ -154,7 +167,9 @@ const mocks: any = vi.hoisted(() => ({
 const renderComponent = (component: ReactNode) => {
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider value={mocks.shellContext as unknown as ShellContextType}>
+      <ShellContext.Provider
+        value={(mocks.shellContext as unknown) as ShellContextType}
+      >
         {component}
       </ShellContext.Provider>
     </QueryClientProvider>,
@@ -193,9 +208,12 @@ vi.mock('@/billing/components/billing-status/BillingStatus.component', () => ({
   default: () => <div>Billing Status</div>,
 }));
 
-vi.mock('@/billing/components/services-actions/ServicesActions.component', () => ({
-  default: () => <div>Service Actions</div>,
-}));
+vi.mock(
+  '@/billing/components/services-actions/ServicesActions.component',
+  () => ({
+    default: () => <div>Service Actions</div>,
+  }),
+);
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof reactShellClientModule = await importOriginal();
@@ -309,8 +327,12 @@ describe('Layout.page', () => {
   it('should render skeletons while loading', async () => {
     const { findByTestId } = renderComponent(<Layout />);
 
-    const tileGridTitleSkeleton = await findByTestId('tile_grid_title_skeleton');
-    const tileGridContentSkeleton = await findByTestId('tile_grid_content_skeletons');
+    const tileGridTitleSkeleton = await findByTestId(
+      'tile_grid_title_skeleton',
+    );
+    const tileGridContentSkeleton = await findByTestId(
+      'tile_grid_content_skeletons',
+    );
     expect(tileGridTitleSkeleton).not.toBeNull();
     expect(tileGridContentSkeleton).not.toBeNull();
   });
@@ -318,7 +340,12 @@ describe('Layout.page', () => {
   it('should render correct components for "fresh" customers', async () => {
     mocks.isLastOrderLoading = false;
     mocks.hubContext.isLoading = false;
-    const { queryByText, findByText, findByTestId, queryByTestId } = renderComponent(<Layout />);
+    const {
+      queryByText,
+      findByText,
+      findByTestId,
+      queryByTestId,
+    } = renderComponent(<Layout />);
 
     const welcome = await findByText('Welcome');
 
@@ -343,7 +370,8 @@ describe('Layout.page', () => {
       expirationDate: '2024-09-05T23:29:59+02:00',
       orderId: 99999999999,
       password: 'fakepassword',
-      pdfUrl: 'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
+      pdfUrl:
+        'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
       priceWithTax: {
         currencyCode: 'points',
         text: '0 PTS',
@@ -360,12 +388,17 @@ describe('Layout.page', () => {
         text: '0 PTS',
         value: 0,
       },
-      url: 'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
+      url:
+        'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
     };
     mocks.hubContext.isFreshCustomer = false;
-    const { getByText, getByTestId, findByText, findByTestId, queryByTestId } = renderComponent(
-      <Layout />,
-    );
+    const {
+      getByText,
+      getByTestId,
+      findByText,
+      findByTestId,
+      queryByTestId,
+    } = renderComponent(<Layout />);
 
     const welcome = await findByText('Welcome');
     const products = await findByText('Products');
@@ -413,7 +446,9 @@ describe('Layout.page', () => {
     mocks.shellContext.environment.user.enterprise = true;
     const { findByTestId } = renderComponent(<Layout />);
 
-    const enterpriseBillingSummary = await findByTestId('enterprise_billing_summary');
+    const enterpriseBillingSummary = await findByTestId(
+      'enterprise_billing_summary',
+    );
     expect(enterpriseBillingSummary).not.toBeNull();
   });
 
@@ -436,7 +471,9 @@ describe('Layout.page', () => {
 
     it('should display correct wording when customer has no bills', async () => {
       mocks.bills.isLoading = false;
-      const { findByTestId, getByText, getByTestId } = renderComponent(<BillingSummary />);
+      const { findByTestId, getByText, getByTestId } = renderComponent(
+        <BillingSummary />,
+      );
 
       expect(getByText('hub_billing_summary_debt_no_bills')).not.toBeNull();
       expect(getByTestId('bills_link_skeleton')).not.toBeNull();
@@ -447,7 +484,9 @@ describe('Layout.page', () => {
     it('should display correct wording when customer has bills but no debt', async () => {
       mocks.bills.data.total = 15034.94;
       const expectedAmount = '15\u202f034';
-      const { getByText, getByTestId, getAllByTestId } = renderComponent(<BillingSummary />);
+      const { getByText, getByTestId, getAllByTestId } = renderComponent(
+        <BillingSummary />,
+      );
 
       const amount = getAllByTestId('bills_amount_container');
       expect(amount.length).toBe(1);
@@ -465,7 +504,9 @@ describe('Layout.page', () => {
 
     it('should update bills amount when period is changed', async () => {
       const { getByTestId } = renderComponent(<BillingSummary />);
-      const periodSelector = getByTestId('bills_period_selector') as unknown as OsdsSelect;
+      const periodSelector = (getByTestId(
+        'bills_period_selector',
+      ) as unknown) as OsdsSelect;
       const useFetchHubBillsSpy = vi.spyOn(UseBillsHook, 'useFetchHubBills');
 
       await act(() =>
@@ -522,7 +563,9 @@ describe('Layout.page', () => {
 
       expect(getByTestId('enterprise_billing_summary')).not.toBeNull();
       expect(getByTestId('enterprise_billing_summary_title')).not.toBeNull();
-      expect(getByTestId('enterprise_billing_summary_description')).not.toBeNull();
+      expect(
+        getByTestId('enterprise_billing_summary_description'),
+      ).not.toBeNull();
       const link = getByTestId('enterprise_billing_summary_link');
       expect(link).not.toBeNull();
 
@@ -552,11 +595,15 @@ describe('Layout.page', () => {
     it('should render table with skeletons while loading', async () => {
       mocks.hubContext.isLoading = true;
       mocks.hubContext.availability['billing:management'] = true;
-      const { getAllByTestId, getByTestId } = renderComponent(<PaymentStatus />);
+      const { getAllByTestId, getByTestId } = renderComponent(
+        <PaymentStatus />,
+      );
 
       expect(getByTestId('my_services_link_skeleton')).not.toBeNull();
       expect(getByTestId('payment_status_skeleton_table')).not.toBeNull();
-      expect(getAllByTestId('payment_status_skeleton_table_row').length).toBe(4);
+      expect(getAllByTestId('payment_status_skeleton_table_row').length).toBe(
+        4,
+      );
     });
 
     it('should render error if loading is done and no data has been retrieved', async () => {
@@ -572,14 +619,20 @@ describe('Layout.page', () => {
       useBillingServicesMockValue.data = NoServices;
       const { getByText } = renderComponent(<PaymentStatus />);
 
-      expect(getByText('ovh_manager_hub_payment_status_tile_no_services')).not.toBeNull();
+      expect(
+        getByText('ovh_manager_hub_payment_status_tile_no_services'),
+      ).not.toBeNull();
     });
 
     it('should render the correct number of services', async () => {
       useBillingServicesMockValue.data = TwoServices;
-      const { findAllByText, getAllByTestId, getByTestId } = renderComponent(<PaymentStatus />);
+      const { findAllByText, getAllByTestId, getByTestId } = renderComponent(
+        <PaymentStatus />,
+      );
 
-      expect(getByTestId('payment_status_badge').innerHTML.includes('2')).toBe(true);
+      expect(getByTestId('payment_status_badge').innerHTML.includes('2')).toBe(
+        true,
+      );
       const servicesLine = getAllByTestId('billing_service');
       expect(servicesLine.length).toBe(2);
       expect(getAllByTestId('billing_status_skeleton').length).toBe(2);
@@ -624,7 +677,9 @@ describe('Layout.page', () => {
 
     it('should display the correct information for service in manual renew without debt and not resiliated', async () => {
       const { getByTestId, getByText } = renderComponent(<PaymentStatus />);
-      const serviceLink = getByText('serviceWithManualRenewNotResiliatedWithoutDebt');
+      const serviceLink = getByText(
+        'serviceWithManualRenewNotResiliatedWithoutDebt',
+      );
       expect(serviceLink).not.toBeNull();
       expect(serviceLink).toHaveAttribute(
         'href',
@@ -652,12 +707,16 @@ describe('Layout.page', () => {
         'serviceWithoutUrlAndSuspendedBilling',
       );
       expect(serviceWithoutUrlAndSuspendedBillingLink).not.toBeNull();
-      expect(serviceWithoutUrlAndSuspendedBillingLink).not.toHaveAttribute('href');
+      expect(serviceWithoutUrlAndSuspendedBillingLink).not.toHaveAttribute(
+        'href',
+      );
     });
 
     it('should track service access', async () => {
       const { getByText } = renderComponent(<PaymentStatus />);
-      const service = getByText('serviceWithManualRenewNotResiliatedWithoutDebt');
+      const service = getByText(
+        'serviceWithManualRenewNotResiliatedWithoutDebt',
+      );
       expect(service).not.toBeNull();
       await act(() => fireEvent.click(service));
 
@@ -676,8 +735,14 @@ describe('Layout.page', () => {
 
     describe('With billing management', () => {
       it('should render "see all" link', async () => {
-        const { findAllByText, findByTestId } = renderComponent(<PaymentStatus />);
-
+        const { findAllByText, findByTestId } = renderComponent(
+          <PaymentStatus />,
+        );
+        console.log(
+          `-----------------------------------------------------${JSON.stringify(
+            mocks.hubContext.availability,
+          )}`,
+        );
         const myServiceLink = await findByTestId('my_services_link');
         expect(myServiceLink).not.toBeNull();
 
@@ -696,8 +761,12 @@ describe('Layout.page', () => {
     describe('Without billing management', () => {
       it('should not render "see all" link', async () => {
         mocks.hubContext.availability['billing:management'] = false;
-        const { queryAllByTestId, queryByTestId } = renderComponent(<PaymentStatus />);
-        expect(queryByTestId('my_services_link_skeleton')).not.toBeInTheDocument();
+        const { queryAllByTestId, queryByTestId } = renderComponent(
+          <PaymentStatus />,
+        );
+        expect(
+          queryByTestId('my_services_link_skeleton'),
+        ).not.toBeInTheDocument();
         expect(queryAllByTestId('services_actions_skeleton').length).toBe(0);
       });
 
@@ -819,7 +888,9 @@ describe('Layout.page', () => {
       const { findByTestId, getByTestId } = renderComponent(<KycFraudBanner />);
       expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
 
-      expect(mocks.shellContext.shell.tracking.trackImpression).toHaveBeenCalledWith({
+      expect(
+        mocks.shellContext.shell.tracking.trackImpression,
+      ).toHaveBeenCalledWith({
         campaignId: 'kyc-fraud',
         creation: 'notification',
         format: 'banner',
@@ -831,7 +902,9 @@ describe('Layout.page', () => {
 
       await act(() => fireEvent.click(link));
 
-      expect(mocks.shellContext.shell.tracking.trackClickImpression).toHaveBeenCalledWith({
+      expect(
+        mocks.shellContext.shell.tracking.trackClickImpression,
+      ).toHaveBeenCalledWith({
         click: {
           campaignId: 'kyc-fraud',
           creation: 'notification',
@@ -849,7 +922,9 @@ describe('Layout.page', () => {
       const { getByTestId } = renderComponent(<KycFraudBanner />);
       expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
 
-      expect(mocks.shellContext.shell.tracking.trackImpression).toHaveBeenCalledWith({
+      expect(
+        mocks.shellContext.shell.tracking.trackImpression,
+      ).toHaveBeenCalledWith({
         campaignId: 'kyc-fraud',
         creation: 'notification',
         format: 'banner',
@@ -874,7 +949,9 @@ describe('Layout.page', () => {
 
   describe('NotificationsCarousel component', () => {
     it('should render a single notification without "navigation"', async () => {
-      const { getByTestId, queryByTestId } = renderComponent(<NotificationsCarousel />);
+      const { getByTestId, queryByTestId } = renderComponent(
+        <NotificationsCarousel />,
+      );
 
       expect(getByTestId('notification_content')).not.toBeNull();
       expect(queryByTestId('next-notification-button')).not.toBeInTheDocument();
@@ -891,9 +968,13 @@ describe('Layout.page', () => {
 
   describe('NotificationsEmailUnreachable component', () => {
     it('should render NotificationsEmailUnreachable component', async () => {
-      const { findByTestId } = renderComponent(<NotificationsEmailUnreachable />);
+      const { findByTestId } = renderComponent(
+        <NotificationsEmailUnreachable />,
+      );
 
-      expect(await findByTestId('email_unreachable_notifications')).not.toBeNull();
+      expect(
+        await findByTestId('email_unreachable_notifications'),
+      ).not.toBeNull();
     });
 
     it('should have a valid html', () => {
@@ -916,8 +997,12 @@ describe('Layout.page', () => {
     it('should display skeletons', async () => {
       const { findByTestId } = renderComponent(<Catalog />);
 
-      const tileGridTitleSkeleton = await findByTestId('tile_grid_title_skeleton');
-      const tileGridContentSkeleton = await findByTestId('tile_grid_content_skeletons');
+      const tileGridTitleSkeleton = await findByTestId(
+        'tile_grid_title_skeleton',
+      );
+      const tileGridContentSkeleton = await findByTestId(
+        'tile_grid_content_skeletons',
+      );
       expect(tileGridTitleSkeleton).not.toBeNull();
       expect(tileGridContentSkeleton).not.toBeNull();
     });
@@ -925,8 +1010,12 @@ describe('Layout.page', () => {
     it('should display skeletons', async () => {
       const { findByTestId } = renderComponent(<Catalog />);
 
-      const tileGridTitleSkeleton = await findByTestId('tile_grid_title_skeleton');
-      const tileGridContentSkeleton = await findByTestId('tile_grid_content_skeletons');
+      const tileGridTitleSkeleton = await findByTestId(
+        'tile_grid_title_skeleton',
+      );
+      const tileGridContentSkeleton = await findByTestId(
+        'tile_grid_content_skeletons',
+      );
       expect(tileGridTitleSkeleton).not.toBeNull();
       expect(tileGridContentSkeleton).not.toBeNull();
     });
