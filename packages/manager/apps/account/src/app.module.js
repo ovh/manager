@@ -12,9 +12,7 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import Account from '@ovh-ux/manager-account';
-import config, {
-  getConstants,
-} from '@ovh-ux/manager-account/src/config/config';
+import { getConstants } from '@ovh-ux/manager-account/src/config/config';
 import dedicatedUniverseComponents from '@ovh-ux/manager-account/src/dedicatedUniverseComponents';
 
 import errorPage from './error';
@@ -141,25 +139,8 @@ export default async (containerEl, shellClient) => {
     )
     .constant('shellClient', shellClient)
     .constant('constants', {
-      prodMode: config.prodMode,
-      swsProxyRootPath: config.swsProxyRootPath,
-      aapiRootPath: config.aapiRootPath,
-      target: config.target,
-      renew: configConstants.RENEW_URL,
       urls: configConstants.URLS,
-      UNIVERS: configConstants.UNIVERS,
-      TOP_GUIDES: configConstants.TOP_GUIDES,
-      vmsUrl: configConstants.vmsUrl,
-      statusUrl: configConstants.statusUrl,
-      aapiHeaderName: 'X-Ovh-Session',
-      vrackUrl: configConstants.vrackUrl,
-      REDIRECT_URLS: configConstants.REDIRECT_URLS,
-      DEFAULT_LANGUAGE: configConstants.DEFAULT_LANGUAGE,
-      FALLBACK_LANGUAGE: configConstants.FALLBACK_LANGUAGE,
-      SUPPORT: configConstants.SUPPORT,
-      SECTIONS_UNIVERSE_MAP: configConstants.SECTIONS_UNIVERSE_MAP,
     })
-    .constant('website_url', configConstants.website_url)
     .config(
       /* @ngInject */ ($locationProvider) => $locationProvider.hashPrefix(''),
     )
