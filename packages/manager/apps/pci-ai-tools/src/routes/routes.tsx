@@ -2,6 +2,33 @@ import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import NotFound from '../pages/404.page';
 import ErrorBoundary from '@/components/error-boundary/ErrorBoundary.component';
 
+const getOnboardingTracking = (params?: { quantum?: string }) => ({
+  id: params?.quantum
+    ? 'quantum.emulators.emulators.onboarding'
+    : 'ai_notebooks.onboarding',
+  category: 'onboarding',
+});
+
+const getNotebooksListingTracking = (params?: { quantum?: string }) => ({
+  id: params?.quantum
+    ? 'quantum.emulators.emulators.listing'
+    : 'ai_notebooks.listing',
+  category: 'listing',
+});
+
+const getNotebooksCreateTracking = (params?: { quantum?: string }) => ({
+  id: params?.quantum
+    ? 'quantum.emulators.funnel.create_notebook'
+    : 'ai_notebooks.funnel.create_ai_notebook',
+  category: 'funnel',
+});
+const getNotebooksAddSshKeyTracking = (params?: { quantum?: string }) => ({
+  id: params?.quantum
+    ? 'emulators.emulators.popup.configure_ssh-key'
+    : 'ai_notebooks.funnel.popup.add-sshkey',
+  category: 'funnel',
+});
+
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
     lazy: async () => {
@@ -301,10 +328,7 @@ export default [
                 path: '',
                 id: 'notebooks',
                 handle: {
-                  tracking: {
-                    id: 'ai_notebooks.listing',
-                    category: 'listing',
-                  },
+                  tracking: getNotebooksListingTracking,
                 },
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/Notebooks.page'),
@@ -355,10 +379,7 @@ export default [
                 path: 'onboarding',
                 id: 'onboarding-notebooks',
                 handle: {
-                  tracking: {
-                    id: 'ai_notebooks.onboarding',
-                    category: 'onboarding',
-                  },
+                  tracking: getOnboardingTracking,
                 },
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/onboarding/Onboarding.page'),
@@ -371,10 +392,7 @@ export default [
                   import('@/pages/notebooks/create/Create.page'),
                 ),
                 handle: {
-                  tracking: {
-                    id: 'ai_notebooks.funnel.create_ai_notebooks',
-                    category: 'funnel',
-                  },
+                  tracking: getNotebooksCreateTracking,
                   breadcrumb: () => (
                     <BreadcrumbItem
                       translationKey="breadcrumb"
@@ -387,10 +405,7 @@ export default [
                     path: 'add-sshkey',
                     id: 'notebooks.create.add-sshkey',
                     handle: {
-                      tracking: {
-                        id: 'ai_notebooks.funnel.popup.add-sshkey',
-                        category: 'funnel',
-                      },
+                      tracking: getNotebooksAddSshKeyTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/_components/AddSSHKey.modal'),
@@ -1123,6 +1138,12 @@ export default [
               {
                 path: '',
                 id: 'qpu',
+                handle: {
+                  tracking: {
+                    id: 'quantum.qpus.qpus.listing',
+                    category: 'listing',
+                  },
+                },
                 ...lazyRouteConfig(() => import('@/pages/qpus/Qpu.page')),
                 children: [
                   {
@@ -1170,6 +1191,12 @@ export default [
               {
                 path: 'onboarding',
                 id: 'onboarding-qpu',
+                handle: {
+                  tracking: {
+                    id: 'quantum.qpus.qpus.onboarding',
+                    category: 'onboarding',
+                  },
+                },
                 ...lazyRouteConfig(() =>
                   import('@/pages/qpus/onboarding/Onboarding.page'),
                 ),
@@ -1183,7 +1210,7 @@ export default [
                 ),
                 handle: {
                   tracking: {
-                    id: 'qpu.funnel.create_qpu',
+                    id: 'quantum.qpus.funnel.create_notebook',
                     category: 'funnel',
                   },
                   breadcrumb: () => (
@@ -1199,7 +1226,7 @@ export default [
                     id: 'qpu.create.add-sshkey',
                     handle: {
                       tracking: {
-                        id: 'qpu.funnel.popup.add-sshkey',
+                        id: 'qpus.qpus.popup.configure_ssh-key',
                         category: 'funnel',
                       },
                     },

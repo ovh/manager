@@ -40,7 +40,9 @@ const Onboarding = () => {
         <Link
           onClick={() => {
             track(
-              TRACKING.notebooks.onboarding.createNotebookClick(),
+              isQuantum
+                ? TRACKING.emulators.onboarding.createNotebookClick()
+                : TRACKING.notebooks.onboarding.createNotebookClick(),
               'onboarding',
             );
           }}

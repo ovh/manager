@@ -112,6 +112,7 @@ const Notebooks = () => {
           />
           <Guides
             category={isQuantum ? 'quantum' : 'ai'}
+            page={isQuantum ? 'emulators' : 'notebooks'}
             section={notebookGuidesSections}
           />
         </div>

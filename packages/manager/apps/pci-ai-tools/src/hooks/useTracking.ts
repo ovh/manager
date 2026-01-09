@@ -5,9 +5,11 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import {
   APP_TRACKING_PREFIX,
+  QUANTUM_APP_TRACKING_PREFIX,
   PCI_LEVEL2,
 } from '@/configuration/tracking.constants';
 import { PlanCode } from '@/configuration/project';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 // Set the project mode, needed to track discovery actions
 export function useProjectModeTracking() {
@@ -65,6 +67,7 @@ export function useTrackPageAuto() {
   const matches = useMatches();
   const location = useLocation();
   const params = useParams();
+  const { isQuantum, isQpu } = useQuantum();
   // Last match is the current route, we need it
   // to get the tracking key associated with the route
   const match = matches[matches.length - 1];
@@ -72,12 +75,23 @@ export function useTrackPageAuto() {
 
   useEffect(() => {
     if (hasTrackedRef.current) return;
-    const prefix = APP_TRACKING_PREFIX;
+    const prefix =
+      isQuantum || isQpu ? QUANTUM_APP_TRACKING_PREFIX : APP_TRACKING_PREFIX;
     const { tracking } = match.handle as {
-      tracking?: { id: string; category?: string };
+      tracking?:
+        | { id: string; category?: string }
+        | ((params: {
+            [key: string]: string | undefined;
+          }) => {
+            id: string;
+            category?: string;
+          });
     };
+    const resolvedTracking =
+      typeof tracking === 'function' ? tracking(params) : tracking;
     const { id } = match;
-    const suffix = tracking?.id || id || location.pathname.split('/').pop();
+    const suffix =
+      resolvedTracking?.id || id || location.pathname.split('/').pop();
     let injectedTrackingKey = `${prefix}::${suffix}`;
 
     // replace . by ::
@@ -86,7 +100,7 @@ export function useTrackPageAuto() {
       page_theme: 'PublicCloud',
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
-      page_category: tracking?.category || undefined,
+      page_category: resolvedTracking?.category || undefined,
     });
     hasTrackedRef.current = true;
   }, [location.pathname, params.serviceId]);
