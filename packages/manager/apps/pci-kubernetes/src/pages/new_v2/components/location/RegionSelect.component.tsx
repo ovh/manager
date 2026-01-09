@@ -10,100 +10,20 @@ import { isCountryCode } from '@/helpers/location';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
 
-const MOCK_regions = [
-  {
-    id: 'GRA-A',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: true,
-  },
-  {
-    id: 'GRA-B',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-C',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: [],
-    disabled: true,
-  },
-  {
-    id: 'GRA-D',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['standard'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-E',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-F',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-G',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-H',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'UK',
-    title: 'Londres',
-    datacenter: 'UK',
-    country: 'uk',
-    microRegions: ['UK1'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-J',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-];
+type TRegionSelectProps = {
+  // TODO (this PR) : mock format, will be updated or removed
+  regions: Array<{
+    id: string;
+    title: string;
+    datacenter: string;
+    country: string;
+    microRegions: string[];
+    plans: string[];
+    disabled: boolean;
+  }>;
+};
 
-export const RegionSelect = () => {
+export const RegionSelect = ({ regions }: TRegionSelectProps) => {
   const { t } = useTranslation('add');
 
   const [macroRegionField, microRegionField] = useWatch<TCreateClusterSchema>({
@@ -112,7 +32,7 @@ export const RegionSelect = () => {
   const { control, setValue } = useFormContext<TCreateClusterSchema>();
 
   const handleSelectMacroRegion = (macroRegionId: string | null) => {
-    const macroRegion = MOCK_regions.find(({ id }) => id === macroRegionId);
+    const macroRegion = regions.find(({ id }) => id === macroRegionId);
     const firstMicroRegion = macroRegion?.microRegions.at(0);
 
     if (!macroRegion || !firstMicroRegion) return;
@@ -123,17 +43,17 @@ export const RegionSelect = () => {
 
   // Default Value Handler
   useEffect(() => {
-    const firstMacroRegion = MOCK_regions.find((region) => !region.disabled);
+    const firstMacroRegion = regions.find((region) => !region.disabled);
     const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
     if (macroRegionField || microRegionField || !firstMacroRegion || !firstMicroRegion) return;
 
     setValue('macroRegion', firstMacroRegion.id);
     setValue('microRegion', firstMicroRegion);
-  }, [macroRegionField, microRegionField, setValue]);
+  }, [macroRegionField, microRegionField, regions, setValue]);
 
   const regionOptions = useMemo(
     () =>
-      MOCK_regions.map((region) => ({
+      regions.map((region) => ({
         ...region,
         country: isCountryCode(region.country) ? region.country : null,
         datacenterDetails: region.microRegions.length > 1 ? region.id : region.microRegions.at(0),
@@ -141,7 +61,7 @@ export const RegionSelect = () => {
           plan === 'free' ? t('kube_add_plan_title_free') : t('kube_add_plan_title_standard'),
         ),
       })),
-    [t],
+    [regions, t],
   );
 
   return (

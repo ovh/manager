@@ -14,6 +14,7 @@ import {
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
 
+// TODO (this PR) : Put this in a view model
 const selectPlansMock = (): Array<{
   labelKey: string;
   plan: TCreateClusterSchema['plan'];
