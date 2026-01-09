@@ -5,6 +5,7 @@ import {
   screen,
   fireEvent,
 } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
 import {
@@ -14,7 +15,6 @@ import {
 import { i18n } from 'i18next';
 import { SetupServer } from 'msw/node';
 import {
-  initTestI18n,
   WAIT_FOR_DEFAULT_OPTIONS,
   getAuthenticationMocks,
   toMswHandlers,
@@ -27,7 +27,7 @@ import {
   NetworkConfigParams,
   getNetworkConfig,
 } from '@ovh-ux/manager-network-common';
-import { translations, labels } from './test-i18n';
+import { translations, labels, initTestI18n } from './test-i18n';
 import { GetIamMocksParams, getIamMocks } from '../__mocks__/iam';
 import { RenderTest } from './render-test';
 
@@ -45,7 +45,7 @@ export const renderTest = async ({
   initialRoute?: string;
 } & GetServicesMocksParams &
   GetIamMocksParams &
-  NetworkConfigParams = {}) => {
+  NetworkConfigParams = {}): Promise<RenderResult> => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),

@@ -88,6 +88,8 @@ const mockState: CustomStateSet = {
 
 if (!HTMLElement.prototype.attachInternals) {
   console.log('🔧 attachInternals polyfill used');
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   HTMLElement.prototype.attachInternals = () => ({
     labels: mockLabels,
     validity: mockValidity,
@@ -144,6 +146,14 @@ if (!HTMLElement.prototype.attachInternals) {
     reportValidity: vi.fn(),
     setValidity: vi.fn(),
     validationMessage: null,
+    ariaActiveDescendantElement: null,
+    ariaControlsElements: [],
+    ariaDescribedByElements: [],
+    ariaDetailsElements: [],
+    ariaErrorMessageElements: [],
+    ariaFlowToElements: [],
+    ariaLabelledByElements: [],
+    ariaOwnsElements: []
   });
 }
 
