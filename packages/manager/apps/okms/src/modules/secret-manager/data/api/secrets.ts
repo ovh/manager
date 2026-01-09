@@ -36,13 +36,15 @@ export const getSecretWithData = async (
 };
 
 // POST Secret
+
+export type createSecretMetadata = Partial<
+  Pick<SecretMetadata, 'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'>
+>;
+
 export type CreateSecretBody = {
   path: string;
-  metadata?: Pick<
-    SecretMetadata,
-    'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'
-  >;
   version: SecretVersionDataField;
+  metadata?: createSecretMetadata;
 };
 export type CreateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
 

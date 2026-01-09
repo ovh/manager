@@ -1,3 +1,5 @@
+import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
+import { Secret } from '@secret-manager/types/secret.type';
 import {
   MAX_VERSIONS_MAX_VALUE,
   MAX_VERSIONS_MIN_VALUE,
@@ -5,22 +7,24 @@ import {
 import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsQuantity, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsQuantity, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type FormFieldInput = {
-  maxVersions: number;
+  maxVersions?: number;
 };
 
 type SecretMaxVersionsFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
-  defaultMaxVersions: number;
+  secret?: Secret;
+  okmsId?: string;
 };
 
 export const SecretMaxVersionsFormField = <T extends FormFieldInput>({
   name,
   control,
-  defaultMaxVersions,
+  secret,
+  okmsId,
 }: SecretMaxVersionsFormFieldProps<T>) => {
   const { t } = useTranslation('secret-manager');
   const { field, fieldState } = useController({ name, control });
@@ -33,7 +37,7 @@ export const SecretMaxVersionsFormField = <T extends FormFieldInput>({
       <OdsQuantity
         id={field.name}
         name={field.name}
-        value={Number(field.value)}
+        value={Number(field.value ?? 0)}
         onOdsBlur={field.onBlur}
         onOdsChange={field.onChange}
         data-testid={SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS}
@@ -41,9 +45,29 @@ export const SecretMaxVersionsFormField = <T extends FormFieldInput>({
         max={MAX_VERSIONS_MAX_VALUE}
         className="justify-start"
       />
-      <OdsText slot="helper" preset="caption">
-        {t('form_helper_max_versions', { default: defaultMaxVersions })}
-      </OdsText>
+      {okmsId ? <FormHelper secret={secret} okmsId={okmsId} /> : null}
     </OdsFormField>
   );
+};
+
+const FormHelper = ({ secret, okmsId }: { secret?: Secret; okmsId: string }) => {
+  const { t } = useTranslation(['secret-manager']);
+
+  const { secretConfig, isPending, error } = useSecretSmartConfig({ secret, okmsId });
+
+  if (isPending) return <OdsSkeleton />;
+
+  if (error) return null;
+
+  if (secretConfig.maxVersions) {
+    return (
+      <OdsText slot="helper" preset="caption">
+        {secretConfig.maxVersions.origin === 'DEFAULT'
+          ? t('form_helper_max_versions_default', { value: secretConfig.maxVersions.value })
+          : t('form_helper_max_versions_domain', { value: secretConfig.maxVersions.value })}
+      </OdsText>
+    );
+  }
+
+  return null;
 };

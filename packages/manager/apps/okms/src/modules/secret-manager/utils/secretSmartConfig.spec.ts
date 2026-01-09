@@ -56,7 +56,7 @@ describe('getSecretSmartConfig', () => {
         const secret = createMockSecret(secretOverrides);
         const secretConfigOkms = createMockSecretConfig(domainOverrides);
 
-        const result = buildSecretSmartConfig(secret, secretConfigOkms, mockSecretConfigReference);
+        const result = buildSecretSmartConfig(secretConfigOkms, mockSecretConfigReference, secret);
 
         expect(result[testedProperty].value).toBe(expectedValue);
         expect(result[testedProperty].origin).toBe(expectedOrigin);
