@@ -11,5 +11,9 @@
   "tableActionManage": "Gestionar",
   "tableActionRestart": "Reiniciar",
   "tableActionStop": "Detener",
-  "tableActionDelete": "Eliminar"
+  "tableActionDelete": "Eliminar",
+  "shutdownLabel": "Detener el {{timeout}}",
+  "restartLabel": "Reiniciar el {{timeout}}",
+  "timeOutLabel": "Expiración",
+  "tableActionClone": "Clonar el trabajo"
 }

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import {
+  AlertCircle,
   ChevronDown,
   ChevronUp,
   HelpCircle,
@@ -52,6 +53,7 @@ import JobImagesSelect from '@/components/order/job-image/JobImageSelect.compone
 import DockerCommand from '@/components/order/docker-command/DockerCommand.component';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { useTrackAction, useTrackBanner } from '@/hooks/useTracking';
+import { AutoRestartSection } from '@/components/auto-restart/AutoRestartSection.component';
 
 interface OrderJobsFunnelProps {
   regions: ai.capabilities.Region[];
@@ -376,6 +378,24 @@ const OrderFunnel = ({
                     </FormItem>
                   )}
                 />
+              </CardContent>
+            </Card>
+
+            {/* Auto Restart */}
+            <Card
+              id="autorestart"
+              data-testid="autorestart-section"
+              className="shadow-sm mt-4"
+            >
+              <CardHeader>
+                <CardTitle>{t('fieldTimeOutLabel')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="mb-2">
+                  <AlertCircle className="inline size-4 shrink-0 mr-1 mb-1 text-amber-500" />
+                  {t('defaultAutoRestartInfo')}
+                </CardDescription>
+                <AutoRestartSection form={model.form} app="job" />
               </CardContent>
             </Card>
 

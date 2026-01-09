@@ -17,5 +17,9 @@
   "tableActionDelete": "Delete",
   "deleteTableTooltip": "Make sure the notebook is in ‘Stopped’ status",
   "quantumTitle": "Emulators",
-  "qpuTitle": "QPUs"
+  "qpuTitle": "QPUs",
+  "tableActionRestart": "Restart",
+  "shutdownLabel": "Stop at {{timeout}}",
+  "restartLabel": "Restart at {{timeout}}",
+  "timeOutLabel": "Expiry"
 }

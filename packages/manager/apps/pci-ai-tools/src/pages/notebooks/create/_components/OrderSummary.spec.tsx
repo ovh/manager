@@ -21,6 +21,7 @@ const mockedOrder = {
   framework: mockedFramework,
   version: 'version',
   editor: mockedEditor,
+  timeoutAutoRestart: false,
   notebookName: 'myNotebook',
   unsecureHttp: false,
   labels: { test: 'test' },
