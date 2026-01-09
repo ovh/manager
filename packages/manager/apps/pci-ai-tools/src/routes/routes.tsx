@@ -2,6 +2,112 @@ import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import NotFound from '../pages/404.page';
 import ErrorBoundary from '@/components/error-boundary/ErrorBoundary.component';
 
+const isQuantumPath = () => {
+  if (typeof window === 'undefined') return false;
+  const path = `${window.location.pathname ?? ''}${window.location.hash ??
+    ''}`.toLowerCase();
+  return path.includes('/quantum/');
+};
+
+const notebooksOnboardingTracking = {
+  get id() {
+    return isQuantumPath()
+      ? 'emulators.emulators.onboarding'
+      : 'ai_notebooks.onboarding';
+  },
+  category: 'onboarding',
+};
+const notebooksListingTracking = {
+  get id() {
+    return isQuantumPath()
+      ? 'emulators.emulators.listing'
+      : 'ai_notebooks.listing';
+  },
+  category: 'listing',
+};
+const notebooksCreateTracking = {
+  get id() {
+    return isQuantumPath()
+      ? 'emulators.funnel.create_notebook'
+      : 'ai_notebooks.funnel.create_ai_notebook';
+  },
+  category: 'funnel',
+};
+const notebooksAddSshKeyTracking = {
+  get id() {
+    return isQuantumPath()
+      ? 'emulators.emulators.popup.configure_ssh-key'
+      : 'ai_notebooks.funnel.popup.add-sshkey';
+  },
+  category: 'funnel',
+};
+const notebooksStartTracking = {
+  get id() {
+    return isQuantumPath()
+      ? 'emulators.emulators.popup.start'
+      : 'ai_notebooks.popup.start';
+  },
+  category: 'listing',
+};
+const notebooksStopTracking = {
+  get id() {
+    return isQuantumPath()
+      ? 'emulators.emulators.popup.stop'
+      : 'ai_notebooks.popup.stop';
+  },
+  category: 'listing',
+};
+const notebooksDeleteTracking = {
+  get id() {
+    return isQuantumPath()
+      ? 'emulators.emulators.popup.delete'
+      : 'ai_notebooks.popup.delete';
+  },
+  category: 'listing',
+};
+const qpusListingTracking = {
+  get id() {
+    return 'qpus.qpus.listing';
+  },
+  category: 'listing',
+};
+const qpusStartTracking = {
+  get id() {
+    return 'qpus.qpus.popup.start';
+  },
+  category: 'listing',
+};
+const qpusStopTracking = {
+  get id() {
+    return 'qpus.qpus.popup.stop';
+  },
+  category: 'listing',
+};
+const qpusDeleteTracking = {
+  get id() {
+    return 'qpus.qpus.popup.delete';
+  },
+  category: 'listing',
+};
+const qpusOnboardingTracking = {
+  get id() {
+    return 'qpus.qpus.onboarding';
+  },
+  category: 'onboarding',
+};
+const qpusCreateTracking = {
+  get id() {
+    return 'qpus.qpus.funnel.create_notebook';
+  },
+  category: 'funnel',
+};
+const qpusAddSshKeyTracking = {
+  get id() {
+    return 'qpus.qpus.popup.configure_ssh-key';
+  },
+  category: 'funnel',
+};
+
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
     lazy: async () => {
@@ -301,10 +407,7 @@ export default [
                 path: '',
                 id: 'notebooks',
                 handle: {
-                  tracking: {
-                    id: 'ai_notebooks.listing',
-                    category: 'listing',
-                  },
+                  tracking: notebooksListingTracking,
                 },
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/Notebooks.page'),
@@ -314,10 +417,7 @@ export default [
                     path: 'start/:notebookId',
                     id: 'notebooks.start',
                     handle: {
-                      tracking: {
-                        id: 'ai_notebooks.popup.start',
-                        category: 'listing',
-                      },
+                      tracking: notebooksStartTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/notebooks/start/Start.modal'),
@@ -340,10 +440,7 @@ export default [
                     path: 'stop/:notebookId',
                     id: 'notebooks.stop',
                     handle: {
-                      tracking: {
-                        id: 'ai_notebooks.popup.stop',
-                        category: 'listing',
-                      },
+                      tracking: notebooksStopTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/notebooks/stop/Stop.modal'),
@@ -353,10 +450,7 @@ export default [
                     path: 'delete/:notebookId',
                     id: 'notebooks.delete',
                     handle: {
-                      tracking: {
-                        id: 'ai_notebooks.popup.delete',
-                        category: 'listing',
-                      },
+                      tracking: notebooksDeleteTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/notebooks/delete/Delete.modal'),
@@ -368,10 +462,7 @@ export default [
                 path: 'onboarding',
                 id: 'onboarding-notebooks',
                 handle: {
-                  tracking: {
-                    id: 'ai_notebooks.onboarding',
-                    category: 'onboarding',
-                  },
+                  tracking: notebooksOnboardingTracking,
                 },
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/onboarding/Onboarding.page'),
@@ -384,10 +475,7 @@ export default [
                   import('@/pages/notebooks/create/Create.page'),
                 ),
                 handle: {
-                  tracking: {
-                    id: 'ai_notebooks.funnel.create_ai_notebooks',
-                    category: 'funnel',
-                  },
+                  tracking: notebooksCreateTracking,
                   breadcrumb: () => (
                     <BreadcrumbItem
                       translationKey="breadcrumb"
@@ -400,10 +488,7 @@ export default [
                     path: 'add-sshkey',
                     id: 'notebooks.create.add-sshkey',
                     handle: {
-                      tracking: {
-                        id: 'ai_notebooks.funnel.popup.add-sshkey',
-                        category: 'funnel',
-                      },
+                      tracking: notebooksAddSshKeyTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/_components/AddSSHKey.modal'),
@@ -1152,16 +1237,16 @@ export default [
               {
                 path: '',
                 id: 'qpu',
+                handle: {
+                  tracking: qpusListingTracking,
+                },
                 ...lazyRouteConfig(() => import('@/pages/qpus/Qpu.page')),
                 children: [
                   {
                     path: 'start/:notebookId',
                     id: 'qpusNotebooks.start',
                     handle: {
-                      tracking: {
-                        id: 'qpus_ai_notebooks.popup.start',
-                        category: 'listing',
-                      },
+                      tracking: qpusStartTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/notebooks/start/Start.modal'),
@@ -1184,10 +1269,7 @@ export default [
                     path: 'stop/:notebookId',
                     id: 'qpusNotebooks.stop',
                     handle: {
-                      tracking: {
-                        id: 'qpus_ai_notebooks.popup.stop',
-                        category: 'listing',
-                      },
+                      tracking: qpusStopTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/notebooks/stop/Stop.modal'),
@@ -1197,10 +1279,7 @@ export default [
                     path: 'delete/:notebookId',
                     id: 'qpusNotebooks.delete',
                     handle: {
-                      tracking: {
-                        id: 'qpus_ai_notebooks.popup.delete',
-                        category: 'listing',
-                      },
+                      tracking: qpusDeleteTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/notebooks/delete/Delete.modal'),
@@ -1212,6 +1291,9 @@ export default [
               {
                 path: 'onboarding',
                 id: 'onboarding-qpu',
+                handle: {
+                  tracking: qpusOnboardingTracking,
+                },
                 ...lazyRouteConfig(() =>
                   import('@/pages/qpus/onboarding/Onboarding.page'),
                 ),
@@ -1224,10 +1306,7 @@ export default [
                   import('@/pages/qpus/create/Create.page'),
                 ),
                 handle: {
-                  tracking: {
-                    id: 'qpu.funnel.create_qpu',
-                    category: 'funnel',
-                  },
+                  tracking: qpusCreateTracking,
                   breadcrumb: () => (
                     <BreadcrumbItem
                       translationKey="breadcrumb"
@@ -1240,10 +1319,7 @@ export default [
                     path: 'add-sshkey',
                     id: 'qpu.create.add-sshkey',
                     handle: {
-                      tracking: {
-                        id: 'qpu.funnel.popup.add-sshkey',
-                        category: 'funnel',
-                      },
+                      tracking: qpusAddSshKeyTracking,
                     },
                     ...lazyRouteConfig(() =>
                       import('@/pages/_components/AddSSHKey.modal'),
