@@ -443,6 +443,17 @@ Loads all remaining data at once.
 Both buttons can show loading indicators when data is being fetched.
 
 ```tsx
+const columns = [
+  {
+    id: 'person',
+    label: 'Person',
+    accessorKey: 'person',
+    header: 'Person',
+    enableHiding: true,
+    comparator: FilterCategories.String,
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  }
+];
 <Datagrid
   columns={columns}
   data={data}
@@ -451,9 +462,6 @@ Both buttons can show loading indicators when data is being fetched.
   onFetchAllPages={handleFetchAll}
   isLoading={true} // Shows loading state
 />
-```
-
-<Datagrid columns={columns} data={data} />
 ```
 
 <StorybookHeading label="Search" level={3} />
