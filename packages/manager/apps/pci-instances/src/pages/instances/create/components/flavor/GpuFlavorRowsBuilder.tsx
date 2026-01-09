@@ -20,7 +20,7 @@ export function GpuFlavorRowsBuilder(
     )
     .map((flavor) => {
       return {
-        id: flavor.name,
+        id: flavor.id,
         disabled: flavor.unavailableQuota,
         action: renderRadio(flavor.id, flavor.unavailableQuota),
         name: renderName(flavor),
