@@ -71,10 +71,27 @@ export type DedicatedServerServiceInfos = {
   status: ServiceStatus;
 };
 
+export type DedicatedServerNetworkSpecifications = {
+  vmac: {
+    quota: number;
+    supported: boolean;
+  };
+};
+
 export const getDedicatedServerServiceInfos = (
   serviceName: string,
 ): Promise<ApiResponse<DedicatedServerServiceInfos>> =>
   apiClient.v6.get(`/dedicated/server/${serviceName}/serviceInfos`);
+
+export const getDedicatedServerNetworkSpecifications = (
+  serviceName: string,
+): Promise<ApiResponse<DedicatedServerNetworkSpecifications>> =>
+  apiClient.v6.get(`/dedicated/server/${serviceName}/specifications/network`);
+
+export const getDedicatedServerVmac = (
+  serviceName: string,
+): Promise<ApiResponse<string[]>> =>
+  apiClient.v6.get(`/dedicated/server/${serviceName}/virtualMac`);
 
 export type OrderableIp = {
   optionRequired?: 'professionalUse' | null;

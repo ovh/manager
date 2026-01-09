@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
@@ -14,7 +14,7 @@ import { TRANSLATION_NAMESPACES } from '@/utils';
 import { ipParkingOptionValue } from '@/types';
 import { MoveIpAvailableDestinationsResponse } from '@/data/api';
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
-import { useGetProductServices } from '@/data/hooks';
+import { useCheckVmacAvailability, useGetProductServices } from '@/data/hooks';
 import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 
 type Step1Props = {
@@ -23,6 +23,7 @@ type Step1Props = {
   availableDestinations: MoveIpAvailableDestinationsResponse;
   destinationService?: string;
   setDestinationService: React.Dispatch<React.SetStateAction<string>>;
+  setDestinationError: React.Dispatch<React.SetStateAction<string>>;
   nextHopList: string[];
   nextHop?: string;
   setNextHop: React.Dispatch<React.SetStateAction<string>>;
@@ -34,6 +35,7 @@ export default function Step1({
   availableDestinations,
   destinationService,
   setDestinationService,
+  setDestinationError,
   nextHopList,
   nextHop,
   setNextHop,
@@ -42,6 +44,23 @@ export default function Step1({
   const { serviceList: productList } = useGetProductServices(
     Object.values(PRODUCT_PATHS_AND_CATEGORIES),
   );
+  const [selectedOption, setSelectedOption] = useState<{
+    service: string;
+    type: string;
+  } | null>(null);
+
+  const checkVmacAvailabilityCallback = (
+    service: string,
+    availablility: boolean,
+  ) => {
+    setDestinationError(availablility ? '' : 'vmac not supported');
+    setDestinationService(service);
+  };
+
+  const { isVmacAvailable } = useCheckVmacAvailability({
+    serviceName: selectedOption?.service,
+    checkVmacAvailabilityCallback,
+  });
 
   return (
     <div className="flex flex-col">
@@ -71,8 +90,32 @@ export default function Step1({
           name="service"
           className="w-full"
           onOdsChange={(event) => {
-            setDestinationService(event.detail.value as string);
-            setNextHop(undefined);
+            const value = event.detail.value as string;
+            if (value) {
+              if (
+                Object.prototype.hasOwnProperty.call(isVmacAvailable, value)
+              ) {
+                setSelectedOption({
+                  service: value,
+                  type: 'dedicatedServer',
+                });
+                checkVmacAvailabilityCallback(value, isVmacAvailable[value]);
+              } else {
+                const dedicatedServer = availableDestinations.dedicatedServer.find(
+                  (item) => item.service === value,
+                );
+                if (dedicatedServer) {
+                  setSelectedOption({
+                    service: value,
+                    type: 'dedicatedServer',
+                  });
+                } else {
+                  setDestinationError('');
+                }
+              }
+              setDestinationService(value);
+              setNextHop(undefined);
+            }
           }}
           isClearable
           allowNewElement={false}
@@ -136,6 +179,12 @@ export default function Step1({
           ))}
         </OdsCombobox>
       </OdsFormField>
+      <OdsText class="w-full mt-2">
+        {selectedOption?.type === 'dedicatedServer' &&
+          isVmacAvailable?.[selectedOption.service] === false && (
+            <span>{t('step1DestinationError')}</span>
+          )}
+      </OdsText>
     </div>
   );
 }
