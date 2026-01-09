@@ -20,14 +20,19 @@ export default class ResiliateModalController {
   }
 
   $onInit() {
+    const isDomain = this.service.serviceType === this.SERVICE_TYPE.DOMAIN;
+    const useUSWorkflow = this.isUSRegion || isDomain;
+
     this.resiliateOptions = (this.capabilities || [])
       .filter((option) => this.RESILIATION_CAPACITIES.includes(option))
       .map((value) => ({
         value,
         label: this.$translate.instant(
-          `billing_resiliate_${value}${this.isUSRegion ? '_us' : ''}`,
+          `billing_resiliate_${value}${useUSWorkflow ? '_us' : ''}`,
         ),
       }));
+
+    this.useUSWorkflow = useUSWorkflow;
 
     this.resiliateOption =
       this.resiliateOptions.length === 1
