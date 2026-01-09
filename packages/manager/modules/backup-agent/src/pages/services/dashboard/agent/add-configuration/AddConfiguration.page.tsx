@@ -42,14 +42,14 @@ const AddConfigurationPage = () => {
   const { tenantId } = useRequiredParams('tenantId');
   const navigate = useNavigate();
   const goBack = () => navigate('..');
-  const [formSubmitError, setForSubmitError] = useState<string>();
+  const [formSubmitError, setFormSubmitError] = useState<string>();
   const {
     mutate,
     isPending: isAddConfigurationPending,
     isSuccess,
   } = useAddConfigurationVSPCTenantAgent({
     onError: (apiError) => {
-      setForSubmitError(
+      setFormSubmitError(
         t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_agent_banner_api_error`, {
           errorMessage: apiError.message,
         }),
@@ -59,7 +59,7 @@ const AddConfigurationPage = () => {
 
   const { data: productNameExcluded, isPending: isProductNameExcludedPending } = useQuery({
     ...useVSPCTenantsOptions(),
-    select: (data) => getProductResourceNames(data.data),
+    select: (data) => getProductResourceNames(data),
   });
   const { flattenData, isPending } = useBaremetalsList();
 
@@ -82,7 +82,7 @@ const AddConfigurationPage = () => {
     const serverDetails = baremetalList.find((server) => server.name === data.server);
 
     if (!serverDetails) {
-      return setForSubmitError(
+      return setFormSubmitError(
         t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_agent_error_resource_not_found`),
       );
     }
