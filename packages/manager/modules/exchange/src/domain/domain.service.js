@@ -40,6 +40,10 @@ export default class ExchangeDomains {
     );
   }
 
+  getDomainZones() {
+    return this.services.$http.get('/domain/zone').then(({ data }) => data);
+  }
+
   addingDomain(domainToAdd) {
     const keyMapping = {
       mxParam: 'configureMx',
