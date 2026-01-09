@@ -30,9 +30,13 @@ export const getTenantDetails = async (backupServicesId: string) => {
 export const getVSPCTenants = async ({
   backupServicesId,
   ...params
-}: { backupServicesId: string } & Omit<IcebergFetchParamsV2, 'route'>): Promise<
-  IcebergFetchResultV2<Resource<VSPCTenant>>
-> => fetchIcebergV2({ ...params, route: getVspcTenantsRoute(backupServicesId) });
+}: { backupServicesId: string } & Omit<IcebergFetchParamsV2, 'route'>) =>
+  (
+    await fetchIcebergV2<Resource<VSPCTenant>>({
+      ...params,
+      route: getVspcTenantsRoute(backupServicesId),
+    })
+  ).data;
 
 export const getVSPCTenantDetails = async (backupServicesId: string, vspcTenantId: string) => {
   const { data } = await v2.get<Resource<VSPCTenant>>(

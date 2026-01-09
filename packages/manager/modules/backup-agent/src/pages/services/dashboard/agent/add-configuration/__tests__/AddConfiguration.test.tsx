@@ -157,18 +157,42 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     ),
 }));
 
-const { useBaremetalsListMock } = vi.hoisted(() => ({
+const {
+  useBaremetalsListMock,
+  useBackupVSPCTenantAgentDownloadLinkMock,
+  useAddConfigurationVSPCTenantAgentMock,
+  useQueryMock,
+} = vi.hoisted(() => ({
   useBaremetalsListMock: vi
     .fn()
-    .mockReturnValue({ flattenData: undefined, isLoading: true, isError: false }),
-}));
-const { useBackupVSPCTenantAgentDownloadLinkMock } = vi.hoisted(() => ({
+    .mockReturnValue({ flattenData: undefined, isPending: true, isError: false }),
   useBackupVSPCTenantAgentDownloadLinkMock: vi.fn(),
+  useAddConfigurationVSPCTenantAgentMock: vi.fn().mockReturnValue({
+    mutate: vi.fn(),
+    isPending: false,
+    isSuccess: false,
+    isError: false,
+  }),
+  useQueryMock: vi.fn().mockReturnValue({ data: new Set(), isPending: false, isError: false }),
+}));
+
+vi.mock('@/data/hooks/tenants/useVspcTenants', () => ({
+  useVSPCTenantsOptions: vi.fn().mockReturnValue({}),
+}));
+
+vi.mock('@tanstack/react-query', () => ({
+  useQuery: useQueryMock,
 }));
 
 vi.mock('@/data/hooks/baremetal/useBaremetalsList', () => {
   return {
     useBaremetalsList: useBaremetalsListMock,
+  };
+});
+
+vi.mock('@/data/hooks/agents/postAgent', () => {
+  return {
+    useAddConfigurationVSPCTenantAgent: useAddConfigurationVSPCTenantAgentMock,
   };
 });
 
@@ -192,21 +216,21 @@ const getSelectOs = () => screen.getByTestId('select-os');
 describe('FirstOrderFormComponent', () => {
   it.each([[true], [false]])(
     'renders onboarding and expected disabled if no baremetal : $expectedDisabled',
-    async (isLoadingMock) => {
+    async (isPendingMock) => {
       useBaremetalsListMock.mockReturnValue({
         flattenData: BAREMETAL_MOCK,
-        isLoading: isLoadingMock,
+        isPending: isPendingMock,
         isError: false,
       });
       useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
         data: mockAgentDownloadLinks.linuxUrl,
-        isLoading: false,
+        isPending: false,
       });
 
       render(<AddConfigurationPage />);
 
       await waitFor(
-        () => expect(getSelectServer()).toHaveAttribute('data-disabled', `${isLoadingMock}`),
+        () => expect(getSelectServer()).toHaveAttribute('data-disabled', `${isPendingMock}`),
         { timeout: 1000 },
       );
     },
@@ -215,12 +239,12 @@ describe('FirstOrderFormComponent', () => {
   it('renders onboarding and expected generate order link', async () => {
     useBaremetalsListMock.mockReturnValue({
       flattenData: BAREMETAL_MOCK,
-      isLoading: false,
+      isPending: false,
       isError: false,
     });
     useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
       data: mockAgentDownloadLinks.linuxUrl,
-      isLoading: false,
+      isPending: false,
     });
     const user = userEvent.setup();
 

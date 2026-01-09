@@ -18,3 +18,9 @@ export const OS_LABELS = {
 };
 
 export const VAULT_PLAN_CODE = 'backup-vault-paygo-consumption';
+
+export const BACKUP_AGENT_IAM_RULES = {
+  'vault/edit': 'backupServices:apiovh:vault/edit',
+  'vspc/edit': 'backupServices:apiovh:vspc/edit',
+  'vspc/attach': 'backupServices:apiovh:vault/attach',
+};

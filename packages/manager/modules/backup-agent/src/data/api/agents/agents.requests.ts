@@ -6,8 +6,16 @@ import { Resource } from '@/types/Resource.type';
 import {
   GetBackupAgentParams,
   getBackupAgentDetailsRoute,
+  getBackupAgentsRoute,
   getManagementAgentsRoute,
 } from '@/utils/apiRoutes';
+
+export type AddBackupAgentConfigParams = Omit<GetBackupAgentParams, 'backupAgentId'> & {
+  displayName: string;
+  ips: string[];
+  productResourceName: string;
+  region: string;
+};
 
 export type EditBackupAgentConfigParams = GetBackupAgentParams & {
   ips: string[];
@@ -25,6 +33,13 @@ export const getBackupAgentsDetails = async ({
   );
   return data;
 };
+
+export const postConfigurationBackupAgents = async ({
+  backupServicesId,
+  vspcTenantId,
+  ...payload
+}: AddBackupAgentConfigParams): Promise<ApiResponse<string>> =>
+  v2.post(getBackupAgentsRoute(backupServicesId, vspcTenantId), payload);
 
 export const editConfigurationBackupAgents = async ({
   backupServicesId,

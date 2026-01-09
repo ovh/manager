@@ -21,8 +21,9 @@ export default function ListingPage() {
   const { flattenData, isLoading } = useBackupVaultsList();
   const columns = useColumns();
 
-  const reloadDatagrid = () =>
-    queryClient.invalidateQueries({ queryKey: BACKUP_VAULTS_LIST_QUERY_KEY });
+  const reloadDatagrid = () => {
+    void queryClient.invalidateQueries({ queryKey: BACKUP_VAULTS_LIST_QUERY_KEY });
+  };
 
   return (
     <Suspense>
@@ -32,7 +33,7 @@ export default function ListingPage() {
             <OdsButton
               icon="refresh"
               color="primary"
-              onClick={void reloadDatagrid}
+              onClick={() => reloadDatagrid()}
               isLoading={isLoading}
               variant="outline"
               data-arialabel={t(`${NAMESPACES.ACTIONS}:refresh`)}

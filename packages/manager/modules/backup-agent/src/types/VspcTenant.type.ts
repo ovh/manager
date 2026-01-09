@@ -8,6 +8,7 @@ export type VSPCBackupAgent = {
   name: string;
   type: string;
   vspcTenant: string;
+  productResourceName: string;
 };
 
 export type VSPCTenant = {
