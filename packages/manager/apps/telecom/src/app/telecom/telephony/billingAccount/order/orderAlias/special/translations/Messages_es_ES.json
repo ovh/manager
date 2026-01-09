@@ -1,0 +1,15 @@
+{
+  "telephony_order_special_title": "Contratar un número especial",
+  "telephony_order_special_submit_title": "Contratar un número especial",
+  "telephony_order_special_amount_title": "Cantidad de números:",
+  "telephony_order_special_range_title": "Rango:",
+  "telephony_order_special_typology_title": "Tipología:",
+  "telephony_order_special_specific_title": "Elección del número",
+  "telephony_order_special_retractation_title": "Derecho de desistimiento",
+  "telephony_order_special_address_title": "Información del titular del número",
+  "telephony_order_special_zone_tip": "Localidad o código postal",
+  "telephony_order_special_numbers_error": "No se ha podido cargar la lista de preselecciones de números.",
+  "telephony_order_special_order_error": "No se ha podido enviar el pedido de números especiales. Por favor, vuelva a intentarlo más adelante.",
+  "telephony_order_special_order_success": "El pedido de números geográficos se ha enviado. Por favor, acepte las condiciones generales de venta y abone el pedido.",
+  "telephony_order_special_range_error": "No se han podido cargar los rangos de números."
+}
