@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { waitFor } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { describe, expect } from 'vitest';
 
-import { render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import UpdateOffer from './UpdateOffer.page';
 

@@ -4,13 +4,12 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import { useDomains } from '@/data/hooks';
@@ -48,11 +47,11 @@ export const ConfigureDomain: React.FC = () => {
       pageName: ONBOARDING_CONFIGURE_DOMAIN,
     });
     addError(
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         {t('common:add_error_message', {
           error: error.response?.data?.message,
         })}
-      </OdsText>,
+      </Text>,
       true,
     );
   };
@@ -63,7 +62,7 @@ export const ConfigureDomain: React.FC = () => {
 
   return (
     <AddDomainForm
-      subtitle={<OdsText preset={ODS_TEXT_PRESET.heading4}>{t('common:add_domain')}</OdsText>}
+      subtitle={<Text preset={TEXT_PRESET.heading4}>{t('common:add_domain')}</Text>}
       showOrganization={false}
       onError={onError}
       onSettled={(domain, error) => {

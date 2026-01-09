@@ -2,13 +2,15 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { fireEvent, waitFor } from '@testing-library/dom';
 import '@testing-library/jest-dom';
+import { act } from '@testing-library/react';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
 import { ModerationChoices, ReplyToChoices, mailingListsMock, platformMock } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
 
 import AddEditMailingList from './AddEdit.page';
