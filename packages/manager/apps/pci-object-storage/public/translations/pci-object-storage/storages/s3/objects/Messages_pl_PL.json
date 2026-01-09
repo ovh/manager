@@ -60,6 +60,12 @@
   "restoreAvailableUntil": "Obiekt będzie dostępny do",
   "seeVersionsSwitchLabel": "Wyświetl wersje",
   "searchPlaceholder": "Wyszukiwanie...",
+  "searchLabel": "Wyszukiwanie:",
+  "prefixLabel": "Prefiks:",
+  "rootPrefix": "(główny)",
+  "loading": "Ładowanie…",
+  "dropFilesToUpload": "Upuść pliki tutaj, aby je przesłać",
+  "noSearchResults": "Nie znaleziono wyników dla \"{{query}}\"",
   "changeStorageClassWarningInfrequentAccess": "Uwaga: Klasy Infrequent Access i Cold Archive nakładają minimalny czas przechowywania. <0>Dowiedz się więcej</0>",
   "selectObject": "Wybierz obiekt {{name}}",
   "selectAll": "Zaznacz wszystko",
@@ -76,5 +82,6 @@
   "bulkDeleteVersionsConfirmation": "Wpisz {{confirmation}}, aby potwierdzić",
   "downloadErrorDescription": "Błąd podczas przesyłania pliku",
   "downloadErrorStatus": "Błąd podczas przesyłania: {{status}}",
-  "downloadErrorUnknownType": "Nieznany typ przesyłania"
+  "downloadErrorUnknownType": "Nieznany typ przesyłania",
+  "openFolder": "Otwórz folder {{name}}"
 }

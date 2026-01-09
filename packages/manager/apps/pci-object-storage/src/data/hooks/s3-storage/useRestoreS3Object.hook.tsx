@@ -22,8 +22,13 @@ export function useRestoreS3Object({
     },
     onError,
     onSuccess: () => {
+      // Invalidate storage queries
       queryClient.invalidateQueries({
         queryKey: [projectId, 'region', region, 'storage', s3Name],
+      });
+      // Invalidate s3-browser queries to refresh the object list
+      queryClient.invalidateQueries({
+        queryKey: ['s3-browser', projectId, region, s3Name],
       });
       onRestoreSuccess();
     },

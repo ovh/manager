@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   DialogBody,
   DialogContent,
@@ -10,10 +10,14 @@ import FileUploadPending from '@/components/file-input/FileUploadPending.compone
 import RouteModal from '@/components/route-modal/RouteModal';
 import AddS3Form from './AddS3Form.component';
 import { useAddS3Form } from './useAddForm.component';
+import storages from '@/types/Storages';
 
 const AddObjectModal = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const prefixFromUrl = searchParams.get('prefix') || '';
+
   const {
     onSubmit,
     isUploading,
@@ -37,7 +41,14 @@ const AddObjectModal = () => {
                 total={totalFilesToUploadCount}
               />
             ) : (
-              <AddS3Form onSubmit={onSubmit} onError={() => {}} />
+              <AddS3Form
+                onSubmit={onSubmit}
+                onError={() => {}}
+                initialValue={{
+                  prefix: prefixFromUrl,
+                  storageClass: storages.StorageClassEnum.STANDARD,
+                }}
+              />
             )}
           </div>
         </DialogBody>

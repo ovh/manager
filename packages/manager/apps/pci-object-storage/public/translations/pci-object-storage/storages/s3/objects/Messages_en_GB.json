@@ -60,6 +60,12 @@
   "restoreAvailableUntil": "Item will be available until",
   "seeVersionsSwitchLabel": "See versions",
   "searchPlaceholder": "Search...",
+  "searchLabel": "Search:",
+  "prefixLabel": "Prefix:",
+  "rootPrefix": "(root)",
+  "loading": "Loading...",
+  "dropFilesToUpload": "Drop files to upload here",
+  "noSearchResults": "No results found for \"{{query}}\"",
   "changeStorageClassWarningInfrequentAccess": "Important: The Infrequent Access and Cold Archive classes impose a minimum retention period. <0>Learn more</0>",
   "selectObject": "Select {{name}} object",
   "selectAll": "Select all",
@@ -76,5 +82,6 @@
   "bulkDeleteVersionsConfirmation": "Enter {{confirmation}} to confirm",
   "downloadErrorDescription": "Error while uploading the file",
   "downloadErrorStatus": "Error while uploading: {{status}}",
-  "downloadErrorUnknownType": "Unknown upload type"
+  "downloadErrorUnknownType": "Unknown upload type",
+  "openFolder": "Open {{name}} folder"
 }
