@@ -2,17 +2,19 @@ import { useQuery } from '@tanstack/react-query';
 import { getSshKeys } from '@/data/api/sshKeys';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { sshKeysQueryKey } from '@/adapters/tanstack/configuration/queryKeys';
+import { TSshKey } from '@/domain/entities/configuration';
+import { TSelectOptions } from '@/types/querySelectOptions.type';
 
-export const useSshKeys = (region: string) => {
+export const useSshKeys = <TData>(
+  region: string,
+  options: TSelectOptions<TSshKey[], TData>,
+) => {
+  const { select } = options;
   const projectId = useProjectId();
 
-  const { data, ...query } = useQuery({
+  return useQuery({
     queryKey: sshKeysQueryKey(projectId, region),
     queryFn: () => getSshKeys({ projectId, region }),
+    select,
   });
-
-  return {
-    data,
-    ...query,
-  };
 };
