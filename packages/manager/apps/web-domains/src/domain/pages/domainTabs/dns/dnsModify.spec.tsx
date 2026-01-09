@@ -1,7 +1,6 @@
 import '@/common/setupTests';
 import { render, waitFor } from '@/common/utils/test.provider';
 import { describe, expect, vi } from 'vitest';
-import React from 'react';
 import {
   useGetDomainZone,
   useGetDomainResource,
@@ -32,12 +31,13 @@ describe('DnsModifyPage', () => {
       domainResource: {},
       isFetchingDomainResource: true,
     });
-    const { getByTestId } = render(<DnsModifyPage />, {
+    const { getByTestId, container } = render(<DnsModifyPage />, {
       wrapper,
     });
     await waitFor(() => {
       expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
     });
+    await expect(container).toBeAccessible();
   });
 
   it('Render DnsModify page', async () => {
@@ -49,11 +49,12 @@ describe('DnsModifyPage', () => {
       domainResource: {},
       isFetchingDomainResource: false,
     });
-    const { getByTestId } = render(<DnsModifyPage />, {
+    const { getByTestId, container } = render(<DnsModifyPage />, {
       wrapper,
     });
     await waitFor(() => {
       expect(getByTestId('modify-component')).toBeInTheDocument();
     });
+    await expect(container).toBeAccessible();
   });
 });

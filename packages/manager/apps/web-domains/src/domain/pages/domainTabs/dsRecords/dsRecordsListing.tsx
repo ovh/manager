@@ -166,6 +166,7 @@ export default function DsRecordsListing() {
               </Message>
             ) : (
               <Button
+                name="add-ds-record-button"
                 size={BUTTON_SIZE.sm}
                 data-testid="addButton"
                 onClick={() =>

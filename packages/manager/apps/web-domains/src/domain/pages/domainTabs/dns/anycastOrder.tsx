@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import {

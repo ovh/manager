@@ -25,7 +25,7 @@ export default function DatagridColumnDnsType({
       </DataGridTextCell>
       {type === PublicNameServerTypeEnum.STANDARD && (
         <Tooltip>
-          <TooltipTrigger asChild>
+          <TooltipTrigger aria-label="trigger" asChild>
             <Icon
               className="text-[--ods-color-primary-500]"
               name="circle-question"

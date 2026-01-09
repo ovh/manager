@@ -64,6 +64,8 @@ export default function AnycastOrderButtonComponent({
     <>
       {!anycastOption && (
         <Button
+          name="anycast-order-button"
+          aria-label="anycast-order-button"
           data-testid={'anycast-order-button'}
           size={BUTTON_SIZE.sm}
           variant={BUTTON_VARIANT.outline}
@@ -86,6 +88,8 @@ export default function AnycastOrderButtonComponent({
       )}
       {anycastOption && restoreAnycast && (
         <Button
+          aria-label="anycast-cancel-anycast-button"
+          name="anycast-cancel-anycast-button"
           data-testid={'anycast-cancel-anycast-button'}
           size={BUTTON_SIZE.sm}
           variant={BUTTON_VARIANT.outline}
@@ -98,6 +102,8 @@ export default function AnycastOrderButtonComponent({
       )}
       {!restoreAnycast && anycastOption && (
         <Button
+          aria-label="anycast-terminate-button"
+          name="anycast-terminate-button"
           data-testid={'anycast-terminate-button'}
           size={BUTTON_SIZE.sm}
           variant={BUTTON_VARIANT.outline}
