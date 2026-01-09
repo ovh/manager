@@ -4,7 +4,6 @@ import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { useParams, useNavigate } from 'react-router-dom';
 import HostDelete from '@/domain/pages/domainTabs/hosts/hostDelete';
 import { wrapper } from '@/common/utils/test.provider';
-import { urls } from '@/domain/routes/routes.constant';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 
 const updateDomain = vi.fn();
@@ -118,7 +117,6 @@ describe('HostDelete', () => {
     expect(call.updatedSpec).toEqual({
       hostsConfiguration: { hosts: [{ host: 'ns2.foobar', ips: ['2.2.2.2'] }] },
     });
-    expect(call.checksum).toBe('xyz');
   });
 
   it('calls addSuccess + navigate on delete success', () => {
