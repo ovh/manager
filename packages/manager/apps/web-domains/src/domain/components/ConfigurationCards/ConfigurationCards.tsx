@@ -39,7 +39,11 @@ export default function ConfigurationCards({
 }: ConfigurationCardsProps) {
   const { t } = useTranslation(['domain']);
   const { domainResource } = useGetDomainResource(serviceName);
-  const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(serviceName);
+  const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(
+    serviceName,
+    domainResource?.currentState.protectionState ===
+      ProtectionStateEnum.UNPROTECTED,
+  );
   const { anycastOption, isFetchingAnycastOption } = useGetDomainAnycastOption(
     serviceName,
   );

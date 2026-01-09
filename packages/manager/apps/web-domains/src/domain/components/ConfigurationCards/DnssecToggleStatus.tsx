@@ -46,7 +46,6 @@ export default function DnssecToggleStatus({
     <ManagerTile.Item>
       <ManagerTile.Item.Label>
         {t('domain_tab_general_information_dnssec')}
-
         <CircleQuestionTooltip
           translatedMessage={t(
             ConfigurationDnssecBadgeColorAndContent[
@@ -84,7 +83,7 @@ export default function DnssecToggleStatus({
           >
             <Tooltip>
               <TooltipTrigger asChild disabled={!isAuthorized && !isPending}>
-                <div className="flex items-end gap-4">
+                <div className="flex items-end gap-2">
                   <ToggleControl data-testid={'toggle-control'} />
                   <ToggleLabel>
                     <Badge

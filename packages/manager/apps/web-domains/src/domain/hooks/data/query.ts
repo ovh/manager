@@ -461,10 +461,11 @@ export const useUpdateDnssecService = (
   };
 };
 
-export const useGetDomainAuthInfo = (serviceName: string) => {
+export const useGetDomainAuthInfo = (serviceName: string, fetch: boolean) => {
   const { data, isLoading } = useQuery({
     queryKey: ['domain', 'service', serviceName, 'authInfo'],
     queryFn: () => getDomainAuthInfo(serviceName),
+    enabled: fetch,
   });
 
   return {
@@ -476,7 +477,7 @@ export const useGetDomainAuthInfo = (serviceName: string) => {
 export const useTransferTag = (serviceName: string, tag: string) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation(['domain', 'web-domains/error']);
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess } = useNotifications();
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => transferTag(tag, serviceName),
