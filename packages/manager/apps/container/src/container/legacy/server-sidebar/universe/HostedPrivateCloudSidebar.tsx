@@ -18,6 +18,7 @@ import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 const features = [
   'dedicated-cloud',
+  'hpc-vmware-private-vcf-aas',
   'hpc-vmware-public-vcf-aas',
   'dedicated-cloud:sapHanaOrder',
   'nutanix',
@@ -99,6 +100,40 @@ export default function HostedPrivateCloudSidebar() {
                   routeMatcher: new RegExp(`/datacenter/${datacenter.stateParams[1]}`),
                 }));
               },
+            })),
+          ];
+        },
+      });
+    }
+
+    if (feature['hpc-vmware-private-vcf-aas']) {
+      menu.push({
+        id: 'hpc-private-vcf',
+        label: t('sidebar_vmware_private_vcf'),
+        icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
+        pathMatcher: new RegExp(`^/vmware/private-vcf-aas`),
+        async loader() {
+          const app = 'hpc-vmware-private-vcf-aas';
+          const services = await loadServices(
+            '/vmwareCloudDirector/organization',
+            null,
+            app,
+          );
+          const icon = getIcon('ovh-font ovh-font-dedicatedCloud');
+          return [
+            {
+              id: 'dedicated-vmware-vcd-all',
+              label: t('sidebar_vmware_all'),
+              href: navigation.getURL(app, '/'),
+              icon,
+              ignoreSearch: true,
+            },
+            ...services.map((service) => ({
+              ...service,
+              icon,
+              pathMatcher: new RegExp(
+                `^/vmware/private-vcf-aas/${service.serviceName}`,
+              ),
             })),
           ];
         },
