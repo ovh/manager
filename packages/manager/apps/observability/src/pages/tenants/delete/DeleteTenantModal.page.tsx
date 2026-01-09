@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/muk';
 
+import ErrorMessage from '@/components/error/ErrorMessage.component';
 import { ConfirmationModal } from '@/components/listing/common/confirmation-modal/ConfirmationModal.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useDeleteTenant } from '@/data/hooks/tenants/useDeleteTenant.hook';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
 import { LocationPathParams, urls } from '@/routes/Routes.constants';
-import { getErrorMessage } from '@/utils/error.utils';
 
 const DeleteTenantModal = () => {
   const navigate = useNavigate();
@@ -41,8 +41,7 @@ const DeleteTenantModal = () => {
 
       handleDismiss();
     } catch (error) {
-      const message = getErrorMessage(error);
-      addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
+      addError(<ErrorMessage error={error as Error} />);
     }
   };
 
@@ -61,7 +60,7 @@ const DeleteTenantModal = () => {
       confirmButtonLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
       cancelButtonLabel={t('close', { ns: NAMESPACES.ACTIONS })}
       isConfirmButtonLoading={isPending}
-      error={getErrorMessage(error)}
+      error={error as Error}
     />
   );
 };
