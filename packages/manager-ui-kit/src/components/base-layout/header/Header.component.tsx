@@ -4,8 +4,8 @@ import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import type { HeaderProps } from '@/components/base-layout/header/Header.props';
 
-export function Header({ title, guideMenu, changelogButton }: HeaderProps): JSX.Element {
-  const hasActions = !!guideMenu || !!changelogButton;
+export function Header({ title, guideMenu, changelogButton, surveyButton }: HeaderProps): JSX.Element {
+  const hasActions = !!guideMenu || !!changelogButton || !!surveyButton;
 
   return (
     <header className="flex items-start justify-between">
@@ -15,6 +15,7 @@ export function Header({ title, guideMenu, changelogButton }: HeaderProps): JSX.
         <div className="flex flex-wrap justify-end items-center">
           {changelogButton ?? null}
           {guideMenu ?? null}
+          {surveyButton ?? null}
         </div>
       )}
     </header>

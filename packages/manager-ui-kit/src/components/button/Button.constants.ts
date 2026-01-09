@@ -8,3 +8,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 export { BUTTON_COLOR, BUTTON_COLORS, BUTTON_SIZE, BUTTON_SIZES, BUTTON_VARIANTS, BUTTON_VARIANT };
+
+export enum BUTTON_PRESET {
+  survey = 'survey',
+}
