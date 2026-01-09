@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@module-federation/runtime": "0.8.12",
     "@ovh-ux/ui-kit": "^6.10.5",
     "bootstrap": "^3.3.6",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
