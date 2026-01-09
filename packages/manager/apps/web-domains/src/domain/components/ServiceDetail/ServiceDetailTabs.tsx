@@ -60,9 +60,8 @@ export default function ServiceDetailsTabs({
       setValue(tab);
     }
 
-    if (tab !== value) {
-      clearNotifications();
-    }
+    // Clear notifications on location change
+    clearNotifications();
   }, [location.pathname]);
 
   return (
