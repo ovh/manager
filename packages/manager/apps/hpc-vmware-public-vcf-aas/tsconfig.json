@@ -20,7 +20,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@ovh-ux/manager-module-vcd-api": ["../../modules/vcd-api/src"]
+      "@ovh-ux/manager-module-vcd-api": ["../../modules/vcd-api/src"],
+      "@ovh-ux/manager-network-common": ["../../modules/network-common/src"]
     }
   },
   "include": ["src"],
