@@ -14,7 +14,7 @@
   "deleteObjectToastSuccessDescription": "L'objet {{ name }} a été supprimé.",
   "deleteObjectTitle": "Supprimer un objet",
   "deleteObjectDescription": "Voulez-vous supprimer définitivement l'objet {{- name }}? Cette action ne peut être annulée.",
-  "deleteObjectConfirmation": "Taper PERMANENTLY DELETE pour confirmer",
+  "deleteObjectConfirmation": "Taper {{confirmation}} pour confirmer",
   "deleteObjectButtonCancel": "Annuler",
   "deleteObjectButtonConfirm": "Supprimer",
   "seeVersionsSwitchLabel": "Voir les versions"
