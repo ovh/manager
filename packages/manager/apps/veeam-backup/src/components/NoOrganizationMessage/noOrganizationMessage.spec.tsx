@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
-import { i18n as i18nType } from 'i18next';
+import { I18nextProvider, I18nextProviderProps } from 'react-i18next';
 import {
   ShellContext,
   ShellContextType,
@@ -16,14 +15,17 @@ import { labels } from '@/test-helpers';
 import { appName } from '@/veeam-backup.config';
 import { translations } from '@/test-helpers/labels';
 
-let i18n: i18nType;
+let i18n: I18nextProviderProps['i18n'];
 const shellContext = {
   environment: { user: { ovhSubsidiary: 'FR' } },
 };
 
 const renderComponent = async ({ emptyList }: { emptyList: boolean }) => {
   if (!i18n) {
-    i18n = await initTestI18n(appName, translations);
+    i18n = (await initTestI18n(
+      appName,
+      translations,
+    )) as I18nextProviderProps['i18n'];
   }
 
   return render(

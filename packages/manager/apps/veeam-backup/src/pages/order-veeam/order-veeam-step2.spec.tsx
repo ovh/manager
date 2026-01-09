@@ -1,8 +1,7 @@
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
-import { i18n as i18nType } from 'i18next';
+import { I18nextProvider, I18nextProviderProps } from 'react-i18next';
 import {
   ShellContext,
   ShellContextType,
@@ -26,7 +25,7 @@ import {
 } from '@/veeam-backup.config';
 import { translations } from '@/test-helpers/labels';
 
-let i18n: i18nType;
+let i18n: I18nextProviderProps['i18n'];
 
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual('react-router-dom');
@@ -59,7 +58,10 @@ const shellContext = {
 
 const renderComponent = async () => {
   if (!i18n) {
-    i18n = await initTestI18n(appName, translations);
+    i18n = (await initTestI18n(
+      appName,
+      translations,
+    )) as I18nextProviderProps['i18n'];
   }
   return render(
     <I18nextProvider i18n={i18n}>
