@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { BUTTON_COLOR, Button, Link } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import {
   ButtonType,
   PageLocation,
@@ -44,7 +45,7 @@ export default function Licenses() {
   ]);
   const { trackClick } = useOvhTracking();
   const { data: licensesData, isLoading } = useLicenses();
-
+  const { data: availability } = useFeatureAvailability(['web-office:order']);
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const context = useContext(ShellContext);
@@ -150,13 +151,15 @@ export default function Licenses() {
           setColumnVisibility,
         }}
         topbar={
-          <Button
-            color={BUTTON_COLOR.primary}
-            onClick={goToOrder}
-            data-testid="licenses-order-button"
-          >
-            {t(`${NAMESPACES.ACTIONS}:order`)}
-          </Button>
+          availability?.['web-office:order'] && (
+            <Button
+              color={BUTTON_COLOR.primary}
+              onClick={goToOrder}
+              data-testid="licenses-order-button"
+            >
+              {t(`${NAMESPACES.ACTIONS}:order`)}
+            </Button>
+          )
         }
         isLoading={isLoading}
         containerHeight={500}

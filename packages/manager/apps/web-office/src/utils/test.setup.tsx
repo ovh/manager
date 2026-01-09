@@ -93,6 +93,14 @@ vi.mock('axios', async (importActual) => {
   return mockAxios;
 });
 
+vi.mock('@ovh-ux/manager-module-common-api', async (importActual) => {
+  const actual = await importActual<typeof import('@ovh-ux/manager-module-common-api')>();
+  return {
+    ...actual,
+    useFeatureAvailability: vi.fn(),
+  };
+});
+
 vi.mock('@/hooks/generate-url/useGenerateUrl', async (importActual) => {
   return {
     ...(await importActual<typeof import('@/hooks/generate-url/useGenerateUrl')>()),

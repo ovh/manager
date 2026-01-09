@@ -1,6 +1,8 @@
 import { describe, expect, vi } from 'vitest';
 
 import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
+import type { UseFeatureAvailabilityResult } from '@ovh-ux/manager-module-common-api';
 
 import { licensesMock, licensesPrepaidExpandedMock } from '@/data/api/__mocks__/license';
 import { usersMock } from '@/data/api/__mocks__/user';
@@ -29,6 +31,12 @@ vi.mock('@/data/hooks/license-details/useLicenseDetails', async (importActual) =
 });
 
 describe('Users page', () => {
+  vi.mocked(useFeatureAvailability).mockReturnValue({
+    data: {
+      'web-office:order': true,
+    },
+    isLoading: false,
+  } as unknown as UseFeatureAvailabilityResult<Record<string, boolean>>);
   it('Page for payAsYouGo', () => {
     hoistedMock.useLicenseDetail.mockReturnValue({
       data: licensesMock[0],
