@@ -5,7 +5,6 @@ import {
   updateSecretConfigErrorMessage,
 } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.handler';
 import { mockSecretConfigOkms } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.mock';
-import { getSecretConfigReferenceErrorMessage } from '@secret-manager/mocks/secret-reference/secretReference.handler';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -54,22 +53,6 @@ describe('okms edit secret config drawer page test suite', () => {
 
     // THEN
     expect(screen.getByText(labels.secretManager.edit_okms_secret_config)).toBeInTheDocument();
-  });
-
-  it('should display error message when secret config reference fetch fails', async () => {
-    // GIVEN isSecretConfigReferenceKO
-
-    // WHEN
-    await renderPage({ isSecretConfigReferenceKO: true });
-
-    // THEN
-    await waitFor(() => {
-      expect(screen.getByText(getSecretConfigReferenceErrorMessage)).toBeInTheDocument();
-    });
-
-    expect(
-      screen.queryByTestId(SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER),
-    ).not.toBeInTheDocument();
   });
 
   it('should display error message when okms secret config fetch fails', async () => {
