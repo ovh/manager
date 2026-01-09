@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Translation, useTranslation } from 'react-i18next';
 
@@ -23,6 +23,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 
+import { useParam } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
 import { editNetwork } from '@/api/data/kubernetes';
@@ -43,7 +44,7 @@ import queryClient from '@/queryClient';
 export default function EditNetworkPage() {
   const { t } = useTranslation('edit-network');
   const { t: tAdd } = useTranslation('network-add');
-  const { projectId, kubeId } = useParams();
+  const { projectId, kubeId } = useParam('projectId', 'kubeId');
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
@@ -53,7 +54,9 @@ export default function EditNetworkPage() {
     mode: ModeEnum.AUTO,
     ip: '',
   });
-  const [loadBalancerSubnet, setLoadBalancerSubnet] = useState<TPrivateNetworkSubnet>(undefined);
+  const [loadBalancerSubnet, setLoadBalancerSubnet] = useState<TPrivateNetworkSubnet | undefined>(
+    undefined,
+  );
 
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -62,8 +65,8 @@ export default function EditNetworkPage() {
     kubeId,
   });
 
-  const isPrivateRouting = kubeDetail?.privateNetworkConfiguration.privateNetworkRoutingAsDefault;
-  const gatewayIp = kubeDetail?.privateNetworkConfiguration.defaultVrackGateway;
+  const isPrivateRouting = kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
+  const gatewayIp = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
 
   const hasGatewayChanges =
     isPrivateRouting !== gatewayForm.isEnabled ||
@@ -161,8 +164,10 @@ export default function EditNetworkPage() {
             <GatewaySelector
               className="mt-6"
               initialValue={{
-                isEnabled: kubeDetail?.privateNetworkConfiguration.privateNetworkRoutingAsDefault,
-                ip: kubeDetail?.privateNetworkConfiguration.defaultVrackGateway,
+                isEnabled: Boolean(
+                  kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault,
+                ),
+                ip: kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway,
               }}
               onSelect={setGatewayForm}
             />
@@ -195,16 +200,18 @@ export default function EditNetworkPage() {
               />
             </OsdsText>
             <div className={isExpanded ? 'block' : 'hidden'}>
-              <SubnetSelector
-                className="mt-6"
-                title={tAdd('kubernetes_network_form_load_balancers_subnet')}
-                projectId={projectId}
-                networkId={kubeDetail?.privateNetworkId}
-                region={kubeDetail?.region}
-                preselectedId={kubeDetail.loadBalancersSubnetId}
-                onSelect={setLoadBalancerSubnet}
-                allowsEmpty
-              />
+              {kubeDetail && kubeDetail.privateNetworkId && kubeDetail.region && (
+                <SubnetSelector
+                  className="mt-6"
+                  title={tAdd('kubernetes_network_form_load_balancers_subnet')}
+                  projectId={projectId}
+                  networkId={kubeDetail.privateNetworkId}
+                  region={kubeDetail.region}
+                  preselectedId={kubeDetail.loadBalancersSubnetId}
+                  onSelect={setLoadBalancerSubnet}
+                  allowsEmpty
+                />
+              )}
 
               {shouldWarnLoadBalancerSubnet && <LoadBalancerWarning />}
             </div>

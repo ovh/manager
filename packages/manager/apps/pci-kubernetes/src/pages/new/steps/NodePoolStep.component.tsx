@@ -14,10 +14,10 @@ import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import BillingStep from '@/components/create/BillingStep.component';
+import { isStandardPlan } from '@/helpers';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { DeploymentMode, TScalingState } from '@/types';
+import { TClusterPlanEnum, TScalingState } from '@/types';
 
 import useCreateNodePools from '../hooks/useCreateNodePool';
 import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
@@ -30,7 +30,13 @@ import NodePoolType from './node-pool/NodePoolType.component';
 import PublicConnectivity from './node-pool/PublicConnectivity.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
 
-const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreationStepper> }) => {
+const NodePoolStep = ({
+  stepper,
+  plan,
+}: {
+  stepper: ReturnType<typeof useClusterCreationStepper>;
+  plan: TClusterPlanEnum;
+}) => {
   const { t } = useTranslation(['stepper', 'node-pool']);
 
   const { state, actions, view } = useCreateNodePools({
@@ -40,20 +46,17 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
 
   const has3AZFeature = use3AZPlanAvailable();
   const { projectId } = useSafeParams('projectId');
-  const { data: regionInformations } = useRegionInformations(
-    projectId,
-    stepper.form.region?.name ?? null,
-  );
-  const isStandardPlan = has3AZFeature && regionInformations?.type === DeploymentMode.MULTI_ZONES;
+
+  const isStandard = has3AZFeature && isStandardPlan(plan);
 
   const columns = useMemo(
     () =>
       getDatagridColumns({
         onDelete: actions.onDelete,
         t,
-        showFloatingIp: isStandardPlan,
+        showFloatingIp: isStandard,
       }),
-    [actions.onDelete, t],
+    [actions.onDelete, isStandard, t],
   );
 
   const numberOfZoneSelected = state.nodePoolState.selectedAvailabilityZones?.filter(
@@ -101,7 +104,7 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               />
             </div>
           )}
-          {has3AZFeature && isStandardPlan && (
+          {has3AZFeature && isStandard && (
             <PublicConnectivity
               checked={Boolean(state.nodePoolState.attachFloatingIps?.enabled)}
               price={state.priceFloatingIp}

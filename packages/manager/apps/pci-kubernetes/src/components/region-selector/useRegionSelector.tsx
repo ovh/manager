@@ -22,7 +22,7 @@ export function useRegionSelector({
   } | null>(null);
   const [selectedMacroRegion, setSelectedMacroRegion] = useState<string | null>(null);
   const [selectedMicroRegion, setSelectedMicroRegion] = useState<string | null>(null);
-  const { localisationData: query, isPending } = useProjectLocalisation(projectId, 'kubernetes');
+  const { localisationData: query, isPending } = useProjectLocalisation(projectId, 'mks');
   const { continents: unfilteredContinents, regions: unfilteredRegions } = query || {};
   const regions = unfilteredRegions?.filter((region) =>
     regionFilter ? regionFilter(region) : true,
@@ -82,11 +82,10 @@ export function useRegionSelector({
     onSelectRegion(region);
   };
 
-  // list of displayed micro regions
   const microRegions = useMemo(() => {
     const actualRegions = macroRegions.find((region) => region.name === selectedMacroRegion);
     return actualRegions ? filterMicrosRegions(actualRegions) : [];
-  }, [macroRegions, selectedMacroRegion]);
+  }, [filterMicrosRegions, macroRegions, selectedMacroRegion]);
 
   const selectedRegionIsDisabled = useMemo(
     () =>

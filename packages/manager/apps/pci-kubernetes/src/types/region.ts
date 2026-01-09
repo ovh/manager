@@ -1,4 +1,4 @@
-import { TContinent, TLocalisation as TLocPCI } from '@ovh-ux/manager-pci-common';
+import { TContinent } from '@ovh-ux/manager-pci-common';
 
 import { DeploymentMode } from '.';
 
@@ -303,14 +303,48 @@ export type TRegionInformations = {
 export type TRegionBase = {
   name: string;
   type: TRegionType;
-  availabilityZones: string[];
+  availabilityZones: DeploymentMode[];
   // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   continentCode: 'ASIA' | 'EU' | 'NA' | 'US' | string;
+  datacenter: string;
+  enabled: boolean;
+  datacenterLocation: string;
 };
 
-export type TLocation = TLocPCI & { enabled?: boolean };
+export type TRegion = TRegionBase & {
+  countryCode: TCountryCode;
+  services: TService[];
+  status: TOpenstackRegionStatus;
+  ipCountries: IpCountry[];
+  type: TRegionType;
+};
 
 export type TProjectLocation = {
   regions: TLocation[];
   continents: TContinent[];
+};
+
+export type TRegionCodes = TRegionBase & { codes: string[] };
+
+export type TProductAvailability = {
+  plans: {
+    code: string;
+    regions: TRegionBase[];
+  }[];
+  products: {
+    name: string;
+    regions: TRegionBase[];
+  }[];
+};
+
+export type TLocation = TRegion & {
+  isMacro: boolean;
+  isLocalZone: boolean;
+  macro: string;
+  countryCode?: string;
+  continentLabel: string;
+  macroLabel: string;
+  microLabel: string;
+  enabled?: boolean;
+  codes?: string[] | null;
 };
