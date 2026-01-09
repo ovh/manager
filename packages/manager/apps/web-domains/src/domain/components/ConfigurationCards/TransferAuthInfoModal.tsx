@@ -1,4 +1,3 @@
-import React from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Button,
@@ -36,7 +35,7 @@ export default function TransferAuthInfoModal({
   return (
     <Modal open={open}>
       <ModalContent color={MODAL_COLOR.information} dismissible={false}>
-        <ModalBody className="flex flex-col gap-y-6 pt-0">
+        <ModalBody className="flex flex-col gap-y-6">
           <Text preset={TEXT_PRESET.heading2}>
             {t('domain_tab_general_information_transfer_authinfo_modal_title')}
           </Text>
