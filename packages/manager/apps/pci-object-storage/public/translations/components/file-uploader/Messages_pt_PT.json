@@ -5,6 +5,8 @@
   "prefixRequiredError": "Este campo é obrigatório",
   "prefixFieldLabel": "Prefixo",
   "prefixFieldPlaceholder": "Introduzir um prefixo",
+  "prefixValidationError": "O prefixo não pode terminar com \"/\" ou conter múltiplas barras consecutivas",
+  "prefixHelperText": "Um \"/\" será automaticamente adicionado entre o prefixo e o nome do ficheiro",
   "importFileLabel": "Importar ficheiros",
   "importFileButton": "Selecionar ficheiros...",
   "fileUploaderButtonCancel": "Anular",

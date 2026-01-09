@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@datatr-ux/ovhcloud-types": "2.0.51",
-    "@datatr-ux/uxlib": "1.0.0-alpha-34",
+    "@datatr-ux/uxlib": "1.0.0-alpha-36",
     "@hookform/resolvers": "3.10.0",
     "@ovh-ux/manager-common-translations": "^0.9.1",
     "@ovh-ux/manager-config": "^8.9.0",
@@ -39,6 +39,7 @@
     "@ovhcloud/ods-themes": "19.2.1",
     "@tanstack/react-query": "5.90.12",
     "@tanstack/react-table": "8.21.3",
+    "@tanstack/react-virtual": "3.10.9",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "duration-fns": "^3.0.2",
