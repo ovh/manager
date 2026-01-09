@@ -2,6 +2,9 @@
   "mandatory": "obligatoire",
   "service": "Service <strong>{{serviceName}}</strong>",
   "coming_soon": "Prochainement",
+  "error": {
+    "message": "Une erreur est survenue : {{message}}<br />{{queryId}}"
+  },
   "form": {
     "bounds": {
       "helper": "Le minimum est de {{min}} et le maximum est de {{max}}."
