@@ -59,3 +59,35 @@ describe('Anycast Order Page', () => {
     });
   });
 });
+
+describe('Anycast Order Page W3C Validation', () => {
+  it('should have valid html when loading', async () => {
+    (useGetDomainZone as jest.Mock).mockReturnValue({
+      domainZone: {},
+      isFetchingDomainZone: true,
+    });
+    (useGetDomainResource as jest.Mock).mockReturnValue({
+      domainResource: {},
+      isFetchingDomainResource: true,
+    });
+    const { container } = render(<AnycastOrder />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
+  it('should have valid html when loaded', async () => {
+    (useGetDomainZone as jest.Mock).mockReturnValue({
+      domainZone: {},
+      isFetchingDomainZone: false,
+    });
+    (useGetDomainResource as jest.Mock).mockReturnValue({
+      domainResource: serviceInfoDetail,
+      isFetchingDomainResource: false,
+    });
+    const { container } = render(<AnycastOrder />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

@@ -58,3 +58,35 @@ describe('DnsModifyPage', () => {
     await expect(container).toBeAccessible();
   });
 });
+
+describe('DnsModifyPage W3C Validation', () => {
+  it('should have valid html when loading', async () => {
+    (useGetDomainZone as jest.Mock).mockReturnValue({
+      domainZone: {},
+      isFetchingdomainZone: true,
+    });
+    (useGetDomainResource as jest.Mock).mockReturnValue({
+      domainResource: {},
+      isFetchingDomainResource: true,
+    });
+    const { container } = render(<DnsModifyPage />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
+  it('should have valid html when loaded', async () => {
+    (useGetDomainZone as jest.Mock).mockReturnValue({
+      domainZone: {},
+      isFetchingdomainZone: false,
+    });
+    (useGetDomainResource as jest.Mock).mockReturnValue({
+      domainResource: {},
+      isFetchingDomainResource: false,
+    });
+    const { container } = render(<DnsModifyPage />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

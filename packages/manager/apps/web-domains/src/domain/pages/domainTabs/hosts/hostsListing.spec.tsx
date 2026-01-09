@@ -1,4 +1,5 @@
 import '@/common/setupTests';
+import React from 'react';
 import { vi, describe, it, expect } from 'vitest';
 import {
   fireEvent,
@@ -91,5 +92,35 @@ describe('Host Datagrid', () => {
         'aria-prohibited-attr': { enabled: false },
       },
     });
+  });
+});
+
+describe('Host Datagrid W3C Validation', () => {
+  it('should have valid html', async () => {
+    nichandle.auth.account = 'admin-id';
+    const { container } = render(<HostsListing />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
+  it('should have valid html with drawer open', async () => {
+    nichandle.auth.account = 'admin-id';
+    const { getByTestId, container } = render(<HostsListing />, { wrapper });
+
+    const addButton = getByTestId('addButton');
+    fireEvent.click(addButton);
+
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
+  it('should have valid html with warning message', async () => {
+    nichandle.auth.account = 'adminxxx';
+    const { container } = render(<HostsListing />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
   });
 });

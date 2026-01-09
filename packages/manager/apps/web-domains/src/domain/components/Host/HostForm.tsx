@@ -87,14 +87,14 @@ export default function HostForm({
         </FormField>
 
         <FormField invalid={Boolean(errors.ips)}>
-          <FormFieldLabel className="flex gap-x-3">
-            <Text preset={TEXT_PRESET.label} className="text-sm">
+          <FormFieldLabel className="flex items-center gap-x-3">
+            <span className="text-sm font-bold">
               {t('domain_tab_hosts_drawer_add_form_ip_label')}
-            </Text>
+            </span>
             -
-            <Text preset={TEXT_PRESET.paragraph} className="text-sm">
+            <span className="text-sm">
               {t(`${NAMESPACES.FORM}:required_field`)}
-            </Text>
+            </span>
           </FormFieldLabel>
 
           <Input
