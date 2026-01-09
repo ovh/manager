@@ -10,6 +10,7 @@ import { Divider } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Button, useNotifications } from '@ovh-ux/muk';
 
+import ErrorMessage from '@/components/error/ErrorMessage.component';
 import { InformationForm } from '@/components/form/information-form/InformationForm.component';
 import RegionSelector from '@/components/infrastructures/region-selector/RegionSelector.component';
 import { TenantConfigurationForm } from '@/components/metrics/tenant-configuration-form/TenantConfigurationForm.component';
@@ -25,7 +26,6 @@ import {
   ObservabilityDurationParsed,
   parseObservabilityDurationValue,
 } from '@/utils/duration.utils';
-import { getErrorMessage } from '@/utils/error.utils';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
 export const TenantForm = ({ tenant }: TenantFormProps) => {
@@ -52,10 +52,7 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
     }
   };
 
-  const handleError = (error: unknown) => {
-    const message = getErrorMessage(error);
-    addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
-  };
+  const handleError = (error: Error) => addError(<ErrorMessage error={error} />);
 
   const createMutation = useCreateTenants({
     onSuccess: () => {
