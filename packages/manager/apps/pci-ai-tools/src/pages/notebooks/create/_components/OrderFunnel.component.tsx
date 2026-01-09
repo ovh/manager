@@ -63,6 +63,7 @@ import publicCatalog from '@/types/Catalog';
 import { cn } from '@/lib/utils';
 import { useTrackAction, useTrackBanner } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -81,6 +82,7 @@ const OrderFunnel = ({
   const trackBanner = useTrackBanner();
   const track = useTrackAction();
   const { t } = useTranslation('ai-tools/notebooks/create');
+  const { isQuantum } = useQuantum('ai-tools/notebooks/create');
   const { projectId } = useParams();
   // Manage datastore combobox
   const [openVersionCb, setOpenVersionCb] = useState(false);
@@ -90,20 +92,57 @@ const OrderFunnel = ({
   const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
+  const getAdvancedConfigTrackingName = () =>
+    isQuantum
+      ? TRACKING.emulators.funnel.advancedConfigurationClick()
+      : TRACKING.notebooks.funnel.advancedConfigurationClick();
 
-  const { toast } = useToast();
-  const [command, setCommand] = useState<ai.Command>({ command: '' });
-
-  const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
-    onError: (err) => {
-      trackBanner(
-        TRACKING.notebooks.banner.errorBannerInfo(
+  const getConfirmNotebookTrackingName = () =>
+    isQuantum
+      ? TRACKING.emulators.funnel.confirmNotebookClick()
+      : TRACKING.notebooks.funnel.createNotebookConfirmClick(
           model.result.region.id,
           model.result.flavor.type,
           model.result.framework.name,
-        ),
-        'banner',
-      );
+        );
+
+  const handleAddSshKeyClick = () => {
+    if (isQuantum) {
+      track(TRACKING.emulators.funnel.configureSshKeyClick(), 'funnel');
+    }
+    navigate('./add-sshkey');
+  };
+
+  const { toast } = useToast();
+  const [command, setCommand] = useState<ai.Command>({ command: '' });
+  const getCreateNotebookBannerTrackingName = (
+    type: 'info' | 'error',
+    status: 'pending' | 'alert' | 'success' | 'error',
+  ) =>
+    isQuantum
+      ? TRACKING.emulators.banner.createNotebookBanner(type, status)
+      : null;
+
+  const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
+    onError: (err) => {
+      if (isQuantum) {
+        const trackingName = getCreateNotebookBannerTrackingName(
+          'error',
+          'error',
+        );
+        if (trackingName) {
+          trackBanner(trackingName, 'banner');
+        }
+      } else {
+        trackBanner(
+          TRACKING.notebooks.banner.errorBannerInfo(
+            model.result.region.id,
+            model.result.flavor.type,
+            model.result.framework.name,
+          ),
+          'banner',
+        );
+      }
       toast({
         title: t('errorCreatingNotebook'),
         variant: 'destructive',
@@ -111,14 +150,24 @@ const OrderFunnel = ({
       });
     },
     onSuccess: (notebook) => {
-      trackBanner(
-        TRACKING.notebooks.banner.successBannerInfo(
-          model.result.region.id,
-          model.result.flavor.type,
-          model.result.framework.name,
-        ),
-        'banner',
-      );
+      if (isQuantum) {
+        const trackingName = getCreateNotebookBannerTrackingName(
+          'info',
+          'success',
+        );
+        if (trackingName) {
+          trackBanner(trackingName, 'banner');
+        }
+      } else {
+        trackBanner(
+          TRACKING.notebooks.banner.successBannerInfo(
+            model.result.region.id,
+            model.result.flavor.type,
+            model.result.framework.name,
+          ),
+          'banner',
+        );
+      }
       toast({
         title: t('successCreatingNotebookTitle'),
         description: t('successCreatingNotebookDescription'),
@@ -153,14 +202,7 @@ const OrderFunnel = ({
         model.result,
       );
 
-      track(
-        TRACKING.notebooks.funnel.createNotebookConfirmClick(
-          model.result.region.id,
-          model.result.flavor.type,
-          model.result.framework.name,
-        ),
-        'funnel',
-      );
+      track(getConfirmNotebookTrackingName(), 'funnel');
       addNotebook(notebookInfos);
     },
     (error) => {
@@ -541,10 +583,7 @@ const OrderFunnel = ({
                     mode="ghost"
                     className="w-full flex flex-row items-center justify-between font-semibold text-xl text-primary-500"
                     onClick={() => {
-                      track(
-                        TRACKING.notebooks.funnel.advancedConfigurationClick(),
-                        'funnel',
-                      );
+                      track(getAdvancedConfigTrackingName(), 'funnel');
                       setShowAdvancedConfiguration((prevValue) => !prevValue);
                     }}
                   >
@@ -630,7 +669,7 @@ const OrderFunnel = ({
                               size="sm"
                               className="text-base"
                               type="button"
-                              onClick={() => navigate('./add-sshkey')}
+                              onClick={handleAddSshKeyClick}
                             >
                               <Plus className="size-4 mr-2" />
                               {t('sshkeyAddButtonLabel')}

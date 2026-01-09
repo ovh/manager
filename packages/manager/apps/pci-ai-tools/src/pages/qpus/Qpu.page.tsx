@@ -82,7 +82,7 @@ const Qpus = () => {
         <h2>{t('qpuTitle')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
           <RoadmapChangelog links={QpuRoadmapLinks} />
-          <Guides category={'quantum'} />
+          <Guides page={'qpus'} category={'quantum'} />
         </div>
       </div>
       <QpusList qpus={filteredNotebooks} />

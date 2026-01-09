@@ -37,6 +37,7 @@ import {
 } from '@/lib/statusHelper';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
@@ -51,8 +52,49 @@ export const getColumns = ({
 }: NotebooksListColumnsProps) => {
   const navigate = useNavigate();
   const track = useTrackAction();
+  const { isQuantum, isQpu } = useQuantum('ai-tools/notebooks/onboarding');
   const { t } = useTranslation('ai-tools/notebooks');
   const { t: tRegions } = useTranslation('regions');
+
+  const handleNameClick = (columnId: string) => {
+    let trackingName = TRACKING.notebooks.listing.DatagridLinkClick(columnId);
+    if (isQpu) {
+      trackingName = TRACKING.qpus.listing.DatagridLinkClick();
+    } else if (isQuantum) {
+      trackingName = TRACKING.emulators.listing.DatagridLinkClick();
+    }
+    track(trackingName, 'listing');
+  };
+  const handleEditorClick = () => {
+    if (isQpu) {
+      track(TRACKING.qpus.listing.DatagridEditorLinkClick(), 'listing');
+      return;
+    }
+    if (isQuantum) {
+      track(TRACKING.emulators.listing.DatagridEditorLinkClick(), 'listing');
+    }
+  };
+  const handleListingActionClick = (option: string) => {
+    if (isQpu) {
+      track(
+        TRACKING.qpus.listing.manageNotebooksDataGridClick(option),
+        'listing',
+      );
+      return;
+    }
+    if (isQuantum) {
+      track(
+        TRACKING.emulators.listing.manageNotebooksDataGridClick(option),
+        'listing',
+      );
+      return;
+    }
+    track(
+      TRACKING.notebooks.listing.manageNotebooksDataGridClick(option),
+      'listing',
+    );
+  };
+
   const columns: ColumnDef<ai.notebook.Notebook>[] = [
     {
       id: 'name/id',
@@ -71,15 +113,7 @@ export const getColumns = ({
                 {spec.name}
               </span>
             ) : (
-              <Link
-                onClick={() => {
-                  track(
-                    TRACKING.notebooks.listing.DatagridLinkClick(column.id),
-                    'listing',
-                  );
-                }}
-                to={id}
-              >
+              <Link onClick={() => handleNameClick(column.id)} to={id}>
                 {spec.name}
               </Link>
             )}
@@ -133,6 +167,7 @@ export const getColumns = ({
             href={row.original.status.url}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleEditorClick}
           >
             <div className="flex flex-row gap-1 items-center text-white capitalize">
               {row.original.spec.env.editorId}
@@ -262,10 +297,7 @@ export const getColumns = ({
                 data-testid="notebook-action-manage-button"
                 variant="primary"
                 onClick={() => {
-                  track(
-                    TRACKING.notebooks.listing.manageNotebooksDataGridClick(),
-                    'listing',
-                  );
+                  handleListingActionClick('manage');
                   navigate(`./${row.original.id}`);
                 }}
                 disabled={
@@ -283,10 +315,7 @@ export const getColumns = ({
                 }
                 variant="primary"
                 onClick={() => {
-                  track(
-                    TRACKING.notebooks.listing.startNotebooksDataGridClick(),
-                    'listing',
-                  );
+                  handleListingActionClick('start');
                   onStartClicked(row.original);
                 }}
               >
@@ -300,10 +329,7 @@ export const getColumns = ({
                 }
                 variant="primary"
                 onClick={() => {
-                  track(
-                    TRACKING.notebooks.listing.stopNotebooksDataGridClick(),
-                    'listing',
-                  );
+                  handleListingActionClick('stop');
                   onStopClicked(row.original);
                 }}
               >
@@ -322,10 +348,7 @@ export const getColumns = ({
                           isDeletingNotebook(notebook.status.state)
                         }
                         onClick={() => {
-                          track(
-                            TRACKING.notebooks.listing.deleteNotebooksDataGridClick(),
-                            'listing',
-                          );
+                          handleListingActionClick('delete');
                           onDeleteClicked(row.original);
                         }}
                       >
