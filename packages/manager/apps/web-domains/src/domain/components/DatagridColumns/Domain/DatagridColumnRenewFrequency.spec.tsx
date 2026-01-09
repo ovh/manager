@@ -65,6 +65,9 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {name}
     </span>
   ),
+  Text: ({ children }: { children?: React.ReactNode }) => (
+    <span data-testid="text">{children}</span>
+  ),
   Tooltip: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="tooltip">{children}</div>
   ),
@@ -85,6 +88,9 @@ vi.mock('@ovhcloud/ods-react', () => ({
     neutral: 'neutral',
     success: 'success',
     warning: 'warning',
+  },
+  TEXT_PRESET: {
+    paragraph: 'paragraph',
   },
 }));
 
