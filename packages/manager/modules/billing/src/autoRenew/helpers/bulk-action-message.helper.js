@@ -23,10 +23,9 @@ export const mapErrorsForBulkActions = (results) => {
   const errors = results.filter((result) => result?.type === 'ERROR');
 
   if (errors.length > 0) {
-    return this.$q.reject({
-      messages: errors,
-      state: 'PARTIAL',
-    });
+    const error = new Error();
+    error.messages = errors;
+    return Promise.reject(error);
   }
 
   return {
