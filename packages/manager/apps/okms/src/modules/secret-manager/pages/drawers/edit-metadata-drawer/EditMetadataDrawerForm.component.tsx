@@ -112,16 +112,8 @@ export const EditMetadataDrawerForm = ({
             </OdsMessage>
           )}
           <SecretDeactivateVersionAfterFormField name="deactivateVersionAfter" control={control} />
-          <SecretMaxVersionsFormField
-            name="maxVersions"
-            control={control}
-            defaultMaxVersions={secretConfig.maxVersionsDefault}
-          />
-          <SecretCasRequiredFormField
-            name="casRequired"
-            control={control}
-            isCasRequiredSetOnOkms={secretConfig?.isCasRequiredSetOnOkms}
-          />
+          <SecretMaxVersionsFormField name="maxVersions" control={control} okmsId={okmsId} />
+          <SecretCasRequiredFormField name="casRequired" control={control} okmsId={okmsId} />
         </form>
       </DrawerContent>
       <DrawerFooter

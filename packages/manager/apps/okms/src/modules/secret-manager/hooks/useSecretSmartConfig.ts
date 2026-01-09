@@ -2,11 +2,9 @@ import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
 import { useSecretConfigReference } from '@secret-manager/data/hooks/useSecretConfigReference';
-import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
 import { Secret } from '@secret-manager/types/secret.type';
 import { SecretSmartConfig, buildSecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
 
-import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { ErrorResponse } from '@/common/types/api.type';
 
 export type UseSecretSmartConfigResult =
@@ -29,11 +27,17 @@ export type UseSecretSmartConfigResult =
       secretConfig: SecretSmartConfig;
     };
 
-export const useSecretSmartConfig = (secret: Secret | undefined): UseSecretSmartConfigResult => {
-  const { okmsId } = useRequiredParams('okmsId');
+export type UseSecretSmartConfigParams = {
+  secret: Secret | undefined;
+  okmsId: string;
+};
 
+export const useSecretSmartConfig = ({
+  secret,
+  okmsId,
+}: UseSecretSmartConfigParams): UseSecretSmartConfigResult => {
   const { data: okms, isPending: isOkmsPending, error: okmsError } = useOkmsById(okmsId);
-  const region = useCurrentRegion(okms ? [okms] : []);
+  const region = okms?.region;
 
   const {
     data: secretConfigOkms,
@@ -51,7 +55,7 @@ export const useSecretSmartConfig = (secret: Secret | undefined): UseSecretSmart
 
   useNotificationAddErrorOnce(error);
 
-  if (isPending || !secret) {
+  if (isPending) {
     return {
       isPending: true,
       isError: false,
@@ -65,7 +69,7 @@ export const useSecretSmartConfig = (secret: Secret | undefined): UseSecretSmart
   }
 
   // Get the secret config from all sources
-  const secretConfig = buildSecretSmartConfig(secret, secretConfigOkms, secretReference);
+  const secretConfig = buildSecretSmartConfig(secretConfigOkms, secretReference, secret);
 
   return {
     isPending: false,

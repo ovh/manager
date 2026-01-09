@@ -29,12 +29,12 @@ export type SecretSmartConfig = {
  * @returns SecretSmartConfigValue with value and origin
  */
 const buildSmartConfigValue = <T>(
-  secretValue: T,
+  secretValue: T | undefined,
   okmsValue: T | undefined,
   notSetValue: T,
   defaultValue: T,
 ): SecretSmartConfigValue<T> => {
-  if (secretValue !== notSetValue) {
+  if (secretValue !== undefined && secretValue !== notSetValue) {
     return {
       value: secretValue,
       origin: 'SECRET',
@@ -63,25 +63,25 @@ const buildSmartConfigValue = <T>(
  * @returns
  */
 export const buildSecretSmartConfig = (
-  secret: Secret,
   secretConfigOkms: SecretConfig,
   secretConfigReference: SecretConfigReference,
+  secret?: Secret,
 ): SecretSmartConfig => {
   return {
     casRequired: buildSmartConfigValue(
-      secret.metadata.casRequired,
+      secret?.metadata.casRequired,
       secretConfigOkms.casRequired,
       NOT_SET_VALUE_CAS_REQUIRED,
       secretConfigReference.casRequired,
     ),
     deactivateVersionAfter: buildSmartConfigValue(
-      secret.metadata.deactivateVersionAfter,
+      secret?.metadata.deactivateVersionAfter,
       secretConfigOkms.deactivateVersionAfter,
       NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
       NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
     ),
     maxVersions: buildSmartConfigValue(
-      secret.metadata.maxVersions,
+      secret?.metadata.maxVersions,
       secretConfigOkms.maxVersions,
       NOT_SET_VALUE_MAX_VERSIONS,
       secretConfigReference.maxVersions,
