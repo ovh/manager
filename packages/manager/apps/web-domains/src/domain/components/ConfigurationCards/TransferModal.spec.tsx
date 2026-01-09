@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
@@ -19,7 +18,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -43,7 +42,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -62,7 +61,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -83,7 +82,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -106,7 +105,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.UNPROTECTED}
+          currentProtectionState={ProtectionStateEnum.UNPROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -130,7 +129,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.UNPROTECTED}
+          currentProtectionState={ProtectionStateEnum.UNPROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -149,7 +148,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="test-domain.fr"
-          action={ProtectionStateEnum.UNPROTECTED}
+          currentProtectionState={ProtectionStateEnum.UNPROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -170,7 +169,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="test-domain.fr"
-          action={ProtectionStateEnum.UNPROTECTED}
+          currentProtectionState={ProtectionStateEnum.UNPROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -193,7 +192,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -212,7 +211,7 @@ describe('TransferModal component', () => {
       const { container } = render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={false}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
