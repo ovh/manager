@@ -11,7 +11,7 @@ import { SecretManagerChangelogButton } from '@secret-manager/components/secret-
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { Breadcrumb as OdsBreadcrumb } from '@ovhcloud/ods-react';
 
 import {
   BaseLayout,

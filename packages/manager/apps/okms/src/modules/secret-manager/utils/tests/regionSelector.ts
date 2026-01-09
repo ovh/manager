@@ -10,14 +10,6 @@ export const assertRegionSelectorIsVisible = async (container: HTMLElement) => {
       container,
       iconName: 'chevron-down',
     });
-    expect(regionSelector).toHaveAttribute('is-loading', 'true');
-  });
-
-  await waitFor(async () => {
-    const regionSelector = await getOdsButtonByIcon({
-      container,
-      iconName: 'chevron-down',
-    });
     expect(regionSelector).toHaveAttribute('is-loading', 'false');
     expect(regionSelector).toHaveAttribute('label', 'Europe (France - Roubaix)');
   }, WAIT_FOR_DEFAULT_OPTIONS);

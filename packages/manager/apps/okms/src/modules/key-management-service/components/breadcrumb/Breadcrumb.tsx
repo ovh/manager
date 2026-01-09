@@ -5,7 +5,11 @@ import {
   useBreadcrumb,
 } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 
-import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+import {
+  Breadcrumb as OdsBreadcrumb,
+  BreadcrumbItem as OdsBreadcrumbItem,
+  BreadcrumbLink as OdsBreadcrumbLink,
+} from '@ovhcloud/ods-react';
 
 export type BreadcrumbProps = {
   items: BreadcrumbItem[];
@@ -25,7 +29,11 @@ function Breadcrumb({ items }: BreadcrumbProps) {
 
 const Item = ({ id, label, navigateTo }: BreadcrumbItem) => {
   const href = useHref(navigateTo ?? '');
-  return <OdsBreadcrumbItem key={id} label={label} href={href} />;
+  return (
+    <OdsBreadcrumbItem key={id}>
+      <OdsBreadcrumbLink href={href}>{label}</OdsBreadcrumbLink>
+    </OdsBreadcrumbItem>
+  );
 };
 
 export default Breadcrumb;

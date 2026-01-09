@@ -62,13 +62,6 @@ describe('Secret page test suite', () => {
       labels.secretManager.actions,
     ];
 
-    const labelTwice = [
-      // tabs
-      labels.common.dashboard.general_information,
-      // title & general information tile
-      mockSecret.path,
-    ];
-
     // Check labels appearing once
     await Promise.all(
       labelOnce.map(async (text) => {
@@ -77,10 +70,17 @@ describe('Secret page test suite', () => {
     );
 
     // Check labels appearing twice
-    await Promise.all(
-      labelTwice.map(async (text) => {
-        expect(await screen.findAllByText(text, {}, WAIT_FOR_DEFAULT_OPTIONS)).toHaveLength(2);
-      }),
+    expect(
+      await screen.findAllByText(
+        labels.common.dashboard.general_information,
+        {},
+        WAIT_FOR_DEFAULT_OPTIONS,
+      ),
+    ).toHaveLength(2);
+
+    // Check labels appearing three times
+    expect(await screen.findAllByText(mockSecret.path, {}, WAIT_FOR_DEFAULT_OPTIONS)).toHaveLength(
+      3,
     );
 
     // Check clipboard component
@@ -121,7 +121,7 @@ describe('Secret page test suite', () => {
 
       expect(
         await screen.findAllByText(mockSecret.path, {}, WAIT_FOR_DEFAULT_OPTIONS),
-      ).toHaveLength(2);
+      ).toHaveLength(3);
 
       // WHEN
       await act(async () => {

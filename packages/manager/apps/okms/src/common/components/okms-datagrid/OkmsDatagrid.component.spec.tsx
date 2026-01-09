@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { MemoryRouter } from 'react-router-dom';
+
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
@@ -70,9 +72,11 @@ describe('Okms Datagrid tests suite', () => {
     const queryClient = new QueryClient();
 
     return render(
-      <QueryClientProvider client={queryClient}>
-        <OkmsDatagrid type={type} okmsList={okmsMock} />
-      </QueryClientProvider>,
+      <MemoryRouter>
+        <QueryClientProvider client={queryClient}>
+          <OkmsDatagrid type={type} okmsList={okmsMock} />
+        </QueryClientProvider>
+      </MemoryRouter>,
     );
   };
 

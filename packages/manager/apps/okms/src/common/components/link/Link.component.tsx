@@ -1,31 +1,11 @@
-import React from 'react';
+import { ComponentProps } from 'react';
 
-import { useHref, useNavigate } from 'react-router-dom';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { Link as OdsLink } from '@ovhcloud/ods-react';
 
-type OdsLinkProps = React.ComponentProps<typeof OdsLink> & {
-  /** Display a OdsLink but uses the router for navigation */
-  isRouterLink?: boolean;
-};
+type RouterLinkProps = ComponentProps<typeof OdsLink> & ComponentProps<'a'>;
 
-export const Link = ({ isRouterLink, ...props }: OdsLinkProps) => {
-  const navigate = useNavigate();
-  const href = useHref(props.href);
-
-  if (!isRouterLink) {
-    return <OdsLink {...props} href={props.href} />;
-  }
-
-  return (
-    <OdsLink
-      {...props}
-      href={href}
-      onClick={(event) => {
-        event.preventDefault();
-        props.onClick?.(event);
-        navigate(props.href);
-      }}
-    />
-  );
+export const RouterLink = (props: RouterLinkProps) => {
+  return <OdsLink {...props} as={ReactRouterLink} to={props.href} />;
 };

@@ -10,6 +10,19 @@ declare global {
   var __VERSION__: string;
 }
 
+// Mock ResizeObserver
+global.ResizeObserver = class ResizeObserver {
+  observe() {
+    // Mock implementation
+  }
+  unobserve() {
+    // Mock implementation
+  }
+  disconnect() {
+    // Mock implementation
+  }
+} as typeof ResizeObserver;
+
 const server = setupServer(
   ...toMswHandlers([...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' })]),
 );
