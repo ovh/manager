@@ -3,8 +3,6 @@ import { Button, Divider, Icon, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { SshKeyHelper } from './sshKey/SshKeyHelper.component';
 import { useSshKeys } from '@/data/hooks/ssh/useSshKeys';
-import { deps } from '@/deps/deps';
-import { useProjectId } from '@/hooks/project/useProjectId';
 import { selectSshKeys } from '../view-models/sshKeysViewModel';
 import AddSshKey from './sshKey/AddSshKey.component';
 import { SubmitHandler, useFormContext, useWatch } from 'react-hook-form';
@@ -22,7 +20,6 @@ type TSshKeyProps = {
 };
 
 const SshKey = ({ microRegion }: TSshKeyProps) => {
-  const projectId = useProjectId();
   const { t } = useTranslation('creation');
 
   const [openSshKeyform, setOpenSshKeyForm] = useState<boolean>(false);
@@ -31,12 +28,9 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
     false,
   );
 
-  const { isLoading } = useSshKeys(microRegion);
-
-  const sshKeys = useMemo(
-    () => (isLoading ? [] : selectSshKeys(deps)(projectId, microRegion)),
-    [isLoading, microRegion, projectId],
-  );
+  const { isLoading, data: sshKeys = [] } = useSshKeys(microRegion, {
+    select: selectSshKeys,
+  });
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const selectedSshKeyId = useWatch({
