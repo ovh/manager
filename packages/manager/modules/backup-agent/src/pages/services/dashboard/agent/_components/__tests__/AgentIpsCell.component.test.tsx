@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { AgentIpsCell } from '@/pages/services/dashboard/agent/_components';
+import { AgentIpsCell } from '@/pages/services/dashboard/agent/_components/AgentIpsCell.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,

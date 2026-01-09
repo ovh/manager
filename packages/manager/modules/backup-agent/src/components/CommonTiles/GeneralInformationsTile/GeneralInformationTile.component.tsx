@@ -13,11 +13,13 @@ import { WithRegion } from '@/types/Utils.type';
 export type GeneralInformationTileProps<T extends { name: string }> = {
   resourceDetails?: Pick<Resource<T>, 'resourceStatus'> & { currentState: WithRegion<T> };
   isLoading: boolean;
+  children?: React.ReactNode;
 };
 
 export function GeneralInformationTile<T extends { name: string }>({
   resourceDetails,
   isLoading,
+  children,
 }: GeneralInformationTileProps<T>) {
   const { t } = useTranslation([
     NAMESPACES.DASHBOARD,
@@ -72,6 +74,7 @@ export function GeneralInformationTile<T extends { name: string }>({
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
+      {children}
     </ManagerTile>
   );
 }

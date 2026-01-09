@@ -5,7 +5,7 @@ import { describe, it, vi } from 'vitest';
 
 import { mockAgents } from '@/mocks/agents/agents';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
-import { AgentActionsCell } from '@/pages/services/dashboard/agent/_components';
+import { AgentActionsCell } from '@/pages/services/dashboard/agent/_components/AgentActionsCell.component';
 
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn().mockImplementation((url: string) => url),

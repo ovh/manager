@@ -23,6 +23,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       id: '1999f2f7-5140-4000-t1',
       name: 'name-par-vspc',
       status: 'CREATING',
+      accessUrl: 'https://vspc.example.com',
       vaults: [
         {
           region: 'eu-west-par',
@@ -71,6 +72,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       id: '1999f2f7-5140-4000-t2',
       name: 'name-rbx-vspc',
       status: 'DELETING',
+      accessUrl: 'https://vspc.example.com',
       vaults: [
         {
           region: 'eu-west-rbx',
@@ -119,6 +121,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       id: '1999f2f7-5140-4000-t3',
       name: 'name-sgp-vspc',
       status: 'ERROR',
+      accessUrl: 'https://vspc.example.com',
       vaults: [
         {
           region: 'ap-southeast-sgp',
@@ -167,6 +170,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       id: '1999f2f7-5140-4000-t4',
       name: 'name-waw-vspc',
       status: 'READY',
+      accessUrl: 'https://vspc.example.com',
       vaults: [
         {
           region: 'eu-central-waw',
@@ -215,6 +219,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       id: '1999f2f7-5140-4000-t5',
       name: 'name-tor-vspc',
       status: 'SUSPENDED',
+      accessUrl: 'https://vspc.example.com',
       vaults: [
         {
           region: 'ca-east-tor',
@@ -228,7 +233,6 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       ],
     },
     currentTasks: [],
-
     iam: {
       displayName: 'Production Backup Vspc Tenant',
       id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',
@@ -263,6 +267,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       id: '1999f2f7-5140-4000-t6',
       name: 'name-pao-vspc',
       status: 'UPDATING',
+      accessUrl: 'https://vspc.example.com',
       vaults: [
         {
           region: 'us-west-lz-pao',
