@@ -17,6 +17,7 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/muk';
 
+import ErrorMessage from '@/components/error/ErrorMessage.component';
 import { ConfirmationModalProps } from '@/components/listing/common/confirmation-modal/ConfirmationModal.props';
 
 export const ConfirmationModal = ({
@@ -44,7 +45,7 @@ export const ConfirmationModal = ({
             className="w-full"
             data-testid="confirmation-modal-error-message"
           >
-            {error}
+            <ErrorMessage error={error} />
           </Message>
         )}
 
