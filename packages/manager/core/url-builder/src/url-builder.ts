@@ -5,17 +5,23 @@ export interface OvhURL {
 }
 export type ParamValueType = string | number | boolean;
 
-const buildURLPattern = (pattern: string, params: Record<string, ParamValueType>) => {
+const buildURLPattern = (
+  pattern: string,
+  params: Record<string, ParamValueType>,
+) => {
   let url = pattern;
   let filteredParams = params;
 
-  if (pattern.includes(':') && params) {
+  if (pattern?.includes(':') && params) {
     const PARAM_REGEXP = /:(\w+)/g;
 
-    const urlParamTemplates = [...pattern.matchAll(PARAM_REGEXP)].map(([, name]) => name);
+    const urlParamTemplates = [...pattern.matchAll(PARAM_REGEXP)].map(
+      ([, name]) => name,
+    );
 
     urlParamTemplates.forEach((urlParam) => {
-      const value: ParamValueType | undefined = params[urlParam as keyof typeof params];
+      const value: ParamValueType | undefined =
+        params[urlParam as keyof typeof params];
       if (value !== undefined) {
         url = url.replace(`:${urlParam}`, encodeURIComponent(String(value)));
       }
@@ -52,7 +58,7 @@ export const buildURL = (
   let { url: buildedPath } = urlPattern;
   const { params: queryObject } = urlPattern;
 
-  if (baseURL.includes('#') && buildedPath.includes('#')) {
+  if (baseURL?.includes('#') && buildedPath?.includes('#')) {
     buildedPath = buildedPath.replace('#', '');
   }
   if (baseURL.endsWith('/') && buildedPath.startsWith('/')) {
@@ -61,7 +67,9 @@ export const buildURL = (
 
   let queryString = queryObject ? buildQueryString(queryObject) : '';
   if (queryString) {
-    queryString = buildedPath.includes('?') ? `&${queryString}` : `?${queryString}`;
+    queryString = buildedPath?.includes('?')
+      ? `&${queryString}`
+      : `?${queryString}`;
   }
 
   return `${baseURL}${buildedPath}${queryString}`;
@@ -69,17 +77,25 @@ export const buildURL = (
 
 export function buildURLs(routes: Array<OvhURL>): Array<OvhURL>;
 
-export function buildURLs(routes: Record<string, OvhURL>): Record<string, OvhURL>;
+export function buildURLs(
+  routes: Record<string, OvhURL>,
+): Record<string, OvhURL>;
 
 export function buildURLs(routes: Array<OvhURL> | Record<string, OvhURL>) {
   if (Array.isArray(routes)) {
-    return routes.map(({ baseURL, path, params }) => buildURL(baseURL, path, params || {}));
+    return routes.map(({ baseURL, path, params }) =>
+      buildURL(baseURL, path, params || {}),
+    );
   }
   return Object.keys(routes).reduce((result, name) => {
     const route = routes[name];
     return {
       ...result,
-      [name]: buildURL(route?.baseURL || '', route?.path || '', route?.params || {}),
+      [name]: buildURL(
+        route?.baseURL || '',
+        route?.path || '',
+        route?.params || {},
+      ),
     };
   }, {});
 }

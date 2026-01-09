@@ -44,7 +44,8 @@ const NotificationsSidebar = () => {
         return { date, fromNow: dateFromNow };
       }),
     );
-    const dateGroups = groups.reduce(
+    if (!groups) return null;
+    const dateGroups = groups?.reduce(
       (
         all: Record<string, NotificationGroup>,
         { date, fromNow: dateFromNow },
