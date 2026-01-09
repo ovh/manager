@@ -161,6 +161,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       isSortable: true,
       type: FilterTypeCategories.Boolean,
       header: t('server_display_state'),
+      label: t('server_display_state'),
       cell: ({ row: { original: server } }) => (
         <OdsBadge
           label={t(textByProductStatus[server.state])}
@@ -178,6 +179,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
       header: t('server_display_monitoring'),
+      label: t('server_display_monitoring'),
       cell: ({ row: { original: server } }) => MonitoringStatusChip(server),
     },
     {
@@ -189,6 +191,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       enableHiding: true,
       type: FilterTypeCategories.String,
       header: t('server_display_vrack'),
+      label: t('server_display_vrack'),
       cell: ({ row: { original: server } }) => DSVrack(server),
     },
     {
@@ -200,6 +203,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       enableHiding: true,
       type: FilterTypeCategories.String,
       header: t('server_display_renew'),
+      label: t('server_display_renew'),
       cell: ({ row: { original: server } }) => RenewCell(server),
     },
     {
@@ -211,6 +215,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       enableHiding: true,
       type: FilterTypeCategories.String,
       header: t('server_display_expiration'),
+      label: t('server_display_expiration'),
       cell: ({ row: { original: server } }) => ExpirationCell(server),
     },
     {
@@ -222,6 +227,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       enableHiding: true,
       type: FilterTypeCategories.String,
       header: t('server_display_engagement'),
+      label: t('server_display_engagement'),
       cell: ({ row: { original: server } }) => EngagementCell(server),
     },
     {
@@ -233,6 +239,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       isSortable: false,
       type: FilterTypeCategories.String,
       header: t('server_display_price'),
+      label: t('server_display_price'),
       cell: ({ row: { original: server } }) => PriceCell(server),
     },
     {
