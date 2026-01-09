@@ -132,7 +132,6 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
 
     if (price === null) return null;
 
-    // TODO: adapt to GPU
     return {
       id: flavorId,
       name: foundFlavor.name,

@@ -198,15 +198,30 @@ const mapSpecificationsDetails = (specs: TSpecDetailsDTO) => ({
   value: specs.value,
 });
 
-const mapFlavorSpecifications = (specs: TSpecificationsDTO) => ({
-  cpu: mapSpecificationsDetails(specs.cpu),
-  ram: mapSpecificationsDetails(specs.ram),
-  storage: mapSpecificationsDetails(specs.storage),
-  bandwidth: {
-    public: mapSpecificationsDetails(specs.bandwidth.public),
-    private: mapSpecificationsDetails(specs.bandwidth.private),
-  },
-});
+const mapFlavorSpecifications = (specs: TSpecificationsDTO) => {
+  const base = {
+    cpu: mapSpecificationsDetails(specs.cpu),
+    ram: mapSpecificationsDetails(specs.ram),
+    storage: mapSpecificationsDetails(specs.storage),
+    bandwidth: {
+      public: mapSpecificationsDetails(specs.bandwidth.public),
+      private: mapSpecificationsDetails(specs.bandwidth.private),
+    },
+  };
+
+  return specs.gpu
+    ? {
+        ...base,
+        gpu: {
+          memory: {
+            size: mapSpecificationsDetails(specs.gpu.memory.size),
+            interface: specs.gpu.memory.interface,
+          },
+          model: mapSpecificationsDetails(specs.gpu.model),
+        },
+      }
+    : base;
+};
 
 type TNormalizeFlavorMappers = {
   flavorMapper: (flavorDTO: TFlavorDTO) => TFlavor;

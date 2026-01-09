@@ -10,7 +10,7 @@ import {
   selectCategories,
   selectTypes,
 } from '../view-models/categoriesTypesViewModel';
-import { selectFlavors } from '../view-models/flavorsViewModel';
+import { selectCpuFlavors } from '../view-models/flavorsViewModel';
 import { selectImages } from '../view-models/imagesViewModel';
 import { useMemo } from 'react';
 import { mockedPrivateNetworks } from '@/__mocks__/instance/constants';
@@ -51,7 +51,7 @@ export const useForm = (projectId: string) => {
   const flavorTypeDefaultValue =
     selectTypes(deps)(projectId, flavorCategoryDefaultValue)[0]?.value ?? null;
 
-  const { preselecteFlavordId } = selectFlavors(deps)({
+  const { preselecteFlavordId } = selectCpuFlavors(deps)({
     projectId,
     flavorType: flavorTypeDefaultValue,
     microRegionId: microRegionDefaultValue,
