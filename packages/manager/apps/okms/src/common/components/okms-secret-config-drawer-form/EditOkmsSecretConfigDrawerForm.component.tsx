@@ -7,7 +7,7 @@ import {
 import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
 import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
 import { useUpdateSecretConfigOkms } from '@secret-manager/data/hooks/useUpdateSecretConfigOkms';
-import { SecretConfig, SecretConfigReference } from '@secret-manager/types/secret.type';
+import { SecretConfig } from '@secret-manager/types/secret.type';
 import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -25,14 +25,12 @@ import {
 type EditOkmsSecretConfigDrawerFormProps = {
   okmsId: string;
   secretConfig: SecretConfig;
-  secretConfigReference: SecretConfigReference;
   onDismiss: () => void;
 };
 
 export const EditOkmsSecretConfigDrawerForm = ({
   okmsId,
   secretConfig,
-  secretConfigReference,
   onDismiss,
 }: EditOkmsSecretConfigDrawerFormProps) => {
   const { t } = useTranslation(['key-management-service/dashboard', NAMESPACES.ACTIONS]);
@@ -80,11 +78,7 @@ export const EditOkmsSecretConfigDrawerForm = ({
             </OdsMessage>
           )}
           <SecretDeactivateVersionAfterFormField name="deactivateVersionAfter" control={control} />
-          <SecretMaxVersionsFormField
-            name="maxVersions"
-            control={control}
-            defaultMaxVersions={secretConfigReference.maxVersions}
-          />
+          <SecretMaxVersionsFormField name="maxVersions" control={control} okmsId={okmsId} />
           <SecretCasRequiredFormField name="casRequired" control={control} />
         </form>
       </DrawerContent>
