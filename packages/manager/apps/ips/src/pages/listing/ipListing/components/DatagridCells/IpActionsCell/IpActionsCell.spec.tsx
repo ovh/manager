@@ -514,14 +514,14 @@ describe('IpActionsCell Component', () => {
       expectMenuItemVisible(container, MENU_ITEM_IDS.REVERSE_DNS);
     });
 
-    it.skip('should show Manage Game Firewall when conditions are met', () => {
+    it('should show Manage Game Firewall when conditions are met', () => {
       setupIpDetailsMock({
         type: IpTypeEnum.ADDITIONAL,
         routedTo: { serviceName: SERVICE_NAMES.DEDICATED_SERVER },
       });
       setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: true });
       useGetIpGameFirewallMock.mockReturnValue({
-        ipGameFirewall: [{ id: '1' }],
+        ipGameFirewall: { ipOnGame: '10.0.0.1' },
         isLoading: false,
       });
 
@@ -534,7 +534,7 @@ describe('IpActionsCell Component', () => {
       setupDefaultMocks();
       setupAttachedServicesMock({ hasCloudServiceAttachedToIP: true });
       useGetIpGameFirewallMock.mockReturnValue({
-        ipGameFirewall: [{ id: '1' }],
+        ipGameFirewall: { ipOnGame: '10.0.0.1' },
         isLoading: false,
       });
 
