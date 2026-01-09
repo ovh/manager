@@ -10,6 +10,7 @@ import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.com
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
 import { PlanSelect } from './location/PlanSelect.component';
+import { RegionSelect } from './location/RegionSelect.component';
 
 type TClusterLocationSectionProps = {
   is3azAvailable: boolean;
@@ -44,6 +45,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
             <ContinentSelect />
             <PlanSelect />
           </div>
+          <RegionSelect />
         </>
       )}
     </>
