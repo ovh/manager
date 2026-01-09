@@ -39,7 +39,11 @@ export default function ConfigurationCards({
 }: ConfigurationCardsProps) {
   const { t } = useTranslation(['domain']);
   const { domainResource } = useGetDomainResource(serviceName);
-  const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(serviceName);
+  const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(
+    serviceName,
+    domainResource?.currentState.protectionState ===
+      ProtectionStateEnum.UNPROTECTED,
+  );
   const { anycastOption, isFetchingAnycastOption } = useGetDomainAnycastOption(
     serviceName,
   );
@@ -146,7 +150,6 @@ export default function ConfigurationCards({
 
     updateDomain(
       {
-        checksum: domainResource.checksum,
         currentTargetSpec: domainResource.targetSpec,
         updatedSpec: {
           protectionState: newProtectionState,
@@ -155,6 +158,7 @@ export default function ConfigurationCards({
       {
         onSuccess: () => {
           setTransferModalOpened(false);
+          addSuccess(t('domain_tab_general_information_update_success'));
         },
         onError: () => {
           setTransferModalOpened(false);
@@ -188,7 +192,6 @@ export default function ConfigurationCards({
 
     updateDomain(
       {
-        checksum: domainResource.checksum,
         currentTargetSpec: { ...domainResource.targetSpec },
         updatedSpec: {
           contactsConfiguration,
@@ -271,7 +274,7 @@ export default function ConfigurationCards({
         />
         <TransferModal
           serviceName={serviceName}
-          action={domainResource?.currentState.protectionState}
+          currentProtectionState={domainResource?.currentState.protectionState}
           open={transferModalOpened}
           updateDomain={() => handleUpdateProtectionState()}
           onClose={() => setTransferModalOpened(!transferModalOpened)}

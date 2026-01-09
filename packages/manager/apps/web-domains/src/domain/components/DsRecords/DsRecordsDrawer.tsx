@@ -86,7 +86,6 @@ export default function DsRecordsDrawer({
         };
         updateDomain(
           {
-            checksum,
             currentTargetSpec: targetSpec,
             updatedSpec: {
               dnssecConfiguration: {

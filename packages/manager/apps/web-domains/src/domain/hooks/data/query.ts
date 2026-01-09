@@ -167,22 +167,24 @@ export const useUpdateDomainResource = (serviceName: string) => {
     TUpdateDomainVariables
   >({
     mutationKey: ['domain', 'resource', 'update', serviceName],
-    mutationFn: ({
-      checksum,
-      currentTargetSpec,
-      updatedSpec,
-    }: {
-      checksum: string;
-      currentTargetSpec: TTargetSpec;
-      updatedSpec: Partial<TTargetSpec>;
-    }) => {
+    mutationFn: async ({ currentTargetSpec, updatedSpec }) => {
+      await queryClient.refetchQueries({
+        queryKey: ['domain', 'resource', serviceName],
+        exact: true,
+      });
+
+      const domainResource = await queryClient.ensureQueryData({
+        queryKey: ['domain', 'resource', serviceName],
+        queryFn: () => getDomainResource(serviceName),
+      });
+
       const newTargetSpec: TTargetSpec = {
         ...currentTargetSpec,
         ...updatedSpec,
       };
 
       return updateDomainResource(serviceName, {
-        checksum,
+        checksum: domainResource.checksum,
         targetSpec: newTargetSpec,
       });
     },
@@ -459,10 +461,11 @@ export const useUpdateDnssecService = (
   };
 };
 
-export const useGetDomainAuthInfo = (serviceName: string) => {
+export const useGetDomainAuthInfo = (serviceName: string, fetch: boolean) => {
   const { data, isLoading } = useQuery({
     queryKey: ['domain', 'service', serviceName, 'authInfo'],
     queryFn: () => getDomainAuthInfo(serviceName),
+    enabled: fetch,
   });
 
   return {
@@ -474,7 +477,7 @@ export const useGetDomainAuthInfo = (serviceName: string) => {
 export const useTransferTag = (serviceName: string, tag: string) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation(['domain', 'web-domains/error']);
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess } = useNotifications();
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => transferTag(tag, serviceName),

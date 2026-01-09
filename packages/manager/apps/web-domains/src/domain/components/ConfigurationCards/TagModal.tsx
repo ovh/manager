@@ -2,15 +2,9 @@ import React from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Button,
-  Clipboard,
-  ClipboardControl,
-  ClipboardTrigger,
   FormField,
   FormFieldError,
   Input,
-  Message,
-  MESSAGE_COLOR,
-  MessageIcon,
   Modal,
   MODAL_COLOR,
   ModalBody,
@@ -45,7 +39,7 @@ export default function TransferTagModal({
   return (
     <Modal open={open}>
       <ModalContent color={MODAL_COLOR.information} dismissible={false}>
-        <ModalBody className="flex flex-col gap-y-6 pt-0">
+        <ModalBody className="flex flex-col gap-y-6">
           <Text preset={TEXT_PRESET.heading2}>
             {t('domain_tab_general_information_transfer_tag')}
           </Text>

@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
@@ -19,7 +18,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -37,32 +36,18 @@ describe('TransferModal component', () => {
           'domain_tab_general_information_transfer_content_deactivate_modal',
         ),
       ).toBeInTheDocument();
-    });
-
-    it('does not show info message for deactivation', () => {
-      render(
-        <TransferModal
-          serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
-          open={true}
-          updateDomain={mockUpdateDomain}
-          onClose={mockOnClose}
-        />,
-        { wrapper },
-      );
-
       expect(
-        screen.queryByText(
+        screen.getByText(
           'domain_tab_general_information_transfer_content_deactivate_modal_info',
         ),
-      ).not.toBeInTheDocument();
+      ).toBeInTheDocument();
     });
 
     it('calls updateDomain when confirm button is clicked', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -74,7 +59,7 @@ describe('TransferModal component', () => {
       const confirmButton = buttons.find((btn) =>
         btn.className.includes('critical'),
       );
-      fireEvent.click(confirmButton!);
+      fireEvent.click(confirmButton);
 
       expect(mockUpdateDomain).toHaveBeenCalled();
     });
@@ -83,7 +68,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -95,7 +80,7 @@ describe('TransferModal component', () => {
       const cancelButton = buttons.find((btn) =>
         btn.className.includes('ghost'),
       );
-      fireEvent.click(cancelButton!);
+      fireEvent.click(cancelButton);
 
       expect(mockOnClose).toHaveBeenCalled();
     });
@@ -106,7 +91,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.UNPROTECTED}
+          currentProtectionState={ProtectionStateEnum.UNPROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -126,30 +111,11 @@ describe('TransferModal component', () => {
       ).toBeInTheDocument();
     });
 
-    it('shows info message for activation', () => {
-      render(
-        <TransferModal
-          serviceName="example.com"
-          action={ProtectionStateEnum.UNPROTECTED}
-          open={true}
-          updateDomain={mockUpdateDomain}
-          onClose={mockOnClose}
-        />,
-        { wrapper },
-      );
-
-      expect(
-        screen.getByText(
-          'domain_tab_general_information_transfer_content_deactivate_modal_info',
-        ),
-      ).toBeInTheDocument();
-    });
-
     it('calls updateDomain when confirm button is clicked', () => {
       render(
         <TransferModal
           serviceName="test-domain.fr"
-          action={ProtectionStateEnum.UNPROTECTED}
+          currentProtectionState={ProtectionStateEnum.UNPROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -161,7 +127,7 @@ describe('TransferModal component', () => {
       const confirmButton = buttons.find((btn) =>
         btn.className.includes('information'),
       );
-      fireEvent.click(confirmButton!);
+      fireEvent.click(confirmButton);
 
       expect(mockUpdateDomain).toHaveBeenCalled();
     });
@@ -170,7 +136,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="test-domain.fr"
-          action={ProtectionStateEnum.UNPROTECTED}
+          currentProtectionState={ProtectionStateEnum.UNPROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -182,7 +148,7 @@ describe('TransferModal component', () => {
       const cancelButton = buttons.find((btn) =>
         btn.className.includes('ghost'),
       );
-      fireEvent.click(cancelButton!);
+      fireEvent.click(cancelButton);
 
       expect(mockOnClose).toHaveBeenCalled();
     });
@@ -193,7 +159,7 @@ describe('TransferModal component', () => {
       render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={true}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}
@@ -212,7 +178,7 @@ describe('TransferModal component', () => {
       const { container } = render(
         <TransferModal
           serviceName="example.com"
-          action={ProtectionStateEnum.PROTECTED}
+          currentProtectionState={ProtectionStateEnum.PROTECTED}
           open={false}
           updateDomain={mockUpdateDomain}
           onClose={mockOnClose}

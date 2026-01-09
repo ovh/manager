@@ -153,7 +153,6 @@ describe('DsRecordsDrawer', () => {
       ],
     ];
 
-    expect(payload.checksum).toBe(serviceInfoDetail.checksum);
     expect(payload.currentTargetSpec).toEqual(targetSpec);
 
     const { dsData } = payload.updatedSpec.dnssecConfiguration;
