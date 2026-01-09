@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { MODAL_COLOR, useNotifications } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { ConfirmationModal } from '@/components/listing/common/confirmation-modal/ConfirmationModal.component';
 import { useDeleteSubscription } from '@/data/hooks/tenants/useDeleteSubscription.hook';
@@ -52,7 +52,6 @@ export default function DeleteTenantSubscription() {
       cancelButtonLabel={t('tenants:dashboard.subscription_listing.unsubscribe.cancel')}
       isConfirmButtonLoading={isPending}
       error={getErrorMessage(error)}
-      type={MODAL_COLOR.warning}
     />
   );
 }
