@@ -4,18 +4,17 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Button,
   BUTTON_VARIANT,
-  ICON_NAME,
   Icon,
-  TEXT_PRESET,
-  Text,
-  Drawer,
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
 } from '@ovh-ux/muk';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { PREFERENCES_KEY, STANDARD_VIEW_ID } from './manageView.constants';
 import { ViewType } from './types';
 import { useSaveViewsPreference } from '@/hooks/manage-views/useSaveViewPreference';
+import ManageViewDrawerTitle from './manageViewDrawerTitle';
+import ManageViewConfig from './manageViewConfig';
 
 export type ManageViewDrawerProps = {
   views: ViewType[];
@@ -36,7 +35,7 @@ export const ManageViewDrawer = ({
   const { t } = useTranslation('manage-view');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const [editingView, setEditingView] = useState<ViewType>(null);
-  const { isPending, mutate: createViews } = useSaveViewsPreference({
+  const { isPending, mutate: saveViews } = useSaveViewsPreference({
     key: PREFERENCES_KEY,
   });
 
@@ -44,53 +43,87 @@ export const ManageViewDrawer = ({
     setEditingView({
       name: view?.name || t('new_view'),
       id: view?.id || `view-${views.length}`,
+      default: view?.default,
     });
-  }, [view, views]);
+  }, [isOpen, view, views]);
+
+  const handleNameChange = (value: string) => {
+    setEditingView({
+      ...editingView,
+      name: value,
+    });
+  };
+
+  const handelSetDefault = () => {
+    setEditingView({
+      ...editingView,
+      default: !editingView.default,
+    });
+  };
 
   const saveViewChanges = () => {
-    createViews({
-      views: [
-        ...views.filter((_view) => _view.id !== STANDARD_VIEW_ID),
-        editingView,
-      ],
+    saveViews({
+      view: editingView,
     });
     handleConfirm();
   };
 
   return (
-    <Drawer.Root isOpen={isOpen} onDismiss={handleDismiss}>
-      <Drawer.Content>
-        <div className="my-4">
-          <div className="flex items-center gap-4">
-            <Text preset={TEXT_PRESET.heading2} className="my-4">
-              {editingView?.name}
-            </Text>
-            <Button
-              role="button"
-              variant={BUTTON_VARIANT.ghost}
-              aria-label={t('edit_view_name')}
+    <div
+      className={`fixed top-0 right-0 h-full w-96 z-50
+        transition-transform duration-300 ease-in-out
+        ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+    >
+      {isOpen && (
+        <aside className="h-full w-full bg-white shadow-lg relative flex flex-col">
+          <div
+            onClick={handleCancel}
+            className="absolute top-9 -left-12 h-12 w-12 z-50 bg-white rounded-l-md shadow-md flex items-center justify-center border-0 outline-none focus:outline-none"
+            aria-label={tCommon('close')}
+          >
+            <span>
+              <Icon name={ODS_ICON_NAME.chevronDoubleRight} />
+            </span>
+            <span className="absolute -right-1 top-0 h-full w-2 bg-white pointer-events-none rounded-r-md"></span>
+          </div>
+          {/* Drawer Content */}
+          <div className="p-4 flex-1 overflow-auto">
+            <div className="flex items-center gap-4">
+              <ManageViewDrawerTitle
+                value={editingView?.name}
+                onChange={handleNameChange}
+              />
+            </div>
+            <Checkbox
+              checked={editingView?.default}
+              onCheckedChange={handelSetDefault}
             >
-              <Icon name={ICON_NAME.pen} aria-hidden={true} />
+              <CheckboxControl />
+              <CheckboxLabel>{t('set_as_default')}</CheckboxLabel>
+            </Checkbox>
+
+            <ManageViewConfig />
+          </div>
+          {/* Drawer footer */}
+          <div className="p-4 border-t flex justify-start gap-2">
+            <Button
+              aria-label={tCommon('save')}
+              variant={BUTTON_VARIANT.primary}
+              onClick={saveViewChanges}
+            >
+              {tCommon('save')}
+            </Button>
+            <Button
+              aria-label={tCommon('cancel')}
+              variant={BUTTON_VARIANT.ghost}
+              onClick={handleCancel}
+            >
+              {tCommon('cancel')}
             </Button>
           </div>
-          <Checkbox>
-            <CheckboxControl />
-            <CheckboxLabel>{t('set_as_default')}</CheckboxLabel>
-          </Checkbox>
-        </div>
-        {/* Add view configuration here */}
-      </Drawer.Content>
-      <Drawer.Footer
-        primaryButton={{
-          label: tCommon('save'),
-          onClick: saveViewChanges,
-        }}
-        secondaryButton={{
-          label: tCommon('cancel'),
-          onClick: handleCancel,
-        }}
-      />
-    </Drawer.Root>
+        </aside>
+      )}
+    </div>
   );
 };
 
