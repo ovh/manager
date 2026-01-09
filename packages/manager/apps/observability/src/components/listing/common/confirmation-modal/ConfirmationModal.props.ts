@@ -11,5 +11,5 @@ export interface ConfirmationModalProps {
   isConfirmButtonLoading?: boolean;
   isConfirmButtonDisabled?: boolean;
   cancelButtonLabel?: string;
-  error?: string;
+  error?: Error;
 }

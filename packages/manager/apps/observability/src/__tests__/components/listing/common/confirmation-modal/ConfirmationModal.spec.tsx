@@ -6,6 +6,18 @@ import { vi } from 'vitest';
 
 import { ConfirmationModal } from '@/components/listing/common/confirmation-modal/ConfirmationModal.component';
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+  Trans: ({ i18nKey, values }: { i18nKey: string; values?: Record<string, string> }) => (
+    <span data-testid="trans-component">
+      {i18nKey}
+      {values?.message && `: ${values.message}`}
+    </span>
+  ),
+}));
+
 vi.mock('@ovh-ux/muk', () => ({
   Modal: ({
     children,
@@ -97,17 +109,19 @@ describe('ConfirmationModal', () => {
   });
 
   it('displays error message when provided', () => {
+    const mockError = new Error('Could not delete');
     render(
       <ConfirmationModal
         title="Error"
         message="Something went wrong"
         onDismiss={() => {}}
-        error="Could not delete"
+        error={mockError}
       />,
     );
 
     expect(screen.getByTestId('confirmation-modal-error-message')).toBeInTheDocument();
-    expect(screen.getByText('Could not delete')).toBeInTheDocument();
+    // ErrorMessage component uses Trans to display the error message
+    expect(screen.getByTestId('trans-component')).toBeInTheDocument();
   });
 
   it('calls handlers when clicking buttons', async () => {
