@@ -64,6 +64,12 @@
   "inProgressRestore": "Restauration en cours...",
   "available": "Disponible jusqu'au",
   "seeVersionsSwitchLabel": "Voir les versions",
+  "searchLabel": "Recherche :",
+  "prefixLabel": "Préfixe :",
+  "rootPrefix": "(racine)",
+  "loading": "Chargement…",
+  "dropFilesToUpload": "Déposez les fichiers ici pour les téléverser",
+  "noSearchResults": "Aucun résultat trouvé pour \"{{query}}\"",
   "selectObject": "Sélectionner l'objet {{name}}",
   "selectAll": "Tout sélectionner",
   "bulkDeleteTitle": "Supprimer plusieurs objets",
@@ -76,5 +82,6 @@
   "bulkDeleteVersionsTitle": "Supprimer plusieurs versions",
   "bulkDeleteVersionsDescription_one": "Voulez-vous supprimer définitivement {{count}} version? Cette action ne peut être annulée.",
   "bulkDeleteVersionsDescription_other": "Voulez-vous supprimer définitivement {{count}} versions? Cette action ne peut être annulée.",
-  "bulkDeleteVersionsConfirmation": "Tapez {{confirmation}} pour confirmer"
+  "bulkDeleteVersionsConfirmation": "Tapez {{confirmation}} pour confirmer",
+  "openFolder": "Ouvrir le dossier {{name}}"
 }

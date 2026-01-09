@@ -20,6 +20,7 @@ export function useDeleteS3ObjectVersion({
     },
     onError,
     onSuccess: (_data, variable) => {
+      // Invalidate storage queries
       queryClient.invalidateQueries({
         queryKey: [
           variable.projectId,
@@ -28,6 +29,16 @@ export function useDeleteS3ObjectVersion({
           'storage',
           variable.name,
         ],
+      });
+      // Invalidate s3-browser queries to refresh the object list
+      queryClient.invalidateQueries({
+        queryKey: [
+          's3-browser',
+          variable.projectId,
+          variable.region,
+          variable.name,
+        ],
+        refetchType: 'all',
       });
       onDeleteSuccess();
     },

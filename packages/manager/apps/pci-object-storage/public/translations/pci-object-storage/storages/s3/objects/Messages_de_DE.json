@@ -60,6 +60,12 @@
   "restoreAvailableUntil": "Das Objekt ist verfügbar bis",
   "seeVersionsSwitchLabel": "Versionen anzeigen",
   "searchPlaceholder": "Suchen...",
+  "searchLabel": "Suche:",
+  "prefixLabel": "Präfix:",
+  "rootPrefix": "(Wurzel)",
+  "loading": "Laden…",
+  "dropFilesToUpload": "Dateien hier ablegen, um sie hochzuladen",
+  "noSearchResults": "Keine Ergebnisse für \"{{query}}\" gefunden",
   "changeStorageClassWarningInfrequentAccess": "Achtung: Die Klassen Infrequent Access und Cold Archive erfordern eine Mindestaufbewahrungsdauer. <0>Mehr erfahren</0>",
   "selectObject": "Objekt {{name}} auswählen",
   "selectAll": "Alles auswählen",
@@ -76,5 +82,6 @@
   "bulkDeleteVersionsConfirmation": "Geben Sie zum Bestätigen {{confirmation}} ein.",
   "downloadErrorDescription": "Fehler beim Hochladen der Datei",
   "downloadErrorStatus": "Fehler beim Hochladen: {{status}}",
-  "downloadErrorUnknownType": "Unbekannter Upload-Typ"
+  "downloadErrorUnknownType": "Unbekannter Upload-Typ",
+  "openFolder": "Ordner {{name}} öffnen"
 }

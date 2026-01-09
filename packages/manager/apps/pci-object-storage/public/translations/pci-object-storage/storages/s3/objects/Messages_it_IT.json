@@ -60,6 +60,12 @@
   "restoreAvailableUntil": "L'oggetto sarà disponibile fino al",
   "seeVersionsSwitchLabel": "Visualizzare le versioni",
   "searchPlaceholder": "Ricerca...",
+  "searchLabel": "Ricerca:",
+  "prefixLabel": "Prefisso:",
+  "rootPrefix": "(radice)",
+  "loading": "Caricamento…",
+  "dropFilesToUpload": "Trascina i file qui per caricarli",
+  "noSearchResults": "Nessun risultato trovato per \"{{query}}\"",
   "changeStorageClassWarningInfrequentAccess": "Attenzione: Le classi Infrequent Access e Cold Archive richiedono una durata minima di conservazione. <0>Più informazioni</0>",
   "selectObject": "Selezionare l'oggetto {{name}}",
   "selectAll": "Seleziona tutto",
@@ -76,5 +82,6 @@
   "bulkDeleteVersionsConfirmation": "Digita {{confirmation}} per confermare",
   "downloadErrorDescription": "Errore durante il caricamento del file",
   "downloadErrorStatus": "Errore durante il caricamento: {{status}}",
-  "downloadErrorUnknownType": "Tipo di caricamento sconosciuto"
+  "downloadErrorUnknownType": "Tipo di caricamento sconosciuto",
+  "openFolder": "Apri la cartella {{name}}"
 }

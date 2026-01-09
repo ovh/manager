@@ -5,6 +5,8 @@
   "prefixRequiredError": "Questo campo è obbligatorio",
   "prefixFieldLabel": "Prefisso",
   "prefixFieldPlaceholder": "Inserire un prefisso",
+  "prefixValidationError": "Il prefisso non può terminare con \"/\" o contenere più barre oblique consecutive",
+  "prefixHelperText": "Verrà aggiunto automaticamente un \"/\" tra il prefisso e il nome del file",
   "importFileLabel": "Importare file",
   "importFileButton": "Selezionare i file...",
   "fileUploaderButtonCancel": "Annullare",
