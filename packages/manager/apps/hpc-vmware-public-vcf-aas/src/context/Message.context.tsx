@@ -27,11 +27,11 @@ type AddMessageProps = Omit<AddGenericMessageProps, 'type'>;
 
 export type MessageContextType = {
   messages: MessageType[];
-  addSuccess: (props: AddMessageProps) => void;
-  addError: (props: AddMessageProps) => void;
-  addWarning: (props: AddMessageProps) => void;
-  addInfo: (props: AddMessageProps) => void;
-  addCritical: (props: AddMessageProps) => void;
+  addSuccess: (props: AddMessageProps) => number;
+  addError: (props: AddMessageProps) => number;
+  addWarning: (props: AddMessageProps) => number;
+  addInfo: (props: AddMessageProps) => number;
+  addCritical: (props: AddMessageProps) => number;
   clearMessage: (uid: number) => void;
   clearMessages: () => void;
 };
@@ -51,15 +51,17 @@ export const MessageContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [messages, setMessages] = useState<MessageType[]>([]);
 
   const addMessage = (props: AddGenericMessageProps) => {
+    const uid = Date.now();
     setMessages((prevList) => [
       ...prevList,
       {
-        uid: Date.now(),
+        uid,
         includedSubRoutes: props.includedSubRoutes || [],
         excludedSubRoutes: props.excludedSubRoutes || [],
         ...props,
       },
     ]);
+    return uid;
   };
   const deleteMessage = (id: number) => {
     setMessages((prevList) => prevList.filter((msg) => msg.uid !== id));

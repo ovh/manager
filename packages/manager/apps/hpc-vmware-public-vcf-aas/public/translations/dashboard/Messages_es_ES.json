@@ -54,5 +54,6 @@
   "managed_vcd_dashboard_password_renew_error": "Se ha producido un error al renovar la contraseña de administrador. Por favor, vuelva a intentarlo más tarde o póngase en contacto con el servicio de atención al cliente.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confirmar",
   "managed_vcd_dashboard_cancellation_tooltip": "Si desea dar de baja el servicio, contacte con nuestro equipo de soporte.",
-  "managed_vcd_dashboard_vrack_title": "Redes vRack"
+  "managed_vcd_dashboard_vrack_title": "Redes vRack",
+  "managed_vcd_dashboard_general_network_acl": "Permisos de acceso"
 }
