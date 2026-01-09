@@ -307,7 +307,6 @@ export type DomainService = {
 };
 
 export type TUpdateDomainVariables = {
-  checksum: string;
   currentTargetSpec: TTargetSpec;
   updatedSpec: Partial<TTargetSpec>;
 };
