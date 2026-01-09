@@ -25,9 +25,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clean stale git locks (pre)
-        run: rm -f .git/index.lock
-
       # ------------------------------------------
       # Node
       # ------------------------------------------
@@ -70,9 +67,6 @@ jobs:
         run: |
           yarn --version
           yarn ci:install
-
-      - name: Clean stale git locks (post-install)
-        run: rm -f .git/index.lock
 
       # ------------------------------------------
       # Build documentation targets (single DAG)

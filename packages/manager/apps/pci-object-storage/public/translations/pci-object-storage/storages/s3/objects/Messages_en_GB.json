@@ -60,5 +60,5 @@
   "restoreAvailableUntil": "Item will be available until",
   "seeVersionsSwitchLabel": "See versions",
   "searchPlaceholder": "Search...",
-  "changeStorageClassWarningInfrequentAccess": "Warning: The Infrequent Access and Cold Archive classes have a minimum retention period. &lt;0>Learn more&lt;/0>"
+  "changeStorageClassWarningInfrequentAccess": "Warning: The Infrequent Access and Cold Archive classes have a minimum retention period. <0>Learn more</0>"
 }

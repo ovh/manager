@@ -3,14 +3,14 @@
   "pci_project_flavors_billing_monthly": "Monatlich",
   "pci_project_flavors_billing_price_hourly": "{{price}} zzgl. MwSt. / Stunde",
   "pci_project_flavors_billing_price_monthly": "{{price}} zzgl. MwSt. / Monat",
-  "pci_project_flavors_billing_price_hourly_price_label": "Preis:",
+  "pci_project_flavors_billing_price_hourly_price_label": "Preis: ",
   "pci_project_flavors_billing_addons_price_monthly": "{{price}} inkl. MwSt. / Monat",
-  "pci_project_flavors_billing_price_monthly_instance_price_label": "Preis:",
-  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway:",
-  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IP:",
-  "pci_projects_project_instances_add_total_price_label": "Gesamt",
+  "pci_project_flavors_billing_price_monthly_instance_price_label": "Preis: ",
+  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway: ",
+  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IPs: ",
+  "pci_projects_project_instances_add_total_price_label": "Gesamt: ",
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} / Stunde (zzgl. MwSt)",
   "pci_projects_project_instances_configure_billing_type": "Abrechnungstyp konfigurieren",
-  "pci_projects_project_instances_configure_billing_type_description": "Sie können für jeden Knoten in der Bearbeitungsansicht des Knotepools von der stündlichen Abrechnung auf die monatliche Pauschale umsteigen.",
-  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Preis einschließlich der Kosten für Floating IPs"
+  "pci_projects_project_instances_configure_billing_type_description": "In der Node-Pool-Bearbeitungsansicht können Sie für jeden Node von der stündlichen zur monatlichen Abrechnung wechseln.",
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Preis inklusive der Kosten für Floating IPs"
 }

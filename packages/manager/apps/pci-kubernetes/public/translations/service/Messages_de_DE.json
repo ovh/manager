@@ -101,10 +101,10 @@
   "kube_service_show_optional": "Weitere Parameter anzeigen",
   "kube_service_hide_optional": "Weniger Einstellungen anzeigen",
   "kube_service_cluster_status_MULTI_ZONES": "Das MKS Premium-Angebot befindet sich derzeit in der Betaphase. Einige Funktionen sind noch nicht verfügbar, werden aber in Kürze bereitgestellt.",
-  "kube_service_copy_kubeconfig": "Kubeconfig kopieren",
-  "kube_service_download_kubeconfig": "Kubeconfig herunterladen",
-  "kube_service_download_kubeconfig_success": "Die kubeconfig wird heruntergeladen.",
-  "kube_service_download_kubeconfig_error": "Fehler beim Herunterladen der Kubeconfig-Datei.",
-  "kube_service_copy_kubeconfig_success": "Der Kubeconfig wurde erfolgreich kopiert.",
-  "kube_service_copy_kubeconfig_error": "Fehler beim Kopieren des Kubeconfig."
+  "kube_service_copy_kubeconfig": "kubeconfig kopieren",
+  "kube_service_download_kubeconfig": "kubeconfig herunterladen",
+  "kube_service_download_kubeconfig_success": "Die kubeconfig-Datei wird gerade heruntergeladen.",
+  "kube_service_download_kubeconfig_error": "Fehler beim Herunterladen der kubeconfig-Datei.",
+  "kube_service_copy_kubeconfig_success": "Die kubeconfig-Datei wurde erfolgreich kopiert.",
+  "kube_service_copy_kubeconfig_error": "Fehler beim Kopieren der kubeconfig-Datei."
 }

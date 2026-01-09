@@ -29,7 +29,7 @@
   "cliCodeTitle": "Sie können dieselbe Anwendung mit diesen Befehlszeilen in Ihrer OVHAI CLI erstellen.",
   "cliEquivalentToastMessage": "CLI-Befehl wurde kopiert",
   "customMetricsUrlLabel": "URL: ",
-  "customMetricsFormatLabel": "Format : {{for}}",
-  "customMetricsLocationLabel": "Emplacement: ",
-  "customMetricsTargetValueLabel": "Valeur : {{val}}"
+  "customMetricsFormatLabel": "Format: {{for}}",
+  "customMetricsLocationLabel": "Ort: ",
+  "customMetricsTargetValueLabel": "Wert: {{val}}"
 }

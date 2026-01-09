@@ -19,5 +19,6 @@
   "common_criteria_adder_operator_NEQ": "is different from",
   "common_criteria_adder_operator_EXISTS": "exists",
   "common_criteria_adder_operator_NEXISTS": "does not exist",
-  "common_criteria_adder_key_label": "Key"
+  "common_criteria_adder_key_label": "Key",
+  "common_criteria_adder_operator_is_in": "is in"
 }

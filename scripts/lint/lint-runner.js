@@ -6,108 +6,220 @@ const { spawn, spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-/**
- * Parses CLI arguments to extract app-related flags.
- */
-const appArgIndex = process.argv.indexOf('--app');
-const fix = process.argv.includes('--fix');
-const verbose = !process.argv.includes('--quiet');
+const argv = process.argv.slice(2);
 
-const appValue = appArgIndex !== -1 ? process.argv[appArgIndex + 1] : null;
-const isPackageName = appValue?.startsWith('@');
+const getFlagValue = (flag) => {
+  const idx = argv.indexOf(flag);
+  if (idx === -1) return null;
+  return argv[idx + 1] ?? null;
+};
+
+const hasFlag = (flag) => argv.includes(flag);
+
+const appValue = getFlagValue('--app');
+const fix = hasFlag('--fix');
+const verbose = !hasFlag('--quiet');
+const isCI = Boolean(process.env.CI);
+
+const isPackageName = Boolean(appValue && appValue.startsWith('@'));
 const appName = isPackageName ? null : appValue;
 const packageName = isPackageName ? appValue : null;
 
 const appsRoot = path.join(__dirname, '../../packages/manager/apps');
-const allApps = fs
-  .readdirSync(appsRoot)
-  .filter((dir) => fs.statSync(path.join(appsRoot, dir)).isDirectory());
 
-/**
- * Filters apps that use the static analysis kit with a modern ESLint config.
- */
-const modernApps = allApps.filter((app) => {
-  const appPath = path.join(appsRoot, app);
-  const configExists = fs.existsSync(path.join(appPath, 'eslint.config.mjs'));
-  const pkgPath = path.join(appPath, 'package.json');
-
-  if (!configExists || !fs.existsSync(pkgPath)) return false;
-
-  try {
-    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-    return pkg.scripts && pkg.scripts['lint:modern'];
-  } catch (err) {
-    if (verbose) console.error(`🔴 Error reading package.json in ${app}:`, err);
-    return false;
-  }
-});
-
-/**
- * Lint ignore patterns for modern apps if not targeting a single one.
- */
-const ignorePatterns =
-  appName || isPackageName
-    ? []
-    : modernApps.map(
-        (app) => `--ignore-pattern='packages/manager/apps/${app}/**'`,
-      );
-
-/**
- * Determines legacy lint targets.
- */
-const legacyPattern = appName
-  ? [`packages/manager/apps/${appName}/**/*.ts`]
-  : [
-      'packages/manager/apps/**/*.ts'
-    ];
-
-if (verbose) {
-  console.log(`🗂️ Legacy lint patterns:\n${legacyPattern.join('\n')}`);
-  if (ignorePatterns.length > 0) {
-    console.log(`🚫 Ignored modern apps:\n${ignorePatterns.join('\n')}`);
-  }
+function listApps(rootDir) {
+  return fs
+    .readdirSync(rootDir)
+    .filter((dir) => fs.statSync(path.join(rootDir, dir)).isDirectory());
 }
 
-const tasks = [];
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+}
 
-if (!isPackageName) {
-  tasks.push({
-    name: appName ? `legacy lint:tsx (${appName})` : 'legacy lint:tsx',
-    cmd: [
-      'eslint',
-      ...(fix ? ['--fix'] : []),
-      '--quiet',
-      ...legacyPattern,
-      ...ignorePatterns,
-    ],
+function getModernApps(allApps) {
+  return allApps.filter((app) => {
+    const appPath = path.join(appsRoot, app);
+    const configExists = fs.existsSync(path.join(appPath, 'eslint.config.mjs'));
+    const pkgPath = path.join(appPath, 'package.json');
+
+    if (!configExists || !fs.existsSync(pkgPath)) return false;
+
+    try {
+      const pkg = readJson(pkgPath);
+      return Boolean(pkg.scripts && pkg.scripts['lint:modern']);
+    } catch (err) {
+      if (verbose)
+        console.error(`🔴 Error reading package.json in ${app}:`, err);
+      return false;
+    }
   });
 }
 
+/**
+ * We ignore modern apps from legacy lint unless user targets a single app/package.
+ * IMPORTANT: pass ignore patterns as separate args (no shell quoting needed).
+ */
+function buildIgnorePatterns(modernAppsList) {
+  if (appName || isPackageName) return [];
+  return modernAppsList.flatMap((app) => [
+    '--ignore-pattern',
+    `packages/manager/apps/${app}/**`,
+  ]);
+}
+
+function buildLegacyPatterns() {
+  return appName
+    ? [`packages/manager/apps/${appName}/**/*.ts`]
+    : ['packages/manager/apps/**/*.ts'];
+}
+
+const allApps = listApps(appsRoot);
+const modernApps = getModernApps(allApps);
+const ignorePatterns = buildIgnorePatterns(modernApps);
+const legacyPatterns = buildLegacyPatterns();
+
+if (verbose) {
+  console.log(`🗂️ Legacy lint patterns:\n${legacyPatterns.join('\n')}`);
+  if (ignorePatterns.length > 0) {
+    console.log(
+      `🚫 Ignored modern apps:\n${modernApps
+        .map((a) => `packages/manager/apps/${a}/**`)
+        .join('\n')}`,
+    );
+  }
+}
+
+/**
+ * Turbo flags for CI:
+ * - stream logs (avoid grouped logs / silence)
+ * - full logs (debuggable)
+ * - cap concurrency (stability on CI)
+ */
+const turboCIFlags = isCI
+  ? ['--log-order=stream', '--output-logs=full', '--concurrency=2']
+  : [];
+
 const turboTask = fix ? 'lint:modern:fix' : 'lint:modern';
 
+function yarnCmd(...args) {
+  return ['yarn', ...args];
+}
+
+function buildTurboCmd() {
+  const base = ['-s', 'turbo', 'run', turboTask, '--continue', ...turboCIFlags];
+
+  if (isPackageName) return yarnCmd(...base, '--filter', packageName);
+  if (appName) return yarnCmd(...base, '--filter', appName);
+  return yarnCmd(...base);
+}
+
+function buildLegacyLintCmd() {
+  return yarnCmd(
+    '-s',
+    'eslint',
+    ...(fix ? ['--fix'] : []),
+    '--quiet',
+    ...legacyPatterns,
+    ...ignorePatterns,
+  );
+}
+
+const tasks = [];
+if (!isPackageName) {
+  tasks.push({
+    name: appName ? `legacy lint:tsx (${appName})` : 'legacy lint:tsx',
+    cmd: buildLegacyLintCmd(),
+  });
+}
 tasks.push({
   name: `modern ${turboTask} (Turbo)`,
-  cmd: isPackageName
-    ? ['turbo', 'run', turboTask, '--filter', packageName, '--continue']
-    : appName
-      ? ['turbo', 'run', turboTask, '--filter', appName, '--continue']
-      : ['turbo', 'run', turboTask, '--continue'],
+  cmd: buildTurboCmd(),
 });
 
 const errors = [];
+let currentChild = null;
+let shuttingDown = false;
+
+function prepareWorkspace() {
+  spawnSync('yarn', ['pm:prepare:legacy:workspace'], {
+    shell: false,
+    stdio: 'inherit',
+  });
+}
+
+function cleanupWorkspace() {
+  spawnSync('yarn', ['pm:remove:legacy:workspace'], {
+    shell: false,
+    stdio: 'inherit',
+  });
+}
+
+function killChild(signal) {
+  if (!currentChild || !currentChild.pid) return;
+  try {
+    // POSIX: kill process group
+    process.kill(-currentChild.pid, signal);
+  } catch {
+    // ignore
+  }
+}
+
+function shutdown(signal) {
+  if (shuttingDown) return;
+  shuttingDown = true;
+
+  if (verbose)
+    console.warn(`\n🛑 Received ${signal} — cleaning up workspace...`);
+
+  killChild(signal);
+
+  try {
+    cleanupWorkspace();
+  } catch {
+    // ignore
+  }
+
+  process.exit(signal === 'SIGINT' ? 130 : 143);
+}
+
+process.on('SIGINT', () => shutdown('SIGINT'));
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+
+process.on('uncaughtException', (err) => {
+  console.error('🔴 Uncaught exception:', err);
+  try {
+    cleanupWorkspace();
+  } finally {
+    process.exit(1);
+  }
+});
+
+process.on('unhandledRejection', (err) => {
+  console.error('🔴 Unhandled rejection:', err);
+  try {
+    cleanupWorkspace();
+  } finally {
+    process.exit(1);
+  }
+});
 
 /**
- * Spawns a command as a child process and returns output.
- * @param {string} command
- * @param {string[]} args
- * @returns {Promise<string>}
+ * Run a command and capture output while streaming if verbose.
+ * - stdin: inherit (don’t close it)
+ * - detached: true so we can kill the whole process group on SIGTERM
  */
-async function run(command, args) {
+function run(cmd) {
+  const [command, ...args] = cmd;
+
   return new Promise((resolve, reject) => {
     const proc = spawn(command, args, {
-      shell: true,
-      stdio: ['ignore', 'pipe', 'pipe'],
+      shell: false,
+      detached: true,
+      stdio: ['inherit', 'pipe', 'pipe'],
     });
+
+    currentChild = proc;
 
     let stdout = '';
     let stderr = '';
@@ -124,33 +236,36 @@ async function run(command, args) {
       if (verbose) process.stderr.write(str);
     });
 
-    proc.on('close', (code) => {
-      if (verbose) console.log(`⏹ Exit code: ${code}`);
-      if (code !== 0) {
-        reject({ code, message: stdout + stderr });
-      } else {
-        resolve(stdout);
+    proc.on('close', (code, signal) => {
+      currentChild = null;
+
+      if (signal) {
+        return reject({
+          code: 1,
+          message: `Process terminated by signal ${signal}\n${stdout}${stderr}`,
+        });
       }
+
+      if (verbose) console.log(`⏹ Exit code: ${code}`);
+
+      if (code !== 0) return reject({ code, message: stdout + stderr });
+      resolve(stdout);
     });
 
     proc.on('error', (err) => {
+      currentChild = null;
       reject({ code: 1, message: err.message || 'Unknown process error' });
     });
   });
 }
 
-/**
- * Collects error messages from failed lint/build tasks.
- * @param {object} task
- * @param {object} err
- */
 function handleLintError(task, err) {
   const fullOutput = err?.message || '';
   const lines = fullOutput.split('\n');
 
   const relevant = lines.filter(
     (line) =>
-      line.match(/^\s*\d+:\d+\s+(error|warning)\s+/) ||
+      /^\s*\d+:\d+\s+(error|warning)\s+/.test(line) ||
       line.includes('ERROR') ||
       line.includes('✖') ||
       line.includes('.tsx') ||
@@ -169,14 +284,7 @@ function handleLintError(task, err) {
   console.warn(`⚠ Task failed: ${task.name}`);
 }
 
-/**
- * Simple async sleep utility.
- * @param {number} ms - Milliseconds to wait.
- * @returns {Promise<void>}
- */
-function wait(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
 (async () => {
   console.warn(`
@@ -199,30 +307,24 @@ Thanks for your patience ✨
 ─────────────────────────────────────────────
 `);
 
-  await wait(3000); // Wait 3 seconds before continuing
+  await wait(1000);
 
   for (const task of tasks) {
     console.log(`\n▶ Starting: ${task.name}`);
     console.log(`📦 Command: ${task.cmd.join(' ')}`);
     console.log('⏳ Waiting for output...\n');
 
+    prepareWorkspace();
     try {
-      // Run the prepare step synchronously
-      spawnSync('yarn', ['pm:prepare:legacy:workspace'], {
-        shell: true,
-        stdio: 'inherit',
-      });
-
-      // Run task
-      await run(task.cmd[0], task.cmd.slice(1));
-
-      // Clean up after process ends
-      spawnSync('yarn', ['pm:remove:legacy:workspace'], {
-        shell: true,
-        stdio: 'inherit',
-      });
+      await run(task.cmd);
     } catch (err) {
       handleLintError(task, err);
+    } finally {
+      try {
+        cleanupWorkspace();
+      } catch (e) {
+        console.warn('⚠ Workspace cleanup failed:', e?.message || e);
+      }
     }
   }
 
@@ -241,8 +343,8 @@ Thanks for your patience ✨
       );
     }
     process.exit(1);
-  } else {
-    console.log('\n✅ Linting completed successfully.');
-    process.exit(0);
   }
+
+  console.log('\n✅ Linting completed successfully.');
+  process.exit(0);
 })();

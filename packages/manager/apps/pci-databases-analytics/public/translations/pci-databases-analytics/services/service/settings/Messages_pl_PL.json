@@ -54,5 +54,6 @@
   "serviceDeletionProtectionActivatedDeactivated": "Wyłączona",
   "serviceDeletionProtectionActivate": "Włącz",
   "serviceDeletionProtectionActivatedDeactivate": "Dezaktywować",
-  "serviceDeletionProtectionDeactivate": "Dezaktywować"
+  "serviceDeletionProtectionDeactivate": "Wyłącz",
+  "serviceDeletionProtectionDeactivated": "Wyłączona"
 }

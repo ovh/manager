@@ -37,17 +37,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # -------------------------------------------------------
-      # FORCE Git CLEANUP
-      # -------------------------------------------------------
-      - name: Force cleanup git state
-        if: always()
-        run: |
-          echo "Cleaning git state"
-          rm -f .git/index.lock
-          git reset --hard
-          git clean -fd
-
       # ------------------------------------------
       # Node
       # ------------------------------------------
@@ -88,9 +77,6 @@ jobs:
         env:
           YARN_CACHE_FOLDER: ~/.cache/yarn
         run: yarn ci:install
-
-      - name: Clean stale git locks (post-install)
-        run: rm -f .git/index.lock
 
       # ------------------------------------------
       # Lint
