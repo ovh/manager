@@ -1,4 +1,4 @@
-import React, { lazy, useEffect } from 'react';
+import React, { lazy, useEffect, useRef } from 'react';
 
 import { loadRemote } from '@module-federation/runtime';
 
@@ -6,7 +6,7 @@ import { TWillPaymentConfig } from '@/types/UWillPayment.type';
 
 type WillPaymentModuleProps = {
   slotRef: React.RefObject<HTMLDivElement>;
-  config: TWillPaymentConfig;
+  config: TWillPaymentConfig | null;
 };
 
 type WillPaymentSetupFunction = (
@@ -27,11 +27,15 @@ export const WillPaymentModule = lazy(() =>
     const setupFunction = module.default || module;
 
     const WillPaymentWrapper = ({ slotRef, config }: WillPaymentModuleProps) => {
+      const hasInitialized = useRef(false);
+
       useEffect(() => {
         const element = slotRef.current;
-        if (!element) {
+        if (!element || !config || hasInitialized.current) {
           return undefined;
         }
+
+        hasInitialized.current = true;
 
         setupFunction(element, { configuration: config });
 
@@ -39,6 +43,7 @@ export const WillPaymentModule = lazy(() =>
           if (element) {
             element.innerHTML = '';
           }
+          hasInitialized.current = false;
         };
       }, [slotRef, config]);
 
