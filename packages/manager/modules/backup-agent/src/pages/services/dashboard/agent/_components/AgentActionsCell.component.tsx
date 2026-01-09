@@ -10,6 +10,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+import { BACKUP_AGENT_IAM_RULES } from '@/module.constants';
 import { urlParams, urls } from '@/routes/routes.constants';
 
 export type AgentActionsCellProps = {
@@ -34,12 +35,14 @@ export const AgentActionsCell = ({ tenantId, agentId }: AgentActionsCellProps) =
       id: 0,
       label: t(`${NAMESPACES.ACTIONS}:configure`),
       href: configurationHref,
+      iamActions: [BACKUP_AGENT_IAM_RULES['vspc/edit']],
     },
     {
       id: 1,
       label: t(`${NAMESPACES.ACTIONS}:delete`),
       href: deleteHref,
       color: ODS_BUTTON_COLOR.critical,
+      iamActions: [BACKUP_AGENT_IAM_RULES['vspc/edit']],
     },
   ];
 

@@ -22,11 +22,7 @@ export const useVSPCTenantsOptions = () => {
   });
 };
 
-export const useVSPCTenants = () =>
-  useQuery({
-    ...useVSPCTenantsOptions(),
-    select: (res) => res.data,
-  });
+export const useVSPCTenants = () => useQuery(useVSPCTenantsOptions());
 
 export const useInstalledBackupAgents = ({
   vspcTenantIds,
