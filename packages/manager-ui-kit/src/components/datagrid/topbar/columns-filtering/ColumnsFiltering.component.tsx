@@ -29,7 +29,7 @@ export const ColumnsFilteringComponent = ({
 }: ColumnsFilteringComponentProps) => {
   const { t } = useTranslation('filters');
   return (
-    <Popover position={POPOVER_POSITION.bottom}>
+    <Popover position={POPOVER_POSITION.bottom} >
       <PopoverTrigger asChild>
         <Button
           aria-label={t('common_criteria_adder_filter_label')}
@@ -42,7 +42,7 @@ export const ColumnsFilteringComponent = ({
           </>
         </Button>
       </PopoverTrigger>
-      <PopoverContent createPortal={false}>
+      <PopoverContent createPortal={false} className="min-w-[320px] box-border">
         <FilterAdd
           columns={columns}
           resourceType={resourceType}
