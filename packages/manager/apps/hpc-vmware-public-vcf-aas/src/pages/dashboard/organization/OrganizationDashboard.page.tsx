@@ -34,6 +34,11 @@ export default function DashboardPage() {
       to: useResolvedPath(subRoutes.virtualDatacenters).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.datacentres,
     },
+    {
+      name: 'networkAcl',
+      title: t('managed_vcd_dashboard_general_network_acl'),
+      to: useResolvedPath(subRoutes.networkAcl).pathname,
+    },
   ];
 
   const serviceName = vcdOrganisation?.data?.currentState?.fullName;

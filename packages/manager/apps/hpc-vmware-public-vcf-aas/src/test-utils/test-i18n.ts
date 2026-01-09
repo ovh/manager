@@ -7,6 +7,8 @@ import datacentresOrder from '../../public/translations/datacentres/order/Messag
 import datacentresStorage from '../../public/translations/datacentres/storage/Messages_fr_FR.json';
 import datacentresVrackSegment from '../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 import terminate from '../../public/translations/terminate/Messages_fr_FR.json';
+import networkAcl from '../../public/translations/networkAcl/Messages_fr_FR.json';
+import zodError from '../../public/translations/zodError/Messages_fr_FR.json';
 
 const error = {
   manager_error_page_title: 'Oops …!',
@@ -16,6 +18,19 @@ const error = {
   manager_error_page_action_home_label: "Retour à la page d'accueil",
   manager_error_page_default:
     'Une erreur est survenue lors du chargement de la page.',
+};
+
+const commun = {
+  actions: {
+    confirm: 'Confirmer',
+    cancel: 'Annuler',
+  },
+  dashboard: {
+    description: 'Description',
+  },
+  status: {
+    status: 'Statut',
+  },
 };
 
 export const translations = {
@@ -29,6 +44,10 @@ export const translations = {
   'datacentres/vrack-segment': datacentresVrackSegment,
   error,
   terminate,
+  networkAcl,
+  '@ovh-ux/manager-common-translations/dashboard': commun.dashboard,
+  '@ovh-ux/manager-common-translations/actions': commun.actions,
+  '@ovh-ux/manager-common-translations/status': commun.status,
 };
 
 export const labels = {
@@ -42,4 +61,7 @@ export const labels = {
   datacentresStorage,
   datacentresVrackSegment,
   terminate,
+  networkAcl,
+  commun,
+  zodError,
 };
