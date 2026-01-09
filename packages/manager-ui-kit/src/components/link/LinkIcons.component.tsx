@@ -29,6 +29,13 @@ export function LinkIcons({ type, children }: LinkIconsProps) {
           <Icon name="arrow-right" />
         </>
       );
+    case LinkType.survey:
+      return (
+        <>
+          {children}
+          <Icon name="emoticon-smile" />
+        </>
+      );
     default:
       return <>{children}</>;
   }
