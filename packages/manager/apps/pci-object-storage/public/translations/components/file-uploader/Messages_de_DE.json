@@ -5,6 +5,8 @@
   "prefixRequiredError": "Dieses Feld ist ein Pflichtfeld.",
   "prefixFieldLabel": "Präfix",
   "prefixFieldPlaceholder": "Präfix eingeben",
+  "prefixValidationError": "Das Präfix darf nicht mit \"/\" enden oder mehrere aufeinanderfolgende Schrägstriche enthalten",
+  "prefixHelperText": "Ein \"/\" wird automatisch zwischen Präfix und Dateiname eingefügt",
   "importFileLabel": "Dateien importieren",
   "importFileButton": "Dateien auswählen …",
   "fileUploaderButtonCancel": "Abbrechen",

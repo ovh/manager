@@ -5,6 +5,8 @@
   "prefixRequiredError": "This field is mandatory",
   "prefixFieldLabel": "Prefix",
   "prefixFieldPlaceholder": "Enter a prefix",
+  "prefixValidationError": "Prefix cannot end with \"/\" or contain multiple consecutive slashes",
+  "prefixHelperText": "A \"/\" will be automatically added between the prefix and filename",
   "importFileLabel": "Import files",
   "importFileButton": "Select files...",
   "fileUploaderButtonCancel": "Cancel",
