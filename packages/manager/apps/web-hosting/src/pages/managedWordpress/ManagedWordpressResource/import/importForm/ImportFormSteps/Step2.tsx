@@ -493,6 +493,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
           loading={isSubmitting}
           color={BUTTON_COLOR.primary}
           id="import-step2"
+          data-testid="import-step2"
         >
           {t('common:web_hosting_common_action_launch_import')}
         </Button>
