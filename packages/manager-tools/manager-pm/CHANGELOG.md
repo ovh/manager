@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.45.1...@ovh-ux/manager-pm@0.46.0) (2026-01-09)
+
+
+### Features
+
+* resolve git race conditions ([e9dc72a](https://github.com/ovh/manager/commit/e9dc72aa447a0bdbf598835585ea21ece4296f18))
+
+
+
+
+
 ## [0.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.45.0...@ovh-ux/manager-pm@0.45.1) (2026-01-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm
