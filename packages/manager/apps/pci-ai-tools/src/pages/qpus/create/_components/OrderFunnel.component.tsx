@@ -95,18 +95,24 @@ const OrderFunnel = ({
   const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
+  const handleAddSshKeyClick = () => {
+    track(TRACKING.qpus.funnel.configureSshKeyClick(), 'funnel');
+    navigate('./add-sshkey');
+  };
+  const getConfirmNotebookTrackingName = () =>
+    TRACKING.qpus.funnel.confirmNotebookClick();
 
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
+  const getCreateNotebookBannerTrackingName = (
+    type: 'info' | 'error',
+    status: 'pending' | 'alert' | 'success' | 'error',
+  ) => TRACKING.qpus.banner.createNotebookBanner(type, status);
 
   const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
     onError: (err) => {
       trackBanner(
-        TRACKING.notebooks.banner.errorBannerInfo(
-          model.result.region.id,
-          model.result.flavor.type,
-          model.result.framework.name,
-        ),
+        getCreateNotebookBannerTrackingName('error', 'error'),
         'banner',
       );
       toast({
@@ -117,11 +123,7 @@ const OrderFunnel = ({
     },
     onSuccess: (notebook) => {
       trackBanner(
-        TRACKING.notebooks.banner.successBannerInfo(
-          model.result.region.id,
-          model.result.flavor.type,
-          model.result.framework.name,
-        ),
+        getCreateNotebookBannerTrackingName('info', 'success'),
         'banner',
       );
       toast({
@@ -158,14 +160,7 @@ const OrderFunnel = ({
         model.result,
       );
 
-      track(
-        TRACKING.notebooks.funnel.createNotebookConfirmClick(
-          model.result.region.id,
-          model.result.flavor.type,
-          model.result.framework.name,
-        ),
-        'funnel',
-      );
+      track(getConfirmNotebookTrackingName(), 'funnel');
       addNotebook(notebookInfos);
     },
     (error) => {
@@ -593,7 +588,7 @@ const OrderFunnel = ({
                     className="w-full flex flex-row items-center justify-between font-semibold text-xl text-primary-500"
                     onClick={() => {
                       track(
-                        TRACKING.notebooks.funnel.advancedConfigurationClick(),
+                        TRACKING.qpus.funnel.advancedConfigurationClick(),
                         'funnel',
                       );
                       setShowAdvancedConfiguration((prevValue) => !prevValue);
@@ -681,7 +676,7 @@ const OrderFunnel = ({
                               size="sm"
                               className="text-base"
                               type="button"
-                              onClick={() => navigate('./add-sshkey')}
+                              onClick={handleAddSshKeyClick}
                             >
                               <Plus className="size-4 mr-2" />
                               {t('sshkeyAddButtonLabel')}

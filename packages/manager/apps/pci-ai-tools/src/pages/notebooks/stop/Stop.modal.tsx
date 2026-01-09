@@ -10,6 +10,7 @@ const StopNotebookModal = () => {
     <StopNotebook
       onSuccess={() => navigate('../')}
       notebook={notebookQuery.data}
+      trackingCategory="listing"
     />
   );
 };

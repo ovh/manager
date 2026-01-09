@@ -165,6 +165,7 @@ export const NotebookHeader = ({
           notebook={notebook}
           onSuccess={() => setIsStartOpen(false)}
           onClose={() => setIsStartOpen(false)}
+          trackingCategory="dashboard"
         />
       )}
       {isRestartOpen && (
@@ -172,6 +173,7 @@ export const NotebookHeader = ({
           notebook={notebook}
           onSuccess={() => setIsRestartOpen(false)}
           onClose={() => setIsRestartOpen(false)}
+          trackingCategory="dashboard"
         />
       )}
       {isStopOpen && (
@@ -179,6 +181,7 @@ export const NotebookHeader = ({
           notebook={notebook}
           onSuccess={() => setIsStopOpen(false)}
           onClose={() => setIsStopOpen(false)}
+          trackingCategory="dashboard"
         />
       )}
     </>

@@ -9,7 +9,7 @@ export function useQuantum(namespace?: string) {
     ''}`.toLowerCase();
 
   const mode: 'emulators' | 'qpu' | 'ai' = (() => {
-    if (pathWithHash.includes('/quantum/qpu/')) return 'qpu';
+    if (pathWithHash.includes('/quantum/qpu')) return 'qpu';
     if (pathWithHash.includes('/quantum/')) return 'emulators';
     return 'ai';
   })();
