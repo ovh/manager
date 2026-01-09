@@ -5,4 +5,7 @@ import { resolve } from 'path';
 export default defineConfig({
   ...getBaseConfig(),
   root: resolve(process.cwd()),
+  dependencies: {
+    inline: ['@ovh-ux/muk'],
+  },
 });
