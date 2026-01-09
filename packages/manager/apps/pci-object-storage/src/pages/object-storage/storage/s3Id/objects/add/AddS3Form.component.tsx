@@ -2,8 +2,12 @@ import {
   Button,
   DialogClose,
   DialogFooter,
+  FieldDescription,
   FieldLabel,
-  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupText,
 } from '@datatr-ux/uxlib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
@@ -42,7 +46,22 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
     isPending: isAvailableStorageClassesPending,
   } = useAvailableStorageClasses(s3.region);
   const schema = z.object({
-    prefix: z.string().optional(),
+    prefix: z
+      .string()
+      .optional()
+      .refine(
+        (val) => {
+          if (!val) return true;
+          // Prevent trailing slashes
+          if (val.endsWith('/')) return false;
+          // Prevent multiple consecutive slashes
+          if (val.includes('//')) return false;
+          return true;
+        },
+        {
+          message: t('prefixValidationError'),
+        },
+      ),
     storageClass: z.nativeEnum(storages.StorageClassEnum),
     files: z
       .array(z.instanceof(File))
@@ -69,7 +88,16 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
         {(field) => (
           <>
             <FieldLabel>{t('prefixFieldLabel')}</FieldLabel>
-            <Input placeholder={t('prefixFieldPlaceholder')} {...field} />
+            <InputGroup>
+              <InputGroupInput
+                placeholder={t('prefixFieldPlaceholder')}
+                {...field}
+              />
+              <InputGroupAddon align="inline-end">
+                <InputGroupText>/</InputGroupText>
+              </InputGroupAddon>
+            </InputGroup>
+            <FieldDescription>{t('prefixHelperText')}</FieldDescription>
           </>
         )}
       </FormField>
