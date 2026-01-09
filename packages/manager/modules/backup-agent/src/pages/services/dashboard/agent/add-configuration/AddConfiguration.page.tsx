@@ -1,8 +1,9 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
 import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
@@ -17,10 +18,13 @@ import { BaremetalOption } from '@/components/CommonFields/BaremetalOption/Barem
 import { DownloadCode } from '@/components/DownloadCode/DownloadCode.component';
 import { RhfField } from '@/components/Fields/RhfField.component';
 import { useBackupVSPCTenantAgentDownloadLink } from '@/data/hooks/agents/getDownloadLinkAgent';
+import { useAddConfigurationVSPCTenantAgent } from '@/data/hooks/agents/postAgent';
 import { useBaremetalsList } from '@/data/hooks/baremetal/useBaremetalsList';
+import { useVSPCTenantsOptions } from '@/data/hooks/tenants/useVspcTenants';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { OS_LABELS } from '@/module.constants';
 import { OS } from '@/types/Os.type';
+import { getProductResourceNames } from '@/utils/getProductResourceNamesSet';
 
 const FORM_ID = 'form-link-agent-title' as const;
 
@@ -38,8 +42,31 @@ const AddConfigurationPage = () => {
   const { tenantId } = useRequiredParams('tenantId');
   const navigate = useNavigate();
   const goBack = () => navigate('..');
+  const [formSubmitError, setForSubmitError] = useState<string>();
+  const {
+    mutate,
+    isPending: isAddConfigurationPending,
+    isSuccess,
+  } = useAddConfigurationVSPCTenantAgent({
+    onError: (apiError) => {
+      setForSubmitError(
+        t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_agent_banner_api_error`, {
+          errorMessage: apiError.message,
+        }),
+      );
+    },
+  });
 
-  const { flattenData, isLoading } = useBaremetalsList();
+  const { data: productNameExcluded, isPending: isProductNameExcludedPending } = useQuery({
+    ...useVSPCTenantsOptions(),
+    select: (data) => getProductResourceNames(data.data),
+  });
+  const { flattenData, isPending } = useBaremetalsList();
+
+  const baremetalList =
+    !isProductNameExcludedPending && !isPending
+      ? flattenData.filter(({ name }) => !productNameExcluded?.has(name))
+      : [];
 
   const {
     register,
@@ -51,7 +78,23 @@ const AddConfigurationPage = () => {
     mode: 'onTouched',
     defaultValues: { server: '', os: '' },
   });
-  const onSubmit = (data: z.infer<typeof ADD_CONFIGURATION_SCHEMA>) => console.log({ data });
+  const onSubmit = (data: z.infer<typeof ADD_CONFIGURATION_SCHEMA>) => {
+    const serverDetails = baremetalList.find((server) => server.name === data.server);
+
+    if (!serverDetails) {
+      return setForSubmitError(
+        t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_agent_error_resource_not_found`),
+      );
+    }
+
+    mutate({
+      region: serverDetails.region,
+      ips: [`${serverDetails.ip}/32`],
+      displayName: `agent-${serverDetails.name}`,
+      vspcTenantId: tenantId,
+      productResourceName: serverDetails.name,
+    });
+  };
 
   const os = useWatch({ name: 'os', control });
 
@@ -60,9 +103,7 @@ const AddConfigurationPage = () => {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const isSuccess = isSubmitSuccessful; // TODO: [unmocking] replace with API response when unmocking
-
-  const isSubmitDisabled = isSubmitted && !isValid;
+  const isSubmitDisabled = (isSubmitted && !isValid) || isSuccess;
   const isDownloadEnabled = isSuccess && !!downloadLink;
 
   return (
@@ -94,10 +135,10 @@ const AddConfigurationPage = () => {
           <RhfField.Combobox
             placeholder={t('select_server')}
             isRequired
-            isDisabled={isLoading}
+            isDisabled={isPending}
             allowNewElement={false}
           >
-            {flattenData?.map(({ name, ip, iam: { displayName } }) => (
+            {baremetalList?.map(({ name, ip, iam: { displayName } }) => (
               <BaremetalOption key={name} name={name} ip={ip} displayName={displayName} />
             ))}
           </RhfField.Combobox>
@@ -124,12 +165,13 @@ const AddConfigurationPage = () => {
           label={t(`${NAMESPACES.ACTIONS}:add`)}
           isDisabled={isSubmitDisabled}
           onClick={() => formRef.current?.requestSubmit()}
+          isLoading={isAddConfigurationPending}
         />
 
         <section className={`mt-8 ${isSubmitSuccessful ? 'visible' : 'invisible'}`}>
-          {!isSuccess && (
+          {formSubmitError && (
             <OdsMessage isDismissible={false} color="critical">
-              {t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_agent_banner_error`)}
+              {formSubmitError}
             </OdsMessage>
           )}
           {isSuccess && (
