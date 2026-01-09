@@ -154,6 +154,7 @@ export default function ConfigurationCards({
       {
         onSuccess: () => {
           setTransferModalOpened(false);
+          addSuccess(t('domain_tab_general_information_update_success'));
         },
         onError: () => {
           setTransferModalOpened(false);
@@ -269,7 +270,7 @@ export default function ConfigurationCards({
         />
         <TransferModal
           serviceName={serviceName}
-          action={domainResource?.currentState.protectionState}
+          currentProtectionState={domainResource?.currentState.protectionState}
           open={transferModalOpened}
           updateDomain={() => handleUpdateProtectionState()}
           onClose={() => setTransferModalOpened(!transferModalOpened)}
