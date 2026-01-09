@@ -1,0 +1,16 @@
+{
+  "exchange_private_config_funnel_title": "Bienvenue dans votre espace Private Exchange",
+  "exchange_private_config_funnel_message_title": "Nous avons le plaisir de vous annoncer que votre produit Private Exchange a bien été livré.",
+  "exchange_private_config_funnel_message_description": "Pour pouvoir l'utiliser, commencez la configuration dès maintenant !",
+  "exchange_private_config_funnel_subtitle": "Choisissez l'adresse de votre serveur de messagerie",
+  "exchange_private_config_funnel_label_subdomain": "Votre sous-domaine - obligatoire",
+  "exchange_private_config_funnel_label_domain": "Votre nom de domaine - obligatoire",
+  "exchange_private_config_funnel_label_subdomain_helper": "Afin d'éviter tout conflit avec d'autres services déjà présents sur votre domaine (site web, API, etc.), l'accès au webmail doit être configuré sur un sous-domaine dédié (par exemple : mail.domain.com).",
+  "exchange_private_config_funnel_warning_punycode": "L'utilisation d'un domaine IDN dans un logiciel de messagerie (Outlook, Mail de macOS, etc.) n'est pas recommandée et peut provoquer des incompatibilités.",
+  "exchange_private_config_funnel_info_ovhdomain": "Votre domaine étant hébergé chez OVHCloud, nous allons procéder à la configuration automatique de votre service. Cette configuration prendra plusieurs minutes.",
+  "exchange_private_config_funnel_info_no_ovhdomain": "Vous devez vous assurer que la zone DNS du domaine choisi pourra être modifiée par son administrateur.",
+  "exchange_private_config_funnel_modal_title": "Êtes-vous sûr de vouloir continuer ?",
+  "exchange_private_config_funnel_modal_description": "En validant, vous acceptez que l'adresse de votre serveur de messagerie soit <strong>https://{{subdomain}}.{{domain}}</strong>.",
+  "exchange_private_config_funnel_modal_warning": "Vous ne pourrez plus modifier cette information par la suite.",
+  "exchange_private_config_error_message": "Une erreur est survenue. {{ error }}"
+}

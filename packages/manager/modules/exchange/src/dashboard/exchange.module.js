@@ -35,6 +35,7 @@ import shared from '../shared/shared.module';
 import task from '../task/task.module';
 import alias from '../alias/exchange-alias.module';
 import logs from '../logs/logs.module';
+import privateConfigFunnel from '../private-config-funnel';
 
 import {
   EXCHANGE_MX_CONFIG,
@@ -75,6 +76,7 @@ angular
     task,
     alias,
     logs,
+    privateConfigFunnel,
   ])
   .constant('EXCHANGE_MX_CONFIG', EXCHANGE_MX_CONFIG)
   .constant('EXCHANGE_CONFIG_URL', EXCHANGE_CONFIG_URL)
