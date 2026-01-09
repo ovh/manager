@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/muk';
 
+import { ErrorMessage } from '@/components/error/ErrorMessage.component';
 import { ConfirmationModal } from '@/components/listing/common/confirmation-modal/ConfirmationModal.component';
 import { useDeleteSubscription } from '@/data/hooks/tenants/useDeleteSubscription.hook';
 import { LocationPathParams } from '@/routes/Routes.constants';
-import { getErrorMessage } from '@/utils/error.utils';
 
 export default function DeleteTenantSubscription() {
   const { t } = useTranslation(['tenants', NAMESPACES.ERROR]);
@@ -30,8 +30,7 @@ export default function DeleteTenantSubscription() {
       handleDismiss();
     },
     onError: (error) => {
-      const message = getErrorMessage(error);
-      addError(t(`${NAMESPACES.ERROR}:error_message`, { message }));
+      addError(<ErrorMessage error={error} />);
     },
   });
 
@@ -51,7 +50,7 @@ export default function DeleteTenantSubscription() {
       confirmButtonLabel={t('tenants:dashboard.subscription_listing.unsubscribe.confirm')}
       cancelButtonLabel={t('tenants:dashboard.subscription_listing.unsubscribe.cancel')}
       isConfirmButtonLoading={isPending}
-      error={getErrorMessage(error)}
+      error={error as Error}
     />
   );
 }
