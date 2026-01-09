@@ -1,22 +1,37 @@
-import React from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useMemo,
+  useCallback,
+  createContext,
+  useState,
+  ReactNode,
+  FC,
+} from 'react';
+
 import { useParams } from 'react-router-dom';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
-import { useGetIpGameFirewall, useIpGameFirewallRules } from '@/data/hooks';
-import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+
 import {
-  addIpGameFirewallRule,
-  getGameFirewallRuleQueryKey,
   IpGameFirewallRule,
   IpGameFirewallStateEnum,
+  addIpGameFirewallRule,
+  getGameFirewallRuleQueryKey,
 } from '@/data/api';
+import { useGetIpGameFirewall, useIpGameFirewallRules } from '@/data/hooks';
+import { TRANSLATION_NAMESPACES, fromIdToIp } from '@/utils';
+
 import {
+  IP_MITIGATION_RULE_PROTOCOL_PORT,
+  PORT_MIN,
   hasConflictingPorts,
   hasPortRangeError,
-  IP_MITIGATION_RULE_PROTOCOL_PORT,
 } from './gamefirewall.utils';
 
 export type GameFirewallContextType = {
@@ -26,9 +41,9 @@ export type GameFirewallContextType = {
   ip: string;
   ipOnGame: string;
   isError?: boolean;
-  error?: ApiError;
+  error?: ApiError | null;
   isRulesError?: boolean;
-  rulesError?: ApiError;
+  rulesError?: ApiError | null;
   isNewRuleRowDisplayed: boolean;
   hideNewRuleRow: () => void;
   showNewRuleRow: () => void;
@@ -50,36 +65,34 @@ export type GameFirewallContextType = {
   showConfirmDeleteModal: (rule: IpGameFirewallRule) => void;
   hideConfirmDeleteModal: () => void;
   tmpToggleState?: boolean;
-  setTmpToggleState: (newToggleState?: boolean) => void;
+  setTmpToggleState: Dispatch<SetStateAction<boolean>>;
   addRule: () => void;
 };
 
-export const GameFirewallContext = React.createContext<GameFirewallContextType>(
-  {
-    rules: [],
-    ip: '',
-    ipOnGame: '',
-    setNewEndPort: () => {},
-    setNewStartPort: () => {},
-    setNewGameProtocol: () => {},
-    isNewRuleRowDisplayed: false,
-    showNewRuleRow: () => {},
-    hideNewRuleRow: () => {},
-    supportedProtocols: [],
-    isStrategyConfirmationModalVisible: false,
-    showStrategyConfirmationModal: () => {},
-    hideStrategyConfirmationModal: () => {},
-    isConfirmDeleteModalOpen: false,
-    ruleToDelete: null,
-    showConfirmDeleteModal: () => {},
-    hideConfirmDeleteModal: () => {},
-    setTmpToggleState: () => {},
-    addRule: () => {},
-  },
-);
+export const GameFirewallContext = createContext<GameFirewallContextType>({
+  rules: [],
+  ip: '',
+  ipOnGame: '',
+  setNewEndPort: () => {},
+  setNewStartPort: () => {},
+  setNewGameProtocol: () => {},
+  isNewRuleRowDisplayed: false,
+  showNewRuleRow: () => {},
+  hideNewRuleRow: () => {},
+  supportedProtocols: [],
+  isStrategyConfirmationModalVisible: false,
+  showStrategyConfirmationModal: () => {},
+  hideStrategyConfirmationModal: () => {},
+  isConfirmDeleteModalOpen: false,
+  ruleToDelete: null,
+  showConfirmDeleteModal: () => {},
+  hideConfirmDeleteModal: () => {},
+  setTmpToggleState: () => {},
+  addRule: () => {},
+});
 
-export const GameFirewallContextProvider: React.FC<{
-  children: React.ReactNode;
+export const GameFirewallContextProvider: FC<{
+  children: ReactNode;
 }> = ({ children }) => {
   const qc = useQueryClient();
   const { clearNotifications, addSuccess, addError } = useNotifications();
@@ -91,27 +104,28 @@ export const GameFirewallContextProvider: React.FC<{
   const { parentId, id } = useParams();
   const ip = fromIdToIp(parentId);
   const ipOnGame = fromIdToIp(id);
-  const [newGameProtocol, setNewGameProtocol] = React.useState<string>();
-  const [newStartPort, setNewStartPort] = React.useState<string>();
-  const [newEndPort, setNewEndPort] = React.useState<string>();
+  const [newGameProtocol, setNewGameProtocol] = useState<string>();
+  const [newStartPort, setNewStartPort] = useState<string>();
+  const [newEndPort, setNewEndPort] = useState<string>();
   // It's a state just to let the toggle animate when we try to change its value
-  const [tmpToggleState, setTmpToggleState] = React.useState(null);
-  const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] = React.useState<
-    boolean
-  >(false);
+  const [tmpToggleState, setTmpToggleState] = useState<boolean>(false);
+  const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] = useState<boolean>(
+    false,
+  );
   const [
     isStrategyConfirmationModalVisible,
     setIsStrategyConfirmationModalVisible,
-  ] = React.useState(false);
-  const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = React.useState<
-    IpGameFirewallRule
-  >(null);
+  ] = useState(false);
+  const [
+    confirmDeleteModalOpen,
+    setConfirmDeleteModalOpen,
+  ] = useState<IpGameFirewallRule | null>(null);
   const { isLoading, ipGameFirewall, isError, error } = useGetIpGameFirewall({
     ip,
     ipOnGame,
   });
 
-  const hideNewRuleRow = React.useCallback(() => {
+  const hideNewRuleRow = useCallback(() => {
     setNewGameProtocol(undefined);
     setNewStartPort(undefined);
     setNewEndPort(undefined);
@@ -132,8 +146,8 @@ export const GameFirewallContextProvider: React.FC<{
     mutationFn: () => {
       clearNotifications();
       let hasError = false;
-      const startPort = parseInt(newStartPort, 10);
-      const endPort = parseInt(newEndPort || newStartPort, 10);
+      const startPort = newStartPort ? parseInt(newStartPort, 10) : PORT_MIN;
+      const endPort = newEndPort ? parseInt(newEndPort, 10) : startPort;
 
       if (!newGameProtocol) {
         addError(t('missingProtocolError'), true);
@@ -155,13 +169,19 @@ export const GameFirewallContextProvider: React.FC<{
         hasError = true;
       }
 
-      if (hasConflictingPorts({ startPort, endPort, rules })) {
+      if (
+        hasConflictingPorts({
+          startPort,
+          endPort,
+          rules,
+        })
+      ) {
         addError(t('conflictingRuleError'), true);
         hasError = true;
       }
 
       return hasError
-        ? Promise.reject()
+        ? Promise.reject(new Error('Validation errors'))
         : addIpGameFirewallRule({
             ip,
             ipOnGame,
@@ -201,32 +221,31 @@ export const GameFirewallContextProvider: React.FC<{
     },
   });
 
-  const showNewRuleRow = React.useCallback(
-    () => setIsNewRuleRowDisplayed(true),
-    [],
-  );
+  const showNewRuleRow = useCallback(() => setIsNewRuleRowDisplayed(true), []);
 
-  const showStrategyConfirmationModal = React.useCallback(
+  const showStrategyConfirmationModal = useCallback(
     () => setIsStrategyConfirmationModalVisible(true),
     [],
   );
-  const hideStrategyConfirmationModal = React.useCallback(() => {
+  const hideStrategyConfirmationModal = useCallback(() => {
     setIsStrategyConfirmationModalVisible(false);
-    setTmpToggleState(undefined);
+    setTmpToggleState(false);
   }, []);
-  const showConfirmDeleteModal = React.useCallback(
+  const showConfirmDeleteModal = useCallback(
     (rule: IpGameFirewallRule) => setConfirmDeleteModalOpen(rule),
     [],
   );
 
-  const hideConfirmDeleteModal = React.useCallback(
+  const hideConfirmDeleteModal = useCallback(
     () => setConfirmDeleteModalOpen(null),
     [],
   );
-  const setNewGameProtocolWithPorts = React.useCallback(
+  const setNewGameProtocolWithPorts = useCallback(
     (protocol?: string) => {
       if (protocol !== newGameProtocol) {
-        const associatedPorts = IP_MITIGATION_RULE_PROTOCOL_PORT[protocol];
+        const associatedPorts = protocol
+          ? IP_MITIGATION_RULE_PROTOCOL_PORT[protocol]
+          : null;
         setNewGameProtocol(protocol);
         setNewStartPort(associatedPorts?.from?.toString() || undefined);
         setNewEndPort(associatedPorts?.to?.toString() || undefined);
@@ -235,7 +254,7 @@ export const GameFirewallContextProvider: React.FC<{
     [newGameProtocol],
   );
 
-  const value = React.useMemo(
+  const value = useMemo(
     () => ({
       isLoading,
       isRulesLoading,
@@ -293,6 +312,7 @@ export const GameFirewallContextProvider: React.FC<{
       tmpToggleState,
       addRule,
       ipGameFirewall,
+      setNewGameProtocolWithPorts,
     ],
   );
 

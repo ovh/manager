@@ -1,8 +1,7 @@
 import { vitest } from 'vitest';
 import { waitFor, screen, render } from '@testing-library/react';
 import { VeeamBackupOffer } from '@ovh-ux/manager-module-vcd-api';
-import { I18nextProvider } from 'react-i18next';
-import { i18n } from 'i18next';
+import { I18nextProvider, I18nextProviderProps } from 'react-i18next';
 import { initTestI18n } from '@ovh-ux/manager-core-test-utils';
 import { translations } from '../../test-helpers/labels';
 import { appName } from '../../veeam-backup.config';
@@ -10,10 +9,13 @@ import useVeeamBackupConsumption from '@/data/hooks/useVeeamBackupConsumption';
 import { OfferProgress } from './OfferProgress.component';
 import { VEEAM_BACKUP_CONSUMPTION_PLAN_CODE } from '@/pages/dashboard/Dashboard.constants';
 
-let i18: i18n;
+let i18: I18nextProviderProps['i18n'];
 const renderWithProviders = async (component: React.ReactElement) => {
   if (!i18) {
-    i18 = await initTestI18n(appName, translations);
+    i18 = (await initTestI18n(
+      appName,
+      translations,
+    )) as I18nextProviderProps['i18n'];
   }
 
   return render(<I18nextProvider i18n={i18}>{component}</I18nextProvider>);

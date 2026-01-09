@@ -1,4 +1,6 @@
 import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { IamObject } from '@ovh-ux/manager-react-components';
+
 import { IpTypeEnum } from '@/data/constants';
 
 export type GetProductServicesParams = {
@@ -7,11 +9,16 @@ export type GetProductServicesParams = {
   pathList?: string[];
 };
 
-export type ProductServicesDetails = Record<string, unknown>;
+export type ProductServicesDetails = Record<string, unknown> & {
+  name?: string;
+  description?: string;
+  displayName?: string;
+  iam?: IamObject;
+};
 
 export const getProductServicesQueryKey = (
   params: GetProductServicesParams,
-) => [`get/${params.path || params.pathList.join(',')}/${params.category}`];
+) => [`get/${params.path || params.pathList?.join(',')}/${params.category}`];
 
 export const getProductServices = async (
   params: GetProductServicesParams,
@@ -23,7 +30,7 @@ export const getProductServices = async (
   }
 
   const results = await Promise.all(
-    params.pathList.map((path) =>
+    (params.pathList || []).map((path) =>
       fetchIcebergV6<ProductServicesDetails>({ route: path }),
     ),
   );
@@ -31,6 +38,6 @@ export const getProductServices = async (
   return {
     data: results.flatMap((result) => result.data),
     totalCount: results.reduce((acc, result) => acc + result.totalCount, 0),
-    status: results[0].status,
+    status: results[0]?.status,
   };
 };

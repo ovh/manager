@@ -35,4 +35,16 @@ export const getOrganisationsDetails = async (
 
 export const getMeModelQueryKey = () => [`/me.json/`];
 
-export const getMeModel = async () => apiClient.v6.get(`/me.json`);
+export type MeModelResponse = {
+  models: {
+    'nichandle.IpRegistryEnum': {
+      enum: string[];
+    };
+    'nichandle.CountryEnum': {
+      enum: string[];
+    };
+  };
+};
+
+export const getMeModel = async (): Promise<ApiResponse<MeModelResponse>> =>
+  apiClient.v6.get(`/me.json`);

@@ -1,16 +1,21 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAdditionalIpsRegions } from '@/data/hooks/catalog';
-import { useIpv6Availability } from '@/data/hooks/useIpv6Availability';
+
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { RegionSelector } from '@/components/RegionSelector/region-selector.component';
+import { useAdditionalIpsRegions } from '@/data/hooks/catalog';
+import { useIpv6Availability } from '@/data/hooks/useIpv6Availability';
+
 import { OrderContext } from '../order.context';
 
 export const RegionSelectionSection: React.FC = () => {
@@ -50,7 +55,7 @@ export const RegionSelectionSection: React.FC = () => {
     );
   }
 
-  const handleSelectRegion = (updatedRegion: React.SetStateAction<string>) => {
+  const handleSelectRegion = (updatedRegion?: string) => {
     setSelectedRegion(updatedRegion);
     setSelectedOrganisation(undefined);
     trackClick({

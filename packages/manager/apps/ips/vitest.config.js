@@ -1,42 +1,45 @@
-import path from 'path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+/* eslint-disable no-undef */
+import path from 'node:path';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['setupTest.tsx'],
-    coverage: {
-      include: ['src'],
-      exclude: [
-        'src/App.tsx',
-        'src/test-utils',
-        'src/index.tsx',
-        'src/tracking.constant.ts',
-        'src/vite-hmr.ts',
-        'src/**/*.spec.tsx',
-        'src/**/*.spec.ts',
-      ],
-    },
-    testTimeout: 60000,
-    fileParallelism: false,
-    maxWorkers: 1,
-    pollOptions: {
-      forks: {
-        singleFork: true,
+import {
+  createConfig,
+  defaultDedupedDependencies,
+  defaultExcludedFiles,
+  mergeConfig,
+  sharedConfig,
+  sharedCssConfig,
+} from '@ovh-ux/manager-tests-setup';
+
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      setupFiles: ['./src/test-utils/setup-test.ts'],
+      ...sharedCssConfig,
+      // TODO: enable CSS support once migrated to MUK
+      css: false,
+      coverage: {
+        exclude: [
+          ...defaultExcludedFiles,
+          // App-specific exclusions (not in shared config):
+          'vite-*.ts',
+          'App.tsx',
+          '__mocks__',
+          '**/Routes.tsx',
+          '**/QueryClient.ts',
+          '**/*.type.ts',
+          '**/404.page.tsx',
+          '**/utils/tests/**',
+          '**/Test.utils.tsx',
+        ],
       },
-      threads: {
-        singleThread: true,
+    },
+    resolve: {
+      dedupe: [...defaultDedupedDependencies],
+      alias: {
+        '@/public': path.resolve(__dirname, 'public'),
+        '@': path.resolve(__dirname, 'src'),
       },
     },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-    mainFields: ['module'],
-  },
-});
+  }),
+);

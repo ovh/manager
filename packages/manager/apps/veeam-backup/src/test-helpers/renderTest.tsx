@@ -1,7 +1,6 @@
 import React from 'react';
 import { SetupServer } from 'msw/node';
-import { i18n as i18nType } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, I18nextProviderProps } from 'react-i18next';
 import {
   ShellContext,
   ShellContextType,
@@ -31,7 +30,7 @@ import { translations } from './labels';
 import { TestApp } from './TestApp';
 
 let context: ShellContextType;
-let i18n: i18nType;
+let i18n: I18nextProviderProps['i18n'];
 
 export const renderTest = async ({
   initialRoute,
@@ -57,7 +56,10 @@ export const renderTest = async ({
   }
 
   if (!i18n) {
-    i18n = await initTestI18n(appName, translations);
+    i18n = (await initTestI18n(
+      appName,
+      translations,
+    )) as I18nextProviderProps['i18n'];
   }
 
   const result = render(

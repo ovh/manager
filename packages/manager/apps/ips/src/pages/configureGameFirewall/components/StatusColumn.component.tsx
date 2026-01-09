@@ -1,17 +1,20 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import { IpGameFirewallRule } from '@/data/api';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const StatusColumn = (
-  rule?: IpGameFirewallRule & { isNew?: boolean },
+  rule: IpGameFirewallRule & { isNew?: boolean },
 ) => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.gameFirewall);
 
   if (!rule || rule?.isNew) {
-    return null;
+    return <></>;
   }
 
   const color =

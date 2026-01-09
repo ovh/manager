@@ -1,10 +1,11 @@
 import { IpTypeEnum } from '@/data/constants';
+
 import { useGetProductService } from '../useGetProductService';
 
 export type UseIpHasServicesAttachedParams = {
   path: string;
   category: IpTypeEnum;
-  serviceName?: string;
+  serviceName?: string | null;
 };
 
 export const useIpHasServicesAttached = ({

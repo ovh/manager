@@ -1,10 +1,14 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText, OdsInput } from '@ovhcloud/ods-components/react';
+
 import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+
 import { ByoipContext } from '../Byoip.context';
-import { isValidIpRange, ipRangePlaceholder } from '../Byoip.utils';
+import { ipRangePlaceholder, isValidIpRange } from '../Byoip.utils';
 
 export const IpRangeSelectionSection: React.FC = () => {
   const { t } = useTranslation('byoip');

@@ -1,29 +1,34 @@
-import React, { useMemo } from 'react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useMemo } from 'react';
+
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
   deleteVirtualMACs,
   getIcebergDedicatedServerTasksQueryKey,
 } from '@/data/api';
 import { useIpHasVmac } from '@/data/hooks/ip';
-import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter } from '@/utils';
 
 export default function DeleteVirtualMac() {
   const navigate = useNavigate();
   const [search] = useSearchParams();
-  const { id, service } = useParams();
+  const { id, service: serviceName } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
   const { t } = useTranslation(['virtual-mac', TRANSLATION_NAMESPACES.listing]);
   const { addSuccess, addError, clearNotifications } = useNotifications();
@@ -32,9 +37,9 @@ export default function DeleteVirtualMac() {
   const queryClient = useQueryClient();
 
   const { ipvmac } = useIpHasVmac({
-    serviceName: service,
+    serviceName,
     ip,
-    enabled: Boolean(service),
+    enabled: Boolean(serviceName),
   });
 
   const macAddresses = useMemo(
@@ -50,8 +55,7 @@ export default function DeleteVirtualMac() {
   };
 
   const { isPending, mutate: deleteVirtualMacHandler } = useMutation({
-    mutationFn: () =>
-      deleteVirtualMACs({ serviceName: service, macAddresses, ip }),
+    mutationFn: () => deleteVirtualMACs({ serviceName, macAddresses, ip }),
     onSuccess: async () => {
       clearNotifications();
       trackPage({
@@ -61,9 +65,9 @@ export default function DeleteVirtualMac() {
       ipvmac.forEach((vmac) =>
         addSuccess(t('deleteVirtualMacSuccess', { ip, vmac: vmac.macAddress })),
       );
-      if (service) {
+      if (serviceName) {
         await queryClient.invalidateQueries({
-          queryKey: getIcebergDedicatedServerTasksQueryKey(service),
+          queryKey: getIcebergDedicatedServerTasksQueryKey(serviceName),
         });
       }
       closeModal();
@@ -115,10 +119,10 @@ export default function DeleteVirtualMac() {
       onSecondaryButtonClick={closeHandler}
     >
       <div>
-        <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
           {t('deleteVirtualMacInfo')}
         </OdsText>
-        <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading6}>
+        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.heading6}>
           {t('deleteVirtualMacConfirmation')}
         </OdsText>
       </div>

@@ -1,16 +1,18 @@
 import {
   UseQueryOptions,
-  useQuery,
   useQueries,
+  useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
-  getGameFirewallRuleQueryKey,
+  IpGameFirewallRule,
+  getGameFirewallRuleDetails,
   getGameFirewallRuleDetailsQueryKey,
   getGameFirewallRuleList,
-  getGameFirewallRuleDetails,
-  IpGameFirewallRule,
+  getGameFirewallRuleQueryKey,
 } from '@/data/api';
 import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
@@ -43,35 +45,37 @@ export const useIpGameFirewallRules = ({
 
   const ruleQueries = useQueries({
     queries:
-      ruleListQuery?.data?.data?.map(
-        (
-          ruleId,
-        ): UseQueryOptions<ApiResponse<IpGameFirewallRule>, ApiError> => {
-          const ruleParams = { ip, ipOnGame, ruleId };
-          return {
-            queryKey: getGameFirewallRuleDetailsQueryKey(ruleParams),
-            queryFn: () => getGameFirewallRuleDetails(ruleParams),
-            enabled: !!ip && !!ipOnGame,
-            retry: false,
-            refetchInterval: (query) => {
-              if (query.state.error) {
-                queryClient.invalidateQueries({
-                  queryKey: getGameFirewallRuleQueryKey(ruleParams),
-                  exact: true,
-                });
-                queryClient.removeQueries({
-                  queryKey: getGameFirewallRuleDetailsQueryKey(ruleParams),
-                  exact: true,
-                });
-                return undefined;
-              }
-              return query.state.data?.data?.state !== 'ok'
-                ? refetchInterval
-                : undefined;
+      !ip || !ipOnGame
+        ? []
+        : ruleListQuery?.data?.data?.map(
+            (
+              ruleId,
+            ): UseQueryOptions<ApiResponse<IpGameFirewallRule>, ApiError> => {
+              const ruleParams = { ip, ipOnGame, ruleId };
+              return {
+                queryKey: getGameFirewallRuleDetailsQueryKey(ruleParams),
+                queryFn: () => getGameFirewallRuleDetails(ruleParams),
+                enabled: !!ip && !!ipOnGame,
+                retry: false,
+                refetchInterval: (query) => {
+                  if (query.state.error) {
+                    queryClient.invalidateQueries({
+                      queryKey: getGameFirewallRuleQueryKey(ruleParams),
+                      exact: true,
+                    });
+                    queryClient.removeQueries({
+                      queryKey: getGameFirewallRuleDetailsQueryKey(ruleParams),
+                      exact: true,
+                    });
+                    return undefined;
+                  }
+                  return query.state.data?.data?.state !== 'ok'
+                    ? refetchInterval
+                    : undefined;
+                },
+              };
             },
-          };
-        },
-      ) || [],
+          ) || [],
   });
 
   return {
@@ -81,8 +85,13 @@ export const useIpGameFirewallRules = ({
       ruleListQuery.error || ruleQueries?.find((query) => query.error)?.error,
     isLoading:
       ruleListQuery.isLoading || ruleQueries?.some((query) => query.isLoading),
-    data: ruleQueries
-      ?.map((query) => query?.data?.data)
-      .sort((a, b) => a.protocol.localeCompare(b.protocol)),
+    data:
+      ruleQueries
+        ?.map((query) => query?.data?.data)
+        .sort((a, b) => {
+          if (!a) return 1;
+          if (!b) return -1;
+          return a.protocol?.localeCompare(b.protocol);
+        }) || ([] as IpGameFirewallRule[]),
   };
 };

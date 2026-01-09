@@ -16,7 +16,9 @@ exports[`SurveyLink Component > Should render correctly with survey URL and tool
     trigger-id="survey-link-tooltip-trigger"
     with-arrow="true"
   >
-    <ods-text>
+    <ods-text
+      class="p-2"
+    >
       survey_link_tooltip
     </ods-text>
   </ods-tooltip>

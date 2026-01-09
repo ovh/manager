@@ -1,4 +1,5 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { DedicatedServerVmacType, MacAddressTypeEnum } from '@/data/api';
 
 export type GetDedicatedMocksParams = {

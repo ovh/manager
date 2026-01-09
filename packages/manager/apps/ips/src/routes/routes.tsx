@@ -1,16 +1,17 @@
-import React from 'react';
 import { RouteObject } from 'react-router-dom';
+
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import NotFound from '@/pages/404';
 import { subRoutes, urls } from '@/routes/routes.constant';
 
-const lazyRouteConfig = (importFn: CallableFunction) => {
+const lazyRouteConfig = (importFn: () => Promise<Record<string, unknown>>) => {
   return {
     lazy: async () => {
       const { default: moduleDefault, ...moduleExports } = await importFn();
       return {
-        Component: moduleDefault,
-        ...moduleExports,
+        Component: moduleDefault as React.ComponentType,
+        ...(moduleExports as Record<string, unknown>),
       };
     },
   };
@@ -29,8 +30,8 @@ export const Routes: RouteObject[] = [
           {
             id: 'ips',
             path: '',
-            ...lazyRouteConfig(() =>
-              import('@/pages/listing/ipListing/ip.listing.page'),
+            ...lazyRouteConfig(
+              () => import('@/pages/listing/ipListing/ip.listing.page'),
             ),
             handle: {
               tracking: {
@@ -42,10 +43,11 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.configureReverseDns,
                 path: urls.listingConfigureReverseDns,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/actions/configureReverseDns/configureReverseDns.page'
-                  ),
+                ...lazyRouteConfig(
+                  () =>
+                    import(
+                      '@/pages/actions/configureReverseDns/configureReverseDns.page'
+                    ),
                 ),
                 handle: {
                   tracking: {
@@ -57,8 +59,8 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.terminateIp,
                 path: urls.listingIpTerminate,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/terminate/terminateIp.page'),
+                ...lazyRouteConfig(
+                  () => import('@/pages/actions/terminate/terminateIp.page'),
                 ),
                 handle: {
                   tracking: {
@@ -70,8 +72,8 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.terminateByoip,
                 path: urls.listingByoipTerminate,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/terminate/terminateByoip.page'),
+                ...lazyRouteConfig(
+                  () => import('@/pages/actions/terminate/terminateByoip.page'),
                 ),
                 handle: {
                   tracking: {
@@ -83,8 +85,8 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.moveIp,
                 path: urls.listingMoveIp,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/moveIp/moveIp.page'),
+                ...lazyRouteConfig(
+                  () => import('@/pages/actions/moveIp/moveIp.page'),
                 ),
                 handle: {
                   tracking: {
@@ -96,10 +98,11 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.upsertDescription,
                 path: urls.upsertDescription,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/actions/upsertDescription/upsertDescription.page'
-                  ),
+                ...lazyRouteConfig(
+                  () =>
+                    import(
+                      '@/pages/actions/upsertDescription/upsertDescription.page'
+                    ),
                 ),
                 handle: {
                   tracking: {
@@ -111,8 +114,8 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.addVirtualMac,
                 path: urls.addVirtualMac,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/virtualMac/addVirtualMac.page'),
+                ...lazyRouteConfig(
+                  () => import('@/pages/actions/virtualMac/addVirtualMac.page'),
                 ),
                 handle: {
                   tracking: {
@@ -124,8 +127,9 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.viewVirtualMac,
                 path: urls.viewVirtualMac,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/virtualMac/viewVirtualMac.page'),
+                ...lazyRouteConfig(
+                  () =>
+                    import('@/pages/actions/virtualMac/viewVirtualMac.page'),
                 ),
                 handle: {
                   tracking: {
@@ -137,10 +141,11 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.ipBlockInformation,
                 path: urls.ipBlockInformation,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/actions/upsertIpBlockInformation/upsertIpBlockInformation.page'
-                  ),
+                ...lazyRouteConfig(
+                  () =>
+                    import(
+                      '@/pages/actions/upsertIpBlockInformation/upsertIpBlockInformation.page'
+                    ),
                 ),
                 handle: {
                   tracking: {
@@ -152,8 +157,9 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.deleteVirtualMac,
                 path: urls.deleteVirtualMac,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/virtualMac/deleteVirtualMac.page'),
+                ...lazyRouteConfig(
+                  () =>
+                    import('@/pages/actions/virtualMac/deleteVirtualMac.page'),
                 ),
                 handle: {
                   tracking: {
@@ -165,10 +171,11 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.importIpFromSys,
                 path: urls.listingImportIpFromSys,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/actions/importIpFromSys/importIpFromSys.page'
-                  ),
+                ...lazyRouteConfig(
+                  () =>
+                    import(
+                      '@/pages/actions/importIpFromSys/importIpFromSys.page'
+                    ),
                 ),
                 handle: {
                   tracking: {
@@ -180,8 +187,8 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.unblockAntiHack,
                 path: urls.unblockAntiHack,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/antiHack/unblockAntiHack.page'),
+                ...lazyRouteConfig(
+                  () => import('@/pages/actions/antiHack/unblockAntiHack.page'),
                 ),
                 handle: {
                   tracking: {
@@ -193,8 +200,8 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.unblockAntiSpam,
                 path: urls.unblockAntiSpam,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/antiSpam/unblockAntiSpam.page'),
+                ...lazyRouteConfig(
+                  () => import('@/pages/actions/antiSpam/unblockAntiSpam.page'),
                 ),
                 handle: {
                   tracking: {
@@ -206,8 +213,9 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.exportIpToCsv,
                 path: urls.listingExportIpToCsv,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/exportIpToCsv/exportIpToCsv.page'),
+                ...lazyRouteConfig(
+                  () =>
+                    import('@/pages/actions/exportIpToCsv/exportIpToCsv.page'),
                 ),
                 handle: {
                   tracking: {
@@ -219,8 +227,8 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.slice,
                 path: urls.slice,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/slice/slice.page'),
+                ...lazyRouteConfig(
+                  () => import('@/pages/actions/slice/slice.page'),
                 ),
                 handle: {
                   tracking: {
@@ -232,8 +240,8 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.aggregate,
                 path: urls.aggregate,
-                ...lazyRouteConfig(() =>
-                  import('@/pages/actions/aggregate/aggregate.page'),
+                ...lazyRouteConfig(
+                  () => import('@/pages/actions/aggregate/aggregate.page'),
                 ),
                 handle: {
                   tracking: {
@@ -247,19 +255,21 @@ export const Routes: RouteObject[] = [
           {
             id: 'manage-organisations',
             path: urls.manageOrganisations,
-            ...lazyRouteConfig(() =>
-              import(
-                '@/pages/listing/manageOrganisations/manage.organisations.page'
-              ),
+            ...lazyRouteConfig(
+              () =>
+                import(
+                  '@/pages/listing/manageOrganisations/manage.organisations.page'
+                ),
             ),
             children: [
               {
                 id: 'open',
                 path: urls.openOrganisationsModal,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/listing/manageOrganisations/OrganisationModal/OrganisationModal.page'
-                  ),
+                ...lazyRouteConfig(
+                  () =>
+                    import(
+                      '@/pages/listing/manageOrganisations/OrganisationModal/OrganisationModal.page'
+                    ),
                 ),
                 handle: {
                   tracking: {
@@ -271,10 +281,11 @@ export const Routes: RouteObject[] = [
               {
                 id: subRoutes.deleteOrganisation,
                 path: urls.deleteOrganisation,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/actions/organisation/deleteOrganisation.page'
-                  ),
+                ...lazyRouteConfig(
+                  () =>
+                    import(
+                      '@/pages/actions/organisation/deleteOrganisation.page'
+                    ),
                 ),
                 handle: {
                   tracking: {
@@ -302,8 +313,9 @@ export const Routes: RouteObject[] = [
       {
         id: subRoutes.configureGameFirewall,
         path: urls.configureGameFirewall,
-        ...lazyRouteConfig(() =>
-          import('@/pages/configureGameFirewall/configureGameFirewall.page'),
+        ...lazyRouteConfig(
+          () =>
+            import('@/pages/configureGameFirewall/configureGameFirewall.page'),
         ),
         handle: {
           tracking: {
@@ -315,10 +327,11 @@ export const Routes: RouteObject[] = [
       {
         id: subRoutes.configureEdgeNetworkFirewall,
         path: urls.configureEdgeNetworkFirewall,
-        ...lazyRouteConfig(() =>
-          import(
-            '@/pages/configureEdgeNetworkFirewall/configureEdgeNetworkFirewall.page'
-          ),
+        ...lazyRouteConfig(
+          () =>
+            import(
+              '@/pages/configureEdgeNetworkFirewall/configureEdgeNetworkFirewall.page'
+            ),
         ),
         handle: {
           tracking: {
@@ -357,8 +370,9 @@ export const Routes: RouteObject[] = [
           {
             id: 'byoip-order',
             path: urls.byoipOrderModal,
-            ...lazyRouteConfig(() =>
-              import('@/pages/byoip/ByoipOrderModal/ByoipOrderModal.page'),
+            ...lazyRouteConfig(
+              () =>
+                import('@/pages/byoip/ByoipOrderModal/ByoipOrderModal.page'),
             ),
             handle: {
               tracking: {

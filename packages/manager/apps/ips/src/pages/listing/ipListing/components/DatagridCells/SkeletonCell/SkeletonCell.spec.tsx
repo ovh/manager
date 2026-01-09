@@ -1,10 +1,14 @@
 import React, { ReactNode } from 'react';
-import { describe, expect, it, vi } from 'vitest';
+
 import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { SkeletonCell, SkeletonCellParams } from './SkeletonCell';
+
 import { ListingContext } from '@/pages/listing/listingContext';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { SkeletonCell, SkeletonCellParams } from './SkeletonCell';
 
 /** MOCKS */
 const addExpiredIp = vi.fn();
@@ -23,7 +27,7 @@ const renderComponent = (params: SkeletonCellParams, child?: ReactNode) => {
   );
 };
 
-describe('SkeletonCell Component', async () => {
+describe('SkeletonCell Component', () => {
   it('Should display skeleton if loading is true', () => {
     const { container } = renderComponent({ isLoading: true });
     expect(container.querySelectorAll('ods-skeleton')).toBeDefined();

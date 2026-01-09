@@ -1,16 +1,23 @@
-import '@/test-utils/setupUnitTests';
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpType, IpTypeProps } from './IpType';
 import { getOdsBadgeByLabel } from '@/test-utils';
+import '@/test-utils/setupUnitTests';
+
+import { IpType, IpTypeProps } from './IpType';
+import { IpDetails } from '@/data/api';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
+  vi.fn(() => ({
+    ipDetails: undefined as IpDetails | undefined,
+    isLoading: true,
+  })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
@@ -30,31 +37,33 @@ const renderComponent = (params: IpTypeProps) => {
   );
 };
 
-describe('IpType Component', async () => {
+describe('IpType Component', () => {
   it('Should display ip type', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { getByText } = renderComponent({
+      ip: ipDetailsList?.[0]?.ip,
+    });
     await waitFor(() => {
       expect(
-        getByText(`listingColumnsType_${ipDetailsList[0].type}`),
+        getByText(`listingColumnsType_${ipDetailsList?.[0]?.type}`),
       ).toBeDefined();
     });
   });
 
   it('Should display parking badge', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[1],
+      ipDetails: ipDetailsList[1] as IpDetails,
       isLoading: false,
     });
     const { getByText, container } = renderComponent({
-      ip: ipDetailsList[1].ip,
+      ip: ipDetailsList?.[1]?.ip,
     });
     await waitFor(() => {
       expect(
-        getByText(`listingColumnsType_${ipDetailsList[1].type}`),
+        getByText(`listingColumnsType_${ipDetailsList?.[1]?.type}`),
       ).toBeDefined();
     });
     await getOdsBadgeByLabel({
@@ -65,15 +74,15 @@ describe('IpType Component', async () => {
 
   it('Should display assigned badge', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[2],
+      ipDetails: ipDetailsList[2] as IpDetails,
       isLoading: false,
     });
     const { getByText, container } = renderComponent({
-      ip: ipDetailsList[2].ip,
+      ip: ipDetailsList?.[2]?.ip,
     });
     await waitFor(() => {
       expect(
-        getByText(`listingColumnsType_${ipDetailsList[2].type}`),
+        getByText(`listingColumnsType_${ipDetailsList?.[2]?.type}`),
       ).toBeDefined();
     });
     await getOdsBadgeByLabel({
