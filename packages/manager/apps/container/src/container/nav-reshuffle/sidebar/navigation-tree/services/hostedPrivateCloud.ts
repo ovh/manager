@@ -34,6 +34,19 @@ hostedPrivateCloudUniverse.children = [
         features: ['dedicated-cloud'],
       },
       {
+        id: 'hpc-private-vcf',
+        universe: hostedPrivateCloudUniverse.id,
+        translation: 'sidebar_vmware_private_vcf',
+        serviceType: 'PRIVATE_VCFAAS',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'hpc-vmware-private-vcf-aas',
+          hash: '#/',
+          pathMatcher: /vmware\/private-vcf-aas/
+        },
+        features: ['hpc-vmware-private-vcf-aas'],
+      },
+      {
         id: 'hpc-managed-vcd',
         universe: hostedPrivateCloudUniverse.id,
         translation: 'sidebar_vmware_vcd',
