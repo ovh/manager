@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
@@ -5,15 +6,12 @@ import {
   getManagerPreferencesQueryKey,
   postManagerPreferences,
 } from '@/data/api/manager-preferences';
-
-export type ViewType = {
-  name: string;
-  id: string;
-  default?: boolean;
-};
+import { ViewContext } from '@/components/manageView/viewContext';
+import { STANDARD_VIEW_ID } from '@/components/manageView/manageView.constants';
+import { ViewType } from '@/components/manageView/types';
 
 export type SaveViewsPreferenceMutationParams = {
-  views: ViewType[];
+  view: ViewType;
 };
 
 export type UseSaveViewsPreferenceParams = {
@@ -30,14 +28,37 @@ export const useSaveViewsPreference = ({
   onSettled,
 }: UseSaveViewsPreferenceParams) => {
   const queryClient = useQueryClient();
+  const { views, columnVisibility } = useContext(ViewContext);
   const { clearNotifications } = useNotifications();
 
   return useMutation({
-    mutationFn: ({ views }: SaveViewsPreferenceMutationParams) =>
-      postManagerPreferences({
+    mutationFn: ({ view }: SaveViewsPreferenceMutationParams) => {
+      const currentDefault = views.find((_view) => _view.default);
+      if (view.default && currentDefault) currentDefault.default = false;
+
+      const updatedView = {
+        ...view,
+        columnVisibility,
+      };
+
+      const updatedViews = [
+        ...views.filter(
+          (_view) =>
+            _view.id !== updatedView.id &&
+            _view.id !== currentDefault?.id &&
+            _view.id !== STANDARD_VIEW_ID,
+        ),
+        ...(![STANDARD_VIEW_ID, updatedView.id].includes(currentDefault?.id)
+          ? [currentDefault]
+          : []),
+        updatedView,
+      ];
+
+      return postManagerPreferences({
         key,
-        value: JSON.stringify(views),
-      }),
+        value: JSON.stringify(updatedViews),
+      });
+    },
     onSuccess: async (_, variables) => {
       clearNotifications();
       await queryClient.invalidateQueries({
