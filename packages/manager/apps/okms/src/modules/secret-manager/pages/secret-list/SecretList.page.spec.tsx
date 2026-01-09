@@ -3,7 +3,7 @@ import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {
@@ -16,6 +16,7 @@ import {
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { invariant } from '@/common/utils/tools/invariant';
 import { PATH_LABEL } from '@/constants';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
 
@@ -88,14 +89,12 @@ describe('Secret list page test suite', () => {
     const { container } = await renderPage();
     await assertDatagridIsLoaded(container);
 
-    const secretPageLink = await getOdsButtonByLabel({
-      container,
-      label: secretListMock[0]?.path ?? '',
-      isLink: true,
-    });
+    const secretPath = secretListMock[0]?.path ?? '';
+    invariant(secretPath, 'Secret path is not defined');
+    const secretPageLink = screen.getByText(secretPath);
 
     // WHEN
-    await act(() => user.click(secretPageLink));
+    await user.click(secretPageLink);
 
     // THEN
     const dashboardPageLabels = await screen.findAllByText(
@@ -118,7 +117,7 @@ describe('Secret list page test suite', () => {
     });
 
     // WHEN
-    await act(() => user.click(manageOkmsButton));
+    await user.click(manageOkmsButton);
 
     // THEN
     await assertPageTitleVisibility(labels.secretManager.okms_dashboard_title, 3000);
@@ -137,7 +136,7 @@ describe('Secret list page test suite', () => {
     });
 
     // WHEN
-    await act(() => user.click(createSecretButton));
+    await user.click(createSecretButton);
 
     // THEN
     await assertTextVisibility(labels.secretManager.create_a_secret);
@@ -186,7 +185,7 @@ describe('Secret list page test suite', () => {
           iconName: 'ellipsis-vertical',
         });
 
-        await act(() => user.click(mainActionButton));
+        await user.click(mainActionButton);
 
         const actionButton = await getOdsButtonByLabel({
           container,
@@ -195,7 +194,7 @@ describe('Secret list page test suite', () => {
         });
 
         // WHEN
-        await act(() => user.click(actionButton));
+        await user.click(actionButton);
 
         // THEN
         await assertion();

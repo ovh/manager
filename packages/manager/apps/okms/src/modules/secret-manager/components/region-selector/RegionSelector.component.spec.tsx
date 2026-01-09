@@ -176,47 +176,39 @@ describe('RegionSelector Component', () => {
 
     it('should display all geography groups in the popover', async () => {
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
 
       // Then
       expect(screen.getByText(mockGeographyNames.EU)).toBeInTheDocument();
       expect(screen.getByText(mockGeographyNames.CA)).toBeInTheDocument();
 
       // Check region links
-      await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.GRA,
-        isLink: true,
-      });
-      await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.DE,
-        isLink: true,
-      });
-      await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.BHS,
-        isLink: true,
-      });
+      const graLink = await screen.findByText(mockRegionLabels.GRA);
+      expect(graLink).toHaveAttribute(
+        'href',
+        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name),
+      );
+      const deLink = await screen.findByText(mockRegionLabels.DE);
+      expect(deLink).toHaveAttribute(
+        'href',
+        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_LIM.name),
+      );
+      const bhsLink = await screen.findByText(mockRegionLabels.BHS);
+      expect(bhsLink).toHaveAttribute(
+        'href',
+        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_CA_EAST_BHS.name),
+      );
     });
 
     it('should highlight the link for the current region', async () => {
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
 
       // Then
-      const current = await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.GRA,
-        isLink: true,
-      });
+      const current = await screen.findByText(mockRegionLabels.GRA);
       expect(current).toHaveClass('[&::part(link)]:text-[var(--ods-color-heading)]');
 
-      const notCurrent = await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.DE,
-        isLink: true,
-      });
+      const notCurrent = await screen.findByText(mockRegionLabels.DE);
       expect(notCurrent).toHaveClass('[&::part(link)]:text-[var(--ods-color-primary-500)]');
     });
 
