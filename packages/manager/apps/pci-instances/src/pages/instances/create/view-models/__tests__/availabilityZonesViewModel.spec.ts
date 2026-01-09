@@ -12,9 +12,6 @@ const fakeDeps: Deps = {
       .fn()
       .mockReturnValue(mockedInstancesCatalogEntity),
   },
-  configurationPort: {
-    selectSshKeys: vi.fn(),
-  },
   instancePort: {
     createInstance: vi.fn(),
   },
