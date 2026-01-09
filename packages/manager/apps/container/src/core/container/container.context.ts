@@ -18,6 +18,11 @@ export type ContainerContextType = {
   setChatbotOpen: (isOpen: boolean) => void;
   chatbotReduced: boolean;
   setChatbotReduced: (isReduced: boolean) => void;
+  aiChatbotOpen: boolean;
+  setAIChatbotOpen: (isOpen: boolean) => void;
+  aiChatbotReduced: boolean;
+  setAIChatbotReduced: (isReduced: boolean) => void;
+  isAIChatbotEnabled: boolean;
   application: Application;
   setApplication: (appConfig: Application) => void;
   universe: string;

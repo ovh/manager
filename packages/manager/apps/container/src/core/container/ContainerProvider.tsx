@@ -20,6 +20,8 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [chatbotReduced, setChatbotReduced] = useState(false);
+  const [aiChatbotOpen, setAIChatbotOpen] = useState(false);
+  const [aiChatbotReduced, setAIChatbotReduced] = useState(false);
   const [application, setApplication] = useState<Application>(undefined);
   const [universe, setUniverse] = useState<string>();
 
@@ -33,11 +35,13 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [useBeta, setUseBeta] = useState(false);
 
   const [isLivechatEnabled, setIsLivechatEnabled] = useState(false);
+  const [isAIChatbotEnabled, setIsAIChatbotEnabled] = useState(false);
 
   const fetchFeatureAvailability = async () => {
     interface CurrentContextAvailability {
       pnr: boolean;
       livechat: boolean;
+      'ai-chatbot': boolean;
     }
     const getBetaVersion = (value: CurrentContextAvailability) => {
       if (value.pnr) {
@@ -46,14 +50,16 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       return null;
     };
 
-    return fetchFeatureAvailabilityData(['livechat', 'pnr'])
+    return fetchFeatureAvailabilityData(['livechat', 'pnr', 'ai-chatbot'])
       .then((value) => ({
         version: getBetaVersion(value),
         livechat: !!value.livechat,
+        aiChatbot: !!value['ai-chatbot'],
       }))
       .catch(() => ({
         version: '',
         livechat: undefined,
+        aiChatbot: false,
       }));
   };
 
@@ -112,9 +118,10 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
    */
   useEffect(() => {
     fetchFeatureAvailability()
-      .then(({ version, livechat }) => {
+      .then(({ version, livechat, aiChatbot }) => {
         setBetaVersion(version);
         setIsLivechatEnabled(livechat);
+        setIsAIChatbotEnabled(aiChatbot);
 
         if (version) {
           return fetchBetaChoice();
@@ -132,8 +139,11 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
         setChatbotOpen(chatbotVisibility);
         setChatbotReduced(false);
       }
+      if (chatbotVisibility && aiChatbotOpen) {
+        setAIChatbotOpen(false);
+      }
     });
-  }, [isLivechatEnabled]);
+  }, [isLivechatEnabled, aiChatbotOpen]);
 
   useEffect(() => {
     // special HPC case
@@ -163,6 +173,11 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     setChatbotOpen,
     chatbotReduced,
     setChatbotReduced,
+    aiChatbotOpen,
+    setAIChatbotOpen,
+    aiChatbotReduced,
+    setAIChatbotReduced,
+    isAIChatbotEnabled,
     application,
     setApplication,
     universe: universe || application?.universe,

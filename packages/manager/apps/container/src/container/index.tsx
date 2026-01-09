@@ -9,9 +9,10 @@ import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/components/sso-auth-modal/SSOAuthModal.component';
 import LiveChat from '@/container/livechat/LiveChat.component';
+import AIChatbot from '@/container/ai-chatbot/AIChatbot.component';
 
 export default function Container(): JSX.Element {
-  const { isLoading, betaVersion, useBeta } = useContainer();
+  const { isLoading, betaVersion, useBeta, isAIChatbotEnabled, setAIChatbotOpen } = useContainer();
   const shell = useShell();
   const [isCookiePolicyApplied, setIsCookiePolicyApplied] = useState(false);
 
@@ -38,6 +39,28 @@ export default function Container(): JSX.Element {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    if (!isLoading && isAIChatbotEnabled) {
+      const hasAutoOpened = sessionStorage.getItem('ai-chatbot-auto-opened-session');
+
+      if (!hasAutoOpened) {
+        const timer = setTimeout(() => {
+          setAIChatbotOpen(true);
+          sessionStorage.setItem('ai-chatbot-auto-opened-session', 'true');
+
+          const tracking = shell.getPlugin('tracking');
+          tracking.trackClick({
+            name: 'ai-chatbot::auto-open',
+            type: 'action',
+            chapter1: 'container',
+          });
+        }, 10000);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [isLoading, isAIChatbotEnabled, setAIChatbotOpen, shell]);
+
   return isLoading ? (
     <></>
   ) : (
@@ -56,6 +79,9 @@ export default function Container(): JSX.Element {
           <LiveChat
             closeLiveChat={() => shell.getPlugin('ux').closeChatbot()}
           />
+        </Suspense>
+        <Suspense fallback="">
+          <AIChatbot />
         </Suspense>
       </ProgressProvider>
 
