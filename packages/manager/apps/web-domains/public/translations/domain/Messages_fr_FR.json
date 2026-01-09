@@ -327,9 +327,13 @@
   "domain_tab_dsrecords_drawer_modify_error": "Une erreur a été detectée lors de la modification du DS record : {{ error }}",
   "domain_tab_dsrecords_drawer_form_error_empty": "Champ vide",
   "domain_tab_dsrecords_add_disabled": "La configuration DNS actuelle ne permet pas l'ajout de DS record",
-  "domain_tab_dsrecords_actions_disabled": "La configuration DNS actuelle ne permet ni l'ajout ni la modification de DS record",
+  "domain_tab_dsrecords_actions_disabled": "La configuration DNS actuelle ne permet ni l'ajout ni la modification de DS record.",
   "domain_tab_dsrecords_modal_delete_title": "Supprimer l'entrée",
   "domain_tab_dsrecords_modal_delete_subtitle": "Êtes-vous sûr de vouloir supprimer cette entrée ?",
   "domain_tab_dsrecords_modal_delete_success_message": "Le DS record est en cours de suppression",
-  "domain_tab_dsrecords_modal_delete_error_message": "Une erreur est survenue lors de la suppression du DS record"
+  "domain_tab_dsrecords_modal_delete_error_message": "Une erreur est survenue lors de la suppression du DS record",
+  "domain_tab_dsrecords_message_information_content": "Ces enregistrements DS sont fournis à titre informatif et sont gérés automatiquement par OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC est en cours {{action}}: vous pouvez suivre l'avancée de votre demande depuis la page des opérations en cours. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "d'activation",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de désactivation"
 }

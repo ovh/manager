@@ -1,7 +1,7 @@
 import '@/setupTests';
 import React from 'react';
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import {
   useAuthorizationIam,
@@ -36,7 +36,7 @@ vi.mock('@/hooks/iam/iam', () => ({
 
 describe('alldom datagrid', () => {
   it('Display the datagrid element', async () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: allDom,
       isLoading: false,
       search: {
@@ -46,19 +46,19 @@ describe('alldom datagrid', () => {
       },
     });
 
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
+    (useGetDomainInformation as Mock).mockReturnValue({
       data: serviceInfo,
     });
 
-    (useGetIAMResourceAllDom as jest.Mock).mockReturnValue({
+    (useGetIAMResourceAllDom as Mock).mockReturnValue({
       data: allDomIamResource,
     });
 
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isAuthorized: true,
     });
 
-    (useFeatureAvailability as jest.Mock).mockReturnValue({
+    (useFeatureAvailability as Mock).mockReturnValue({
       data: { [allDomFeatureAvailibility]: true },
     });
 

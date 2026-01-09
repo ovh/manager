@@ -134,6 +134,7 @@
   "domain_tab_general_information_outgoing_transfer": "Transfert sortant",
   "domain_tab_general_information_pending_deletion": "Suppression en cours",
   "domain_tab_general_information_deleted": "Supprimé",
+  "domain_tab_general_information_update_success": "Votre demande de mise à jour a été traitée avec succès.",
   "domain_tab_general_information_subscription_expiration_date": "Date d'expiration",
   "domain_tab_general_information_subscription_renew_frequency": "Fréquence de renouvellement",
   "domain_tab_general_information_subscription_renew_frequency_years": "Tous les {{ years }} ans",
@@ -236,7 +237,6 @@
   "domain_tab_general_information_data_drawer_description": "Vous pouvez ici choisir quelles informations personnelles seront affichées publiquement dans la base RDDS (WHOIS/RDAP) associée à votre nom de domaine.",
   "domain_tab_general_information_data_drawer_description_info": "<strong>Décochez les éléments que vous souhaitez garder privés</strong>. Ces paramètres n'affectent pas le bon fonctionnement de votre nom de domaine.",
   "domain_tab_general_information_data_drawer_contact_label": "Afficher les coordonnées du <strong>contact {{type}}</strong>",
-  "domain_tab_general_information_data_drawer_contact_field": "En choisissant d'afficher les coordonnées du contact, les informations suivantes seront affichées en clair via le RDDS (WHOIS/RDAP):",
   "domain_tab_general_information_data_drawer_contact_field_address": "Adresse postale",
   "domain_tab_general_information_data_drawer_contact_field_city": "Ville",
   "domain_tab_general_information_data_drawer_contact_field_country": "Pays",
@@ -331,5 +331,9 @@
   "domain_tab_dsrecords_modal_delete_title": "Supprimer l'entrée",
   "domain_tab_dsrecords_modal_delete_subtitle": "Êtes-vous sûr de vouloir supprimer cette entrée ?",
   "domain_tab_dsrecords_modal_delete_success_message": "Le DS record est en cours de suppression",
-  "domain_tab_dsrecords_modal_delete_error_message": "Une erreur est survenue lors de la suppression du DS record"
+  "domain_tab_dsrecords_modal_delete_error_message": "Une erreur est survenue lors de la suppression du DS record",
+  "domain_tab_dsrecords_message_information_content": "Ces enregistrements DS sont fournis à titre informatif et sont gérés automatiquement par OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC est en cours {{action}}: vous pouvez suivre l'avancée de votre demande depuis la page des opérations en cours. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "d'activation",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de désactivation"
 }

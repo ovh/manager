@@ -1,7 +1,6 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { wrapper } from '@/common/utils/test.provider';
 import AnycastOrderComponent from './AnycastOrder';
@@ -14,7 +13,7 @@ vi.mock('@/domain/hooks/data/query', () => ({
 
 describe('Anycast Order component', () => {
   it('Render Anycast order component loading', () => {
-    (useGetOrderCatalogDns as jest.Mock).mockReturnValue({
+    (useGetOrderCatalogDns as Mock).mockReturnValue({
       dnsCatalog: {},
       isFetchingDnsCatalog: true,
     });
@@ -30,7 +29,7 @@ describe('Anycast Order component', () => {
   });
 
   it('Render Anycast order component without title', () => {
-    (useGetOrderCatalogDns as jest.Mock).mockReturnValue({
+    (useGetOrderCatalogDns as Mock).mockReturnValue({
       dnsCatalog: DnsCatalogOrderMock,
       isFetchingDnsCatalog: false,
     });
@@ -57,7 +56,7 @@ describe('Anycast Order component', () => {
   });
 
   it('Render Anycast order component with title', () => {
-    (useGetOrderCatalogDns as jest.Mock).mockReturnValue({
+    (useGetOrderCatalogDns as Mock).mockReturnValue({
       dnsCatalog: DnsCatalogOrderMock,
       isFetchingDnsCatalog: false,
     });

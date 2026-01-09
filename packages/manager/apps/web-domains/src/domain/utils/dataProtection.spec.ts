@@ -93,7 +93,7 @@ describe('dataProtection utilities', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: true,
+            forcedDisclosureConfiguration: true,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -102,7 +102,7 @@ describe('dataProtection utilities', () => {
           id: 'admin-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -121,7 +121,7 @@ describe('dataProtection utilities', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: false,
           },
@@ -141,7 +141,7 @@ describe('dataProtection utilities', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: ['EMAIL'],
             visibleViaRdds: true,
           },
@@ -150,7 +150,7 @@ describe('dataProtection utilities', () => {
           id: 'admin-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: ['PHONE'],
             visibleViaRdds: true,
           },
@@ -169,7 +169,7 @@ describe('dataProtection utilities', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -178,7 +178,7 @@ describe('dataProtection utilities', () => {
           id: 'admin-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -197,7 +197,7 @@ describe('dataProtection utilities', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -206,7 +206,7 @@ describe('dataProtection utilities', () => {
           id: 'admin-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: ['EMAIL', 'PHONE'],
             visibleViaRdds: true,
           },

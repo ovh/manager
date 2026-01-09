@@ -46,7 +46,7 @@ export default function DnsConfigurationTab({
   const navigate = useNavigate();
   const columns = useDomainDnsDatagridColumns();
   const { data: ongoingOperationsURL } = useNavigationGetUrl(
-    ongoingOperationLink,
+    ongoingOperationLink('domain'),
   );
   const zoneMasterUrl = 'https://www.zonemaster.net/en/run-test';
   const onOpenAnycastTerminateModal = () => {

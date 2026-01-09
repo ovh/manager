@@ -1,6 +1,4 @@
-import { GUIDES_LIST } from '@/domain/constants/guideLinks';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
-import { getLanguageKey } from '@/domain/utils/utils';
 import {
   BaseLayout,
   ChangelogButton,
@@ -14,17 +12,22 @@ import config from '@/web-domains.config';
 import { urls } from '@/domain/routes/routes.constant';
 import WebHostingOrderComponent from '@/domain/components/WebHostingOrder/webHostingOrderComponent';
 import BreadcrumbWebHostingOrder from './breadcrumb';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useLinks } from '@/domain/constants/guideLinks';
 
 export default function WebHostingOrderPage() {
-  const { t, i18n } = useTranslation(['domain', 'web-domains/error']);
+  const { t } = useTranslation(['domain', 'web-domains/error']);
 
   const { serviceName } = useParams<{ serviceName: string }>();
-  const langCode = getLanguageKey(i18n.language);
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const guideUrls = useLinks(ovhSubsidiary);
 
   const guideItems: GuideItem[] = [
     {
       id: 1,
-      href: GUIDES_LIST.domains.url[langCode],
+      href: guideUrls.DOMAINS_LINK,
       target: '_blank',
       label: t('domain_guide_button_label'),
     },

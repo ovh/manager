@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import React from 'react';
 import { render, screen, fireEvent } from '@/common/utils/test.provider';
-import { describe, it } from 'vitest';
+import { describe, it, Mock } from 'vitest';
 import NichandleCard from './NichandleCard';
 import { ServiceInfoContactEnum } from '@/common/enum/common.enum';
 import {
@@ -16,7 +16,7 @@ describe('NichandleCard Component', () => {
   const mockNichandle = 'aa00001-ovh';
 
   it('should render spinner when no nichandle information', () => {
-    (useNichandleInformation as jest.Mock).mockReturnValue({
+    (useNichandleInformation as Mock).mockReturnValue({
       nichandleInformation: null,
     });
 
@@ -32,7 +32,7 @@ describe('NichandleCard Component', () => {
   });
 
   it('should render contact information for individual legal form', () => {
-    (useNichandleInformation as jest.Mock).mockReturnValue({
+    (useNichandleInformation as Mock).mockReturnValue({
       nichandleInformation: nichandleIndividual,
     });
 
@@ -56,7 +56,7 @@ describe('NichandleCard Component', () => {
   });
 
   it('should render contact information for corporation legal form', () => {
-    (useNichandleInformation as jest.Mock).mockReturnValue({
+    (useNichandleInformation as Mock).mockReturnValue({
       nichandleInformation: nichandleCorporation,
     });
 
@@ -84,7 +84,7 @@ describe('NichandleCard Component', () => {
   });
 
   it('should disable modify button when not current nichandle', () => {
-    (useNichandleInformation as jest.Mock).mockReturnValue({
+    (useNichandleInformation as Mock).mockReturnValue({
       nichandleInformation: nichandleIndividual,
     });
 
@@ -102,7 +102,7 @@ describe('NichandleCard Component', () => {
   });
 
   it('should enable and navigate modify button when current nichandle', () => {
-    (useNichandleInformation as jest.Mock).mockReturnValue({
+    (useNichandleInformation as Mock).mockReturnValue({
       nichandleInformation: nichandleIndividual,
     });
 
@@ -120,7 +120,7 @@ describe('NichandleCard Component', () => {
   });
 
   it('should disable reassign button when not current connected nichandle', () => {
-    (useNichandleInformation as jest.Mock).mockReturnValue({
+    (useNichandleInformation as Mock).mockReturnValue({
       nichandleInformation: nichandleIndividual,
     });
 
@@ -138,7 +138,7 @@ describe('NichandleCard Component', () => {
   });
 
   it('should enable and navigate reassign button when administrator nichandle', () => {
-    (useNichandleInformation as jest.Mock).mockReturnValue({
+    (useNichandleInformation as Mock).mockReturnValue({
       nichandleInformation: nichandleIndividual,
     });
 

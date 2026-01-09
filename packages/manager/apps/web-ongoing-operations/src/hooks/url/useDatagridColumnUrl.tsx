@@ -12,19 +12,18 @@ export function useDatagridColumnUrl({
   const { data: availability } = useFeatureAvailability(['web-domains:domains']);
   const { data: managerUrl } = useNavigationGetUrl(['web', '', {}]);
   const { data: webDomainsUrl } = useNavigationGetUrl(['web-domains', '', {}]);
+  const { data: serviceInfo } = useGetDomainInformation(value);
 
   let url = `${managerUrl}/${ParentEnum.DOMAIN}/${value}/information`;
   if (parent === ParentEnum.ZONE) {
-    const { data: serviceInfo } = useGetDomainInformation(value);
     if (!serviceInfo) {
       url = `${managerUrl}/${parent}/${value}`;
     }
   }
+
   if (availability?.['web-domains:domains']){
     url = `${webDomainsUrl}/${ParentEnum.DOMAIN}/${value}/information`;
-
     if (parent === ParentEnum.ZONE) {
-      const { data: serviceInfo } = useGetDomainInformation(value);
       if (!serviceInfo) {
         url = `${webDomainsUrl}/${value}/${parent}`;
       }

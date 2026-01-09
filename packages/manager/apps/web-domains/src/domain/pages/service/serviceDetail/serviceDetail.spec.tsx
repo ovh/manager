@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, screen, waitFor, wrapper } from '@/common/utils/test.provider';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
@@ -17,7 +17,7 @@ vi.mock('@/domain/pages/domainTabs/dns/dnsConfiguration', () => ({
 
 describe('Domain detail', () => {
   it('displays loading spinner while main request are loading', async () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       data: null,
       isFetchingDomainResource: true,
     });
@@ -30,7 +30,7 @@ describe('Domain detail', () => {
   });
 
   it('display the information of Domain', async () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: serviceInfoDetail,
       isFetchingDomainResource: false,
     });

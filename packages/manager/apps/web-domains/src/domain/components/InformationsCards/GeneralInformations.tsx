@@ -2,7 +2,6 @@ import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import {
   Badge,
-  BADGE_COLOR,
   Icon,
   ICON_NAME,
   Tooltip,
@@ -63,7 +62,7 @@ export default function GeneralInformationsCards({
           </Tooltip>
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <Badge color={domainState.statusColor} className="mt-4">
+          <Badge color={domainState.statusColor}>
             {t(`${domainState.i18nKey}`)}
           </Badge>
         </ManagerTile.Item.Description>
@@ -85,7 +84,7 @@ export default function GeneralInformationsCards({
           </Tooltip>
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <Badge color={techState.statusColor} className="mt-4">
+          <Badge color={techState.statusColor}>
             {t(`${techState.i18nKey}`)}
           </Badge>
         </ManagerTile.Item.Description>

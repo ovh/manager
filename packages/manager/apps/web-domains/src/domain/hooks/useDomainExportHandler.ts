@@ -2,13 +2,13 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { DomainService } from '@/domain/types/domainResource';
+import { TDomainResource } from '@/domain/types/domainResource';
 import { useDomainExport } from '@/domain/hooks/useDomainExport';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 
 interface UseExportHandlerParams {
   selectedServiceNames: string[];
-  domainResources: DomainService[] | null;
+  domainResources: TDomainResource[] | null;
   setExportProgress: (
     progress: { current: number; total: number; percentage: number } | null,
   ) => void;
@@ -51,7 +51,7 @@ export const useDomainExportHandler = ({
           throw new Error('Invalid selection');
         }
 
-        let domainsToExport: DomainService[] = [];
+        let domainsToExport: TDomainResource[] = [];
 
         if (selectedServiceNames.length === 0) {
           setExportProgress({
@@ -64,7 +64,7 @@ export const useDomainExportHandler = ({
           domainsToExport = data.length > 0 ? data : domainResources || [];
         } else {
           domainsToExport = (domainResources || []).filter((domain) =>
-            selectedServiceNames.includes(domain.domain),
+            selectedServiceNames.includes(domain.id),
           );
         }
 

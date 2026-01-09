@@ -1,10 +1,12 @@
 import '@/common/setupTests';
-import React from 'react';
-import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
+import {
+  render,
+  screen,
+  fireEvent,
+  wrapper,
+} from '@/common/utils/test.provider';
 import DnssecModal from './DnssecModal';
-import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 
 describe('DnssecModal component', () => {
   const mockUpdateDnssec = vi.fn();
@@ -18,7 +20,7 @@ describe('DnssecModal component', () => {
     it('renders activation modal with correct content', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.DISABLED}
+          isEnableDnssecAction={true}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -41,7 +43,7 @@ describe('DnssecModal component', () => {
     it('displays action message for activation', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.DISABLED}
+          isEnableDnssecAction={true}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -59,7 +61,7 @@ describe('DnssecModal component', () => {
     it('calls updateDnssec when confirm button is clicked', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.DISABLED}
+          isEnableDnssecAction={true}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -78,7 +80,7 @@ describe('DnssecModal component', () => {
     it('calls onClose when cancel button is clicked', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.DISABLED}
+          isEnableDnssecAction={true}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -99,7 +101,7 @@ describe('DnssecModal component', () => {
     it('renders deactivation modal with correct content', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.ENABLED}
+          isEnableDnssecAction={false}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -122,7 +124,7 @@ describe('DnssecModal component', () => {
     it('displays action message for deactivation', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.ENABLED}
+          isEnableDnssecAction={false}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -140,7 +142,7 @@ describe('DnssecModal component', () => {
     it('calls updateDnssec when confirm button is clicked', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.ENABLED}
+          isEnableDnssecAction={false}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -159,7 +161,7 @@ describe('DnssecModal component', () => {
     it('calls onClose when cancel button is clicked', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.ENABLED}
+          isEnableDnssecAction={false}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -180,7 +182,7 @@ describe('DnssecModal component', () => {
     it('renders when open is true', () => {
       render(
         <DnssecModal
-          action={DnssecStatusEnum.DISABLED}
+          isEnableDnssecAction={true}
           open={true}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}
@@ -198,7 +200,7 @@ describe('DnssecModal component', () => {
     it('does not render modal content when open is false', () => {
       const { container } = render(
         <DnssecModal
-          action={DnssecStatusEnum.DISABLED}
+          isEnableDnssecAction={true}
           open={false}
           updateDnssec={mockUpdateDnssec}
           onClose={mockOnClose}

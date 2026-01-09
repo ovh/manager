@@ -1,7 +1,6 @@
 import '@/common/setupTests';
 import { render, waitFor } from '@/common/utils/test.provider';
-import { describe, expect, vi } from 'vitest';
-import React from 'react';
+import { describe, expect, Mock, vi } from 'vitest';
 import {
   useGetDomainZone,
   useGetDomainResource,
@@ -24,11 +23,11 @@ vi.mock('@/domain/components/ModifyNameServer/DnsConfigurationRadio', () => ({
 
 describe('DnsModifyPage', () => {
   it('Render loading component when data is still fetching', async () => {
-    (useGetDomainZone as jest.Mock).mockReturnValue({
+    (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
       isFetchingdomainZone: true,
     });
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: {},
       isFetchingDomainResource: true,
     });
@@ -41,11 +40,11 @@ describe('DnsModifyPage', () => {
   });
 
   it('Render DnsModify page', async () => {
-    (useGetDomainZone as jest.Mock).mockReturnValue({
+    (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
       isFetchingdomainZone: false,
     });
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: {},
       isFetchingDomainResource: false,
     });

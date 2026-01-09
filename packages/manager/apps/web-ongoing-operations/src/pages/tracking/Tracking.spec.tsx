@@ -2,7 +2,7 @@ import '@/setupTests';
 import React from 'react';
 import '@testing-library/jest-dom';
 import { useQuery } from '@tanstack/react-query';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import TrackingTranfert from '@/pages/tracking/Tracking';
 import { wrapper } from '@/utils/test.provider';
@@ -31,7 +31,7 @@ vi.mock('@ovh-ux/manager-core-utils', () => ({
 
 describe('Tracking page', () => {
   it('display the tracking first step', async () => {
-    (useQuery as jest.Mock).mockReturnValue({ data: trackingInit });
+    (useQuery as Mock).mockReturnValue({ data: trackingInit });
 
     render(<TrackingTranfert />, { wrapper });
     await waitFor(() => {
@@ -41,7 +41,7 @@ describe('Tracking page', () => {
   });
 
   it('display the tracking second step', async () => {
-    (useQuery as jest.Mock).mockReturnValue({
+    (useQuery as Mock).mockReturnValue({
       data: trackingContactConfirmation,
     });
 
@@ -54,7 +54,7 @@ describe('Tracking page', () => {
   });
 
   it('display the tracking third step', async () => {
-    (useQuery as jest.Mock).mockReturnValue({
+    (useQuery as Mock).mockReturnValue({
       data: trackingCurrentRegistrarConfirmation,
     });
 
@@ -67,7 +67,7 @@ describe('Tracking page', () => {
   });
 
   it('display the tracking last step', async () => {
-    (useQuery as jest.Mock).mockReturnValue({ data: trackingFinalization });
+    (useQuery as Mock).mockReturnValue({ data: trackingFinalization });
 
     render(<TrackingTranfert />, { wrapper });
     await waitFor(() => {
@@ -78,7 +78,7 @@ describe('Tracking page', () => {
   });
 
   it('display the tracking done', async () => {
-    (useQuery as jest.Mock).mockReturnValue({ data: trackingDone });
+    (useQuery as Mock).mockReturnValue({ data: trackingDone });
 
     render(<TrackingTranfert />, { wrapper });
     await waitFor(() => {
@@ -87,7 +87,7 @@ describe('Tracking page', () => {
   });
 
   it('display the tracking with error', async () => {
-    (useQuery as jest.Mock).mockReturnValue({ data: trackingAuthError });
+    (useQuery as Mock).mockReturnValue({ data: trackingAuthError });
 
     render(<TrackingTranfert />, { wrapper });
     await waitFor(() => {

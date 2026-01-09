@@ -60,9 +60,15 @@ describe('DatagridColumnPendingActions', () => {
       isServiceInfoLoading: true,
     });
 
-    render(<DatagridColumnPendingActions serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    render(
+      <DatagridColumnPendingActions
+        serviceName={mockServiceName}
+        isProcedure={false}
+      />,
+      {
+        wrapper,
+      },
+    );
 
     expect(screen.getByTestId('skeleton')).toBeInTheDocument();
   });
@@ -73,9 +79,15 @@ describe('DatagridColumnPendingActions', () => {
       isServiceInfoLoading: false,
     });
 
-    render(<DatagridColumnPendingActions serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    render(
+      <DatagridColumnPendingActions
+        serviceName={mockServiceName}
+        isProcedure={false}
+      />,
+      {
+        wrapper,
+      },
+    );
 
     expect(screen.queryByTestId(/status-badge-/)).not.toBeInTheDocument();
   });
@@ -98,9 +110,15 @@ describe('DatagridColumnPendingActions', () => {
 
     (domainStatusToBadge as ReturnType<typeof vi.fn>).mockReturnValue(null);
 
-    render(<DatagridColumnPendingActions serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    render(
+      <DatagridColumnPendingActions
+        serviceName={mockServiceName}
+        isProcedure={false}
+      />,
+      {
+        wrapper,
+      },
+    );
 
     expect(screen.queryByTestId(/status-badge-/)).not.toBeInTheDocument();
   });
@@ -132,9 +150,15 @@ describe('DatagridColumnPendingActions', () => {
       mockBadgeConfig,
     );
 
-    render(<DatagridColumnPendingActions serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    render(
+      <DatagridColumnPendingActions
+        serviceName={mockServiceName}
+        isProcedure={false}
+      />,
+      {
+        wrapper,
+      },
+    );
 
     const badge = screen.getByTestId(`status-badge-${mockPendingAction}`);
     expect(badge).toBeInTheDocument();
@@ -176,9 +200,15 @@ describe('DatagridColumnPendingActions', () => {
       mockBadgeConfig,
     );
 
-    render(<DatagridColumnPendingActions serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    render(
+      <DatagridColumnPendingActions
+        serviceName={mockServiceName}
+        isProcedure={false}
+      />,
+      {
+        wrapper,
+      },
+    );
 
     expect(domainStatusToBadge).toHaveBeenCalledWith(
       DOMAIN_PENDING_ACTIONS,
@@ -214,9 +244,15 @@ describe('DatagridColumnPendingActions', () => {
       mockBadgeConfig,
     );
 
-    render(<DatagridColumnPendingActions serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    render(
+      <DatagridColumnPendingActions
+        serviceName={mockServiceName}
+        isProcedure={false}
+      />,
+      {
+        wrapper,
+      },
+    );
 
     const badge = screen.getByTestId(`status-badge-${mockPendingAction}`);
     expect(badge).toBeInTheDocument();
@@ -229,9 +265,15 @@ describe('DatagridColumnPendingActions', () => {
       isServiceInfoLoading: false,
     });
 
-    render(<DatagridColumnPendingActions serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    render(
+      <DatagridColumnPendingActions
+        serviceName={mockServiceName}
+        isProcedure={false}
+      />,
+      {
+        wrapper,
+      },
+    );
 
     expect(useGetServiceInformation).toHaveBeenCalledWith(
       'domain',

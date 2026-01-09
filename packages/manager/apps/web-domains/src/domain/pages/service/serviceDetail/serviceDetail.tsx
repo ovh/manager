@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -18,19 +18,22 @@ import Loading from '@/domain/components/Loading/Loading';
 import ServiceDetailsTabs from '@/domain/components/ServiceDetail/ServiceDetailTabs';
 import { urls } from '@/domain/routes/routes.constant';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
-import { getLanguageKey } from '@/domain/utils/utils';
-import { GUIDES_LIST } from '@/domain/constants/guideLinks';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useLinks } from '@/domain/constants/guideLinks';
 
 export default function ServiceDetail() {
-  const { t, i18n } = useTranslation(['domain', 'web-domains/error']);
+  const { t } = useTranslation(['domain', 'web-domains/error']);
   const navigate = useNavigate();
   const { serviceName } = useParams<{ serviceName: string }>();
-  const langCode = getLanguageKey(i18n.language);
   const { notifications } = useNotifications();
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const guideUrls = useLinks(ovhSubsidiary);
+
   const guideItems: GuideItem[] = [
     {
       id: 1,
-      href: GUIDES_LIST.domains.url[langCode],
+      href: guideUrls.DOMAINS_LINK,
       target: '_blank',
       label: t('domain_guide_button_label'),
     },

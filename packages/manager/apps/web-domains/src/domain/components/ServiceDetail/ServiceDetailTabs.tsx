@@ -67,16 +67,11 @@ export default function ServiceDetailsTabs({
     }
   }, [location.pathname]);
 
-  const isDisabled = (
-    tab: DashboardTabItemProps,
-    domainResource: TDomainResource,
-  ) => (tab.rule ? tab.rule(domainResource) : false);
-
   return (
     <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
       <TabList>
         {ServiceDetailTabsProps.map((tab) => {
-          const disabled = isDisabled(tab, domainResource);
+          const disabled = tab.rule ? tab.rule(domainResource) : false;
           return (
             <Tab
               key={tab.id}

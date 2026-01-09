@@ -1,7 +1,6 @@
 import '@/setupTests';
-import React from 'react';
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { useFeatureAvailability, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { dns } from '@/__mocks__/dns';
@@ -27,10 +26,10 @@ vi.mock('@/hooks/data/query', () => ({
 
 describe('Dns datagrid', () => {
   it('fetch in a good way using useResourcesIcebergV6', () => {
-    (useFeatureAvailability as jest.Mock).mockReturnValue({
+    (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
         }),
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
       search: {
@@ -40,7 +39,7 @@ describe('Dns datagrid', () => {
       },
     });
 
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
+    (useGetDomainInformation as Mock).mockReturnValue({
       data: serviceInfo,
     });
 
@@ -57,10 +56,10 @@ describe('Dns datagrid', () => {
   });
 
   it('Display the datagrid element', async () => {
-    (useFeatureAvailability as jest.Mock).mockReturnValue({
+    (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
         }),
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
       search: {
@@ -70,7 +69,7 @@ describe('Dns datagrid', () => {
       },
     });
 
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
+    (useGetDomainInformation as Mock).mockReturnValue({
       data: serviceInfo,
     });
 
@@ -87,10 +86,10 @@ describe('Dns datagrid', () => {
   });
 
   it('Display the datagrid element but serviceInfo is undefined', async () => {
-    (useFeatureAvailability as jest.Mock).mockReturnValue({
+    (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
         }),
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
       search: {
@@ -100,7 +99,7 @@ describe('Dns datagrid', () => {
       },
     });
 
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
+    (useGetDomainInformation as Mock).mockReturnValue({
       data: undefined,
     });
 

@@ -1,7 +1,6 @@
-import React, { lazy, useEffect, useRef } from 'react';
+import { lazy, useEffect, useRef } from 'react';
 import { loadRemote } from '@module-federation/runtime';
 import { Subsidiary } from '@ovh-ux/manager-config';
-import { LangCode } from '@/domain/constants/guideLinks';
 export interface WebHostingOptions {
   subsidiary: Subsidiary;
   language?: string;

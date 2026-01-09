@@ -2,7 +2,7 @@ import { StatusEnum } from '../enum/Status.enum';
 
 export interface TDnssecConfiguration {
   dnssecSupported: boolean;
-  supportedAlgorithms: {
+  supportedAlgorithms?: {
     name: string;
     number: number;
   }[];
