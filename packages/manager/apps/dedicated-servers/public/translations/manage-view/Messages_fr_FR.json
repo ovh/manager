@@ -10,5 +10,6 @@
   "new_view": "Nouvelle vue",
   "set_as_default": "Définir par défaut",
   "edit_view_name": "Modifier le nom de la vue",
-  "maximum_views_number_reached": "Le nombre de vues maximale est atteint (5)"
+  "maximum_views_number_reached": "Le nombre de vues maximale est atteint (5)",
+  "select_columns_visibility": "Sélectionner les colonnes à afficher"
 }

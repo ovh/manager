@@ -1,0 +1,32 @@
+.column-list {
+  display: flex;
+  flex-flow: column;
+  row-gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    width: 100%;
+    // display: flex;
+    // flex-flow: row;
+    // align-items: center;
+    // flex-grow: 1;
+
+    &__card {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      &.disabled {
+        background-color: var(--ods-color-background-disabled-default);
+        cursor: not-allowed;
+      }
+      &.selected {
+        background-color: var(--ods-color-primary-025);
+      }
+    }
+  }
+}
