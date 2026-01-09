@@ -58,7 +58,7 @@ export default function DeleteTenantPage() {
       <div className="flex flex-col gap-5 whitespace-pre-line">
         {!isDeleteTenantFeatureAvailable && (
           <OdsMessage color="warning" isDismissible={false}>
-            {t('unable_to_delete_tenant_feature_unavailable')}
+            {t('delete_tenant_feature_unavailable')}
           </OdsMessage>
         )}
         <OdsText>{t('delete_tenant_modal_content', { tenantName })}</OdsText>
