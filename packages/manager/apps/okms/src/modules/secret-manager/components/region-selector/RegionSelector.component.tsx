@@ -8,7 +8,7 @@ import { OdsButton, OdsDivider, OdsPopover, OdsText } from '@ovhcloud/ods-compon
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { Link } from '@/common/components/link/Link.component';
+import { RouterLink } from '@/common/components/link/Link.component';
 import { useRegionSelector } from '@/modules/secret-manager/hooks/useRegionSelector';
 
 export const RegionSelector = () => {
@@ -53,7 +53,7 @@ export const RegionSelector = () => {
                     {translateGeographyName(geographyGroup.continentCode)}
                   </OdsText>
                   {geographyGroup.regions.map((link) => (
-                    <Link
+                    <RouterLink
                       className={clsx(
                         'ml-1',
                         link.region === currentRegion?.region
@@ -62,12 +62,12 @@ export const RegionSelector = () => {
                       )}
                       key={link.region}
                       href={link.href}
-                      label={translateRegionName(link.region)}
-                      isRouterLink
                       onClick={async () => {
                         await popoverRef.current?.hide();
                       }}
-                    />
+                    >
+                      {translateRegionName(link.region)}
+                    </RouterLink>
                   ))}
                 </div>
                 {index < geographyGroups.length - 1 && <OdsDivider className="-mx-4 mb-1 mt-2" />}

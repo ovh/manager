@@ -66,16 +66,11 @@ describe('KMS listing test suite', () => {
   });
 
   it('should navigate to a kms dashboard on click on kms name', async () => {
-    const { container } = await renderTestApp(KMS_ROUTES_URLS.kmsListing);
+    await renderTestApp(KMS_ROUTES_URLS.kmsListing);
 
-    const dashboardLink = await getOdsButtonByLabel({
-      container,
-      label: mockOkmsFirst.iam.displayName,
-      isLink: true,
-    });
-
-    await waitFor(() => {
-      expect(dashboardLink).toHaveAttribute('href', KMS_ROUTES_URLS.kmsDashboard(mockOkmsFirst.id));
+    await waitFor(async () => {
+      const kmsNameLink = await screen.findByText(mockOkmsFirst.iam.displayName);
+      expect(kmsNameLink).toHaveAttribute('href', KMS_ROUTES_URLS.kmsDashboard(mockOkmsFirst.id));
     });
   });
 });
