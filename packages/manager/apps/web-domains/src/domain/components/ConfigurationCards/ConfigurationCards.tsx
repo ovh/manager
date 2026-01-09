@@ -146,7 +146,6 @@ export default function ConfigurationCards({
 
     updateDomain(
       {
-        checksum: domainResource.checksum,
         currentTargetSpec: domainResource.targetSpec,
         updatedSpec: {
           protectionState: newProtectionState,
@@ -188,7 +187,6 @@ export default function ConfigurationCards({
 
     updateDomain(
       {
-        checksum: domainResource.checksum,
         currentTargetSpec: { ...domainResource.targetSpec },
         updatedSpec: {
           contactsConfiguration,
