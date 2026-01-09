@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -25,43 +25,17 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@ovh-ux/muk';
-import {
-  MAX_VIEWS_NUMBER,
-  PREFERENCES_KEY,
-  STANDARD_VIEW_ID,
-} from './manageView.constants';
+import { MAX_VIEWS_NUMBER } from './manageView.constants';
 import { ViewType } from './types';
-import ManageViewDrawer from './manageViewDrawer-v2';
-import { useGetViewsPreferences } from '@/hooks/manage-views/useGetViewPreferences';
+import ManageViewDrawer from './manageViewDrawer';
+import { ViewContext } from './viewContext';
 
 export const ManageViewButton = () => {
   const { t } = useTranslation('manage-view');
-  const [views, setViews] = useState<ViewType[]>([]);
+  const { views, currentView, setCurrentView } = useContext(ViewContext);
   const [isOpoverOpen, setIsPopoverOpen] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  const [currentView, setCurrentView] = useState<ViewType>(null);
-  const [selectedView, selectView] = useState<ViewType>(null);
-
-  const { preferences, error, isLoading } = useGetViewsPreferences({
-    key: PREFERENCES_KEY,
-    enabled: true,
-  });
-
-  useEffect(() => {
-    const viewList: ViewType[] =
-      preferences && !error && !isLoading ? preferences : [];
-
-    const foundDefaultView = viewList.find((view) => view.default);
-
-    viewList.unshift({
-      name: t('standard_view'),
-      id: STANDARD_VIEW_ID,
-      default: !foundDefaultView,
-    });
-
-    setViews(viewList);
-    setCurrentView(foundDefaultView || viewList[0]);
-  }, [preferences, isLoading, error]);
+  const [viewToEdit, selectViewToEdit] = useState<ViewType>(null);
 
   const popoverChange = ({ open }: { open: boolean }) => {
     setIsPopoverOpen(open);
@@ -101,7 +75,7 @@ export const ManageViewButton = () => {
 
             <Button
               onClick={() => {
-                selectView(currentView);
+                selectViewToEdit(currentView);
                 setIsPopoverOpen(false);
                 setIsDrawerOpen(true);
               }}
@@ -155,7 +129,7 @@ export const ManageViewButton = () => {
               role="menuitem"
               variant={BUTTON_VARIANT.ghost}
               onClick={() => {
-                selectView(null);
+                selectViewToEdit(null);
                 setIsPopoverOpen(false);
                 setIsDrawerOpen(true);
               }}
@@ -180,7 +154,7 @@ export const ManageViewButton = () => {
         </PopoverContent>
       </Popover>
       <ManageViewDrawer
-        view={selectedView}
+        view={viewToEdit}
         views={views}
         isOpen={isDrawerOpen}
         handleCancel={closeDrawer}
