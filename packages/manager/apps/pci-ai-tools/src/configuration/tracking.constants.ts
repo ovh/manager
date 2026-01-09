@@ -170,6 +170,14 @@ export const TRACKING = {
     popup: {
       configureSshKeyClick: (action: 'confirm' | 'cancel') =>
         `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::pop-up::configure_ssh-key::${action}`,
+      startNotebookClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::pop-up::start::${action}`,
+      restartNotebookClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::pop-up::restart::${action}`,
+      stopNotebookClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::pop-up::stop::${action}`,
+      deleteNotebookClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::emulators::emulators::pop-up::delete::${action}`,
     },
     banner: {
       createNotebookBanner: (type: 'info' | 'error', status: string) =>
@@ -215,6 +223,14 @@ export const TRACKING = {
     popup: {
       configureSshKeyClick: (action: 'confirm' | 'cancel') =>
         `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::pop-up::configure_ssh-key::${action}`,
+      startNotebookClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::pop-up::start::${action}`,
+      restartNotebookClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::pop-up::restart::${action}`,
+      stopNotebookClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::pop-up::stop::${action}`,
+      deleteNotebookClick: (action: 'confirm' | 'cancel') =>
+        `${QUANTUM_APP_TRACKING_PREFIX}::qpus::qpus::pop-up::delete::${action}`,
     },
     banner: {
       createNotebookBanner: (type: 'info' | 'error', status: string) =>
