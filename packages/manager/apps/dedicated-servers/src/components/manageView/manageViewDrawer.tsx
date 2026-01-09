@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -16,6 +16,7 @@ import {
 import { PREFERENCES_KEY, STANDARD_VIEW_ID } from './manageView.constants';
 import { ViewType } from './types';
 import { useCreateViewsPreference } from '@/hooks/manage-views/useCreateViewPreference';
+import { ViewContext } from './viewContext';
 
 export type ManageViewDrawerProps = {
   views: ViewType[];
@@ -33,12 +34,15 @@ export const ManageViewDrawer = ({
   handleConfirm,
   handleCancel,
 }: ManageViewDrawerProps) => {
+  const { columnVisibility, setColumnVisibility } = useContext(ViewContext);
   const { t } = useTranslation('manage-view');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const [editingView, setEditingView] = useState<ViewType>(null);
   const { isPending, mutate: createViews } = useCreateViewsPreference({
     key: PREFERENCES_KEY,
   });
+
+  console.log({ columnVisibility });
 
   useEffect(() => {
     setEditingView({
@@ -55,6 +59,30 @@ export const ManageViewDrawer = ({
       ],
     });
     handleConfirm();
+  };
+
+  const changeColumns = () => {
+    // Logic to change columns goes here
+    setColumnVisibility({
+      serverId: false,
+      displayName: true,
+      ip: false,
+      reverse: false,
+      commercialRange: false,
+      os: false,
+      region: false,
+      rack: false,
+      datacenter: false,
+      state: false,
+      monitoring: false,
+      vrack: false,
+      renew: false,
+      expiration: false,
+      engagement: false,
+      price: false,
+      tags: false,
+      actions: true,
+    });
   };
 
   return (
@@ -79,6 +107,7 @@ export const ManageViewDrawer = ({
           </Checkbox>
         </div>
         {/* Add view configuration here */}
+        <Button onClick={changeColumns}>{t('manage_columns')}</Button>
       </Drawer.Content>
       <Drawer.Footer
         primaryButton={{
