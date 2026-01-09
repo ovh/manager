@@ -6,7 +6,7 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
-import { Link } from '@/common/components/link/Link.component';
+import { RouterLink } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -23,10 +23,8 @@ export const DatagridCellPath = (secret: Secret) => {
   const url = SECRET_MANAGER_ROUTES_URLS.secret(okmsId, secret.path);
 
   return (
-    <Link
+    <RouterLink
       href={url}
-      label={secret.path}
-      isRouterLink
       data-testid={SECRET_LIST_CELL_TEST_IDS.path(secret.path)}
       onClick={() => {
         trackClick({
@@ -36,7 +34,9 @@ export const DatagridCellPath = (secret: Secret) => {
           actions: ['secret'],
         });
       }}
-    />
+    >
+      {secret.path}
+    </RouterLink>
   );
 };
 
