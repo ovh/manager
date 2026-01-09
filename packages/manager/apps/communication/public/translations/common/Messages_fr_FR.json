@@ -28,6 +28,7 @@
   "error_rate_limit_message": "Vous avez atteint la limite de requêtes. Veuillez réessayer plus tard.",
   "guide_menu_header": "Guides",
   "guide_menu_start_guide": "Visite guidée",
+  "guide_menu_account_messages": "Gérer les communications",
   "guided_tour_introduction_title": "Bienvenue dans votre nouvelle page Mes communications",
   "guided_tour_introduction_content": "Souhaitez-vous voir la visite guidée ?",
   "guided_tour_introduction_dont_display_again": "Ne plus afficher",
