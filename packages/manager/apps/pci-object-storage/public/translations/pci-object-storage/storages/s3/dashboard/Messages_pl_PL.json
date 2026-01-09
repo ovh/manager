@@ -65,5 +65,6 @@
   "editObjectLockToastSuccessDescription": "Opcje blokady obiektów zostały zaktualizowane",
   "errorDurationMin": "Minimalny czas wynosi 1 dzień.",
   "errorDurationMax": "Maksymalny czas wynosi 100 lat lub 36500 dni.",
-  "errorRuleRequired": "Reguła retencji musi być zdefiniowana, aby włączyć domyślne blokowanie obiektów."
+  "errorRuleRequired": "Reguła retencji musi być zdefiniowana, aby włączyć domyślne blokowanie obiektów.",
+  "deleteBucketButton": "Usuń kubeł"
 }

@@ -65,5 +65,6 @@
   "editObjectLockToastSuccessDescription": "Die Optionen für die Objekt-Sperre wurden aktualisiert",
   "errorDurationMin": "Die Mindestdauer beträgt 1 Tag.",
   "errorDurationMax": "Die maximale Dauer beträgt 100 Jahre oder 36500 Tage.",
-  "errorRuleRequired": "Eine Aufbewahrungsrichtlinie muss festgelegt werden, um das standardmäßige Object Lock zu aktivieren."
+  "errorRuleRequired": "Eine Aufbewahrungsrichtlinie muss festgelegt werden, um das standardmäßige Object Lock zu aktivieren.",
+  "deleteBucketButton": "Löschen Sie den Bucket"
 }
