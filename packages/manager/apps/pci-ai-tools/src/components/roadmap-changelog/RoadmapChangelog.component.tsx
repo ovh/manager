@@ -8,6 +8,9 @@ import {
   DropdownMenuTrigger,
 } from '@datatr-ux/uxlib';
 import A from '../links/A.component';
+import { useQuantum } from '@/hooks/useQuantum.hook';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface RoadmapChangelogProps {
   links: {
@@ -17,6 +20,36 @@ interface RoadmapChangelogProps {
 }
 
 const RoadmapChangelog = ({ links }: RoadmapChangelogProps) => {
+  const { isQuantum, isQpu } = useQuantum('ai-tools/components/guides');
+  const track = useTrackAction();
+  const getLinkTrackingName = (label: string) => {
+    const normalizedLabel = label.trim().toLowerCase();
+    let linkType: 'roadmap' | 'changelog' | 'feature-request' | null = null;
+
+    if (normalizedLabel.includes('roadmap')) {
+      linkType = 'roadmap';
+    } else if (normalizedLabel.includes('changelog')) {
+      linkType = 'changelog';
+    } else if (normalizedLabel.includes('feature')) {
+      linkType = 'feature-request';
+    }
+    if (!linkType) return null;
+
+    if (isQpu) {
+      return TRACKING.qpus.roadmap.linkClick(linkType);
+    }
+    if (isQuantum) {
+      return TRACKING.emulators.roadmap.linkClick(linkType);
+    }
+    return null;
+  };
+
+  const handleLinkClick = (label: string) => {
+    const trackingName = getLinkTrackingName(label);
+    if (trackingName) {
+      track(trackingName, 'page');
+    }
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -61,6 +94,7 @@ const RoadmapChangelog = ({ links }: RoadmapChangelogProps) => {
                 href={link.url}
                 target="_blank"
                 rel="noopener"
+                onClick={() => handleLinkClick(link.label)}
                 className="flex items-center gap-2 focus:text-primary-500 focus:bg-primary-100"
               >
                 <span>{link.label}</span>

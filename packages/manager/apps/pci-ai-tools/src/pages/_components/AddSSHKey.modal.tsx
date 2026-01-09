@@ -30,11 +30,18 @@ import {
   UseAddSshKey,
   useAddSshKey,
 } from '@/data/hooks/sshkey/useAddSshKey.hook';
+import { useTrackAction, useTrackBanner } from '@/hooks/useTracking';
+import { useQuantum } from '@/hooks/useQuantum.hook';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 const AddSSHKey = () => {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/components/configuration');
   const navigate = useNavigate();
+  const track = useTrackAction();
+  const trackBanner = useTrackBanner();
+  const { isQuantum, isQpu } = useQuantum('ai-tools/components/configuration');
+  const trackingProductPrefix = isQpu ? 'qpus' : 'emulators';
 
   const sshKeyQuery = useGetSshkey(projectId);
 
@@ -66,8 +73,31 @@ const AddSSHKey = () => {
 
   const toast = useToast();
 
+  const getPopupTrackingName = (action: 'confirm' | 'cancel') => {
+    if (isQpu || isQuantum) {
+      return TRACKING[trackingProductPrefix].popup.configureSshKeyClick(action);
+    }
+    return null;
+  };
+  const getBannerTrackingName = (
+    type: 'info' | 'error',
+    status: 'pending' | 'alert' | 'success' | 'error',
+  ) => {
+    if (isQpu || isQuantum) {
+      return TRACKING[trackingProductPrefix].banner.configureSshKeyBanner(
+        type,
+        status,
+      );
+    }
+    return null;
+  };
+
   const sshKeyMutationConfig: UseAddSshKey = {
     onError(err) {
+      const trackingName = getBannerTrackingName('error', 'error');
+      if (trackingName) {
+        trackBanner(trackingName, 'banner');
+      }
       toast.toast({
         title: t(`addSshKeyToastErrorTitle`),
         variant: 'destructive',
@@ -76,6 +106,10 @@ const AddSSHKey = () => {
     },
     onAddKeySuccess(sshKey) {
       form.reset();
+      const trackingName = getBannerTrackingName('info', 'success');
+      if (trackingName) {
+        trackBanner(trackingName, 'banner');
+      }
       toast.toast({
         title: t('formConnectionPoolToastSuccessTitle'),
         description: t(`addSshKeySuccessDescription`, {
@@ -89,12 +123,23 @@ const AddSSHKey = () => {
   const { addSSHKey, isPending } = useAddSshKey(sshKeyMutationConfig);
 
   const onSubmit = form.handleSubmit((formValues) => {
+    const trackingName = getPopupTrackingName('confirm');
+    if (trackingName) {
+      track(trackingName, 'funnel');
+    }
     const newSshKey: sshkey.ProjectSshkeyCreation = {
       name: formValues.name,
       publicKey: formValues.sshKey,
     };
     addSSHKey({ projectId, sshKey: newSshKey });
   });
+
+  const handleCancelClick = () => {
+    const trackingName = getPopupTrackingName('cancel');
+    if (trackingName) {
+      track(trackingName, 'funnel');
+    }
+  };
 
   return (
     <RouteModal backUrl="../">
@@ -151,6 +196,7 @@ const AddSSHKey = () => {
                   data-testid="add-ssh-key-cancel-button"
                   type="button"
                   mode="outline"
+                  onClick={handleCancelClick}
                 >
                   {t('formSshKeyButtonCancel')}
                 </Button>
