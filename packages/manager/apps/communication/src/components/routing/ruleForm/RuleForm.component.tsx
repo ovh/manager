@@ -76,7 +76,23 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
   const {
     data: reference,
     isLoading: isLoadingReference,
-  } = useNotificationReference();
+  } = useNotificationReference({
+    select: (data) => {
+      const categories = data.categories.map((category) => ({
+        label: t(`category_${category.name.toLowerCase()}`, { ns: 'common' }),
+        value: category.name,
+      }));
+
+      const priorities = data.priorities.map((priority) => ({
+        label: t(`priority_${priority.name.toLowerCase()}`, { ns: 'common' }),
+        value: priority.name,
+      }));
+
+      return { categories, priorities };
+
+    }
+  });
+
   const {
     flattenData: contactMeans,
     isLoading: isLoadingContactMeans,
@@ -97,21 +113,6 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
       }));
   }, [contactMeans]);
 
-  const categoryItems = useMemo(() => {
-    if (!Array.isArray(reference?.categories)) return [];
-    return reference?.categories.map((category) => ({
-      label: t(`category_${category.name.toLowerCase()}`, { ns: 'common' }),
-      value: category.name,
-    }));
-  }, [reference]);
-
-  const priorityItems = useMemo(() => {
-    if (!Array.isArray(reference?.priorities)) return [];
-    return reference?.priorities.map((priority) => ({
-      label: t(`priority_${priority.name.toLowerCase()}`, { ns: 'common' }),
-      value: priority.name,
-    }));
-  }, [reference]);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -247,7 +248,8 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                       </label>
                       <Combobox
                         name={name}
-                        items={categoryItems}
+                        key={`${name}_${reference?.categories.length}`}
+                        items={reference?.categories || []}
                         multiple
                         onValueChange={(e: { value: string[] }) =>
                           onChange(e.value)
@@ -291,7 +293,8 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                       </label>
                       <Combobox
                         name={name}
-                        items={priorityItems}
+                        key={`${name}_${reference?.priorities.length}`}
+                        items={reference?.priorities || []}
                         multiple
                         onValueChange={(e: { value: string[] }) =>
                           onChange(e.value)
