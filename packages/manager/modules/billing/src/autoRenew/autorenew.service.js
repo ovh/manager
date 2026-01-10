@@ -78,6 +78,7 @@ export default class {
     order,
     nicBilling,
     refresh,
+    renewMode,
   ) {
     const headers = refresh ? { Pragma: 'no-cache' } : {};
     return this.OvhHttp.get('/billing/services', {
@@ -92,6 +93,7 @@ export default class {
         state,
         order: JSON.stringify(order),
         nicBilling,
+        renewMode,
       },
       headers,
     });
@@ -131,6 +133,18 @@ export default class {
         ...translatedStatus,
         [status]: this.$translate.instant(
           `billing_autorenew_service_status_${status}`,
+        ),
+      }),
+      {},
+    );
+  }
+
+  getRenewMode() {
+    return Object.values(SERVICE_RENEW_MODES).reduce(
+      (translatedStatus, status) => ({
+        ...translatedStatus,
+        [status]: this.$translate.instant(
+          `billing_autorenew_service_renew_${status}`,
         ),
       }),
       {},
