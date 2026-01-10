@@ -46,12 +46,12 @@ export default class {
   }
 
   selectZertoType() {
-    this.zertoInformations.drpType = this.selectedZertoType.id;
+    this.zertoInformations.zertoType = this.selectedZertoType.id;
     const stateToGo =
-      this.zertoInformations.drpType ===
+      this.zertoInformations.zertoType ===
       DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
         ? 'ovh.mainPccStep'
-        : 'onPremise.ovhPccStep';
+        : 'onPremise';
 
     return this.goToConfiguration(this.zertoInformations, stateToGo);
   }
