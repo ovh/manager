@@ -19,7 +19,7 @@ export default class ListLayoutCtrl {
     this.criteria = JSON.parse(this.filter).map((criteria) => ({
       property: get(criteria, 'field') || this.defaultFilterColumn,
       operator: get(criteria, 'comparator'),
-      value: criteria.reference[0],
+      value: criteria.reference.join(', '),
     }));
 
     this.stringColumnOptions = {
