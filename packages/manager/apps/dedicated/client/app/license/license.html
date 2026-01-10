@@ -74,8 +74,8 @@
             >
                 <span
                     data-ng-if="$row.type !== licenseTypes.SPLA"
-                    data-translate="{{:: $row.description || 'license_designation_' + $row.type + '_version_' + $row.version }}"
-                    data-translate-default="{{:: $row.description ? undefined : formatName($row) }}"
+                    data-translate="{{:: 'license_designation_' + $row.type + '_version_' + $row.version }}"
+                    data-translate-default="{{:: $row.description || formatName($row) }}"
                 >
                 </span>
                 <span

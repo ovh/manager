@@ -34,6 +34,7 @@ export default class LicenseOrderLegacyController {
       bc: false,
     };
     this.nbLicense = 0;
+    this.fomatName = License.formatName;
   }
 
   $onInit() {
@@ -228,12 +229,24 @@ export default class LicenseOrderLegacyController {
           (optionA, optionB) => optionA.cPanelCount - optionB.cPanelCount,
         );
       } else {
-        this.formatedOptions = options.map((option) => ({
-          ...option,
-          displayName: this.$translate.instant(
+        this.formatedOptions = options.map((option) => {
+          let displayName = this.$translate.instant(
             `license_designation_${this.licenseType}_version_${option.value}`,
-          ),
-        }));
+          );
+          if (
+            displayName ===
+            `license_designation_${this.licenseType}_version_${option.value}`
+          ) {
+            displayName = this.fomatName({
+              version: option.value,
+              type: this.licenseType,
+            });
+          }
+          return {
+            ...option,
+            displayName,
+          };
+        });
       }
 
       this.options = this.getResetedOptions();
