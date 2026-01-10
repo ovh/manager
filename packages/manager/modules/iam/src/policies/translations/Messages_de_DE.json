@@ -14,5 +14,6 @@
   "iam_policies_resource_groups": "Ressourcengruppen",
   "iam_policies_header_guide_text": "Guides",
   "iam_policies_datagrid_column_resources": "Anzahl der Ressourcen",
-  "iam_policies_datagrid_topbar_advanced_search": "Erweiterte Suche"
+  "iam_policies_datagrid_topbar_advanced_search": "Erweiterte Suche",
+  "iam_policies_datagrid_topbar_reset": "Zurücksetzen"
 }
