@@ -1,6 +1,4 @@
 import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
-import { SECRET_TEST_IDS } from '@secret-manager/pages/secret/general-information/GeneralInformation.constants';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
 import {
   NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
@@ -13,8 +11,13 @@ import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
-import { Link } from '@/common/components/link/Link.component';
-import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+import { EditMetadataLink } from './EditMetadataLink.component';
+
+export const SETTINGS_TILE_TEST_IDS = {
+  CAS_REQUIRED: 'secret-cas-required',
+  DEACTIVATE_VERSION_AFTER: 'secret-deactivate-version-after',
+  MAX_VERSIONS: 'secret-max-versions',
+};
 
 type SettingsTileProps = {
   secret: Secret;
@@ -23,7 +26,6 @@ type SettingsTileProps = {
 export const SettingsTile = ({ secret }: SettingsTileProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS]);
   const { secretConfig, isPending, isError } = useSecretSmartConfig(secret);
-  const { okmsId } = useRequiredParams('okmsId');
 
   const labels: Record<SecretSmartConfigOrigin, string | null> = {
     SECRET: null,
@@ -45,7 +47,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span" data-testid={SECRET_TEST_IDS.MAX_VERSIONS}>
+            <OdsText preset="span" data-testid={SETTINGS_TILE_TEST_IDS.MAX_VERSIONS}>
               {secretConfig.maxVersions.value} {labels[secretConfig.maxVersions.origin]}
             </OdsText>
           )}
@@ -58,7 +60,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span" data-testid={SECRET_TEST_IDS.DEACTIVATE_VERSION_AFTER}>
+            <OdsText preset="span" data-testid={SETTINGS_TILE_TEST_IDS.DEACTIVATE_VERSION_AFTER}>
               {secretConfig.deactivateVersionAfter.value === NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER
                 ? t('never_expire')
                 : secretConfig.deactivateVersionAfter.value}{' '}
@@ -76,7 +78,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span" data-testid={SECRET_TEST_IDS.CAS_REQUIRED}>
+            <OdsText preset="span" data-testid={SETTINGS_TILE_TEST_IDS.CAS_REQUIRED}>
               {secretConfig.casRequired.value
                 ? t('activated')
                 : t('disabled', { ns: NAMESPACES.STATUS })}{' '}
@@ -86,15 +88,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Description>
-          <Link
-            href={SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(okmsId, secret.path)}
-            label={t('edit_metadata')}
-            isRouterLink
-          />
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
+      <EditMetadataLink secret={secret} />
     </ManagerTile>
   );
 };

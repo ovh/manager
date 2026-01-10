@@ -5,6 +5,9 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
 import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 type ServiceKeyListLinkTileItemProps = {
   okms: OKMS;
@@ -12,6 +15,7 @@ type ServiceKeyListLinkTileItemProps = {
 
 export const ServiceKeyListLinkTileItem = ({ okms }: ServiceKeyListLinkTileItemProps) => {
   const navigate = useNavigate();
+  const { trackClick } = useOkmsTracking();
   const { t } = useTranslation('key-management-service/common');
 
   return (
@@ -19,7 +23,15 @@ export const ServiceKeyListLinkTileItem = ({ okms }: ServiceKeyListLinkTileItemP
       <Links
         type={LinkType.next}
         label={t('manage_service_keys_link')}
-        onClickReturn={() => navigate(KMS_ROUTES_URLS.serviceKeyListing(okms.id))}
+        onClickReturn={() => {
+          navigate(KMS_ROUTES_URLS.serviceKeyListing(okms.id));
+          trackClick({
+            location: PageLocation.tile,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['service-key', 'list'],
+          });
+        }}
       />
     </ManagerTile.Item>
   );

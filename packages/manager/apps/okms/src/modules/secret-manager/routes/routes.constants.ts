@@ -1,3 +1,4 @@
+import { buildQueryString } from '@/modules/secret-manager/utils/queryStrings';
 import { encodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
 
 const URIS = {
@@ -51,8 +52,8 @@ const URLS = {
   secretListSecretValueDrawer: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${URIS.value}/${encodeSecretPath(secretPath)}`,
 
-  secretListCreateVersionDrawer: (okmsId: string, secretPath: string) =>
-    `/${URIS.root}/${okmsId}/${URIS.createVersion}/${encodeSecretPath(secretPath)}`,
+  secretListCreateVersionDrawer: (okmsId: string, secretPath: string, prefillVersionId?: number) =>
+    `/${URIS.root}/${okmsId}/${URIS.createVersion}/${encodeSecretPath(secretPath)}${buildQueryString({ versionId: prefillVersionId })}`,
 
   secret: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}`,
@@ -60,8 +61,8 @@ const URLS = {
   secretSecretValueDrawer: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.value}`,
 
-  secretCreateVersionDrawer: (okmsId: string, secretPath: string) =>
-    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.createVersion}`,
+  secretCreateVersionDrawer: (okmsId: string, secretPath: string, prefillVersionId?: number) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.createVersion}${buildQueryString({ versionId: prefillVersionId })}`,
 
   secretEditMetadataDrawer: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.editMetadata}`,
@@ -72,8 +73,8 @@ const URLS = {
   versionList: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.versionList}`,
 
-  versionListCreateVersionDrawer: (okmsId: string, secretPath: string) =>
-    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.versionList}/${URIS.create}`,
+  versionListCreateVersionDrawer: (okmsId: string, secretPath: string, prefillVersionId?: number) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.versionList}/${URIS.create}${buildQueryString({ versionId: prefillVersionId })}`,
 
   versionListDeleteVersionModal: (okmsId: string, secretPath: string, versionId: number) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
@@ -95,6 +96,7 @@ export const SECRET_MANAGER_URL_PARAMS = {
 
 export const SECRET_MANAGER_SEARCH_PARAMS = {
   okmsId: 'okmsId',
+  versionId: 'versionId',
 };
 
 export const SECRET_MANAGER_ROUTES_URIS = URIS;

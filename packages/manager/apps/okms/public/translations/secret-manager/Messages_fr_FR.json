@@ -56,6 +56,8 @@
   "last_update": "Dernière mise à jour",
   "maximum_number_of_versions": "Nombre maximum de versions",
   "never_expire": "Pas d'expiration",
+  "no_version": "Aucune version",
+  "no_version_message": "Ce secret n'a pas de version.",
   "not_provided": "Non renseigné",
   "okms_activation_in_progress": "Veuillez patienter pendant l'activation du domaine OKMS sur la région {{region}}.",
   "okms_dashboard_title": "Détail du domaine OKMS",

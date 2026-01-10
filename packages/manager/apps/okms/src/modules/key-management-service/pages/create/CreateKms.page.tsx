@@ -10,9 +10,10 @@ import { useTranslation } from 'react-i18next';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { RegionPicker } from '@/common/components/region-picker/RegionPicker.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendingOkmsOrder';
 
 import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
@@ -20,7 +21,7 @@ import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
 export default function CreateKmsPage() {
   const { t } = useTranslation(['key-management-service/create', 'common']);
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
   const { hasPendingOrder } = usePendingOkmsOrder();
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
   const { notifications } = useNotifications();
@@ -34,9 +35,9 @@ export default function CreateKmsPage() {
   const handleCancel = () => {
     trackClick({
       location: PageLocation.funnel,
-      buttonType: ButtonType.link,
-      actionType: 'navigation',
-      actions: ['create_kms', 'cancel'],
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['create', 'okms', 'cancel'],
     });
     navigate(KMS_ROUTES_URLS.kmsListing);
   };

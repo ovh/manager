@@ -8,8 +8,9 @@ export const okmsQueryKeys = {
   detail: (okmsId: string) => [...okmsQueryKeys.list, okmsId],
 };
 
-export const getOkms = async (okmsId: string): Promise<{ data: OKMS }> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}`);
+export const getOkms = async (okmsId: string): Promise<OKMS> => {
+  const { data } = await apiClient.v2.get<OKMS>(`okms/resource/${okmsId}`);
+  return data;
 };
 
 export const getOkmsList = async () => {

@@ -8,8 +8,9 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { OnboardingLayout } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 
 import onboardingImgSrc from './onboarding-img.png';
@@ -17,7 +18,7 @@ import onboardingImgSrc from './onboarding-img.png';
 export default function Onboarding() {
   const { t } = useTranslation('key-management-service/onboarding');
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
   const guideQuickStart = useGuideLink(GUIDES_QUICK_START);
   const descriptionsKeys = ['description', 'description_secondary'];
 
@@ -40,7 +41,7 @@ export default function Onboarding() {
           location: PageLocation.page,
           buttonType: ButtonType.button,
           actionType: 'navigation',
-          actions: ['create_kms'],
+          actions: ['create', 'okms'],
         });
         navigate(KMS_ROUTES_URLS.kmsCreate);
       }}

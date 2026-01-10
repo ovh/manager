@@ -33,7 +33,7 @@ export const useSecretSmartConfig = (secret: Secret | undefined): UseSecretSmart
   const { okmsId } = useRequiredParams('okmsId');
 
   const { data: okms, isPending: isOkmsPending, error: okmsError } = useOkmsById(okmsId);
-  const region = useCurrentRegion(okms?.data ? [okms.data] : []);
+  const region = useCurrentRegion(okms ? [okms] : []);
 
   const {
     data: secretConfigOkms,

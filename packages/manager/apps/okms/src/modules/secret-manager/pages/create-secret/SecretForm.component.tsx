@@ -17,7 +17,9 @@ import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-compon
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { PATH_LABEL } from '@/constants';
 
 import { SecretFormBackLink } from './BackLink.component';
@@ -31,6 +33,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   const navigate = useNavigate();
   const { addError } = useNotifications();
   const queryClient = useQueryClient();
+  const { trackClick } = useOkmsTracking();
 
   /* Form */
   const pathSchema = useSecretPathSchema();
@@ -130,6 +133,14 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
             isLoading={isPending}
             label={t('create', { ns: NAMESPACES.ACTIONS })}
             data-testid={SECRET_FORM_TEST_IDS.SUBMIT_BUTTON}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['create', 'secret'],
+              });
+            }}
           />
         </div>
       </form>
