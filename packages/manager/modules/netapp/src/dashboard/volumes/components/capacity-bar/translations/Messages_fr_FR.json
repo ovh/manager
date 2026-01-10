@@ -1,0 +1,8 @@
+{
+  "netapp_volumes_dashboard_volume_data_space": "Espace de données",
+  "netapp_volumes_dashboard_volume_used": "Utilisé",
+  "netapp_volumes_dashboard_volume_overflow": "Débordement",
+  "netapp_volumes_dashboard_volume_available": "Disponible",
+  "netapp_volumes_dashboard_snapshot_space": "Reserve de Snapshot",
+  "netapp_volumes_dashboard_volume_capacity_bar_size": "{{size}} Go"
+}
