@@ -2,13 +2,13 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDeleteVcdVrackSegment } from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
 import { TRACKING } from '@/tracking.constants';
+import { DeleteModal } from '@/components/deleteModal/DeleteModal.component';
 
 export default function DeleteVrackSegment() {
   const { id, vdcId, vrackSegmentId } = useParams();
@@ -72,7 +72,7 @@ export default function DeleteVrackSegment() {
   });
 
   return (
-    <Modal
+    <DeleteModal
       isOpen
       heading={t('managed_vcd_dashboard_vrack_delete_segment')}
       primaryLabel={tActions('delete')}
@@ -85,13 +85,13 @@ export default function DeleteVrackSegment() {
       secondaryLabel={tActions('cancel')}
       onSecondaryButtonClick={cancelModal}
       onDismiss={cancelModal}
-      type={ODS_MODAL_COLOR.critical}
+      confirmationKeyword={tActions('delete').toUpperCase()}
     >
       <div className="flex flex-col gap-2">
         <OdsText>
           {t('managed_vcd_dashboard_vrack_delete_segment_content')}
         </OdsText>
       </div>
-    </Modal>
+    </DeleteModal>
   );
 }
