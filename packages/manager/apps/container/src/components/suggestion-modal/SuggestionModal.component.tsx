@@ -9,10 +9,11 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { v6 } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useApplication } from '@/context';
 import { Suggestion } from '@/types/suggestion';
-import { isSuggestionRelevant, isUserConcernedBySuggestion } from '@/helpers/suggestions/suggestionsHelper';
+import { isAssociationOrOther, isSuggestionRelevant, isUserConcernedBySuggestion } from '@/helpers/suggestions/suggestionsHelper';
 import {
   useSuggestions,
   useSuggestionsCheck,
@@ -66,28 +67,36 @@ const SuggestionModal: FC = () => {
     [data],
   );
 
+  const putLegalFormToCorporation = async () => {
+    await v6.put("/me", {
+      legalform: "corporation"
+    });
+  };
+
   const closeModal = useCallback(() => {
+    if(isAssociationOrOther(user.legalform)) putLegalFormToCorporation();
     setShowModal(false);
     ux.notifyModalActionDone(SuggestionModal.name);
     // Update preference so the modal is not display until 30 days later, time for the update to be done on our side
     const DAYS_DELAY = 30;
     updatePreference(time + DAYS_DELAY * 24 * 60 * 60);
     tracking.trackClick({
-      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::confirm`,
+      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::cancel`,
       type: 'action',
       ...TRACKING_CONTEXT,
     });
   }, [ux, time]);
+
   const goToProfileEdition = useCallback(() => {
     setShowModal(false);
     // Update preference so the modal is not displayed until a day later
     updatePreference(time);
     tracking.trackClick({
-      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::cancel`,
+      name: `${TRACKING_PREFIX}::pop-up::button::siret_update_informations::confirm`,
       type: 'action',
       ...TRACKING_CONTEXT,
     });
-    window.top.location.href = `${accountEditionLink}?fieldToFocus=ovh_form_content_activity`;
+    window.top.location.href = `${accountEditionLink}?fieldToFocus=ovh_form_content_${isAssociationOrOther(user.legalform) ? 'identification' : 'activity'} `;
   }, [accountEditionLink, time]);
 
   useEffect(() => {
@@ -105,19 +114,21 @@ const SuggestionModal: FC = () => {
     }
   }, [shouldDisplayModal]);
 
+  const confirmButtonLabel = isAssociationOrOther(user.legalform) ? t('suggestion_modal_action_confirm_association_other') : t('suggestion_modal_action_confirm_corporation');
+
   return (
     showModal && (
       <OsdsModal
         dismissible={false}
-        headline={t('suggestion_modal_title')}
+        headline={isAssociationOrOther(user.legalform) ? t('suggestion_modal_title_association_other') : t('suggestion_modal_title_corporation')}
         color={ODS_THEME_COLOR_INTENT.info}
         data-testid="suggestion-modal"
       >
-        <OsdsText
+        {suggestions.length && <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         >
-          <p>{t('suggestion_modal_description')}</p>
+          <p>{isAssociationOrOther(user.legalform) ? t('suggestion_modal_description_association_other') : t('suggestion_modal_description_corporation')}</p>
           <ul>
             {suggestions
               .map((suggestion: Suggestion) => (
@@ -133,10 +144,10 @@ const SuggestionModal: FC = () => {
               ))}
           </ul>
           <p>{t('suggestion_modal_description_sub', {
-            confirmLabel: t('suggestion_modal_action_confirm'),
+            confirmLabel: confirmButtonLabel,
             modifyLabel: t('suggestion_modal_action_modify')
           })}</p>
-        </OsdsText>
+        </OsdsText>}
 
         <OsdsButton
           onClick={goToProfileEdition}
@@ -155,7 +166,7 @@ const SuggestionModal: FC = () => {
           variant={ODS_BUTTON_VARIANT.flat}
           size={ODS_BUTTON_SIZE.sm}
         >
-          {t('suggestion_modal_action_confirm')}
+          {confirmButtonLabel}
         </OsdsButton>
       </OsdsModal>
     )
