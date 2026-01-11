@@ -359,8 +359,8 @@ describe('DashboardContext', () => {
       expect(result.current.state.resourceName).toBeUndefined();
       expect(result.current.state.productType).toBeUndefined();
       expect(result.current.state.isLoading).toBeUndefined();
-      expect(result.current.state.startDateTime).toBeUndefined();
-      expect(result.current.state.endDateTime).toBeUndefined();
+      expect(result.current.state.startDateTime).toBeDefined();
+      expect(result.current.state.endDateTime).toBeDefined();
     });
   });
 });
