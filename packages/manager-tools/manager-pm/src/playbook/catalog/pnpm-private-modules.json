@@ -144,6 +144,10 @@
     "pnpm": "packages/manager/modules/metrics"
   },
   {
+    "turbo": "--filter @ovh-ux/metrics-to-customer",
+    "pnpm": "packages/manager/modules/metrics-to-customer"
+  },
+  {
     "turbo": "--filter @ovh-ux/mfa-enrollment",
     "pnpm": "packages/manager/modules/mfa-enrollment"
   },
