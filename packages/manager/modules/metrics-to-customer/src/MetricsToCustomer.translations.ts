@@ -1,4 +1,6 @@
-export const NAMESPACE_PREFIX = 'metrics-to-customer';
+import { MODULE_NAME } from '@/MetricsToCustomer.constants';
+
+export const NAMESPACE_PREFIX = `${MODULE_NAME}`;
 
 export const NAMESPACES = {
   CHART: `${NAMESPACE_PREFIX}/chart`,
