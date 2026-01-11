@@ -17,6 +17,7 @@
   "packages/manager/apps/identity-access-management",
   "packages/manager/apps/iplb",
   "packages/manager/apps/metrics",
+  "packages/manager/apps/metrics-to-customer",
   "packages/manager/apps/nasha",
   "packages/manager/apps/netapp",
   "packages/manager/apps/nutanix",
