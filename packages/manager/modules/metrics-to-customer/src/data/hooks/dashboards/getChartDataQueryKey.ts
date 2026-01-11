@@ -1,6 +1,6 @@
 import { RequestPayload } from '@/types/RequestPayload.type';
 
-export const getChartDataQueryKey = (payload: RequestPayload) =>
+export const getChartDataQueryKey = (payload: RequestPayload, metricToken: string) =>
   [
     'chartData',
     'type',
@@ -13,6 +13,8 @@ export const getChartDataQueryKey = (payload: RequestPayload) =>
     payload.end,
     'step',
     payload.step,
+    'metricToken',
+    metricToken,
   ] as const;
 
 export default getChartDataQueryKey;
