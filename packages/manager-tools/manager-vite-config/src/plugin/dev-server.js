@@ -71,6 +71,8 @@ export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
         app.use(createProxyMiddleware(proxy.lab.v6.context, proxy.lab.v6));
       }
 
+      app.use(createProxyMiddleware(proxy.metricsForManager.context, proxy.metricsForManager));
+
       server.middlewares.use(app);
     },
   };
