@@ -32,8 +32,8 @@ packages/manager/modules/common-translations
 packages/manager/modules/config
 packages/manager/modules/gcj
 packages/manager/modules/logs-to-customer
+packages/manager/modules/metrics-to-customer
 packages/manager/modules/network-common
-packages/manager/modules/observability-to-customer
 packages/manager/modules/order
 packages/manager-tools/manager-migration-cli
 packages/manager-tools/manager-static-analysis-kit
