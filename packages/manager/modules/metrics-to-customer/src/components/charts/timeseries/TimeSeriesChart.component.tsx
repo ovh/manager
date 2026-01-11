@@ -13,7 +13,7 @@ import {
   YAxis,
 } from 'recharts';
 
-import { ColorScale, DEFAULT_BRUSH_HEIGHT, DEFAULT_LEGEND_TYPE, getFormatter } from '../config';
+import { ColorScale, DEFAULT_BRUSH_HEIGHT, DEFAULT_LEGEND_TYPE, formatTimestampToDateTime, getFormatter } from '../config';
 import { TimeSeriesChartConfig, TimeSeriesChartProps } from './TimeSeriesChart.type';
 
 export const TimeSeriesChartComponent = <TData,>({
@@ -28,13 +28,14 @@ export const TimeSeriesChartComponent = <TData,>({
     interval: xAxisInterval,
   } = timeseriesChartConfig.XAxis;
 
-  const { dataKeys: YAxisDataKeys } = timeseriesChartConfig.YAxis;
+  const { dataKeys: YAxisDataKeys, formatter: yAxisFormatter, } = timeseriesChartConfig.YAxis;
 
   const curveType = timeseriesChartConfig.curveType ?? 'monotone';
 
   const { brush } = timeseriesChartConfig;
 
-  const formatter = getFormatter(xAxisFormatter);
+  const xFormatter = getFormatter(xAxisFormatter);
+  const yFormatter = getFormatter(yAxisFormatter);
 
   const legendPayload: LegendProps['payload'] = YAxisDataKeys.map(
     (yAxisDataKey: string, index: number) => ({
@@ -47,7 +48,7 @@ export const TimeSeriesChartComponent = <TData,>({
 
   const chartMargin = isFullscreen
     ? { top: 10, bottom: 20, left: 20, right: 10 }
-    : { top: 0, bottom: 0, left: 50, right: 30 };
+    : { top: 0, bottom: 0, left: 0, right: 30 };
 
   const legendAlign = isFullscreen ? 'center' : 'left';
   const legendVerticalAlign = isFullscreen ? 'bottom' : 'top';
@@ -76,15 +77,21 @@ export const TimeSeriesChartComponent = <TData,>({
         <CartesianGrid stroke="#e0e0e0" strokeWidth={0.5} vertical={false} />
         <XAxis
           dataKey={XAxisDataKey}
-          {...(formatter && { tickFormatter: formatter })}
+          {...(xFormatter && { tickFormatter: xFormatter })}
           {...(xAxisInterval && {
             interval: Math.floor(lineChartData.length / xAxisInterval),
           })}
         />
-        <YAxis padding={{ top: 20 }} />
+        <YAxis 
+          padding={{ top: 20 }}
+          {...(yFormatter && { tickFormatter: yFormatter })}          
+        />
         <Tooltip
-          {...(formatter && { labelFormatter: formatter })}
-          formatter={(value: number) => [value, YAxisDataKeys]}
+          {...(xFormatter && { labelFormatter: xFormatter })}
+          labelFormatter={formatTimestampToDateTime}
+          formatter={(value: number) => {            
+            return [value, YAxisDataKeys]
+          }}
         />
         {YAxisDataKeys.map((yAxisDataKey: string, index: number) => (
           <Line
@@ -93,7 +100,8 @@ export const TimeSeriesChartComponent = <TData,>({
             type={curveType}
             dot={false}
             dataKey={yAxisDataKey}
-            stroke={ColorScale.light}
+            stroke={ColorScale.primary}
+            strokeWidth={2}
           />
         ))}
         {brush && (
@@ -101,7 +109,7 @@ export const TimeSeriesChartComponent = <TData,>({
             dataKey={XAxisDataKey}
             height={brush?.height || DEFAULT_BRUSH_HEIGHT}
             stroke={ColorScale.dark}
-            {...(formatter && { tickFormatter: formatter })}
+            {...(xFormatter && { tickFormatter: xFormatter })}
           />
         )}
       </LineChart>

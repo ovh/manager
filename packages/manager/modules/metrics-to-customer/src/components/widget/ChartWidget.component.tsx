@@ -46,11 +46,11 @@ export const ChartWidgetComponent = ({
       className={clsx('w-full h-full', `${colSpanClass} ${rowSpanClass}`)}
       color={CARD_COLOR.neutral}
     >
-      <div className="p-8 flex justify-between items-center">
-        <div className="flex justify-start items-center gap-3">
-          <Text preset={TEXT_PRESET.heading3}>{title}</Text>
+      <div className="px-6 pt-4 pb-3 flex justify-between items-center">
+        <div className="flex justify-start items-center gap-2">
+          <Text preset={TEXT_PRESET.heading4}>{title}</Text>
           {unit && (
-            <Text className="font-normal" preset={TEXT_PRESET.heading3}>
+            <Text className="font-normal" preset={TEXT_PRESET.heading4}>
               ({unit})
             </Text>
           )}
@@ -58,14 +58,14 @@ export const ChartWidgetComponent = ({
             <Tooltip position="bottom-start">
               <TooltipTrigger asChild>
                 <Icon
-                  className="text-[var(--ods-color-primary-500)] text-2xl"
+                  className="cursor-pointer text-[var(--ods-color-primary-500)] text-2xl"
                   name={ICON_NAME.circleQuestion}
                 />
               </TooltipTrigger>
 
-              <TooltipContent className="px-5 py-4">
+              <TooltipContent className="px-5 py-4 max-w-xl">
                 {tooltip.title && (
-                  <Text className="text-lg font-bold" preset={TEXT_PRESET.span}>
+                  <Text className="leading-tight" preset={TEXT_PRESET.label}>
                     {tooltip.title}
                   </Text>
                 )}
@@ -75,7 +75,7 @@ export const ChartWidgetComponent = ({
                   </Text>
                 )}
                 {tooltip.content && (
-                  <Text className="pt-3" preset={TEXT_PRESET.paragraph}>
+                  <Text className="pt-3 text-justify" preset={TEXT_PRESET.paragraph}>
                     {tooltip.content}
                   </Text>
                 )}

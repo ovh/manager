@@ -32,6 +32,8 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
   defaultRefreshInterval = defaultRefreshTimeOption,
   isLoading,
   onStateChange,
+  onRefresh,
+  onCancel,
 }): JSX.Element => {
   const { t } = useTranslation(NAMESPACES.TIME_CONTROLS);
 
@@ -43,8 +45,11 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
   };
 
   const onClickRefresh = () => {
-    // TODO : refresh call
-    alert('refresh');
+    if (isLoading) {
+      onCancel();
+    } else {
+      onRefresh();
+    }
   };
 
   return (

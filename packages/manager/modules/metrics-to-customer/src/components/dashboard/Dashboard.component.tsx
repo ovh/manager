@@ -10,11 +10,27 @@ import { DashboardProps } from './Dashboard.props';
 
 export const Dashboard = <TData,>({
   charts: widgets,
+  onRefresh,
+  onCancel,
 }: Readonly<DashboardProps<TData>>): JSX.Element => {
   const { state, setState } = useDashboardContext();
 
   const onStateChange = <TValue,>(key: string, value: TValue) => {
-    setState({ ...state, [key]: value });
+    
+    // Allow updating multiple fields at once when a composite key is used
+    if (key === 'dateRange' && typeof value === 'object' && value !== null) {
+      setState((prevState) => ({
+        ...prevState,
+        ...(value as Partial<typeof prevState>),
+      }));
+      return;
+    }
+
+    // Default behaviour: update a single key
+    setState((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
   };
 
   const isDashboardLoading = useMemo(() => widgets.some((w) => w.isLoading), [widgets]);
@@ -27,6 +43,8 @@ export const Dashboard = <TData,>({
           isLoading={isDashboardLoading}
           state={state}
           onStateChange={onStateChange}
+          onRefresh={onRefresh}
+          onCancel={onCancel}
         />
       </div>
       <div

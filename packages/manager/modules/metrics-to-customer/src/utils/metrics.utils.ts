@@ -1,4 +1,4 @@
-import { PrometheusResult } from '@/data/api/prometheusClient';
+import { PrometheusResult } from '@/data/api/metricsClient';
 import { MetricData } from '@/types/observability.type';
 
 // TODO: update the chart adapter when wired to the real metric APIs.
@@ -25,4 +25,9 @@ export function buildChartData<TData>(result: PrometheusResult): MetricData<TDat
   });
 
   return data;
+}
+
+// TODO: Extend this helper to support more generic variable replacements in queries, not just <resource_urn>.
+export function buildQueryWithResourceUrn(query: string, resourceUrn: string): string {
+  return query.replace('<resource_urn>', `"${resourceUrn}"`);
 }

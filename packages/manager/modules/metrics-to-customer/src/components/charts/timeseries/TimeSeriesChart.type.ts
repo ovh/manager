@@ -26,6 +26,7 @@ export type TimeSeriesChartConfig = ChartConfigBase<typeof CHART_TYPE.TimeSeries
   };
   YAxis: {
     dataKeys: string[];
+    formatter?: string;
   };
   brush?: {
     height?: number;
