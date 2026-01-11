@@ -7,7 +7,7 @@ import { Dashboard } from '@/types/observability.type';
 export const getPredefinedDashboard = async (
   params: ObservabilityDashboardParams,
 ): Promise<Dashboard> => {
-  const isMockEnabled = apiConfig.mode === 'mock';
+  const isMockEnabled = apiConfig.dashboards === 'mock';
   console.info('[MOCK-ADAPTER][getPredefinedDashboard] Mock enabled -> ', isMockEnabled);
   return isMockEnabled
     ? getPredefinedDashboardFromMock(params)

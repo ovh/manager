@@ -1,15 +1,12 @@
 {
-    "id": "11111111-1111-1111-1111-111111111102",
+    "id": "11111111-1111-1111-1111-111111111108",
     "currentState": {
         "chart": {
-            "id": "libvirtd_domain_block_read_requests",
-            "title": "Disk read IOPS",
-            "unit": "IOPS",
-            "colspan": 2,
-            "tooltip": {                
-                "title": "The average number of completed read operations over a specific period of time."
-            },
-            "query": "rate(ovhcloud_libvirtd_domain_local_block_read_requests{resource_urn=<resource_urn>}[5m])",
+            "id": "neutron_port_rx_packets",
+            "title": "Network packets in",
+            "unit": "packet/s",
+            "colspan": 2,            
+            "query": "rate(ovhcloud_neutron_port_rx_packets{resource_urn=<resource_urn>}[5m])",
             "chart": {
                 "type": "TimeSeries",
                 "curveType": "linear",
@@ -26,7 +23,7 @@
                 }
             }
         },
-        "displayName": "My kind 2",
-        "name": "mykind2"
+        "displayName": "My kind 4",
+        "name": "mykind4"
     }
 }
