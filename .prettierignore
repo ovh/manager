@@ -21,7 +21,7 @@ packages/manager/modules/backup-agent
 packages/manager-tools/manager-pm
 packages/manager/modules/logs-to-customer
 packages/manager/apps/observability
-packages/manager/modules/observability-to-customer
+packages/manager/modules/metrics-to-customer
 packages/manager-ui-kit
 packages/manager-wiki
 packages/manager/modules/backup-agent
