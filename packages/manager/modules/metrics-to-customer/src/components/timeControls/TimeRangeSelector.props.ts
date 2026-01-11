@@ -1,4 +1,5 @@
 export interface TimeRangeSelectorProps {
-  startDateTime: number | undefined;
-  endDateTime: number | undefined;
+  startDateTime: number;
+  endDateTime: number;
+  onApply: (startDateTime: number, endDateTime: number) => void;
 }

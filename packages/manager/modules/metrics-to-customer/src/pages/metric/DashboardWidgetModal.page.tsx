@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
@@ -22,7 +23,7 @@ import { NAMESPACES } from '@/MetricsToCustomer.translations';
 import { TimeControls } from '@/components';
 import { ChartRenderer } from '@/components/charts/base';
 import { useDashboardContext } from '@/contexts';
-import { useChartWithData } from '@/data/hooks/dashboards/useChartWithData';
+import { useChartWithData, useMetricToken } from '@/data/hooks';
 
 import './styles.scss';
 
@@ -33,19 +34,34 @@ const DashboardWidgetModal = <TData,>() => {
 
   const { widgetId } = useParams();
 
-  const { state } = useDashboardContext();
+  const { state, setState } = useDashboardContext();
 
-  const { startDateTime, endDateTime, selectedTimeOption, refreshInterval } = state;
+  const resourceName = state.resourceName ?? '';
+  const productType = state.productType ?? '';
+  const resourceURN = state.resourceURN ?? '';
 
-  const { isLoading, config, data } = useChartWithData<TData>({
-    chartId: widgetId as string,
-    resourceName: state.resourceName ?? '',
-    productType: state.productType ?? '',
+  const { data: metricToken, isLoading: isMetricTokenLoading } = useMetricToken({resourceName});
+
+  const { 
     startDateTime,
     endDateTime,
     selectedTimeOption,
     refreshInterval,
+  } = state;
+
+  const { isLoading, config, data, refetch, cancel } = useChartWithData<TData>({
+    chartId: widgetId as string,
+    resourceName: resourceName,
+    productType: productType,
+    resourceURN: resourceURN,
+    startDateTime,
+    endDateTime,
+    selectedTimeOption,
+    refreshInterval,
+    metricToken: metricToken ?? '',
   });
+
+  const globalLoading = useMemo(() => isMetricTokenLoading || isLoading, [isMetricTokenLoading, isLoading]);
 
   const onDismiss = () => {
     navigate('..');
@@ -57,8 +73,7 @@ const DashboardWidgetModal = <TData,>() => {
   };
 
   const onStateChange = <TValue,>(key: string, value: TValue) => {
-    // TODO
-    console.log(`[${key} = ${value}`);
+    setState({ ...state, [key]: value });
   };
 
   if (!config) {
@@ -84,11 +99,11 @@ const DashboardWidgetModal = <TData,>() => {
             <Text preset={TEXT_PRESET.heading3}>{title}</Text>
           </div>
           <div className="ml-auto flex justify-end gap-4">
-            <TimeControls isLoading={isLoading} state={state} onStateChange={onStateChange} />
+            <TimeControls isLoading={globalLoading} state={state} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
           </div>
         </div>
         <ModalBody>
-          {isLoading ? (
+          {globalLoading ? (
             <div data-testid="spinner" className="flex justify-center my-5">
               <Spinner size={SPINNER_SIZE.md} inline-block></Spinner>
             </div>
@@ -108,11 +123,11 @@ const DashboardWidgetModal = <TData,>() => {
           )}
           <div className="flex justify-between">
             <div>
-              {isLoading ? null : (
+              {globalLoading ? null : (
                 <Button
                   color="primary"
                   variant={BUTTON_VARIANT.outline}
-                  disabled={isLoading}
+                  disabled={globalLoading}
                   slot="actions"
                 >
                   {t('dashboard_widget_analyse_in_all_metrics')}

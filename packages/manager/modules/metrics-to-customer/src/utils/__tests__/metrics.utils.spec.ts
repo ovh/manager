@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { PrometheusResult } from '@/data/api/prometheusClient';
+import { PrometheusResult } from '@/data/api/metricsClient';
 import { buildChartData } from '@/utils/metrics.utils';
 
 describe('metrics.utils', () => {
