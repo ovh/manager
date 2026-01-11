@@ -44,7 +44,6 @@
   "packages/manager/apps/pci-volume-backup",
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/pci-vouchers",
-  "packages/manager/apps/pci-users",
   "packages/manager/apps/pci-workflow",
   "packages/manager/apps/telecom",
   "packages/manager/apps/telecom-dashboard",
@@ -56,5 +55,5 @@
   "packages/manager/modules/logs-to-customer",
   "packages/manager/apps/ips",
   "packages/manager/apps/pci-file-storage",
-  "packages/manager/modules/observability-to-customer"
+  "packages/manager/modules/metrics-to-customer"
 ]
