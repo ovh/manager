@@ -8,6 +8,7 @@ import { NAMESPACES } from '@/MetricsToCustomer.translations';
 import { Dashboard, Loader } from '@/components';
 import { useDashboardContext } from '@/contexts';
 import { useDashboardData } from '@/hooks';
+import { useMetricToken } from '@/data/hooks';
 
 type DataValueType = {
   timestamp: number;
@@ -21,9 +22,18 @@ const DashboardPage = () => {
   const { t } = useTranslation(NAMESPACES.DASHBOARDS);
 
   const { state } = useDashboardContext();
-  const { charts, configLoading } = useDashboardData<DataValueType>(
-    state.resourceName ?? '',
-    state.productType ?? '',
+
+  const resourceName = state.resourceName ?? '';
+  const productType = state.productType ?? '';
+  const resourceURN = state.resourceURN ?? '';
+
+  const { data: metricToken } = useMetricToken({resourceName});
+
+  const { charts, configLoading, refetchAll, cancelAll } = useDashboardData<DataValueType>(
+    resourceName,
+    productType,
+    resourceURN,
+    metricToken ?? '',
   );
 
   if (configLoading) {
@@ -40,7 +50,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <Dashboard charts={charts} />
+      <Dashboard charts={charts} onRefresh={refetchAll} onCancel={cancelAll} />
       <Outlet />
     </>
   );
