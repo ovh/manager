@@ -25,7 +25,7 @@
         </oui-select-picker-label>
         <oui-select-picker-section>
             <span
-                data-translate="vps_additional_disk_upgrade_prices_month_period"
+                data-translate="{{ $ctrl.constructor.getPricePeriodTranslationKey(disk) }}"
                 data-translate-values="{ price: $ctrl.constructor.getDiskPrice(disk), currency: $ctrl.customerCurrency }"
             >
             </span>
