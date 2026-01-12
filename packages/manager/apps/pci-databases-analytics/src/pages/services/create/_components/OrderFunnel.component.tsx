@@ -115,9 +115,13 @@ const OrderFunnel = ({
         })),
       };
       if (data.network.type === database.NetworkTypeEnum.private) {
+        // Get the subnet Object to get the right subRegion
+        const subnetObject = model.lists.subnets.find(
+          (s) => s.id === data.network.subnetId,
+        );
         // endpoint does not expect the network id, but the linked openstackId instead
         const networkOpenstackId = model.result.network.network.regions.find(
-          (r) => r.region.includes(data.region),
+          (r) => r.region === subnetObject.ipPools[0].region,
         ).openstackId;
         serviceInfos.networkId = networkOpenstackId;
         serviceInfos.subnetId = data.network.subnetId;
