@@ -8,9 +8,10 @@ import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.typ
 
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
-import { ActionMenu, Clipboard, DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
+import { ActionMenu, Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { ServiceKeyStatus } from '../service-key/service-key-status/serviceKeyStatus.component';
@@ -20,8 +21,8 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const { trackClick } = useOkmsTracking();
 
   return (
-    <Links
-      onClickReturn={() => {
+    <MukLink
+      onClick={() => {
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
@@ -30,9 +31,10 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
         });
         navigate(`${props?.id}`);
       }}
-      label={props?.name}
       data-testid={`service-key-link-${props.id}`}
-    />
+    >
+      {props?.name}
+    </MukLink>
   );
 };
 

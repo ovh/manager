@@ -6,11 +6,7 @@ import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/ver
 import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
@@ -87,27 +83,15 @@ describe('Secret page test suite', () => {
     expect(container.querySelector(`ods-clipboard[value="${mockSecret.iam.urn}"]`)).toBeVisible();
 
     // check actions
-    const revealSecretLink = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.reveal_secret,
-      isLink: true,
-    });
+    const revealSecretLink = await screen.findByText(labels.secretManager.reveal_secret);
 
     expect(revealSecretLink).toBeVisible();
 
-    const addNewVersionLink = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.add_new_version,
-      isLink: true,
-    });
+    const addNewVersionLink = await screen.findByText(labels.secretManager.add_new_version);
 
     expect(addNewVersionLink).toBeVisible();
 
-    const deleteSecretLink = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.delete_secret,
-      isLink: true,
-    });
+    const deleteSecretLink = await screen.findByText(labels.secretManager.delete_secret);
 
     expect(deleteSecretLink).toBeVisible();
   });

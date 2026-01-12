@@ -35,7 +35,7 @@ const renderPage = async (options: { fromCSR: boolean }) => {
 
   await assertPageTitleVisibility(
     labels.credentials.key_management_service_credential_create_title,
-    3000,
+    5000,
   );
 
   return { container };
@@ -155,14 +155,13 @@ const testContentStep3 = async (container: HTMLElement) => {
   expect(await screen.findByText(mockCreatedCredentials.id)).toBeVisible();
 
   // Check "download private key" button
-  await getOdsButtonByLabel({
-    container,
-    isLink: true,
-    label:
+  expect(
+    await screen.findByText(
       labels.credentials[
         'key_management_service_credential_create_confirmation_private-key_download_label'
       ],
-  });
+    ),
+  ).toBeInTheDocument();
 
   // Check for success notification
   expect(

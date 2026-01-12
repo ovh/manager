@@ -112,25 +112,6 @@ export const getOdsButtonByIcon = async ({
 
 /* GET BY TEST ID */
 
-type GetOdsLinkByTestIdParams = {
-  testId: string;
-  disabled?: boolean;
-};
-
-export const getOdsLinkByTestId = async ({ testId, disabled }: GetOdsLinkByTestIdParams) => {
-  let link: HTMLElement | undefined;
-  await waitFor(() => {
-    link = screen.getByTestId(testId);
-    expect(link).toBeInTheDocument();
-
-    return disabled
-      ? expect(link).toHaveAttribute('is-disabled', 'true')
-      : expect(link).not.toHaveAttribute('is-disabled', 'true');
-  });
-
-  return link;
-};
-
 export const changeOdsInputValueByTestId = async (inputTestId: string, value: string) => {
   // First try to get the input directly
   let input = screen.queryByTestId(inputTestId);

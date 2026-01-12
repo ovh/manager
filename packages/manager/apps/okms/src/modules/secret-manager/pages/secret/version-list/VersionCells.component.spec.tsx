@@ -15,7 +15,7 @@ import { describe, it, vi } from 'vitest';
 
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 
-import { getOdsButtonByLabel, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
+import { toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { removeHandlersDelay } from '@/common/utils/tests/msw';
@@ -77,16 +77,16 @@ describe('VersionCellId test suite', () => {
         // GIVEN version
 
         // WHEN
-        const { container } = await renderVersionLink(version);
+        await renderVersionLink(version);
 
         // THEN
-        const link = await getOdsButtonByLabel({
-          container,
-          label: version.id.toString(),
-          isLink: true,
-          disabled: isLinkDisabled,
-        });
+        const link = await screen.findByText(version.id.toString());
         expect(link).toBeInTheDocument();
+        if (isLinkDisabled) {
+          expect(link).toHaveAttribute('disabled');
+        } else {
+          expect(link).not.toHaveAttribute('disabled');
+        }
       },
     );
   });

@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
-import { ManagerLink } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -35,11 +35,10 @@ export const DeleteSecretLink = ({ secret }: DeleteSecretLinkProps) => {
   if (isPending) return <OdsSkeleton data-testid={DELETE_SECRET_TEST_IDS.skeleton} />;
 
   return (
-    <ManagerLink
+    <MukLink
       data-testid={DELETE_SECRET_TEST_IDS.deleteSecretLink}
       href={href}
-      label={t('delete_secret')}
-      isDisabled={!isOkmsActive(okms)}
+      disabled={!isOkmsActive(okms)}
       onClick={() => {
         trackClick({
           location: PageLocation.tile,
@@ -50,6 +49,8 @@ export const DeleteSecretLink = ({ secret }: DeleteSecretLinkProps) => {
       }}
       urn={okms?.iam?.urn}
       iamActions={[kmsIamActions.secretDelete]}
-    />
+    >
+      {t('delete_secret')}
+    </MukLink>
   );
 };
