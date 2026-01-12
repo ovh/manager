@@ -88,12 +88,12 @@
   "showAllRegions": "Exibir todas as regiões",
   "summaryEncryptionPlaintext": "Nenhum/a",
   "labelObjectLock": "Object Lock",
-  "descriptionObjectLock": "Com o Object Lock, pode armazenar objetos em modo WORM («Write Once, Read Many»), garantindo a sua integridade e impedindo qualquer modificação ou eliminação após a escrita. &lt;0>Saber mais&lt;/0>",
+  "descriptionObjectLock": "Com o Object Lock, pode armazenar objetos em modo WORM («Write Once, Read Many»), garantindo a sua integridade e impedindo qualquer modificação ou eliminação após a escrita. <0>Saber mais</0>",
   "objectLockTypeDisabledPopover": "Para ativar a funcionalidade Object Lock, é necessário ativar o versioning",
   "objectLockCannotDisableAlert": "Nesta etapa, apenas é proposta a ativação da funcionalidade. A configuração detalhada do Object Lock (modo, período de retenção, etc.) terá lugar após a criação do bucket. Tenha em conta que esta ação é irreversível: uma vez ativo, o Object Lock não pode ser desativado no bucket.",
   "summaryObjectLockSection": "Object Lock",
   "summaryObjectLockEnabled": "Object Lock ativado",
   "summaryObjectLockDisabled": "Object Lock desativado",
-  "objectLockAcknowledgementLabel": "Eu entendo o funcionamento e as implicações da ativação da funcionalidade do Object Lock. &lt;0>Saber mais&lt;/0>",
+  "objectLockAcknowledgementLabel": "Eu entendo o funcionamento e as implicações da ativação da funcionalidade do Object Lock. <0>Saber mais</0>",
   "objectLockAcknowledgementRequired": "Deve reconhecer o funcionamento do Object Lock antes de continuar"
 }

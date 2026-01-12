@@ -18,4 +18,10 @@ export default [
       'no-console': 'off',
     },
   },
+  {
+    files: ['./bin/manager-pm-validation.js', './bin/manager-pm-cds-validation.js'],
+    rules: {
+      'max-lines': 'off',
+    },
+  },
 ];
