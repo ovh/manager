@@ -43,6 +43,7 @@ enum OvhProductName {
   CLOUD_CHANGELOG = 'CloudChangelog',
   HOSTING_CHANGELOG = 'HostingChangelog',
   ZIMBRA = 'Zimbra',
+  OBSERVABILITY = 'Observability',
   OVH_LOGO = 'OVHLogo',
   OVH_SHORT_LOGO = 'OVHShortLogo',
 }
