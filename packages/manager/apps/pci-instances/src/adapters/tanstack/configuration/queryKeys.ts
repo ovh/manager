@@ -1,4 +1,5 @@
-export const sshKeysQueryKey = (
-  projectId: string,
-  region: string,
-): string[] => ['project', projectId, 'region', region, 'sshKeys'];
+export const sshKeysQueryKey = (projectId: string): string[] => [
+  'project',
+  projectId,
+  'sshKeys',
+];

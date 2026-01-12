@@ -6,15 +6,14 @@ import { TSshKey } from '@/domain/entities/configuration';
 import { TSelectOptions } from '@/types/querySelectOptions.type';
 
 export const useSshKeys = <TData>(
-  region: string,
   options: TSelectOptions<TSshKey[], TData>,
 ) => {
   const { select } = options;
   const projectId = useProjectId();
 
   return useQuery({
-    queryKey: sshKeysQueryKey(projectId, region),
-    queryFn: () => getSshKeys({ projectId, region }),
+    queryKey: sshKeysQueryKey(projectId),
+    queryFn: () => getSshKeys({ projectId }),
     select,
   });
 };
