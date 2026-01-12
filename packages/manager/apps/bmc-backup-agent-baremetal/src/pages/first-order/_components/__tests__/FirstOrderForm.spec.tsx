@@ -10,6 +10,14 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { FirstOrderFormComponent } from '../first-order-form/FirstOrderForm.component';
 
+vi.mock('@ovh-ux/manager-module-order', () => ({
+  useOrderURL: () => 'https://test',
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigationGetUrl: () => 'https://test',
+}));
+
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
 
@@ -28,10 +36,16 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => `translated_${key}`,
   }),
+  Trans: vi
+    .fn()
+    .mockImplementation(({ children }: { children: React.ReactNode }) => <p>{children}</p>),
 }));
 
 // --- Mock translation ---
 vi.mock('@ovhcloud/ods-components/react', () => ({
+  OdsMessage: vi
+    .fn()
+    .mockImplementation(({ children }: { children: React.ReactNode }) => <p>{children}</p>),
   OdsText: vi
     .fn()
     .mockImplementation(({ children }: { children: React.ReactNode }) => <p>{children}</p>),
