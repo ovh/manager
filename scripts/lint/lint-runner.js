@@ -20,12 +20,17 @@ const appValue = getFlagValue('--app');
 const fix = hasFlag('--fix');
 const verbose = !hasFlag('--quiet');
 const isCI = Boolean(process.env.CI);
+const runner = getFlagValue('--runner') ?? 'turbo';
 
 const isPackageName = Boolean(appValue && appValue.startsWith('@'));
 const appName = isPackageName ? null : appValue;
 const packageName = isPackageName ? appValue : null;
 
 const appsRoot = path.join(__dirname, '../../packages/manager/apps');
+
+/* ────────────────────────────────────────────── */
+/* App discovery                                  */
+/* ────────────────────────────────────────────── */
 
 function listApps(rootDir) {
   return fs
@@ -57,8 +62,7 @@ function getModernApps(allApps) {
 }
 
 /**
- * We ignore modern apps from legacy lint unless user targets a single app/package.
- * IMPORTANT: pass ignore patterns as separate args (no shell quoting needed).
+ * Ignore modern apps from legacy lint unless targeting a single app/package
  */
 function buildIgnorePatterns(modernAppsList) {
   if (appName || isPackageName) return [];
@@ -90,28 +94,18 @@ if (verbose) {
   }
 }
 
-/**
- * Turbo flags for CI:
- * - stream logs (avoid grouped logs / silence)
- * - full logs (debuggable)
- * - cap concurrency (stability on CI)
- */
+/* ────────────────────────────────────────────── */
+/* Command builders                               */
+/* ────────────────────────────────────────────── */
+
 const turboCIFlags = isCI
   ? ['--log-order=stream', '--output-logs=full', '--concurrency=2']
   : [];
 
-const turboTask = fix ? 'lint:modern:fix' : 'lint:modern';
+const nxCIFlags = ['--outputStyle=stream', '--parallel=2'];
 
 function yarnCmd(...args) {
   return ['yarn', ...args];
-}
-
-function buildTurboCmd() {
-  const base = ['-s', 'turbo', 'run', turboTask, '--continue', ...turboCIFlags];
-
-  if (isPackageName) return yarnCmd(...base, '--filter', packageName);
-  if (appName) return yarnCmd(...base, '--filter', appName);
-  return yarnCmd(...base);
 }
 
 function buildLegacyLintCmd() {
@@ -125,17 +119,55 @@ function buildLegacyLintCmd() {
   );
 }
 
+function buildModernCmd() {
+  const task = fix ? 'lint:modern:fix' : 'lint:modern';
+
+  if (runner === 'nx') {
+    if (isPackageName) {
+      return ['nx', 'run', `${packageName}:${task}`, ...nxCIFlags];
+    }
+    if (appName) {
+      return ['nx', 'run', `${appName}:${task}`, ...nxCIFlags];
+    }
+    return ['nx', 'run-many', `--target=${task}`, '--all', ...nxCIFlags];
+  }
+
+  // Default: Turbo (unchanged behavior)
+  const base = [
+    '-s',
+    'turbo',
+    'run',
+    task,
+    '--continue',
+    ...turboCIFlags,
+  ];
+
+  if (isPackageName) return yarnCmd(...base, '--filter', packageName);
+  if (appName) return yarnCmd(...base, '--filter', appName);
+  return yarnCmd(...base);
+}
+
+/* ────────────────────────────────────────────── */
+/* Tasks                                         */
+/* ────────────────────────────────────────────── */
+
 const tasks = [];
+
 if (!isPackageName) {
   tasks.push({
     name: appName ? `legacy lint:tsx (${appName})` : 'legacy lint:tsx',
     cmd: buildLegacyLintCmd(),
   });
 }
+
 tasks.push({
-  name: `modern ${turboTask} (Turbo)`,
-  cmd: buildTurboCmd(),
+  name: `modern lint (${runner})`,
+  cmd: buildModernCmd(),
 });
+
+/* ────────────────────────────────────────────── */
+/* Process safety & lifecycle                    */
+/* ────────────────────────────────────────────── */
 
 const errors = [];
 let currentChild = null;
@@ -176,9 +208,7 @@ function shutdown(signal) {
 
   try {
     cleanupWorkspace();
-  } catch {
-    // ignore
-  }
+  } catch {}
 
   process.exit(signal === 'SIGINT' ? 130 : 143);
 }
@@ -204,11 +234,10 @@ process.on('unhandledRejection', (err) => {
   }
 });
 
-/**
- * Run a command and capture output while streaming if verbose.
- * - stdin: inherit (don’t close it)
- * - detached: true so we can kill the whole process group on SIGTERM
- */
+/* ────────────────────────────────────────────── */
+/* Execution                                     */
+/* ────────────────────────────────────────────── */
+
 function run(cmd) {
   const [command, ...args] = cmd;
 
@@ -293,14 +322,14 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 This script performs three actions:
   1. Turbo-based build (prebuild)
   2. Legacy linting using ESLint
-  3. Modern linting using turbo (lint:modern)
+  3. Modern linting using ${runner}
 
 It exists temporarily while not all apps have migrated
 to the Static Analysis Kit.
 
 ⚠️  NOTE:
   - Build and lint:modern may take time because they
-    are handled by Turbo and might be cache-miss.
+    are handled by ${runner} and might be cache-miss.
   - Legacy lint is... well, like all legacy — slow 😅
 
 Thanks for your patience ✨
