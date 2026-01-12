@@ -4,9 +4,9 @@ import { download, generateCsv, mkConfig } from 'export-to-csv';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { useDomainExport } from '@/domain/hooks/useDomainExport';
-import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 
 interface UseExportHandlerParams {
+  exportAllServices: boolean;
   selectedServiceNames: string[];
   domainResources: TDomainResource[] | null;
   setExportProgress: (
@@ -19,6 +19,7 @@ interface UseExportHandlerParams {
 }
 
 export const useDomainExportHandler = ({
+  exportAllServices,
   selectedServiceNames,
   domainResources,
   setExportProgress,
@@ -33,7 +34,6 @@ export const useDomainExportHandler = ({
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { addError } = useNotifications();
   const { fetchDomainDetails, fetchAllDomains } = useDomainExport();
-  const { nichandleInformation } = useNichandleInformation();
 
   const handleExport = useCallback(
     async (selection: {
@@ -53,13 +53,7 @@ export const useDomainExportHandler = ({
 
         let domainsToExport: TDomainResource[] = [];
 
-        if (selectedServiceNames.length === 0) {
-          setExportProgress({
-            current: 0,
-            total: 0,
-            percentage: 0,
-          });
-
+        if (exportAllServices) {
           const data = await fetchAllDomains();
           domainsToExport = data.length > 0 ? data : domainResources || [];
         } else {

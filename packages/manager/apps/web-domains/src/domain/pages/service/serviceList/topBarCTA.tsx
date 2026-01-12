@@ -68,18 +68,15 @@ export default function TopBarCTA({
               <Icon name="chevron-down" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent
-            withArrow
-            className="w-min"
-            onClick={() => {
-              openDrawer([]);
-              setOpenPopover(false);
-            }}
-          >
+          <PopoverContent withArrow className="w-min">
             <Button
               size="sm"
               variant="ghost"
               className="menu-item-button w-full rounded-none justify-start whitespace-nowrap"
+              onClick={() => {
+                openDrawer([]);
+                setOpenPopover(false);
+              }}
             >
               {t('domain_table_export_csv')}
             </Button>
