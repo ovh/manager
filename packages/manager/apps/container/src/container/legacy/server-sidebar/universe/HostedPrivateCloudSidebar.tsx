@@ -362,22 +362,6 @@ export default function HostedPrivateCloudSidebar() {
             ),
             pathMatcher: new RegExp('^/hpc-backup-agent-iaas'),
             badge: 'new',
-            async loader() {
-              const appId = 'hpc-backup-agent-iaas';
-              const items = await loadServices('/backup/tenant');
-
-              return [
-                {
-                  id: 'hpc-backup-agent-iaas-all',
-                  label: t('sidebar_all_hpc-backup-agent-iaas'),
-                  href: navigation.getURL(appId, '#/'),
-                },
-                ...items.map((service) => ({
-                  ...service,
-                  href: navigation.getURL(appId, `#/dashboard/${service.serviceName}`),
-                })),
-              ];
-            },
           },
         ],
       });
