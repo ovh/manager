@@ -88,12 +88,12 @@
   "nameInputInfo": "El nombre del contenedor debe tener entre 3 y 63 caracteres, debe comenzar y terminar con caracteres alfanuméricos en minúsculas (de a a z y de 0 a 9) y puede incluir los siguientes signos de puntuación: « . » y « - ».",
   "summaryEncryptionPlaintext": "Ninguno",
   "labelObjectLock": "Object Lock",
-  "descriptionObjectLock": "Con Object Lock, almacene objetos en modo WORM (Write Once, Read Many). Garantice su integridad e impida que estos se modifiquen o eliminen después de escribirlos. &lt;0>Más información&lt;/0>",
+  "descriptionObjectLock": "Con Object Lock, almacene objetos en modo WORM (Write Once, Read Many). Garantice su integridad e impida que estos se modifiquen o eliminen después de escribirlos. <0>Más información</0>",
   "objectLockTypeDisabledPopover": "Para activar la funcionalidad Object Lock, es necesario activar el control de versiones",
   "objectLockCannotDisableAlert": "En este paso, solo está disponible la activación de la funcionalidad. La configuración detallada de Object Lock (modo, período de retención, etc.) tendrá lugar una vez creado el «bucket». Tenga en cuenta que esta acción es irreversible: una vez activado, Object Lock no puede desactivarse en el bucket.",
   "summaryObjectLockSection": "Object Lock",
   "summaryObjectLockEnabled": "Object Lock activado",
   "summaryObjectLockDisabled": "Object Lock desactivado",
-  "objectLockAcknowledgementLabel": "Entiendo el funcionamiento y las implicaciones de habilitar la funcionalidad de Object Lock. &lt;0>Más información&lt;/0>",
+  "objectLockAcknowledgementLabel": "Entiendo el funcionamiento y las implicaciones de habilitar la funcionalidad de Object Lock. <0>Más información</0>",
   "objectLockAcknowledgementRequired": "Debe comprender el funcionamiento del Object Lock antes de continuar"
 }
