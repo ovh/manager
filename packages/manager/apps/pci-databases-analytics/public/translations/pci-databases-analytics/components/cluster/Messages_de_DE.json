@@ -3,5 +3,5 @@
   "inputStorageLabel": "Zusätzlichen Cluster-Speicher auswählen",
   "inputStorageNoneValue": "Keine",
   "storageFlavorDescription": "Ihr Node-Modell {{flavor}} umfasst {{includedStorage}} Storage, dem Sie bis zu {{maxAdditionalStorage}} zusätzlichen Storage in {{step}} Schritten hinzufügen können.",
-  "inputNodeTooltip": "Die Anzahl der Knoten ist durch das oben ausgewählte Angebot vordefiniert und in diesem Fall nicht änderbar."
+  "inputNodeTooltip": "Die Anzahl der Nodes ist durch das oben ausgewählte Angebot vordefiniert und kann in diesem Fall nicht geändert werden."
 }

@@ -60,5 +60,5 @@
   "restoreAvailableUntil": "O objeto ficará disponível até",
   "seeVersionsSwitchLabel": "Ver as versões",
   "searchPlaceholder": "Procurar...",
-  "changeStorageClassWarningInfrequentAccess": "Atenção: As classes Infrequent Access e Cold Archive impõem uma duração mínima de conservação. <0>Saiba mais</0>"
+  "changeStorageClassWarningInfrequentAccess": "Atenção: As classes Infrequent Access e Cold Archive impõem um período mínimo de conservação. &lt;0>Saber mais&lt;/0>"
 }
