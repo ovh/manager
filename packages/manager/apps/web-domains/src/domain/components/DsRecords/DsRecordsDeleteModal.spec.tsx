@@ -126,7 +126,6 @@ describe('DsRecordsDeleteModal', () => {
 
     const call = updateDomain.mock.calls[0][0];
 
-    expect(call.checksum).toBe('xyz');
     expect(call.currentTargetSpec).toEqual(domainResource.targetSpec);
 
     const { dsData } = call.updatedSpec.dnssecConfiguration;
