@@ -12,6 +12,8 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+
 import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -77,8 +79,18 @@ describe('useDeleteVersionMenuItem test suite', () => {
     returned: ActionMenuItem | null;
   };
 
+  const disabledDeleteMenuItem: ActionMenuItem = {
+    id: MOCKED_ID,
+    label: labels.secretManager.version_state_delete,
+    isDisabled: true,
+    color: ODS_BUTTON_COLOR.critical,
+  };
+
   const testCases: TestCase[] = [
-    { version: versionActiveMock, returned: null },
+    {
+      version: versionActiveMock,
+      returned: disabledDeleteMenuItem,
+    },
     { version: versionDeactivatedMock, returned: deleteMenuItem },
     { version: versionDeletedMock, returned: null },
   ];

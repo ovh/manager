@@ -60,9 +60,15 @@ describe('useActivateVersionMenuItem test suite', () => {
     returned: ActionMenuItem | null;
   };
 
+  const disabledRevealSecretMenuItem: ActionMenuItem = {
+    id: MOCKED_ID,
+    label: labels.secretManager.reveal_secret,
+    isDisabled: true,
+  };
+
   const testCases: TestCase[] = [
     { version: versionActiveMock, returned: revealSecretMenuItem },
-    { version: versionDeactivatedMock, returned: null },
+    { version: versionDeactivatedMock, returned: disabledRevealSecretMenuItem },
     { version: versionDeletedMock, returned: null },
   ];
 
