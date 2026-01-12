@@ -7,7 +7,8 @@ import { OdsButton, OdsCheckbox, OdsMessage, OdsText } from '@ovhcloud/ods-compo
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+
+import { ExternalLink } from '@/common/components/link/Link.component';
 
 import {
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
@@ -45,7 +46,9 @@ export const OrderOkmsModalTermsAndConditions = ({
         <OdsText preset="paragraph">{t('create_okms_terms_and_conditions_description')}</OdsText>
         <div className="flex flex-col gap-2">
           {cart.contractList.map(({ name, url }) => (
-            <Links key={name} href={url} target="_blank" type={LinkType.external} label={name} />
+            <ExternalLink key={name} href={url}>
+              {name}
+            </ExternalLink>
           ))}
         </div>
         <div className="flex items-center gap-3">

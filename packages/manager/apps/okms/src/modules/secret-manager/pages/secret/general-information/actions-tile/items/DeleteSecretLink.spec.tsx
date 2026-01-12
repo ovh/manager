@@ -84,7 +84,7 @@ describe('DeleteSecretLink test suite', () => {
       await waitFor(() => {
         expect(link).not.toHaveAttribute('is-disabled');
       });
-      expect(link).toHaveAttribute('label', labels.secretManager.delete_secret);
+      expect(link).toHaveTextContent(labels.secretManager.delete_secret);
       expect(link).toHaveAttribute(
         'href',
         SECRET_MANAGER_ROUTES_URLS.secretDeleteSecret(OKMS_OK_MOCK.id, SECRET_MOCK.path),
@@ -106,7 +106,7 @@ describe('DeleteSecretLink test suite', () => {
       const link = screen.getByTestId(DELETE_SECRET_TEST_IDS.deleteSecretLink);
 
       await waitFor(() => {
-        expect(link).toHaveAttribute('is-disabled', 'true');
+        expect(link).toHaveAttribute('disabled');
       });
     });
   });

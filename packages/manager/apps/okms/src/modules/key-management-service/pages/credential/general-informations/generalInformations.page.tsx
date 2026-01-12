@@ -11,11 +11,10 @@ import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { Icon } from '@ovhcloud/ods-react';
 
 import {
   Clipboard,
@@ -25,6 +24,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
@@ -113,11 +113,10 @@ const CredentialGeneralInformations = () => {
     value: (
       <div className="flex items-center gap-4">
         {downloadHref && (
-          <OdsLink
-            color={ODS_LINK_COLOR.primary}
+          <MukLink
             href={downloadHref}
             download={filename}
-            isDisabled={isDisabled}
+            disabled={isDisabled}
             onClick={() =>
               trackClick({
                 location: PageLocation.page,
@@ -127,8 +126,12 @@ const CredentialGeneralInformations = () => {
               })
             }
             label={t('key_management_service_credential_download')}
-            icon={ODS_ICON_NAME.download}
-          />
+          >
+            <>
+              {t('key_management_service_credential_download')}
+              <Icon name="download" />
+            </>
+          </MukLink>
         )}
         <ManagerButton
           id="deleteAccessCertificate"

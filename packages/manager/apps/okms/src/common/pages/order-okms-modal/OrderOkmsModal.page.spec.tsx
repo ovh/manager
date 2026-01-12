@@ -26,7 +26,6 @@ import {
   renderWithClient,
   wait,
 } from '@/common/utils/tests/testUtils';
-import { getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
 
 import OrderOkmsModal from './OrderOkmsModal.page';
 import {
@@ -131,9 +130,7 @@ const clickOnConfirmButton = async (user: UserEvent) => {
     confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
     expect(confirmButton).toHaveAttribute('is-disabled', 'false');
   });
-  await act(async () => {
-    await user.click(confirmButton!);
-  });
+  await user.click(confirmButton!);
 
   return confirmButton;
 };
@@ -217,18 +214,14 @@ describe('Order Okms Modal test suite', () => {
       // GIVEN - Use default mock
 
       // WHEN
-      const { container } = await renderOrderOkmsModal();
+      await renderOrderOkmsModal();
 
       // THEN
       await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
       await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_description);
 
       for (const contract of mockedContracts) {
-        await getOdsButtonByLabel({
-          container,
-          label: contract.name,
-          isLink: true,
-        });
+        expect(await screen.findByText(contract.name)).toBeInTheDocument();
       }
 
       const confirmCheckbox = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID);
