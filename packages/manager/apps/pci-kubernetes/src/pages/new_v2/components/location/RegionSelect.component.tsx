@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import { isCountryCode } from '@/helpers/location';
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
 
 type TRegionSelectProps = {
-  // TODO (this PR) : mock format, will be updated or removed
+  // TODO (TAPC-5549) : mock format, will be updated or removed
   regions: Array<{
     id: string;
     title: string;
@@ -26,8 +26,8 @@ type TRegionSelectProps = {
 export const RegionSelect = ({ regions }: TRegionSelectProps) => {
   const { t } = useTranslation('add');
 
-  const [macroRegionField, microRegionField] = useWatch<TCreateClusterSchema>({
-    name: ['macroRegion', 'microRegion'],
+  const macroRegionField = useWatch<TCreateClusterSchema>({
+    name: 'macroRegion',
   });
   const { control, setValue } = useFormContext<TCreateClusterSchema>();
 
@@ -40,16 +40,6 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
     setValue('macroRegion', macroRegion.id);
     setValue('microRegion', firstMicroRegion);
   };
-
-  // Default Value Handler
-  useEffect(() => {
-    const firstMacroRegion = regions.find((region) => !region.disabled);
-    const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
-    if (macroRegionField || microRegionField || !firstMacroRegion || !firstMicroRegion) return;
-
-    setValue('macroRegion', firstMacroRegion.id);
-    setValue('microRegion', firstMicroRegion);
-  }, [macroRegionField, microRegionField, regions, setValue]);
 
   const regionOptions = useMemo(
     () =>

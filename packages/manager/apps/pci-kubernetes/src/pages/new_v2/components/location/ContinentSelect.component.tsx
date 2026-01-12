@@ -17,7 +17,7 @@ import {
   createClusterFormContinentCodes,
 } from '../../CreateClusterForm.schema';
 
-// TODO (this PR) : Put this in a view model
+// TODO (TAPC-5549) : Put this in a view model
 const selectContinentMock = (): Array<{
   labelKey: string;
   continentCode: TCreateClusterSchema['continent'];

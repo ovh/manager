@@ -1,6 +1,6 @@
-import { type FC, useMemo } from 'react';
+import { type FC, useEffect, useMemo } from 'react';
 
-import { useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/ods-react';
@@ -17,7 +17,7 @@ import { RegionSelect } from './location/RegionSelect.component';
 
 const MOCK_regions = [
   {
-    id: 'GRA-A',
+    id: 'GRA',
     title: 'Gravelines',
     datacenter: 'GRA',
     country: 'fr',
@@ -26,66 +26,39 @@ const MOCK_regions = [
     disabled: true,
   },
   {
-    id: 'GRA-B',
-    title: 'Gravelines',
-    datacenter: 'GRA',
+    id: 'SBG',
+    title: 'Strasbourg',
+    datacenter: 'SBG',
     country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
+    microRegions: ['SBG5', 'SBG7'],
     plans: ['free', 'standard'],
     disabled: false,
   },
   {
-    id: 'GRA-C',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
+    id: 'BHS',
+    title: 'Beauharnois',
+    datacenter: 'BHS',
+    country: 'ca',
+    microRegions: ['BHS3', 'BHS5'],
     plans: [],
     disabled: true,
   },
   {
-    id: 'GRA-D',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
+    id: 'WAW',
+    title: 'Varsovie',
+    datacenter: 'WAW',
+    country: 'pl',
+    microRegions: ['WAW1'],
     plans: ['standard'],
     disabled: false,
   },
   {
-    id: 'GRA-E',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
+    id: 'DE',
+    title: 'Francfort',
+    datacenter: 'DE',
+    country: 'de',
+    microRegions: ['DE1', 'DE2'],
     plans: ['free'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-F',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-G',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'GRA-H',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
     disabled: false,
   },
   {
@@ -93,16 +66,43 @@ const MOCK_regions = [
     title: 'Londres',
     datacenter: 'UK',
     country: 'uk',
-    microRegions: ['UK1'],
+    microRegions: ['UK1', 'UK3'],
     plans: ['free', 'standard'],
     disabled: false,
   },
   {
-    id: 'GRA-J',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
+    id: 'SGP',
+    title: 'Singapour',
+    datacenter: 'SGP',
+    country: 'sg',
+    microRegions: ['SGP1'],
+    plans: ['free', 'standard'],
+    disabled: false,
+  },
+  {
+    id: 'SYD',
+    title: 'Sydney',
+    datacenter: 'SYD',
+    country: 'au',
+    microRegions: ['SYD1', 'SYD2'],
+    plans: ['free', 'standard'],
+    disabled: false,
+  },
+  {
+    id: 'HIL',
+    title: 'Hillsboro',
+    datacenter: 'HIL',
+    country: 'us',
+    microRegions: ['HIL1'],
+    plans: ['free', 'standard'],
+    disabled: false,
+  },
+  {
+    id: 'ES',
+    title: 'Madrid',
+    datacenter: 'ES',
+    country: 'es',
+    microRegions: ['ES1', 'ES2'],
     plans: ['free', 'standard'],
     disabled: false,
   },
@@ -118,11 +118,23 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
   const [macroRegionField, microRegionField] = useWatch<TCreateClusterSchema>({
     name: ['macroRegion', 'microRegion'],
   });
+  const { setValue } = useFormContext<TCreateClusterSchema>();
 
   const selectedMacroRegion = useMemo(
     () => MOCK_regions.find(({ id }) => id === macroRegionField),
     [macroRegionField],
   );
+
+  // Default Value Handler
+  useEffect(() => {
+    const firstMacroRegion = MOCK_regions.find((region) => !region.disabled);
+    const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
+
+    if (macroRegionField || microRegionField || !firstMacroRegion || !firstMicroRegion) return;
+
+    setValue('macroRegion', firstMacroRegion.id);
+    setValue('microRegion', firstMicroRegion);
+  }, [macroRegionField, microRegionField, setValue]);
 
   return (
     <>
@@ -152,7 +164,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
           </div>
           <RegionSelect regions={MOCK_regions} />
           {selectedMacroRegion?.microRegions && selectedMacroRegion?.microRegions.length > 1 && (
-            <MicroRegionSelect regions={MOCK_regions} />
+            <MicroRegionSelect regions={selectedMacroRegion?.microRegions} />
           )}
         </>
       )}
