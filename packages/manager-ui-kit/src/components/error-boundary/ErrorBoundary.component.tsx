@@ -22,12 +22,14 @@ export const ErrorBoundary = ({
   isRouteShellSync = false,
 }: ErrorBoundaryProps) => {
   const error = useRouteError() as ResponseAPIError;
-  const shell = useContext(ShellContext)?.shell;
+
+  const context = useContext(ShellContext);
+  const { shell } = context;
   const navigateToHomePage = () => {
-    shell?.navigation.navigateTo(redirectionApp, '', {});
+    shell?.navigation?.navigateTo(redirectionApp, '', {});
   };
   const errorObject =
-    typeof error === 'object' && Object.keys(error)?.length > 0
+    error && typeof error === 'object' && Object.keys(error)?.length > 0
       ? {
           data: {
             message: error?.response?.data?.message || error?.message,
@@ -37,12 +39,16 @@ export const ErrorBoundary = ({
       : {};
 
   const reloadPage = () => {
-    shell?.navigation.reload();
+    if (shell && shell.navigation) {
+      shell.navigation?.reload();
+    } else {
+      window.location.reload();
+    }
   };
 
   useEffect(() => {
     if (isPreloaderHide) {
-      shell?.ux.hidePreloader();
+      shell?.ux?.hidePreloader();
     }
   }, [isPreloaderHide, shell?.ux]);
 
