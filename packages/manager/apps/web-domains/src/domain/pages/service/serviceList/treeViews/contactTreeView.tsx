@@ -5,10 +5,11 @@ import {
   TreeViewValueChangeDetail,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
+import { ContactColumn } from '@/domain/types/export.types';
 
 interface ContactTreeViewProps {
-  readonly selectedIds: string[];
-  readonly onSelectionChange: (ids: string[]) => void;
+  readonly selectedIds: ContactColumn[];
+  readonly onSelectionChange: (ids: ContactColumn[]) => void;
 }
 
 export default function ContactTreeView({
@@ -51,7 +52,7 @@ export default function ContactTreeView({
           ? d.value
           : ([d.value].filter(Boolean) as string[]);
 
-        onSelectionChange(newValue);
+        onSelectionChange(newValue as ContactColumn[]);
       }}
       value={selectedIds}
     >
