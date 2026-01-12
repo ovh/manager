@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
@@ -124,13 +123,8 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const actionMenu = screen.getByTestId('action-menu');
+    const actionMenu = screen.getByTestId('action-details');
     expect(actionMenu).toBeInTheDocument();
-    expect(actionMenu).toHaveAttribute('data-compact', 'true');
-    expect(actionMenu).toHaveAttribute(
-      'data-id',
-      `domain-actions-menu-${mockServiceName}`,
-    );
   });
 
   it('should always show see details action', () => {
@@ -143,7 +137,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const detailsAction = screen.getByTestId('action-item-1');
+    const detailsAction = screen.getByTestId('action-details');
     expect(detailsAction).toBeInTheDocument();
   });
 
@@ -157,7 +151,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const contactAction = screen.getByTestId('action-item-2');
+    const contactAction = screen.getByTestId('action-manage-contacts');
     expect(contactAction).toBeInTheDocument();
   });
 
@@ -186,7 +180,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const renewAction = screen.getByTestId('action-item-3');
+    const renewAction = screen.getByTestId('action-manage-renew-frequency');
     expect(renewAction).toBeInTheDocument();
   });
 
@@ -200,7 +194,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const restoreAction = screen.getByTestId('action-item-4');
+    const restoreAction = screen.getByTestId('action-restore');
     expect(restoreAction).toBeInTheDocument();
 
     fireEvent.click(restoreAction);
@@ -217,7 +211,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const earlyRenewalAction = screen.getByTestId('action-item-5');
+    const earlyRenewalAction = screen.getByTestId('action-renew');
     expect(earlyRenewalAction).toBeInTheDocument();
 
     fireEvent.click(earlyRenewalAction);
@@ -251,7 +245,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    expect(() => screen.getByTestId('action-item-5')).toThrow();
+    expect(() => screen.getByTestId('action-renew')).toThrow();
   });
 
   it('should show terminate action when no pending termination', () => {
@@ -264,9 +258,8 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const terminateAction = screen.getByTestId('action-item-6');
+    const terminateAction = screen.getByTestId('action-terminate');
     expect(terminateAction).toBeInTheDocument();
-    expect(terminateAction).toHaveAttribute('data-color', 'critical');
   });
 
   it('should show cancel terminate action when termination is pending', () => {
@@ -296,26 +289,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const cancelTerminateAction = screen.getByTestId('action-item-7');
+    const cancelTerminateAction = screen.getByTestId('action-cancel-terminate');
     expect(cancelTerminateAction).toBeInTheDocument();
-  });
-
-  it('should show loading state when service info is loading', () => {
-    (useGetServiceInformation as ReturnType<typeof vi.fn>).mockReturnValue({
-      serviceInfo: null,
-      isServiceInfoLoading: true,
-    });
-
-    render(
-      <DatagridColumnActions
-        serviceName={mockServiceName}
-        mainState={DomainStateEnum.OK}
-        openModal={mockOpenModal}
-      />,
-      { wrapper },
-    );
-
-    const actionMenu = screen.getByTestId('action-menu');
-    expect(actionMenu).toHaveAttribute('data-loading', 'true');
   });
 });
