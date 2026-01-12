@@ -57,5 +57,14 @@ export const useDeleteVersionItem = ({
     };
   }
 
+  if (version.state === 'ACTIVE') {
+    return {
+      id,
+      label: t('version_state_delete'),
+      isDisabled: true,
+      color: ODS_BUTTON_COLOR.critical,
+    };
+  }
+
   return null;
 };

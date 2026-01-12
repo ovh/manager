@@ -49,5 +49,13 @@ export const useRevealValueMenuItem = ({
     };
   }
 
+  if (version.state === 'DEACTIVATED') {
+    return {
+      id,
+      label: t('reveal_secret'),
+      isDisabled: true,
+    };
+  }
+
   return null;
 };
