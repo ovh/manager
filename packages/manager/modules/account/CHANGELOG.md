@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.11...@ovh-ux/manager-account@0.20.0) (2026-01-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4552] ([0df62f8](https://github.com/ovh/manager/commit/0df62f8bb83dc0a50ad5f87e6ca3f7a092caced3))
+
+
+### Features
+
+* **account:** add new domain reseller service ([ff0076d](https://github.com/ovh/manager/commit/ff0076d936d22acf16226a6902140864006c75e0)), closes [#DCE-114](https://github.com/ovh/manager/issues/DCE-114)
+
+
+
+
+
 ## [0.19.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.10...@ovh-ux/manager-account@0.19.11) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

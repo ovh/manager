@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.59.4...@ovh-ux/manager-billing@0.60.0) (2026-01-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4553] ([9a19300](https://github.com/ovh/manager/commit/9a19300af5e8a67bb6cc5fc45b6fcdfc14b0bdf4))
+
+
+### Features
+
+* **billing:** add new domain reseller service ([8f256ba](https://github.com/ovh/manager/commit/8f256baa96cc53a5687c630e80e8902af7ce3f9e)), closes [#DCE-114](https://github.com/ovh/manager/issues/DCE-114)
+
+
+
+
+
 ## [0.59.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.59.3...@ovh-ux/manager-billing@0.59.4) (2026-01-09)
 
 

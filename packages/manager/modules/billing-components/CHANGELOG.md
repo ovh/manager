@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.33.7...@ovh-ux/manager-billing-components@4.34.0) (2026-01-12)
+
+
+### Features
+
+* **billing:** add the ability to terminate at expiration for DOMAIN_RESELLER service ([9e4fc2a](https://github.com/ovh/manager/commit/9e4fc2a6dc6bbba1d21e29b6527dc6e5da00bca3)), closes [#DCE-118](https://github.com/ovh/manager/issues/DCE-118)
+
+
+
+
+
 ## [4.33.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.33.6...@ovh-ux/manager-billing-components@4.33.7) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components
