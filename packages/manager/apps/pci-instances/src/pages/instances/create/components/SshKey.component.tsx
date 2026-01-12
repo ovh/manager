@@ -15,11 +15,7 @@ import SshKeySelector, {
   TCustomSelectSshKeyData,
 } from './sshKey/SshKeySelector.component';
 
-type TSshKeyProps = {
-  microRegion: string;
-};
-
-const SshKey = ({ microRegion }: TSshKeyProps) => {
+const SshKey = () => {
   const { t } = useTranslation('creation');
 
   const [openSshKeyform, setOpenSshKeyForm] = useState<boolean>(false);
@@ -28,7 +24,7 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
     false,
   );
 
-  const { isLoading, data: sshKeys = [] } = useSshKeys(microRegion, {
+  const { isLoading, data: sshKeys = [] } = useSshKeys({
     select: selectSshKeys,
   });
 
@@ -103,6 +99,8 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
     if (selectedSshKey) updateSshKeyFields(selectedSshKey);
   }, [sshKeyItems, updateSshKeyFields]);
 
+  if (isLoading) return null;
+
   return (
     <section>
       <Divider spacing="64" />
@@ -126,36 +124,30 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
           </Banner>
         </div>
       )}
-      {!isLoading && (
+      {sshKeys.length === 0 && newSshKeys.length === 0 && (
+        <div className="mt-4">
+          <Banner color="warning">
+            {t('creation:pci_instance_creation_select_sshKey_missing_warning')}
+          </Banner>
+        </div>
+      )}
+      {openSshKeyform ? (
+        <AddSshKey
+          unavailableSshKeyIds={unavailableSshKeyIds}
+          onSubmit={handleAddSshKey}
+          onCancel={handleCancelAddSshKey}
+        />
+      ) : (
         <>
-          {sshKeys.length === 0 && newSshKeys.length === 0 && (
-            <div className="mt-4">
-              <Banner color="warning">
-                {t(
-                  'creation:pci_instance_creation_select_sshKey_missing_warning',
-                )}
-              </Banner>
-            </div>
-          )}
-          {openSshKeyform ? (
-            <AddSshKey
-              unavailableSshKeyIds={unavailableSshKeyIds}
-              onSubmit={handleAddSshKey}
-              onCancel={handleCancelAddSshKey}
-            />
-          ) : (
-            <>
-              <SshKeySelector
-                items={sshKeyItems}
-                value={selectedSshKeyId ? [selectedSshKeyId] : []}
-                onValueChange={handleSelectSshKey}
-              />
-              <Button variant="ghost" onClick={handleOpenSshKeyForm}>
-                <Icon name="plus" />
-                {t('creation:pci_instance_creation_select_sshKey_add_new')}
-              </Button>
-            </>
-          )}
+          <SshKeySelector
+            items={sshKeyItems}
+            value={selectedSshKeyId ? [selectedSshKeyId] : []}
+            onValueChange={handleSelectSshKey}
+          />
+          <Button variant="ghost" onClick={handleOpenSshKeyForm}>
+            <Icon name="plus" />
+            {t('creation:pci_instance_creation_select_sshKey_add_new')}
+          </Button>
         </>
       )}
     </section>

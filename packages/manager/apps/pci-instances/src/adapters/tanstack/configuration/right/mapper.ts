@@ -4,10 +4,7 @@ import { TSshKeyDTO } from './dto.type';
 export const mapSshKeyDtoToSshKeyEntity = (
   sshKeysDTO: TSshKeyDTO[],
 ): TSshKey[] =>
-  sshKeysDTO.map(({ id, name, fingerPrint, publicKey, region }) => ({
-    id,
+  sshKeysDTO.map(({ name, regions }) => ({
     name,
-    fingerPrint,
-    publicKey,
-    region,
+    regions,
   }));

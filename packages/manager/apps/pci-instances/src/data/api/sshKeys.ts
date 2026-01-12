@@ -5,11 +5,9 @@ import { v6 } from '@ovh-ux/manager-core-api';
 
 export const getSshKeys = ({
   projectId,
-  region,
 }: {
   projectId: string;
-  region: string;
 }): Promise<TSshKey[]> =>
   v6
-    .get<TSshKeyDTO[]>(`/cloud/project/${projectId}/region/${region}/sshkey`)
+    .get<TSshKeyDTO[]>(`/cloud/project/${projectId}/aggregated/sshkey`)
     .then((response) => mapSshKeyDtoToSshKeyEntity(response.data));
