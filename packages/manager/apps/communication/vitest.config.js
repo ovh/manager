@@ -4,6 +4,7 @@ import {
   mergeConfig,
   createConfig,
   stubStylesPlugin,
+  defaultDedupedDependencies,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
@@ -23,6 +24,7 @@ export default mergeConfig(
       },
     },
     resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
