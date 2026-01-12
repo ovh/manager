@@ -10,6 +10,7 @@
   "packages/manager/apps/carbon-calculator",
   "packages/manager/apps/catalog",
   "packages/manager/apps/container",
+  "packages/manager/apps/communication",
   "packages/manager/apps/dedicated",
   "packages/manager/apps/hpc-vmware-vsphere",
   "packages/manager/apps/hycu",
