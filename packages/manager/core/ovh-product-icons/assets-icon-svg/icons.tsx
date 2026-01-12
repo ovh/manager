@@ -33,6 +33,7 @@ import LineCommunicating from './line_communicating.svg';
 import ManagedBM from './managed_BM.svg';
 import NAS from './nas.svg';
 import Nutanix from './nutanix.svg';
+import Observability from './observability.svg';
 import Office365 from './office365.svg';
 import ProjectCloud from './project_cloud.svg';
 import Server from './server.svg';
@@ -66,6 +67,7 @@ export {
   LockClose,
   Monitor,
   Networkv2,
+  Observability,
   Phone,
   ServerV2,
   ShieldCheck,

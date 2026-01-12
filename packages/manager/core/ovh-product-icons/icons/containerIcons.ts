@@ -15,6 +15,7 @@ import {
   Networkv2,
   OVHLogo,
   OVHShortLogo,
+  Observability,
   Phone,
   PublicCloud,
   SecurityIdentityOperation,
@@ -56,6 +57,7 @@ const containerIcons = {
   HostingChangelog,
   OVHLogo,
   OVHShortLogo,
+  Observability,
 };
 
 export default containerIcons;
