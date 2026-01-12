@@ -1,4 +1,4 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { v2 } from '@ovh-ux/manager-core-api';
 import punycode from 'punycode/punycode';
 import { getDomainService } from '@/domain/data/api/domainResources';
 import { getDomainContact } from '@/common/data/api/common.api';
@@ -18,10 +18,8 @@ interface ExportSelection {
 export const useDomainExport = () => {
   const fetchAllDomains = async (): Promise<TDomainResource[]> => {
     try {
-      const { data: domainNames } = await v6.get<string[]>('/domain');
-      return domainNames.map((domainName) => ({
-        id: domainName,
-      })) as TDomainResource[];
+      const { data } = await v2.get<TDomainResource[]>('/domain/name');
+      return data;
     } catch (error) {
       return [];
     }
