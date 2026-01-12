@@ -48,6 +48,7 @@ export default function DatagridColumnActions({
     const actionsList: ActionMenuItemProps[] = [
       {
         id: 1,
+        'data-testid': 'action-details',
         label: t(`${NAMESPACES.ACTIONS}:see_details`),
         onClick: () => navigate(domainDetailUrl),
       },
@@ -55,6 +56,7 @@ export default function DatagridColumnActions({
 
     actionsList.push({
       id: 2,
+      'data-testid': 'action-manage-contacts',
       label: t(`${NAMESPACES.CONTACT}:manage_contacts`),
       onClick: () =>
         navigateTo('account', '/contacts/services/edit', {
@@ -72,6 +74,7 @@ export default function DatagridColumnActions({
     ) {
       actionsList.push({
         id: 3,
+        'data-testid': 'action-manage-renew-frequency',
         label: t(
           'domain_tab_general_information_subscription_handle_renew_frequency',
         ),
@@ -86,6 +89,7 @@ export default function DatagridColumnActions({
     if (mainState === DomainStateEnum.RESTORABLE) {
       actionsList.push({
         id: 4,
+        'data-testid': 'action-restore',
         label: t('domain_action_restore'),
         onClick: () => openModal([serviceName]),
       });
@@ -100,6 +104,7 @@ export default function DatagridColumnActions({
     ) {
       actionsList.push({
         id: 5,
+        'data-testid': 'action-renew',
         label: t('domain_action_early_renewal'),
         onClick: () => openModal([serviceName]),
       });
@@ -117,6 +122,7 @@ export default function DatagridColumnActions({
     ) {
       actionsList.push({
         id: 6,
+        'data-testid': 'action-terminate',
         label: t('domain_action_terminate'),
         color: BUTTON_COLOR.critical,
         onClick: () =>
@@ -140,6 +146,7 @@ export default function DatagridColumnActions({
     ) {
       actionsList.push({
         id: 7,
+        'data-testid': 'action-cancel-terminate',
         label: t('domain_action_cancel_terminate'),
         onClick: () =>
           navigateTo('billing', '/autorenew/services/cancel-resiliation', {

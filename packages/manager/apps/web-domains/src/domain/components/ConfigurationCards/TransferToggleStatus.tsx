@@ -43,6 +43,10 @@ export default function TransferToggleStatus({
     domainResource?.currentState?.protectionState,
     domainResource?.targetSpec?.protectionState,
   );
+  // FIXME: improve .tn transfer handling
+  const isTn =
+    domainResource?.currentState.extension.toLowerCase().includes('.tn') ||
+    domainResource?.currentState.extension.toLowerCase() === 'tn';
   return (
     <ManagerTile.Item>
       <ManagerTile.Item.Label>
@@ -70,7 +74,7 @@ export default function TransferToggleStatus({
             </Badge>
           </ToggleLabel>
         </Toggle>
-        {!domainResource?.currentState?.authInfoSupported && (
+        {!domainResource?.currentState?.authInfoSupported && !isTn && (
           <Text>
             {t(
               'domain_tab_general_information_transfer_authinfo_not_supported',
@@ -79,14 +83,15 @@ export default function TransferToggleStatus({
         )}
         {domainResource?.currentState?.protectionState ===
           ProtectionStateEnum.UNPROTECTED &&
-          domainResource?.currentState?.authInfoSupported && (
+          domainResource?.currentState?.authInfoSupported &&
+          !isTn && (
             <div>
               <Link onClick={() => setTransferAuthInfoModalOpened(true)}>
                 {t('domain_tab_general_information_transfer_authinfo')}
               </Link>
             </div>
           )}
-        {!domainResource?.currentState?.authInfoSupported && (
+        {!domainResource?.currentState?.authInfoSupported && !isTn && (
           <div>
             <Link onClick={() => setTagModalOpened(true)}>
               {t('domain_tab_general_information_transfer_tag')}
