@@ -35,7 +35,7 @@ import DomainGuideButton from './guideButton';
 export default function ServiceList() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { notifications } = useNotifications();
-  const [isModalOpenned, setIsModalOpened] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
   const [rowSelection, setRowSelection] = useState({});
   const [isDrawerExportOpen, setIsDrawerExportOpen] = useState(false);
   const [modalServiceNames, setModalServiceNames] = useState<string[]>([]);
@@ -49,6 +49,7 @@ export default function ServiceList() {
     downloadUrl: string;
     total: number;
   }>(null);
+  const [exportAllServices, setExportAllServices] = useState(false);
 
   const selectedServiceNames = Object.keys(rowSelection);
 
@@ -56,14 +57,19 @@ export default function ServiceList() {
     setIsModalOpened(open);
   };
 
-  const openModal = (serviceNames?: string[]) => {
-    setModalServiceNames(serviceNames || selectedServiceNames);
+  const openModal = (serviceNames: string[]) => {
+    setModalServiceNames(serviceNames);
     setIsModalOpened(true);
   };
 
-  const openDrawer = (serviceNames?: string[]) => {
-    setModalServiceNames(serviceNames || selectedServiceNames);
+  const openDrawer = (serviceNames: string[]) => {
+    setModalServiceNames(serviceNames);
     setIsDrawerExportOpen(true);
+    if (serviceNames.length === 0) {
+      setExportAllServices(true);
+    } else {
+      setExportAllServices(false);
+    }
   };
 
   const domainColumns = useDomainDatagridColumns({
@@ -114,10 +120,10 @@ export default function ServiceList() {
     pageSize: 10,
     enabled: true,
     columns: domainColumns,
-
   });
 
   const { handleExport } = useDomainExportHandler({
+    exportAllServices,
     selectedServiceNames,
     domainResources,
     setExportProgress,
@@ -239,7 +245,7 @@ export default function ServiceList() {
         filters={filtersProps}
       />
       <RenewRestoreModal
-        isModalOpenned={isModalOpenned}
+        isModalOpenned={isModalOpened}
         serviceNames={modalServiceNames}
         onOpenChange={onOpenChange}
       />
