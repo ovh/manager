@@ -139,7 +139,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
             <SelectContent>
               {subnets.map((subnet) => (
                 <SelectItem key={subnet.id} value={subnet.id}>
-                  {`${subnet.ipPools[0].network} - ${subnet.ipPools[0].region}`}
+                  {`${subnet.ipPools[0]?.network} - ${subnet.ipPools[0]?.region}`}
                 </SelectItem>
               ))}
             </SelectContent>
