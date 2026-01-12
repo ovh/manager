@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
@@ -50,7 +50,7 @@ export default function DashboardPage() {
   const { t, i18n } = useTranslation(['dashboard', NAMESPACES.DASHBOARD]);
   const { notifications } = useNotifications();
   const langCode = getLanguageKey(i18n.language);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('domain');
 
   const guideItems: GuideItem[] = [
     {
@@ -93,8 +93,8 @@ export default function DashboardPage() {
   ];
 
   const handleValueChange = async (event: TabsValueChangeEvent) => {
-      navigate(`${event.value}`, { replace: true });
-      setValue(event.value);
+    navigate(`${event.value}`, { replace: true });
+    setValue(event.value);
   };
 
   useEffect(() => {
@@ -113,7 +113,7 @@ export default function DashboardPage() {
         location.pathname.endsWith(tabName.name),
       )?.name || 'domain';
     if (location.pathname) {
-      setValue(tab);
+      handleValueChange({ value: tab })
     }
   }, [location.pathname]);
 
