@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.5.24...@ovh-ux/manager-billing-app@0.5.25) (2026-01-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-app
+
+
+
+
+
 ## [0.5.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.5.23...@ovh-ux/manager-billing-app@0.5.24) (2026-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app
