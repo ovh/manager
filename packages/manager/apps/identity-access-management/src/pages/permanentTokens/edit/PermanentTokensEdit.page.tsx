@@ -117,7 +117,10 @@ export default function PermanentTokensAdd() {
       if (expiryModel.mode === 'duration' && expiryModel.expiresIn !== null) {
         payload.expiresIn = expiryModel.expiresIn;
       }
+    } else {
+      payload.expiresAt = null;
     }
+
     trackClick({
       actionType: 'action',
       actions: isCreationMode
