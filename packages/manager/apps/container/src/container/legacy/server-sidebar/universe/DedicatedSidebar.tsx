@@ -375,24 +375,9 @@ export default function DedicatedSidebar() {
             icon: (
               <img alt="" src={backupAgentLogo} className="mb-1 w-6 aspect-square" />
             ),
+            href: navigation.getURL('bmc-backup-agent-baremetal', '#'),
             pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),
             badge: 'new',
-            async loader() {
-              const appId = 'bmc-backup-agent-baremetal';
-              const items = await loadServices('/backup/tenant');
-
-              return [
-                {
-                  id: 'bmc-backup-agent-baremetal-all',
-                  label: t('sidebar_all_bmc-backup-agent-baremetal'),
-                  href: navigation.getURL(appId, '#/'),
-                },
-                ...items.map((service) => ({
-                  ...service,
-                  href: navigation.getURL(appId, `#/dashboard/${service.serviceName}`),
-                })),
-              ];
-            },
           },
         ],
       });
