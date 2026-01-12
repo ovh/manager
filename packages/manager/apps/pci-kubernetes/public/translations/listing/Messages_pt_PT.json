@@ -1,5 +1,5 @@
 {
-  "kube_list_title": "Managed Kubernetes Service",
+  "kube_list_title": "Managed Kubernetes",
   "kube_list_name": "Nome do cluster",
   "kube_list_id": "ID",
   "kube_list_region": "Região",
@@ -33,8 +33,8 @@
   "DELETING": "Eliminação em curso",
   "CREATING": "Criação em curso",
   "ENABLED": "Ativado",
-  "kube_list_node_pools_floating_ip_warning_enable_title": "Impact tarifário",
-  "kube_list_node_pools_floating_ip_warning_enable_description": "A ativação dos IPs Flutuantes implica um custo adicional. Cada instância atual e futura deste pool de nós receberá um IP Flutuante cobrado {{price}}.",
-  "kube_list_node_pools_floating_ip_warning_disable_title": "Atenção: Perda de Floating IPs",
-  "kube_list_node_pools_floating_ip_warning_disable_description": "A desativação resultará na desvinculação imediata dos IPs Flutuantes. Esses endereços serão liberados definitivamente e não poderão ser recuperados."
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Impacto tarifário",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "A ativação dos Floating IP implica um custo suplementar. Cada instância atual e futura deste pool de nós terá um Floating IP faturado a {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Atenção: Perda dos Floating IP",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "A desativação levará à imediata dissociação dos Floating IP. Estes endereços serão libertados permanentemente e não poderão ser recuperados."
 }

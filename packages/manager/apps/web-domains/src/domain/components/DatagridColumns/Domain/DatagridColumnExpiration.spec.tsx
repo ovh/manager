@@ -19,7 +19,11 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ),
   useFormatDate: () => (options: { date: string }) => {
     if (!options.date) return '';
-    return new Date(options.date).toLocaleDateString();
+    return new Date(options.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    });
   },
 }));
 

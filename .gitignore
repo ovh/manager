@@ -32,3 +32,12 @@ CLAUDE.md
 .mcp.json
 .claude
 .cursor
+
+
+
+.nx/cache
+.nx/workspace-data
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
+**/vite.config.*.timestamp-*.mjs
+**/vitest.config.*.timestamp-*.mjs

@@ -88,12 +88,12 @@
   "showAllRegions": "Exibir todas as regiões",
   "summaryEncryptionPlaintext": "Nenhum/a",
   "labelObjectLock": "Object Lock",
-  "descriptionObjectLock": "Com o Object Lock, armazene objetos em modo WORM (Write Once, Read Many), garantindo sua integridade ao impedir qualquer modificação ou exclusão após a gravação. <0>Saiba mais</0>",
-  "objectLockTypeDisabledPopover": "Para ativar a funcionalidade Object Lock, é necessário ativar o versionamento",
-  "objectLockCannotDisableAlert": "Nesta etapa, apenas a ativação da funcionalidade é proposta. A configuração detalhada do Object Lock (modo, período de retenção, etc.) ocorrerá após a criação do bucket. Por favor, note que esta ação é irreversível: uma vez ativado, o Object Lock não pode ser desativado no bucket.",
+  "descriptionObjectLock": "Com o Object Lock, pode armazenar objetos em modo WORM («Write Once, Read Many»), garantindo a sua integridade e impedindo qualquer modificação ou eliminação após a escrita. <0>Saber mais</0>",
+  "objectLockTypeDisabledPopover": "Para ativar a funcionalidade Object Lock, é necessário ativar o versioning",
+  "objectLockCannotDisableAlert": "Nesta etapa, apenas é proposta a ativação da funcionalidade. A configuração detalhada do Object Lock (modo, período de retenção, etc.) terá lugar após a criação do bucket. Tenha em conta que esta ação é irreversível: uma vez ativo, o Object Lock não pode ser desativado no bucket.",
   "summaryObjectLockSection": "Object Lock",
   "summaryObjectLockEnabled": "Object Lock ativado",
   "summaryObjectLockDisabled": "Object Lock desativado",
-  "objectLockAcknowledgementLabel": "Eu entendo o funcionamento e as implicações da ativação da funcionalidade de Object Lock. <0>Saiba mais</0>",
-  "objectLockAcknowledgementRequired": "Você deve reconhecer o funcionamento do Object Lock antes de continuar"
+  "objectLockAcknowledgementLabel": "Eu entendo o funcionamento e as implicações da ativação da funcionalidade do Object Lock. <0>Saber mais</0>",
+  "objectLockAcknowledgementRequired": "Deve reconhecer o funcionamento do Object Lock antes de continuar"
 }
