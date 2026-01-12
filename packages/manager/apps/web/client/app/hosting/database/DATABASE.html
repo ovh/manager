@@ -195,6 +195,10 @@
                             </th>
                             <th
                                 scope="col"
+                                data-translate="hosting_configuration_tab_sql_data_base_server"
+                            ></th>
+                            <th
+                                scope="col"
                                 data-translate="hosting_tab_DATABASES_table_header_size"
                                 data-ng-if="!hosting.isCloudWeb"
                             ></th>
@@ -258,11 +262,15 @@
                         <tr
                             data-ng-repeat="element in $ctrl.databases.details track by $index"
                         >
-                            <th scope="row" data-ng-bind="element.user"></th>
+                            <td scope="row" data-ng-bind="element.user"></td>
                             <td data-ng-bind="element.user"></td>
                             <td
                                 class="word-break"
                                 data-ng-bind="element.name"
+                            ></td>
+                            <td
+                                class="word-break"
+                                data-ng-bind="element.server"
                             ></td>
                             <td data-ng-if="!hosting.isCloudWeb">
                                 <div
