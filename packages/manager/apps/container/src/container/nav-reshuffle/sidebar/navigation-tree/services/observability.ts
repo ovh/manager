@@ -1,14 +1,12 @@
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
-import illustration from '@/assets/images/sidebar/security-identity-operations.png';
 import { Node } from '../node';
 
 const sioUniverse: Node = {
   id: 'observability',
   idAttr: 'observability-link',
   translation: 'sidebar_observability',
-  shortTranslation: 'sidebar_observability_short',
-  illustration,
-  svgIcon: OvhProductName.SHIELDCHECK,
+  shortTranslation: 'sidebar_observability_short',  
+  svgIcon: OvhProductName.OBSERVABILITY,
   routing: {
     application: 'observability',
   },
