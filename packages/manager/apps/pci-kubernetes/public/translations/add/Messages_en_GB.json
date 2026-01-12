@@ -91,6 +91,8 @@
     "char_number": "contain between 2 and 64 characters",
     "char_whitelist": "contain only letters, numbers, dashes or underscores",
     "first_char": "start with a letter",
-    "last_char": "end with an alphanumeric character (a-z, 0 - 9)"
-  }
+    "last_char": "end with an alphanumeric character (a-z, A-Z, 0-9)"
+  },
+  "kubernetes_add_cluster_name_input_error": "The cluster name is invalid",
+  "kubernetes_add_cluster_name_input_error_empty": "The cluster name is required"
 }

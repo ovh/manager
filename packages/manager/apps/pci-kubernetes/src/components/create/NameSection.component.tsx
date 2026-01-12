@@ -1,4 +1,4 @@
-import { FieldValues, Path, useFormContext } from 'react-hook-form';
+import { FieldError, FieldValues, Path, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -10,11 +10,11 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
+import { getErrorMessage } from '@/helpers';
+
 type TNameSectionProps<FormSchema extends FieldValues> = {
   fieldName: Path<FormSchema>;
   helperEntries: Array<string>;
-  errorMessage: string;
-  errorMessageEmpty: string;
 };
 
 export const NameSection = <FormSchema extends FieldValues>({
@@ -23,9 +23,13 @@ export const NameSection = <FormSchema extends FieldValues>({
 }: TNameSectionProps<FormSchema>) => {
   const { t } = useTranslation('add');
 
-  const { register, getFieldState } = useFormContext<FormSchema>();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FormSchema>();
 
-  const fieldError = getFieldState(fieldName).error?.message;
+  const fieldError = errors[fieldName] as FieldError | undefined;
+  const fieldErrorMessage = fieldError ? getErrorMessage(fieldError) : undefined;
 
   return (
     <>
@@ -35,7 +39,7 @@ export const NameSection = <FormSchema extends FieldValues>({
       <FormField invalid={!!fieldError}>
         <FormFieldLabel>{t('kubernetes_add_name_placeholder')}</FormFieldLabel>
         <Input {...register(fieldName)} className="sm:w-1/2" invalid={!!fieldError} />
-        <FormFieldError>{fieldError ? t(fieldError) : ''}</FormFieldError>
+        <FormFieldError>{fieldErrorMessage ? t(fieldErrorMessage) : ''}</FormFieldError>
         <FormFieldHelper className="flex flex-col">
           {helperEntries.map((entry, index) => (
             <Text preset="caption" key={index}>
