@@ -65,7 +65,7 @@ export default function ServiceList() {
   const openDrawer = (serviceNames: string[]) => {
     setModalServiceNames(serviceNames);
     setIsDrawerExportOpen(true);
-    if (serviceNames.length === 0) {
+    if (serviceNames?.length === 0) {
       setExportAllServices(true);
     } else {
       setExportAllServices(false);
