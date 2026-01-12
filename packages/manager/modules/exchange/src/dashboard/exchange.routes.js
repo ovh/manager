@@ -7,7 +7,7 @@ import { FEATURES } from '../exchange.constants';
 export default /* @ngInject */ ($stateProvider) => {
   const getNavigationInformations = (
     currentSectionInformation,
-  ) => /* @ngInject */(Navigator, $rootScope) => {
+  ) => /* @ngInject */ (Navigator, $rootScope) => {
     set($rootScope, 'currentSectionInformation', currentSectionInformation);
     return Navigator.setNavigationInformation({
       leftMenuVisible: true,
@@ -21,9 +21,15 @@ export default /* @ngInject */ ($stateProvider) => {
     controller: 'ExchangeCtrl',
     controllerAs: 'ctrl',
     reloadOnSearch: false,
-    redirectTo: (transition) => transition.injector().getAsync('exchange').then((exchange) =>
-      exchange.offer === "DEDICATED" && !exchange.hostname ? 'exchange.dashboard.private-config-funnel' : 'exchange.dashboard.information'
-    ),
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('exchange')
+        .then((exchange) =>
+          exchange.offer === 'DEDICATED' && !exchange.sslExpirationDate
+            ? 'exchange.dashboard.private-config-funnel'
+            : 'exchange.dashboard.information',
+        ),
     resolve: {
       organization: /* @ngInject */ ($transition$) =>
         $transition$.params().organization,

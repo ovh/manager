@@ -5,6 +5,8 @@ export default {
   template,
   controller,
   bindings: {
+    exchange: '<',
+    goToDashboard: '<',
     organization: '<',
     productId: '<',
   },

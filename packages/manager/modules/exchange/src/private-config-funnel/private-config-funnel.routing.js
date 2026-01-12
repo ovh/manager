@@ -6,6 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       hideBreadcrumb: () => true,
+      goToDashboard: /* @ngInject */ ($state, $transition$) => () =>
+        $state.go('exchange.dashboard.information', $transition$.params()),
     },
   });
 };

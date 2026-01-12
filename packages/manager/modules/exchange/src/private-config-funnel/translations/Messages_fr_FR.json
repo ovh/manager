@@ -12,5 +12,16 @@
   "exchange_private_config_funnel_modal_title": "Êtes-vous sûr de vouloir continuer ?",
   "exchange_private_config_funnel_modal_description": "En validant, vous acceptez que l'adresse de votre serveur de messagerie soit <strong>https://{{subdomain}}.{{domain}}</strong>.",
   "exchange_private_config_funnel_modal_warning": "Vous ne pourrez plus modifier cette information par la suite.",
-  "exchange_private_config_error_message": "Une erreur est survenue. {{ error }}"
+  "exchange_private_config_error_message": "Une erreur est survenue. {{ error }}",
+  "exchange_private_config_funnel_configuration_title": "Configuration de votre produit Private Exchange",
+  "exchange_private_config_funnel_configuration_wait_part_1": "Cela peut prendre quelques minutes...",
+  "exchange_private_config_funnel_configuration_wait_part_2": "Une fois cette étape terminée, vous n'aurez plus qu'à ajouter le CNAME à {{ hostname }} pour confirmer que vous êtes le propriétaire du domaine.",
+  "exchange_private_config_funnel_configuration_wait_part_3": "Vous pouvez quitter cette page en tout sécurité, le processus se poursuivra en arrière plan.",
+  "exchange_private_config_funnel_configuration_transfer_link": "Transférer mon domaine chez OVHcloud",
+  "exchange_private_config_funnel_configuration_cname_subtitle": "Validez l'appartenance de votre domaine",
+  "exchange_private_config_funnel_configuration_cname_description": "Pour valider que vous êtes titulaire du domaine <strong>{{ hostname }}</strong>, veuillez ajouter cet enregistrement DNS.",
+  "exchange_private_config_funnel_configuration_cname_label": "CNAME",
+  "exchange_private_config_funnel_configuration_cname_message_info_title": "Une fois le CNAME ajouté, attendez quelques minutes pour que notre robot détecte cet ajout.",
+  "exchange_private_config_funnel_configuration_cname_message_info_description": "Vous recevrez ensuite un mail qui vous confirmera la livraison du service et la génération des certificats de sécurite de chiffrement.",
+  "exchange_private_config_funnel_configuration_cname_message_warning": "Vous disposez de <strong>48 heures</strong> pour ajouter le CNAME. Une fois ce délais passé, vous devrez recommencer le processus de configuration depuis le début."
 }
