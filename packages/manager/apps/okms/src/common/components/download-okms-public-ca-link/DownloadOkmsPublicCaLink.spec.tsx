@@ -1,10 +1,8 @@
 import * as api from '@key-management-service/data/api/okms';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { initiateTextFileDownload } from '@/common/utils/dom/download';
 
@@ -44,14 +42,8 @@ const renderComponentAndGetLink = async ({
   type: CertificateType;
   label: string;
 }) => {
-  const { container } = render(<DownloadOkmsPublicCaLink okms={mockOkms} type={type} />);
-
-  const downloadLink = await getOdsButtonByLabel({
-    container,
-    label,
-    isLink: true,
-    timeout: 2000,
-  });
+  render(<DownloadOkmsPublicCaLink okms={mockOkms} type={type} />);
+  const downloadLink = await screen.findByText(label);
 
   return { downloadLink };
 };

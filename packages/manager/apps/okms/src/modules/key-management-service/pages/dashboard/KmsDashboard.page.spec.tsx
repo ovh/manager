@@ -1,6 +1,6 @@
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
@@ -61,7 +61,7 @@ describe('KMS dashboard test suite', () => {
       isLink: true,
     });
 
-    await act(() => user.click(backLink));
+    await user.click(backLink);
 
     await assertTextVisibility(labels.listing.key_management_service_listing_title);
   });
@@ -72,7 +72,7 @@ describe('KMS dashboard test suite', () => {
 
     await waitFor(() => expect(screen.getByTestId(kmsDashboardTabNames.serviceKeys)).toBeEnabled());
 
-    await act(() => user.click(screen.getByTestId(kmsDashboardTabNames.serviceKeys)));
+    await user.click(screen.getByTestId(kmsDashboardTabNames.serviceKeys));
 
     await waitFor(() =>
       expect(
@@ -87,7 +87,7 @@ describe('KMS dashboard test suite', () => {
 
     await waitFor(() => expect(screen.getByTestId(kmsDashboardTabNames.credentials)).toBeEnabled());
 
-    await act(() => user.click(screen.getByText(labels.dashboard.access_certificates)));
+    await user.click(screen.getByText(labels.dashboard.access_certificates));
 
     await waitFor(() =>
       expect(
@@ -102,7 +102,7 @@ describe('KMS dashboard test suite', () => {
 
     await waitFor(() => expect(screen.getByLabelText('edit')).toBeEnabled());
 
-    await act(() => user.click(screen.getByLabelText('edit')));
+    await user.click(screen.getByLabelText('edit'));
 
     // Wait for modal to open
     await assertOdsModalVisibility({ container, isVisible: true });

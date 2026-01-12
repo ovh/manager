@@ -11,7 +11,7 @@ import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
-import { RouterLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { TrackingTags } from '@/tracking.constant';
 
@@ -43,8 +43,8 @@ export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => 
   };
 
   return (
-    <RouterLink
-      href={links[type].href}
+    <InternalLink
+      to={links[type].href}
       data-testid={OKMS_LIST_CELL_TEST_IDS.name(okms.id)}
       onClick={() => {
         trackClick({
@@ -56,7 +56,7 @@ export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => 
       }}
     >
       {okms.iam.displayName}
-    </RouterLink>
+    </InternalLink>
   );
 };
 

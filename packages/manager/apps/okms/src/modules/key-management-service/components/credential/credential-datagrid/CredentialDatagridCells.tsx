@@ -14,10 +14,10 @@ import {
   ActionMenuItem,
   Clipboard,
   DataGridTextCell,
-  Links,
 } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
@@ -28,8 +28,8 @@ export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const { trackClick } = useOkmsTracking();
   return (
     <div>
-      <Links
-        onClickReturn={() => {
+      <MukLink
+        onClick={() => {
           trackClick({
             location: PageLocation.datagrid,
             buttonType: ButtonType.link,
@@ -38,8 +38,9 @@ export const DatagridCredentialCellName = (credential: OkmsCredential) => {
           });
           navigate(`${credential.id}`);
         }}
-        label={credential.name}
-      />
+      >
+        {credential.name}
+      </MukLink>
     </div>
   );
 };

@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
-import { ManagerLink } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -34,10 +34,9 @@ export const ShowValueLink = ({ secret }: ShowValueLinkProps) => {
   if (isPending) return <OdsSkeleton data-testid={SHOW_VALUE_TEST_IDS.skeleton} />;
 
   return (
-    <ManagerLink
+    <MukLink
       data-testid={SHOW_VALUE_TEST_IDS.showValueLink}
       href={href}
-      label={t('reveal_secret')}
       onClick={() => {
         trackClick({
           location: PageLocation.tile,
@@ -48,6 +47,8 @@ export const ShowValueLink = ({ secret }: ShowValueLinkProps) => {
       }}
       urn={okms?.iam?.urn}
       iamActions={[kmsIamActions.secretGet, kmsIamActions.secretVersionGetData]}
-    />
+    >
+      {t('reveal_secret')}
+    </MukLink>
   );
 };

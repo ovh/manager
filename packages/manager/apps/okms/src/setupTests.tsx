@@ -4,6 +4,7 @@ import { SetupServer, setupServer } from 'msw/node';
 import { vi } from 'vitest';
 
 import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
+import { LinkProps } from '@ovh-ux/muk';
 
 declare global {
   var server: SetupServer;
@@ -76,3 +77,20 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
 vi.mock('@/common/hooks/useOkmsTracking', () => ({
   useOkmsTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
 }));
+
+// Mocking ODS Drawer component
+vi.mock('@ovh-ux/muk', async () => {
+  const original = await vi.importActual('@ovh-ux/muk');
+  return {
+    ...original,
+    Link: vi.fn((props: LinkProps & { 'data-testid'?: string }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { iamActions, ...htmlProps } = props;
+      return (
+        <a data-testid={props['data-testid']} href={htmlProps.href} {...htmlProps}>
+          {props.children}
+        </a>
+      );
+    }),
+  };
+});
