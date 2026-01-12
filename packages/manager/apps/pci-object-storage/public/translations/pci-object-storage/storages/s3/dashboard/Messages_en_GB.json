@@ -34,7 +34,7 @@
   "activateEncryptionDescription": "Enable server-side encryption with keys managed by OVHcloud to secure your data at rest.",
   "activateEncryptionWarning": "Once enabled, encryption will only apply to new uploads, and can no longer be disabled.",
   "activateEncryptionDocLink": "Find out more",
-  "versionningTitle": "Versionning",
+  "versionningTitle": "Versioning",
   "disableVersionning": "Protect your data now. Enable versioning to easily restore your objects in the event that they are accidentally deleted or modified.",
   "enableVersionning": "Your objects are versioned to guarantee better traceability and recovery in the event that they are lost or modified.",
   "activateVersionningTitle": "Enable versioning",
