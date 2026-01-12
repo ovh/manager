@@ -38,6 +38,19 @@ const OrganizationResetPasswordPage = React.lazy(() =>
 const DatacentresPage = React.lazy(() =>
   import('@/pages/listing/datacentres/Datacentres.page'),
 );
+
+const NetworkAclPage = React.lazy(() =>
+  import('@/pages/listing/networkAcl/NetworkAcl.page'),
+);
+
+const NetworkAclPageAddEdit = React.lazy(() =>
+  import('@/pages/listing/networkAcl/update-network-acl/UpdateNetworkAcl.page'),
+);
+
+const NetworkAclPageDelete = React.lazy(() =>
+  import('@/pages/listing/networkAcl/delete-network-acl/DeleteNetworkAcl.page'),
+);
+
 const DatacentreDashboardPage = React.lazy(() =>
   import('@/pages/dashboard/datacentre/DatacentreDashboard.page'),
 );
@@ -206,6 +219,27 @@ export default (
             },
           }}
         />
+        <Route
+          id={'network-acl'}
+          path={urls.networkAcl}
+          Component={NetworkAclPage}
+        >
+          <Route
+            id={'network-acl-add'}
+            path={urls.networkAclAdd}
+            Component={NetworkAclPageAddEdit}
+          />
+          <Route
+            id={'network-acl-edit'}
+            path={urls.networkAclEdit}
+            Component={NetworkAclPageAddEdit}
+          />
+          <Route
+            id={'network-acl-delete'}
+            path={urls.networkAclDelete}
+            Component={NetworkAclPageDelete}
+          />
+        </Route>
       </Route>
       <Route
         path={urls.datacentreDashboard}
