@@ -38,6 +38,7 @@ export default function ExpiryDateInput({
   const [minutes, setMinutes] = useState<number>(1);
   const [hours, setHours] = useState<number>(1);
   const [days, setDays] = useState<number>(1);
+  const currentDate = new Date();
 
   const setExpiresIn = (expiryUnit: Unit, value: number | null) => {
     if (!model.active || model.mode !== 'duration') {
@@ -220,6 +221,8 @@ export default function ExpiryDateInput({
             value={model.expiresAt}
             onOdsChange={(e) => setExpiresAt(e.detail.value || null)}
             isDisabled={!model.active}
+            min={currentDate}
+            strategy="fixed"
           />
         )}
       </div>
