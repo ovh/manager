@@ -1,12 +1,12 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import {
-  Breadcrumb as OdsBreadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-} from '@ovhcloud/ods-react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { urls } from '@/routes/routes.constants';
+
+import { BreadcrumbItem, BreadcrumbLink, Breadcrumb as OdsBreadcrumb } from '@ovhcloud/ods-react';
+
+import { urls } from '@/routes/RoutesAndUrl.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type BreadcrumbProps = {
@@ -14,10 +14,7 @@ export type BreadcrumbProps = {
   overviewUrl?: string;
 };
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = ({
-  items = [],
-  overviewUrl,
-}) => {
+export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [], overviewUrl }) => {
   const { id } = useParams();
   const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
   const navigate = useNavigate();
@@ -35,8 +32,10 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         },
         ...items,
       ]
-        .filter(Boolean)
-        .map((item: { label: string; href?: string; onClick?: () => void }) => (
+        .filter((item): item is { label: string; href?: string; onClick?: () => void } =>
+          Boolean(item),
+        )
+        .map((item) => (
           <BreadcrumbItem key={item.label}>
             <BreadcrumbLink href={item.href} onClick={() => item.onClick?.()}>
               {item.label}

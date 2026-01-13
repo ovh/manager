@@ -1,4 +1,4 @@
-import { TrackingContextParams } from '@ovh-ux/manager-react-shell-client';
+import type { TrackingContextParams } from '@ovh-ux/manager-react-shell-client';
 
 export const getTrackingContext = (appName: string): TrackingContextParams => ({
   chapter1: 'Baremetal',

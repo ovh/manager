@@ -1,23 +1,23 @@
 import React from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import {
   BUTTON_SIZE,
-  TEXT_PRESET,
-  MESSAGE_COLOR,
-  Text,
   Button,
+  MESSAGE_COLOR,
   Message,
   MessageBody,
   MessageIcon,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { LinkType, Link, BaseLayout } from '@ovh-ux/muk';
-import { LoadingText } from '../LoadingText.component';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Link, LinkType } from '@ovh-ux/muk';
+
 import { Breadcrumb } from '../Breadcrumb.component';
+import { LoadingText } from '../LoadingText.component';
 
 export type CreatePageLayoutProps = React.PropsWithChildren<{
   overviewUrl?: string;
@@ -73,11 +73,11 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           }}
         />
       )}
-      <Text preset={TEXT_PRESET.heading2} className="block mb-7">
+      <Text preset={TEXT_PRESET.heading2} className="mb-7 block">
         {title}
       </Text>
       {description && (
-        <Text className="block mb-8" preset={TEXT_PRESET.paragraph}>
+        <Text className="mb-8 block" preset={TEXT_PRESET.paragraph}>
           {description}
         </Text>
       )}
@@ -109,11 +109,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
         </div>
       )}
       {hasFormError && (
-        <Message
-          dismissible={false}
-          className="mt-5"
-          color={MESSAGE_COLOR.critical}
-        >
+        <Message dismissible={false} className="mt-5" color={MESSAGE_COLOR.critical}>
           <MessageIcon name="hexagon-exclamation" />
           <MessageBody>{formErrorMessage}</MessageBody>
         </Message>

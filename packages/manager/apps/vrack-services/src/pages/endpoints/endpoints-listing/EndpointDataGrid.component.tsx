@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SPINNER_SIZE, Spinner, Text } from '@ovhcloud/ods-react';
+
 import { useParams } from 'react-router-dom';
-import { ColumnSort } from '@tanstack/react-table';
-import { Datagrid, DatagridColumn, Error } from '@ovh-ux/muk';
-import {
-  useVrackService,
-  useServiceList,
-} from '@ovh-ux/manager-network-common';
+
+import type { ColumnSort } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
+
+import { SPINNER_SIZE, Spinner, Text } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  getIamResourceQueryKey,
-  getIamResource,
-} from '@/data/api/get/iamResource';
-import { EndpointItem, useEndpointsList } from './useEndpointList.hook';
-import { ActionCell } from './ActionCell.component';
+import { useServiceList, useVrackService } from '@ovh-ux/manager-network-common';
+import { Datagrid, Error } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
+
+import { getIamResource, getIamResourceQueryKey } from '@/data/api/get/iamResource';
+import { IAMResource } from '@/data/types/IAMResource.type';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
-import { IAMResource } from '@/data/types';
+
+import { ActionCell } from './ActionCell.component';
+import { EndpointItem, useEndpointsList } from './useEndpointList.hook';
 
 export const EndpointDatagrid: React.FC = () => {
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.endpoints,
-    NAMESPACES.DASHBOARD,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.endpoints, NAMESPACES.DASHBOARD]);
   const { id } = useParams();
 
   const { data: vs, isError, error, isLoading } = useVrackService();
@@ -32,7 +30,7 @@ export const EndpointDatagrid: React.FC = () => {
     isIamResourcesLoading,
     iamResourcesError,
     serviceListError,
-  } = useServiceList(id, {
+  } = useServiceList(id || '', {
     getIamResourceQueryKey,
     getIamResource,
   });
@@ -43,12 +41,11 @@ export const EndpointDatagrid: React.FC = () => {
     },
   ]);
 
-  const endpointList = useEndpointsList(sorting[0]);
+  const endpointList = useEndpointsList(sorting[0] || { id: 'managedServiceURN', desc: false });
 
   const findMatchingIAMResourceType = (endpoint: EndpointItem) =>
     iamResources?.data?.find(
-      (iamResource: IAMResource) =>
-        iamResource.urn === endpoint.managedServiceURN,
+      (iamResource: IAMResource) => iamResource.urn === endpoint.managedServiceURN,
     )?.type;
 
   const columns: DatagridColumn<EndpointItem>[] = [
@@ -60,8 +57,7 @@ export const EndpointDatagrid: React.FC = () => {
       isSortable: true,
       cell: (cellContext) => {
         const resource = iamResources?.data?.find(
-          (iamResource) =>
-            iamResource.urn === cellContext.row.original.managedServiceURN,
+          (iamResource) => iamResource.urn === cellContext.row.original.managedServiceURN,
         );
         return (
           <Text>
@@ -81,9 +77,7 @@ export const EndpointDatagrid: React.FC = () => {
       maxSize: 100,
       accessorFn: findMatchingIAMResourceType,
       cell: (cellContext) => {
-        const resourceType = findMatchingIAMResourceType(
-          cellContext.row.original,
-        );
+        const resourceType = findMatchingIAMResourceType(cellContext.row.original);
         return <Text>{resourceType}</Text>;
       },
     },
@@ -110,9 +104,12 @@ export const EndpointDatagrid: React.FC = () => {
       isSortable: false,
       maxSize: 50,
       minSize: 50,
-      cell: (cellContext) => (
-        <ActionCell vs={vs} endpoint={cellContext.row.original} />
-      ),
+      cell: (cellContext) => {
+        if (!vs) {
+          return null;
+        }
+        return <ActionCell vs={vs} endpoint={cellContext.row.original} />;
+      },
     },
   ];
 

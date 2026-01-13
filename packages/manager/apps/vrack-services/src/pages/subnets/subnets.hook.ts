@@ -1,10 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { urls } from '@/routes/routes.constants';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { urls } from '@/routes/RoutesAndUrl.constants';
 
 export const useNavigateToCreateSubnetPage = () => {
   const { trackClick } = useOvhTracking();
@@ -17,6 +15,6 @@ export const useNavigateToCreateSubnetPage = () => {
       buttonType: ButtonType.button,
       actions: ['create-subnet'],
     });
-    navigate(urls.createSubnet.replace(':id', id));
+    navigate(urls.createSubnet.replace(':id', id || ''));
   };
 };

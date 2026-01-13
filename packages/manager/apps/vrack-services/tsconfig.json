@@ -1,27 +1,27 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "lib": ["dom", "es2021"],
-    "noEmit": true,
-    "target": "es2020",
-    "types": ["vite/client", "node"],
-    "module": "ES2020",
-    "moduleResolution": "bundler",
-    "removeComments": true,
+    "types": [
+      "vite/client",
+      "node"
+    ],
     "outDir": "dist",
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
     "noImplicitAny": true,
-    "declaration": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "jsx": "react",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "baseUrl": "."
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "types"]
+  "include": [
+    "src",
+    "public/**/*.json",
+    "src/__mocks__/**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types"
+  ]
 }

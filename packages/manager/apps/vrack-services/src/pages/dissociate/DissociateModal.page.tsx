@@ -1,39 +1,44 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import {
-  BUTTON_VARIANT,
-  MESSAGE_COLOR,
-  TEXT_PRESET,
   BUTTON_COLOR,
-  MODAL_COLOR,
+  BUTTON_VARIANT,
   Button,
+  MESSAGE_COLOR,
+  MODAL_COLOR,
   Message,
-  Modal,
-  Text,
-  ModalContent,
-  ModalBody,
   MessageBody,
   MessageIcon,
+  Modal,
+  ModalBody,
+  ModalContent,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-import { useQueryClient } from '@tanstack/react-query';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  getVrackServicesResourceListQueryKey,
+  useDissociateVrack,
+  useVrackService,
+} from '@ovh-ux/manager-network-common';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  getVrackServicesResourceListQueryKey,
-  useDissociateVrack,
-  useVrackService,
-} from '@ovh-ux/manager-network-common';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+
 import { LoadingText } from '@/components/LoadingText.component';
+import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 import { PageName } from '@/utils/tracking';
 import { getDisplayName } from '@/utils/vrack-services';
-import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const sharedTrackingParams = {
   location: PageLocation.popup,
@@ -46,10 +51,7 @@ export default function DissociateModal() {
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { data: vs } = useVrackService();
   const navigate = useNavigate();
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.dissociate,
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.dissociate, NAMESPACES.ACTIONS]);
   const { trackClick, trackPage } = useOvhTracking();
   const closeModal = () => {
     trackClick({
@@ -61,20 +63,20 @@ export default function DissociateModal() {
   };
 
   const { dissociateVs, isPending, error, isError } = useDissociateVrack({
-    vrackServicesId: id,
+    vrackServicesId: id ?? '',
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: PageName.successDissociateVrack,
       });
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
       navigate('..');
       addSuccessMessage(
         t('vrackServicesDissociateSuccess', {
-          vs: getDisplayName(vs),
-          vrack: vrackId,
+          vs: getDisplayName(vs) || '',
+          vrack: vrackId || '',
         }),
         { vrackServicesId: id },
       );
@@ -101,7 +103,7 @@ export default function DissociateModal() {
     >
       <ModalContent dismissible={!isPending} color={MODAL_COLOR.critical}>
         <ModalBody>
-          <Text className="block mb-4" preset={TEXT_PRESET.heading4}>
+          <Text className="mb-4 block" preset={TEXT_PRESET.heading4}>
             {t('modalDissociateHeadline')}
           </Text>
           {!!isError && (
@@ -109,13 +111,13 @@ export default function DissociateModal() {
               <MessageIcon name="hexagon-exclamation" />
               <MessageBody>
                 {t('modalDissociateError', {
-                  error: error.response?.data?.message || error?.message,
+                  error: error?.response?.data?.message || error?.message || '',
                 })}
               </MessageBody>
             </Message>
           )}
 
-          <Text preset={TEXT_PRESET.paragraph} className="block mb-8">
+          <Text preset={TEXT_PRESET.paragraph} className="mb-8 block">
             {t('modalDissociateDescription')}
           </Text>
           {isPending && (

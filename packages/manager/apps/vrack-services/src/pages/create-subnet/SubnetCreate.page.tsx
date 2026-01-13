@@ -1,79 +1,74 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
 import {
-  INPUT_TYPE,
-  TEXT_PRESET,
-  Radio,
-  Text,
-  Input,
   FormField,
-  FormFieldLabel,
-  FormFieldHelper,
   FormFieldError,
-  RadioGroup,
+  FormFieldHelper,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  Radio,
   RadioControl,
+  RadioGroup,
   RadioLabel,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
+
 import {
   getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
   useUpdateVrackServices,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
-import { CreatePageLayout } from '@/components/layout-helpers';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { CreatePageLayout } from '@/components/layout-helpers/CreatePageLayout.component';
+import { urls } from '@/routes/RoutesAndUrl.constants';
+import { isValidCidr } from '@/utils/cidr';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { PageName } from '@/utils/tracking';
+import { isValidVlanNumber } from '@/utils/vrack-services';
+
 import {
-  displayNameInputName,
   cidrInputName,
+  defaultCidr,
+  defaultServiceRange,
+  displayNameInputName,
+  noVlanOptionValue,
   serviceRangeSelectName,
   vlanInputName,
   vlanNumberInputName,
-  noVlanOptionValue,
   vlanNumberOptionValue,
-  defaultCidr,
-  defaultServiceRange,
-} from './subnetCreate.constants';
-import { urls } from '@/routes/routes.constants';
-import { PageName } from '@/utils/tracking';
-import { isValidVlanNumber } from '@/utils/vrack-services';
-import { isValidCidr } from '@/utils/cidr';
-import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+} from './SubnetCreateForm.constants';
 
 export default function SubnetCreate() {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.subnets);
   const { id } = useParams();
-  const [displayName, setDisplayName] = React.useState<string | undefined>(
-    undefined,
-  );
+  const [displayName, setDisplayName] = React.useState<string | undefined>(undefined);
   const [cidr, setCidr] = React.useState<string | undefined>(undefined);
-  const [serviceRange, setServiceRange] = React.useState<string | undefined>(
-    undefined,
-  );
-  const [selectedVlanInput, setSelectedVlanInput] = React.useState(
-    noVlanOptionValue,
-  );
+  const [serviceRange, setServiceRange] = React.useState<string | undefined>(undefined);
+  const [selectedVlanInput, setSelectedVlanInput] = React.useState(noVlanOptionValue);
   const [vlan, setVlan] = React.useState<number | undefined>(undefined);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const vrackServices = useVrackService();
-  const dashboardUrl = urls.subnets.replace(':id', id);
+  const dashboardUrl = urls.subnets.replace(':id', id || '');
   const { trackPage } = useOvhTracking();
 
-  const {
-    createSubnet,
-    updateError,
-    isError,
-    isPending,
-  } = useUpdateVrackServices({
-    id,
+  const { createSubnet, updateError, isError, isPending } = useUpdateVrackServices({
+    id: id || '',
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
-      queryClient.invalidateQueries({
-        queryKey: getVrackServicesResourceQueryKey(id),
+      void queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceQueryKey(id || ''),
       });
       trackPage({
         pageName: PageName.successCreateSubnet,
@@ -100,41 +95,41 @@ export default function SubnetCreate() {
         error: updateError?.response?.data?.message,
       })}
       confirmActionsTracking={['add_subnets', 'confirm']}
-      onSubmit={() =>
+      onSubmit={() => {
+        if (!vrackServices?.data) {
+          return;
+        }
         createSubnet({
-          vs: vrackServices?.data,
+          vs: vrackServices.data,
           cidr: cidr || defaultCidr,
           serviceRange: serviceRange || defaultServiceRange,
           displayName,
           vlan,
-        })
-      }
+        });
+      }}
       isSubmitPending={isPending}
       isFormSubmittable={
         !vrackServices?.isLoading &&
         !isPending &&
-        (selectedVlanInput === noVlanOptionValue || isValidVlanNumber(vlan)) &&
+        (selectedVlanInput === noVlanOptionValue ||
+          (vlan !== undefined && isValidVlanNumber(vlan))) &&
         ((!!cidr && isValidCidr(cidr)) || (!cidr && !!defaultCidr))
       }
     >
       <FormField className="mb-4 max-w-md">
-        <FormFieldLabel htmlFor={displayNameInputName}>
-          {t('subnetNameLabel')}
-        </FormFieldLabel>
+        <FormFieldLabel htmlFor={displayNameInputName}>{t('subnetNameLabel')}</FormFieldLabel>
         <Input
           id={displayNameInputName}
           name={displayNameInputName}
           disabled={isPending}
           type={INPUT_TYPE.text}
           placeholder={t('subnetNamePlaceholder')}
-          onChange={(e) => setDisplayName(e?.target.value as string)}
+          onChange={(e) => setDisplayName(e?.target.value)}
         />
       </FormField>
 
       <FormField className="mb-4 max-w-md">
-        <FormFieldLabel htmlFor={cidrInputName}>
-          {t('cidrLabel')}
-        </FormFieldLabel>
+        <FormFieldLabel htmlFor={cidrInputName}>{t('cidrLabel')}</FormFieldLabel>
         {!!cidr && !isValidCidr(cidr) && <FormFieldError />}
         <Input
           id={cidrInputName}
@@ -142,35 +137,29 @@ export default function SubnetCreate() {
           disabled={isPending}
           type={INPUT_TYPE.text}
           placeholder={defaultCidr}
-          onChange={(e) => setCidr(e?.target.value as string)}
+          onChange={(e) => setCidr(e?.target.value)}
         />
         <FormFieldHelper>
-          <Text preset={TEXT_PRESET.caption}>
-            {t('subnetRangeAdditionalText')}
-          </Text>
+          <Text preset={TEXT_PRESET.caption}>{t('subnetRangeAdditionalText')}</Text>
         </FormFieldHelper>
       </FormField>
 
       <FormField className="mb-4 max-w-md">
-        <FormFieldLabel htmlFor={serviceRangeSelectName}>
-          {t('serviceRangeLabel')}
-        </FormFieldLabel>
+        <FormFieldLabel htmlFor={serviceRangeSelectName}>{t('serviceRangeLabel')}</FormFieldLabel>
         <Input
           id={serviceRangeSelectName}
           name={serviceRangeSelectName}
           disabled={isPending}
           placeholder={defaultServiceRange}
           type={INPUT_TYPE.text}
-          onChange={(e) => setServiceRange(e?.target.value as string)}
+          onChange={(e) => setServiceRange(e?.target.value)}
         />
         <FormFieldHelper>
-          <Text preset={TEXT_PRESET.caption}>
-            {t('serviceRangeAdditionalText')}
-          </Text>
+          <Text preset={TEXT_PRESET.caption}>{t('serviceRangeAdditionalText')}</Text>
         </FormFieldHelper>
       </FormField>
 
-      <FormField className="grid mb-4 gap-2">
+      <FormField className="mb-4 grid gap-2">
         <FormFieldLabel>{t('vlanLabel')}</FormFieldLabel>
         <FormFieldHelper>
           <Text slot="helper" preset={TEXT_PRESET.caption}>
@@ -180,7 +169,7 @@ export default function SubnetCreate() {
         <RadioGroup
           name={vlanInputName}
           value={selectedVlanInput}
-          onValueChange={(event) => setSelectedVlanInput(event?.value)}
+          onValueChange={(event) => setSelectedVlanInput(event?.value || '')}
         >
           <Radio value={noVlanOptionValue} disabled={isPending}>
             <RadioControl />
@@ -199,10 +188,8 @@ export default function SubnetCreate() {
       </FormField>
 
       {selectedVlanInput === vlanNumberOptionValue && (
-        <FormField className="block mb-6 max-w-md">
-          <FormFieldLabel htmlFor={vlanNumberInputName}>
-            {t('vlanNumberLabel')}
-          </FormFieldLabel>
+        <FormField className="mb-6 block max-w-md">
+          <FormFieldLabel htmlFor={vlanNumberInputName}>{t('vlanNumberLabel')}</FormFieldLabel>
           <Input
             id={vlanNumberInputName}
             name={vlanNumberInputName}

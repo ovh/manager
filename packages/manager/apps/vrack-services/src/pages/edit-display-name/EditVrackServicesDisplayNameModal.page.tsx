@@ -1,23 +1,27 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  TrackingClickParams,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { UpdateNameModal } from '@ovh-ux/muk';
+
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { useUpdateServiceDisplayName } from '@ovh-ux/manager-module-common-api';
 import {
   getVrackServicesResourceListQueryKey,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
-import { useUpdateServiceDisplayName } from '@ovh-ux/manager-module-common-api';
-import { PageName } from '@/utils/tracking';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import type { TrackingClickParams } from '@ovh-ux/manager-react-shell-client';
+import { UpdateNameModal } from '@ovh-ux/muk';
+
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { PageName } from '@/utils/tracking';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -46,7 +50,7 @@ export default function EditVrackServicesDisplayNameModal() {
       { vrackServicesId: id },
     );
     setTimeout(() => {
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
     }, 2000);
@@ -59,12 +63,10 @@ export default function EditVrackServicesDisplayNameModal() {
     });
   };
 
-  const {
-    updateDisplayName,
-    isPending,
-    error,
-    isError,
-  } = useUpdateServiceDisplayName({ onSuccess, onError });
+  const { updateDisplayName, isPending, error, isError } = useUpdateServiceDisplayName({
+    onSuccess,
+    onError,
+  });
 
   const onClose = () => {
     trackClick({
@@ -91,7 +93,7 @@ export default function EditVrackServicesDisplayNameModal() {
           actionType: 'action',
           actions: ['edit_vrack-services', 'confirm'],
         });
-        updateDisplayName({ resourceName: id, displayName });
+        updateDisplayName({ resourceName: id || '', displayName });
       }}
       defaultValue={vs?.iam?.displayName}
     />

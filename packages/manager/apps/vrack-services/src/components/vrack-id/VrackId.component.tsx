@@ -1,12 +1,17 @@
 import React from 'react';
-import { BUTTON_VARIANT, Link, Text } from '@ovhcloud/ods-react';
-import { ActionMenu } from '@ovh-ux/muk';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+
 import { useTranslation } from 'react-i18next';
+
+import { BUTTON_VARIANT, Link, Text } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useVrackMenuItems } from './useVrackMenuItems.hook';
+import type { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu } from '@ovh-ux/muk';
+
 import { isEditable } from '@/utils/vrack-services';
+
+import { useVrackMenuItems } from './useVrackMenuItems.hook';
 
 export type VrackIdProps = { isListing?: boolean } & VrackServicesWithIAM;
 
@@ -21,20 +26,16 @@ export const VrackId: React.FC<VrackIdProps> = ({ isListing, ...vs }) => {
     if (vrackId) {
       shell.navigation
         .getURL('dedicated', `#/vrack/${vrackId}`, {})
-        .then(setVrackUrl);
+        .then((url) => void setVrackUrl(url as string));
     }
-  }, [vrackId]);
+  }, [vrackId, shell.navigation]);
 
   return isListing ? (
     <Text>{vrackId ?? t('none')}</Text>
   ) : (
     <div className="flex items-center">
       <div className="grow">
-        {vrackId ? (
-          <Link href={vrackUrl}>{vrackId}</Link>
-        ) : (
-          <Text>{vrackId}</Text>
-        )}
+        {vrackId ? <Link href={vrackUrl}>{vrackId}</Link> : <Text>{vrackId}</Text>}
       </div>
       <div className="flex-none">
         <ActionMenu

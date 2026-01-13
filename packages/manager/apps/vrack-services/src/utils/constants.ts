@@ -1,4 +1,4 @@
-import { ChangelogMenuLinks } from '@ovh-ux/muk';
+import type { ChangelogMenuLinks } from '@ovh-ux/muk';
 
 export const CHANGELOG_LINKS: ChangelogMenuLinks = {
   changelog:
