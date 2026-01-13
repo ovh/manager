@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Breadcrumb, Notifications } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
@@ -38,6 +38,7 @@ export default function DashboardPage() {
         backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
         onClickReturn={onNavigateBackClicked}
         breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
+        message={<Notifications />}
         tabs={
           <OdsTabs>
             {tabs.map((tab) => (
