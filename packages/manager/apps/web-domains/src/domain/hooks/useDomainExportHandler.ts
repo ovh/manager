@@ -43,6 +43,9 @@ export const useDomainExportHandler = ({
 
       try {
         let fetchedDomains: TDomainResource[] | undefined;
+        if (!selection?.domainColumns || !selection?.contactColumns) {
+          throw new Error('Invalid selection');
+        }
 
         // Phase 1: Fetch all domains if needed
         if (exportAllServices) {
