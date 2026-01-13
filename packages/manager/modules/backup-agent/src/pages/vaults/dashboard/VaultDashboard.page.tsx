@@ -14,12 +14,13 @@ import { BackupAgentContext } from '@/BackupAgent.context';
 import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
 
 import { useVaultDashboardTabs } from './_hooks/useVaultDashboardTabs';
+import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 
 export default function VaultDashboardPage() {
   const { appName } = useContext(BackupAgentContext);
   const { vaultId } = useParams<{ vaultId: string }>();
   const { data: vaultResource } = useBackupVaultDetails({ vaultId: vaultId! });
-  const { t } = useTranslation(['common', 'dashboard']);
+  const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
   const { trackClick } = useOvhTracking();
@@ -33,7 +34,7 @@ export default function VaultDashboardPage() {
   return (
     <BaseLayout
       header={{ title: vaultResource?.currentState.name ?? vaultId }}
-      backLinkLabel={t('dashboard:back')}
+      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
       onClickReturn={onNavigateBackClicked}
       breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
       tabs={
