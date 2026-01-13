@@ -5,10 +5,12 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { Icon } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Button } from '@ovh-ux/muk';
 
 import { ProductType, useProductType } from '@/common/hooks/useProductType';
 
@@ -42,15 +44,15 @@ export const NameTileItem = ({ okms }: NameTileItemProps) => {
             {okms.iam.displayName}
           </OdsText>
           <div className="min-w-fit">
-            <OdsButton
+            <Button
               aria-label="edit"
               size="sm"
               variant="ghost"
               color="primary"
               onClick={() => navigate(renameLink)}
-              icon="pen"
-              label=""
-            />
+            >
+              <Icon name="pen" />
+            </Button>
           </div>
         </div>
       </ManagerTile.Item.Description>

@@ -20,11 +20,12 @@ import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-for
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { PATH_LABEL } from '@/constants';
@@ -160,11 +161,10 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
       </div> */}
         <div className="flex items-center justify-between py-3">
           <SecretFormBackLink />
-          <OdsButton
+          <Button
             type="submit"
-            isDisabled={!isDirty || !isValid || !okmsId}
-            isLoading={isPending}
-            label={t('create', { ns: NAMESPACES.ACTIONS })}
+            disabled={!isDirty || !isValid || !okmsId}
+            loading={isPending}
             data-testid={SECRET_FORM_TEST_IDS.SUBMIT_BUTTON}
             onClick={() => {
               trackClick({
@@ -174,7 +174,9 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
                 actions: ['create', 'secret'],
               });
             }}
-          />
+          >
+            {t('create', { ns: NAMESPACES.ACTIONS })}
+          </Button>
         </div>
       </form>
     </FormProvider>

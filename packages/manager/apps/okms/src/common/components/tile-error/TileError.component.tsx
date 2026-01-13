@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Button } from '@ovh-ux/muk';
 
 import { ErrorResponse } from '@/common/types/api.type';
 
@@ -19,7 +20,7 @@ export const TileError = ({ error, onRetry }: TileErrorProps) => {
       <OdsMessage color="danger" isDismissible={false}>
         {t('error_message', { message: error?.response?.data?.message })}
       </OdsMessage>
-      <OdsButton label={t('retry')} onClick={onRetry} />
+      <Button onClick={onRetry}>{t('retry')}</Button>
     </div>
   );
 };

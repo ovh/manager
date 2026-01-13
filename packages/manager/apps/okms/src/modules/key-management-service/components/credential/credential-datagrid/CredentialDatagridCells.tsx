@@ -7,15 +7,9 @@ import { OkmsCredential } from '@key-management-service/types/okmsCredential.typ
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-
-import {
-  ActionMenu,
-  ActionMenuItem,
-  Clipboard,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
+import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
 
 import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -96,7 +90,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: 
   const { trackClick } = useOkmsTracking();
   const { filename, href, isDisabled } = getDownloadCredentialParameters(credential);
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     {
       id: 1,
       label: t('key_management_service_credential_download'),
@@ -132,7 +126,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: 
     <ActionMenu
       id={`credentialsActions-${credential.id}`}
       items={items}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       isCompact
     />
   );

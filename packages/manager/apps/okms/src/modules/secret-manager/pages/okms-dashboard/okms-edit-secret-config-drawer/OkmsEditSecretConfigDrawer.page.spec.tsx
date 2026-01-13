@@ -6,11 +6,9 @@ import {
 } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.handler';
 import { mockSecretConfigOkms } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
@@ -72,7 +70,7 @@ describe('okms edit secret config drawer page test suite', () => {
   });
 
   it('should render form with correct data when everything loads successfully', async () => {
-    const { container } = await renderPage();
+    await renderPage();
 
     // Wait for form to be rendered
     const maxVersions = mockSecretConfigOkms.maxVersions.toString();
@@ -85,16 +83,15 @@ describe('okms edit secret config drawer page test suite', () => {
     expect(screen.getByDisplayValue(maxVersions)).toBeInTheDocument();
 
     // Check submit button is present
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
     expect(submitButton).toBeInTheDocument();
   });
 
   it('should handle form submission and navigation flow', async () => {
     // GIVEN
-    const { user, container } = await renderPage();
+    const { user } = await renderPage();
 
     // WHEN
     // Change the data input value
@@ -104,11 +101,10 @@ describe('okms edit secret config drawer page test suite', () => {
     );
 
     // Submit form
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
-    await act(() => user.click(submitButton));
+    await user.click(submitButton);
 
     // THEN
     // Wait for drawer to close (navigation)
@@ -121,7 +117,7 @@ describe('okms edit secret config drawer page test suite', () => {
 
   it('should handle form submission errors', async () => {
     // GIVEN isUpdateSecretConfigKO
-    const { user, container } = await renderPage({
+    const { user } = await renderPage({
       isUpdateSecretConfigKO: true,
     });
 
@@ -131,11 +127,10 @@ describe('okms edit secret config drawer page test suite', () => {
 
     // WHEN
     // Submit form
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
-    await act(() => user.click(submitButton));
+    await user.click(submitButton);
 
     // THEN
     // Verify error is displayed

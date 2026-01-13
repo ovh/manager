@@ -1,114 +1,6 @@
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value/secretValueToggle.constants';
-import { act, fireEvent, screen, waitFor, waitForOptions } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { UserEvent } from '@testing-library/user-event';
-
-import { OdsIcon } from '@ovhcloud/ods-components/react';
-
-const WAIT_FOR_DEFAULT_OPTIONS = { timeout: 3000 };
-
-/* GET BY LABEL */
-
-type GetOdsButtonParams = {
-  container: HTMLElement;
-  label?: string;
-  altLabel?: string;
-  iconName?: React.ComponentProps<typeof OdsIcon>['name'];
-  disabled?: boolean;
-  isLink?: boolean;
-  nth?: number;
-} & waitForOptions;
-
-const getOdsButton = async ({
-  container,
-  label,
-  altLabel,
-  iconName,
-  disabled,
-  isLink,
-  nth = 0,
-  ...options
-}: GetOdsButtonParams) => {
-  let button: HTMLOdsLinkElement | HTMLOdsButtonElement | undefined;
-  await waitFor(
-    () => {
-      const htmlTag = isLink ? 'ods-link' : 'ods-button';
-      const buttonList = container.querySelectorAll(htmlTag);
-
-      if (iconName) {
-        // filter by icon
-        button = Array.from(buttonList).filter((btn) => btn.getAttribute('icon') === iconName)[nth];
-      } else {
-        // filter by label or altLabel
-        button = Array.from(buttonList).filter((btn) =>
-          [label, altLabel].includes(btn.getAttribute('label') ?? ''),
-        )[nth];
-      }
-
-      // If disabled is undefined, we do not do more checks
-      if (disabled === undefined) {
-        return true;
-      }
-
-      if (isLink) {
-        return disabled
-          ? expect(button).toHaveAttribute('is-disabled', 'true')
-          : expect(button).not.toHaveAttribute('is-disabled', 'true');
-      }
-      return disabled
-        ? expect(button).toHaveAttribute('disabled')
-        : expect(button).not.toHaveAttribute('disabled');
-    },
-    { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
-  );
-  if (!button) {
-    throw new Error(`Button ${label ?? altLabel ?? iconName ?? ''} not found`);
-  }
-  return button;
-};
-
-type GetOdsButtonByLabelParams = Omit<GetOdsButtonParams, 'iconName'> & {
-  label: string;
-};
-
-export const getOdsButtonByLabel = async ({
-  container,
-  label,
-  altLabel,
-  disabled,
-  isLink,
-  nth = 0,
-  ...options
-}: GetOdsButtonByLabelParams) => {
-  return getOdsButton({
-    container,
-    label,
-    altLabel,
-    disabled,
-    isLink,
-    nth,
-    ...options,
-  });
-};
-
-type GetOdsButtonByIconParams = Omit<GetOdsButtonParams, 'label' | 'altLabel'>;
-
-export const getOdsButtonByIcon = async ({
-  container,
-  iconName,
-  disabled,
-  isLink,
-  nth = 0,
-  ...options
-}: GetOdsButtonByIconParams) => {
-  return getOdsButton({
-    container,
-    iconName,
-    disabled,
-    isLink,
-    nth,
-    ...options,
-  });
-};
 
 /* GET BY TEST ID */
 
@@ -152,13 +44,21 @@ export const clickJsonEditorToggle = async (user: UserEvent) => {
   await act(() => user.click(jsonToggle));
 };
 
-export const assertPageTitleVisibility = async (title: string, timeout?: number) => {
+export const assertTitleVisibility = async (
+  title: string,
+  type: 'heading-1' | 'heading-2' | 'heading-3',
+  timeout?: number,
+) => {
   await waitFor(
     () => {
-      const titleElement = document.querySelector('.ods-text[preset="heading-1"]');
+      const titleElement = document.querySelector(`.ods-text[preset="${type}"]`);
       expect(titleElement).toBeInTheDocument();
       expect(titleElement).toHaveTextContent(title);
     },
     { timeout: timeout ?? 3000 },
   );
+};
+
+export const assertPageTitleVisibility = async (title: string, timeout?: number) => {
+  await assertTitleVisibility(title, 'heading-1', timeout);
 };

@@ -11,15 +11,8 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
+import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
   OdsFormField,
   OdsModal,
   OdsSelect,
@@ -29,6 +22,7 @@ import {
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -132,10 +126,10 @@ export const DisableServiceKeyModal = () => {
           </OdsSelect>
         </OdsFormField>
       )}
-      <OdsButton
+      <Button
         slot="actions"
-        variant={ODS_BUTTON_VARIANT.outline}
-        color={ODS_BUTTON_COLOR.primary}
+        variant="outline"
+        color="primary"
         onClick={() => {
           trackClick({
             location: PageLocation.popup,
@@ -145,17 +139,19 @@ export const DisableServiceKeyModal = () => {
           });
           closeModal();
         }}
-        label={tCommon('key_management_service_cancel')}
-      />
-      <OdsButton
-        isLoading={isPending}
-        isDisabled={!deactivationReason}
+      >
+        {tCommon('key_management_service_cancel')}
+      </Button>
+      <Button
+        loading={isPending}
+        disabled={!deactivationReason}
         slot="actions"
-        color={ODS_BUTTON_COLOR.primary}
+        color="primary"
         onClick={handleSubmit}
         aria-label="edit-name-okms"
-        label={t('key_management_service_service-keys_deactivation_button_confirm')}
-      />
+      >
+        {t('key_management_service_service-keys_deactivation_button_confirm')}
+      </Button>
     </OdsModal>
   );
 };

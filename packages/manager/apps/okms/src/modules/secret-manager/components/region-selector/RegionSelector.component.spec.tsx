@@ -14,13 +14,13 @@ import {
 } from '@/common/mocks/locations/locations.mock';
 import { CONTINENT_CODES } from '@/common/utils/location/continents';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
-import { getOdsButtonByIcon, getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
 import {
   GeographyGroup,
   useRegionSelector,
 } from '@/modules/secret-manager/hooks/useRegionSelector';
 
 import { RegionSelector } from './RegionSelector.component';
+import { REGION_SELECTOR_TEST_IDS } from './regionSelector.constants';
 
 let i18nValue: i18n;
 
@@ -122,15 +122,13 @@ describe('RegionSelector Component', () => {
       });
 
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
 
       // Then
-      const button = await getOdsButtonByIcon({
-        container,
-        iconName: 'chevron-down',
-      });
-
-      expect(button).toHaveAttribute('is-loading', 'true');
+      const button = await screen.findByTestId(
+        REGION_SELECTOR_TEST_IDS.TRIGGER_REGION_SELECTOR_BUTTON,
+      );
+      expect(button).toHaveAttribute('data-loading', 'true');
     });
   });
 
@@ -164,14 +162,11 @@ describe('RegionSelector Component', () => {
 
     it('should render the region selector with current region', async () => {
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
 
       // Then
       expect(screen.getByText(labels.common.region.region)).toBeInTheDocument();
-      await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.GRA,
-      });
+      expect(screen.getByRole('button', { name: mockRegionLabels.GRA })).toBeVisible();
     });
 
     it('should display all geography groups in the popover', async () => {
@@ -183,17 +178,17 @@ describe('RegionSelector Component', () => {
       expect(screen.getByText(mockGeographyNames.CA)).toBeInTheDocument();
 
       // Check region links
-      const graLink = await screen.findByText(mockRegionLabels.GRA);
+      const graLink = screen.getByRole('link', { name: mockRegionLabels.GRA });
       expect(graLink).toHaveAttribute(
         'href',
         SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name),
       );
-      const deLink = await screen.findByText(mockRegionLabels.DE);
+      const deLink = screen.getByRole('link', { name: mockRegionLabels.DE });
       expect(deLink).toHaveAttribute(
         'href',
         SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_LIM.name),
       );
-      const bhsLink = await screen.findByText(mockRegionLabels.BHS);
+      const bhsLink = screen.getByRole('link', { name: mockRegionLabels.BHS });
       expect(bhsLink).toHaveAttribute(
         'href',
         SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_CA_EAST_BHS.name),
@@ -205,10 +200,10 @@ describe('RegionSelector Component', () => {
       await renderRegionSelector();
 
       // Then
-      const current = await screen.findByText(mockRegionLabels.GRA);
+      const current = screen.getByRole('link', { name: mockRegionLabels.GRA });
       expect(current).toHaveClass('[&::part(link)]:text-[var(--ods-color-heading)]');
 
-      const notCurrent = await screen.findByText(mockRegionLabels.DE);
+      const notCurrent = screen.getByRole('link', { name: mockRegionLabels.DE });
       expect(notCurrent).toHaveClass('[&::part(link)]:text-[var(--ods-color-primary-500)]');
     });
 
@@ -236,15 +231,12 @@ describe('RegionSelector Component', () => {
       });
 
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
 
       // Then
-      const button = await getOdsButtonByIcon({
-        container,
-        iconName: 'chevron-down',
-      });
+      const button = screen.getByTestId(REGION_SELECTOR_TEST_IDS.TRIGGER_REGION_SELECTOR_BUTTON);
 
-      expect(button).toHaveAttribute('label', '');
+      expect(button).toHaveTextContent('');
     });
   });
 });

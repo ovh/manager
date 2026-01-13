@@ -128,7 +128,7 @@ const clickOnConfirmButton = async (user: UserEvent) => {
   let confirmButton: HTMLElement | undefined = undefined;
   await waitFor(() => {
     confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
-    expect(confirmButton).toHaveAttribute('is-disabled', 'false');
+    expect(confirmButton).not.toBeDisabled();
   });
   await user.click(confirmButton!);
 
@@ -232,7 +232,7 @@ describe('Order Okms Modal test suite', () => {
 
       const confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
       expect(confirmButton).toBeVisible();
-      expect(confirmButton).toHaveAttribute('is-disabled', 'true');
+      expect(confirmButton).toBeDisabled();
     });
 
     it('should enable confirm button on condition approval', async () => {
@@ -245,7 +245,7 @@ describe('Order Okms Modal test suite', () => {
 
       // THEN
       const confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
-      expect(confirmButton).toHaveAttribute('is-disabled', 'false');
+      expect(confirmButton).not.toBeDisabled();
     });
 
     it('should show a loading button on confirmation', async () => {
@@ -266,7 +266,7 @@ describe('Order Okms Modal test suite', () => {
       const confirmButton = await clickOnConfirmButton(user);
       // THEN - Test loading state
       await waitFor(() => {
-        expect(confirmButton).toHaveAttribute('is-loading', 'true');
+        expect(confirmButton).toHaveAttribute('data-loading', 'true');
       });
     });
 

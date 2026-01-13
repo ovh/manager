@@ -6,8 +6,8 @@ import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms'
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import {
   BaseLayout,
@@ -17,6 +17,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -75,10 +76,9 @@ export default function Listing() {
         }
       >
         <div className="flex flex-col gap-6">
-          <OdsButton
+          <Button
             className="w-fit"
-            size={ODS_BUTTON_SIZE.sm}
-            color={ODS_BUTTON_COLOR.primary}
+            color="primary"
             onClick={() => {
               clearNotifications();
               trackClick({
@@ -89,9 +89,10 @@ export default function Listing() {
               });
               navigate(KMS_ROUTES_URLS.kmsCreate);
             }}
-            label={t('key_management_service_listing_add_kms_button')}
             data-testid={kmsListingTestIds.ctaOrder}
-          />
+          >
+            {t('key_management_service_listing_add_kms_button')}
+          </Button>
 
           <OkmsDatagrid
             type="kms"

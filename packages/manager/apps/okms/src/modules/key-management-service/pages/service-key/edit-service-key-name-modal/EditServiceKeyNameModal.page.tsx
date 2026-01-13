@@ -10,15 +10,8 @@ import {
 } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
 
+import { ODS_INPUT_TYPE, ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
   OdsFormField,
   OdsInput,
   OdsModal,
@@ -28,6 +21,7 @@ import {
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -116,23 +110,20 @@ export const EditServiceKeyNameModal = () => {
           />
         </OdsFormField>
       )}
-      <OdsButton
-        slot="actions"
-        variant={ODS_BUTTON_VARIANT.outline}
-        color={ODS_BUTTON_COLOR.primary}
-        onClick={closeModal}
-        label={tCommon('key_management_service_cancel')}
-      />
-      <OdsButton
-        isLoading={isPending}
-        isDisabled={!!serviceKeyNameError || serviceKeyName === data?.name}
+      <Button slot="actions" variant="outline" color="primary" onClick={closeModal}>
+        {tCommon('key_management_service_cancel')}
+      </Button>
+      <Button
+        loading={isPending}
+        disabled={!!serviceKeyNameError || serviceKeyName === data?.name}
         slot="actions"
         data-testid={SERVICE_KEY_TEST_IDS.modifyNameButton}
-        color={ODS_BUTTON_COLOR.primary}
+        color="primary"
         onClick={() => updateKmsServiceKey({ name: serviceKeyName })}
         aria-label="edit-name-okms"
-        label={tCommon('key_management_service_modify')}
-      />
+      >
+        {tCommon('key_management_service_modify')}
+      </Button>
     </OdsModal>
   );
 };

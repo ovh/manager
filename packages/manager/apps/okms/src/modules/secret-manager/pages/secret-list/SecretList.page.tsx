@@ -15,7 +15,6 @@ import {
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
 import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -28,6 +27,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -75,8 +75,7 @@ export default function SecretListPage() {
       <div className="space-y-6">
         <div className="flex justify-between">
           <RegionSelector />
-          <OdsButton
-            label={t('okms_manage_label')}
+          <Button
             variant="outline"
             onClick={() => {
               navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId));
@@ -87,7 +86,9 @@ export default function SecretListPage() {
                 actions: ['okms'],
               });
             }}
-          />
+          >
+            {t('okms_manage_label')}
+          </Button>
         </div>
         <SecretDatagrid okmsId={okmsId} />
       </div>
@@ -149,8 +150,7 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
       onFetchNextPage={fetchNextPage}
       contentAlignLeft
       topbar={
-        <OdsButton
-          label={t('create_a_secret')}
+        <Button
           onClick={() => {
             navigate({
               pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
@@ -163,7 +163,9 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
               actions: ['create', 'secret'],
             });
           }}
-        />
+        >
+          {t('create_a_secret')}
+        </Button>
       }
     />
   );

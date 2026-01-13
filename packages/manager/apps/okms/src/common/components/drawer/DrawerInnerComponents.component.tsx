@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { Button } from '@ovh-ux/muk';
 
 // Sub components for the drawer
 // Those components will be moved to MRC to get a composable version of the drawer
@@ -40,24 +40,26 @@ export const DrawerFooter = ({
   return (
     <footer className="my-6 space-x-2 ">
       {secondaryButtonLabel && (
-        <OdsButton
-          variant={'ghost'}
-          label={secondaryButtonLabel}
-          isLoading={isSecondaryButtonLoading}
-          isDisabled={isSecondaryButtonDisabled}
+        <Button
+          variant="ghost"
+          loading={isSecondaryButtonLoading}
+          disabled={isSecondaryButtonDisabled}
           onClick={onSecondaryButtonClick}
-          color={'primary'}
-        />
+          color="primary"
+        >
+          {secondaryButtonLabel}
+        </Button>
       )}
       {primaryButtonLabel && (
-        <OdsButton
-          variant={'default'}
-          label={primaryButtonLabel}
-          isLoading={isPrimaryButtonLoading}
-          isDisabled={isPrimaryButtonDisabled}
+        <Button
+          variant="default"
+          loading={isPrimaryButtonLoading}
+          disabled={isPrimaryButtonDisabled}
           onClick={onPrimaryButtonClick}
-          color={'primary'}
-        />
+          color="primary"
+        >
+          {primaryButtonLabel}
+        </Button>
       )}
     </footer>
   );

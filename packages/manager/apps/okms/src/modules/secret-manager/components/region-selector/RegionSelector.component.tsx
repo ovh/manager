@@ -4,12 +4,16 @@ import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsDivider, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsDivider, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
+import { Icon } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Button } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
 import { useRegionSelector } from '@/modules/secret-manager/hooks/useRegionSelector';
+
+import { REGION_SELECTOR_TEST_IDS } from './regionSelector.constants';
 
 export const RegionSelector = () => {
   const { geographyGroups, currentRegion, isLoading, isError } = useRegionSelector();
@@ -27,14 +31,17 @@ export const RegionSelector = () => {
     <div className="flex items-center gap-2">
       <OdsText preset="heading-6">{t('region')}</OdsText>
       <div>
-        <OdsButton
-          icon="chevron-down"
-          iconAlignment="right"
+        <Button
           id="trigger-region-selector-popover"
-          label={currentRegion ? translateRegionName(currentRegion.region) : ''}
           variant="ghost"
-          isLoading={isLoading}
-        />
+          loading={isLoading}
+          data-testid={REGION_SELECTOR_TEST_IDS.TRIGGER_REGION_SELECTOR_BUTTON}
+        >
+          <>
+            {currentRegion ? translateRegionName(currentRegion.region) : ''}
+            <Icon name="chevron-down" />
+          </>
+        </Button>
         <OdsPopover
           data-testid="region-selector-popover"
           ref={popoverRef}

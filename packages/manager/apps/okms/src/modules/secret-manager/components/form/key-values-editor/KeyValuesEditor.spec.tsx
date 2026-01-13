@@ -5,10 +5,7 @@ import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
-import {
-  changeOdsInputValueByTestId,
-  getOdsButtonByLabel,
-} from '@/common/utils/tests/uiTestHelpers';
+import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 import { FormFieldInput, KeyValuesEditor } from './KeyValuesEditor';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
@@ -70,7 +67,7 @@ describe('KeyValuesEditor', () => {
       // Given
 
       // When
-      const { container } = await renderTest(mockDefaultValues.valid);
+      await renderTest(mockDefaultValues.valid);
 
       // Then
       expect(
@@ -80,9 +77,8 @@ describe('KeyValuesEditor', () => {
         screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemValueInput(1)),
       ).toBeInTheDocument();
 
-      const addButton = await getOdsButtonByLabel({
-        container,
-        label: labels.add_row,
+      const addButton = screen.getByRole('button', {
+        name: labels.add_row,
       });
       expect(addButton).toBeInTheDocument();
     });
@@ -117,12 +113,11 @@ describe('KeyValuesEditor', () => {
     test('should add new key-value pair when add button is clicked', async () => {
       // Given
       const user = userEvent.setup();
-      const { container } = await renderTest(mockDefaultValues.valid);
+      await renderTest(mockDefaultValues.valid);
 
       // When
-      const addButton = await getOdsButtonByLabel({
-        container,
-        label: labels.add_row,
+      const addButton = screen.getByRole('button', {
+        name: labels.add_row,
       });
 
       await act(async () => user.click(addButton));
@@ -204,7 +199,7 @@ describe('KeyValuesEditor', () => {
 
       // Then
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
-      expect(deleteButton).toHaveAttribute('is-disabled', 'true');
+      expect(deleteButton).toBeDisabled();
     });
 
     test('should enable delete buttons when multiple items exist', async () => {
@@ -239,18 +234,17 @@ describe('KeyValuesEditor', () => {
     test('should enable delete button after adding a second item', async () => {
       // Given
       const user = userEvent.setup();
-      const { container } = await renderTest(mockDefaultValues.empty);
+      await renderTest(mockDefaultValues.empty);
 
       // Initial state - delete button should be disabled
       const initialDeleteButton = screen.getByTestId(
         KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0),
       );
-      expect(initialDeleteButton).toHaveAttribute('is-disabled', 'true');
+      expect(initialDeleteButton).toBeDisabled();
 
       // When - add a second item
-      const addButton = await getOdsButtonByLabel({
-        container,
-        label: labels.add_row,
+      const addButton = screen.getByRole('button', {
+        name: labels.add_row,
       });
 
       await act(async () => user.click(addButton));

@@ -4,15 +4,11 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { deleteSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { act, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import {
-  assertOdsModalVisibility,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertOdsModalVisibility, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
@@ -53,15 +49,11 @@ describe('Delete secret modal test suite', () => {
 
     await assertOdsModalVisibility({ container, isVisible: true });
 
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.delete,
-      disabled: false,
+    const submitButton = await screen.findByRole('button', {
+      name: labels.common.actions.delete,
     });
 
-    await act(async () => {
-      await user.click(submitButton);
-    });
+    await user.click(submitButton);
 
     // Check navigation
     await waitFor(() => {
@@ -77,15 +69,11 @@ describe('Delete secret modal test suite', () => {
 
     await assertOdsModalVisibility({ container, isVisible: true });
 
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.delete,
-      disabled: false,
+    const submitButton = await screen.findByRole('button', {
+      name: labels.common.actions.delete,
     });
 
-    await act(async () => {
-      await user.click(submitButton);
-    });
+    await user.click(submitButton);
 
     await assertTextVisibility(deleteSecretErrorMessage);
 

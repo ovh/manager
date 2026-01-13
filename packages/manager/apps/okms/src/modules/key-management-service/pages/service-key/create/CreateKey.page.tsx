@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import Breadcrumb from '@key-management-service/components/breadcrumb/KmsBreadcrumb';
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { useCreateOkmsServiceKey } from '@key-management-service/data/hooks/useCreateOkmsServiceKey';
@@ -20,11 +20,9 @@ import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServi
 import { ServiceKeyNameErrors } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
 import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -202,10 +200,9 @@ export default function CreateKey() {
                 keyType={keyType}
               />
               <div className="flex gap-4">
-                <OdsButton
-                  size={ODS_BUTTON_SIZE.md}
-                  variant={ODS_BUTTON_VARIANT.outline}
-                  color={ODS_BUTTON_COLOR.primary}
+                <Button
+                  variant="outline"
+                  color="primary"
                   onClick={() => {
                     trackClick({
                       location: PageLocation.funnel,
@@ -215,19 +212,18 @@ export default function CreateKey() {
                     });
                     navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
                   }}
-                  label={t('key_management_service_service-keys_create_cta_cancel')}
-                />
-                <OdsButton
-                  size={ODS_BUTTON_SIZE.md}
-                  color={ODS_BUTTON_COLOR.primary}
+                >
+                  {t('key_management_service_service-keys_create_cta_cancel')}
+                </Button>
+                <Button
+                  color="primary"
                   data-testid={CREATE_KEY_TEST_IDS.ctaConfirm}
                   onClick={handleSubmit}
-                  isLoading={isPending}
-                  isDisabled={
-                    !keyDisplayName || !!serviceKeyNameError || keyOperations?.length === 0
-                  }
-                  label={t('key_management_service_service-keys_create_cta_submit')}
-                />
+                  loading={isPending}
+                  disabled={!keyDisplayName || !!serviceKeyNameError || keyOperations?.length === 0}
+                >
+                  {t('key_management_service_service-keys_create_cta_submit')}
+                </Button>
               </div>
             </div>
           </div>

@@ -1,21 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsMessage,
-  OdsModal,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsMessage, OdsModal, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Button } from '@ovh-ux/muk';
 
 type ConfirmationModalProps = {
   title: string;
@@ -76,25 +65,27 @@ export const ConfirmationModal = ({
         )}
         {!isLoading && (
           <div className="flex justify-end gap-2">
-            <OdsButton
+            <Button
               data-testid={'cancel-button-test-id'}
-              color={ODS_BUTTON_COLOR.critical}
+              color="critical"
               onClick={onDismiss}
-              variant={ODS_BUTTON_VARIANT.ghost}
-              label={cancelButtonLabel || t('cancel')}
+              variant="ghost"
               type="button"
-            />
+            >
+              {cancelButtonLabel || t('cancel')}
+            </Button>
 
-            <OdsButton
+            <Button
               data-testid={'confirm-button-test-id'}
-              color={ODS_BUTTON_COLOR.critical}
+              color="critical"
               onClick={onConfirm}
-              isDisabled={isConfirmButtonDisabled}
-              isLoading={isConfirmButtonLoading}
-              variant={ODS_BUTTON_VARIANT.default}
-              label={confirmButtonLabel || t('confirm')}
+              disabled={isConfirmButtonDisabled}
+              loading={isConfirmButtonLoading}
+              variant="default"
               type="button"
-            />
+            >
+              {confirmButtonLabel || t('confirm')}
+            </Button>
           </div>
         )}
       </div>

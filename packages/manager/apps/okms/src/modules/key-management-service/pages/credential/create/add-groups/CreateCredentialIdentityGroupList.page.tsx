@@ -8,13 +8,10 @@ import IdentitiesGroupList from '@key-management-service/pages/credential/create
 import { IdentityGroup } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsModal, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsModal, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
+import { Button } from '@ovh-ux/muk';
 
 import '../CreateCommonModal.scss';
 
@@ -45,25 +42,21 @@ const CreateCredentialIdentityGroupList = () => {
           />
         )}
       </div>
-      <OdsButton
+      <Button slot="actions" type="button" variant="ghost" color="primary" onClick={closeModal}>
+        {t('key_management_service_credentials_identity_modal_group_list_cancel')}
+      </Button>
+      <Button
+        loading={isLoading}
         slot="actions"
         type="button"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_BUTTON_COLOR.primary}
-        onClick={closeModal}
-        label={t('key_management_service_credentials_identity_modal_group_list_cancel')}
-      />
-      <OdsButton
-        isLoading={isLoading}
-        slot="actions"
-        type="button"
-        color={ODS_BUTTON_COLOR.primary}
+        color="primary"
         onClick={() => {
           setGroupList(selectedGroupList);
           closeModal();
         }}
-        label={t('key_management_service_credentials_identity_modal_group_list_add')}
-      />
+      >
+        {t('key_management_service_credentials_identity_modal_group_list_add')}
+      </Button>
     </OdsModal>
   );
 };

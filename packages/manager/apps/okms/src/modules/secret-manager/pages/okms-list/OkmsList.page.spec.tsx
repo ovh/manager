@@ -7,7 +7,7 @@ import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okms-datagrid/ListingCells.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
@@ -51,9 +51,9 @@ describe('Okms List page test suite', () => {
   });
 
   it('should display the region selector', async () => {
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
-    await assertRegionSelectorIsVisible(container);
+    await assertRegionSelectorIsVisible();
   });
 
   it('should display the listing table with all columns', async () => {
@@ -73,13 +73,12 @@ describe('Okms List page test suite', () => {
   });
 
   it(`should navigate to the secret creation page on click on create a secret button`, async () => {
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
     const { user } = await expectOkmsListPageToBeDisplayed();
 
-    const button = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.create_a_secret,
+    const button = screen.getByRole('button', {
+      name: labels.secretManager.create_a_secret,
     });
 
     await user.click(button);
