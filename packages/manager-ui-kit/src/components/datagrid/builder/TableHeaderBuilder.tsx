@@ -51,6 +51,7 @@ export const getExpandable = <T,>(expandable: ExpandedProps<T>, size: TABLE_SIZE
 });
 
 export const getRowSelection = <T,>() => ({
+  id: 'row-selection',
   cell: ({ row }: { row: Row<T> }) => (
     <Checkbox
       id={row.id}
@@ -62,7 +63,6 @@ export const getRowSelection = <T,>() => ({
       <CheckboxControl />
     </Checkbox>
   ),
-  enableHiding: true,
   enableResizing: true,
   header: ({ table }: { table: Table<T> }) => (
     <Checkbox
@@ -74,7 +74,7 @@ export const getRowSelection = <T,>() => ({
       <CheckboxControl />
     </Checkbox>
   ),
-  id: 'select',
   maxSize: ROW_SIZE,
   minSize: ROW_SIZE,
+  enableHiding: false,
 });
