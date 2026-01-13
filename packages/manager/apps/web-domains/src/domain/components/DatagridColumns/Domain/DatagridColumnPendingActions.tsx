@@ -1,11 +1,9 @@
 import { Badge, Icon, Skeleton } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { domainStatusToBadge } from '@/domain/utils/domainStatus';
 import { DOMAIN_PENDING_ACTIONS } from '@/domain/constants/serviceDetail';
 import { ServiceRoutes } from '@/common/enum/common.enum';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
-import { StatusDetails } from '@/domain/types/domainResource';
 
 interface DatagridColumnPendingActionsProps {
   readonly serviceName: string;
@@ -35,23 +33,25 @@ export default function DatagridColumnPendingActions({
     return;
   }
 
-  const actionsToDomainStatus = serviceInfo?.billing?.lifecycle?.current?.pendingActions.map(
-    (action: LifecycleCapacitiesEnum) =>
-      domainStatusToBadge(DOMAIN_PENDING_ACTIONS, action),
-  );
+  const domainStatusToBadges = serviceInfo?.billing?.lifecycle?.current?.pendingActions.map(
+    (action: LifecycleCapacitiesEnum) => {
+      const status = DOMAIN_PENDING_ACTIONS[action];
+      if (!status) {
+        return;
+      }
 
-  const domainStatusToBadges = actionsToDomainStatus.map(
-    (status: StatusDetails) => (
-      <Badge
-        color={status.statusColor}
-        data-testid={`status-badge-${status.value}`}
-        key={`status-badge-${status.value}`}
-        className="w-max"
-      >
-        {status?.icon && <Icon name={status.icon} />}
-        {t(status?.i18nKey)}
-      </Badge>
-    ),
+      return (
+        <Badge
+          color={status.statusColor}
+          data-testid={`status-badge-${action}`}
+          key={`status-badge-${action}`}
+          className="w-max"
+        >
+          {status?.icon && <Icon name={status.icon} />}
+          {t(status?.i18nKey)}
+        </Badge>
+      );
+    },
   );
 
   return (
