@@ -32,7 +32,7 @@ export const RirSelectionSection: React.FC = () => {
       description={t('rir_selection_description')}
       isLoading={isLoading}
     >
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {ipRirValues.map((value) => (
           <OptionCard
             key={value}

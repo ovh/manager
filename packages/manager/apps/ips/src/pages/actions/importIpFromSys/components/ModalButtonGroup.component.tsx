@@ -43,7 +43,7 @@ export function ModalButtonGroup({
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="z-[2] mt-4 flex gap-3" slot="actions">
+    <div className="z-[2] mt-4 flex gap-4" slot="actions">
       {onCancel && (
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}

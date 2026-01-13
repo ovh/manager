@@ -49,12 +49,15 @@ export default function Step2({
     error: serverListError,
   } = useGetProductService(PRODUCT_PATHS_AND_CATEGORIES.dedicated);
 
-  const { isIpMigrationAvailable, isLoading, error } =
-    useDedicatedServerIpMigrationAvailableDurations({
-      ip,
-      token,
-      serviceName: destinationServer,
-    });
+  const {
+    isIpMigrationAvailable,
+    isLoading,
+    error,
+  } = useDedicatedServerIpMigrationAvailableDurations({
+    ip,
+    token,
+    serviceName: destinationServer,
+  });
 
   return (
     <>
@@ -77,9 +80,7 @@ export default function Step2({
               name="destination-server"
               id="destination-server"
               value={destinationServer}
-              onOdsChange={(e) =>
-                setDestinationServer(e.detail.value)
-              }
+              onOdsChange={(e) => setDestinationServer(e.detail.value)}
               placeholder={t('step2ServerPlaceholder')}
               strategy="fixed"
             >
@@ -106,17 +107,14 @@ export default function Step2({
             })}
           </OdsMessage>
         )}
-        {!isIpMigrationAvailable &&
-          !isLoading &&
-          !error &&
-          destinationServer && (
-            <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
-              {t('step2UnavailableMigrationMessage', {
-                serverName: destinationServer,
-                ip,
-              })}
-            </OdsMessage>
-          )}
+        {!isIpMigrationAvailable && !isLoading && !error && destinationServer && (
+          <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
+            {t('step2UnavailableMigrationMessage', {
+              serverName: destinationServer,
+              ip,
+            })}
+          </OdsMessage>
+        )}
       </div>
       <ModalButtonGroup
         currentStep={2}

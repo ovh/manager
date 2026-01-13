@@ -70,7 +70,7 @@ export default function OrganisationsModal() {
     !!new URLSearchParams(location.search).get('mode') || false;
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const { orgDetail } = useGetSingleOrganisationDetail({
-    organisationId: organisationId,
+    organisationId,
     enabled: isEditMode,
   });
   const { trackClick, trackPage } = useOvhTracking();
@@ -122,7 +122,7 @@ export default function OrganisationsModal() {
       if (isEditMode) {
         queryClient.invalidateQueries({
           queryKey: getOrganisationsDetailsQueryKey({
-            organisationId: organisationId,
+            organisationId,
           }),
         });
       }
@@ -157,17 +157,20 @@ export default function OrganisationsModal() {
           : t('manageOrganisationsAddOrgTitle')}
       </OdsText>
       <form
-        className="flex flex-col gap-2"
-        onSubmit={e => {
+        className="flex flex-col gap-4"
+        onSubmit={(e) => {
           handleSubmit((data) => {
-          trackClick({
-            actionType: 'action',
-            buttonType: ButtonType.button,
-            location: PageLocation.popup,
-            actions: [`${isEditMode ? 'edit' : 'add'}_organization`, 'confirm'],
-          });
-          postManageOrganisation(data);
-        })(e);
+            trackClick({
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              location: PageLocation.popup,
+              actions: [
+                `${isEditMode ? 'edit' : 'add'}_organization`,
+                'confirm',
+              ],
+            });
+            postManageOrganisation(data);
+          })(e);
         }}
       >
         {/* ip organisation selection */}
@@ -213,7 +216,7 @@ export default function OrganisationsModal() {
         </div>
 
         {/* firstName and surName */}
-        <div className="mt-1 flex gap-2">
+        <div className="mt-2 flex gap-4">
           <Controller
             control={control}
             name="firstname"
@@ -335,7 +338,7 @@ export default function OrganisationsModal() {
         </div>
 
         {/* city and postcode */}
-        <div className="mt-1 flex gap-2">
+        <div className="mt-2 flex gap-4">
           <Controller
             control={control}
             name="city"

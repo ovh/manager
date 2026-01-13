@@ -44,7 +44,7 @@ export const IpAlerts = ({ ip, subIp, isByoipSlice }: IpAlertsProps) => {
 
   return (
     <SkeletonCell isLoading={isLoading}>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-2">
         {!!hasAlerts?.antihack?.length && (
           <OdsBadge
             label={t('listingColumnsIpAlertsAntihack')}

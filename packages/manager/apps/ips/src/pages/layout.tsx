@@ -31,7 +31,11 @@ export default function Layout() {
 
   useEffect(() => {
     shell.ux.hidePreloader();
-  }, []);
+
+    setTimeout(() => {
+      shell.ux.hidePreloader();
+    }, 5000);
+  }, [shell]);
 
   return <Outlet />;
 }

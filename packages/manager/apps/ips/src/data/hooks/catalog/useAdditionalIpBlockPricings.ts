@@ -81,10 +81,7 @@ export const useAdditionalIpPricings = ({
             : -1;
         })
         .map((plan: PccCatalogPlan) => ({
-          label: toOptionLabel(
-            plan.productName,
-            plan.prices[0]?.price.text,
-          ),
+          label: toOptionLabel(plan.productName, plan.prices[0]?.price.text),
           value: plan.planCode,
           pricingMode: plan.prices[0]?.pricingMode,
         })) || []) as Pricing[],

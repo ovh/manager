@@ -25,7 +25,7 @@ export const IpType = ({ ip }: IpTypeProps) => {
 
   return (
     <SkeletonCell isLoading={isLoading}>
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-4">
         {ipDetails?.type ? t(`listingColumnsType_${ipDetails.type}`) : <>-</>}
         {ipDetails?.type === IpTypeEnum.ADDITIONAL &&
           !!ipDetails?.routedTo?.serviceName && (
