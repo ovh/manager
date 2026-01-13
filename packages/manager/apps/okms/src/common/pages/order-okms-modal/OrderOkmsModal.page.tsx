@@ -6,9 +6,10 @@ import { useCreateCart } from '@key-management-service/data/hooks/useCreateCart'
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsMessage, OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Button } from '@ovh-ux/muk';
 
 import { useProductType } from '@/common/hooks/useProductType';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -67,13 +68,14 @@ const OrderOkmsModal = () => {
             })}
           </OdsMessage>
           <OkmsOrderModalCancelButton onClick={cancel} />
-          <OdsButton
+          <Button
             data-testid={ORDER_OKMS_CREATE_RETRY_BUTTON_TEST_ID}
             slot="actions"
-            label={t('retry', { ns: NAMESPACES.ACTIONS })}
             onClick={() => createCart()}
-            isLoading={isPending}
-          />
+            loading={isPending}
+          >
+            {t('retry', { ns: NAMESPACES.ACTIONS })}
+          </Button>
         </>
       )}
       {/* STEP 2 - Terms and Conditions */}

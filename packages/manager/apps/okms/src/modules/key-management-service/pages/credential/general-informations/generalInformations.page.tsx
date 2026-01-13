@@ -7,22 +7,13 @@ import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Icon } from '@ovhcloud/ods-react';
 
-import {
-  Clipboard,
-  DashboardTile,
-  DashboardTileBlockItem,
-  ManagerButton,
-} from '@ovh-ux/manager-react-components';
+import { Clipboard, DashboardTile, DashboardTileBlockItem } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -133,11 +124,11 @@ const CredentialGeneralInformations = () => {
             </>
           </MukLink>
         )}
-        <ManagerButton
+        <Button
           id="deleteAccessCertificate"
-          size={ODS_BUTTON_SIZE.sm}
-          color={ODS_BUTTON_COLOR.critical}
-          variant={ODS_BUTTON_VARIANT.ghost}
+          size="sm"
+          color="critical"
+          variant="ghost"
           iamActions={[kmsIamActions.credentialDelete]}
           onClick={() => {
             trackClick({
@@ -149,8 +140,9 @@ const CredentialGeneralInformations = () => {
             navigate(KMS_ROUTES_URIS.credentialDelete);
           }}
           urn={okms.iam.urn}
-          label={t('key_management_service_credential_delete')}
-        />
+        >
+          {t('key_management_service_credential_delete')}
+        </Button>
       </div>
     ),
   });

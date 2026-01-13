@@ -15,17 +15,13 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
-import { Datagrid, ErrorBanner, ManagerButton } from '@ovh-ux/manager-react-components';
+import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -103,11 +99,10 @@ export default function Keys() {
           {tError('manager_error_page_default')}
         </OdsMessage>
       )}
-      <ManagerButton
+      <Button
         id="createEncryptionKey"
         data-testid={SERVICE_KEY_LIST_TEST_IDS.ctaCreateKey}
-        size={ODS_BUTTON_SIZE.sm}
-        color={ODS_BUTTON_COLOR.primary}
+        color="primary"
         className="w-fit"
         onClick={() => {
           trackClick({
@@ -120,8 +115,9 @@ export default function Keys() {
         }}
         urn={okms.iam.urn}
         iamActions={[kmsIamActions.serviceKeyCreate]}
-        label={t('key_management_service_service-keys_cta_create')}
-      />
+      >
+        {t('key_management_service_service-keys_cta_create')}
+      </Button>
       <Datagrid columns={columns} items={okmsServiceKey || []} totalItems={0} contentAlignLeft />
       <Outlet />
     </div>

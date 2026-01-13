@@ -3,7 +3,7 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { WAIT_FOR_DEFAULT_OPTIONS, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
@@ -52,12 +52,10 @@ describe('KMS listing test suite', () => {
   });
 
   it(`should navigate to the kms creation form on click on "${labels.listing.key_management_service_listing_add_kms_button}" button`, async () => {
-    const { container } = await renderTestApp(KMS_ROUTES_URLS.kmsListing);
+    await renderTestApp(KMS_ROUTES_URLS.kmsListing);
 
-    const button = await getOdsButtonByLabel({
-      container,
-      label: labels.listing.key_management_service_listing_add_kms_button,
-      altLabel: 'key_management_service_listing_add_kms_button',
+    const button = await screen.findByRole('button', {
+      name: labels.listing.key_management_service_listing_add_kms_button,
     });
 
     await waitFor(() => userEvent.click(button));

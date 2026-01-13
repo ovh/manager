@@ -6,17 +6,13 @@ import { useIdentityData } from '@key-management-service/hooks/credential/useIde
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsDivider, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
+import { Icon } from '@ovhcloud/ods-react';
 
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -87,7 +83,7 @@ const CreateAddIdentities = ({
           {!isRootAccount && (
             <>
               <div className="flex items-center gap-1">
-                <OdsIcon name={ODS_ICON_NAME.circleInfo} />
+                <Icon name="circle-info" />
                 <OdsText preset={ODS_TEXT_PRESET.span}>
                   {t('key_management_service_credential_create_identities_max_label')}
                 </OdsText>
@@ -99,10 +95,9 @@ const CreateAddIdentities = ({
           )}
         </div>
         <div className="flex gap-4">
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.outline}
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
+          <Button
+            variant="outline"
+            color="primary"
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -112,12 +107,12 @@ const CreateAddIdentities = ({
               });
               navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
             }}
-            label={t('key_management_service_credential_create_identities_button_cancel_label')}
-          />
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
+          >
+            {t('key_management_service_credential_create_identities_button_cancel_label')}
+          </Button>
+          <Button
+            variant="ghost"
+            color="primary"
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -127,11 +122,11 @@ const CreateAddIdentities = ({
               });
               prevStep();
             }}
-            label={t('key_management_service_credential_create_identities_button_back_label')}
-          />
-          <OdsButton
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
+          >
+            {t('key_management_service_credential_create_identities_button_back_label')}
+          </Button>
+          <Button
+            color="primary"
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -141,9 +136,10 @@ const CreateAddIdentities = ({
               });
               nextStep();
             }}
-            isDisabled={identityURNs.length > 25 || identityURNs.length === 0}
-            label={t('key_management_service_credential_create_identities_button_create_label')}
-          />
+            disabled={identityURNs.length > 25 || identityURNs.length === 0}
+          >
+            {t('key_management_service_credential_create_identities_button_create_label')}
+          </Button>
         </div>
       </div>
     </div>

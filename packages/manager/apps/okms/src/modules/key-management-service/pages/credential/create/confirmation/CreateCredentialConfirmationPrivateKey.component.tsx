@@ -2,15 +2,16 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsCard, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
-  OdsCard,
-  OdsCheckbox,
-  OdsFormField,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  FormField,
+  Icon,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { Subtitle } from '@ovh-ux/manager-react-components';
 
@@ -55,26 +56,23 @@ const CreateCredentialConfirmationPrivateKey = ({
             <Icon name="download" />
           </>
         </MukLink>
-        <OdsFormField className="flex flex-row items-center">
-          <OdsCheckbox
+        <FormField>
+          <Checkbox
             data-testid="confirmation-private-key"
             name="confirmation-private-key"
-            inputId="confirmation-private-key"
-            isChecked={isKeyDownloaded}
-            onOdsChange={() => setIsKeyDownloaded(!isKeyDownloaded)}
-          />
-          <label
-            data-testid="confirmation-private-key-label"
-            className="ml-2 cursor-pointer"
-            htmlFor="confirmation-private-key"
+            checked={isKeyDownloaded}
+            onCheckedChange={() => setIsKeyDownloaded(!isKeyDownloaded)}
           >
-            <OdsText preset={ODS_TEXT_PRESET.span}>
-              {t(
-                'key_management_service_credential_create_confirmation_private-key_checkbox_label',
-              )}
-            </OdsText>
-          </label>
-        </OdsFormField>
+            <CheckboxControl />
+            <CheckboxLabel data-testid="confirmation-private-key-label">
+              <Text preset={'span'}>
+                {t(
+                  'key_management_service_credential_create_confirmation_private-key_checkbox_label',
+                )}
+              </Text>
+            </CheckboxLabel>
+          </Checkbox>
+        </FormField>
       </div>
     </OdsCard>
   );

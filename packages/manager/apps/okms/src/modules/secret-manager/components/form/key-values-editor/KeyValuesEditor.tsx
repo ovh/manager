@@ -10,7 +10,10 @@ import {
 import { UseControllerProps, useController, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsFormField } from '@ovhcloud/ods-components/react';
+import { OdsFormField } from '@ovhcloud/ods-components/react';
+import { Icon } from '@ovhcloud/ods-react';
+
+import { Button } from '@ovh-ux/muk';
 
 import { KeyValuesEditorItem } from './KeyValuesEditorItem';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
@@ -94,13 +97,12 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
           />
         ))}
       </OdsFormField>
-      <OdsButton
-        size="sm"
-        variant="outline"
-        icon="plus"
-        label={t('add_row')}
-        onClick={handleAddItem}
-      />
+      <Button size="sm" variant="outline" onClick={handleAddItem}>
+        <>
+          <Icon name="plus" />
+          {t('add_row')}
+        </>
+      </Button>
     </div>
   );
 };

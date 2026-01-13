@@ -2,11 +2,9 @@ import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { Secret } from '@secret-manager/types/secret.type';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
@@ -73,12 +71,11 @@ const renderComponent = async () => {
   return render(<EditMetadataDrawerForm {...defaultProps} />, { wrapper });
 };
 
-const submitForm = async (container: HTMLElement, user: UserEvent) => {
-  const submitButton = await getOdsButtonByLabel({
-    container,
-    label: commonLabels.actions.validate,
+const submitForm = async (user: UserEvent) => {
+  const submitButton = screen.getByRole('button', {
+    name: commonLabels.actions.validate,
   });
-  await act(() => user.click(submitButton));
+  await user.click(submitButton);
 
   return submitButton;
 };
@@ -124,14 +121,13 @@ describe('EditMetadataDrawerForm component test suite', () => {
       const user = userEvent.setup();
       mockUpdateSecret.mockResolvedValue({});
 
-      const { container } = await renderComponent();
+      await renderComponent();
 
       // WHEN
-      const submitButton = await getOdsButtonByLabel({
-        container,
-        label: commonLabels.actions.validate,
+      const submitButton = screen.getByRole('button', {
+        name: commonLabels.actions.validate,
       });
-      await act(() => user.click(submitButton));
+      await user.click(submitButton);
 
       // THEN
       await waitFor(() => {
@@ -155,10 +151,10 @@ describe('EditMetadataDrawerForm component test suite', () => {
       // GIVEN
       mockUpdateSecret.mockResolvedValue({});
 
-      const { container } = await renderComponent();
+      await renderComponent();
 
       // WHEN
-      await submitForm(container, user);
+      await submitForm(user);
 
       // THEN
       await waitFor(() => {
@@ -190,10 +186,10 @@ describe('EditMetadataDrawerForm component test suite', () => {
       // GIVEN
       mockUpdateSecret.mockRejectedValue(new Error('Update failed'));
 
-      const { container } = await renderComponent();
+      await renderComponent();
 
       // WHEN
-      await submitForm(container, user);
+      await submitForm(user);
 
       // THEN
       await waitFor(() => {
@@ -213,11 +209,11 @@ describe('EditMetadataDrawerForm component test suite', () => {
       });
 
       // WHEN
-      const { container } = await renderComponent();
+      await renderComponent();
 
       // THEN
-      const submitButton = await submitForm(container, user);
-      expect(submitButton).toHaveAttribute('is-loading', 'true');
+      const submitButton = await submitForm(user);
+      expect(submitButton).toHaveAttribute('data-loading', 'true');
     });
   });
 
@@ -233,7 +229,7 @@ describe('EditMetadataDrawerForm component test suite', () => {
         'invalid-duration',
       );
 
-      await submitForm(container, user);
+      await submitForm(user);
 
       // Check if the error is displayed
       await waitFor(() => {

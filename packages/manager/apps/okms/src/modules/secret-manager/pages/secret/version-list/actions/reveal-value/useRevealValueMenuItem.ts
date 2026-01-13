@@ -4,8 +4,8 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { Secret, SecretVersion } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenuItemProps } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -22,7 +22,7 @@ export const useRevealValueMenuItem = ({
   okmsId,
   secret,
   version,
-}: UseRevealValueParams): ActionMenuItem | null => {
+}: UseRevealValueParams): ActionMenuItemProps | null => {
   const { t } = useTranslation('secret-manager');
   const { trackClick } = useOkmsTracking();
   const navigate = useNavigate();

@@ -1,10 +1,9 @@
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
-import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
@@ -65,7 +64,7 @@ export const DatagridAction = (secret: Secret) => {
   const accessVersionsItem = useAccessVersionMenuItem({ id: 3, okmsId, secret });
   const deleteSecretItem = useDeleteSecretMenuItem({ id: 4, okmsId, secret });
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     revealValueItem,
     addVersionItem,
     accessVersionsItem,
@@ -77,8 +76,8 @@ export const DatagridAction = (secret: Secret) => {
       id={`SecretActionMenu-${secret.path}`}
       items={items}
       isCompact
-      icon={ODS_ICON_NAME.ellipsisVertical}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
+      variant={BUTTON_VARIANT.ghost}
     />
   );
 };

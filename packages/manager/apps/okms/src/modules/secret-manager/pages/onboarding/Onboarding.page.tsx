@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 
-import { OnboardingLayout } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { OnboardingLayout } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 

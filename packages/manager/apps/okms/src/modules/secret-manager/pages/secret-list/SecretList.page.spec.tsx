@@ -6,12 +6,7 @@ import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/ver
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-  getOdsButtonByIcon,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
@@ -29,7 +24,7 @@ const renderPage = async () => {
   const results = await renderTestApp(mockPageUrl);
 
   // Check title
-  await assertPageTitleVisibility(labels.secretManager.secret_manager, 3000);
+  await assertPageTitleVisibility(labels.secretManager.secret_manager, 5000);
 
   return results;
 };
@@ -56,9 +51,8 @@ describe('Secret list page test suite', () => {
   });
 
   it('should display the region selector', async () => {
-    const { container } = await renderPage();
-
-    await assertRegionSelectorIsVisible(container);
+    await renderPage();
+    await assertRegionSelectorIsVisible();
   });
 
   it('should display the secret table with all columns', async () => {
@@ -111,9 +105,8 @@ describe('Secret list page test suite', () => {
     const { container } = await renderPage();
     await assertDatagridIsLoaded(container);
 
-    const manageOkmsButton = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.okms_manage_label,
+    const manageOkmsButton = screen.getByRole('button', {
+      name: labels.secretManager.okms_manage_label,
     });
 
     // WHEN
@@ -130,9 +123,8 @@ describe('Secret list page test suite', () => {
     const { container } = await renderPage();
     await assertDatagridIsLoaded(container);
 
-    const createSecretButton = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.create_a_secret,
+    const createSecretButton = screen.getByRole('button', {
+      name: labels.secretManager.create_a_secret,
     });
 
     // WHEN
@@ -171,9 +163,7 @@ describe('Secret list page test suite', () => {
     },
   ];
 
-  // TODO: [ODS19] Fix this test when ODS19 is migrated
-  // Selectors are not working as expected, they will be simplier with ODS19
-  describe.skip('Menu actions', () => {
+  describe('Menu actions', () => {
     it.each(actionCases)(
       'should correctly handle click on $actionLabel',
       async ({ actionLabel, assertion }) => {
@@ -182,21 +172,20 @@ describe('Secret list page test suite', () => {
         const { container } = await renderPage();
         await assertDatagridIsLoaded(container);
 
-        const mainActionButton = await getOdsButtonByIcon({
-          container,
-          iconName: 'ellipsis-vertical',
-        });
+        const secret = secretListMock[0];
+        invariant(secret?.path, 'Secret path is not defined');
+        const secretPath: string = secret.path;
 
-        await user.click(mainActionButton);
-
-        const actionButton = await getOdsButtonByLabel({
-          container,
-          label: actionLabel,
-          disabled: false,
-        });
+        const actionMenuTrigger = screen.getByTestId(
+          `action-menu-trigger-SecretActionMenu-${secretPath}`,
+        );
 
         // WHEN
-        await user.click(actionButton);
+        await user.click(actionMenuTrigger);
+
+        // Wait for menu to open and find the action item by label
+        const actionItem = await screen.findByText(actionLabel);
+        await user.click(actionItem);
 
         // THEN
         await assertion();

@@ -111,8 +111,6 @@ describe('useServiceKeyDownload', () => {
         name: 'download_encryption_key',
         label:
           'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-        isLoading: false,
-        isDisabled: false,
         icon: ODS_ICON_NAME.download,
         color: ODS_BUTTON_COLOR.primary,
       });
@@ -130,7 +128,7 @@ describe('useServiceKeyDownload', () => {
         }),
       );
 
-      expect(result.current?.isDisabled).toBe(true);
+      expect(result.current?.disabled).toBe(true);
     });
 
     it('should return action with isDisabled false when keyState is active', () => {
@@ -144,7 +142,7 @@ describe('useServiceKeyDownload', () => {
         }),
       );
 
-      expect(result.current?.isDisabled).toBe(false);
+      expect(result.current?.disabled).toBe(false);
     });
   });
 

@@ -42,6 +42,7 @@ describe('Credential dashboard test suite', () => {
     const user = userEvent.setup();
     const { container } = await renderTestApp(mockPageUrl);
 
+    // TODO: [ODS19] Remove this getOdsButtonByLabel after BaseLayout migration
     const backLink = await getOdsButtonByLabel({
       container,
       label: labels.credentials.key_management_service_credential_dashboard_backlink,

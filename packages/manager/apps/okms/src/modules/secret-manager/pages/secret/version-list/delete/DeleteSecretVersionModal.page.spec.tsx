@@ -3,15 +3,11 @@ import * as router from 'react-router-dom';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { updateVersionErrorMessage } from '@secret-manager/mocks/versions/versions.handler';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { act, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import {
-  assertOdsModalVisibility,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertOdsModalVisibility, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
@@ -45,15 +41,11 @@ describe('Secret version delete modal test suite', () => {
 
     await assertOdsModalVisibility({ container, isVisible: true });
 
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.delete,
-      disabled: false,
+    const submitButton = await screen.findByRole('button', {
+      name: labels.common.actions.delete,
     });
 
-    await act(async () => {
-      await user.click(submitButton);
-    });
+    await user.click(submitButton);
 
     // Check navigation
     await waitFor(() => {
@@ -69,15 +61,12 @@ describe('Secret version delete modal test suite', () => {
 
     await assertOdsModalVisibility({ container, isVisible: true });
 
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.delete,
-      disabled: false,
+    // TODO: [ODS19] Remove getOdsButtonByLabel after Modal migration
+    const submitButton = await screen.findByRole('button', {
+      name: labels.common.actions.delete,
     });
 
-    await act(async () => {
-      await user.click(submitButton);
-    });
+    await user.click(submitButton);
 
     await assertTextVisibility(updateVersionErrorMessage);
 

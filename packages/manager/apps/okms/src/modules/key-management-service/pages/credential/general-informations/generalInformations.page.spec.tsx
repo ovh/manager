@@ -1,13 +1,12 @@
 import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertOdsModalVisibility,
-  getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
@@ -48,24 +47,20 @@ describe('Credential general informations test suite', () => {
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
     // Wait for the delete button to be enabled by iam rights
-    await waitFor(async () => {
-      await getOdsButtonByLabel({
-        container,
-        label: deleteButtonLabel,
-        disabled: false,
-      });
+    await waitFor(() => {
+      expect(
+        screen.getByRole('button', {
+          name: deleteButtonLabel,
+        }),
+      ).toBeEnabled();
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
     // Click button
-    const deleteButton = await getOdsButtonByLabel({
-      container,
-      label: deleteButtonLabel,
-      disabled: false,
+    const deleteButton = screen.getByRole('button', {
+      name: deleteButtonLabel,
     });
 
-    await act(async () => {
-      await user.click(deleteButton);
-    });
+    await user.click(deleteButton);
 
     // Check modal is opened
     await waitFor(async () => {

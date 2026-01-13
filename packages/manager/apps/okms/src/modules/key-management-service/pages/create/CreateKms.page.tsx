@@ -2,15 +2,16 @@ import { useState } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import Breadcrumb from '@key-management-service/components/breadcrumb/KmsBreadcrumb';
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { RegionPicker } from '@/common/components/region-picker/RegionPicker.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -78,19 +79,21 @@ export default function CreateKmsPage() {
           <RegionPicker selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} />
         </div>
         <div className="flex justify-between">
-          <OdsButton
-            label={t('key_management_service_create_cta_cancel')}
+          <Button
             variant="ghost"
             onClick={handleCancel}
             data-testid={CREATE_KMS_TEST_IDS.CTA_CANCEL}
-          />
+          >
+            {t('key_management_service_create_cta_cancel')}
+          </Button>
 
-          <OdsButton
-            label={t('key_management_service_create_cta_order')}
-            isDisabled={!selectedRegion || hasPendingOrder}
+          <Button
+            disabled={!selectedRegion || hasPendingOrder}
             onClick={handleGenerateOrderLink}
             data-testid={CREATE_KMS_TEST_IDS.CTA_ORDER}
-          />
+          >
+            {t('key_management_service_create_cta_order')}
+          </Button>
         </div>
       </section>
       <Outlet />

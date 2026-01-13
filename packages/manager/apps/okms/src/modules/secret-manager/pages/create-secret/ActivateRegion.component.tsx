@@ -5,9 +5,10 @@ import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secr
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Button } from '@ovh-ux/muk';
 
 import { usePendingOkmsOrderStore } from '@/common/store/pendingOkmsOrder';
 
@@ -37,11 +38,12 @@ export const ActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
 
   return (
     <div>
-      <OdsButton
+      <Button
         data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON}
-        label={t('activate', { ns: NAMESPACES.ACTIONS })}
         onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.createSecretOrderOkms(selectedRegion))}
-      />
+      >
+        {t('activate', { ns: NAMESPACES.ACTIONS })}
+      </Button>
     </div>
   );
 };

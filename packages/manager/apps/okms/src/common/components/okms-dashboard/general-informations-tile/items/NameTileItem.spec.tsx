@@ -1,14 +1,13 @@
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { act, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
 import { ProductType, useProductType } from '@/common/hooks/useProductType';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
-import { getOdsButtonByIcon } from '@/common/utils/tests/uiTestHelpers';
 
 import { NameTileItem } from './NameTileItem.component';
 
@@ -35,17 +34,13 @@ describe('OKMS Name Tile Item test suite', () => {
     vi.mocked(useProductType).mockReturnValue('key-management-service');
 
     // WHEN
-    const { container } = await renderTileItem();
+    await renderTileItem();
 
     // THEN
     expect(screen.getByText(labels.common.dashboard.display_name)).toBeVisible();
     expect(screen.getByText(okmsMocked.iam.displayName)).toBeVisible();
-    const editNameButton = await getOdsButtonByIcon({
-      container,
-      iconName: 'pen',
-    });
 
-    expect(editNameButton).toBeVisible();
+    expect(screen.getByRole('button', { name: 'edit' })).toBeVisible();
   });
 
   type TestCases = {
@@ -72,19 +67,13 @@ describe('OKMS Name Tile Item test suite', () => {
       vi.mocked(useProductType).mockReturnValue(productType);
 
       // WHEN
-      const { container } = await renderTileItem();
+      await renderTileItem();
 
       // THEN
-      const editNameButton = await getOdsButtonByIcon({
-        container,
-        iconName: 'pen',
-      });
-
+      const editNameButton = screen.getByRole('button', { name: 'edit' });
       expect(editNameButton).toBeVisible();
 
-      await act(async () => {
-        await user.click(editNameButton);
-      });
+      await user.click(editNameButton);
 
       expect(mockNavigate).toHaveBeenCalledWith(expectedLink);
     },

@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { useCheckoutOrder } from '@key-management-service/data/hooks/useCheckoutOrder';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsCheckbox, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsCheckbox, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
+import { Button } from '@ovh-ux/muk';
 
 import { ExternalLink } from '@/common/components/link/Link.component';
 
@@ -73,14 +74,15 @@ export const OrderOkmsModalTermsAndConditions = ({
       </div>
 
       <OkmsOrderModalCancelButton onClick={onCancel} />
-      <OdsButton
+      <Button
         data-testid={ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID}
         slot="actions"
-        label={t('confirm', { ns: NAMESPACES.ACTIONS })}
-        isDisabled={!isContractAccepted}
+        disabled={!isContractAccepted}
         onClick={() => requestOrder({ cartId: cart.cartId })}
-        isLoading={isPending}
-      />
+        loading={isPending}
+      >
+        {t('confirm', { ns: NAMESPACES.ACTIONS })}
+      </Button>
     </>
   );
 };

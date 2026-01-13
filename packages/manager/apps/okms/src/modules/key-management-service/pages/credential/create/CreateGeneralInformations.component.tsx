@@ -10,11 +10,9 @@ import { validateCredentialName } from '@key-management-service/utils/credential
 import { validateValidityDate } from '@key-management-service/utils/credential/validateValidityDate';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -109,11 +107,10 @@ const CreateGeneralInformations = ({
           />
         </div>
         <div className="flex gap-4">
-          <OdsButton
+          <Button
             data-testid="button-cancel"
-            size={ODS_BUTTON_SIZE.md}
-            variant={ODS_BUTTON_VARIANT.outline}
-            color={ODS_BUTTON_COLOR.primary}
+            variant="outline"
+            color="primary"
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -123,12 +120,12 @@ const CreateGeneralInformations = ({
               });
               navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
             }}
-            label={t('key_management_service_credential_create_cta_cancel')}
-          />
-          <OdsButton
+          >
+            {t('key_management_service_credential_create_cta_cancel')}
+          </Button>
+          <Button
             data-testid="button-next-step"
-            size={ODS_BUTTON_SIZE.md}
-            color={ODS_BUTTON_COLOR.primary}
+            color="primary"
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -138,15 +135,16 @@ const CreateGeneralInformations = ({
               });
               nextStep();
             }}
-            isDisabled={
+            disabled={
               !name ||
               !!credentialNameError ||
               !!credentialDescriptionError ||
               !!credentialValidityError ||
               (isCustomCsr && !csr)
             }
-            label={t('key_management_service_credential_create_cta_add_identities')}
-          />
+          >
+            {t('key_management_service_credential_create_cta_add_identities')}
+          </Button>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { Suspense, useState } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import Breadcrumb from '@key-management-service/components/breadcrumb/KmsBreadcrumb';
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { useCreateOkmsCredential } from '@key-management-service/data/hooks/useCreateOkmsCredential';

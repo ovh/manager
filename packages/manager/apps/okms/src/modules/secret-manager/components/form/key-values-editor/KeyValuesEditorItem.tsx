@@ -3,9 +3,11 @@ import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import { OdsInputChangeEventDetail, OdsInputCustomEvent } from '@ovhcloud/ods-components';
-import { OdsButton, OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import { Icon } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Button } from '@ovh-ux/muk';
 
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
@@ -70,7 +72,7 @@ export const KeyValuesEditorItem = ({
         />
       </OdsFormField>
 
-      <OdsButton
+      <Button
         data-testid={KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(index)}
         className={clsx('mt-5', {
           'opacity-0 group-hover:opacity-100 transition-opacity duration-100': !isDeletable,
@@ -78,12 +80,12 @@ export const KeyValuesEditorItem = ({
         })}
         size="sm"
         variant="ghost"
-        icon="trash"
-        label=""
         onClick={onDelete}
-        isDisabled={!isDeletable}
+        disabled={!isDeletable}
         aria-label={t(`${NAMESPACES.ACTIONS}:delete`)}
-      />
+      >
+        <Icon name="trash" />
+      </Button>
     </div>
   );
 };

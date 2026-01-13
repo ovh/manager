@@ -8,17 +8,13 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { Icon } from '@ovhcloud/ods-react';
 
-import { Clipboard, DashboardTile, ManagerButton } from '@ovh-ux/manager-react-components';
+import { Clipboard, DashboardTile } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -52,13 +48,12 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
               >
                 {serviceKey.name}
               </OdsText>
-              <ManagerButton
+              <Button
                 id="editName"
-                label=""
                 data-testid={SERVICE_KEY_TEST_IDS.editNameButton}
-                size={ODS_BUTTON_SIZE.sm}
-                variant={ODS_BUTTON_VARIANT.ghost}
-                color={ODS_BUTTON_COLOR.primary}
+                size="sm"
+                variant="ghost"
+                color="primary"
                 urn={serviceKey.iam.urn}
                 iamActions={[kmsIamActions.serviceKeyUpdate]}
                 onClick={() => {
@@ -70,8 +65,9 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
                   });
                   navigate(KMS_ROUTES_URLS.serviceKeyEditName(kms.id, serviceKey.id));
                 }}
-                icon={ODS_ICON_NAME.pen}
-              />
+              >
+                <Icon name="pen" />
+              </Button>
             </div>
           ),
         },

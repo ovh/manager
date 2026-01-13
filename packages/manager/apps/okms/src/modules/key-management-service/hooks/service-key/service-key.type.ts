@@ -1,20 +1,15 @@
-import { ComponentProps } from 'react';
+import { BUTTON_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
-import { ManagerButtonProps } from '@ovh-ux/manager-react-components';
-
-type OdsButtonProps = ComponentProps<typeof OdsButton>;
+import { ButtonProps } from '@ovh-ux/muk';
 
 export type ServiceKeyAction = {
   name: string;
-  label: OdsButtonProps['label'];
-  color: ODS_BUTTON_COLOR;
+  label: string;
+  color: BUTTON_COLOR;
   onClick: () => void;
-  isDisabled?: OdsButtonProps['isDisabled'];
-  isLoading?: OdsButtonProps['isLoading'];
-  iamActions?: ManagerButtonProps['iamActions'];
-  urn?: ManagerButtonProps['urn'];
-  icon: OdsButtonProps['icon'];
+  disabled?: boolean;
+  loading?: boolean;
+  iamActions?: ButtonProps['iamActions'];
+  urn?: ButtonProps['urn'];
+  icon: ICON_NAME;
 };

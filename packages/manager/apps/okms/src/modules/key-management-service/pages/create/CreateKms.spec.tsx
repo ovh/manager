@@ -3,7 +3,7 @@ import { act, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { getCatalogKmsErrorMessage } from '@/common/mocks/catalog/catalog.handler';
 import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
@@ -69,11 +69,10 @@ describe('KMS creation page test suite', () => {
 
   it(`should navigate back to the list on click on ${labels.create.key_management_service_create_cta_cancel}`, async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
+    await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
-    const cancelButton = await getOdsButtonByLabel({
-      container,
-      label: labels.create.key_management_service_create_cta_cancel,
+    const cancelButton = screen.getByRole('button', {
+      name: labels.create.key_management_service_create_cta_cancel,
     });
 
     await act(async () => await user.click(cancelButton));

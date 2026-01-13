@@ -3,7 +3,7 @@ import * as router from 'react-router-dom';
 import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
@@ -47,15 +47,14 @@ describe('Credential delete modal test suite', () => {
       await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
+    // TODO: [ODS19] Remove this getOdsButtonByLabel after BaseLayout migration
     const submitButton = await getOdsButtonByLabel({
       container,
       label: 'Oui, résilier', // Label from MRC
       disabled: false,
     });
 
-    await act(async () => {
-      await user.click(submitButton);
-    });
+    await user.click(submitButton);
 
     // Check navigation
     await waitFor(() => {
@@ -65,11 +64,14 @@ describe('Credential delete modal test suite', () => {
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
     // Check notification
-    await waitFor(() => {
-      expect(
-        screen.getByText(labels.credentials.key_management_service_credential_delete_success),
-      ).toBeVisible();
-    });
+    await waitFor(
+      () => {
+        expect(
+          screen.getByText(labels.credentials.key_management_service_credential_delete_success),
+        ).toBeVisible();
+      },
+      { timeout: 5000 },
+    );
   });
 
   test('should navigate and show a notification after failed deletion', async () => {
@@ -83,6 +85,7 @@ describe('Credential delete modal test suite', () => {
       await assertOdsModalVisibility({ container, isVisible: true });
     }, WAIT_FOR_DEFAULT_OPTIONS);
 
+    // TODO: [ODS19] Remove this getOdsButtonByLabel after BaseLayout migration
     const submitButton = await getOdsButtonByLabel({
       container,
       label: 'Oui, résilier', // Label from MRC
@@ -90,9 +93,7 @@ describe('Credential delete modal test suite', () => {
       disabled: false,
     });
 
-    await act(async () => {
-      await user.click(submitButton);
-    });
+    await user.click(submitButton);
 
     // Check navigation
     await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('..'), WAIT_FOR_DEFAULT_OPTIONS);
