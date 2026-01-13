@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.46.0...@ovh-ux/manager-pm@0.47.0) (2026-01-13)
+
+
+### Features
+
+* replacing nx with turbo ([4c91a10](https://github.com/ovh/manager/commit/4c91a102cc7717f68751d7768748faaeff878696))
+
+
+
+
+
 # [0.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.45.1...@ovh-ux/manager-pm@0.46.0) (2026-01-09)
 
 

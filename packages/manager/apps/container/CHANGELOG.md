@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.175.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.7...@ovh-ux/manager-container-app@0.175.0) (2026-01-13)
+
+
+### Features
+
+* **container:** align privacy cookie with website ([f85c3dc](https://github.com/ovh/manager/commit/f85c3dce4c4a61fc94db5409dc3b9f34779f5235)), closes [#MANAGER-20176](https://github.com/ovh/manager/issues/MANAGER-20176)
+
+
+
+
+
 ## [0.174.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.6...@ovh-ux/manager-container-app@0.174.7) (2026-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

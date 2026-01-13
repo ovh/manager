@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.11...@ovh-ux/manager-hub-app@0.29.0) (2026-01-13)
+
+
+### Features
+
+* **hub:** apply eslint strategy of static analysis kit adaption ([d448237](https://github.com/ovh/manager/commit/d44823721d005278c516233591957dff2c3b2c41)), closes [#MANAGER-20420](https://github.com/ovh/manager/issues/MANAGER-20420)
+
+
+
+
+
 ## [0.28.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.10...@ovh-ux/manager-hub-app@0.28.11) (2026-01-09)
 
 
