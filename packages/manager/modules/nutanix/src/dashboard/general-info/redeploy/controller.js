@@ -89,10 +89,15 @@ export default class NutanixGeneralInfoRedeployCtrl {
     form.$$controls.forEach((element) => element.$validate());
   };
 
-  onDataserviceIpChange = (form) => {
-    form.$$controls.forEach((element) => element.$validate());
-    return form.dataserviceIp?.$error.uniqueIpValidator;
-  };
+  // onDataserviceIpChange = (form, index) => {
+  //   form.$$controls.forEach((element) => element.$validate());
+  //   console.log("form[`ip${index}`]?.$error.uniqueIpValidator", form[`ip${index}`]?.$error.uniqueIpValidator);
+  //   console.log("form[`ip${index}`]?.$error.ipSubnetValidator", form[`ip${index}`]?.$error.ipSubnetValidator);
+  //   return (
+  //     form[`ip${index}`]?.$error.uniqueIpValidator &&
+  //     form[`ip${index}`]?.$error.ipSubnetValidator
+  //   );
+  // };
 
   canShowIpSubnetErrorPrismCentralIpField = (form, index) => {
     return (

@@ -209,6 +209,11 @@
                     </div>
                     <oui-field
                         data-label-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
+                        data-error-messages="{
+                            ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
+                            uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
+                            ipValidator: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
+                        }"
                     >
                         <input
                             data-ng-disabled="!$ctrl.getCanModifyDataserviceIp()"
@@ -220,7 +225,7 @@
                             data-ng-pattern="$ctrl.IPV4_REGEX"
                             data-nutanix-ip-validator
                             data-nutanix-unique-ip-validator="$ctrl.getIpsList()"
-                            data-nutanix-ip-subnet-validator="$ctrl.config.dataserviceIp"
+                            data-nutanix-ip-subnet-validator="$ctrl.config.gatewayCidr"
                         />
                     </oui-field>
                 </div>
