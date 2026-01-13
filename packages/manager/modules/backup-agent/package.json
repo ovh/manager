@@ -26,6 +26,11 @@
       "import": "./dist/src/data/hooks/baremetal/useBaremetalsList",
       "require": "./dist/src/data/hooks/baremetal/useBaremetalsList.js"
     },
+    "./data/hooks/vaults/getVault": {
+      "types": "./dist/types/src/data/hooks/vaults/getVault.d.ts",
+      "import": "./dist/src/data/hooks/vaults/getVault",
+      "require": "./dist/src/data/hooks/vaults/getVault.js"
+    },
     "./mocks/baremetals/baremetals.mocks": {
       "types": "./dist/types/src/mocks/baremetals/baremetals.mocks.d.ts",
       "import": "./dist/src/mocks/baremetals/baremetals.mocks",
@@ -35,6 +40,16 @@
       "types": "./dist/types/src/mocks/baremetals/baremetals.handler.d.ts",
       "import": "./dist/src/mocks/baremetals/baremetals.handler",
       "require": "./dist/src/mocks/baremetals/baremetals.handler.js"
+    },
+    "./mocks/vaults/vaults.mock": {
+      "types": "./dist/types/src/mocks/vaults/vaults.mock.d.ts",
+      "import": "./dist/src/mocks/vaults/vaults.mock",
+      "require": "./dist/src/mocks/vaults/vaults.mock.js"
+    },
+    "./mocks/vaults/vaults.handler": {
+      "types": "./dist/types/src/mocks/vaults/vaults.handler.d.ts",
+      "import": "./dist/src/mocks/vaults/vaults.handler",
+      "require": "./dist/src/mocks/vaults/vaults.handler.js"
     },
     "./components/Fields/RhfField/RhfField.component": {
       "types": "./dist/types/src/components/Fields/RhfField.component.d.ts",

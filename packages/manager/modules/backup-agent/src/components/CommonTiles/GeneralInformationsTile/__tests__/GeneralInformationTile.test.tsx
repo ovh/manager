@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { mockLocations } from '@/mocks/location/locations';
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 
 import { GeneralInformationTile } from '../GeneralInformationTile.component';
 

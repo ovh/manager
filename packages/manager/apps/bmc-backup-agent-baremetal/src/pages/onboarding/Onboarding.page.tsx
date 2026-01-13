@@ -1,11 +1,16 @@
 import React, { useMemo } from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
+import { useBackupVaultsList } from '@ovh-ux/backup-agent/data/hooks/vaults/getVault';
 import { useGuideUtils } from '@ovh-ux/backup-agent/hooks/useGuideUtils.ts';
+import { urls as backupAgentUrls } from '@ovh-ux/backup-agent/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Card } from '@ovh-ux/manager-react-components';
+import { Card, Links, RedirectionGuard } from '@ovh-ux/manager-react-components';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 
 import { OnboardingDescription } from '@/components/onboarding/onboardingDescription/OnboardingDescription.component';
 import { OnboardingLayout } from '@/components/onboarding/onboardingLayout/OnboardingLayout.component';
@@ -17,7 +22,13 @@ export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
   const { productName, title, tiles } = useOnboardingContent();
   const links = useGuideUtils();
-  const { flattenData, isLoading } = useBaremetalsList({ pageSize: 1 });
+  const { flattenData, isPending } = useBaremetalsList({ pageSize: 1 });
+  const {
+    flattenData: vaults,
+    isPending: isVaultPending,
+    isSuccess: isVaultSuccess,
+    isError: isVaultError,
+  } = useBackupVaultsList({ pageSize: 9999, retry: false });
 
   // Build hero image object with fallback alt text.
   const img = useOnboardingHeroImage();
@@ -28,40 +39,72 @@ export default function OnboardingPage() {
     [tiles, links],
   );
 
-  return (
-    <OnboardingLayout
-      title={title ?? t('onboarding:title_fallback', { productName })}
-      img={img}
-      description={<OnboardingDescription />}
-      orderButtonLabel={t(`onboarding:save_a_baremetal_server`)}
-      onOrderButtonClick={() => {}}
-      moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
-      onMoreInfoButtonClick={() => {}}
-      isOrderLoading={isLoading}
-      orderHref={urls.firstOrder}
-      moreInfoHref={links.main}
-      isOrderDisabled={!flattenData?.length}
-      tooltipContent={!flattenData?.length ? t('no_baremetal_available') : undefined}
-    >
-      {validTiles.map(({ id, key, linkKey }) => {
-        const href = links[linkKey];
-        if (!href) return null;
+  const { data: billingUrl, isPending: isBillingUrlPending } = useNavigationGetUrl([
+    'dedicated',
+    '#/billing/orders',
+    {},
+  ]);
 
-        return (
-          <Card
-            key={id}
-            href={href}
-            texts={{
-              title: t(`onboarding:guides.${key}.title`, { productName }),
-              description: t(`onboarding:guides.${key}.description`, {
-                productName,
-              }),
-              category: t(`onboarding:guides.${key}.category`),
-            }}
-            hrefLabel={t(`onboarding:guides.${key}.cta`)}
-          />
-        );
-      })}
-    </OnboardingLayout>
+  const orderInProgressMessage =
+    isVaultSuccess && vaults?.length === 0 ? (
+      <OdsMessage color="success">
+        <Trans
+          ns="onboarding"
+          i18nKey="baremetal_label_order_in_progress"
+          values={{ href: (billingUrl as string) ?? '#' }}
+          components={{
+            OrderLink: (
+              <Links
+                className="px-2"
+                href={(billingUrl as string) ?? '#'}
+                isDisabled={isBillingUrlPending}
+              />
+            ),
+          }}
+        />
+      </OdsMessage>
+    ) : null;
+
+  return (
+    <RedirectionGuard
+      condition={vaults?.length >= 1}
+      isLoading={isVaultPending}
+      route={backupAgentUrls.listingTenants}
+    >
+      <OnboardingLayout
+        title={title ?? t('onboarding:title_fallback', { productName })}
+        img={img}
+        description={<OnboardingDescription message={orderInProgressMessage} />}
+        orderButtonLabel={t(`onboarding:save_a_baremetal_server`)}
+        onOrderButtonClick={() => {}}
+        moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
+        onMoreInfoButtonClick={() => {}}
+        isOrderLoading={isPending}
+        orderHref={urls.firstOrder}
+        moreInfoHref={links.main}
+        isOrderDisabled={!flattenData?.length || !isVaultError || isVaultPending}
+        tooltipContent={!flattenData?.length ? t('no_baremetal_available') : undefined}
+      >
+        {validTiles.map(({ id, key, linkKey }) => {
+          const href = links[linkKey];
+          if (!href) return null;
+
+          return (
+            <Card
+              key={id}
+              href={href}
+              texts={{
+                title: t(`onboarding:guides.${key}.title`, { productName }),
+                description: t(`onboarding:guides.${key}.description`, {
+                  productName,
+                }),
+                category: t(`onboarding:guides.${key}.category`),
+              }}
+              hrefLabel={t(`onboarding:guides.${key}.cta`)}
+            />
+          );
+        })}
+      </OnboardingLayout>
+    </RedirectionGuard>
   );
 }

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -78,23 +78,26 @@ const AddConfigurationPage = () => {
     mode: 'onTouched',
     defaultValues: { server: '', os: '' },
   });
-  const onSubmit = (data: z.infer<typeof ADD_CONFIGURATION_SCHEMA>) => {
-    const serverDetails = baremetalList.find((server) => server.name === data.server);
+  const onSubmit = useCallback(
+    (data: z.infer<typeof ADD_CONFIGURATION_SCHEMA>) => {
+      const serverDetails = baremetalList.find((server) => server.name === data.server);
 
-    if (!serverDetails) {
-      return setFormSubmitError(
-        t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_agent_error_resource_not_found`),
-      );
-    }
+      if (!serverDetails) {
+        return setFormSubmitError(
+          t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_agent_error_resource_not_found`),
+        );
+      }
 
-    mutate({
-      region: serverDetails.region,
-      ips: [`${serverDetails.ip}/32`],
-      displayName: `agent-${serverDetails.name}`,
-      vspcTenantId: tenantId,
-      productResourceName: serverDetails.name,
-    });
-  };
+      mutate({
+        region: serverDetails.region,
+        ips: [`${serverDetails.ip}/32`],
+        displayName: `agent-${serverDetails.name}`,
+        vspcTenantId: tenantId,
+        productResourceName: serverDetails.name,
+      });
+    },
+    [mutate, baremetalList, setFormSubmitError, tenantId],
+  );
 
   const os = useWatch({ name: 'os', control });
 
@@ -107,24 +110,24 @@ const AddConfigurationPage = () => {
   const isDownloadEnabled = isSuccess && !!downloadLink;
 
   return (
-    <form
-      ref={formRef}
-      aria-labelledby={FORM_ID}
-      className="flex flex-col gap-4"
-      noValidate
-      onSubmit={(e) => void handleSubmit(onSubmit)(e)}
+    <Drawer
+      isOpen
+      heading={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_server`)}
+      onDismiss={goBack}
+      secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
+      onSecondaryButtonClick={goBack}
     >
-      <Drawer
-        isOpen
-        heading={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_server`)}
-        onDismiss={goBack}
-        secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
-        onSecondaryButtonClick={goBack}
-      >
-        <OdsText id={FORM_ID} preset="heading-3">
-          {t('link_agent_to_a_server')}
-        </OdsText>
+      <OdsText id={FORM_ID} preset="heading-3">
+        {t('link_agent_to_a_server')}
+      </OdsText>
 
+      <form
+        ref={formRef}
+        aria-labelledby={FORM_ID}
+        className="flex flex-col gap-4"
+        noValidate
+        onSubmit={(e) => void handleSubmit(onSubmit)(e)}
+      >
         <RhfField
           controllerParams={register('server')}
           helperMessage={t(`${NAMESPACES.FORM}:required_field`)}
@@ -164,7 +167,6 @@ const AddConfigurationPage = () => {
           type="submit"
           label={t(`${NAMESPACES.ACTIONS}:add`)}
           isDisabled={isSubmitDisabled}
-          onClick={() => formRef.current?.requestSubmit()}
           isLoading={isAddConfigurationPending}
         />
 
@@ -180,29 +182,29 @@ const AddConfigurationPage = () => {
             </OdsMessage>
           )}
         </section>
+      </form>
 
-        <section className="flex flex-col gap-4 mt-8 max-w-fit max-w-full">
-          <OdsText id={FORM_ID} preset="heading-3">
-            {t('download_agent')}
-          </OdsText>
-          <a href={downloadLink} download>
-            <OdsButton
-              type="button"
-              label={t(`${NAMESPACES.ACTIONS}:download`)}
-              isDisabled={!isDownloadEnabled}
-              isLoading={isLoadingDownloadLink}
-            />
-          </a>
-          {!isLoadingDownloadLink && (
-            <DownloadCode
-              className="break-all [&::part(tooltip)]:hidden"
-              downloadLink={isDownloadEnabled ? downloadLink : '...'}
-              canCopy={isDownloadEnabled}
-            />
-          )}
-        </section>
-      </Drawer>
-    </form>
+      <section className="flex flex-col gap-4 mt-8 max-w-fit max-w-full">
+        <OdsText id={FORM_ID} preset="heading-3">
+          {t('download_agent')}
+        </OdsText>
+        <a href={downloadLink} download>
+          <OdsButton
+            type="button"
+            label={t(`${NAMESPACES.ACTIONS}:download`)}
+            isDisabled={!isDownloadEnabled}
+            isLoading={isLoadingDownloadLink}
+          />
+        </a>
+        {!isLoadingDownloadLink && (
+          <DownloadCode
+            className="break-all [&::part(tooltip)]:hidden"
+            downloadLink={isDownloadEnabled ? downloadLink : '...'}
+            canCopy={isDownloadEnabled}
+          />
+        )}
+      </section>
+    </Drawer>
   );
 };
 

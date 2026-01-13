@@ -3,7 +3,7 @@ import { expect } from 'vitest';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 import { VaultResource } from '@/types/Vault.type';
