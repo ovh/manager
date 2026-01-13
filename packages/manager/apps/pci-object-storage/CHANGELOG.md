@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.29.0...@ovh-ux/manager-pci-object-storage-app@0.30.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **object-storage:** typo in dashboard ([e5c3c4b](https://github.com/ovh/manager/commit/e5c3c4b93d7886841578652924114a562202f67b)), closes [#DATATR-2860](https://github.com/ovh/manager/issues/DATATR-2860)
+
+
+### Features
+
+* **object-storage:** add bulk delete objects ([efc7b3a](https://github.com/ovh/manager/commit/efc7b3a3fa86702b3cd1c0d1b6e824cadf626092)), closes [#DATATR-2747](https://github.com/ovh/manager/issues/DATATR-2747)
+* **pci.os:** add unit test in listing onboarding and user creation pages ([333a845](https://github.com/ovh/manager/commit/333a84544936d08ff25753d42206202785e3dd38)), closes [#DATATR-2568](https://github.com/ovh/manager/issues/DATATR-2568)
+* **pci.os:** add unit test in order funnel ([c4a2eb1](https://github.com/ovh/manager/commit/c4a2eb137e89deab5362f01b94da5c3d7b646809)), closes [#DATATR-2569](https://github.com/ovh/manager/issues/DATATR-2569)
+* **pci.os:** add unit test in s3 dashboard ([4e16ab0](https://github.com/ovh/manager/commit/4e16ab0ccdfd268b0b472a4d600c559cb9c10728)), closes [#DATATR-2572](https://github.com/ovh/manager/issues/DATATR-2572)
+* **pci.os:** add unit test on replication ([f0a960e](https://github.com/ovh/manager/commit/f0a960ec6aeeb6c92ec5ac5ab5f1981965c08136)), closes [#DATATR-2571](https://github.com/ovh/manager/issues/DATATR-2571)
+
+
+
+
+
 # [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.5...@ovh-ux/manager-pci-object-storage-app@0.29.0) (2026-01-13)
 
 
