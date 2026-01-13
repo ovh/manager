@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { VaultResource } from '@/types/Vault.type';
 
 import { VaultActionCell } from '../VaultActionCell.component';

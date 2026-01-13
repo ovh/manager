@@ -10,16 +10,19 @@ export const BACKUP_VAULTS_LIST_QUERY_KEY = ['backup', 'vaults'];
 export const useBackupVaultsList = (
   {
     pageSize,
+    retry,
   }: {
     pageSize: number;
+    retry?: false;
   } = { pageSize: 9999 },
 ) => {
-  const { data: backupServicesId } = useBackupServicesId();
+  const { data: backupServicesId, isPending: isBackupServicesIdPending } = useBackupServicesId();
 
   return useResourcesIcebergV2<VaultResource>({
     route: getVaultsRoute(backupServicesId!),
     queryKey: BACKUP_VAULTS_LIST_QUERY_KEY,
     pageSize,
-    enabled: !!backupServicesId,
+    enabled: !isBackupServicesIdPending,
+    retry,
   });
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -6,7 +6,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
 
-export const OnboardingDescription = () => {
+export const OnboardingDescription = ({ message }: { message?: ReactNode }) => {
   const { t } = useTranslation(['onboarding']);
   const { productName, productCategory, brand } = useOnboardingContent();
 
@@ -19,6 +19,7 @@ export const OnboardingDescription = () => {
           brand,
         })}
       </OdsText>
+      {message}
     </section>
   );
 };
