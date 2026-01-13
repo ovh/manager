@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.6...@ovh-ux/manager-web-ongoing-operations-app@1.20.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4580] ([b633941](https://github.com/ovh/manager/commit/b6339415fc3ab5c81ccf82e2c766900a666020ec))
+* **web-domains:** fix ongoing operations redirection ([43c969d](https://github.com/ovh/manager/commit/43c969d4aebafab68a6665587a662d4266a4b9b8)), closes [#DCE-139](https://github.com/ovh/manager/issues/DCE-139)
+* **web-domains:** remove jest.Mock to Mock ([55dbf0e](https://github.com/ovh/manager/commit/55dbf0e7c5412c9d995f353c5086e8a3ca4546bf)), closes [#DCE-84](https://github.com/ovh/manager/issues/DCE-84)
+* **web-domains:** remove jest.Mock to Mock ([63da628](https://github.com/ovh/manager/commit/63da628951510aad339a21c420c69211ddefbd60)), closes [#DCE-84](https://github.com/ovh/manager/issues/DCE-84)
+
+
+### Features
+
+* **web-domains:** fix oops page when customer access directly on dns operations ([4a79611](https://github.com/ovh/manager/commit/4a796110aa87903cfbe8b8b14f829f0138ac418d)), closes [#DCE-134](https://github.com/ovh/manager/issues/DCE-134)
+
+
+
+
+
 ## [1.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.5...@ovh-ux/manager-web-ongoing-operations-app@1.19.6) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
