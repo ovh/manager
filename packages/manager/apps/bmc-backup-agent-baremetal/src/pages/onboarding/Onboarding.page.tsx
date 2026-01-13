@@ -3,20 +3,20 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
+import { useGuideUtils } from '@ovh-ux/backup-agent/hooks/useGuideUtils.ts';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Card } from '@ovh-ux/manager-react-components';
 
 import { OnboardingDescription } from '@/components/onboarding/onboardingDescription/OnboardingDescription.component';
 import { OnboardingLayout } from '@/components/onboarding/onboardingLayout/OnboardingLayout.component';
-import { useGuideLinks, useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
+import { useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
 import { useOnboardingHeroImage } from '@/hooks/onboarding/useOnboardingHeroImage';
 import { urls } from '@/routes/Routes.constants';
-import { OnboardingLinksType } from '@/types/Onboarding.type';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
   const { productName, title, tiles } = useOnboardingContent();
-  const links: OnboardingLinksType = useGuideLinks();
+  const links = useGuideUtils();
   const { flattenData, isLoading } = useBaremetalsList({ pageSize: 1 });
 
   // Build hero image object with fallback alt text.
@@ -39,7 +39,7 @@ export default function OnboardingPage() {
       onMoreInfoButtonClick={() => {}}
       isOrderLoading={isLoading}
       orderHref={urls.firstOrder}
-      moreInfoHref="/#/"
+      moreInfoHref={links.main}
       isOrderDisabled={!flattenData?.length}
       tooltipContent={!flattenData?.length ? t('no_baremetal_available') : undefined}
     >

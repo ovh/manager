@@ -8,5 +8,6 @@
   "actions": "Actions",
   "primary": "Primaire",
   "secondary": "Secondaire",
-  "without_engagement": "sans engagement"
+  "without_engagement": "sans engagement",
+  "backup_agent_guide": "Guides de Backup Agent"
 }
