@@ -286,7 +286,7 @@ export const EmailAccountForm = () => {
                         setSelectedOrganization(value[0]);
                       }}
                       onBlur={field.onBlur}
-                      disabled={isLoadingDomains || !domains}
+                      disabled={isLoadingDomains || !domains || !!accountId}
                       className="w-full"
                       data-testid="select-domain"
                     >
