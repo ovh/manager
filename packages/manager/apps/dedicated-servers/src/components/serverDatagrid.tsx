@@ -14,50 +14,6 @@ export default function ServerDatagrid() {
   const columns = useColumns();
   const { columnVisibility, setColumnVisibility } = useContext(ViewContext);
 
-  useEffect(() => {
-    setColumnVisibility({
-      serverId: false,
-      displayName: true,
-      ip: true,
-      reverse: false,
-      commercialRange: true,
-      os: false,
-      region: true,
-      rack: false,
-      datacenter: false,
-      state: true,
-      monitoring: false,
-      vrack: false,
-      renew: false,
-      expiration: false,
-      engagement: false,
-      price: false,
-      tags: true,
-      actions: true,
-    });
-  }, [setColumnVisibility]);
-
-  // const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
-  //   serverId: false,
-  //   displayName: true,
-  //   ip: true,
-  //   reverse: false,
-  //   commercialRange: true,
-  //   os: false,
-  //   region: true,
-  //   rack: false,
-  //   datacenter: false,
-  //   state: true,
-  //   monitoring: false,
-  //   vrack: false,
-  //   renew: false,
-  //   expiration: false,
-  //   engagement: false,
-  //   price: false,
-  //   tags: true,
-  //   actions: true,
-  // });
-
   const {
     flattenData,
     isError,

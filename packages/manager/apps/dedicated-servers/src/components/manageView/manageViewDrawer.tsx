@@ -17,6 +17,7 @@ import { PREFERENCES_KEY, STANDARD_VIEW_ID } from './manageView.constants';
 import { ViewType } from './types';
 import { useCreateViewsPreference } from '@/hooks/manage-views/useCreateViewPreference';
 import { ViewContext } from './viewContext';
+import ManageViewConfig from './manageViewConfig';
 
 export type ManageViewDrawerProps = {
   views: ViewType[];
@@ -41,8 +42,6 @@ export const ManageViewDrawer = ({
   const { isPending, mutate: createViews } = useCreateViewsPreference({
     key: PREFERENCES_KEY,
   });
-
-  console.log({ columnVisibility });
 
   useEffect(() => {
     setEditingView({
@@ -107,7 +106,7 @@ export const ManageViewDrawer = ({
           </Checkbox>
         </div>
         {/* Add view configuration here */}
-        <Button onClick={changeColumns}>{t('manage_columns')}</Button>
+        <ManageViewConfig />
       </Drawer.Content>
       <Drawer.Footer
         primaryButton={{
