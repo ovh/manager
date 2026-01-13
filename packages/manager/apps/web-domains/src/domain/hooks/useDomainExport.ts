@@ -1,13 +1,14 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { v2 } from '@ovh-ux/manager-core-api';
 import punycode from 'punycode/punycode';
 import { getDomainService } from '@/domain/data/api/domainResources';
 import { getDomainContact } from '@/common/data/api/common.api';
 import { getServiceDnssec } from '@/domain/data/api/domainZone';
 import {
-  DomainService,
-  NameServer,
-  NameServerTypeEnum,
+  TContactsConfiguration,
+  TDomainResource,
+  TNameServerWithType,
 } from '@/domain/types/domainResource';
+import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
 
 interface ExportSelection {
   domainColumns: string[];
@@ -15,28 +16,25 @@ interface ExportSelection {
 }
 
 export const useDomainExport = () => {
-  const fetchAllDomains = async (): Promise<DomainService[]> => {
+  const fetchAllDomains = async (): Promise<TDomainResource[]> => {
     try {
-      const { data: domainNames } = await v6.get<string[]>('/domain');
-
-      return domainNames.map((domainName) => ({
-        domain: domainName,
-      })) as DomainService[];
+      const { data } = await v2.get<TDomainResource[]>('/domain/name');
+      return data;
     } catch (error) {
       return [];
     }
   };
 
   const fetchDomainDetails = async (
-    domain: DomainService,
+    domain: TDomainResource,
     selection: ExportSelection,
   ): Promise<Record<string, string>> => {
     const row: Record<string, string> = {};
     if (selection.domainColumns.includes('domain')) {
-      row['domain'] = domain.domain || '';
+      row['domain'] = domain.id || '';
     }
     if (selection.domainColumns.includes('domain-utf8')) {
-      row['domain utf-8'] = punycode.toUnicode(domain.domain || '');
+      row['domain utf-8'] = punycode.toUnicode(domain.id || '');
     }
 
     const needsExpiration = selection.domainColumns.includes('expiration');
@@ -50,12 +48,11 @@ export const useDomainExport = () => {
     const needsDomainService =
       needsExpiration || needsContacts || needsOtherDetails;
 
-    const hasFullDomainData = domain?.expirationDate || domain?.lastUpdate;
-
     let domainDetails = domain;
-    if (needsDomainService && !hasFullDomainData) {
+    let domainServices;
+    if (needsDomainService) {
       try {
-        domainDetails = await getDomainService(domain.domain);
+        domainServices = await getDomainService(domain.id);
       } catch {
         domainDetails = domain;
       }
@@ -63,31 +60,33 @@ export const useDomainExport = () => {
 
     // Domain Services
     if (selection.domainColumns.includes('expiration')) {
-      row['expiration'] = domainDetails.expirationDate || '';
+      row['expiration'] = domainServices.expirationDate || '';
     }
     if (selection.domainColumns.includes('creation')) {
-      row['creation'] = domainDetails.lastUpdate || '';
+      row['creation'] = domainServices.lastUpdate || '';
     }
 
     if (selection.domainColumns.includes('dns-server')) {
       row['dns-server'] =
-        domainDetails.nameServers
-          ?.map((ns: NameServer) => ns.nameServer)
+        domainDetails.currentState?.dnsConfiguration?.nameServers
+          ?.map((ns: TNameServerWithType) => ns.nameServer)
           .join(', ') || '';
     }
     if (selection.domainColumns.includes('dns-type')) {
-      row['dns-type'] = domainDetails.nameServerType || '';
+      row['dns-type'] =
+        domainDetails.currentState?.dnsConfiguration?.configurationType || '';
     }
     if (selection.domainColumns.includes('dns-anycast')) {
       row['dns-anycast'] = String(
-        domainDetails.nameServerType === NameServerTypeEnum.ANYCAST,
+        domainDetails.currentState?.dnsConfiguration?.configurationType ===
+          DnsConfigurationTypeEnum.ANYCAST,
       );
     }
 
     // DNSSEC
     if (selection.domainColumns.includes('dnssec')) {
       try {
-        const dnssec = await getServiceDnssec(domainDetails.domain);
+        const dnssec = await getServiceDnssec(domainDetails.id);
         row.DNSSEC = dnssec?.status || '';
       } catch {
         row.DNSSEC = '';
@@ -98,17 +97,19 @@ export const useDomainExport = () => {
     if (selection?.contactColumns?.length > 0) {
       const contactPromises = selection.contactColumns.map(
         async (contactType) => {
-          const contactFieldMap: Record<string, keyof DomainService> = {
+          const contactFieldMap: Record<
+            string,
+            keyof TContactsConfiguration
+          > = {
             owner: 'contactOwner',
-            admin: 'contactAdmin',
-            tech: 'contactTech',
+            admin: 'contactAdministrator',
+            tech: 'contactTechnical',
             billing: 'contactBilling',
           };
 
           const contactField = contactFieldMap[contactType];
-          const contactData = domainDetails[contactField] as
-            | { id: string }
-            | undefined;
+          const contactData = domainDetails?.currentState
+            ?.contactsConfiguration[contactField] as { id: string } | undefined;
           const contactId = contactData?.id;
 
           if (!contactId) {

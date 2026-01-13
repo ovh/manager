@@ -101,5 +101,5 @@
   "summaryFieldSourceType-pit": "Spezifisches Datum",
   "summaryFieldSourceType-backup": "Backup",
   "summaryFieldSourceBackupNone": "Keine",
-  "pciDatabasesAddCommandDialogAPICta": "Klicken Sie <anchor>hier</anchor> um auf die OVHCloud API-Konsole zuzugreifen."
+  "pciDatabasesAddCommandDialogAPICta": "Klicken Sie <anchor>hier</anchor>, um auf die OVHcloud API-Konsole zuzugreifen."
 }

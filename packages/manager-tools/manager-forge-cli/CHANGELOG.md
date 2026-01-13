@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-forge-cli@0.4.6...@ovh-ux/manager-forge-cli@0.5.0) (2026-01-13)
+
+
+### Features
+
+* replacing nx with turbo ([4c91a10](https://github.com/ovh/manager/commit/4c91a102cc7717f68751d7768748faaeff878696))
+
+
+
+
+
+## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-forge-cli@0.4.5...@ovh-ux/manager-forge-cli@0.4.6) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-forge-cli
+
+
+
+
+
 ## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-forge-cli@0.4.4...@ovh-ux/manager-forge-cli@0.4.5) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-forge-cli

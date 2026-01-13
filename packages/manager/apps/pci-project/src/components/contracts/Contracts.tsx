@@ -1,0 +1,57 @@
+import { useTranslation } from 'react-i18next';
+
+import { OdsCheckbox, OdsFormField, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { CartContract } from '@/data/models/Cart.type';
+
+import ContractsSkeleton from './ContractsSkeleton';
+
+type ContractsProps = {
+  contracts?: CartContract[];
+  isLoading?: boolean;
+  isChecked: boolean;
+  onCheckChanged: (isChecked: boolean) => void;
+};
+
+export default function Contracts({
+  contracts = [],
+  isLoading = false,
+  isChecked,
+  onCheckChanged,
+}: ContractsProps) {
+  const { t } = useTranslation(NAMESPACES.ORDER);
+
+  return (
+    <OdsFormField className="flex flex-row items-start">
+      <OdsCheckbox
+        data-testid="contracts-checkbox"
+        name="contracts"
+        inputId="cart-contracts"
+        isChecked={isChecked}
+        isDisabled={isLoading || contracts?.length === 0}
+        onOdsChange={(event) => onCheckChanged(event.detail.checked)}
+      />
+      <label className="ml-4 cursor-pointer" htmlFor="cart-contracts">
+        <OdsText preset="paragraph">{t('accept_terms', { ns: NAMESPACES.ORDER })}</OdsText>
+        {isLoading ? (
+          <ContractsSkeleton />
+        ) : (
+          <ul className="flex list-none flex-col gap-[8px]">
+            {contracts.map((contract) => (
+              <li key={contract.url}>
+                <OdsLink
+                  icon="external-link"
+                  target="_blank"
+                  href={contract.url}
+                  label={contract.name}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+      </label>
+    </OdsFormField>
+  );
+}

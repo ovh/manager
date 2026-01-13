@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.5...@ovh-ux/manager-pci-object-storage-app@0.29.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4586] ([4f66a9b](https://github.com/ovh/manager/commit/4f66a9bd4322284c2a6c8b45e1d41268ba0805e4))
+* **i18n:** add missing translations [CDS 4588] ([8ce4d06](https://github.com/ovh/manager/commit/8ce4d0691a5bb4dfa32d3b76ce1dc57b217df929))
+
+
+### Features
+
+* replacing nx with turbo ([4c91a10](https://github.com/ovh/manager/commit/4c91a102cc7717f68751d7768748faaeff878696))
+
+
+
+
+
+## [0.28.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.4...@ovh-ux/manager-pci-object-storage-app@0.28.5) (2026-01-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4583] ([7a43c5d](https://github.com/ovh/manager/commit/7a43c5dde44da6d83e2c01f70b7be6141d004d33))
+* **i18n:** add missing translations [CDS 983] ([7617a72](https://github.com/ovh/manager/commit/7617a7288b651d7e540c486f566dc58a742f242c))
+* **object-storage:** wrong machine translation ([4a9af8f](https://github.com/ovh/manager/commit/4a9af8f66c8a303b9adc5d6706c2db3bbdf3e747))
+
+
+
+
+
+## [0.28.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.3...@ovh-ux/manager-pci-object-storage-app@0.28.4) (2026-01-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4579] ([bbd8b4c](https://github.com/ovh/manager/commit/bbd8b4c93b94105ff4cc5c87360d3ca86d3d72fd))
+
+
+
+
+
 ## [0.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.2...@ovh-ux/manager-pci-object-storage-app@0.28.3) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

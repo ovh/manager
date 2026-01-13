@@ -5,5 +5,5 @@
   "private_registry_header_faq_managed_private_registry": "FAQ sobre Managed Private Registry (Harbor)",
   "private_registry_header_create_a_managed_private_register": "Crear un registro privado administrado (EN)",
   "private_registry_header_create_and_use_a_private_image": "Crear y utilizar una imagen privada (EN)",
-  "private_registry_header_authentification_iam": "Activar autenticación IAM (EN)"
+  "private_registry_header_authentification_iam": "Activar la autenticación IAM (EN)"
 }

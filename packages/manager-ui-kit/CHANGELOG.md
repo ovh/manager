@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.12.0...@ovh-ux/muk@0.13.0) (2026-01-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 912] ([46d8cf0](https://github.com/ovh/manager/commit/46d8cf0a095f5c1c61c92d303ab9449699453aed))
+* **web-domains:** add missing translation ([942b8a8](https://github.com/ovh/manager/commit/942b8a84ed197da9bd4c80d0b90cbc29039e16d8)), closes [#DCE-105](https://github.com/ovh/manager/issues/DCE-105)
+
+
+### Features
+
+* **muk:** enhance eslint rules and quality ([3561878](https://github.com/ovh/manager/commit/3561878ed62c5d50eecf4a91e1f7fc96506c040d)), closes [#MANAGER-20138](https://github.com/ovh/manager/issues/MANAGER-20138)
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.11.1...@ovh-ux/muk@0.12.0) (2026-01-07)
+
+
+### Features
+
+* **muk:** fix datagrid virtualization and scrollbar ([fd0fd72](https://github.com/ovh/manager/commit/fd0fd7260abd035983bcbe1689184098483b49ef)), closes [#MANAGER-20626](https://github.com/ovh/manager/issues/MANAGER-20626)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.11.0...@ovh-ux/muk@0.11.1) (2026-01-05)
 
 **Note:** Version bump only for package @ovh-ux/muk

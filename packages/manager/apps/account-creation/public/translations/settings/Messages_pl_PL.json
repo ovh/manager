@@ -1,11 +1,12 @@
 {
   "title": "Wybierz ustawienia konta",
-  "description": "Masz już konto? <Link label=\"Connectez-vous\"></Link>",
+  "description": "Masz już konto?",
   "country_setting": "Kraj rezydencji podatkowej",
   "currency_setting": "Waluta",
   "site_setting": "Strona WWW (język)",
   "setting_description": "W zależności od kraju rezydencji podatkowej wybierasz stronę internetową, na której zawierasz umowę i wybierasz produkty. Waluta rozliczeń zależy od wybranej strony.",
   "setting_description_list_first": "1. Jeśli jesteś klientem zarejestrowanym jako podatnik VAT, GST lub podatku równoważnego, Twoim krajem rezydencji podatkowej jest kraj, w którym dokonałeś rejestracji.",
   "setting_description_list_second": "2. Jeśli nie jesteś zarejestrowany jako podatnik VAT, GST lub podatku równoważnego, ale jesteś zarejestrowany jako przedsiębiorca, Twoim krajem rezydencji podatkowej jest kraj, w którym dokonałeś tej rejestracji.",
-  "setting_description_list_last": "3. Jeśli nie jesteś zarejestrowany jako podatnik VAT, GST lub podatku równoważnego i nie zarejestrowałeś się jako przedsiębiorca, Twoim krajem rezydencji podatkowej jest kraj wskazany w adresie rozliczeniowym. Zgodnie z obowiązującymi przepisami OVHcloud może porównywać te informacje z adresem IP lub krajem prowadzenia rachunku bankowego użytego do płatności. W przypadku rozbieżności OVHcloud może skontaktować się z Tobą w celu potwierdzenia kraju rezydencji podatkowej."
+  "setting_description_list_last": "3. Jeśli nie jesteś zarejestrowany jako podatnik VAT, GST lub podatku równoważnego i nie zarejestrowałeś się jako przedsiębiorca, Twoim krajem rezydencji podatkowej jest kraj wskazany w adresie rozliczeniowym. Zgodnie z obowiązującymi przepisami OVHcloud może porównywać te informacje z adresem IP lub krajem prowadzenia rachunku bankowego użytego do płatności. W przypadku rozbieżności OVHcloud może skontaktować się z Tobą w celu potwierdzenia kraju rezydencji podatkowej.",
+  "connect": "Zaloguj się"
 }

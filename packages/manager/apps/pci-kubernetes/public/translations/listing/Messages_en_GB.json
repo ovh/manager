@@ -28,13 +28,13 @@
   "kube_list_node_pools_discover": "Discover alpha",
   "READY": "Ready",
   "DISABLED": "Disabled",
-  "UPDATING": "Updating in progress",
+  "UPDATING": "Updating...",
   "ERROR": "Error",
-  "DELETING": "Deleting",
-  "CREATING": "Creating in progress",
+  "DELETING": "Deleting...",
+  "CREATING": "Creating...",
   "ENABLED": "Enabled",
-  "kube_list_node_pools_floating_ip_warning_enable_title": "Tariff impact",
-  "kube_list_node_pools_floating_ip_warning_enable_description": "Activating Floating IPs incurs an additional cost. Each current and future instance of this node pool will be assigned a Floating IP charged at {{price}}.",
-  "kube_list_node_pools_floating_ip_warning_disable_title": "Important: Loss of Floating IPs",
-  "kube_list_node_pools_floating_ip_warning_disable_description": "Deactivation will result in the immediate detachment of the Floating IPs. These addresses will be permanently released and cannot be recovered."
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Price impact",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "Enabling Floating IPs comes with an extra charge. Each current and future instance of this node pool will be assigned a Floating IP, at {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Warning: Loss of Floating IPs",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "Disabling will detach the Floating IPs immediately. These addresses will be permanently released and cannot be retrieved."
 }

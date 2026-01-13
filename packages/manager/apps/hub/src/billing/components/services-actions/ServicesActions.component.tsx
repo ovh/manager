@@ -61,7 +61,7 @@ export default function ServicesActions({
 
   // When we'll migrate to ODS 18, we should try to have the popover "rounded" & "withArrow" and add a direction to it
   return shouldBeDisplayed ? (
-    <OsdsPopover dir="rtl" onClick={onOpenPopOver}>
+    <OsdsPopover dir="rtl" onClick={void onOpenPopOver}>
       <OsdsButton
         slot="popover-trigger"
         className="min-w-9"

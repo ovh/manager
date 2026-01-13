@@ -28,11 +28,11 @@
   "error_rate_limit_message": "Ha alcanzado el límite de peticiones. Por favor, inténtelo de nuevo más tarde.",
   "guide_menu_header": "Guías",
   "guide_menu_start_guide": "Visita guiada",
-  "guided_tour_introduction_title": "Bienvenido a su nueva página Mis comunicaciones",
-  "guided_tour_introduction_content": "¿Desea ver la visita guiada?",
-  "guided_tour_introduction_dont_display_again": "No mostrar más",
-  "guided_tour_introduction_start_guide": "Ver la visita guiada",
-  "guided_tour_communications": "Aquí encontrará todos los correos electrónicos que OVHcloud le ha enviado, excepto las solicitudes de asistencia.",
-  "guided_tour_contacts": "Administre aquí su lista de contactos y agregue contactos para asociarlos con sus configuraciones de envío.",
-  "guided_tour_settings": "Agregue y defina sus reglas de envío para elegir qué contactos recibirán las comunicaciones, según las categorías y prioridades seleccionadas."
+  "guided_tour_introduction_title": "Bienvenido/a a la nueva página «Mis comunicaciones»",
+  "guided_tour_introduction_content": "¿Quiere hacer la visita guiada?",
+  "guided_tour_introduction_dont_display_again": "No volver a mostrar",
+  "guided_tour_introduction_start_guide": "Hacer la visita guiada",
+  "guided_tour_communications": "Consulte todos los mensajes de correo enviados por OVHcloud, excepto las solicitudes de asistencia.",
+  "guided_tour_contacts": "Gestione aquí su lista de contactos y agrega contactos para asociarlos a su configuración de envío.",
+  "guided_tour_settings": "Añada y defina sus reglas de envío para elegir los contactos que recibirán las comunicaciones, en función de las categorías y prioridades seleccionadas."
 }

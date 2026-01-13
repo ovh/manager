@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
-  Datagrid,
   BaseLayout,
   ErrorBanner,
   useNotifications,
   Notifications,
-  useResourcesIcebergV6,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
@@ -20,30 +18,25 @@ import {
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
-import { toASCII } from 'punycode';
-import { FilterWithLabel } from '@ovh-ux/manager-react-components/dist/types/src/components/filters/interface';
-import { FilterComparator } from '@ovh-ux/manager-core-api';
+import { VisibilityState } from '@tanstack/react-table';
+import { Datagrid } from '@ovh-ux/muk';
 import {
-  DomainService,
-  DomainServiceStateEnum,
-} from '@/domain/types/domainResource';
-import { useDomainDatagridColumns } from '@/domain/hooks/useDomainDatagridColumns';
+  useDomainDatagridColumns,
+  DomainResourceDatagridData,
+} from '@/domain/hooks/useDomainDatagridColumns';
 import RenewRestoreModal from '@/domain/pages/service/serviceList/modalDrawer/RenewRestoreModal';
 import { useDomainExportHandler } from '@/domain/hooks/useDomainExportHandler';
+import { useDomainDataApiWithRouteParams } from '@/domain/hooks/useDomainDataApiWithRouteParams';
 import TopBarCTA from './topBarCTA';
 import ExportDrawer from './modalDrawer/exportDrawer';
-import {
-  changelogLinks,
-  ONGOING_PROCEEDINGS,
-} from '@/domain/constants/serviceDetail';
+import { changelogLinks } from '@/domain/constants/serviceDetail';
 import DomainGuideButton from './guideButton';
 
 export default function ServiceList() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { notifications } = useNotifications();
-  const [isModalOpenned, setIsModalOpened] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
   const [rowSelection, setRowSelection] = useState({});
-  const [searchInput, setSearchInput] = useState('');
   const [isDrawerExportOpen, setIsDrawerExportOpen] = useState(false);
   const [modalServiceNames, setModalServiceNames] = useState<string[]>([]);
   const [exportProgress, setExportProgress] = useState<{
@@ -56,6 +49,7 @@ export default function ServiceList() {
     downloadUrl: string;
     total: number;
   }>(null);
+  const [exportAllServices, setExportAllServices] = useState(false);
 
   const selectedServiceNames = Object.keys(rowSelection);
 
@@ -63,60 +57,79 @@ export default function ServiceList() {
     setIsModalOpened(open);
   };
 
-  const openModal = (serviceNames?: string[]) => {
-    setModalServiceNames(serviceNames || selectedServiceNames);
+  const openModal = (serviceNames: string[]) => {
+    setModalServiceNames(serviceNames);
     setIsModalOpened(true);
   };
 
-  const openDrawer = (serviceNames?: string[]) => {
-    setModalServiceNames(serviceNames || selectedServiceNames);
+  const openDrawer = (serviceNames: string[]) => {
+    setModalServiceNames(serviceNames);
     setIsDrawerExportOpen(true);
+    if (serviceNames?.length === 0) {
+      setExportAllServices(true);
+    } else {
+      setExportAllServices(false);
+    }
   };
 
   const domainColumns = useDomainDatagridColumns({
     openModal,
   });
 
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+    () => {
+      const allowedVisibleColumns = new Set([
+        'domain',
+        'state',
+        'suspensionState',
+        'pendingActions',
+        'renewFrequency',
+        'expiration',
+        'contactOwner.id',
+        'actions',
+      ]);
+
+      return domainColumns.reduce<VisibilityState>((acc, column) => {
+        if (column.id && !allowedVisibleColumns.has(column.id)) {
+          acc[column.id] = false;
+        }
+        return acc;
+      }, {});
+    },
+  );
+
   const {
     flattenData: domainResources,
+    totalCount,
     isLoading,
     isFetching,
     isError,
     error,
-    filters,
-    totalCount,
     hasNextPage,
     fetchNextPage,
     sorting,
-    setSorting,
-    search,
-  } = useResourcesIcebergV6<DomainService>({
-    columns: domainColumns,
-    route: '/domain',
-    queryKey: ['/domain'],
+    searchProps,
+    filtersProps,
+  } = useDomainDataApiWithRouteParams<DomainResourceDatagridData>({
+    version: 'v2',
+    baseRoute: '/domain/name',
+    cacheKey: ['/domain/name'],
+    defaultSorting: [{ id: 'id', desc: false }],
     disableCache: true,
-    defaultSorting: { id: 'domain', desc: false },
+    iceberg: false,
+    pageSize: 10,
+    enabled: true,
+    columns: domainColumns,
   });
 
   const { handleExport } = useDomainExportHandler({
+    exportAllServices,
     selectedServiceNames,
     domainResources,
     setExportProgress,
     setExportDone,
     setIsDrawerExportOpen,
   });
-
-  useEffect(() => {
-    const debounce = setTimeout(() => {
-      search.setSearchInput(toASCII(searchInput.toLowerCase()));
-    }, 300);
-
-    return () => clearTimeout(debounce);
-  }, [searchInput]);
-
-  useEffect(() => {
-    search.onSearch(search.searchInput);
-  }, [search.searchInput]);
 
   if (isError) {
     return (
@@ -186,12 +199,11 @@ export default function ServiceList() {
                     href={exportDone.downloadUrl}
                     download={exportDone.filename}
                     onClick={() => {
-                      setTimeout(
-                        () => URL.revokeObjectURL(exportDone.downloadUrl),
-                        1000,
+                      setTimeout(() =>
+                        URL.revokeObjectURL(exportDone.downloadUrl),
                       );
                     }}
-                  ></Link>
+                  />
                 ),
               }}
             />
@@ -204,79 +216,46 @@ export default function ServiceList() {
           onClick={() => setIsDrawerExportOpen(false)}
         />
       )}
-      <div data-testid="datagrid">
-        <Datagrid
-          isLoading={isLoading || isFetching}
-          columns={domainColumns}
-          items={domainResources || []}
-          totalItems={totalCount || 0}
-          hasNextPage={hasNextPage}
-          onFetchNextPage={fetchNextPage}
-          sorting={sorting}
-          onSortChange={setSorting}
-          getRowId={(row) => row.domain}
-          rowSelection={{
-            rowSelection,
-            setRowSelection,
-          }}
-          topbar={
-            <TopBarCTA
-              serviceNames={selectedServiceNames}
-              openModal={openModal}
-              openDrawer={openDrawer}
-            />
-          }
-          columnVisibility={[
-            'domain',
-            'state',
-            'suspensionState',
-            'pendingActions',
-            'renewFrequency',
-            'expiration',
-            'contactOwner',
-            'actions',
-          ]}
-          search={{
-            searchInput,
-            setSearchInput,
-            onSearch: () => null,
-          }}
-          filters={{
-            filters: filters.filters,
-            add: (filter: FilterWithLabel) => {
-              if (
-                filter.key === 'state' &&
-                filter.value === ONGOING_PROCEEDINGS
-              ) {
-                filters.add({
-                  ...filter,
-                  comparator: FilterComparator.IsIn,
-                  value: [
-                    DomainServiceStateEnum.REGISTRY_SUSPENDED,
-                    DomainServiceStateEnum.DISPUTE,
-                    DomainServiceStateEnum.TECHNICAL_SUSPENDED,
-                  ],
-                });
-                return;
-              }
-              filters.add(filter);
-            },
-            remove: filters.remove,
-          }}
-        />
-        <RenewRestoreModal
-          isModalOpenned={isModalOpenned}
-          serviceNames={modalServiceNames}
-          onOpenChange={onOpenChange}
-        />
-        <ExportDrawer
-          serviceNames={modalServiceNames}
-          isDrawerOpen={isDrawerExportOpen}
-          onClose={() => setIsDrawerExportOpen(false)}
-          onExport={handleExport}
-        />
-        <Outlet />
-      </div>
+      <Datagrid<DomainResourceDatagridData>
+        autoScroll
+        isLoading={isFetching || isLoading}
+        sorting={sorting}
+        columns={domainColumns}
+        data={domainResources ?? ([] as DomainResourceDatagridData[])}
+        hasNextPage={hasNextPage}
+        onFetchNextPage={fetchNextPage}
+        totalCount={totalCount}
+        search={searchProps}
+        topbar={
+          <TopBarCTA
+            serviceNames={selectedServiceNames}
+            openModal={openModal}
+            openDrawer={openDrawer}
+          />
+        }
+        rowSelection={{
+          rowSelection,
+          setRowSelection,
+        }}
+        columnVisibility={{
+          columnVisibility,
+          setColumnVisibility,
+        }}
+        resourceType="domain"
+        filters={filtersProps}
+      />
+      <RenewRestoreModal
+        isModalOpenned={isModalOpened}
+        serviceNames={modalServiceNames}
+        onOpenChange={onOpenChange}
+      />
+      <ExportDrawer
+        serviceNames={modalServiceNames}
+        isDrawerOpen={isDrawerExportOpen}
+        onClose={() => setIsDrawerExportOpen(false)}
+        onExport={handleExport}
+      />
+      <Outlet />
     </BaseLayout>
   );
 }

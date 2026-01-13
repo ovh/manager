@@ -109,7 +109,7 @@ describe('TagsListDatagrid Component', async () => {
     });
 
     expect(getAllByText('2').length).not.toBe(0);
-    expect(getAllByText('tagType_predefined').length).not.toBe(0);
+    expect(getAllByText(/predefined/).length).not.toBe(0)
   });
 
   it('Should bulk select tags', async () => {

@@ -64,3 +64,5 @@ lint-html-runner.js
 lint-cli.js
 packages/manager/apps/web-ongoing-operations
 packages/manager/apps/communication
+packages/manager/apps/pci-project
+packages/manager/apps/hub

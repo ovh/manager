@@ -5,5 +5,6 @@
   "guides_pci_rancher_header_first_steps_with_instances": "Pierwsze kroki z instancjami",
   "pci_rancher_header_update_managed_rancher": "Zaktualizuj klaster Managed Rancher",
   "pci_rancher_header_iam_rancher": "Zarządzanie tożsamością i dostępem (IAM)",
-  "pci_rancher_header_authentification_iam": "Aktywuj uwierzytelnianie IAM (EN)"
+  "pci_rancher_header_authentification_iam": "Włącz uwierzytelnianie IAM (EN)",
+  "pci_rancher_header_first_steps_with_instances": "Pierwsze kroki z instancjami"
 }

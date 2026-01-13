@@ -12,6 +12,7 @@ import { initModuleFederation } from '@/domain/utils/module-federation-runtime';
 import App from './App';
 import './vite-hmr';
 import './index.scss';
+import '@ovh-ux/muk/dist/style.css';
 
 import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constants';
 

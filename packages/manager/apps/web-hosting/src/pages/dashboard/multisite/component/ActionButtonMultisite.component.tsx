@@ -16,7 +16,6 @@ import {
   WebHostingWebsiteType,
 } from '@/data/types/product/webHosting';
 import { GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
-import { useHostingUrl } from '@/hooks/useHostingUrl';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 interface ActionButtonMultisiteProps {
@@ -43,14 +42,6 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
   const navigate = useNavigate();
   const { t } = useTranslation('common');
   const { serviceName } = useParams();
-  const associateGitLink = useHostingUrl(
-    serviceName,
-    `multisite/git-association?path=${path ?? ''}`,
-  );
-  const configureGitLink = useHostingUrl(
-    serviceName,
-    `multisite/git-configuration?path=${path ?? ''}`,
-  );
   const { data: websites = [] } = useWebHostingWebsite(serviceName) as {
     data?: WebHostingWebsiteType[];
     isLoading: boolean;
@@ -129,12 +120,23 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
         }, */
         actionCondition(canAssociateGit, {
           id: 6,
-          onClick: () => window.location.replace(associateGitLink),
+          onClick: () =>
+            navigate(
+              urls.associateGit
+                .replace(subRoutes.serviceName, serviceName)
+                .replace(subRoutes.path, path ?? ''),
+            ),
           label: t('associate_git'),
         }),
         actionCondition(canConfigureGit, {
           id: 7,
-          onClick: () => window.location.replace(configureGitLink),
+          onClick: () =>
+            navigate(
+              urls.associateGit
+                .replace(subRoutes.serviceName, serviceName)
+                .replace(subRoutes.path, path ?? ''),
+              { state: { isConfiguration: true } },
+            ),
           label: t('configure_git'),
         }),
         actionCondition(canDeployGit, {
@@ -170,6 +172,16 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
             ),
           label: t('delete_git'),
         }),
+        {
+          id: 11,
+          onClick: () =>
+            navigate(
+              urls.deleteSite
+                .replace(subRoutes.serviceName, serviceName)
+                .replace(subRoutes.path, path ?? ''),
+            ),
+          label: t('delete_my_website'),
+        },
       ].filter(Boolean);
 
       return siteActions;
@@ -261,8 +273,6 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     path,
     domainId,
     domain,
-    associateGitLink,
-    configureGitLink,
     service,
   ]);
 

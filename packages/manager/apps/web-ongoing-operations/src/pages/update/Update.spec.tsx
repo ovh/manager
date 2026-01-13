@@ -1,6 +1,5 @@
 import '@/setupTests';
-import React from 'react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { OdsFileUpload } from '@ovhcloud/ods-components/react';
 import {
@@ -44,7 +43,7 @@ vi.mock('@/hooks/update/useOperationArguments', () => ({
 
 describe('Update page', () => {
   it('display the correct data related to the domain', async () => {
-    (useOperationArguments as jest.Mock).mockReturnValue({
+    (useOperationArguments as Mock).mockReturnValue({
       data: updateContactArgument,
       isLoading: false,
     });
@@ -61,14 +60,14 @@ describe('Update page', () => {
   });
 
   it('display the contact content', async () => {
-    (useOperationArguments as jest.Mock).mockReturnValue({
+    (useOperationArguments as Mock).mockReturnValue({
       data: {
         data: updateContactArgument,
         isLoading: false,
       },
     });
 
-    (useGetDomainInformation as jest.Mock).mockReturnValue({
+    (useGetDomainInformation as Mock).mockReturnValue({
       data: serviceInfo,
       isLoading: false,
     });
@@ -81,7 +80,7 @@ describe('Update page', () => {
   });
 
   it('display the document content', async () => {
-    (useOperationArguments as jest.Mock).mockReturnValue({
+    (useOperationArguments as Mock).mockReturnValue({
       data: {
         data: updateDocumentArgument,
         isLoading: false,
@@ -96,7 +95,7 @@ describe('Update page', () => {
   });
 
   it('display the string content', async () => {
-    (useOperationArguments as jest.Mock).mockReturnValue({
+    (useOperationArguments as Mock).mockReturnValue({
       data: {
         data: updateStringArgument,
         isLoading: false,

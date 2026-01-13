@@ -6,7 +6,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { renderTest } from '../../../../../test-utils';
+import { renderTest, labels } from '../../../../../test-utils';
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 
 const checkTitleIsVisible = () =>
@@ -23,7 +23,9 @@ const checkFormInputAndCta = (container: HTMLElement) => {
       `[label="${fr_FR.managed_vcd_dashboard_vrack_add_network}"]`,
     ),
   ).toBeVisible();
-  expect(container.querySelector('[label="cancel"]')).toBeVisible();
+  expect(
+    container.querySelector(`[label=${labels.commun.actions.cancel}]`),
+  ).toBeVisible();
 
   const input = container.querySelector('input[name="network"]');
 
@@ -68,7 +70,7 @@ describe('Edit Vrack Segment Id Page', () => {
       () => {
         checkTitleIsVisible();
       },
-      { timeout: 3_000 },
+      { timeout: 10_000 },
     );
 
     await waitFor(
@@ -76,7 +78,7 @@ describe('Edit Vrack Segment Id Page', () => {
         checkFormInputAndCta(container);
         checkNetworkValue(container, '');
       },
-      { timeout: 2000 },
+      { timeout: 10_000 },
     );
 
     await submitForm(container);

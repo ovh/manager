@@ -28,8 +28,8 @@
   "cliTitle": "CLI",
   "cliCodeTitle": "Puede crear la misma aplicación utilizando estas líneas de comando en su CLI ovhai.",
   "cliEquivalentToastMessage": "Se ha copiado el comando CLI",
-  "customMetricsUrlLabel": "URL: ",
+  "customMetricsUrlLabel": "URL ",
   "customMetricsFormatLabel": "Formato: {{for}}",
-  "customMetricsLocationLabel": "Ubicación: ",
+  "customMetricsLocationLabel": "Localización: ",
   "customMetricsTargetValueLabel": "Valor: {{val}}"
 }

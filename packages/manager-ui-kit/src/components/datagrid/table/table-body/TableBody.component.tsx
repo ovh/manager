@@ -27,9 +27,10 @@ export const TableBody = <T,>({
   const { rows } = rowModel;
   const previousRowsLength = usePrevious(rows?.length);
   const browserName = useMemo(() => getBrowserName(), []);
+
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    estimateSize: useCallback(() => maxRowHeight, [maxRowHeight]),
+    estimateSize: () => maxRowHeight,
     getScrollElement: () => tableContainerRef,
     measureElement:
       typeof window !== 'undefined' && navigator.userAgent.indexOf('Firefox') === -1
@@ -42,7 +43,7 @@ export const TableBody = <T,>({
     if (autoScroll && previousRowsLength !== undefined && rows?.length > previousRowsLength) {
       rowVirtualizer.scrollToIndex(previousRowsLength, { align: 'start' });
     }
-  }, [rows?.length]);
+  }, [autoScroll, previousRowsLength, rows?.length, rowVirtualizer]);
 
   const getOffset = useCallback(
     (index: number) => {
@@ -52,14 +53,15 @@ export const TableBody = <T,>({
       }
       return count * subComponentHeight;
     },
-    [subComponentHeight],
+    [rows, subComponentHeight],
   );
 
+  // the total height is the sum of the max row height and the sub component height for each row
   const totalHeight = useMemo(() => {
     const total = rows.reduce((acc, row) => {
       return acc + maxRowHeight + (row.getIsExpanded() ? subComponentHeight : 0);
     }, 0);
-    return isLoading ? total + (pageSize - 1) * maxRowHeight : total + rows.length;
+    return isLoading ? total + (pageSize - 1) * maxRowHeight : total;
   }, [rows, maxRowHeight, subComponentHeight, isLoading, expanded]);
 
   if (rows?.length === 0 && !isLoading) {
@@ -74,13 +76,15 @@ export const TableBody = <T,>({
         height: totalHeight,
       }}
     >
-      {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+      {rowVirtualizer.getVirtualItems().map((virtualRow, index) => {
         const row = rows[virtualRow?.index];
         if (!row) return null;
         const offset = renderSubComponent ? getOffset(virtualRow?.index) : 0;
-        const translateY = hideHeader
-          ? virtualRow.start + offset - virtualRow?.index + 1
-          : virtualRow.start + offset - virtualRow?.index - 1;
+        // the translateY is the sum of the start of the virtual row, the offset, the index and the max row height
+        // if the hide header is true, subtract 1 for the border pixel of the header
+        const translateY = !hideHeader
+          ? virtualRow.start + offset - index - 1
+          : virtualRow.start + offset;
         const width = !hideHeader ? '100%' : 'calc(100% - 1px)';
         const leftPosition = !hideHeader ? -1 : 0;
         return (
@@ -91,7 +95,7 @@ export const TableBody = <T,>({
               ref={rowVirtualizer.measureElement}
               className={`table overflow-hidden absolute top-0 table table-fixed`}
               style={{
-                left: leftPosition,
+                left: browserName === 'Safari' ? 0 : leftPosition,
                 height: `${maxRowHeight}px`,
                 transform:
                   browserName === 'Safari' && !hideHeader
@@ -128,6 +132,7 @@ export const TableBody = <T,>({
                 renderSubComponent={renderSubComponent}
                 subComponentHeight={subComponentHeight}
                 maxRowHeight={virtualRow?.size ?? maxRowHeight}
+                hideHeader={hideHeader}
               />
             )}
           </Fragment>

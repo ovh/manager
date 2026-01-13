@@ -14,14 +14,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -29,12 +29,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -66,7 +66,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -114,14 +114,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -129,12 +129,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -166,7 +166,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -214,14 +214,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -229,12 +229,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -266,7 +266,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -314,14 +314,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'empty data' 1`] =
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -362,14 +362,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -377,12 +377,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -414,7 +414,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -462,14 +462,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -477,7 +477,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 131px;
+      style=height: 129px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
@@ -562,14 +562,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -577,12 +577,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 533.5px;
+      style=height: 539px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -614,7 +614,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -982,14 +982,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -997,12 +997,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -1034,7 +1034,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -1082,14 +1082,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -1097,12 +1097,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -1134,7 +1134,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -1182,8 +1182,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 50px; min-width: 50px; max-width: 50px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 50px; min-width: 50px; max-width: 50px;
         >
           <label
             class=_checkbox
@@ -1244,14 +1244,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
           </label>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -1259,12 +1259,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -1363,7 +1363,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -1478,14 +1478,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -1493,12 +1493,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -1530,7 +1530,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -1578,14 +1578,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -1593,7 +1593,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 67px;
+      style=height: 65px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
@@ -1678,14 +1678,17 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           <div
-            class=cursor-pointer select-none h-[20px]
+            class=cursor-pointer select-none h-[20px] h-auto
             data-testid=header-name
           >
-            <span>
+            <span
+              class=whitespace-normal wrap-break-word
+              style=word-break: break-word;
+            >
               name
             </span>
             <span
@@ -1700,14 +1703,17 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
           </div>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           <div
-            class=cursor-pointer select-none h-[20px]
+            class=cursor-pointer select-none h-[20px] h-auto
             data-testid=header-age
           >
-            <span>
+            <span
+              class=whitespace-normal wrap-break-word
+              style=word-break: break-word;
+            >
               age
             </span>
             <span
@@ -1725,12 +1731,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -1762,7 +1768,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -1810,14 +1816,17 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 50px; min-width: 50px; max-width: 50px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
-            class=h-[20px]
+            class=h-[20px] h-auto
             data-testid=header-expander
           >
-            <span />
+            <span
+              class=whitespace-normal wrap-break-word
+              style=word-break: break-word;
+            />
             <span
               class=align-middle inline-block pl-1 -mt-1
             >
@@ -1830,14 +1839,17 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 50px; min-width: 50px; max-width: 50px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 50px; min-width: 50px; max-width: 50px;
         >
           <div
-            class=h-[20px]
+            class=h-[20px] h-auto
             data-testid=header-select
           >
-            <span>
+            <span
+              class=whitespace-normal wrap-break-word
+              style=word-break: break-word;
+            >
               <label
                 class=_checkbox
                 data-ods=checkbox
@@ -1908,14 +1920,17 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           <div
-            class=cursor-pointer select-none h-[20px]
+            class=cursor-pointer select-none h-[20px] h-auto
             data-testid=header-name
           >
-            <span>
+            <span
+              class=whitespace-normal wrap-break-word
+              style=word-break: break-word;
+            >
               name
             </span>
             <span
@@ -1930,14 +1945,17 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           <div
-            class=cursor-pointer select-none h-[20px]
+            class=cursor-pointer select-none h-[20px] h-auto
             data-testid=header-age
           >
-            <span>
+            <span
+              class=whitespace-normal wrap-break-word
+              style=word-break: break-word;
+            >
               age
             </span>
             <span
@@ -1955,12 +1973,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -2085,7 +2103,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -2226,8 +2244,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 50px; min-width: 50px; max-width: 50px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 50px; min-width: 50px; max-width: 50px;
         >
           <label
             class=_checkbox
@@ -2288,14 +2306,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
           </label>
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -2303,12 +2321,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -2412,7 +2430,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -2527,18 +2545,18 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 50px; min-width: 50px; max-width: 50px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 50px; min-width: 50px; max-width: 50px;
         />
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -2546,12 +2564,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -2609,7 +2627,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4
@@ -2680,12 +2698,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with hideHeader enabled
   >
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: 0px; height: 48.5px; transform: translateY(1px); width: calc(100% - 1px);
+        style=left: 0px; height: 49px; transform: translateY(0px); width: calc(100% - 1px);
       >
         <td
           class=pl-4
@@ -2717,7 +2735,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with hideHeader enabled
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: 0px; height: 48.5px; transform: translateY(48.5px); width: calc(100% - 1px);
+        style=left: 0px; height: 49px; transform: translateY(49px); width: calc(100% - 1px);
       >
         <td
           class=pl-4
@@ -2765,14 +2783,14 @@ exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`
     >
       <tr>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           name
         </th>
         <th
-          class=text-left pl-4 whitespace-nowrap break-normal wrap-break-word
-          style=width: 150px; min-width: 20px; max-width: 9007199254740991px;
+          class=text-left pl-4 whitespace-normal wrap-break-word
+          style=word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;
         >
           age
         </th>
@@ -2780,12 +2798,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`
     </thead>
     <tbody
       class=relative p-0 overflow-hidden
-      style=height: 99px;
+      style=height: 98px;
     >
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=0
-        style=left: -1px; height: 48.5px; transform: translateY(-1px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(-1px); width: 100%;
       >
         <td
           class=pl-4
@@ -2817,7 +2835,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`
       <tr
         class=table overflow-hidden absolute top-0 table table-fixed
         data-index=1
-        style=left: -1px; height: 48.5px; transform: translateY(46.5px); width: 100%;
+        style=left: -1px; height: 49px; transform: translateY(47px); width: 100%;
       >
         <td
           class=pl-4

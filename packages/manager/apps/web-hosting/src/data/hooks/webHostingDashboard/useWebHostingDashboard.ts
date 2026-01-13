@@ -1,5 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
   createAttachedDomainService,
   createAttachedDomainsService,
@@ -8,6 +10,10 @@ import {
   getDomainZone,
   getHostingService,
   getServiceInfos,
+  getSshKey,
+  getVcsWebhookUrls,
+  postWebsiteV6,
+  putWebsiteV6,
   updateAttachedDomainService,
   updateHostingService,
 } from '@/data/api/dashboard';
@@ -236,5 +242,62 @@ export const useUpdateAttachedDomainService = (
     updateAttachedDomainService: mutation.mutate,
     updateAttachedDomainServiceAsync: mutation.mutateAsync,
     isPending: mutation.isPending,
+  };
+};
+
+export const useGetVcsWebhookUrls = (serviceName: string, path: string, vcs: string) =>
+  useQuery({
+    queryKey: ['hosting', 'web', serviceName, 'vcs', 'webhooks', path, vcs],
+    queryFn: () => getVcsWebhookUrls(serviceName, path, vcs),
+    enabled: Boolean(serviceName),
+  });
+
+export const useGetSshKey = (serviceName: string) =>
+  useQuery({
+    queryKey: ['hosting', 'web', serviceName, 'key', 'ssh'],
+    queryFn: () => getSshKey(serviceName),
+    enabled: Boolean(serviceName),
+  });
+
+export const usePostWebsiteV6 = (
+  serviceName: string,
+  onSuccess: () => void,
+  onError: (error: ApiError) => void,
+) => {
+  const mutation = useMutation({
+    mutationFn: ({
+      path,
+      vcsBranch,
+      vcsUrl,
+    }: {
+      path?: string;
+      vcsBranch?: string;
+      vcsUrl?: string;
+    }) => postWebsiteV6(serviceName, path, vcsBranch, vcsUrl),
+    onSuccess,
+    onError,
+  });
+
+  return {
+    postWebsiteV6: mutation.mutate,
+    ...mutation,
+  };
+};
+
+export const usePutWebsiteV6 = (
+  serviceName: string,
+  onSuccess: () => void,
+  onError: (error: ApiError) => void,
+) => {
+  const mutation = useMutation({
+    mutationFn: ({ id, vcsBranch }: { id?: string; vcsBranch?: string }) =>
+      putWebsiteV6(serviceName, id, vcsBranch),
+    onSuccess,
+    onError,
+  });
+
+  return {
+    putWebsiteV6: mutation.mutate,
+    ...mutation,
   };
 };

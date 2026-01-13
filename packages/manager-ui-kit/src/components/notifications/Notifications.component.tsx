@@ -21,7 +21,7 @@ export const Notifications: FC<NotificationProps> = ({ clearAfterRead = true }) 
 
   useEffect(() => {
     if (clearAfterRead && originLocation.pathname !== location.pathname) clearNotifications();
-  }, [clearAfterRead, location.pathname]);
+  }, [clearAfterRead, location.pathname, clearNotifications, originLocation.pathname]);
 
   return (
     <>

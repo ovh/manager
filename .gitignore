@@ -28,3 +28,16 @@ tests-coverage-reports/**
 static-dynamic-quality-reports/**/**
 **/.type-coverage/result.json
 target
+CLAUDE.md
+.mcp.json
+.claude
+.cursor
+
+
+
+.nx/cache
+.nx/workspace-data
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
+**/vite.config.*.timestamp-*.mjs
+**/vitest.config.*.timestamp-*.mjs

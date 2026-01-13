@@ -20,12 +20,12 @@ import {
   CDN_CONFIRMATION,
   CDN_CORS_RESOURCE_SHARING,
   CDN_EDIT_URLS,
-  CONFIGURE_GIT,
   CREATE,
   DASHBOARD,
   DELETE,
   DELETE_GIT,
   DELETE_MODULE,
+  DELETE_SITE,
   DEPLOYE_GIT,
   DETACHE_DOMAIN,
   DISABLE_SSL,
@@ -70,7 +70,6 @@ import {
 import { AddDomainPage, DetacheDomainModal, ModifyDomainModal } from './pages/domain';
 import {
   AssociateGitPage,
-  ConfigureGitPage,
   DeleteGitModal,
   DeployeGitModal,
   LastDeploymentGitModal,
@@ -88,7 +87,7 @@ import {
 import { AddModuleModal, DeleteModuleModal } from './pages/module';
 import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
-import { AddWebsitePage, UpdateDisplayNameModalComponent } from './pages/website';
+import { AddWebsitePage, DeleteSiteModal, UpdateDisplayNameModalComponent } from './pages/website';
 import { urls } from './routes.constants';
 
 export type RouteHandle = {
@@ -392,20 +391,6 @@ export default (
           }}
         />
         <Route
-          id={CONFIGURE_GIT}
-          path={urls.configureGit}
-          Component={ConfigureGitPage}
-          handle={{
-            tracking: {
-              pageType: PageType.listing,
-            },
-            breadcrumb: {
-              label: 'common:configure_git',
-            },
-            isOverridePage: true,
-          }}
-        />
-        <Route
           id={DELETE_GIT}
           path={urls.deleteGit}
           Component={DeleteGitModal}
@@ -504,6 +489,17 @@ export default (
           handle={{
             tracking: {
               pageName: DELETE_MODULE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={DELETE_SITE}
+          path={urls.deleteSite}
+          Component={DeleteSiteModal}
+          handle={{
+            tracking: {
+              pageName: DELETE_SITE,
               pageType: PageType.popup,
             },
           }}

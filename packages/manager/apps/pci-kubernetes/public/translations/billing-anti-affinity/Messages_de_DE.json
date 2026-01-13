@@ -26,6 +26,6 @@
   "kubernetes_node_pool_anti_affinity_description": "Durch die Aktivierung der Anti-Affinität werden vorhandene und zukünftige Nodes auf verschiedenen Hypervisoren (physischen Servern) bereitgestellt, was eine bessere Fehlertoleranz sicherstellt. Node-Pools mit Anti-Affinität können nur bis zu {{maxNodes}} Nodes enthalten. Bitte beachten Sie, dass die Anti-Affinitätsfunktion nicht mit der Aktivierung von Autoscaling kompatibel ist.",
   "kubernetes_add_billing_savings_plan_banner": "Profitieren Sie von günstigen monatlichen Preisen mit den Savings Plans und behalten Sie die Flexibilität der Instanzen auf Stundenbasis bei.",
   "kubernetes_add_billing_savings_plan_cta": "Ihre Savings Plans konfigurieren",
-  "kubernetes_node_pool_anti_affinity_true": "Aktive Anti-Affinität",
-  "kubernetes_node_pool_anti_affinity_false": "Inaktive Anti-Affinität"
+  "kubernetes_node_pool_anti_affinity_true": "Anti-Affinität aktiv",
+  "kubernetes_node_pool_anti_affinity_false": "Anti-Affinität inaktiv"
 }

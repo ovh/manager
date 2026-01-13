@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.5...@ovh-ux/manager-account-creation-app@0.9.6) (2026-01-13)
+
+
+### Bug Fixes
+
+* **account-creation:** fix labeu sanitize ([c284900](https://github.com/ovh/manager/commit/c284900a4e0f37b60ffe9991e4b63740ac5bf4a2)), closes [#MANAGER-20711](https://github.com/ovh/manager/issues/MANAGER-20711)
+
+
+
+
+
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.4...@ovh-ux/manager-account-creation-app@0.9.5) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
 ## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.3...@ovh-ux/manager-account-creation-app@0.9.4) (2026-01-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-creation-app

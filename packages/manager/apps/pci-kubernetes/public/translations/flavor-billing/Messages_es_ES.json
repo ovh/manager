@@ -11,6 +11,6 @@
   "pci_projects_project_instances_add_total_price_label": "Total: ",
   "pci_project_flavors_billing_addons_price_hourly": "{{price}}/hora + IVA",
   "pci_projects_project_instances_configure_billing_type": "Configurar el tipo de facturación",
-  "pci_projects_project_instances_configure_billing_type_description": "Puede cambiar de la facturación por hora a la tarifa mensual para cada nodo, en la vista de edición del grupo de nodos.",
-  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Precio que incluye el costo de las Floating IPs"
+  "pci_projects_project_instances_configure_billing_type_description": "En la vista «Edición» del pool de nodos, puede cambiar de facturación por horas a facturación mensual para cada nodo.",
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "El precio incluye el coste de las Floating IP"
 }

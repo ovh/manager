@@ -105,8 +105,9 @@ describe('renderBanner', () => {
     const theme = ui.getThemeColors();
 
     // Content should contain the rendered title and subtitle
-    expect(content).toContain('MOCK TITLE');
-    expect(content).toContain(subtitle);
+    const normalizedContent = content.replace(/\u001b\[[0-9;]*m/g, '');
+    expect(normalizedContent).toContain('MOCK TITLE');
+    expect(normalizedContent).toContain(subtitle);
 
     expect(options).toMatchObject<Partial<BoxenOptions>>({
       borderStyle: 'double',

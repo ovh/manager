@@ -8,8 +8,8 @@
   "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Termination requested",
   "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Termination requested",
   "billing_autorenew_service_modal_debt_warning_title": "Important information",
-  "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "We are sorry but this action is not available.",
-  "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "We are sorry but this action is not available because ",
-  "reason_billing_right": "You are not the billing contact <b>{{contactBilling}}</b>",
-  "reason_admin_right": "You are not the administrator contact <b>{{contactAdmin}}</b>"
+  "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "We’re sorry, but this action is not available.",
+  "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "We’re sorry, but this action is not available because ",
+  "reason_billing_right": "You’re not the <b>{{contactBilling}}</b> billing contact",
+  "reason_admin_right": "You’re not the <b>{{contactAdmin}}</b> admin contact"
 }

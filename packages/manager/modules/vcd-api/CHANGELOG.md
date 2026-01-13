@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.7...@ovh-ux/manager-module-vcd-api@0.10.0) (2026-01-12)
+
+
+### Features
+
+* **vcfaas:** add acl network for organisation ([f70e14a](https://github.com/ovh/manager/commit/f70e14a2b57c8cdf8b84eb5007a26a6fbf4bdb2d)), closes [#MANAGER-19918](https://github.com/ovh/manager/issues/MANAGER-19918)
+
+
+
+
+
+## [0.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.6...@ovh-ux/manager-module-vcd-api@0.9.7) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
 ## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.5...@ovh-ux/manager-module-vcd-api@0.9.6) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-vcd-api

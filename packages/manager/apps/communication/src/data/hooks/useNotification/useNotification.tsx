@@ -21,6 +21,7 @@ import {
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
+import type { DefinedInitialDataOptions } from "@tanstack/react-query"
 import { ColumnSort, useColumnFilters } from '@ovh-ux/manager-react-components';
 import {
   commonFilterToNotificationFilter,
@@ -171,11 +172,11 @@ export const useNotification = ({
     enabled: Boolean(notificationId && enabled),
   });
 
-export const useNotificationReference = (): UseQueryResult<
-  NotificationReference,
-  ApiError
-> =>
+export const useNotificationReference = <TData = NotificationReference>(
+  options: Partial<DefinedInitialDataOptions<NotificationReference, ApiError, TData>> = {},
+): UseQueryResult<TData, ApiError> =>
   useQuery({
+    ...options,
     queryKey: ['notification/reference'],
     queryFn: () => getNotificationReference(),
   });

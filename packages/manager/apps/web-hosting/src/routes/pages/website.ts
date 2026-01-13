@@ -7,3 +7,7 @@ export const AddWebsitePage = React.lazy(
 export const UpdateDisplayNameModalComponent = React.lazy(
   () => import('@/pages/dashboard/multisite/component/edit-name/EditName.modal'),
 );
+
+export const DeleteSiteModal = React.lazy(
+  () => import('@/pages/dashboard/multisite/DeleteSite.modal'),
+);

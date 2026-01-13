@@ -35,7 +35,6 @@ export default function HostDelete() {
       onPrimaryButtonClick={() => {
         updateDomain(
           {
-            checksum: domainResource?.checksum,
             currentTargetSpec: domainResource?.targetSpec,
             updatedSpec: {
               hostsConfiguration: {

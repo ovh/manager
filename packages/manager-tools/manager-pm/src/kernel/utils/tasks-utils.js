@@ -15,13 +15,13 @@ import { logger } from './log-manager.js';
 import { clearRootWorkspaces } from './workspace-utils.js';
 
 /**
- * Internal helper: derive the best Turbo filter value for a given `appRef`.
+ * Internal helper: derive the best Task Runner filter value for a given `appRef`.
  *
  * - Prefers the package name (`@scope/name`) if available.
  * - Falls back to the last path segment of the canonical workspace path.
  *
  * @param {string} appRef - Application reference (name, package name, or path).
- * @returns {string|null} The filter string for Turbo, or `null` if unresolved.
+ * @returns {string|null} The filter string for Task Runner, or `null` if unresolved.
  */
 export function resolveApplicationBuildFilter(appRef) {
   logger.debug(`resolveApplicationBuildFilter(appRef="${appRef}")`);
@@ -38,7 +38,7 @@ export function resolveApplicationBuildFilter(appRef) {
       return packageName; // Prefer the package name (@scope/name)
     }
 
-    const applicationWorkspacePath = buildApplicationWorkspacePath(appRef); // packages/manager/apps/<name>
+    const applicationWorkspacePath = buildApplicationWorkspacePath(appRef);
     const applicationPathParts = applicationWorkspacePath.split('/');
     const applicationBuildFilter = applicationPathParts[applicationPathParts.length - 1] || null;
 
@@ -60,7 +60,7 @@ export function resolveApplicationBuildFilter(appRef) {
 }
 
 /**
- * Internal helper: derive the best Turbo build filter for a given `moduleRef`.
+ * Internal helper: derive the best Task Runner build filter for a given `moduleRef`.
  *
  * - Prefers the package name (`@scope/name`) if available.
  * - Falls back to the last path segment of the canonical workspace path.
@@ -77,7 +77,7 @@ export function resolveApplicationBuildFilter(appRef) {
  * ```
  *
  * @param {string} moduleRef - Module reference (name, package name, or path).
- * @returns {string|null} The Turbo filter string (usually a package name or last path segment),
+ * @returns {string|null} The Task Runner filter string (usually a package name or last path segment),
  *                        or `null` if resolution failed.
  */
 export function resolveModuleBuildFilter(moduleRef) {

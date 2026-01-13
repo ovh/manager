@@ -37,8 +37,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clean stale git locks (pre)
-        run: rm -f .git/index.lock
+      # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
 
       # ------------------------------------------
       # Node
@@ -81,11 +91,9 @@ jobs:
           YARN_CACHE_FOLDER: ~/.cache/yarn
         run: yarn ci:install
 
-      - name: Clean stale git locks (post-install)
-        run: rm -f .git/index.lock
-
       # ------------------------------------------
       # Lint
       # ------------------------------------------
       - name: Lint Code Base
-        run: yarn lint
+        run: |
+          yarn lint --runner nx --verbose

@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.60.0...@ovh-ux/manager-billing@0.61.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **billing:** properly manage messages and button state on bulk autorenew ([b6f20b5](https://github.com/ovh/manager/commit/b6f20b50a80c6ec65eb7a1ce0b2e504d20ddea8a)), closes [#MANAGER-20667](https://github.com/ovh/manager/issues/MANAGER-20667)
+* **billing:** use user class to check postal invoices availability ([d47ca6b](https://github.com/ovh/manager/commit/d47ca6b2699a2205823d041abcf9afcd09874944)), closes [#MANAGER-20677](https://github.com/ovh/manager/issues/MANAGER-20677)
+* **i18n:** add missing translations [CDS 4588] ([8ce4d06](https://github.com/ovh/manager/commit/8ce4d0691a5bb4dfa32d3b76ce1dc57b217df929))
+
+
+### Features
+
+* **billing:** add badge for indicating renewal mode ([#21219](https://github.com/ovh/manager/issues/21219)) ([85e303b](https://github.com/ovh/manager/commit/85e303b5afa0c8b202df2312cbbc7cdce4675af8)), closes [#MANAGER-20437](https://github.com/ovh/manager/issues/MANAGER-20437)
+* **billing:** add filter renew in services ([ffee5b1](https://github.com/ovh/manager/commit/ffee5b1f8b5b22b9cc974545a77222914131a0c0)), closes [#MANAGER-20467](https://github.com/ovh/manager/issues/MANAGER-20467)
+* **billing:** add link from orders to bills ([7289b70](https://github.com/ovh/manager/commit/7289b707a81650174fbe7883d27ef7fb00de56e4)), closes [#MANAGER-20386](https://github.com/ovh/manager/issues/MANAGER-20386)
+
+
+
+
+
+# [0.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.59.4...@ovh-ux/manager-billing@0.60.0) (2026-01-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4553] ([9a19300](https://github.com/ovh/manager/commit/9a19300af5e8a67bb6cc5fc45b6fcdfc14b0bdf4))
+
+
+### Features
+
+* **billing:** add new domain reseller service ([8f256ba](https://github.com/ovh/manager/commit/8f256baa96cc53a5687c630e80e8902af7ce3f9e)), closes [#DCE-114](https://github.com/ovh/manager/issues/DCE-114)
+
+
+
+
+
+## [0.59.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.59.3...@ovh-ux/manager-billing@0.59.4) (2026-01-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 983] ([7617a72](https://github.com/ovh/manager/commit/7617a7288b651d7e540c486f566dc58a742f242c))
+
+
+
+
+
+## [0.59.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.59.2...@ovh-ux/manager-billing@0.59.3) (2026-01-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4579] ([bbd8b4c](https://github.com/ovh/manager/commit/bbd8b4c93b94105ff4cc5c87360d3ca86d3d72fd))
+
+
+
+
+
 ## [0.59.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.59.1...@ovh-ux/manager-billing@0.59.2) (2025-12-22)
 
 

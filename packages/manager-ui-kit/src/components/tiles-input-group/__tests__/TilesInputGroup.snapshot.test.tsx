@@ -38,7 +38,7 @@ describe('TilesInputGroup - Snapshot Tests', () => {
     const { container } = render(
       <TilesInputGroupComponent<TCountry>
         items={countries}
-        value={null}
+        value={countries[0] || null}
         onInput={mockOnInput}
         label={defaultLabel}
         tileClass={{

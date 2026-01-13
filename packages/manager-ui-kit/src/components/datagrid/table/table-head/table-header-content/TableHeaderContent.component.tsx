@@ -17,8 +17,9 @@ const TableHeaderContentComponent = <T,>({
         {headerGroup.headers.map((header) => (
           <th
             key={header.id}
-            className={`${contentAlignLeft ? 'text-left pl-4' : 'text-center'} whitespace-nowrap break-normal wrap-break-word`}
+            className={`${contentAlignLeft ? 'text-left pl-4' : 'text-center'} whitespace-normal wrap-break-word`}
             style={{
+              wordBreak: 'break-word',
               width: header.column.getSize(),
               minWidth: header.column.columnDef.minSize ?? 0,
               maxWidth: header.column.columnDef.maxSize ?? 'auto',

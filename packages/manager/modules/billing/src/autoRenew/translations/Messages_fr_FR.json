@@ -21,21 +21,23 @@
   "billing_autorenew_service_expiration_months": "Expirant dans un mois",
   "billing_autorenew_service_expiration_renew_month": "Renouvelés dans un mois",
   "billing_autorenew_service_actions": "Actions",
+  "billing_autorenew_service_renew_automatic": "Automatique",
+  "billing_autorenew_service_renew_manual": "Manuel",
+  "billing_autorenew_service_renew": "Renouvellement",
 
   "billing_autorenew_criterion_serviceType": "Service",
   "billing_autorenew_criterion_status": "Statut",
   "billing_autorenew_criterion_state": "Disponibilité",
   "billing_autorenew_criterion_expiration": "Date d'effet",
   "billing_autorenew_nic_all": "Tous",
+  "billing_autorenew_criterion_renew": "Renouvellement",
 
   "autorenew_service_deleteAtExpiration_banner": "La résiliation à l’expiration du service « {{ serviceName }} » a bien été prise en compte. Vous pouvez annuler cette opération jusqu’à 24 heures avant expiration du service.",
   "autorenew_service_deleteAtExpiration_banner_cancel": "Annuler la resiliation à l’expiration",
-
   "billing_autorenew_service": "Type",
   "billing_autorenew_service_name": "Service",
   "billing_autorenew_service_state_EXPIRED": "Suspendu",
   "billing_autorenew_service_state_UP": "Actif",
-
   "billing_autorenew_service_state_IN_CREATION": "En cours de création",
   "billing_autorenew_service_state_OK": "Payé",
   "billing_autorenew_service_state_UN_PAID": "Non payé",
@@ -45,7 +47,6 @@
   "billing_autorenew_service_date_before": "Avant le {{ date }}",
   "billing_autorenew_service_date_renew": "Le {{ date }}",
   "billing_autorenew_service_expiration_date": "Expire le",
-
   "autorenew_service_after_expiration_date": "Expiré le",
   "autorenew_service_renew_auto": "Automatique",
   "autorenew_service_renew_manuel": "Manuel",
@@ -57,7 +58,6 @@
   "autorenew_service_renew_frequency_value": "Automatique : tous les {{t0}} mois",
   "autorenew_service_renew_years_frequency_value": "Automatique : tous les {{t0}} ans",
   "autorenew_service_renew_paid": "Payé",
-
   "autorenew_empty": "Vous n'avez aucun service",
   "autorenew_service_action_title": "Action",
   "autorenew_service_actions_title": "Actions",
@@ -163,15 +163,14 @@
   "billing_autorenew_service_type_OKMS_RESOURCE": "OVHcloud KMS",
   "billing_autorenew_service_type_ZIMBRA_SLOT": "Compte Email Zimbra",
   "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN",
+  "billing_autorenew_service_type_DOMAIN_RESELLER": "Programme Revendeur de Noms de Domaine",
   "billing_export_csv": "Exporter en CSV",
   "billing_common_link_new_window": "(nouvelle fenêtre)",
   "billing_autorenew_renew_action": "Renouveler",
   "billing_autorenew_service_renew_requires_mean_and_date": "Afin de finaliser l'activation du renouvellement automatique, veuillez ajouter un moyen de paiement et ensuite il vous sera possible de sélectionner votre date de prélèvement.",
   "billing_autorenew_service_activate_alert": "Vous avez au moins un service en renouvellement automatique mais vous n'avez pas encore autorisé cette option.",
   "billing_autorenew_service_activate_alert_renew2016": "Ce message ne concerne pas les services Bare Metal et VPS.",
-
   "billing_autorenew_service_frequency": "Fréquence de renouvellement",
-
   "billing_autorenew_service_none": "Aucun",
   "billing_autorenew_service_every_month": "Tous les mois",
   "billing_autorenew_service_every_x_months": "Tous les {{ months }} mois",

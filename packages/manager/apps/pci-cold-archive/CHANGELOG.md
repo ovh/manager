@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.5.11...@ovh-ux/manager-pci-cold-archive-app@0.5.12) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+## [0.5.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.5.10...@ovh-ux/manager-pci-cold-archive-app@0.5.11) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+## [0.5.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.5.9...@ovh-ux/manager-pci-cold-archive-app@0.5.10) (2026-01-07)
+
+
+### Bug Fixes
+
+* **pci-cold-archive:** correct package json ([#21484](https://github.com/ovh/manager/issues/21484)) ([b5a8bed](https://github.com/ovh/manager/commit/b5a8beda9df8c7f587023993a639025b7f910e39))
+
+
+
+
+
 ## [0.5.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.5.8...@ovh-ux/manager-pci-cold-archive-app@0.5.9) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app

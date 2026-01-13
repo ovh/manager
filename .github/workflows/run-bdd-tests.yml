@@ -38,8 +38,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clean stale git locks (pre)
-        run: rm -f .git/index.lock
+      # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
 
       # ------------------------------------------
       # Node
@@ -82,26 +92,14 @@ jobs:
           YARN_CACHE_FOLDER: ~/.cache/yarn
         run: yarn ci:install
 
-      - name: Clean stale git locks (post-install)
-        run: rm -f .git/index.lock
-
       # ------------------------------------------
       # BUILD TARGETED PACKAGES
       # ------------------------------------------
       - name: Build covered packages and dependencies
         run: |
           CORES=$(nproc --ignore=1 || nproc)
-          yarn build --concurrency=$CORES \
-            --filter='./packages/manager/core/*' \
-            --filter='./packages/manager-ui-kit' \
-            --filter='./packages/manager/modules/order' \
-            --filter='./packages/manager/modules/common-api' \
-            --filter='./packages/manager/modules/common-translations' \
-            --filter='./packages/manager/modules/logs-to-customer' \
-            --filter='./packages/manager/modules/vcd-api' \
-            --filter='./packages/manager/modules/manager-pci-common' \
-            --filter='./packages/manager/modules/network-common' \
-            --filter='./packages/components/ovh-payment-method'
+          FILTERS="@ovh-ux/manager-core-api,@ovh-ux/manager-react-core-application,@ovh-ux/ovh-product-icons,@ovh-ux/request-tagger,@ovh-ux/manager-react-shell-client,@ovh-ux/manager-core-sso,@ovh-ux/url-builder,@ovh-ux/manager-core-utils,@ovh-ux/muk,@ovh-ux/manager-module-order,@ovh-ux/manager-module-common-api,@ovh-ux/manager-common-translations,@ovh-ux/logs-to-customer,@ovh-ux/manager-module-vcd-api,@ovh-ux/manager-pci-common,@ovh-ux/manager-network-common,@ovh-ux/ovh-payment-method"
+          yarn build --concurrency=$CORES --filter="$FILTERS" --runner nx
 
       # ------------------------------------------
       # RUN TESTS ON CHANGED PACKAGES
@@ -133,4 +131,4 @@ jobs:
           fi
 
           yarn test --concurrency=1 \
-            --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}]
+            --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] --runner nx

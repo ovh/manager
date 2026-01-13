@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.6.5...@ovh-ux/manager-communication-app@0.7.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4588] ([8ce4d06](https://github.com/ovh/manager/commit/8ce4d0691a5bb4dfa32d3b76ce1dc57b217df929))
+
+
+### Features
+
+* **communication:** change text-viewer to improve tables ([e5cc9e7](https://github.com/ovh/manager/commit/e5cc9e70eb4e72ba1aab233fb1030c7f17af5709)), closes [#MANAGER-20448](https://github.com/ovh/manager/issues/MANAGER-20448)
+* **communication:** fix cleared field after switching language and editing a rule ([4189bbf](https://github.com/ovh/manager/commit/4189bbf195bfc570fce134596238eefdcd778272))
+
+
+
+
+
+## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.6.4...@ovh-ux/manager-communication-app@0.6.5) (2026-01-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 983] ([7617a72](https://github.com/ovh/manager/commit/7617a7288b651d7e540c486f566dc58a742f242c))
+
+
+
+
+
+## [0.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.6.3...@ovh-ux/manager-communication-app@0.6.4) (2026-01-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4579] ([bbd8b4c](https://github.com/ovh/manager/commit/bbd8b4c93b94105ff4cc5c87360d3ca86d3d72fd))
+
+
+
+
+
 ## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.6.2...@ovh-ux/manager-communication-app@0.6.3) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-communication-app

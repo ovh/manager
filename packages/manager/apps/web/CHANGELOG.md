@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.6...@ovh-ux/manager-web@19.35.0) (2026-01-08)
+
+
+### Features
+
+* **web-hosting:** manage git configuration redirection ([bbdda9c](https://github.com/ovh/manager/commit/bbdda9ce8db763d5e20352a7cbec763407bd4887)), closes [#PUWEBPT-72](https://github.com/ovh/manager/issues/PUWEBPT-72)
+* **web:** change ip location for modify domain ([684788d](https://github.com/ovh/manager/commit/684788d5d70b859afec9e91a4b9518d7400e504b)), closes [#PUWEBPT-126](https://github.com/ovh/manager/issues/PUWEBPT-126)
+
+
+
+
+
+## [19.34.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.5...@ovh-ux/manager-web@19.34.6) (2026-01-07)
+
+
+### Bug Fixes
+
+* **web-hosting:** fix typo issues ([6d368e8](https://github.com/ovh/manager/commit/6d368e8ddc21fbd4ef009e5ce3ddd8853d143a31)), closes [#PUWEBPT-179](https://github.com/ovh/manager/issues/PUWEBPT-179)
+
+
+
+
+
 ## [19.34.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.4...@ovh-ux/manager-web@19.34.5) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

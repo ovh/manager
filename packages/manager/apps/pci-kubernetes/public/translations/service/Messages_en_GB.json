@@ -103,8 +103,8 @@
   "kube_service_cluster_status_MULTI_ZONES": "The MKS Premium solution is currently in beta. We are still working on some features, which will be added soon.",
   "kube_service_copy_kubeconfig": "Copy kubeconfig",
   "kube_service_download_kubeconfig": "Download kubeconfig",
-  "kube_service_download_kubeconfig_success": "The kubeconfig is being downloaded.",
-  "kube_service_download_kubeconfig_error": "Failed to download the kubeconfig file.",
-  "kube_service_copy_kubeconfig_success": "The kubeconfig has been copied successfully.",
-  "kube_service_copy_kubeconfig_error": "Failed to copy the kubeconfig."
+  "kube_service_download_kubeconfig_success": "Downloading kubeconfig.",
+  "kube_service_download_kubeconfig_error": "Unable to download kubeconfig file.",
+  "kube_service_copy_kubeconfig_success": "The kubeconfig has been copied.",
+  "kube_service_copy_kubeconfig_error": "Failed to copy kubeconfig."
 }

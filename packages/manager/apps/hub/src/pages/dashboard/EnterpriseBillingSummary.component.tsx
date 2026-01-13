@@ -30,9 +30,9 @@ export default function EnterpriseBillingSummary() {
 
   return (
     <div className="manager-hub-billing-summary" data-testid="enterprise_billing_summary">
-      <div className="text-left px-6">
+      <div className="px-6 text-left">
         <OsdsText
-          className="block mb-6"
+          className="mb-6 block"
           level={ODS_TEXT_LEVEL.heading}
           size={ODS_TEXT_SIZE._600}
           color={ODS_THEME_COLOR_INTENT.text}
@@ -41,7 +41,7 @@ export default function EnterpriseBillingSummary() {
           {t('hub_enterprise_billing_summary_title')}
         </OsdsText>
         <OsdsText
-          className="block mb-6"
+          className="mb-6 block"
           level={ODS_TEXT_LEVEL.body}
           size={ODS_TEXT_SIZE._500}
           color={ODS_THEME_COLOR_INTENT.text}
