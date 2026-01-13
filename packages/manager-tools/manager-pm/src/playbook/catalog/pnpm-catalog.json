@@ -7,6 +7,7 @@
   "packages/manager/apps/zimbra",
   "packages/manager/apps/carbon-calculator",
   "packages/manager/apps/catalog",
+  "packages/manager/apps/carrier-sip",
   "packages/manager/apps/container",
   "packages/manager/apps/dedicated",
   "packages/manager/apps/hpc-vmware-vsphere",
