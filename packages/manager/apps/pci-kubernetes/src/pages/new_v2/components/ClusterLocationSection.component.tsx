@@ -153,7 +153,8 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
             <MessageBody className="flex flex-col gap-4">
               TODO : Reprendre le contenu après la MEP du plan standard
               <Link href="https://ovhcloud.com" target="_blank">
-                Todo : Récupérer liens et clés de trad <Icon name="external-link"></Icon>
+                Todo : Récupérer liens et clés de trad après la MEP{' '}
+                <Icon name="external-link"></Icon>
               </Link>
             </MessageBody>
           </Message>
