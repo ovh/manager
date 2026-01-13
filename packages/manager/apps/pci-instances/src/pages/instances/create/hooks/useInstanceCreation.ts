@@ -193,7 +193,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const isCreationEnabled = hasBaseRequirements && hasSshRequirements;
 
   const handleCreateInstance = () => {
-    if (!isCreationEnabled) return;
+    if (!isCreationEnabled || isCreatingInstance) return;
 
     const instance = mapFlavorToDTO({
       name,
