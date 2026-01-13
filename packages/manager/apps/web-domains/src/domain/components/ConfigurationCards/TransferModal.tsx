@@ -1,4 +1,3 @@
-import React from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Button,
@@ -17,7 +16,7 @@ import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 
 interface TransferModalProps {
   readonly serviceName: string;
-  readonly action: string;
+  readonly currentProtectionState: string;
   readonly open: boolean;
   readonly updateDomain: () => void;
   readonly onClose: () => void;
@@ -25,7 +24,7 @@ interface TransferModalProps {
 
 export default function TransferModal({
   serviceName,
-  action,
+  currentProtectionState,
   open,
   updateDomain,
   onClose,
@@ -36,7 +35,7 @@ export default function TransferModal({
     <Modal open={open}>
       <ModalContent
         color={
-          action === ProtectionStateEnum.UNPROTECTED
+          currentProtectionState === ProtectionStateEnum.UNPROTECTED
             ? MODAL_COLOR.information
             : MODAL_COLOR.critical
         }
@@ -50,12 +49,12 @@ export default function TransferModal({
           }}
         >
           <Text preset={TEXT_PRESET.heading2}>
-            {action === ProtectionStateEnum.UNPROTECTED
+            {currentProtectionState === ProtectionStateEnum.UNPROTECTED
               ? t('domain_tab_general_information_transfer_activation_modal')
               : t('domain_tab_general_information_transfer_deactivate_modal')}
           </Text>
           <Text preset={TEXT_PRESET.paragraph}>
-            {action === ProtectionStateEnum.UNPROTECTED ? (
+            {currentProtectionState === ProtectionStateEnum.UNPROTECTED ? (
               <Trans
                 i18nKey="domain_tab_general_information_transfer_content_activation_modal"
                 t={t}
@@ -73,7 +72,7 @@ export default function TransferModal({
               />
             )}
           </Text>
-          {action === ProtectionStateEnum.UNPROTECTED && (
+          {currentProtectionState === ProtectionStateEnum.PROTECTED && (
             <Message color={MESSAGE_COLOR.information} dismissible={false}>
               {t(
                 'domain_tab_general_information_transfer_content_deactivate_modal_info',
@@ -86,7 +85,7 @@ export default function TransferModal({
             </Button>
             <Button
               color={
-                action === ProtectionStateEnum.UNPROTECTED
+                currentProtectionState === ProtectionStateEnum.UNPROTECTED
                   ? BUTTON_COLOR.information
                   : BUTTON_COLOR.critical
               }

@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import React from 'react';
 import { render, screen, fireEvent } from '@/common/utils/test.provider';
-import { vi, describe, it, beforeEach } from 'vitest';
+import { vi, describe, it, beforeEach, Mock } from 'vitest';
 import {
   useGetDomainResource,
   useGetDomainContact,
@@ -23,7 +23,7 @@ describe('HolderCards Component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: {
         currentState: {
           contactsConfiguration: {
@@ -35,7 +35,7 @@ describe('HolderCards Component', () => {
   });
 
   it('should render spinner when contact is loading', () => {
-    (useGetDomainContact as jest.Mock).mockReturnValue({
+    (useGetDomainContact as Mock).mockReturnValue({
       domainContact: null,
     });
 
@@ -65,7 +65,7 @@ describe('HolderCards Component', () => {
   });
 
   it('should render contact information when admin connected', () => {
-    (useGetDomainContact as jest.Mock).mockReturnValue({
+    (useGetDomainContact as Mock).mockReturnValue({
       domainContact: domainContactIndividual,
     });
 
@@ -91,7 +91,7 @@ describe('HolderCards Component', () => {
   });
 
   it('should navigate to edit contact URL when button is clicked', () => {
-    (useGetDomainContact as jest.Mock).mockReturnValue({
+    (useGetDomainContact as Mock).mockReturnValue({
       domainContact: domainContactIndividual,
     });
 
@@ -106,7 +106,7 @@ describe('HolderCards Component', () => {
   });
 
   it('should display organization information for non-individual legal form', () => {
-    (useGetDomainContact as jest.Mock).mockReturnValue({
+    (useGetDomainContact as Mock).mockReturnValue({
       domainContact: domainContactCorporation,
     });
 

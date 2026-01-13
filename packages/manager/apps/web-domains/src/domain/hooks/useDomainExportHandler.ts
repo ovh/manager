@@ -2,13 +2,13 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { download, generateCsv, mkConfig } from 'export-to-csv';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { DomainService } from '@/domain/types/domainResource';
+import { TDomainResource } from '@/domain/types/domainResource';
 import { useDomainExport } from '@/domain/hooks/useDomainExport';
-import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 
 interface UseExportHandlerParams {
+  exportAllServices: boolean;
   selectedServiceNames: string[];
-  domainResources: DomainService[] | null;
+  domainResources: TDomainResource[] | null;
   setExportProgress: (
     progress: { current: number; total: number; percentage: number } | null,
   ) => void;
@@ -19,6 +19,7 @@ interface UseExportHandlerParams {
 }
 
 export const useDomainExportHandler = ({
+  exportAllServices,
   selectedServiceNames,
   domainResources,
   setExportProgress,
@@ -33,7 +34,6 @@ export const useDomainExportHandler = ({
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { addError } = useNotifications();
   const { fetchDomainDetails, fetchAllDomains } = useDomainExport();
-  const { nichandleInformation } = useNichandleInformation();
 
   const handleExport = useCallback(
     async (selection: {
@@ -51,20 +51,14 @@ export const useDomainExportHandler = ({
           throw new Error('Invalid selection');
         }
 
-        let domainsToExport: DomainService[] = [];
+        let domainsToExport: TDomainResource[] = [];
 
-        if (selectedServiceNames.length === 0) {
-          setExportProgress({
-            current: 0,
-            total: 0,
-            percentage: 0,
-          });
-
+        if (exportAllServices) {
           const data = await fetchAllDomains();
           domainsToExport = data.length > 0 ? data : domainResources || [];
         } else {
           domainsToExport = (domainResources || []).filter((domain) =>
-            selectedServiceNames.includes(domain.domain),
+            selectedServiceNames.includes(domain.id),
           );
         }
 

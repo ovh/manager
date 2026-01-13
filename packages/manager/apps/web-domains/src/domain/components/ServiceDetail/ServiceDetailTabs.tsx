@@ -21,7 +21,6 @@ import {
 } from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
-import { DashboardTabItemProps } from '@/domain/types/serviceDetail';
 
 interface ServiceDetailsTabsProps {
   readonly domainResource: TDomainResource;
@@ -34,7 +33,6 @@ export default function ServiceDetailsTabs({
   const location = useLocation();
   const { shell } = useContext(ShellContext);
   const { serviceName } = useParams<{ serviceName: string }>();
-
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
@@ -62,21 +60,15 @@ export default function ServiceDetailsTabs({
       setValue(tab);
     }
 
-    if (tab !== value) {
-      clearNotifications();
-    }
+    // Clear notifications on location change
+    clearNotifications();
   }, [location.pathname]);
-
-  const isDisabled = (
-    tab: DashboardTabItemProps,
-    domainResource: TDomainResource,
-  ) => (tab.rule ? tab.rule(domainResource) : false);
 
   return (
     <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
       <TabList>
         {ServiceDetailTabsProps.map((tab) => {
-          const disabled = isDisabled(tab, domainResource);
+          const disabled = tab.rule ? tab.rule(domainResource) : false;
           return (
             <Tab
               key={tab.id}

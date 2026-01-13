@@ -2,18 +2,16 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { DrawerActionEnum } from '@/common/enum/common.enum';
 import { DrawerBehavior } from '@/common/types/common.types';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/DatagridColumnStatus';
 import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { domain_dsrecords_key_signing_ksk } from '@/domain/constants/dsRecords';
 import { StatusEnum } from '@/domain/enum/Status.enum';
-import { useNavigate } from 'react-router-dom';
-import { isDsRecordActionDisabled } from '@/domain/utils/utils';
 
-interface useDomainDsRecordsDatagridColumnsProps {
+interface UseDomainDsRecordsDatagridColumnsProps {
   readonly setDrawer: Dispatch<SetStateAction<DrawerBehavior>>;
   readonly setDsRecordsData: Dispatch<SetStateAction<TDsDataInterface>>;
   readonly setIsModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -25,11 +23,11 @@ export const useDomainDsRecordsDatagridColumns = ({
   setDsRecordsData,
   setIsModalOpen,
   activeConfiguration,
-}: useDomainDsRecordsDatagridColumnsProps) => {
+}: UseDomainDsRecordsDatagridColumnsProps) => {
   const { t } = useTranslation(['domain', NAMESPACES.STATUS]);
   const [isPublicKeyExpanded, setisPublicKeyExpanded] = useState<boolean>(true);
-  const isActionsDisplayed = isDsRecordActionDisabled(activeConfiguration);
-  const navigate = useNavigate();
+  const isActionsDisabled =
+    activeConfiguration === ActiveConfigurationTypeEnum.INTERNAL;
   const columns = [
     {
       id: 'keyTag',
@@ -76,7 +74,10 @@ export const useDomainDsRecordsDatagridColumns = ({
         <DatagridColumnStatus status={props.status} />
       ),
     },
-    {
+  ];
+
+  if (!isActionsDisabled) {
+    columns.push({
       id: 'actions',
       cell: (props: TDsDataInterface) => (
         <ActionMenu
@@ -106,11 +107,10 @@ export const useDomainDsRecordsDatagridColumns = ({
           id={`${props.publicKey}`}
           isCompact
           variant={ODS_BUTTON_VARIANT.ghost}
-          isDisabled={isActionsDisplayed}
         />
       ),
       label: '',
-    },
-  ];
+    });
+  }
   return columns;
 };

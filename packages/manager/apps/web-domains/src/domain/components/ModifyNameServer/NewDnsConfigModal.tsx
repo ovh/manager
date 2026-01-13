@@ -48,7 +48,6 @@ export default function NewDnsConfigModal({
 
     updateDomain(
       {
-        checksum,
         currentTargetSpec: domainResource?.targetSpec,
         updatedSpec: {
           dnsConfiguration: {

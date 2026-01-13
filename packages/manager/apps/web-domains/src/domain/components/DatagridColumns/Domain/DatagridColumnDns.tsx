@@ -1,9 +1,8 @@
-import { Text } from '@ovhcloud/ods-react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { NameServer } from '@/domain/types/domainResource';
+import { TNameServerWithType } from '@/domain/types/domainResource';
 
 interface DatagridColumnDnsProps {
-  readonly dns: NameServer[];
+  readonly dns: TNameServerWithType[];
 }
 
 export default function DatagridColumnDns({ dns }: DatagridColumnDnsProps) {

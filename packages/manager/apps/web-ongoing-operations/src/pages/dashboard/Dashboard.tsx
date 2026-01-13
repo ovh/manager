@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
@@ -16,7 +16,7 @@ import {
   useFeatureAvailability,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
+import { Tab, TabList, Tabs, TabsValueChangeEvent } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { GUIDES_LIST } from '@/guides.constants';
 import { getLanguageKey } from '@/utils/utils';
@@ -24,7 +24,6 @@ import { urls } from '@/routes/routes.constant';
 import { useGetIAMResourceAllDom } from '@/hooks/iam/iam';
 import { allDomFeatureAvailibility, iamGetAllDomAction } from '@/constants';
 import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
-import { ParentEnum } from '@/enum/parent.enum';
 
 export const DNS_OPERATIONS_TABLE_HEADER_DOMAIN = 'DNS';
 
@@ -41,18 +40,17 @@ export type DashboardLayoutProps = {
 
 export default function DashboardPage() {
   const {
-    trackPageNavivationTile,
     trackPageNavivationTab,
     trackTileNavivationLink,
   } = useTrackNavigation();
 
-  const [, setActivePanel] = useState<string>('');
   const [displayAllDom, setDisplayAllDom] = useState<boolean>(true);
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation(['dashboard', NAMESPACES.DASHBOARD]);
   const { notifications } = useNotifications();
   const langCode = getLanguageKey(i18n.language);
+  const [value, setValue] = useState('domain');
 
   const guideItems: GuideItem[] = [
     {
@@ -87,34 +85,36 @@ export default function DashboardPage() {
       to: useResolvedPath(urls.dns).pathname,
     },
     {
-      name: 'allDom',
+      name: 'alldom',
       title: t('domain_operations_table_header_allDom'),
       to: useResolvedPath(urls.allDom).pathname,
-      hide: displayAllDom,
+      hide: !displayAllDom,
     },
   ];
+
+  const handleValueChange = async (event: TabsValueChangeEvent) => {
+    navigate(`${event.value}`, { replace: true });
+    setValue(event.value);
+  };
 
   useEffect(() => {
     if (availability) {
       if (isAuthorized && availability[allDomFeatureAvailibility] === true) {
-        setDisplayAllDom(false);
-      } else {
         setDisplayAllDom(true);
+      } else {
+        setDisplayAllDom(false);
       }
     }
   }, [urn, availability, isAuthorized]);
 
   useEffect(() => {
-    const activeTab = tabsList.find((tab) => tab.to === location.pathname);
-    if (activeTab) {
-      setActivePanel(activeTab.name);
-      return;
+    const tab =
+      tabsList.find((tabName) =>
+        location.pathname.endsWith(tabName.name),
+      )?.name || 'domain';
+    if (location.pathname) {
+      handleValueChange({ value: tab })
     }
-      setActivePanel(tabsList[0]?.name ?? '');
-      const url = tabsList[0]?.to ?? '';
-    trackPageNavivationTile(url);
-    navigate(url);
-
   }, [location.pathname]);
 
   return (
@@ -125,7 +125,7 @@ export default function DashboardPage() {
       }}
       description={t('domain_operations_dashboard_info')}
       tabs={
-        <Tabs defaultValue={ParentEnum.DOMAIN}>
+        <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
           <TabList>
             {tabsList
               .filter((tab: DashboardTabItemProps) => !tab.hide)

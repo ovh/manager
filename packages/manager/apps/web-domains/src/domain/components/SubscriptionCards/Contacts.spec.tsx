@@ -1,8 +1,6 @@
 import '@/common/setupTests';
-import React from 'react';
-import { render, screen, waitFor } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
+import { render, screen, waitFor, wrapper } from '@/common/utils/test.provider';
+import { Mock, vi } from 'vitest';
 import Contacts from '@/domain/components/SubscriptionCards/Contacts';
 import { domainResourceOK } from '@/domain/__mocks__/serviceInfoDetail';
 import { useGetDomainContact } from '@/domain/hooks/data/query';
@@ -14,7 +12,7 @@ vi.mock('@/domain/hooks/data/query', () => ({
 
 describe('Contacts component', () => {
   it('renders populated state with contacts information', async () => {
-    (useGetDomainContact as jest.Mock).mockReturnValue({
+    (useGetDomainContact as Mock).mockReturnValue({
       domainResource: null,
       isFetchingDomainResource: true,
     });
@@ -37,12 +35,12 @@ describe('Contacts component', () => {
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          /admin-id: domain_tab_general_information_subscription_contact_technical/i,
+          /admin-id: domain_tab_general_information_subscription_contact_administrator/i,
         ),
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          /tech-id: domain_tab_general_information_subscription_contact_administrator/i,
+          /tech-id: domain_tab_general_information_subscription_contact_technical/i,
         ),
       ).toBeInTheDocument();
       expect(
