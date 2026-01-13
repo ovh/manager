@@ -1,6 +1,6 @@
 {
-  "dedicated_cloud_dashboard_customer_vcfaas_migration_banner": "Nueva oferta Public VCF as-a-Service - Precios muy competitivos y migración gratuita - Descubra <a href=\"{{ url }}\" target=\"_blank\">la oferta</a> y compruebe si cumple los requisitos",
-  "dedicated_cloud_dashboard_customer_vcfaas_migration_banner_action": "[haciendo clic aquí]",
+  "dedicated_cloud_dashboard_customer_vcfaas_migration_banner": "¿Quiere migrar un Dedicated Cloud hacia un entorno VMware compartido a un precio ultracompetitivo?",
+  "dedicated_cloud_dashboard_customer_vcfaas_migration_banner_action": "[Haga clic aquí para ser contactado/a]",
   "dedicated_cloud_dashboard_customer_vcfaas_migration_banner_success": "La solicitud de migración a Public VCF as-a.Service se ha enviado correctamente. El equipo de OVHcloud se pondrá en contacto con usted en breve.",
   "dedicated_cloud_dashboard_customer_vcfaas_migration_banner_error": "Se ha producido un error al solicitar la migración. Por favor, vuelva a intentarlo."
 }
