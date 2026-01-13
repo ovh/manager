@@ -103,7 +103,7 @@ export const OrganisationSection: React.FC = () => {
         <OdsSkeleton />
       ) : (
         <OdsSelect
-          key={organisations?.join('-')}
+          key={organisations?.join('-') || 'org-select'}
           className="mb-1 block w-full max-w-[384px]"
           name="ip-organisation"
           onOdsChange={handleOrganisationChange}

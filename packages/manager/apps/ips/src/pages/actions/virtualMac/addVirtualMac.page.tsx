@@ -64,10 +64,10 @@ export default function AddVirtualMacModal() {
   const { addSuccess, addError } = useNotifications();
 
   const queryClient = useQueryClient();
-  const invalidateGetTasksQueryKey = async (serviceName?: string) => {
-    if (serviceName) {
+  const invalidateGetTasksQueryKey = async (service?: string) => {
+    if (service) {
       await queryClient.invalidateQueries({
-        queryKey: getIcebergDedicatedServerTasksQueryKey(serviceName),
+        queryKey: getIcebergDedicatedServerTasksQueryKey(service),
       });
     }
   };
@@ -251,7 +251,7 @@ export default function AddVirtualMacModal() {
               </OdsFormField>
             ))}
           <form
-            className="flex flex-col gap-2"
+            className="flex flex-col gap-4"
             onSubmit={(e) => {
               handleSubmit(onSubmit)(e);
             }}

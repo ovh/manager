@@ -62,17 +62,20 @@ export const OfferSelectionSection: React.FC = () => {
     serviceName: selectedService,
     serviceType: selectedServiceType,
   });
-  const { additionalIpPlanCode, ipBlockPricingList, isLoading } =
-    useAdditionalIpPricings({
-      ipVersion: ipVersion,
-      region: region || (selectedRegion),
-      serviceName: selectedService,
-      serviceType: selectedServiceType,
-    });
+  const {
+    additionalIpPlanCode,
+    ipBlockPricingList,
+    isLoading,
+  } = useAdditionalIpPricings({
+    ipVersion,
+    region: region || selectedRegion,
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+  });
 
   return (
     <OrderSection title={t('offer_selection_title')}>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         {hasAdditionalIpOffer(selectedServiceType) && (
           <OptionCard
             title={t('additional_ip_card_title')}
@@ -107,9 +110,7 @@ export const OfferSelectionSection: React.FC = () => {
                 name="additional_ip_quantity"
                 min={MIN_IP_QUANTITY}
                 max={MAX_IP_QUANTITY}
-                onOdsChange={(event) =>
-                  setIpQuantity(event.target.value)
-                }
+                onOdsChange={(event) => setIpQuantity(event.target.value)}
                 value={ipQuantity}
               />
               <OdsText preset={ODS_TEXT_PRESET.heading4}>
@@ -145,8 +146,9 @@ export const OfferSelectionSection: React.FC = () => {
                   (pricing) => pricing.value !== selectedPlanCode,
                 )
               ) {
-                setSelectedPlanCode(ipBlockPricingList[0]?.value);
-                setPricingMode(ipBlockPricingList[0]?.pricingMode);
+                const firstPricing = ipBlockPricingList[0];
+                setSelectedPlanCode(firstPricing?.value);
+                setPricingMode(firstPricing?.pricingMode);
               }
               trackClick({
                 actionType: 'action',

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -24,8 +22,7 @@ const setApiFilter = vi.fn();
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original: typeof import('@ovh-ux/manager-react-shell-client') =
-    await importOriginal();
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),

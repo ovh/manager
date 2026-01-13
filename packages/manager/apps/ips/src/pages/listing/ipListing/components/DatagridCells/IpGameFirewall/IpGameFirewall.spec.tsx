@@ -52,11 +52,15 @@ vi.mock('@/data/hooks/ip', () => ({
   useIpGameFirewallRuleList,
 }));
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(),
-  useSearchParams: () => ['', vi.fn()],
-  useMatches: () => [] as string[],
-}));
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useNavigate: () => vi.fn(),
+    useSearchParams: () => ['', vi.fn()],
+    useMatches: () => [] as string[],
+  };
+});
 
 vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,

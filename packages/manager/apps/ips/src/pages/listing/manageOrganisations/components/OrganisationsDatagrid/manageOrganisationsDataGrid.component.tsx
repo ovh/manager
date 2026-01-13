@@ -29,10 +29,7 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
   const paginatedOrgList = useMemo(() => {
     if (!orgDetails || isLoading) return [];
 
-    return (
-      (orgDetails).slice(0, pageSize * numberOfPageDisplayed) ||
-      []
-    );
+    return orgDetails.slice(0, pageSize * numberOfPageDisplayed) || [];
   }, [numberOfPageDisplayed, isLoading, orgDetails]);
 
   const columns: DatagridColumn<OrgDetails>[] = [

@@ -1,2 +1,7 @@
 @import '@ovh-ux/muk/dist/style.css';
-@import 'tailwindcss';
+
+@tailwind utilities;
+
+html {
+  font-family: var(--ods-font-family-default);
+}

@@ -65,9 +65,7 @@ export const Ipv4Order: React.FC = () => {
     region:
       !!selectedService &&
       serviceStatus === 'ok' &&
-      [ServiceType.ipParking, ServiceType.vrack].includes(
-        selectedServiceType,
-      ),
+      [ServiceType.ipParking, ServiceType.vrack].includes(selectedServiceType),
     offer:
       !!selectedService &&
       !!(selectedRegion || region) &&
