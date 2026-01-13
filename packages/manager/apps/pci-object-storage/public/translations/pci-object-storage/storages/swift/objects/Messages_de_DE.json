@@ -14,7 +14,7 @@
   "deleteObjectToastSuccessDescription": "Das Objekt {{ name }} wurde gelöscht.",
   "deleteObjectTitle": "Objekt löschen",
   "deleteObjectDescription": "Möchten Sie das Objekt {{- name }} endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
-  "deleteObjectConfirmation": "Geben Sie PERMANENTLY DELETE ein, um zu bestätigen.",
+  "deleteObjectConfirmation": "Geben Sie {{confirmation}} ein, um zu bestätigen.",
   "deleteObjectButtonCancel": "Abbrechen",
   "deleteObjectButtonConfirm": "Löschen",
   "seeVersionsSwitchLabel": "Versionen anzeigen"

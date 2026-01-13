@@ -199,6 +199,7 @@ export const useGetColumns = ({
               align="end"
             >
               <DropdownMenuItem
+                data-testid="storage-action-manage-button"
                 variant="primary"
                 onClick={() =>
                   navigate(

@@ -95,16 +95,8 @@ describe('Update Plan modal', () => {
               pricings: [{ price: 1000, tax: 200 }],
             },
             {
-              planCode: 'databases.mysql-business-db1-4.month.consumption',
-              pricings: [{ price: 20000, tax: 4000 }],
-            },
-            {
               planCode: 'databases.mysql-enterprise-db1-4.hour.consumption',
               pricings: [{ price: 1000, tax: 200 }],
-            },
-            {
-              planCode: 'databases.mysql-enterprise-db1-4.month.consumption',
-              pricings: [{ price: 20000, tax: 4000 }],
             },
             {
               planCode:
@@ -113,18 +105,8 @@ describe('Update Plan modal', () => {
             },
             {
               planCode:
-                'databases.mysql-business-additionnal-storage-gb.month.consumption',
-              pricings: [{ price: 200, tax: 400 }],
-            },
-            {
-              planCode:
                 'databases.mysql-enterprise-additionnal-storage-gb.hour.consumption',
               pricings: [{ price: 100, tax: 200 }],
-            },
-            {
-              planCode:
-                'databases.mysql-enterprise-additionnal-storage-gb.month.consumption',
-              pricings: [{ price: 200, tax: 400 }],
             },
           ],
         },

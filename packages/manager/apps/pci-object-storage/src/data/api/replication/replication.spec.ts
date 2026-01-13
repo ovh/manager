@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { updateReplications } from './replication.api';
-import { mockedReplicationRule } from '@/__tests__/helpers/mocks/s3/replication';
+import { mockedReplicationRule } from '@/__tests__/helpers/mocks/storageContainer/replication';
 
 describe('Replication API functions', () => {
   afterEach(() => {

@@ -1,17 +1,37 @@
 {
-  "title": "Dzięki naszym zarządzanym bazom danych możesz skoncentrować się na Twoich aplikacjach",
-  "description1": "Wykorzystuj potencjał danych i zyskaj kontrolę nad zasobami.",
-  "description2": "Wybierz odpowiedni silnik bazy danych z szerokiej gamy i uruchom go w ciągu kilku minut. Zarządzamy infrastrukturą i administrujemy Twoimi zarządzanymi usługami.",
-  "description3": "Oszczędzasz czas, pieniądze i możesz skupić się na rozwoju aplikacji oraz tworzeniu wartości dla klientów.",
-  "createServiceButton": "Utwórz zarządzaną bazę danych",
-  "cardGuidestitle": "Przewodniki",
-  "cardGuidesDescription": "Dokumentacja baz danych",
-  "cardGuidesContent": "Poznaj przewodniki i tutoriale dotyczące naszych zarządzanych baz danych",
-  "cardQuickStartTitle": "Quick-Start",
-  "cardQuickStartDescription": "Uruchom Twoją pierwszą bazę danych",
-  "cardQuickStartContent": "Dowiedz się, jak szybko zainstalować pierwszą zarządzaną bazę danych",
-  "cardFreeTierTitle": "Free Tier",
-  "cardFreeTierTescription": "Wypróbuj darmową ofertę MongoDB",
-  "cardFreeTierContent": "Skorzystaj z bezpłatnego zarządzanego klastra MongoDB na stałe",
-  "cardLink": "Dowiedz się więcej"
+  "databases.title": "Rozwijaj swoje bazy danych zamiast się o nie martwić.",
+  "databases.subtitle": "Dzięki naszym w pełni zarządzanym bazom danych uwolnij się od ograniczeń administracyjnych i skup się na swoich aplikacjach i produktach.",
+  "databases.description1": "SQL, NoSQL lub cache: mamy rozwiązanie. Wdróż preferowany silnik bazy danych w kilka minut dzięki naszej gamie zarządzanych rozwiązań: <strong>PostgreSQL, MySQL, MongoDB i Valkey</strong>.",
+  "databases.description2": "Nasze zespoły zarządzają infrastrukturą, kopiami zapasowymi i monitorowaniem, abyś mógł skupić się na tworzeniu wydajnych aplikacji, a nie na konserwacji serwerów.",
+  "databases.description3": "Ponadto zacznij od małego i łatwo skaluj w miarę wzrostu danych, wszystko z <strong>przewidywalnymi cenami</strong>, <strong>suwerennością danych</strong> i wbudowaną <strong>wysoką dostępnością</strong>.",
+  "databases.createServiceButton": "Utwórz zarządzaną bazę danych",
+
+  "databases.tile.quickStart.title": "Szybki start",
+  "databases.tile.quickStart.content": "Znajdź wszystkie przewodniki i samouczki dotyczące naszych zarządzanych baz danych",
+
+  "databases.tile.documentation.title": "Dokumentacja i samouczki",
+  "databases.tile.documentation.content": "Dowiedz się, jak szybko wdrożyć pierwszą zarządzaną bazę danych.",
+
+  "databases.tile.freeTier.title": "MongoDB Free Tier",
+  "databases.tile.freeTier.content": "Otrzymaj swój pierwszy zarządzany klaster MongoDB za darmo na zawsze.",
+  "databases.tile.freeTier.cta": "Utwórz swoją instancję MongoDB w dwa kliknięcia",
+
+  "analytics.title": "Przekształć swoje dane w przydatne informacje, a nie źródła problemów.",
+  "analytics.subtitle": "Dzięki naszym w pełni zarządzanym silnikom analitycznym uwolnij się od ograniczeń administracyjnych i skup się na swoich aplikacjach i produktach.",
+  "analytics.description1": "Analizuj, przeszukuj i monitoruj swoje dane na dużą skalę, bez zarządzania złożoną infrastrukturą.",
+  "analytics.description2": "Wdróż <strong>Kafka, ClickHouse, OpenSearch i Grafana</strong> w kilka minut, aby zoptymalizować przepływy danych, analizy i obciążenia związane z obserwowalnością.",
+  "analytics.description3": "Od pulpitów nawigacyjnych po potoki danych, <strong>zyskaj widoczność i wydajność</strong>, zachowując <strong>pełną kontrolę i suwerenność danych</strong>.",
+  "analytics.createServiceButton": "Utwórz zarządzaną usługę analityczną",
+
+  "analytics.tile.quickStart.title": "Szybki start",
+  "analytics.tile.quickStart.content": "Dowiedz się, jak szybko wdrożyć zarządzane potoki i pulpity nawigacyjne.",
+
+  "analytics.tile.documentation.title": "Dokumentacja i samouczki",
+  "analytics.tile.documentation.content": "Znajdź wszystkie przewodniki i samouczki dotyczące naszych zarządzanych silników analitycznych",
+
+  "analytics.tile.integrations.title": "Integracje",
+  "analytics.tile.integrations.content": "Łatwo łącz się ze swoimi bazami danych, Object Storage lub klastrami Kubernetes.",
+  "analytics.tile.integrations.cta": "Wypróbuj teraz",
+
+  "common.cardLink": "Dowiedz się więcej"
 }

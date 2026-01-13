@@ -174,17 +174,14 @@ export function useFork(
 
   const [price, setPrice] = useState<ServicePricing>({
     flavorPrice: {
-      hourly: { price: 0, tax: 0 },
-      monthly: { price: 0, tax: 0 },
+      price: 0,
+      tax: 0,
     },
     servicePrice: {
-      hourly: { price: 0, tax: 0 },
-      monthly: { price: 0, tax: 0 },
+      price: 0,
+      tax: 0,
     },
-    storagePrice: {
-      hourly: { price: 0, tax: 0 },
-      monthly: { price: 0, tax: 0 },
-    },
+    storagePrice: { price: 0, tax: 0 },
   });
 
   // Create the list of available engines

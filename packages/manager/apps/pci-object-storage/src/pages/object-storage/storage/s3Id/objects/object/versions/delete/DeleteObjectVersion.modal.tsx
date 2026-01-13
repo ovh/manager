@@ -90,7 +90,9 @@ const DeleteObjectVersion = () => {
 
           <div className="flex flex-col gap-2 mt-2">
             <Label htmlFor="terminateInput" className="font-semibold">
-              {t('deleteObjectVersionConfirmation')}
+              {t('deleteObjectVersionConfirmation', {
+                confirmation: PERMANENT_DELETE_CONFIRMATION,
+              })}
             </Label>
             <Input
               id="terminateInput"

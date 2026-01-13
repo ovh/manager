@@ -1,17 +1,37 @@
 {
-  "title": "Concéntrese en sus aplicaciones con nuestras bases de datos administradas",
-  "description1": "Aproveche al máximo la potencia de sus datos y controle todos sus recursos.",
-  "description2": "Elija el motor de base de datos de nuestra amplia gama que mejor se adapta a su proyecto y despliéguelo en cuestión de minutos. OVHcloud se encarga de la infraestructura y la gestión de sus servicios administrados.",
-  "description3": "Ahorre tiempo y dinero, y concéntrese en sus desarrollos y en el valor que sus aplicaciones aportan a sus clientes.",
-  "createServiceButton": "Crear una base de datos administrada",
-  "cardGuidestitle": "Guías",
-  "cardGuidesDescription": "Documentación para bases de datos",
-  "cardGuidesContent": "Consulte todas las guías y tutoriales sobre nuestras bases de datos administradas",
-  "cardQuickStartTitle": "Quick Start",
-  "cardQuickStartDescription": "Despliegue su primera base de datos",
-  "cardQuickStartContent": "Descubra cómo instalar rápidamente su primera base de datos administrada",
-  "cardFreeTierTitle": "Free Tier",
-  "cardFreeTierTescription": "Pruebe gratis nuestro servicio MongoDB",
-  "cardFreeTierContent": "Disfrute de un clúster MongoDB 100 % administrado y gratuito sin límite de tiempo",
-  "cardLink": "Más información"
+  "databases.title": "Desarrolle sus bases de datos en lugar de preocuparse por ellas.",
+  "databases.subtitle": "Con nuestras bases de datos totalmente gestionadas, libérese de las limitaciones administrativas y concéntrese en sus aplicaciones y productos.",
+  "databases.description1": "SQL, NoSQL o caché: tenemos la solución. Implemente su motor de base de datos preferido en minutos con nuestra gama de soluciones gestionadas: <strong>PostgreSQL, MySQL, MongoDB y Valkey</strong>.",
+  "databases.description2": "Nuestros equipos gestionan la infraestructura, las copias de seguridad y la supervisión para que pueda centrarse en desarrollar aplicaciones de alto rendimiento, no en el mantenimiento de servidores.",
+  "databases.description3": "Además, comience pequeño y escale fácilmente a medida que crecen sus datos, todo con <strong>precios predecibles</strong>, <strong>soberanía de datos</strong> y <strong>alta disponibilidad</strong> integrada.",
+  "databases.createServiceButton": "Crear su base de datos gestionada",
+
+  "databases.tile.quickStart.title": "Inicio rápido",
+  "databases.tile.quickStart.content": "Encuentre todas las guías y tutoriales de nuestras bases de datos gestionadas",
+
+  "databases.tile.documentation.title": "Documentación y tutoriales",
+  "databases.tile.documentation.content": "Aprenda a implementar rápidamente su primera base de datos gestionada.",
+
+  "databases.tile.freeTier.title": "MongoDB Free Tier",
+  "databases.tile.freeTier.content": "Obtenga su primer clúster MongoDB gestionado gratis de por vida.",
+  "databases.tile.freeTier.cta": "Cree su instancia MongoDB en dos clics",
+
+  "analytics.title": "Convierta sus datos en información útil, no en fuentes de problemas.",
+  "analytics.subtitle": "Con nuestros motores de análisis totalmente gestionados, libérese de las limitaciones administrativas y concéntrese en sus aplicaciones y productos.",
+  "analytics.description1": "Analice, busque y supervise sus datos a gran escala, sin gestionar infraestructura compleja.",
+  "analytics.description2": "Implemente <strong>Kafka, ClickHouse, OpenSearch y Grafana</strong> en minutos para optimizar sus flujos de datos, análisis y cargas de trabajo de observabilidad.",
+  "analytics.description3": "Desde paneles hasta pipelines de datos, <strong>gane visibilidad y rendimiento</strong> manteniendo el <strong>control total y la soberanía de sus datos</strong>.",
+  "analytics.createServiceButton": "Crear su servicio de análisis gestionado",
+
+  "analytics.tile.quickStart.title": "Inicio rápido",
+  "analytics.tile.quickStart.content": "Aprenda a implementar rápidamente sus pipelines y paneles gestionados.",
+
+  "analytics.tile.documentation.title": "Documentación y tutoriales",
+  "analytics.tile.documentation.content": "Encuentre todas las guías y tutoriales de nuestros motores de análisis gestionados",
+
+  "analytics.tile.integrations.title": "Integraciones",
+  "analytics.tile.integrations.content": "Conéctese fácilmente con sus bases de datos, Object Storage o clústeres de Kubernetes.",
+  "analytics.tile.integrations.cta": "Probar ahora",
+
+  "common.cardLink": "Saber más"
 }

@@ -107,7 +107,6 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
     onClose?.(newUserQuery.data);
   };
 
-
   return (
     <>
       <DialogContent variant="information">
@@ -116,60 +115,58 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
             {t('addUserTitle')}
           </DialogTitle>
         </DialogHeader>
-        {newUserId ? (
-          <>
-            <DialogBody>
-              <UserInformation newUser={newUserQuery.data} access={newUserAccess} secret={newUserSecret} />
-            </DialogBody>
-            <DialogFooter>
-              <DialogClose asChild onClick={() => handleClose()}>
-                <Button
-                  disabled={
-                    newUserQuery.data?.status !== user.UserStatusEnum.ok ||
-                    isAddS3UserPending
-                  }
-                  data-testid="add-user-close-button"
-                  type="button"
-                  mode="ghost"
-                >
-                  {t('formAddUserButtonClose')}
-                </Button>
-              </DialogClose>
-            </DialogFooter>
-          </>
-        ) : (
-          <>
-            <DialogBody>
-              <form id="addUserForm" onSubmit={withPreventDefault(onSubmit)}>
-                <FormField name="userName" form={form}>
-                  {(field) => (
-                    <>
-                      <FieldLabel htmlFor={'userName-input'}>
-                        {t('userNameLabel')}
-                      </FieldLabel>
-                      <Input disabled={isAddUserPending} {...field} />
-                    </>
-                  )}
-                </FormField>
-              </form>
-            </DialogBody>
-            <DialogFooter>
-              <DialogClose asChild>
-                <Button type="button" mode="ghost">
-                  {t('addUserButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="submit"
-                form="addUserForm"
-                data-testid="add-user-submit-button"
-                disabled={isAddS3UserPending}
-              >
-                {t('addUserButtonConfirm')}
-              </Button>
-            </DialogFooter>
-          </>
-        )}
+        <DialogBody>
+          {newUserId ? (
+            <UserInformation
+              newUser={newUserQuery.data}
+              access={newUserAccess}
+              secret={newUserSecret}
+            />
+          ) : (
+            <form id="addUserForm" onSubmit={withPreventDefault(onSubmit)}>
+              <FormField name="userName" form={form}>
+                {(field) => (
+                  <>
+                    <FieldLabel htmlFor={'userName-input'}>
+                      {t('userNameLabel')}
+                    </FieldLabel>
+                    <Input
+                      disabled={isAddUserPending}
+                      {...field}
+                      data-testid="add-user-input"
+                    />
+                  </>
+                )}
+              </FormField>
+            </form>
+          )}
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild onClick={() => handleClose()}>
+            <Button
+              disabled={
+                (newUserId &&
+                  newUserQuery.data?.status !== user.UserStatusEnum.ok) ||
+                isAddS3UserPending
+              }
+              data-testid="add-user-close-button"
+              type="button"
+              mode="ghost"
+            >
+              {t(newUserId ? 'formAddUserButtonClose' : 'addUserButtonCancel')}
+            </Button>
+          </DialogClose>
+          {!newUserId && (
+            <Button
+              type="submit"
+              form="addUserForm"
+              data-testid="add-user-submit-button"
+              disabled={isAddS3UserPending}
+            >
+              {t('addUserButtonConfirm')}
+            </Button>
+          )}
+        </DialogFooter>
       </DialogContent>
     </>
   );

@@ -23,8 +23,8 @@ describe('pricingHelper', () => {
     };
     const pricing = computeServicePrice(mockedDistributedPricing).servicePrice;
     expect(pricing).toStrictEqual({
-      hourly: { price: 4, tax: 4 },
-      monthly: { price: 120, tax: 4 },
+      price: 4,
+      tax: 4,
     });
   });
 
@@ -35,8 +35,8 @@ describe('pricingHelper', () => {
     };
     const pricing = computeServicePrice(mockedReplicatedPricing).servicePrice;
     expect(pricing).toStrictEqual({
-      hourly: { price: 6, tax: 6 },
-      monthly: { price: 180, tax: 6 },
+      price: 6,
+      tax: 6,
     });
   });
 });

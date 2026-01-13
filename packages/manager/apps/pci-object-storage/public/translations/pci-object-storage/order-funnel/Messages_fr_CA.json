@@ -35,7 +35,7 @@
   "summaryOffsiteReplicationEnabled": "Réplication activée",
   "summaryOffsiteReplicationDisabled": "Réplication désactivée",
   "summaryOffsiteReplicationRegion": "Région :",
-  "summaryVersionningSection": "Versionning",
+  "summaryVersionningSection": "Versioning",
   "summaryVersionningEnabled": "Gestion des versions activée",
   "summaryVersionningDisabled": "Gestion des versions désactivée",
   "summaryUserSection": "Utilisateur",

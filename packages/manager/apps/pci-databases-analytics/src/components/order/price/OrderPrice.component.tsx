@@ -11,8 +11,7 @@ interface OrderPriceProps {
 const OrderPrice = ({ availability, prices }: OrderPriceProps) => {
   const { t } = useTranslation('pricing');
   const isFreeBeta =
-    prices.servicePrice.hourly.price === 0 &&
-    availability.lifecycle.status === 'BETA';
+    prices.servicePrice.price === 0 && availability.lifecycle.status === 'BETA';
 
   return (
     <div data-testid="order-price-container">
