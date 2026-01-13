@@ -13,18 +13,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-
-// TODO (TAPC-5549) : Put this in a view model
-const selectPlansMock = (): Array<{
-  labelKey: string;
-  plan: TCreateClusterSchema['plan'];
-}> => {
-  return [
-    { labelKey: 'kubernetes_add_region_plan_all', plan: 'all' },
-    { labelKey: 'kube_add_plan_title_standard', plan: 'standard' },
-    { labelKey: 'kube_add_plan_title_free', plan: 'free' },
-  ];
-};
+import { selectPlanOptions } from '../../view-models/selectPlan';
 
 export const PlanSelect = () => {
   const { t } = useTranslation('add');
@@ -32,7 +21,7 @@ export const PlanSelect = () => {
   const { control } = useFormContext<TCreateClusterSchema>();
 
   const planOptions = useMemo(() => {
-    return selectPlansMock().map(({ plan, labelKey }) => ({
+    return selectPlanOptions().map(({ plan, labelKey }) => ({
       value: plan,
       label: t(labelKey),
     }));

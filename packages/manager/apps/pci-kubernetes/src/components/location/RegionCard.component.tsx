@@ -1,7 +1,7 @@
 import { Radio, RadioControl, RadioLabel } from '@ovhcloud/ods-react';
 
 import { PciCard } from '@/components/pciCard/PciCard.component';
-import { TCountryCode } from '@/types/region';
+import { TCountryCode } from '@/domain/entities/regions';
 
 import { Flag } from './Flag.component';
 import { Location } from './Location.component';

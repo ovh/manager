@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 
-import { TCountryCode } from '@/types/region';
+import { TCountryCode } from '@/domain/entities/regions';
 
 import './flag.scss';
 

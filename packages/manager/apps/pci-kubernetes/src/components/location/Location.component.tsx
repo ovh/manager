@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 
 import { Badge, Text } from '@ovhcloud/ods-react';
 
-import { TCountryCode } from '@/types/region';
+import { TCountryCode } from '@/domain/entities/regions';
 
 import { Flag } from './Flag.component';
 

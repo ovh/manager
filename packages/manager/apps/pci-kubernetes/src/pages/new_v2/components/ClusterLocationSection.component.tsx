@@ -9,104 +9,12 @@ import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
+import { MOCK_REGIONS } from '../mocks/regions.mock';
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
 import { MicroRegionSelect } from './location/MicroRegionSelect.component';
 import { PlanSelect } from './location/PlanSelect.component';
 import { RegionSelect } from './location/RegionSelect.component';
-
-const MOCK_regions = [
-  {
-    id: 'GRA',
-    title: 'Gravelines',
-    datacenter: 'GRA',
-    country: 'fr',
-    microRegions: ['GRA9', 'GRA11'],
-    plans: ['free', 'standard'],
-    disabled: true,
-  },
-  {
-    id: 'SBG',
-    title: 'Strasbourg',
-    datacenter: 'SBG',
-    country: 'fr',
-    microRegions: ['SBG5', 'SBG7'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'BHS',
-    title: 'Beauharnois',
-    datacenter: 'BHS',
-    country: 'ca',
-    microRegions: ['BHS3', 'BHS5'],
-    plans: [],
-    disabled: true,
-  },
-  {
-    id: 'WAW',
-    title: 'Varsovie',
-    datacenter: 'WAW',
-    country: 'pl',
-    microRegions: ['WAW1'],
-    plans: ['standard'],
-    disabled: false,
-  },
-  {
-    id: 'DE',
-    title: 'Francfort',
-    datacenter: 'DE',
-    country: 'de',
-    microRegions: ['DE1', 'DE2'],
-    plans: ['free'],
-    disabled: false,
-  },
-  {
-    id: 'UK',
-    title: 'Londres',
-    datacenter: 'UK',
-    country: 'uk',
-    microRegions: ['UK1', 'UK3'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'SGP',
-    title: 'Singapour',
-    datacenter: 'SGP',
-    country: 'sg',
-    microRegions: ['SGP1'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'SYD',
-    title: 'Sydney',
-    datacenter: 'SYD',
-    country: 'au',
-    microRegions: ['SYD1', 'SYD2'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'HIL',
-    title: 'Hillsboro',
-    datacenter: 'HIL',
-    country: 'us',
-    microRegions: ['HIL1'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-  {
-    id: 'ES',
-    title: 'Madrid',
-    datacenter: 'ES',
-    country: 'es',
-    microRegions: ['ES1', 'ES2'],
-    plans: ['free', 'standard'],
-    disabled: false,
-  },
-];
 
 type TClusterLocationSectionProps = {
   is3azAvailable: boolean;
@@ -115,19 +23,20 @@ type TClusterLocationSectionProps = {
 export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3azAvailable }) => {
   const { t } = useTranslation('add');
 
-  const [macroRegionField, microRegionField] = useWatch<TCreateClusterSchema>({
-    name: ['macroRegion', 'microRegion'],
-  });
+  const [macroRegionField, microRegionField, continentField, planField] =
+    useWatch<TCreateClusterSchema>({
+      name: ['macroRegion', 'microRegion', 'continent', 'plan'],
+    });
   const { setValue } = useFormContext<TCreateClusterSchema>();
 
   const selectedMacroRegion = useMemo(
-    () => MOCK_regions.find(({ id }) => id === macroRegionField),
+    () => MOCK_REGIONS.find(({ id }) => id === macroRegionField),
     [macroRegionField],
   );
 
   // Default Value Handler
   useEffect(() => {
-    const firstMacroRegion = MOCK_regions.find((region) => !region.disabled);
+    const firstMacroRegion = MOCK_REGIONS.find((region) => !region.disabled);
     const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
 
     if (macroRegionField || microRegionField || !firstMacroRegion || !firstMicroRegion) return;
@@ -135,6 +44,15 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
     setValue('macroRegion', firstMacroRegion.id);
     setValue('microRegion', firstMicroRegion);
   }, [macroRegionField, microRegionField, setValue]);
+
+  const filteredRegions = useMemo(() => {
+    return MOCK_REGIONS.filter((region) => {
+      const isContinentAllowed = continentField === 'ALL' || region.continent === continentField;
+      const isPlanAllowed = planField === 'all' || !planField || region.plans.includes(planField);
+
+      return isContinentAllowed && isPlanAllowed;
+    });
+  }, [continentField, planField]);
 
   return (
     <>
@@ -163,7 +81,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
             <ContinentSelect />
             <PlanSelect />
           </div>
-          <RegionSelect regions={MOCK_regions} />
+          <RegionSelect regions={filteredRegions} />
           {selectedMacroRegion?.microRegions && selectedMacroRegion?.microRegions.length > 1 && (
             <MicroRegionSelect regions={selectedMacroRegion?.microRegions} />
           )}

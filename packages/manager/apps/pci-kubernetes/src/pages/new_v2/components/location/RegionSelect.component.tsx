@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { RadioGroup } from '@ovhcloud/ods-react';
 
 import { RegionCard } from '@/components/location/RegionCard.component';
+import { TContinentCode } from '@/domain/entities/regions';
 import { isCountryCode } from '@/helpers/location';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
@@ -17,6 +18,7 @@ type TRegionSelectProps = {
     title: string;
     datacenter: string;
     country: string;
+    continent: TContinentCode;
     microRegions: string[];
     plans: string[];
     disabled: boolean;

@@ -12,21 +12,8 @@ import {
   SelectValueChangeDetail,
 } from '@ovhcloud/ods-react';
 
-import {
-  TCreateClusterSchema,
-  createClusterFormContinentCodes,
-} from '../../CreateClusterForm.schema';
-
-// TODO (TAPC-5549) : Put this in a view model
-const selectContinentMock = (): Array<{
-  labelKey: string;
-  continentCode: TCreateClusterSchema['continent'];
-}> => {
-  return createClusterFormContinentCodes.map((code) => ({
-    labelKey: `common_continent_label_${code}`,
-    continentCode: code,
-  }));
-};
+import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
+import { selectContinentOptions } from '../../view-models/selectContinent';
 
 export const ContinentSelect = () => {
   const { t } = useTranslation(['common', 'add']);
@@ -34,7 +21,7 @@ export const ContinentSelect = () => {
   const { control } = useFormContext<TCreateClusterSchema>();
 
   const continentOptions = useMemo(() => {
-    return selectContinentMock().map(({ continentCode, labelKey }) => ({
+    return selectContinentOptions().map(({ continentCode, labelKey }) => ({
       value: continentCode,
       label: t(labelKey),
     }));
