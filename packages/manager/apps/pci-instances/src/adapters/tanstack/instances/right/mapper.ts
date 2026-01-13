@@ -28,9 +28,12 @@ export const mapFlavorToDTO = (
   network: {
     public: true,
   },
-  sshKey: entity.existingSshKeyId ? { name: entity.existingSshKeyId } : null,
+  sshKey:
+    entity.existingSshKeyId && !entity.newSshPublicKey
+      ? { name: entity.existingSshKeyId }
+      : null,
   sshKeyCreate:
-    entity.newSshPublicKey && entity.existingSshKeyId
+    entity.existingSshKeyId && entity.newSshPublicKey
       ? {
           name: entity.existingSshKeyId,
           publicKey: entity.newSshPublicKey,
