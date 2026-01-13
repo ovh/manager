@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.6.0...@ovh-ux/manager-web-domains-app@1.7.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4580] ([b633941](https://github.com/ovh/manager/commit/b6339415fc3ab5c81ccf82e2c766900a666020ec))
+* **i18n:** add missing translations [CDS 984] ([1a543bd](https://github.com/ovh/manager/commit/1a543bd69c3e6b4b964c87a143f650f907e56d80))
+* **web-domains:** add generic tooltip ([97efb91](https://github.com/ovh/manager/commit/97efb91b18dd32d9373c81b76e0d2ae30b2f44a9)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** clear notifications on tab change ([ba2888d](https://github.com/ovh/manager/commit/ba2888d8a075019b24e349216b253a41b7b94244)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** csv export improvement ([2422617](https://github.com/ovh/manager/commit/2422617cbdcc39ea7261ead63c675427e055a725)), closes [#DCE-139](https://github.com/ovh/manager/issues/DCE-139)
+* **web-domains:** fix handle all or selection ([a0e6273](https://github.com/ovh/manager/commit/a0e6273b089d3d499cab018edc84f0aff3c3f418)), closes [#DCE-139](https://github.com/ovh/manager/issues/DCE-139)
+* **web-domains:** fix test ([ed9d48f](https://github.com/ovh/manager/commit/ed9d48fa9aab6a9014533963664ed6eafd4dd628)), closes [#DCE-120](https://github.com/ovh/manager/issues/DCE-120)
+* **web-domains:** fix tests ([190853c](https://github.com/ovh/manager/commit/190853c46c3f1158bebfa3ade2793b57291bc7f3))
+* **web-domains:** improve dnssec handling ([9f8b54d](https://github.com/ovh/manager/commit/9f8b54deea07787f1def3d7aa7bcf13f63d2a6a1)), closes [#DCE-120](https://github.com/ovh/manager/issues/DCE-120)
+* **web-domains:** improve protection state ([44f77ea](https://github.com/ovh/manager/commit/44f77eafcba85e93425b2117393353096123721a)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** improve protection state handling ([d2f26b8](https://github.com/ovh/manager/commit/d2f26b806ea8278a22f747f55cfcb002ce8b7496)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** refetch resource before update ([3ac29ed](https://github.com/ovh/manager/commit/3ac29eddd74c5de78e8c9c7199e0cbee7721a901)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** remove authInfo for ati extensions ([fc4859e](https://github.com/ovh/manager/commit/fc4859e6b89c7965be980e19fc0a3357e1359da3)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** remove jest.Mock to Mock ([63da628](https://github.com/ovh/manager/commit/63da628951510aad339a21c420c69211ddefbd60)), closes [#DCE-84](https://github.com/ovh/manager/issues/DCE-84)
+* **web-domains:** tests ([6e04936](https://github.com/ovh/manager/commit/6e04936f59f2d7d4ccfba9b4be2f91b0d2dcd078)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** use MUK action menu ([776ffca](https://github.com/ovh/manager/commit/776ffca9de17608be2151f71ab4f1ba0fb5b7a35))
+
+
+### Features
+
+* **web-domains:** add dnssec modal to dsrecord listing ([6662407](https://github.com/ovh/manager/commit/66624076d10ed4129bcfcb487b9f318d94ce4648)), closes [#DCE-120](https://github.com/ovh/manager/issues/DCE-120)
+* **web-domains:** add guides to host page ([9b62ed8](https://github.com/ovh/manager/commit/9b62ed82c916176c4e12d89105d879f507a93393)), closes [#DCE-98](https://github.com/ovh/manager/issues/DCE-98)
+* **web-domains:** add guides to host page and fix others guides ([a963653](https://github.com/ovh/manager/commit/a963653607b5c22775ace516639600c86a5e4bc7)), closes [#DCE-98](https://github.com/ovh/manager/issues/DCE-98)
+* **web-domains:** fix oops page when customer access directly on dns operations ([4a79611](https://github.com/ovh/manager/commit/4a796110aa87903cfbe8b8b14f829f0138ac418d)), closes [#DCE-134](https://github.com/ovh/manager/issues/DCE-134)
+* **web-domains:** use new API from v2 to increase datagrid speed ([8ea76f7](https://github.com/ovh/manager/commit/8ea76f74c415c80da101d1da693e5b7e723425a1))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.5.5...@ovh-ux/manager-web-domains-app@1.6.0) (2026-01-13)
 
 
