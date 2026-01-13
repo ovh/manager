@@ -10,6 +10,8 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
   Breadcrumb,
+  GuideButton,
+  GuideItem,
   Notifications,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
@@ -18,6 +20,7 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useBackupServicesId } from '@/data/hooks/backup/useBackupServicesId';
+import { useGuideUtils } from '@/hooks/useGuideUtils';
 import { LABELS } from '@/module.constants';
 import { urls } from '@/routes/routes.constants';
 
@@ -38,11 +41,21 @@ export default function MainLayout() {
   );
 
   const { isPending, data: servicesId } = useBackupServicesId();
+  const guides = useGuideUtils();
+
+  const guideItems: GuideItem[] = [
+    {
+      id: 0,
+      label: t(`${BACKUP_AGENT_NAMESPACES.COMMON}:backup_agent_guide`),
+      href: guides.main ?? '',
+      target: '_blank',
+    },
+  ];
 
   return (
     <RedirectionGuard route={urls.onboarding} isLoading={isPending} condition={!servicesId}>
       <BaseLayout
-        header={{ title: LABELS.BACKUP_AGENT }}
+        header={{ title: LABELS.BACKUP_AGENT, headerButton: <GuideButton items={guideItems} /> }}
         message={<Notifications />}
         breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
         tabs={
