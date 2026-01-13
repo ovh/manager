@@ -10,10 +10,6 @@ export default {
   ...config,
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
-    path.join(
-      path.dirname(require.resolve('@ovh-ux/manager-react-components')),
-      '**/*.{js,jsx,ts,tsx}',
-    ),
-    path.join(path.dirname(require.resolve('@ovh-ux/muk')), '**/*.{js,jsx,ts,tsx}'),
+    path.join(path.dirname(require.resolve('@ovh-ux/muk')), '**/*.{js,jsx,ts,tsx,cjs}'),
   ],
 };
