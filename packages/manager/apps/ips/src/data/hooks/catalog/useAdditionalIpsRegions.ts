@@ -27,7 +27,7 @@ export const useAdditionalIpsRegions = ({
 
   return {
     ...query,
-    regionList: (data?.data?.plans
+    regionList: data?.data?.plans
       ? Array.from(
           new Set(
             data.data.plans
@@ -56,9 +56,8 @@ export const useAdditionalIpsRegions = ({
           ),
         ).map(
           (regionOrDatacenter) =>
-            DATACENTER_TO_REGION[regionOrDatacenter] ||
-            regionOrDatacenter,
+            DATACENTER_TO_REGION[regionOrDatacenter] || regionOrDatacenter,
         )
-      : []),
+      : [],
   };
 };

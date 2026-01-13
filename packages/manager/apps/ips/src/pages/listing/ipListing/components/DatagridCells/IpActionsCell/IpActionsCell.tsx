@@ -243,7 +243,7 @@ export const IpActionsCell = ({
         label: t('listingActionManageSubnetInVrack'),
         trackingLabel: 'manage_subnet-in-vrack',
         onClick: () => {
-          (window.top || window).location.href = vrackPage;
+          window.top.location.href = vrackPage;
         },
       },
     !isGroup &&

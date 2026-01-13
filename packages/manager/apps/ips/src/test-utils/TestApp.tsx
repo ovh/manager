@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
-import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createMemoryRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-import { Routes } from '../routes/routes';
+import Routes from '@/routes/routes';
 
 export function TestApp({ initialRoute = '/ip' }: { initialRoute?: string }) {
-  const router = React.useMemo(
+  const routes = React.useMemo(
     () =>
-      createMemoryRouter(Routes, {
+      createMemoryRouter(createRoutesFromElements(Routes), {
         initialEntries: [initialRoute],
         initialIndex: 0,
       }),
@@ -28,7 +31,9 @@ export function TestApp({ initialRoute = '/ip' }: { initialRoute?: string }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Suspense fallback={<span>Loading routes ...</span>}>
+        <RouterProvider router={routes} />
+      </Suspense>
     </QueryClientProvider>
   );
 }

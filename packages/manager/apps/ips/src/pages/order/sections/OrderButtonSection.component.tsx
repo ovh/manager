@@ -54,7 +54,7 @@ export const OrderButtonSection: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-4">
       <OdsButton
         isDisabled={
           !ipQuantity ||

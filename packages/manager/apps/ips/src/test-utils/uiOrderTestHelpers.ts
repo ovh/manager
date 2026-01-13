@@ -59,15 +59,13 @@ export const selectService = async ({
     WAIT_FOR_DEFAULT_OPTIONS,
   );
 
-  serviceSelect.value = serviceName || '';
+  serviceSelect.value = serviceName ?? '';
 
   const event = new CustomEvent('odsValueChange', {
     detail: { value: serviceName },
   });
 
-  await waitFor(() =>
-    fireEvent(serviceSelect as unknown as HTMLElement, event),
-  );
+  await waitFor(() => fireEvent(serviceSelect, event));
 };
 
 export const selectRegion = async (region: string) => {

@@ -72,7 +72,7 @@ export const renderTest = async ({
   initialRoute,
   ...mockParams
 }: { initialRoute?: string } & MockParams = {}): Promise<RenderResult> => {
-  (global as unknown as { server: SetupServer }).server?.resetHandlers(
+  ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers(
       [
         ...getIpsMocks(mockParams),
@@ -104,9 +104,11 @@ export const renderTest = async ({
   context.environment.getUser().ovhSubsidiary =
     mockParams.ovhSubsidiary ?? 'FR';
 
-
   if (!i18nState) {
-    i18nState = await initTestI18n(APP_NAME, translations) as I18nextProviderProps['i18n'];
+    i18nState = (await initTestI18n(
+      APP_NAME,
+      translations,
+    )) as I18nextProviderProps['i18n'];
   }
 
   const result = render(

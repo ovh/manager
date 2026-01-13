@@ -16,7 +16,11 @@ import { TRANSLATION_NAMESPACES } from '@/utils';
 
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
-const validOptions = ['none', 'established', 'syn'];
+enum TcpOptions {
+  none = 'none',
+  established = 'established',
+  syn = 'syn',
+}
 
 export const TcpOptionColumn = (
   rule: IpEdgeFirewallRule & { isNew?: boolean },
@@ -31,21 +35,23 @@ export const TcpOptionColumn = (
   const { t } = useTranslation(TRANSLATION_NAMESPACES.edgeNetworkFirewall);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       {rule?.isNew && newProtocol === IpEdgeFirewallProtocol.TCP ? (
         <>
           <OdsSelect
             className="block min-w-[130px]"
             name="action-select"
-            value={newTcpOption || 'none'}
+            value={newTcpOption || TcpOptions.none}
             onOdsChange={(e) => {
-              const newValue = e.detail.value as 'established' | 'syn' | 'none';
-              setNewTcpOption(newValue === 'none' ? undefined : newValue);
+              const newValue = e.detail.value as TcpOptions;
+              setNewTcpOption(
+                newValue === TcpOptions.none ? undefined : newValue,
+              );
             }}
           >
-            {validOptions.map((option) => (
+            {Object.values(TcpOptions).map((option) => (
               <option key={option} value={option}>
-                {option === 'none'
+                {option === TcpOptions.none
                   ? t(`${option}_label`)
                   : option?.toUpperCase()}
               </option>

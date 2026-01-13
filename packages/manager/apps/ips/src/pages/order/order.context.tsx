@@ -60,37 +60,18 @@ export const OrderContext = React.createContext<OrderContextType>({
 export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const [ipVersion, setIpVersion] = React.useState<IpVersion | undefined>(
-    undefined,
-  );
-  const [selectedService, setSelectedService] = React.useState<
-    string | undefined
-  >(undefined);
-  const [selectedServiceType, setSelectedServiceType] = React.useState<
-    ServiceType | undefined
-  >(undefined);
-  const [selectedRegion, setSelectedRegion] = React.useState<
-    string | undefined
-  >(undefined);
-  const [selectedOffer, setSelectedOffer] = React.useState<IpOffer | undefined>(
-    undefined,
-  );
-  const [selectedPlanCode, setSelectedPlanCode] = React.useState<
-    string | undefined
-  >(undefined);
-  const [pricingMode, setPricingMode] =
-    React.useState<string>(DEFAULT_PRICING_MODE);
+  const [ipVersion, setIpVersion] = React.useState<IpVersion>();
+  const [selectedService, setSelectedService] = React.useState<string>();
+  const [selectedServiceType, setSelectedServiceType] = React.useState<ServiceType>();
+  const [selectedRegion, setSelectedRegion] = React.useState<string>();
+  const [selectedOffer, setSelectedOffer] = React.useState<IpOffer>();
+  const [selectedPlanCode, setSelectedPlanCode] = React.useState<string>();
+  const [pricingMode, setPricingMode] = React.useState<string>(DEFAULT_PRICING_MODE);
   const [ipQuantity, setIpQuantity] = React.useState(1);
-  const [selectedGeolocation, setSelectedGeolocation] = React.useState<
-    string | undefined
-  >(undefined);
-  const [selectedOrganisation, setSelectedOrganisation] = React.useState<
-    string | undefined
-  >(undefined);
+  const [selectedGeolocation, setSelectedGeolocation] = React.useState<string>();
+  const [selectedOrganisation, setSelectedOrganisation] = React.useState<string>();
   const [disabledServices, setDisabledServices] = React.useState<string[]>([]);
-  const [selectedOptions, setSelectedOptions] = React.useState<Ipv6Options[]>(
-    [],
-  );
+  const [selectedOptions, setSelectedOptions] = React.useState<Ipv6Options[]>([]);
   const { region } = useServiceRegion({
     serviceName: selectedService,
     serviceType: selectedServiceType,

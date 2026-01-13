@@ -88,11 +88,6 @@ export const getOrganisationMocks = ({
     api: 'v6',
   },
   {
-    url: '/me.json',
-    response: {},
-    api: 'v6',
-  },
-  {
     url: '/me',
     response: {
       ovhSubsidiary: 'FR',

@@ -125,16 +125,11 @@ export const useGetCatalog = () => {
       });
 
       if (plan) {
-        const index = (plan).details.product.configurations.findIndex(
+        const index = plan.details.product.configurations.findIndex(
           ({ name }) => name === CONFIG_NAME.CAMPUS,
         );
-        if (
-          index !== -1 &&
-          (plan)?.details?.product?.configurations?.[index]
-        ) {
-          ((plan).details.product.configurations[
-            index
-          ]).values = campusList;
+        if (index !== -1 && plan?.details?.product?.configurations?.[index]) {
+          plan.details.product.configurations[index].values = campusList;
         }
       }
 

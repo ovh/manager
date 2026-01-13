@@ -14,8 +14,12 @@ import { getConfigValues } from '../Byoip.utils';
 
 export const AsOwnTypeSelectionSubSection: React.FC = () => {
   const { t } = useTranslation('byoip');
-  const { asOwnRirType, setAsOwnRirType, asOwnNumberType, setAsOwnNumberType } =
-    React.useContext(ByoipContext);
+  const {
+    asOwnRirType,
+    setAsOwnRirType,
+    asOwnNumberType,
+    setAsOwnNumberType,
+  } = React.useContext(ByoipContext);
   const { data: catalog, isLoading } = useGetCatalog();
   const campusValues = getConfigValues(
     catalog?.details.product.configurations,
@@ -25,7 +29,7 @@ export const AsOwnTypeSelectionSubSection: React.FC = () => {
   return (
     <OrderSection title={t('ip_byoip_as_rir_title')} isLoading={isLoading}>
       <Suspense>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-4">
           {campusValues.map((value) => (
             <OptionCard
               key={value}

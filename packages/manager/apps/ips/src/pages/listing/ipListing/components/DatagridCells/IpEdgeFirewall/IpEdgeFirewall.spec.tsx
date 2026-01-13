@@ -38,11 +38,15 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(),
-  useSearchParams: () => ['', vi.fn()],
-  useMatches: () => [] as string[],
-}));
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useNavigate: () => vi.fn(),
+    useSearchParams: () => ['', vi.fn()],
+    useMatches: () => [] as string[],
+  };
+});
 
 const renderComponent = async (params: IpEdgeFirewallProps) => {
   const context = (await initShellContext('ips')) as ShellContextType;

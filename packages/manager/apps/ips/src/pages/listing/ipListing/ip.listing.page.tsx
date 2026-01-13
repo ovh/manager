@@ -50,7 +50,7 @@ export default function IpListingPage() {
           {t('listingTabIpDescription')}
         </OdsText>
       </div>
-      <div className="mb-4 flex gap-2">
+      <div className="mb-4 flex gap-4">
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
@@ -84,7 +84,7 @@ export default function IpListingPage() {
       </div>
 
       <div className="flex flex-row">
-        <div className="mr-2 flex flex-1 flex-col gap-2 md:mr-8 md:flex-row">
+        <div className="mr-2 flex flex-1 flex-col gap-4 md:mr-8 md:flex-row">
           <IpFilter className="min-w-[200px] max-w-[400px] flex-1" />
           <FilterService className="min-w-[200px] max-w-[400px] flex-1" />
           <OdsButton
@@ -104,8 +104,8 @@ export default function IpListingPage() {
           />
         </div>
 
-        <div className="ml-auto flex flex-col items-end gap-2">
-          <div className="ml-auto flex items-end gap-2">
+        <div className="ml-auto flex flex-col items-end gap-4">
+          <div className="ml-auto flex items-end gap-4">
             <ActionMenu
               id="settings"
               icon={ODS_ICON_NAME.cog}

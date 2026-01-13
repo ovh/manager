@@ -50,9 +50,9 @@ export async function fillStep4(container: HTMLElement) {
   });
 
   await waitFor(() => {
-    const checkbox = (
-      container.querySelector('ods-modal')
-    ).querySelector('ods-checkbox');
+    const checkbox = container
+      .querySelector('ods-modal')
+      .querySelector('ods-checkbox');
     checkbox.setAttribute('is-checked', '');
     return fireEvent(checkbox, event);
   }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -77,10 +77,7 @@ export async function goToStep({
   };
 
   await waitFor(
-    () =>
-      expect(
-        screen.getByText(labelByStepNumber[stepNumber]),
-      ).toBeVisible(),
+    () => expect(screen.getByText(labelByStepNumber[stepNumber])).toBeVisible(),
     WAIT_FOR_DEFAULT_OPTIONS,
   );
 }

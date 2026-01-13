@@ -1,13 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import { Suspense } from 'react';
 
-import { RouterProvider, createHashRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-
-import { Routes } from './routes/routes';
+import Routes from '@/routes/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,16 +20,13 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const { shell } = useContext(ShellContext);
-  const router = createHashRouter(Routes);
-
-  useEffect(() => {
-    shell.ux.hidePreloader();
-  }, []);
+  const routes = createHashRouter(createRoutesFromElements(Routes));
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Suspense fallback={<span>Loading routes ...</span>}>
+        <RouterProvider router={routes} />
+      </Suspense>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

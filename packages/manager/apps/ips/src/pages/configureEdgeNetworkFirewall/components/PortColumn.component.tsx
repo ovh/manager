@@ -12,7 +12,7 @@ import { handleEnterAndEscapeKeyDown } from '@/utils';
 
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
-function formatRulePort(port?: string | null) {
+function formatRulePort(port?: string) {
   return port ? port.replace(/[^0-9]*/g, '') : '';
 }
 

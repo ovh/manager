@@ -64,8 +64,8 @@ export type GameFirewallContextType = {
   ruleToDelete?: IpGameFirewallRule | null;
   showConfirmDeleteModal: (rule: IpGameFirewallRule) => void;
   hideConfirmDeleteModal: () => void;
-  tmpToggleState?: boolean;
-  setTmpToggleState: Dispatch<SetStateAction<boolean>>;
+  tmpToggleState?: boolean | null;
+  setTmpToggleState: Dispatch<SetStateAction<boolean | null>>;
   addRule: () => void;
 };
 
@@ -108,7 +108,7 @@ export const GameFirewallContextProvider: FC<{
   const [newStartPort, setNewStartPort] = useState<string>();
   const [newEndPort, setNewEndPort] = useState<string>();
   // It's a state just to let the toggle animate when we try to change its value
-  const [tmpToggleState, setTmpToggleState] = useState<boolean>(false);
+  const [tmpToggleState, setTmpToggleState] = useState<boolean>(null);
   const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] = useState<boolean>(
     false,
   );
@@ -229,7 +229,7 @@ export const GameFirewallContextProvider: FC<{
   );
   const hideStrategyConfirmationModal = useCallback(() => {
     setIsStrategyConfirmationModalVisible(false);
-    setTmpToggleState(false);
+    setTmpToggleState(null);
   }, []);
   const showConfirmDeleteModal = useCallback(
     (rule: IpGameFirewallRule) => setConfirmDeleteModalOpen(rule),

@@ -57,12 +57,13 @@ export default function Step3({
     NAMESPACES.ACTIONS,
   ]);
 
-  const { availableDurations } =
-    useDedicatedServerIpMigrationAvailableDurations({
-      ip,
-      token,
-      serviceName: destinationServer,
-    });
+  const {
+    availableDurations,
+  } = useDedicatedServerIpMigrationAvailableDurations({
+    ip,
+    token,
+    serviceName: destinationServer,
+  });
 
   const { data, isLoading, error } = useDedicatedServerIpMigrationDetails({
     ip,
@@ -97,26 +98,23 @@ export default function Step3({
                 value={durationString}
                 isDisabled={availableDurations?.length === 1}
                 isChecked={selectedDuration === durationString}
-                onOdsChange={(e) =>
-                  setSelectedDuration(e.target.value)
-                }
+                onOdsChange={(e) => setSelectedDuration(e.target.value)}
               />
               <label htmlFor={durationString} slot="label">
                 {`${t(`duration-${durationString.split('-')[0]}`)} ${format({
-                  date: durationString.split('-').slice(1).join('-'),
+                  date: durationString
+                    .split('-')
+                    .slice(1)
+                    .join('-'),
                 })} : `}
                 {isLoading ? (
                   <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
                 ) : (
                   <Price
                     value={
-                      (data?.data?.prices?.withoutTax?.value) *
-                      PRICE_MULTIPLIER
+                      data?.data?.prices?.withoutTax?.value * PRICE_MULTIPLIER
                     }
-                    tax={
-                      (data?.data?.prices?.tax?.value) *
-                      PRICE_MULTIPLIER
-                    }
+                    tax={data?.data?.prices?.tax?.value * PRICE_MULTIPLIER}
                     ovhSubsidiary={
                       environment.user.ovhSubsidiary as OvhSubsidiary
                     }

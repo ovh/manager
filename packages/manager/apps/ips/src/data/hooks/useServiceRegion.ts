@@ -48,8 +48,7 @@ export const useServiceRegion = ({
     ApiError
   >({
     queryKey: [ServiceType.dedicatedCloud, serviceName],
-    queryFn: async () =>
-      getDedicatedCloudServiceLocation(serviceName),
+    queryFn: async () => getDedicatedCloudServiceLocation(serviceName),
     enabled:
       !!serviceName &&
       serviceStatus === 'ok' &&

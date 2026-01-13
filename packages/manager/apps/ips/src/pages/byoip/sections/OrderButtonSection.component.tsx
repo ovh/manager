@@ -29,7 +29,7 @@ export const OrderButtonSection: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-4">
       <OdsButton
         color={ODS_BUTTON_COLOR.primary}
         size={ODS_BUTTON_SIZE.md}

@@ -41,9 +41,7 @@ interface DeclarationItem {
   translationKey: string;
 }
 
-export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
-  isOpen = true,
-}) => {
+export const ByoipOrderModal: React.FC = () => {
   const { t } = useTranslation(['byoip', NAMESPACES?.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
@@ -116,11 +114,11 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
   }, [ipRir, selectedRegion, ipRange]);
 
   return (
-    <OdsModal isOpen={isOpen} isDismissible onOdsClose={handleClose}>
+    <OdsModal isOpen isDismissible onOdsClose={handleClose}>
       <OdsText className="mb-2" preset={ODS_TEXT_PRESET.heading4}>
         {t('ip_byoip_disclaimer_title')}
       </OdsText>
-      <div className="mb-3 flex flex-col gap-3">
+      <div className="mb-3 flex flex-col gap-4">
         <OdsText preset={ODS_TEXT_PRESET.span}>
           {t('ip_byoip_disclaimer_description')}
         </OdsText>
@@ -151,7 +149,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
           {t('ip_byoip_disclaimer_ordering_delay_message')}
         </OdsText>
       </div>
-      <div className="flex justify-end gap-3">
+      <div className="flex justify-end gap-4">
         <OdsButton
           color={ODS_BUTTON_COLOR.primary}
           size={ODS_BUTTON_SIZE.md}
