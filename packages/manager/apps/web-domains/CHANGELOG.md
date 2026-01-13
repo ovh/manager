@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.5.5...@ovh-ux/manager-web-domains-app@1.6.0) (2026-01-13)
+
+
+### Features
+
+* replacing nx with turbo ([4c91a10](https://github.com/ovh/manager/commit/4c91a102cc7717f68751d7768748faaeff878696))
+
+
+
+
+
 ## [1.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.5.4...@ovh-ux/manager-web-domains-app@1.5.5) (2026-01-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app
