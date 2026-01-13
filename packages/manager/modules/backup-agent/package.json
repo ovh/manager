@@ -60,6 +60,11 @@
       "types": "./dist/types/src/components/CommonFields/BaremetalOption/BaremetalOption.component.d.ts",
       "import": "./dist/src/components/CommonFields/BaremetalOption/BaremetalOption.component",
       "require": "./dist/src/components/CommonFields/BaremetalOption/BaremetalOption.component.js"
+    },
+    "./hooks/useGuideUtils.ts": {
+      "types": "./dist/types/src/hooks/useGuideUtils.d.ts",
+      "import": "./dist/src/hooks/useGuideUtils",
+      "require": "./dist/src/hooks/useGuideUtils.js"
     }
   },
   "main": "./dist/src/lib.js",
