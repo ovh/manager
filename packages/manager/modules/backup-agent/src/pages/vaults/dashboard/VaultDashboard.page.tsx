@@ -14,7 +14,6 @@ import { BackupAgentContext } from '@/BackupAgent.context';
 import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
 
 import { useVaultDashboardTabs } from './_hooks/useVaultDashboardTabs';
-import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 
 export default function VaultDashboardPage() {
   const { appName } = useContext(BackupAgentContext);

@@ -11,7 +11,7 @@ import { z } from 'zod';
 import { OdsMessage, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Drawer, ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { Drawer, ErrorBoundary, useNotifications } from '@ovh-ux/manager-react-components';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
@@ -32,6 +32,7 @@ const ADD_CONFIGURATION_SCHEMA = z.object({
 });
 
 export const EditConfigurationPage = () => {
+  const { addSuccess } = useNotifications();
   const [serverErrorMessage, setServerErrorMessage] = useState<undefined | string>();
   const { tenantId, agentId } = useRequiredParams('tenantId', 'agentId');
   const { t } = useTranslation([
@@ -62,6 +63,7 @@ export const EditConfigurationPage = () => {
 
   const { mutate, isPending } = useEditConfigurationVSPCTenantAgent({
     onSuccess: () => {
+      addSuccess(t('update_agent_banner_success', { agentName: resourceAgent?.currentState.name }));
       goBack();
     },
     onError: (apiError) => {
@@ -170,18 +172,17 @@ export const EditConfigurationPage = () => {
               className="w-full"
             >
               <RhfField.Label>{LABELS.BACKUP_POLICY}</RhfField.Label>
-              <RhfField.Combobox
+              <RhfField.Select
                 placeholder={LABELS.BACKUP_POLICY}
                 isRequired
                 isDisabled={isPoliciesLoading}
-                allowNewElement={false}
               >
                 {policies?.map((policy) => (
-                  <RhfField.ComboboxItem key={policy} value={policy}>
+                  <option key={policy} value={policy}>
                     {capitalize(policy)}
-                  </RhfField.ComboboxItem>
+                  </option>
                 ))}
-              </RhfField.Combobox>
+              </RhfField.Select>
             </RhfField>
           </>
         )}
