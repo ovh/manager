@@ -74,6 +74,36 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
           <input onChange={onOdsChange as () => void} onBlur={onOdsBlur as () => void} {...props} />
         ),
       ),
+    OdsSelect: vi
+      .fn()
+      .mockImplementation(
+        ({
+          children,
+          onOdsChange,
+          onOdsBlur,
+          isDisabled,
+          isRequired,
+          ...props
+        }: {
+          children: React.ReactNode;
+          name: string;
+          onOdsChange: () => void;
+          isDisabled: boolean;
+          isRequired: boolean;
+          onOdsBlur: () => void;
+        }) => (
+          <select
+            onChange={onOdsChange}
+            onBlur={onOdsBlur}
+            data-disabled={isDisabled}
+            data-required={isRequired}
+            data-testid={`select-${props.name}`}
+            {...props}
+          >
+            {children}
+          </select>
+        ),
+      ),
     OdsCombobox: vi
       .fn()
       .mockImplementation(
@@ -139,6 +169,9 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
         </section>
       ),
     ),
+  useNotifications: vi.fn().mockReturnValue({
+    useSuccess: vi.fn(),
+  }),
 }));
 
 const {
