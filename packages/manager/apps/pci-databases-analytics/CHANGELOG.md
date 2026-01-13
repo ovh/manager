@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.39.5...@ovh-ux/manager-pci-databases-analytics-app@1.40.0) (2026-01-13)
+
+
+### Features
+
+* **pci.databases:** onboarding pages wording ([b30e6a2](https://github.com/ovh/manager/commit/b30e6a27f0f54c32b5465774c6edef18bc029389)), closes [#DATATR-2661](https://github.com/ovh/manager/issues/DATATR-2661)
+* **pci.db:** stop using monthly plan code in pricing ([16a3f22](https://github.com/ovh/manager/commit/16a3f220a5c5c1daae91877453da740ed1023811)), closes [#DATATR-2814](https://github.com/ovh/manager/issues/DATATR-2814) [#DATATR-2815](https://github.com/ovh/manager/issues/DATATR-2815)
+
+
+
+
+
 ## [1.39.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.39.4...@ovh-ux/manager-pci-databases-analytics-app@1.39.5) (2026-01-13)
 
 
