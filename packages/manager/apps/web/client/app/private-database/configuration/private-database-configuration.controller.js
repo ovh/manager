@@ -86,6 +86,23 @@ angular.module('App').controller(
         field.selectedValue = field.availableValues.find(
           (value) => value.id === field.value,
         );
+      } else if (field.key === 'tmpdir') {
+        field.type = 'select';
+
+        field.availableValues = field.availableValues.map((value) => {
+          let prefix = '';
+          if (value.id !== field.defaultValue) {
+            prefix = '[Deprecated] ';
+          }
+          return {
+            id: value.id,
+            text: `${prefix}${value.id}`,
+          };
+        });
+
+        field.selectedValue = field.availableValues.find(
+          (value) => value.id === field.value,
+        );
       } else if (field.key === 'innodb_buffer_pool_size') {
         field.type = 'select';
 
