@@ -5,7 +5,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/lib';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { VAULT_PLAN_CODE } from '@/module.constants';
 
 import { SubscriptionTile } from '../subscription-tile/SubscriptionTile.component';

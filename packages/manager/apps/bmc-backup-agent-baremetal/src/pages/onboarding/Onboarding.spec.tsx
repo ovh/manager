@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
+import { beforeAll, vi } from 'vitest';
 
 import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.mocks';
+import { mockVaults } from '@ovh-ux/backup-agent/mocks/vaults/vaults.mock';
 
 import OnboardingPage from './Onboarding.page';
 
@@ -28,15 +29,29 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-const { useBaremetalsListMock } = vi.hoisted(() => ({
+const { useBaremetalsListMock, useBackupVaultsListMock } = vi.hoisted(() => ({
   useBaremetalsListMock: vi
     .fn()
-    .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
+    .mockReturnValue({ data: undefined, isPending: true, isError: false }),
+  useBackupVaultsListMock: vi
+    .fn()
+    .mockReturnValue({ data: undefined, isPending: false, isError: false }),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
+  ...(await vi.importActual('@ovh-ux/manager-react-shell-client')),
+  useNavigationGetUrl: vi.fn().mockReturnValue({ isPending: false, data: '' }),
 }));
 
 vi.mock('@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList', () => {
   return {
     useBaremetalsList: useBaremetalsListMock,
+  };
+});
+
+vi.mock('@ovh-ux/backup-agent/data/hooks/vaults/getVault', () => {
+  return {
+    useBackupVaultsList: useBackupVaultsListMock,
   };
 });
 
@@ -89,6 +104,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       <span>{hrefLabel}</span>
     </a>
   ),
+  RedirectionGuard: ({ children }: { children: ReactNode }) => children,
 }));
 
 // --- Mock hooks ---
@@ -116,6 +132,14 @@ vi.mock('@ovh-ux/backup-agent/hooks/useGuideUtils.ts', () => ({
 }));
 
 describe('FirstOrderPage', () => {
+  beforeAll(() => {
+    useBackupVaultsListMock.mockReturnValue({
+      data: mockVaults,
+      isPending: false,
+      isError: false,
+    });
+  });
+
   it('renders title, description, and order button', () => {
     render(<OnboardingPage />);
     expect(screen.getByTestId('title')).toHaveTextContent('Welcome!');
@@ -146,8 +170,13 @@ describe('FirstOrderPage', () => {
     async (mock, expectedDisabled) => {
       useBaremetalsListMock.mockReturnValue({
         flattenData: mock,
-        isLoading: false,
+        isPending: false,
         isError: false,
+      });
+      useBackupVaultsListMock.mockReturnValue({
+        flattenData: undefined,
+        isPending: false,
+        isError: true,
       });
 
       render(<OnboardingPage />);

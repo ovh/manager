@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { labels } from '@/test-utils/i18ntest.utils';
 import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 import { ResourceStatus } from '@/types/Resource.type';

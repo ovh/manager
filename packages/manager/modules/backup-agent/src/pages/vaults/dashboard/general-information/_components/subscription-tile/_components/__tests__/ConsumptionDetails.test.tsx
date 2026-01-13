@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { VAULT_PLAN_CODE } from '@/module.constants';
 
 import { ConsumptionDetails } from '../ConsumptionDetails.component';

@@ -19,7 +19,7 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useBackupServicesId } from '@/data/hooks/backup/useBackupServicesId';
+import { useBackupVaultsList } from '@/data/hooks/vaults/getVault';
 import { useGuideUtils } from '@/hooks/useGuideUtils';
 import { LABELS } from '@/module.constants';
 import { urls } from '@/routes/routes.constants';
@@ -40,7 +40,7 @@ export default function MainLayout() {
     [tabs, location.pathname],
   );
 
-  const { isPending, data: servicesId } = useBackupServicesId();
+  const { isPending, flattenData: vaults, isError: isVautError } = useBackupVaultsList();
   const guides = useGuideUtils();
 
   const guideItems: GuideItem[] = [
@@ -53,7 +53,11 @@ export default function MainLayout() {
   ];
 
   return (
-    <RedirectionGuard route={urls.onboarding} isLoading={isPending} condition={!servicesId}>
+    <RedirectionGuard
+      route={urls.onboarding}
+      isLoading={isPending}
+      condition={vaults?.length === 0 || isVautError}
+    >
       <BaseLayout
         header={{ title: LABELS.BACKUP_AGENT, headerButton: <GuideButton items={guideItems} /> }}
         message={<Notifications />}
