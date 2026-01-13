@@ -384,7 +384,10 @@ export const DOMAIN_DNSSEC_STATUS: Record<string, StatusDetails> = {
   },
 };
 
-export const DOMAIN_PENDING_ACTIONS: Record<string, StatusDetails> = {
+export const DOMAIN_PENDING_ACTIONS: Record<
+  LifecycleCapacitiesEnum,
+  StatusDetails
+> = {
   [LifecycleCapacitiesEnum.AutoRenewInProgress]: {
     i18nKey: 'domain_status_auto_renew_in_progress',
     statusColor: BADGE_COLOR.information,
