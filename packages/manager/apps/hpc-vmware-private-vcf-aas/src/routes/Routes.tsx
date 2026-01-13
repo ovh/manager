@@ -11,10 +11,11 @@ import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 
 export default (
   <>
-    <Route path="/" element={<Navigate to={urls.onboarding} replace />} />
+    <Route path="/" element={<Navigate to={urls.root} replace />} />
     <Route
       id="root"
       path={urls.root}
@@ -27,6 +28,7 @@ export default (
         />
       }
     >
+      <Route index Component={ListingPage} />
       <Route
         path={subRoutes.onboarding}
         Component={OnboardingPage}

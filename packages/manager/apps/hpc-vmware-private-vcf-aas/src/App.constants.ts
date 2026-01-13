@@ -1,11 +1,14 @@
+import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg?url';
 import { OnboardingConfigType } from '@/types/Onboarding.type';
 
 export const appName = 'hpc-vmware-private-vcf-aas';
+export const productName = 'Private VCF as-a-Service';
 
 const docUrl = 'https://docs.ovh.com';
 
 export const ONBOARDING_CONFIG: OnboardingConfigType = {
-  productName: 'hpc-vmware-private-vcf-aas',
+  productName,
+  title: productName,
   productCategory: 'Public Cloud',
   brand: 'OVHcloud',
   tiles: [
@@ -17,5 +20,9 @@ export const ONBOARDING_CONFIG: OnboardingConfigType = {
     discover: docUrl,
     tutorial: docUrl,
     faq: docUrl,
+  },
+  heroImage: {
+    src: vmwareBroadcomOVHCloud,
+    alt: productName,
   },
 };

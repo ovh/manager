@@ -1,14 +1,13 @@
 import { appName } from '@/App.constants';
 
-const ROOT_URL = `/`;
-
 export const subRoutes = {
+  root: 'private-vcf-aas',
   onboarding: 'onboarding' as const,
 } as const;
 
 export const urls = {
-  root: ROOT_URL,
-  onboarding: `${ROOT_URL}${subRoutes.onboarding}`,
+  root: `/${subRoutes.root}`,
+  onboarding: `/${subRoutes.root}/${subRoutes.onboarding}`,
 } as const;
 
 export const redirectionApp = appName;
