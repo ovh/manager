@@ -2,7 +2,7 @@
   "pci_projects_onboarding_title": "Welcome to the Public Cloud ecosystem",
   "pci_projects_onboarding_description1": "By creating a Public Cloud project, you will enjoy access to various resources available on demand for your application. Here are some examples.",
   "pci_projects_onboarding_description2": "You can start SQL or NoSQL databases, test your application on a Kubernetes cluster, use artificial intelligence tools for a few hours, or automate the deployment of your cloud servers with Terraform.",
-  "pci_projects_onboarding_contracts_agreements_label": "I have understood and accept the following contracts: ",
+  "pci_projects_onboarding_contracts_agreements_label": "I have read and agree to the changes set forth in the documents above: ",
   "pci_projects_onboarding_create_project": "Discover the Public Cloud universe",
   "pci_projects_onboarding_us_title": "Your open and reversible Public Cloud platform",
   "pci_projects_onboarding_us_description1": "You are familiar with DevOps and cloud-ready practices, and can manage your infrastructure using APIs and orchestration tools. You are looking for pre-installed or “as-a-service” solutions, with flexible, pay-as-you-go billing, so you can focus on your core business to accelerate production.",
