@@ -48,8 +48,8 @@ export const TopBar: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="mb-2 flex w-full flex-col justify-between gap-2 sm:flex-row">
-      <div className="flex items-center gap-2">
+    <div className="my-5 flex w-full flex-col justify-between gap-4 sm:flex-row">
+      <div className="flex items-center gap-4">
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
           label={`${t('add', { ns: NAMESPACES.ACTIONS })} ${t('oneRule')}`}
@@ -82,7 +82,7 @@ export const TopBar: React.FC = () => {
           </>
         )}
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-4">
         <OdsText>{t('apply_deny_strategy_switch_label')}</OdsText>
         <OdsIcon
           id="tooltip"

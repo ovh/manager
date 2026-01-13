@@ -50,7 +50,7 @@ export default function Step5({
           {t('step5Description')}
         </OdsMessage>
       </div>
-      <div className="mb-6 flex flex-col gap-3">
+      <div className="mb-6 flex flex-col gap-4">
         {orderData?.details?.map((detail) => (
           <div key={`${detail.domain}-${detail.detailType}`}>
             <div className="flex justify-between">

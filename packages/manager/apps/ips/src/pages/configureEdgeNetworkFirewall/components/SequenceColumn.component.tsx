@@ -27,9 +27,7 @@ export const SequenceColumn = (
       <OdsSelect
         name="sequence-select"
         value={newSequence?.toString() ?? nextAvailableSequence?.toString()}
-        onOdsChange={(e) =>
-          setNewSequence(parseInt(e.detail.value, 10))
-        }
+        onOdsChange={(e) => setNewSequence(parseInt(e.detail.value, 10))}
       >
         {validSequenceNumbers.map((sequence) => (
           <option

@@ -42,7 +42,7 @@ export const QuickFilter = ({ className }: { className?: string }) => {
         data-testid="quick-filter"
       />
       <OdsPopover triggerId="quick-filters" withArrow>
-        <div className="gap-2">
+        <div className="gap-4">
           <label
             htmlFor="show-ipv4"
             className="flex cursor-pointer items-center p-2 hover:bg-gray-100"

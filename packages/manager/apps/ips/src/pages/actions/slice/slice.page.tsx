@@ -126,7 +126,7 @@ export default function SliceModal() {
           actionType: 'action',
           actions: ['slice', 'confirm'],
         });
-        postSlice({ slicingSize: slicingSize });
+        postSlice({ slicingSize });
       }}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
       primaryButtonTestId="confirm-button"

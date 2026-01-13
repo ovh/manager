@@ -142,7 +142,8 @@ export default function ConfigureReverseDns() {
     ipReverseError || updateIpReverseError || deleteIpReverseError;
 
   if (!ipGroup) {
-    return cancel();
+    cancel();
+    return <></>;
   }
 
   return (
@@ -242,7 +243,7 @@ export default function ConfigureReverseDns() {
       {apiError && (
         <OdsMessage
           isDismissible={false}
-          className={`mb-4 block`}
+          className="mb-4 block"
           color={ODS_MESSAGE_COLOR.critical}
         >
           <React.Suspense fallback={<OdsSpinner />}>

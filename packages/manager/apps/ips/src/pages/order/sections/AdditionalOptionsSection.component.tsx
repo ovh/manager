@@ -20,8 +20,9 @@ import { OrderContext } from '../order.context';
 
 export const AdditionalOptionsSection: React.FC = () => {
   const { t } = useTranslation('order');
-  const { selectedOptions, setSelectedOptions } =
-    React.useContext(OrderContext);
+  const { selectedOptions, setSelectedOptions } = React.useContext(
+    OrderContext,
+  );
   const { trackClick } = useOvhTracking();
 
   return (
@@ -29,7 +30,7 @@ export const AdditionalOptionsSection: React.FC = () => {
       title={t('additional_options_selection_title')}
       description={t('additional_options_selection_description')}
     >
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         <OptionCard
           title={t('new_prefix_ipv6_card_title')}
           description={t('new_prefix_ipv6_card_description')}

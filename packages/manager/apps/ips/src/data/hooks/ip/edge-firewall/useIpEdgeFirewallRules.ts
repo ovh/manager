@@ -69,8 +69,9 @@ export const useIpEdgeNetworkFirewallRules = ({
                 }),
               );
               queryClient.removeQueries({
-                queryKey:
-                  getIpEdgeNetworkFirewallRuleDetailsQueryKey(ruleParams),
+                queryKey: getIpEdgeNetworkFirewallRuleDetailsQueryKey(
+                  ruleParams,
+                ),
                 exact: true,
               });
               return undefined;
@@ -88,13 +89,14 @@ export const useIpEdgeNetworkFirewallRules = ({
         ruleListQuery.error || results?.find((query) => query.error)?.error,
       isLoading:
         ruleListQuery.isLoading || results?.some((query) => query.isLoading),
-      data: (results
-        ?.filter(Boolean)
-        ?.map((query) => query?.data?.data)
-        .sort((a, b) => {
-          if (!a || !b) return 0;
-          return a.sequence - b.sequence;
-        }) || []),
+      data:
+        results
+          ?.filter(Boolean)
+          ?.map((query) => query?.data?.data)
+          .sort((a, b) => {
+            if (!a || !b) return 0;
+            return a.sequence - b.sequence;
+          }) || [],
     }),
   });
 };
