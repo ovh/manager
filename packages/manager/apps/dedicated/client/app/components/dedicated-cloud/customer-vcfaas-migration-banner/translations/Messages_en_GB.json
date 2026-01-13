@@ -1,6 +1,6 @@
 {
-  "dedicated_cloud_dashboard_customer_vcfaas_migration_banner": "New Public VCF as-a-Service offer - Ultra-competitive pricing and free migration - Discover <a href=\"{{ url }}\" target=\"_blank\">the offer</a> and test your eligibility",
-  "dedicated_cloud_dashboard_customer_vcfaas_migration_banner_action": "[by clicking here]",
+  "dedicated_cloud_dashboard_customer_vcfaas_migration_banner": "Want to migrate from a PCC to a shared VMware environment at an unbeatable price?",
+  "dedicated_cloud_dashboard_customer_vcfaas_migration_banner_action": "[Click here to request a callback]",
   "dedicated_cloud_dashboard_customer_vcfaas_migration_banner_success": "Your request to migrate to Public VCF as-a-Service has been processed. Our team will reach out to you shortly.",
   "dedicated_cloud_dashboard_customer_vcfaas_migration_banner_error": "An error has occurred requesting the migration. Please try again."
 }
