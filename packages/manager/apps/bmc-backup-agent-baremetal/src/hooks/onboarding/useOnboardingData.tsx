@@ -8,7 +8,6 @@ import type {
   OnboardingConfigType,
   OnboardingContentType,
   OnboardingImage,
-  OnboardingLinksType,
 } from '@/types/Onboarding.type';
 
 const QUERY_KEY = ['onboarding-config'] as const;
@@ -45,20 +44,4 @@ export function useOnboardingContent(): OnboardingContentType {
       tiles: Array.isArray(data?.tiles) ? data.tiles : [],
     };
   }, [data, t]);
-}
-
-export function useGuideLinks(): OnboardingLinksType {
-  const { data } = useQuery<OnboardingConfigType>({
-    queryKey: QUERY_KEY,
-    queryFn: () => getOnboardingConfig(),
-  });
-
-  return useMemo<OnboardingLinksType>(
-    () => ({
-      discover: data?.links?.discover ?? '',
-      tutorial: data?.links?.tutorial ?? '',
-      faq: data?.links?.faq ?? '',
-    }),
-    [data],
-  );
 }

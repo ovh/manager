@@ -104,7 +104,11 @@ vi.mock('@/hooks/onboarding/useOnboardingData', () => ({
       { id: '2', key: 'faq', linkKey: 'faq' },
     ],
   }),
-  useGuideLinks: () => ({
+}));
+
+vi.mock('@ovh-ux/backup-agent/hooks/useGuideUtils.ts', () => ({
+  useGuideUtils: () => ({
+    main: '/backup-agent-guides',
     discover: '/discover-link',
     tutorial: '', // missing to test filtering
     faq: '/faq-link',

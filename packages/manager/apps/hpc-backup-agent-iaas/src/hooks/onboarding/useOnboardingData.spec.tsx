@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { OnboardingConfigType } from '@/types/Onboarding.type';
 
-import { useGuideLinks, useOnboardingContent } from './useOnboardingData';
+import {useGuideLinks, useOnboardingContent} from './useOnboardingData';
 
 // --- Mock App.constants ---
 vi.mock('@/App.constants', () => {
