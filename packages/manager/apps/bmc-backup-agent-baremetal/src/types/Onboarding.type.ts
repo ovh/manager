@@ -1,5 +1,5 @@
 export type OnboardingLinksType = {
-  discover: string;
+  cost: string;
   tutorial: string;
   faq: string;
 };
@@ -24,6 +24,4 @@ export type OnboardingContentType = {
   tiles: OnboardingTile[];
 };
 
-export type OnboardingConfigType = OnboardingContentType & {
-  links: OnboardingLinksType;
-};
+export type OnboardingConfigType = OnboardingContentType;

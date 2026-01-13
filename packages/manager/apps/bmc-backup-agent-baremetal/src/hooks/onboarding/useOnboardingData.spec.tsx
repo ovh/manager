@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { OnboardingConfigType } from '@/types/Onboarding.type';
 
-import { useGuideLinks, useOnboardingContent } from './useOnboardingData';
+import { useOnboardingContent } from './useOnboardingData';
 
 // --- Mock App.constants ---
 vi.mock('@/App.constants', () => {
@@ -16,8 +16,7 @@ vi.mock('@/App.constants', () => {
     brand: 'BrandY',
     title: 'Welcome to MyProduct',
     heroImage: { src: '/hero.png', alt: 'Hero' },
-    tiles: [{ id: 1, key: 'discover', linkKey: 'discover' }],
-    links: { discover: '/discover', tutorial: '/tutorial', faq: '/faq' },
+    tiles: [{ id: 1, key: 'discover', linkKey: 'cost' }],
   };
   return { ONBOARDING_CONFIG: mockConfig };
 });
@@ -70,18 +69,6 @@ describe('useOnboardingContent', () => {
 
     await waitFor(() => {
       expect(result.current.productName).toContain('onboarding:productDefaultName');
-    });
-  });
-});
-
-describe('useGuideLinks', () => {
-  it('returns guide links correctly', async () => {
-    const { result } = renderHook(() => useGuideLinks(), { wrapper: createWrapper() });
-
-    await waitFor(() => {
-      expect(result.current.discover).toBe('/discover');
-      expect(result.current.tutorial).toBe('/tutorial');
-      expect(result.current.faq).toBe('/faq');
     });
   });
 });
