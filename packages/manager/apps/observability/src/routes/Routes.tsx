@@ -12,6 +12,7 @@ import { DeleteTenantModal, TenantsPage } from '@/routes/lazy-parallel/tenants/l
 const MainLayout = React.lazy(() => import('@/pages/Main.layout'));
 
 const TenantsLayout = React.lazy(() => import('@/pages/tenants/Tenants.layout'));
+const TenantsBaseLayout = React.lazy(() => import('@/pages/tenants/TenantsBase.layout'));
 const TenantLayout = React.lazy(() => import('@/pages/tenants/Tenant.layout'));
 const MetricsLayout = React.lazy(() => import('@/pages/metrics/Metrics.layout'));
 const OnboardingServiceLayout = React.lazy(
@@ -75,7 +76,7 @@ export default (
         {/* Default landing inside root → redirect to tenants */}
         <Route index element={<Navigate to={urls.tenants} replace />} />
 
-        {/* Tenants routes */}
+        {/* Tenants routes with base layout + tenants description */}
         <Route path={subroutes.tenants} Component={TenantsLayout}>
           <Route
             path=""
@@ -97,6 +98,9 @@ export default (
               }}
             />
           </Route>
+        </Route>
+        {/* Tenants routes with default layout*/}
+        <Route path={subroutes.tenants} Component={TenantsBaseLayout}>
           <Route
             path={subroutes.onboarding}
             Component={OnboardingTenantPage}
