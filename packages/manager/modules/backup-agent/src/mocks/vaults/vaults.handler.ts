@@ -2,7 +2,7 @@ import { PathParams } from 'msw';
 
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { VaultResource } from '@/types/Vault.type';
 
 export type TVaultMockParams = {

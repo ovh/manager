@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { setupMswMock } from '@/test-utils/setupMsw';
 import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 

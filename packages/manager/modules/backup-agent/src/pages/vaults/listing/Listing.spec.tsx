@@ -3,7 +3,7 @@ import React from 'react';
 import { waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { renderTest } from '@/test-utils/Test.utils';
 
 vi.mock('@ovhcloud/ods-react', () => ({

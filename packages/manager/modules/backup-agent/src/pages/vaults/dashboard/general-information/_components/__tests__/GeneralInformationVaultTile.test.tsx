@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { GeneralInformationTileProps } from '@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component';
 import { mockLocations } from '@/mocks/location/locations';
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 
 import { GeneralInformationVaultTile } from '../general-information-vault-tile/GeneralInformationVaultTile.component';
 
