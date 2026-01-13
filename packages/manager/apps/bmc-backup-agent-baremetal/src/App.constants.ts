@@ -14,22 +14,15 @@ export const AppConfig = {
   rootLabel: appName,
 } as const;
 
-const docUrl = 'https://docs.ovh.com';
-
 export const ONBOARDING_CONFIG: OnboardingConfigType = {
   productName,
   productCategory: 'Backup',
   brand: 'OVHcloud',
   tiles: [
-    { id: 1, key: 'guide1', linkKey: 'discover' },
+    { id: 1, key: 'guide1', linkKey: 'cost' },
     { id: 2, key: 'guide2', linkKey: 'tutorial' },
     { id: 3, key: 'guide3', linkKey: 'faq' },
   ],
-  links: {
-    discover: docUrl,
-    tutorial: docUrl,
-    faq: docUrl,
-  },
   heroImage: { src: backupAgentImage },
 };
 
