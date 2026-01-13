@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { mockLocations } from '@/mocks/location/locations';
-import { mockVaults } from '@/mocks/vaults/vaults';
+import { mockVaults } from '@/mocks/vaults/vaults.mock';
 
 import { ResourceLocationCell } from '../ResourceLocationCell.component';
 
