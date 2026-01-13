@@ -43,7 +43,7 @@ describe('useOrderCompleteHistory', () => {
     expect(result.current.isLoading).toBe(false);
   });
 
-  it('should not run the query when any input is undefined', async () => {
+  it('should not run the query when any input is undefined', () => {
     const { result } = renderHook(
       () =>
         useOrderCompleteHistory(

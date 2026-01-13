@@ -28,12 +28,12 @@ const RoadmapChangelogDatagrids = () => {
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation('changelog');
   const { environment } = useContext(ShellContext);
-  const isRegionUS = environment.getRegion() === 'US';
+  const isRegionUS = (environment.getRegion() as string) === 'US';
 
   const { emptyRoadmapChangelogItems, columns } = useRoadmapChangelogData(isLoadingItems);
 
   return (
-    <div className="max-w-[100%] overflow-auto">
+    <div className="max-w-full overflow-auto">
       <OsdsTabs panel="roadmap-changelog-datagrid-tab-cloud" size={ODS_TABS_SIZE.md}>
         <OsdsTabBar>
           <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-cloud">

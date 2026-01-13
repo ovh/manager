@@ -30,6 +30,6 @@ describe('Skeletons Component', () => {
     const { container } = render(<Skeletons />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

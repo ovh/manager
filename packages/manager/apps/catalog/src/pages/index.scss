@@ -1,0 +1,10 @@
+.card {
+  & > div {
+    border: solid var(--ods-size-inset-02);
+    border-color: var(--ods-color-primary-200);
+  }
+
+  &:hover div {
+    background-color: var(--ods-color-primary-100);
+  }
+}

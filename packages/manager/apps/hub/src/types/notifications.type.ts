@@ -7,8 +7,8 @@ export enum NotificationType {
   Warning = 'warning',
 }
 
-export type Notification = {
-  data: any;
+export type Notification<T = Record<string, unknown>> = {
+  data: T;
   date: string;
   description: string;
   id: string;

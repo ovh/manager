@@ -1,12 +1,6 @@
-import { Suspense, lazy, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, lazy, useContext, useEffect, useMemo, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
-
-import { useTranslation } from 'react-i18next';
-
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
 
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
@@ -48,7 +42,6 @@ export default function Dashboard() {
     environment: { user },
   } = useContext(ShellContext);
   const { trackCurrentPage } = useOvhTracking();
-  const { t } = useTranslation();
   const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
   useRouteSynchro();
 
@@ -62,7 +55,7 @@ export default function Dashboard() {
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
     };
 
-    getIsAccountSidebarVisible();
+    void getIsAccountSidebarVisible();
   }, []);
 
   const { data: availability } = useFeatureAvailability(features);
@@ -85,9 +78,9 @@ export default function Dashboard() {
 
   return (
     <Context.Provider value={context}>
-      <div className="relative w-full h-full overflow-y-scroll" id="mainview">
+      <div className="relative size-full overflow-y-scroll" id="mainview">
         <div
-          className={`absolute hub-main w-full h-full ${
+          className={`hub-main absolute size-full ${
             isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
           }`}
           data-testid="hub_main_div"
@@ -101,7 +94,7 @@ export default function Dashboard() {
             </div>
             {/* /Skip content target */}
             <div className="pt-8">
-              <div className="hub-main-view_container px-6 box-border">
+              <div className="hub-main-view_container box-border px-6">
                 <div className="pb-12">
                   <Welcome />
                   <Banner />
@@ -114,18 +107,18 @@ export default function Dashboard() {
                   <KycFraudBanner />
                   <HubDashboardSubtitle />
                   <div className={`flex flex-wrap`}>
-                    <div className="w-full md:w-8/12 mb-6 md:mb-8 box-border">
+                    <div className="mb-6 box-border w-full md:mb-8 md:w-8/12">
                       <PaymentStatus />
                     </div>
-                    <div className="w-full md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 md:px-6 box-border">
+                    <div className="order-3 mb-6 box-border w-full md:order-2 md:mb-8 md:w-4/12 md:px-6">
                       <Suspense>
                         {user.enterprise ? <EnterpriseBillingSummary /> : <BillingSummary />}
                       </Suspense>
                     </div>
-                    <div className="w-full md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 box-border">
+                    <div className="order-2 mb-6 box-border w-full md:order-3 md:mb-8 md:w-8/12">
                       <HubSupport />
                     </div>
-                    <div className="w-full md:w-4/12 order-4 md:px-6 box-border">
+                    <div className="order-4 box-border w-full md:w-4/12 md:px-6">
                       <Suspense>
                         <OrderTracking />
                       </Suspense>
