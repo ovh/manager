@@ -1,7 +1,7 @@
 import '@/test-utils/setupTests';
 import '@testing-library/jest-dom';
 import { describe, it, vi } from 'vitest';
-import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import { useDataApi } from '@ovh-ux/muk';
 import { useNavigate } from 'react-router-dom';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { screen, waitFor } from '@testing-library/react';
@@ -12,42 +12,39 @@ import serverFixture from '@/data/fixtures/server.json';
 
 describe('server listing page', () => {
   it('should redirect to the onboarding page when the list is empty', async () => {
-    (useResourcesIcebergV6 as ReturnType<typeof vi.fn>).mockReturnValue({
+    (useDataApi as jest.Mock).mockReturnValue({
       flattenData: [],
-      isLoading: false,
-      isSuccess: true,
-      isError: false,
-      fetchNextPage: vi.fn(),
-      totalCount: 0,
       hasNextPage: false,
-      error: null,
-      filters: [],
-      search: vi.fn(),
+      fetchNextPage: vi.fn(),
+      isLoading: false,
+      filters: {},
+      sorting: {},
     });
-    ((apiClient.v6.get as unknown) as ReturnType<
-      typeof vi.fn
-    >).mockReturnValue({ data: [] });
 
-    (useNavigate as ReturnType<typeof vi.fn>).mockReturnValue(vi.fn());
+    (apiClient.v6.get as ReturnType<typeof vi.fn>).mockResolvedValue({
+      data: [],
+    });
 
     await renderTest({ initialRoute: urls.server });
-    await assertTextVisibility(
-      labels.onboarding.dedicated_servers_onboarding_title,
+    await waitFor(
+      () => {
+        const el = document.querySelector(
+          '[aria-labelledby="onboarding-title"]',
+        );
+        expect(el).toBeInTheDocument();
+      },
+      { timeout: 5000 },
     );
   });
 
   it('should render datagrid with result', async () => {
-    (useResourcesIcebergV6 as ReturnType<typeof vi.fn>).mockReturnValue({
+    (useDataApi as ReturnType<typeof vi.fn>).mockReturnValue({
       flattenData: serverFixture,
-      isLoading: false,
-      isSuccess: true,
-      isError: false,
-      fetchNextPage: vi.fn(),
-      totalCount: 0,
       hasNextPage: false,
-      error: null,
-      filters: [],
-      search: vi.fn(),
+      fetchNextPage: vi.fn(),
+      isLoading: false,
+      filters: {},
+      sorting: {},
     });
 
     (useNavigate as ReturnType<typeof vi.fn>).mockReturnValue(vi.fn());
@@ -64,26 +61,20 @@ describe('server listing page', () => {
   });
 
   it('should display an error banner when the API returns an error response', async () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useDataApi as jest.Mock).mockReturnValue({
       flattenData: undefined,
+      hasNextPage: false,
+      fetchNextPage: vi.fn(),
       isLoading: false,
-      isSuccess: false,
+      filters: {},
+      sorting: {},
       isError: true,
-      error: {
-        response: {
-          status: 500,
-          headers: {},
-        },
-        message: 'Internal server error',
-      },
+      error: new Error('Internal Server Error'),
     });
 
-    (useNavigate as ReturnType<typeof vi.fn>).mockReturnValue(vi.fn());
+    await renderTest({ initialRoute: urls.server });
 
-    await renderTest({ initialRoute: urls.cluster });
-
-    await waitFor(() => {
-      expect(screen.getByText(/internal server error/i)).toBeInTheDocument();
-    });
+    const errorEl = await screen.findByTestId('error-component');
+    expect(errorEl).toHaveTextContent(/internal server error/i);
   });
 });
