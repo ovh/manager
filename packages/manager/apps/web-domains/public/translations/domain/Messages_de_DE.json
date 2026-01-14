@@ -340,5 +340,6 @@
   "domain_tab_dsrecords_message_information_content": "Diese DS-Einträge werden zu Informationszwecken bereitgestellt und von OVHcloud automatisch verwaltet.",
   "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC wird {{action}}: Sie können den Fortschritt Ihrer Anfrage auf der Seite der laufenden Operationen verfolgen. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "Aktivierung",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "Deaktivierung"
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "Deaktivierung",
+  "domain_tab_general_information_subscription_edit_owner": "Ändern Sie die Informationen des Kontakthabers"
 }
