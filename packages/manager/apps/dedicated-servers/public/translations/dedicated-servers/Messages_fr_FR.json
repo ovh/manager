@@ -23,6 +23,7 @@
   "server_order_dedicated": "Serveurs dédiés",
   "server_order_eco": "Serveurs Eco",
   "server_display_datacentre": "Datacentre",
+  "server_display_availability_zone": "Zone de disponibilité",
   "server_display_operating_system": "Système d'exploitation",
   "server_display_vrack": "vRack",
   "server_display_renew": "Type de renouvellement",
