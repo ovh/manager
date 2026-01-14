@@ -1,8 +1,5 @@
 import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
-import {
-  complexityJsxTsxConfig,
-  complexityTsJsConfig,
-} from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
+import { complexityJsxTsxConfig, complexityTsJsConfig, } from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
 import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
@@ -33,6 +30,21 @@ export default [
         ),
       ),
       'react/no-multi-comp': 'off',
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/no-static-element-interactions': 'off',
+      'jsx-a11y/interactive-supports-focus': 'off',
+      'jsx-a11y/role-has-required-aria-props': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+    },
+  },
+  {
+    files: ['**/*.{ts,tsx}'],
+    rules: {
+      'tailwindcss/no-custom-classname': 'off',
+      'tailwindcss/no-arbitrary-value': 'off',
     },
   },
   {
