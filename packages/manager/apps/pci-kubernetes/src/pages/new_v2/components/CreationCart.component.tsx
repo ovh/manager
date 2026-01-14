@@ -8,6 +8,7 @@ import { Text } from '@ovhcloud/ods-react';
 import { Cart, TCartItem } from '@/components/cart/Cart.component';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
+import { MOCK_REGIONS } from '../mocks/regions.mock';
 
 export const CreationCart = () => {
   const { t } = useTranslation(['listing', 'add']);
@@ -17,8 +18,10 @@ export const CreationCart = () => {
     name: ['name', 'macroRegion', 'microRegion'],
   });
 
-  const cartItems = useMemo<Array<TCartItem>>(
-    () => [
+  // TODO (TAPC-5549) : mock format, will be updated or removed
+  const cartItems = useMemo<Array<TCartItem>>(() => {
+    const selectedRegion = MOCK_REGIONS.find(({ id }) => id === macroRegionField);
+    return [
       {
         title: t('listing:kube_list_title'),
         id: '0',
@@ -26,17 +29,15 @@ export const CreationCart = () => {
         details: [
           {
             name: t('add:kubernetes_add_location'),
-            description: (
-              // TODO (TAPC-5549) : Use macroRegion key to display the full region name
-              <Text preset="heading-6">{`${macroRegionField} (${microRegionField})`}</Text>
-            ),
+            description: selectedRegion ? (
+              <Text preset="heading-6">{`${selectedRegion.title} (${microRegionField})`}</Text>
+            ) : undefined,
           },
         ],
         expanded: true,
       },
-    ],
-    [macroRegionField, microRegionField, nameField, t],
-  );
+    ];
+  }, [macroRegionField, microRegionField, nameField, t]);
 
   return <Cart items={cartItems} isSubmitDisabled={!form.formState.isValid} />;
 };
