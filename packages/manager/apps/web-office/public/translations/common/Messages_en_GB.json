@@ -51,7 +51,7 @@
   "state_suspended": "Suspended",
   "state_suspending": "Suspending",
   "error_message": "Your request could not be completed. {{ error }}",
-  "agreement": "Contract signature",
-  "contract_signature": "Contract signature",
-  "contract_signature_tooltip": "To access your service, you must accept the Microsoft user agreement"
+  "agreement": "Contract signing",
+  "contract_signature": "Contract signing",
+  "contract_signature_tooltip": "To access your service, you need to accept the Microsoft user agreement"
 }

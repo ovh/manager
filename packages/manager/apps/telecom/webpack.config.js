@@ -90,6 +90,11 @@ module.exports = (env = {}) => {
         stream: require.resolve('stream-browserify'),
         os: require.resolve('os-browserify/browser'),
       },
+      alias: {
+        angular: require.resolve('angular'),
+        'angular-translate': require.resolve('angular-translate'),
+        'angular-translate-loader-partial': require.resolve('angular-translate-loader-partial')
+      },
     },
     plugins: [
       new webpack.ContextReplacementPlugin(
