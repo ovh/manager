@@ -95,14 +95,14 @@
     "test:coverage": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-billing-informations": "*",
+    "@ovh-ux/manager-billing-informations": "^1.5.8",
     "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-core-api": "^0.20.0",
     "@ovh-ux/manager-module-common-api": "*",
     "@ovh-ux/manager-react-components": "^2.43.1",
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.6.2",
-    "@ovh-ux/manager-vite-config": "0.15.4",
+    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-vite-config": "0.15.6",
     "@ovhcloud/ods-components": "^18.6.4",
     "@ovhcloud/ods-themes": "^18.6.4",
     "@types/lodash.capitalize": "^4.2.1",
