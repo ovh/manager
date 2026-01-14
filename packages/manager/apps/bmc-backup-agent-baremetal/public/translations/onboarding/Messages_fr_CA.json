@@ -1,6 +1,6 @@
 {
   "title_fallback": "La Sauvegarde, En Toute Simplicité",
-  "description_part1": "Obtenez une solution de sauvegarde avec des sauvegardes distantes automatiques quotidiennes, des alertes proactives et une surveillance centralisée, le tout stocké de manière sécurisée dans un Vault sur l'OVHcloud Object Storage. Installez l'agent de sauvegarde en moins de 5 minutes, sans frais. Vous ne payez que pour le stockage Object Storage que vous utilisez.",
+  "description_part1": "Obtenez une solution de sauvegarde avec des sauvegardes distantes automatiques quotidiennes, des alertes proactives et une surveillance centralisée, le tout stocké de manière sécurisée dans un Vault sur l'OVHcloud Object Storage. Installez l'agent de sauvegarde en moins de 15 minutes, sans frais. Vous ne payez que pour le stockage Object Storage que vous utilisez.",
   "description_part2": "Suivez nos guides pour démarrer rapidement.",
   "guides": {
     "guide1": {
@@ -11,8 +11,8 @@
     },
     "guide2": {
       "category": "Tutoriel",
-      "title": "Bien démarrer",
-      "description": "Une vidéo étape par étape pour vous aider à mettre en place et exécuter votre première sauvegarde.",
+      "title": "Première configuration",
+      "description": "Un guide étape par étape pour vous aider à mettre en place et exécuter votre première sauvegarde.",
       "cta": "Voir le tutoriel"
     },
     "guide3": {
@@ -24,5 +24,6 @@
   },
   "no_baremetal_available": "Commander un serveur Bare Metal, et protéger le avec Backup Agent",
   "select_baremetal": "Sélectionner votre serveur BareMetal",
-  "save_a_baremetal_server": "Sauvegarder un serveur Bare Metal"
+  "save_a_baremetal_server": "Sauvegarder un serveur Bare Metal",
+  "baremetal_label_delay_order": "Après la validation de votre commande, cet écran sera mis à jour et vous recevrez un mail dès que votre produit Backup Agent sera livré. Vous pourrez consulter la progression de votre commande <OrderLink>ici</OrderLink> ."
 }

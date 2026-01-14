@@ -17,5 +17,6 @@
   "general-information": "General information",
   "help": "Help",
   "type_billing": "Billing type",
-  "consumption_tooltip": "Additional storage is not available for self-service. To increase your storage capacity, please contact support."
+  "consumption_tooltip": "Additional storage is not available for self-service. To increase your storage capacity, please contact support.",
+  "vault_price": "Either {{vaultPrice}} excluding tax/month"
 }

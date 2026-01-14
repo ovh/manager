@@ -6,6 +6,7 @@
   "number_of_installed_agents": "{{installedAgentsCount}} installiert(e)",
   "linked_server": "Verbundene Server",
   "linked_vaults": "Verbundene Tresore",
-  "number_of_linked_vaults": "{{connectedVaultCount}} verbunden(e)",
-  "number_of_linked_server": "{{installedAgentsCount}} verbunden(e)"
+  "number_of_linked_vaults": "{{connectedVaultCount}} Tresor(e)",
+  "number_of_linked_server": "{{installedAgentsCount}} Server(s)",
+  "access_to_vspc": "Zugriff auf das VSPC"
 }
