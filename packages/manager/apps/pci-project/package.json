@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-project-app",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "PCI Project react application",
   "repository": {
