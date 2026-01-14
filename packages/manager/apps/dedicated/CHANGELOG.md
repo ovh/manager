@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.71.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.70.9...@ovh-ux/manager-dedicated@20.71.0) (2026-01-14)
+
+
+### Bug Fixes
+
+* **dedicated:** replace wrong distribution wording with OS ([359d392](https://github.com/ovh/manager/commit/359d39260eeb8e2033ace7eb7bab9697a304f065)), closes [#MANAGER-20225](https://github.com/ovh/manager/issues/MANAGER-20225)
+* **i18n:** add missing translations [CDS 4519] ([0342dae](https://github.com/ovh/manager/commit/0342dae1c3002016785fcf3d348b7b240f72c794))
+
+
+### Features
+
+* **dedicated:** custom error page ([05782d7](https://github.com/ovh/manager/commit/05782d795953c4c8c84b056da9c74f0374cc85e0)), closes [#MANAGER-14423](https://github.com/ovh/manager/issues/MANAGER-14423)
+
+
+
+
+
 ## [20.70.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.70.8...@ovh-ux/manager-dedicated@20.70.9) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

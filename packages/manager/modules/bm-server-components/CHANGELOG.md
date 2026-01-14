@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.8...@ovh-ux/manager-bm-server-components@2.19.9) (2026-01-14)
+
+
+### Bug Fixes
+
+* **dedicated:** fix iam displayName ([2e88853](https://github.com/ovh/manager/commit/2e8885336d2eb10a0fc8389612e402c455abd37f)), closes [#MANAGER-18367](https://github.com/ovh/manager/issues/MANAGER-18367)
+* **dedicated:** replace wrong distribution wording with OS ([359d392](https://github.com/ovh/manager/commit/359d39260eeb8e2033ace7eb7bab9697a304f065)), closes [#MANAGER-20225](https://github.com/ovh/manager/issues/MANAGER-20225)
+* **i18n:** add missing translations [CDS 4519] ([0342dae](https://github.com/ovh/manager/commit/0342dae1c3002016785fcf3d348b7b240f72c794))
+
+
+
+
+
 ## [2.19.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.7...@ovh-ux/manager-bm-server-components@2.19.8) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components
