@@ -37,7 +37,7 @@ export default function DatagridColumnPendingActions({
     (action: LifecycleCapacitiesEnum) => {
       const status = DOMAIN_PENDING_ACTIONS[action];
       if (!status) {
-        return;
+        return null;
       }
 
       return (
