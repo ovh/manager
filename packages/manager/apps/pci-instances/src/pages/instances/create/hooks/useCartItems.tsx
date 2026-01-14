@@ -5,6 +5,7 @@ import { FlavorDetails } from '../components/cart/FlavorDetails.component';
 import { useCatalogPrice } from '@ovh-ux/muk';
 import { useInstanceCreation } from './useInstanceCreation';
 import CartOptionDetailItem from '../components/cart/CartOptionDetailItem.component';
+import Banner from '@/components/banner/Banner.component';
 
 export type TCartItem = {
   id: string;
@@ -39,6 +40,7 @@ export const useCartItems = (): TCartItems => {
     isCreationEnabled,
     isCreatingInstance,
     handleCreateInstance,
+    errorMessage,
   } = useInstanceCreation();
 
   const {
@@ -203,6 +205,14 @@ export const useCartItems = (): TCartItems => {
 
   const ActionButtons = (
     <>
+      {errorMessage && (
+        <Banner className="my-4" color="critical">
+          <p className="text-critical text-md m-0 font-bold">
+            {t('creation:pci_instance_creation_error_title')}
+          </p>
+          {errorMessage}
+        </Banner>
+      )}
       <Button
         loading={isCreatingInstance}
         onClick={handleCreateInstance}

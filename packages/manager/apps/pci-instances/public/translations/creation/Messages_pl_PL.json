@@ -139,5 +139,5 @@
     "predefined": "Kopia zapasowa jest wykonywana codziennie między 22:00 a 6:00 (UTC), a rotacja utrzymuje historię ostatnich {{ numEntries }} wpisów. Gdy nowa kopia zapasowa jest zakończona, najstarsza jest usuwana.",
     "custom": "Wybierz sam harmonogram (format UNIX Cron), liczbę rotacji i maksymalne wykonania, które chcesz."
   },
-  "pci_instance_creation_backup_setting_price_unit": "~{{ price }} bez VAT/miesiąc/GB"
+  "pci_instance_creation_error_title": "Wystąpił błąd"
 }

@@ -139,5 +139,6 @@
     "predefined": "Se realiza una copia de seguridad todos los días entre las 22:00 y las 6:00 (UTC) y la rotación mantiene un historial de las {{ numEntries }} últimas entradas. Cuando se complete la nueva copia de seguridad, se eliminará la más antigua.",
     "custom": "Elija usted mismo la programación (formato UNIX Cron), el número de rotaciones y las ejecuciones máximas que desee."
   },
-  "pci_instance_creation_backup_setting_price_unit": "~{{ price }} sin IVA/mes/GB"
+  "pci_instance_creation_backup_setting_price_unit": "~{{ price }} sin IVA/mes/GB",
+  "pci_instance_creation_error_title": "Se ha producido un error"
 }
