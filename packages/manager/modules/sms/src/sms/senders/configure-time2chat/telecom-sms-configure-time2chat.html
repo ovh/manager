@@ -37,7 +37,7 @@
                 >
                     <!-- COMMERCIAL_NAME  -->
                     <oui-field
-                        data-label="{{ 'sms_senders_configure_contact_info_label_commercial_name' | translate }}"
+                        data-label="{{ 'sms_senders_configure_contact_info_label_commercial_name' | translate }} - {{ 'common_field_label_required' | translate }}"
                     >
                         <input
                             class="oui-input"
@@ -52,8 +52,9 @@
 
                     <!-- PHONENUMBER  -->
                     <oui-field
-                        data-label="{{ 'sms_senders_configure_contact_info_label_phonenumber' | translate }}"
-                    >
+                        data-label="{{ 'sms_senders_configure_contact_info_label_phonenumber' | translate }} - {{ 'common_field_label_required' | translate }}"
+                        data-help-text="{{ 'sms_senders_configure_contact_info_helper_phonenumber' | translate }}"
+                        >
                         <input
                             class="oui-input"
                             type="text"
@@ -68,18 +69,24 @@
 
                     <!-- WEBSITE  -->
                     <oui-field
-                        data-label="{{ 'sms_senders_configure_contact_info_label_website' | translate }}"
+                        data-label="{{ 'sms_senders_configure_contact_info_label_website' | translate }} - {{ 'common_field_label_required' | translate }}"
                     >
-                        <input
-                            class="oui-input"
-                            type="url"
-                            id="website"
-                            name="website"
-                            placeholder="{{ 'sms_senders_configure_contact_info_label_website' | translate }}"
-                            data-ng-model="$ctrl.contactInfoData.website"
-                            data-maxlength="100"
-                            required
-                        />
+                        <div class="d-flex align-items-stretch">
+                            <oui-select
+                                name="websiteProtocol"
+                                items="$ctrl.URLS_PROTOCOLS"
+                                model="$ctrl.websiteProtocol"
+                            ></oui-select>
+                            <input
+                                class="oui-input"
+                                name="website"
+                                type="text"
+                                data-ng-model="$ctrl.website"
+                                data-ng-pattern="$ctrl.URL_WITHOUT_PROTOCOL_REGEX"
+                                placeholder="{{ 'sms_senders_configure_contact_info_label_website' | translate }}"
+                                required
+                            />
+                        </div>
                     </oui-field>
 
                     <oui-form-actions
@@ -133,7 +140,7 @@
                 <form name="$ctrl.kycForm" id="kycForm" novalidate>
                     <!-- COMPANY_NAME  -->
                     <oui-field
-                        data-label="{{ 'sms_senders_configure_kyc_label_company_name' | translate }}"
+                        data-label="{{ 'sms_senders_configure_kyc_label_company_name' | translate }} - {{ 'common_field_label_required' | translate }}"
                     >
                         <input
                             class="oui-input"
@@ -149,7 +156,7 @@
 
                     <!-- BRAND_BRAND  -->
                     <oui-field
-                        data-label="{{ 'sms_senders_configure_kyc_label_brand_name' | translate }}"
+                        data-label="{{ 'sms_senders_configure_kyc_label_brand_name' | translate }} - {{ 'common_field_label_required' | translate }}"
                     >
                         <input
                             class="oui-input"
@@ -165,7 +172,7 @@
 
                     <!-- PRIMARY_USE_case  -->
                     <oui-field
-                        data-label="{{ 'sms_senders_configure_kyc_label_primary_use_case' | translate }}"
+                        data-label="{{ 'sms_senders_configure_kyc_label_primary_use_case' | translate }} - {{ 'common_field_label_required' | translate }}"
                     >
                         <input
                             class="oui-input"
@@ -181,7 +188,7 @@
 
                     <!-- CONTACT_NAME  -->
                     <oui-field
-                        data-label="{{ 'sms_senders_configure_kyc_label_operational_contact_name' | translate }}"
+                        data-label="{{ 'sms_senders_configure_kyc_label_operational_contact_name' | translate }} - {{ 'common_field_label_required' | translate }}"
                     >
                         <input
                             class="oui-input"
@@ -197,7 +204,7 @@
 
                     <!-- CONTACT_EMAIL  -->
                     <oui-field
-                        data-label="{{ 'sms_senders_configure_kyc_label_contact_email' | translate }}"
+                        data-label="{{ 'sms_senders_configure_kyc_label_contact_email' | translate }} - {{ 'common_field_label_required' | translate }}"
                     >
                         <input
                             class="oui-input"
