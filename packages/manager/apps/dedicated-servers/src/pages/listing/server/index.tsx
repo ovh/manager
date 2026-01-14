@@ -31,6 +31,7 @@ export default function ServerListing() {
     price: false,
     tags: true,
     actions: true,
+    availabilityZone: false,
   });
 
   const {
