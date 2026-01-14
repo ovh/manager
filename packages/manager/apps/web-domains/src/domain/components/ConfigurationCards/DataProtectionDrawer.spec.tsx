@@ -1,9 +1,13 @@
 import '@/common/setupTests';
-import React from 'react';
-import { render, screen, waitFor, act } from '@/common/utils/test.provider';
+import {
+  render,
+  screen,
+  waitFor,
+  act,
+  wrapper,
+} from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
 import DataProtectionDrawer from './DataProtectionDrawer';
 import {
   TDomainResource,
