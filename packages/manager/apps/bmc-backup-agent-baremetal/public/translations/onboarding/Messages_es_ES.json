@@ -1,0 +1,30 @@
+{
+  "title_fallback": "La Copia de Seguridad, En Toda Simplicidad",
+  "description_part1": "Obtenga una solución de respaldo con copias de seguridad automáticas diarias remotas, alertas proactivas y monitoreo centralizado, todo almacenado de manera segura en un Vault en el OVHcloud Object Storage. Instale el agente de respaldo en menos de 15 minutos, sin costo. Solo paga por el almacenamiento de Object Storage que utiliza.",
+  "description_part2": "Sigue nuestras guías para comenzar rápidamente.",
+  "guides": {
+    "guide1": {
+      "category": "Coste",
+      "title": "Costo y Facturación",
+      "description": "Documentación que explica el costo y la facturación del Agente de Respaldo.",
+      "cta": "Descubrir"
+    },
+    "guide2": {
+      "category": "Tutorial",
+      "title": "Primera configuración",
+      "description": "Una guía paso a paso para ayudarle a configurar y ejecutar su primera copia de seguridad.",
+      "cta": "Ver el tutorial"
+    },
+    "guide3": {
+      "category": "Preguntas frecuentes",
+      "title": "Preguntas frecuentes",
+      "description": "Una guía con preguntas frecuentes que abordan los problemas más comunes.",
+      "cta": "Leer la FAQ"
+    }
+  },
+  "no_baremetal_available": "Solicitar un servidor Bare Metal y protegerlo con el Agente de Copia de Seguridad",
+  "select_baremetal": "Selecciona tu servidor BareMetal",
+  "save_a_baremetal_server": "Hacer una copia de seguridad de un servidor Bare Metal",
+  "baremetal_label_delay_order": "Después de la validación de su pedido, esta pantalla se actualizará y recibirá un correo electrónico tan pronto como su producto Agente de Respaldo sea entregado. Podrá consultar el progreso de su pedido <OrderLink>aquí</OrderLink>.",
+  "baremetal_label_order_in_progress": "El pedido ha sido recibido correctamente, su producto está en camino y puede seguir su progreso <OrderLink>aquí</OrderLink>."
+}

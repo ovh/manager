@@ -1,0 +1,13 @@
+{
+  "home": "Home",
+  "order": "Ordina",
+  "open": "Apri il cruscotto",
+  "title": "Elenco",
+  "resource_name_label": "Nome",
+  "location_label": "Locazione",
+  "region_label": "Regione",
+  "buckets_label": "Numero di bucket",
+  "status_label": "Status",
+  "order_vault": "Ordina un vault",
+  "more_action": "Azione aggiuntiva"
+}

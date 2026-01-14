@@ -1,0 +1,9 @@
+{
+  "delete_vault_modal_title": "Delete the Vault",
+  "delete_vault_modal_content": "Do you really want to delete the Vault {{vaultName}}?",
+  "delete_vault_modal_warning": "Warning, this action will result in the deletion of all associated services.",
+  "delete_vault_banner_success": "Your Vault {{vaultName}} has been successfully deleted.",
+  "delete_vault_banner_error": "An error occurred. Please wait a few minutes before trying again.",
+  "delete_vault_disabled_tooltip": "You cannot delete a Vault linked to VSPC Tenants.",
+  "unable_to_delete_vault_feature_unavailable": "Deleting a Vault is not available from the interface for security reasons. If you wish to delete a Vault, please contact support."
+}

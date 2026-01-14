@@ -1,0 +1,30 @@
+{
+  "title_fallback": "Proste tworzenie kopii zapasowych",
+  "description_part1": "Uzyskaj rozwiązanie do tworzenia kopii zapasowych z automatycznymi codziennymi kopiami zapasowymi zdalnymi, proaktywnymi powiadomieniami i centralnym monitorowaniem, wszystko przechowywane w bezpieczny sposób w Vault na OVHcloud Object Storage. Zainstaluj agenta kopii zapasowej w mniej niż 15 minut, bez opłat. Płacisz tylko za przechowywanie Object Storage, które wykorzystujesz.",
+  "description_part2": "Śledź nasze przewodniki, aby szybko zacząć.",
+  "guides": {
+    "guide1": {
+      "category": "Koszt",
+      "title": "Koszt i fakturowanie",
+      "description": "Dokumentacja wyjaśniająca koszt i fakturowanie agenta kopii zapasowej.",
+      "cta": "Sprawdź"
+    },
+    "guide2": {
+      "category": "Samouczek",
+      "title": "Pierwsza konfiguracja",
+      "description": "Przewodnik krok po kroku, który pomoże Ci skonfigurować i uruchomić swoją pierwszą kopię zapasową.",
+      "cta": "Sprawdź dokumentację"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Najczęstsze pytania",
+      "description": "Przewodnik z najczęściej zadawanymi pytaniami dotyczący najczęstszych problemów.",
+      "cta": "Przeczytaj FAQ"
+    }
+  },
+  "no_baremetal_available": "Zamów serwer Bare Metal i zabezpiecz go za pomocą Backup Agent",
+  "select_baremetal": "Wybierz swój serwer BareMetal",
+  "save_a_baremetal_server": "Zrób kopię zapasową serwera Bare Metal",
+  "baremetal_label_delay_order": "Po zatwierdzeniu zamówienia ten ekran zostanie zaktualizowany, a Ty otrzymasz e-mail, gdy Twój produkt Backup Agent zostanie dostarczony. Będziesz mógł śledzić postęp swojego zamówienia <OrderLink>tutaj</OrderLink>.",
+  "baremetal_label_order_in_progress": "Zamówienie zostało pomyślnie odebrane, Twój produkt jest w trakcie dostawy i możesz śledzić jego postęp <OrderLink>tutaj</OrderLink>."
+}

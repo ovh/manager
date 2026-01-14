@@ -1,0 +1,7 @@
+{
+  "linked_server": "Serveurs Liés",
+  "linked_vaults": "Vaults Liés",
+  "number_of_linked_vaults": "{{connectedVaultCount}} vault(s)",
+  "number_of_linked_server": "{{installedAgentsCount}} serveur(s)",
+  "access_to_vspc": "Accéder au VSPC"
+}
