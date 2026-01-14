@@ -45,9 +45,11 @@ export const ManageViewConfig = () => {
               items={columnsConfig.map((c) => c.id)}
               strategy={verticalListSortingStrategy}
             >
-              {columnsConfig.map((column) => (
-                <SortableColumnCard key={column.id} column={column} />
-              ))}
+              {columnsConfig
+                .filter((column) => column.id !== 'actions')
+                .map((column) => (
+                  <SortableColumnCard key={column.id} column={column} />
+                ))}
             </SortableContext>
           </DndContext>
         </AccordionContent>
