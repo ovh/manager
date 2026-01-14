@@ -20,6 +20,7 @@ import {
 
 export type ColumnsConfig<T> = DatagridColumn<T> & {
   visible?: boolean;
+  order?: number;
 };
 
 export type ViewContextType<T> = {
@@ -57,7 +58,6 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
   );
   const initialColumns = useColumns();
   const [orderedColumns, setOrderedColumns] = useState(initialColumns);
-  const columns = orderedColumns;
 
   // Fetch saved views preferences
   const { preferences, error, isLoading } = useGetViewsPreferences({
@@ -67,10 +67,24 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
 
   const setColumnsOrder = (order?: string[]) => {
     if (order) {
-      const currentOrderedColumns = order.map((key) =>
-        columns.find((column) => column.id === key),
-      );
+      const currentOrderedColumns = initialColumns
+        .map((column) => {
+          let columnOrderIndex = order.findIndex((id) => id === column.id);
+          if (columnOrderIndex === -1) {
+            columnOrderIndex = initialColumns.findIndex(
+              (c) => c.id === column.id,
+            );
+          }
+          return {
+            ...column,
+            order: columnOrderIndex,
+          };
+        })
+        .sort((a, b) => a.order - b.order);
+
       setOrderedColumns(currentOrderedColumns);
+    } else {
+      setOrderedColumns(initialColumns);
     }
   };
 
@@ -100,18 +114,20 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
     }
   }, [preferences, isLoading, error]);
 
-  // When current view changes, update column visibility state
+  // When current view changes, update column visibility and order state
   useEffect(() => {
-    setColumnVisibility(
-      currentView?.columnVisibility || DEFAULT_COLUMN_VISIBILITY,
-    );
+    setColumnVisibility({
+      ...DEFAULT_COLUMN_VISIBILITY,
+      ...currentView?.columnVisibility,
+    });
+    setColumnsOrder(currentView?.columnOrder);
   }, [currentView]);
 
   const viewContext = useMemo(() => {
     const columnsConfig = orderedColumns.map((column) => {
       return {
         ...column,
-        visible: columnVisibility[column.id],
+        visible: !!columnVisibility[column.id],
       };
     });
 
