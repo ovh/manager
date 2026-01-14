@@ -558,7 +558,7 @@ describe('TransferToggleStatus component', () => {
   });
 
   it('renders with disabled toggle when the user is not authorized', async () => {
-    (useAuthorizationIam as vi.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: false,
     });
