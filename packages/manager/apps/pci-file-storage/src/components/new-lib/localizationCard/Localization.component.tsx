@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React from 'react';
 
 import clsx from 'clsx';
 
@@ -16,7 +16,7 @@ type TLocalizationProps = {
   deploymentMode?: TDeploymentMode;
 };
 
-const Localization: FC<TLocalizationProps> = ({ name, countryCode, deploymentMode }) => (
+const Localization = React.memo(({ name, countryCode, deploymentMode }: TLocalizationProps) => (
   <div
     className={clsx('flex w-full items-center justify-between', {
       'gap-x-6': !!countryCode,
@@ -28,6 +28,6 @@ const Localization: FC<TLocalizationProps> = ({ name, countryCode, deploymentMod
     </Text>
     {deploymentMode && <DeploymentModeBadge mode={deploymentMode} />}
   </div>
-);
+));
 
 export default Localization;

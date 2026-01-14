@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { BADGE_SIZE, Badge } from '@ovhcloud/ods-react';
 
 import { TDeploymentMode } from '@/domain/entities/catalog.entity';
@@ -26,8 +28,10 @@ type TDeploymentModeBadgeProps = {
   size?: BADGE_SIZE;
 };
 
-export const DeploymentModeBadge = ({ mode, size = BADGE_SIZE.md }: TDeploymentModeBadgeProps) => (
-  <Badge className={`${getBadgeClassName(mode)} text-nowrap`} size={size}>
-    {DeploymentMode[mode]}
-  </Badge>
+export const DeploymentModeBadge = React.memo(
+  ({ mode, size = BADGE_SIZE.md }: TDeploymentModeBadgeProps) => (
+    <Badge className={`${getBadgeClassName(mode)} text-nowrap`} size={size}>
+      {DeploymentMode[mode]}
+    </Badge>
+  ),
 );

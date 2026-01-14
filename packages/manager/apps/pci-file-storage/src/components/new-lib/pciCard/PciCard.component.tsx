@@ -28,7 +28,6 @@ export const PciCard = ({
   onClick,
   ...rest
 }: TPciCardProps) => {
-  // TODO : fix badge background color with tailwind
   const baseClasses = clsx(
     'flex flex-col gap-6',
     compact ? 'px-6 py-4' : 'p-6',
