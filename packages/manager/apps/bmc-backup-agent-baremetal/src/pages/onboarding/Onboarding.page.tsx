@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
-import { useBackupVaultsList } from '@ovh-ux/backup-agent/data/hooks/vaults/getVault';
+import { useBackupVaultsListOptions } from '@ovh-ux/backup-agent/data/hooks/vaults/getVault';
 import { useGuideUtils } from '@ovh-ux/backup-agent/hooks/useGuideUtils.ts';
 import { urls as backupAgentUrls } from '@ovh-ux/backup-agent/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -24,11 +25,16 @@ export default function OnboardingPage() {
   const links = useGuideUtils();
   const { flattenData, isPending } = useBaremetalsList({ pageSize: 1 });
   const {
-    flattenData: vaults,
+    data: isBackupAgentReady,
     isPending: isVaultPending,
     isSuccess: isVaultSuccess,
     isError: isVaultError,
-  } = useBackupVaultsList({ pageSize: 9999, retry: false });
+  } = useQuery({
+    ...useBackupVaultsListOptions(),
+    retry: false,
+    select: (vaults) =>
+      vaults.filter(({ currentState: { status } }) => status === 'READY').length >= 1,
+  });
 
   // Build hero image object with fallback alt text.
   const img = useOnboardingHeroImage();
@@ -45,29 +51,28 @@ export default function OnboardingPage() {
     {},
   ]);
 
-  const orderInProgressMessage =
-    isVaultSuccess && vaults?.length === 0 ? (
-      <OdsMessage color="success">
-        <Trans
-          ns="onboarding"
-          i18nKey="baremetal_label_order_in_progress"
-          values={{ href: (billingUrl as string) ?? '#' }}
-          components={{
-            OrderLink: (
-              <Links
-                className="px-2"
-                href={(billingUrl as string) ?? '#'}
-                isDisabled={isBillingUrlPending}
-              />
-            ),
-          }}
-        />
-      </OdsMessage>
-    ) : null;
+  const orderInProgressMessage = isVaultSuccess ? (
+    <OdsMessage color="success">
+      <Trans
+        ns="onboarding"
+        i18nKey="baremetal_label_order_in_progress"
+        values={{ href: (billingUrl as string) ?? '#' }}
+        components={{
+          OrderLink: (
+            <Links
+              className="px-2"
+              href={(billingUrl as string) ?? '#'}
+              isDisabled={isBillingUrlPending}
+            />
+          ),
+        }}
+      />
+    </OdsMessage>
+  ) : null;
 
   return (
     <RedirectionGuard
-      condition={vaults?.length >= 1}
+      condition={!!isBackupAgentReady}
       isLoading={isVaultPending}
       route={backupAgentUrls.listingTenants}
     >

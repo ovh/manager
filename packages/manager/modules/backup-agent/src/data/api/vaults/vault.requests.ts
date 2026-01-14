@@ -1,7 +1,12 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 
 import { VaultResource } from '@/types/Vault.type';
-import { getVaultDetailsRoute } from '@/utils/apiRoutes';
+import { getVaultDetailsRoute, getVaultsRoute } from '@/utils/apiRoutes';
+
+export const getVaults = async (backupServicesId: string) => {
+  const { data } = await v2.get<VaultResource[]>(getVaultsRoute(backupServicesId));
+  return data;
+};
 
 export const getVaultDetails = async (backupServicesId: string, vaultId: string) => {
   const { data } = await v2.get<VaultResource>(getVaultDetailsRoute(backupServicesId, vaultId));

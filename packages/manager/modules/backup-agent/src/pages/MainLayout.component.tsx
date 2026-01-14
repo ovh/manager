@@ -2,6 +2,7 @@ import React, { Suspense, useContext, useMemo } from 'react';
 
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
+import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
@@ -19,7 +20,7 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useBackupVaultsList } from '@/data/hooks/vaults/getVault';
+import { useBackupVaultsListOptions } from '@/data/hooks/vaults/getVault';
 import { useGuideUtils } from '@/hooks/useGuideUtils';
 import { LABELS } from '@/module.constants';
 import { urls } from '@/routes/routes.constants';
@@ -40,7 +41,15 @@ export default function MainLayout() {
     [tabs, location.pathname],
   );
 
-  const { isPending, flattenData: vaults, isError: isVautError } = useBackupVaultsList({ retry: false, pageSize: 9999 });
+  const {
+    isPending,
+    data: isBackupAgentReady,
+    isError: isVautError,
+  } = useQuery({
+    ...useBackupVaultsListOptions(),
+    retry: false,
+    select: (vaults) => vaults.filter((vault) => vault.currentState.status === 'READY').length >= 1,
+  });
   const guides = useGuideUtils();
 
   const guideItems: GuideItem[] = [
@@ -56,7 +65,7 @@ export default function MainLayout() {
     <RedirectionGuard
       route={urls.onboarding}
       isLoading={isPending}
-      condition={vaults?.length === 0 || isVautError}
+      condition={!isBackupAgentReady || isVautError}
     >
       <BaseLayout
         header={{ title: LABELS.BACKUP_AGENT, headerButton: <GuideButton items={guideItems} /> }}

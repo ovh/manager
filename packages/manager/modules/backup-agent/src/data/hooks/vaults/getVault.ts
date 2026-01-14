@@ -1,28 +1,21 @@
-import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-import { VaultResource } from '@/types/Vault.type';
-import { getVaultsRoute } from '@/utils/apiRoutes';
+import { getVaults } from '@/data/api/vaults/vault.requests';
 
-import { useBackupServicesId } from '../backup/useBackupServicesId';
+import { useGetBackupServicesId } from '../backup/useBackupServicesId';
 
 export const BACKUP_VAULTS_LIST_QUERY_KEY = ['backup', 'vaults'];
 
-export const useBackupVaultsList = (
-  {
-    pageSize,
-    retry,
-  }: {
-    pageSize: number;
-    retry?: false;
-  } = { pageSize: 9999 },
-) => {
-  const { data: backupServicesId, isPending: isBackupServicesIdPending } = useBackupServicesId();
-
-  return useResourcesIcebergV2<VaultResource>({
-    route: getVaultsRoute(backupServicesId!),
+export const useBackupVaultsListOptions = () => {
+  const getBackupServiceId = useGetBackupServicesId();
+  return queryOptions({
     queryKey: BACKUP_VAULTS_LIST_QUERY_KEY,
-    pageSize,
-    enabled: !isBackupServicesIdPending,
-    retry,
+    queryFn: async () => {
+      const backupServicesId = await getBackupServiceId();
+
+      return getVaults(backupServicesId!);
+    },
   });
 };
+
+export const useBackupVaultsList = () => useQuery(useBackupVaultsListOptions());
