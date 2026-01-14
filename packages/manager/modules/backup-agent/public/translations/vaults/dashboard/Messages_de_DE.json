@@ -17,5 +17,6 @@
   "general-information": "Allgemeine Informationen",
   "help": "Hilfe",
   "type_billing": "Typ der Abrechnung",
-  "consumption_tooltip": "Zusätzlicher Speicher ist im Selbstbedienungsmodus nicht verfügbar. Um Ihre Speicherkapazität zu erhöhen, kontaktieren Sie bitte den Support."
+  "consumption_tooltip": "Zusätzlicher Speicher ist im Selbstbedienungsmodus nicht verfügbar. Um Ihre Speicherkapazität zu erhöhen, kontaktieren Sie bitte den Support.",
+  "vault_price": "Entweder {{vaultPrice}} zzgl. MwSt./Monat"
 }

@@ -1,28 +1,29 @@
 {
   "title_fallback": "Il backup in tutta semplicità",
-  "description_part1": "Ottieni una soluzione di backup con backup automatici giornalieri, avvisi proattivi e monitoraggio centralizzato, il tutto memorizzato in modo sicuro in un Vault su OVHcloud Object Storage. Installa l'agente di backup in meno di 5 minuti, senza costi. Paghi solo per lo storage Object Storage che utilizzi.",
+  "description_part1": "Ottieni una soluzione di backup con backup automatici remoti quotidiani, avvisi proattivi e monitoraggio centralizzato, il tutto archiviato in modo sicuro in un Vault su OVHcloud Object Storage. Installa l'agente di backup in meno di 15 minuti, senza costi. Paghi solo per lo storage di Object Storage che utilizzi.",
   "description_part2": "Segui le nostre guide per iniziare rapidamente.",
   "guides": {
     "guide1": {
       "category": "Costo",
-      "title": "Costo e fatturazione",
+      "title": "Costo e Fatturazione",
       "description": "Documentazione che spiega il costo e la fatturazione di Backup Agent.",
       "cta": "Scopri"
     },
     "guide2": {
       "category": "Tutorial",
-      "title": "Iniziare bene",
-      "description": "Un video passo dopo passo per aiutarti a configurare ed eseguire il tuo primo backup.",
+      "title": "Prima configurazione",
+      "description": "Una guida passo passo per aiutarti a impostare ed eseguire il tuo primo backup.",
       "cta": "Guarda il tutorial"
     },
     "guide3": {
       "category": "FAQ",
       "title": "FAQ",
-      "description": "Una guida con le domande frequenti che trattano le problematiche più comuni.",
+      "description": "Una guida con le domande frequenti che affronta le problematiche più comuni.",
       "cta": "Leggi le FAQ"
     }
   },
   "no_baremetal_available": "Ordina un server Bare Metal e proteggilo con Backup Agent",
   "select_baremetal": "Seleziona il tuo server BareMetal",
-  "save_a_baremetal_server": "Eseguire il backup di un server Bare Metal"
+  "save_a_baremetal_server": "Eseguire il backup di un server Bare Metal",
+  "baremetal_label_delay_order": "Dopo la convalida del tuo ordine, questa schermata verrà aggiornata e riceverai un'email non appena il tuo prodotto Backup Agent sarà consegnato. Potrai consultare il progresso del tuo ordine <OrderLink>qui</OrderLink>."
 }

@@ -7,5 +7,6 @@
   "delete_tenant_modal_content": "Czy na pewno chcesz usunąć Tenant {{tenantName}}?",
   "delete_tenant_banner_success": "Twój Tenant {{tenantName}} został pomyślnie usunięty",
   "delete_tenant_banner_error": "Wystąpił błąd Proszę poczekać kilka minut przed ponowną próbą.",
-  "unable_to_delete_tenant_feature_unavailable": "Usunięcie Tenant'a nie jest dostępne z interfejsu z powodów bezpieczeństwa. Jeśli chcesz usunąć Tenant'a, skontaktuj się z pomocą techniczną."
+  "unable_to_delete_tenant_feature_unavailable": "Usunięcie Tenant'a nie jest dostępne z interfejsu z powodów bezpieczeństwa. Jeśli chcesz usunąć Tenant'a, skontaktuj się z pomocą techniczną.",
+  "data_location": "Lokalizacja danych"
 }
