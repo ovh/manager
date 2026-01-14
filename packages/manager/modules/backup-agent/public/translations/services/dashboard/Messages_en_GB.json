@@ -6,6 +6,7 @@
   "number_of_installed_agents": "{{installedAgentsCount}} installed(s)",
   "linked_server": "Linked Servers",
   "linked_vaults": "Linked Vaults",
-  "number_of_linked_vaults": "{{connectedVaultCount}} linked(s)",
-  "number_of_linked_server": "{{installedAgentsCount}} linked(s)"
+  "number_of_linked_vaults": "{{connectedVaultCount}} vault(s)",
+  "number_of_linked_server": "{{installedAgentsCount}} server(s)",
+  "access_to_vspc": "Access the VSPC"
 }
