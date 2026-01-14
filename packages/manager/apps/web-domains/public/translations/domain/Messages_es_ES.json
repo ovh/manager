@@ -340,5 +340,6 @@
   "domain_tab_dsrecords_message_information_content": "Estos registros DS se proporcionan a título informativo y son gestionados automáticamente por OVHcloud.",
   "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC está en curso {{action}}: puedes seguir el progreso de tu solicitud desde la página de operaciones en curso. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "de activación",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de desactivación"
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de desactivación",
+  "domain_tab_general_information_subscription_edit_owner": "Modificar la información del contacto titular"
 }
