@@ -152,6 +152,20 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       ),
     },
     {
+      id: 'availabilityZone',
+      accessorKey: 'availabilityZone',
+      isSearchable: false,
+      isFilterable: true,
+      isSortable: true,
+      enableHiding: true,
+      type: FilterTypeCategories.String,
+      header: t('server_display_availability_zone'),
+      label: t('server_display_availability_zone'),
+      cell: ({ row: { original: server } }) => (
+        <div>{t(server.availabilityZone)}</div>
+      ),
+    },
+    {
       id: 'state',
       accessorKey: 'state',
       isSearchable: false,
@@ -262,7 +276,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       header: '',
       isSortable: false,
       cell: ({ row: { original: server } }) => ActionCell(server),
-      size: 20,
+      size: 45,
     },
   ];
 }
