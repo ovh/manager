@@ -25,12 +25,6 @@ export const CreateShareForm = () => {
           <Text preset="heading-2">{t('create:localisation.title')}</Text>
           <DeploymentModeSection />
           <MacroRegionSelection />
-          {/*{dataCenters && hasMultipleDataCenter && (*/}
-          {/*  <MicroRegionSelection microRegions={dataCenters} />*/}
-          {/*)}*/}
-          {/*{!!availabilityZones.length && (*/}
-          {/*  <AvailabilityZoneSelection availabilityZones={availabilityZones} />*/}
-          {/*)}*/}
         </section>
       </div>
     </FormProvider>

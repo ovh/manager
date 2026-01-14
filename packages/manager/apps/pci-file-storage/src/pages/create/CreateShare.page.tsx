@@ -7,6 +7,7 @@ import { Spinner, Text } from '@ovhcloud/ods-react';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { LinkWithArrow } from '@/components/link-with-arrow/LinkWithArrow.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
+import { CREATE_SHARE_CONSTANTS } from '@/pages/create/CreateShare.constants';
 import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
 
 const CreateSharePage: FC = () => {
@@ -25,12 +26,7 @@ const CreateSharePage: FC = () => {
               i18nKey="description"
               ns="create"
               components={[
-                <LinkWithArrow
-                  key="0"
-                  href={
-                    'https://www.figma.com/design/Zd87aaPa2s2AZWD9tHGoXY/TAPC-541--FSaaS---Manager-?node-id=1402-25772&p=f&t=SWfMvwaNLzXFkhoS-0'
-                  }
-                />,
+                <LinkWithArrow key="0" href={CREATE_SHARE_CONSTANTS.CreateShareDoc} />,
               ]}
             />
           </Text>

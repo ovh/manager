@@ -122,7 +122,6 @@ const mapContinentDTOToEntity = (
 const normalizeContinent = (continentRegions: TContinentRegionsDTO[], regionsDTO: TRegionDTO[]) =>
   continentRegions.reduce<TNormalizedEntity<string, TContinent>>(
     (acc, continentRegion) => {
-      debugger;
       if (!acc.allIds.includes(continentRegion.name)) acc.allIds.push(continentRegion.name);
       const continent = mapContinentDTOToEntity(continentRegion, regionsDTO);
 
