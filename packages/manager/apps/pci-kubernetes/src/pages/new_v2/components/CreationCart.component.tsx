@@ -14,8 +14,9 @@ export const CreationCart = () => {
   const { t } = useTranslation(['listing', 'add']);
 
   const form = useFormContext<TCreateClusterSchema>();
-  const [nameField, macroRegionField, microRegionField] = useWatch<TCreateClusterSchema>({
-    name: ['name', 'macroRegion', 'microRegion'],
+  const [nameField, macroRegionField, microRegionField] = useWatch({
+    control: form.control,
+    name: ['name', 'location.macroRegion', 'location.microRegion'],
   });
 
   // TODO (TAPC-5549) : mock format, will be updated or removed

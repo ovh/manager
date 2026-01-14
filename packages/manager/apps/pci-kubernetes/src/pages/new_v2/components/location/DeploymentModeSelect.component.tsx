@@ -47,8 +47,8 @@ export const DeploymentModeSelect = () => {
 
   return (
     <section className="mt-6">
-      <Controller<TCreateClusterSchema, 'deploymentMode'>
-        name="deploymentMode"
+      <Controller<TCreateClusterSchema, 'location.deploymentMode'>
+        name="location.deploymentMode"
         control={control}
         render={({ field }) => (
           <RadioGroup

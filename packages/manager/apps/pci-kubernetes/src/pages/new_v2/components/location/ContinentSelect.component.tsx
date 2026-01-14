@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-import { selectContinentOptions } from '../../view-models/selectContinent';
+import { selectContinentOptions } from '../../view-models/location.viewmodel';
 
 export const ContinentSelect = () => {
   const { t } = useTranslation(['common', 'add']);
@@ -29,7 +29,7 @@ export const ContinentSelect = () => {
 
   return (
     <Controller
-      name="continent"
+      name="location.continent"
       control={control}
       render={({ field, fieldState }) => {
         const handleContinentChange = (continents: SelectValueChangeDetail) =>

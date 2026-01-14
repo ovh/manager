@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-import { selectPlanOptions } from '../../view-models/selectPlan';
+import { selectPlanOptions } from '../../view-models/location.viewmodel';
 
 export const PlanSelect = () => {
   const { t } = useTranslation('add');
@@ -29,7 +29,7 @@ export const PlanSelect = () => {
 
   return (
     <Controller
-      name="plan"
+      name="location.plan"
       control={control}
       render={({ field, fieldState }) => {
         const handlePlanChange = (plans: SelectValueChangeDetail) => field.onChange(plans.value[0]);

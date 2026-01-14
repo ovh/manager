@@ -28,10 +28,11 @@ type TRegionSelectProps = {
 export const RegionSelect = ({ regions }: TRegionSelectProps) => {
   const { t } = useTranslation('add');
 
-  const macroRegionField = useWatch<TCreateClusterSchema>({
-    name: 'macroRegion',
-  });
   const { control, setValue } = useFormContext<TCreateClusterSchema>();
+  const macroRegionField = useWatch({
+    control,
+    name: 'location.macroRegion',
+  });
 
   const handleSelectMacroRegion = (macroRegionId: string | null) => {
     const macroRegion = regions.find(({ id }) => id === macroRegionId);
@@ -39,8 +40,8 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
 
     if (!macroRegion || !firstMicroRegion) return;
 
-    setValue('macroRegion', macroRegion.id);
-    setValue('microRegion', firstMicroRegion);
+    setValue('location.macroRegion', macroRegion.id);
+    setValue('location.microRegion', firstMicroRegion);
   };
 
   const regionOptions = useMemo(
@@ -58,7 +59,7 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
 
   return (
     <Controller
-      name="macroRegion"
+      name="location.macroRegion"
       control={control}
       render={() => (
         <RadioGroup

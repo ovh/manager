@@ -22,10 +22,11 @@ type TMicroRegionSelectProps = {
 export const MicroRegionSelect: FC<TMicroRegionSelectProps> = ({ regions }) => {
   const { t } = useTranslation('add');
 
-  const microRegionField = useWatch<TCreateClusterSchema>({
-    name: 'microRegion',
-  });
   const { control } = useFormContext<TCreateClusterSchema>();
+  const microRegionField = useWatch({
+    control,
+    name: 'location.microRegion',
+  });
 
   const regionOptions = useMemo(() => {
     return regions.map((region) => ({
@@ -39,7 +40,7 @@ export const MicroRegionSelect: FC<TMicroRegionSelectProps> = ({ regions }) => {
       <Text preset="heading-4">{t('kubernetes_add_micro_region_choose')}</Text>
       <div className="sm:w-1/2">
         <Controller
-          name="microRegion"
+          name="location.microRegion"
           control={control}
           render={({ field }) => {
             const handleMicroRegionChange = (microRegions: SelectValueChangeDetail) =>

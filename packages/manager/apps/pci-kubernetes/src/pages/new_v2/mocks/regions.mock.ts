@@ -1,7 +1,7 @@
 import { TContinentCode } from '@/domain/entities/regions';
 
 // TODO (TAPC-5549): Ces données mock seront remplacées par de vraies données API
-export const MOCK_REGIONS: Array<{
+export type TMockRegion = {
   id: string;
   title: string;
   datacenter: string;
@@ -10,7 +10,9 @@ export const MOCK_REGIONS: Array<{
   microRegions: string[];
   plans: string[];
   disabled: boolean;
-}> = [
+};
+
+export const MOCK_REGIONS: Array<TMockRegion> = [
   {
     id: 'GRA',
     title: 'Gravelines',
@@ -111,13 +113,4 @@ export const MOCK_REGIONS: Array<{
     plans: ['free', 'standard'],
     disabled: false,
   },
-] as Array<{
-  id: string;
-  title: string;
-  datacenter: string;
-  country: string;
-  continent: TContinentCode;
-  microRegions: string[];
-  plans: string[];
-  disabled: boolean;
-}>;
+] as Array<TMockRegion>;

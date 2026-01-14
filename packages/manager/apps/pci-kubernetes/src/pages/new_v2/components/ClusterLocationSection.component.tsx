@@ -10,6 +10,7 @@ import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.com
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { MOCK_REGIONS } from '../mocks/regions.mock';
+import { filterMacroRegions } from '../view-models/location.viewmodel';
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
 import { MicroRegionSelect } from './location/MicroRegionSelect.component';
@@ -23,10 +24,12 @@ type TClusterLocationSectionProps = {
 export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3azAvailable }) => {
   const { t } = useTranslation('add');
 
-  const [macroRegionField, microRegionField, continentField, planField] =
-    useWatch<TCreateClusterSchema>({
-      name: ['macroRegion', 'microRegion', 'continent', 'plan'],
-    });
+  const { control } = useFormContext<TCreateClusterSchema>();
+  const [macroRegionField, microRegionField, continentField, planField] = useWatch({
+    control,
+    name: ['location.macroRegion', 'location.microRegion', 'location.continent', 'location.plan'],
+  });
+
   const { setValue } = useFormContext<TCreateClusterSchema>();
 
   const selectedMacroRegion = useMemo(
@@ -41,17 +44,12 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
 
     if (macroRegionField || microRegionField || !firstMacroRegion || !firstMicroRegion) return;
 
-    setValue('macroRegion', firstMacroRegion.id);
-    setValue('microRegion', firstMicroRegion);
+    setValue('location.macroRegion', firstMacroRegion.id);
+    setValue('location.microRegion', firstMicroRegion);
   }, [macroRegionField, microRegionField, setValue]);
 
   const filteredRegions = useMemo(() => {
-    return MOCK_REGIONS.filter((region) => {
-      const isContinentAllowed = continentField === 'ALL' || region.continent === continentField;
-      const isPlanAllowed = planField === 'all' || !planField || region.plans.includes(planField);
-
-      return isContinentAllowed && isPlanAllowed;
-    });
+    return filterMacroRegions(continentField, planField)(MOCK_REGIONS);
   }, [continentField, planField]);
 
   return (

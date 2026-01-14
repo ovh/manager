@@ -12,11 +12,13 @@ export const createClusterSchema = z.object({
     .string()
     .min(1, 'kubernetes_add_cluster_name_input_error_empty')
     .regex(CLUSTER_NAME_CONSTRAINTS.PATTERN, 'kubernetes_add_cluster_name_input_error'),
-  deploymentMode: z.enum(DEPLOYMENT_MODES),
-  continent: z.enum(createClusterFormContinentCodes),
-  plan: z.enum(createClusterFormPlanKeys),
-  macroRegion: z.string(),
-  microRegion: z.string(),
+  location: z.object({
+    deploymentMode: z.enum(DEPLOYMENT_MODES),
+    continent: z.enum(createClusterFormContinentCodes),
+    plan: z.enum(createClusterFormPlanKeys),
+    macroRegion: z.string(),
+    microRegion: z.string(),
+  }),
 });
 
 export type TCreateClusterSchema = z.infer<typeof createClusterSchema>;
