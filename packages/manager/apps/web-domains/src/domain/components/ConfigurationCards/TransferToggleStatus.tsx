@@ -80,7 +80,7 @@ export default function TransferToggleStatus({
           data-testid={'toggle'}
         >
           <Tooltip>
-            <TooltipTrigger asChild disabled={!isAuthorized && !isPending}>
+            <TooltipTrigger asChild disabled={isAuthorized || isPending}>
               <div className="flex items-end gap-2">
                 <ToggleControl data-testid={'toggle-control'} />
                 <ToggleLabel>
