@@ -8,7 +8,7 @@ import {
   wrapper,
 } from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import TransferToggleStatus from './TransferToggleStatus';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
@@ -110,7 +110,7 @@ describe('TransferToggleStatus component', () => {
   const mockSetTagModalOpened = vi.fn();
 
   beforeEach(() => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: true,
     });
@@ -558,7 +558,7 @@ describe('TransferToggleStatus component', () => {
   });
 
   it('renders with disabled toggle when the user is not authorized', async () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as vi.Mock).mockReturnValue({
       isPending: false,
       isAuthorized: false,
     });
