@@ -144,7 +144,7 @@ export default function ServiceDetail() {
               </div>
             </Message>
           )}
-        <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
+        <div className="grid gap-6 items-start mb-8 grid-cols-1 lg:!grid-cols-2">
           <ServiceDetailInformation currentState={alldomService.currentState} />
           <ServiceDetailSubscribing alldomService={alldomService} />
         </div>

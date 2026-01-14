@@ -83,9 +83,6 @@ export default function ServiceDetail() {
       }}
       message={notifications.length > 0 ? <Notifications /> : null}
     >
-      <section className="grid grid-cols-1 gap-6 items-start lg:grid-cols-2">
-        <div className="flex flex-col gap-6"></div>
-      </section>
       <Outlet />
     </BaseLayout>
   );
