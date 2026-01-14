@@ -25,5 +25,6 @@
   "no_baremetal_available": "Zamów serwer Bare Metal i zabezpiecz go za pomocą Backup Agent",
   "select_baremetal": "Wybierz swój serwer BareMetal",
   "save_a_baremetal_server": "Zrób kopię zapasową serwera Bare Metal",
-  "baremetal_label_delay_order": "Po zatwierdzeniu zamówienia ten ekran zostanie zaktualizowany, a Ty otrzymasz e-mail, gdy Twój produkt Backup Agent zostanie dostarczony. Będziesz mógł śledzić postęp swojego zamówienia <OrderLink>tutaj</OrderLink>."
+  "baremetal_label_delay_order": "Po zatwierdzeniu zamówienia ten ekran zostanie zaktualizowany, a Ty otrzymasz e-mail, gdy Twój produkt Backup Agent zostanie dostarczony. Będziesz mógł śledzić postęp swojego zamówienia <OrderLink>tutaj</OrderLink>.",
+  "baremetal_label_order_in_progress": "Zamówienie zostało pomyślnie odebrane, Twój produkt jest w trakcie dostawy i możesz śledzić jego postęp <OrderLink>tutaj</OrderLink>."
 }
