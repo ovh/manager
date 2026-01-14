@@ -20,7 +20,7 @@ export const useDomainExport = () => {
       do {
         const response = await v2.get<TDomainResource[]>('/domain/name', {
           headers: {
-            'X-Pagination-Size': '1',
+            'X-Pagination-Size': '1000',
             ...(cursor ? { 'X-Pagination-Cursor': cursor } : {}),
           },
         });
