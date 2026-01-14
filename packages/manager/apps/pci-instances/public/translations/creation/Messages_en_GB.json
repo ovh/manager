@@ -139,5 +139,6 @@
     "predefined": "A backup is performed every day between 10:00 PM and 6:00 AM (UTC) and the rotation keeps a history of the last {{ numEntries }} entries. When the new backup is complete, the oldest one is deleted.",
     "custom": "Choose your own scheduling (UNIX Cron format), the number of rotations, and the maximum executions you want."
   },
-  "pci_instance_creation_backup_setting_price_unit": "~{{ price }} excluding VAT/month/GB"
+  "pci_instance_creation_backup_setting_price_unit": "~{{ price }} excluding VAT/month/GB",
+  "pci_instance_creation_error_title": "An error occurred"
 }

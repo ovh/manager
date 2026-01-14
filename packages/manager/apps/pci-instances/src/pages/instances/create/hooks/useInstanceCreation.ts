@@ -44,6 +44,7 @@ type TInstanceCreation = {
   isCreationEnabled: boolean;
   handleCreateInstance: () => void;
   isCreatingInstance: boolean;
+  errorMessage: string | null;
 };
 
 // eslint-disable-next-line max-lines-per-function
@@ -158,20 +159,13 @@ export const useInstanceCreation = (): TInstanceCreation => {
     navigate(instancesListUrl);
   };
 
-  const handleError = (error: Error) => {
-    const errorMessage = isApiErrorResponse(error)
-      ? error.response?.data.message
-      : error.message;
-    // TODO: update with new error specs to come
-    console.error(errorMessage);
-  };
-
   const {
     mutate: createInstance,
     isPending: isCreatingInstance,
+    error,
   } = useCreateInstance({
     projectId,
-    callbacks: { onSuccess: handleSuccess, onError: handleError },
+    callbacks: { onSuccess: handleSuccess },
   });
 
   const needsSshKey = distributionImageOsType !== 'windows';
@@ -218,10 +212,17 @@ export const useInstanceCreation = (): TInstanceCreation => {
     backupConfigurationPrices,
   };
 
+  const errorMessage = error
+    ? isApiErrorResponse(error)
+      ? error.response?.data.message ?? null
+      : error.message
+    : null;
+
   return {
     instanceData,
     isCreationEnabled,
     handleCreateInstance,
     isCreatingInstance,
+    errorMessage,
   };
 };

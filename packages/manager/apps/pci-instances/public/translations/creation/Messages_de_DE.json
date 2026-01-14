@@ -136,8 +136,9 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Drehung 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Angepasst",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Eine Sicherung wird jeden Tag zwischen 22:00 und 6:00 Uhr (UTC) durchgeführt, und die Rotation hält einen Verlauf der letzten {{ numEntries }} Einträge. Wenn die neue Sicherung abgeschlossen ist, wird die älteste gelöscht.",
+    "predefined": "Ein Backup wird jeden Tag zwischen 22:00 und 6:00 Uhr (UTC) durchgeführt, und die Rotation hält einen Verlauf der letzten {{ numEntries }} Einträge. Wenn das neue Backup abgeschlossen ist, wird das älteste gelöscht.",
     "custom": "Wählen Sie selbst die Planung (UNIX Cron-Format), die Anzahl der Rotationen und die maximalen Ausführungen, die Sie wünschen."
   },
-  "pci_instance_creation_backup_setting_price_unit": "~{{ price }} zzgl. MwSt./Monat/GB"
+  "pci_instance_creation_backup_setting_price_unit": "~{{ price }} zzgl. MwSt./Monat/GB",
+  "pci_instance_creation_error_title": "Es ist ein Fehler aufgetreten"
 }
