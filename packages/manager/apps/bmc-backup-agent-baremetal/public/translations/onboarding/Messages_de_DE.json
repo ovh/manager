@@ -1,6 +1,6 @@
 {
   "title_fallback": "Die Sicherung, ganz einfach",
-  "description_part1": "Erhalten Sie eine Backup-Lösung mit täglichen automatischen Remote-Backups, proaktiven Warnungen und zentraler Überwachung, alles sicher in einem Vault im OVHcloud Object Storage gespeichert. Installieren Sie den Backup-Agenten in weniger als 5 Minuten, kostenlos. Sie zahlen nur für den Object Storage, den Sie nutzen.",
+  "description_part1": "Erhalten Sie eine Backup-Lösung mit täglichen automatischen Remote-Backups, proaktiven Warnungen und zentraler Überwachung, alles sicher in einem Vault im OVHcloud Object Storage gespeichert. Installieren Sie den Backup-Agenten in weniger als 15 Minuten, kostenlos. Sie zahlen nur für den Object Storage, den Sie nutzen.",
   "description_part2": "Befolgen Sie unsere Anleitungen, um schnell zu starten.",
   "guides": {
     "guide1": {
@@ -11,18 +11,19 @@
     },
     "guide2": {
       "category": "Tutorial",
-      "title": "Gut starten",
-      "description": "Ein Schritt-für-Schritt-Video, das Ihnen hilft, Ihr erstes Backup einzurichten und auszuführen.",
+      "title": "Erste Konfiguration",
+      "description": "Ein Schritt-für-Schritt-Leitfaden, der Ihnen hilft, Ihr erstes Backup einzurichten und auszuführen.",
       "cta": "Tutorial ansehen "
     },
     "guide3": {
       "category": "FAQ",
       "title": "Häufig gestellte Fragen",
       "description": "Ein Leitfaden mit häufig gestellten Fragen zu den häufigsten Problemen.",
-      "cta": "FAQ lesen"
+      "cta": "Lesen Sie die FAQ"
     }
   },
   "no_baremetal_available": "Bestellen Sie einen Bare-Metal-Server und schützen Sie ihn mit dem Backup-Agenten",
   "select_baremetal": "Wählen Sie Ihren BareMetal-Server",
-  "save_a_baremetal_server": "Einen Bare-Metal-Server sichern"
+  "save_a_baremetal_server": "Einen Bare-Metal-Server sichern",
+  "baremetal_label_delay_order": "Nach der Bestätigung Ihrer Bestellung wird dieser Bildschirm aktualisiert und Sie erhalten eine E-Mail, sobald Ihr Produkt Backup-Agent geliefert wird. Sie können den Fortschritt Ihrer Bestellung <OrderLink>hier</OrderLink> einsehen."
 }

@@ -17,5 +17,6 @@
   "general-information": "Informações gerais",
   "help": "Ajuda",
   "type_billing": "Tipo de facturação",
-  "consumption_tooltip": "O armazenamento adicional não está disponível em autoatendimento. Para aumentar a sua capacidade de armazenamento, por favor contacte o suporte."
+  "consumption_tooltip": "O armazenamento adicional não está disponível em autoatendimento. Para aumentar a sua capacidade de armazenamento, por favor contacte o suporte.",
+  "vault_price": "Ou {{vaultPrice}} sem IVA/mês"
 }

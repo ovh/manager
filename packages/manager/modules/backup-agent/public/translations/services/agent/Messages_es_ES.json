@@ -10,10 +10,13 @@
   "os": "Sistema operativo",
   "download_agent": "Descargar Agente",
   "delete_tenant_banner_error": "Se ha producido un error. Por favor, espere unos minutos antes de volver a intentarlo.",
-  "delete_agent_banner_success": "Su Agente {{agentName}} ha sido eliminado correctamente",
+  "delete_agent_banner_success": "Eliminación del agente en curso, ya no será visible en esta tabla en unos minutos.",
   "delete_agent_banner_error": "Se ha producido un error. Por favor, espere unos minutos antes de volver a intentarlo.",
   "delete_agent_modal_title": "Eliminar el agente",
   "delete_agent_modal_content": "¿Realmente desea eliminar el agente {{agentName}}? Los datos asociados se conservarán hasta 14 días después de la eliminación.",
   "download_agent_with_executable": "Instalar a través de ejecutable",
-  "download_agent_with_command_line": "Instalar el agente a través de terminal"
+  "download_agent_with_command_line": "Instalar el agente a través de terminal",
+  "add_agent_banner_api_error": "Se ha producido un error. Por favor, espere unos minutos antes de volver a intentarlo. {{errorMessage}}",
+  "add_agent_error_resource_not_found": "Se ha producido un error. Gracias por verificar que el servidor sea válido.",
+  "update_agent_banner_success": "La modificación de la política está en curso, por favor espere unos segundos."
 }

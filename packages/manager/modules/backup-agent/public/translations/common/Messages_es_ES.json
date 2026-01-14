@@ -5,5 +5,8 @@
   "agents": "Agentes",
   "buckets": "Cubos",
   "policy": "Política",
-  "actions": "Acciones"
+  "actions": "Acciones",
+  "without_engagement": "sin compromiso.",
+  "backup_agent_guide": "Guías de Backup Agent",
+  "baremetal_label_order_in_progress": "El pedido ha sido recibido correctamente, su producto está en camino y puede seguir su progreso <OrderLink>aquí</OrderLink>."
 }
