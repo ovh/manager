@@ -11,7 +11,7 @@
     >
         <p data-translate="sms_order_time2chat_description"></p>
         <oui-field
-            data-label="{{ 'sms_order_time2chat_label_name' | translate }}"
+            data-label="{{ 'sms_order_time2chat_label_name' | translate }} - {{ 'common_field_label_required' | translate }}"
         >
             <input
                 class="oui-input"
@@ -23,7 +23,8 @@
             />
         </oui-field>
         <oui-field
-            data-label="{{ 'sms_order_time2chat_label_phonenumber' | translate }}"
+            data-label="{{ 'sms_order_time2chat_label_phonenumber' | translate }} - {{ 'common_field_label_required' | translate }}"
+            data-help-text="{{ 'sms_order_time2chat_helper_phonenumber' | translate }}"
         >
             <input
                 class="oui-input"
@@ -35,19 +36,27 @@
             />
         </oui-field>
         <oui-field
-            data-label="{{ 'sms_order_time2chat_label_website' | translate }}"
+            data-label="{{ 'sms_order_time2chat_label_website' | translate }} - {{ 'common_field_label_required' | translate }}"
         >
-            <input
-                class="oui-input"
-                name="website"
-                type="url"
-                data-ng-model="$ctrl.model.website"
-                placeholder="{{ 'sms_order_time2chat_label_website' | translate }}"
-                required
-            />
+            <div class="d-flex align-items-stretch">
+                <oui-select
+                    name="websiteProtocol"
+                    items="$ctrl.URLS_PROTOCOLS"
+                    model="$ctrl.model.websiteProtocol"
+                ></oui-select>
+                <input
+                    class="oui-input"
+                    name="website"
+                    type="text"
+                    data-ng-model="$ctrl.model.website"
+                    data-ng-pattern="$ctrl.URL_WITHOUT_PROTOCOL_REGEX"
+                    placeholder="{{ 'sms_order_time2chat_label_website' | translate }}"
+                    required
+                />
+            </div>
         </oui-field>
         <oui-field
-            data-label="{{ 'sms_order_time2chat_label_company_name' | translate }}"
+            data-label="{{ 'sms_order_time2chat_label_company_name' | translate }} - {{ 'common_field_label_required' | translate }}"
         >
             <input
                 class="oui-input"
@@ -59,7 +68,7 @@
             />
         </oui-field>
         <oui-field
-            data-label="{{ 'sms_order_time2chat_label_brand_name' | translate }}"
+            data-label="{{ 'sms_order_time2chat_label_brand_name' | translate }} - {{ 'common_field_label_required' | translate }}"
         >
             <input
                 class="oui-input"
@@ -71,7 +80,7 @@
             />
         </oui-field>
         <oui-field
-            data-label="{{ 'sms_order_time2chat_label_primary_use_case' | translate }}"
+            data-label="{{ 'sms_order_time2chat_label_primary_use_case' | translate }} - {{ 'common_field_label_required' | translate }}"
         >
             <input
                 class="oui-input"
@@ -83,7 +92,7 @@
             />
         </oui-field>
         <oui-field
-            data-label="{{ 'sms_order_time2chat_label_operational_contact_name' | translate }}"
+            data-label="{{ 'sms_order_time2chat_label_operational_contact_name' | translate }} - {{ 'common_field_label_required' | translate }}"
         >
             <input
                 class="oui-input"
@@ -95,7 +104,7 @@
             />
         </oui-field>
         <oui-field
-            data-label="{{ 'sms_order_time2chat_label_operational_contact_email' | translate }}"
+            data-label="{{ 'sms_order_time2chat_label_operational_contact_email' | translate }} - {{ 'common_field_label_required' | translate }}"
         >
             <input
                 class="oui-input"
