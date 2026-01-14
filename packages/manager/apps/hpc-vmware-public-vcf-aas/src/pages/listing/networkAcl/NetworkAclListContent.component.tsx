@@ -4,7 +4,7 @@ import {
   ActionMenu,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { OdsButton, OdsBadge } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -23,7 +23,10 @@ import {
 } from './NetworkAcl.context';
 import { useMessageContext } from '@/context/Message.context';
 import TEST_IDS from '@/utils/testIds.constants';
-import { DEFAULT_ACL_NETWORK } from './NetworkAcl.constant';
+import {
+  DEFAULT_ACL_NETWORK,
+  SERVER_ERROR_MESSAGE,
+} from './NetworkAcl.constant';
 
 const STATUS2COLORS: Record<NetworkAclStatus, ODS_BADGE_COLOR> = {
   CREATING: ODS_BADGE_COLOR.warning,
@@ -35,6 +38,7 @@ export default function NetworkAclListContent() {
   const { t } = useTranslation('networkAcl');
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const { t: tStatus } = useTranslation(NAMESPACES.STATUS);
+  const { t: tError } = useTranslation(NAMESPACES.ERROR);
 
   const {
     networks,
@@ -42,14 +46,23 @@ export default function NetworkAclListContent() {
     organisationId: id,
     isPending,
     isActiveOrganisation,
+    isError,
+    resourceStatus,
+    error,
   } = useNetworkAclContext();
+
   const navigate = useNavigate();
-  const { addInfo, clearMessage } = useMessageContext();
+  const { addInfo, clearMessage, addCritical } = useMessageContext();
   const msgUidActiveTaskRef = useRef<number | null>(null);
+  const errorShownRef = useRef<boolean | null>(null);
 
   const isDefaultAcl =
     networks.length === 1 && networks[0].network === DEFAULT_ACL_NETWORK;
-  const hasDisabledActions = hasActiveTasks || !isActiveOrganisation;
+  const hasDisabledActions =
+    hasActiveTasks ||
+    !isActiveOrganisation ||
+    isError ||
+    resourceStatus === 'ERROR';
 
   const columns = [
     {
@@ -141,6 +154,22 @@ export default function NetworkAclListContent() {
     }
   }, [hasActiveTasks]);
 
+  useEffect(() => {
+    if (errorShownRef.current) return;
+
+    if (!(isError || resourceStatus === 'ERROR')) return;
+
+    const message =
+      error?.response?.data?.message || error?.message || SERVER_ERROR_MESSAGE;
+
+    addCritical({
+      content: tError('error_message', { message }),
+      includedSubRoutes: [`${id}/${subRoutes.networkAcl}`],
+    });
+
+    errorShownRef.current = true;
+  }, [isError, resourceStatus, error]);
+
   const onCtaClicked = () => {
     if (isDefaultAcl) {
       const params = new URLSearchParams({
@@ -168,6 +197,7 @@ export default function NetworkAclListContent() {
             data-testid={TEST_IDS.networkAclCta}
           />
         </div>
+
         <Datagrid
           columns={columns}
           items={networks}
