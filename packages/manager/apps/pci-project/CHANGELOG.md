@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.1.3...@ovh-ux/manager-pci-project-app@0.1.4) (2026-01-14)
+
+
+### Bug Fixes
+
+* **pci-project:** claim voucher twice when credits needed ([48ecbd0](https://github.com/ovh/manager/commit/48ecbd0219f337c7db32287a8e357d280c07866f)), closes [#MANAGER-20735](https://github.com/ovh/manager/issues/MANAGER-20735)
+* **pci-project:** double loading of WP which sends events twice ([5e068d0](https://github.com/ovh/manager/commit/5e068d0127f29c7e6d4480064f8b683ba5f19aac)), closes [#ORDER-6164](https://github.com/ovh/manager/issues/ORDER-6164)
+
+
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.1.2...@ovh-ux/manager-pci-project-app@0.1.3) (2026-01-14)
 
 
