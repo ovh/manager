@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
 import { GuideItem } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 
 import { GUIDES_KMIP } from './guideKmip.constants';
@@ -10,7 +11,7 @@ import { GUIDES_KMIP } from './guideKmip.constants';
 export const useGuideItemKmip = (id: number): GuideItem => {
   const { t } = useTranslation('key-management-service/guide');
   const guideLink = useGuideLink(GUIDES_KMIP);
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   return {
     id,
@@ -22,7 +23,7 @@ export const useGuideItemKmip = (id: number): GuideItem => {
         location: PageLocation.page,
         buttonType: ButtonType.externalLink,
         actionType: 'navigation',
-        actions: ['connect-product-kmip'],
+        actions: ['guide-kmip'],
       }),
   };
 };

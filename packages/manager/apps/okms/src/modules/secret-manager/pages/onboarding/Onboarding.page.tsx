@@ -9,12 +9,16 @@ import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import onboardingImage from './onboarding.png';
 
 export default function SecretManagerOnboardingPage() {
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
+  const { trackClick } = useOkmsTracking();
 
   return (
     <OnboardingLayout
@@ -27,7 +31,15 @@ export default function SecretManagerOnboardingPage() {
         </div>
       }
       orderButtonLabel={t('create_a_secret')}
-      onOrderButtonClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.createSecret)}
+      onOrderButtonClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['create', 'secret'],
+        });
+        navigate(SECRET_MANAGER_ROUTES_URLS.createSecret);
+      }}
     >
       <GuideManagerCard />
       <GuideRestApiCard />

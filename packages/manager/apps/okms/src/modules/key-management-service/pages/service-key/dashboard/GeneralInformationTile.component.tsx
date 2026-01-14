@@ -18,8 +18,9 @@ import {
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { Clipboard, DashboardTile, ManagerButton } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 import { URN_LABEL } from '@/constants';
 
@@ -33,7 +34,7 @@ type GeneralInformationTileProps = {
 export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTileProps) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   return (
     <DashboardTile
@@ -65,7 +66,7 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
                     location: PageLocation.page,
                     buttonType: ButtonType.button,
                     actionType: 'action',
-                    actions: ['rename_encryption_key'],
+                    actions: ['rename', 'service-key'],
                   });
                   navigate(KMS_ROUTES_URLS.serviceKeyEditName(kms.id, serviceKey.id));
                 }}

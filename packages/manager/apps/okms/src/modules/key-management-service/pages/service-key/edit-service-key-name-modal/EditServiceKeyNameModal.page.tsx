@@ -27,9 +27,10 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import { SERVICE_KEY_TEST_IDS } from '../dashboard/ServiceKeyDashboard.constants';
@@ -37,12 +38,12 @@ import { SERVICE_KEY_TEST_IDS } from '../dashboard/ServiceKeyDashboard.constants
 export const EditServiceKeyNameModal = () => {
   const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
   const { data, isLoading, error } = useOkmsServiceKeyById({ okmsId, keyId });
-  const [serviceKeyName, setServiceKeyName] = useState(data?.data?.name || '');
+  const [serviceKeyName, setServiceKeyName] = useState(data?.name || '');
   const serviceKeyNameError = validateServiceKeyName(serviceKeyName);
   const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
-  const { trackPage } = useOvhTracking();
+  const { trackPage } = useOkmsTracking();
   const navigate = useNavigate();
 
   const closeModal = () => navigate('..');
@@ -55,14 +56,14 @@ export const EditServiceKeyNameModal = () => {
       addSuccess(t('key_management_service_service-keys_update_name_success'), true);
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'rename_encryption_key',
+        pageTags: ['rename', 'service-key'],
       });
       closeModal();
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'rename_encryption_key',
+        pageTags: ['rename', 'service-key'],
       });
       closeModal();
     },
@@ -83,8 +84,8 @@ export const EditServiceKeyNameModal = () => {
   };
 
   React.useEffect(() => {
-    if (data?.data?.name) {
-      setServiceKeyName(data?.data?.name);
+    if (data?.name) {
+      setServiceKeyName(data?.name);
     }
   }, [data]);
 
@@ -124,7 +125,7 @@ export const EditServiceKeyNameModal = () => {
       />
       <OdsButton
         isLoading={isPending}
-        isDisabled={!!serviceKeyNameError || serviceKeyName === data?.data?.name}
+        isDisabled={!!serviceKeyNameError || serviceKeyName === data?.name}
         slot="actions"
         data-testid={SERVICE_KEY_TEST_IDS.modifyNameButton}
         color={ODS_BUTTON_COLOR.primary}

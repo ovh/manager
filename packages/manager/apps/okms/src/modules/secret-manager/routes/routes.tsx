@@ -2,13 +2,12 @@ import React from 'react';
 
 import { Navigate, Route } from 'react-router-dom';
 
-import NotFound from '@key-management-service/pages/404';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { getRouteTracking } from '@/common/utils/tracking/tracking';
 
 import { SECRET_MANAGER_ROUTES_URIS, SECRET_MANAGER_URL_PARAMS } from './routes.constants';
 
-const KmsLayout = React.lazy(() => import('@key-management-service/pages/layout'));
 const Root = React.lazy(() => import('@/modules/secret-manager/pages/root/Root.page'));
 const Onboarding = React.lazy(
   () => import('@/modules/secret-manager/pages/onboarding/Onboarding.page'),
@@ -72,78 +71,130 @@ const OrderOkmsModal = React.lazy(
 );
 
 export default (
-  <Route
-    path={SECRET_MANAGER_ROUTES_URIS.root}
-    Component={KmsLayout}
-    id={'secret-manager-root'}
-    errorElement={
-      <ErrorBoundary
-        redirectionApp="key-management-service"
-        isPreloaderHide={true}
-        isRouteShellSync={true}
-      />
-    }
-  >
+  <Route path={SECRET_MANAGER_ROUTES_URIS.root} id={'secret-manager-root'}>
     <Route index Component={Root} />
-    <Route path={SECRET_MANAGER_ROUTES_URIS.onboarding} Component={Onboarding} />
-    <Route path={SECRET_MANAGER_ROUTES_URIS.create} Component={CreateSecret}>
+    <Route
+      path={SECRET_MANAGER_ROUTES_URIS.onboarding}
+      Component={Onboarding}
+      handle={getRouteTracking([], PageType.onboarding)}
+    />
+    <Route
+      path={SECRET_MANAGER_ROUTES_URIS.create}
+      Component={CreateSecret}
+      handle={getRouteTracking(['create', 'secret'], PageType.funnel)}
+    >
       <Route
         path={`${SECRET_MANAGER_ROUTES_URIS.order}/${SECRET_MANAGER_URL_PARAMS.region}`}
         Component={OrderOkmsModal}
+        handle={getRouteTracking(['order', 'okms'], PageType.popup)}
       />
     </Route>
     <Route
       path={`${SECRET_MANAGER_ROUTES_URIS.region}/${SECRET_MANAGER_URL_PARAMS.region}`}
       Component={OkmsList}
+      handle={getRouteTracking(['okms'], PageType.listing)}
     />
     <Route path={SECRET_MANAGER_URL_PARAMS.okmsId}>
-      <Route path={''} Component={SecretList}>
+      <Route
+        path={''}
+        Component={SecretList}
+        handle={getRouteTracking(['secret'], PageType.listing)}
+      >
         <Route
           path={`${SECRET_MANAGER_ROUTES_URIS.value}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={SecretValueDrawer}
+          handle={getRouteTracking(['secret', 'value'], PageType.popup)}
         />
         <Route
           path={`${SECRET_MANAGER_ROUTES_URIS.createVersion}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={CreateVersionDrawer}
+          handle={getRouteTracking(['create', 'version'], PageType.popup)}
         />
         <Route
           path={`${SECRET_MANAGER_ROUTES_URIS.delete}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={DeleteSecretModal}
+          handle={getRouteTracking(['delete', 'secret'], PageType.popup)}
         />
       </Route>
       <Route path={`${SECRET_MANAGER_ROUTES_URIS.dashboard}`} Component={OkmsDashboard}>
-        <Route path={''} Component={OkmsDashboardGeneralInformation}>
-          <Route path={`${SECRET_MANAGER_ROUTES_URIS.update}`} Component={OkmsUpdateNameModal} />
-          <Route path={`${SECRET_MANAGER_ROUTES_URIS.terminate}`} Component={OkmsTerminateModal} />
+        <Route
+          path={''}
+          Component={OkmsDashboardGeneralInformation}
+          handle={getRouteTracking(['okms'], PageType.dashboard)}
+        >
+          <Route
+            path={`${SECRET_MANAGER_ROUTES_URIS.update}`}
+            Component={OkmsUpdateNameModal}
+            handle={getRouteTracking(['rename', 'okms'], PageType.popup)}
+          />
+          <Route
+            path={`${SECRET_MANAGER_ROUTES_URIS.terminate}`}
+            Component={OkmsTerminateModal}
+            handle={getRouteTracking(['terminate', 'okms'], PageType.popup)}
+          />
           <Route
             path={`${SECRET_MANAGER_ROUTES_URIS.editSecretConfig}`}
             Component={OkmsEditSecretConfigDrawer}
+            handle={getRouteTracking(['edit', 'secret-config'], PageType.popup)}
           />
         </Route>
-        <Route path={`${SECRET_MANAGER_ROUTES_URIS.logs}/*`} Component={OkmsDashboardLogs} />
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.logs}/*`}
+          Component={OkmsDashboardLogs}
+          handle={getRouteTracking(['logs'], PageType.dashboard)}
+        />
       </Route>
       <Route path={SECRET_MANAGER_URL_PARAMS.secretPath} Component={Secret}>
-        <Route path={''} Component={SecretGeneralInformation}>
-          <Route path={SECRET_MANAGER_ROUTES_URIS.value} Component={SecretValueDrawer} />
-          <Route path={SECRET_MANAGER_ROUTES_URIS.createVersion} Component={CreateVersionDrawer} />
-          <Route path={SECRET_MANAGER_ROUTES_URIS.editMetadata} Component={EditMetadataDrawer} />
-          <Route path={SECRET_MANAGER_ROUTES_URIS.delete} Component={DeleteSecretModal} />
+        <Route
+          path={''}
+          Component={SecretGeneralInformation}
+          handle={getRouteTracking(['secret'], PageType.dashboard)}
+        >
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.value}
+            Component={SecretValueDrawer}
+            handle={getRouteTracking(['secret', 'value'], PageType.popup)}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.createVersion}
+            Component={CreateVersionDrawer}
+            handle={getRouteTracking(['create', 'version'], PageType.popup)}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.editMetadata}
+            Component={EditMetadataDrawer}
+            handle={getRouteTracking(['edit', 'secret', 'metadata'], PageType.popup)}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.delete}
+            Component={DeleteSecretModal}
+            handle={getRouteTracking(['delete', 'secret'], PageType.popup)}
+          />
         </Route>
-        <Route path={SECRET_MANAGER_ROUTES_URIS.versionList} Component={SecretVersionList}>
-          <Route path={SECRET_MANAGER_ROUTES_URIS.create} Component={CreateVersionDrawer} />
+        <Route
+          path={SECRET_MANAGER_ROUTES_URIS.versionList}
+          Component={SecretVersionList}
+          handle={getRouteTracking(['version'], PageType.listing)}
+        >
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.create}
+            Component={CreateVersionDrawer}
+            handle={getRouteTracking(['create', 'version'], PageType.popup)}
+          />
           <Route
             path={`${SECRET_MANAGER_ROUTES_URIS.delete}/${SECRET_MANAGER_URL_PARAMS.versionId}`}
             Component={DeleteVersionModal}
+            handle={getRouteTracking(['delete', 'version'], PageType.popup)}
           />
           <Route
             path={`${SECRET_MANAGER_ROUTES_URIS.value}/${SECRET_MANAGER_URL_PARAMS.versionId}`}
             Component={SecretValueDrawer}
+            handle={getRouteTracking(['secret', 'value'], PageType.popup)}
           />
           <Route path="*" element={<Navigate to={''} replace />} />
         </Route>
         <Route path="*" element={<Navigate to={''} replace />} />
       </Route>
     </Route>
-    <Route path={'*'} element={<NotFound />} />
   </Route>
 );

@@ -5,8 +5,9 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 
 import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { ProductType, useProductType } from '@/common/hooks/useProductType';
 
 const useResiliateLink = (okms: OKMS) => {
@@ -26,7 +27,7 @@ type BillingTileProps = {
 
 export const BillingTile = ({ okms }: BillingTileProps) => {
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const resiliateLink = useResiliateLink(okms);
 
@@ -35,7 +36,7 @@ export const BillingTile = ({ okms }: BillingTileProps) => {
       location: PageLocation.page,
       buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['delete_kms'],
+      actions: ['delete', 'okms'],
     });
     navigate(resiliateLink);
   };

@@ -6,11 +6,13 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
+import { OdsSelectChangeEventDetail, OdsSelectCustomEvent } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsSelect, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { isErrorResponse } from '@/common/utils/api/api';
+import { odsSelectValueToValue, valueToOdsSelectValue } from '@/common/utils/ods/odsSelect';
 
 import {
   VERSION_SELECTOR_ERROR_TEST_ID,
@@ -22,7 +24,7 @@ import {
 type VersionSelectorParams = {
   okmsId: string;
   secretPath: string;
-  versionId: string | undefined;
+  defaultVersionId: string | undefined;
   selectedVersion: SecretVersion | undefined;
   setSelectedVersion: React.Dispatch<React.SetStateAction<SecretVersion | undefined>>;
 };
@@ -30,7 +32,7 @@ type VersionSelectorParams = {
 export const VersionSelector = ({
   okmsId,
   secretPath,
-  versionId,
+  defaultVersionId,
   selectedVersion,
   setSelectedVersion,
 }: VersionSelectorParams) => {
@@ -57,8 +59,6 @@ export const VersionSelector = ({
     );
   }
 
-  const versions = data?.pages.flatMap((page) => page.data);
-
   return (
     <div className="flex flex-col gap-3 pt-2">
       <div className="flex h-8 items-center gap-2">
@@ -70,26 +70,11 @@ export const VersionSelector = ({
         {isPending || isFetching ? (
           <OdsSkeleton className="grow" data-testid={VERSION_SELECTOR_SELECT_SKELETON_TEST_ID} />
         ) : (
-          <OdsSelect
-            data-testid={VERSION_SELECTOR_TEST_ID}
-            className="grow"
-            name="version-selector"
-            onOdsChange={(value) =>
-              setSelectedVersion(versions?.find((v) => v.id === Number(value.detail.value)))
-            }
-            defaultValue={
-              versionId
-                ? versions?.find((version) => version?.id?.toString() === versionId)?.id?.toString()
-                : (versions?.[0]?.id?.toString() ?? '')
-            }
-            isDisabled={versions?.length === 1}
-          >
-            {versions?.map((version) => (
-              <option value={version.id} key={version.id}>
-                {version.id}
-              </option>
-            ))}
-          </OdsSelect>
+          <VersionSelectorSelect
+            defaultVersionId={defaultVersionId}
+            setSelectedVersion={setSelectedVersion}
+            versions={data?.pages.flatMap((page) => page.data)}
+          />
         )}
       </div>
       <div className="flex h-8 items-center gap-2">
@@ -103,5 +88,48 @@ export const VersionSelector = ({
         )}
       </div>
     </div>
+  );
+};
+
+type VersionSelectorSelectProps = Pick<
+  VersionSelectorParams,
+  'defaultVersionId' | 'setSelectedVersion'
+> & {
+  versions: SecretVersion[];
+};
+
+const VersionSelectorSelect = ({
+  defaultVersionId,
+  setSelectedVersion,
+  versions,
+}: VersionSelectorSelectProps) => {
+  // Default to the first version if no default version is provided
+  let defaultVersion: SecretVersion | undefined = versions[0];
+
+  // If a default version is provided, use it
+  if (defaultVersionId) {
+    defaultVersion = versions.find((version) => version.id.toString() === defaultVersionId);
+  }
+
+  const handleOnSelect = (value: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => {
+    const version = versions.find((v) => v.id === odsSelectValueToValue(value.detail.value ?? ''));
+    setSelectedVersion(version);
+  };
+
+  return (
+    <OdsSelect
+      data-testid={VERSION_SELECTOR_TEST_ID}
+      className="grow"
+      name="version-selector"
+      onOdsChange={handleOnSelect}
+      defaultValue={defaultVersion ? valueToOdsSelectValue(defaultVersion.id) : undefined}
+      isDisabled={versions.length === 1}
+    >
+      {versions.map((version) => (
+        <option value={valueToOdsSelectValue(version.id)} key={version.id}>
+          {version.id}
+        </option>
+      ))}
+    </OdsSelect>
   );
 };

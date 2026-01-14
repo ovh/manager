@@ -18,7 +18,6 @@ import { useTranslation } from 'react-i18next';
 
 import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -37,7 +36,6 @@ export function useOutletCredential() {
 }
 
 const CredentialDashboard = () => {
-  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
   const { okmsId, credentialId } = useRequiredParams('okmsId', 'credentialId');
@@ -45,7 +43,7 @@ const CredentialDashboard = () => {
   const { data: okms, isPending: isLoadingKms, error: errorKms } = useOkmsById(okmsId);
 
   const {
-    data,
+    data: credential,
     isPending: isLoadingCredential,
     error: errorCredential,
   } = useOkmsCredentialById({
@@ -69,12 +67,10 @@ const CredentialDashboard = () => {
     );
   }
 
-  const credential = data.data;
-
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms.data.iam.displayName,
+      label: okms.iam.displayName,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -94,11 +90,13 @@ const CredentialDashboard = () => {
       name: 'general-information',
       title: t('key_management_service_credential_dashboard_tab_informations'),
       url: KMS_ROUTES_URLS.credentialDashboard(okmsId, credentialId),
+      tracking: ['general-informations'],
     },
     {
       name: 'identities',
       title: t('key_management_service_credential_dashboard_tab_identities'),
       url: KMS_ROUTES_URLS.credentialIdentitiesList(okmsId, credentialId),
+      tracking: ['identity', 'list'],
     },
   ];
 
@@ -115,16 +113,10 @@ const CredentialDashboard = () => {
         message={<Notifications />}
         onClickReturn={() => {
           navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: ['return_listing_page'],
-          });
         }}
         tabs={<TabNavigation tabs={tabsList} />}
       >
-        <Outlet context={{ credential, okms: okms.data } as CredentialContextType} />
+        <Outlet context={{ credential, okms } as CredentialContextType} />
       </BaseLayout>
     </Suspense>
   );

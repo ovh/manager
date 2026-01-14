@@ -1,8 +1,9 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 
 import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { SWAGGER_UI_LABEL } from '@/constants';
 
 type SwaggerTileItemProps = {
@@ -10,7 +11,7 @@ type SwaggerTileItemProps = {
 };
 
 export const SwaggerTileItem = ({ okms }: SwaggerTileItemProps) => {
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   return (
     <ManagerTile.Item>
