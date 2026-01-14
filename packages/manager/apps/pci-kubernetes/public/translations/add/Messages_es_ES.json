@@ -86,12 +86,13 @@
   "kube_add_name_title": "Asigne un nombre al pool de nodos",
   "kube_add_node_pool_name_already_exist_validation_error": "El nombre de nodepool ya está en uso. Por favor, elija un dominio distinto.",
   "kubernetes_add_create_cluster": "Crear mi clúster",
-  "kubernetes_add_name_input_label": "Nombre del proyecto",
   "kubernetes_add_cluster_name_input_helper": {
     "introduction": "Debe:",
     "char_number": "contener entre 2 y 64 caracteres",
-    "char_whitelist": "contener únicamente letras, números, guiones o guiones bajos",
+    "char_whitelist": "contener solo letras, números, guiones o guiones bajos",
     "first_char": "comenzar con una letra",
-    "last_char": "terminar con un carácter alfanumérico (a-z, 0 - 9)"
-  }
+    "last_char": "terminar con un carácter alfanumérico (a-z, A-Z, 0-9)"
+  },
+  "kubernetes_add_cluster_name_input_error": "El nombre del clúster no es válido",
+  "kubernetes_add_cluster_name_input_error_empty": "El nombre del clúster es obligatorio"
 }

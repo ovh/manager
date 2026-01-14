@@ -54,7 +54,7 @@ export const Cart = ({ items, isSubmitDisabled }: TCartProps) => {
               {item.name && (
                 <Text
                   preset="label"
-                  className="text-[--ods-color-heading]"
+                  className="break-all text-[--ods-color-heading]"
                   data-testid="cart-header-subtitle"
                 >
                   {item.name}
