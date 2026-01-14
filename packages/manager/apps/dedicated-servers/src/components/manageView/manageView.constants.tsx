@@ -9,6 +9,7 @@ export const DEFAULT_COLUMN_VISIBILITY: Record<string, boolean> = {
   commercialRange: true,
   os: false,
   region: true,
+  availabilityZone: true,
   rack: false,
   datacenter: false,
   state: true,
