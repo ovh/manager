@@ -67,6 +67,7 @@ export const useDomainDatagridColumns = ({
           header: t('domain_table_header_serviceName'),
           enableHiding: false,
           isSearchable: true,
+          size: 300,
         },
         {
           id: 'iam.tags',
