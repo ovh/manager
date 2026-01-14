@@ -1,0 +1,22 @@
+{
+  "home": "Home",
+  "order": "Order now",
+  "back": "Back",
+  "title": "Dashboard",
+  "email": "Email",
+  "subject": "Subject",
+  "message": "Message",
+  "submitButton": "Send",
+  "successMessage": "Your request has been successfully sent.",
+  "errors": {
+    "emailRequired": "The email is mandatory.",
+    "emailInvalid": "Please enter a valid email address.",
+    "subjectRequired": "The subject is mandatory.",
+    "messageRequired": "The message is mandatory."
+  },
+  "general-information": "General information",
+  "help": "Help",
+  "type_billing": "Billing type",
+  "consumption_tooltip": "Additional storage is not available for self-service. To increase your storage capacity, please contact support.",
+  "vault_price": "Either {{vaultPrice}} excluding tax/month"
+}
