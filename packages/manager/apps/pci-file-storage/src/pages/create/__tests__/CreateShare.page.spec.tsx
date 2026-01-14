@@ -25,6 +25,12 @@ vi.mock('@/data/hooks/catalog/useShareCatalog', () => ({
   }),
 }));
 
+vi.mock('@/hooks/useGetUser', () => ({
+  useGetUser: () => ({
+    ovhSubsidiary: 'FR',
+  }),
+}));
+
 describe('CreateShare page', () => {
   it('should render breadcrumb', () => {
     render(<CreateSharePage />);
