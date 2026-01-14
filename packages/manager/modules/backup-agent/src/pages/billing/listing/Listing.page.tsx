@@ -17,7 +17,7 @@ import { useColumns } from './_hooks/useBillingListingColumns.hooks';
 export default function ListingPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING, NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
-  const { flattenData, isPending } = useBackupVaultsList();
+  const { data, isPending } = useBackupVaultsList();
   const columns = useColumns();
 
   const reloadDatagrid = () => {
@@ -42,8 +42,8 @@ export default function ListingPage() {
           </div>
         }
         columns={columns}
-        items={flattenData ?? []}
-        totalItems={flattenData?.length ?? 0}
+        items={data ?? []}
+        totalItems={data?.length ?? 0}
       />
     </Suspense>
   );

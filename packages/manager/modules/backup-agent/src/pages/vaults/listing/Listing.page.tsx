@@ -18,7 +18,7 @@ import { useColumns } from './_hooks/useColumns.hooks';
 export default function ListingPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING, NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
-  const { flattenData, isLoading } = useBackupVaultsList();
+  const { data, isLoading } = useBackupVaultsList();
   const columns = useColumns();
 
   const reloadDatagrid = () => {
@@ -42,7 +42,7 @@ export default function ListingPage() {
           </div>
         }
         columns={columns}
-        items={flattenData ?? []}
+        items={data ?? []}
         totalItems={3}
       />
       <Outlet />

@@ -29,13 +29,15 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-const { useBaremetalsListMock, useBackupVaultsListMock } = vi.hoisted(() => ({
+const { useBaremetalsListMock, useQueryMock } = vi.hoisted(() => ({
   useBaremetalsListMock: vi
     .fn()
     .mockReturnValue({ data: undefined, isPending: true, isError: false }),
-  useBackupVaultsListMock: vi
-    .fn()
-    .mockReturnValue({ data: undefined, isPending: false, isError: false }),
+  useQueryMock: vi.fn().mockReturnValue({ data: undefined, isPending: false, isError: false }),
+}));
+
+vi.mock('@tanstack/react-query', () => ({
+  useQuery: useQueryMock,
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
@@ -51,7 +53,7 @@ vi.mock('@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList', () => {
 
 vi.mock('@ovh-ux/backup-agent/data/hooks/vaults/getVault', () => {
   return {
-    useBackupVaultsList: useBackupVaultsListMock,
+    useBackupVaultsListOptions: vi.fn(),
   };
 });
 
@@ -133,7 +135,7 @@ vi.mock('@ovh-ux/backup-agent/hooks/useGuideUtils.ts', () => ({
 
 describe('FirstOrderPage', () => {
   beforeAll(() => {
-    useBackupVaultsListMock.mockReturnValue({
+    useQueryMock.mockReturnValue({
       data: mockVaults,
       isPending: false,
       isError: false,
@@ -173,7 +175,7 @@ describe('FirstOrderPage', () => {
         isPending: false,
         isError: false,
       });
-      useBackupVaultsListMock.mockReturnValue({
+      useQueryMock.mockReturnValue({
         flattenData: undefined,
         isPending: false,
         isError: true,

@@ -20,7 +20,7 @@ export default function DeleteVaultPage() {
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
   const [searchParams] = useSearchParams();
-  const { flattenData: vaults } = useBackupVaultsList();
+  const { data: vaults } = useBackupVaultsList();
 
   const vaultId = searchParams.get('vaultId');
   const vault = vaults?.find(({ id }) => id === vaultId);
