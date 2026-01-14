@@ -1,5 +1,5 @@
 import JSURL from 'jsurl';
-import { PHONE_NUMBER_FOR_TIME2CHAT_REGEX } from '../../telecom-sms.constant';
+import { PHONE_NUMBER_FOR_TIME2CHAT_REGEX, URLS_PROTOCOLS, URL_WITHOUT_PROTOCOL_REGEX } from '../../telecom-sms.constant';
 
 export default class SmsOrderTime2ChatCtrl {
   /* @ngInject */
@@ -9,6 +9,9 @@ export default class SmsOrderTime2ChatCtrl {
     this.$translate = $translate;
     this.expressOrderUrl = RedirectionService.getURL('expressOrder');
     this.PHONE_NUMBER_FOR_TIME2CHAT_REGEX = PHONE_NUMBER_FOR_TIME2CHAT_REGEX;
+    this.URLS_PROTOCOLS = URLS_PROTOCOLS;
+    this.URL_WITHOUT_PROTOCOL_REGEX = URL_WITHOUT_PROTOCOL_REGEX;
+    this.model = { websiteProtocol: URLS_PROTOCOLS[1] };
   }
 
   onSubmit() {
@@ -27,7 +30,7 @@ export default class SmsOrderTime2ChatCtrl {
         },
         {
           label: 'website',
-          value: this.model.website,
+          value: `${this.model.websiteProtocol}${this.model.website}`,
         },
         {
           label: 'phonenumber',

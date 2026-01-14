@@ -1,4 +1,8 @@
-import { PHONE_NUMBER_FOR_TIME2CHAT_REGEX } from '../../telecom-sms.constant';
+import {
+  PHONE_NUMBER_FOR_TIME2CHAT_REGEX,
+  URLS_PROTOCOLS,
+  URL_WITHOUT_PROTOCOL_REGEX,
+} from '../../telecom-sms.constant';
 
 export default class SmsSendersConfigureTime2ChatCtrl {
   /* @ngInject */
@@ -8,6 +12,8 @@ export default class SmsSendersConfigureTime2ChatCtrl {
     this.$translate = $translate;
     this.smsService = SmsService;
     this.TucToast = TucToast;
+    this.URLS_PROTOCOLS = URLS_PROTOCOLS;
+    this.URL_WITHOUT_PROTOCOL_REGEX = URL_WITHOUT_PROTOCOL_REGEX;
     this.PHONE_NUMBER_FOR_TIME2CHAT_REGEX = PHONE_NUMBER_FOR_TIME2CHAT_REGEX;
   }
 
@@ -29,6 +35,9 @@ export default class SmsSendersConfigureTime2ChatCtrl {
         ),
       })
       .then(({ contactInfo, autoResponse, kycData }) => {
+        const [websiteProtocol, website] = contactInfo.website.split('://');
+        this.websiteProtocol = `${websiteProtocol}://`;
+        this.website = website;
         this.contactInfoData = contactInfo;
         this.kycData = kycData;
         this.autoResponseData = autoResponse;
@@ -55,7 +64,10 @@ export default class SmsSendersConfigureTime2ChatCtrl {
       .updateContactInfo(
         this.$stateParams.serviceName,
         this.$stateParams.number,
-        this.contactInfoData,
+        {
+          ...this.contactInfoData,
+          website: `${this.websiteProtocol}${this.website}`,
+        },
       )
       .then(() => {
         this.TucToast.success(
