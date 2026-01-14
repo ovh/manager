@@ -16,6 +16,7 @@ import {
 
 export type TCartProps = {
   items: TCartItem[];
+  isSubmitDisabled: boolean;
 };
 
 export type TCartItem = {
@@ -35,7 +36,7 @@ export type TCartItemDetail = {
 const getTotalPrice = (items: TCartItemDetail[]) =>
   items.reduce((prev, curr) => (curr.price ? prev + curr.price : prev), 0);
 
-export const Cart = ({ items }: TCartProps) => {
+export const Cart = ({ items, isSubmitDisabled }: TCartProps) => {
   const { t } = useTranslation('add');
 
   const details = useMemo(() => items.flatMap(({ details }) => details), [items]);
@@ -51,7 +52,11 @@ export const Cart = ({ items }: TCartProps) => {
                 {item.title.toUpperCase()}
               </Text>
               {item.name && (
-                <Text preset="label" className="text-[--ods-color-heading]">
+                <Text
+                  preset="label"
+                  className="break-all text-[--ods-color-heading]"
+                  data-testid="cart-header-subtitle"
+                >
                   {item.name}
                 </Text>
               )}
@@ -62,7 +67,7 @@ export const Cart = ({ items }: TCartProps) => {
       />
       <CartTotalPrice price={getTotalPrice(details)} displayHourlyPrice displayMonthlyPrice />
       <CartActions className="flex-col gap-6">
-        <Button>
+        <Button disabled={isSubmitDisabled}>
           {t('kubernetes_add_create_cluster')} <Icon name="arrow-right" />
         </Button>
       </CartActions>
