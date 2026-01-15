@@ -13,6 +13,7 @@
   "account_details_section_address_corporation": "Coordonnées de l'entreprise",
   "account_details_section_address_association": "Coordonnées de l'association",
   "account_details_section_address_administration": "Coordonnées de l'administration",
+  "account_details_section_address_kyc_info": "<strong>N'oubliez pas de saisir toutes les informations, et assurez-vous que vos données personnelles correspondent au nom et à l'adresse figurant dans vos documents officiels pour passer une commande.</strong> <ul><li>Renseignez <strong>votre adresse complète</strong></li><li>L'adresse doit <strong>correspondre à celle figurant sur le justificatif</strong> d'adresse qui vous sera demandé pour vérifier votre identité</li></ul>",
   "account_details_section_contact": "Contact",
   "account_details_section_support": "Support",
   "account_details_field_corporation_firstname": "Prénom du représentant légal",
