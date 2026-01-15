@@ -27,5 +27,6 @@
   "billing_services_actions_menu_restore_label": "Restaurar el servicio: {{ serviceName }} (nueva ventana)",
   "billing_services_actions_menu_resiliate_us": "Dar de baja mi servicio",
   "billing_services_actions_menu_resiliate_my_engagement_us": "Cancelar mi compromiso",
-  "billing_services_actions_menu_commit_cancel_us": "Cancelar la solicitud de contratación con compromiso de permanencia"
+  "billing_services_actions_menu_commit_cancel_us": "Cancelar la solicitud de contratación con compromiso de permanencia",
+  "billing_services_actions_menu_see_bills": "Ver mis facturas"
 }

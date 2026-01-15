@@ -27,5 +27,6 @@
   "billing_services_actions_menu_restore_label": "Restaurar o serviço: {{ serviceName }} (nova janela)",
   "billing_services_actions_menu_resiliate_us": "Rescindir o meu serviço",
   "billing_services_actions_menu_resiliate_my_engagement_us": "Rescindir o meu compromisso",
-  "billing_services_actions_menu_commit_cancel_us": "Anular o pedido de compromisso"
+  "billing_services_actions_menu_commit_cancel_us": "Anular o pedido de compromisso",
+  "billing_services_actions_menu_see_bills": "Ver as minhas faturas"
 }
