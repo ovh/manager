@@ -5,7 +5,7 @@ import { Navigate, Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/muk';
 
-import NotFound from '@/pages/not-found/404.page';
+import NotFound from '@/pages/not-found/NotFound.page';
 
 import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
