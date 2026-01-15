@@ -40,6 +40,7 @@ import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.
 import LinkToOngoingOperations from '@/domain/components/LinkToOngoingOperations/LinkToOngoingOperations';
 import UnauthorizedBanner from '@/domain/components/UnauthorizedBanner/UnauthorizedBanner';
 import Loading from '@/alldoms/components/loading/Loading';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
@@ -48,9 +49,14 @@ export default function DsRecordsListing() {
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
   );
+  const { data: dnsZoneIAMRessources } = useGetIAMResource(
+    domainResource.id,
+    'dnsZone',
+  );
+  const urn = dnsZoneIAMRessources?.[0]?.urn;
   const { isPending, isAuthorized } = useAuthorizationIam(
     ['dnsZone:apiovh:dnssec/create', 'dnsZone:apiovh:dnssec/delete'],
-    `urn:v1:eu:resource:dnsZone:${domainResource.id}`,
+    urn,
   );
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
