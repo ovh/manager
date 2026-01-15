@@ -103,7 +103,7 @@ export default function Contacts({
               onClick: () => {
                 navigateTo(
                   'web',
-                  `#/domain/${serviceName}/contact-management/edit-contact/${ownerId}`,
+                  `#/domain/${serviceName}/contact-management/edit-contact/${ownerId}/`,
                   {},
                 );
               },
