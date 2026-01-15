@@ -48,8 +48,11 @@ import {
   TASK,
   TASKS,
   VIDEO_CENTER,
+  VIDEO_CENTER_ACTIVATE,
   VIDEO_CENTER_DASHBOARD,
+  VIDEO_CENTER_FREEMIUM_DASHBOARD,
   VIDEO_CENTER_ONBOARDING,
+  VIDEO_CENTER_ORDER,
   WEBSITE,
   WORDPRESS_MANAGED,
   WORDPRESS_MANAGED_ONBOARDING,
@@ -95,10 +98,13 @@ import { AddModuleModal, DeleteModuleModal } from './pages/module';
 import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
 import {
-  VideoManagerCenterPage,
-  VideoManagerDashboardPage,
-  VideoManagerOnboardingPage,
-} from './pages/videoManagerCenter';
+  FreemiumDashboardPage,
+  VideoCenterActivatePage,
+  VideoCenterDashboardPage,
+  VideoCenterOnboardingPage,
+  VideoCenterOrderPage,
+  VideoCenterPage,
+} from './pages/videoCenter';
 import { AddWebsitePage, DeleteSiteModal, UpdateDisplayNameModalComponent } from './pages/website';
 import { urls } from './routes.constants';
 
@@ -145,13 +151,13 @@ export default (
     <Route
       id={VIDEO_CENTER}
       path={urls.videoCenter}
-      Component={VideoManagerCenterPage}
+      Component={VideoCenterPage}
       handle={{
         tracking: {
           pageType: PageType.listing,
         },
         breadcrumb: {
-          label: 'video_manager_center',
+          label: 'video_center',
         },
       }}
     />
@@ -159,7 +165,21 @@ export default (
     <Route
       id={VIDEO_CENTER_DASHBOARD}
       path={urls.videoCenterDashboard}
-      Component={VideoManagerDashboardPage}
+      Component={VideoCenterDashboardPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'video_manager_dashboard',
+        },
+      }}
+    />
+
+    <Route
+      id={VIDEO_CENTER_FREEMIUM_DASHBOARD}
+      path={urls.videoCenterFreemiumDashboard}
+      Component={FreemiumDashboardPage}
       handle={{
         tracking: {
           pageType: PageType.listing,
@@ -173,13 +193,41 @@ export default (
     <Route
       id={VIDEO_CENTER_ONBOARDING}
       path={urls.videoCenterOnboarding}
-      Component={VideoManagerOnboardingPage}
+      Component={VideoCenterOnboardingPage}
       handle={{
         tracking: {
           pageType: PageType.listing,
         },
         breadcrumb: {
-          label: 'video_manager_dashboard',
+          label: 'video_manager_onboarding',
+        },
+      }}
+    />
+
+    <Route
+      id={VIDEO_CENTER_ORDER}
+      path={urls.videoCenterOrder}
+      Component={VideoCenterOrderPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'video_manager_order',
+        },
+      }}
+    />
+
+    <Route
+      id={VIDEO_CENTER_ACTIVATE}
+      path={urls.videoCenterActivate}
+      Component={VideoCenterActivatePage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'video_manager_activate',
         },
       }}
     />
