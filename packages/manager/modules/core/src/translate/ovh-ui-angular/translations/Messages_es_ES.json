@@ -89,5 +89,7 @@
   "common_dual_list_target_move_all": "Eliminar todo",
   "common_dual_list_target_search": "Buscar en el contenido de destino",
   "common_file_dropAreaSingle": "Arrastre y suelte un archivo o",
-  "common_file_notSingleError": "Solo es posible añadir un archivo"
+  "common_file_notSingleError": "Solo es posible añadir un archivo",
+  "common_criteria_adder_operator_string_in": "está entre",
+  "common_criteria_adder_operator_string_notIn": "no está entre"
 }
