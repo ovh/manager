@@ -23,6 +23,11 @@ type TBootSourceDTO = {
   volumeId: string | null;
 };
 
+type TAutoBackupDTO = {
+  cron: string;
+  rotation: number;
+};
+
 export type TCreateInstanceDTO = {
   availabilityZone: string | null;
   billingPeriod: 'hourly' | 'monthly';
@@ -33,6 +38,7 @@ export type TCreateInstanceDTO = {
   network: TNetworkDTO;
   sshKey: TExistingSshKeyDTO | null;
   sshKeyCreate: TNewSshKeyDTO | null;
+  autobackup: TAutoBackupDTO | null;
 };
 
 export type TCreateInstanceResponseDTO = TOperationDTO & {

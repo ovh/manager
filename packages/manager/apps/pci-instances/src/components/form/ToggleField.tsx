@@ -25,7 +25,13 @@ export const ToggleField = ({
       <ToggleControl />
 
       <ToggleLabel className="flex items-center">
-        <Text>{label}</Text>
+        <Text
+          {...(toggleProps.disabled && {
+            className: 'text-[--ods-color-text-disabled-default]',
+          })}
+        >
+          {label}
+        </Text>
 
         {badges && badges.length && (
           <span className="ml-4 flex flex-row flex-wrap gap-2">

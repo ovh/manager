@@ -3,3 +3,9 @@ export const sshKeysQueryKey = (projectId: string): string[] => [
   projectId,
   'sshKeys',
 ];
+
+export const backupConfigurationQueryKey = (projectId: string): string[] => [
+  'project',
+  projectId,
+  'instanceBackup',
+];

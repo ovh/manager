@@ -36,8 +36,12 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   useProjectUrl: () => '/foo/bar',
   useCatalogPrice: vi.fn().mockReturnValue({
     getTextPrice: vi.fn((price: number) => `${price}`),
-    getFormattedHourlyCatalogPrice: vi.fn(),
-    getFormattedMonthlyCatalogPrice: vi.fn(),
+    getFormattedHourlyCatalogPrice: vi.fn(
+      (price: number) => `${price} €/HT/hour`,
+    ),
+    getFormattedMonthlyCatalogPrice: vi.fn(
+      (price: number) => `${price} €/HT/month`,
+    ),
   }),
 }));
 
