@@ -1,7 +1,7 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
@@ -16,7 +16,7 @@ export const ServiceKeyCountTileItem = ({ okms }: ServiceKeyCountTileItemProps) 
     <ManagerTile.Item>
       <ManagerTile.Item.Label>{t('okms_service_key_count')}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
-        <OdsText preset="span">{okms.serviceKeyCount}</OdsText>
+        <Text preset="span">{okms.serviceKeyCount}</Text>
       </ManagerTile.Item.Description>
     </ManagerTile.Item>
   );

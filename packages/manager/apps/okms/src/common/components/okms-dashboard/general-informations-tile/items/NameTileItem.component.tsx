@@ -5,8 +5,7 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
@@ -40,9 +39,9 @@ export const NameTileItem = ({ okms }: NameTileItemProps) => {
       <ManagerTile.Item.Label>{t('display_name')}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
         <div className="flex items-center justify-between gap-2">
-          <OdsText preset="span" className="break-all">
+          <Text preset="span" className="break-all">
             {okms.iam.displayName}
-          </OdsText>
+          </Text>
           <div className="min-w-fit">
             <Button
               aria-label="edit"

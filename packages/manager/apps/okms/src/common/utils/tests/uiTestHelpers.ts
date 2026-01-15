@@ -44,7 +44,7 @@ export const clickJsonEditorToggle = async (user: UserEvent) => {
   await act(() => user.click(jsonToggle));
 };
 
-export const assertTitleVisibility = async (
+export const assertTitleVisibilityOds18 = async (
   title: string,
   type: 'heading-1' | 'heading-2' | 'heading-3',
   timeout?: number,
@@ -60,5 +60,5 @@ export const assertTitleVisibility = async (
 };
 
 export const assertPageTitleVisibility = async (title: string, timeout?: number) => {
-  await assertTitleVisibility(title, 'heading-1', timeout);
+  await assertTitleVisibilityOds18(title, 'heading-1', timeout);
 };

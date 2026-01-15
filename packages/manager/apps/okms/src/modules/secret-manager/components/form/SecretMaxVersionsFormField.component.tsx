@@ -7,7 +7,8 @@ import {
 import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsQuantity, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsQuantity, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
@@ -61,11 +62,11 @@ const FormHelper = ({ secret, okmsId }: { secret?: Secret; okmsId: string }) => 
 
   if (secretConfig.maxVersions) {
     return (
-      <OdsText slot="helper" preset="caption">
+      <Text slot="helper" preset="caption">
         {secretConfig.maxVersions.origin === 'DEFAULT'
           ? t('form_helper_max_versions_default', { value: secretConfig.maxVersions.value })
           : t('form_helper_max_versions_domain', { value: secretConfig.maxVersions.value })}
-      </OdsText>
+      </Text>
     );
   }
 

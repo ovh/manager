@@ -4,8 +4,9 @@ import {
 } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { Subtitle } from '@ovh-ux/manager-react-components';
 
@@ -46,14 +47,14 @@ export const GeneralInformationSection = ({
 
       <OdsFormField error={getErrorMessage(serviceKeyNameError)}>
         <div slot="label" className="mb-2 space-y-2">
-          <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+          <Text className="block" preset="heading-5">
             {t('key_management_service_service-keys_create_general_information_field_name_title')}
-          </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          </Text>
+          <Text preset="paragraph">
             {t(
               'key_management_service_service-keys_create_general_information_field_name_subtitle',
             )}
-          </OdsText>
+          </Text>
         </div>
         <OdsInput
           name="input-service-key-name"

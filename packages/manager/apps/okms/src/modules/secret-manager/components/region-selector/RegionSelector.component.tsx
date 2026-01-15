@@ -4,8 +4,8 @@ import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { OdsDivider, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { OdsDivider, OdsPopover } from '@ovhcloud/ods-components/react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
@@ -29,7 +29,7 @@ export const RegionSelector = () => {
 
   return (
     <div className="flex items-center gap-2">
-      <OdsText preset="heading-6">{t('region')}</OdsText>
+      <Text preset="heading-6">{t('region')}</Text>
       <div>
         <Button
           id="trigger-region-selector-popover"
@@ -53,12 +53,12 @@ export const RegionSelector = () => {
             {geographyGroups.map((geographyGroup, index) => (
               <Fragment key={geographyGroup.continentCode}>
                 <div className="flex flex-col gap-4">
-                  <OdsText
+                  <Text
                     preset="caption"
                     className="[&::part(text)]:text-[var(--ods-color-heading)]"
                   >
                     {translateGeographyName(geographyGroup.continentCode)}
-                  </OdsText>
+                  </Text>
                   {geographyGroup.regions.map((link) => (
                     <InternalLink
                       className={clsx(

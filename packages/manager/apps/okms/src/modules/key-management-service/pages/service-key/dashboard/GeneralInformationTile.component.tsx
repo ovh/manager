@@ -8,9 +8,8 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { Clipboard, DashboardTile } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
@@ -41,13 +40,13 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
           label: t('key_management_service_service-keys_dashboard_field_name'),
           value: (
             <div className="flex items-center justify-between gap-2">
-              <OdsText
+              <Text
                 className="max-w-1/2 overflow-hidden text-ellipsis"
-                preset={ODS_TEXT_PRESET.paragraph}
+                preset="paragraph"
                 data-testid="truc"
               >
                 {serviceKey.name}
-              </OdsText>
+              </Text>
               <Button
                 id="editName"
                 data-testid={SERVICE_KEY_TEST_IDS.editNameButton}

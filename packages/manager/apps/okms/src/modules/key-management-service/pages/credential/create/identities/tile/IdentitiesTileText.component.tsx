@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 type IdentitiesTileTextProps = {
   children: ReactNode;
@@ -9,9 +8,9 @@ type IdentitiesTileTextProps = {
 
 const IdentitiesTileText = ({ children }: IdentitiesTileTextProps) => {
   return (
-    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="pl-3">
+    <Text preset="paragraph" className="pl-3">
       {children}
-    </OdsText>
+    </Text>
   );
 };
 

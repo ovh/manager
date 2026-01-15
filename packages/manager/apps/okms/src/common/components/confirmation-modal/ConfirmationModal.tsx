@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsModal, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsMessage, OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
@@ -55,8 +56,8 @@ export const ConfirmationModal = ({
             {error}
           </OdsMessage>
         )}
-        <OdsText preset={ODS_TEXT_PRESET.heading4}>{title}</OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{message}</OdsText>
+        <Text preset="heading-4">{title}</Text>
+        <Text preset="paragraph">{message}</Text>
 
         {isLoading && (
           <div data-testid="spinner" className="my-5 flex justify-center">

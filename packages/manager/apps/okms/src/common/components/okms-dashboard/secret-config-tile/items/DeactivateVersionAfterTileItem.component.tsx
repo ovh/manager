@@ -2,7 +2,8 @@ import { SecretConfig } from '@secret-manager/types/secret.type';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
@@ -33,7 +34,7 @@ export const DeactivateVersionAfterTileItem = ({
             className="block h-5 content-center"
           />
         ) : (
-          <OdsText preset="span">{data.deactivateVersionAfter}</OdsText>
+          <Text preset="span">{data.deactivateVersionAfter}</Text>
         )}
       </ManagerTile.Item.Description>
     </ManagerTile.Item>

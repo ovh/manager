@@ -3,7 +3,8 @@ import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { OdsBadge, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { LocationType } from '@/common/types/location.type';
 
@@ -51,9 +52,9 @@ export const RegionTypeBadge = ({ type }: RegionTypeBadgeProps) => {
         size="sm"
       />
       <OdsTooltip triggerId={tooltipId} position="right" withArrow>
-        <OdsText preset="caption" className="w-56">
+        <Text preset="caption" className="w-56">
           <span>{tooltipLabels[type]}</span>
-        </OdsText>
+        </Text>
       </OdsTooltip>
     </div>
   );

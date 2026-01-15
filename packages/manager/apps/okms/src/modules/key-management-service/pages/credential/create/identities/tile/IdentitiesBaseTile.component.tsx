@@ -2,8 +2,9 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 import clsx from 'clsx';
 
-import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCard, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_CARD_COLOR } from '@ovhcloud/ods-components';
+import { OdsCard } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 type IdentitiesBaseTileProps = {
   title: string;
@@ -33,7 +34,7 @@ const IdentitiesBaseTile = ({
       updateCallback(!isChecked);
     }}
   >
-    <OdsText preset={ODS_TEXT_PRESET.heading5}>{title}</OdsText>
+    <Text preset="heading-5">{title}</Text>
     <div className="grid gap-1">{children}</div>
   </OdsCard>
 );

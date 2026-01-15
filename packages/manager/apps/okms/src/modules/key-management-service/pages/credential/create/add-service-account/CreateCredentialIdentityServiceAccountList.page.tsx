@@ -8,8 +8,9 @@ import IdentitiesServiceAccountList from '@key-management-service/pages/credenti
 import { IdentityOauthClient } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsModal, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { Button } from '@ovh-ux/muk';
 
@@ -27,9 +28,9 @@ const CreateCredentialIdentityServiceAccountList = () => {
 
   return (
     <OdsModal isOpen isDismissible onOdsClose={closeModal} className="ods-identity-modal">
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
+      <Text preset="heading-3">
         {t('key_management_service_credentials_identity_modal_user_list_headline')}
-      </OdsText>
+      </Text>
       <div className="mt-4 h-full max-h-[400px] overflow-y-auto">
         {isLoading ? (
           <div className="flex justify-center">

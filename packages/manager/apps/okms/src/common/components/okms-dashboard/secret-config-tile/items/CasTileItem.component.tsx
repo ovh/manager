@@ -2,7 +2,8 @@ import { SecretConfig } from '@secret-manager/types/secret.type';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
@@ -32,9 +33,9 @@ export const CasTileItem = ({ data, isPending, isError }: CasTileItemProps) => {
             className="block h-5 content-center"
           />
         ) : (
-          <OdsText preset="span">
+          <Text preset="span">
             {data.casRequired ? t('activated') : t('disabled', { ns: NAMESPACES.STATUS })}
-          </OdsText>
+          </Text>
         )}
       </ManagerTile.Item.Description>
     </ManagerTile.Item>
