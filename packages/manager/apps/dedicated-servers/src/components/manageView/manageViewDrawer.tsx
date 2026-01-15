@@ -15,7 +15,7 @@ import {
 } from '@ovh-ux/muk';
 import { PREFERENCES_KEY, STANDARD_VIEW_ID } from './manageView.constants';
 import { ViewType } from './types';
-import { useCreateViewsPreference } from '@/hooks/manage-views/useCreateViewPreference';
+import { useSaveViewsPreference } from '@/hooks/manage-views/useSaveViewPreference';
 
 export type ManageViewDrawerProps = {
   views: ViewType[];
@@ -36,7 +36,7 @@ export const ManageViewDrawer = ({
   const { t } = useTranslation('manage-view');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const [editingView, setEditingView] = useState<ViewType>(null);
-  const { isPending, mutate: createViews } = useCreateViewsPreference({
+  const { isPending, mutate: createViews } = useSaveViewsPreference({
     key: PREFERENCES_KEY,
   });
 
