@@ -124,11 +124,11 @@ const testStep2ContentAddUsersModal = async (container: HTMLElement) => {
 
   // Wait for spinner to disappear
   await waitFor(() => {
-    expect(container.querySelector('ods-spinner')).not.toBeInTheDocument();
+    expect(container.querySelector('spinner')).not.toBeInTheDocument();
   }, WAIT_TIMEOUT);
 
   // Get user 1 card
-  const user1Card = screen.getByText(mockIdentityUser.email);
+  const user1Card = await screen.findByText(mockIdentityUser.email);
 
   // Get submit button
   const buttonAddUsers = screen.getByRole('button', {

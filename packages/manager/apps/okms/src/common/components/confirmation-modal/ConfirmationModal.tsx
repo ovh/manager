@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
-import { Message, Text } from '@ovhcloud/ods-react';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsModal } from '@ovhcloud/ods-components/react';
+import { Message, Spinner, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
@@ -56,38 +56,38 @@ export const ConfirmationModal = ({
             {error}
           </Message>
         )}
-        <Text preset="heading-4">{title}</Text>
-        <Text preset="paragraph">{message}</Text>
 
         {isLoading && (
           <div data-testid="spinner" className="my-5 flex justify-center">
-            <OdsSpinner size={ODS_SPINNER_SIZE.md} inline-block></OdsSpinner>
+            <Spinner />
           </div>
         )}
         {!isLoading && (
-          <div className="flex justify-end gap-2">
-            <Button
-              data-testid={'cancel-button-test-id'}
-              color="critical"
-              onClick={onDismiss}
-              variant="ghost"
-              type="button"
-            >
-              {cancelButtonLabel || t('cancel')}
-            </Button>
+          <>
+            <Text preset="heading-4">{title}</Text>
+            <Text preset="paragraph">{message}</Text>
+            <div className="flex justify-end gap-2">
+              <Button
+                data-testid={'cancel-button-test-id'}
+                color="critical"
+                onClick={onDismiss}
+                variant="ghost"
+                type="button"
+              >
+                {cancelButtonLabel || t('cancel')}
+              </Button>
 
-            <Button
-              data-testid={'confirm-button-test-id'}
-              color="critical"
-              onClick={onConfirm}
-              disabled={isConfirmButtonDisabled}
-              loading={isConfirmButtonLoading}
-              variant="default"
-              type="button"
-            >
-              {confirmButtonLabel || t('confirm')}
-            </Button>
-          </div>
+              <Button
+                data-testid={'confirm-button-test-id'}
+                color="critical"
+                onClick={onConfirm}
+                disabled={isConfirmButtonDisabled}
+                loading={isConfirmButtonLoading}
+              >
+                {confirmButtonLabel || t('confirm')}
+              </Button>
+            </div>
+          </>
         )}
       </div>
     </OdsModal>

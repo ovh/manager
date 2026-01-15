@@ -5,8 +5,7 @@ import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secr
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { Spinner, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
@@ -27,7 +26,7 @@ export const ActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
   if (hasPendingOrder) {
     return (
       <div className="flex items-center gap-3">
-        <OdsSpinner size="sm" data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER} />
+        <Spinner data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER} />
         <Text>
           {t('okms_activation_in_progress', {
             region: region ? translateRegionName(region) : '',
