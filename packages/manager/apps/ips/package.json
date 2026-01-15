@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ips-app",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": true,
   "description": "Ips manager app",
   "repository": {
