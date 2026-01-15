@@ -52,4 +52,3 @@ export function getOnboardingLinkFor(
   }
   return linksOrKey[subsidiary] ?? linksOrKey.DEFAULT;
 }
-

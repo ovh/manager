@@ -29,6 +29,7 @@ export default [
           (rule) => [rule, 'off'],
         ),
       ),
+      // set of rules disabled especially for component mocks
       'react/no-multi-comp': 'off',
       'jsx-a11y/click-events-have-key-events': 'off',
       'jsx-a11y/no-static-element-interactions': 'off',
@@ -43,8 +44,11 @@ export default [
   {
     files: ['**/*.{ts,tsx}'],
     rules: {
+      // we often use custom classes and even if we try to not have arbitrary something we have to
       'tailwindcss/no-custom-classname': 'off',
       'tailwindcss/no-arbitrary-value': 'off',
+      // if not disabled it failed for memoized component. All exported components have names so this should not be a problem.
+      'react/display-name': 'off',
     },
   },
   {
