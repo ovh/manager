@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.8.1...@ovh-ux/manager-web-domains-app@1.9.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **web-domains:** fix usage of iam authorisation checks ([6a8ed24](https://github.com/ovh/manager/commit/6a8ed245d9c0788214b937d69a68dc0a02323a7d)), closes [#INC0182631](https://github.com/ovh/manager/issues/INC0182631)
+
+
+### Features
+
+* **web-domains:** improve test ([6126db7](https://github.com/ovh/manager/commit/6126db7ac6bf05b65da07876dda2dd2db095b2e3))
+
+
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.8.0...@ovh-ux/manager-web-domains-app@1.8.1) (2026-01-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app
