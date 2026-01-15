@@ -58,7 +58,7 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistCtrl(
         picto: 'ovh-font-docs',
         sref: 'telecom.telephony.billingAccount.line.dashboard.assist.support',
         text: $translate.instant(
-          'telephony_line_assist_actions_line_contact_support_and_guides',
+          'telephony_line_assist_actions_line_contact_support',
         ),
       },
     ];
