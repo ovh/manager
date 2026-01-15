@@ -1,10 +1,14 @@
-import { useId } from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsTooltip } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import {
+  Badge,
+  BadgeProp,
+  Icon,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 import { LocationType } from '@/common/types/location.type';
 
@@ -31,7 +35,6 @@ const badgeLabels: Record<LocationType, string> = {
 };
 
 export const RegionTypeBadge = ({ type }: RegionTypeBadgeProps) => {
-  const tooltipId = useId();
   const { t } = useTranslation('common');
 
   const tooltipLabels: Record<LocationType, string> = {
@@ -41,21 +44,20 @@ export const RegionTypeBadge = ({ type }: RegionTypeBadgeProps) => {
   };
 
   return (
-    <div className={'relative'}>
-      <OdsBadge
-        id={tooltipId}
-        label={badgeLabels[type]}
-        color={textColors[type]}
-        className={bgColors[type]}
-        icon="circle-info"
-        iconAlignment="right"
-        size="sm"
-      />
-      <OdsTooltip triggerId={tooltipId} position="right" withArrow>
-        <Text preset="caption" className="w-56">
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Badge color={textColors[type]} className={bgColors[type]} size="sm">
+          <>
+            {badgeLabels[type]}
+            <Icon name="circle-info" />
+          </>
+        </Badge>
+      </TooltipTrigger>
+      <TooltipContent className="w-56">
+        <Text preset="small">
           <span>{tooltipLabels[type]}</span>
         </Text>
-      </OdsTooltip>
-    </div>
+      </TooltipContent>
+    </Tooltip>
   );
 };
