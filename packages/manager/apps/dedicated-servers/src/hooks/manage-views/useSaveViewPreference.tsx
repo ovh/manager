@@ -12,28 +12,28 @@ export type ViewType = {
   default?: boolean;
 };
 
-export type CreateViewsPreferenceMutationParams = {
+export type SaveViewsPreferenceMutationParams = {
   views: ViewType[];
 };
 
-export type UseCreateViewsPreferenceParams = {
+export type UseSaveViewsPreferenceParams = {
   key: string;
   onError?: (apiError: ApiError) => void;
-  onSuccess?: (variables: CreateViewsPreferenceMutationParams) => void;
+  onSuccess?: (variables: SaveViewsPreferenceMutationParams) => void;
   onSettled?: () => void;
 };
 
-export const useCreateViewsPreference = ({
+export const useSaveViewsPreference = ({
   key,
   onError,
   onSuccess,
   onSettled,
-}: UseCreateViewsPreferenceParams) => {
+}: UseSaveViewsPreferenceParams) => {
   const queryClient = useQueryClient();
   const { clearNotifications } = useNotifications();
 
   return useMutation({
-    mutationFn: ({ views }: CreateViewsPreferenceMutationParams) =>
+    mutationFn: ({ views }: SaveViewsPreferenceMutationParams) =>
       postManagerPreferences({
         key,
         value: JSON.stringify(views),
