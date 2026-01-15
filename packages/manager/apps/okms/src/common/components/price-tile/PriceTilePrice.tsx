@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
 
@@ -26,9 +27,9 @@ export const PriceTilePrice = ({ productCode }: PriceTileProps) => {
 
   if (isError) {
     return (
-      <OdsMessage color="danger" isDismissible={false}>
+      <Message color="critical" dismissible={false}>
         {t('error_fetching_data')}
-      </OdsMessage>
+      </Message>
     );
   }
 

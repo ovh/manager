@@ -6,7 +6,8 @@ import { useCreateCart } from '@key-management-service/data/hooks/useCreateCart'
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage, OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
@@ -62,11 +63,11 @@ const OrderOkmsModal = () => {
       {/* ERROR - Retry button */}
       {error && (
         <>
-          <OdsMessage color="danger" isDismissible={false} className="w-full pb-5">
+          <Message color="critical" dismissible={false} className="w-full pb-5">
             {t(`${NAMESPACES.ERROR}:error_message`, {
               message: error.message,
             })}
-          </OdsMessage>
+          </Message>
           <OkmsOrderModalCancelButton onClick={cancel} />
           <Button
             data-testid={ORDER_OKMS_CREATE_RETRY_BUTTON_TEST_ID}

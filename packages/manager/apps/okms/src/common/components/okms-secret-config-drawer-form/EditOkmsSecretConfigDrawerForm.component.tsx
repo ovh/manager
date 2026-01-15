@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import z from 'zod';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -73,9 +73,9 @@ export const EditOkmsSecretConfigDrawerForm = ({
       <DrawerContent>
         <form className="flex flex-col gap-4 p-1" onSubmit={handleSubmit(handleSubmitForm)}>
           {updateError && (
-            <OdsMessage color="danger" className="mb-4">
+            <Message color="critical" className="mb-4">
               {updateError?.response?.data?.message || t('error_update_settings')}
-            </OdsMessage>
+            </Message>
           )}
           <SecretDeactivateVersionAfterFormField name="deactivateVersionAfter" control={control} />
           <SecretMaxVersionsFormField name="maxVersions" control={control} okmsId={okmsId} />

@@ -5,7 +5,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer } from '@ovh-ux/manager-react-components';
@@ -36,9 +36,9 @@ const OkmsEditSecretConfigDrawer = () => {
     >
       <Suspense>
         {error && (
-          <OdsMessage color="danger" className="mb-4" isDismissible={false}>
+          <Message color="critical" className="mb-4" dismissible={false}>
             {error?.response?.data?.message}
-          </OdsMessage>
+          </Message>
         )}
         {!error && !isPending && (
           <EditOkmsSecretConfigDrawerForm

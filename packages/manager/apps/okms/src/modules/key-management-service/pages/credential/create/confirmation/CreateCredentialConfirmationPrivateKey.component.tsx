@@ -2,8 +2,8 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsCard, OdsMessage } from '@ovhcloud/ods-components/react';
+import { OdsCard } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 import {
   Checkbox,
   CheckboxControl,
@@ -42,9 +42,9 @@ const CreateCredentialConfirmationPrivateKey = ({
         <Subtitle>
           {t('key_management_service_credential_create_confirmation_private-key_title')}
         </Subtitle>
-        <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
+        <Message color="warning" dismissible={false}>
           {t('key_management_service_credential_create_confirmation_private-key_warn')}
-        </OdsMessage>
+        </Message>
         <MukLink
           href={`data:text/plain;charset=utf-8,${encodeURIComponent(
             privateKey.replace(/\n/g, '\r\n'),

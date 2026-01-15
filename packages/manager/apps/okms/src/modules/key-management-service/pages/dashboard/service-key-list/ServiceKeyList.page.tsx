@@ -15,8 +15,7 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
@@ -92,13 +91,11 @@ export default function Keys() {
 
   return (
     <div className="flex flex-col gap-6">
-      <Text preset="paragraph">
-        {t('key_management_service_service-keys_headline')}
-      </Text>
+      <Text preset="paragraph">{t('key_management_service_service-keys_headline')}</Text>
       {error && (
-        <OdsMessage className="mt-4" color={ODS_MESSAGE_COLOR.critical}>
+        <Message className="mt-4" color="critical">
           {tError('manager_error_page_default')}
-        </OdsMessage>
+        </Message>
       )}
       <Button
         id="createEncryptionKey"

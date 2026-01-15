@@ -7,7 +7,7 @@ import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesH
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
@@ -65,9 +65,9 @@ export default function CreateKmsPage() {
     >
       <section className="max-w-2xl space-y-8">
         {hasPendingOrder && (
-          <OdsMessage color="information" isDismissible={false}>
+          <Message color="information" dismissible={false}>
             {t('common:okms_order_blocked')}
-          </OdsMessage>
+          </Message>
         )}
         <div className="space-y-8">
           <div>
