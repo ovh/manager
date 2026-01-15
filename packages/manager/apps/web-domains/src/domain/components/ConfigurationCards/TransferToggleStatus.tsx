@@ -20,6 +20,7 @@ import { TDomainResource } from '@/domain/types/domainResource';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { transferStatusFromState } from '@/domain/utils/transferStatus';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 
 interface TransferToggleStatusProps {
   readonly domainResource: TDomainResource;
@@ -50,9 +51,14 @@ export default function TransferToggleStatus({
     domainResource?.targetSpec?.protectionState,
   );
 
+  const { data: dnsZoneIAMRessources } = useGetIAMResource(
+    domainResource.id,
+    'domain',
+  );
+  const urn = dnsZoneIAMRessources?.[0]?.urn;
   const { isPending, isAuthorized } = useAuthorizationIam(
     ['domain:apiovh:name/edit'],
-    `urn:v1:eu:resource:domain:${domainResource.id}`,
+    urn,
   );
 
   // FIXME: improve .tn transfer handling

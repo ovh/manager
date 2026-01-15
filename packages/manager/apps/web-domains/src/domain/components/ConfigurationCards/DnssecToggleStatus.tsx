@@ -21,6 +21,7 @@ import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 
 interface DnssecToggleStatusProps {
   readonly dnssecStatus: DnssecStatusEnum;
@@ -38,9 +39,14 @@ export default function DnssecToggleStatus({
   setDnssecModalOpened,
 }: DnssecToggleStatusProps) {
   const { t } = useTranslation(['domain', NAMESPACES.IAM, NAMESPACES.STATUS]);
+  const { data: dnsZoneIAMRessources } = useGetIAMResource(
+    domainResource.id,
+    'dnsZone',
+  );
+  const urn = dnsZoneIAMRessources?.[0]?.urn;
   const { isPending, isAuthorized } = useAuthorizationIam(
     ['dnsZone:apiovh:dnssec/create', 'dnsZone:apiovh:dnssec/delete'],
-    `urn:v1:eu:resource:dnsZone:${domainResource.id}`,
+    urn,
   );
   return (
     <ManagerTile.Item>
