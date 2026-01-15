@@ -75,5 +75,8 @@ export const urls = {
   // VIDEO CENTER
   videoCenter: '/video-center',
   videoCenterDashboard: `/video-center/${subRoutes.serviceId}`,
+  videoCenterFreemiumDashboard: `/video-center-freemium/${subRoutes.serviceId}`,
   videoCenterOnboarding: `/video-center/${subRoutes.serviceId}/onboarding`,
+  videoCenterOrder: `/video-center/${subRoutes.serviceId}/order`,
+  videoCenterActivate: `/video-center/${subRoutes.serviceId}/activate`,
 };
