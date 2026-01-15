@@ -27,9 +27,7 @@ const CredentialList = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Text preset="paragraph">
-        {t('key_management_service_credential_headline')}
-      </Text>
+      <Text preset="paragraph">{t('key_management_service_credential_headline')}</Text>
       <Button
         id="createAccessCertificate"
         loading={isLoadingIam}
@@ -53,9 +51,7 @@ const CredentialList = () => {
         (isAuthorized ? (
           <CredentialDatagrid okms={okms} />
         ) : (
-          <Text preset="paragraph">
-            {t('key_management_service_credential_not_authorized')}
-          </Text>
+          <Text preset="paragraph">{t('key_management_service_credential_not_authorized')}</Text>
         ))}
       <Outlet />
     </div>

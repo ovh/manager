@@ -12,12 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsModal,
-  OdsSelect,
-  OdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsModal, OdsSelect, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';

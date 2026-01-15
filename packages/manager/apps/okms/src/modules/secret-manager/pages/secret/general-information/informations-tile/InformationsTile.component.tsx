@@ -1,11 +1,11 @@
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsClipboard } from '@ovhcloud/ods-components/react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
@@ -49,7 +49,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{URN_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsClipboard
+          <Clipboard
             className="w-full"
             value={secret.iam.urn}
             data-testid={INFORMATIONS_TILE_TEST_IDS.URN}

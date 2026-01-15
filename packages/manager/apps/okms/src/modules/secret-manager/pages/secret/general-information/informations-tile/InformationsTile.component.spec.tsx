@@ -4,6 +4,7 @@ import { describe, vi } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+import { assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
 
 import { InformationsTile } from './InformationsTile.component';
@@ -29,7 +30,7 @@ const renderComponent = async () => {
 
 describe('Secrets Informations Tile component tests suite', () => {
   test('Should display settings tile with all data', async () => {
-    const { container } = await renderComponent();
+    await renderComponent();
 
     const labelList = [
       labels.common.dashboard.general_information,
@@ -48,7 +49,7 @@ describe('Secrets Informations Tile component tests suite', () => {
       expect(screen.getByText(label)).toBeVisible();
     });
 
-    expect(container.querySelector(`ods-clipboard[value="${mockSecret.iam.urn}"]`)).toBeVisible();
+    await assertClipboardVisibility(mockSecret.iam.urn);
 
     expect(mockFormatDate).toHaveBeenCalledWith(mockSecret.metadata.createdAt);
     expect(mockFormatDate).toHaveBeenCalledWith(mockSecret.metadata.updatedAt);

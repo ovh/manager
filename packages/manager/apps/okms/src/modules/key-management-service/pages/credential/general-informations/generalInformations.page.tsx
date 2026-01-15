@@ -7,12 +7,12 @@ import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { Icon, Text } from '@ovhcloud/ods-react';
 
-import { Clipboard, DashboardTile, DashboardTileBlockItem } from '@ovh-ux/manager-react-components';
+import { DashboardTile, DashboardTileBlockItem } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';

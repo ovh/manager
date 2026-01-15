@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import { Message } from '@ovhcloud/ods-react';
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
 
