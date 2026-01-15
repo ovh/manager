@@ -19,14 +19,11 @@ import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...actual,
-    useAuthorizationIam: vi.fn(),
-  };
-});
+vi.mock('@/common/hooks/iam/useGetIAMResource', () => ({
+  useGetIAMResource: vi.fn(),
+}));
 
 describe('TransferToggleStatus component', () => {
   const mockDomainResource: TDomainResource = {
@@ -110,14 +107,14 @@ describe('TransferToggleStatus component', () => {
   const mockSetTagModalOpened = vi.fn();
 
   beforeEach(() => {
+    vi.clearAllMocks();
+    (useGetIAMResource as Mock).mockReturnValue({
+      data: [{ urn: 'urn:domain:123' }],
+    });
     (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: true,
     });
-  });
-
-  afterEach(() => {
-    vi.clearAllMocks();
   });
 
   it('renders with PROTECTED state', async () => {
