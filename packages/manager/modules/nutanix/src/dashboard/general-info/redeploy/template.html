@@ -301,6 +301,24 @@
                             data-on-change="$ctrl.onPrismCentralTypeChange(modelValue)"
                         ></oui-select>
                     </oui-field>
+                    <p>
+                        {{ $ctrl.prismCentralSizes}}
+                        {{ $ctrl.config.prismCentral.size }}
+                    </p>
+                    <oui-field 
+                        data-label="Size"
+                        data-label-popover="{{:: 'nutanix_redeploy_prism_central_type_description' | translate}}"
+                    >
+                        <select
+                            class="w-50 mt-1"
+                            name="prismCentralSize"
+                            data-title="{{:: 'nutanix_redeploy_prism_central_type' | translate}}"
+                            id="prismCentralSize"
+                            data-ng-model="$ctrl.config.prismCentral.size"
+                            data-ng-options="size.value as size.label for size in $ctrl.prismCentralSizes"
+                        > 
+                        </select>
+                    </oui-field>
                     <oui-field
                         data-label="{{:: 'nutanix_redeploy_prism_central_vip' | translate}}"
                         data-label-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
