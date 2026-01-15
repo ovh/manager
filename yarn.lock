@@ -6633,11 +6633,6 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
-"@ovh-ux/logs-to-customer@^1.10.7":
-  version "1.10.7"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/logs-to-customer/-/logs-to-customer-1.10.7.tgz#c5d893d57bfb7e78f92f3fda5c0f2b93e73ed46d"
-  integrity sha512-82Q3txy40CFxdFCQlwMEliGmGdTkBtm2zm3FEakPBo0yWeZQ3MIDMVi/IbKyIpJuYp2gz5kzq6wNPJ+X9NFwBQ==
-
 "@ovh-ux/manager-common-translations@^0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.10.0.tgz#b135fbf4c9fd64a6c2045ad54091a1982fbad2d0"
@@ -6973,17 +6968,6 @@
     classnames "2.5.1"
     libphonenumber-js "1.12.8"
 
-"@ovhcloud/ods-react@^19.3.0":
-  version "19.3.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.3.0.tgz#fc005b243e03ca72cb02cd94e55d12a3ead41212"
-  integrity sha512-5d+CxP3c/z4XYDaSGUVAtXhsi1PORlVQloqn8aNm7jWidIc4XyzG6iTv/vNXznCRP7HznRoEEC0oyHSBjVIcuw==
-  dependencies:
-    "@ark-ui/react" "5.25.1"
-    classnames "2.5.1"
-    libphonenumber-js "1.12.8"
-    react-hot-toast "2.6.0"
-    react-shiki "0.9.0"
-
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
@@ -7012,11 +6996,6 @@
   version "18.6.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
   integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
-
-"@ovhcloud/ods-themes@^19.3.0":
-  version "19.3.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.3.0.tgz#75b3f7d7d609d8ac68d9be12795431fcc2eae552"
-  integrity sha512-wb+Nhu2+hX5KurouXBE2gDJTD9c/CCBgfZQyCVJffND1z1bavPYqlx8kG4We2wN24K15rwFVsvt9L3VRNr6E2Q==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
