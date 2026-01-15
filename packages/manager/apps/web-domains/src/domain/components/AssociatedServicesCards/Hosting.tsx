@@ -25,7 +25,7 @@ interface HostingProps {
   readonly serviceName: string;
 }
 
-function HostingLink({ hosting }: { hosting: string }) {
+function HostingLink({ hosting }: Readonly<{ hosting: string }>) {
   const { data: hostingUrl } = useNavigationGetUrl([
     'web',
     `/hosting/${hosting}`,
@@ -154,7 +154,6 @@ export default function Hosting({ serviceName }: HostingProps) {
         </div>
       </ManagerTile.Item>
       <FreeHostingDrawer
-        serviceName={serviceName}
         isDrawerOpen={isFreeHostingOpen}
         onClose={() => setIsFreeHostingOpen(false)}
         freeHostingOptions={freeHostingOptions}

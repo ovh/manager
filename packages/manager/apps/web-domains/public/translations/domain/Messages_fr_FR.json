@@ -150,6 +150,7 @@
   "domain_tab_general_information_subscription_premium_value": "Ce nom de domaine est premium.",
   "domain_tab_general_information_subscription_creation_date_bouton": "Gérer mes services",
   "domain_tab_general_information_subscription_handle_contacts": "Gérer les contacts",
+  "domain_tab_general_information_subscription_edit_owner": "Modifier les informations du contact titulaire",
   "domain_tab_general_information_subscription_handle_renew_frequency": "Gérer la fréquence de renouvellement",
   "domain_tab_general_information_associated_services_title": "Services associés",
   "domain_tab_general_information_associated_services_emails": "Emails",

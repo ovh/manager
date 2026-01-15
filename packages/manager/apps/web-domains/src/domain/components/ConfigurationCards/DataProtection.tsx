@@ -1,5 +1,8 @@
 import { ConfigurationDataProtectionBadgeColorAndContent } from '@/domain/constants/configuration.card';
-import { TDomainResource } from '@/domain/types/domainResource';
+import {
+  TContactDetails,
+  TDomainResource,
+} from '@/domain/types/domainResource';
 import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
 import { Badge, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
@@ -32,24 +35,28 @@ export default function DataProtection({
           <Badge color={statusDetails.color}>
             {t(statusDetails.i18nkeyContent)}
           </Badge>
-          <div>
-            <ActionMenu
-              id={'data-protection-action-menu'}
-              isCompact
-              items={[
-                {
-                  id: 1,
-                  label: t(
-                    'domain_tab_general_information_data_protection_manage_button',
-                  ),
-                  isDisabled: statusDetails.buttonStatus,
-                  onClick: () => setDataProtectionDrawerOpened(true),
-                  iamActions: ['domain:apiovh:name/edit'],
-                  urn: domainResource?.iam?.urn || '',
-                },
-              ]}
-            />
-          </div>
+          <ActionMenu
+            id={'data-protection-action-menu'}
+            isCompact
+            items={[
+              {
+                id: 1,
+                label: t(
+                  'domain_tab_general_information_data_protection_manage_button',
+                ),
+                isDisabled: Object.values(
+                  domainResource?.currentState?.contactsConfiguration,
+                ).every(
+                  (contact: TContactDetails) =>
+                    !contact?.disclosurePolicy?.visibleViaRdds ||
+                    contact?.disclosurePolicy?.forcedDisclosureConfiguration,
+                ),
+                onClick: () => setDataProtectionDrawerOpened(true),
+                iamActions: ['domain:apiovh:name/edit'],
+                urn: domainResource?.iam?.urn || '',
+              },
+            ]}
+          />
         </div>
         <Text>{t(statusDetails.i18nkeySubContent)}</Text>
       </ManagerTile.Item.Description>
