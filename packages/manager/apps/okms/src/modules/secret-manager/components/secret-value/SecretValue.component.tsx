@@ -5,8 +5,7 @@ import { SecretData, SecretVersion } from '@secret-manager/types/secret.type';
 import { isKeyValueObject } from '@secret-manager/utils/key-value/keyValue';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { Message } from '@ovhcloud/ods-react';
+import { Message, Spinner } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -31,7 +30,7 @@ export const SecretValue = ({ okmsId, secretPath, version }: SecretValueProps) =
   if (isPending)
     return (
       <div className="flex h-48 items-center justify-center">
-        <OdsSpinner />
+        <Spinner data-testid="spinner" />
       </div>
     );
 

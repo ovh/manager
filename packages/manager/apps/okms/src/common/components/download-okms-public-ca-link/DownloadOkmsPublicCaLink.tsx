@@ -4,8 +4,7 @@ import { getOkmsPublicCa } from '@key-management-service/data/api/okms';
 import { OKMS, OkmsPublicCa } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { Icon, Spinner } from '@ovhcloud/ods-react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
@@ -97,7 +96,7 @@ export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLin
           <Icon name="download" />
         </>
       </MukLink>
-      {loading && <OdsSpinner size="xs" />}
+      {loading && <Spinner size="xs" />}
     </div>
   );
 };

@@ -8,9 +8,8 @@ import IdentitiesGroupList from '@key-management-service/pages/credential/create
 import { IdentityGroup } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { OdsModal } from '@ovhcloud/ods-components/react';
+import { Spinner, Text } from '@ovhcloud/ods-react';
 
 import { Button } from '@ovh-ux/muk';
 
@@ -33,7 +32,7 @@ const CreateCredentialIdentityGroupList = () => {
       <div className="mt-4 h-full max-h-[400px] overflow-y-auto">
         {isLoading ? (
           <div className="flex justify-center">
-            <OdsSpinner size={ODS_SPINNER_SIZE.md} />
+            <Spinner size="md" />
           </div>
         ) : (
           <IdentitiesGroupList
