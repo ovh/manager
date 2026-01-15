@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.7.0...@ovh-ux/manager-communication-app@0.8.0) (2026-01-15)
+
+
+### Features
+
+* **communication:** show service email adresses change banner ([7198356](https://github.com/ovh/manager/commit/7198356cab97860dc44bd3b62ff7d019b370f0be))
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.6.5...@ovh-ux/manager-communication-app@0.7.0) (2026-01-13)
 
 

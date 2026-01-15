@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.177.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.176.0...@ovh-ux/manager-container-app@0.177.0) (2026-01-15)
+
+
+### Features
+
+* **communication:** show service email adresses change banner ([7198356](https://github.com/ovh/manager/commit/7198356cab97860dc44bd3b62ff7d019b370f0be))
+
+
+
+
+
 # [0.176.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.175.0...@ovh-ux/manager-container-app@0.176.0) (2026-01-15)
 
 
