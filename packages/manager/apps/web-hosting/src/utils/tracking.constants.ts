@@ -108,6 +108,9 @@ export const WORDPRESS_MANAGED_ONBOARDING = 'managed-wordpress_onboarding';
 // video center
 export const VIDEO_CENTER = 'video-center';
 export const VIDEO_CENTER_DASHBOARD = 'video-center-dashboard';
+export const VIDEO_CENTER_FREEMIUM_DASHBOARD = 'video-center-freemium-dashboard';
 export const VIDEO_CENTER_ONBOARDING = 'video-center-onboarding';
+export const VIDEO_CENTER_ORDER = 'video-center-order';
+export const VIDEO_CENTER_ACTIVATE = 'video-center-activate';
 
 export const GO_TO = (link: string) => `go-to-${link}_${WEBSITE}`;
