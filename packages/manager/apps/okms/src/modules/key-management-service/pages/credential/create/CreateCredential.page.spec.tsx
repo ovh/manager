@@ -12,10 +12,7 @@ import { assertOdsModalVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import {
-  assertPageTitleVisibility,
-  assertTitleVisibility,
-} from '@/common/utils/tests/uiTestHelpers';
+import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const WAIT_TIMEOUT = { timeout: 5000 };
 const mockOkmsItem: OKMS = {
@@ -118,10 +115,12 @@ const testStep2ContentAddUsersModal = async (container: HTMLElement) => {
   }, WAIT_TIMEOUT);
 
   // Check modal title
-  await assertTitleVisibility(
-    labels.credentials.key_management_service_credentials_identity_modal_user_list_headline,
-    'heading-3',
-  );
+  expect(
+    await screen.findByRole('heading', {
+      level: 3,
+      name: labels.credentials.key_management_service_credentials_identity_modal_user_list_headline,
+    }),
+  ).toBeVisible();
 
   // Wait for spinner to disappear
   await waitFor(() => {

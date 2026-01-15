@@ -1,7 +1,7 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
@@ -17,7 +17,7 @@ export const RegionTileItem = ({ okms }: RegionTileItemProps) => {
     <ManagerTile.Item>
       <ManagerTile.Item.Label>{t('region')}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
-        <OdsText preset="span">{t(`region_${okms.region}`)}</OdsText>
+        <Text preset="span">{t(`region_${okms.region}`)}</Text>
       </ManagerTile.Item.Description>
     </ManagerTile.Item>
   );

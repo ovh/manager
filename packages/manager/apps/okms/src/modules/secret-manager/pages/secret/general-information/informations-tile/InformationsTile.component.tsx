@@ -1,7 +1,8 @@
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsClipboard, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsClipboard } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
@@ -33,14 +34,14 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{PATH_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText
+          <Text
             preset="span"
             data-testid={INFORMATIONS_TILE_TEST_IDS.PATH}
             // Temporary fix: wrap text without whitespace
             style={{ overflowWrap: 'anywhere' }}
           >
             {secret.path}
-          </OdsText>
+          </Text>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
 
@@ -62,9 +63,9 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
           {t('creation_date', { ns: NAMESPACES.DASHBOARD })}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText preset="span" data-testid={INFORMATIONS_TILE_TEST_IDS.CREATED_AT}>
+          <Text preset="span" data-testid={INFORMATIONS_TILE_TEST_IDS.CREATED_AT}>
             {formatDate(secret.metadata.createdAt)}
-          </OdsText>
+          </Text>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
 
@@ -72,9 +73,9 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('last_update')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText preset="span" data-testid={INFORMATIONS_TILE_TEST_IDS.UPDATED_AT}>
+          <Text preset="span" data-testid={INFORMATIONS_TILE_TEST_IDS.UPDATED_AT}>
             {formatDate(secret?.metadata?.updatedAt ?? '')}
-          </OdsText>
+          </Text>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
 
@@ -82,7 +83,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('current_version')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText preset="span">{secret.metadata.currentVersion ?? t('no_version')}</OdsText>
+          <Text preset="span">{secret.metadata.currentVersion ?? t('no_version')}</Text>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
     </ManagerTile>

@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { useCheckoutOrder } from '@key-management-service/data/hooks/useCheckoutOrder';
 import { useTranslation } from 'react-i18next';
 
-import { OdsCheckbox, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsCheckbox, OdsMessage } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
@@ -43,8 +44,8 @@ export const OrderOkmsModalTermsAndConditions = ({
   return (
     <>
       <div className="flex flex-col gap-3 pb-6">
-        <OdsText preset="heading-4">{t('create_okms_terms_and_conditions_title')}</OdsText>
-        <OdsText preset="paragraph">{t('create_okms_terms_and_conditions_description')}</OdsText>
+        <Text preset="heading-4">{t('create_okms_terms_and_conditions_title')}</Text>
+        <Text preset="paragraph">{t('create_okms_terms_and_conditions_description')}</Text>
         <div className="flex flex-col gap-2">
           {cart.contractList.map(({ name, url }) => (
             <ExternalLink key={name} href={url}>
@@ -61,7 +62,7 @@ export const OrderOkmsModalTermsAndConditions = ({
             onOdsChange={(event) => setIsContractAccepted(event.detail.checked)}
           />
           <label className="cursor-pointer" htmlFor="confirm-contract">
-            <OdsText preset="span">{t('create_okms_terms_and_conditions_confirm_label')}</OdsText>
+            <Text preset="span">{t('create_okms_terms_and_conditions_confirm_label')}</Text>
           </label>
         </div>
         {error && (

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 type TileTextProps = {
   value: string;
@@ -11,5 +10,5 @@ type TileTextProps = {
  * @deprecated
  */
 export const TileValue: React.FC<TileTextProps> = ({ value }) => {
-  return <OdsText preset={ODS_TEXT_PRESET.span}>{value}</OdsText>;
+  return <Text preset="span">{value}</Text>;
 };

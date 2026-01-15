@@ -6,9 +6,8 @@ import { useIdentityData } from '@key-management-service/hooks/credential/useIde
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { OdsDivider } from '@ovhcloud/ods-components/react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
@@ -84,9 +83,9 @@ const CreateAddIdentities = ({
             <>
               <div className="flex items-center gap-1">
                 <Icon name="circle-info" />
-                <OdsText preset={ODS_TEXT_PRESET.span}>
+                <Text preset="span">
                   {t('key_management_service_credential_create_identities_max_label')}
-                </OdsText>
+                </Text>
               </div>
               <IdentitiesSelectedUsersList identityURNs={identityURNs} />
               <IdentitiesSelectedGroups identityURNs={identityURNs} />

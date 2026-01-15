@@ -3,8 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IdentityUser } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import IdentitiesStatusBadge from '../badge/IdentitiesStatusBadge.component';
 import IdentitiesBaseTile from './IdentitiesBaseTile.component';
@@ -50,21 +49,21 @@ const IdentitiesUserTile = ({
       setIsChecked={setIsChecked}
     >
       <div>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
+        <Text preset="caption">
           {t('key_management_service_credential_create_identities_user_tile_email_label')}:
-        </OdsText>
+        </Text>
         <IdentitiesTileText>{user.email}</IdentitiesTileText>
       </div>
       <div>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
+        <Text preset="caption">
           {t('key_management_service_credential_create_identities_user_tile_group_label')}:
-        </OdsText>
+        </Text>
         <IdentitiesTileText>{user.group} </IdentitiesTileText>
       </div>
       <div>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
+        <Text preset="caption">
           {t('key_management_service_credential_create_identities_user_tile_identity_label')}:
-        </OdsText>
+        </Text>
         <IdentitiesTileText>{user.urn}</IdentitiesTileText>
       </div>
       <IdentitiesStatusBadge status={user.status} />

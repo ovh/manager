@@ -5,8 +5,7 @@ import {
 } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { Button } from '@ovh-ux/muk';
@@ -35,7 +34,7 @@ function IdentitiesSelectedBase<T extends IdentityType>({
   const { t } = useTranslation('key-management-service/credential');
   return (
     <div className="grid gap-4">
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>{title}</OdsText>
+      <Text preset="heading-4">{title}</Text>
       <div className="flex gap-3">
         <Button
           variant="outline"

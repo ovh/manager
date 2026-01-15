@@ -7,7 +7,8 @@ import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSelectChangeEventDetail, OdsSelectCustomEvent } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsSelect, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsSelect, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -62,9 +63,9 @@ export const VersionSelector = ({
   return (
     <div className="flex flex-col gap-3 pt-2">
       <div className="flex h-8 items-center gap-2">
-        <OdsText preset="span" className="w-1/3">
+        <Text preset="span" className="w-1/3">
           {t('version')}
-        </OdsText>
+        </Text>
         {/*   isFetching forces to display the spinner when the version has changed
         otherwise when the ods-select component is refreshed, react breaks */}
         {isPending || isFetching ? (
@@ -78,9 +79,9 @@ export const VersionSelector = ({
         )}
       </div>
       <div className="flex h-8 items-center gap-2">
-        <OdsText preset="span" className="w-1/3">
+        <Text preset="span" className="w-1/3">
           {t('status', { ns: NAMESPACES.STATUS })}
-        </OdsText>
+        </Text>
         {isPending ? (
           <OdsSkeleton className="grow" data-testid={VERSION_SELECTOR_STATUS_SKELETON_TEST_ID} />
         ) : (

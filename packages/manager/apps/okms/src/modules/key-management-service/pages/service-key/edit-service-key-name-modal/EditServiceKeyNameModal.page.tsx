@@ -10,14 +10,14 @@ import {
 } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_INPUT_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
   OdsInput,
   OdsModal,
   OdsSpinner,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
@@ -89,9 +89,9 @@ export const EditServiceKeyNameModal = () => {
 
   return (
     <OdsModal isOpen isDismissible onOdsClose={closeModal}>
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
+      <Text preset="heading-3">
         {t('key_management_service_service-keys_dashboard_field_name')}
-      </OdsText>
+      </Text>
       {isPending ? (
         <OdsSpinner className="my-3 block" size={ODS_SPINNER_SIZE.md} />
       ) : (

@@ -1,7 +1,7 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
@@ -16,7 +16,7 @@ export const SecretVersionCountTileItem = ({ okms }: SecretVersionCountTileItemP
     <ManagerTile.Item>
       <ManagerTile.Item.Label>{t('okms_secret_version_count')}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
-        <OdsText preset="span">{okms.secretVersionCount}</OdsText>
+        <Text preset="span">{okms.secretVersionCount}</Text>
       </ManagerTile.Item.Description>
     </ManagerTile.Item>
   );

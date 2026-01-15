@@ -7,7 +7,8 @@ import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesH
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
@@ -70,10 +71,10 @@ export default function CreateKmsPage() {
         )}
         <div className="space-y-8">
           <div>
-            <OdsText preset="heading-2" className="mb-2">
+            <Text preset="heading-2" className="mb-2">
               {t('region_selection')}
-            </OdsText>
-            <OdsText preset="paragraph">{t('region_selection_description')}</OdsText>
+            </Text>
+            <Text preset="paragraph">{t('region_selection_description')}</Text>
           </div>
 
           <RegionPicker selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} />

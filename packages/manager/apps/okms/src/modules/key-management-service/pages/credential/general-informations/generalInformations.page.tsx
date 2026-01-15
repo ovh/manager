@@ -7,9 +7,8 @@ import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { Clipboard, DashboardTile, DashboardTileBlockItem } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
@@ -44,13 +43,13 @@ const CredentialGeneralInformations = () => {
       id: 'name',
       label: t('key_management_service_credential_dashboard_name'),
       value: (
-        <OdsText
-          preset={ODS_TEXT_PRESET.span}
+        <Text
+          preset="span"
           // Temporary fix: wrap text without whitespace
           style={{ overflowWrap: 'anywhere' }}
         >
           {credential.name || credential.id}
-        </OdsText>
+        </Text>
       ),
     },
     {
@@ -62,13 +61,13 @@ const CredentialGeneralInformations = () => {
       id: 'description',
       label: t('key_management_service_credential_dashboard_description'),
       value: (
-        <OdsText
-          preset={ODS_TEXT_PRESET.span}
+        <Text
+          preset="span"
           // Temporary fix: wrap text without whitespace
           style={{ overflowWrap: 'anywhere' }}
         >
           {credential.description || ''}
-        </OdsText>
+        </Text>
       ),
     },
     {
@@ -79,7 +78,7 @@ const CredentialGeneralInformations = () => {
     {
       id: 'type',
       label: t('key_management_service_credential_dashboard_type'),
-      value: <OdsText preset={ODS_TEXT_PRESET.span}>{credential.certificateType}</OdsText>,
+      value: <Text preset="span">{credential.certificateType}</Text>,
     },
     {
       id: 'origin',

@@ -5,8 +5,7 @@ import { KmsDashboardOutletContext } from '@key-management-service/pages/dashboa
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
@@ -28,9 +27,9 @@ const CredentialList = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset="paragraph">
         {t('key_management_service_credential_headline')}
-      </OdsText>
+      </Text>
       <Button
         id="createAccessCertificate"
         loading={isLoadingIam}
@@ -54,9 +53,9 @@ const CredentialList = () => {
         (isAuthorized ? (
           <CredentialDatagrid okms={okms} />
         ) : (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Text preset="paragraph">
             {t('key_management_service_credential_not_authorized')}
-          </OdsText>
+          </Text>
         ))}
       <Outlet />
     </div>

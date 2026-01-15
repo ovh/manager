@@ -11,14 +11,14 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
   OdsModal,
   OdsSelect,
   OdsSpinner,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
@@ -99,9 +99,9 @@ export const DisableServiceKeyModal = () => {
       color={ODS_MODAL_COLOR.warning}
       className="[&::part(dialog)]:overflow-visible [&::part(dialog-content)]:overflow-visible"
     >
-      <OdsText preset={ODS_TEXT_PRESET.heading2}>
+      <Text preset="heading-2">
         {t('key_management_service_service-keys_modal_deactivation_heading')}
-      </OdsText>
+      </Text>
       {isPending ? (
         <OdsSpinner className="my-4 block" size={ODS_SPINNER_SIZE.md} />
       ) : (

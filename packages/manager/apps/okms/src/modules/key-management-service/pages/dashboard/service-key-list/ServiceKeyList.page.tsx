@@ -15,8 +15,9 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
@@ -91,9 +92,9 @@ export default function Keys() {
 
   return (
     <div className="flex flex-col gap-6">
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset="paragraph">
         {t('key_management_service_service-keys_headline')}
-      </OdsText>
+      </Text>
       {error && (
         <OdsMessage className="mt-4" color={ODS_MESSAGE_COLOR.critical}>
           {tError('manager_error_page_default')}
