@@ -1,0 +1,12 @@
+{
+  "vaults": "Cofres",
+  "services": "Serviços",
+  "billing": "Faturação",
+  "agents": "Agentes",
+  "buckets": "Balde",
+  "policy": "Política",
+  "actions": "Ações",
+  "without_engagement": "sem compromisso",
+  "backup_agent_guide": "Guias do Agente de Backup",
+  "baremetal_label_order_in_progress": "O pedido foi recebido com sucesso, o seu produto está a ser entregue e pode acompanhar o seu progresso <OrderLink>aqui</OrderLink>."
+}

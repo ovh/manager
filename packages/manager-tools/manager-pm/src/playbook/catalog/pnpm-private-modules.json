@@ -8,6 +8,10 @@
     "pnpm": "packages/manager/core/ovh-product-icons"
   },
   {
+    "turbo": "--filter @ovh-ux/backup-agent",
+    "pnpm": "packages/manager/modules/backup-agent"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-core-utils",
     "pnpm": "packages/manager/core/utils"
   },

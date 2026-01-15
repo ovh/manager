@@ -1,0 +1,12 @@
+{
+  "home": "Accueil",
+  "order": "Commander",
+  "open": "Ouvrir le tableau de bord",
+  "title": "Liste",
+  "resource_name_label": "Nom",
+  "location_label": "Location",
+  "region_label": "Region",
+  "status_label": "Statut",
+  "order_vault": "Commander un vault",
+  "more_action": "Action supplémentaire"
+}

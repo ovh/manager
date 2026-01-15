@@ -24,5 +24,6 @@
   "period_current": "Mese corrente",
   "period_last": "Mese scorso",
   "period_last_months": "Ultimi {{ value }} mesi",
-  "no_result_found": "Nessun risultato trovato"
+  "no_result_found": "Nessun risultato trovato",
+  "reference": "Referenza"
 }

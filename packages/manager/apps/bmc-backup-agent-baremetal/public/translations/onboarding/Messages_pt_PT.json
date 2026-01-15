@@ -1,0 +1,30 @@
+{
+  "title_fallback": "O Backup, de forma simples",
+  "description_part1": "Obtenha uma solução de backup com backups automáticos diários remotos, alertas proativos e monitorização centralizada, tudo armazenado de forma segura em um Vault no OVHcloud Object Storage. Instale o agente de backup em menos de 15 minutos, sem custos. Você paga apenas pelo armazenamento do Object Storage que utiliza.",
+  "description_part2": "Siga nossos guias para começar rapidamente.",
+  "guides": {
+    "guide1": {
+      "category": "Custo",
+      "title": "Custo e Faturação",
+      "description": "Documentação explicando o custo e a faturação do Agente de Backup.",
+      "cta": "Descobrir"
+    },
+    "guide2": {
+      "category": "Tutorial",
+      "title": "Primeira configuração",
+      "description": "Um guia passo a passo para ajudá-lo a configurar e executar seu primeiro backup.",
+      "cta": "Consultar o tutorial"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Questões frequentes",
+      "description": "Um guia com perguntas frequentes abordando as questões mais comuns.",
+      "cta": "Leia a FAQ"
+    }
+  },
+  "no_baremetal_available": "Encomendar um servidor Bare Metal e protegê-lo com o Backup Agent",
+  "select_baremetal": "Selecione o seu servidor BareMetal",
+  "save_a_baremetal_server": "Fazer backup de um servidor Bare Metal",
+  "baremetal_label_delay_order": "Após a validação do seu pedido, esta tela será atualizada e você receberá um e-mail assim que seu produto Agente de Backup for entregue. Você poderá consultar o progresso do seu pedido <OrderLink>aqui</OrderLink>.",
+  "baremetal_label_order_in_progress": "O pedido foi recebido com sucesso, o seu produto está a ser entregue e pode acompanhar o seu progresso <OrderLink>aqui</OrderLink>."
+}

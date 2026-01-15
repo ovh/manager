@@ -1,0 +1,22 @@
+{
+  "home": "Accueil",
+  "order": "Commander",
+  "back": "Retour",
+  "title": "Dashboard",
+  "email": "E-mail",
+  "subject": "Objet",
+  "message": "Message",
+  "submitButton": "Envoyer",
+  "successMessage": "Votre demande a été envoyée avec succès.",
+  "errors": {
+    "emailRequired": "L’e-mail est obligatoire.",
+    "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+    "subjectRequired": "L’objet est obligatoire.",
+    "messageRequired": "Le message est obligatoire."
+  },
+  "general-information": "Informations générales",
+  "help": "Aide",
+  "type_billing": "Type de facturation",
+  "vault_price": "Soit {{vaultPrice}} HT/mois",
+  "consumption_tooltip": "Le stockage supplémentaire n'est pas disponible en libre-service. Pour augmenter votre capacité de stockage, veuillez contacter le support."
+}
