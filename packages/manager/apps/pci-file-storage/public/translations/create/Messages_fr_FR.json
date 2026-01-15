@@ -16,11 +16,11 @@
           "description": "Déploiement résilient et économique sur 1 zone de disponibilité."
         },
         "localzone": {
-          "label": "Région 3-AZ",
+          "label": "Local Zone",
           "description": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité."
         },
         "region-3-az": {
-          "label": "Local Zone",
+          "label": "Région 3-AZ",
           "description": "Déploiement de vos applications au plus près de vos utilisateurs pour une faible latence et la résidence des données."
         }
       }
