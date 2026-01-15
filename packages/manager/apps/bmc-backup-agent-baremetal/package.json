@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-bmc-backup-agent-baremetal-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "OVHcloud Backup Agent for Baremetal",
   "repository": {
@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "@ovh-ux/backup-agent": "^1.8.0",
-    "@ovh-ux/manager-billing-informations": "^1.6.0",
-    "@ovh-ux/manager-common-translations": "^0.28.0",
+    "@ovh-ux/backup-agent": "^1.8.1",
+    "@ovh-ux/manager-billing-informations": "^1.6.1",
+    "@ovh-ux/manager-common-translations": "^0.28.1",
     "@ovh-ux/manager-config": "^8.8.1",
     "@ovh-ux/manager-core-api": "^0.20.0",
     "@ovh-ux/manager-core-utils": "0.4.10",

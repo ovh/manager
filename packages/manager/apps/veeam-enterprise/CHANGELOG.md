@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.66](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise-app@3.0.65...@ovh-ux/manager-veeam-enterprise-app@3.0.66) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-enterprise-app
+
+
+
+
+
 ## [3.0.65](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise-app@3.0.64...@ovh-ux/manager-veeam-enterprise-app@3.0.65) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-enterprise-app
