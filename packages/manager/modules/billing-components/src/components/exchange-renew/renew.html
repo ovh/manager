@@ -1,5 +1,5 @@
 <div class="p-5" data-ui-view>
-    <oui-back-button data-on-click="$ctrl.goBack()">
+    <oui-back-button data-on-click="$ctrl.goToAutorenew()">
         <span data-translate="exchange_update_billing_action_title"></span>
     </oui-back-button>
 
@@ -8,7 +8,7 @@
             data-header="{{::'exchange_update_billing_button_title' | translate}}"
             data-description="{{::'exchange_update_billing_periode_intro' | translate}}"
             data-loading="!$ctrl.exchange"
-            data-on-cancel="$ctrl.goBack()"
+            data-on-cancel="$ctrl.goToAutorenew()"
             data-valid="$ctrl.buffer.hasChanged"
             data-prevent-next
         >

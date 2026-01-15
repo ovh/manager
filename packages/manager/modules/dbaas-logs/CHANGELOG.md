@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.3...@ovh-ux/manager-dbaas-logs@1.36.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* **dedicated.dbaas:** fix missing translation for ldp enable iam cta ([baaf4d8](https://github.com/ovh/manager/commit/baaf4d83bfe25dbd8e1f5b640dc9dde33ddb5ef1)), closes [#MAOBS-200](https://github.com/ovh/manager/issues/MAOBS-200)
+
+
+### Features
+
+* **ldp:** add roadmap feature request and changelog ([e55c8c7](https://github.com/ovh/manager/commit/e55c8c72265084d63142029fc0f52d4baa6c7f15)), closes [#MAOBS-38](https://github.com/ovh/manager/issues/MAOBS-38)
+
+
+
+
+
 ## [1.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.2...@ovh-ux/manager-dbaas-logs@1.35.3) (2025-12-22)
 
 

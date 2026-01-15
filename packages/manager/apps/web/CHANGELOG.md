@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.1...@ovh-ux/manager-web@19.35.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.0...@ovh-ux/manager-web@19.35.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* **web-domains:** fix redirection ([a3e2a2f](https://github.com/ovh/manager/commit/a3e2a2f2523b7a0907f412177da0657c79c0b1b9)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+
+
+
+
+
 # [19.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.6...@ovh-ux/manager-web@19.35.0) (2026-01-08)
 
 

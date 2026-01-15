@@ -217,4 +217,11 @@
             data-translate="billing_services_actions_menu_see_dashboard"
         ></span>
     </oui-action-menu-item>
+    <oui-action-menu-item
+        ng-if="::$ctrl.goToBills"
+        on-click="$ctrl.goToBills($ctrl.service)"
+        top
+    >
+        <span data-translate="billing_services_actions_menu_see_bills"></span>
+    </oui-action-menu-item>
 </oui-action-menu>

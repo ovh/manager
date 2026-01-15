@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.72.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.71.1...@ovh-ux/manager-dedicated@20.72.0) (2026-01-19)
+
+
+### Features
+
+* **ldp:** add roadmap feature request and changelog ([e55c8c7](https://github.com/ovh/manager/commit/e55c8c72265084d63142029fc0f52d4baa6c7f15)), closes [#MAOBS-38](https://github.com/ovh/manager/issues/MAOBS-38)
+
+
+
+
+
+## [20.71.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.71.0...@ovh-ux/manager-dedicated@20.71.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4595] ([3dafa65](https://github.com/ovh/manager/commit/3dafa65b3d5ed08b90a9f6e603acfb6ada7bdae3))
+
+
+
+
+
 # [20.71.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.70.9...@ovh-ux/manager-dedicated@20.71.0) (2026-01-14)
 
 

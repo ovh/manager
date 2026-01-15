@@ -692,6 +692,7 @@
   "logs_roles_col_permissions": "Permissions",
   "logs_roles_col_members": "Membres",
   "logs_roles_col_link": "Option liée",
+  "logs_roles_enable_iam": "Activer l'IAM OVHcloud",
   "logs_edit_role": "Modifier le rôle",
   "logs_edit_permissions": "Modifier les permissions",
   "logs_manage_members": "Gérer les membres",

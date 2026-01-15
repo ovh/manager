@@ -3,5 +3,5 @@
   "inputStorageLabel": "Seleccione el almacenamiento adicional del clúster",
   "inputStorageNoneValue": "Ninguno",
   "storageFlavorDescription": "Su modelo de nodo {{flavor}} incluye {{includedStorage}} de almacenamiento al que es posible añadir hasta {{maxAdditionalStorage}} de almacenamiento adicional por intervalos de {{step}}.",
-  "inputNodeTooltip": "El número de nodos está predefinido por la oferta seleccionada arriba y no es modificable en este caso."
+  "inputNodeTooltip": "El número de nodos está predefinido por el plan seleccionado anteriormente y no es editable en este caso"
 }

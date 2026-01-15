@@ -27,5 +27,6 @@
   "billing_services_actions_menu_restore_label": "Przywróć usługę: {{serviceName}} (Nowe okno)",
   "billing_services_actions_menu_resiliate_us": "Rezygnuję z usługi",
   "billing_services_actions_menu_resiliate_my_engagement_us": "Rezygnacja z umowy terminowej",
-  "billing_services_actions_menu_commit_cancel_us": "Anuluj zamówienie usługi z opcją umowy terminowej"
+  "billing_services_actions_menu_commit_cancel_us": "Anuluj zamówienie usługi z opcją umowy terminowej",
+  "billing_services_actions_menu_see_bills": "Sprawdź faktury"
 }

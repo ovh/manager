@@ -40,7 +40,7 @@
   "dedicated_server_dashboard_zone": "Zona",
   "dedicated_server_dashboard_zone_unknown": "Informazione non disponibile",
   "server_configuration_installation_inputs_title": "Opzioni specifiche:",
-  "server_configuration_installation_inputs_info": "Le seguenti domande sono specifiche del sistema operativo selezionato ({{t0}}) e sono disponibili esclusivamente in inglese per garantire coerenza con l’API.",
+  "server_configuration_installation_inputs_info": "Le seguenti domande sono specifiche del sistema operativo selezionato ({{t0}}) e sono disponibili esclusivamente in inglese per coerenza con l’API.",
   "server_configuration_installation_inputs_item_placeholder": "Inserire un valore di tipo {{t0}}",
   "server_configuration_installation_inputs_item_placeholder_example": "Per esempio: {{t0}}",
   "server_configuration_installation_inputs_item_mandatory": "Questo campo è obbligatorio",
