@@ -4,5 +4,7 @@
   "notification_read": "Przeczytane",
   "notification_unread": "Nieprzeczytane",
   "no_notifications_title": "Jesteś na bieżąco!",
-  "no_notifications_description": "Nie masz powiadomień."
+  "no_notifications_description": "Nie masz powiadomień.",
+  "notification_sender_email_title": "Adresy e-mail, z których wysyłamy wiadomości, ulegają zmianie",
+  "notification_sender_email_description": "Aby mieć pewność co do autentyczności e-maili, zapoznaj się z naszymi wytycznymi dotyczącymi ochrony przed phishingiem."
 }
