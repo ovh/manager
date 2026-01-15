@@ -15,9 +15,9 @@ import { subRoutes, urls } from '@/routes/routes.constants';
 import { buildURLSearchParams } from '@/utils';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
-import VideoManagerOnboardingPage from './onBoarding/videoManagerOnboarding.page';
+import VideoManagerOnboardingPage from './onBoarding/videoCenterOnboarding.page';
 
-export default function VideoManagerCenterPage() {
+export default function VideoCenterPage() {
   const { t } = useTranslation(['videoManagerCenter', NAMESPACES.DASHBOARD]);
   const navigate = useNavigate();
   const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
@@ -52,31 +52,31 @@ export default function VideoManagerCenterPage() {
       header: t(`${NAMESPACES.DASHBOARD}:service_name`),
     },
     {
-      id: 'agoraPlanCode',
+      id: 'offerName',
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
-      accessorFn: (row) => row?.currentState?.agoraPlanCode,
+      accessorFn: (row) => row?.currentState?.offerName,
       cell: (props: { row: { original: PublicService } }) => (
-        <>{props?.row?.original?.currentState?.agoraPlanCode}</>
+        <>{props?.row?.original?.currentState?.offerName}</>
       ),
       header: t('video_manager_service_offer'),
     },
     {
-      id: 'videoCount',
+      id: 'vodCount',
       isSortable: true,
-      accessorFn: (row) => row?.currentState?.videoCount,
+      accessorFn: (row) => row?.currentState?.vodCount,
       cell: (props: { row: { original: PublicService } }) => (
-        <>{props?.row?.original?.currentState?.videoCount?.allocated}</>
+        <>{props?.row?.original?.currentState?.vodCount?.allocated}</>
       ),
       header: t('video_manager_service_video_count'),
     },
     {
-      id: 'videoDurationMinutes',
+      id: 'vodDurationMinutes',
       isSortable: true,
-      accessorFn: (row) => row?.currentState?.videoDurationMinutes,
+      accessorFn: (row) => row?.currentState?.vodDurationMinutes,
       cell: (props: { row: { original: PublicService } }) => (
-        <>{props?.row?.original?.currentState?.videoDurationMinutes?.allocated}</>
+        <>{props?.row?.original?.currentState?.vodDurationMinutes?.allocated}</>
       ),
       header: t('video_manager_service_video_duration'),
     },

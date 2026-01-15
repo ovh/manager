@@ -67,6 +67,23 @@ export enum TransferLockStatus {
   UNLOCKING = 'unlocking',
 }
 
+export enum ContactType {
+  administrator = 'administrator',
+  billing = 'billing',
+  technical = 'technical',
+}
+
+export type ServiceDetailsType = {
+  customer: {
+    contacts: [
+      {
+        customerCode: string;
+        type: ContactType;
+      },
+    ];
+  };
+};
+
 export type DomainServiceType = {
   contactAdmin: {
     id: string;

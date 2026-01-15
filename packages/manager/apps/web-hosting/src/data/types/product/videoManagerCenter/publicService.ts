@@ -12,13 +12,13 @@ export interface PublicService {
   resourceStatus: ResourceStatus;
   currentState: {
     createdAt: Date;
-    agoraPlanCode: string;
-    videoCount: {
-      max: number;
+    offerName: string;
+    vodCount: {
+      hostable: number;
       allocated: number;
     };
-    videoDurationMinutes: {
-      max: number;
+    vodDurationMinutes: {
+      hostable: number;
       allocated: number;
     };
   };

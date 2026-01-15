@@ -11,7 +11,7 @@ import { VIDEO_MANAGER_LABS_URL } from '@/constants';
 
 import videoCenterImgSrc from './videoCenter.svg?url';
 
-export default function VideoManagerOnboardingPage() {
+export default function VideoCenterOnboardingPage() {
   const { t } = useTranslation(['videoManagerCenter', NAMESPACES.ONBOARDING]);
 
   return (
