@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.27.1...@ovh-ux/manager-common-translations@0.28.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 903] ([6eabc0d](https://github.com/ovh/manager/commit/6eabc0d4f1e5302f263a0637e64050710ad54446))
+
+
+### Features
+
+* **common-translations:** add dashboard and status content ([82c26ff](https://github.com/ovh/manager/commit/82c26ff59448cada42953d39684f516ca7f4d842)), closes [#BKP-496](https://github.com/ovh/manager/issues/BKP-496)
+* **common-translations:** add onboarding content ([e140e87](https://github.com/ovh/manager/commit/e140e87aeb6528596d4ae0153b78602837096813)), closes [#BKP-522](https://github.com/ovh/manager/issues/BKP-522)
+
+
+
+
+
 ## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.27.0...@ovh-ux/manager-common-translations@0.27.1) (2026-01-14)
 
 

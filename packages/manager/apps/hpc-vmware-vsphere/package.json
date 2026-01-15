@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-vsphere-app",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "private": true,
   "description": "Managed VMware vsphere services",
   "repository": {
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ovh-ux/logs-to-customer": "^1.10.8",
-    "@ovh-ux/manager-common-translations": "^0.27.1",
+    "@ovh-ux/manager-common-translations": "^0.28.0",
     "@ovh-ux/manager-config": "^8.8.6",
     "@ovh-ux/manager-core-api": "^0.21.1",
     "@ovh-ux/manager-core-utils": "^0.5.0",
