@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.47.1...@ovh-ux/manager-pm@0.48.0) (2026-01-15)
+
+
+### Features
+
+* **backup-agent-baremetal:** init bmc µapp with onboarding ([3d146ef](https://github.com/ovh/manager/commit/3d146ef7957134e8c3d8eb148a593df581c17b31)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+* **backup-agent-iaas:** init hpc µapp with onboarding ([0edf2f0](https://github.com/ovh/manager/commit/0edf2f06611434bf36416f987e09999e919f8368)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+* **backup-agent:** init module for backup agent ([2d7a18d](https://github.com/ovh/manager/commit/2d7a18d2aaeb9712794d349f61804884ef0b2f2a)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+
+
+
+
+
 ## [0.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.47.0...@ovh-ux/manager-pm@0.47.1) (2026-01-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm

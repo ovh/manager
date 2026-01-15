@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.176.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.175.0...@ovh-ux/manager-container-app@0.176.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 903] ([6eabc0d](https://github.com/ovh/manager/commit/6eabc0d4f1e5302f263a0637e64050710ad54446))
+
+
+### Features
+
+* **backup-billing:** init backup-billing µapp ([e3f376e](https://github.com/ovh/manager/commit/e3f376e3e99ebb70dde7dc258045c4d1a011e38b)), closes [#BKP-526](https://github.com/ovh/manager/issues/BKP-526)
+* **backup-vaults:** initiate backup vaults uapp ([4b63fa4](https://github.com/ovh/manager/commit/4b63fa43ed9d0602ee472e1c4be23af641c3a5c7)), closes [#BKP-525](https://github.com/ovh/manager/issues/BKP-525)
+* **container:** add backup-agent logo on navbar ([cd3d47a](https://github.com/ovh/manager/commit/cd3d47a4578171c14d74e939a5c9b370d55374c2)), closes [#BKP-523](https://github.com/ovh/manager/issues/BKP-523)
+* **container:** add backup-agent on sidebar v1 ([f765026](https://github.com/ovh/manager/commit/f76502638f2fdbb0c650a06c789747886307aeaa)), closes [#BKP-523](https://github.com/ovh/manager/issues/BKP-523)
+* **container:** add backup-agent µapps on pnr ([3552cbd](https://github.com/ovh/manager/commit/3552cbd75fff02425265a6a1e7d97aa70375224c)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+* **container:** add backup-services µapp to container ([cb2d876](https://github.com/ovh/manager/commit/cb2d876fe56f9d85adc752f9185a2d745f88c7eb)), closes [#BKP-524](https://github.com/ovh/manager/issues/BKP-524)
+* **container:** remove loader for backup agent services ([2f63f22](https://github.com/ovh/manager/commit/2f63f227659b6c2b83b9fd035e796bb2f30d8db9)), closes [#BKP-727](https://github.com/ovh/manager/issues/BKP-727)
+* **container:** rename application and add new tag ([566a6fe](https://github.com/ovh/manager/commit/566a6fe893ff619edc32e1f09865391d5f01ff3e)), closes [#BKP-700](https://github.com/ovh/manager/issues/BKP-700)
+
+
+
+
+
 # [0.175.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.7...@ovh-ux/manager-container-app@0.175.0) (2026-01-13)
 
 
