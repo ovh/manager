@@ -8,7 +8,7 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { Drawer } from '@ovh-ux/manager-react-components';
 
@@ -54,9 +54,7 @@ const SecretValueDrawerPage = () => {
               selectedVersion={selectedVersion}
               setSelectedVersion={setSelectedVersion}
             />
-            {isCurrentVersion && (
-              <OdsMessage isDismissible={false}>{t('current_version')}</OdsMessage>
-            )}
+            {isCurrentVersion && <Message dismissible={false}>{t('current_version')}</Message>}
             {selectedVersion && selectedVersion.state === 'ACTIVE' && (
               <SecretValue
                 okmsId={okmsId}
@@ -67,9 +65,9 @@ const SecretValueDrawerPage = () => {
           </div>
         )}
         {!hasVersion && (
-          <OdsMessage className="w-full" color="warning" isDismissible={false}>
+          <Message className="w-full" color="warning" dismissible={false}>
             {t('no_version_message')}
-          </OdsMessage>
+          </Message>
         )}
       </Suspense>
     </Drawer>

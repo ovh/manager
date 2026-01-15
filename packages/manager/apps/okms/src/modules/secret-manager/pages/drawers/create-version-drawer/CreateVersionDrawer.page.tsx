@@ -9,7 +9,7 @@ import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.cons
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { Drawer } from '@ovh-ux/manager-react-components';
 
@@ -67,9 +67,9 @@ export default function CreateVersionDrawerPage() {
     >
       <Suspense>
         {error && (
-          <OdsMessage color="danger" className="mb-4" isDismissible={false}>
+          <Message color="critical" className="mb-4" dismissible={false}>
             {error?.response?.data?.message}
-          </OdsMessage>
+          </Message>
         )}
         {!error && !isLoading && secretConfig && (
           <CreateVersionDrawerForm

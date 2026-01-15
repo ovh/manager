@@ -6,8 +6,7 @@ import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms'
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import {
   BaseLayout,
@@ -55,9 +54,9 @@ export default function Listing() {
       route={KMS_ROUTES_URLS.kmsOnboarding}
       isError={isError}
       errorComponent={
-        <OdsMessage className="mt-4" color={ODS_MESSAGE_COLOR.critical}>
+        <Message className="mt-4" color="critical">
           {tError('manager_error_page_default')}
-        </OdsMessage>
+        </Message>
       }
     >
       <BaseLayout
@@ -66,9 +65,9 @@ export default function Listing() {
           hasNotifications ? (
             <div>
               {hasPendingOrder && (
-                <OdsMessage color="information" className="mb-4" isDismissible={false}>
+                <Message color="information" className="mb-4" dismissible={false}>
                   {t('common:okms_order_pending')}
-                </OdsMessage>
+                </Message>
               )}
               <Notifications />
             </div>

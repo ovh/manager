@@ -7,7 +7,8 @@ import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSelectChangeEventDetail, OdsSelectCustomEvent } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsSelect, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSelect, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -51,12 +52,12 @@ export const VersionSelector = ({
     const message = isErrorResponse(error) ? error.response.data.message : undefined;
 
     return (
-      <OdsMessage className="mt-4" color="critical" data-testid={VERSION_SELECTOR_ERROR_TEST_ID}>
+      <Message className="mt-4" color="critical" data-testid={VERSION_SELECTOR_ERROR_TEST_ID}>
         {t('error_message', {
           message,
           ns: NAMESPACES.ERROR,
         })}
-      </OdsMessage>
+      </Message>
     );
   }
 

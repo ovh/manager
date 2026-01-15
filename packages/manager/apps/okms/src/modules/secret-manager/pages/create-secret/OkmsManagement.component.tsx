@@ -7,7 +7,8 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -54,11 +55,11 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
 
   if (okmsError) {
     return (
-      <OdsMessage color="danger">
+      <Message color="critical">
         {t('error_message', {
           message: okmsError.response?.data?.message,
         })}
-      </OdsMessage>
+      </Message>
     );
   }
 

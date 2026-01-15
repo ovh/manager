@@ -7,7 +7,7 @@ import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { Drawer } from '@ovh-ux/manager-react-components';
 
@@ -50,9 +50,9 @@ export default function EditMetadataDrawerPage() {
     >
       <Suspense>
         {error && (
-          <OdsMessage color="danger" className="mb-4" isDismissible={false}>
+          <Message color="critical" className="mb-4" dismissible={false}>
             {error?.response?.data?.message}
-          </OdsMessage>
+          </Message>
         )}
         {!error && secret && secretConfig && (
           <EditMetadataDrawerForm

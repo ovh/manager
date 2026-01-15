@@ -10,7 +10,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import z from 'zod';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
@@ -111,9 +111,9 @@ export const CreateVersionDrawerForm = ({
             onSubmit={handleSubmit(handleSubmitForm)}
           >
             {createError && (
-              <OdsMessage color="danger" className="mb-4">
+              <Message color="critical" className="mb-4">
                 {createError?.response?.data?.message || t('add_new_version_error')}
-              </OdsMessage>
+              </Message>
             )}
             {version && <VersionStatusMessage state={version.state} />}
             <SecretDataFormField name="data" control={control} />

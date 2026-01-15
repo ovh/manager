@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { useCheckoutOrder } from '@key-management-service/data/hooks/useCheckoutOrder';
 import { useTranslation } from 'react-i18next';
 
-import { OdsCheckbox, OdsMessage } from '@ovhcloud/ods-components/react';
+import { OdsCheckbox } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -66,11 +67,11 @@ export const OrderOkmsModalTermsAndConditions = ({
           </label>
         </div>
         {error && (
-          <OdsMessage color="danger" isDismissible={false} className="w-full">
+          <Message color="critical" dismissible={false} className="w-full">
             {t(`${NAMESPACES.ERROR}:error_message`, {
               message: error.response.data.message,
             })}
-          </OdsMessage>
+          </Message>
         )}
       </div>
 

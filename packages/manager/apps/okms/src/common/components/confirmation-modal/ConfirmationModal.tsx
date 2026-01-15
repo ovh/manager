@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Message, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
@@ -47,14 +47,14 @@ export const ConfirmationModal = ({
     >
       <div className="space-y-4">
         {error && (
-          <OdsMessage
-            color="danger"
-            isDismissible={false}
+          <Message
+            color="critical"
+            dismissible={false}
             className="w-full"
             data-testid="confirmation-modal-error-message"
           >
             {error}
-          </OdsMessage>
+          </Message>
         )}
         <Text preset="heading-4">{title}</Text>
         <Text preset="paragraph">{message}</Text>
