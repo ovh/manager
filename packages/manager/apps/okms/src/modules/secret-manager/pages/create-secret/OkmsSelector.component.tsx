@@ -5,8 +5,7 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { TagsList } from '@ovh-ux/manager-react-components';
@@ -24,7 +23,7 @@ const OkmsStatus = ({ id }: { id: string }) => {
     resourceName: id,
   });
 
-  if (isPending) return <OdsSkeleton />;
+  if (isPending) return <Skeleton />;
 
   if (isError) return null;
 

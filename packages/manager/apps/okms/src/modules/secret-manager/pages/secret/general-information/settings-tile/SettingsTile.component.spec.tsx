@@ -199,8 +199,8 @@ describe('Secrets Settings Tile component tests suite', () => {
       // Check title is still visible
       expect(screen.getByText(labels.settings)).toBeVisible();
 
-      // Check that skeleton components are rendered (they should be present in the DOM)
-      const skeletons = document.querySelectorAll('ods-skeleton');
+      // Check that skeleton components are rendered
+      const skeletons = screen.getAllByTestId('skeleton');
       expect(skeletons).toHaveLength(3); // One for each field: maxVersions, deactivateVersionAfter, casRequired
     });
   });

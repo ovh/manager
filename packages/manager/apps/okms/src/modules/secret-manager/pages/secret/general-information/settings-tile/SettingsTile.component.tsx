@@ -6,8 +6,7 @@ import {
 } from '@secret-manager/utils/secretSmartConfig';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
@@ -50,7 +49,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
         <ManagerTile.Item.Label>{t('maximum_number_of_versions')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           {isPending ? (
-            <OdsSkeleton />
+            <Skeleton data-testid="skeleton" />
           ) : (
             <Text preset="span" data-testid={SETTINGS_TILE_TEST_IDS.MAX_VERSIONS}>
               {secretConfig.maxVersions.value} {labels[secretConfig.maxVersions.origin]}
@@ -63,7 +62,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
         <ManagerTile.Item.Label>{t('deactivate_version_after')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           {isPending ? (
-            <OdsSkeleton />
+            <Skeleton data-testid="skeleton" />
           ) : (
             <Text preset="span" data-testid={SETTINGS_TILE_TEST_IDS.DEACTIVATE_VERSION_AFTER}>
               {secretConfig.deactivateVersionAfter.value === NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER
@@ -81,7 +80,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           {isPending ? (
-            <OdsSkeleton />
+            <Skeleton data-testid="skeleton" />
           ) : (
             <Text preset="span" data-testid={SETTINGS_TILE_TEST_IDS.CAS_REQUIRED}>
               {secretConfig.casRequired.value

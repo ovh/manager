@@ -7,8 +7,8 @@ import {
 import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsQuantity, OdsSkeleton } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { OdsFormField, OdsQuantity } from '@ovhcloud/ods-components/react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
@@ -56,7 +56,7 @@ const FormHelper = ({ secret, okmsId }: { secret?: Secret; okmsId: string }) => 
 
   const { secretConfig, isPending, error } = useSecretSmartConfig({ secret, okmsId });
 
-  if (isPending) return <OdsSkeleton />;
+  if (isPending) return <Skeleton />;
 
   if (error) return null;
 

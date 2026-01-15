@@ -2,8 +2,7 @@ import { SecretConfig } from '@secret-manager/types/secret.type';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
@@ -28,7 +27,7 @@ export const CasTileItem = ({ data, isPending, isError }: CasTileItemProps) => {
       </ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
         {isPending ? (
-          <OdsSkeleton
+          <Skeleton
             data-testid={SECRET_CONFIG_TILE_TEST_IDS.skeleton}
             className="block h-5 content-center"
           />

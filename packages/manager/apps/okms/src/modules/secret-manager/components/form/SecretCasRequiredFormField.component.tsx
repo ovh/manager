@@ -3,8 +3,8 @@ import { Secret } from '@secret-manager/types/secret.type';
 import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsRadio, OdsSkeleton } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { OdsFormField, OdsRadio } from '@ovhcloud/ods-components/react';
+import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -84,7 +84,7 @@ const FormHelper = ({ secret, okmsId }: { secret?: Secret; okmsId: string }) => 
 
   const { secretConfig, isPending, error } = useSecretSmartConfig({ secret, okmsId });
 
-  if (isPending) return <OdsSkeleton />;
+  if (isPending) return <Skeleton />;
 
   if (error) return null;
 
