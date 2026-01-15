@@ -101,7 +101,7 @@ export default function AssociateGitPage() {
       repositoryUrl: isConfiguration ? (flattenData?.[0]?.vcsUrl as string) : '',
       branch: '',
     });
-  }, [flattenData, reset]);
+  }, [flattenData, reset, isConfiguration]);
 
   const { postWebsiteV6 } = usePostWebsiteV6(
     serviceName,
