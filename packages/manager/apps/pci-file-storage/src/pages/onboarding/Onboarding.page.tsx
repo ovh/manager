@@ -2,13 +2,14 @@ import React from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
 
+import { Text } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { BaseLayout, LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { GUIDES, getOnboardingLinkFor } from '@/pages/onboarding/Onboarding.guides.constants';
-import { Text } from '@ovhcloud/ods-react';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
@@ -24,7 +25,7 @@ export default function OnboardingPage() {
         img={{
           src: 'assets/file-storage-icon.png',
           alt: '',
-          className: 'w-[45px]'
+          className: 'w-[45px]',
         }}
         description={
           <Text className="text-center">

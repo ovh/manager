@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -30,7 +30,9 @@ vi.mock('@ovh-ux/muk', () => {
     </a>
   );
 
-  return { OnboardingLayout, LinkCard };
+  const BaseLayout = ({ children }: PropsWithChildren) => <div>{children}</div>;
+
+  return { OnboardingLayout, LinkCard, BaseLayout };
 });
 
 vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
