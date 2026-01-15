@@ -6,9 +6,10 @@ import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 
-import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';

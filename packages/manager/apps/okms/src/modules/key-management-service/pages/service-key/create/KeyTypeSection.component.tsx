@@ -10,10 +10,7 @@ import {
 import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
 import { useTranslation } from 'react-i18next';
 
-import {
-  OdsSelectChangeEventDetail,
-  OdsSelectCustomEvent,
-} from '@ovhcloud/ods-components';
+import { OdsSelectChangeEventDetail, OdsSelectCustomEvent } from '@ovhcloud/ods-components';
 import { OdsFormField, OdsSelect } from '@ovhcloud/ods-components/react';
 import { Text } from '@ovhcloud/ods-react';
 

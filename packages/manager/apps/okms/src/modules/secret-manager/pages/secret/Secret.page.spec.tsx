@@ -3,13 +3,14 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { act, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
@@ -30,7 +31,7 @@ describe('Secret page test suite', () => {
   it('should display the secret page', async () => {
     // GIVEN
     // WHEN
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
     // THEN
     await assertBreadcrumbItems([
@@ -80,7 +81,7 @@ describe('Secret page test suite', () => {
     );
 
     // Check clipboard component
-    expect(container.querySelector(`ods-clipboard[value="${mockSecret.iam.urn}"]`)).toBeVisible();
+    await assertClipboardVisibility(mockSecret.iam.urn);
 
     // check actions
     const revealSecretLink = await screen.findByText(labels.secretManager.reveal_secret);
@@ -108,9 +109,8 @@ describe('Secret page test suite', () => {
       ).toHaveLength(3);
 
       // WHEN
-      await act(async () => {
-        await user.click(screen.getByText(labels.secretManager.versions));
-      });
+
+      await user.click(screen.getByText(labels.secretManager.versions));
 
       // THEN
       await assertVersionDatagridVisilibity();

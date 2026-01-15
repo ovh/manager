@@ -8,12 +8,12 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { Icon, Text } from '@ovhcloud/ods-react';
 
-import { Clipboard, DashboardTile } from '@ovh-ux/manager-react-components';
+import { DashboardTile } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';

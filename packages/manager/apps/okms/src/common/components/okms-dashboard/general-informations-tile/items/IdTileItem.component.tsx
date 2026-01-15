@@ -1,6 +1,7 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 
-import { Clipboard, ManagerTile } from '@ovh-ux/manager-react-components';
+import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { ID_LABEL } from '@/constants';
 
@@ -13,7 +14,7 @@ export const IdTileItem = ({ okms }: IdTileItemProps) => {
     <ManagerTile.Item>
       <ManagerTile.Item.Label>{ID_LABEL}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
-        <Clipboard value={okms.id} />
+        <Clipboard value={okms.id} className="w-full" />
       </ManagerTile.Item.Description>
     </ManagerTile.Item>
   );

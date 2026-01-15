@@ -27,13 +27,11 @@ export const changeOdsInputValueByTestId = async (inputTestId: string, value: st
   });
 };
 
-type GetOdsClipboardByValueParams = {
-  container: HTMLElement;
-  value: string;
-};
-
-export const getOdsClipboardByValue = ({ container, value }: GetOdsClipboardByValueParams) => {
-  return container.querySelector(`ods-clipboard[value="${value}"]`);
+export const assertClipboardVisibility = async (value: string, timeout?: number) => {
+  const clipboardInput = await screen.findByDisplayValue(value, {}, { timeout: timeout ?? 3000 });
+  expect(clipboardInput).toHaveAttribute('data-ods', 'clipboard-control');
+  expect(clipboardInput).toBeVisible();
+  return clipboardInput;
 };
 
 /**

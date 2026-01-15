@@ -11,12 +11,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { ODS_INPUT_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsInput,
-  OdsModal,
-  OdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsInput, OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';

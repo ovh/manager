@@ -8,8 +8,9 @@ import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
-import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';

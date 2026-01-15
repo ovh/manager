@@ -7,9 +7,10 @@ import { OkmsCredential } from '@key-management-service/types/okmsCredential.typ
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
 import { useTranslation } from 'react-i18next';
 
-import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
