@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { LinkCardProps, OnboardingLayoutProps, TextProps } from '@ovh-ux/muk';
+import { LinkCardProps, OnboardingLayoutProps } from '@ovh-ux/muk';
 
 import OnboardingPage from '../Onboarding.page';
 
@@ -30,10 +30,20 @@ vi.mock('@ovh-ux/muk', () => {
     </a>
   );
 
-  const Text = ({ children }: TextProps): JSX.Element => <p>{children}</p>;
+  const BaseLayout = ({ children }: PropsWithChildren) => <div>{children}</div>;
 
-  return { OnboardingLayout, LinkCard, Text };
+  return { OnboardingLayout, LinkCard, BaseLayout };
 });
+
+vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
+  Breadcrumb: () => <div>Breadcrumb</div>,
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useEnvironment: () => ({
+    getUser: () => ({ ovhSubsidiary: 'FR' }),
+  }),
+}));
 
 describe('OnboardingPage', () => {
   afterEach(() => {
@@ -47,14 +57,17 @@ describe('OnboardingPage', () => {
     expect(layout).toBeVisible();
 
     const title = screen.getByRole('heading', { level: 1 });
-    expect(title).toHaveTextContent('onboarding:title_fallback');
+    expect(title).toHaveTextContent('onboarding:title');
 
     expect(screen.getByTestId('description')).toBeVisible();
 
     const cards = screen.getAllByTestId('link-card');
     expect(cards).toHaveLength(3);
-    expect(cards[0]).toHaveAttribute('href', 'https://docs.ovh.com/discover');
-    expect(cards[1]).toHaveAttribute('href', 'https://docs.ovh.com/tutorial');
-    expect(cards[2]).toHaveAttribute('href', 'https://docs.ovh.com/faq');
+    expect(cards[0]).toHaveAttribute('href', 'https://labs.ovhcloud.com/en/file-storage/');
+    expect(cards[1]).toHaveAttribute(
+      'href',
+      'https://help.ovhcloud.com/csm/fr-public-cloud-storage-file-storage-service-getting-started?id=kb_article_view&sysparm_article=KB0072902',
+    );
+    expect(cards[2]).toHaveAttribute('href', 'https://discord.com/invite/ovhcloud');
   });
 });

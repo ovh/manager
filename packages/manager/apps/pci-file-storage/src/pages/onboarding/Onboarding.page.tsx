@@ -1,59 +1,57 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { LinkCard, OnboardingLayout, Text } from '@ovh-ux/muk';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
-import { GUIDES } from '@/pages/onboarding/Onboarding.guides.constants';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
+import { GUIDES, getOnboardingLinkFor } from '@/pages/onboarding/Onboarding.guides.constants';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
-  const productName = 'pci-file-storage';
-  const productCategory = 'Public Cloud';
-  const brand = 'OVHcloud';
+  const environment = useEnvironment();
 
-  const description = useMemo(
-    () => (
-      <section className="text-center">
-        <Text className="my-6 block">
-          {t('onboarding:description_part1', {
-            productName,
-            productCategory,
-            brand,
-          })}
-        </Text>
-        <Text>{t('onboarding:description_part2', { productName })}</Text>
-      </section>
-    ),
-    [t],
-  );
+  const { ovhSubsidiary } = environment.getUser();
 
   return (
-    <OnboardingLayout
-      title={t('onboarding:title_fallback', { productName })}
-      img={undefined}
-      description={description}
-      orderButtonLabel={t(`${NAMESPACES.ACTIONS}:start`)}
-      onOrderButtonClick={() => {}}
-      moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
-    >
-      {GUIDES.map(({ key, link }) => {
-        return (
-          <LinkCard
-            key={key}
-            href={link}
-            texts={{
-              title: t(`onboarding:guides.${key}.title`, { productName }),
-              description: t(`onboarding:guides.${key}.description`, {
-                productName,
-              }),
-              category: t(`onboarding:guides.${key}.category`),
-            }}
-            hrefLabel={t(`onboarding:guides.${key}.cta`)}
-          />
-        );
-      })}
-    </OnboardingLayout>
+    <BaseLayout>
+      <Breadcrumb />
+      <OnboardingLayout
+        title={t('onboarding:title')}
+        img={{
+          src: 'assets/file-storage-icon.png',
+          alt: '',
+          className: 'w-[45px]',
+        }}
+        description={
+          <Text className="text-center">
+            <Trans className="block" i18nKey="onboarding:description" />
+          </Text>
+        }
+        orderButtonLabel={t('onboarding:action-button')}
+        onOrderButtonClick={() => {}}
+        orderHref="https://labs.ovhcloud.com/en/file-storage"
+      >
+        {GUIDES.map(({ key, links }) => {
+          return (
+            <LinkCard
+              key={key}
+              href={getOnboardingLinkFor(links, ovhSubsidiary)}
+              texts={{
+                title: t(`onboarding:guides.${key}.title`),
+                description: t(`onboarding:guides.${key}.description`),
+                category: t(`onboarding:guides.${key}.category`),
+              }}
+              hrefLabel={t(`onboarding:guides.${key}.link-text`)}
+              target="_blank"
+            />
+          );
+        })}
+      </OnboardingLayout>
+    </BaseLayout>
   );
 }
