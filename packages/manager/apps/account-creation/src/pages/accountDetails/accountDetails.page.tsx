@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
@@ -10,6 +10,7 @@ import {
   Links,
   LinkType,
   Notifications,
+  OvhSubsidiary,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -21,6 +22,7 @@ import {
   OdsSelect,
   OdsSkeleton,
   OdsText,
+  OdsMessage,
 } from '@ovhcloud/ods-components/react';
 import {
   PHONE_NUMBER_COUNTRY_ISO_CODE,
@@ -132,8 +134,10 @@ function AccountDetailsForm({
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
     const { key, options } = useZodTranslatedError(message, rule);
-    return t(key, { ...options, ...{ ns: NAMESPACES.FORM } });
+    return t(key as string, { ...options, ...{ ns: NAMESPACES.FORM } });
   }
+
+  type FormValues = z.infer<typeof zodSchema>;
 
   const {
     control,
@@ -141,7 +145,7 @@ function AccountDetailsForm({
     watch,
     setValue,
     formState: { errors, isValid, isDirty },
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: {
       country: currentUser.country || 'GB',
       language: currentUser.language || 'en_GB',
@@ -153,7 +157,7 @@ function AccountDetailsForm({
       city: city || currentUser.city || '',
       legalform: legalForm,
       smsConsent: false,
-    },
+    } as Partial<FormValues>,
     mode: 'onTouched',
     resolver: zodResolver(zodSchema),
   });
@@ -256,9 +260,7 @@ function AccountDetailsForm({
     },
   });
 
-  const handleValidateClick: SubmitHandler<z.infer<typeof zodSchema>> = (
-    formData,
-  ) => {
+  const handleValidateClick: SubmitHandler<FormValues> = (formData) => {
     if (pageTracking) {
       trackClick(pageTracking, {
         location: PageLocation.page,
@@ -271,7 +273,7 @@ function AccountDetailsForm({
         goalType: TRACKING_GOAL_TYPE,
       });
     }
-    addAccountDetails(formData as FormData);
+    addAccountDetails((formData as unknown) as FormData);
   };
 
   /**
@@ -316,13 +318,13 @@ function AccountDetailsForm({
                     onOdsChange={onChange}
                     onBlur={onBlur}
                   />
-                  {errors[name] && rules?.firstname && (
+                  {errors.firstname && rules?.firstname && (
                     <OdsText
                       className="text-critical leading-[0.8]"
                       preset="caption"
                     >
                       {renderTranslatedZodError(
-                        errors[name].message,
+                        errors.firstname.message,
                         rules?.firstname,
                       )}
                     </OdsText>
@@ -355,13 +357,13 @@ function AccountDetailsForm({
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
                   />
-                  {errors[name] && rules?.name && (
+                  {errors.name && rules?.name && (
                     <OdsText
                       className="text-critical leading-[0.8]"
                       preset="caption"
                     >
                       {renderTranslatedZodError(
-                        errors[name].message,
+                        errors.name.message,
                         rules?.name,
                       )}
                     </OdsText>
@@ -403,13 +405,13 @@ function AccountDetailsForm({
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
                   />
-                  {errors[name] && rules?.organisation && (
+                  {errors.organisation && rules?.organisation && (
                     <OdsText
                       className="text-critical leading-[0.8]"
                       preset="caption"
                     >
                       {renderTranslatedZodError(
-                        errors[name].message,
+                        errors.organisation.message,
                         rules?.organisation,
                       )}
                     </OdsText>
@@ -449,14 +451,15 @@ function AccountDetailsForm({
                         onOdsChange={onChange}
                         onOdsBlur={onBlur}
                       />
-                      {errors[name] &&
+                      {errors.companyNationalIdentificationNumber &&
                         rules?.companyNationalIdentificationNumber && (
                           <OdsText
                             className="text-critical leading-[0.8]"
                             preset="caption"
                           >
                             {renderTranslatedZodError(
-                              errors[name].message,
+                              errors.companyNationalIdentificationNumber
+                                .message,
                               rules?.companyNationalIdentificationNumber,
                             )}
                           </OdsText>
@@ -506,15 +509,12 @@ function AccountDetailsForm({
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
                   />
-                  {errors[name] && rules?.vat && (
+                  {errors.vat && rules?.vat && (
                     <OdsText
                       className="text-critical leading-[0.8]"
                       preset="caption"
                     >
-                      {renderTranslatedZodError(
-                        errors[name].message,
-                        rules?.vat,
-                      )}
+                      {renderTranslatedZodError(errors.vat.message, rules?.vat)}
                     </OdsText>
                   )}
                 </OdsFormField>
@@ -527,6 +527,21 @@ function AccountDetailsForm({
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading4}>
             {t(`account_details_section_address_${legalForm}`)}
           </OdsText>
+          {currentUser.ovhSubsidiary === OvhSubsidiary.IN && (
+            <OdsMessage color="warning" isDismissible={false} className="my-2">
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                <Trans
+                  t={t}
+                  i18nKey="account_details_section_address_kyc_info"
+                  components={{
+                    strong: <strong />,
+                    ul: <ul />,
+                    li: <li />,
+                  }}
+                />
+              </OdsText>
+            </OdsMessage>
+          )}
           <Controller
             control={control}
             name="country"
@@ -585,13 +600,13 @@ function AccountDetailsForm({
                   onOdsChange={onChange}
                   onOdsBlur={onBlur}
                 />
-                {errors[name] && rules?.address && (
+                {errors.address && rules?.address && (
                   <OdsText
                     className="text-critical leading-[0.8]"
                     preset="caption"
                   >
                     {renderTranslatedZodError(
-                      errors[name].message,
+                      errors.address.message,
                       rules?.address,
                     )}
                   </OdsText>
@@ -635,13 +650,13 @@ function AccountDetailsForm({
                       ))}
                     </OdsSelect>
                   )}
-                  {errors[name] && rules?.area && (
+                  {errors.area && rules?.area && (
                     <OdsText
                       className="text-critical leading-[0.8]"
                       preset="caption"
                     >
                       {renderTranslatedZodError(
-                        errors[name].message,
+                        errors.area.message,
                         rules?.area,
                       )}
                     </OdsText>
@@ -674,12 +689,12 @@ function AccountDetailsForm({
                   onOdsChange={onChange}
                   onOdsBlur={onBlur}
                 />
-                {errors[name] && rules?.zip && (
+                {errors.zip && rules?.zip && (
                   <OdsText
                     className="text-critical leading-[0.8]"
                     preset="caption"
                   >
-                    {renderTranslatedZodError(errors[name].message, rules?.zip)}
+                    {renderTranslatedZodError(errors.zip.message, rules?.zip)}
                   </OdsText>
                 )}
               </OdsFormField>
@@ -709,15 +724,12 @@ function AccountDetailsForm({
                   onOdsChange={onChange}
                   onOdsBlur={onBlur}
                 />
-                {errors[name] && rules?.city && (
+                {errors.city && rules?.city && (
                   <OdsText
                     className="text-critical leading-[0.8]"
                     preset="caption"
                   >
-                    {renderTranslatedZodError(
-                      errors[name].message,
-                      rules?.city,
-                    )}
+                    {renderTranslatedZodError(errors.city.message, rules?.city)}
                   </OdsText>
                 )}
               </OdsFormField>
@@ -795,10 +807,10 @@ function AccountDetailsForm({
                   locale={phoneNumberLocale}
                   invalid={!!errors[name]}
                   onCountryChange={(e: PhoneNumberCountryChangeDetail) => {
-                    setValue('phoneCountry', e.value?.toUpperCase());
+                    setValue('phoneCountry', e.value?.toUpperCase() as string);
                   }}
                   onValueChange={(e: PhoneNumberValueChangeDetail) => {
-                    setValue('phone', e.formattedValue);
+                    setValue('phone', e.formattedValue || '');
                   }}
                   onBlur={onBlur}
                   country={
@@ -867,14 +879,14 @@ function AccountDetailsForm({
                           ))
                         : null}
                     </OdsSelect>
-                    {errors[name] && rules?.[name] && (
+                    {errors.language && rules?.language && (
                       <OdsText
                         className="text-critical leading-[0.8]"
                         preset="caption"
                       >
                         {renderTranslatedZodError(
-                          errors[name].message,
-                          rules?.phone,
+                          errors.language.message,
+                          rules?.language,
                         )}
                       </OdsText>
                     )}
