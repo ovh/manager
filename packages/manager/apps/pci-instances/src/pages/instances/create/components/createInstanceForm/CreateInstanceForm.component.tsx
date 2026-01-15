@@ -36,6 +36,7 @@ export const CreateInstanceForm = () => {
   const projectId = useProjectId();
   const formMethods = useForm(projectId);
   const macroRegion = formMethods.watch('macroRegion');
+  const microRegion = formMethods.watch('microRegion');
   const [osType, distributionImageType, flavorId] = formMethods.watch([
     'distributionImageOsType',
     'distributionImageType',
@@ -87,8 +88,7 @@ export const CreateInstanceForm = () => {
           <FlavorBlock />
           <DistributionImage />
           {!isWindowsSelected && <SshKey />}
-          <Divider spacing="64" />
-          <Backup />
+          {microRegion && <Backup microRegion={microRegion} />}
           <Divider spacing="64" />
           <Network />
           {billingTypes.length > 1 && (

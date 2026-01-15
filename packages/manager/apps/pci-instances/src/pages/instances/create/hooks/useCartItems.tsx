@@ -51,7 +51,7 @@ export const useCartItems = (): TCartItems => {
     sshKeyId,
     networkName,
     name,
-    backupSettingPrices,
+    backupConfigurationPrices,
   } = instanceData;
 
   const region: TCartItemDetail[] = localizationDetails
@@ -126,7 +126,7 @@ export const useCartItems = (): TCartItems => {
       ]
     : [];
 
-  const backups = backupSettingPrices?.localBackupPrice
+  const backups = backupConfigurationPrices?.localBackupPrice
     ? [
         {
           name: t('common:pci_instances_common_backup'),
@@ -136,15 +136,29 @@ export const useCartItems = (): TCartItems => {
                 label={t(
                   'creation:pci_instance_creation_backup_setting_local_label',
                 )}
-                price={backupSettingPrices.localBackupPrice}
+                price={t(
+                  'creation:pci_instance_creation_backup_setting_price_unit',
+                  {
+                    price: getTextPrice(
+                      backupConfigurationPrices.localBackupPrice,
+                    ),
+                  },
+                )}
               />
-              {backupSettingPrices.distantBackupPrice && (
+              {backupConfigurationPrices.distantBackupPrice && (
                 <CartOptionDetailItem
                   className="mt-2"
                   label={t(
                     'creation:pci_instance_creation_backup_setting_distant_label',
                   )}
-                  price={backupSettingPrices.distantBackupPrice}
+                  price={t(
+                    'creation:pci_instance_creation_backup_setting_price_unit',
+                    {
+                      price: getTextPrice(
+                        backupConfigurationPrices.distantBackupPrice,
+                      ),
+                    },
+                  )}
                 />
               )}
             </div>

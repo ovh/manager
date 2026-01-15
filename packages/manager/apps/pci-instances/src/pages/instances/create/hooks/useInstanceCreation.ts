@@ -17,13 +17,13 @@ import { useNavigate } from 'react-router-dom';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
 import {
   selectDistantBackupLocalizations,
-  selectLocalBackups,
-} from '../view-models/backupViewModel';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+  selectLocalBackupConfigurations,
+} from '../view-models/backupConfigurationViewModel';
+import { useBackupConfigurations } from '@/data/hooks/configuration/useBackupConfiguration';
 
-type TBackupSettingPrices = {
-  localBackupPrice: string | null;
-  distantBackupPrice: string | null;
+type TBackupConfigurationPrices = {
+  localBackupPrice: number;
+  distantBackupPrice: number | null;
 };
 
 type TInstanceData = {
@@ -35,7 +35,7 @@ type TInstanceData = {
   localizationDetails: TSelectLocalizationDetails | null;
   flavorDetails: TSelectFlavorDetails | null;
   windowsImageLicensePrice: number | null;
-  backupSettingPrices: TBackupSettingPrices | null;
+  backupConfigurationPrices: TBackupConfigurationPrices | null;
   networkName?: string;
 };
 
@@ -51,7 +51,6 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const navigate = useNavigate();
   const projectId = useProjectId();
   const { control } = useFormContext<TInstanceCreationForm>();
-  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4);
   const [
     name,
     macroRegion,
@@ -91,6 +90,10 @@ export const useInstanceCreation = (): TInstanceCreation => {
     ],
   });
 
+  const { data: backupConfiguration } = useBackupConfigurations({
+    select: selectLocalBackupConfigurations(microRegion),
+  });
+
   const instancesListUrl = `/pci/projects/${projectId}/instances`;
 
   const localizationDetails = useMemo(
@@ -126,10 +129,9 @@ export const useInstanceCreation = (): TInstanceCreation => {
     [distributionImageOsType, projectId, billingType, flavorId],
   );
 
-  const backupSettingPrices = useMemo(() => {
-    if (!localBackupRotation) return null;
+  const backupConfigurationPrices = useMemo(() => {
+    if (!localBackupRotation || !backupConfiguration?.price) return null;
 
-    const { price: localBackupPrice } = selectLocalBackups();
     const distantBackupLocalizations = selectDistantBackupLocalizations();
 
     const distantBackupPrice = distantBackupLocalizations
@@ -137,18 +139,11 @@ export const useInstanceCreation = (): TInstanceCreation => {
       .find(({ value }) => value === distantBackupLocalization)
       ?.customRendererData?.backupPrice;
 
-    // TODO: local backup will be formatted here later since it will not be handled by viewModel
     return {
-      localBackupPrice,
-      distantBackupPrice: distantBackupPrice
-        ? getFormattedMonthlyCatalogPrice(distantBackupPrice)
-        : null,
+      localBackupPrice: backupConfiguration.price,
+      distantBackupPrice: distantBackupPrice ?? null,
     };
-  }, [
-    distantBackupLocalization,
-    getFormattedMonthlyCatalogPrice,
-    localBackupRotation,
-  ]);
+  }, [localBackupRotation, backupConfiguration, distantBackupLocalization]);
 
   const { networks } = useMemo(() => selectPrivateNetworks(microRegion), [
     microRegion,
@@ -204,6 +199,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       existingSshKeyId: sshKeyId,
       id: flavorDetails.id,
       imageId: distributionImageVersion.distributionImageVersionId,
+      localBackupRotation,
     });
     createInstance({ regionName: microRegion, instance });
   };
@@ -219,7 +215,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     networkName,
     distributionImageVersionName:
       distributionImageVersion.distributionImageVersionName,
-    backupSettingPrices,
+    backupConfigurationPrices,
   };
 
   return {

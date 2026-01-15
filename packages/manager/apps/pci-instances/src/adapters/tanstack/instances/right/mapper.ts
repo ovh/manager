@@ -11,6 +11,7 @@ type TCreateInstanceEntity = {
   imageRegion: string | null;
   existingSshKeyId: string | null;
   newSshPublicKey: string | null;
+  localBackupRotation: string | null;
 };
 
 export const mapFlavorToDTO = (
@@ -40,6 +41,12 @@ export const mapFlavorToDTO = (
         }
       : null,
   billingPeriod: 'hourly',
+  autobackup: entity.localBackupRotation
+    ? {
+        cron: `0 0 */${entity.localBackupRotation} * *`,
+        rotation: Number(entity.localBackupRotation),
+      }
+    : null,
 });
 
 export const mapDtoToInstanceCreationData = (

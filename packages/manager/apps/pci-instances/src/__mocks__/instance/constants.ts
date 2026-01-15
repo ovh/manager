@@ -3,6 +3,8 @@ import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right
 import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/deploymentModeViewModel';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
+import { TBackupConfigurationDTO } from '@/adapters/tanstack/configuration/right/dto.type';
+import { TBackupConfiguration } from '@/domain/entities/configuration';
 import Region1azImage from '../../../public/assets/1AZ.svg';
 import Region3azImage from '../../../public/assets/3AZ.svg';
 import LZImage from '../../../public/assets/LZ.svg';
@@ -1430,6 +1432,75 @@ export const mockedDistantBackupLocalizations = [
         },
         label: 'regions:manager_components_region_BHS_micro',
         value: 'BHS5',
+      },
+    ],
+  },
+];
+
+export const mockedBackupConfigurationDTO: TBackupConfigurationDTO = {
+  regions: [
+    {
+      name: 'GRA11',
+      distantAutoBackupEnabled: true,
+    },
+    {
+      name: 'BHS5',
+      distantAutoBackupEnabled: false,
+    },
+  ],
+  models: [
+    {
+      name: 'instanceBackup',
+      pricings: [
+        {
+          regions: ['GRA11'],
+          price: {
+            currencyCode: 'EUR',
+            priceInUcents: 10000,
+            text: '€0.10',
+            value: 0.1,
+          },
+          interval: 'hour',
+        },
+        {
+          regions: ['BHS5'],
+          price: {
+            currencyCode: 'USD',
+            priceInUcents: 12000,
+            text: '$0.12',
+            value: 0.12,
+          },
+          interval: 'hour',
+        },
+      ],
+    },
+  ],
+};
+
+export const mockedBackupConfigurationEntity: TBackupConfiguration[] = [
+  {
+    region: 'GRA11',
+    autoBackupEnabled: true,
+    prices: [
+      {
+        currencyCode: 'EUR',
+        priceInUcents: 10000,
+        text: '€0.10',
+        value: 0.1,
+        type: 'hour',
+      },
+    ],
+  },
+  {
+    region: 'BHS5',
+    autoBackupEnabled: false,
+    prices: [
+      {
+        currencyCode: 'USD',
+        priceInUcents: 12000,
+        text: '$0.12',
+        value: 0.12,
+        type: 'hour',
       },
     ],
   },

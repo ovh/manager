@@ -12,7 +12,7 @@ import LocalizationSelect from '@/components/localizationCard/LocalizationSelect
 import {
   selectDistantBackupLocalizations,
   TDistantBackupLocalizationItemData,
-} from '../../view-models/backupViewModel';
+} from '../../view-models/backupConfigurationViewModel';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
@@ -50,6 +50,7 @@ const BackupDistant: FC = () => {
   return (
     <>
       <ToggleField
+        disabled
         withLabels
         className="mt-6"
         label={t(
@@ -58,8 +59,10 @@ const BackupDistant: FC = () => {
         checked={isDistantBackupActivate}
         badges={[
           {
-            label: t('common:pci_instances_common_new'),
-            color: 'new',
+            label: 'Coming soon',
+            color: 'neutral',
+            className:
+              'bg-[--ods-color-neutral-500] text-xs !text-[--ods-color-element-text-selected]',
           },
         ]}
         onCheckedChange={handleActivateDistantBackup}

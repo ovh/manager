@@ -15,8 +15,6 @@ import { selectImages } from '../view-models/imagesViewModel';
 import { useMemo } from 'react';
 import { mockedPrivateNetworks } from '@/__mocks__/instance/constants';
 import { instanceCreationSchema } from '../CreateInstance.schema';
-import { selectLocalBackups } from '../view-models/backupViewModel';
-
 const preselectedOs = 'linux';
 // eslint-disable-next-line max-lines-per-function
 export const useForm = (projectId: string) => {
@@ -80,9 +78,6 @@ export const useForm = (projectId: string) => {
 
   const defaultNetworkId = defaultNetwork?.value ?? null;
 
-  const { items: localBackupItems } = selectLocalBackups();
-  const defaultLocalBackup = localBackupItems[0]?.rotation ?? null;
-
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     defaultValues: {
@@ -111,7 +106,7 @@ export const useForm = (projectId: string) => {
       networkId: defaultNetworkId,
       newPrivateNetwork: null,
       billingType: BILLING_TYPE.Hourly,
-      localBackupRotation: defaultLocalBackup,
+      localBackupRotation: null,
       distantBackupLocalization: null,
     },
     mode: 'onChange',

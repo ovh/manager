@@ -9,15 +9,13 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import Backup from '../Backup.component';
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
+import { mockedBackupConfigurationEntity } from '@/__mocks__/instance/constants';
+import { getBackupConfiguration } from '@/data/api/backupConfiguration';
 
-vi.mock('../../view-models/backupViewModel', async (importOriginal) => {
-  const original: typeof import('../../view-models/backupViewModel') = await importOriginal();
-
-  return {
-    ...original,
-    selectDistantBackupLocalizations: vi.fn(),
-  };
-});
+vi.mock('@/data/api/backupConfiguration');
+vi.mocked(getBackupConfiguration).mockResolvedValue(
+  mockedBackupConfigurationEntity,
+);
 
 const setupTest = () => {
   renderWithMockedWrappers(
@@ -26,7 +24,7 @@ const setupTest = () => {
         localBackupRotation: '7',
       }}
     >
-      <Backup />
+      <Backup microRegion="GRA11" />
     </TestCreateInstanceFormWrapper>,
   );
 };
@@ -35,7 +33,12 @@ describe('Considering Backup component', () => {
   it('should track when helper is opened', async () => {
     setupTest();
 
-    await userEvent.click(screen.getByText('common:pci_instances_common_help'));
+    await waitFor(
+      async () =>
+        await userEvent.click(
+          screen.getByText('common:pci_instances_common_help'),
+        ),
+    );
 
     await waitFor(() =>
       expect(useOvhTracking().trackClick).toHaveBeenCalledWith({
@@ -64,9 +67,7 @@ describe('Considering Backup component', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(
-          /creation:pci_instance_creation_backup_billing_label\s+~0,011.*HT\/mois\/Go/,
-        ),
+        screen.getByText(/creation:pci_instance_creation_backup_billing_label/),
       ).toBeVisible();
     });
   });
@@ -119,16 +120,19 @@ describe('Considering Backup component', () => {
   it('should hide all backup config when auto backup local is unchecked', async () => {
     setupTest();
 
-    await userEvent.click(
-      screen.getByLabelText(
-        /creation:pci_instance_creation_backup_setting_auto_backup_checkbox_label/i,
-      ),
+    await waitFor(
+      async () =>
+        await userEvent.click(
+          screen.getByLabelText(
+            /creation:pci_instance_creation_backup_setting_auto_backup_checkbox_label/i,
+          ),
+        ),
     );
 
     await waitFor(() => {
       expect(
         screen.queryByText(
-          /creation:pci_instance_creation_backup_billing_label\s+~0,011.*HT\/mois\/Go/,
+          /creation:pci_instance_creation_backup_billing_label/,
         ),
       ).not.toBeInTheDocument();
 

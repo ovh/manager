@@ -1,17 +1,17 @@
 import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
 import { describe, expect, it } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BackupDistant from '../backup/BackupDistant.component';
 import {
   selectDistantBackupLocalizations,
   TDistantBackupLocalizationItemData,
-} from '../../view-models/backupViewModel';
+} from '../../view-models/backupConfigurationViewModel';
 import { mockedDistantBackupLocalizations } from '@/__mocks__/instance/constants';
 import { SelectGroupItem } from '@ovhcloud/ods-react';
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 
-vi.mock('../../view-models/backupViewModel');
+vi.mock('../../view-models/backupConfigurationViewModel');
 vi.mocked(selectDistantBackupLocalizations).mockReturnValue(
   mockedDistantBackupLocalizations as SelectGroupItem<
     TDistantBackupLocalizationItemData
@@ -19,7 +19,8 @@ vi.mocked(selectDistantBackupLocalizations).mockReturnValue(
 );
 
 describe('Considering BackupDistant component', () => {
-  it('should display banner when activate distant backup', async () => {
+  // TODO: remove skip when distant backup will be enebled after v1
+  it.skip('should display banner when activate distant backup', async () => {
     renderWithMockedWrappers(
       <TestCreateInstanceFormWrapper
         defaultValues={{ distantBackupLocalization: null }}
@@ -28,13 +29,11 @@ describe('Considering BackupDistant component', () => {
       </TestCreateInstanceFormWrapper>,
     );
 
-    await act(async () => {
-      await userEvent.click(
-        screen.getByLabelText(
-          /creation:pci_instance_creation_backup_setting_distant_backup_checkbox_label/i,
-        ),
-      );
-    });
+    await userEvent.click(
+      screen.getByLabelText(
+        /creation:pci_instance_creation_backup_setting_distant_backup_checkbox_label/i,
+      ),
+    );
 
     await waitFor(() => {
       expect(
