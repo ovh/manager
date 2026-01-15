@@ -31,7 +31,7 @@ import {
   STANDARD_VIEW_ID,
 } from './manageView.constants';
 import { ViewType } from './types';
-import ManageViewDrawer from './manageViewDrawer';
+import ManageViewDrawer from './manageViewDrawer-v2';
 import { useGetViewsPreferences } from '@/hooks/manage-views/useGetViewPreferences';
 
 export const ManageViewButton = () => {
@@ -40,6 +40,7 @@ export const ManageViewButton = () => {
   const [isOpoverOpen, setIsPopoverOpen] = useState<boolean>(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [currentView, setCurrentView] = useState<ViewType>(null);
+  const [selectedView, selectView] = useState<ViewType>(null);
 
   const { preferences, error, isLoading } = useGetViewsPreferences({
     key: PREFERENCES_KEY,
@@ -98,7 +99,16 @@ export const ManageViewButton = () => {
               {t('current_view')}
             </Text>
 
-            <Button role="menuitem" variant={BUTTON_VARIANT.ghost}>
+            <Button
+              onClick={() => {
+                selectView(currentView);
+                setIsPopoverOpen(false);
+                setIsDrawerOpen(true);
+              }}
+              role="menuitem"
+              variant={BUTTON_VARIANT.ghost}
+              disabled={currentView?.id === views[0]?.id}
+            >
               <Icon name={ICON_NAME.pen} aria-hidden={true} />
               <span>{t('configure_current_view')}</span>
             </Button>
@@ -107,6 +117,7 @@ export const ManageViewButton = () => {
               role="menuitem"
               variant={BUTTON_VARIANT.ghost}
               color={BUTTON_COLOR.critical}
+              disabled={currentView?.id === views[0]?.id}
             >
               <Icon name={ICON_NAME.trash} aria-hidden={true} />
               <span>{t('delete_current_view')}</span>
@@ -144,6 +155,7 @@ export const ManageViewButton = () => {
               role="menuitem"
               variant={BUTTON_VARIANT.ghost}
               onClick={() => {
+                selectView(null);
                 setIsPopoverOpen(false);
                 setIsDrawerOpen(true);
               }}
@@ -168,7 +180,7 @@ export const ManageViewButton = () => {
         </PopoverContent>
       </Popover>
       <ManageViewDrawer
-        view={null}
+        view={selectedView}
         views={views}
         isOpen={isDrawerOpen}
         handleCancel={closeDrawer}
