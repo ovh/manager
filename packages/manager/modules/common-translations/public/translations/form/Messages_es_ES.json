@@ -33,7 +33,7 @@
   "ok": "OK",
   "optional": "opcional",
   "step_number": "Paso {{step}}",
-  "required": "obligatorio",
+  "required": "Obligatorio",
   "all_fields_are_required": "Todos los campos son obligatorios.",
   "companyName": "Nombre de la organización",
   "language": "Idioma",

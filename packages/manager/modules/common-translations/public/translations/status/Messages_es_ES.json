@@ -23,5 +23,5 @@
   "unPaid": "Factura impagada",
   "error": "Error",
   "ready": "Activo",
-  "awaiting_signature": "Esperando firma"
+  "awaiting_signature": "Pendiente de firma"
 }

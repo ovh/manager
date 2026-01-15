@@ -47,5 +47,6 @@
   "packages/manager/apps/veeam-backup",
   "packages/manager/apps/web-domains",
   "packages/manager/core/shell-client",
-  "packages/manager/modules/logs-to-customer"
+  "packages/manager/modules/logs-to-customer",
+  "packages/manager/apps/ips"
 ]
