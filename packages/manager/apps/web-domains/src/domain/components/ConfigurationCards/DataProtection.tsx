@@ -45,11 +45,11 @@ export default function DataProtection({
                   'domain_tab_general_information_data_protection_manage_button',
                 ),
                 isDisabled: Object.values(
-                  domainResource.currentState.contactsConfiguration,
+                  domainResource?.currentState?.contactsConfiguration,
                 ).every(
                   (contact: TContactDetails) =>
-                    !contact.disclosurePolicy.visibleViaRdds ||
-                    contact.disclosurePolicy.forcedDisclosureConfiguration,
+                    !contact?.disclosurePolicy?.visibleViaRdds ||
+                    contact?.disclosurePolicy?.forcedDisclosureConfiguration,
                 ),
                 onClick: () => setDataProtectionDrawerOpened(true),
                 iamActions: ['domain:apiovh:name/edit'],
