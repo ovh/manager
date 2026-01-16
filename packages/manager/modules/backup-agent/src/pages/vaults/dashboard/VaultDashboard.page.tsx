@@ -7,11 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Breadcrumb, GuideButton } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
+import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 
 import { useVaultDashboardTabs } from './_hooks/useVaultDashboardTabs';
 
@@ -26,13 +27,18 @@ export default function VaultDashboardPage() {
 
   const tabs = useVaultDashboardTabs();
 
+  const guideItems = useMainGuideItem();
+
   const onNavigateBackClicked = () => {
     startTransition(() => navigate('..'));
   };
 
   return (
     <BaseLayout
-      header={{ title: vaultResource?.currentState.name ?? vaultId }}
+      header={{
+        title: vaultResource?.currentState.name ?? vaultId,
+        headerButton: <GuideButton items={guideItems} />,
+      }}
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
       onClickReturn={onNavigateBackClicked}
       breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
