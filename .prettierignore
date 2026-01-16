@@ -32,3 +32,4 @@ packages/manager/apps/communication
 packages/manager/apps/zimbra
 packages/manager/apps/pci-project
 packages/manager/apps/hub
+packages/manager/apps/web-domain-reseller
