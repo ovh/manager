@@ -18,5 +18,6 @@
   "download_agent_with_command_line": "Instalar o agente via terminal",
   "add_agent_banner_api_error": "Ocorreu um erro. Por favor, aguarde alguns minutos antes de tentar novamente. {{errorMessage}}",
   "add_agent_error_resource_not_found": "Ocorreu um erro. Obrigado por verificar se o servidor é válido.",
-  "update_agent_banner_success": "A modificação da política está em andamento, por favor, aguarde alguns segundos."
+  "update_agent_banner_success": "A modificação da política está em andamento, por favor, aguarde alguns segundos.",
+  "unable_edit_agent_not_enabled": "A configuração estará disponível assim que o Agente for ativado."
 }

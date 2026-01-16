@@ -56,6 +56,7 @@ export const EditConfigurationPage = () => {
     tenantId: tenantId,
     agentId: agentId,
   });
+  const isAgentEnabled = resourceAgent?.status === 'ENABLED';
 
   const { data: policies, isLoading: isPoliciesLoading } = useBackupTenantPolicies({
     tenantId: tenantId,
@@ -116,7 +117,7 @@ export const EditConfigurationPage = () => {
         onDismiss={goBack}
         primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:edit`)}
         onPrimaryButtonClick={() => formRef.current?.requestSubmit()}
-        isPrimaryButtonDisabled={isSubmitted && !isValid && isLoading}
+        isPrimaryButtonDisabled={(isSubmitted && !isValid) || isLoading || !isAgentEnabled}
         isPrimaryButtonLoading={isPending}
         secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
         onSecondaryButtonClick={goBack}
@@ -136,6 +137,12 @@ export const EditConfigurationPage = () => {
             {serverErrorMessage && (
               <OdsMessage className="mb-6 w-full" color="critical" isDismissible={false}>
                 {serverErrorMessage}
+              </OdsMessage>
+            )}
+
+            {!isAgentEnabled && (
+              <OdsMessage className="mb-6 w-full" color="warning" isDismissible={false}>
+                {t('unable_edit_agent_not_enabled')}
               </OdsMessage>
             )}
 
@@ -175,7 +182,7 @@ export const EditConfigurationPage = () => {
               <RhfField.Select
                 placeholder={LABELS.BACKUP_POLICY}
                 isRequired
-                isDisabled={isPoliciesLoading}
+                isDisabled={isPoliciesLoading || !isAgentEnabled}
               >
                 {policies?.map((policy) => (
                   <option key={policy} value={policy}>

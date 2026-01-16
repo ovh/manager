@@ -5,6 +5,7 @@ import { Resource } from '@/types/Resource.type';
 export const mockAgents: Resource<Agent>[] = [
   {
     createdAt: '2025-09-20T08:15:30.445Z',
+    status: 'ENABLED',
     currentState: {
       id: 'a1b2c3d4-1234-4000-85b0-badd52fc7a01',
       ips: ['192.168.1.10', '10.0.0.15'],
@@ -34,6 +35,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-21T14:22:15.789Z',
+    status: 'ENABLED',
     currentState: {
       id: 'b2c3d4e5-2345-4000-85b0-badd52fc7a02',
       ips: ['172.16.0.25'],
@@ -63,6 +65,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-19T10:30:44.332Z',
+    status: 'ENABLED',
     currentState: {
       id: 'c3d4e5f6-3456-4000-85b0-badd52fc7a03',
       ips: ['10.10.1.50', '192.168.2.100'],
@@ -99,6 +102,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-18T16:45:12.678Z',
+    status: 'ENABLED',
     currentState: {
       id: 'd4e5f6g7-4567-4000-85b0-badd52fc7a04',
       ips: ['172.20.0.75'],
@@ -129,6 +133,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-17T09:12:28.991Z',
+    status: 'ENABLED',
     currentState: {
       id: 'e5f6g7h8-5678-4000-85b0-badd52fc7a05',
       ips: ['192.168.3.200', '10.1.1.30', '172.18.0.45'],
@@ -159,6 +164,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-22T13:25:17.234Z',
+    status: 'ENABLED',
     currentState: {
       id: 'f6g7h8i9-6789-4000-85b0-badd52fc7a06',
       ips: ['10.5.5.10'],
@@ -196,6 +202,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-16T11:40:55.567Z',
+    status: 'ENABLED',
     currentState: {
       id: 'g7h8i9j0-7890-4000-85b0-badd52fc7a07',
       ips: ['192.168.10.150'],
@@ -225,6 +232,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-15T08:20:33.123Z',
+    status: 'ENABLED',
     currentState: {
       id: 'h8i9j0k1-8901-4000-85b0-badd52fc7a08',
       ips: ['172.25.0.88', '10.2.2.40'],
@@ -256,6 +264,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-23T15:35:42.789Z',
+    status: 'ENABLED',
     currentState: {
       id: 'i9j0k1l2-9012-4000-85b0-badd52fc7a09',
       ips: ['10.0.10.120'],
@@ -293,6 +302,7 @@ export const mockAgents: Resource<Agent>[] = [
   },
   {
     createdAt: '2025-09-14T12:10:25.345Z',
+    status: 'ENABLED',
     currentState: {
       id: 'j0k1l2m3-0123-4000-85b0-badd52fc7a10',
       ips: ['192.168.5.80', '172.30.0.15'],
