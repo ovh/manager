@@ -183,17 +183,17 @@ export const useCartItems: (params: UseCartItemsParams) => CartItem[] = ({
                 <span>{order.network.network.name}</span>
               ) : (
                 <span className="text-red-500">
-                  {t('summaryFieldNetworNone')}
+                  {t('summaryFieldNetworkNone')}
                 </span>
               )}
             </div>
             <div className="flex gap-1">
-              <span>{t('summaryFieldNetworSubnet')}</span>
+              <span>{t('summaryFieldNetworkSubnet')}</span>
               {order.network.subnet ? (
                 <span>{order.network.subnet.cidr}</span>
               ) : (
                 <span className="text-red-500">
-                  {t('summaryFieldNetworNone')}
+                  {t('summaryFieldNetworkNone')}
                 </span>
               )}
             </div>

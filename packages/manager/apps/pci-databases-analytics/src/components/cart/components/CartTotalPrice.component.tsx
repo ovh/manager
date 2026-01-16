@@ -11,6 +11,8 @@ interface CartTotalPriceProps {
   currency: order.CurrencyCodeEnum;
 }
 
+const HOUR_TO_MONTH_FACTOR = 730;
+
 const CartTotalPrice = ({
   price,
   text,
@@ -35,7 +37,7 @@ const CartTotalPrice = ({
         )}
         {displayMonthlyPrice && (
           <p data-testid="cart-monthly-total-price">
-            {priceFormatter(price)}/month
+            {priceFormatter(price * HOUR_TO_MONTH_FACTOR)}/month
           </p>
         )}
       </div>

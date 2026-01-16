@@ -17,7 +17,7 @@ interface CartProps {
   actionButtons: React.ReactNode | React.ReactNode[];
   locale: Locale;
   currency: order.CurrencyCodeEnum;
-  totalText?: string;
+  totalText: string;
 }
 
 const Cart = ({
