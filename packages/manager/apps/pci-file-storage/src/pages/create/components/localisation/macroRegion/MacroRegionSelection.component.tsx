@@ -25,13 +25,13 @@ export const MacroRegionSelection = () => {
     name: ['deploymentModes', 'continent', 'macroRegion'],
   });
 
-  const { data: localizations } = useShareCatalog<TRegionData[]>({
+  const { data: localizations = [] } = useShareCatalog<TRegionData[]>({
     select: selectLocalizations({ deploymentModes, continentId: selectedContinent }),
   });
 
   const translatedLocalizations = useMemo(
     () =>
-      (localizations ?? []).map(({ cityKey, ...rest }) => ({
+      localizations.map(({ cityKey, ...rest }) => ({
         city: t(`regions:${cityKey}`),
         ...rest,
       })),
@@ -57,8 +57,8 @@ export const MacroRegionSelection = () => {
 
     if (
       !availablePreviousSelectedLocalization &&
-      localizations?.[0]?.macroRegion &&
-      localizations?.[0].microRegion
+      localizations[0]?.macroRegion &&
+      localizations[0].microRegion
     ) {
       setValue('macroRegion', localizations[0].macroRegion);
       setValue('shareData.microRegion', localizations[0].microRegion);

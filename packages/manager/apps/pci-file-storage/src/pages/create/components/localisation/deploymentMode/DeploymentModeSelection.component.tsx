@@ -63,7 +63,6 @@ export const DeploymentModeSelection = () => {
           <CheckboxGroup
             name="deploymentModes"
             className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3"
-            defaultValue={field.value}
           >
             {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image }) => (
               <PciCard

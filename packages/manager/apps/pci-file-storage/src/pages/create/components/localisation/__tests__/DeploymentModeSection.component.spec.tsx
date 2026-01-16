@@ -5,10 +5,6 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { DeploymentModeSection } from '@/pages/create/components/localisation/deploymentMode/DeploymentModeSection.component';
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Text: ({ children }: PropsWithChildren) => <div>{children}</div>,
-}));
-
 vi.mock(
   '@/pages/create/components/localisation/deploymentMode/DeploymentModeSelection.component',
   () => ({

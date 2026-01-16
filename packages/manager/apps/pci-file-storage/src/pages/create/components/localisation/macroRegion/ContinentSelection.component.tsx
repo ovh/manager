@@ -24,11 +24,11 @@ export const ContinentSelection = () => {
     name: ['deploymentModes', 'continent'],
   });
 
-  const { data: continentOptions } = useShareCatalog({ select: selectContinent(deploymentModes) });
+  const { data: continentOptions = [] } = useShareCatalog({ select: selectContinent(deploymentModes) });
 
   const translatedContinents = useMemo(
     () =>
-      (continentOptions ?? []).map((option) => ({
+      continentOptions.map((option) => ({
         label: t(`create:${option.labelKey}`),
         value: option.value,
       })),
@@ -36,12 +36,12 @@ export const ContinentSelection = () => {
   );
 
   useEffect(() => {
-    const availablePreviousSelectedContinent = continentOptions?.find(
+    const availablePreviousSelectedContinent = continentOptions.find(
       (continentOption) => continentOption.value === selectedContinent,
     );
 
-    if (!availablePreviousSelectedContinent && continentOptions?.[0]?.value) {
-      setValue('continent', continentOptions?.[0].value);
+    if (!availablePreviousSelectedContinent && continentOptions[0]?.value) {
+      setValue('continent', continentOptions[0].value);
     }
   }, [selectedContinent, continentOptions, setValue]);
 
