@@ -1,0 +1,10 @@
+{
+  "zone_page_description": "Vous pouvez voir ici la configuration des diverses entrées de votre domaine.",
+  "zone_page_description_2": "Vous avez également la possibilité de configurer ces entrées pour relier votre domaine à vos différents services (bouton « ajouter une entrée »).",
+  "zone_page_actions": "Actions sur ma zone",
+  "zone_page_add_entry": "Ajouter une entrée",
+  "zone_page_modify_textual": "Modifier en mode textuel",
+  "zone_page_modify_default_ttl": "Modifier le TTL par défaut",
+  "zone_page_view_history": "Voir l'historique de ma zone DNS",
+  "zone_page_reset": "Réinitialiser ma zone DNS"
+}
