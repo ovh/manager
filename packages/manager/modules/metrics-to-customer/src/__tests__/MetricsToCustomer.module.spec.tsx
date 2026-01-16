@@ -18,25 +18,32 @@ function TestRouteContent() {
   return <div data-testid="route-content">Route Content</div>;
 }
 
-const { DashboardProviderMock, getObservabilityRouteMock } = vi.hoisted(() => {
-  const dashboardProvider = vi.fn(({ children }: DashboardProviderMockProps) => (
-    <div data-testid="dashboard-provider">{children}</div>
-  ));
+const { DashboardProviderMock, MetricsToCustomerProviderMock, getObservabilityRouteMock } =
+  vi.hoisted(() => {
+    const dashboardProvider = vi.fn(({ children }: DashboardProviderMockProps) => (
+      <div data-testid="dashboard-provider">{children}</div>
+    ));
 
-  const routeMock = vi.fn(() => (
-    <>
-      <Route path="/" element={<TestRouteContent />} />
-    </>
-  ));
+    const metricsToCustomerProvider = vi.fn(({ children }: { children: React.ReactNode }) => (
+      <div data-testid="metrics-to-customer-provider">{children}</div>
+    ));
 
-  return {
-    DashboardProviderMock: dashboardProvider,
-    getObservabilityRouteMock: routeMock,
-  };
-});
+    const routeMock = vi.fn(() => (
+      <>
+        <Route path="/" element={<TestRouteContent />} />
+      </>
+    ));
+
+    return {
+      DashboardProviderMock: dashboardProvider,
+      MetricsToCustomerProviderMock: metricsToCustomerProvider,
+      getObservabilityRouteMock: routeMock,
+    };
+  });
 
 vi.mock('@/contexts', () => ({
   DashboardProvider: DashboardProviderMock,
+  MetricsToCustomerProvider: MetricsToCustomerProviderMock,
 }));
 
 vi.mock('@/routes/routes', () => ({
@@ -103,8 +110,8 @@ describe('MetricsToCustomerModule', () => {
       // Assert
       expect(DashboardProviderMock).toHaveBeenCalledTimes(1);
       const providerProps = DashboardProviderMock.mock.calls[0]?.[0];
-      // DashboardProvider receives empty context object
-      expect(providerProps?.context).toEqual({});
+      // DashboardProvider doesn't receive context prop (it's optional and not passed)
+      expect(providerProps?.context).toBeUndefined();
     });
 
     it('should render Suspense fallback when loading', () => {
@@ -139,8 +146,8 @@ describe('MetricsToCustomerModule', () => {
       // Assert
       expect(DashboardProviderMock).toHaveBeenCalledTimes(1);
       const providerProps = DashboardProviderMock.mock.calls[0]?.[0];
-      // DashboardProvider receives empty context object
-      expect(providerProps?.context).toEqual({});
+      // DashboardProvider doesn't receive context prop (it's optional and not passed)
+      expect(providerProps?.context).toBeUndefined();
     });
 
     it('should handle empty productType', () => {
@@ -158,8 +165,8 @@ describe('MetricsToCustomerModule', () => {
       // Assert
       expect(DashboardProviderMock).toHaveBeenCalledTimes(1);
       const providerProps = DashboardProviderMock.mock.calls[0]?.[0];
-      // DashboardProvider receives empty context object
-      expect(providerProps?.context).toEqual({});
+      // DashboardProvider doesn't receive context prop (it's optional and not passed)
+      expect(providerProps?.context).toBeUndefined();
     });
   });
 
@@ -179,8 +186,8 @@ describe('MetricsToCustomerModule', () => {
       // Assert
       expect(DashboardProviderMock).toHaveBeenCalledTimes(1);
       const providerProps = DashboardProviderMock.mock.calls[0]?.[0];
-      // DashboardProvider receives empty context object
-      expect(providerProps?.context).toEqual({});
+      // DashboardProvider doesn't receive context prop (it's optional and not passed)
+      expect(providerProps?.context).toBeUndefined();
     });
   });
 });
