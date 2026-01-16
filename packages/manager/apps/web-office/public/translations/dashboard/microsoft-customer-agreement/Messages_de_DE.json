@@ -1,10 +1,10 @@
 {
-  "signatory_informations": "Information des Unterzeichners",
-  "signatory_informations_description": "Um Ihre Lizenzen auszustellen, müssen Sie den Microsoft-Kundenvertrag akzeptieren. Bitte überprüfen Sie, ob die untenstehenden Informationen mit dem Unterzeichner übereinstimmen.",
-  "signatory_informations_message": "Wenn Sie auf \"Bestätigen\" klicken, werden Sie zur Microsoft-Website weitergeleitet, um Ihre Anfrage zu validieren. Nach der Validierung schließen Sie den Tab und kehren Sie zu diesem Konfigurationsprozess zurück.",
-  "signatory_step2_description": "Um Ihren Dienst bereitzustellen, bestätigen Sie, dass Sie Ihren Vertrag bei Microsoft unterzeichnet haben.",
+  "signatory_informations": "Unterrichtung des Unterzeichners",
+  "signatory_informations_description": "Zwecks Bereitstellung Ihrer Lizenzen müssen Sie den Microsoft-Kundenvertrag akzeptieren. Bitte überprüfen Sie, ob die unten stehenden Angaben mit dem Unterzeichner übereinstimmen.",
+  "signatory_informations_message": "Wenn Sie auf „Bestätigen“ klicken, werden Sie zur Microsoft-Website weitergeleitet, um Ihre Anfrage zu validieren. Schließen Sie nach der Validierung die Registerkarte und kehren Sie dann zu diesem Konfigurationspfad zurück.",
+  "signatory_step2_description": "Bestätigen Sie zum Bereitstellen Ihres Dienstes, dass Sie Ihren Vertrag bei Microsoft unterzeichnet haben.",
   "signatory_step2_link": "Link zu Microsoft",
-  "signatory_step2_button": "Ich habe den Microsoft-Vertrag unterzeichnet",
+  "signatory_step2_button": "Ich habe den Microsoft-Vertrag unterzeichnet.",
   "signatory_success_message": "Ihr Dienst wurde erfolgreich bereitgestellt und ist jetzt verfügbar!",
-  "signatory_success_link": "Meine ersten Schritte mit Microsoft 365"
+  "signatory_success_link": "Erste Schritte mit Microsoft 365"
 }
