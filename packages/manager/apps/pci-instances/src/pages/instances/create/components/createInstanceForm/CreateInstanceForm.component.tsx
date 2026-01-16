@@ -1,4 +1,3 @@
-import { PciCardShowcaseComponent } from '@/components/pciCard/PciCardShowcase.component';
 import { QuantitySelector } from '@/pages/instances/create/components/QuantitySelector.component';
 import { Divider, Text } from '@ovhcloud/ods-react';
 import { FormProvider } from 'react-hook-form';
@@ -99,7 +98,6 @@ export const CreateInstanceForm = () => {
             <BillingChoice billingTypes={billingTypes} />
           )}
           <AdvancedParameters />
-          <PciCardShowcaseComponent />
         </section>
         <aside className="w-1/3 min-w-[280px] max-w-[640px]">
           <CreationCart />
