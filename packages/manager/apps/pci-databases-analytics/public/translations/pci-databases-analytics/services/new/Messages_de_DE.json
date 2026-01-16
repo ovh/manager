@@ -88,6 +88,8 @@
   "orderSectionTitleFlavor": "Instanz",
   "orderSectionTitleStorage": "Speicher",
   "orderSectionTitleOptions": "Optionen",
+  "orderSectionTitleNetwork": "Netzwerktyp",
+  "orderSectionTitleIps": "Zugelassene IPs",
   "fieldNameLabel": "Name",
   "fieldVersionLabel": "Version",
   "summaryFieldBackupRetention_one": "Backups behalten für {{count}} Tag",

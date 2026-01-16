@@ -11,6 +11,8 @@
   "orderSectionTitleFlavor": "Instance",
   "orderSectionTitleStorage": "Stockage",
   "orderSectionTitleOptions": "Options",
+  "orderSectionTitleNetwork": "Type de réseau",
+  "orderSectionTitleIps": "IPs autorisées",
   "fieldNameLabel": "Nom",
   "fieldEngineLabel": "Engine",
   "fieldVersionLabel": "Version",

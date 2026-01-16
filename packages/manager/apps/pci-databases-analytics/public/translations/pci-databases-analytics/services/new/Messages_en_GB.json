@@ -88,6 +88,8 @@
   "orderSectionTitleFlavor": "Instance",
   "orderSectionTitleStorage": "Storage",
   "orderSectionTitleOptions": "Options",
+  "orderSectionTitleNetwork": "Network type",
+  "orderSectionTitleIps": "Authorised IPs",
   "fieldNameLabel": "Name",
   "fieldVersionLabel": "Version",
   "summaryFieldBackupRetention_one": "Backups kept for {{count}} days",

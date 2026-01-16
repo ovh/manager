@@ -88,6 +88,8 @@
   "orderSectionTitleFlavor": "Instancia",
   "orderSectionTitleStorage": "Almacenamiento",
   "orderSectionTitleOptions": "Opciones",
+  "orderSectionTitleNetwork": "Tipo de red",
+  "orderSectionTitleIps": "IP autorizadas",
   "fieldNameLabel": "Nombre",
   "fieldVersionLabel": "Versión",
   "summaryFieldBackupRetention_one": "Backups conservados {{count}} día",
