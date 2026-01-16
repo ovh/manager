@@ -6,14 +6,16 @@ import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 import { calculateDateTimeRange } from '@/utils/dateTimeUtils';
 
 export interface DashboardState {
-  resourceName: string | undefined;
-  productType: string | undefined;
-  resourceURN: string | undefined;
   isLoading: string | undefined;
   startDateTime: number;
   endDateTime: number;
   selectedTimeOption: TimeRangeOption;
   refreshInterval: number;
+}
+
+interface DashboardProviderProps {
+  children: ReactNode;
+  context?: Partial<DashboardState>;
 }
 
 export const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
@@ -26,18 +28,8 @@ export const useDashboardContext = () => {
   return context;
 };
 
-type DashboardProviderConfig = Partial<DashboardState>;
-
-interface DashboardProviderProps {
-  children: ReactNode;
-  context?: DashboardProviderConfig;
-}
-
 export const DashboardProvider = ({ children, context = {} }: DashboardProviderProps) => {
   const {
-    resourceName,
-    productType,
-    resourceURN,
     isLoading = undefined,
     refreshInterval = 15,
     selectedTimeOption,
@@ -51,9 +43,6 @@ export const DashboardProvider = ({ children, context = {} }: DashboardProviderP
     calculateDateTimeRange(initialSelectedTimeOption, endDateTime, startDateTime);
 
   const [state, setState] = useState<DashboardState>({
-    resourceName,
-    productType,
-    resourceURN,
     isLoading,
     refreshInterval,
     selectedTimeOption: initialSelectedTimeOption,
