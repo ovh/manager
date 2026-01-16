@@ -20,6 +20,8 @@ import { FREE_HOSTING_PLAN_CODE } from '@/domain/constants/order';
 import { useNavigate } from 'react-router-dom';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
+import { ServiceRoutes } from '@/common/enum/common.enum';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface HostingProps {
   readonly serviceName: string;
@@ -54,13 +56,21 @@ export default function Hosting({ serviceName }: HostingProps) {
     consent: false,
   });
   const navigate = useNavigate();
-
+  const { serviceInfo } = useGetServiceInformation(
+    'domain',
+    serviceName,
+    ServiceRoutes.Domain,
+  );
   const { data: associatedHosting } = useGetAssociatedHosting(serviceName);
   const {
     orderCartDetails,
     isInitialOrderFreeHostingPending,
     getInitialOrder,
-  } = useInitialOrderFreeHosting(serviceName, ovhSubsidiary);
+  } = useInitialOrderFreeHosting(
+    serviceName,
+    ovhSubsidiary,
+    serviceInfo?.billing?.pricing?.pricingMode,
+  );
   const {
     orderFreeHosting,
     isOrderFreeHostingPending,
