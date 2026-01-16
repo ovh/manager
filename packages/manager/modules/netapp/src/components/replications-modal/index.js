@@ -8,7 +8,12 @@ import component from './component';
 const moduleName = 'ovhManagerReplicationsModalComponent';
 
 angular
-  .module(moduleName, ['pascalprecht.translate', 'oui', 'ngSanitize'])
+  .module(moduleName, [
+    'pascalprecht.translate',
+    'oui',
+    'ngSanitize',
+    'ngTranslateAsyncLoader',
+  ])
   .component(moduleName, component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
