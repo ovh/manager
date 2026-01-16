@@ -36,11 +36,11 @@ import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import DnssecModal from '@/domain/components/ConfigurationCards/DnssecModal';
-import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import LinkToOngoingOperations from '@/domain/components/LinkToOngoingOperations/LinkToOngoingOperations';
 import UnauthorizedBanner from '@/domain/components/UnauthorizedBanner/UnauthorizedBanner';
 import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 import Loading from '@/alldoms/components/loading/Loading';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
@@ -58,14 +58,9 @@ export default function DsRecordsListing() {
     ['dnsZone:apiovh:dnssec/create', 'dnsZone:apiovh:dnssec/delete'],
     urn,
   );
-  const isInternalDnsConfiguration =
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.EXTERNAL &&
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.MIXED;
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    isInternalDnsConfiguration,
+    domainResource,
   );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDnssecModalOpen, setIsDnssecModalOpen] = useState<boolean>(false);
@@ -187,6 +182,12 @@ export default function DsRecordsListing() {
       {t(actionMessage)}
     </span>
   );
+
+  const isInternalDnsConfiguration =
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.EXTERNAL &&
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.MIXED;
 
   if (isInternalDnsConfiguration) {
     switch (dnssecStatus) {
