@@ -13,15 +13,15 @@ type RegionTypeBadgeProps = {
 };
 
 const bgColors: Record<LocationType, string> = {
-  'LOCAL-ZONE': '[&::part(badge)]:bg-[--ods-color-primary-100]',
-  'REGION-1-AZ': '[&::part(badge)]:bg-[--ods-color-primary-400]',
-  'REGION-3-AZ': '[&::part(badge)]:bg-[--ods-color-primary-700]',
+  'LOCAL-ZONE': 'bg-[--ods-color-primary-100]',
+  'REGION-1-AZ': 'bg-[--ods-color-primary-400]',
+  'REGION-3-AZ': 'bg-[--ods-color-primary-700]',
 };
 
-const textColors: Record<LocationType, ODS_BADGE_COLOR> = {
-  'LOCAL-ZONE': ODS_BADGE_COLOR.information,
-  'REGION-1-AZ': ODS_BADGE_COLOR.promotion,
-  'REGION-3-AZ': ODS_BADGE_COLOR.promotion,
+const textColors: Record<LocationType, BadgeProp['color']> = {
+  'LOCAL-ZONE': 'information',
+  'REGION-1-AZ': 'promotion',
+  'REGION-3-AZ': 'promotion',
 };
 
 const badgeLabels: Record<LocationType, string> = {

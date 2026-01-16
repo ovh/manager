@@ -1,6 +1,9 @@
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value/secretValueToggle.constants';
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { UserEvent } from '@testing-library/user-event';
+import { expect } from 'vitest';
+
+import { BadgeColor } from '@ovhcloud/ods-react';
 
 /* GET BY TEST ID */
 
@@ -59,4 +62,16 @@ export const assertTitleVisibilityOds18 = async (
 
 export const assertPageTitleVisibility = async (title: string, timeout?: number) => {
   await assertTitleVisibilityOds18(title, 'heading-1', timeout);
+};
+
+/**
+ * Asserts that a badge element has the expected color class in its className
+ * @param badge - The badge element to check
+ * @param color - The expected color value
+ */
+export const assertBadgeColor = (badge: HTMLElement, color: BadgeColor) => {
+  const colorClassFragment = `_badge--${color}_`;
+  const className = badge.className || '';
+
+  expect(className).toContain(colorClassFragment);
 };
