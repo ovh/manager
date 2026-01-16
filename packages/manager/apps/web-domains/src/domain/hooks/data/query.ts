@@ -68,11 +68,15 @@ export const useGetDomainResource = (serviceName: string) => {
   };
 };
 
-export const useGetDomainZone = (serviceName: string) => {
+export const useGetDomainZone = (
+  serviceName: string,
+  isInternalConfiguration: boolean,
+) => {
   const { data, isLoading, error } = useQuery<TDomainZone>({
     queryKey: ['domain', 'zone', serviceName],
     queryFn: () => getDomainZone(serviceName),
     retry: false,
+    enabled: isInternalConfiguration,
   });
   return {
     domainZone: data,
@@ -361,7 +365,7 @@ export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
 export const useGetDnssecStatus = (
   resourceCurrentState: TCurrentState,
   resourceTargetSpec: TTargetSpec,
-) => {
+): { dnssecStatus: DnssecStatusEnum; isDnssecStatusLoading: boolean } => {
   if (!resourceCurrentState.dnssecConfiguration?.dnssecSupported) {
     return {
       dnssecStatus: DnssecStatusEnum.NOT_SUPPORTED,
