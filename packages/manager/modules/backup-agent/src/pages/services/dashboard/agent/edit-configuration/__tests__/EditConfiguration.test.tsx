@@ -50,9 +50,21 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
       .mockImplementation(({ children }: { children: React.ReactNode }) => <p>{children}</p>),
     OdsButton: vi
       .fn()
-      .mockImplementation(({ label, ...props }: { children: React.ReactNode; label: string }) => (
-        <button {...props}>{label}</button>
-      )),
+      .mockImplementation(
+        ({
+          label,
+          isDisabled,
+          ...props
+        }: {
+          children: React.ReactNode;
+          isDisabled: boolean;
+          label: string;
+        }) => (
+          <button {...props} disabled={isDisabled}>
+            {label}
+          </button>
+        ),
+      ),
     OdsFormField: vi
       .fn()
       .mockImplementation(
@@ -160,10 +172,10 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
         <section data-testid={'drawer'} {...props}>
           <h2>{heading}</h2>
           {children}
-          <button onClick={onPrimaryButtonClick} data-disabled={isPrimaryButtonDisabled}>
+          <button onClick={onPrimaryButtonClick} disabled={isPrimaryButtonDisabled}>
             {primaryButtonLabel}
           </button>
-          <button onClick={onSecondaryButtonClick} data-disabled={isSecondaryButtonDisabled}>
+          <button onClick={onSecondaryButtonClick} disabled={isSecondaryButtonDisabled}>
             {secondaryButtonLabel}
           </button>
         </section>
@@ -200,6 +212,9 @@ vi.mock('@/data/hooks/tenants/useVspcTenantBackupPolicies', () => ({
   useBackupTenantPolicies: useBackupTenantPoliciesMock,
 }));
 
+const getUnableEditAgentNotEnabledBanner = () =>
+  screen.queryByText('translated_unable_edit_agent_not_enabled');
+
 const getInputName = () =>
   screen.getByRole('textbox', {
     name: 'translated_@ovh-ux/manager-common-translations/dashboard:name',
@@ -210,6 +225,9 @@ const getInputIp = () =>
     name: 'translated_@ovh-ux/manager-common-translations/system:address_ip',
   });
 const getSelectPolicy = () => screen.getByTestId('select-policy');
+
+const getSubmitButton = () =>
+  screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:edit` });
 
 describe('EditConfigurationComponent', () => {
   beforeAll(() => {
@@ -239,6 +257,8 @@ describe('EditConfigurationComponent', () => {
 
     render(<EditConfigurationPage />);
 
+    expect(getUnableEditAgentNotEnabledBanner()).not.toBeInTheDocument();
+
     await waitFor(() =>
       expect(getSelectPolicy().children.length).toBe(mockTenantBackupPolicies.length),
     );
@@ -248,7 +268,7 @@ describe('EditConfigurationComponent', () => {
     expect(getInputIp()).toHaveValue(mockAgents[0]!.currentState.ips.join(', '));
     expect(getSelectPolicy()).toHaveValue(mockAgents[0]!.currentState.policy);
 
-    await user.click(screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:edit` }));
+    await user.click(getSubmitButton());
     expect(mutateMock).toHaveBeenCalledWith({
       displayName: mockAgents[0]!.currentState.name,
       ips: mockAgents[0]!.currentState.ips,
@@ -256,6 +276,21 @@ describe('EditConfigurationComponent', () => {
       vspcTenantId: TENANTS_MOCKS[0]!.id,
       backupAgentId: mockAgents[0]!.id,
     });
+  });
+
+  it('renders edit configuration component and see banner because agent is not enabled', () => {
+    useBackupVSPCTenantAgentDetailsMock.mockReturnValue({
+      isLoading: false,
+      isError: false,
+      isSuccess: true,
+      data: { ...mockAgents[0]!, status: 'NOT_CONFIGURED' },
+      refetch: vi.fn().mockResolvedValue({ data: {} }),
+    });
+
+    render(<EditConfigurationPage />);
+
+    expect(getUnableEditAgentNotEnabledBanner()).toBeVisible();
+    expect(getSubmitButton()).toBeDisabled();
   });
 
   it('renders edit configuration loading drawer component', () => {

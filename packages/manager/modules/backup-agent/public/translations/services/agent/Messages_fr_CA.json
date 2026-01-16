@@ -18,5 +18,6 @@
   "delete_agent_modal_content": "Souhaitez-vous vraiment supprimer l'agent {{agentName}} ? Les données associées seront conservées jusqu'à 14 jours après la suppression.",
   "download_agent_with_executable": "Installer via executable",
   "download_agent_with_command_line": "Installer l'agent via terminal",
-  "update_agent_banner_success": "La modification de la policy est en cours, veuillez patienter quelques secondes."
+  "update_agent_banner_success": "La modification de la policy est en cours, veuillez patienter quelques secondes.",
+  "unable_edit_agent_not_enabled": "La configuration sera disponible une fois l'Agent activé."
 }
