@@ -8,6 +8,7 @@
   "status_deleting": "Supprimé",
   "ttc": "TTC",
   "table_sort": "Trier",
+  "common_field_label_required": "obligatoire",
   "common_none": "Aucun",
   "common_field_error_required": "Veuillez compléter ce champ.",
   "common_field_error_number": "Veuillez saisir une valeur numérique valide.",
