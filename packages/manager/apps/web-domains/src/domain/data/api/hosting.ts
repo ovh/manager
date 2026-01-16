@@ -18,6 +18,7 @@ export const getAssociatedHosting = async (
 export const initialOrderFreeHosting = async (
   serviceName: string,
   subsidiary: Subsidiary,
+  pricingMode: string,
 ): Promise<TInitialOrderFreeHosting> => {
   const { data: orderCart } = await v6.post(`order/cart`, {
     ovhSubsidiary: subsidiary,
@@ -31,7 +32,7 @@ export const initialOrderFreeHosting = async (
     cartId: orderCart.cartId,
     duration: 'P1Y',
     planCode: FREE_HOSTING_PLAN_CODE,
-    pricingMode: 'create-default',
+    pricingMode: pricingMode,
     quantity: 1,
   });
 

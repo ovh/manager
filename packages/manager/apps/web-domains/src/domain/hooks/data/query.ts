@@ -321,10 +321,12 @@ export function useOrderFreeHosting() {
 export function useInitialOrderFreeHosting(
   serviceName: string,
   subsidiary: Subsidiary,
+  pricingMode: string,
 ) {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['initial-order-free-hosting', serviceName, subsidiary],
-    queryFn: () => initialOrderFreeHosting(serviceName, subsidiary),
+    queryFn: () =>
+      initialOrderFreeHosting(serviceName, subsidiary, pricingMode),
     enabled: false,
   });
 

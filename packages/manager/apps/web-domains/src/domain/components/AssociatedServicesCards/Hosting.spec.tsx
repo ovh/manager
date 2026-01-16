@@ -16,6 +16,7 @@ vi.mock('@/domain/hooks/data/query', () => ({
   useInitialOrderFreeHosting: vi.fn(),
   useOrderFreeHosting: vi.fn(),
   useGetFreeHostingServices: vi.fn(),
+  useGetServiceInformation: vi.fn(),
 }));
 
 interface ActionMenuItem {
@@ -26,7 +27,6 @@ interface ActionMenuItem {
 interface ActionMenuProps {
   id: string;
   items: ActionMenuItem[];
-  isCompact?: boolean; // ignored in mock
 }
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
