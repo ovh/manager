@@ -39,8 +39,6 @@ const TestComponent = () => {
 
   return (
     <div>
-      <span data-testid="resource-name">{state.resourceName || 'none'}</span>
-      <span data-testid="product-type">{state.productType || 'none'}</span>
       <span data-testid="is-loading">{state.isLoading || 'none'}</span>
       <span data-testid="refresh-interval">{state.refreshInterval}</span>
       <span data-testid="selected-time-option">{state.selectedTimeOption.value}</span>
@@ -49,7 +47,6 @@ const TestComponent = () => {
         onClick={() =>
           setState((prev) => ({
             ...prev,
-            resourceName: 'updated-resource',
             refreshInterval: 30,
           }))
         }
@@ -68,10 +65,7 @@ describe('DashboardContext', () => {
   describe('DashboardProvider', () => {
     it('should provide initial context values with defaults', () => {
       // Arrange
-      const contextConfig = {
-        resourceName: 'test-resource',
-        productType: 'test-product',
-      };
+      const contextConfig = {};
 
       // Act
       const { getByTestId } = render(<TestComponent />, {
@@ -79,8 +73,6 @@ describe('DashboardContext', () => {
       });
 
       // Assert
-      expect(getByTestId('resource-name')).toHaveTextContent('test-resource');
-      expect(getByTestId('product-type')).toHaveTextContent('test-product');
       expect(getByTestId('is-loading')).toHaveTextContent('none');
       expect(getByTestId('refresh-interval')).toHaveTextContent('15');
       expect(getByTestId('selected-time-option')).toHaveTextContent(
@@ -95,8 +87,6 @@ describe('DashboardContext', () => {
         rangeInSeconds: 12 * 60 * 60,
       };
       const contextConfig = {
-        resourceName: 'custom-resource',
-        productType: 'custom-product',
         isLoading: 'loading-state',
         refreshInterval: 30,
         selectedTimeOption: customTimeOption,
@@ -110,8 +100,6 @@ describe('DashboardContext', () => {
       });
 
       // Assert
-      expect(getByTestId('resource-name')).toHaveTextContent('custom-resource');
-      expect(getByTestId('product-type')).toHaveTextContent('custom-product');
       expect(getByTestId('is-loading')).toHaveTextContent('loading-state');
       expect(getByTestId('refresh-interval')).toHaveTextContent('30');
       expect(getByTestId('selected-time-option')).toHaveTextContent('12h');
@@ -124,24 +112,19 @@ describe('DashboardContext', () => {
       });
 
       // Assert
-      expect(getByTestId('resource-name')).toHaveTextContent('none');
-      expect(getByTestId('product-type')).toHaveTextContent('none');
+      expect(getByTestId('is-loading')).toHaveTextContent('none');
       expect(getByTestId('refresh-interval')).toHaveTextContent('15');
     });
 
     it('should allow updating state through setState', () => {
       // Arrange
-      const contextConfig = {
-        resourceName: 'initial-resource',
-        productType: 'initial-product',
-      };
+      const contextConfig = {};
 
       const { getByTestId } = render(<TestComponent />, {
         wrapper: createWrapper(contextConfig),
       });
 
       // Assert initial state
-      expect(getByTestId('resource-name')).toHaveTextContent('initial-resource');
       expect(getByTestId('refresh-interval')).toHaveTextContent('15');
 
       // Act
@@ -150,16 +133,12 @@ describe('DashboardContext', () => {
       });
 
       // Assert updated state
-      expect(getByTestId('resource-name')).toHaveTextContent('updated-resource');
       expect(getByTestId('refresh-interval')).toHaveTextContent('30');
     });
 
     it('should handle partial state updates', () => {
       // Arrange
-      const contextConfig = {
-        resourceName: 'test-resource',
-        productType: 'test-product',
-      };
+      const contextConfig = {};
 
       const TestPartialUpdateComponent = () => {
         const { state, setState } = useDashboardContext();
@@ -213,10 +192,7 @@ describe('DashboardContext', () => {
 
     it('should return context value when used within provider', () => {
       // Arrange
-      const contextConfig = {
-        resourceName: 'hook-test-resource',
-        productType: 'hook-test-product',
-      };
+      const contextConfig = {};
 
       // Act
       const { result } = renderHook(() => useDashboardContext(), {
@@ -227,43 +203,36 @@ describe('DashboardContext', () => {
       expect(result.current).toBeDefined();
       expect(result.current.state).toBeDefined();
       expect(result.current.setState).toBeDefined();
-      expect(result.current.state.resourceName).toBe('hook-test-resource');
-      expect(result.current.state.productType).toBe('hook-test-product');
       expect(result.current.state.refreshInterval).toBe(15);
       expect(typeof result.current.setState).toBe('function');
     });
 
     it('should allow updating state through context hook', () => {
       // Arrange
-      const contextConfig = {
-        resourceName: 'initial-resource',
-        productType: 'initial-product',
-      };
+      const contextConfig = {};
 
       const { result } = renderHook(() => useDashboardContext(), {
         wrapper: createWrapper(contextConfig),
       });
 
       // Assert initial state
-      expect(result.current.state.resourceName).toBe('initial-resource');
+      expect(result.current.state.refreshInterval).toBe(15);
 
       // Act
       act(() => {
         result.current.setState((prev) => ({
           ...prev,
-          resourceName: 'updated-via-hook',
+          refreshInterval: 30,
         }));
       });
 
       // Assert
-      expect(result.current.state.resourceName).toBe('updated-via-hook');
+      expect(result.current.state.refreshInterval).toBe(30);
     });
 
     it('should preserve other state values when updating', () => {
       // Arrange
       const contextConfig = {
-        resourceName: 'preserve-resource',
-        productType: 'preserve-product',
         refreshInterval: 45,
       };
 
@@ -272,30 +241,24 @@ describe('DashboardContext', () => {
       });
 
       // Assert initial state
-      expect(result.current.state.resourceName).toBe('preserve-resource');
-      expect(result.current.state.productType).toBe('preserve-product');
       expect(result.current.state.refreshInterval).toBe(45);
 
       // Act
       act(() => {
         result.current.setState((prev) => ({
           ...prev,
-          resourceName: 'new-resource',
+          isLoading: 'loading',
         }));
       });
 
       // Assert - other values should be preserved
-      expect(result.current.state.resourceName).toBe('new-resource');
-      expect(result.current.state.productType).toBe('preserve-product');
+      expect(result.current.state.isLoading).toBe('loading');
       expect(result.current.state.refreshInterval).toBe(45);
     });
 
     it('should handle multiple state updates', () => {
       // Arrange
-      const contextConfig = {
-        resourceName: 'multi-resource',
-        productType: 'multi-product',
-      };
+      const contextConfig = {};
 
       const { result } = renderHook(() => useDashboardContext(), {
         wrapper: createWrapper(contextConfig),
@@ -305,23 +268,21 @@ describe('DashboardContext', () => {
       act(() => {
         result.current.setState((prev) => ({
           ...prev,
-          resourceName: 'first-update',
+          refreshInterval: 30,
         }));
       });
 
-      expect(result.current.state.resourceName).toBe('first-update');
+      expect(result.current.state.refreshInterval).toBe(30);
 
       // Act - Second update
       act(() => {
         result.current.setState((prev) => ({
           ...prev,
-          resourceName: 'second-update',
           refreshInterval: 60,
         }));
       });
 
       // Assert
-      expect(result.current.state.resourceName).toBe('second-update');
       expect(result.current.state.refreshInterval).toBe(60);
     });
   });
@@ -345,8 +306,6 @@ describe('DashboardContext', () => {
 
     it('should allow undefined values for optional fields', () => {
       const contextConfig = {
-        resourceName: undefined,
-        productType: undefined,
         isLoading: undefined,
         startDateTime: undefined,
         endDateTime: undefined,
@@ -356,8 +315,6 @@ describe('DashboardContext', () => {
         wrapper: createWrapper(contextConfig),
       });
 
-      expect(result.current.state.resourceName).toBeUndefined();
-      expect(result.current.state.productType).toBeUndefined();
       expect(result.current.state.isLoading).toBeUndefined();
       expect(result.current.state.startDateTime).toBeDefined();
       expect(result.current.state.endDateTime).toBeDefined();

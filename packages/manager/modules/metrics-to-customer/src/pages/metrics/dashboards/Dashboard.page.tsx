@@ -6,7 +6,7 @@ import { Message, MessageBody } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 import { Dashboard, Loader } from '@/components';
-import { useDashboardContext } from '@/contexts';
+import { useMetricsToCustomerContext } from '@/contexts/MetricsToCustomer.context';
 import { useDashboardData } from '@/hooks';
 import { useMetricToken } from '@/data/hooks';
 
@@ -21,11 +21,11 @@ type DataValueType = {
 const DashboardPage = () => {
   const { t } = useTranslation(NAMESPACES.DASHBOARDS);
 
-  const { state } = useDashboardContext();
+  const { state } = useMetricsToCustomerContext();
 
-  const resourceName = state.resourceName ?? '';
-  const productType = state.productType ?? '';
-  const resourceURN = state.resourceURN ?? '';
+  const resourceName = state.resourceName;
+  const productType = state.productType;
+  const resourceURN = state.resourceURN;
 
   const { data: metricToken } = useMetricToken({resourceName});
 
