@@ -655,26 +655,34 @@ angular.module('services').service(
     getConvertedTarget(action, fieldType, target) {
       let splitted;
 
+      const safePunycodeConvert = (value) => {
+        try {
+          return punycode[action](value);
+        } catch (err) {
+          return value;
+        }
+      };
+
       switch (fieldType) {
         case 'NS':
         case 'CNAME':
-          return punycode[action](target);
+          return safePunycodeConvert(target);
         case 'MX':
           splitted = target.match(this.regex.MX);
           if (splitted && splitted.length && splitted[2]) {
-            splitted[2] = punycode[action](splitted[2]);
+            splitted[2] = safePunycodeConvert(splitted[2]);
           }
           break;
         case 'NAPTR':
           splitted = target.match(this.regex.NAPTR); // TODO: exclude dot!
           if (splitted && splitted.length && splitted[6]) {
-            splitted[6] = punycode[action](splitted[6]);
+            splitted[6] = safePunycodeConvert(splitted[6]);
           }
           break;
         case 'SRV':
           splitted = target.match(this.regex.SRV);
           if (splitted && splitted.length && splitted[4]) {
-            splitted[4] = punycode[action](splitted[4]);
+            splitted[4] = safePunycodeConvert(splitted[4]);
           }
           break;
         default:
@@ -1018,7 +1026,12 @@ angular.module('services').service(
      * @returns {string}
      */
     static convertHostToUnicode(host) {
-      return punycode.toUnicode(host);
+      try {
+        return punycode.toUnicode(host);
+      } catch (err) {
+        // If punycode conversion fails (invalid input), return original value
+        return host;
+      }
     }
   },
 );
