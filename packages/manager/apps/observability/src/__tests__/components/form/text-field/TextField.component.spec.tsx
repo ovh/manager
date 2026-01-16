@@ -211,7 +211,7 @@ describe('TextField', () => {
     it('should render with default className when not provided', () => {
       render(<TextField {...defaultProps} />);
 
-      expect(screen.getByTestId('form-field')).toHaveClass('my-4', 'w-full');
+      expect(screen.getByTestId('form-field')).toHaveClass('my-6', 'w-full');
     });
 
     it('should render as required when isRequired is true', () => {
