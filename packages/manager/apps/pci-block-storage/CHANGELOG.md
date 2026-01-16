@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.8...@ovh-ux/manager-pci-block-storage-app@0.25.0) (2026-01-16)
+
+
+### Features
+
+* **pci-block-storage:** update file storage banner ([bd5f452](https://github.com/ovh/manager/commit/bd5f452009e2edf0c04fc04fd16e6b557b023b24)), closes [#TAPC-5624](https://github.com/ovh/manager/issues/TAPC-5624)
+
+
+
+
+
 ## [0.24.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.7...@ovh-ux/manager-pci-block-storage-app@0.24.8) (2026-01-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

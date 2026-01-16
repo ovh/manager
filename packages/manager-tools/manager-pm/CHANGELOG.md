@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.48.1...@ovh-ux/manager-pm@0.49.0) (2026-01-16)
+
+
+### Features
+
+* **pci-file-storage:** base new pci-file-storage app ([7c89509](https://github.com/ovh/manager/commit/7c89509fb89c9525e4c32c0c59e79762d0989e3a)), closes [#TAPC-5475](https://github.com/ovh/manager/issues/TAPC-5475)
+
+
+
+
+
 ## [0.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.48.0...@ovh-ux/manager-pm@0.48.1) (2026-01-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm
