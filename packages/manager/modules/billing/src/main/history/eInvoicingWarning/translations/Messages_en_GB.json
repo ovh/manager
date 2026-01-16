@@ -1,0 +1,4 @@
+{
+  "e_invoicing_warning_introduction": "You cannot download your bill at this time. A valid SIRET/company registration number associated with your account is required to generate and download invoices. Once your SIRET/company registration number is updated, your bills will be available for download.",
+  "e_invoicing_warning_action": "Update your SIRET/company registration number <a href={{href}}>here.</a>"
+}
