@@ -1,0 +1,4 @@
+{
+  "e_invoicing_warning_introduction": "Vous ne pouvez actuellement pas télécharger votre facture. En effet, nous avons besoin d'un numéro SIRET valide associé à votre compte pour générer et télécharger des factures. Une fois votre numéro SIRET mis à jour, vous pourrez télécharger vos factures.",
+  "e_invoicing_warning_action": "Vous pouvez mettre à jour votre numéro SIRET <a href={{href}}>ici.</a>"
+}

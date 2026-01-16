@@ -1,0 +1,4 @@
+{
+  "e_invoicing_warning_introduction": "Sie können Ihre Rechnung derzeit nicht herunterladen. Wir benötigen eine gültige SIRET-Nummer, die mit Ihrem Account verbunden ist, um Rechnungen zu generieren und herunterzuladen. Sobald Ihre SIRET-Nummer aktualisiert ist, können Sie Ihre Rechnungen herunterladen.",
+  "e_invoicing_warning_action": "Sie können Ihre SIRET-Nummer <a href={{href}}>hier</a> aktualisieren."
+}
