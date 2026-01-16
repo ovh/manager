@@ -4,6 +4,16 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/domain/routes/routes.constant';
 import WebHostingOrderPage from '../pages/domainTabs/generalInformations/webhostingOrder';
+import ZoneLayout from '@/zone/pages/Layout';
+import ZonePage from '@/zone/pages/zone/Zone.page';
+import HistoryPage from '@/zone/pages/zone/history/History.page';
+import ResetModal from '@/zone/pages/zone/reset/Reset.modal';
+import DeleteModal from '@/zone/pages/zone/delete/Delete.modal';
+import AddEntryModal from '@/zone/pages/zone/add/AddEntry.modal';
+import ModifyEntryModal from '@/zone/pages/zone/modify/ModifyEntry.modal';
+import ModifyTtlModal from '@/zone/pages/zone/modify/ModifyTtl.modal';
+import DeleteEntryModal from '@/zone/pages/zone/delete/DeleteEntry.modal';
+import ModifyTextualRecordModal from '@/zone/pages/zone/modify/ModifyTextualRecord.modal';
 
 const LayoutPage = React.lazy(() => import('@/domain/pages/layout'));
 const DomainListingPage = React.lazy(() =>
@@ -99,7 +109,16 @@ export default (
           path={urls.domainTabInformation}
           Component={GeneralInformationsPage}
         />
-        <Route path={urls.domainTabZone} Component={Outlet} />
+        <Route path={urls.domainTabZone} Component={ZoneLayout}>
+          <Route path="history" Component={HistoryPage} id="zoneHistory" handle={{ isOverridePage: true}}/>
+            <Route path="add-entry" Component={AddEntryModal} id="zoneAddEntry" handle={{ isOverridePage: true}}/>
+            <Route path="delete" Component={DeleteModal} id="zoneDelete" handle={{ isOverridePage: true}}/>
+            <Route path="delete-entry" Component={DeleteEntryModal} id="zoneDeleteEntry" handle={{ isOverridePage: true}}/>
+            <Route path="modify-entry" Component={ModifyEntryModal} id="zoneModifyEntry" handle={{ isOverridePage: true}}/>
+            <Route path="modify-textual-record" Component={ModifyTextualRecordModal} id="zoneModifyTextualRecord" handle={{ isOverridePage: true}}/>
+            <Route path="modify-ttl" Component={ModifyTtlModal} id="zoneModifyTtlRecord" handle={{ isOverridePage: true}} />
+            <Route path="reset" Component={ResetModal} id="zoneReset" handle={{ isOverridePage: true}}/>
+        </Route>
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
         <Route path={urls.domainTabDynHost} Component={Outlet} />
