@@ -7,8 +7,10 @@ import {
   OdsText,
   OdsSelect,
   OdsDatepicker,
+  OdsTimepicker,
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
+import { endOfDay } from 'date-fns';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 
 import { ExpiryDateModel, TOdsToggleDefaultValue } from '@/types/expiryDate';
@@ -18,6 +20,8 @@ import {
   SECONDS_IN_DAY,
   MINUTES_OPTIONS,
   HOURS_OPTIONS,
+  extractTimeFromDate,
+  updateDateTime
 } from '@/utils/expiryDateUtils';
 
 enum Unit {
@@ -83,12 +87,25 @@ export default function ExpiryDateInput({
     if (!model.active || model.mode !== 'date') {
       return;
     }
+    const updatedDate = !!value ? endOfDay(value) : null;
     setModel({
       ...model,
-      expiresAt: value,
-      invalid: !value || value < currentDate,
+      expiresAt: updatedDate,
+      invalid: !updatedDate || updatedDate < currentDate,
     });
   };
+
+  const setExpiresAtDateTime = (time: string | null) => {
+    if (!model.active || model.mode !== 'date' || !time || !model.expiresAt) {
+      return;
+    }
+    const updatedDate = updateDateTime(model.expiresAt, time);
+    setModel({
+      ...model,
+      expiresAt: updatedDate,
+      invalid: !updatedDate || updatedDate < currentDate,
+    });
+  }
 
   return (
     <div className="flex flex-row gap-8">
@@ -219,15 +236,26 @@ export default function ExpiryDateInput({
           </div>
         )}
         {model.mode === 'date' && (
-          <OdsDatepicker
-            name="ExpiryDateValue"
-            data-testid="ExpiryDateValue"
-            value={model.expiresAt}
-            onOdsChange={(e) => setExpiresAt(e.detail.value || null)}
-            isDisabled={!model.active}
-            min={currentDate}
-            strategy="fixed"
-          />
+          <div className="flex flex-row gap-4">
+            <div className="min-h-[2em] min-w-[12.6em]">
+              <OdsDatepicker
+                name="ExpiryDateValue"
+                data-testid="ExpiryDateValue"
+                value={model.expiresAt}
+                onOdsChange={(e) => setExpiresAt(e.detail.value || null)}
+                isDisabled={!model.active}
+                min={currentDate}
+                strategy="fixed"
+              />
+            </div>
+            <OdsTimepicker
+              name="ExpiryTimeValue"
+              data-testid="ExpiryTimeValue"
+              value={extractTimeFromDate(model.expiresAt)}
+              onOdsChange={(e) => setExpiresAtDateTime(e.detail.value || null)}
+              isDisabled={!model.active}
+            />
+          </div>
         )}
       </div>
     </div>
