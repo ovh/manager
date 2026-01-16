@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
@@ -20,7 +20,12 @@ import {
   PageLocation,
   usePageTracking,
 } from '@ovh-ux/manager-react-shell-client';
-
+import {
+  Icon,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 import { useTrackingContext } from '@/context/tracking/useTracking';
 import {
   useCountrySettings,
@@ -50,6 +55,7 @@ export default function Settings() {
   const { t } = useTranslation([
     'settings',
     NAMESPACES.ACTIONS,
+    NAMESPACES.ONBOARDING,
     NAMESPACES.FORM,
   ]);
   const { trackClick } = useTrackingContext();
@@ -194,12 +200,19 @@ export default function Settings() {
           name="country"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField className="flex flex-wrap w-full gap-3 mb-7">
-              <label
-                className="block cursor-pointer"
-                slot={'label'}
-                id="country-setting-description"
-              >
-                {t('country_setting')} *
+              <label className="block cursor-pointer" slot={'label'}>
+                {t('country_setting')} *{' '}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Icon
+                      name="circle-question"
+                      id="country-setting-description"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent withArrow>
+                    {t('find_out_more', { ns: NAMESPACES.ONBOARDING })}
+                  </TooltipContent>
+                </Tooltip>
               </label>
               <OdsPopover
                 className="md:w-1/2 p-5"
@@ -289,12 +302,19 @@ export default function Settings() {
           name="language"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField className="flex flex-wrap w-full gap-3 mb-7">
-              <label
-                className="block cursor-pointer"
-                slot={'label'}
-                id="site-setting-description"
-              >
-                {t('site_setting')} *
+              <label className="block cursor-pointer" slot={'label'}>
+                {t('site_setting')} *{' '}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Icon
+                      name="circle-question"
+                      id="site-setting-description"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent withArrow>
+                    {t('find_out_more', { ns: NAMESPACES.ONBOARDING })}
+                  </TooltipContent>
+                </Tooltip>
               </label>
               <OdsPopover
                 className="md:w-1/2 p-5"
