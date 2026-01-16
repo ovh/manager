@@ -23,7 +23,7 @@ import { NODE_RANGE } from '@/constants';
 import { isStandardPlan } from '@/helpers';
 import { isScalingValid } from '@/helpers/node-pool';
 import { useTrack } from '@/hooks/track';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
 import PublicConnectivity from '@/pages/new/steps/node-pool/PublicConnectivity.component';
 import { queryClient } from '@/queryClient';
@@ -79,7 +79,7 @@ export default function ScalePage(): ReactElement {
 
   const isStandard = isStandardPlan(cluster?.plan ?? TClusterPlanEnum.FREE);
 
-  const has3AZFeature = use3AZPlanAvailable();
+  const { data: has3AZFeature } = use3azAvailability();
 
   const initialState = useMemo(
     () =>

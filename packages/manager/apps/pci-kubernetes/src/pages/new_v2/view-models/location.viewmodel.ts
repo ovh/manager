@@ -99,3 +99,12 @@ export const mapMacroRegionForCards = (regions?: TMacroRegion[]): TRegionCard[] 
       plans: region.plans.map(mapPlanCodeToViewPlan),
     };
   });
+
+export const selectAre3azRegionsAvailable = (regions?: TRegions): boolean => {
+  const hasFree3azRegions =
+    !!regions?.relations.planRegions['mks.free.hour.consumption.3az']?.length;
+  const hasStandard3azRegions =
+    !!regions?.relations.planRegions['mks.standard.hour.consumption.3az']?.length;
+
+  return hasFree3azRegions || hasStandard3azRegions;
+};

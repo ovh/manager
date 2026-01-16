@@ -10,7 +10,7 @@ import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-re
 import { NodePoolPrice } from '@/api/data/kubernetes';
 import Estimation from '@/components/create/Estimation.component';
 import { isMultiDeploymentZones } from '@/helpers';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
 import useSavingPlanAvailable from '@/hooks/useSavingPlanAvailable';
 import { DeploymentMode, TClusterPlan } from '@/types';
@@ -44,7 +44,7 @@ export function ClusterConfirmationStep({
     exclVat: true,
   });
   const showSavingPlan = useSavingPlanAvailable();
-  const has3AZ = use3AZPlanAvailable();
+  const { data: has3AZ } = use3azAvailability();
   const getEstimationPrices = selectEstimationPriceFromPlans(
     tNode,
     getFormattedMonthlyCatalogPrice,
