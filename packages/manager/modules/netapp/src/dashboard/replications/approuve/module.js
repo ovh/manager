@@ -9,7 +9,12 @@ import routing from './routing';
 const moduleName = 'ovhManagerNetAppReplicationsApprouveComponent';
 
 angular
-  .module(moduleName, ['ovhManagerCore', 'pascalprecht.translate', 'ui.router'])
+  .module(moduleName, [
+    'ovhManagerCore',
+    'pascalprecht.translate',
+    'ui.router',
+    'ngTranslateAsyncLoader',
+  ])
   .config(routing);
 
 export default moduleName;
