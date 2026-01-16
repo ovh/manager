@@ -1,66 +1,56 @@
 import { SecretVersionState } from '@secret-manager/types/secret.type';
 import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
 import { render, screen } from '@testing-library/react';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
+import { describe, expect, test } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BadgeColor } from '@ovhcloud/ods-react';
 
-import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+import { assertBadgeColor } from '@/common/utils/tests/uiTestHelpers';
 
 import { VersionState } from './VersionState.component';
 
-let i18nValue: i18n;
-
 const renderVersionState = async (state: SecretVersionState) => {
-  if (!i18nValue) {
-    i18nValue = await initTestI18n();
-  }
+  const wrapper = await testWrapperBuilder().withI18next().build();
 
-  return render(
-    <I18nextProvider i18n={i18nValue}>
-      <VersionState state={state} />
-    </I18nextProvider>,
-  );
+  return render(<VersionState state={state} data-testid={VERSION_BADGE_TEST_ID} />, { wrapper });
 };
 
-describe('VersionState test suite', () => {
-  type TestCases = {
+describe('VersionState component test suite', () => {
+  const useCases: {
     state: SecretVersionState;
     label: string;
-    color: ODS_BADGE_COLOR;
-  };
-  const testCases: TestCases[] = [
+    color: BadgeColor;
+  }[] = [
     {
-      color: ODS_BADGE_COLOR.success,
-      label: labels.secretManager.version_state_active,
       state: 'ACTIVE',
+      label: labels.secretManager.version_state_active,
+      color: 'success',
     },
     {
-      color: ODS_BADGE_COLOR.warning,
-      label: labels.secretManager.version_state_deactivated,
       state: 'DEACTIVATED',
+      label: labels.secretManager.version_state_deactivated,
+      color: 'warning',
     },
     {
-      color: ODS_BADGE_COLOR.critical,
-      label: labels.secretManager.version_state_deleted,
       state: 'DELETED',
+      label: labels.secretManager.version_state_deleted,
+      color: 'critical',
     },
   ];
 
-  it.each(testCases)(
-    'should return odsBadge with label: $label and color: $color for version state: $state',
-    async ({ state: version, color, label }) => {
-      // given version
-
+  test.each(useCases)(
+    'should return the right <Badge /> configuration for $state state',
+    async ({ state, color: colorValue, label }) => {
       // when
-      await renderVersionState(version);
+      await renderVersionState(state);
+      const component = screen.getByTestId(VERSION_BADGE_TEST_ID);
 
       // then
-      const badge = screen.getByTestId(VERSION_BADGE_TEST_ID);
-      expect(badge).toBeInTheDocument();
-      expect(badge).toHaveAttribute('label', label);
-      expect(badge).toHaveAttribute('color', color);
+      expect(component).toBeInTheDocument();
+      expect(component).toHaveTextContent(label);
+      assertBadgeColor(component, colorValue);
     },
   );
 });

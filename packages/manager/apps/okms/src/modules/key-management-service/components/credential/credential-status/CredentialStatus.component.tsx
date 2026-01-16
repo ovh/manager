@@ -1,61 +1,49 @@
 import { OkmsCredentialStatus } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BADGE_COLOR,
-  ODS_BADGE_SIZE,
-  OdsBadge as OdsBadgeType,
-} from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge, BadgeProp } from '@ovhcloud/ods-react';
 
-export type KeyStatusProps = Omit<OdsBadgeType, 'render' | 'color' | 'label' | 'size'> & {
+export type CredentialStatusProps = Omit<BadgeProp, 'color' | 'size' | 'children'> & {
   state: OkmsCredentialStatus;
-  size?: ODS_BADGE_SIZE;
+  size?: BadgeProp['size'];
 };
 
-export const CredentialStatus = ({
-  state,
-  size = ODS_BADGE_SIZE.md,
-  ...otherProps
-}: KeyStatusProps) => {
+export const CredentialStatus = ({ state, size = 'md', ...otherProps }: CredentialStatusProps) => {
   const { t } = useTranslation('key-management-service/credential');
 
   const chipPropsByState: {
     [key in OkmsCredentialStatus]: {
       translationKey: string;
-      color: ODS_BADGE_COLOR;
+      color: BadgeProp['color'];
     };
   } = {
     [OkmsCredentialStatus.creating]: {
       translationKey: 'key_management_service_credential_status_creating',
-      color: ODS_BADGE_COLOR.information,
+      color: 'information',
     },
     [OkmsCredentialStatus.deleting]: {
       translationKey: 'key_management_service_credential_status_deleting',
-      color: ODS_BADGE_COLOR.warning,
+      color: 'warning',
     },
     [OkmsCredentialStatus.error]: {
       translationKey: 'key_management_service_credential_status_error',
-      color: ODS_BADGE_COLOR.critical,
+      color: 'critical',
     },
     [OkmsCredentialStatus.expired]: {
       translationKey: 'key_management_service_credential_status_expired',
-      color: ODS_BADGE_COLOR.neutral,
+      color: 'neutral',
     },
     [OkmsCredentialStatus.ready]: {
       translationKey: 'key_management_service_credential_status_ready',
-      color: ODS_BADGE_COLOR.success,
+      color: 'success',
     },
   };
 
   const props = chipPropsByState[state];
 
   return (
-    <OdsBadge
-      label={props ? t(props.translationKey) : state}
-      size={size}
-      color={props?.color || ODS_BADGE_COLOR.neutral}
-      {...otherProps}
-    />
+    <Badge size={size} color={props?.color || 'neutral'} {...otherProps}>
+      {props ? t(props.translationKey) : state}
+    </Badge>
   );
 };

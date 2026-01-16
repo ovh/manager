@@ -1,69 +1,84 @@
 import { OkmsCredentialStatus } from '@key-management-service/types/okmsCredential.type';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 
-import { ODS_BADGE_COLOR, OdsBadge as OdsBadgeType } from '@ovhcloud/ods-components';
+import { BadgeColor } from '@ovhcloud/ods-react';
+
+import { labels } from '@/common/utils/tests/init.i18n';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+import { assertBadgeColor } from '@/common/utils/tests/uiTestHelpers';
 
 import { CredentialStatus } from './CredentialStatus.component';
+
+const CREDENTIAL_STATUS_TEST_ID = 'credential-status';
+
+const renderCredentialStatus = async (state: OkmsCredentialStatus) => {
+  const wrapper = await testWrapperBuilder().withI18next().build();
+
+  return render(<CredentialStatus state={state} data-testid={CREDENTIAL_STATUS_TEST_ID} />, {
+    wrapper,
+  });
+};
 
 describe('CredentialStatus component test suite', () => {
   const useCases: {
     state: OkmsCredentialStatus;
     label: string;
-    colorValue: OdsBadgeType['color'];
+    color: BadgeColor;
   }[] = [
     {
       state: OkmsCredentialStatus.creating,
-      label: 'key_management_service_credential_status_creating',
-      colorValue: ODS_BADGE_COLOR.information,
+      label: labels.credentials['key_management_service_credential_status_creating'],
+      color: 'information',
     },
     {
       state: OkmsCredentialStatus.deleting,
-      label: 'key_management_service_credential_status_deleting',
-      colorValue: ODS_BADGE_COLOR.warning,
+      label: labels.credentials['key_management_service_credential_status_deleting'],
+      color: 'warning',
     },
     {
       state: OkmsCredentialStatus.error,
-      label: 'key_management_service_credential_status_error',
-      colorValue: ODS_BADGE_COLOR.critical,
+      label: labels.credentials['key_management_service_credential_status_error'],
+      color: 'critical',
     },
     {
       state: OkmsCredentialStatus.expired,
-      label: 'key_management_service_credential_status_expired',
-      colorValue: ODS_BADGE_COLOR.neutral,
+      label: labels.credentials['key_management_service_credential_status_expired'],
+      color: 'neutral',
     },
     {
       state: OkmsCredentialStatus.ready,
-      label: 'key_management_service_credential_status_ready',
-      colorValue: ODS_BADGE_COLOR.success,
+      label: labels.credentials['key_management_service_credential_status_ready'],
+      color: 'success',
     },
   ];
 
   test.each(useCases)(
-    'should return the right <OdsBadge /> configuration for $state state',
-    ({ state, colorValue, label }) => {
-      // given state, colorValue and label
+    'should return the right <Badge /> configuration for $state state',
+    async ({ state, color, label }) => {
+      // given state, color and label
 
       // when
-      const { getByTestId } = render(<CredentialStatus state={state} data-testid="test" />);
-      const component = getByTestId('test');
+      await renderCredentialStatus(state);
+      const component = screen.getByTestId(CREDENTIAL_STATUS_TEST_ID);
 
       // then
-      expect(component).toHaveProperty('label', label);
-      expect(component).toHaveProperty('color', colorValue);
+      expect(component).toBeInTheDocument();
+      expect(component).toHaveTextContent(label);
+      assertBadgeColor(component, color);
     },
   );
 
-  it('should return default <OdsBadge /> configuration for unexpected state', () => {
+  test('should return default <Badge /> configuration for unexpected state', async () => {
     // given
-    const serviceKeyState = 'AAA' as OkmsCredentialStatus;
+    const credentialState = 'AAA' as OkmsCredentialStatus;
 
     // when
-    const { getByTestId } = render(<CredentialStatus state={serviceKeyState} data-testid="test" />);
-    const component = getByTestId('test');
+    await renderCredentialStatus(credentialState);
+    const component = screen.getByTestId(CREDENTIAL_STATUS_TEST_ID);
 
     // then
-    expect(component).toHaveProperty('label', serviceKeyState);
-    expect(component).toHaveProperty('color', ODS_BADGE_COLOR.neutral);
+    expect(component).toBeInTheDocument();
+    expect(component).toHaveTextContent(credentialState);
   });
 });

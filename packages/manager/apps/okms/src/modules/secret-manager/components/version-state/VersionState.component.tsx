@@ -2,54 +2,50 @@ import { SecretVersionState } from '@secret-manager/types/secret.type';
 import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BADGE_COLOR,
-  ODS_BADGE_SIZE,
-  OdsBadge as OdsBadgeType,
-} from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge, BadgeProp } from '@ovhcloud/ods-react';
 
 type StateVariant = {
   translationKey: string;
-  color: ODS_BADGE_COLOR;
+  color: BadgeProp['color'];
 };
 
 const variants: Record<SecretVersionState, StateVariant> = {
   ACTIVE: {
     translationKey: 'version_state_active',
-    color: ODS_BADGE_COLOR.success,
+    color: 'success',
   },
   DEACTIVATED: {
     translationKey: 'version_state_deactivated',
-    color: ODS_BADGE_COLOR.warning,
+    color: 'warning',
   },
   DELETED: {
     translationKey: 'version_state_deleted',
-    color: ODS_BADGE_COLOR.critical,
+    color: 'critical',
   },
 };
 
-export type VersionStatusParams = Omit<OdsBadgeType, 'render' | 'color' | 'label' | 'size'> & {
+export type VersionStatusParams = Omit<BadgeProp, 'color' | 'size' | 'children'> & {
   state: SecretVersionState;
-  size?: ODS_BADGE_SIZE;
+  size?: BadgeProp['size'];
   'data-testid'?: string;
 };
 
 export const VersionState = ({
   state,
-  size = ODS_BADGE_SIZE.md,
+  size = 'md',
   'data-testid': dataTestId,
   ...rest
 }: VersionStatusParams) => {
   const { t } = useTranslation('secret-manager');
 
   return (
-    <OdsBadge
+    <Badge
       data-testid={dataTestId || VERSION_BADGE_TEST_ID}
-      label={t(variants[state].translationKey)}
       size={size}
       color={variants[state].color}
       {...rest}
-    />
+    >
+      {t(variants[state].translationKey)}
+    </Badge>
   );
 };

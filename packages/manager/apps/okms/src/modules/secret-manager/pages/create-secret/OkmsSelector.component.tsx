@@ -4,7 +4,6 @@ import { OkmsServiceState } from '@key-management-service/components/layout-help
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
@@ -27,7 +26,7 @@ const OkmsStatus = ({ id }: { id: string }) => {
 
   if (isError) return null;
 
-  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} size={ODS_BADGE_SIZE.sm} />;
+  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} size="sm" />;
 };
 
 type OkmsSelectorProps = {

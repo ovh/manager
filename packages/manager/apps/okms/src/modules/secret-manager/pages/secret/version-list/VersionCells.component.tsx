@@ -5,7 +5,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { Secret, SecretVersion, SecretVersionState } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge } from '@ovhcloud/ods-react';
 
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
@@ -44,11 +44,9 @@ export const VersionIdCell = ({ version, secret }: { version: SecretVersion; sec
         {version.id.toString()}
       </MukLink>
       {isCurrentVersion && (
-        <OdsBadge
-          data-testid={VERSION_LIST_CELL_TEST_IDS.currentVersionBadge}
-          label={t('current_version')}
-          color={'information'}
-        />
+        <Badge data-testid={VERSION_LIST_CELL_TEST_IDS.currentVersionBadge} color="information">
+          {t('current_version')}
+        </Badge>
       )}
     </div>
   );
