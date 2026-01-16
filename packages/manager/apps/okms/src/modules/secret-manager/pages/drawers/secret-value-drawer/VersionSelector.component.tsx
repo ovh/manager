@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { VersionState } from '@secret-manager/components/version-state/VersionState.component';
+import { VersionState } from '@secret-manager/components/version-state-badge/VersionStateBadge.component';
 import { useSecretVersionList } from '@secret-manager/data/hooks/useSecretVersionList';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';

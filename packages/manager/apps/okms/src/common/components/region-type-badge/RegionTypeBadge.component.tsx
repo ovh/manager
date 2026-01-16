@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   Badge,
-  BadgeProp,
+  BadgeColor,
   Icon,
   Text,
   Tooltip,
@@ -22,7 +22,7 @@ const bgColors: Record<LocationType, string> = {
   'REGION-3-AZ': 'bg-[--ods-color-primary-700]',
 };
 
-const textColors: Record<LocationType, BadgeProp['color']> = {
+const textColors: Record<LocationType, BadgeColor> = {
   'LOCAL-ZONE': 'information',
   'REGION-1-AZ': 'promotion',
   'REGION-3-AZ': 'promotion',

@@ -1,4 +1,3 @@
-import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
@@ -10,6 +9,7 @@ import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Clipboard, Spinner } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
+import { OkmsServiceState } from '@/common/components/okms-service-state-badge/OkmsServiceStateBadge.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { TrackingTags } from '@/tracking.constant';
 

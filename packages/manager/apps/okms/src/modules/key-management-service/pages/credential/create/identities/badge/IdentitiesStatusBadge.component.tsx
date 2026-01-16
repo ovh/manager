@@ -1,44 +1,32 @@
 import { IdentityStatus } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { Badge, BadgeProp } from '@ovhcloud/ods-react';
+import { Badge, BadgeColor, BadgeProp } from '@ovhcloud/ods-react';
 
-const chipPropsByStatus: {
-  [key in IdentityStatus]: {
-    translationKey: string;
-    color: BadgeProp['color'];
-  };
-} = {
-  [IdentityStatus.password_change_required]: {
-    translationKey: 'key_management_service_credential_identity_status_password_change_required',
-    color: 'warning',
-  },
-  [IdentityStatus.disabled]: {
-    translationKey: 'key_management_service_credential_identity_status_disabled',
-    color: 'critical',
-  },
-  [IdentityStatus.ok]: {
-    translationKey: 'key_management_service_credential_identity_status_ok',
-    color: 'success',
-  },
+const colors: Record<IdentityStatus, BadgeColor> = {
+  PASSWORD_CHANGE_REQUIRED: 'warning',
+  DISABLED: 'critical',
+  OK: 'success',
 };
 
 type IdentitiesStatusBadgeProps = {
-  size?: BadgeProp['size'];
   status: IdentityStatus;
-} & Record<string, string>;
+} & Omit<BadgeProp, 'color' | 'children'>;
 
-const IdentitiesStatusBadge = ({
-  status,
-  size = 'md',
-  ...otherProps
-}: IdentitiesStatusBadgeProps) => {
+const IdentitiesStatusBadge = ({ status, size = 'md', ...rest }: IdentitiesStatusBadgeProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const props = chipPropsByStatus[status];
+
+  const labels: Record<IdentityStatus, string> = {
+    PASSWORD_CHANGE_REQUIRED: t(
+      'key_management_service_credential_identity_status_password_change_required',
+    ),
+    DISABLED: t('key_management_service_credential_identity_status_disabled'),
+    OK: t('key_management_service_credential_identity_status_ok'),
+  };
 
   return (
-    <Badge size={size} color={props?.color || 'neutral'} {...otherProps}>
-      {props ? t(props.translationKey) : status}
+    <Badge size={size} color={colors[status] || 'neutral'} {...rest}>
+      {labels[status]}
     </Badge>
   );
 };

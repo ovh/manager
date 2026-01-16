@@ -9,7 +9,7 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 import { assertBadgeColor } from '@/common/utils/tests/uiTestHelpers';
 
-import { VersionState } from './VersionState.component';
+import { VersionState } from './VersionStateBadge.component';
 
 const renderVersionState = async (state: SecretVersionState) => {
   const wrapper = await testWrapperBuilder().withI18next().build();

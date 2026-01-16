@@ -14,7 +14,7 @@ import { Clipboard } from '@ovh-ux/muk';
 import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
-import { ServiceKeyStatus } from '../service-key/service-key-status/serviceKeyStatus.component';
+import { ServiceKeyStatus } from '../service-key/service-key-status-badge/ServiceKeyStatusBadge.component';
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const navigate = useNavigate();
