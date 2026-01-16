@@ -33,15 +33,24 @@ import { TNameServer } from '@/domain/types/domainResource';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useLinks } from '@/domain/constants/guideLinks';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export default function DnsModifyPage() {
   const { t } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
   const { serviceName } = useParams<{ serviceName: string }>();
   const navigate = useNavigate();
   const backUrl = useGenerateUrl(urls.domainTabDns, 'path', { serviceName });
-  const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
+  );
+  const isInternalDnsConfiguration =
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.EXTERNAL &&
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.MIXED;
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(
+    serviceName,
+    isInternalDnsConfiguration,
   );
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
