@@ -20,7 +20,7 @@ export const CreateShareForm = () => {
           <Text preset="heading-2">{t('create:name.title')}</Text>
           <NameInput />
         </section>
-        <Divider />
+        <Divider className="w-full" />
         <section>
           <Text preset="heading-2">{t('create:localisation.title')}</Text>
           <DeploymentModeSection />
