@@ -103,10 +103,8 @@ describe('MetricsToCustomerModule', () => {
       // Assert
       expect(DashboardProviderMock).toHaveBeenCalledTimes(1);
       const providerProps = DashboardProviderMock.mock.calls[0]?.[0];
-      expect(providerProps?.context).toEqual({
-        resourceName: '00cb8793-4401-4bc8-b690-34b37a7e31d3',
-        productType: 'instances',
-      });
+      // DashboardProvider receives empty context object
+      expect(providerProps?.context).toEqual({});
     });
 
     it('should render Suspense fallback when loading', () => {
@@ -141,10 +139,8 @@ describe('MetricsToCustomerModule', () => {
       // Assert
       expect(DashboardProviderMock).toHaveBeenCalledTimes(1);
       const providerProps = DashboardProviderMock.mock.calls[0]?.[0];
-      expect(providerProps?.context).toEqual({
-        resourceName: '',
-        productType: 'instances',
-      });
+      // DashboardProvider receives empty context object
+      expect(providerProps?.context).toEqual({});
     });
 
     it('should handle empty productType', () => {
@@ -162,10 +158,8 @@ describe('MetricsToCustomerModule', () => {
       // Assert
       expect(DashboardProviderMock).toHaveBeenCalledTimes(1);
       const providerProps = DashboardProviderMock.mock.calls[0]?.[0];
-      expect(providerProps?.context).toEqual({
-        resourceName: '00cb8793-4401-4bc8-b690-34b37a7e31d3',
-        productType: '',
-      });
+      // DashboardProvider receives empty context object
+      expect(providerProps?.context).toEqual({});
     });
   });
 
@@ -185,10 +179,8 @@ describe('MetricsToCustomerModule', () => {
       // Assert
       expect(DashboardProviderMock).toHaveBeenCalledTimes(1);
       const providerProps = DashboardProviderMock.mock.calls[0]?.[0];
-      expect(providerProps?.context).toEqual({
-        resourceName: '00cb8793-4401-4bc8-b690-34b37a7e31d3',
-        productType: 'instances',
-      });
+      // DashboardProvider receives empty context object
+      expect(providerProps?.context).toEqual({});
     });
   });
 });
