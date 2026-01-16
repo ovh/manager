@@ -9,7 +9,7 @@ import { NameInput } from '@/pages/create/components/name/NameInput.component';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
 
 export const CreateShareForm = () => {
-  const { t } = useTranslation(['common', 'creation']);
+  const { t } = useTranslation(['create']);
 
   const formMethods = useCreateShareForm();
 

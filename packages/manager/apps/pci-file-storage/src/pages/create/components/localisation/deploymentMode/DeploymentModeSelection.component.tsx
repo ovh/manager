@@ -1,3 +1,5 @@
+import { KeyboardEvent } from 'react';
+
 import { Controller, ControllerRenderProps, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -43,6 +45,15 @@ export const DeploymentModeSelection = () => {
       });
     };
 
+  const handleKeyDown =
+    (
+      field: ControllerRenderProps<TDeploymentModeSelection, 'deploymentModes'>,
+      selectedMode: TDeploymentMode,
+    ) =>
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      if (event.code === 'Enter') handleSelect(field, selectedMode)();
+    };
+
   return (
     <section className="mt-6">
       <Controller<TDeploymentModeSelection, 'deploymentModes'>
@@ -53,9 +64,6 @@ export const DeploymentModeSelection = () => {
             name="deploymentModes"
             className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3"
             defaultValue={field.value}
-            onValueChange={(value) => {
-              field.onChange(value);
-            }}
           >
             {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image }) => (
               <PciCard
@@ -64,6 +72,7 @@ export const DeploymentModeSelection = () => {
                 className="h-full"
                 key={mode}
                 onClick={handleSelect(field, mode)}
+                onKeyDown={handleKeyDown(field, mode)}
               >
                 <PciCard.Header>
                   <Checkbox className="w-full" checked={field.value.includes(mode)}>
