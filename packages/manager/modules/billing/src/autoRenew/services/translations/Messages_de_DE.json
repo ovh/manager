@@ -11,5 +11,7 @@
   "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "Diese Aktion ist leider nicht verfügbar.",
   "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "Diese Aktion ist aus folgendem Grund leider nicht verfügbar: ",
   "reason_billing_right": "Sie sind nicht der Rechnungskontakt <b>{{contactBilling}}.</b>",
-  "reason_admin_right": "Sie sind nicht der Administrator-Kontakt <b>{{contactAdmin}}.</b>"
+  "reason_admin_right": "Sie sind nicht der Administrator-Kontakt <b>{{contactAdmin}}.</b>",
+  "billing_autorenew_service_no_bills": "Für diesen Dienst wurden keine Rechnungen gefunden.",
+  "billing_autorenew_service_bills_retrieval_failure": "Fehler beim Abrufen der Rechnungen für den Dienst: {{ message }}"
 }
