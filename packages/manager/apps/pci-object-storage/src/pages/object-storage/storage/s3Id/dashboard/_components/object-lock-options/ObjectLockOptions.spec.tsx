@@ -9,6 +9,10 @@ import {
 import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import storages from '@/types/Storages';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import ObjectLockOptions from './ObjectLockOptions.sheet';
@@ -23,19 +27,6 @@ vi.mock('react-i18next', async (importOriginal) => {
     useTranslation: () => ({
       t: (key: string) => key,
     }),
-  };
-});
-
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      name: 's3Name',
-      region: 'region',
-    }),
-    useNavigate: () => vi.fn(),
   };
 });
 
@@ -54,6 +45,12 @@ describe('ObjectLockOptions Sheet', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     mockManagerReactShellClient();
+    mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
+      region: 'region',
+      s3Name: 's3Name',
+    });
   });
 
   afterEach(() => {

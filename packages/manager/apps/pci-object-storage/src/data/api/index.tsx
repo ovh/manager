@@ -39,7 +39,7 @@ export class ObjStoError extends Error {
     statusText: string,
   ) {
     super(message);
-    this.name = 'CdbError';
+    this.name = 'ObjStoError';
     this.code = code;
     this.request = request;
     this.response = {

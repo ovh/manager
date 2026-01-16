@@ -1,23 +1,20 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
+
 import Configuration from './Configuration.component';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
-const mockNavigate = vi.fn();
-
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      swiftId: 'test-swift-id',
-    }),
-    useNavigate: () => mockNavigate,
-  };
-});
-
 describe('Configuration', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({ projectId: 'projectId', swiftId: 'test-swift-id' });
+  });
+
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -33,6 +30,6 @@ describe('Configuration', () => {
 
     fireEvent.click(screen.getByTestId('swift-config-delete-button'));
 
-    expect(mockNavigate).toHaveBeenCalledWith('./delete');
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete');
   });
 });

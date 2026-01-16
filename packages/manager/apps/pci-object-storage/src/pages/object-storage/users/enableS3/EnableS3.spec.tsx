@@ -13,9 +13,12 @@ import {
   mockedS3Credentials,
 } from '@/__tests__/helpers/mocks/cloudUser/user';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import EnableUser from './EnableS3.modal';
 import * as userAPI from '@/data/api/user/user.api';
-import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 
 vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   useObjectStorageData: vi.fn(() => ({
@@ -26,18 +29,6 @@ vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   })),
 }));
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      userId: String(mockedCloudUser.id),
-    }),
-    useNavigate: () => vi.fn(),
-  };
-});
-
 vi.mock('@/data/api/user/user.api', () => ({
   addS3Credentials: vi.fn(() => mockedS3Credentials),
 }));
@@ -46,6 +37,10 @@ describe('Enable S3 User', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
+      userId: String(mockedCloudUser.id),
+    });
   });
 
   afterEach(() => {

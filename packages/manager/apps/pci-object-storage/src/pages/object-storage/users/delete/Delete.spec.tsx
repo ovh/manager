@@ -14,6 +14,10 @@ import {
   mockedS3CredentialsWithoutPwd,
 } from '@/__tests__/helpers/mocks/cloudUser/user';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import DeleteUser from './Delete.modal';
 
 vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
@@ -25,18 +29,6 @@ vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   })),
 }));
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      userId: '12',
-    }),
-    useNavigate: () => vi.fn(),
-  };
-});
-
 vi.mock('@/data/api/user/user.api', () => ({
   deleteS3Credentials: vi.fn(),
   getUserS3Credentials: vi.fn(() => [mockedS3CredentialsWithoutPwd]),
@@ -45,6 +37,8 @@ vi.mock('@/data/api/user/user.api', () => ({
 describe('Delete User', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({ projectId: 'projectId', userId: '12' });
   });
 
   afterEach(() => {

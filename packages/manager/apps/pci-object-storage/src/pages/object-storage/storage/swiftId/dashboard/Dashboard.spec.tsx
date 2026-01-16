@@ -1,6 +1,10 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import Dashboard from './Dashboard.page';
+import { render, screen, waitFor } from '@testing-library/react';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
+import Dashboard, { breadcrumb as Breadcrumb } from './Dashboard.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedContainerDetail } from '@/__tests__/helpers/mocks/swift/swift';
 import { mockedRegion } from '@/__tests__/helpers/mocks/region/region';
@@ -20,18 +24,6 @@ const regionMatchingSwift: cloud.Region = {
   ],
 };
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      swiftId: 'test-swift-id',
-    }),
-    Outlet: () => null,
-  };
-});
-
 vi.mock('../Swift.context', () => ({
   useSwiftData: () => ({ swift: mockedContainerDetail }),
 }));
@@ -43,8 +35,23 @@ vi.mock('@/hooks/useUser', () => ({
 }));
 
 describe('Dashboard', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({ projectId: 'projectId', swiftId: 'test-swift-id' });
+  });
+
   afterEach(() => {
     vi.clearAllMocks();
+  });
+
+  it('renders breadcrumb', async () => {
+    render(<Breadcrumb />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+    await waitFor(() => {
+      expect(screen.getByText('dashboardTab')).toBeTruthy();
+    });
   });
 
   describe('Loading state', () => {
