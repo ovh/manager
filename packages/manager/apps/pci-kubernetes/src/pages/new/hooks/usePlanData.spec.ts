@@ -76,7 +76,7 @@ describe('usePlanData', () => {
         expectedDescription: 'kube_add_plan_description_standard',
         expectedContent: [
           'kube_add_plan_content_standard_1AZ_control_plane',
-          'kube_add_plan_content_standard_SLA',
+          'kube_add_plan_content_standard_1AZ_SLA',
           'kube_add_plan_content_free_auto_scaling',
           'kube_add_plan_content_standard_ETCD',
           'kube_add_plan_content_standard_version',
