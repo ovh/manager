@@ -33,7 +33,6 @@ import { TNameServer } from '@/domain/types/domainResource';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useLinks } from '@/domain/constants/guideLinks';
-import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export default function DnsModifyPage() {
   const { t } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
@@ -43,14 +42,9 @@ export default function DnsModifyPage() {
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
   );
-  const isInternalDnsConfiguration =
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.EXTERNAL &&
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.MIXED;
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    isInternalDnsConfiguration,
+    domainResource,
   );
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
