@@ -2,13 +2,22 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Cart from './Cart.component';
 import { CartItem as CartItemType } from './cart.types';
-import { Locale } from '@/hooks/useLocale';
 import { order } from '@/types/catalog';
 
-vi.mock('@/lib/pricingHelper', () => ({
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string, options?: Record<string, string | number>): string => {
+      return `${key} ${options?.price}`;
+    },
+  }),
+}));
+vi.mock('@/hooks/usePriceFormatter.hook', () => ({
   usePriceFormatter: ({ currency }: { locale: string; currency: string }) => (
     value: number,
   ) => `${currency} ${value.toFixed(3)}`,
+}));
+vi.mock('@/hooks/useLocale', () => ({
+  useLocale: () => 'en_GB',
 }));
 
 vi.mock('@datatr-ux/uxlib', () => ({
@@ -67,7 +76,6 @@ describe('Cart component', () => {
   const defaultProps = {
     items: [] as CartItemType[],
     actionButtons: <button>Submit</button>,
-    locale: Locale.en_GB,
     currency: order.CurrencyCodeEnum.USD,
     totalText: 'Total',
   };
@@ -144,14 +152,14 @@ describe('Cart component', () => {
     expect(screen.getByText('Network')).toBeInTheDocument();
 
     // Check formatted prices (not zero or undefined)
-    expect(screen.getByText('USD 10.500')).toBeInTheDocument();
-    expect(screen.getByText('USD 20.750')).toBeInTheDocument();
-    expect(screen.getByText('USD 5.000')).toBeInTheDocument();
+    expect(screen.getByText('pricing_ht USD 10.500')).toBeInTheDocument();
+    expect(screen.getByText('pricing_ht USD 20.750')).toBeInTheDocument();
+    expect(screen.getByText('pricing_ht USD 5.000')).toBeInTheDocument();
     // Zero price should not be displayed
-    expect(screen.queryByText('USD 0.000')).not.toBeInTheDocument();
+    expect(screen.queryByText('pricing_ht USD 0.000')).not.toBeInTheDocument();
   });
 
-  it('should calculate total price correctly and support different locales/currencies', () => {
+  it('should calculate total price correctly and support different currencies', () => {
     const items: CartItemType[] = [
       {
         id: '1',
@@ -177,14 +185,12 @@ describe('Cart component', () => {
     const { rerender } = render(<Cart {...defaultProps} items={items} />);
 
     // Check total calculation (10 + 20 + 0 + 15 + 0 = 45)
-    expect(screen.getByText('Total')).toBeInTheDocument();
-    expect(screen.getByText('USD 45.000')).toBeInTheDocument();
-    expect(screen.getByText('USD 45.000/hour')).toBeInTheDocument();
+    expect(screen.getByText('total_hour_label undefined')).toBeInTheDocument();
+    expect(screen.getByText('pricing_ht USD 45.000')).toBeInTheDocument();
 
     // Check with empty items
     rerender(<Cart {...defaultProps} items={[]} />);
-    expect(screen.getByText('USD 0.000')).toBeInTheDocument();
-
+    expect(screen.getAllByText('pricing_ht USD 0.000')).toHaveLength(2); // hour + monthly total
     // Check different locale and currency
     const euroItems: CartItemType[] = [
       {
@@ -198,12 +204,10 @@ describe('Cart component', () => {
       <Cart
         items={euroItems}
         actionButtons={<button>Submit</button>}
-        locale={Locale.fr_FR}
         currency={order.CurrencyCodeEnum.EUR}
-        totalText="Total"
       />,
     );
-    expect(screen.getAllByText('EUR 25.500')).toHaveLength(2); // detail + total
+    expect(screen.getAllByText('pricing_ht EUR 25.500')).toHaveLength(2); // detail + total
   });
 
   it('should integrate all sub-components with accordion, separators, and expanded state', () => {
@@ -262,7 +266,7 @@ describe('Cart component', () => {
     expect(screen.getByText('db1-7')).toBeInTheDocument();
 
     // Check total price calculation (0.5 + 0.1 + 0.2 + 0.3 + 0.1 = 1.2)
-    expect(screen.getByText('USD 1.200')).toBeInTheDocument();
+    expect(screen.getByText('pricing_ht USD 1.200')).toBeInTheDocument();
 
     // Check action button
     expect(screen.getByRole('button', { name: 'Submit' })).toBeInTheDocument();

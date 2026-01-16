@@ -1,11 +1,11 @@
 import { AccordionItem } from '@datatr-ux/uxlib';
+import { PropsWithChildren } from 'react';
 
 interface CartItemProps {
   value: string;
-  children: React.ReactNode | React.ReactNode[];
 }
 
-const CartItem = ({ children, value }: CartItemProps) => (
+const CartItem = ({ children, value }: PropsWithChildren<CartItemProps>) => (
   <AccordionItem className="border-none [&>button]:rounded-t-sm" value={value}>
     {children}
   </AccordionItem>

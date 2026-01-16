@@ -8,6 +8,7 @@ import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
 import { ForkSourceType } from '@/types/orderFunnel';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import { ucentToEur } from '@/lib/pricingHelper';
 
 interface UseCartItemsParams {
   order:
@@ -15,10 +16,8 @@ interface UseCartItemsParams {
     | ReturnType<typeof useFork>['result'];
 }
 
-const UCENT_TO_EUR = 100_000_000;
-
 const DescriptionSkeleton = () => (
-  <Skeleton className="h-4 w-32 my-1 bg-[--ods-color-neutral-100]" />
+  <Skeleton className="h-4 w-32 my-1 bg-neutral-100" />
 );
 
 export const useCartItems: (params: UseCartItemsParams) => CartItem[] = ({
@@ -50,8 +49,8 @@ export const useCartItems: (params: UseCartItemsParams) => CartItem[] = ({
                     <FormattedDate
                       date={new Date(order.backup.createdAt)}
                       options={{ dateStyle: 'medium', timeStyle: 'medium' }}
-                    />
-                    &nbsp;({formatStorage(order.backup.size)})
+                    />{' '}
+                    ({formatStorage(order.backup.size)})
                   </>
                 ) : (
                   <span className="text-red-500">
@@ -144,7 +143,10 @@ export const useCartItems: (params: UseCartItemsParams) => CartItem[] = ({
         )}
       </div>
     ),
-    price: order.price.flavorPrice.price / UCENT_TO_EUR,
+    price: order.price.flavorPrice.price / ucentToEur,
+    priceWithTax:
+      (order.price.flavorPrice.price + order.price.flavorPrice.tax) /
+      ucentToEur,
   };
 
   const storage = {
@@ -167,7 +169,10 @@ export const useCartItems: (params: UseCartItemsParams) => CartItem[] = ({
     ) : (
       <DescriptionSkeleton />
     ),
-    price: order.price.storagePrice.price / UCENT_TO_EUR,
+    price: order.price.storagePrice.price / ucentToEur,
+    priceWithTax:
+      (order.price.storagePrice.price + order.price.storagePrice.tax) /
+      ucentToEur,
   };
 
   const network = {

@@ -1,11 +1,8 @@
 import { AccordionTrigger } from '@datatr-ux/uxlib';
+import { PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
 
-interface CartItemHeaderProps {
-  children: React.ReactNode | React.ReactNode[];
-}
-
-const CartItemHeader = ({ children }: CartItemHeaderProps) => (
+const CartItemHeader = ({ children }: PropsWithChildren) => (
   <AccordionTrigger
     className={cn(
       'border border-gray-200 p-4 hover:no-underline',

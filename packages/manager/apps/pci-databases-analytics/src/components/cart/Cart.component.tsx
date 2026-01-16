@@ -9,30 +9,30 @@ import {
   CartItemHeader,
   CartTotalPrice,
 } from './components';
-import { Locale } from '@/hooks/useLocale';
 import { order } from '@/types/catalog';
 
 interface CartProps {
   items: CartItemType[];
   actionButtons: React.ReactNode | React.ReactNode[];
-  locale: Locale;
   currency: order.CurrencyCodeEnum;
-  totalText: string;
 }
 
-const Cart = ({
-  items,
-  actionButtons,
-  locale,
-  currency,
-  totalText,
-}: CartProps) => {
+const Cart = ({ items, actionButtons, currency }: CartProps) => {
   const totalPrice = useMemo(
     () =>
       items
         .flatMap(({ details }) => details.map(({ price }) => price))
         .reduce((acc, price) => acc + (price ?? 0), 0),
 
+    [items],
+  );
+  const totalPriceWithTax = useMemo(
+    () =>
+      items
+        .flatMap(({ details }) =>
+          details.map(({ priceWithTax }) => priceWithTax),
+        )
+        .reduce((acc, priceWithTax) => acc + (priceWithTax ?? 0), 0),
     [items],
   );
   return (
@@ -47,22 +47,17 @@ const Cart = ({
                   {item.title.toUpperCase()}
                 </h6>
                 {item.name && (
-                  <label className="text-lg font-bold ">{item.name}</label>
+                  <label className="text-lg font-bold">{item.name}</label>
                 )}
               </div>
             </CartItemHeader>
-            <CartItemDetails
-              details={item.details}
-              locale={locale}
-              currency={currency}
-            />
+            <CartItemDetails details={item.details} currency={currency} />
           </CartItem>
         )}
       />
       <CartTotalPrice
-        text={totalText}
         price={totalPrice}
-        locale={locale}
+        priceWithTax={totalPriceWithTax}
         currency={currency}
       />
       <CartActions className="flex-col gap-4">{actionButtons}</CartActions>

@@ -38,7 +38,6 @@ import VersionSelect from '@/components/order/version/VersionSelect.component';
 import NameInput from '@/components/order/name/NameInput.component';
 import Cart from '@/components/cart/Cart.component';
 import { useCartItems } from './useCartItems.hook';
-import { useLocale } from '@/hooks/useLocale';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -64,7 +63,6 @@ const OrderFunnel = ({
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation('pci-databases-analytics/services/new');
-  const locale = useLocale();
 
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
@@ -350,7 +348,6 @@ const OrderFunnel = ({
 
           <Cart
             items={cartItems}
-            locale={locale}
             currency={catalog.locale.currencyCode}
             actionButtons={
               <>
@@ -378,7 +375,6 @@ const OrderFunnel = ({
                 )}
               </>
             }
-            totalText={t('pricing:total_hour_label')}
           />
         </div>
       </Form>

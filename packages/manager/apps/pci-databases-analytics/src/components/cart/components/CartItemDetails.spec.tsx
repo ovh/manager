@@ -2,9 +2,15 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CartItemDetails from './CartItemDetails.component';
 import { CartItemDetail } from '../cart.types';
-import { Locale } from '@/hooks/useLocale';
 import { order } from '@/types/catalog';
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string, options?: Record<string, string | number>): string => {
+      return `${key} ${options?.price}`;
+    },
+  }),
+}));
 vi.mock('@datatr-ux/uxlib', () => ({
   AccordionContent: ({
     children,
@@ -22,14 +28,17 @@ vi.mock('@datatr-ux/uxlib', () => ({
   ),
 }));
 
-vi.mock('@/lib/pricingHelper', () => ({
+vi.mock('@/hooks/usePriceFormatter.hook', () => ({
   usePriceFormatter: ({ currency }: { currency: string }) => (value: number) =>
     `${currency} ${value.toFixed(3)}`,
 }));
 
+vi.mock('@/hooks/useLocale', () => ({
+  useLocale: () => 'en_GB',
+}));
+
 describe('CartItemDetails component', () => {
   const defaultProps = {
-    locale: Locale.en_GB,
     currency: order.CurrencyCodeEnum.USD,
   };
 
@@ -44,10 +53,10 @@ describe('CartItemDetails component', () => {
 
     expect(screen.getByText('Detail 1')).toBeInTheDocument();
     expect(screen.getByText('Description 1')).toBeInTheDocument();
-    expect(screen.getByText('USD 10.500')).toBeInTheDocument();
+    expect(screen.getByText('pricing_ht USD 10.500')).toBeInTheDocument();
     expect(screen.getByText('Detail 2')).toBeInTheDocument();
     expect(screen.getByText('Description 2')).toBeInTheDocument();
-    expect(screen.getByText('USD 20.750')).toBeInTheDocument();
+    expect(screen.getByText('pricing_ht USD 20.750')).toBeInTheDocument();
     expect(screen.getByText('No price item')).toBeInTheDocument();
   });
 
@@ -60,7 +69,7 @@ describe('CartItemDetails component', () => {
 
     render(<CartItemDetails details={details} {...defaultProps} />);
 
-    expect(screen.getByText('USD 10.000')).toBeInTheDocument();
+    expect(screen.getByText('pricing_ht USD 10.000')).toBeInTheDocument();
     // Only 1 price should be displayed
     const priceElements = screen.getAllByText(/USD/);
     expect(priceElements).toHaveLength(1);

@@ -1,11 +1,11 @@
+import { PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
 
 interface CartProps {
   className?: string;
-  children: React.ReactNode | React.ReactNode[];
 }
 
-const Cart = ({ children, className }: CartProps) => (
+const Cart = ({ children, className }: PropsWithChildren<CartProps>) => (
   <div
     className={cn(
       'rounded-md border border-solid border-gray-400 shadow-lg p-4',

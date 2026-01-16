@@ -10,4 +10,5 @@ export type CartItemDetail = {
   name: string;
   description?: React.ReactNode;
   price?: number;
+  priceWithTax?: number;
 };

@@ -1,45 +1,56 @@
-import { usePriceFormatter } from '@/lib/pricingHelper';
-import { Locale } from '@/hooks/useLocale';
+import { useTranslation } from 'react-i18next';
+import { Separator } from '@datatr-ux/uxlib';
+import { hourlyToMonthlyFactor } from '@/lib/pricingHelper';
+import { useLocale } from '@/hooks/useLocale';
 import { order } from '@/types/catalog';
+import { usePriceFormatter } from '@/hooks/usePriceFormatter.hook';
 
 interface CartTotalPriceProps {
   price: number;
-  text: string;
-  displayHourlyPrice?: boolean;
-  displayMonthlyPrice?: boolean;
-  locale: Locale;
+  priceWithTax: number;
   currency: order.CurrencyCodeEnum;
 }
 
-const HOUR_TO_MONTH_FACTOR = 730;
-
 const CartTotalPrice = ({
   price,
-  text,
-  displayHourlyPrice,
-  displayMonthlyPrice,
-  locale,
+  priceWithTax,
   currency,
 }: CartTotalPriceProps) => {
+  const locale = useLocale();
+  const { t } = useTranslation('pricing');
   const priceFormatter = usePriceFormatter({ locale, currency, decimals: 3 });
+  const monthPriceFormatter = usePriceFormatter({
+    locale,
+    currency,
+    decimals: 0,
+  });
 
   return (
     <div data-testid="cart-total-price">
       <div className="flex justify-between pt-4">
-        <h5 className="self-end">{text}</h5>
-        <h3>{priceFormatter(price)}</h3>
+        <h5 className="self-start">{t('total_hour_label')}</h5>
+        <div className="flex flex-col items-end text-end">
+          <h3>{t('pricing_ht', { price: priceFormatter(price) })}</h3>
+          <span>
+            {t('pricing_ttc', { price: priceFormatter(priceWithTax) })}
+          </span>
+        </div>
       </div>
-      <div className="flex flex-col items-end">
-        {displayHourlyPrice && (
-          <p data-testid="cart-hourly-total-price">
-            {priceFormatter(price)}/hour
-          </p>
-        )}
-        {displayMonthlyPrice && (
-          <p data-testid="cart-monthly-total-price">
-            {priceFormatter(price * HOUR_TO_MONTH_FACTOR)}/month
-          </p>
-        )}
+      <Separator className="my-2 bg-neutral-100 h-[2px]" />
+      <div className="flex justify-between text-neutral-500">
+        <p className="font-bold self-start">{t('estimated_month_label')}</p>
+        <div className="flex flex-col items-end">
+          <h6 className="text-neutral-500">
+            {t('pricing_ht', {
+              price: monthPriceFormatter(price * hourlyToMonthlyFactor),
+            })}
+          </h6>
+          <span>
+            {t('pricing_ttc', {
+              price: monthPriceFormatter(priceWithTax * hourlyToMonthlyFactor),
+            })}
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -52,7 +52,6 @@ import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import OrderSection from '@/components/order/Section.component';
 import NameInput from '@/components/order/name/NameInput.component';
 import Cart from '@/components/cart/Cart.component';
-import { useLocale } from '@/hooks/useLocale';
 import { useCartItems } from '@/pages/services/create/_components/useCartItems.hook';
 
 interface ForkFormProps {
@@ -79,11 +78,9 @@ const ForkForm = ({
   );
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { t } = useTranslation([
+  const { t } = useTranslation(
     'pci-databases-analytics/services/service/backups/fork',
-    'pricing',
-  ]);
-  const locale = useLocale();
+  );
   const { projectId } = useServiceData();
   const dateLocale = useDateFnsLocale();
 
@@ -508,7 +505,6 @@ const ForkForm = ({
 
         <Cart
           items={cartItems}
-          locale={locale}
           currency={catalog.locale.currencyCode}
           actionButtons={
             <Button
@@ -520,7 +516,6 @@ const ForkForm = ({
               {t('orderButton')}
             </Button>
           }
-          totalText={t('pricing:total_hour_label')}
         />
       </div>
     </Form>

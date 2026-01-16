@@ -1,8 +1,9 @@
-import { Locale } from '@/hooks/useLocale';
 import { order } from '@/types/catalog';
 import * as database from '@/types/cloud/project/database';
 
 export const hourlyToMonthlyFactor = 730;
+
+export const ucentToEur = 100_000_000;
 
 export type Pricing = Pick<order.publicOrder.Pricing, 'price' | 'tax'>;
 
@@ -84,25 +85,4 @@ export const computeServicePrice = ({
     storagePrice,
     servicePrice,
   };
-};
-
-interface UsePriceFormatterParams {
-  locale: Locale;
-  currency: order.CurrencyCodeEnum;
-  decimals?: number;
-}
-
-export const usePriceFormatter = ({
-  locale,
-  currency,
-  decimals,
-}: UsePriceFormatterParams) => {
-  const formatter = new Intl.NumberFormat(locale.replace('_', '-'), {
-    style: 'currency',
-    currency,
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  });
-
-  return (value: number) => formatter.format(value);
 };

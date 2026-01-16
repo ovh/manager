@@ -92,7 +92,7 @@
   "orderSectionTitleIps": "Authorised IPs",
   "fieldNameLabel": "Name",
   "fieldVersionLabel": "Version",
-  "summaryFieldBackupRetention_one": "Backups kept for {{count}} days",
+  "summaryFieldBackupRetention_one": "Backups kept for {{count}} day",
   "summaryFieldBackupRetention_other": "Backups kept for {{count}} days",
   "summaryFieldSourceLabel": "Restore point:",
   "summaryFieldSourceType-now": "Newest",
