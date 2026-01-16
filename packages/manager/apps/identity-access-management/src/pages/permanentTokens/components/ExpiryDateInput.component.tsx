@@ -44,7 +44,7 @@ export default function ExpiryDateInput({
     if (!model.active || model.mode !== 'duration') {
       return;
     }
-    if (value === null) {
+    if (value === null || value <= 0) {
       setModel({ ...model, expiresIn: 0, invalid: true });
       return;
     }
@@ -83,7 +83,11 @@ export default function ExpiryDateInput({
     if (!model.active || model.mode !== 'date') {
       return;
     }
-    setModel({ ...model, expiresAt: value, invalid: !value });
+    setModel({
+      ...model,
+      expiresAt: value,
+      invalid: !value || value < currentDate,
+    });
   };
 
   return (

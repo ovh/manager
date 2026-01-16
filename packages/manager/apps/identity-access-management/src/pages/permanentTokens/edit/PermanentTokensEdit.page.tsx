@@ -23,6 +23,7 @@ import ExpiryDateInput from '@/pages/permanentTokens/components/ExpiryDateInput.
 import { ExpiryDateModel } from '@/types/expiryDate';
 import { DEFAULT_EXPIRY_DATE_MODEL } from '@/utils/expiryDateUtils';
 import { PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
+import { API_MESSAGE_TOKEN_ALREADY_EXISTS } from '@/constants';
 
 export default function PermanentTokensAdd() {
   const { t } = useTranslation(['permanent-tokens', NAMESPACES.ACTIONS]);
@@ -75,12 +76,20 @@ export default function PermanentTokensAdd() {
       addSuccess(t('iam_user_token_modal_add_success'));
       goBack();
     },
-    onError: () => {
+    onError: (error) => {
       trackPage({
         pageType: PageType.bannerError,
         pageName: PERMANENT_TOKENS_TRACKING.ADD.REQUEST_FAIL,
       });
-      addError(t('iam_user_token_modal_add_error'));
+      const tokenAlreadyExists =
+        error?.response?.data?.message === API_MESSAGE_TOKEN_ALREADY_EXISTS;
+      addError(
+        tokenAlreadyExists
+          ? t('iam_user_token_modal_add_error_token_exists', {
+              tokenName: name,
+            })
+          : t('iam_user_token_modal_add_error'),
+      );
       goBack();
     },
   });
@@ -117,7 +126,7 @@ export default function PermanentTokensAdd() {
       if (expiryModel.mode === 'duration' && expiryModel.expiresIn !== null) {
         payload.expiresIn = expiryModel.expiresIn;
       }
-    } else {
+    } else if (!isCreationMode) {
       payload.expiresAt = null;
     }
 

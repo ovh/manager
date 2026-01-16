@@ -118,7 +118,6 @@ describe('PermanentTokensEdit (creation mode)', () => {
     expect(createTokenSpy).toHaveBeenCalledWith({
       name: 'new-token',
       description: 'Fake token description',
-      expiresAt: null,
     });
   });
 

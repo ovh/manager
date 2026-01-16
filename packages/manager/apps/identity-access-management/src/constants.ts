@@ -18,3 +18,5 @@ export const CHANGELOG_CHAPTERS = [
   'identity-access-management',
   'identity-access-management',
 ];
+
+export const API_MESSAGE_TOKEN_ALREADY_EXISTS = 'This token already exists';
