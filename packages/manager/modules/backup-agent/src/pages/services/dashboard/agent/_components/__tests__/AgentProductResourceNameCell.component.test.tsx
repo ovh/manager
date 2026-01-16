@@ -3,19 +3,23 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { AgentIpsCell } from '@/pages/services/dashboard/agent/_components/AgentIpsCell.component';
+import { mockAgents } from '@/mocks/agents/agents';
+
+import { AgentProductResourceNameCell } from '../AgentProductResourceNameCell.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="cell">{children}</div>
+  ),
 }));
 
-describe('AgentNameCell', () => {
-  it.each([
-    { ips: ['1.1.1.1'], expected: '1.1.1.1' },
-    { ips: ['1.1.1.1', '2.2.2.2'], expected: '1.1.1.1, 2.2.2.2' },
-  ])('renders ips $expected', ({ ips, expected }) => {
-    render(<AgentIpsCell ips={ips} />);
+describe('AgentProductResourceNameCell', () => {
+  it('renders link with targetSpec.productResourceName as label', () => {
+    const agent = mockAgents[0]!.currentState;
 
-    expect(screen.getByText(expected)).toBeVisible();
+    render(<AgentProductResourceNameCell productResourceName={agent.productResourceName} />);
+
+    const cell = screen.getByTestId('cell');
+    expect(cell).toHaveTextContent(agent.productResourceName);
   });
 });

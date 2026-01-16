@@ -8,5 +8,6 @@
   "actions": "Aktionen",
   "without_engagement": "ohne Verpflichtungen",
   "backup_agent_guide": "Backup-Agenten-Leitfäden",
-  "baremetal_label_order_in_progress": "Die Bestellung wurde erfolgreich erhalten, Ihr Produkt wird geliefert und Sie können den Fortschritt <OrderLink>hier</OrderLink> verfolgen."
+  "baremetal_label_order_in_progress": "Die Bestellung wurde erfolgreich erhalten, Ihr Produkt wird geliefert und Sie können den Fortschritt <OrderLink>hier</OrderLink> verfolgen.",
+  "server": "Server"
 }

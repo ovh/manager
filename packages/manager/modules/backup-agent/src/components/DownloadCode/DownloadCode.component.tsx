@@ -3,7 +3,7 @@ import { ComponentProps } from 'react';
 import { OdsCode } from '@ovhcloud/ods-components/react';
 
 import { OS } from '@/types/Os.type';
-import {getLinkFilename} from "@/utils/getLinkFilename";
+import { getLinkFilename } from '@/utils/getLinkFilename';
 
 export type DownloadCodeProps = ComponentProps<typeof OdsCode> & {
   downloadLink: string;
@@ -31,7 +31,7 @@ export const DownloadCode = ({
       )}
       {osCompatibility === 'WINDOWS' && (
         <OdsCode canCopy={canCopy} {...rest}>
-          Invoke-WebRequest -Uri &quot;{downloadLink}&quot; -OutFile "{filename}"
+          Invoke-WebRequest -Uri &quot;{downloadLink}&quot; -OutFile &quot;{filename}&quot;
         </OdsCode>
       )}
     </section>

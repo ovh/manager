@@ -13,6 +13,7 @@ import { AgentDataLocationCell } from '@/pages/services/dashboard/agent/_compone
 import { AgentIpsCell } from '@/pages/services/dashboard/agent/_components/AgentIpsCell.component';
 import { AgentNameCell } from '@/pages/services/dashboard/agent/_components/AgentNameCell.component';
 import { AgentPolicyCell } from '@/pages/services/dashboard/agent/_components/AgentPolicyCell.component';
+import { AgentProductResourceNameCell } from '@/pages/services/dashboard/agent/_components/AgentProductResourceNameCell.component';
 import { Agent } from '@/types/Agent.type';
 import { Resource } from '@/types/Resource.type';
 
@@ -43,6 +44,15 @@ export function useAgentsListingColumnsHooks() {
           />
         ),
         label: t(`${NAMESPACES.STATUS}:status`),
+      },
+      {
+        id: 'currentState.productResourceName',
+        cell: (agentResource: Resource<Agent>) => (
+          <AgentProductResourceNameCell
+            productResourceName={agentResource.currentState.productResourceName}
+          />
+        ),
+        label: t(`${BACKUP_AGENT_NAMESPACES.COMMON}:server`),
       },
       {
         id: 'currentState.ip.',

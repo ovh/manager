@@ -8,5 +8,6 @@
   "actions": "Operacje",
   "without_engagement": "bez umowy terminowej",
   "backup_agent_guide": "Przewodniki Backup Agent",
-  "baremetal_label_order_in_progress": "Zamówienie zostało pomyślnie przyjęte, twój produkt jest w trakcie dostawy i możesz śledzić jego postęp <OrderLink>tutaj</OrderLink>."
+  "baremetal_label_order_in_progress": "Zamówienie zostało pomyślnie przyjęte, twój produkt jest w trakcie dostawy i możesz śledzić jego postęp <OrderLink>tutaj</OrderLink>.",
+  "server": "Serwer"
 }
