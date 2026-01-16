@@ -22,10 +22,10 @@ import {
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 import { TimeControls } from '@/components';
 import { ChartRenderer } from '@/components/charts/base';
-import { useDashboardContext } from '@/contexts';
+import { useDashboardContext, useMetricsToCustomerContext } from '@/contexts';
 import { useChartWithData, useMetricToken } from '@/data/hooks';
 
-import './styles.scss';
+import '../styles.scss';
 
 const DashboardWidgetModal = <TData,>() => {
   const { t } = useTranslation(NAMESPACES.DASHBOARDS);
@@ -34,7 +34,9 @@ const DashboardWidgetModal = <TData,>() => {
 
   const { widgetId } = useParams();
 
-  const { state, setState } = useDashboardContext();
+  const { state } = useMetricsToCustomerContext();
+
+  const { state : dashboardState, setState : setDashboardState } = useDashboardContext();
 
   const resourceName = state.resourceName ?? '';
   const productType = state.productType ?? '';
@@ -47,7 +49,7 @@ const DashboardWidgetModal = <TData,>() => {
     endDateTime,
     selectedTimeOption,
     refreshInterval,
-  } = state;
+  } = dashboardState;
 
   const { isLoading, config, data, refetch, cancel } = useChartWithData<TData>({
     chartId: widgetId as string,
@@ -73,7 +75,7 @@ const DashboardWidgetModal = <TData,>() => {
   };
 
   const onStateChange = <TValue,>(key: string, value: TValue) => {
-    setState({ ...state, [key]: value });
+    setDashboardState({ ...dashboardState, [key]: value });
   };
 
   if (!config) {
@@ -99,7 +101,7 @@ const DashboardWidgetModal = <TData,>() => {
             <Text preset={TEXT_PRESET.heading3}>{title}</Text>
           </div>
           <div className="ml-auto flex justify-end gap-4">
-            <TimeControls isLoading={globalLoading} state={state} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
+            <TimeControls isLoading={globalLoading} state={dashboardState} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
           </div>
         </div>
         <ModalBody>
@@ -117,7 +119,7 @@ const DashboardWidgetModal = <TData,>() => {
                 data={data ?? []}
                 isLoading={false}
                 isFullscreen={true}
-                state={state}
+                state={dashboardState}
               />
             </div>
           )}
