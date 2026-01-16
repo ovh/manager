@@ -13,6 +13,7 @@ const ACTION_COLUMN_LABEL = '';
 const COLUMNS_EXPECTED = [
   'name_label',
   'status_label',
+  'server_label',
   'address_ip_label',
   'policy_label',
   'data_location_label',
