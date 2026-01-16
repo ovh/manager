@@ -16,3 +16,4 @@ packages/manager/apps/web-ongoing-operations
 packages/manager/apps/communication
 packages/manager/apps/zimbra
 packages/manager/apps/hub
+packages/manager/apps/pci-file-storage
