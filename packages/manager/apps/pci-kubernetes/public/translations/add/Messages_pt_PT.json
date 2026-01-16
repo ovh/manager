@@ -70,7 +70,7 @@
   "kube_add_plan_content_free_100": "Até 100 nós por cluster",
   "kube_add_plan_title_standard": "Standard",
   "kube_add_plan_description_standard": "Usufrua de um compromisso de nível de serviço e de uma implementação regional (repartida por três Availability Zones), ideal para cargas de trabalho que requerem resiliência e alta disponibilidade.",
-  "kube_add_plan_content_standard_SLA": "SLA de 99,99%",
+  "kube_add_plan_content_standard_3AZ_SLA": "SLA de 99,99%",
   "kube_add_plan_content_standard_ETCD": "ETCD dedicado de 8 Go",
   "kube_add_plan_content_standard_3AZ_control_plane": "Plano de controlo gerido, altamente disponível e tolerante à perda de uma Availability Zone",
   "kube_add_plan_content_standard_scaling": "Capacidade de escalabilidade dos nós",
@@ -87,5 +87,6 @@
   "kube_add_node_pool_name_already_exist_validation_error": "O nome do nodepool já está a ser usado. Escolha outro.",
   "kube_add_plan_content_standard_1AZ_control_plane": "Plano de controle gerido, altamente disponível (1-AZ) e dedicado, com recursos garantidos",
   "kube_add_plan_content_not_available": "indisponível na região",
-  "kubernetes_add_region_plan_select": "Filtrar por planos"
+  "kubernetes_add_region_plan_select": "Filtrar por planos",
+  "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA"
 }

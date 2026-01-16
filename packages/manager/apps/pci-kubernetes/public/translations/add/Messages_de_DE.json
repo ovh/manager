@@ -70,7 +70,7 @@
   "kube_add_plan_content_free_100": "Bis zu 100 Nodes pro Cluster",
   "kube_add_plan_title_standard": "Standard",
   "kube_add_plan_description_standard": "Profitieren Sie von einem festen Service Level Agreement und regionalem Deployment (über drei Availability Zones hinweg); ideal für Workloads, die eine hohe Verfügbarkeit und Resilienz erfordern.",
-  "kube_add_plan_content_standard_SLA": "SLA von 99,99 %",
+  "kube_add_plan_content_standard_3AZ_SLA": "SLA von 99,99 %",
   "kube_add_plan_content_standard_ETCD": "Dedizierter ETCD mit 8 GB",
   "kube_add_plan_content_standard_3AZ_control_plane": "Verwaltete, hochverfügbare und gegen Ausfall einer Availability Zone resiliente Control Plane",
   "kube_add_plan_content_standard_scaling": "Skalierfunktion für Nodes",
@@ -87,5 +87,6 @@
   "kube_add_node_pool_name_already_exist_validation_error": "Der Node-Pool-Name wird bereits verwendet. Bitte wählen Sie einen anderen aus.",
   "kube_add_plan_content_standard_1AZ_control_plane": "Verwalteter, hochverfügbarer (1-AZ) und dedizierter Kontrollplan mit garantierten Ressourcen",
   "kube_add_plan_content_not_available": "nicht verfügbar in der Region",
-  "kubernetes_add_region_plan_select": "Nach Plänen filtern"
+  "kubernetes_add_region_plan_select": "Nach Plänen filtern",
+  "kube_add_plan_content_standard_1AZ_SLA": "SLA VON 99,9 %"
 }

@@ -42,9 +42,16 @@ const usePlanData = (
       title: 'kube_add_plan_title_standard',
       description: 'kube_add_plan_description_standard',
       content: [
-        `kube_add_plan_content_standard_${!isMutiZone ? '1' : '3'}AZ_control_plane`,
-        ...(isMutiZone ? ['kube_add_plan_content_standard_disponibility'] : []),
-        'kube_add_plan_content_standard_SLA',
+        ...(isMutiZone
+          ? [
+              'kube_add_plan_content_standard_3AZ_control_plane',
+              'kube_add_plan_content_standard_disponibility',
+              'kube_add_plan_content_standard_3AZ_SLA',
+            ]
+          : [
+              'kube_add_plan_content_standard_1AZ_control_plane',
+              'kube_add_plan_content_standard_1AZ_SLA',
+            ]),
         'kube_add_plan_content_free_auto_scaling',
         'kube_add_plan_content_standard_ETCD',
         'kube_add_plan_content_standard_version',
