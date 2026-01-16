@@ -89,6 +89,7 @@ export default function DownloadAgentPage() {
           ) : (
             <DownloadCode
               className="break-all"
+              osCompatibility={osSelected || 'LINUX'}
               downloadLink={isDownloadEnabled ? downloadLink : '...'}
               canCopy={isDownloadEnabled}
             />

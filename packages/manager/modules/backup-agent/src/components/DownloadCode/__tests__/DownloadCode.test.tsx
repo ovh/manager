@@ -11,17 +11,28 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 }));
 
 describe('DownloadCode', () => {
-  it('Show line for download', async () => {
-    const { container } = render(<DownloadCode downloadLink="https://example.com/download" />);
+  it.each([
+    { osCompatibility: 'LINUX', expectedNumberCommands: 2 } as const,
+    { osCompatibility: 'WINDOWS', expectedNumberCommands: 1 } as const,
+  ] as const)(
+    'Show line for download for $osCompatibility',
+    async ({ osCompatibility, expectedNumberCommands }) => {
+      const { container } = render(
+        <DownloadCode
+          downloadLink="https://example.com/download"
+          osCompatibility={osCompatibility}
+        />,
+      );
 
-    await expect(container).toBeAccessible();
+      await expect(container).toBeAccessible();
 
-    await waitFor(() => {
-      expect(screen.getAllByTestId(codeTestId).length).toBe(2);
-    });
+      await waitFor(() => {
+        expect(screen.getAllByTestId(codeTestId).length).toBe(expectedNumberCommands);
+      });
 
-    screen
-      .getAllByTestId(codeTestId)
-      .forEach((el) => expect(el).toHaveTextContent('https://example.com/download'));
-  });
+      screen
+        .getAllByTestId(codeTestId)
+        .forEach((el) => expect(el).toHaveTextContent('https://example.com/download'));
+    },
+  );
 });
