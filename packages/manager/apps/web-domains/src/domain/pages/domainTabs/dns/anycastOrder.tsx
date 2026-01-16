@@ -36,7 +36,6 @@ import config from '@/web-domains.config';
 import { BreadcrumbAnyCast } from './breadcrumb';
 import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
 import { useLinks } from '@/domain/constants/guideLinks';
-import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export default function AnycastOrder() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
@@ -44,14 +43,9 @@ export default function AnycastOrder() {
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
   );
-  const isInternalDnsConfiguration =
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.EXTERNAL &&
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.MIXED;
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    isInternalDnsConfiguration,
+    domainResource,
   );
   const [dnssecSelected, setDnssecSelected] = useState<boolean>(false);
   const [orderURL, setOrderURL] = useState<string>('');
