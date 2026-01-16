@@ -89,6 +89,7 @@
 # Modules
 /packages/manager/modules @ovh/dev-manager-core
 /packages/manager/modules/account @ovh/dev-manager-gcj-all
+/packages/manager/modules/backup-agent @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/modules/billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing-components @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing-informations @ovh/dev-manager-enablers-all
