@@ -39,7 +39,7 @@ export const Routes = (
         path={subRoutes.create}
         Component={CreateSharePage}
         handle={{
-          tracking: { pageName: 'create', pageType: PageType.funnel },
+          tracking: { pageName: 'new', pageType: PageType.funnel },
         }}
       />
       <Route path="" element={<Navigate to={subRoutes.onboarding} replace />} />

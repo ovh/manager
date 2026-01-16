@@ -4,7 +4,7 @@ const ROOT_URL = `/pci/projects/:projectId/storages/files/`;
 
 export const subRoutes = {
   onboarding: 'onboarding' as const,
-  create: 'create' as const,
+  create: 'new' as const,
 } as const;
 
 export const urls = {
