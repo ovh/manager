@@ -69,6 +69,7 @@ describe('Cart component', () => {
     actionButtons: <button>Submit</button>,
     locale: Locale.en_GB,
     currency: order.CurrencyCodeEnum.USD,
+    totalText: 'Total',
   };
 
   it('should render basic cart structure with styling and action buttons', () => {
@@ -199,6 +200,7 @@ describe('Cart component', () => {
         actionButtons={<button>Submit</button>}
         locale={Locale.fr_FR}
         currency={order.CurrencyCodeEnum.EUR}
+        totalText="Total"
       />,
     );
     expect(screen.getAllByText('EUR 25.500')).toHaveLength(2); // detail + total
