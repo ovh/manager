@@ -5,8 +5,6 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
 import { renderHookWithClient } from '@/common/utils/tests/testUtils';
 
 import { useServiceKeyDownload } from './useServiceKeyDownload';
@@ -111,8 +109,8 @@ describe('useServiceKeyDownload', () => {
         name: 'download_encryption_key',
         label:
           'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-        icon: ODS_ICON_NAME.download,
-        color: ODS_BUTTON_COLOR.primary,
+        icon: 'download',
+        color: 'primary',
       });
       expect(result.current?.onClick).toBeInstanceOf(Function);
     });
