@@ -8,7 +8,7 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 import { assertBadgeColor } from '@/common/utils/tests/uiTestHelpers';
 
-import { ServiceKeyStatus } from './serviceKeyStatus.component';
+import { ServiceKeyStatus } from './ServiceKeyStatusBadge.component';
 
 const SERVICE_KEY_STATUS_TEST_ID = 'service-key-status';
 

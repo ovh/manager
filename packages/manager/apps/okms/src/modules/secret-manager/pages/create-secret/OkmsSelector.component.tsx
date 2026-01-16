@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 
-import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
@@ -9,6 +8,7 @@ import { Skeleton, Text } from '@ovhcloud/ods-react';
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { TagsList } from '@ovh-ux/manager-react-components';
 
+import { OkmsServiceState } from '@/common/components/okms-service-state-badge/OkmsServiceStateBadge.component';
 import { RadioCard } from '@/common/components/radio-card/RadioCard.component';
 
 import { ActivateRegion } from './ActivateRegion.component';

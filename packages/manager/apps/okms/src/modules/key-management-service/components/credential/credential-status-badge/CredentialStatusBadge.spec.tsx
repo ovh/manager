@@ -8,7 +8,7 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 import { assertBadgeColor } from '@/common/utils/tests/uiTestHelpers';
 
-import { CredentialStatus } from './CredentialStatus.component';
+import { CredentialStatus } from './CredentialStatusBadge.component';
 
 const CREDENTIAL_STATUS_TEST_ID = 'credential-status';
 

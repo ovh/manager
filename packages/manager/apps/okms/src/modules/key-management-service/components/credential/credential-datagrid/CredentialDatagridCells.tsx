@@ -16,7 +16,7 @@ import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
-import { CredentialStatus } from '../credential-status/CredentialStatus.component';
+import { CredentialStatus } from '../credential-status-badge/CredentialStatusBadge.component';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();

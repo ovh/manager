@@ -1,6 +1,6 @@
 import { useHref } from 'react-router-dom';
 
-import { VersionState } from '@secret-manager/components/version-state/VersionState.component';
+import { VersionState } from '@secret-manager/components/version-state-badge/VersionStateBadge.component';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret, SecretVersion, SecretVersionState } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';

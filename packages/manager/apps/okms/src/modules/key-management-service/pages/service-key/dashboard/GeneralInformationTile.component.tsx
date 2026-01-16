@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { TileValueDate } from '@key-management-service/components/dashboard/tile-value-date/tileValueDate.component';
 import ServiceKeyStateActions from '@key-management-service/components/service-key/service-key-state-actions/ServiceKeyStateActions.component';
-import { ServiceKeyStatus } from '@key-management-service/components/service-key/service-key-status/serviceKeyStatus.component';
+import { ServiceKeyStatus } from '@key-management-service/components/service-key/service-key-status-badge/ServiceKeyStatusBadge.component';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';

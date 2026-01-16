@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import CredentialCreationMethod from '@key-management-service/components/credential/credential-creation-method/credentialCreationMethod.component';
-import { CredentialStatus } from '@key-management-service/components/credential/credential-status/CredentialStatus.component';
+import { CredentialStatus } from '@key-management-service/components/credential/credential-status-badge/CredentialStatusBadge.component';
 import { TileValueDate } from '@key-management-service/components/dashboard/tile-value-date/tileValueDate.component';
 import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
