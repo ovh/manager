@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { RadioGroup } from '@ovhcloud/ods-react';
 
 import { RegionCard } from '@/components/location/RegionCard.component';
-import { isCountryCode } from '@/helpers/location';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
 import { TRegionCard } from '../../view-models/location.viewmodel';
@@ -16,7 +15,7 @@ type TRegionSelectProps = {
 };
 
 export const RegionSelect = ({ regions }: TRegionSelectProps) => {
-  const { t } = useTranslation('add');
+  const { t } = useTranslation(['add', 'regions']);
 
   const { control, setValue } = useFormContext<TCreateClusterSchema>();
   const macroRegionField = useWatch({
@@ -38,11 +37,12 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
     () =>
       regions?.map((region) => ({
         ...region,
-        country: isCountryCode(region.country) ? region.country : null,
+        label: t(`regions:manager_components_region_${region.id}`),
+        country: region.country,
         datacenterDetails: region.microRegions.length > 1 ? region.id : region.microRegions.at(0),
-        plans: [] /* region.plans.map((plan) =>
+        plans: region.plans.map((plan) =>
           plan === 'free' ? t('kube_add_plan_title_free') : t('kube_add_plan_title_standard'),
-        ), */,
+        ),
       })),
     [regions, t],
   );

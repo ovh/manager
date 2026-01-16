@@ -5,9 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/ods-react';
 
-import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-
-import { useRegions } from '@/api/hooks/useRegions';
+import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
 
@@ -31,19 +29,28 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
   const { t } = useTranslation('add');
 
   const { control } = useFormContext<TCreateClusterSchema>();
-  const [macroRegionField, microRegionField, continentField, planField] = useWatch({
-    control,
-    name: ['location.macroRegion', 'location.microRegion', 'location.continent', 'location.plan'],
-  });
+  const [macroRegionField, microRegionField, continentField, planField, deploymentModeField] =
+    useWatch({
+      control,
+      name: [
+        'location.macroRegion',
+        'location.microRegion',
+        'location.continent',
+        'location.plan',
+        'location.deploymentMode',
+      ],
+    });
 
   const { setValue } = useFormContext<TCreateClusterSchema>();
 
-  const translate = useTranslatedMicroRegions();
-
-  const { data: regions } = useRegions({
+  const { data: regions } = useAvailabilityRegions({
     select: (regions) =>
-      mapMacroRegionForCards(translate.translateMacroRegion)(
-        filterMacroRegions(continentField, planField)(selectMacroRegions(regions)),
+      mapMacroRegionForCards(
+        filterMacroRegions(
+          continentField,
+          planField,
+          deploymentModeField,
+        )(selectMacroRegions(regions)),
       ),
   });
 

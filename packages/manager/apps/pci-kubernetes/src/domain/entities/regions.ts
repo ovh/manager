@@ -40,27 +40,38 @@ export type TService = {
   status: TServiceStatus;
 };
 
+export const PLAN_CODES = [
+  'mks.free.hour.consumption',
+  'mks.free.hour.consumption.3az',
+  'mks.standard.hour.consumption',
+  'mks.standard.hour.consumption.3az',
+] as const;
+export type TPlanCode = (typeof PLAN_CODES)[number];
+
 export type TMacroRegion = {
   name: string;
-  countryCode: TCountryCode;
-  deploymentMode: TDeploymentMode;
+  countryCode: TCountryCode | null;
   continentCode: TContinentCode;
   microRegionIds: Array<TMicroRegionID>;
-  availabilityZones: string[];
-  disabled: boolean;
+  plans: Array<TPlanCode>;
+  enabled: boolean;
 };
 
 export type TMicroRegion = {
   name: string;
-  ipCountries: Array<IpCountry>;
   macroRegionId: TMacroRegionID;
-  services: TService[];
+  availabilityZones: string[];
+  deploymentMode: TDeploymentMode;
+  enabled: boolean;
 };
 
 export type TRegions = {
   entities: {
     macroRegions: TNormalizedEntity<TMacroRegionID, TMacroRegion>;
     microRegions: TNormalizedEntity<TMicroRegionID, TMicroRegion>;
+  };
+  relations: {
+    planRegions: Partial<Record<TPlanCode, TMacroRegionID[]>>;
   };
 };
 

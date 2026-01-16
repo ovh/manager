@@ -1,13 +1,22 @@
-import { TCountryCode, TMacroRegion, TRegions } from '@/domain/entities/regions';
+import {
+  TCountryCode,
+  TDeploymentMode,
+  TMacroRegion,
+  TPlanCode,
+  TRegions,
+} from '@/domain/entities/regions';
 
 import { TCreateClusterSchema, createClusterFormContinentCodes } from '../CreateClusterForm.schema';
 
+export type TViewPlan = 'free' | 'standard';
+
 export type TRegionCard = {
-  label: string;
+  labelKey: string;
   id: string;
   microRegions: string[];
   disabled: boolean;
-  country: TCountryCode;
+  country: TCountryCode | null;
+  plans: Array<TViewPlan>;
 };
 
 type ContinentOption = {
@@ -39,29 +48,46 @@ export const selectMacroRegions = (regions?: TRegions) => {
   return regions ? [...regions.entities.macroRegions.byId.values()] : undefined;
 };
 
+const mapPlanCodeToViewPlan = (planCode: TPlanCode): TViewPlan => {
+  return planCode === 'mks.free.hour.consumption' || planCode === 'mks.free.hour.consumption.3az'
+    ? 'free'
+    : 'standard';
+};
+
+const mapPlanCodeToDeploymentMode = (planCode: TPlanCode): TDeploymentMode => {
+  return planCode === 'mks.free.hour.consumption' || planCode === 'mks.free.hour.consumption.3az'
+    ? 'region'
+    : 'region-3-az';
+};
+
 export const filterMacroRegions =
   (
     continent: TCreateClusterSchema['location']['continent'],
     plan: TCreateClusterSchema['location']['plan'],
+    deploymentMode: TCreateClusterSchema['location']['deploymentMode'],
   ) =>
   (regions?: Array<TMacroRegion>) => {
     if (!regions) return undefined;
 
     return regions.filter((region) => {
-      const isContinentAllowed = continent === 'ALL' || region.continentCode === continent;
-      const isPlanAllowed = plan === 'all' || !plan; // || region.plans.includes(plan);
+      const regionDeploymentMode = region.plans.map(mapPlanCodeToDeploymentMode);
+      const isDeploymentModeAllowed = regionDeploymentMode.includes(deploymentMode);
 
-      return isContinentAllowed && isPlanAllowed;
+      const regionViewPlans = region.plans.map(mapPlanCodeToViewPlan);
+      const isPlanAllowed = plan === 'all' || !plan || regionViewPlans.includes(plan);
+
+      const isContinentAllowed = continent === 'ALL' || region.continentCode === continent;
+
+      return isContinentAllowed && isPlanAllowed && isDeploymentModeAllowed;
     });
   };
 
-export const mapMacroRegionForCards =
-  (translateRegionName: (region: string) => string) =>
-  (regions?: TMacroRegion[]): TRegionCard[] | undefined =>
-    regions?.map((region) => ({
-      label: translateRegionName(region.name),
-      id: region.name,
-      microRegions: region.microRegionIds,
-      disabled: region.disabled,
-      country: region.countryCode,
-    }));
+export const mapMacroRegionForCards = (regions?: TMacroRegion[]): TRegionCard[] | undefined =>
+  regions?.map((region) => ({
+    labelKey: `regions:manager_components_region_${region.name}`,
+    id: region.name,
+    microRegions: region.microRegionIds,
+    disabled: !region.enabled,
+    country: region.countryCode,
+    plans: region.plans.map(mapPlanCodeToViewPlan),
+  }));

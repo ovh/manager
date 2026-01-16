@@ -5,16 +5,14 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
-import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-
-import { useRegions } from '@/api/hooks/useRegions';
+import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
 import { Cart, TCartItem } from '@/components/cart/Cart.component';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { mapMacroRegionForCards, selectMacroRegions } from '../view-models/location.viewmodel';
 
 export const CreationCart = () => {
-  const { t } = useTranslation(['listing', 'add']);
+  const { t } = useTranslation(['listing', 'add', 'regions']);
 
   const form = useFormContext<TCreateClusterSchema>();
   const [nameField, macroRegionField, microRegionField] = useWatch({
@@ -22,10 +20,8 @@ export const CreationCart = () => {
     name: ['name', 'location.macroRegion', 'location.microRegion'],
   });
 
-  const translate = useTranslatedMicroRegions();
-  const { data: regions } = useRegions({
-    select: (regions) =>
-      mapMacroRegionForCards(translate.translateMacroRegion)(selectMacroRegions(regions)),
+  const { data: regions } = useAvailabilityRegions({
+    select: (regions) => mapMacroRegionForCards(selectMacroRegions(regions)),
   });
 
   const cartItems = useMemo<Array<TCartItem>>(() => {
@@ -39,7 +35,7 @@ export const CreationCart = () => {
           {
             name: t('add:kubernetes_add_location'),
             description: selectedRegion ? (
-              <Text preset="heading-6">{`${selectedRegion.label} (${microRegionField})`}</Text>
+              <Text preset="heading-6">{`${t(`regions:manager_components_region_${selectedRegion.id}_micro`, { micro: microRegionField })}`}</Text>
             ) : undefined,
           },
         ],

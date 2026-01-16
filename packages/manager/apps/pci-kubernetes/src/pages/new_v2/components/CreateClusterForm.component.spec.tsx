@@ -1,35 +1,37 @@
-import { RenderResult, render } from '@testing-library/react';
+import { RenderResult, act, render } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
+
+import { TMacroRegion } from '@/domain/entities/regions';
 
 import { CreateClusterForm } from './CreateClusterForm.component';
 
 const validClusterName = 'my_magical_cluster';
 const invalidClusterName = '---';
 
-const mockMacroRegions = [
+const mockMacroRegions: Array<TMacroRegion> = [
   {
     name: 'BHS',
-    countryCode: 'ca' as const,
-    deploymentMode: 'region' as const,
-    continentCode: 'NA' as const,
+    countryCode: 'ca',
+    continentCode: 'NA',
     microRegionIds: ['BHS5'],
-    availabilityZones: [],
+    plans: ['mks.standard.hour.consumption.3az'],
+    enabled: true,
   },
   {
-    name: 'UK1',
-    countryCode: 'uk' as const,
-    deploymentMode: 'region' as const,
-    continentCode: 'EU' as const,
+    name: 'UK',
+    countryCode: 'uk',
+    continentCode: 'EU',
     microRegionIds: ['UK1'],
-    availabilityZones: [],
+    plans: ['mks.standard.hour.consumption.3az'],
+    enabled: true,
   },
   {
     name: 'GRA',
-    countryCode: 'fr' as const,
-    deploymentMode: 'region' as const,
-    continentCode: 'EU' as const,
+    countryCode: 'fr',
+    continentCode: 'EU',
     microRegionIds: ['GRA5', 'GRA7'],
-    availabilityZones: [],
+    plans: ['mks.standard.hour.consumption.3az'],
+    enabled: true,
   },
 ];
 
@@ -64,10 +66,26 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     translateMicroRegion: (name: string) => name,
     translateContinentRegion: (name: string) => name,
   }),
+  useMe: vi.fn().mockReturnValue({
+    me: {
+      ovhSubsidiary: 'FR',
+      currency: {
+        code: 'EUR',
+      },
+    },
+  }),
 }));
 
-vi.mock('@/api/hooks/useRegions', () => ({
-  useRegions: vi.fn(),
+vi.mock('@/api/hooks/useAvailabilityRegions', () => ({
+  useAvailabilityRegions: vi.fn().mockImplementation(
+    ({ select }: any) =>
+      ({
+        data: select ? select(mockRegions) : mockRegions,
+        isPending: false,
+        isError: false,
+        error: null,
+      }) as any,
+  ),
 }));
 
 describe('CreateClusterForm name management', () => {
@@ -103,25 +121,16 @@ describe('CreateClusterForm name management', () => {
 
 describe('CreateClusterForm location management', () => {
   it('keeps synchronized location selection and cart display', async () => {
-    const { useRegions } = await import('@/api/hooks/useRegions');
-
-    vi.mocked(useRegions).mockImplementation(
-      ({ select }: any) =>
-        ({
-          data: select ? select(mockRegions) : mockRegions,
-          isPending: false,
-          isError: false,
-          error: null,
-        }) as any,
-    );
-
     let user = userEvent.setup();
     const renderedDom = render(<CreateClusterForm />);
 
-    const targetedRegion = renderedDom.getByRole('radio', { name: /Londres/i });
-    await user.click(targetedRegion);
+    const targetedRegion = renderedDom.getByRole('radio', {
+      name: /regions:manager_components_region_UK/i,
+    });
+    expect(targetedRegion).toBeInTheDocument();
+    await act(() => user.click(targetedRegion));
 
     const cartElement = renderedDom.getByTestId('cart');
-    expect(cartElement).toHaveTextContent('Londres (UK1)');
+    expect(cartElement).toHaveTextContent('regions:manager_components_region_UK');
   });
 });
