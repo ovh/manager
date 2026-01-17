@@ -337,9 +337,9 @@
   "domain_tab_dsrecords_modal_delete_error_message": "An error occurred while deleting the DS record",
   "domain_table_state_error": "Error",
   "domain_tab_general_information_update_success": "Your update request has been processed.",
-  "domain_tab_dsrecords_message_information_content": "These DS records are provided for informational purposes and are managed automatically by OVHcloud.",
-  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC is currently {{action}}: you can track the progress of your request from the ongoing operations page. <Link />",
-  "domain_tab_dsrecords_message_information_action_in_progress_activate": "of activation",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "of deactivation",
+  "domain_tab_dsrecords_message_information_content": "These DS records are provided for informational purposes only and are managed automatically by OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC is currently running {{action}}: you can monitor the status of your request on the Ongoing Operations page. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "enabling",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "disabling",
   "domain_tab_general_information_subscription_edit_owner": "Edit the account holder's contact information"
 }

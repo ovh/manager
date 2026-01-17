@@ -3,5 +3,5 @@
   "inputStorageLabel": "Selecione o armazenamento adicional do cluster",
   "inputStorageNoneValue": "Nenhum",
   "storageFlavorDescription": "O seu modelo de nó {{flavor}} inclui {{includedStorage}} de armazenamento aos quais pode adicionar até {{maxAdditionalStorage}} de armazenamento suplementar por passo de {{step}}.",
-  "inputNodeTooltip": "O número de nós é pré-definido pela oferta selecionada acima e não é modificável neste caso."
+  "inputNodeTooltip": "O número de nós é predefinido pela oferta selecionada acima e não é editável neste caso"
 }
