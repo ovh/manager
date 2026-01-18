@@ -14,7 +14,9 @@
     "build": "tsc && vite build",
     "start": "tsc && vite",
     "test": "manager-test --config vitest.config.mjs run",
-    "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
+    "test:coverage": "manager-test --config vitest.config.mjs run --coverage",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.9.1",
@@ -49,7 +51,8 @@
     "@tanstack/react-query-devtools": "5.51.21",
     "msw": "2.1.7",
     "typescript": "^5.1.6",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "regions": [
     "CA",

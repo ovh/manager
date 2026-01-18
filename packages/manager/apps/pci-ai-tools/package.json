@@ -14,10 +14,11 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
     "coverage": "vitest run --coverage",
-    "lint": "eslint ./src",
     "start": "vite",
     "test": "vitest run --pool=threads",
-    "test-ui": "vitest --ui --coverage.enabled=true --pool=threads"
+    "test-ui": "vitest --ui --coverage.enabled=true --pool=threads",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "^1.0.3",
@@ -58,12 +59,11 @@
     "@types/node": "20.12.5",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "typescript": "5.4.4",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "regions": [
     "CA",

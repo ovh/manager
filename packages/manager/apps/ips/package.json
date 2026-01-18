@@ -13,10 +13,11 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite",
-    "lint": "eslint ./src",
     "start": "tsc && vite",
     "test": "vitest --config vitest.config.mjs run",
-    "test:coverage": "vitest --config vitest.config.mjs run --coverage"
+    "test:coverage": "vitest --config vitest.config.mjs run --coverage",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.22.2",
@@ -56,8 +57,6 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.4",
     "element-internals-polyfill": "^3.0.2",
@@ -65,7 +64,8 @@
     "tailwindcss": "^3.4.4",
     "typescript": "^5.1.6",
     "vite": "^6.0.7",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "regions": [
     "CA",
