@@ -4,7 +4,7 @@
  * ------------------
  * Per-project legacy lint runner meant to be executed from *any* folder:
  * - Run from an app/module folder OR from repo root → same behavior.
- * - Scopes file globs to the *current working directory* (projectRoot),
+ * - Scopes file discovery to the *current working directory* (projectRoot),
  *   while executing tools from the repository root (repoRoot) for stable config resolution.
  *
  * Design goals
@@ -14,22 +14,36 @@
  * 3) Deterministic ESLint behavior:
  *    - By default, force the *root* ESLint config even if the app has its own .eslintrc.*
  *    - Allow overrides via --config if needed.
+ * 4) Deterministic plugin/config resolution:
+ *    - Force ESLint to resolve plugins from THIS package (legacy-kit),
+ *      not from repo root (avoids version mismatch like prettier plugin v4+ with ESLint v6).
+ * 5) Allow local *deltas* safely:
+ *    - We still ignore local .eslintrc.*, but we *merge local globals* automatically
+ *      (common need for legacy apps defining build-time globals like __VERSION__).
+ * 6) Never lint dependencies:
+ *    - markdown/stylelint are fed with an explicit file list (not globs),
+ *      excluding node_modules and other ignored folders to avoid remark “ignored file” errors.
  *
  * Usage
  * -----
- * manager-legacy-lint --kinds tsx,js,css,html,md [--fix] [--continue] [--non-blocking-html] [--config path/to/.eslintrc]
+ * manager-legacy-lint --kinds tsx,js,css,html,md
+ *   [--fix]
+ *   [--continue]
+ *   [--non-blocking-html]
+ *   [--config path/to/.eslintrc]          (ESLint config override)
  */
-import { glob } from 'glob';
+import { globSync } from 'glob';
 import { spawn } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 
 /* ────────────────────────────────────────────────────────────── */
-/* Args parsing                                                   */
+/* Args parsing                                                    */
 /* ────────────────────────────────────────────────────────────── */
 
 function parseArgs(argv) {
@@ -42,6 +56,7 @@ function parseArgs(argv) {
   const fix = hasFlag('--fix');
   const shouldContinue = hasFlag('--continue');
   const nonBlockingHtml = hasFlag('--non-blocking-html');
+  const debug = hasFlag('--debug');
 
   const kindsRaw = getFlagValue('--kinds') ?? 'all';
   const kinds =
@@ -55,13 +70,21 @@ function parseArgs(argv) {
   // ESLint-only override (deliberate: other tools keep their default behavior)
   const eslintConfigOverride = getFlagValue('--config');
 
-  return { fix, shouldContinue, nonBlockingHtml, kinds, eslintConfigOverride };
+  return { fix, shouldContinue, nonBlockingHtml, kinds, eslintConfigOverride, debug };
 }
 
 const args = parseArgs(process.argv.slice(2));
 
 /* ────────────────────────────────────────────────────────────── */
-/* Repo discovery                                                 */
+/* Runtime paths                                                   */
+/* ────────────────────────────────────────────────────────────── */
+
+const THIS_FILE = fileURLToPath(import.meta.url);
+const BIN_DIR = path.dirname(THIS_FILE);
+const LEGACY_KIT_ROOT = path.resolve(BIN_DIR, '..');
+
+/* ────────────────────────────────────────────────────────────── */
+/* Repo discovery                                                  */
 /* ────────────────────────────────────────────────────────────── */
 
 function findUp(startDir, fileOrDirName) {
@@ -76,7 +99,6 @@ function findUp(startDir, fileOrDirName) {
 }
 
 function findRepoRoot(startDir) {
-  // Strong markers first (works for Turbo/Nx/Yarn/PNPM + git repos)
   const markers = [
     'turbo.json',
     'nx.json',
@@ -92,7 +114,6 @@ function findRepoRoot(startDir) {
     if (hit) return path.dirname(hit);
   }
 
-  // Fallback: treat current directory as repo root
   return startDir;
 }
 
@@ -109,17 +130,42 @@ const projectRelFromRepo = relRaw ? posixify(relRaw) : '.';
 const cacheKey = projectRelFromRepo === '.' ? 'repo-root' : projectRelFromRepo.replace(/\//g, '__');
 
 /* ────────────────────────────────────────────────────────────── */
-/* Package/bin resolution (avoid .bin shims)                       */
+/* Logging helper                                                  */
+/* ────────────────────────────────────────────────────────────── */
+
+/**
+ * Small helper to log resolved configuration paths per tool.
+ * This makes it easy to debug why a given lint behavior happens.
+ */
+function logConfig(kind, entries) {
+  if (!args.debug) return;
+
+  console.log(`\n[manager-legacy-lint] ${kind} config resolution:`);
+  for (const [label, value] of Object.entries(entries)) {
+    console.log(`  - ${label}: ${value ?? '(none)'}`);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────── */
+/* JSON helpers                                                    */
 /* ────────────────────────────────────────────────────────────── */
 
 function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, 'utf8'));
 }
 
-/**
- * Resolve a package's executable by reading its package.json "bin" field.
- * This is more stable across platforms than relying on node_modules/.bin.
- */
+function pickFirstExisting(dir, candidates) {
+  for (const f of candidates) {
+    const p = path.join(dir, f);
+    if (existsSync(p)) return p;
+  }
+  return null;
+}
+
+/* ────────────────────────────────────────────────────────────── */
+/* Package/bin resolution (avoid .bin shims)                       */
+/* ────────────────────────────────────────────────────────────── */
+
 function resolveBinFromPackageJson(pkgJsonRequest, preferredBinName) {
   const pkgJsonPath = require.resolve(pkgJsonRequest);
   const pkgRoot = path.dirname(pkgJsonPath);
@@ -130,15 +176,8 @@ function resolveBinFromPackageJson(pkgJsonRequest, preferredBinName) {
     throw new Error(`[manager-legacy-lint] No "bin" field in ${pkg.name}`);
   }
 
-  let relBinPath;
-
-  if (typeof bin === 'string') {
-    // Single-bin package
-    relBinPath = bin;
-  } else {
-    // Multi-bin package: pick preferred name if present, else first entry
-    relBinPath = bin[preferredBinName] ?? Object.values(bin)[0];
-  }
+  const relBinPath =
+    typeof bin === 'string' ? bin : (bin[preferredBinName] ?? Object.values(bin)[0]);
 
   if (!relBinPath) {
     throw new Error(
@@ -155,26 +194,16 @@ const REMARK_CLI = resolveBinFromPackageJson('remark-cli/package.json', 'remark'
 const HTMLHINT_CLI = resolveBinFromPackageJson('htmlhint/package.json', 'htmlhint');
 
 /* ────────────────────────────────────────────────────────────── */
-/* Config discovery                                                */
+/* Root config discovery                                            */
 /* ────────────────────────────────────────────────────────────── */
-
-function pickFirstExisting(dir, candidates) {
-  for (const f of candidates) {
-    const p = path.join(dir, f);
-    if (existsSync(p)) return p;
-  }
-  return null;
-}
 
 function resolveEslintConfigPath({ overrideValue }) {
   if (overrideValue) {
-    // Allow relative override from where the command is executed (projectRoot)
     return path.isAbsolute(overrideValue)
       ? overrideValue
       : path.resolve(projectRoot, overrideValue);
   }
 
-  // Default: root config (deterministic baseline)
   const rootEslintConfig = pickFirstExisting(repoRoot, [
     '.eslintrc.js',
     '.eslintrc.cjs',
@@ -193,11 +222,71 @@ function resolveEslintConfigPath({ overrideValue }) {
 const ROOT_ESLINT_CONFIG = resolveEslintConfigPath({
   overrideValue: args.eslintConfigOverride,
 });
-
 const ROOT_ESLINT_IGNORE = pickFirstExisting(repoRoot, ['.eslintignore']);
 
+/**
+ * Other tools (stylelint/remark/htmlhint) do not receive explicit configs.
+ * They will use their own config resolution logic from `cwd`.
+ * Since we run them from `repoRoot`, they will typically pick configs from repoRoot.
+ */
+const ROOT_STYLELINT_CONFIG = pickFirstExisting(repoRoot, [
+  '.stylelintrc',
+  '.stylelintrc.json',
+  '.stylelintrc.yaml',
+  '.stylelintrc.yml',
+  '.stylelintrc.js',
+  '.stylelintrc.cjs',
+  'stylelint.config.js',
+  'stylelint.config.cjs',
+]);
+
+const ROOT_REMARK_CONFIG = pickFirstExisting(repoRoot, [
+  '.remarkrc',
+  '.remarkrc.json',
+  '.remarkrc.yaml',
+  '.remarkrc.yml',
+  '.remarkrc.js',
+  '.remarkrc.cjs',
+]);
+
+const ROOT_REMARK_IGNORE = pickFirstExisting(repoRoot, ['.remarkignore']);
+
+const ROOT_HTMLHINT_CONFIG = pickFirstExisting(repoRoot, ['.htmlhintrc', '.htmlhintrc.json']);
+
 /* ────────────────────────────────────────────────────────────── */
-/* Globs & ignores                                                 */
+/* Local ESLint deltas (globals only)                               */
+/* ────────────────────────────────────────────────────────────── */
+
+function readLocalGlobalsFlags(projectDir) {
+  const localRcPath = pickFirstExisting(projectDir, ['.eslintrc.json', '.eslintrc']);
+  if (!localRcPath) return [];
+
+  try {
+    const localRc = readJson(localRcPath);
+    const globals = localRc?.globals;
+    if (!globals || typeof globals !== 'object') return [];
+
+    const flags = [];
+    for (const [name, value] of Object.entries(globals)) {
+      // ESLint accepts: readonly | writable | off
+      let normalized;
+      if (value === true) normalized = 'writable';
+      else if (value === false) normalized = 'off';
+      else if (typeof value === 'string') normalized = value;
+      else normalized = 'writable';
+
+      flags.push('--global', `${name}:${normalized}`);
+    }
+    return flags;
+  } catch {
+    return [];
+  }
+}
+
+const LOCAL_GLOBAL_FLAGS = readLocalGlobalsFlags(projectRoot);
+
+/* ────────────────────────────────────────────────────────────── */
+/* Globs & ignore policy                                            */
 /* ────────────────────────────────────────────────────────────── */
 
 const IGNORE_DIRS = [
@@ -210,8 +299,9 @@ const IGNORE_DIRS = [
 ];
 
 /**
- * Patterns are built relative to repoRoot (because we execute tools from repoRoot).
- * They are scoped to the "current project" via projectRelFromRepo.
+ * Note:
+ * - We *scope* patterns to the project folder (projectRelFromRepo)
+ * - We run tools from repoRoot for consistent root config discovery.
  */
 function patternsForKind(kind) {
   switch (kind) {
@@ -231,25 +321,33 @@ function patternsForKind(kind) {
 }
 
 /**
- * Lightweight existence check to avoid running tools with empty globs
- * in projects that don't contain a certain file type.
+ * Explicit file listing helper (used for tools that behave poorly with globs + ignores).
+ * This prevents passing ignored files to the tool (remark can error on ignored inputs).
  */
-function hasAnyMatch(patterns) {
-  for (const p of patterns) {
-    const matches = glob.sync(p, { cwd: repoRoot, ignore: IGNORE_DIRS, nodir: true });
-    if (matches.length > 0) return true;
-  }
-  return false;
+function listFiles(patterns, extraIgnores = []) {
+  const ignore = [...IGNORE_DIRS, ...extraIgnores];
+  return patterns.flatMap((p) =>
+    globSync(p, {
+      cwd: repoRoot,
+      ignore,
+      nodir: true,
+      dot: false,
+    }),
+  );
+}
+
+function hasAnyMatch(patterns, extraIgnores = []) {
+  return listFiles(patterns, extraIgnores).length > 0;
 }
 
 /* ────────────────────────────────────────────────────────────── */
 /* Process execution                                                */
 /* ────────────────────────────────────────────────────────────── */
 
-function runNodeCli(cliPath, cliArgs) {
+function runNodeCli(cliPath, cliArgs, { cwd = repoRoot } = {}) {
   return new Promise((resolve) => {
     const child = spawn(process.execPath, [cliPath, ...cliArgs], {
-      cwd: repoRoot,
+      cwd,
       stdio: 'inherit',
       shell: false,
     });
@@ -260,7 +358,7 @@ function runNodeCli(cliPath, cliArgs) {
 }
 
 /* ────────────────────────────────────────────────────────────── */
-/* Tool runners                                                     */
+/* ESLint                                                          */
 /* ────────────────────────────────────────────────────────────── */
 
 function buildEslintArgs(filePatterns) {
@@ -273,15 +371,18 @@ function buildEslintArgs(filePatterns) {
     cacheLocation,
     ...(args.fix ? ['--fix'] : []),
 
-    /**
-     * Deterministic: ignore app-local .eslintrc.* by default.
-     * If you want local behavior, pass --config path/to/.eslintrc.*
-     * (we still keep --no-eslintrc to make the chosen config explicit).
-     */
+    // Deterministic baseline
     '--no-eslintrc',
     '--config',
     ROOT_ESLINT_CONFIG,
     ...(ROOT_ESLINT_IGNORE ? ['--ignore-path', ROOT_ESLINT_IGNORE] : []),
+
+    // Resolve configs/plugins from legacy-kit deps (avoid hoisting mismatches)
+    '--resolve-plugins-relative-to',
+    LEGACY_KIT_ROOT,
+
+    // Safe local delta
+    ...LOCAL_GLOBAL_FLAGS,
 
     // Extra safety ignores
     ...IGNORE_DIRS.flatMap((p) => ['--ignore-pattern', p]),
@@ -294,39 +395,107 @@ async function runEslint(kind) {
   const patterns = patternsForKind(kind);
   if (!hasAnyMatch(patterns)) return 0;
 
+  logConfig(`ESLint (${kind})`, {
+    projectRoot,
+    repoRoot,
+    'config (--config)': ROOT_ESLINT_CONFIG,
+    'ignore (--ignore-path)': ROOT_ESLINT_IGNORE,
+    'override (--config flag)': args.eslintConfigOverride ?? '(none)',
+    'resolve-plugins-relative-to': LEGACY_KIT_ROOT,
+    'local globals merged': LOCAL_GLOBAL_FLAGS.length
+      ? `${LOCAL_GLOBAL_FLAGS.length / 2} globals`
+      : '(none)',
+  });
+
+  // ESLint accepts globs; ignore-patterns handle node_modules/dist/etc.
   return runNodeCli(ESLINT_CLI, buildEslintArgs(patterns));
 }
 
+/* ────────────────────────────────────────────────────────────── */
+/* Stylelint (explicit files, exclude node_modules)                 */
+/* ────────────────────────────────────────────────────────────── */
+
 async function runStylelint() {
   const patterns = patternsForKind('css');
-  if (!hasAnyMatch(patterns)) return 0;
+  const files = listFiles(patterns);
+  if (files.length === 0) return 0;
 
-  const cliArgs = [...(args.fix ? ['--fix'] : []), ...patterns, '--allow-empty-input'];
-  return runNodeCli(STYLELINT_CLI, cliArgs);
+  logConfig('Stylelint', {
+    projectRoot,
+    repoRoot,
+    'config (auto)': ROOT_STYLELINT_CONFIG,
+    'cwd (tool runs from)': repoRoot,
+  });
+
+  // Batch to avoid E2BIG on very large apps
+  const BATCH_SIZE = 200;
+  let ok = true;
+
+  for (let i = 0; i < files.length; i += BATCH_SIZE) {
+    const batch = files.slice(i, i + BATCH_SIZE);
+    const cliArgs = [...(args.fix ? ['--fix'] : []), '--allow-empty-input', ...batch];
+    const code = await runNodeCli(STYLELINT_CLI, cliArgs);
+    if (code !== 0) ok = false;
+  }
+
+  return ok ? 0 : 1;
 }
+
+/* ────────────────────────────────────────────────────────────── */
+/* Remark (explicit files, exclude node_modules + changelogs)       */
+/* ────────────────────────────────────────────────────────────── */
 
 async function runRemark() {
   const patterns = patternsForKind('md');
-  if (!hasAnyMatch(patterns)) return 0;
 
-  // remark-cli supports -qf and accepts globs
-  const cliArgs = ['-qf', ...patterns];
-  return runNodeCli(REMARK_CLI, cliArgs);
-}
-
-async function runHtmlhint() {
-  const pattern = patternsForKind('html')[0];
-  if (!pattern) return 0;
-
-  const files = glob.sync(pattern, {
-    cwd: repoRoot,
-    ignore: IGNORE_DIRS,
-    nodir: true,
-  });
-
+  /**
+   * Many repos ignore CHANGELOG.md globally via .remarkignore.
+   * Passing ignored files to remark can produce: "Cannot process specified file: it’s ignored".
+   * We prevent that by excluding changelogs from inputs.
+   */
+  const files = listFiles(patterns, ['**/CHANGELOG.md']);
   if (files.length === 0) return 0;
 
-  // Batch to avoid E2BIG (too many args)
+  logConfig('Remark', {
+    projectRoot,
+    repoRoot,
+    'config (auto)': ROOT_REMARK_CONFIG,
+    'ignore (auto)': ROOT_REMARK_IGNORE,
+    'cwd (tool runs from)': repoRoot,
+  });
+
+  // Batch to avoid E2BIG on large apps
+  const BATCH_SIZE = 200;
+  let ok = true;
+
+  for (let i = 0; i < files.length; i += BATCH_SIZE) {
+    const batch = files.slice(i, i + BATCH_SIZE);
+
+    // Keep same semantics as root: -qf (quiet + frail)
+    const cliArgs = ['-qf', ...batch];
+    const code = await runNodeCli(REMARK_CLI, cliArgs);
+    if (code !== 0) ok = false;
+  }
+
+  return ok ? 0 : 1;
+}
+
+/* ────────────────────────────────────────────────────────────── */
+/* HTMLHint (explicit files, exclude node_modules)                  */
+/* ────────────────────────────────────────────────────────────── */
+
+async function runHtmlhint() {
+  const patterns = patternsForKind('html');
+  const files = listFiles(patterns);
+  if (files.length === 0) return 0;
+
+  logConfig('HTMLHint', {
+    projectRoot,
+    repoRoot,
+    'config (auto)': ROOT_HTMLHINT_CONFIG,
+    'cwd (tool runs from)': repoRoot,
+  });
+
   const BATCH_SIZE = 100;
   let ok = true;
 
@@ -336,7 +505,6 @@ async function runHtmlhint() {
     if (code !== 0) ok = false;
   }
 
-  // Keep your "non-blocking in CI" behavior if desired
   if (!ok && args.nonBlockingHtml) return 0;
   return ok ? 0 : 1;
 }

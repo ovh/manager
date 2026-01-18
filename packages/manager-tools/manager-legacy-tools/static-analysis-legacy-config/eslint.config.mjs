@@ -22,15 +22,7 @@ export default [
       'check-file/folder-naming-convention': 'off',
       'import/no-unresolved': 'off',
       'import/no-nodejs-modules': 'off',
+      'no-undef': 'off',
     },
-  },
-  {
-    files: ['./bin/**.js'],
-    languageOptions: {
-      globals: {
-        global: 'readonly',
-      },
-      env: { node: true },
-    },
-  },
+  }
 ];
