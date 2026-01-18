@@ -13,8 +13,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "build:strict": "tsc --project tsconfig.strict.json && vite build",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "tsc && vite",
     "test": "manager-test run",
     "test:watch": "manager-test watch"

@@ -29,8 +29,8 @@
     "dev": "rollup -c --environment BUILD:development --bundleConfigAsCjs",
     "dev:watch": "rollup -c --environment BUILD:development --bundleConfigAsCjs --watch",
     "prepare": "rollup -c --environment BUILD:production --bundleConfigAsCjs",
-    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/ui-kit": "^6.10.5",

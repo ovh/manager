@@ -14,8 +14,8 @@
   "scripts": {
     "build": "webpack --env production",
     "start": "webpack-dev-server",
-    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",

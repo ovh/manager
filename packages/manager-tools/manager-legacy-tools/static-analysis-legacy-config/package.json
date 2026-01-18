@@ -7,8 +7,8 @@
     "manager-legacy-lint": "./bin/manager-legacy-lint.mjs"
   },
   "scripts": {
-    "lint:modern": "manager-lint --config eslint.config.mjs ./bin/**.*js",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./bin/**.*js"
+    "lint": "manager-lint --config eslint.config.mjs ./bin/**.*js",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./bin/**.*js"
   },
   "dependencies": {
     "@ovh-ux/manager-static-analysis-kit": "0.15.0",

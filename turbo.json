@@ -47,21 +47,21 @@
       "dependsOn": ["^dev"]
     },
 
-    "lint:modern": {
+    "lint": {
       "outputs": [],
       "dependsOn": ["^lint:modern", "^build"]
     },
-    "lint:modern:fix": {
+    "lint:fix": {
       "outputs": [],
       "dependsOn": ["^lint:modern", "^build"]
     },
 
-    "lint:legacy": {
+    "lint": {
       "outputs": [],
       "dependsOn": ["^lint:legacy", "^build"],
       "cache": true
     },
-    "lint:legacy:fix": {
+    "lint:fix": {
       "outputs": [],
       "dependsOn": ["^lint:legacy", "^build"],
       "cache": false

@@ -18,8 +18,8 @@
     "start": "vite",
     "test": "vitest run",
     "test:watch": "vitest --watch",
-    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "8.8.0",

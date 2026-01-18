@@ -31,8 +31,8 @@
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "rollup -c --environment BUILD:development --watch",
     "prepare": "rollup -c --environment BUILD:production",
-    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "draggable": "^4.2.0",

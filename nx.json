@@ -80,25 +80,25 @@
       "cache": false
     },
 
-    "lint:modern": {
+    "lint": {
       "dependsOn": ["^lint:modern", "^build"],
       "inputs": ["default", "^default"],
       "cache": true
     },
 
-    "lint:modern:fix": {
+    "lint:fix": {
       "dependsOn": ["^lint:modern", "^build"],
       "inputs": ["default", "^default"],
       "cache": true
     },
 
-    "lint:legacy": {
+    "lint": {
       "dependsOn": ["^lint:legacy", "^build"],
       "inputs": ["default", "^default"],
       "cache": true
     },
 
-    "lint:legacy:fix": {
+    "lint:fix": {
       "dependsOn": ["^lint:legacy", "^build"],
       "inputs": ["default", "^default"],
       "cache": false

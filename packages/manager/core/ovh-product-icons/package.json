@@ -12,8 +12,8 @@
   "scripts": {
     "build": "tsc && tsc-alias && yarn copy-files",
     "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
+    "lint": "manager-lint --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
     "start": "plop",
     "test": "manager-test run"
   },
