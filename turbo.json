@@ -2,6 +2,17 @@
   "$schema": "https://turbo.build/schema.json",
   "daemon": false,
   "cacheDir": "node_modules/.cache/turbo",
+  "globalDependencies": [
+    ".eslintrc*",
+    ".eslintignore",
+    ".stylelintrc*",
+    ".stylelintignore",
+    ".htmlhintrc*",
+    ".remarkrc*",
+    ".remarkignore",
+    "packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config/**",
+    "packages/manager-tools/manager-static-analysis-kit/**"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -35,6 +46,7 @@
       ],
       "dependsOn": ["^dev"]
     },
+
     "lint:modern": {
       "outputs": [],
       "dependsOn": ["^lint:modern", "^build"]
@@ -42,6 +54,17 @@
     "lint:modern:fix": {
       "outputs": [],
       "dependsOn": ["^lint:modern", "^build"]
+    },
+
+    "lint:legacy": {
+      "outputs": [],
+      "dependsOn": ["^lint:legacy", "^build"],
+      "cache": true
+    },
+    "lint:legacy:fix": {
+      "outputs": [],
+      "dependsOn": ["^lint:legacy", "^build"],
+      "cache": false
     }
   }
 }

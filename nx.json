@@ -20,7 +20,18 @@
       "{workspaceRoot}/nx.json",
       "{workspaceRoot}/turbo.json",
       "{workspaceRoot}/yarn.lock",
-      "{workspaceRoot}/pnpm-lock.yaml"
+      "{workspaceRoot}/pnpm-lock.yaml",
+
+      "{workspaceRoot}/.eslintrc*",
+      "{workspaceRoot}/.eslintignore",
+      "{workspaceRoot}/.stylelintrc*",
+      "{workspaceRoot}/.stylelintignore",
+      "{workspaceRoot}/.htmlhintrc*",
+      "{workspaceRoot}/.remarkrc*",
+      "{workspaceRoot}/.remarkignore",
+
+      "{workspaceRoot}/packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config/**",
+      "{workspaceRoot}/packages/manager-tools/manager-static-analysis-kit/**"
     ],
     "buildEnv": [
       { "env": "VERSION" }
@@ -79,6 +90,18 @@
       "dependsOn": ["^lint:modern", "^build"],
       "inputs": ["default", "^default"],
       "cache": true
+    },
+
+    "lint:legacy": {
+      "dependsOn": ["^lint:legacy", "^build"],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+
+    "lint:legacy:fix": {
+      "dependsOn": ["^lint:legacy", "^build"],
+      "inputs": ["default", "^default"],
+      "cache": false
     }
   }
 }
