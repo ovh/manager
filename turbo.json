@@ -10,8 +10,8 @@
     ".htmlhintrc*",
     ".remarkrc*",
     ".remarkignore",
-    "packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config/**",
-    "packages/manager-tools/manager-static-analysis-kit/**"
+    "packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config/bin/**",
+    "packages/manager-tools/manager-static-analysis-kit/dist/**"
   ],
   "tasks": {
     "build": {
@@ -51,14 +51,12 @@
     "lint": {
       "outputs": [],
       "outputLogs": "new-only",
-      "dependsOn": ["^build"],
-      "cache": true
+      "dependsOn": ["^build"]
     },
     "lint:fix": {
       "outputs": [],
       "outputLogs": "new-only",
-      "dependsOn": ["^build"],
-      "cache": true
+      "dependsOn": ["^build"]
     }
   }
 }
