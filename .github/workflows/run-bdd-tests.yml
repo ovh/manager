@@ -143,4 +143,5 @@ jobs:
           fi
 
           yarn test --concurrency=1 \
-            --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] --runner nx
+            --filter=...[origin/${CURRENT_BRANCH}~1...origin/${CURRENT_BRANCH}] \
+            --runner nx
