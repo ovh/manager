@@ -288,7 +288,6 @@ const LOCAL_GLOBAL_FLAGS = readLocalGlobalsFlags(projectRoot);
 /* ────────────────────────────────────────────────────────────── */
 /* Globs & ignore policy                                            */
 /* ────────────────────────────────────────────────────────────── */
-
 const IGNORE_DIRS = [
   '**/dist/**',
   '**/coverage/**',
@@ -296,6 +295,12 @@ const IGNORE_DIRS = [
   '**/screenshot/**',
   '**/docs-api/**',
   '**/node_modules/**',
+
+  // Exclude documentation files everywhere
+  '**/README.md',
+  '**/CONTRIBUTING.md',
+  '**/readme.md',
+  '**/contributing.md',
 ];
 
 /**
