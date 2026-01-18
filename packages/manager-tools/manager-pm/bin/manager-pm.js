@@ -19,6 +19,7 @@ import {
   createRelease,
   lintAll,
   lintApplication,
+  lintCI,
   lintModule,
   publishPackage,
   runLernaTask,
@@ -123,7 +124,7 @@ ACTIONS
   Single-app:
     build   --app <name>                 Build one app
     test    --app <name>                 Test one app
-    lint    --app <name> [--fix ...]     Lint one app (supports --fix and other ESLint flags)
+    lint    --app <name>                 Lint one app
 
   Module:
     add:module     --module <package|path> [--private]     Add a module (optionally private) to PNPM
@@ -132,6 +133,7 @@ ACTIONS
   Task manager passthrough (flags forwarded to Turbo/NX/...):
     buildCI [--filter <expr>] [other flags]
     testCI  [--filter <expr>] [other flags]
+    lintCI  [--filter <expr>] [other flags]
 
   Lerna passthrough (flags forwarded to Lerna):
     lerna <subcommand> [options]         Run any Lerna command with workspaces restored/cleaned
@@ -139,7 +141,7 @@ ACTIONS
   Global:
     full-build                           Build ALL
     full-test                            Test ALL
-    full-lint [--fix ...]                Lint ALL (supports --fix and other ESLint flags)
+    full-lint                            Lint ALL
     start                                Launch interactive app starter
     docs                                 Build documentation workspace
     cli                                  Run manager-migration-cli (everything after "cli" is forwarded)
@@ -190,23 +192,17 @@ EXAMPLES
   # Single app
   manager-pm --type pnpm --action build --app web
   manager-pm --type pnpm --action test  --app web
-  manager-pm --type pnpm --action lint  --app web --fix
-  manager-pm --type pnpm --action lint  --app web --max-warnings 0
+  manager-pm --type pnpm --action lint  --app web
 
   # Module management
   manager-pm --type pnpm --action build --module packages/manager/core/api
   manager-pm --type pnpm --action test  --module @ovh-ux/manager-core-api
-  manager-pm --type pnpm --action lint  --module packages/manager/core/application  --fix
-  manager-pm --type pnpm --action lint  --module @ovh-ux/manager-core-utils --max-warnings 0
-
-  # Lint all
-  manager-pm --type pnpm --action full-lint
-  manager-pm --type pnpm --action full-lint --fix
-  manager-pm --type pnpm --action full-lint --quiet --max-warnings 0
+  manager-pm --type pnpm --action lint  --module packages/manager/core/application
 
   # Task manager (Turbo/NX/...) passthrough
   manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
   manager-pm --type pnpm --action testCI  --filter=tag:unit --parallel
+  manager-pm --type pnpm --action lintCI  --filter=tag:unit --parallel
 
   # Lerna passthrough
   manager-pm --action lerna list --all --json --toposort
@@ -375,21 +371,20 @@ const actions = {
       return testModule(module, runner);
     }
   },
-  async lint({ app, module, passthrough, opts }) {
+  async lint({ app, module, opts }) {
     if (!app && !module) {
       exitError(`Action "lint" requires either --app or --module`);
     }
 
     const runner = resolveRunner(opts);
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
 
     if (app) {
-      logger.info(`🧹 Linting application: ${app} (runner: ${runner})`);
-      return lintApplication(app, [...forwarded, ...passthrough], runner);
+      logger.info(`🏗️  Linting application: ${app} (runner: ${runner})`);
+      return lintApplication(app, runner);
     }
     if (module) {
-      logger.info(`🔍 Linting module: ${module} (runner: ${runner})`);
-      return lintModule(module, [...forwarded, ...passthrough], runner);
+      logger.info(`📦 Linting module: ${module} (runner: ${runner})`);
+      return lintModule(module, runner);
     }
   },
   async start() {
@@ -407,9 +402,8 @@ const actions = {
   },
   async 'full-lint'({ passthrough, opts }) {
     const runner = resolveRunner(opts);
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
     logger.info(`🧹 Linting ALL apps + modules (runner: ${runner})`);
-    return lintAll([...forwarded, ...passthrough], runner);
+    return lintAll(runner);
   },
   async docs() {
     return buildDocs();
@@ -453,6 +447,13 @@ const actions = {
     const forwarded = collectForwardedArgs(opts);
 
     return testCI([...base, ...forwarded], runner);
+  },
+  async lintCI({ passthrough, filter, opts }) {
+    const runner = resolveRunner(opts);
+    const base = resolveBaseArgs({ passthrough, filter });
+    const forwarded = collectForwardedArgs(opts);
+
+    return lintCI([...base, ...forwarded], runner);
   },
   async perfBudgets({ passthrough, opts }) {
     const forwarded = collectForwardedArgs(opts, { includeApp: true });

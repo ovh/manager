@@ -21,8 +21,8 @@
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "scripts": {
-    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.1",

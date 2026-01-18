@@ -12,8 +12,8 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"

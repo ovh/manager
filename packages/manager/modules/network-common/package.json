@@ -20,8 +20,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },

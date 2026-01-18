@@ -31,8 +31,8 @@
     "build": "vite build",
     "dev": "vite build",
     "dev:watch": "vite build --watch",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
     "prepare": "tsc && vite build",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"

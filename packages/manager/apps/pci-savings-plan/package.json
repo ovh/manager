@@ -14,8 +14,8 @@
     "build": "tsc && vite build",
     "start": "vite",
     "test": "vitest --config vitest.config.mjs run",
-    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "1.0.3",

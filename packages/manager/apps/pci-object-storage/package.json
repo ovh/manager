@@ -17,8 +17,8 @@
     "start": "tsc && vite",
     "test": "vitest run --pool=threads",
     "test-ui": "vitest --ui --coverage.enabled=true",
-    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@datatr-ux/ovhcloud-types": "2.0.3",

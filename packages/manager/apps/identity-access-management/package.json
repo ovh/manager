@@ -15,8 +15,8 @@
     "start": "vite",
     "test": "manager-test --config vitest.config.mjs run",
     "test:coverage": "manager-test --config vitest.config.mjs run --coverage",
-    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.28.1",
