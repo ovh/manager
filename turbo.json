@@ -47,16 +47,17 @@
       ],
       "dependsOn": ["^dev"]
     },
+    
     "lint": {
       "outputs": [],
       "outputLogs": "new-only",
-      "dependsOn": ["^lint", "^build"],
+      "dependsOn": ["^build"],
       "cache": true
     },
     "lint:fix": {
       "outputs": [],
       "outputLogs": "new-only",
-      "dependsOn": ["^lint:fix", "^build"],
+      "dependsOn": ["^build"],
       "cache": true
     }
   }
