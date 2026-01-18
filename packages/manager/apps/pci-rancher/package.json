@@ -17,7 +17,9 @@
     "coverage": "vitest run --coverage -u --collectCoverageFrom='src/**/*.{ts,tsx}'",
     "start": "vite",
     "test": "vitest run",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "8.8.0",
@@ -60,8 +62,6 @@
     "@testing-library/user-event": "14.5.2",
     "@types/node": "20.12.5",
     "@types/semver": "7.7.0",
-    "@typescript-eslint/eslint-plugin": "^4.7.4",
-    "@typescript-eslint/parser": "^4.7.4",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
     "babel-plugin-transform-import-meta": "^2.2.1",
@@ -70,7 +70,8 @@
     "tailwindcss": "^3.4.4",
     "ts-jest": "29.4.6",
     "ts-node": "10.9.2",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "regions": [
     "CA",

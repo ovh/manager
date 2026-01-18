@@ -14,7 +14,9 @@
     "build": "tsc && vite build",
     "start": "tsc && vite",
     "test": "manager-test run",
-    "test:coverage": "manager-test run --coverage"
+    "test:coverage": "manager-test run --coverage",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.28.1",
@@ -46,7 +48,8 @@
     "@tanstack/react-query-devtools": "^5.51.21",
     "element-internals-polyfill": "^3.0.1",
     "msw": "2.1.7",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "msw": {
     "workerDirectory": "./public"

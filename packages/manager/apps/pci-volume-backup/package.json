@@ -14,9 +14,10 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
     "coverage": "vitest run --coverage",
-    "lint": "eslint ./src",
     "start": "vite",
-    "test": "vitest run --pool=threads"
+    "test": "vitest run --pool=threads",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.8.6",
@@ -54,11 +55,11 @@
     "@testing-library/react": "^16.0.0",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
-    "eslint": "^8.57.0",
     "react-error-boundary": "^5.0.0",
     "typescript": "^5.4.5",
     "vite": "^5.3.3",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "regions": [
     "CA",

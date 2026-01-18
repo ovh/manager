@@ -16,7 +16,9 @@
     "coverage": "vitest run --coverage",
     "start": "tsc && vite",
     "test": "vitest run --pool=threads",
-    "test-ui": "vitest --ui --coverage.enabled=true"
+    "test-ui": "vitest --ui --coverage.enabled=true",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "^1.0.3",
@@ -58,7 +60,8 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "typescript": "^5.3.3",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "regions": [
     "CA",
