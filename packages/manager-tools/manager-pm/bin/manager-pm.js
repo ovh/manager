@@ -400,7 +400,7 @@ const actions = {
     logger.info(`🧪 Testing ALL apps + modules (runner: ${runner})`);
     return testAll(runner);
   },
-  async 'full-lint'({ passthrough, opts }) {
+  async 'full-lint'({ opts }) {
     const runner = resolveRunner(opts);
     logger.info(`🧹 Linting ALL apps + modules (runner: ${runner})`);
     return lintAll(runner);
