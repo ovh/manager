@@ -3,15 +3,8 @@
   "daemon": false,
   "cacheDir": "node_modules/.cache/turbo",
   "globalDependencies": [
-    ".eslintrc*",
-    ".eslintignore",
-    ".stylelintrc*",
-    ".stylelintignore",
-    ".htmlhintrc*",
-    ".remarkrc*",
-    ".remarkignore",
-    "packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config/bin/**",
-    "packages/manager-tools/manager-static-analysis-kit/dist/**"
+    "{workspaceRoot}/yarn.lock",
+    "{workspaceRoot}/pnpm-lock.yaml"
   ],
   "tasks": {
     "build": {
@@ -51,12 +44,34 @@
     "lint": {
       "outputs": [],
       "outputLogs": "new-only",
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**",
+        "package.json",
+        "{workspaceRoot}/.eslintrc*",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/.stylelintrc*",
+        "{workspaceRoot}/.stylelintignore",
+        "{workspaceRoot}/.htmlhintrc*",
+        "{workspaceRoot}/.remarkrc*",
+        "{workspaceRoot}/.remarkignore"
+      ]
     },
     "lint:fix": {
       "outputs": [],
       "outputLogs": "new-only",
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**",
+        "package.json",
+        "{workspaceRoot}/.eslintrc*",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/.stylelintrc*",
+        "{workspaceRoot}/.stylelintignore",
+        "{workspaceRoot}/.htmlhintrc*",
+        "{workspaceRoot}/.remarkrc*",
+        "{workspaceRoot}/.remarkignore"
+      ]
     }
   }
 }
