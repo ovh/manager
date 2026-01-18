@@ -72,6 +72,18 @@ jobs:
         run: mkdir -p ~/.cache/yarn
 
       # ------------------------------------------
+      # Nx local cache
+      # ------------------------------------------
+      - name: Restore Nx cache
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-cache-node22-
+            ${{ runner.os }}-nx-cache-
+
+      # ------------------------------------------
       # Install deps (deterministic)
       # ------------------------------------------
       - name: Install dependencies

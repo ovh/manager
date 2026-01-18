@@ -441,8 +441,7 @@ const actions = {
     logger.info(`🧪 Testing ALL apps + modules (runner: ${runner})`);
     return testAll(runner);
   },
-  async 'full-lint'({ passthrough, opts, runner }) {
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+  async 'full-lint'({ runner }) {
     logger.info(`🧹 Linting ALL apps + modules (runner: ${runner})`);
     return lintAll(runner);
   },
