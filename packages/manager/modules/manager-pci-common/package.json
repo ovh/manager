@@ -24,14 +24,14 @@
     "build": "tsc --noEmit && vite build",
     "clean": "rimraf node_modules && rimraf dist && yarn cache clean",
     "dev": "tsc --noEmit && vite build",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
     "prepare": "tsc --noEmit && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --watch",
-    "type:check": "tsc --noEmit"
+    "type:check": "tsc --noEmit",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@ovh-ux/manager-core-utils": "^0.5.0",
@@ -66,7 +66,8 @@
     "typescript": "^5.5.4",
     "vite": "^5.4.21",
     "vite-plugin-dts": "3.5.1",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^7.3.2",

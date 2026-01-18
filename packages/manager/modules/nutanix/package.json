@@ -11,6 +11,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "scripts": {
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "@ovh-ux/manager-models": "^2.7.9",
     "bootstrap4": "twbs/bootstrap#v4.6.2",
@@ -39,5 +43,8 @@
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-ui-kit-bs": "^4.2.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

@@ -11,6 +11,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "scripts": {
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "lodash": "^4.17.15"
   },
@@ -30,5 +34,8 @@
     "jsurl": "^0.1.5",
     "moment": "^2.24.0",
     "ovh-api-services": "^14.0.6"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

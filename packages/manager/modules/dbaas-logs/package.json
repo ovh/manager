@@ -16,7 +16,8 @@
     "oclazyload": "^1.1.0"
   },
   "devDependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.6.2"
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.0.0 || ^2.0.0",
@@ -46,5 +47,9 @@
     "chartjs-plugin-zoom": "^2.0.1",
     "moment": "^2.24.0",
     "ovh-api-services": "^14.0.6"
+  },
+  "scripts": {
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   }
 }
