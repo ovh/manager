@@ -12,6 +12,10 @@
   "author": "OVH SAS",
   "sideEffects": false,
   "main": "./src/index.js",
+  "scripts": {
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "lodash": "^4.17.15"
@@ -22,5 +26,8 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.4",
     "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }
