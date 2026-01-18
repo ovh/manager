@@ -117,12 +117,10 @@ function AccountDetailsForm({
     smsConsent?: boolean;
   };
 
-  const zodSchema = useMemo(() => {
-    return getZodSchemaFromRule(rules).extend({
+  const zodSchema = useMemo(() => getZodSchemaFromRule(rules).extend({
       confirmSend: z.literal(true),
       smsConsent: z.boolean().optional(),
-    });
-  }, [rules]);
+    }), [rules]);
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
