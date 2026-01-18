@@ -73,6 +73,7 @@
     "@ovh-ux/codename-generator": "^1.0.0",
     "@playwright/test": "^1.49.1",
     "@testing-library/jest-dom": "^6.2.1",
+    "@typescript-eslint/parser": "^4.7.4",
     "@types/node": "^18.0.0",
     "babel-jest": "^29.7.0",
     "babel-preset-react-app": "^10.0.0",
