@@ -81,27 +81,16 @@
     },
 
     "lint": {
-      "dependsOn": ["^lint:modern", "^build"],
+      "dependsOn": ["^lint", "^build"],
       "inputs": ["default", "^default"],
+      "outputs": [],
       "cache": true
     },
-
     "lint:fix": {
-      "dependsOn": ["^lint:modern", "^build"],
+      "dependsOn": ["^lint:fix", "^build"],
       "inputs": ["default", "^default"],
+      "outputs": [],
       "cache": true
-    },
-
-    "lint": {
-      "dependsOn": ["^lint:legacy", "^build"],
-      "inputs": ["default", "^default"],
-      "cache": true
-    },
-
-    "lint:fix": {
-      "dependsOn": ["^lint:legacy", "^build"],
-      "inputs": ["default", "^default"],
-      "cache": false
     }
   }
 }

@@ -22,6 +22,7 @@
     },
     "test": {
       "dependsOn": ["^test", "@ovh-ux/manager-static-analysis-kit#build"],
+      "outputLogs": "new-only",
       "outputs": []
     },
     "dev": {
@@ -46,25 +47,17 @@
       ],
       "dependsOn": ["^dev"]
     },
-
     "lint": {
       "outputs": [],
-      "dependsOn": ["^lint:modern", "^build"]
-    },
-    "lint:fix": {
-      "outputs": [],
-      "dependsOn": ["^lint:modern", "^build"]
-    },
-
-    "lint": {
-      "outputs": [],
-      "dependsOn": ["^lint:legacy", "^build"],
+      "outputLogs": "new-only",
+      "dependsOn": ["^lint", "^build"],
       "cache": true
     },
     "lint:fix": {
       "outputs": [],
-      "dependsOn": ["^lint:legacy", "^build"],
-      "cache": false
+      "outputLogs": "new-only",
+      "dependsOn": ["^lint:fix", "^build"],
+      "cache": true
     }
   }
 }
