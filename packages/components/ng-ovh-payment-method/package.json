@@ -33,7 +33,9 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "rollup -c --environment BUILD:development --watch",
-    "prepare": "rollup -c --environment BUILD:production"
+    "prepare": "rollup -c --environment BUILD:production",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "@adyen/adyen-web": "5.61.0",
@@ -42,7 +44,8 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.2.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",

@@ -32,13 +32,16 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "rollup -c --environment BUILD:development --watch",
-    "prepare": "rollup -c --environment BUILD:production"
+    "prepare": "rollup -c --environment BUILD:production",
+    "lint:legacy": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:legacy:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.2.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "peerDependencies": {
     "@ovh-ux/ng-at-internet": "^5.9.1",
