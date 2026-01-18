@@ -76,6 +76,7 @@
   "packages/manager/modules/gcj",
   "packages/manager/modules/iam",
   "packages/manager/modules/iplb",
+  "packages/manager/modules/log-to-customer",
   "packages/manager/modules/manager-components",
   "packages/manager/modules/manager-pci-common",
   "packages/manager/modules/metrics",

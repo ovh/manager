@@ -16,25 +16,25 @@
       "!{projectRoot}/**/*.test.tsx"
     ],
     "sharedGlobals": [
-      "{workspaceRoot}/package.json",
-      "{workspaceRoot}/nx.json",
-      "{workspaceRoot}/turbo.json",
       "{workspaceRoot}/yarn.lock",
-      "{workspaceRoot}/pnpm-lock.yaml",
-
-      "{workspaceRoot}/.eslintrc*",
-      "{workspaceRoot}/.eslintignore",
-      "{workspaceRoot}/.stylelintrc*",
-      "{workspaceRoot}/.stylelintignore",
-      "{workspaceRoot}/.htmlhintrc*",
-      "{workspaceRoot}/.remarkrc*",
-      "{workspaceRoot}/.remarkignore",
-      
-      "{workspaceRoot}/packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config/bin/**",
-      "{workspaceRoot}/packages/manager-tools/manager-static-analysis-kit/dist/**"
+      "{workspaceRoot}/pnpm-lock.yaml"
     ],
     "buildEnv": [
       { "env": "VERSION" }
+    ],
+    
+    "lintGlobals": [
+      "{workspaceRoot}/.eslintrc*",
+      "{workspaceRoot}/.eslintignore",
+      "{workspaceRoot}/eslint.config.*",
+
+      "{workspaceRoot}/.stylelintrc*",
+      "{workspaceRoot}/.stylelintignore",
+
+      "{workspaceRoot}/.htmlhintrc*",
+
+      "{workspaceRoot}/.remarkrc*",
+      "{workspaceRoot}/.remarkignore"
     ]
   },
   "targetDefaults": {
@@ -82,13 +82,13 @@
     
     "lint": {
       "dependsOn": ["^build"],
-      "inputs": ["default", "^default"],
+      "inputs": ["default", "^default", "lintGlobals"],
       "outputs": [],
       "cache": true
     },
     "lint:fix": {
       "dependsOn": ["^build"],
-      "inputs": ["default", "^default"],
+      "inputs": ["default", "^default", "lintGlobals"],
       "outputs": [],
       "cache": true
     }
