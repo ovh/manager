@@ -79,15 +79,15 @@
       "dependsOn": ["^dev"],
       "cache": false
     },
-
+    
     "lint": {
-      "dependsOn": ["^lint", "^build"],
+      "dependsOn": ["^build"],
       "inputs": ["default", "^default"],
       "outputs": [],
       "cache": true
     },
     "lint:fix": {
-      "dependsOn": ["^lint:fix", "^build"],
+      "dependsOn": ["^build"],
       "inputs": ["default", "^default"],
       "outputs": [],
       "cache": true
