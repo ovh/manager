@@ -23,7 +23,14 @@ const cliArgs = parseCliArgs(process.argv);
 
 /** Constants for Static Kit compliance */
 const STATIC_KIT_PKG = '@ovh-ux/manager-static-analysis-kit';
-const REQUIRED_SCRIPTS = ['lint:modern', 'lint:modern:fix'];
+
+// New normalized scripts (modern way)
+const REQUIRED_SCRIPTS = ['lint', 'lint:fix'];
+
+// nsure scripts are modern (manager-lint) and NOT legacy (manager-legacy-lint)
+const MODERN_LINT_CMD = 'manager-lint';
+const LEGACY_LINT_CMD = 'manager-legacy-lint';
+
 const STATIC_KIT_ESLINT_INCREMENTAL_CONFIG = '@ovh-ux/manager-static-analysis-kit/eslint';
 const STATIC_KIT_ESLINT_FULL_CONFIG = 'eslintSharedConfig';
 const STATIC_KIT_TS_CONFIG = '@ovh-ux/manager-static-analysis-kit/tsconfig/react';
@@ -79,20 +86,43 @@ const checkStaticKitCompliance = (appName) => {
     if (cliArgs.dryRun) console.log(`❌ ${appName}: Missing ${STATIC_KIT_PKG} in devDependencies`);
   }
 
-  // 2. Disallow direct eslint dependencies
-  const hasBannedDeps = Object.keys({ ...deps, ...devDeps }).some(
-    (dep) => dep === dep.startsWith('eslint'),
-  );
+  // 2. Disallow direct eslint dependencies (keeps your original intent, but fixed)
+  const allDeps = { ...deps, ...devDeps };
+  const hasBannedDeps = Object.keys(allDeps).some((dep) => dep.startsWith('eslint'));
   if (hasBannedDeps) {
     eslintOk = false;
     if (cliArgs.dryRun) console.log(`❌ ${appName}: Contains banned eslint deps`);
   }
 
-  // 3. Check required scripts
+  // 3. Check required scripts exist (lint + lint:fix)
   for (const script of REQUIRED_SCRIPTS) {
     if (!scripts[script]) {
       eslintOk = false;
       if (cliArgs.dryRun) console.log(`❌ ${appName}: Missing script ${script}`);
+    }
+  }
+
+  // 3bis. Ensure scripts are modern, not legacy
+  const lintScript = scripts.lint || '';
+  const lintFixScript = scripts['lint:fix'] || '';
+
+  const isModernLint =
+    lintScript.includes(MODERN_LINT_CMD) && !lintScript.includes(LEGACY_LINT_CMD);
+
+  const isModernLintFix =
+    lintFixScript.includes(MODERN_LINT_CMD) && !lintFixScript.includes(LEGACY_LINT_CMD);
+
+  if (!isModernLint) {
+    eslintOk = false;
+    if (cliArgs.dryRun) {
+      console.log(`❌ ${appName}: "lint" is not modern → ${lintScript}`);
+    }
+  }
+
+  if (!isModernLintFix) {
+    eslintOk = false;
+    if (cliArgs.dryRun) {
+      console.log(`❌ ${appName}: "lint:fix" is not modern → ${lintFixScript}`);
     }
   }
 

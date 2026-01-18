@@ -29,9 +29,9 @@
       "{workspaceRoot}/.htmlhintrc*",
       "{workspaceRoot}/.remarkrc*",
       "{workspaceRoot}/.remarkignore",
-
-      "{workspaceRoot}/packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config/**",
-      "{workspaceRoot}/packages/manager-tools/manager-static-analysis-kit/**"
+      
+      "{workspaceRoot}/packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config/bin/**",
+      "{workspaceRoot}/packages/manager-tools/manager-static-analysis-kit/dist/**"
     ],
     "buildEnv": [
       { "env": "VERSION" }

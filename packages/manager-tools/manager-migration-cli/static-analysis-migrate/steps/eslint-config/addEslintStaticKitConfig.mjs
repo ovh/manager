@@ -249,7 +249,7 @@ const addEslintStaticKitConfig = async () => {
     console.error(`❌ Failed to run the build script: ${err.message}`);
   });
 
-  // 3. Update package.json
+  // 3. Update package.json ✅ NEW NORMALIZED SCRIPTS (lint + lint:fix)
   const pkg = readPackageJson(applicationPath);
   if (!pkg) {
     console.error(`❌ Could not read package.json in ${applicationPath}`);
@@ -257,14 +257,38 @@ const addEslintStaticKitConfig = async () => {
   }
 
   pkg.scripts ||= {};
-  if (!pkg.scripts['lint:modern']) {
-    pkg.scripts['lint:modern'] = 'manager-lint --config eslint.config.mjs ./src';
-    console.log(`➕ Added script: "lint"`);
+
+  // Remove old modern keys if they exist
+  if (pkg.scripts['lint:modern']) {
+    console.log(`🧹 Removing obsolete script: lint:modern`);
+    delete pkg.scripts['lint:modern'];
   }
-  if (!pkg.scripts['lint:modern:fix']) {
-    pkg.scripts['lint:modern:fix'] = 'manager-lint --fix --config eslint.config.mjs ./src';
-    console.log(`➕ Added script: "lint:fix"`);
+
+  if (pkg.scripts['lint:modern:fix']) {
+    console.log(`🧹 Removing obsolete script: lint:modern:fix`);
+    delete pkg.scripts['lint:modern:fix'];
   }
+
+  // Remove legacy "lint" scripts if they are legacy
+  const legacyLint = pkg.scripts.lint?.includes?.('manager-legacy-lint');
+  const legacyLintFix = pkg.scripts['lint:fix']?.includes?.('manager-legacy-lint');
+
+  if (legacyLint) {
+    console.log(`🧹 Removing legacy script: lint`);
+    delete pkg.scripts.lint;
+  }
+
+  if (legacyLintFix) {
+    console.log(`🧹 Removing legacy script: lint:fix`);
+    delete pkg.scripts['lint:fix'];
+  }
+
+  // ✅ Add normalized modern scripts
+  pkg.scripts.lint = 'manager-lint --config eslint.config.mjs ./src';
+  console.log(`➕ Added script: "lint"`);
+
+  pkg.scripts['lint:fix'] = 'manager-lint --fix --config eslint.config.mjs ./src';
+  console.log(`➕ Added script: "lint:fix"`);
 
   pkg.devDependencies ||= {};
   if (!pkg.devDependencies['@ovh-ux/manager-static-analysis-kit']) {
@@ -274,6 +298,8 @@ const addEslintStaticKitConfig = async () => {
 
   if (!isDryRun) {
     writePackageJson(applicationPath, pkg);
+  } else {
+    console.log(`🧪 [dry-run] Would write updated package.json`);
   }
 
   // 4. Exclude this app from legacy root config (eslint, prettier, stylelint, ...)
