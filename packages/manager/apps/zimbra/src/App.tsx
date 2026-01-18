@@ -14,7 +14,6 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div>Small mock change</div>
       <RouterProvider router={routes} />
       <ReactQueryDevtools />
     </QueryClientProvider>
