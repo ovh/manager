@@ -23,11 +23,3 @@ export const getKubeRegions = async (projectId: string): Promise<string[]> => {
   const { data } = await v6.get<string[]>(`/cloud/project/${projectId}/capabilities/kube/regions`);
   return data;
 };
-
-export const getRegions = async (projectId: string): Promise<TRegions> => {
-  const data = await fetchIcebergV6<TRegionDTO>({
-    route: `/cloud/project/${projectId}/region`,
-  }).then(({ data }) => mapRegionsToEntity(data));
-
-  return data;
-};
