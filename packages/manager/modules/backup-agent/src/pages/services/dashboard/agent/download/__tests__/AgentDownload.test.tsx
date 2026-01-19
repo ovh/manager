@@ -126,7 +126,7 @@ const getSelectOs = () =>
 
 describe('AgentDownload', () => {
   it('Should render AgentDownload component', async () => {
-    const emptyLinkLabel = 'curl -O ...';
+    const emptyLinkLabel = 'curl -O "..."';
 
     const user = userEvent.setup();
     useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({

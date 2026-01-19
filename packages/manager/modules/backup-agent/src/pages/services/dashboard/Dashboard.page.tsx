@@ -7,11 +7,17 @@ import { useTranslation } from 'react-i18next';
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { BaseLayout, Breadcrumb, Notifications } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  Breadcrumb,
+  GuideButton,
+  Notifications,
+} from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { useBackupVSPCTenantDetails } from '@/data/hooks/tenants/useVspcTenantDetails';
+import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 
 import { useTenantDashboardTabs } from './_hooks/useTenantDashboardTabs';
@@ -27,6 +33,8 @@ export default function DashboardPage() {
 
   const tabs = useTenantDashboardTabs();
 
+  const guideItems = useMainGuideItem();
+
   const onNavigateBackClicked = () => {
     startTransition(() => navigate('..'));
   };
@@ -34,7 +42,10 @@ export default function DashboardPage() {
   return (
     <>
       <BaseLayout
-        header={{ title: tenantResource?.currentState.name ?? tenantId }}
+        header={{
+          title: tenantResource?.currentState.name ?? tenantId,
+          headerButton: <GuideButton items={guideItems} />,
+        }}
         backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
         onClickReturn={onNavigateBackClicked}
         breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}

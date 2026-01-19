@@ -12,16 +12,14 @@ import {
   BaseLayout,
   Breadcrumb,
   GuideButton,
-  GuideItem,
   Notifications,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
-import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useBackupVaultsListOptions } from '@/data/hooks/vaults/getVault';
-import { useGuideUtils } from '@/hooks/useGuideUtils';
+import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { LABELS } from '@/module.constants';
 import { urls } from '@/routes/routes.constants';
 
@@ -29,7 +27,7 @@ import { useDashboardTabs } from './_hooks/useDashboardTabs';
 
 export default function MainLayout() {
   const { appName } = useContext(BackupAgentContext);
-  const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.COMMON, NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([NAMESPACES.ACTIONS]);
 
   const location = useLocation();
   const { trackClick } = useOvhTracking();
@@ -50,16 +48,8 @@ export default function MainLayout() {
     retry: false,
     select: (vaults) => vaults.filter((vault) => vault.currentState.status === 'READY').length >= 1,
   });
-  const guides = useGuideUtils();
 
-  const guideItems: GuideItem[] = [
-    {
-      id: 0,
-      label: t(`${BACKUP_AGENT_NAMESPACES.COMMON}:backup_agent_guide`),
-      href: guides.main ?? '',
-      target: '_blank',
-    },
-  ];
+  const guideItems = useMainGuideItem();
 
   return (
     <RedirectionGuard

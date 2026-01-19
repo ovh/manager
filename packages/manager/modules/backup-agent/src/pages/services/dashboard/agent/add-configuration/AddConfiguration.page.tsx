@@ -199,6 +199,7 @@ const AddConfigurationPage = () => {
         {!isLoadingDownloadLink && (
           <DownloadCode
             className="break-all [&::part(tooltip)]:hidden"
+            osCompatibility={(os as OS) ?? 'LINUX'}
             downloadLink={isDownloadEnabled ? downloadLink : '...'}
             canCopy={isDownloadEnabled}
           />
