@@ -131,7 +131,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
             </>
           </Button>
         </TooltipTrigger>
-        {canCreateAccount && (
+        {!canCreateAccount && (
           <TooltipContent withArrow>
             <Text preset={TEXT_PRESET.paragraph}>
               {t(

@@ -63,7 +63,7 @@ const columns: DatagridColumn<MailingListItem>[] = [
   },
   {
     id: 'tooltip',
-    maxSize: 20,
+    maxSize: 50,
     cell: ({ row }) => <ActionButtonMailingList item={row.original} />,
     label: '',
   },
