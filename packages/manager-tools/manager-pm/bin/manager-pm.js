@@ -33,11 +33,13 @@ import {
   testModule,
 } from '../src/kernel/helpers/tasks-helper.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
+import { loadToolsCatalog } from '../src/kernel/utils/catalog-utils.js';
 import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
 import {
   attachCleanupSignals,
   handleProcessAbortSignals,
 } from '../src/kernel/utils/process-utils.js';
+import { isToolAllowed } from '../src/kernel/utils/tools-utils.js';
 import {
   clearRootWorkspaces,
   updateRootWorkspacesFromCatalogs,
@@ -296,17 +298,54 @@ function collectForwardedArgs(opts, { includeApp = false, stripSilent = true } =
 }
 
 /**
- * Resolve the task runner (turbo/nx/...) from CLI options.
+ * Resolve the runner from CLI options and validate if it's allowed.
  *
- * @param {Record<string, string|boolean>} opts
- * @returns {string} runner binary name
+ * Rules:
+ * - If no runner provided → return "turbo"
+ * - If runner is "turbo" → always allowed
+ * - If runner exists in tools catalog:
+ *    - enforce supportedOs/ciSupportedOs
+ * - If runner NOT in catalog:
+ *    - assume it is a custom binary and allow it
+ * - If runner not allowed → fallback to "turbo"
+ *
+ * @async
+ * @function resolveRunnerFromOpts
+ * @param {Record<string, string|boolean>} opts - Parsed CLI options.
+ * @returns {Promise<string>} The validated runner name.
  */
-function resolveRunner(opts) {
+export async function resolveRunnerFromOpts(opts) {
   const runnerValue = opts.runner;
-  if (typeof runnerValue === 'string' && runnerValue.trim()) {
-    return runnerValue.trim();
+
+  if (typeof runnerValue !== 'string' || !runnerValue.trim()) {
+    return DEFAULT_RUNNER;
   }
-  return DEFAULT_RUNNER;
+
+  const requested = runnerValue.trim();
+
+  if (requested === DEFAULT_RUNNER) {
+    return DEFAULT_RUNNER;
+  }
+
+  const toolsCatalog = await loadToolsCatalog();
+  const toolSpec = toolsCatalog?.[requested];
+
+  // Unknown runner: allow it as custom binary (don’t block)
+  if (!toolSpec) {
+    logger.info(`[runner] Using custom runner: "${requested}" (not found in tools catalog)`);
+    return requested;
+  }
+
+  // Known runner: enforce OS constraints
+  if (!isToolAllowed(toolSpec)) {
+    logger.warn(
+      `⚠️ [runner] "${requested}" not supported in this env -> fallback to "${DEFAULT_RUNNER}"`,
+    );
+    return DEFAULT_RUNNER;
+  }
+
+  logger.info(`[runner] Using runner: "${requested}"`);
+  return requested;
 }
 
 /**
@@ -337,18 +376,24 @@ function resolveBaseArgs({ passthrough = [], filter }) {
 }
 
 /**
- * Map of supported CLI actions to their async handlers.
- * Each handler receives the parsed CLI context.
- *
- * @type {Record<string, (ctx: {app?: string, module?: string, passthrough: string[], filter?: string|null, mode?: string, opts: Record<string, string|boolean>}) => Promise<void>>}
+ * @type {Record<
+ *  string,
+ *  (ctx: {
+ *    app?: string,
+ *    module?: string,
+ *    passthrough: string[],
+ *    filter?: string|null,
+ *    mode?: string,
+ *    runner: string,
+ *    opts: Record<string, string|boolean>
+ *  }) => Promise<void>
+ * >}
  */
 const actions = {
-  async build({ app, module, opts }) {
+  async build({ app, module, runner }) {
     if (!app && !module) {
       exitError(`Action "build" requires either --app or --module`);
     }
-
-    const runner = resolveRunner(opts);
 
     if (app) {
       logger.info(`🏗️  Building application: ${app} (runner: ${runner})`);
@@ -359,12 +404,10 @@ const actions = {
       return buildModule(module, runner);
     }
   },
-  async test({ app, module, opts }) {
+  async test({ app, module, runner }) {
     if (!app && !module) {
       exitError(`Action "test" requires either --app or --module`);
     }
-
-    const runner = resolveRunner(opts);
 
     if (app) {
       logger.info(`🧪 Testing application: ${app} (runner: ${runner})`);
@@ -375,12 +418,11 @@ const actions = {
       return testModule(module, runner);
     }
   },
-  async lint({ app, module, passthrough, opts }) {
+  async lint({ app, module, passthrough, opts, runner }) {
     if (!app && !module) {
       exitError(`Action "lint" requires either --app or --module`);
     }
 
-    const runner = resolveRunner(opts);
     const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
 
     if (app) {
@@ -395,18 +437,15 @@ const actions = {
   async start() {
     return startApp();
   },
-  async 'full-build'({ opts }) {
-    const runner = resolveRunner(opts);
+  async 'full-build'({ runner }) {
     logger.info(`🏗️  Building ALL apps + modules (runner: ${runner})`);
     return buildAll(runner);
   },
-  async 'full-test'({ opts }) {
-    const runner = resolveRunner(opts);
+  async 'full-test'({ runner }) {
     logger.info(`🧪 Testing ALL apps + modules (runner: ${runner})`);
     return testAll(runner);
   },
-  async 'full-lint'({ passthrough, opts }) {
-    const runner = resolveRunner(opts);
+  async 'full-lint'({ passthrough, opts, runner }) {
     const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
     logger.info(`🧹 Linting ALL apps + modules (runner: ${runner})`);
     return lintAll([...forwarded, ...passthrough], runner);
@@ -440,15 +479,13 @@ const actions = {
   async postinstall() {
     return runLifecycleTask('postinstall');
   },
-  async buildCI({ passthrough, filter, opts }) {
-    const runner = resolveRunner(opts);
+  async buildCI({ passthrough, filter, opts, runner }) {
     const base = resolveBaseArgs({ passthrough, filter });
     const forwarded = collectForwardedArgs(opts);
 
     return buildCI([...base, ...forwarded], runner);
   },
-  async testCI({ passthrough, filter, opts }) {
-    const runner = resolveRunner(opts);
+  async testCI({ passthrough, filter, opts, runner }) {
     const base = resolveBaseArgs({ passthrough, filter });
     const forwarded = collectForwardedArgs(opts);
 
@@ -603,7 +640,7 @@ async function main() {
   } = opts;
 
   const container = Boolean(opts.container);
-  const runner = resolveRunner(opts);
+  const runner = await resolveRunnerFromOpts(opts);
 
   // Handle help, version, and CLI passthroughs
   await handleGlobalFlags(opts, passthrough);
@@ -628,6 +665,7 @@ async function main() {
     passthrough,
     filter,
     mode,
+    runner,
     opts,
   });
 }
