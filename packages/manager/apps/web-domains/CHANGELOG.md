@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.0...@ovh-ux/manager-web-domains-app@1.9.1) (2026-01-19)
+
+
+### Bug Fixes
+
+* **web-domains:** fix ds records tab loads for ever when there is no zone ([285b8f2](https://github.com/ovh/manager/commit/285b8f2278d779cc8d71f5c4cd3d8328b87f8b02)), closes [#DCE-143](https://github.com/ovh/manager/issues/DCE-143)
+* **web-domains:** fix princing mode for free100M ([b34d578](https://github.com/ovh/manager/commit/b34d578edcc38b4c5a4935cd1592839a1d43e54e)), closes [#DCE-143](https://github.com/ovh/manager/issues/DCE-143)
+* **web-domains:** improve zone retrieving ([4ef2a03](https://github.com/ovh/manager/commit/4ef2a03abe6b226e16f186ffff043205fc3d3c11)), closes [#DCE-143](https://github.com/ovh/manager/issues/DCE-143)
+* **web-domains:** remove useless loading screen ([4f1362a](https://github.com/ovh/manager/commit/4f1362ab8270265537fc51d08e9332e9cca31be8)), closes [#DCE-143](https://github.com/ovh/manager/issues/DCE-143)
+
+
+
+
+
 # [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.8.1...@ovh-ux/manager-web-domains-app@1.9.0) (2026-01-15)
 
 
