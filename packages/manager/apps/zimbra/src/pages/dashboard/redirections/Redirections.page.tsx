@@ -49,7 +49,7 @@ const columns: DatagridColumn<RedirectionItem>[] = [
   },
   {
     id: 'tooltip',
-    maxSize: 20,
+    maxSize: 50,
     cell: ({ row }) => <ActionButton data-testid="add-redirection-btn" item={row.original} />,
     label: '',
   },

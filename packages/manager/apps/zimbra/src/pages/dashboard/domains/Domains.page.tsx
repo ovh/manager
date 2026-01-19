@@ -92,7 +92,7 @@ export const Domains = () => {
       },
       {
         id: 'tooltip',
-        maxSize: 20,
+        maxSize: 50,
         accessorKey: '',
         cell: ({ row }) => <ActionButtonDomain item={row.original} />,
         label: '',

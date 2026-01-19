@@ -71,11 +71,11 @@ export const SlotsDatagrid = () => {
         id: 'renewal_type',
         accessorKey: 'service',
         cell: ({ getValue }) => <BillingStateBadge service={getValue<SlotService>()} />,
-        header: 'zimbra_account_datagrid_renewal_type',
+        header: t('zimbra_account_datagrid_renewal_type'),
       },
       {
         id: 'tooltip',
-        maxSize: 20,
+        maxSize: 50,
         cell: ({ row }) => <ActionButtonSlot item={row.original} />,
         header: '',
       },
