@@ -154,9 +154,7 @@ export const useOvhTracking = () => {
   const context = React.useContext(ShellContext);
   const { shell, tracking, environment } = context;
   const isEmptyObject =
-    environment &&
-    typeof environment === 'object' &&
-    Object.keys(environment).length === 0;
+    environment && typeof environment === 'object' && Object.keys(environment).length === 0;
 
   if (isEmptyObject) {
     return DefaultTrackingContext;
