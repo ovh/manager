@@ -40,6 +40,16 @@ export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
         <Text className="font-semibold text-[--ods-color-heading]">
           {flavor.vCore} {t('pci_instance_creation_cart_flavor_vCore')}
         </Text>
+        <div className="flex flex-col">
+          {flavor.disks.map((disk) => (
+            <Text
+              key={disk.id}
+              className="font-semibold text-[--ods-color-heading]"
+            >
+              {disk.display}
+            </Text>
+          ))}
+        </div>
         <Text className="font-semibold text-[--ods-color-heading]">
           {flavor.bandwidthPrivate}{' '}
           {t('pci_instance_creation_cart_flavor_bandwidthPrivate')}

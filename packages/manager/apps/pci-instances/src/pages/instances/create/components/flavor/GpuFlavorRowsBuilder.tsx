@@ -41,7 +41,15 @@ export function GpuFlavorRowsBuilder(
         vRamTotal: <Text preset={TEXT_PRESET.span}>{flavor.vRamTotal}</Text>,
         memory: <Text preset={TEXT_PRESET.span}>{flavor.memory}</Text>,
         vCore: <Text preset={TEXT_PRESET.span}>{flavor.vCore}</Text>,
-        storage: <Text preset={TEXT_PRESET.span}>{flavor.storage}</Text>,
+        disks: (
+          <div className="flex flex-col">
+            {flavor.disks.map((disk) => (
+              <Text key={disk.id} preset={TEXT_PRESET.span}>
+                {disk.display}
+              </Text>
+            ))}
+          </div>
+        ),
         prices: (
           <div className="flex flex-col">
             <Text preset={TEXT_PRESET.span} className="font-semibold">

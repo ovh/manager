@@ -136,9 +136,10 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotation 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Customised",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "A backup is performed every day between 10:00 PM and 6:00 AM (UTC) and the rotation keeps a history of the last {{ numEntries }} entries. When the new backup is complete, the oldest one is deleted.",
+    "predefined": "A backup is performed every day between 10:00 PM and 6:00 AM (UTC) and the rotation maintains a history of the last {{ numEntries }} entries. When the new backup is complete, the oldest one is deleted.",
     "custom": "Choose your own scheduling (UNIX Cron format), the number of rotations, and the maximum executions you want."
   },
   "pci_instance_creation_backup_setting_price_unit": "~{{ price }} excluding VAT/month/GB",
-  "pci_instance_creation_error_title": "An error occurred"
+  "pci_instance_creation_error_title": "An error occurred",
+  "pci_instance_creation_table_storage_unit_tb": "TB"
 }

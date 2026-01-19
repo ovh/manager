@@ -37,7 +37,15 @@ export const FlavorRowsBuilder = (
         name: renderName(flavor),
         memory: <Text preset={TEXT_PRESET.span}>{flavor.memory}</Text>,
         vCore: <Text preset={TEXT_PRESET.span}>{flavor.vCore}</Text>,
-        storage: <Text preset={TEXT_PRESET.span}>{flavor.storage}</Text>,
+        disks: (
+          <div className="flex flex-col">
+            {flavor.disks.map((disk) => (
+              <Text key={disk.id} preset={TEXT_PRESET.span}>
+                {disk.display}
+              </Text>
+            ))}
+          </div>
+        ),
         mode: flavor.mode ? (
           <DeploymentModeBadge mode={flavor.mode} size={BADGE_SIZE.sm} />
         ) : (

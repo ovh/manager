@@ -19,6 +19,7 @@ import {
   TRegionalizedImage,
   TImageType,
   TImageTypeID,
+  TDisk,
 } from '@/domain/entities/instancesCatalog';
 import {
   TContinentRegionsDTO,
@@ -34,6 +35,7 @@ import {
   TRegionDTO,
   TSpecDetailsDTO,
   TSpecificationsDTO,
+  TDiskDTO,
 } from './dto.type';
 import { iscountryISOCode } from '@/components/flag/country-iso-code';
 import {
@@ -198,15 +200,21 @@ const mapSpecificationsDetails = (specs: TSpecDetailsDTO) => ({
   value: specs.value,
 });
 
+const mapDiskDTOToDiskEntity = (disk: TDiskDTO): TDisk => ({
+  capacity: mapSpecificationsDetails(disk.capacity),
+  number: disk.number,
+  ...(disk.interface !== undefined && { interface: disk.interface }),
+});
+
 const mapFlavorSpecifications = (specs: TSpecificationsDTO) => {
   const base = {
     cpu: mapSpecificationsDetails(specs.cpu),
     ram: mapSpecificationsDetails(specs.ram),
-    storage: mapSpecificationsDetails(specs.storage),
     bandwidth: {
       public: mapSpecificationsDetails(specs.bandwidth.public),
       private: mapSpecificationsDetails(specs.bandwidth.private),
     },
+    disks: specs.disks.map(mapDiskDTOToDiskEntity),
   };
 
   return specs.gpu

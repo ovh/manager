@@ -25,7 +25,11 @@ const InstancePropertyBlock: FC = () => {
         label={t('pci_instances_dashboard_storage_title')}
         isLoading={isInstanceLoading}
       >
-        <Text>{instance?.flavor?.storage}</Text>
+        <div className="flex flex-col">
+          {instance?.flavor?.disks.map((disk) => (
+            <Text key={disk.id}>{disk.display}</Text>
+          ))}
+        </div>
       </DashboardTileBlock>
       <DashboardTileBlock
         label={t('pci_instances_dashboard_public_bandwidth_title')}
@@ -43,7 +47,7 @@ const InstancePropertyBlock: FC = () => {
               <Link
                 key={id}
                 href={`${projectUrl}/storages/blocks/${id}/edit`}
-                className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem] visited:text-[var(--ods-color-primary-500)]"
+                className="block max-w-52 truncate visited:text-[var(--ods-color-primary-500)]"
               >
                 {name}
               </Link>

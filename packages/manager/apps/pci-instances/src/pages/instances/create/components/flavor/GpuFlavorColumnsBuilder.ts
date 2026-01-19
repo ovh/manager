@@ -31,7 +31,7 @@ export const GpuFlavorColumnsBuilder = (
     title: t('pci_instance_creation_table_header_vcore'),
   },
   {
-    key: 'storage',
+    key: 'disks',
     title: t('pci_instance_creation_table_header_storage'),
     subtitle: t('pci_instance_creation_table_header_storage_unit'),
   },

@@ -4,6 +4,7 @@ import { getRegionNameKey } from './localizationsViewModel';
 import { getRegionalizedFlavorOsTypePriceId } from '@/utils';
 import { TFlavorPrices } from '@/domain/entities/instancesCatalog';
 import { BILLING_TYPE } from '@/types/instance/common.type';
+import { mapDisksToViewModel, TDiskViewModel } from './mappers/diskMapper';
 
 export type TSelectLocalizationDetails = {
   cityKey: string;
@@ -47,7 +48,7 @@ export type TSelectFlavorDetails = {
   name: string;
   memory: number;
   vCore: number;
-  storage: number;
+  disks: TDiskViewModel[];
   bandwidthPublic: number;
   bandwidthPrivate: number;
   price: number;
@@ -137,7 +138,7 @@ export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
       name: foundFlavor.name,
       memory: foundFlavor.specifications.ram.value,
       vCore: foundFlavor.specifications.cpu.value,
-      storage: foundFlavor.specifications.storage.value,
+      disks: mapDisksToViewModel(foundFlavor.specifications.disks),
       bandwidthPublic: foundFlavor.specifications.bandwidth.public.value,
       bandwidthPrivate: foundFlavor.specifications.bandwidth.private.value,
       gpu: foundFlavor.specifications.gpu?.model.unit,

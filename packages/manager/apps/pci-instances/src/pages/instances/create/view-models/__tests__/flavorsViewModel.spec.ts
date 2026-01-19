@@ -11,7 +11,16 @@ const cpuFlavor = {
   specifications: {
     ram: { unit: 'GB', value: 4 },
     cpu: { unit: 'vCore', value: 2 },
-    storage: { unit: 'GB', value: 50 },
+    disks: [
+      {
+        capacity: { unit: 'GB', value: 50 },
+        number: 1,
+      },
+    ],
+    bandwidth: {
+      public: { unit: 'Mbit', value: 100 },
+      private: { unit: 'Mbit', value: 100 },
+    },
   },
   regionalizedFlavorIds: ['rf-1'],
 };
@@ -21,10 +30,19 @@ const gpuFlavor = {
   specifications: {
     ram: { unit: 'GB', value: 8 },
     cpu: { unit: 'vCore', value: 4 },
-    storage: { unit: 'GB', value: 100 },
+    disks: [
+      {
+        capacity: { unit: 'GB', value: 100 },
+        number: 1,
+      },
+    ],
+    bandwidth: {
+      public: { unit: 'Mbit', value: 100 },
+      private: { unit: 'Mbit', value: 100 },
+    },
     gpu: {
       model: { unit: 'l40s', value: 1 },
-      memory: { size: { unit: 'GB', value: 16 } },
+      memory: { size: { unit: 'GB', value: 16 }, interface: 'PCIe' },
     },
   },
   regionalizedFlavorIds: ['rf-2'],

@@ -136,9 +136,10 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotación 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizado",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Se realiza una copia de seguridad todos los días entre las 22:00 y las 6:00 (UTC) y la rotación mantiene un historial de las {{ numEntries }} últimas entradas. Cuando se complete la nueva copia de seguridad, se eliminará la más antigua.",
+    "predefined": "Una copia de seguridad se realiza todos los días entre las 22:00 y las 6:00 (UTC) y la rotación mantiene un historial de las {{ numEntries }} últimas entradas. Cuando se completa la nueva copia de seguridad, se elimina la más antigua.",
     "custom": "Elija usted mismo la programación (formato UNIX Cron), el número de rotaciones y las ejecuciones máximas que desee."
   },
   "pci_instance_creation_backup_setting_price_unit": "~{{ price }} sin IVA/mes/GB",
-  "pci_instance_creation_error_title": "Se ha producido un error"
+  "pci_instance_creation_error_title": "Se ha producido un error",
+  "pci_instance_creation_table_storage_unit_tb": "TB"
 }

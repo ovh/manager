@@ -82,6 +82,12 @@ type TSpecDetails = {
   value: number;
 };
 
+export type TDisk = {
+  capacity: TSpecDetails;
+  number: number;
+  interface?: string;
+};
+
 export type TGpuMemory = {
   interface: string;
   size: TSpecDetails;
@@ -95,11 +101,11 @@ export type TGpu = {
 type TSpecifications = {
   cpu: TSpecDetails;
   ram: TSpecDetails;
-  storage: TSpecDetails;
   bandwidth: {
     public: TSpecDetails;
     private: TSpecDetails;
   };
+  disks: TDisk[];
   gpu?: TGpu;
 };
 

@@ -140,5 +140,6 @@
     "custom": "Scegli tu stesso la pianificazione (formato UNIX Cron), il numero di rotazioni e le esecuzioni massime che desideri."
   },
   "pci_instance_creation_backup_setting_price_unit": "~{{ price }} al mese/GB",
-  "pci_instance_creation_error_title": "Si è verificato un errore"
+  "pci_instance_creation_error_title": "Si è verificato un errore",
+  "pci_instance_creation_table_storage_unit_tb": "TB"
 }
