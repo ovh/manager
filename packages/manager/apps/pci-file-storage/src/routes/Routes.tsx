@@ -11,6 +11,7 @@ import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const CreateSharePage = React.lazy(() => import('@/pages/create/CreateShare.page'));
 
 export const Routes = (
   <>
@@ -32,6 +33,13 @@ export const Routes = (
         Component={OnboardingPage}
         handle={{
           tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
+        }}
+      />
+      <Route
+        path={subRoutes.create}
+        Component={CreateSharePage}
+        handle={{
+          tracking: { pageName: 'new', pageType: PageType.funnel },
         }}
       />
       <Route path="" element={<Navigate to={subRoutes.onboarding} replace />} />
