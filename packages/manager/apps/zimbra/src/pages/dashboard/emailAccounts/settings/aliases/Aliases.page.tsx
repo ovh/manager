@@ -38,7 +38,7 @@ const columns: DatagridColumn<AliasItem>[] = [
   },
   {
     id: 'tooltip',
-    maxSize: 20,
+    maxSize: 50,
     cell: ({ row }) => <ActionButtonAlias item={row.original} />,
     label: '',
   },

@@ -67,7 +67,7 @@ const columns: DatagridColumn<AutoReplyItem>[] = [
   },
   {
     id: 'actions',
-    maxSize: 20,
+    maxSize: 50,
     accessorKey: 'actions',
     cell: ({ row }) => <ActionButtonAutoReply item={row.original} />,
     label: '',
