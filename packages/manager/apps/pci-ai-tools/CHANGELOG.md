@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.17.9...@ovh-ux/manager-pci-ai-tools-app@1.18.0) (2026-01-19)
+
+
+### Features
+
+* **pci-ai-tools:** auto restart notebook and job ([5e60aff](https://github.com/ovh/manager/commit/5e60aff2e838dcfbccd0f7d906f742bcdf13c910)), closes [#AIS-1464](https://github.com/ovh/manager/issues/AIS-1464) [#AIS-1467](https://github.com/ovh/manager/issues/AIS-1467)
+
+
+
+
+
 ## [1.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.17.8...@ovh-ux/manager-pci-ai-tools-app@1.17.9) (2026-01-13)
 
 
