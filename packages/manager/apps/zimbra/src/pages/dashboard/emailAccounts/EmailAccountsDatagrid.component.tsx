@@ -152,7 +152,7 @@ export const EmailAccountsDatagrid = () => {
       },
       {
         id: 'tooltip',
-        maxSize: 20,
+        maxSize: 50,
         accessorKey: '',
         cell: ({ row }) => <ActionButtonEmailAccount item={row.original} />,
         label: '',

@@ -82,7 +82,7 @@ export default function Organizations() {
       },
       {
         id: 'tooltip',
-        maxSize: 20,
+        maxSize: 50,
         cell: ({ row }) => <ActionButton item={row.original} />,
         label: '',
       },
