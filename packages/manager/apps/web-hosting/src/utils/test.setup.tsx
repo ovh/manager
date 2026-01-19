@@ -650,6 +650,7 @@ vi.mock('@ovhcloud/ods-react', async (importActual) => {
       'data-testid': dataTestId,
       id,
       name,
+      multiple,
       ...props
     }: React.PropsWithChildren<{
       items?: Array<{ label: string; value: string }>;
@@ -658,15 +659,20 @@ vi.mock('@ovhcloud/ods-react', async (importActual) => {
       'data-testid'?: string;
       id?: string;
       name?: string;
+      multiple?: boolean;
       [key: string]: unknown;
     }>) => (
       <select
         id={id}
         name={name}
         data-testid={dataTestId}
+        multiple={multiple}
         onChange={(e) => {
           if (onValueChange) {
-            onValueChange({ value: [e.target.value] });
+            const selectedValues = multiple
+              ? Array.from(e.target.selectedOptions).map((option) => option.value)
+              : [e.target.value];
+            onValueChange({ value: selectedValues });
           }
           if (onChange) {
             onChange(e);

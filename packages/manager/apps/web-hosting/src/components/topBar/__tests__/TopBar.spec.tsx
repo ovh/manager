@@ -394,12 +394,15 @@ describe('Topbar component', () => {
     });
 
     renderWithRouter(<Topbar />, { route: '/test-service' });
+
+    const domainSelect = screen.getByTestId('domainName');
+    await user.selectOptions(domainSelect, mockDomains[0].currentState.fqdn);
+
     const enableButton = screen.getByText(/enable_ssl_encrypt/i);
     await user.click(enableButton);
 
     await waitFor(() => {
-      // createDomainCertificates is called with selectedDomains state (empty initially)
-      expect(mockCreateDomainCertificates).toHaveBeenCalledWith([]);
+      expect(mockCreateDomainCertificates).toHaveBeenCalledWith([mockDomains[0].currentState.fqdn]);
     });
   });
 });
