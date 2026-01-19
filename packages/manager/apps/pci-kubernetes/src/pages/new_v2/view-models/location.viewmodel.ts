@@ -55,9 +55,10 @@ const mapPlanCodeToViewPlan = (planCode: TPlanCode): TViewPlan => {
 };
 
 const mapPlanCodeToDeploymentMode = (planCode: TPlanCode): TDeploymentMode => {
-  return planCode === 'mks.free.hour.consumption' || planCode === 'mks.free.hour.consumption.3az'
-    ? 'region'
-    : 'region-3-az';
+  return planCode === 'mks.standard.hour.consumption.3az' ||
+    planCode === 'mks.free.hour.consumption.3az'
+    ? 'region-3-az'
+    : 'region';
 };
 
 export const filterMacroRegions =

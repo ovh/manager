@@ -1,6 +1,9 @@
-import { TProductAvailabilityFilter } from '@/api/data/available-regions';
-
 import { queryKey } from '../queryKey';
+
+type TProductAvailabilityFilter = {
+  addonFamily: string;
+  ovhSubsidiary: string;
+};
 
 export const productAvailabilityQueryKey = (
   projectId: string,

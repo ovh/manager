@@ -25,12 +25,12 @@ export const getAvailableRegions = async (
   return data;
 };
 
-export type TProductAvailabilityFilter = {
+type TProductAvailabilityFilter = {
   ovhSubsidiary: string;
   addonFamily: string;
 };
 
-export const getAvailabitilityRegions = async (
+export const getAvailabilityRegions = async (
   projectId: string,
   filter: TProductAvailabilityFilter,
 ) => {

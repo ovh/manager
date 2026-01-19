@@ -3,6 +3,7 @@ import { isCountryCode } from '@/helpers/location';
 
 import {
   TPlanCodeDTO,
+  TProductAvailabilityPlanDTO,
   TProductAvailabilityRegionDTO,
   TProductAvailabilityResponseDTO,
 } from './dto.types';
@@ -40,8 +41,11 @@ const normalizeRegions = (
     const macroRegionId = regionDto.datacenter;
     const existingMacroRegion = macroRegions.get(macroRegionId);
     if (existingMacroRegion) {
-      existingMacroRegion.microRegionIds.push(regionDto.name);
-      existingMacroRegion.enabled = existingMacroRegion.enabled || regionDto.enabled;
+      macroRegions.set(macroRegionId, {
+        ...existingMacroRegion,
+        microRegionIds: [...existingMacroRegion.microRegionIds, regionDto.name],
+        enabled: existingMacroRegion.enabled || regionDto.enabled,
+      });
     } else {
       macroRegions.set(macroRegionId, mapRegionDtoToMacroRegionEntity(regionDto));
     }
@@ -59,20 +63,26 @@ const normalizeRegions = (
   };
 };
 
-export const mapProductAvailabilityToEntity = (
-  responseDto: TProductAvailabilityResponseDTO,
-): TRegions => {
+const mergeRegionsWithPlanCodes = (
+  plans: TProductAvailabilityPlanDTO[],
+): [Map<string, RegionWithPlanCodes>, Record<string, string[]>] => {
   const allRegionsMap = new Map<string, RegionWithPlanCodes>();
   const planRegions: Record<string, string[]> = {};
 
-  responseDto.plans.forEach((plan) => {
+  plans.forEach((plan) => {
     const regionIds: string[] = [];
 
-    plan.regions.forEach((region) => {
+    plan.regions.forEach((region: TProductAvailabilityRegionDTO) => {
       if (!allRegionsMap.has(region.name)) {
         allRegionsMap.set(region.name, { ...region, planCodes: [plan.code] });
       } else {
-        allRegionsMap.get(region.name)?.planCodes.push(plan.code);
+        const existingRegion = allRegionsMap.get(region.name);
+        if (existingRegion) {
+          allRegionsMap.set(region.name, {
+            ...existingRegion,
+            planCodes: [...existingRegion.planCodes, plan.code],
+          });
+        }
       }
       regionIds.push(region.name);
     });
@@ -80,6 +90,13 @@ export const mapProductAvailabilityToEntity = (
     planRegions[plan.code] = regionIds;
   });
 
+  return [allRegionsMap, planRegions];
+};
+
+export const mapProductAvailabilityToEntity = (
+  responseDto: TProductAvailabilityResponseDTO,
+): TRegions => {
+  const [allRegionsMap, planRegions] = mergeRegionsWithPlanCodes(responseDto.plans);
   const normalizedEntities = normalizeRegions([...allRegionsMap.values()]);
 
   return {
