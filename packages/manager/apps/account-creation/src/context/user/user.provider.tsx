@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Country,
   LegalForm,
@@ -24,6 +24,7 @@ type Props = {
 
 export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const { setUser } = useTrackingContext();
   const { data: me, isFetched, isError, isEnabled } = useMe();
@@ -70,14 +71,14 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   }, [isFetched, isError]);
 
   useEffect(() => {
-    if (availability) {
+    if (availability && location.pathname !== urls.settings) {
       if (!availability[NEW_ACCOUNT_CREATION_ACCESS_FEATURE]) {
         redirectToLegacySignup();
       } else {
         navigate(`${urls.accountType}?${searchParams.toString()}`);
       }
     }
-  }, [availability]);
+  }, [availability, location.pathname]);
 
   // When the legal form is updated, we will call setUser to update the tracking configuration
   useEffect(() => {
