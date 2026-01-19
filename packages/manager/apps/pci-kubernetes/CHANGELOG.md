@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.40.10...@ovh-ux/manager-pci-kubernetes-app@0.41.0) (2026-01-19)
+
+
+### Features
+
+* **pci-kubernetes:** add select plan ([6d8a6cd](https://github.com/ovh/manager/commit/6d8a6cd4fdc0671a290bfd72863d5124ae80086a)), closes [#TAPC-5310](https://github.com/ovh/manager/issues/TAPC-5310)
+* **pci-kubernetes:** create hook to handle plan on productAvailability ([0cab009](https://github.com/ovh/manager/commit/0cab009ba860459791d5bce903d711fb5b0090b5)), closes [#TAPC-5309](https://github.com/ovh/manager/issues/TAPC-5309)
+* **pci-kubernetes:** create standard 1-AZ ([eec65b4](https://github.com/ovh/manager/commit/eec65b469bb988439ad979091aecc6c7723f38cb)), closes [#TAPC-5309](https://github.com/ovh/manager/issues/TAPC-5309)
+* **pci-kubernetes:** replace multiaz condition by standard ([7a4c155](https://github.com/ovh/manager/commit/7a4c1559298490341339425aef5791c0ebbe283e)), closes [#TAPC-5311](https://github.com/ovh/manager/issues/TAPC-5311) [#TAPC-5435](https://github.com/ovh/manager/issues/TAPC-5435)
+* **pci-kubernetes:** update wording for file storage cta and plan tiles ([3d4b9e1](https://github.com/ovh/manager/commit/3d4b9e138c3daff963566824b5e584d8fb2d742a)), closes [#TAPC-5630](https://github.com/ovh/manager/issues/TAPC-5630)
+
+
+
+
+
 ## [0.40.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.40.9...@ovh-ux/manager-pci-kubernetes-app@0.40.10) (2026-01-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
