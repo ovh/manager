@@ -68,11 +68,21 @@ export const useGetDomainResource = (serviceName: string) => {
   };
 };
 
-export const useGetDomainZone = (serviceName: string) => {
+export const useGetDomainZone = (
+  serviceName: string,
+  domainResource: TDomainResource,
+) => {
+  const isInternalDnsConfiguration =
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.EXTERNAL &&
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.MIXED;
+
   const { data, isLoading, error } = useQuery<TDomainZone>({
     queryKey: ['domain', 'zone', serviceName],
     queryFn: () => getDomainZone(serviceName),
     retry: false,
+    enabled: isInternalDnsConfiguration,
   });
   return {
     domainZone: data,
@@ -317,10 +327,12 @@ export function useOrderFreeHosting() {
 export function useInitialOrderFreeHosting(
   serviceName: string,
   subsidiary: Subsidiary,
+  pricingMode: string,
 ) {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['initial-order-free-hosting', serviceName, subsidiary],
-    queryFn: () => initialOrderFreeHosting(serviceName, subsidiary),
+    queryFn: () =>
+      initialOrderFreeHosting(serviceName, subsidiary, pricingMode),
     enabled: false,
   });
 
@@ -361,7 +373,7 @@ export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
 export const useGetDnssecStatus = (
   resourceCurrentState: TCurrentState,
   resourceTargetSpec: TTargetSpec,
-) => {
+): { dnssecStatus: DnssecStatusEnum; isDnssecStatusLoading: boolean } => {
   if (!resourceCurrentState.dnssecConfiguration?.dnssecSupported) {
     return {
       dnssecStatus: DnssecStatusEnum.NOT_SUPPORTED,
