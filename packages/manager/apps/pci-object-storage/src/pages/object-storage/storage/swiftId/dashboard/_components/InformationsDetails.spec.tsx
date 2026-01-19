@@ -1,5 +1,9 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import InformationsDetails from './InformationsDetails.component';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedContainerDetail } from '@/__tests__/helpers/mocks/swift/swift';
@@ -22,6 +26,11 @@ const regionWithStorageService: cloud.Region = {
 };
 
 describe('InformationsDetails', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({ projectId: 'projectId', swiftId: 'test-swift-id' });
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -55,5 +64,18 @@ describe('InformationsDetails', () => {
     expect(
       screen.getByText(`${mockedContainerDetail.storedBytes} bytes`),
     ).toBeInTheDocument();
+  });
+
+  it('should navigate to delete route when delete button is clicked', () => {
+    render(
+      <InformationsDetails
+        swift={mockedContainerDetail}
+        region={regionWithStorageService}
+        swiftId="test-swift-id"
+      />,
+      { wrapper: RouterWithQueryClientWrapper },
+    );
+    fireEvent.click(screen.getByTestId('swift-container-delete-button'));
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete');
   });
 });
