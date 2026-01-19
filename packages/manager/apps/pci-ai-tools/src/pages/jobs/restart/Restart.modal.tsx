@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import RestartJob from '../[jobId]/_components/RestartJob.component';
+import RestartJob from '@/pages/jobs/[jobId]/_components/RestartJob.component';
 import { useGetJob } from '@/data/hooks/ai/job/useGetJob.hook';
 
 const RestartJobModal = () => {

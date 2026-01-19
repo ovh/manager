@@ -47,6 +47,7 @@ export function useOrderFunnel(
     editor: z.string(),
     notebookName: z.string().min(1),
     privacy: z.nativeEnum(PrivacyEnum),
+    timeoutAutoRestart: z.boolean(),
     labels: z
       .array(
         z.object({
@@ -95,6 +96,7 @@ export function useOrderFunnel(
       )?.unsecureHttp
         ? PrivacyEnum.public
         : PrivacyEnum.private,
+      timeoutAutoRestart: false,
       labels: [],
       sshKey: [],
       volumes: [],
@@ -107,6 +109,7 @@ export function useOrderFunnel(
   const editor = form.watch('editor');
   const notebookName = form.watch('notebookName');
   const unsecureHttp = form.watch('privacy');
+  const timeoutAutoRestart = form.watch('timeoutAutoRestart');
   const labels = form.watch('labels');
   const sshKey = form.watch('sshKey');
   const volumes = form.watch('volumes');
@@ -273,6 +276,7 @@ export function useOrderFunnel(
       editor: editorObject,
       notebookName,
       unsecureHttp: unsecureHttpObject,
+      timeoutAutoRestart,
       labels: labelsObject,
       sshKey: publicSshKeyList,
       volumes,
