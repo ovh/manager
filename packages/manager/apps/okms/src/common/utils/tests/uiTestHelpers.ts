@@ -1,4 +1,4 @@
-import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value-toggle/secretValueToggle.constants';
+import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value/secretValueToggle.constants';
 import { act, fireEvent, screen, waitFor, waitForOptions } from '@testing-library/react';
 import { UserEvent } from '@testing-library/user-event';
 

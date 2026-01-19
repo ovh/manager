@@ -18,5 +18,9 @@
   "pci_project_flavors_zone_tooltip_link": "En savoir plus",
   "pci_project_flavors_desactivated_region": "La localisation sélectionnée n’est pas activée. Cliquez sur « Suivant » pour l’ajouter à votre projet Public Cloud et continuer la création de votre cluster Kubernetes.",
   "pci_projects_project_storages_containers_add_add_region_error": "Une erreur est survenue lors de l'ajout de la localisation : {{message}}",
-  "pci_projects_project_regions_add_region_success": "La localisation {{ code }} a bien été ajoutée à votre projet."
+  "pci_projects_project_regions_add_region_success": "La localisation {{ code }} a bien été ajoutée à votre projet.",
+  "pci_projects_project_filter_by_region": "Filtrer par localisation",
+  "pci_projects_project_filter_by_plan_all": "Tous",
+  "pci_projects_project_regions_filter_plan_message": "Le plan Free est disponible uniquement dans les régions 1-AZ, le plan Standard est disponible dans toutes les régions 3-AZ et dans certaines régions 1-AZ.",
+  "pci_projects_project_regions_filter_plan_compare": "Comparer les plans"
 }

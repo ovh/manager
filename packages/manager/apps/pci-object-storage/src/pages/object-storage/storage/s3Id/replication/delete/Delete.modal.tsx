@@ -16,7 +16,9 @@ import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useDeleteReplication } from '@/data/hooks/replication/useDeleteReplication.hook';
 
 const DeleteReplication = () => {
-  const { t } = useTranslation('pci-object-storage/replication/delete');
+  const { t } = useTranslation(
+    'pci-object-storage/storages/s3/replication/delete',
+  );
   const { s3, s3Query } = useS3Data();
   const toast = useToast();
   const navigate = useNavigate();
@@ -59,7 +61,7 @@ const DeleteReplication = () => {
     });
   };
 
-  if (!existingRule) return navigate('./');
+  if (!existingRule) navigate('./');
 
   return (
     <RouteModal isLoading={s3Query.isLoading}>
@@ -73,7 +75,7 @@ const DeleteReplication = () => {
           <p>
             <Trans
               i18nKey="deleteReplicationDescription"
-              ns="pci-object-storage/replication/delete"
+              ns="pci-object-storage/storages/s3/replication/delete"
               values={{ decodedRuleId }}
               components={{
                 strong: <strong className="font-semibold" />,

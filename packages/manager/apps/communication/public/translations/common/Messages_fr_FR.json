@@ -25,5 +25,15 @@
   "status_valid": "Actif",
   "status_to_validate": "En attente",
   "iam_display_content_message": "Vous ne disposez pas des permissions nécessaires pour afficher les données de cette ressource. Veuillez contacter votre administrateur.",
-  "error_rate_limit_message": "Vous avez atteint la limite de requêtes. Veuillez réessayer plus tard."
+  "error_rate_limit_message": "Vous avez atteint la limite de requêtes. Veuillez réessayer plus tard.",
+  "guide_menu_header": "Guides",
+  "guide_menu_start_guide": "Visite guidée",
+  "guide_menu_account_messages": "Gérer les communications",
+  "guided_tour_introduction_title": "Bienvenue dans votre nouvelle page Mes communications",
+  "guided_tour_introduction_content": "Souhaitez-vous voir la visite guidée ?",
+  "guided_tour_introduction_dont_display_again": "Ne plus afficher",
+  "guided_tour_introduction_start_guide": "Voir la visite guidée",
+  "guided_tour_communications": "Retrouvez ici l'ensemble des e-mails qu'OVHcloud vous a envoyés, sauf les demandes d'assistance.",
+  "guided_tour_contacts": "Gérez ici votre liste de contacts et ajoutez des contacts pour les associer à vos paramètres d'envoi.",
+  "guided_tour_settings": "Ajoutez et définissez vos règles d'envoi pour choisir quels contacts recevront les communications, en fonction des catégories et priorités sélectionnées."
 }

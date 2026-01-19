@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.29.1...@ovh-ux/ovh-at-internet@0.29.2) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
+## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.29.0...@ovh-ux/ovh-at-internet@0.29.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.28.3...@ovh-ux/ovh-at-internet@0.29.0) (2025-12-16)
+
+
+### Features
+
+* update core modules and configuration ([3655306](https://github.com/ovh/manager/commit/3655306a8ad31a88d8c42657a323fd119d4baad3)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
+## [0.28.3](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.28.2...@ovh-ux/ovh-at-internet@0.28.3) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
+## [0.28.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.28.1...@ovh-ux/ovh-at-internet@0.28.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/ovh-at-internet
+
+
+
+
+
 ## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.28.0...@ovh-ux/ovh-at-internet@0.28.1) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

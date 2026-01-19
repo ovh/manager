@@ -3,6 +3,144 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.10...@ovh-ux/manager-zimbra-app@0.42.11) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.42.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.9...@ovh-ux/manager-zimbra-app@0.42.10) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.42.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.8...@ovh-ux/manager-zimbra-app@0.42.9) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.42.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.7...@ovh-ux/manager-zimbra-app@0.42.8) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.42.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.6...@ovh-ux/manager-zimbra-app@0.42.7) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.42.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.5...@ovh-ux/manager-zimbra-app@0.42.6) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.42.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.4...@ovh-ux/manager-zimbra-app@0.42.5) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.42.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.3...@ovh-ux/manager-zimbra-app@0.42.4) (2025-12-22)
+
+
+### Bug Fixes
+
+* **zimbra:** display organization label instead of name in domain page ([7469b03](https://github.com/ovh/manager/commit/7469b0375d2400e7f125fd3942f70463188c6d6e)), closes [#PRDCOL-317](https://github.com/ovh/manager/issues/PRDCOL-317)
+
+
+
+
+
+## [0.42.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.2...@ovh-ux/manager-zimbra-app@0.42.3) (2025-12-22)
+
+
+### Bug Fixes
+
+* **zimbra:** display organization label instead of name in domain page ([7469b03](https://github.com/ovh/manager/commit/7469b0375d2400e7f125fd3942f70463188c6d6e)), closes [#PRDCOL-317](https://github.com/ovh/manager/issues/PRDCOL-317)
+
+
+
+
+
+## [0.42.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.1...@ovh-ux/manager-zimbra-app@0.42.2) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.0...@ovh-ux/manager-zimbra-app@0.42.1) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4536] ([08adb80](https://github.com/ovh/manager/commit/08adb8017f44ae5c825d3f734017715185af6035))
+
+
+
+
+
+# [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.41.4...@ovh-ux/manager-zimbra-app@0.42.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* **manager:** promote new OMM ([d26dc8e](https://github.com/ovh/manager/commit/d26dc8ee2b57d7481c8b34543d880b45cc63d445)), closes [#PRDCOL-280](https://github.com/ovh/manager/issues/PRDCOL-280)
+* **zimbra:** fix redirection in the onboarding funnel ([ee46eea](https://github.com/ovh/manager/commit/ee46eeacd2e359d22e3103a1f37c1e17bc2ea61e)), closes [#PRDCOL-257](https://github.com/ovh/manager/issues/PRDCOL-257)
+
+
+### Features
+
+* **zimbra:** add the default organization name to the onboarding page ([bb2cde4](https://github.com/ovh/manager/commit/bb2cde4494cce0e676c1fcf5ad5dfea9992fa606)), closes [#PRDCOL-289](https://github.com/ovh/manager/issues/PRDCOL-289)
+
+
+
+
+
+## [0.41.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.41.3...@ovh-ux/manager-zimbra-app@0.41.4) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.41.2...@ovh-ux/manager-zimbra-app@0.41.3) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.41.1...@ovh-ux/manager-zimbra-app@0.41.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 ## [0.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.41.0...@ovh-ux/manager-zimbra-app@0.41.1) (2025-12-08)
 
 

@@ -35,7 +35,7 @@ export const COLUMNS_CONFIG = [
     property: 'status',
   },
   {
-    property: 'renewPeriod',
+    property: 'renew',
   },
   {
     property: 'expiration',

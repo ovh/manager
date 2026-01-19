@@ -51,5 +51,9 @@
   "kafkaSettingsSchemaRegistryDescription": "HTTP REST service interface for storing Apache Kafka schemas (based on <anchor>Karapace</anchor> project)",
   "serviceConfigurationServiceDeletionProtection": " Delete protection",
   "serviceDeletionProtectionActivated": "Enabled",
-  "serviceDeletionProtectionActivatedDeactivated": "Disabled"
+  "serviceDeletionProtectionActivatedDeactivated": "Disabled",
+  "serviceDeletionProtectionActivate": "Enable",
+  "serviceDeletionProtectionActivatedDeactivate": "Deactivate",
+  "serviceDeletionProtectionDeactivate": "Disable",
+  "serviceDeletionProtectionDeactivated": "Disabled"
 }

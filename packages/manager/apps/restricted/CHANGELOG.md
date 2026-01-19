@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.6...@ovh-ux/manager-restricted-app@0.14.7) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+## [0.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.5...@ovh-ux/manager-restricted-app@0.14.6) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+## [0.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.4...@ovh-ux/manager-restricted-app@0.14.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.3...@ovh-ux/manager-restricted-app@0.14.4) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.2...@ovh-ux/manager-restricted-app@0.14.3) (2025-12-15)
+
+
+### Bug Fixes
+
+* **restricted:** fix typo in permissions ([8c554b5](https://github.com/ovh/manager/commit/8c554b51ff92d732a85bd8a91282de34a9c87070)), closes [#MAIAM-66](https://github.com/ovh/manager/issues/MAIAM-66)
+
+
+
+
+
+## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.1...@ovh-ux/manager-restricted-app@0.14.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
 ## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.0...@ovh-ux/manager-restricted-app@0.14.1) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-restricted-app

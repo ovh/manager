@@ -10,13 +10,13 @@ import {
   DialogHeader,
   DialogTitle,
   useToast,
-  Code,
-  githubDark,
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
+  DialogBody,
+  Clipboard,
 } from '@datatr-ux/uxlib';
 import { useResetUserPassword } from '@/hooks/api/database/user/useResetUserPassword.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
@@ -48,13 +48,13 @@ const ResetUserPassword = () => {
     onError: (err) => {
       toast.toast({
         title: t('resetUserPasswordToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
     onSuccess: (userWithPassword) => {
       toast.toast({
-        title: t('resetUserPasswordToastSuccessTitle'),
+        title: t('userSuccessTitle'),
         description: t('resetUserPasswordToastSuccessDescription', {
           name: userWithPassword.username,
         }),
@@ -78,28 +78,30 @@ const ResetUserPassword = () => {
 
   return (
     <RouteModal isLoading={!users}>
-      <DialogContent>
+      <DialogContent
+        variant={`${newPass ? 'information' : 'warning'}`}
+        data-testid="code-pwd-container"
+      >
         <DialogHeader>
           <DialogTitle data-testid="reset-password-modal">
             {t('resetUserPasswordTitle')}
           </DialogTitle>
-          {newPass ? (
+          {!newPass && (
+            <DialogDescription>
+              {t('resetUserPasswordDescription', { name: user?.username })}
+            </DialogDescription>
+          )}
+        </DialogHeader>
+        {newPass && (
+          <DialogBody>
             <div data-testid="pwd-connection-info">
               <p>{t('resetUserPasswordSuccess')}</p>
-              <div data-testid="code-pwd-container" className="p-2">
-                <Code
-                  code={newPass}
-                  label={t('resetUserPasswordCode')}
-                  theme={githubDark}
-                  onCopied={() =>
-                    toast.toast({
-                      title: t('resetUserPasswordCopy'),
-                    })
-                  }
-                />
+              <div className="my-2">
+                <p className="font-semibold">{t('resetUserPasswordCode')}</p>
+                <Clipboard value={`${newPass}`} />
               </div>
               <p>{t('resetUserConnectionTitle')}</p>
-              <div data-testid="code-uri-container" className="p-2">
+              <div data-testid="code-uri-container">
                 {service.endpoints.length > 1 && (
                   <Select
                     value={selectedEndpoint?.component}
@@ -111,10 +113,7 @@ const ResetUserPassword = () => {
                       )
                     }
                   >
-                    <SelectTrigger
-                      data-testid="dashboard-connection-detail-select"
-                      className="h-8 mb-3"
-                    >
+                    <SelectTrigger data-testid="dashboard-connection-detail-select">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -126,58 +125,42 @@ const ResetUserPassword = () => {
                     </SelectContent>
                   </Select>
                 )}
-                <Code
-                  code={selectedEndpoint?.uri.replace(
-                    '<username>:<password>',
-                    `${user.username.replace(/@.*/, '')}:${newPass}`,
-                  )}
-                  label={t('resetUserConnectionCode')}
-                  theme={githubDark}
-                  onCopied={() =>
-                    toast.toast({
-                      title: t('resetUserConnectionCodeCopy'),
-                    })
-                  }
-                />
+                <div className="my-2">
+                  <p className="font-semibold">
+                    {t('resetUserConnectionCode')}
+                  </p>
+                  <Clipboard
+                    value={`${selectedEndpoint?.uri.replace(
+                      '<username>:<password>',
+                      `${encodeURIComponent(
+                        user.username.replace(/@.*/, ''),
+                      )}:${encodeURIComponent(newPass)}`,
+                    )}`}
+                  />
+                </div>
               </div>
             </div>
-          ) : (
-            <DialogDescription>
-              {t('resetUserPasswordDescription', { name: user?.username })}
-            </DialogDescription>
-          )}
-        </DialogHeader>
-        <DialogFooter className="flex justify-end">
-          {newPass ? (
-            <DialogClose asChild>
-              <Button
-                type="button"
-                mode="outline"
-                data-testid="reset-password-close-button"
-              >
-                {t('userButtonClose')}
-              </Button>
-            </DialogClose>
-          ) : (
-            <>
-              <DialogClose asChild>
-                <Button
-                  type="button"
-                  mode="outline"
-                  data-testid="reset-password-cancel-button"
-                >
-                  {t('resetUserPasswordButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="button"
-                disabled={isPending}
-                onClick={handleResetPassword}
-                data-testid="reset-password-submit-button"
-              >
-                {t('resetUserPasswordButtonConfirm')}
-              </Button>
-            </>
+          </DialogBody>
+        )}
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="button"
+              mode="ghost"
+              data-testid="reset-password-close-button"
+            >
+              {t(newPass ? 'userCloseButton' : 'userCancelButton')}
+            </Button>
+          </DialogClose>
+          {!newPass && (
+            <Button
+              type="button"
+              disabled={isPending}
+              onClick={handleResetPassword}
+              data-testid="reset-password-submit-button"
+            >
+              {t('userConfirmButton')}
+            </Button>
           )}
         </DialogFooter>
       </DialogContent>

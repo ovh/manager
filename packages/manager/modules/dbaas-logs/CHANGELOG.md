@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.3...@ovh-ux/manager-dbaas-logs@1.36.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* **dedicated.dbaas:** fix missing translation for ldp enable iam cta ([baaf4d8](https://github.com/ovh/manager/commit/baaf4d83bfe25dbd8e1f5b640dc9dde33ddb5ef1)), closes [#MAOBS-200](https://github.com/ovh/manager/issues/MAOBS-200)
+
+
+### Features
+
+* **ldp:** add roadmap feature request and changelog ([e55c8c7](https://github.com/ovh/manager/commit/e55c8c72265084d63142029fc0f52d4baa6c7f15)), closes [#MAOBS-38](https://github.com/ovh/manager/issues/MAOBS-38)
+
+
+
+
+
+## [1.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.2...@ovh-ux/manager-dbaas-logs@1.35.3) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+## [1.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.1...@ovh-ux/manager-dbaas-logs@1.35.2) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4537] ([0e72f25](https://github.com/ovh/manager/commit/0e72f25756f159f8e9f1a4ac26885e5f9e435abb))
+* **i18n:** add missing translations [CDS 4539] ([b90b9d2](https://github.com/ovh/manager/commit/b90b9d2b605ba03e7e364830f9e261479a2c1b7d))
+
+
+
+
+
+## [1.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.0...@ovh-ux/manager-dbaas-logs@1.35.1) (2025-12-16)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([58227d3](https://github.com/ovh/manager/commit/58227d36e88998e8a622d97570918dca7d2d21ff))
+
+
+
+
+
+# [1.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.34.2...@ovh-ux/manager-dbaas-logs@1.35.0) (2025-12-10)
+
+
+### Features
+
+* **dedicated.dbaas:** change account activation journey ([e7f1fa0](https://github.com/ovh/manager/commit/e7f1fa045518e900953bfea57a9539e1b08bb7c8)), closes [#MAOBS-135](https://github.com/ovh/manager/issues/MAOBS-135)
+
+
+
+
+
 ## [1.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.34.1...@ovh-ux/manager-dbaas-logs@1.34.2) (2025-11-27)
 
 

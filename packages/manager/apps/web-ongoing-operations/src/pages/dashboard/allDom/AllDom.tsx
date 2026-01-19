@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   useAuthorizationIam,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { ParentEnum } from '@/enum/parent.enum';
 import {
   allDomFeatureAvailibility,
@@ -22,24 +22,20 @@ export default function AllDom() {
   // Get IAM authorization for the IAM resource
   // Redirect to domain tab if the user don't have access to the page
   const { data: allDomIAMRessources } = useGetIAMResourceAllDom();
-  const navigate = useNavigate();
   const urn = allDomIAMRessources?.[0]?.urn;
-  const { isAuthorized = false } = useAuthorizationIam(
+  const { isAuthorized = false, isLoading: isAuthorizationIamLoading } = useAuthorizationIam(
     [iamGetAllDomAction],
     urn ?? '',
   );
-
-  const { data: availability } = useFeatureAvailability([
+  const { data: availability, isLoading : isFeatureAvailabilityLoading} = useFeatureAvailability([
     allDomFeatureAvailibility,
   ]);
 
-  useEffect(() => {
-    if (!urn || (availability && !availability[allDomFeatureAvailibility]) || !isAuthorized) {
-      const url = `/${urls.domain}`;
-      trackPageNavivationTile(url);
-      navigate(url);
-    }
-  }, [urn, availability, isAuthorized]);
+  if (!isFeatureAvailabilityLoading && !isAuthorizationIamLoading && ((urn === '' || urn === undefined ) || (availability ? availability[allDomFeatureAvailibility] : false) === false  || !isAuthorized)){
+    const url = `/${urls.domain}`;
+    trackPageNavivationTile(url);
+    return <Navigate to={url} replace />;
+  }
 
   // We use TaskMeDomain here because the alldom task has the same api route than domain tasks, only the type change.
   return (

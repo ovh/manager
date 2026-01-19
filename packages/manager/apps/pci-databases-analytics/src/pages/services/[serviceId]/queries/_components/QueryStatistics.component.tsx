@@ -4,12 +4,12 @@ import { RotateCcw } from 'lucide-react';
 import { Button, useToast } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
-import * as database from '@/types/cloud/project/database';
 import { useGetQueryStatistics } from '@/hooks/api/database/query/useGetQueryStatistics.hook';
 import { useResetQueryStatistics } from '@/hooks/api/database/query/useResetQueryStatistics.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { getColumns } from './QueryStatisticsTableColumns.component';
 import { QueryStatistics as QueryStatisticsType } from '@/data/api/database/queries.api';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 const QueryStatistics = () => {
   const { t } = useTranslation(
@@ -26,7 +26,7 @@ const QueryStatistics = () => {
     onError: (err) => {
       toast.toast({
         title: t('queryStatistcsResetToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -55,28 +55,37 @@ const QueryStatistics = () => {
       <p data-testid="query-statistics-description">
         {t('queryStatisticsDescription')}
       </p>
-      {service.capabilities.queryStatisticsReset && (
-        <Button
-          data-testid="query-statistics-reset-button"
-          mode="outline"
-          size="sm"
-          onClick={() => handleResetButtonClicked()}
-          disabled={
-            isPending ||
-            service.capabilities.queryStatisticsReset.create ===
-              database.service.capability.StateEnum.disabled
-          }
-        >
-          <RotateCcw className="size-4 mr-2" />
-          {t('queryStatisticsResetButton')}
-        </Button>
-      )}
       {queryStatisticsQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
           data={queryStatisticsQuery.data as QueryStatisticsType[]}
           pageSize={25}
-        />
+        >
+          <DataTable.Header>
+            {service.capabilities.queryStatisticsReset && (
+              <DataTable.Action>
+                <Button
+                  data-testid="query-statistics-reset-button"
+                  mode="outline"
+                  onClick={() => handleResetButtonClicked()}
+                  disabled={
+                    isPending ||
+                    isCapabilityDisabled(
+                      service,
+                      'queryStatisticsReset',
+                      'create',
+                    )
+                  }
+                >
+                  <RotateCcw className="size-4" />
+                  {t('queryStatisticsResetButton')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="query-statistics-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

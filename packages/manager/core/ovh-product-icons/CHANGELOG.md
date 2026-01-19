@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.15.1...@ovh-ux/ovh-product-icons@0.16.0) (2026-01-13)
+
+
+### Features
+
+* **ovh-product-icons:** add observability icon ([f388718](https://github.com/ovh/manager/commit/f3887183b5c1ec8c5288f2c669dc4c4508ffb8d0)), closes [#MAOBS-185](https://github.com/ovh/manager/issues/MAOBS-185)
+
+
+
+
+
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.15.0...@ovh-ux/ovh-product-icons@0.15.1) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/ovh-product-icons
+
+
+
+
+
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.14.2...@ovh-ux/ovh-product-icons@0.15.0) (2025-12-16)
+
+
+### Features
+
+* update core modules and configuration ([3655306](https://github.com/ovh/manager/commit/3655306a8ad31a88d8c42657a323fd119d4baad3)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
+## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.14.1...@ovh-ux/ovh-product-icons@0.14.2) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/ovh-product-icons
+
+
+
+
+
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.14.0...@ovh-ux/ovh-product-icons@0.14.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/ovh-product-icons
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.13.10...@ovh-ux/ovh-product-icons@0.14.0) (2025-12-05)
 
 

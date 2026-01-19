@@ -3,6 +3,108 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.20.0...@ovh-ux/manager-account@0.20.1) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.11...@ovh-ux/manager-account@0.20.0) (2026-01-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4552] ([0df62f8](https://github.com/ovh/manager/commit/0df62f8bb83dc0a50ad5f87e6ca3f7a092caced3))
+
+
+### Features
+
+* **account:** add new domain reseller service ([ff0076d](https://github.com/ovh/manager/commit/ff0076d936d22acf16226a6902140864006c75e0)), closes [#DCE-114](https://github.com/ovh/manager/issues/DCE-114)
+
+
+
+
+
+## [0.19.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.10...@ovh-ux/manager-account@0.19.11) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.19.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.9...@ovh-ux/manager-account@0.19.10) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.19.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.8...@ovh-ux/manager-account@0.19.9) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.19.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.7...@ovh-ux/manager-account@0.19.8) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.6...@ovh-ux/manager-account@0.19.7) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.5...@ovh-ux/manager-account@0.19.6) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.4...@ovh-ux/manager-account@0.19.5) (2025-12-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.3...@ovh-ux/manager-account@0.19.4) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedicated:** update vmware and nsx official documentation link ([aead439](https://github.com/ovh/manager/commit/aead43966124e5436984fde7d5f2788c681844d8)), closes [#MANAGER-20049](https://github.com/ovh/manager/issues/MANAGER-20049)
+
+
+
+
+
+## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.2...@ovh-ux/manager-account@0.19.3) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4524] ([7ccf245](https://github.com/ovh/manager/commit/7ccf245dfb71a734dae520873a681c570082d62e))
+
+
+
+
+
 ## [0.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.19.1...@ovh-ux/manager-account@0.19.2) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

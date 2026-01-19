@@ -34,11 +34,8 @@ import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 import { urls } from '@/alldoms/routes/routes.constant';
 import appConfig from '@/web-domains.config';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
-import {
-  DomainRegistrationStateEnum,
-  ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
-import NotFound from '../../404';
+import { DomainRegistrationStateEnum } from '@/alldoms/enum/service.enum';
+import { ServiceRoutes } from '@/common/enum/common.enum';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -54,7 +51,7 @@ export default function ServiceDetail() {
     title: serviceName,
   };
 
-  const { data: alldom, isLoading, isError } = useGetAllDom({
+  const { data: alldom, isLoading } = useGetAllDom({
     serviceName,
   });
 
@@ -70,10 +67,6 @@ export default function ServiceDetail() {
       .map((domain) => domain.name),
     serviceRoute: ServiceRoutes.Domain,
   });
-
-  if (isError) {
-    return <NotFound />;
-  }
 
   const alldomService = alldom;
   if (
@@ -115,9 +108,7 @@ export default function ServiceDetail() {
       }
     >
       <section>
-        {hasTerminateAtExpirationDateAction(
-          alldomService.lifecyclePendingActions,
-        ) &&
+        {hasTerminateAtExpirationDateAction(alldomService.pendingActions) &&
           isManualRenewMessage && (
             <Message
               color={MESSAGE_COLOR.warning}
@@ -153,13 +144,13 @@ export default function ServiceDetail() {
               </div>
             </Message>
           )}
-        <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
+        <div className="grid gap-6 items-start mb-8 grid-cols-1 lg:!grid-cols-2">
           <ServiceDetailInformation currentState={alldomService.currentState} />
           <ServiceDetailSubscribing alldomService={alldomService} />
         </div>
         <ServiceDetailDomains
           alldomTerminated={hasTerminateAtExpirationDateAction(
-            alldomService.lifecyclePendingActions,
+            alldomService.pendingActions,
           )}
           items={alldomService.currentState.domains}
         />

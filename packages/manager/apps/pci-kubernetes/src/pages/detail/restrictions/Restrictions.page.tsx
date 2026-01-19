@@ -118,7 +118,7 @@ export default function RestrictionsPage() {
         size={ODS_TEXT_SIZE._600}
         level={ODS_TEXT_LEVEL.heading}
         color={ODS_THEME_COLOR_INTENT.text}
-        className="block mb-5"
+        className="mb-5 block"
       >
         {t('kube_restrictions_manage')}
       </OsdsText>
@@ -126,7 +126,7 @@ export default function RestrictionsPage() {
         size={ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}
         color={ODS_THEME_COLOR_INTENT.text}
-        className="block mb-5"
+        className="mb-5 block"
       >
         {t('kube_restrictions_manage_description')}
       </OsdsText>

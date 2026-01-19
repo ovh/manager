@@ -25,5 +25,15 @@
   "status_disabled": "Wyłączony",
   "status_valid": "Aktywna",
   "status_to_validate": "Oczekujący",
-  "error_rate_limit_message": "Osiągnąłeś limit zapytań. Spróbuj ponownie później."
+  "error_rate_limit_message": "Osiągnąłeś limit zapytań. Spróbuj ponownie później.",
+  "guide_menu_header": "Przewodniki",
+  "guide_menu_start_guide": "Wirtualny przewodnik",
+  "guided_tour_introduction_title": "Witamy na nowej stronie Moje komunikaty",
+  "guided_tour_introduction_content": "Chcesz skorzystać z wirtualnego przewodnika?",
+  "guided_tour_introduction_dont_display_again": "Nie wyświetlaj więcej tego komunikatu.",
+  "guided_tour_introduction_start_guide": "Włącz wirtualny przewodnik",
+  "guided_tour_communications": "Znajdziesz tutaj wszystkie e-maile wysłane do Ciebie przez OVHcloud, poza korespondencją dotyczącą zgłoszeń.",
+  "guided_tour_contacts": "Zarządzaj listą kontaktów: dodawaj nowe kontakty i przypisuj im reguły wysyłki.",
+  "guided_tour_settings": "Dodawaj i konfiguruj reguły wysyłki, aby określić, które kontakty mają otrzymywać komunikaty w zależności od wybranych kategorii i priorytetów.",
+  "guide_menu_account_messages": "Zarządzanie komunikacją"
 }

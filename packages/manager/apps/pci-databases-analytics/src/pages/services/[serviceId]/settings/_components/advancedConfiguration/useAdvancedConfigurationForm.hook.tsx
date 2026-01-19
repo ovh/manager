@@ -23,7 +23,7 @@ export const useAdvancedConfigurationForm = ({
     'pci-databases-analytics/services/service/settings',
   );
   // sanitize the property name to avoid mismatch with errors handlers
-  const sanitizePropertyName = (name: string) => name.replace(/\./g, '::');
+  const sanitizePropertyName = (name: string) => name.replace(/\./g, ':');
   const getInitialProperties = () => {
     const initialProperties: AdvancedConfigurationProperty[] = [];
     Object.keys(initialValue).forEach((key) => {
@@ -169,7 +169,12 @@ export const useAdvancedConfigurationForm = ({
     const p: Record<string, string> = {};
     if (!formValues) return p;
     Object.keys(formValues).forEach((key) => {
-      p[key.replaceAll('::', '.')] = `${formValues[key]}`;
+      /* 
+      Following line is to replace ':' back to '.' to match the actual property name
+      replaceAll('::', '.') did not fit advanced configuration property names anymore (originally changed to fix DATATR-2580)
+      This change fixes DATATR-2832
+      */
+      p[key.replace(':', '.')] = `${formValues[key]}`;
     });
     return p;
   }, [formValues]);

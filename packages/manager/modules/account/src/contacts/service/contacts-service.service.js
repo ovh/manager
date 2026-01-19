@@ -14,8 +14,45 @@ export default class {
     this.OvhHttp = OvhHttp;
   }
 
+  // Helper function to extract contacts from services
+  extractContacts = (services) => {
+    const findContact = (type) =>
+      services.customer.contacts.find((c) => c.type === type);
+
+    const contactAdmin = findContact('administrator')?.customerCode || null;
+    const contactTech = findContact('technical')?.customerCode || null;
+    const contactBilling = findContact('billing')?.customerCode || null;
+
+    return { contactAdmin, contactTech, contactBilling };
+  };
+
   // TODO: Find a way to inject ovh-api-services depending on the service category
   getServiceInfos(service) {
+    // Handle RESELLER services differently
+    if (service.category === 'RESELLER') {
+      return this.OvhHttp.get(
+        `${service.path}/${window.encodeURIComponent(service.serviceName)}`,
+        {
+          rootPath: 'apiv6',
+        },
+      ).then((services) => {
+        const {
+          contactAdmin,
+          contactTech,
+          contactBilling,
+        } = this.extractContacts(services);
+
+        const bs = new BillingService({
+          ...service,
+          serviceName: services.resource.displayName,
+          contactTech,
+          contactAdmin,
+          contactBilling,
+        });
+        return bs;
+      });
+    }
+
     return this.OvhHttp.get(
       `${service.path}/${window.encodeURIComponent(
         service.serviceName,

@@ -35,13 +35,13 @@ const DeleteUser = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
     onSuccess: () => {
       toast.toast({
-        title: t('deleteUserToastSuccessTitle'),
+        title: t('userSuccessTitle'),
         description: t('deleteUserToastSuccessDescription', {
           name: deletedUser.username,
         }),
@@ -65,7 +65,7 @@ const DeleteUser = () => {
 
   return (
     <RouteModal isLoading={!users || !deletedUser}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-user-modal">
             {t('deleteUserTitle')}
@@ -74,14 +74,14 @@ const DeleteUser = () => {
             {t('deleteUserDescription', { name: deletedUser?.username })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               type="button"
-              mode="outline"
+              mode="ghost"
               data-testid="delete-user-cancel-button"
             >
-              {t('deleteUserButtonCancel')}
+              {t('userCancelButton')}
             </Button>
           </DialogClose>
           <Button
@@ -90,7 +90,7 @@ const DeleteUser = () => {
             onClick={handleDelete}
             data-testid="delete-user-submit-button"
           >
-            {t('deleteUserButtonConfirm')}
+            {t('userConfirmButton')}
           </Button>
         </DialogFooter>
       </DialogContent>

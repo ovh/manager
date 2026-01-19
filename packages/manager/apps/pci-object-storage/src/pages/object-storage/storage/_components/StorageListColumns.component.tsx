@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
-import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -199,6 +199,7 @@ export const useGetColumns = ({
               align="end"
             >
               <DropdownMenuItem
+                data-testid="storage-action-manage-button"
                 variant="primary"
                 onClick={() =>
                   navigate(

@@ -31,17 +31,18 @@ import {
   getListGatewaysQueryKey,
   getQueryKeyPrivateNetworksByRegion,
 } from '@/api/hooks/useNetwork';
-import { isMonoDeploymentZone } from '@/helpers';
+import { isStandardPlan } from '@/helpers';
 import queryClient from '@/queryClient';
-import { DeploymentMode } from '@/types';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
 
 export type PrivateNetworkSelectProps = {
-  network: TNetworkRegion;
+  network?: TNetworkRegion;
   onSelect: (network: TNetworkRegion) => void;
-  networks: TNetworkRegion[];
+  networks?: TNetworkRegion[];
   type: DeploymentMode;
+  plan: TClusterPlanEnum;
   region: string;
-  subnet: TPrivateNetworkSubnet;
+  subnet?: TPrivateNetworkSubnet | null;
 };
 
 export default function PrivateNetworkSelect({
@@ -49,7 +50,7 @@ export default function PrivateNetworkSelect({
   onSelect,
   networks,
   region,
-  type,
+  plan,
   subnet,
 }: Readonly<PrivateNetworkSelectProps>) {
   const { t } = useTranslation('network-add');
@@ -79,7 +80,7 @@ export default function PrivateNetworkSelect({
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}
-        className="block mb-4 mt-4"
+        className="my-4 block"
       >
         {t('kubernetes_network_form_label')}
       </OsdsText>
@@ -113,14 +114,14 @@ export default function PrivateNetworkSelect({
             className="mt-4"
             name="privateNetwork"
             size={ODS_SELECT_SIZE.md}
-            value={network?.id || (isMonoDeploymentZone(type) ? defaultNetwork.id : null)}
+            value={network?.id || (!isStandardPlan(plan) ? defaultNetwork.id : null)}
             onOdsValueChange={(ev) => {
               const networkId = `${ev.detail.value}`;
               onSelect(networks?.find((net) => net.id === networkId));
             }}
           >
             <span slot="placeholder">{t('kubernetes_network_form_select_private_option')}</span>
-            {isMonoDeploymentZone(type) && (
+            {!isStandardPlan(plan) && (
               <OsdsSelectOption value={defaultNetwork.id}>{defaultNetwork.name}</OsdsSelectOption>
             )}
             {networks?.map((net) => (
@@ -135,7 +136,7 @@ export default function PrivateNetworkSelect({
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.flat}
           color={ODS_THEME_COLOR_INTENT.primary}
-          className="xs:mb-0.5 sm:mb-0 ml-0.5"
+          className="ml-0.5 xs:mb-0.5 sm:mb-0"
           onClick={() => {
             refresh();
           }}

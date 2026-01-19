@@ -4,6 +4,11 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
   ],
+  parser: require.resolve('@typescript-eslint/parser'),
+  parserOptions: {
+    project: ['./tsconfig.json', './tsconfig.build.json'],
+    tsconfigRootDir: __dirname,
+  },
   settings: {
     react: {
       version: 'detect',
@@ -23,4 +28,10 @@ module.exports = {
     ],
     'react/jsx-boolean-value': ['error', 'never'],
   },
+  overrides: [
+    {
+      files: ['*.config.*js', '*.config.ts'],
+      parserOptions: { project: null },
+    },
+  ],
 };

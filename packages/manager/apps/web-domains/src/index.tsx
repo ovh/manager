@@ -7,11 +7,14 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import '@ovh-ux/manager-react-components/dist/style.css';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { initModuleFederation } from '@/domain/utils/module-federation-runtime';
+
 import App from './App';
 import './vite-hmr';
 import './index.scss';
+import '@ovh-ux/muk/dist/style.css';
 
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constants';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -24,7 +27,7 @@ const trackingContext = {
 
 const init = async (appName: string) => {
   const context = await initShellContext(appName, trackingContext);
-
+  initModuleFederation();
   await initI18n({
     context,
     reloadOnLocaleChange: true,

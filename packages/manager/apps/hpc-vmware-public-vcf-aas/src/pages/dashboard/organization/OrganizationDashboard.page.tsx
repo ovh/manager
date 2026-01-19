@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ChangelogButton,
   HeadersProps,
@@ -9,7 +8,6 @@ import {
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
@@ -19,7 +17,7 @@ import MessageSuspendedService from '@/components/message/MessageSuspendedServic
 
 export default function DashboardPage() {
   const { id } = useParams();
-  const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation('dashboard');
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const navigate = useNavigate();
 
@@ -35,6 +33,11 @@ export default function DashboardPage() {
       title: VIRTUAL_DATACENTERS_LABEL,
       to: useResolvedPath(subRoutes.virtualDatacenters).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.datacentres,
+    },
+    {
+      name: 'networkAcl',
+      title: t('managed_vcd_dashboard_general_network_acl'),
+      to: useResolvedPath(subRoutes.networkAcl).pathname,
     },
   ];
 
@@ -54,25 +57,9 @@ export default function DashboardPage() {
         headerButton: <VcdGuidesHeader />,
       };
 
-  const breadcrumbItems: BreadcrumbItem[] = [
-    {
-      id,
-      label: serviceName,
-    },
-    {
-      id: subRoutes.virtualDatacenters,
-      label: VIRTUAL_DATACENTERS_LABEL,
-    },
-    {
-      id: subRoutes.terminate,
-      label: t(`${NAMESPACES.ACTIONS}:terminate`),
-    },
-  ];
-
   return (
     <VcdDashboardLayout
       tabs={tabsList}
-      breadcrumbItems={breadcrumbItems}
       header={header}
       message={
         <MessageSuspendedService

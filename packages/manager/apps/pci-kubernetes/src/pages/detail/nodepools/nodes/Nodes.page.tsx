@@ -40,7 +40,6 @@ import { getNodesQueryKey, usePaginatedNodes } from '@/api/hooks/nodes';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
-import { isMultiDeploymentZones } from '@/helpers';
 import queryClient from '@/queryClient';
 
 import { useDatagridColumns } from './useDatagridColumns';
@@ -111,13 +110,13 @@ export default function NodesPage(): ReactElement {
           })}
         </OsdsText>
       </p>
-      <div className="sm:flex items-center justify-between mt-4">
+      <div className="mt-4 items-center justify-between sm:flex">
         <div className="flex flex-row">
           <OsdsButton
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
-            className="xs:mb-0.5 sm:mb-0 ml-0.5"
+            className="ml-0.5 xs:mb-0.5 sm:mb-0"
             onClick={() => {
               refresh();
             }}
@@ -131,7 +130,7 @@ export default function NodesPage(): ReactElement {
           </OsdsButton>
         </div>
 
-        <div className="justify-between flex">
+        <div className="flex justify-between">
           <OsdsSearchBar
             className="w-[70%]"
             value={searchField}
@@ -211,11 +210,7 @@ export default function NodesPage(): ReactElement {
       <LoadingSkeleton when={!isNodesPending || !isPendingRegionInfo} spinner={{ centered: true }}>
         <div>
           <Datagrid
-            columns={
-              isMultiDeploymentZones(regionInformations?.type)
-                ? columns.filter((column) => column.id !== 'actions')
-                : columns
-            }
+            columns={columns}
             items={nodes?.rows || []}
             totalItems={nodes?.totalRows || 0}
             pagination={pagination}

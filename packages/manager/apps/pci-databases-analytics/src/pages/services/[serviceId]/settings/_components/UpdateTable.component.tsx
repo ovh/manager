@@ -2,18 +2,14 @@ import { MinusCircle, PlusCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from '@datatr-ux/uxlib';
+import { Button } from '@datatr-ux/uxlib';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import NavLink from '@/components/links/NavLink.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 const UpdateTable = () => {
   const { t } = useTranslation(
@@ -50,25 +46,29 @@ const UpdateTable = () => {
     {
       title: t('tableVersion'),
       cell: `${humanizeEngine(service.engine)} ${service.version}`,
-      onClick: () => navigate('./update-version'),
+      path: './update-version',
       updateButtonDisplayed: availabilitiesVersionQuery.data?.length > 1,
+      disabled: isCapabilityDisabled(service, 'service', 'update'),
     },
     {
       title: t('tablePlan'),
       cell: service.plan,
-      onClick: () => navigate('./update-plan'),
+      path: './update-plan',
       updateButtonDisplayed: availabilitiesPlanQuery.data?.length > 1,
+      disabled: isCapabilityDisabled(service, 'service', 'update'),
     },
     {
       title: t('tableFlavor'),
       cell: service.flavor,
-      onClick: () => navigate('./update-flavor'),
+      path: './update-flavor',
       updateButtonDisplayed: availabilitiesFlavorQuery.data?.length > 1,
+      disabled: isCapabilityDisabled(service, 'serviceFlavor', 'update'),
     },
     service.storage?.size.value && {
       title: t('tableStorage'),
       cell: `${formatStorage(service.storage.size)} ${service.storage.type}`,
-      onClick: () => navigate('./update-flavor'),
+      path: './update-flavor',
+      disabled: isCapabilityDisabled(service, 'serviceDisk', 'update'),
       updateButtonDisplayed:
         availabilitiesFlavorQuery.data?.length > 0 &&
         availabilitiesFlavorQuery.data[0].specifications.storage &&
@@ -79,67 +79,61 @@ const UpdateTable = () => {
     },
   ].filter((row) => Boolean(row));
   return (
-    <Table>
-      <TableBody>
+    <table className="border-b border-gray-200 border-collapse w-full">
+      <tbody>
         {rows.map((row) => (
-          <TableRow key={row.title}>
-            <TableCell className="font-semibold">{row.title}</TableCell>
-            <TableCell>{row.cell}</TableCell>
-            {row.updateButtonDisplayed && (
-              <TableCell className="text-right">
-                <Button
+          <tr key={row.title} className="border-b border-gray-200">
+            <td className="font-semibold px-4 py-2">{row.title}</td>
+            <td className="px-4 py-2">{row.cell}</td>
+            <td className="px-4 py-2 text-right">
+              {row.updateButtonDisplayed && (
+                <NavLink
                   data-testid={`update-button-${row.title}`}
-                  className="py-0 h-auto"
-                  onClick={row.onClick}
-                  disabled={
-                    service.capabilities.service.update ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  className="py-0"
+                  to={row.path}
+                  disabled={row.disabled}
                 >
                   {t('tableUpdateButton')}
-                </Button>
-              </TableCell>
-            )}
-          </TableRow>
+                </NavLink>
+              )}
+            </td>
+          </tr>
         ))}
-        <TableRow>
-          <TableCell className="font-semibold">{t('tableNodes')}</TableCell>
-          <TableCell>{service.nodes.length}</TableCell>
-          {availabilitiesFlavorQuery.data?.length > 1 && (
-            <TableCell className="flex gap-2 justify-end">
-              {service.capabilities.nodes?.delete && (
-                <Button
-                  data-testid="delete-node-button"
-                  mode={'ghost'}
-                  className="p-0 h-auto text-destructive"
-                  onClick={() => navigate('./delete-node')}
-                  disabled={
-                    service.capabilities.nodes?.delete ===
-                    database.service.capability.StateEnum.disabled
-                  }
-                >
-                  <MinusCircle />
-                </Button>
-              )}
-              {service.capabilities.nodes?.create && (
-                <Button
-                  data-testid="create-node-button"
-                  mode={'ghost'}
-                  className="p-0 h-auto text-primary"
-                  onClick={() => navigate('./add-node')}
-                  disabled={
-                    service.capabilities.nodes?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
-                >
-                  <PlusCircle />
-                </Button>
-              )}
-            </TableCell>
-          )}
-        </TableRow>
-      </TableBody>
-    </Table>
+        <tr className="border-b border-gray-200">
+          <td className="font-semibold px-4 py-2">{t('tableNodes')}</td>
+          <td className="px-4 py-2">{service.nodes.length}</td>
+          <td className="px-4 py-2 text-right">
+            {availabilitiesFlavorQuery.data?.length > 1 && (
+              <div className="flex gap-2 justify-end">
+                {service.capabilities.nodes?.delete && (
+                  <Button
+                    data-testid="delete-node-button"
+                    mode="ghost"
+                    variant="critical"
+                    className="p-0 h-auto"
+                    onClick={() => navigate('./delete-node')}
+                    disabled={isCapabilityDisabled(service, 'nodes', 'delete')}
+                  >
+                    <MinusCircle className="size-4" />
+                  </Button>
+                )}
+                {service.capabilities.nodes?.create && (
+                  <Button
+                    data-testid="create-node-button"
+                    mode="ghost"
+                    className="p-0 h-auto"
+                    onClick={() => navigate('./add-node')}
+                    disabled={isCapabilityDisabled(service, 'nodes', 'create')}
+                  >
+                    <PlusCircle className="size-4" />
+                  </Button>
+                )}
+              </div>
+            )}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 

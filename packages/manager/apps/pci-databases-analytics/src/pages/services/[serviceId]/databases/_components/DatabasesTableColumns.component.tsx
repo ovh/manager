@@ -16,6 +16,7 @@ import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import DataTable from '@/components/data-table';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface DatabasesTableColumnsProps {
   onDeleteClick: (db: database.service.Database) => void;
@@ -60,11 +61,10 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
                         data-testid="databases-action-delete-button"
-                        variant="destructive"
+                        variant="critical"
                         disabled={
                           row.original.default ||
-                          service.capabilities.databases?.delete ===
-                            database.service.capability.StateEnum.disabled
+                          isCapabilityDisabled(service, 'databases', 'delete')
                         }
                         onClick={() => {
                           onDeleteClick(row.original);

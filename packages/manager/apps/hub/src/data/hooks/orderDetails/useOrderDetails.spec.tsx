@@ -73,7 +73,7 @@ describe('useOrderDetails', () => {
     expect(result.current.isLoading).toBe(false);
   });
 
-  it('should not run the query when orderId is undefined', async () => {
+  it('should not run the query when orderId is undefined', () => {
     const { result } = renderHook(() => useOrderDetails(undefined as unknown as number), {
       wrapper: ({ children }) => (
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

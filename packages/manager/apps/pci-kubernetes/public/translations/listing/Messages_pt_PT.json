@@ -1,11 +1,11 @@
 {
-  "kube_list_title": "Kubernetes",
+  "kube_list_title": "Managed Kubernetes",
   "kube_list_name": "Nome do cluster",
   "kube_list_id": "ID",
   "kube_list_region": "Região",
   "kube_list_version": "Versão",
   "kube_list_cluster_manage": "Gerar o cluster",
-  "kube_list_cluster_create": "Criar um cluster Kubernetes",
+  "kube_list_cluster_create": "Criar um cluster MKS",
   "kube_list_error": "Ocorreu um erro no carregamento dos seus clusters",
   "kube_common_save": "Guardar",
   "kube_common_cancel": "Cancelar",
@@ -24,6 +24,17 @@
   "kube_common_node_pool_autoscaling_title": "Configurar o tamanho do pool de nós",
   "kube_common_node_pool_title_multiple": "Configure um ou vários pools de nós (opcional)",
   "kubernetes_containers_deployment_mode_label": "Modo de implementação",
-  "kube_list_node_pools": "Precisa de volumes persistentes para vários pods em diferentes nós e zonas de disponibilidade? Experimente o nosso serviço <strong>File Storage</strong> totalmente gerido, compatível com o Managed Kubernetes Service. Desfrute de volumes 'Read Write Many' <strong>a partir de 10 GB</strong>, evoluindo de forma transparente com os seus clusters.",
-  "kube_list_node_pools_discover": "Descobrir o alpha"
+  "kube_list_node_pools": "Precisa de volumes persistentes para vários pods em diferentes nós e zonas de disponibilidade? Experimente o nosso serviço totalmente gerido <strong>File Storage</strong>, compatível com o Managed Kubernetes Service. Desfrute de volumes 'Read Write Many' <strong>a partir de 150 GiB</strong>, evoluindo de forma transparente com os seus clusters.",
+  "kube_list_node_pools_discover": "Descobrir a beta",
+  "READY": "Pronto",
+  "DISABLED": "Desativado",
+  "UPDATING": "Atualização em curso",
+  "ERROR": "Erro",
+  "DELETING": "Eliminação em curso",
+  "CREATING": "Criação em curso",
+  "ENABLED": "Ativado",
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Impacto tarifário",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "A ativação dos Floating IP implica um custo suplementar. Cada instância atual e futura deste pool de nós terá um Floating IP faturado a {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Atenção: Perda dos Floating IP",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "A desativação levará à imediata dissociação dos Floating IP. Estes endereços serão libertados permanentemente e não poderão ser recuperados."
 }

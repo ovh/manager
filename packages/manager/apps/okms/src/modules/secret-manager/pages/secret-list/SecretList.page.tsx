@@ -26,7 +26,9 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
 import { PATH_LABEL } from '@/constants';
@@ -43,45 +45,9 @@ export default function SecretListPage() {
   const { notifications } = useNotifications();
   const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
   const { okmsId } = useRequiredParams('okmsId');
-
-  const columns: DatagridColumn<Secret>[] = [
-    {
-      id: 'path',
-      cell: DatagridCellPath,
-      label: PATH_LABEL,
-    },
-    {
-      id: 'version',
-      cell: DatagridCellVersion,
-      label: t('version'),
-    },
-    {
-      id: 'createdAt',
-      cell: DatagridCreationDate,
-      label: t('creation_date', { ns: NAMESPACES.DASHBOARD }),
-    },
-    {
-      id: 'actions',
-      cell: DatagridAction,
-      label: '',
-    },
-  ];
-
-  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
-    useSecretList({ okmsId });
+  const { trackClick } = useOkmsTracking();
 
   const okmsListUrl = useBackToOkmsListUrl();
-
-  if (error)
-    return (
-      <ErrorBanner
-        error={isErrorResponse(error) ? error.response : {}}
-        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
-        onReloadPage={refetch}
-      />
-    );
-
-  const secrets = data?.pages.flatMap((page) => page.data);
 
   return (
     <BaseLayout
@@ -111,31 +77,18 @@ export default function SecretListPage() {
           <OdsButton
             label={t('okms_manage_label')}
             variant="outline"
-            onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId))}
+            onClick={() => {
+              navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId));
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'navigation',
+                actions: ['okms'],
+              });
+            }}
           />
         </div>
-        <Datagrid
-          columns={columns}
-          items={secrets || []}
-          totalItems={secrets?.length ?? 0}
-          isLoading={isPending}
-          hasNextPage={hasNextPage}
-          onFetchNextPage={fetchNextPage}
-          sorting={sorting}
-          onSortChange={setSorting}
-          contentAlignLeft
-          topbar={
-            <OdsButton
-              label={t('create_a_secret')}
-              onClick={() =>
-                navigate({
-                  pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
-                  search: `?${SECRET_MANAGER_SEARCH_PARAMS.okmsId}=${okmsId}`,
-                })
-              }
-            />
-          }
-        />
+        <SecretDatagrid okmsId={okmsId} />
       </div>
       <Suspense>
         <Outlet />
@@ -143,3 +96,77 @@ export default function SecretListPage() {
     </BaseLayout>
   );
 }
+
+const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
+  const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
+  const navigate = useNavigate();
+
+  const { trackClick } = useOkmsTracking();
+
+  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
+    useSecretList({ okmsId });
+
+  if (error)
+    return (
+      <ErrorBanner
+        error={isErrorResponse(error) ? error.response : {}}
+        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
+        onReloadPage={refetch}
+      />
+    );
+
+  const secrets = data?.pages.flatMap((page) => page.data);
+
+  const columns: DatagridColumn<Secret>[] = [
+    {
+      id: 'path',
+      cell: DatagridCellPath,
+      label: PATH_LABEL,
+    },
+    {
+      id: 'version',
+      cell: DatagridCellVersion,
+      label: t('version'),
+    },
+    {
+      id: 'createdAt',
+      cell: DatagridCreationDate,
+      label: t('creation_date', { ns: NAMESPACES.DASHBOARD }),
+    },
+    {
+      id: 'actions',
+      cell: DatagridAction,
+      label: '',
+    },
+  ];
+  return (
+    <Datagrid
+      columns={columns}
+      items={secrets || []}
+      totalItems={secrets?.length ?? 0}
+      isLoading={isPending}
+      hasNextPage={hasNextPage}
+      onFetchNextPage={fetchNextPage}
+      sorting={sorting}
+      onSortChange={setSorting}
+      contentAlignLeft
+      topbar={
+        <OdsButton
+          label={t('create_a_secret')}
+          onClick={() => {
+            navigate({
+              pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
+              search: `?${SECRET_MANAGER_SEARCH_PARAMS.okmsId}=${okmsId}`,
+            });
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'navigation',
+              actions: ['create', 'secret'],
+            });
+          }}
+        />
+      }
+    />
+  );
+};

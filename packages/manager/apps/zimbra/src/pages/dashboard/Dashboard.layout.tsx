@@ -5,7 +5,7 @@ import { Outlet, useResolvedPath, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
-import { OdsTag } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton, OdsTag } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -151,7 +151,11 @@ export const DashboardLayout: React.FC = () => {
 
   return (
     <BaseLayout
-      breadcrumb={<Breadcrumb namespace={['common', NAMESPACES.DASHBOARD]} />}
+      breadcrumb={
+        <Suspense fallback={<OdsSkeleton className="[&::part(skeleton)]:max-w-80" />}>
+          <Breadcrumb namespace={['common', NAMESPACES.DASHBOARD]} />
+        </Suspense>
+      }
       header={{
         title: 'Zimbra',
         headerButton: <GuideButton items={guideItems} />,

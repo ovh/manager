@@ -3,12 +3,14 @@
   "pci_project_flavors_billing_monthly": "Co miesiąc ",
   "pci_project_flavors_billing_price_hourly": "{{price}} netto/godz.",
   "pci_project_flavors_billing_price_monthly": "{{price}} netto/m-c",
-  "pci_project_flavors_billing_price_hourly_price_label": "Cena:",
+  "pci_project_flavors_billing_price_hourly_price_label": "Cena: ",
   "pci_project_flavors_billing_addons_price_monthly": "{{price}} netto/m-c",
-  "pci_project_flavors_billing_price_monthly_instance_price_label": "Cena:",
-  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway:",
-  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Floating IP:",
-  "pci_projects_project_instances_add_total_price_label": "Razem:",
+  "pci_project_flavors_billing_price_monthly_instance_price_label": "Cena: ",
+  "pci_project_flavors_billing_price_monthly_gateway_price_label": "Gateway: ",
+  "pci_project_flavors_billing_price_monthly_floatingip_price_label": "Adresy Floating IP: ",
+  "pci_projects_project_instances_add_total_price_label": "Łącznie: ",
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} netto/godz.",
-  "pci_projects_project_instances_configure_billing_type": "Skonfiguruj typ płatności"
+  "pci_projects_project_instances_configure_billing_type": "Skonfiguruj typ płatności",
+  "pci_projects_project_instances_configure_billing_type_description": "Możesz zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”.",
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Cena zawierająca koszt adresów Floating IP"
 }

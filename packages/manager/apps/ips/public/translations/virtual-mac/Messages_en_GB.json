@@ -1,7 +1,7 @@
 {
   "addVirtualMacTitle": "Add a virtual MAC",
   "addVirtualMacNew": "Create a new virtual MAC address",
-  "addVirtualMacNewInfo": "Virtual MAC addresses enable better IP management by assigning unique MAC addresses to each virtual machine.",
+  "addVirtualMacNewInfo": "Virtual MAC addresses allow for better management of IP addresses by assigning unique MAC addresses to each virtual machine.",
   "addVirtualMacNewInfoGuide": "See the guide on virtual MACs",
   "addVirtualMacExisting": "Use an existing virtual MAC address",
   "virtualMacIpAddress": "IP address",

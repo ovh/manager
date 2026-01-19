@@ -36,5 +36,6 @@
   "netapp_volumes_snapshots_hold_action_success": "O backup da sua snapshot foi realizado com sucesso.",
   "netapp_volumes_snapshots_hold_action_error": "Ocorreu um problema ao guardar a sua Snapshot",
   "netapp_volumes_snapshots_actions_create_volume": "Criar um volume",
-  "netapp_volumes_snapshots_size": "Dimensão"
+  "netapp_volumes_snapshots_size": "Dimensão",
+  "netapp_volumes_snapshots_path": "Caminho de acesso"
 }

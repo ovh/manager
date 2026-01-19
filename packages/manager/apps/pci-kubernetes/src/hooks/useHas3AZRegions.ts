@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParam } from '@ovh-ux/manager-pci-common';
 
-import { useProductAvailability } from '@ovh-ux/manager-pci-common';
+import usePlanToRegionAvailability from '@/api/hooks/usePlanToRegionAvailability';
+import { DeploymentMode } from '@/types';
 
 export enum RegionType {
   Region = 'region',
@@ -11,24 +12,20 @@ export enum RegionType {
 }
 
 const useHas3AZRegions = () => {
-  const { projectId } = useParams<{ projectId: string }>();
+  const { projectId } = useParam('projectId');
 
-  const { data: availability } = useProductAvailability(projectId, {
-    product: 'kubernetes',
-  });
+  const { data: availability, isPending } = usePlanToRegionAvailability(projectId, 'mks');
 
-  const product = availability?.products.find(({ name }) => name === 'kubernetes');
-
-  const regionTypes = product?.regions.map(({ type }) => type) || [];
+  const regionTypes = (!isPending && availability.map(({ type }) => type)) || [];
 
   const uniqueRegions = [...new Set(regionTypes)].sort((a, b) => {
-    if (a === (RegionType.Region3Az as string)) return 1;
-    if (b === (RegionType.Region3Az as string)) return -1;
+    if (a === DeploymentMode.MULTI_ZONES) return 1;
+    if (b === DeploymentMode.MULTI_ZONES) return -1;
     return 0;
-  }) as RegionType[];
+  });
 
   return {
-    contains3AZ: useMemo(() => uniqueRegions.includes(RegionType.Region3Az), [uniqueRegions]),
+    contains3AZ: useMemo(() => uniqueRegions.includes(DeploymentMode.MULTI_ZONES), [uniqueRegions]),
     uniqueRegions,
   };
 };

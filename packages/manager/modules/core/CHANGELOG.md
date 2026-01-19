@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.9...@ovh-ux/manager-core@13.4.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4596] ([6fefde9](https://github.com/ovh/manager/commit/6fefde95c9960cb9c526d591b922ec181ce9b9f9))
+
+
+### Features
+
+* **core:** added translation for in and not in criterion ([f41e5b4](https://github.com/ovh/manager/commit/f41e5b4c41239db9ceb8207cd81e55e32d370e73)), closes [#MANAGER-17709](https://github.com/ovh/manager/issues/MANAGER-17709)
+
+
+
+
+
+## [13.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.8...@ovh-ux/manager-core@13.3.9) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.7...@ovh-ux/manager-core@13.3.8) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.6...@ovh-ux/manager-core@13.3.7) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.5...@ovh-ux/manager-core@13.3.6) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.4...@ovh-ux/manager-core@13.3.5) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.3...@ovh-ux/manager-core@13.3.4) (2025-12-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
+## [13.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.2...@ovh-ux/manager-core@13.3.3) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-core
+
+
+
+
+
 ## [13.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@13.3.1...@ovh-ux/manager-core@13.3.2) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-core

@@ -8,9 +8,10 @@ import {
 } from '@/data/hooks/ip';
 import { useIpGroupDatagridColumns } from './useIpGroupDatagridColumns';
 import {
-  isAntiDdosEnabled,
-  isGameFirewallEnabled,
+  isAntiDdosAvailable,
+  isGameFirewallAvailable,
 } from '../DatagridCells/enableCellsUtils';
+import { getIpv4SubIpList, isValidIpv6Block } from '@/utils';
 
 type IpGroupDatagridProps = {
   row: Row<{ ip: string }>;
@@ -34,24 +35,30 @@ export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
     parentIp: row.original.ip,
     parentHeaders,
     serviceName: ipDetails?.routedTo?.serviceName,
-    isAntiDdosEnabled: isAntiDdosEnabled(ipDetails),
-    isGameFirewallEnabled: isGameFirewallEnabled(ipDetails),
+    isAntiDdosAvailable: isAntiDdosAvailable(ipDetails),
+    isGameFirewallAvailable: isGameFirewallAvailable(ipDetails),
     isByoipSlice: isIpDetailsLoading || !!ipDetails?.bringYourOwnIp,
   });
 
   const {
     ipsReverse: ipReverseList,
     isLoading: isIpReverseLoading,
-  } = useGetIcebergIpReverse({ ip: row.original.ip });
+  } = useGetIcebergIpReverse({
+    ip: row.original.ip,
+    enabled: isValidIpv6Block(row.original.ip),
+  });
 
-  const ipList = React.useMemo(
-    () =>
-      ipDetails?.bringYourOwnIp
-        ? slice?.find(({ slicingSize }) => slicingSize === 32)?.childrenIps ||
-          []
-        : ipReverseList?.map((ip) => ip.ipReverse) || [],
-    [ipDetails, slice, ipReverseList],
-  );
+  const ipList = React.useMemo(() => {
+    if (ipDetails?.bringYourOwnIp) {
+      return (
+        slice?.find(({ slicingSize }) => slicingSize === 32)?.childrenIps || []
+      );
+    }
+
+    return isValidIpv6Block(row.original.ip)
+      ? ipReverseList?.map((ip) => ip.ipReverse) || []
+      : getIpv4SubIpList(row.original.ip);
+  }, [ipDetails, slice, ipReverseList, row.original.ip]);
 
   return (
     <Datagrid
@@ -63,8 +70,8 @@ export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
       isLoading={
         isLoading ||
         isIpDetailsLoading ||
-        isIpReverseLoading ||
-        isByoipSliceLoading
+        isByoipSliceLoading ||
+        isIpReverseLoading
       }
       numberOfLoadingRows={1}
     />

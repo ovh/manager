@@ -7,9 +7,6 @@ import CommunicationsPage from './Communications.page';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
   OdsSpinner: () => <div data-testid="ods-spinner" />,
-  OdsButton: vi.fn().mockReturnValue(<div></div>),
-  OdsText: vi.fn().mockReturnValue(<div></div>),
-  OdsLink: vi.fn().mockReturnValue(<div></div>),
 }));
 
 customElements.define(
@@ -21,11 +18,32 @@ customElements.define(
   },
 );
 
+vi.mock('@ovh-ux/muk', () => ({
+  useFormatDate: vi.fn(() => () => '2025-01-01'),
+  Link: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => (
+    <a {...props}>{children}</a>
+  ),
+  LinkType: {
+    external: 'external',
+    internal: 'internal',
+  },
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  ButtonType: {
+    button: 'button',
+    externalLink: 'externalLink',
+  },
+  PageLocation: {
+    datagrid: 'datagrid',
+    page: 'page',
+  },
+}));
+
 vi.mock('@ovh-ux/manager-react-components', () => ({
   BaseLayout: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
-  useFormatDate: vi.fn().mockReturnValue(() => '2025-01-01'),
   Datagrid: ({ isLoading }: React.ComponentProps<typeof Datagrid>) => {
     return isLoading ? (
       <div data-component="ods-skeleton"></div>
@@ -49,9 +67,12 @@ vi.mock('@/data/hooks/useNotification/useNotification', () => ({
     fetchNextPage: vi.fn(),
     isLoading: true,
     isRefetching: false,
+    refetch: vi.fn(),
     status: {},
     sorting: [],
-    setSorting: false,
+    setSorting: vi.fn(),
+    filters: [],
+    search: '',
     pageIndex: 1,
   }),
   useNotificationReference: vi.fn().mockReturnValue({
@@ -76,6 +97,20 @@ vi.mock('react-router-dom', () => ({
 vi.mock('@/hooks/useHelpLink/useHelpLink', () => ({
   default: vi.fn().mockReturnValue('https://help.ovhcloud.com/csm'),
   useHelpLink: vi.fn().mockReturnValue('https://help.ovhcloud.com/csm'),
+}));
+
+vi.mock('@/data/hooks/useAccountUrn/useAccountUrn', () => ({
+  useAccountUrn: vi.fn().mockReturnValue({
+    data: 'urn:test:account',
+    isLoading: false,
+  }),
+}));
+
+vi.mock('@/hooks/useAuthorization/useAuthorization', () => ({
+  useAuthorization: vi.fn().mockReturnValue({
+    isAuthorized: true,
+    isLoading: false,
+  }),
 }));
 
 const queryClient = new QueryClient();

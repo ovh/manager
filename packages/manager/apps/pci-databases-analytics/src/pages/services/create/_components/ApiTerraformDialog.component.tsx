@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Button,
@@ -18,20 +18,24 @@ import {
   TabsList,
   TabsTrigger,
   useToast,
-} from '@datatr-ux/uxlib';
-import {
   json as JsonLanguage,
   terraform as TerraformLanguage,
-} from '@datatr-ux/uxlib/components/code';
+  DialogBody,
+  DialogFooter,
+} from '@datatr-ux/uxlib';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import A from '@/components/links/A.component';
 import { useServiceToTerraform } from '@/hooks/api/database/terraform/useServiceToTerraform';
 import { useOrderFunnel } from './useOrderFunnel.hook';
 import { useLocale } from '@/hooks/useLocale';
-
 import * as TTerraform from '@/types/terraform';
 import * as database from '@/types/cloud/project/database';
 import { Disk } from '@/types/cloud/project/database/service/Disk';
-import { LINKS, getDocumentationUrl } from '@/configuration/documentation';
+import {
+  LINKS,
+  getConsoleAPILink,
+  getDocumentationUrl,
+} from '@/configuration/documentation';
 
 type OrderFunnelResult = ReturnType<typeof useOrderFunnel>['result'];
 
@@ -46,6 +50,7 @@ const ApiTerraformDialog = ({
   const { projectId } = useParams();
   const locale = useLocale();
   const { toast } = useToast();
+  const { environment } = useContext(ShellContext);
 
   // API and Terraform schemas description
   const apiSchemaDescription = {
@@ -89,7 +94,7 @@ const ApiTerraformDialog = ({
     onError: () => {
       toast({
         title: t('pciDatabasesAddCommandDialogTerraformFetchError'),
-        variant: 'destructive',
+        variant: 'critical',
       });
     },
     onSuccess: (data) => {
@@ -175,14 +180,14 @@ const ApiTerraformDialog = ({
   const apiEndpoint = `/cloud/project/${projectId}/database/${dialogData.availability.engine}`;
 
   return (
-    <>
-      <Dialog open={true} onOpenChange={onRequestClose}>
-        <DialogContent className="max-w-3xl">
-          <DialogHeader>
-            <DialogTitle>
-              {t('pciDatabasesAddCommandDialogEquivalentOrder')}
-            </DialogTitle>
-          </DialogHeader>
+    <Dialog open={true} onOpenChange={onRequestClose}>
+      <DialogContent variant="information" className="max-w-3xl">
+        <DialogHeader>
+          <DialogTitle>
+            {t('pciDatabasesAddCommandDialogEquivalentOrder')}
+          </DialogTitle>
+        </DialogHeader>
+        <DialogBody>
           <Tabs
             defaultValue={currentTab}
             value={currentTab}
@@ -200,19 +205,41 @@ const ApiTerraformDialog = ({
               value="api"
               className="max-h-[60vh] overflow-auto space-y-4"
             >
-              <p>{t('pciDatabasesAddCommandDialogApiDescription')}</p>
-              <Trans
-                t={t}
-                i18nKey={'pciDatabasesAddCommandDialogDocumentationCta'}
-                components={{
-                  anchor: (
-                    <A
-                      target="_blank"
-                      href={getDocumentationUrl(LINKS.DB_ORDER_EQ_API, locale)}
-                    ></A>
-                  ),
-                }}
-              ></Trans>
+              <div>
+                <p>{t('pciDatabasesAddCommandDialogApiDescription')}</p>
+                <Trans
+                  t={t}
+                  i18nKey={'pciDatabasesAddCommandDialogDocumentationCta'}
+                  components={{
+                    anchor: (
+                      <A
+                        target="_blank"
+                        href={getDocumentationUrl(
+                          LINKS.DB_ORDER_EQ_API,
+                          locale,
+                        )}
+                      ></A>
+                    ),
+                  }}
+                ></Trans>
+                <p>
+                  <Trans
+                    t={t}
+                    i18nKey={'pciDatabasesAddCommandDialogAPICta'}
+                    components={{
+                      anchor: (
+                        <A
+                          target="_blank"
+                          href={getConsoleAPILink(
+                            String(environment.region),
+                            dialogData.engine.name,
+                          )}
+                        ></A>
+                      ),
+                    }}
+                  ></Trans>
+                </p>
+              </div>
               <div>{t('pciDatabasesAddCommandDialogApiParameters')}</div>
               <div className="inline-flex gap-1 font-mono text-sm items-start">
                 <span className="rounded bg-green-100 px-2 py-0.5 text-green-700 font-semibold">
@@ -305,15 +332,17 @@ const ApiTerraformDialog = ({
               </Table>
             </TabsContent>
           </Tabs>
+        </DialogBody>
+        <DialogFooter>
           <Button
             onClick={onRequestClose}
             data-testid="dialog-close-button-footer"
           >
             {t('pciDatabasesAddCommandDialogClose')}
           </Button>
-        </DialogContent>
-      </Dialog>
-    </>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 

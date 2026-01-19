@@ -9,6 +9,7 @@
   "privateDatabase_dashboard_version_mysql": "MySQL {{version}}",
   "privateDatabase_dashboard_version_postgresql": "PostgreSQL {{version}}",
   "privateDatabase_dashboard_version_redis": "Caching {{version}}",
+  "privateDatabase_dashboard_version_valkey": "Valkey {{version}}",
   "privateDatabase_dashboard_nb_cpu": "Number of CPU",
   "privateDatabase_dashboard_ip": "IP",
   "privateDatabase_dashboard_detached": "Suspended",
@@ -31,6 +32,8 @@
   "privateDatabase_dashboard_datacenter_gra3": "eu-west-gra",
   "privateDatabase_dashboard_datacenter_bhs": "ca-east-bhs",
   "privateDatabase_dashboard_datacenter_bhs1": "ca-east-bhs",
+  "privateDatabase_dashboard_datacenter_eu-west-gra": "eu-west-gra",
+  "privateDatabase_dashboard_datacenter_ca-east-bhs": "ca-east-bhs",
   "privateDatabase_dashboard_hostname": "Host name",
   "privateDatabase_dashboard_hostname_tooltip": "Please use the host name provided to connect to your instance, as the IP address associated with it may change over time.",
   "privateDatabase_dashboard_host": "Host",
@@ -62,6 +65,7 @@
   "privateDatabase_configurations_general_mysql": "General configuration of MySQL",
   "privateDatabase_configurations_general_mariadb": "MariaDB general configuration ",
   "privateDatabase_configurations_general_redis": "General Caching Configuration",
+  "privateDatabase_configurations_general_valkey": "General Valkey configuration",
   "privateDatabase_configurations_general_postgresql": "General PostgreSQL configuration ",
   "privateDatabase_configurations_general_postgresql_soon": "Soon available for PostgreSQL",
   "privateDatabase_configuration_alert": "Any changes will result in the server rebooting.",
@@ -504,10 +508,5 @@
   "privateDatabase_tabs_list_extensions_enable_error": "An error has occurred enabling your extension.",
   "privateDatabase_tabs_list_extensions_disable_success": "Extension correctly disabled.",
   "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension.",
-  "privateDatabase_order_sql_period_sub_title": "How long do you want to use it for?",
-  "privateDatabase_beta_status": "Beta",
-  "privateDatabase_dashboard_version_valkey": "Valkey {{version}}",
-  "privateDatabase_configurations_general_valkey": "General Valkey configuration",
-  "privateDatabase_dashboard_datacenter_eu-west-gra": "eu-west-gra",
-  "privateDatabase_dashboard_datacenter_ca-east-bhs": "ca-east-bhs"
+  "privateDatabase_order_sql_period_sub_title": "How long do you want to use it for?"
 }

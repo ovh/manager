@@ -6,7 +6,7 @@
   "pci_workflow_create_select_instance": "Wybierz instancję",
   "pci_workflow_create_schedule_title": "Określenie kolejności",
   "pci_workflow_create_schedule_rotate7_title": "Rotacja 7",
-  "pci_workflow_create_schedule_rotate_description": "Kopia zapasowa wykonywana jest codziennie między 22.00 a 6.00, a w ramach rotacji zachowanych jest {{numEntries}} kopii. Po utworzeniu nowej kopii zapasowej najstarsza jest usuwana.",
+  "pci_workflow_create_schedule_rotate_description": "Kopia zapasowa wykonywana jest codziennie między 22.00 a 6.00 (UTC). Liczba ostatnich kopii zachowanych w ramach rotacji: {{numEntries}}. Po utworzeniu nowej kopii zapasowej najstarsza jest usuwana.",
   "pci_workflow_create_schedule_rotate14_title": "Rotacja 14",
   "pci_workflow_create_schedule_custom_title": "Spersonalizowany",
   "pci_workflow_create_schedule_custom_description": "Wybierz zarządzanie (format UNIX Cron) oraz maksymalną liczbę rotacji i wykonań zadań.",

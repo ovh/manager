@@ -21,7 +21,7 @@
   "edit_contact_success_message": "O contacto foi modificado com sucesso.",
   "verify_contact_error_message": "Ocorreu um erro aquando da validação do contacto.",
   "restart_validation_contact_success_message": "O e-mail de validação foi reenviado com sucesso.",
-  "restart_validation_contact_error_message": "Ocorreu um erro ao renovar o e-mail de validação.",
+  "restart_validation_contact_error_message": "Ocorreu um erro durante a renovação do e-mail de validação.",
   "verify_contact_info": "Se necessário, poderá introduzir o código de validação mais tarde para finalizar a adição de contacto.",
   "verify_contact_link_label": "Reenviar o código",
   "verify_contact_contact_email_info": "Recebeu um código em <strong>{{email}}</strong>.",
@@ -36,10 +36,10 @@
   "contact_form_type_phone_label": "Telefone",
   "contact_form_name_label": "Nome",
   "verify_contact_form_otp_label": "Código de validação",
-  "validation_pending_modal_title": "Validação do seu contato",
-  "validation_pending_contact_email_info": "Um link de validação foi enviado para <strong>{{email}}</strong>.",
+  "validation_pending_modal_title": "Validação do seu contacto",
+  "validation_pending_contact_email_info": "Foi enviado um link de validação para <strong>{{email}}</strong>.",
   "validation_pending_resend_validation_code_label": "Reenviar o link de validação",
-  "validation_pending_validate_contact_label": "Inserir o código",
+  "validation_pending_validate_contact_label": "Introduzir o código",
   "activate_contact_success_message": "O contacto foi ativado com sucesso.",
-  "activate_contact_error_message": "Ocorreu um erro ao ativar o contacto."
+  "activate_contact_error_message": "Ocorreu um erro durante a ativação do contacto."
 }

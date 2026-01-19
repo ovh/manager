@@ -1,6 +1,7 @@
 import ai from '../AI';
 import catalog from '../Catalog';
 import quantum from '../Quantum';
+import { ResourceType } from '@/components/order/app-scaling/scalingHelper';
 
 export interface AppPricing {
   price: number;
@@ -132,6 +133,7 @@ export interface NotebookOrderResult {
   editor: ai.capabilities.notebook.Editor;
   notebookName: string;
   unsecureHttp: boolean;
+  timeoutAutoRestart: boolean;
   labels: {
     [key: string]: string;
   };
@@ -147,6 +149,7 @@ export interface JobOrderResult {
   image: string;
   jobName: string;
   unsecureHttp: boolean;
+  timeoutAutoRestart: boolean;
   sshKey: string[];
   volumes: OrderVolumes[];
   dockerCommand: string[];
@@ -179,5 +182,10 @@ export interface Scaling {
   averageUsageTarget?: number;
   replicasMax?: number;
   replicasMin?: number;
-  resourceType?: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
+  resourceType?: ResourceType;
+  metricUrl?: string;
+  dataFormat?: ai.app.CustomMetricsFormatEnum;
+  dataLocation?: string;
+  targetMetricValue?: number;
+  aggregationType?: ai.app.CustomMetricsAggregationTypeEnum;
 }

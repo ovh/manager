@@ -40,6 +40,15 @@ const mockedService = {
     maintenanceApply: {
       create: database.service.capability.StateEnum.enabled,
     },
+    serviceIpRestriction: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceFlavor: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceDisk: {
+      update: database.service.capability.StateEnum.enabled,
+    },
   },
 };
 
@@ -151,7 +160,7 @@ describe('Settings page', () => {
         screen.getByText(mockedMaintenance.description),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(mockedServiceOrig.description),
+        screen.getByTestId('service-configuration-table'),
       ).toBeInTheDocument();
     });
   });

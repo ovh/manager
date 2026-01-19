@@ -1,6 +1,6 @@
 {
   "title": "As minhas comunicações",
-  "description": "Consulte todas as comunicações que a OVHcloud lhe enviou, exceto os pedidos de assistência. Consulte-os através da secção: <anchor>Assistência</anchor>",
+  "description": "Consulte todas as comunicações enviadas pela OVHcloud, com exceção dos pedidos de assistência. Aceda através da secção: <anchor>Assistência</anchor>",
   "assistance_link_label": "Assistência",
   "tab_communications": "As minhas comunicações",
   "tab_contacts": "Contactos",
@@ -25,5 +25,15 @@
   "status_disabled": "Desativado",
   "status_valid": "Ativo",
   "status_to_validate": "Em espera",
-  "error_rate_limit_message": "Atingiu o limite de pedidos. Por favor, tente mais tarde."
+  "error_rate_limit_message": "Atingiu o limite de pedidos. Por favor, tente mais tarde.",
+  "guide_menu_header": "Manuais",
+  "guide_menu_start_guide": "Visita guiada",
+  "guided_tour_introduction_title": "Bem-vindo à sua nova página As minhas comunicações",
+  "guided_tour_introduction_content": "Deseja ver a visita guiada?",
+  "guided_tour_introduction_dont_display_again": "Não mostrar mais",
+  "guided_tour_introduction_start_guide": "Ver a visita guiada",
+  "guided_tour_communications": "Consulte aqui todos os e-mails que a OVHcloud lhe enviou, exceto os pedidos de assistência.",
+  "guided_tour_contacts": "Faça aqui a gestão da sua lista de contactos e adicione contactos para os associar às suas configurações de envio.",
+  "guided_tour_settings": "Adicione e defina as suas regras de envio para escolher os contactos que receberão as comunicações, em função das categorias e prioridades selecionadas.",
+  "guide_menu_account_messages": "Gerir as comunicações"
 }

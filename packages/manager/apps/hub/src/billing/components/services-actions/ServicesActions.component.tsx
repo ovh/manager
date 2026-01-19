@@ -1,5 +1,6 @@
 import React, { Suspense, useState } from 'react';
 
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -60,7 +61,7 @@ export default function ServicesActions({
 
   // When we'll migrate to ODS 18, we should try to have the popover "rounded" & "withArrow" and add a direction to it
   return shouldBeDisplayed ? (
-    <OsdsPopover dir="rtl" onClick={onOpenPopOver}>
+    <OsdsPopover dir="rtl" onClick={void onOpenPopOver}>
       <OsdsButton
         slot="popover-trigger"
         className="min-w-9"
@@ -96,6 +97,10 @@ export default function ServicesActions({
                 <OsdsLink
                   color={ODS_THEME_COLOR_INTENT.primary}
                   {...link}
+                  {...(external && {
+                    target: OdsHTMLAnchorElementTarget._blank,
+                    rel: OdsHTMLAnchorElementRel.noopener,
+                  })}
                   disabled={disabled || undefined}
                   dir="ltr"
                 >

@@ -22,14 +22,14 @@ const ToggleAcl = () => {
     onError: (err) => {
       toast.toast({
         title: t('toggleAclErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: err.response.data.message,
       });
       setSwitchState(aclsEnabled);
     },
     onEditSuccess: (updatedService) => {
       toast.toast({
-        title: t('toggleAclSuccessTitle'),
+        title: t('userSuccessTitle'),
         description: updatedService.aclsEnabled
           ? t('toggleAclEnabledSuccessDescription')
           : t('toggleAclADisabledSuccessDescription'),

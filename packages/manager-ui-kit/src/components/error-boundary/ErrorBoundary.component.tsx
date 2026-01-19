@@ -44,7 +44,7 @@ export const ErrorBoundary = ({
     if (isPreloaderHide) {
       shell?.ux.hidePreloader();
     }
-  }, [isPreloaderHide]);
+  }, [isPreloaderHide, shell?.ux]);
 
   return (
     <>

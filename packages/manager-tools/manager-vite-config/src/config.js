@@ -14,6 +14,8 @@ const runInContainer = process.env.CONTAINER;
 
 const getBaseConfig = (config) => {
   const envConfig = config || {};
+  const staticCopyTargets = envConfig.staticCopyTargets || [];
+  const additionalDedupe = envConfig.dedupe || [];
 
   if (envConfig.isLABEU || process.env.LABEU) {
     const labeuHost = process.env.LABEU_HOST;
@@ -25,6 +27,29 @@ const getBaseConfig = (config) => {
     envConfig.host = labeuHost;
   }
 
+  const baseDedupe = [
+    '@ovh-ux/manager-core-api',
+    '@ovh-ux/manager-react-shell-client',
+    '@tanstack/react-query',
+    'i18next',
+    'react',
+    'react-dom',
+    'react-i18next',
+    'react-router-dom',
+    'zustand',
+    '@ovhcloud/ods-common-core',
+    '@ovhcloud/ods-common-testing',
+    '@ovhcloud/ods-common-theming',
+    '@ovhcloud/ods-components',
+    '@ovhcloud/ods-theme-blue-jeans',
+    'vite',
+    'vitest',
+    '@vitest',
+    'typescript',
+    'date-fns',
+    '@ovh-ux/muk',
+  ];
+
   return {
     base: isContainerApp || !runInContainer ? './' : '/app/',
     root: resolve(process.cwd(), 'src'),
@@ -34,28 +59,7 @@ const getBaseConfig = (config) => {
       alias: {
         '@': resolve(join(process.cwd(), 'src')),
       },
-      dedupe: [
-        '@ovh-ux/manager-core-api',
-        '@ovh-ux/manager-react-shell-client',
-        '@tanstack/react-query',
-        'i18next',
-        'react',
-        'react-dom',
-        'react-i18next',
-        'react-router-dom',
-        'zustand',
-        '@ovhcloud/ods-common-core',
-        '@ovhcloud/ods-common-testing',
-        '@ovhcloud/ods-common-theming',
-        '@ovhcloud/ods-components',
-        '@ovhcloud/ods-theme-blue-jeans',
-        'vite',
-        'vitest',
-        '@vitest',
-        'typescript',
-        'date-fns',
-        '@ovh-ux/muk',
-      ],
+      dedupe: [...baseDedupe, ...additionalDedupe],
     },
     define: {
       __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
@@ -68,7 +72,7 @@ const getBaseConfig = (config) => {
         include: '**/*.svg',
       }),
       viteStaticCopy({
-        targets: [...getCommonTranslations()],
+        targets: [...getCommonTranslations(), ...staticCopyTargets],
       }),
     ],
     css: {

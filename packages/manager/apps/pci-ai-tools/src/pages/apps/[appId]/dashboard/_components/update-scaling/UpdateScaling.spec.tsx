@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   act,
   fireEvent,
@@ -36,7 +36,7 @@ describe('Data Sync Component', () => {
     }));
 
     vi.mock('@/data/api/ai/app/scaling-strategy/scaling-strategy.api', () => ({
-      scalingStrategy: vi.fn(() => mockedAppAutoScalingGPU),
+      scalingStrategy: vi.fn(() => Promise.resolve(mockedAppAutoScalingGPU)),
     }));
 
     vi.mock('@/data/api/catalog/catalog.api', () => ({
@@ -62,14 +62,24 @@ describe('Data Sync Component', () => {
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
     expect(screen.getByTestId('replicas-input')).toBeTruthy();
+
     act(() => {
       fireEvent.change(screen.getByTestId('replicas-input'), {
         target: {
           value: 6,
         },
       });
+    });
+
+    await waitFor(() => {
+      const submitButton = screen.getByTestId('update-scaling-submit-button');
+      expect(submitButton).toBeTruthy();
+    });
+
+    act(() => {
       fireEvent.click(screen.getByTestId('update-scaling-submit-button'));
     });
+
     await waitFor(() => {
       expect(scalingApi.scalingStrategy).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
@@ -84,14 +94,24 @@ describe('Data Sync Component', () => {
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
     expect(screen.getByTestId('replicas-input')).toBeTruthy();
+
     act(() => {
       fireEvent.change(screen.getByTestId('replicas-input'), {
         target: {
           value: 6,
         },
       });
+    });
+
+    await waitFor(() => {
+      const submitButton = screen.getByTestId('update-scaling-submit-button');
+      expect(submitButton).toBeTruthy();
+    });
+
+    act(() => {
       fireEvent.click(screen.getByTestId('update-scaling-submit-button'));
     });
+
     await waitFor(() => {
       expect(scalingApi.scalingStrategy).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
@@ -108,16 +128,29 @@ describe('Data Sync Component', () => {
       appQuery: {} as UseQueryResult<ai.app.App, AIError>,
     });
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
-    expect(screen.getByTestId('max-rep-input')).toBeTruthy();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
+      expect(screen.getByTestId('max-rep-input')).toBeTruthy();
+    });
+
     act(() => {
       fireEvent.change(screen.getByTestId('max-rep-input'), {
         target: {
           value: 6,
         },
       });
+    });
+
+    await waitFor(() => {
+      const submitButton = screen.getByTestId('update-scaling-submit-button');
+      expect(submitButton).toBeTruthy();
+    });
+
+    act(() => {
       fireEvent.click(screen.getByTestId('update-scaling-submit-button'));
     });
+
     await waitFor(() => {
       expect(scalingApi.scalingStrategy).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({

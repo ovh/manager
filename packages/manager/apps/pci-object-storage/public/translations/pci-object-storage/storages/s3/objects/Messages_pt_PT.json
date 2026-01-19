@@ -59,5 +59,19 @@
   "available": "Disponível até",
   "restoreAvailableUntil": "O objeto ficará disponível até",
   "seeVersionsSwitchLabel": "Ver as versões",
-  "searchPlaceholder": "Procurar..."
+  "searchPlaceholder": "Procurar...",
+  "changeStorageClassWarningInfrequentAccess": "Atenção: As classes Infrequent Access e Cold Archive impõem um período mínimo de conservação. <0>Saber mais</0>",
+  "selectObject": "Selecionar o objeto {{name}}",
+  "selectAll": "Marcar tudo",
+  "bulkDeleteTitle": "Eliminar vários objetos",
+  "bulkDeleteDescription_one": "Você vai eliminar {{count}} objeto.",
+  "bulkDeleteDescription_other": "Você vai eliminar {{count}} objetos.",
+  "bulkDeleteButtonConfirm_one": "Eliminar {{count}} objeto",
+  "bulkDeleteButtonConfirm_other": "Eliminar {{count}} objetos",
+  "bulkDeleteToastSuccessDescription_one": "{{count}} objeto eliminado com sucesso.",
+  "bulkDeleteToastSuccessDescription_other": "{{count}} objetos eliminados com sucesso.",
+  "bulkDeleteVersionsTitle": "Eliminar várias versões",
+  "bulkDeleteVersionsDescription_one": "Você deseja eliminar permanentemente {{count}} versão? Esta ação não pode ser desfeita.",
+  "bulkDeleteVersionsDescription_other": "Você deseja eliminar permanentemente {{count}} versões? Esta ação não pode ser desfeita.",
+  "bulkDeleteVersionsConfirmation": "Digite {{confirmation}} para confirmar"
 }

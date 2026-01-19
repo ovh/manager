@@ -15,6 +15,7 @@ import { IntegrationWithServices } from '../Integrations.page';
 import IntegrationServiceLink from './IntegrationServiceLink.component';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface IntegrationsTableColumnsProps {
   onDeleteClick: (db: database.service.Integration) => void;
@@ -93,11 +94,12 @@ export const getColumns = ({
                 {service.capabilities.integrations?.delete && (
                   <DropdownMenuItem
                     data-testid="integrations-action-delete-button"
-                    variant="destructive"
-                    disabled={
-                      service.capabilities.integrations?.delete ===
-                      database.service.capability.StateEnum.disabled
-                    }
+                    variant="critical"
+                    disabled={isCapabilityDisabled(
+                      service,
+                      'integrations',
+                      'delete',
+                    )}
                     onClick={() => {
                       onDeleteClick(row.original);
                     }}

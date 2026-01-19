@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import { cleanupDirectories, rootPackageJsonPath } from '../../playbook/playbook-config.js';
 import { getCatalogsPaths, readCatalog } from './catalog-utils.js';
+import { isCI } from './env-utils.js';
 import { tryGitRestore } from './git-utils.js';
 import { logger } from './log-manager.js';
 import { toPosix } from './path-utils.js';
@@ -202,15 +203,18 @@ export async function clearWorkspacesManually() {
 export async function clearRootWorkspaces() {
   logger.debug('clearRootWorkspaces()');
 
+  if (isCI) {
+    logger.info('ℹ️ CI detected — skipping workspace cleanup (ephemeral workspace)');
+    return [];
+  }
+
   const cwd = path.dirname(rootPackageJsonPath);
   const file = path.basename(rootPackageJsonPath);
 
-  // --- Try Git restore first ---
   if (await tryGitRestore(cwd, file)) {
     return [];
   }
 
-  // --- Fallback: manual clear ---
   await clearWorkspacesManually();
   return [];
 }

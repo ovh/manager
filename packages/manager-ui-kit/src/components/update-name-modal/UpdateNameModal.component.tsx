@@ -1,4 +1,4 @@
-import { type ChangeEvent, JSX, useEffect, useState } from 'react';
+import { type ChangeEvent, JSX, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -38,24 +38,17 @@ export function UpdateNameModal({
   isOpen = true,
 }: UpdateNameModalProps): JSX.Element {
   const { t } = useTranslation('update-name-modal');
-  const [displayName, setDisplayName] = useState(defaultValue);
-  const [isPatternError, setIsPatternError] = useState(false);
-
-  useEffect(() => {
-    setDisplayName(defaultValue ?? '');
-  }, [defaultValue]);
-
-  useEffect(() => {
+  const [displayName, setDisplayName] = useState(defaultValue ?? '');
+  const isPatternError = useMemo(() => {
     if (!pattern) {
-      setIsPatternError(false);
-      return;
+      return false;
     }
     try {
       const regex = new RegExp(pattern);
-      setIsPatternError(!regex.test(displayName ?? ''));
+      return !regex.test(displayName ?? '');
     } catch {
       // If the regex is invalid, skip validation.
-      setIsPatternError(false);
+      return false;
     }
   }, [displayName, pattern]);
 

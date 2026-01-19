@@ -29,7 +29,7 @@ const KafkaSettingsTile = () => {
     onError: (err, variables) => {
       toast.toast({
         title: t('toggleKafkaSettingsErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: err.response.data.message,
       });
       if (variables && 'restApi' in variables.data) {

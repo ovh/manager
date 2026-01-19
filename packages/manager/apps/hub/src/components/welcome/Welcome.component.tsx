@@ -23,7 +23,7 @@ export default function Welcome() {
   return (
     <>
       <OsdsText
-        className="inline-block my-6"
+        className="my-6 inline-block"
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._700}
         hue={ODS_TEXT_COLOR_HUE._800}
@@ -36,7 +36,7 @@ export default function Welcome() {
           color={ODS_THEME_COLOR_INTENT.success}
           size={ODS_CHIP_SIZE.sm}
           inline={true}
-          className="mt-2 align-text-bottom trusted-nic-label"
+          className="trusted-nic-label mt-2 align-text-bottom"
           data-testid="snc_chip"
         >
           <OsdsIcon

@@ -1,0 +1,9 @@
+{
+  "pci_rancher_header": "Guías",
+  "pci_rancher_header_all_guides": "Todas las guías",
+  "pci_rancher_header_first_steps_with_instances": "Primeros pasos con instancias",
+  "pci_rancher_header_create_managed_rancher": "Crear un cluster Managed Rancher",
+  "pci_rancher_header_update_managed_rancher": "Actualizar un cluster Managed Rancher",
+  "pci_rancher_header_iam_rancher": "Gestión de identidades y accesos (IAM)",
+  "pci_rancher_header_authentification_iam": "Activar la autenticación IAM (EN)"
+}

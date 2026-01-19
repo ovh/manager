@@ -7,7 +7,7 @@ import { useGetColumns } from './UsertListColumns.component';
 import DataTable from '@/components/data-table';
 import { useGetFilters } from './UserListFilters.component';
 import user from '@/types/User';
-import useDownload from '@/hooks/useDownload';
+import useDownload from '@/hooks/useDownload.hook';
 import { useObjectStorageData } from '../../ObjectStorage.context';
 import { getUserPolicy } from '@/data/api/user/user.api';
 
@@ -89,7 +89,7 @@ UsersList.Skeleton = function UsersListSkeleton() {
   return (
     <>
       <div
-        data-testid="service-list-table-skeleton"
+        data-testid="users-list-table-skeleton"
         className="flex justify-between w-100 mb-2 items-end"
       >
         <Skeleton className="h-10 w-48" />

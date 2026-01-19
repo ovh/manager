@@ -3,6 +3,144 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.13.2...@ovh-ux/muk@0.13.3) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.13.1...@ovh-ux/muk@0.13.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.13.0...@ovh-ux/muk@0.13.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.12.0...@ovh-ux/muk@0.13.0) (2026-01-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 912] ([46d8cf0](https://github.com/ovh/manager/commit/46d8cf0a095f5c1c61c92d303ab9449699453aed))
+* **web-domains:** add missing translation ([942b8a8](https://github.com/ovh/manager/commit/942b8a84ed197da9bd4c80d0b90cbc29039e16d8)), closes [#DCE-105](https://github.com/ovh/manager/issues/DCE-105)
+
+
+### Features
+
+* **muk:** enhance eslint rules and quality ([3561878](https://github.com/ovh/manager/commit/3561878ed62c5d50eecf4a91e1f7fc96506c040d)), closes [#MANAGER-20138](https://github.com/ovh/manager/issues/MANAGER-20138)
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.11.1...@ovh-ux/muk@0.12.0) (2026-01-07)
+
+
+### Features
+
+* **muk:** fix datagrid virtualization and scrollbar ([fd0fd72](https://github.com/ovh/manager/commit/fd0fd7260abd035983bcbe1689184098483b49ef)), closes [#MANAGER-20626](https://github.com/ovh/manager/issues/MANAGER-20626)
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.11.0...@ovh-ux/muk@0.11.1) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.8...@ovh-ux/muk@0.11.0) (2026-01-02)
+
+
+### Features
+
+* **muk:** create new hooks useHelpLink ([921028e](https://github.com/ovh/manager/commit/921028e19bfe23e5ab5529a3c219507131c70fc8)), closes [#20958](https://github.com/ovh/manager/issues/20958)
+
+
+
+
+
+## [0.10.8](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.7...@ovh-ux/muk@0.10.8) (2025-12-26)
+
+
+### Bug Fixes
+
+* **muk:** update datagrid header position and text overflow ([6efdb72](https://github.com/ovh/manager/commit/6efdb7208c9e8be447bd0d9f5af4177834b3dfab)), closes [#MANAGER-20626](https://github.com/ovh/manager/issues/MANAGER-20626)
+
+
+
+
+
+## [0.10.7](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.6...@ovh-ux/muk@0.10.7) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.10.6](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.5...@ovh-ux/muk@0.10.6) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.10.5](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.4...@ovh-ux/muk@0.10.5) (2025-12-16)
+
+
+### Bug Fixes
+
+* **muk:** including a target="_blank" property to the links of the ChangelogMenu component ([7de100c](https://github.com/ovh/manager/commit/7de100c3c4bdf3a1ef86aa0771b9270f36cbee25)), closes [#MANAGER-19535](https://github.com/ovh/manager/issues/MANAGER-19535)
+
+
+
+
+
+## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.3...@ovh-ux/muk@0.10.4) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.10.3](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.2...@ovh-ux/muk@0.10.3) (2025-12-12)
+
+
+### Bug Fixes
+
+* **muk:** correct breadcrumb test ([844d22e](https://github.com/ovh/manager/commit/844d22eee5d92e269eaedaeaf1c0090016619db3)), closes [#MANAGER-20131](https://github.com/ovh/manager/issues/MANAGER-20131)
+* **muk:** correct filters unit test ([9f05534](https://github.com/ovh/manager/commit/9f0553497b2dbd92e76cbe5343e57c561f24ad59)), closes [#MANAGEr-20131](https://github.com/ovh/manager/issues/MANAGEr-20131)
+* **muk:** correct update name modal snapshot ([5597a21](https://github.com/ovh/manager/commit/5597a2197d1bcd66d1f86a382a3847b901fd8d70)), closes [#MANAGER-20131](https://github.com/ovh/manager/issues/MANAGER-20131)
+
+
+
+
+
+## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.1...@ovh-ux/muk@0.10.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
 ## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.10.0...@ovh-ux/muk@0.10.1) (2025-12-05)
 
 

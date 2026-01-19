@@ -14,6 +14,7 @@ import {
 import * as database from '@/types/cloud/project/database';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface IndexesTableColumnsProps {
   onDeleteClick: (index: database.opensearch.Index) => void;
@@ -109,11 +110,12 @@ export const getIndexesColumns = ({
                       {service.capabilities.indexes?.delete && (
                         <DropdownMenuItem
                           data-testid="indexes-action-delete-button"
-                          variant="destructive"
-                          disabled={
-                            service.capabilities.indexes?.delete ===
-                            database.service.capability.StateEnum.disabled
-                          }
+                          variant="critical"
+                          disabled={isCapabilityDisabled(
+                            service,
+                            'indexes',
+                            'delete',
+                          )}
                           onClick={() => {
                             onDeleteClick(row.original);
                           }}

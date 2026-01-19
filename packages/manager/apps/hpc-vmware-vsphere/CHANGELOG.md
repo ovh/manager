@@ -3,6 +3,151 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.9...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.10) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.8...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.9) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.7...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.8) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.6...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.7) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.5...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.6) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.4...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.5) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.3...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.4) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.2...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.3) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.1...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.2) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.0...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.6...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.0) (2025-12-18)
+
+
+### Features
+
+* **vmware-vsphere:** remove beta badge for logs to customer ([74df350](https://github.com/ovh/manager/commit/74df350f8ae9234c98dfafc367e9ddbadb80f8f2)), closes [#MAOBS-167](https://github.com/ovh/manager/issues/MAOBS-167)
+
+
+
+
+
+## [0.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.5...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.6) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.4...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.3...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.4) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.2...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.3) (2025-12-15)
+
+
+### Bug Fixes
+
+* **observability.logs:** fix incorrect path for dep libraries ([8558d7a](https://github.com/ovh/manager/commit/8558d7a06a203e7f101622a2d6ff7603fc8e28ad)), closes [#MAOBS-136](https://github.com/ovh/manager/issues/MAOBS-136)
+
+
+
+
+
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.1...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.2) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.0...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.1) (2025-12-10)
+
+
+### Bug Fixes
+
+* **observability.logs:** fix display of logs notifications ([2c63c38](https://github.com/ovh/manager/commit/2c63c38da66b2a5264d3e41f364220d5fee29a47)), closes [#MAOBS-151](https://github.com/ovh/manager/issues/MAOBS-151)
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.19...@ovh-ux/manager-hpc-vmware-vsphere-app@0.2.0) (2025-12-05)
 
 

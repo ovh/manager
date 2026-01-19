@@ -40,5 +40,11 @@
   "netapp_volumes_dashboard_usage_nfs_client": "Klienty NFS (aktywne w ciągu ostatnich 48 godzin)",
   "netapp_volumes_dashboard_usage_no_nfs_client": "Brak aktywnych połączeń",
   "netapp_volumes_dashboard_usage_view_all": "Pokaż wszystkie",
-  "netapp_volumes_dashboard_actives_nfs_title": "Połączenia NFS"
+  "netapp_volumes_dashboard_actives_nfs_title": "Połączenia NFS",
+  "netapp_volumes_dashboard_capacity": "Rozmiar wolumenu",
+  "netapp_volumes_dashboard_volume_data_space": "Wolumen danych",
+  "netapp_volumes_dashboard_volume_used": "Zużyto",
+  "netapp_volumes_dashboard_volume_overflow": "Przekroczenie limitu",
+  "netapp_volumes_dashboard_volume_available": "Dostępny",
+  "netapp_volumes_dashboard_snapshot_space": "Rezerwa na snapshoty"
 }

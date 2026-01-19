@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -24,9 +24,6 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
   const { t } = useTranslation('filters');
 
   const [selectedId, setSelectedId] = useState(columns?.[0]?.id ?? '');
-  const [selectedComparator, setSelectedComparator] = useState<FilterComparator>(
-    columns?.[0]?.comparators?.[0] ?? FilterComparator.IsEqual,
-  );
   const [value, setValue] = useState('');
   const [dateValue, setDateValue] = useState<Date | null>(null);
   const [tagKey, setTagKey] = useState('');
@@ -35,6 +32,30 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
     () => columns.find(({ id }) => selectedId === id),
     [columns, selectedId],
   );
+
+  const defaultComparator = useMemo(
+    () => selectedColumn?.comparators?.[0] ?? FilterComparator.IsEqual,
+    [selectedColumn],
+  );
+
+  const [comparatorOverride, setComparatorOverride] = useState<FilterComparator | null>(null);
+
+  const selectedComparator = useMemo(() => {
+    if (comparatorOverride !== null && selectedColumn?.comparators?.includes(comparatorOverride)) {
+      return comparatorOverride;
+    }
+    return defaultComparator;
+  }, [comparatorOverride, defaultComparator, selectedColumn]);
+
+  const formKey = useMemo(() => `filter-form-${selectedId}`, [selectedId]);
+
+  const handleColumnChange = (newId: string) => {
+    setSelectedId(newId);
+    setComparatorOverride(null);
+    setValue('');
+    setTagKey('');
+    setDateValue(null);
+  };
 
   const isInputValid = useMemo(() => {
     if (selectedColumn?.type === FilterTypeCategories.Date) return dateValue !== null;
@@ -71,13 +92,6 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
     setDateValue(null);
   };
 
-  useEffect(() => {
-    setSelectedComparator(selectedColumn?.comparators?.[0] ?? FilterComparator.IsEqual);
-    setValue('');
-    setTagKey('');
-    setDateValue(null);
-  }, [selectedColumn]);
-
   return (
     <>
       <div className="w-full">
@@ -87,7 +101,7 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
             key={`add-filter_select_idColumn-${selectedId}`}
             name={`add-filter_select_idColumn-${selectedId}`}
             value={[selectedId]}
-            onValueChange={(detail) => setSelectedId(detail?.value?.[0] ?? '')}
+            onValueChange={(detail) => handleColumnChange(detail?.value?.[0] ?? '')}
             data-testid="add-filter_select_idColumn"
             items={columns.map(({ id, label }) => ({
               label,
@@ -105,11 +119,11 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
           {selectedColumn && (
             <div data-testid={`add-operator-${selectedColumn.id}`}>
               <Select
-                key={`add-operator-${selectedColumn.id}`}
+                key={`add-operator-${selectedColumn.id}-${formKey}`}
                 name={`add-operator-${selectedColumn.id}`}
                 value={[selectedComparator]}
                 onValueChange={(detail) =>
-                  setSelectedComparator(detail.value[0] as FilterComparator)
+                  setComparatorOverride(detail.value[0] as FilterComparator)
                 }
                 items={selectedColumn.comparators?.map((comp) => ({
                   label: t(`common_criteria_adder_operator_${comp}`),
@@ -124,7 +138,7 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
         </FormField>
       </div>
       {selectedColumn?.type !== FilterTypeCategories.Tags ? (
-        <div className="mt-4 w-full">
+        <div key={formKey} className="mt-4 w-full">
           <FormField>
             <FormFieldLabel>{t('common_criteria_adder_value_label')}</FormFieldLabel>
             <FilterSectionValue
@@ -139,7 +153,7 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
           </FormField>
         </div>
       ) : (
-        <div className="mt-4 w-full" data-testid="filter-tag-inputs">
+        <div key={formKey} className="mt-4 w-full" data-testid="filter-tag-inputs">
           <FilterTagsForm
             resourceType={resourceType ?? ''}
             tagKey={tagKey}

@@ -23,20 +23,19 @@ import {
   useToast,
   FieldLabel,
 } from '@datatr-ux/uxlib';
-import { Check, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useObjectStorageData } from '../../ObjectStorage.context';
 import { useRcloneForm } from './formRclone/useRcloneForm.hook';
 import { ObjectStorageTypeEnum } from '@/types/Storages';
-import { cn } from '@/lib/utils';
+import user from '@/types/User';
 import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import { getUserRclone } from '@/data/api/user/user.api';
-import useDownload from '@/hooks/useDownload';
 import { FormField } from '@/components/form-field/FormField.component';
-import Flag from '@/components/flag/Flag.component';
 import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
+import useDownload from '@/hooks/useDownload.hook';
 
 const Rclone = () => {
   const { t } = useTranslation('pci-object-storage/users/rclone');
@@ -51,10 +50,15 @@ const Rclone = () => {
 
   const onSubmit = form.handleSubmit(async (formValues) => {
     try {
+      const service =
+        formValues.rcloneType === ObjectStorageTypeEnum.s3
+          ? user.RCloneServiceEnum['storage-s3']
+          : user.RCloneServiceEnum.storage;
       const rcloneData = await getUserRclone({
         projectId,
         userId: Number(userId),
         region: formValues.region,
+        service,
       });
       download({ type: 'raw', data: rcloneData.content }, 'rclone.conf');
       navigate('../');
@@ -70,7 +74,7 @@ const Rclone = () => {
     <RouteModal isLoading={!userId}>
       <DialogContent variant="information">
         <DialogHeader>
-          <DialogTitle data-testid="get-user-secret-modal">
+          <DialogTitle data-testid="rclone-modal">
             {t('rcloneTitle')}
           </DialogTitle>
         </DialogHeader>
@@ -136,9 +140,12 @@ const Rclone = () => {
                     onValueChange={field.onChange}
                     modal
                   >
-                    <ComboboxTrigger ref={field.ref} disabled={field.disabled}>
+                    <ComboboxTrigger
+                      ref={field.ref}
+                      disabled={field.disabled}
+                      data-testid="select-region-trigger"
+                    >
                       <ComboboxValue
-                        data-testid="select-region-button"
                         placeholder={t('regionPlaceholder')}
                         value={
                           field.value && (
@@ -196,7 +203,7 @@ const Rclone = () => {
           </DialogClose>
           <Button
             type="submit"
-            data-testid="s3-policy-submit-button"
+            data-testid="rclone-submit-button"
             form="download-rclone"
           >
             {t('rcloneButtonConfirm')}

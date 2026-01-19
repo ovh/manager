@@ -107,7 +107,7 @@ describe('Delete user modal', () => {
     await waitFor(() => {
       expect(usersApi.deleteUser).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'deleteUserToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'deleteUserToastSuccessDescription',
       });
     });
@@ -125,7 +125,7 @@ describe('Delete user modal', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'deleteUserToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

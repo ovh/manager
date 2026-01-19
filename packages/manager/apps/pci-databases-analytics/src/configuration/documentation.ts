@@ -10,6 +10,8 @@ export const LINKS = {
     default:
       'https://docs.ovh.com/gb/en/publiccloud/databases/order-terraform/',
   },
+  PG_OFFICIAL_DOCUMENTATION: 'https://www.postgresql.org/docs/',
+  MySQL_OFFICIAL_DOCUMENTATION: 'https://dev.mysql.com/doc/',
 };
 
 export const DATABASE_CREATION_GUIDES =
@@ -20,4 +22,8 @@ export function getDocumentationUrl(
   locale: string,
 ): string {
   return documentation[locale] ?? documentation.default;
+}
+
+export function getConsoleAPILink(region: string, engine: string): string {
+  return `https://${region.toLowerCase()}.api.ovh.com/console/?section=%2Fcloud&branch=v1#post-/cloud/project/-serviceName-/database/${engine}`;
 }

@@ -5,6 +5,7 @@ import commitmentDuration from './components/commitment-duration';
 import commitmentPricingMode from './components/commitment-pricing-mode';
 import cancelCommitment from './components/cancel-commitment';
 import cancelResiliation from './components/cancel-resiliation';
+import exchangeRenew from './components/exchange-renew';
 import resiliateModal from './components/resiliate-modal';
 import resiliation from './components/resiliation';
 import cancellationForm from './components/cancellation-form';
@@ -22,28 +23,31 @@ import {
 } from './components/split-payment/constants';
 import autoRenewPaymentMethod from './components/payment-method';
 import autoRenewTips from './components/auto-renew-tips';
+import { SERVICE_ACTIONS } from './constants';
 
 const moduleName = 'ovhManagerBilling';
 
 angular.module(moduleName, [
-  cancellationForm,
-  commitment,
-  commitmentDuration,
-  commitmentPricingMode,
-  cancelCommitment,
-  cancelResiliation,
+    cancellationForm,
+    commitment,
+    commitmentDuration,
+    commitmentPricingMode,
+    cancelCommitment,
+    cancelResiliation,
+    exchangeRenew,
   resiliateModal,
-  resiliation,
-  servicesActions,
-  serviceStatus,
-  splitPayment,
-  terminate,
-  terminateAgoraService,
-  subscriptionTile,
-  autoRenew2016DeploymentBanner,
-  autoRenewPaymentMethod,
-  autoRenewTips,
-]);
+    resiliation,
+    servicesActions,
+    serviceStatus,
+    splitPayment,
+    terminate,
+    terminateAgoraService,
+    subscriptionTile,
+    autoRenew2016DeploymentBanner,
+    autoRenewPaymentMethod,
+    autoRenewTips,
+  ])
+  .constant('SERVICE_ACTIONS', SERVICE_ACTIONS);
 
 export { RENEW_URL, SPLIT_PAYMENT, SPLIT_PAYMENT_FEATURE_NAME };
 

@@ -95,7 +95,7 @@ export enum ColumnMetaType {
 
 export enum RowHeight {
   sm = 32.5,
-  md = 48.5,
+  md = 49,
   lg = 64.5,
 }
 

@@ -13,6 +13,17 @@ vi.stubGlobal('window', {
   location: { href: '' },
 });
 
+vi.mock('@ovh-ux/manager-config', async (importOriginal) => {
+  const original: any = await importOriginal();
+  return {
+    ...original,
+    fetchConfiguration: () => {
+      const env = new original.Environment();
+      return Promise.resolve(env);
+    },
+  };
+});
+
 describe('Test shell client', () => {
   beforeEach(() => {
     delete window.location;

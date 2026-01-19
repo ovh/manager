@@ -16,7 +16,11 @@ import Guides from '@/components/guides/Guides.component';
 import S3ObjectBrowser from './_components/S3ObjectBrowser.component';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
+import SimpleSearchBar from '@/components/simple-search-bar/SimpleSearchBar.component';
 import SearchBar from './_components/SearchBar.component';
+import RefreshButton from '@/components/refresh-button/RefreshButton.component';
+import { ObjectSelectionProvider } from './_contexts/ObjectSelection.context';
+import { BulkActionButton } from './_components/BulkActionButton.component';
 
 const Objects = () => {
   const { projectId } = useParams();
@@ -59,7 +63,7 @@ const Objects = () => {
   }
 
   return (
-    <>
+    <ObjectSelectionProvider>
       <div
         data-testid="containers-guides-container"
         className="flex justify-between w-full items-center"
@@ -70,36 +74,51 @@ const Objects = () => {
         </div>
       </div>
 
-      <div className="flex justify-between">
-        <Button onClick={() => navigate('./add-object')}>
-          <Plus className="size-6" />
-          {t('addNewObject')}
-        </Button>
-        {!isLocaleZone && (
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="versions"
-              checked={withVersion}
-              onCheckedChange={setWithVersion}
+      <div className="flex justify-between w-full">
+        <div className="flex gap-2">
+          <Button onClick={() => navigate('./add-object')}>
+            <Plus className="size-6" />
+            {t('addNewObject')}
+          </Button>
+          <BulkActionButton />
+        </div>
+        <div className="flex items-center space-x-2">
+          <RefreshButton
+            onClick={objectQuery.refetch}
+            isLoading={objectQuery.isFetching}
+          />
+          {!isLocaleZone ? (
+            <>
+              <Switch
+                id="versions"
+                checked={withVersion}
+                onCheckedChange={setWithVersion}
+              />
+              <Label htmlFor="versions">{t('seeVersionsSwitchLabel')}</Label>
+              <SearchBar
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+                deferredSearchQuery={deferredSearchQuery}
+                filteredObjects={filteredObjects}
+                placeholder={t('searchPlaceholder') || 'Search...'}
+              />
+            </>
+          ) : (
+            <SimpleSearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder={t('searchPlaceholder')}
             />
-            <Label htmlFor="versions">{t('seeVersionsSwitchLabel')}</Label>
-            <SearchBar
-              searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
-              deferredSearchQuery={deferredSearchQuery}
-              filteredObjects={filteredObjects}
-              placeholder={t('searchPlaceholder') || 'Search...'}
-            />
-          </div>
-        )}
+          )}
+        </div>
       </div>
       <S3ObjectBrowser
-        objects={objects}
+        objects={filteredObjects}
         isLocaleZone={isLocaleZone}
         showVersion={withVersion}
       />
       <Outlet />
-    </>
+    </ObjectSelectionProvider>
   );
 };
 

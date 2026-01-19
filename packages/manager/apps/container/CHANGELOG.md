@@ -3,6 +3,250 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.178.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.177.0...@ovh-ux/manager-container-app@0.178.0) (2026-01-16)
+
+
+### Features
+
+* **pci-file-storage:** base new pci-file-storage app ([7c89509](https://github.com/ovh/manager/commit/7c89509fb89c9525e4c32c0c59e79762d0989e3a)), closes [#TAPC-5475](https://github.com/ovh/manager/issues/TAPC-5475)
+
+
+
+
+
+# [0.177.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.176.0...@ovh-ux/manager-container-app@0.177.0) (2026-01-15)
+
+
+### Features
+
+* **communication:** show service email adresses change banner ([7198356](https://github.com/ovh/manager/commit/7198356cab97860dc44bd3b62ff7d019b370f0be))
+
+
+
+
+
+# [0.176.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.175.0...@ovh-ux/manager-container-app@0.176.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 903] ([6eabc0d](https://github.com/ovh/manager/commit/6eabc0d4f1e5302f263a0637e64050710ad54446))
+
+
+### Features
+
+* **backup-billing:** init backup-billing µapp ([e3f376e](https://github.com/ovh/manager/commit/e3f376e3e99ebb70dde7dc258045c4d1a011e38b)), closes [#BKP-526](https://github.com/ovh/manager/issues/BKP-526)
+* **backup-vaults:** initiate backup vaults uapp ([4b63fa4](https://github.com/ovh/manager/commit/4b63fa43ed9d0602ee472e1c4be23af641c3a5c7)), closes [#BKP-525](https://github.com/ovh/manager/issues/BKP-525)
+* **container:** add backup-agent logo on navbar ([cd3d47a](https://github.com/ovh/manager/commit/cd3d47a4578171c14d74e939a5c9b370d55374c2)), closes [#BKP-523](https://github.com/ovh/manager/issues/BKP-523)
+* **container:** add backup-agent on sidebar v1 ([f765026](https://github.com/ovh/manager/commit/f76502638f2fdbb0c650a06c789747886307aeaa)), closes [#BKP-523](https://github.com/ovh/manager/issues/BKP-523)
+* **container:** add backup-agent µapps on pnr ([3552cbd](https://github.com/ovh/manager/commit/3552cbd75fff02425265a6a1e7d97aa70375224c)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+* **container:** add backup-services µapp to container ([cb2d876](https://github.com/ovh/manager/commit/cb2d876fe56f9d85adc752f9185a2d745f88c7eb)), closes [#BKP-524](https://github.com/ovh/manager/issues/BKP-524)
+* **container:** remove loader for backup agent services ([2f63f22](https://github.com/ovh/manager/commit/2f63f227659b6c2b83b9fd035e796bb2f30d8db9)), closes [#BKP-727](https://github.com/ovh/manager/issues/BKP-727)
+* **container:** rename application and add new tag ([566a6fe](https://github.com/ovh/manager/commit/566a6fe893ff619edc32e1f09865391d5f01ff3e)), closes [#BKP-700](https://github.com/ovh/manager/issues/BKP-700)
+
+
+
+
+
+# [0.175.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.7...@ovh-ux/manager-container-app@0.175.0) (2026-01-13)
+
+
+### Features
+
+* **container:** align privacy cookie with website ([f85c3dc](https://github.com/ovh/manager/commit/f85c3dce4c4a61fc94db5409dc3b9f34779f5235)), closes [#MANAGER-20176](https://github.com/ovh/manager/issues/MANAGER-20176)
+
+
+
+
+
+## [0.174.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.6...@ovh-ux/manager-container-app@0.174.7) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.174.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.5...@ovh-ux/manager-container-app@0.174.6) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.174.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.4...@ovh-ux/manager-container-app@0.174.5) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.174.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.3...@ovh-ux/manager-container-app@0.174.4) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.174.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.2...@ovh-ux/manager-container-app@0.174.3) (2025-12-29)
+
+
+### Bug Fixes
+
+* **web-domains:** fix links ([7cf1906](https://github.com/ovh/manager/commit/7cf190662638b5d30e7ea81c2703d84df79026e9)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+* **web-domains:** fix url route provider regexp ([5848cb8](https://github.com/ovh/manager/commit/5848cb8dc85bff7e13af54c486ca44fb7360e71b)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+
+
+
+
+
+## [0.174.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.1...@ovh-ux/manager-container-app@0.174.2) (2025-12-22)
+
+
+### Reverts
+
+* **config:** update Telecom domain ([03b1487](https://github.com/ovh/manager/commit/03b1487feba47b27bfcb3636d9a7d605f2816c27))
+* **container:** replace old domain to new domain ([474a74f](https://github.com/ovh/manager/commit/474a74f0e04331a0ed1a8181bb16e1e1d4e69e41))
+* skip labeu url update ([5f68a11](https://github.com/ovh/manager/commit/5f68a112ec1e0d31cd97a04381ceb332bb6eaf22))
+
+
+
+
+
+## [0.174.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.0...@ovh-ux/manager-container-app@0.174.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.174.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.173.0...@ovh-ux/manager-container-app@0.174.0) (2025-12-22)
+
+
+### Features
+
+* **web-domains:** domain menu revamp ([ee4b125](https://github.com/ovh/manager/commit/ee4b125f49f3e4209e40c227f5d008a2d4aec953)), closes [#DCE-1](https://github.com/ovh/manager/issues/DCE-1)
+
+
+
+
+
+# [0.173.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.3...@ovh-ux/manager-container-app@0.173.0) (2025-12-18)
+
+
+### Features
+
+* **container:** remove beta badge for logs to customer ([49df7c4](https://github.com/ovh/manager/commit/49df7c49e4a855356391d8d2d1b85aa096f67e58)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
+## [0.172.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.2...@ovh-ux/manager-container-app@0.172.3) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.172.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.1...@ovh-ux/manager-container-app@0.172.2) (2025-12-16)
+
+
+### Bug Fixes
+
+* **container:** fix wrong order link on telecom space order menu ([30c4bcd](https://github.com/ovh/manager/commit/30c4bcd6ea26d5440b015f468a005b5e5460a4a4)), closes [#PRDCOL-250](https://github.com/ovh/manager/issues/PRDCOL-250)
+
+
+
+
+
+## [0.172.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.172.0...@ovh-ux/manager-container-app@0.172.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.172.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.171.0...@ovh-ux/manager-container-app@0.172.0) (2025-12-15)
+
+
+### Features
+
+* **container:** update code for local storage prefix by biz ([b0baae3](https://github.com/ovh/manager/commit/b0baae383cb17368233f72d3a47ea298fafe0607)), closes [#MANAGER-20560](https://github.com/ovh/manager/issues/MANAGER-20560)
+
+
+
+
+
+# [0.171.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.4...@ovh-ux/manager-container-app@0.171.0) (2025-12-12)
+
+
+### Features
+
+* **container:** delete local storage prefix by biz ([d4fcec3](https://github.com/ovh/manager/commit/d4fcec319993f666b55917c02b6fff0e5b27acdc)), closes [#MANAGER-20560](https://github.com/ovh/manager/issues/MANAGER-20560)
+
+
+
+
+
+## [0.170.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.3...@ovh-ux/manager-container-app@0.170.4) (2025-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4527] ([70197f1](https://github.com/ovh/manager/commit/70197f1a8dc563ce2895b7357f4b51cb2a110f6b))
+
+
+
+
+
+## [0.170.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.2...@ovh-ux/manager-container-app@0.170.3) (2025-12-11)
+
+
+### Bug Fixes
+
+* **container:** make communications link creation safe ([8108ba7](https://github.com/ovh/manager/commit/8108ba7fd569498bf311ba769a63b4610386c5f5)), closes [#MANAGER-20543](https://github.com/ovh/manager/issues/MANAGER-20543)
+
+
+
+
+
+## [0.170.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.1...@ovh-ux/manager-container-app@0.170.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.170.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.170.0...@ovh-ux/manager-container-app@0.170.1) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4524] ([7ccf245](https://github.com/ovh/manager/commit/7ccf245dfb71a734dae520873a681c570082d62e))
+
+
+
+
+
+# [0.170.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.169.0...@ovh-ux/manager-container-app@0.170.0) (2025-12-09)
+
+
+### Features
+
+* **ips:** init ips react app ([#13742](https://github.com/ovh/manager/issues/13742)) ([cb30312](https://github.com/ovh/manager/commit/cb30312fbcbf2fefaaedfdfa5bb9fcfa7805d289))
+
+
+
+
+
 # [0.169.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.168.0...@ovh-ux/manager-container-app@0.169.0) (2025-12-05)
 
 

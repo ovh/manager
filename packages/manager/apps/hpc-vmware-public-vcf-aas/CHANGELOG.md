@@ -3,6 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.28.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.28.1) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.8...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.28.0) (2026-01-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4546] ([bdc774e](https://github.com/ovh/manager/commit/bdc774e1e0cfebd6b33c98e250da39626346123f)), closes [#MANAGER-19914](https://github.com/ovh/manager/issues/MANAGER-19914)
+* **vcfaas:** fix link when opening a new tab an organisation ([0c9d348](https://github.com/ovh/manager/commit/0c9d348efa39b3ee31c595adc8b4eb561bc11b5f)), closes [#MANAGER-20636](https://github.com/ovh/manager/issues/MANAGER-20636)
+
+
+### Features
+
+* **vcfaas:** add acl network for organisation ([f70e14a](https://github.com/ovh/manager/commit/f70e14a2b57c8cdf8b84eb5007a26a6fbf4bdb2d)), closes [#MANAGER-19918](https://github.com/ovh/manager/issues/MANAGER-19918)
+* **vcfaas:** add actions to automatically fill cidr ([796fb04](https://github.com/ovh/manager/commit/796fb04fcfad9d5f7f7a37597f362235844e7120)), closes [#MANAGER-20130](https://github.com/ovh/manager/issues/MANAGER-20130)
+* **vcfaas:** disable actions in case of non active organisation ([b93fad4](https://github.com/ovh/manager/commit/b93fad40c4189a51a7002e4ba53e3ba8da5e4507)), closes [#MANAGER-20292](https://github.com/ovh/manager/issues/MANAGER-20292)
+* **vcfaas:** disable delete network acl when default one is remaining ([ba37b00](https://github.com/ovh/manager/commit/ba37b003a587a3e5f8d04eb1c791d1abe4171752)), closes [#MANAGER-20293](https://github.com/ovh/manager/issues/MANAGER-20293)
+
+
+
+
+
+## [0.27.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.7...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.8) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.27.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.6...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.7) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.27.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.5...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.6) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.4...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.5) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.27.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.3...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.4) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.2...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.3) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.1...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.2) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.26.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.27.0) (2025-12-09)
+
+
+### Bug Fixes
+
+* **public-vcf:** fix and refactor breadcrumb translations ([08617ff](https://github.com/ovh/manager/commit/08617ffe58bddf68dba94e2ee5fda758263bd3fd)), closes [#MANAGER-20296](https://github.com/ovh/manager/issues/MANAGER-20296)
+
+
+### Features
+
+* **vcfaas:** update order and discover links for onboarding pages ([41a4d58](https://github.com/ovh/manager/commit/41a4d583de1875fb227ae5b3b88341fd437b7e9b)), closes [#MANAGER-19649](https://github.com/ovh/manager/issues/MANAGER-19649)
+
+
+
+
+
 # [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.22...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.26.0) (2025-12-05)
 
 

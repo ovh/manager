@@ -80,7 +80,9 @@ const ImportPolicyModal = () => {
     <RouteModal>
       <DialogContent className="sm:max-w-xl" variant="information">
         <DialogHeader>
-          <DialogTitle>{t('addUserPolicyTitle')}</DialogTitle>
+          <DialogTitle data-testid="import-policy-modal">
+            {t('addUserPolicyTitle')}
+          </DialogTitle>
         </DialogHeader>
         <DialogBody>
           <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden">
@@ -97,7 +99,10 @@ const ImportPolicyModal = () => {
                   {(field) => (
                     <>
                       <FieldLabel>Policy</FieldLabel>
-                      <FileInput {...field} />
+                      <FileInput
+                        {...field}
+                        data-testid="import-policy-file-input"
+                      />
                     </>
                   )}
                 </FormField>
@@ -111,7 +116,12 @@ const ImportPolicyModal = () => {
               {t('fileUploaderButtonCancel')}
             </Button>
           </DialogClose>
-          <Button type="submit" form="import-policy">
+          <Button
+            type="submit"
+            form="import-policy"
+            data-testid="import-policy-submit-button"
+            disabled={isPending}
+          >
             {t('fileUploaderButtonConfirm')}
           </Button>
         </DialogFooter>

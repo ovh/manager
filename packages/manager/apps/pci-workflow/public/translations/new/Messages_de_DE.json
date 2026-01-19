@@ -6,7 +6,7 @@
   "pci_workflow_create_select_instance": "Wählen Sie eine Instanz aus",
   "pci_workflow_create_schedule_title": "Scheduling festlegen",
   "pci_workflow_create_schedule_rotate7_title": "Wöchentliche Rotation",
-  "pci_workflow_create_schedule_rotate_description": "Es wird täglich zwischen 22:00 Uhr und 06:00 Uhr ein Backup durchgeführt und die Rotation verwaltet eine History der {{ numEntries }} letzten Einträge. Wenn das neue Backup abgeschlossen ist, wird das älteste Backup gelöscht.",
+  "pci_workflow_create_schedule_rotate_description": "Es wird täglich zwischen 22:00 Uhr und 06:00 Uhr (UTC) ein Backup durchgeführt und die Rotation verwaltet eine History der {{ numEntries }} letzten Einträge. Wenn das neue Backup abgeschlossen ist, wird das älteste Backup gelöscht.",
   "pci_workflow_create_schedule_rotate14_title": "Zweiwöchentliche Rotation",
   "pci_workflow_create_schedule_custom_title": "Personalisiert",
   "pci_workflow_create_schedule_custom_description": "Wählen Sie selbst das gewünschte Scheduling (UNIX-Cron-Format), die Anzahl der Rotationen und die maximale Ausführungsanzahl aus.",

@@ -1,4 +1,4 @@
-import i18next, { i18n } from 'i18next';
+import i18next, { InitOptions, i18n } from 'i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import commonActions from '@ovh-ux/manager-common-translations/public/translations/actions/Messages_fr_FR.json';
@@ -8,6 +8,8 @@ import commonForm from '@ovh-ux/manager-common-translations/public/translations/
 import commonOnboarding from '@ovh-ux/manager-common-translations/public/translations/onboarding/Messages_fr_FR.json';
 import commonRegion from '@ovh-ux/manager-common-translations/public/translations/region/Messages_fr_FR.json';
 import commonStatus from '@ovh-ux/manager-common-translations/public/translations/status/Messages_fr_FR.json';
+
+import { APP_NAME } from '@/App.constants';
 
 import commonOkms from '../../../../public/translations/common/Messages_fr_FR.json';
 import kmsCommon from '../../../../public/translations/key-management-service/common/Messages_fr_FR.json';
@@ -53,20 +55,20 @@ function addTranslations() {
     });
 }
 
+const i18nParams: InitOptions = {
+  lng: defaultLocale,
+  defaultNS: APP_NAME,
+  ns: [],
+  supportedLngs: defaultAvailableLocales,
+  postProcess: 'normalize',
+  interpolation: {
+    escapeValue: false,
+  },
+};
+
 export const initTestI18n = () =>
   new Promise<i18n>((resolve) => {
-    i18next
-      .init({
-        lng: defaultLocale,
-        defaultNS: 'key-management-service',
-        ns: [],
-        supportedLngs: defaultAvailableLocales,
-        postProcess: 'normalize',
-        interpolation: {
-          escapeValue: false,
-        },
-      })
-      .catch((error) => console.error(error));
+    i18next.init(i18nParams).catch((error) => console.error(error));
 
     if (i18next.isInitialized) {
       addTranslations();

@@ -44,6 +44,11 @@
         ></ovh-manager-auto-renew-tips>
     </div>
 
+    <reason-warning-modal
+        action="$ctrl.action"
+        service="$ctrl.service"
+    ></reason-warning-modal>
+
     <oui-datagrid
         id="services"
         data-page-size="{{:: $ctrl.pageSize }}"
@@ -175,12 +180,21 @@
         </oui-datagrid-column>
 
         <oui-datagrid-column
-            data-property="renewPeriod"
-            data-title="::'billing_autorenew_service_frequency' | translate"
+            data-property="renew"
+            data-title="::'billing_autorenew_service_renew' | translate"
+            data-type-options="$ctrl.filtersOptions.renew"
             data-type="options"
+            data-filterable
         >
-            <span data-ng-bind-html="::$ctrl.getRenewPeriodTranslation($row)">
-            </span>
+            <div class="d-flex flex-column">
+                <service-renewal-badge service="$row"></service-renewal-badge>
+                <small
+                    data-ng-if="$row.renew.automatic || $row.renew.manualPayment"
+                    class="pl-2"
+                    data-ng-bind-html="::$ctrl.getRenewPeriodTranslation($row)"
+                >
+                </small>
+            </div>
         </oui-datagrid-column>
 
         <oui-datagrid-column
@@ -218,6 +232,8 @@
                 user="$ctrl.currentUser"
                 billing-management-availability="$ctrl.isAutorenewManagementAvailable"
                 delete-vrack-availability="$ctrl.canDeleteVrack"
+                advance-payment-call-back="$ctrl.openReasonModal(service, action)"
+                go-to-bills="$ctrl.goToCorrespondingBills"
             >
             </billing-services-actions>
         </oui-datagrid-column>

@@ -3,6 +3,112 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.28.0...@ovh-ux/manager-common-translations@0.28.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4592] ([38d2827](https://github.com/ovh/manager/commit/38d2827e468711e67eab72c1e09a4a2dd6db1f4c))
+
+
+
+
+
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.27.1...@ovh-ux/manager-common-translations@0.28.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 903] ([6eabc0d](https://github.com/ovh/manager/commit/6eabc0d4f1e5302f263a0637e64050710ad54446))
+
+
+### Features
+
+* **common-translations:** add dashboard and status content ([82c26ff](https://github.com/ovh/manager/commit/82c26ff59448cada42953d39684f516ca7f4d842)), closes [#BKP-496](https://github.com/ovh/manager/issues/BKP-496)
+* **common-translations:** add onboarding content ([e140e87](https://github.com/ovh/manager/commit/e140e87aeb6528596d4ae0153b78602837096813)), closes [#BKP-522](https://github.com/ovh/manager/issues/BKP-522)
+
+
+
+
+
+## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.27.0...@ovh-ux/manager-common-translations@0.27.1) (2026-01-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4590] ([12b5fa6](https://github.com/ovh/manager/commit/12b5fa6b301d2b53f177c3095cf4ebfb72a4e9d2))
+
+
+
+
+
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.26.0...@ovh-ux/manager-common-translations@0.27.0) (2026-01-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 965] ([439e0b7](https://github.com/ovh/manager/commit/439e0b7ecf8e08646cb9eb05c09c3e989ecb5d2b))
+* **web-office:** add the status await signature ([71d4c04](https://github.com/ovh/manager/commit/71d4c0446e6f64154f0fd86352615c3fa6bb0988)), closes [#PRDCOL-292](https://github.com/ovh/manager/issues/PRDCOL-292)
+* **web-office:** migration ods 19 and muk ([81ce2eb](https://github.com/ovh/manager/commit/81ce2eb240fee743cdc2ad687f3ed97539c1941c)), closes [#PRDCOL-236](https://github.com/ovh/manager/issues/PRDCOL-236) [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410) [#PRDCOL-297](https://github.com/ovh/manager/issues/PRDCOL-297)
+
+
+### Features
+
+* **web-office:** agreement form for csp1 ([4715621](https://github.com/ovh/manager/commit/47156215e3b2eee64a40295a45ce8a54c0a1a953)), closes [#PRDCOL-293](https://github.com/ovh/manager/issues/PRDCOL-293)
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.25.2...@ovh-ux/manager-common-translations@0.26.0) (2026-01-02)
+
+
+### Features
+
+* **common-translation:** add namespace area ([742c172](https://github.com/ovh/manager/commit/742c172896667747cfbf4de1762ea05b850759a5)), closes [#MANAGER-20194](https://github.com/ovh/manager/issues/MANAGER-20194)
+
+
+
+
+
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.25.1...@ovh-ux/manager-common-translations@0.25.2) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4531] ([40ed9bf](https://github.com/ovh/manager/commit/40ed9bf0e7ff392cca78e84ead3e8c54ea48e17f))
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.25.0...@ovh-ux/manager-common-translations@0.25.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-common-translations
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.24.3...@ovh-ux/manager-common-translations@0.25.0) (2025-12-12)
+
+
+### Features
+
+* **common-translation:** add status labels ([2ca96b8](https://github.com/ovh/manager/commit/2ca96b8c5bb259b035d292b4d9ef8ba3a0ffbe4e)), closes [#BKP-488](https://github.com/ovh/manager/issues/BKP-488)
+
+
+
+
+
+## [0.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.24.2...@ovh-ux/manager-common-translations@0.24.3) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-common-translations
+
+
+
+
+
 ## [0.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.24.1...@ovh-ux/manager-common-translations@0.24.2) (2025-12-05)
 
 

@@ -3,6 +3,138 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.2...@ovh-ux/manager-identity-access-management-app@0.5.3) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.1...@ovh-ux/manager-identity-access-management-app@0.5.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.0...@ovh-ux/manager-identity-access-management-app@0.5.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.11...@ovh-ux/manager-identity-access-management-app@0.5.0) (2026-01-13)
+
+
+### Features
+
+* replacing nx with turbo ([4c91a10](https://github.com/ovh/manager/commit/4c91a102cc7717f68751d7768748faaeff878696))
+
+
+
+
+
+## [0.4.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.10...@ovh-ux/manager-identity-access-management-app@0.4.11) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.4.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.9...@ovh-ux/manager-identity-access-management-app@0.4.10) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.8...@ovh-ux/manager-identity-access-management-app@0.4.9) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.7...@ovh-ux/manager-identity-access-management-app@0.4.8) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.6...@ovh-ux/manager-identity-access-management-app@0.4.7) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.5...@ovh-ux/manager-identity-access-management-app@0.4.6) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4537] ([0e72f25](https://github.com/ovh/manager/commit/0e72f25756f159f8e9f1a4ac26885e5f9e435abb))
+
+
+
+
+
+## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.4...@ovh-ux/manager-identity-access-management-app@0.4.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.3...@ovh-ux/manager-identity-access-management-app@0.4.4) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4533] ([62d9869](https://github.com/ovh/manager/commit/62d9869ef2d79d81ea51960894547eaf988b0c6c))
+
+
+
+
+
+## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.2...@ovh-ux/manager-identity-access-management-app@0.4.3) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.1...@ovh-ux/manager-identity-access-management-app@0.4.2) (2025-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4530] ([7e3e3fe](https://github.com/ovh/manager/commit/7e3e3fe87aea2b7799c75bb8440e36e5cecac077))
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.0...@ovh-ux/manager-identity-access-management-app@0.4.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.3.8...@ovh-ux/manager-identity-access-management-app@0.4.0) (2025-12-05)
 
 

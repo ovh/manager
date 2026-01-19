@@ -20,22 +20,23 @@ import { useProjectUrl } from '@ovh-ux/manager-react-components';
 
 import { TNetworkRegion } from '@/api/data/network';
 import { TGateway } from '@/api/data/subnets';
-import { isValidGateway3AZ } from '@/pages/new/steps/NetworkClusterStep.component';
-import { DeploymentMode } from '@/types';
+import { isStandardPlan } from '@/helpers';
+import { isValidGateway } from '@/helpers/networks';
+import { TClusterPlanEnum } from '@/types';
 
 type Props = {
-  network: TNetworkRegion[];
+  network?: TNetworkRegion[];
   gateways: TGateway[];
-  type: DeploymentMode;
+  plan?: TClusterPlanEnum;
 };
 
-const NoGatewayLinkedMessage = ({ network, gateways, type }: Props) => {
+const NoGatewayLinkedMessage = ({ network, gateways, plan }: Props) => {
   const { t } = useTranslation(['network-add', 'service']);
   const projectURL = useProjectUrl('public-cloud');
   const privateNetworkURL = `${projectURL}/private-networks`;
   const createPrivateGatewayURL = `${projectURL}/gateway/new`;
-  const noNetwork = !network.length;
-  const invalidGateway = gateways && !isValidGateway3AZ(type, gateways);
+  const noNetwork = !network?.length;
+  const invalidGateway = gateways && plan && isStandardPlan(plan) && !isValidGateway(gateways);
 
   const content = useMemo(() => {
     if (noNetwork) {
@@ -58,7 +59,7 @@ const NoGatewayLinkedMessage = ({ network, gateways, type }: Props) => {
   if (!content) return null;
 
   return (
-    <OsdsMessage type={MessageType.warning} color={TextColorIntent.warning} className="flex my-2">
+    <OsdsMessage type={MessageType.warning} color={TextColorIntent.warning} className="my-2 flex">
       <div>
         <OsdsText level={TypographyLevel.body} size={TypographySize._400} color={ColorIntent.text}>
           {content.text}{' '}

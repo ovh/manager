@@ -38,6 +38,7 @@
   "changeStorageClassConfirm": "Modifier",
   "changeStorageClassSuccessTitle": "Succès",
   "changeStorageClassSuccessDescription": "La classe de stockage a été modifiée",
+  "changeStorageClassWarningInfrequentAccess": "Attention : Les classes Infrequent Access et Cold Archive imposent une durée minimale de conservation. <0>En savoir plus</0>",
   "propertiesTab": "Propriétés",
   "versionsTab": "Versions",
   "restoreModalTitle": "Restaurer un objet",
@@ -59,5 +60,18 @@
   "extendRestoreObjectToastSuccessDescription": "La prolongation a bien été prise en compte",
   "inProgressRestore": "Restauration en cours...",
   "available": "Disponible jusqu'au",
-  "seeVersionsSwitchLabel": "Voir les versions"
+  "seeVersionsSwitchLabel": "Voir les versions",
+  "selectObject": "Sélectionner l'objet {{name}}",
+  "selectAll": "Tout sélectionner",
+  "bulkDeleteTitle": "Supprimer plusieurs objets",
+  "bulkDeleteDescription_one": "Vous allez supprimer {{count}} objet.",
+  "bulkDeleteDescription_other": "Vous allez supprimer {{count}} objets.",
+  "bulkDeleteButtonConfirm_one": "Supprimer {{count}} objet",
+  "bulkDeleteButtonConfirm_other": "Supprimer {{count}} objets",
+  "bulkDeleteToastSuccessDescription_one": "{{count}} objet supprimé avec succès.",
+  "bulkDeleteToastSuccessDescription_other": "{{count}} objets supprimés avec succès.",
+  "bulkDeleteVersionsTitle": "Supprimer plusieurs versions",
+  "bulkDeleteVersionsDescription_one": "Voulez-vous supprimer définitivement {{count}} version? Cette action ne peut être annulée.",
+  "bulkDeleteVersionsDescription_other": "Voulez-vous supprimer définitivement {{count}} versions? Cette action ne peut être annulée.",
+  "bulkDeleteVersionsConfirmation": "Tapez {{confirmation}} pour confirmer"
 }

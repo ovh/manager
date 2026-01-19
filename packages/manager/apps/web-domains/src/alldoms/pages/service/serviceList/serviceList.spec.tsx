@@ -1,8 +1,10 @@
-import { vi } from 'vitest';
-import { fireEvent, render, waitFor, screen } from '@testing-library/react';
+import '@/common/setupTests';
+import React from 'react';
+import { Mock, vi } from 'vitest';
+import { fireEvent, waitFor, act } from '@/common/utils/test.provider';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-import ServiceList from '@/alldoms/pages/service/serviceList/serviceList';
-import { wrapper } from '@/alldoms/utils/test.provider';
+import ServiceList from './serviceList';
+import { wrapper, render, screen } from '@/common/utils/test.provider';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';
@@ -13,7 +15,7 @@ vi.mock('@/alldoms/hooks/data/useGetServices', () => ({
 
 describe('AllDom datagrid', () => {
   it('display the datagrid data', async () => {
-    (useResourcesIcebergV2 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV2 as Mock).mockReturnValue({
       flattenData: [alldomService],
       isLoading: false,
       search: {
@@ -23,7 +25,7 @@ describe('AllDom datagrid', () => {
       },
     });
 
-    (useGetServices as jest.Mock).mockReturnValue({
+    (useGetServices as Mock).mockReturnValue({
       data: [serviceInfo],
       listLoading: false,
     });
@@ -35,15 +37,18 @@ describe('AllDom datagrid', () => {
       expect(serviceName).toBeInTheDocument();
       expect(serviceName).toHaveAttribute(
         'href',
-        'https://ovh.test/#/web-domains/alldoms/alldom-french-international-example',
+        '/alldoms/alldom-french-international-example',
       );
 
-      // We test the status
       const status = getByTestId('status');
       expect(status).toBeInTheDocument();
+    });
 
-      // We test the actions
+    act(() => {
       fireEvent.click(screen.getByTestId('navigation-action-trigger-action'));
+    });
+
+    await waitFor(() => {
       const renewAction = screen.getByTestId('renew-button');
       expect(renewAction).toBeInTheDocument();
       expect(renewAction).toHaveAttribute(

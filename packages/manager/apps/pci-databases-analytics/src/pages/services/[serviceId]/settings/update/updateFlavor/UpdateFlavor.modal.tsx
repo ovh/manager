@@ -8,8 +8,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  ScrollArea,
-  ScrollBar,
   Form,
   FormControl,
   FormField,
@@ -17,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
   useToast,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import * as database from '@/types/cloud/project/database';
@@ -57,7 +56,7 @@ const UpdateFlavor = () => {
     onError: (err) => {
       toast.toast({
         title: t('updateFlavorToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -99,15 +98,15 @@ const UpdateFlavor = () => {
     <RouteModal
       isLoading={!listFlavors || !initialFlavorObject || !newPrice || !oldPrice}
     >
-      <DialogContent className="sm:max-w-2xl">
-        <ScrollArea className="max-h-[80vh]">
+      <DialogContent className="sm:max-w-2xl" variant="information">
+        <DialogHeader>
+          <DialogTitle data-testid="update-flavor-modal">
+            {t('updateFlavorTitle')}
+          </DialogTitle>
+        </DialogHeader>
+        <DialogBody>
           <Form {...form}>
             <form onSubmit={onSubmit} id="updateFlavorForm">
-              <DialogHeader className="mb-2">
-                <DialogTitle data-testid="update-flavor-modal">
-                  {t('updateFlavorTitle')}
-                </DialogTitle>
-              </DialogHeader>
               <FormField
                 control={form.control}
                 name="flavor"
@@ -158,21 +157,20 @@ const UpdateFlavor = () => {
               )}
             </form>
           </Form>
-          <ScrollBar orientation="vertical" />
-        </ScrollArea>
+        </DialogBody>
         <DialogFooter className="flex justify-between sm:justify-between mt-2 w-full gap-2">
           <div className="flex-col w-full">
             <div className="flex items-center gap-2">
               <Price
-                priceInUcents={oldPrice?.servicePrice.hourly.price}
-                taxInUcents={oldPrice?.servicePrice.hourly.tax}
+                priceInUcents={oldPrice?.servicePrice.price}
+                taxInUcents={oldPrice?.servicePrice.tax}
                 decimals={3}
               />
               <PricingDetails service={service} pricing={oldPrice} />
               <ArrowRight className="size-4" />
               <Price
-                priceInUcents={newPrice?.servicePrice.hourly.price}
-                taxInUcents={newPrice?.servicePrice.hourly.tax}
+                priceInUcents={newPrice?.servicePrice.price}
+                taxInUcents={newPrice?.servicePrice.tax}
                 decimals={3}
               />
               <PricingDetails service={service} pricing={newPrice} />
@@ -182,7 +180,7 @@ const UpdateFlavor = () => {
                 <Button
                   data-testid="update-flavor-cancel-button"
                   type="button"
-                  mode="outline"
+                  mode="ghost"
                 >
                   {t('updateFlavorCancelButton')}
                 </Button>

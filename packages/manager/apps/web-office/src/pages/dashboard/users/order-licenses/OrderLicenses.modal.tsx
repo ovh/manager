@@ -6,18 +6,31 @@ import { Controller, useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsMessage, OdsQuantity, OdsSelect } from '@ovhcloud/ods-components/react';
+import {
+  FormField,
+  FormFieldLabel,
+  ICON_NAME,
+  MODAL_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Quantity,
+  QuantityControl,
+  QuantityInput,
+  Select,
+  SelectContent,
+  SelectControl,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
-import { Modal, OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, OvhSubsidiary } from '@ovh-ux/muk';
 
 import { CANCEL, CONFIRM, ORDER_ACCOUNT } from '@/Tracking.constants';
 import { generateOrderURL } from '@/data/api/order/utils';
@@ -92,71 +105,71 @@ export default function ModalOrderLicenses() {
   return (
     <Modal
       heading={t('dashboard_users_order_licences_title')}
-      type={ODS_MODAL_COLOR.information}
-      isOpen={true}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
-      onDismiss={handleCancelClick}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      isPrimaryButtonDisabled={!watch('productType')}
-      onPrimaryButtonClick={() => void handleSubmit(onSubmit)()}
+      type={MODAL_COLOR.information}
+      open={true}
+      secondaryButton={{ label: t(`${NAMESPACES.ACTIONS}:cancel`), onClick: handleCancelClick }}
+      onOpenChange={handleCancelClick}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
+        disabled: !watch('productType'),
+        onClick: () => void handleSubmit(onSubmit)(),
+      }}
     >
       <form onSubmit={(e) => void handleSubmit(onSubmit)(e)}>
-        <div className="flex flex-wrap justify-between mb-4">
-          <OdsFormField className="w-full md:w-3/5">
-            <label slot="label" htmlFor="form-product-type">
-              {t('dashboard_users_order_licences_type')}
-            </label>
+        <div className="mb-4 flex flex-wrap justify-between">
+          <FormField className="w-full md:w-3/5">
+            <FormFieldLabel>
+              {t('dashboard_users_order_licences_type')} - {t(`${NAMESPACES.FORM}:required`)}
+            </FormFieldLabel>
             <Controller
               name="productType"
               control={control}
               rules={{ required: true }}
-              render={({ field }) => (
-                <OdsSelect
-                  name="productType"
-                  id="form-product-type"
-                  {...field}
+              render={({ field: { onChange, name } }) => (
+                <Select
+                  data-testid={name}
+                  name={name}
                   aria-label={t('dashboard_users_order_licences_type')}
-                  onOdsChange={(event) => field.onChange(event.target.value)}
+                  onValueChange={(event) => onChange(event.value[0])}
+                  items={productOptions}
                 >
-                  {productOptions?.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </OdsSelect>
+                  <SelectControl placeholder={t(`${NAMESPACES.ACTIONS}:select`)} />
+                  <SelectContent />
+                </Select>
               )}
             />
-          </OdsFormField>
-          <OdsFormField>
-            <label slot="label" htmlFor="form-quantity">
-              {t('dashboard_users_order_licences_quantity')}
-            </label>
+          </FormField>
+          <FormField>
+            <FormFieldLabel>
+              {t('dashboard_users_order_licences_quantity')} - {t(`${NAMESPACES.FORM}:required`)}
+            </FormFieldLabel>
             <Controller
               name="quantity"
               control={control}
               rules={{ required: true, min: 1 }}
-              render={({ field }) => (
-                <OdsQuantity
-                  data-testid="quantity"
-                  id="form-quantity"
-                  name="quantity"
-                  value={field.value || 1}
-                  aria-label={t('dashboard_users_order_licences_quantity')}
-                  onOdsChange={(event) => field.onChange(Number(event.target.value))}
+              render={({ field: { onChange, name } }) => (
+                <Quantity
+                  name={name}
+                  defaultValue={String(1)}
+                  onValueChange={(event) => onChange(Number(event.value))}
                   max={300}
                   min={1}
-                />
+                >
+                  <QuantityControl>
+                    <QuantityInput data-testid={name} />
+                  </QuantityControl>
+                </Quantity>
               )}
             />
-          </OdsFormField>
+          </FormField>
         </div>
-        <OdsMessage className="mt-4 mb-6" isDismissible={false}>
-          <div>
+        <Message className="mb-6 mt-4" dismissible={false}>
+          <MessageIcon name={ICON_NAME.circleInfo} />
+          <MessageBody>
             <span className="block">{t('dashboard_users_order_licences_message_1')}</span>
             <span>{t('dashboard_users_order_licences_message_2')}</span>
-          </div>
-        </OdsMessage>
+          </MessageBody>
+        </Message>
       </form>
     </Modal>
   );

@@ -20,7 +20,7 @@
   "kube_node_pool_autoscale_false": "Inativo",
   "kube_common_node_pool_configure_true": "Configurar pools de nós",
   "kube_common_node_pool_configure_false": " Criar um cluster sem pool de nós",
-  "kube_common_node_pool_estimated_cost": "Estimativa do custo mensal do cluster:",
+  "kube_common_node_pool_estimated_cost": "Estimativa do custo mensal do cluster",
   "kube_common_node_pool_estimation_text": "Esta estimativa não inclui uma eventual redução relacionada com os planos de poupança.",
   "kube_common_node_pool_estimation_price": "Pools de nós:",
   "kube_common_node_pool_estimation_text_end": "O custo exato depende da utilização real dos recursos, que não pode ser estimada com precisão antes da criação de um cluster.",
@@ -43,5 +43,16 @@
   "kube_common_node_pool_select_zone": "Deve escolher, no mínimo, uma Availability Zone.",
   "kube_common_add_node_pool_plural": "Adicionar {{count}} pools de nós",
   "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Se forem escolhidas várias Availability Zones (AZ), a configuração será duplicada automaticamente para criar um pool de nós distinto em cada zona.",
-  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Repartição AZ"
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Repartição AZ",
+  "kube_common_node_pool_public_connetivity_title": "Ligação pública",
+  "kube_common_node_pool_public_connetivity_toggle": "Associar Floating IP aos nós",
+  "kube_common_node_pool_public_connectivity_warning_title": "Aviso relativo à atualização do cluster:",
+  "kube_common_node_pool_public_connectivity_warning_description_rolling": "Atualmente, a estratégia de atualização (upgrade e patch) dos clusters consiste no <strong>«Rolling Upgrade»</strong>: os nós são <strong>substituídos</strong> um por um, bem como <strong>os Floating IP associados</strong>.",
+  "kube_common_node_pool_public_connectivity_warning_description_in_place": "Uma futura estratégia de atualização (<strong>«In Place»</strong>) permitirá <strong>conservar estes IP no momento das atualizações</strong>. ",
+  "kube_common_node_pool_public_connectivity_warning_description_more": "<strong>Para saber mais</strong>, consulte o <a>guia sobre o conceito de Floating IP</a>.",
+  "kube_common_node_pool_deploy_floating_ip_content1": "Atribui automaticamente um <strong>Floating IP (IP público)</strong> a cada nó do pool de nós, incluindo os do autoscaler.",
+  "kube_common_node_pool_deploy_floating_ip_content2": "<strong>Acesso público</strong> direto ao nó.",
+  "kube_common_node_pool_deploy_floating_ip_content3": "Permite usar a <a>largura de banda pública do nó</a> (em vez da largura de banda do Managed Gateway).",
+  "kube_common_node_pool_deploy_floating_ip_content4": "O ciclo de vida do Floating IP está associado ao do nó (ou seja, o primeiro é eliminado com este último).",
+  "kube_common_node_pool_node": "nó"
 }

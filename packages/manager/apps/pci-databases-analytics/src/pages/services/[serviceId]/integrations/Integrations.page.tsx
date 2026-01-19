@@ -14,6 +14,7 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { GuideSections } from '@/types/guide';
 import Guides from '@/components/guides/Guides.component';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -70,28 +71,30 @@ const Integrations = () => {
         <h2>{t('title')}</h2>
         <Guides section={GuideSections.integrations} engine={service.engine} />
       </div>
-      {service.capabilities.integrations?.create && (
-        <Button
-          data-testid="integrations-add-button"
-          mode={'outline'}
-          size="sm"
-          className="text-base"
-          disabled={
-            service.capabilities.integrations?.create ===
-            database.service.capability.StateEnum.disabled
-          }
-          onClick={() => navigate('./add')}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          {t('addButtonLabel')}
-        </Button>
-      )}
       {!isLoading ? (
-        <DataTable.Provider
-          columns={columns}
-          data={integrations}
-          pageSize={25}
-        />
+        <DataTable.Provider columns={columns} data={integrations} pageSize={25}>
+          <DataTable.Header>
+            {service.capabilities.integrations?.create && (
+              <DataTable.Action>
+                <Button
+                  data-testid="integrations-add-button"
+                  mode="outline"
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'integrations',
+                    'create',
+                  )}
+                  onClick={() => navigate('./add')}
+                >
+                  <Plus className="w-4 h-4" />
+                  {t('addButtonLabel')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="integrations-table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

@@ -11,6 +11,7 @@ import { getColumns } from './_components/DatabasesTableColumns.component';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -43,29 +44,34 @@ const Databases = () => {
   return (
     <>
       <h2>{t('title')}</h2>
-      {service.capabilities.databases?.create && (
-        <Button
-          mode={'outline'}
-          size="sm"
-          className="text-base"
-          data-testid="add-button"
-          disabled={
-            service.capabilities.databases?.create ===
-            database.service.capability.StateEnum.disabled
-          }
-          onClick={() => navigate('./add')}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          {t('addButtonLabel')}
-        </Button>
-      )}
-
       {databasesQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
           data={databasesQuery.data}
           pageSize={10}
-        />
+        >
+          <DataTable.Header>
+            {service.capabilities.databases?.create && (
+              <DataTable.Action>
+                <Button
+                  mode="outline"
+                  data-testid="add-button"
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'databases',
+                    'create',
+                  )}
+                  onClick={() => navigate('./add')}
+                >
+                  <Plus className="w-4 h-4" />
+                  {t('addButtonLabel')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="table-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

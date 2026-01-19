@@ -3,6 +3,167 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.8...@ovh-ux/manager-account-creation-app@0.9.9) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.9.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.7...@ovh-ux/manager-account-creation-app@0.9.8) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.6...@ovh-ux/manager-account-creation-app@0.9.7) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.5...@ovh-ux/manager-account-creation-app@0.9.6) (2026-01-13)
+
+
+### Bug Fixes
+
+* **account-creation:** fix labeu sanitize ([c284900](https://github.com/ovh/manager/commit/c284900a4e0f37b60ffe9991e4b63740ac5bf4a2)), closes [#MANAGER-20711](https://github.com/ovh/manager/issues/MANAGER-20711)
+
+
+
+
+
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.4...@ovh-ux/manager-account-creation-app@0.9.5) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.3...@ovh-ux/manager-account-creation-app@0.9.4) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.2...@ovh-ux/manager-account-creation-app@0.9.3) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.1...@ovh-ux/manager-account-creation-app@0.9.2) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.9.0...@ovh-ux/manager-account-creation-app@0.9.1) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.8.4...@ovh-ux/manager-account-creation-app@0.9.0) (2025-12-22)
+
+
+### Features
+
+* **account-creation:** disable useMe hook if userid cookie not present ([a4f5e33](https://github.com/ovh/manager/commit/a4f5e332ed167c3e47a02391bc4e2f943b2d0309)), closes [#MANAGER-20043](https://github.com/ovh/manager/issues/MANAGER-20043)
+* **account-creation:** reset phone field on phoneType change ([00fd1f3](https://github.com/ovh/manager/commit/00fd1f30af4589eb5999bba5e6cbb3e256fabb87)), closes [#MANAGER-20510](https://github.com/ovh/manager/issues/MANAGER-20510)
+
+
+
+
+
+## [0.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.8.3...@ovh-ux/manager-account-creation-app@0.8.4) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4537] ([0e72f25](https://github.com/ovh/manager/commit/0e72f25756f159f8e9f1a4ac26885e5f9e435abb))
+
+
+
+
+
+## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.8.2...@ovh-ux/manager-account-creation-app@0.8.3) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.8.1...@ovh-ux/manager-account-creation-app@0.8.2) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.8.0...@ovh-ux/manager-account-creation-app@0.8.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.7.2...@ovh-ux/manager-account-creation-app@0.8.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* **account-creation:** update phone country on country selection change ([58cfb36](https://github.com/ovh/manager/commit/58cfb36aeafdad469435175a077ab9a79240a0fa)), closes [#MANAGER-20502](https://github.com/ovh/manager/issues/MANAGER-20502)
+* **account-creation:** use phone number from ods 19 ([4d144ea](https://github.com/ovh/manager/commit/4d144ea2492508469bc46b8b4885c999d7d05683)), closes [#MANAGER-20468](https://github.com/ovh/manager/issues/MANAGER-20468)
+
+
+### Features
+
+* **account-creation:** change logo ([2980a95](https://github.com/ovh/manager/commit/2980a9546e55d1896be44a3e1efa11fe3d879252)), closes [#MANAGER-20304](https://github.com/ovh/manager/issues/MANAGER-20304)
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.7.1...@ovh-ux/manager-account-creation-app@0.7.2) (2025-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4530] ([7e3e3fe](https://github.com/ovh/manager/commit/7e3e3fe87aea2b7799c75bb8440e36e5cecac077))
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.7.0...@ovh-ux/manager-account-creation-app@0.7.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-creation-app
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.6.0...@ovh-ux/manager-account-creation-app@0.7.0) (2025-12-08)
 
 

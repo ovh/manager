@@ -13,6 +13,7 @@ import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook
 import { getPatternsColumns } from './_components/PatternsTableColumns.component';
 import { getIndexesColumns } from './_components/IndexesTableColumns.component';
 import DataTable from '@/components/data-table';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -58,28 +59,30 @@ const IndexPatterns = () => {
   return (
     <>
       <h2>{t('titlePatterns')}</h2>
-      {patternQuery.isSuccess && service.capabilities.patterns?.create && (
-        <Button
-          data-testid="pattern-add-button"
-          disabled={
-            service.capabilities.patterns?.create ===
-            database.service.capability.StateEnum.disabled
-          }
-          mode={'outline'}
-          size="sm"
-          className="text-base"
-          onClick={() => navigate('./add-pattern')}
-        >
-          <Plus className="size-4 mr-2" />
-          {t('addPatternButtonLabel')}
-        </Button>
-      )}
       {patternQuery.isSuccess ? (
         <DataTable.Provider
           columns={patternsTableColumns}
           data={patternQuery.data}
           pageSize={25}
-        />
+        >
+          <DataTable.Header>
+            {service.capabilities.patterns?.create && (
+              <DataTable.Action>
+                <Button
+                  data-testid="pattern-add-button"
+                  disabled={isCapabilityDisabled(service, 'patterns', 'create')}
+                  mode="outline"
+                  onClick={() => navigate('./add-pattern')}
+                >
+                  <Plus className="size-4" />
+                  {t('addPatternButtonLabel')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="patterns-table-skeleton">
           <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />

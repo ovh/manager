@@ -1,17 +1,16 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Label,
   useToast,
 } from '@datatr-ux/uxlib';
-import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
 import Price from '@/components/price/Price.component';
 import { useAddNode } from '@/hooks/api/database/node/useAddNode.hook';
 import { Pricing } from '@/lib/pricingHelper';
@@ -22,7 +21,6 @@ import RouteModal from '@/components/route-modal/RouteModal';
 
 const AddNode = () => {
   const { service, projectId } = useServiceData();
-  const [showMonthly, setShowMonthly] = useState(false);
   const catalogQuery = useGetCatalog();
   const navigate = useNavigate();
 
@@ -34,7 +32,7 @@ const AddNode = () => {
     onError: (err) => {
       toast.toast({
         title: t('addNodeToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -52,13 +50,12 @@ const AddNode = () => {
     const prefix = `databases.${service.engine.toLowerCase()}-${service.plan}-${
       service.flavor
     }`;
+    const pricingCatalog = catalogQuery.data?.addons?.find(
+      (a) => a.planCode === `${prefix}.hour.consumption`,
+    )?.pricings[0];
     return {
-      hourly: catalogQuery.data?.addons.find(
-        (a) => a.planCode === `${prefix}.hour.consumption`,
-      ).pricings[0],
-      monthly: catalogQuery.data?.addons.find(
-        (a) => a.planCode === `${prefix}.month.consumption`,
-      ).pricings[0],
+      price: pricingCatalog?.price,
+      tax: pricingCatalog?.tax,
     };
   }, [catalogQuery.data]);
 
@@ -76,45 +73,42 @@ const AddNode = () => {
 
   return (
     <RouteModal isLoading={!price}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-node-modal">
             {t('addNodeTitle')}
           </DialogTitle>
         </DialogHeader>
-        <Label>{t('priceUnitSwitchLabel')}</Label>
-        <PriceUnitSwitch showMonthly={showMonthly} onChange={setShowMonthly} />
-        <p>
+        <DialogBody>
           {price && (
-            <Trans
-              t={t}
-              i18nKey={'addNodeDescription'}
-              values={{
-                nbNodes: service.nodes.length,
-                unit: showMonthly
-                  ? t('addNodeDescriptionUnitMonth')
-                  : t('addNodeDescriptionUnitHour'),
-              }}
-              components={{
-                price: (
-                  <Price
-                    priceInUcents={
-                      price[showMonthly ? 'monthly' : 'hourly'].price
-                    }
-                    taxInUcents={price[showMonthly ? 'monthly' : 'hourly'].tax}
-                    decimals={showMonthly ? 2 : 3}
-                  />
-                ),
-              }}
-            ></Trans>
+            <p>
+              <Trans
+                t={t}
+                i18nKey={'addNodeDescription'}
+                values={{
+                  nbNodes: service.nodes.length,
+                  unit: t('addNodeDescriptionUnitHour'),
+                }}
+                components={{
+                  price: (
+                    <Price
+                      className="inline"
+                      priceInUcents={price.price}
+                      taxInUcents={price.tax}
+                      decimals={3}
+                    />
+                  ),
+                }}
+              ></Trans>
+            </p>
           )}
-        </p>
-        <DialogFooter className="flex justify-end">
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="add-node-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('addNodeCancelButton')}
             </Button>

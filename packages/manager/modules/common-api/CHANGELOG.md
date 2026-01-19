@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.6.4...@ovh-ux/manager-module-common-api@0.6.5) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-common-api
+
+
+
+
+
+## [0.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.6.3...@ovh-ux/manager-module-common-api@0.6.4) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-common-api
+
+
+
+
+
+## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.6.2...@ovh-ux/manager-module-common-api@0.6.3) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-common-api
+
+
+
+
+
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.6.1...@ovh-ux/manager-module-common-api@0.6.2) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-common-api
+
+
+
+
+
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.6.0...@ovh-ux/manager-module-common-api@0.6.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-common-api
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-common-api@0.5.15...@ovh-ux/manager-module-common-api@0.6.0) (2025-12-05)
 
 

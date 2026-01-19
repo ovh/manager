@@ -24,6 +24,7 @@ import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 import { getRegionFlag } from '@/lib/flagHelper';
 import Flag from '@/components/flag/Flag.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -277,10 +278,7 @@ export const getColumns = ({
               {service.capabilities.service?.update && (
                 <DropdownMenuItem
                   data-testid="service-action-rename-button"
-                  disabled={
-                    service.capabilities.service?.update ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(service, 'service', 'update')}
                   variant="primary"
                   onClick={() => {
                     onRenameClicked(row.original);
@@ -295,11 +293,12 @@ export const getColumns = ({
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     data-testid="service-action-delete-button"
-                    disabled={
-                      service.capabilities.service?.delete ===
-                      database.service.capability.StateEnum.disabled
-                    }
-                    variant="destructive"
+                    disabled={isCapabilityDisabled(
+                      service,
+                      'service',
+                      'delete',
+                    )}
+                    variant="critical"
                     onClick={() => {
                       onDeleteClicked(row.original);
                     }}

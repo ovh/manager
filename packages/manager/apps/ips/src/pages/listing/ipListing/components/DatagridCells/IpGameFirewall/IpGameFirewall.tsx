@@ -4,7 +4,7 @@ import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { IpGameFirewallDisplay } from './IpGameFirewallDisplay';
-import { isGameFirewallEnabled } from '../enableCellsUtils';
+import { isGameFirewallAvailable } from '../enableCellsUtils';
 
 export type IpGameFirewallProps = {
   ip: string;
@@ -38,7 +38,7 @@ export const IpGameFirewall = ({ ip, ipOnGame }: IpGameFirewallProps) => {
   const enabled =
     expiredIps.indexOf(ip) === -1 &&
     !isIpDetailsLoading &&
-    isGameFirewallEnabled(ipDetails);
+    isGameFirewallAvailable(ipDetails);
 
   // Get game firewall info
   const { isLoading, error } = useGetIpGameFirewall({
@@ -50,7 +50,7 @@ export const IpGameFirewall = ({ ip, ipOnGame }: IpGameFirewallProps) => {
   return (
     <SkeletonCell
       isLoading={isIpDetailsLoading || isLoading}
-      enabled={!isGroup || !!ipOnGame}
+      enabled={(!isGroup || !!ipOnGame) && enabled}
       error={error}
       ip={ip}
     >

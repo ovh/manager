@@ -1,0 +1,22 @@
+{
+  "managed_vcd_network_acl_ip_name": "IP",
+  "managed_vcd_network_acl_ip_action_modify_ip": "Edit the IP range",
+  "managed_vcd_network_acl_ip_action_delete_ip": "Delete the IP range",
+  "managed_vcd_network_acl_ip_cta_add_ip": "Add an IP",
+  "managed_vcd_network_acl_ip_cta_modify_ip": "Edit the authorised IP range",
+  "managed_vcd_network_acl_drawer_header_edit_ip": "Changing the IP range...",
+  "managed_vcd_network_acl_drawer_header_suppression_ip": "Deleting the security rule...",
+  "managed_vcd_network_acl_drawer_body_suppression_ip": "Are you sure you want to delete this ACL rule:",
+  "managed_vcd_network_acl_update_success_message": "The security rule update request has been processed",
+  "managed_vcd_network_acl_delete_success_message": "The request to delete the security rule has been processed",
+  "managed_vcd_network_acl_update_error_message": "An error occurred while updating {{errorApi}}",
+  "managed_vcd_network_acl_add_error_message": "An error occurred while adding the {{errorApi}} security rule",
+  "managed_vcd_network_acl_delete_error_message": "An error occurred while deleting the {{errorApi}} security rule",
+  "managed_vcd_network_acl_operation_ongoing": "An operation to update the ACL rules is in progress. Please wait before editing the ACL rules",
+  "managed_vcd_network_acl_status_ACTIVE": "Set up",
+  "managed_vcd_network_acl_status_CREATING": "Creating...",
+  "managed_vcd_network_acl_status_DELETING": "Deleting...",
+  "managed_vcd_network_acl_normalized_info": "Your IP range will be automatically converted into the correct format: {{normalized}}.",
+  "managed_vcd_network_acl_add_current_ip": "Add your current IP",
+  "managed_vcd_network_acl_allow_access_from_anywhere": "Allow access from anywhere"
+}

@@ -11,12 +11,11 @@ interface OrderPriceProps {
 const OrderPrice = ({ availability, prices }: OrderPriceProps) => {
   const { t } = useTranslation('pricing');
   const isFreeBeta =
-    prices.servicePrice.hourly.price === 0 &&
-    availability.lifecycle.status === 'BETA';
+    prices.servicePrice.price === 0 && availability.lifecycle.status === 'BETA';
 
   return (
     <div data-testid="order-price-container">
-      <p className="font-bold">{t('pricing_label')}</p>
+      <p className="font-bold mb-2">{t('pricing_label')}</p>
       {isFreeBeta ? (
         <FreeBetaPricing popoverSide="left" />
       ) : (

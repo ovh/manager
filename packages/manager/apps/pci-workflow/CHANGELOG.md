@@ -3,6 +3,103 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.10...@ovh-ux/manager-pci-workflow-app@0.11.11) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.9...@ovh-ux/manager-pci-workflow-app@0.11.10) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.8...@ovh-ux/manager-pci-workflow-app@0.11.9) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.7...@ovh-ux/manager-pci-workflow-app@0.11.8) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+## [0.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.6...@ovh-ux/manager-pci-workflow-app@0.11.7) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4537] ([0e72f25](https://github.com/ovh/manager/commit/0e72f25756f159f8e9f1a4ac26885e5f9e435abb))
+* **i18n:** add missing translations [CDS 4539] ([b90b9d2](https://github.com/ovh/manager/commit/b90b9d2b605ba03e7e364830f9e261479a2c1b7d))
+
+
+
+
+
+## [0.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.5...@ovh-ux/manager-pci-workflow-app@0.11.6) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.4...@ovh-ux/manager-pci-workflow-app@0.11.5) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4531] ([40ed9bf](https://github.com/ovh/manager/commit/40ed9bf0e7ff392cca78e84ead3e8c54ea48e17f))
+* **i18n:** add missing translations [CDS 4536] ([08adb80](https://github.com/ovh/manager/commit/08adb8017f44ae5c825d3f734017715185af6035))
+
+
+
+
+
+## [0.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.3...@ovh-ux/manager-pci-workflow-app@0.11.4) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.2...@ovh-ux/manager-pci-workflow-app@0.11.3) (2025-12-12)
+
+
+### Bug Fixes
+
+* **pci-workflow:** change workflow planing rotation description ([f55d256](https://github.com/ovh/manager/commit/f55d25658f062c595abc95febe1aaab912da49f1)), closes [#TAPC-5443](https://github.com/ovh/manager/issues/TAPC-5443)
+* **pci-workflow:** fix linter ([d8eb497](https://github.com/ovh/manager/commit/d8eb497b092218a1a44f6c21c013aab993162197)), closes [#TAPC-5443](https://github.com/ovh/manager/issues/TAPC-5443)
+* **pci-workflow:** make region selector required ([768b326](https://github.com/ovh/manager/commit/768b3262478b161027ae1ce2bdde7d2bb8f4cd2b)), closes [#TAPC-5416](https://github.com/ovh/manager/issues/TAPC-5416)
+* **pci-workflow:** remove notification from configuration page ([97e0dba](https://github.com/ovh/manager/commit/97e0dba63b6e5e5f1d2ae405fbfbf5fd468bbd39)), closes [#TAPC-5414](https://github.com/ovh/manager/issues/TAPC-5414)
+
+
+
+
+
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.1...@ovh-ux/manager-pci-workflow-app@0.11.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.11.0...@ovh-ux/manager-pci-workflow-app@0.11.1) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app

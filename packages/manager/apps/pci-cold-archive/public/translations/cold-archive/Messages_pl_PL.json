@@ -40,10 +40,10 @@
   "pci_projects_project_storages_cold_archive_containers_container_manage_endpoint_label": "EndPoint",
   "pci_projects_project_storages_cold_archive_containers_container_manage_region_label": "Region",
   "pci_projects_project_storages_cold_archive_containers_container_manage_close_label": "Zamknij",
-  "pci_projects_project_storages_cold_archive_banner_title": "Nowość: archiwizuj obiekty indywidualnie z poziomu swojego pulpitu nawigacyjnego Object Storage!",
-  "pci_projects_project_storages_cold_archive_banner_description": "Teraz możliwe jest archiwizowanie obiektów jeden po drugim, aby zoptymalizować koszty przechowywania i lepiej zarządzać danymi, bez konieczności archiwizowania całego kontenera.",
-  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Ta funkcjonalność jest dostępna bezpośrednio z poziomu twojego pulpitu nawigacyjnego Object Storage, z twoich istniejących kontenerów:",
-  "pci_projects_project_storages_cold_archive_banner_feature_1": "ładuj swoje obiekty, klasyfikując je bezpośrednio do Cold Archive;",
-  "pci_projects_project_storages_cold_archive_banner_feature_2": "lub użyj reguł cyklu życia, aby przenieść dane do klasy Cold Archive.",
+  "pci_projects_project_storages_cold_archive_banner_title": "Nowość: archiwizuj pojedyncze obiekty, korzystając z dashboardu Object Storage",
+  "pci_projects_project_storages_cold_archive_banner_description": "Możesz teraz archiwizować pojedynczo poszczególne obiekty, aby zoptymalizować koszty przechowywania i lepiej zarządzać danymi, bez konieczności archiwizowania całego kontenera.",
+  "pci_projects_project_storages_cold_archive_banner_feature_intro": "Funkcja jest dostępna bezpośrednio na dashboardzie Object Storage dla istniejących kontenerów:",
+  "pci_projects_project_storages_cold_archive_banner_feature_1": "pobieraj obiekty bezpośrednio do Cold Archive;",
+  "pci_projects_project_storages_cold_archive_banner_feature_2": "lub użyj reguł cyklu życia, które przenoszą dane do klasy Cold Archive.",
   "pci_projects_project_storages_cold_archive_banner_cta": "Wypróbuj teraz!"
 }

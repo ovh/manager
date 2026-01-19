@@ -137,7 +137,7 @@ describe('AddEdit user form', () => {
     await waitFor(() => {
       expect(usersApi.addUser).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'formUserToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'addUserToastSuccessDescription',
       });
     });
@@ -177,7 +177,7 @@ describe('AddEdit user form', () => {
     await waitFor(() => {
       expect(usersApi.addUser).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'formUserToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'addUserToastSuccessDescription',
       });
     });
@@ -223,7 +223,7 @@ describe('AddEdit user form', () => {
     await waitFor(() => {
       expect(usersApi.addUser).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'formUserToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'addUserToastSuccessDescription',
       });
     });
@@ -368,7 +368,7 @@ describe('AddEdit user form', () => {
     await waitFor(() => {
       expect(usersApi.addUser).toHaveBeenCalled();
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'formUserToastSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'addUserToastSuccessDescription',
       });
     });
@@ -394,7 +394,7 @@ describe('AddEdit user form', () => {
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'addUserToastErrorTitle',
         description: apiErrorMock.response.data.message,
-        variant: 'destructive',
+        variant: 'critical',
       });
     });
   });

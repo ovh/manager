@@ -1,8 +1,7 @@
 @tailwind utilities;
 
 @import '@ovhcloud/ods-themes/default';
-@import '@ovh-ux/manager-react-components/dist/style.css';
-
+@import '@ovh-ux/muk/dist/style.css';
 html {
   font-family: var(--ods-font-family-default);
 }
@@ -21,6 +20,36 @@ ods-table td {
     height: 32px;
     border-radius: 0;
   }
+}
+
+.sub-row > td {
+  padding: 0 0 0 var(--expander-column-width) !important;
+}
+
+.sub-row table,
+.sub-row tr {
+  border: none;
+}
+
+.sub-row table td {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.sub-row table tr:first-child td {
+  border-top: none;
+}
+
+.sub-row table tr:last-child td {
+  border-bottom: none;
+}
+
+.sub-row table tr td:first-child {
+  border-left: none;
+}
+
+.sub-row table tr td:last-child {
+  border-right: none;
 }
 
 // put min-width otherwise the input is

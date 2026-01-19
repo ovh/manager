@@ -1,3 +1,4 @@
+import { KEY_VALUES_TEST_IDS } from '@secret-manager/components/secret-value/secretValueClipboards.constants';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import {
   versionActiveMock,
@@ -13,11 +14,11 @@ import userEvent from '@testing-library/user-event';
 
 import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
+import { valueToOdsSelectValue } from '@/common/utils/ods/odsSelect';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { RenderTestMockParams, renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
-import { SECRET_RAW_VALUE_TEST_ID } from './SecretRawValue.contants';
 import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import {
   VERSION_SELECTOR_ERROR_TEST_ID,
@@ -90,7 +91,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionListMock[0]?.id?.toString() ?? '',
+          valueToOdsSelectValue(versionListMock[0]?.id ?? 0),
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -115,7 +116,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionListMock[lastVersionId - 1]?.id?.toString() ?? '',
+          valueToOdsSelectValue(versionListMock[lastVersionId - 1]?.id ?? 0),
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -181,7 +182,10 @@ describe('ValueDrawer test suite', () => {
         await renderPage();
 
         // Change the data input value
-        await changeOdsInputValueByTestId(VERSION_SELECTOR_TEST_ID, version.id.toString());
+        await changeOdsInputValueByTestId(
+          VERSION_SELECTOR_TEST_ID,
+          valueToOdsSelectValue(version.id),
+        );
 
         // THEN
         await assertTextVisibility(labels.common.status.status);
@@ -192,10 +196,9 @@ describe('ValueDrawer test suite', () => {
 
         if (!haveValue) return;
 
-        // TODO: update this part when we'll handle key/value representation.
         await waitFor(() => {
-          const versionRawValue = screen.getByTestId(SECRET_RAW_VALUE_TEST_ID);
-          expect(versionRawValue).toBeVisible();
+          const keyValuesContainer = screen.getByTestId(KEY_VALUES_TEST_IDS.container);
+          expect(keyValuesContainer).toBeVisible();
         }, WAIT_FOR_DEFAULT_OPTIONS);
       },
     );

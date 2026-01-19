@@ -27,5 +27,6 @@
   "billing_services_actions_menu_restore_label": "Dienst wiederherstellen: {{ serviceName }} (Neues Fenster)",
   "billing_services_actions_menu_resiliate_us": "Meinen Dienst kündigen",
   "billing_services_actions_menu_resiliate_my_engagement_us": "Meine Vertragsbindung kündigen",
-  "billing_services_actions_menu_commit_cancel_us": "Anfrage zur Vertragsbindung stornieren"
+  "billing_services_actions_menu_commit_cancel_us": "Anfrage zur Vertragsbindung stornieren",
+  "billing_services_actions_menu_see_bills": "Meine Rechnungen anzeigen"
 }

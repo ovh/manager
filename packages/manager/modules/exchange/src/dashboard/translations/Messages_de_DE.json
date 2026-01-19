@@ -491,7 +491,6 @@
   "exchange_account_add_personal_account_info_title": "Angaben zum Account",
   "exchange_account_add_company_account_info_title": "Angaben zum Unternehmen",
   "exchange_account_add_contact_account_info_title": "Kontakt-Informationen",
-  "exchange_account_add_sections_title": "Erweiterte Einstellungen",
   "exchange_account_add_accountType_label": "Art des Accounts (obligatorisch)",
   "exchange_account_add_accountType_tooltip": "E-Mail Pro: Sie erhalten 10 GB Storage sowie POP-, IMAP- und SMTP-Protokolle. Exchange: Sie erhalten 50 GB Storage, MAPI- und ActiveSync-Protokolle.\n",
   "exchange_account_add_emailAddress_label": "E-Mail-Adresse (obligatorisch)",

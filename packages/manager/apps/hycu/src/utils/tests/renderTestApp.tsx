@@ -6,7 +6,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, RenderResult } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
@@ -35,7 +35,7 @@ export const renderTestApp = async (
   mockParams: GetServicesMocksParams &
     GetLicenseHycuMocksParams &
     CatalogHycuMocksParams = {},
-) => {
+): Promise<RenderResult> => {
   global.server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),

@@ -50,5 +50,8 @@
   "state_deleting": "En proceso de eliminación",
   "state_suspended": "Suspendido",
   "state_suspending": "Suspendiendo...",
-  "error_message": "Se ha producido un error al completar la solicitud. {{ error }}"
+  "error_message": "Se ha producido un error al completar la solicitud. {{ error }}",
+  "agreement": "Firma del contrato",
+  "contract_signature": "Firma del contrato",
+  "contract_signature_tooltip": "Para acceder al servicio, se debe aceptar el contrato de usuario de Microsoft."
 }

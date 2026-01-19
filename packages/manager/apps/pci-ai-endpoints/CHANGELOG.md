@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.5...@ovh-ux/manager-pci-ai-endpoints-app@0.11.6) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+## [0.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.4...@ovh-ux/manager-pci-ai-endpoints-app@0.11.5) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+## [0.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.3...@ovh-ux/manager-pci-ai-endpoints-app@0.11.4) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.2...@ovh-ux/manager-pci-ai-endpoints-app@0.11.3) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.1...@ovh-ux/manager-pci-ai-endpoints-app@0.11.2) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.0...@ovh-ux/manager-pci-ai-endpoints-app@0.11.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.10.28...@ovh-ux/manager-pci-ai-endpoints-app@0.11.0) (2025-12-12)
+
+
+### Features
+
+* **playright-helper:** clean playwright helper folder ([2c80387](https://github.com/ovh/manager/commit/2c803878257bc049cea849ab0c720eacb2e37448)), closes [#MANAGER-15903](https://github.com/ovh/manager/issues/MANAGER-15903)
+
+
+
+
+
+## [0.10.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.10.27...@ovh-ux/manager-pci-ai-endpoints-app@0.10.28) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
 ## [0.10.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.10.26...@ovh-ux/manager-pci-ai-endpoints-app@0.10.27) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app

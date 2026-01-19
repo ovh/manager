@@ -2,6 +2,8 @@ import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 
 import { UrlRecord } from './types';
 
+export const TOASTER_SUCCESS_DURATION = 5000;
+
 export const ANTI_AFFINITY_MAX_NODES = 5;
 
 export const NODE_RANGE = {
@@ -193,3 +195,56 @@ export const PLAN_DOC_LINKS: UrlRecord = {
   NL: 'https://www.ovhcloud.com/nl/public-cloud/kubernetes/#prix',
   US: 'https://us.ovhcloud.com/public-cloud/kubernetes/#prix',
 };
+
+export const IAM_AUTHENTICATION_INFOS_PRICE = {
+  DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/prices/#compute',
+  ASIA: 'https://www.ovhcloud.com/asia/public-cloud/prices/#compute',
+  AU: 'https://www.ovhcloud.com/en-au/public-cloud/prices/#compute',
+  CA: 'https://www.ovhcloud.com/en-ca/public-cloud/prices/#compute',
+  DE: 'https://www.ovhcloud.com/de/public-cloud/prices/#compute',
+  ES: 'https://www.ovhcloud.com/es-es/public-cloud/prices/#compute',
+  FR: 'https://www.ovhcloud.com/fr/public-cloud/prices/#compute',
+  GB: 'https://www.ovhcloud.com/en-gb/public-cloud/prices/#compute',
+  IE: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#compute',
+  IN: 'https://www.ovhcloud.com/en-in/public-cloud/prices/#compute',
+  IT: 'https://www.ovhcloud.com/it/public-cloud/prices/#compute',
+  MA: 'https://www.ovhcloud.com/fr-ma/public-cloud/prices/#compute',
+  NL: 'https://www.ovhcloud.com/nl/public-cloud/prices/#compute',
+  PL: 'https://www.ovhcloud.com/pl/public-cloud/prices/#compute',
+  PT: 'https://www.ovhcloud.com/pt/public-cloud/prices/#compute',
+  QC: 'https://www.ovhcloud.com/fr-ca/public-cloud/prices/#compute',
+  SG: 'https://www.ovhcloud.com/en-sg/public-cloud/prices/#compute',
+  SN: 'https://www.ovhcloud.com/fr-sn/public-cloud/prices/#compute',
+  TN: 'https://www.ovhcloud.com/fr-tn/public-cloud/prices/#compute',
+  WE: 'https://www.ovhcloud.com/en/public-cloud/prices/#compute',
+  WS: 'https://www.ovhcloud.com/es/public-cloud/prices/#compute',
+  US: 'https://us.ovhcloud.com/public-cloud/prices/#compute',
+};
+
+export const IAM_AUTHENTICATION_INFOS = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050152',
+  ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050155',
+  AU: 'https://help.ovhcloud.com/csm/en-au-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050157',
+  CA: 'https://help.ovhcloud.com/csm/en-ca-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050146',
+  DE: 'https://help.ovhcloud.com/csm/de-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0037798',
+  ES: 'https://help.ovhcloud.com/csm/es-es-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050166',
+  FR: 'https://help.ovhcloud.com/csm/fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159',
+  GB: 'https://help.ovhcloud.com/csm/en-gb-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050147',
+  IE: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050162',
+  IN: 'https://help.ovhcloud.com/csm/en-in-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0069583',
+  IT: 'https://help.ovhcloud.com/csm/it-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050156',
+  MA: 'https://help.ovhcloud.com/csm/fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159',
+  NL: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050162',
+  PL: 'https://help.ovhcloud.com/csm/pl-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050160',
+  PT: 'https://help.ovhcloud.com/csm/pt-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050161',
+  QC: 'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050158',
+  SG: 'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050150',
+  SN: 'https://help.ovhcloud.com/csm/fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159',
+  TN: 'https://help.ovhcloud.com/csm/fr-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050159',
+  WE: 'https://help.ovhcloud.com/csm/en-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050152',
+  WS: 'https://help.ovhcloud.com/csm/es-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050169',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/21134381741715-Concepts-Additional-IP-or-Floating-IP',
+};
+
+export type KubeconfigPricingRegion = keyof typeof PLAN_DOC_LINKS;

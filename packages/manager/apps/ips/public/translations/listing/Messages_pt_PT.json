@@ -112,5 +112,7 @@
   "aggregate_in_progress": "Agregação em curso",
   "creation_in_progress": "Criação em curso",
   "survey_link": "Gostou?",
-  "survey_link_tooltip": "Gostou desta página? Partilhe connosco as suas observações!"
+  "survey_link_tooltip": "Gostou desta página? Partilhe connosco as suas observações!",
+  "listingColumnsIpGameFirewallConfigured": "Configurado",
+  "listingColumnsIpGameFirewallConfiguredTooltip": "O Game Firewall está configurado. Clique para reconfigurar."
 }

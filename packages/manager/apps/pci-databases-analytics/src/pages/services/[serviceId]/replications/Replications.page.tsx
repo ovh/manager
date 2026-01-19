@@ -15,6 +15,7 @@ import { useGetReplications } from '@/hooks/api/database/replication/useGetRepli
 import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 import Link from '@/components/links/Link.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -97,7 +98,7 @@ const Replications = () => {
     return (
       <>
         <h2>{t('title')}</h2>
-        <Alert variant="warning">
+        <Alert variant="warning" className="rounded-md flex flex-col gap-2">
           <AlertTitle>{t('noIntegrationTitle')}</AlertTitle>
           <AlertDescription>
             <p>{t('noIntegrationTitleDescription')}</p>
@@ -113,28 +114,34 @@ const Replications = () => {
   return (
     <>
       <h2>{t('title')}</h2>
-      {replicationsQuery.isSuccess && service.capabilities.replication?.create && (
-        <Button
-          data-testid="replications-add-button"
-          disabled={
-            service.capabilities.replication?.create ===
-            database.service.capability.StateEnum.disabled
-          }
-          mode={'outline'}
-          size="sm"
-          className="text-base"
-          onClick={() => navigate('./add')}
-        >
-          <Plus className="size-4 mr-2" />
-          {t('addButtonLabel')}
-        </Button>
-      )}
       {replicationsQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
           data={replicationsWithServiceData}
           pageSize={25}
-        />
+        >
+          <DataTable.Header>
+            {service.capabilities.replication?.create && (
+              <DataTable.Action>
+                <Button
+                  data-testid="replications-add-button"
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'replication',
+                    'create',
+                  )}
+                  mode="outline"
+                  onClick={() => navigate('./add')}
+                >
+                  <Plus className="size-4" />
+                  {t('addButtonLabel')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="replications-table-skeleton">
           <DataTable.Skeleton columns={5} rows={2} width={100} height={16} />

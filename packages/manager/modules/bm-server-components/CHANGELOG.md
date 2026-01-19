@@ -3,6 +3,147 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.9...@ovh-ux/manager-bm-server-components@2.19.10) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4595] ([3dafa65](https://github.com/ovh/manager/commit/3dafa65b3d5ed08b90a9f6e603acfb6ada7bdae3))
+
+
+
+
+
+## [2.19.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.8...@ovh-ux/manager-bm-server-components@2.19.9) (2026-01-14)
+
+
+### Bug Fixes
+
+* **dedicated:** fix iam displayName ([2e88853](https://github.com/ovh/manager/commit/2e8885336d2eb10a0fc8389612e402c455abd37f)), closes [#MANAGER-18367](https://github.com/ovh/manager/issues/MANAGER-18367)
+* **dedicated:** replace wrong distribution wording with OS ([359d392](https://github.com/ovh/manager/commit/359d39260eeb8e2033ace7eb7bab9697a304f065)), closes [#MANAGER-20225](https://github.com/ovh/manager/issues/MANAGER-20225)
+* **i18n:** add missing translations [CDS 4519] ([0342dae](https://github.com/ovh/manager/commit/0342dae1c3002016785fcf3d348b7b240f72c794))
+
+
+
+
+
+## [2.19.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.7...@ovh-ux/manager-bm-server-components@2.19.8) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.6...@ovh-ux/manager-bm-server-components@2.19.7) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+## [2.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.5...@ovh-ux/manager-bm-server-components@2.19.6) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4539] ([b90b9d2](https://github.com/ovh/manager/commit/b90b9d2b605ba03e7e364830f9e261479a2c1b7d))
+
+
+
+
+
+## [2.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.4...@ovh-ux/manager-bm-server-components@2.19.5) (2025-12-18)
+
+
+### Bug Fixes
+
+* **dedicated:** fix display iam.displayName ([b88166d](https://github.com/ovh/manager/commit/b88166d9553dc9f250a11dc097222aa1cb805f4a)), closes [#MANAGER-18367](https://github.com/ovh/manager/issues/MANAGER-18367)
+
+
+
+
+
+## [2.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.3...@ovh-ux/manager-bm-server-components@2.19.4) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.2...@ovh-ux/manager-bm-server-components@2.19.3) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4533] ([62d9869](https://github.com/ovh/manager/commit/62d9869ef2d79d81ea51960894547eaf988b0c6c))
+
+
+
+
+
+## [2.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.1...@ovh-ux/manager-bm-server-components@2.19.2) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.0...@ovh-ux/manager-bm-server-components@2.19.1) (2025-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4526] ([69bd7e7](https://github.com/ovh/manager/commit/69bd7e799334ae2410c03044d14b4bf0762730d9))
+
+
+
+
+
+# [2.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.18.5...@ovh-ux/manager-bm-server-components@2.19.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* **dedicated:** use invoiceName to order bandwidth ([673e051](https://github.com/ovh/manager/commit/673e051688bb7e89b0b9107f5a39819b6c1eed44)), closes [#MANAGER-20343](https://github.com/ovh/manager/issues/MANAGER-20343)
+
+
+### Features
+
+* **dedicated:** add ftp backup region info ([e61611d](https://github.com/ovh/manager/commit/e61611d24581240ecaeea8ec8900d34803860c66)), closes [#MANAGER-11817](https://github.com/ovh/manager/issues/MANAGER-11817)
+
+
+
+
+
+## [2.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.18.4...@ovh-ux/manager-bm-server-components@2.18.5) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4524] ([7ccf245](https://github.com/ovh/manager/commit/7ccf245dfb71a734dae520873a681c570082d62e))
+
+
+
+
+
+## [2.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.18.3...@ovh-ux/manager-bm-server-components@2.18.4) (2025-12-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4523] ([386acf9](https://github.com/ovh/manager/commit/386acf964bc3039fd0ae8ad6ad93ab5e79666109))
+
+
+
+
+
 ## [2.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.18.2...@ovh-ux/manager-bm-server-components@2.18.3) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

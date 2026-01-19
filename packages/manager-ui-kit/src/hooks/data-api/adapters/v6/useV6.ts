@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import type { SortingState } from '@tanstack/react-table';
 
@@ -24,26 +24,23 @@ export const useV6 = <TData = Record<string, unknown>>({
 }: ResourcesV6Params<TData>): UseDataApiResult<TData> => {
   const {
     searchInput,
-    setSearchInput,
+    setSearchInput: setSearchInputBase,
     searchFilters,
     sorting,
-    setSorting,
+    setSorting: setSortingBase,
     filters,
-    addFilter,
-    removeFilter,
-    onSearch,
+    addFilter: addFilterBase,
+    removeFilter: removeFilterBase,
+    onSearch: onSearchBase,
   } = useDataRetrievalOperations<TData>({ defaultSorting, columns });
+
   const [pageIndex, setPageIndex] = useState(0);
-  const [totalCount, setTotalCount] = useState(0);
-  const [flattenData, setFlattenData] = useState<TData[]>([]);
 
   const { data, error, isError, isFetching, isLoading, isSuccess, status } = useQuery<
     FetchV6Result<TData>
   >({
     cacheKey: [cacheKey],
-    fetchDataFn: () => {
-      return fetchDataFn ? fetchDataFn(route) : v6.get(route);
-    },
+    fetchDataFn: () => (fetchDataFn ? fetchDataFn(route) : v6.get(route)),
     refetchInterval: refetchInterval || false,
     enabled,
   });
@@ -56,17 +53,55 @@ export const useV6 = <TData = Record<string, unknown>>({
     sorting,
   });
 
-  useEffect(() => {
-    if (!isLoading && enabled) {
-      setTotalCount(filteredAndSortedData.length);
-      setPageIndex(0);
-      setFlattenData(filteredAndSortedData);
-    }
-  }, [filteredAndSortedData, isLoading, enabled]);
+  const flattenData = useMemo(
+    () => (enabled && !isLoading ? filteredAndSortedData : []),
+    [enabled, isLoading, filteredAndSortedData],
+  );
 
-  const fetchNextPage = useCallback(
-    () => setPageIndex((previousPageIndex) => previousPageIndex + 1),
-    [],
+  const totalCount = flattenData.length;
+
+  const fetchNextPage = useCallback(() => {
+    setPageIndex((previousPageIndex) => previousPageIndex + 1);
+  }, []);
+
+  const setSorting = useCallback(
+    (value: React.SetStateAction<SortingState>) => {
+      setPageIndex(0);
+      setSortingBase(typeof value === 'function' ? (prev) => value(prev ?? []) : (value ?? []));
+    },
+    [setSortingBase],
+  );
+
+  const addFilter = useCallback(
+    (...args: Parameters<typeof addFilterBase>) => {
+      setPageIndex(0);
+      addFilterBase(...args);
+    },
+    [addFilterBase],
+  );
+
+  const removeFilter = useCallback(
+    (...args: Parameters<typeof removeFilterBase>) => {
+      setPageIndex(0);
+      removeFilterBase(...args);
+    },
+    [removeFilterBase],
+  );
+
+  const onSearch = useCallback(
+    (...args: Parameters<typeof onSearchBase>) => {
+      setPageIndex(0);
+      onSearchBase(...args);
+    },
+    [onSearchBase],
+  );
+
+  const setSearchInput = useCallback(
+    (...args: Parameters<typeof setSearchInputBase>) => {
+      setPageIndex(0);
+      setSearchInputBase(...args);
+    },
+    [setSearchInputBase],
   );
 
   if (!enabled) {
@@ -80,6 +115,8 @@ export const useV6 = <TData = Record<string, unknown>>({
     };
   }
 
+  const pagedData = flattenData.slice(0, (pageIndex + 1) * pageSize);
+
   return {
     error,
     isError,
@@ -89,15 +126,12 @@ export const useV6 = <TData = Record<string, unknown>>({
     isLoading,
     pageIndex,
     totalCount,
-    flattenData: flattenData?.slice(0, (pageIndex + 1) * pageSize),
-    hasNextPage: pageIndex * pageSize + pageSize < flattenData?.length,
+    flattenData: pagedData,
+    hasNextPage: pageIndex * pageSize + pageSize < flattenData.length,
     fetchNextPage,
     sorting: {
       sorting: sorting ?? [],
-      setSorting: ((value) =>
-        setSorting(
-          typeof value === 'function' ? (prev) => value(prev ?? []) : (value ?? []),
-        )) as React.Dispatch<React.SetStateAction<SortingState>>,
+      setSorting: setSorting as React.Dispatch<React.SetStateAction<SortingState>>,
       manualSorting: true,
     },
     filters: {
@@ -106,9 +140,9 @@ export const useV6 = <TData = Record<string, unknown>>({
       remove: removeFilter,
     },
     search: {
-      onSearch,
+      onSearch: onSearch,
       searchInput,
-      setSearchInput,
+      setSearchInput: setSearchInput,
     },
   };
 };

@@ -2,7 +2,7 @@ import {
   StorageContainer,
   StorageObject,
   StorageContainerUpdate,
-} from '@datatr-ux/ovhcloud-types/cloud/index';
+} from '@datatr-ux/ovhcloud-types/cloud';
 import { PCIData } from '..';
 import { apiClient } from '../api.client';
 import storages from '@/types/Storages';
@@ -279,4 +279,19 @@ export const restoreS3Object = async ({
     {
       days,
     },
+  );
+
+export interface BulkDeleteS3ObjectsParams extends S3Data {
+  objects: Array<{ key: string; versionId?: string }>;
+}
+
+export const bulkDeleteS3Objects = async ({
+  projectId,
+  region,
+  name,
+  objects,
+}: BulkDeleteS3ObjectsParams) =>
+  apiClient.v6.post(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/bulkDeleteObjects`,
+    { objects },
   );

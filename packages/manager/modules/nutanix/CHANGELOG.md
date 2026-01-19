@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.25...@ovh-ux/manager-nutanix@2.11.26) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.24...@ovh-ux/manager-nutanix@2.11.25) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.23...@ovh-ux/manager-nutanix@2.11.24) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.22...@ovh-ux/manager-nutanix@2.11.23) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.21...@ovh-ux/manager-nutanix@2.11.22) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.20...@ovh-ux/manager-nutanix@2.11.21) (2025-12-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+## [2.11.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.19...@ovh-ux/manager-nutanix@2.11.20) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
 ## [2.11.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.18...@ovh-ux/manager-nutanix@2.11.19) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

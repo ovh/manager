@@ -1,6 +1,10 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
+import { UUID } from 'node:crypto';
 
-import { OngoingTaskStatus } from '../status';
+import { CurrencyCode } from '@ovh-ux/muk';
+
+import { GitStatus, OngoingTaskStatus, ResourceStatus, ServiceStatus, TaskStatus } from '../status';
+import { CmsType } from './managedWordpress/cms';
+import { TaskType } from './website';
 
 export enum HostingState {
   ACTIVE = 'active',
@@ -28,6 +32,7 @@ export enum HostingdOffer {
   POWER_BETA_1 = 'POWER_BETA_1',
   PRO = 'PRO',
   START = 'START',
+  STARTER_OVH = 'HOSTING_STARTER_OVH',
 }
 
 export enum HostingCountries {
@@ -145,10 +150,99 @@ export type WebHostingType = {
 export type TaskDetailsType = {
   doneDate: string;
   function: string;
-  id: number;
+  id: UUID;
   lastUpdate: string;
   objectId: string;
   objectType: string;
   startDate: string;
   status: OngoingTaskStatus;
+};
+
+export type WebHostingWebsiteType = {
+  id: string;
+  checksum: string;
+  currentState?: {
+    path: string;
+    name: string;
+    linkedDomains: number;
+    git?: {
+      status: GitStatus;
+      vcsBranch: string;
+      vcsUrl: string;
+    };
+    module?: { name: CmsType };
+  };
+  currentTasks?: {
+    id?: string;
+    link?: string;
+    status?: TaskStatus | null;
+    type?: TaskType;
+  }[];
+  resourceStatus: ResourceStatus;
+  targetSpec?: { name: string };
+};
+
+export type WebHostingWebsiteDomainType = {
+  id: string;
+  checksum: string;
+  currentState: {
+    fqdn: string;
+    firewall: { status: ServiceStatus };
+    cdn: { status: ServiceStatus };
+    name: string;
+    path: string;
+    websiteId: string;
+  };
+  currentTasks?: {
+    id?: string;
+    link?: string;
+    status?: TaskStatus | null;
+    type?: TaskType;
+  }[];
+  resourceStatus: ResourceStatus;
+  targetSpec: {
+    firewall: ServiceStatus;
+    cdn: ServiceStatus;
+  };
+};
+
+export type PostWebHostingWebsitePayload = {
+  targetSpec: {
+    bypassDNSConfiguration?: boolean;
+    cdn?: { status?: ServiceStatus };
+    module?: { name?: CmsType };
+    firewall?: { status?: ServiceStatus };
+    fqdn?: string;
+    ipLocation?: string;
+    name?: string;
+    path?: string;
+  };
+};
+
+type LowercaseServiceStatus = 'active' | 'inactive' | 'none';
+
+export type PostWebHostingAttachedDomainPayload = {
+  bypassDNSConfiguration?: boolean;
+  cdn?: LowercaseServiceStatus;
+  domain?: string;
+  firewall?: LowercaseServiceStatus;
+  ipLocation?: HostingCountries;
+  ownLog?: string;
+  path?: string;
+  runtimeId?: string;
+  ssl?: boolean;
+};
+
+export type PutWebHostingWebsitePayload = {
+  targetSpec: {
+    name: string;
+  };
+};
+
+export type VcsWebhookUrls = {
+  push?: string;
+};
+
+export type SshKey = {
+  publicKey: string;
 };

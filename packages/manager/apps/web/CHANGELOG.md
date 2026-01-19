@@ -3,6 +3,210 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.1...@ovh-ux/manager-web@19.35.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.0...@ovh-ux/manager-web@19.35.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* **web-domains:** fix redirection ([a3e2a2f](https://github.com/ovh/manager/commit/a3e2a2f2523b7a0907f412177da0657c79c0b1b9)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+
+
+
+
+
+# [19.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.6...@ovh-ux/manager-web@19.35.0) (2026-01-08)
+
+
+### Features
+
+* **web-hosting:** manage git configuration redirection ([bbdda9c](https://github.com/ovh/manager/commit/bbdda9ce8db763d5e20352a7cbec763407bd4887)), closes [#PUWEBPT-72](https://github.com/ovh/manager/issues/PUWEBPT-72)
+* **web:** change ip location for modify domain ([684788d](https://github.com/ovh/manager/commit/684788d5d70b859afec9e91a4b9518d7400e504b)), closes [#PUWEBPT-126](https://github.com/ovh/manager/issues/PUWEBPT-126)
+
+
+
+
+
+## [19.34.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.5...@ovh-ux/manager-web@19.34.6) (2026-01-07)
+
+
+### Bug Fixes
+
+* **web-hosting:** fix typo issues ([6d368e8](https://github.com/ovh/manager/commit/6d368e8ddc21fbd4ef009e5ce3ddd8853d143a31)), closes [#PUWEBPT-179](https://github.com/ovh/manager/issues/PUWEBPT-179)
+
+
+
+
+
+## [19.34.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.4...@ovh-ux/manager-web@19.34.5) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.34.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.3...@ovh-ux/manager-web@19.34.4) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.34.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.2...@ovh-ux/manager-web@19.34.3) (2025-12-29)
+
+
+### Bug Fixes
+
+* **web-domains:** fix all_dom menu entry ([0462507](https://github.com/ovh/manager/commit/046250760a7573802ea5f22396343f6ab7b95316)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+* **web-domains:** fix url route provider regexp ([5848cb8](https://github.com/ovh/manager/commit/5848cb8dc85bff7e13af54c486ca44fb7360e71b)), closes [#DCE-128](https://github.com/ovh/manager/issues/DCE-128)
+
+
+
+
+
+## [19.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.1...@ovh-ux/manager-web@19.34.2) (2025-12-23)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([e593be3](https://github.com/ovh/manager/commit/e593be3add9357a35309d1be6d0bfc696c0910ab))
+
+
+
+
+
+## [19.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.0...@ovh-ux/manager-web@19.34.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.33.0...@ovh-ux/manager-web@19.34.0) (2025-12-22)
+
+
+### Bug Fixes
+
+* **web-domains:** fix rediction when user have acces to both app ([29b2373](https://github.com/ovh/manager/commit/29b2373026a33a5e7faf3e698cf6d4f78f636def)), closes [#DCE-1](https://github.com/ovh/manager/issues/DCE-1)
+
+
+### Features
+
+* **web-domains:** domain menu revamp ([ee4b125](https://github.com/ovh/manager/commit/ee4b125f49f3e4209e40c227f5d008a2d4aec953)), closes [#DCE-1](https://github.com/ovh/manager/issues/DCE-1)
+
+
+
+
+
+# [19.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.32.0...@ovh-ux/manager-web@19.33.0) (2025-12-18)
+
+
+### Features
+
+* **web:** remove beta badge for logs to customer ([ca05327](https://github.com/ovh/manager/commit/ca05327eeece948dd0ce72a8f8dab734db1c9203)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
+# [19.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.11...@ovh-ux/manager-web@19.32.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4538] ([91c38b8](https://github.com/ovh/manager/commit/91c38b80d4acacaa25391fa1df9672a4e848324f))
+* **i18n:** add missing translations [CDS 822] ([24ab8d6](https://github.com/ovh/manager/commit/24ab8d632e6a020384c171e98674de3cda2ab793))
+* **i18n:** add missing translations [CDS 920] ([3b91093](https://github.com/ovh/manager/commit/3b910935c340fa2fac6c256a2ea9cdbfa5c858b8))
+
+
+### Features
+
+* **web-hosting:** create add domain page ([e7bd82f](https://github.com/ovh/manager/commit/e7bd82f229a22873f4186f4bf75402f278185c85)), closes [#PUWEBPT-31](https://github.com/ovh/manager/issues/PUWEBPT-31)
+* **web-hosting:** manage multisite feature flipping on angular ([2bb053c](https://github.com/ovh/manager/commit/2bb053c2ccdc6f0468b9fa78bbb60d647f654e8d)), closes [#PUWEPT-158](https://github.com/ovh/manager/issues/PUWEPT-158)
+* **web-hosting:** manage rooting page for git association and configuration ([a2efcb1](https://github.com/ovh/manager/commit/a2efcb1f1e0128478624e42385ba1c56e73c3ac6)), closes [#PUWEBPT-105](https://github.com/ovh/manager/issues/PUWEBPT-105)
+* **web:** add placeholder on module for domain ([f763a34](https://github.com/ovh/manager/commit/f763a345d83688c8cb64d45918fda2c6d8a397d7)), closes [#PUWEBPT-5](https://github.com/ovh/manager/issues/PUWEBPT-5)
+
+
+
+
+
+## [19.31.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.10...@ovh-ux/manager-web@19.31.11) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.9...@ovh-ux/manager-web@19.31.10) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.8...@ovh-ux/manager-web@19.31.9) (2025-12-16)
+
+
+### Bug Fixes
+
+* **manager:** promote new OMM ([d26dc8e](https://github.com/ovh/manager/commit/d26dc8ee2b57d7481c8b34543d880b45cc63d445)), closes [#PRDCOL-280](https://github.com/ovh/manager/issues/PRDCOL-280)
+
+
+
+
+
+## [19.31.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.7...@ovh-ux/manager-web@19.31.8) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.6...@ovh-ux/manager-web@19.31.7) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.5...@ovh-ux/manager-web@19.31.6) (2025-12-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.4...@ovh-ux/manager-web@19.31.5) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.3...@ovh-ux/manager-web@19.31.4) (2025-12-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.31.2...@ovh-ux/manager-web@19.31.3) (2025-12-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

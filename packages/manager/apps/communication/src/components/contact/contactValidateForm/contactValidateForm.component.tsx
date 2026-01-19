@@ -1,8 +1,4 @@
-import {
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { FormField, FormFieldError, FormFieldLabel, Input } from '@ovhcloud/ods-react';
 import { forwardRef, useImperativeHandle } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -48,32 +44,28 @@ const ContactValidateForm = forwardRef(
           control={control}
           name="otp"
           render={({ field: { onChange, value, onBlur, name } }) => (
-            <OdsFormField>
-              <label
-                htmlFor={name}
-                slot="label"
-                aria-label={t('verify_contact_form_otp_label')}
-              >
+            <FormField invalid={!!errors.otp}>
+              <FormFieldLabel htmlFor={name}>
                 {t('verify_contact_form_otp_label')}
-              </label>
-              <OdsInput
+              </FormFieldLabel>
+              <Input
                 name={name}
                 value={value}
-                onOdsChange={onChange}
+                onChange={onChange}
                 onBlur={onBlur}
                 pattern="[0-9]{6}"
-                hasError={!!errors.otp}
-                maxlength={6}
+                invalid={!!errors.otp}
+                maxLength={6}
                 className="otp-input"
               />
               {errors.otp && (
-                <OdsText className="text-error">
+                <FormFieldError>
                   {t(errors.otp.message || 'error_required_field', {
                     ns: NAMESPACES.FORM,
                   })}
-                </OdsText>
+                </FormFieldError>
               )}
-            </OdsFormField>
+            </FormField>
           )}
         />
       </form>

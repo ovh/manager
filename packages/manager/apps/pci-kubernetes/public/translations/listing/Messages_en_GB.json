@@ -1,11 +1,11 @@
 {
-  "kube_list_title": "Kubernetes",
+  "kube_list_title": "Managed Kubernetes Service",
   "kube_list_name": "Cluster name",
   "kube_list_id": "ID",
   "kube_list_region": "Region",
   "kube_list_version": "Version",
   "kube_list_cluster_manage": "Manage cluster",
-  "kube_list_cluster_create": "Create a Kubernetes cluster",
+  "kube_list_cluster_create": "Create an MKS cluster",
   "kube_list_error": "An error has occurred loading your clusters.",
   "kube_common_save": "Save",
   "kube_common_cancel": "Cancel",
@@ -24,6 +24,17 @@
   "kubernetes_add_private_network_add": "Create a private network",
   "kube_common_node_pool_autoscaling_title": "Configure node pool size",
   "kubernetes_containers_deployment_mode_label": "Deployment mode",
-  "kube_list_node_pools": "Need persistent volumes for multiple pods across different nodes and availability zones? Try our fully managed <strong>File Storage</strong> service, compatible with Managed Kubernetes Service. Enjoy ‘Read Write Many’ volumes that seamlessly scale with your clusters, <strong>starting from 10 GB</strong>.",
-  "kube_list_node_pools_discover": "Discover alpha"
+  "kube_list_node_pools": "Need persistent volumes for multiple pods across different nodes and availability zones? Try our fully managed <strong>File Storage</strong>, compatible with Managed Kubernetes Service. Enjoy 'Read Write Many' volumes <strong>starting from 150 GiB</strong>, seamlessly scaling with your clusters.",
+  "kube_list_node_pools_discover": "Discover the beta",
+  "READY": "Ready",
+  "DISABLED": "Disabled",
+  "UPDATING": "Updating...",
+  "ERROR": "Error",
+  "DELETING": "Deleting...",
+  "CREATING": "Creating...",
+  "ENABLED": "Enabled",
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Price impact",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "Enabling Floating IPs comes with an extra charge. Each current and future instance of this node pool will be assigned a Floating IP, at {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Warning: Loss of Floating IPs",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "Disabling will detach the Floating IPs immediately. These addresses will be permanently released and cannot be retrieved."
 }

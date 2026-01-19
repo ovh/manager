@@ -6,35 +6,22 @@ import {
   detachVolume,
   getAllVolumes,
   getVolume,
-  getVolumeSnapshot,
+  retypeVolume,
 } from './volume';
 
 vi.mock('@ovh-ux/manager-core-api');
+
+const PROJECT_ID = '123';
 
 describe('getVolume', () => {
   it('fetches volume data for given projectId and volumeId', async () => {
     const mockVolume = { id: '1', name: 'Volume 1' };
     vi.mocked(v6.get).mockResolvedValue({ data: mockVolume });
 
-    const volume = await getVolume('123', '1');
+    const volume = await getVolume(PROJECT_ID, '1');
 
     expect(v6.get).toHaveBeenCalledWith('/cloud/project/123/volume/1');
     expect(volume).toEqual(mockVolume);
-  });
-});
-
-describe('getVolumeSnapshot', () => {
-  it('fetches volume snapshots for given projectId', async () => {
-    const mockVolumeSnapshots = [
-      { id: '1', name: 'Snapshot 1' },
-      { id: '2', name: 'Snapshot 2' },
-    ];
-    vi.mocked(v6.get).mockResolvedValue({ data: mockVolumeSnapshots });
-
-    const volumeSnapshots = await getVolumeSnapshot('123');
-
-    expect(v6.get).toHaveBeenCalledWith('/cloud/project/123/volume/snapshot');
-    expect(volumeSnapshots).toEqual(mockVolumeSnapshots);
   });
 });
 
@@ -46,7 +33,7 @@ describe('getAllVolumes', () => {
     ];
     vi.mocked(v6.get).mockResolvedValue({ data: mockVolumes });
 
-    const volumes = await getAllVolumes('123');
+    const volumes = await getAllVolumes(PROJECT_ID);
 
     expect(v6.get).toHaveBeenCalledWith('/cloud/project/123/volume');
     expect(volumes).toEqual(mockVolumes);
@@ -58,7 +45,7 @@ describe('deleteVolume', () => {
     const volumeId = '1';
     vi.mocked(v6.delete).mockResolvedValue({});
 
-    await deleteVolume('123', volumeId);
+    await deleteVolume(PROJECT_ID, volumeId);
 
     expect(v6.delete).toHaveBeenCalledWith('/cloud/project/123/volume/1');
   });
@@ -69,7 +56,7 @@ describe('deleteVolume', () => {
     vi.mocked(v6.delete).mockRejectedValue(error);
 
     try {
-      await deleteVolume('123', volumeId);
+      await deleteVolume(PROJECT_ID, volumeId);
     } catch (e) {
       expect(e).toEqual(error);
     }
@@ -82,7 +69,7 @@ describe('attachVolume', () => {
     const instanceId = '2';
     vi.mocked(v6.post).mockResolvedValue({});
 
-    await attachVolume('123', volumeId, instanceId);
+    await attachVolume(PROJECT_ID, volumeId, instanceId);
 
     expect(v6.post).toHaveBeenCalledWith('/cloud/project/123/volume/1/attach', {
       instanceId: '2',
@@ -96,7 +83,7 @@ describe('attachVolume', () => {
     vi.mocked(v6.post).mockRejectedValue(error);
 
     try {
-      await attachVolume('123', volumeId, instanceId);
+      await attachVolume(PROJECT_ID, volumeId, instanceId);
     } catch (e) {
       expect(e).toEqual(error);
     }
@@ -109,7 +96,7 @@ describe('detachVolume', () => {
     const instanceId = '2';
     vi.mocked(v6.post).mockResolvedValue({});
 
-    await detachVolume('123', volumeId, instanceId);
+    await detachVolume(PROJECT_ID, volumeId, instanceId);
 
     expect(v6.post).toHaveBeenCalledWith('/cloud/project/123/volume/1/detach', {
       instanceId: '2',
@@ -123,7 +110,45 @@ describe('detachVolume', () => {
     vi.mocked(v6.post).mockRejectedValue(error);
 
     try {
-      await detachVolume('123', volumeId, instanceId);
+      await detachVolume(PROJECT_ID, volumeId, instanceId);
+    } catch (e) {
+      expect(e).toEqual(error);
+    }
+  });
+});
+
+describe('retypeVolume', () => {
+  it('should retype a volume', async () => {
+    const mockVolume = { id: '1', region: 'par-a' };
+    const newType = 'classic-luks';
+    vi.mocked(v6.put).mockResolvedValue({});
+
+    await retypeVolume({
+      projectId: PROJECT_ID,
+      originalVolume: mockVolume,
+      newType,
+    });
+
+    expect(v6.put).toHaveBeenCalledWith(
+      `/cloud/project/${PROJECT_ID}/region/${mockVolume.region}/volume/${mockVolume.id}`,
+      {
+        type: newType,
+      },
+    );
+  });
+
+  it('should throw an error when failing trying to retype a volume', async () => {
+    const mockVolume = { id: '1', region: 'par-a' };
+    const newType = 'classic-luks';
+    const error = new Error('Failed to retype a volume');
+    vi.mocked(v6.put).mockRejectedValue(error);
+
+    try {
+      await retypeVolume({
+        projectId: PROJECT_ID,
+        originalVolume: mockVolume,
+        newType,
+      });
     } catch (e) {
       expect(e).toEqual(error);
     }

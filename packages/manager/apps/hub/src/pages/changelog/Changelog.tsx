@@ -51,7 +51,7 @@ export default function Changelog() {
   ];
 
   const { shell, environment } = useContext(ShellContext);
-  const isRegionUS = environment.getRegion() === 'US';
+  const isRegionUS = (environment.getRegion() as string) === 'US';
 
   const [isAccountSidebarVisible, setIsAccountSidebarVisible] = useState(false);
   useEffect(() => {
@@ -59,12 +59,12 @@ export default function Changelog() {
       const newValueIsAccountSidebarVisible = (await shell.ux.isAccountSidebarVisible()) as boolean;
       setIsAccountSidebarVisible(() => newValueIsAccountSidebarVisible);
     };
-    getIsAccountSidebarVisible();
+    void getIsAccountSidebarVisible();
   }, []);
 
   return (
     <div
-      className="relative w-full h-full overflow-auto border-box"
+      className="border-box relative size-full overflow-auto"
       data-testid="roadmap-changelog-page"
     >
       <div
@@ -92,7 +92,7 @@ export default function Changelog() {
                 {t('changelog_paragraph_1')}
               </OsdsText>
             </div>
-            <div className="pt-6 contents max-w-[100%]">
+            <div className="contents max-w-full pt-6">
               <RoadmapChangelogDatagrids />
             </div>
             <div className="pt-6">
@@ -122,7 +122,7 @@ export default function Changelog() {
               </OsdsText>
             </div>
 
-            <div className="grid gap-y-6 grid-cols-1 xxl:grid-cols-2 xxl:gap-x-10 items-start">
+            <div className="grid grid-cols-1 items-start gap-y-6 xxl:grid-cols-2 xxl:gap-x-10">
               <div className="grid gap-y-6">
                 <OsdsTabs panel="roadmap-changelog-tab-tiles-cloud" size={ODS_TABS_SIZE.md}>
                   <OsdsTabBar>
@@ -136,9 +136,9 @@ export default function Changelog() {
                     )}
                   </OsdsTabBar>
                   <OsdsTabPanel name="roadmap-changelog-tab-tiles-cloud">
-                    <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-2">
                       <OsdsTile>
-                        <div className="flex flex-col w-full">
+                        <div className="flex w-full flex-col">
                           <div className="pb-6">
                             <OsdsText
                               level={ODS_TEXT_LEVEL.heading}
@@ -173,7 +173,7 @@ export default function Changelog() {
                         </div>
                       </OsdsTile>
                       <OsdsTile>
-                        <div className="flex flex-col w-full">
+                        <div className="flex w-full flex-col">
                           <div className="pb-6">
                             <OsdsText
                               level={ODS_TEXT_LEVEL.heading}
@@ -209,7 +209,7 @@ export default function Changelog() {
                         </div>
                       </OsdsTile>
                       <OsdsTile>
-                        <div className="flex flex-col w-full">
+                        <div className="flex w-full flex-col">
                           <div className="pb-6">
                             <OsdsText
                               level={ODS_TEXT_LEVEL.heading}
@@ -254,7 +254,7 @@ export default function Changelog() {
                         </div>
                       </OsdsTile>
                       <OsdsTile>
-                        <div className="flex flex-col w-full">
+                        <div className="flex w-full flex-col">
                           <div className="pb-6">
                             <OsdsText
                               level={ODS_TEXT_LEVEL.heading}
@@ -299,7 +299,7 @@ export default function Changelog() {
                         </div>
                       </OsdsTile>
                       <OsdsTile>
-                        <div className="flex flex-col w-full">
+                        <div className="flex w-full flex-col">
                           <div className="pb-6">
                             <OsdsText
                               level={ODS_TEXT_LEVEL.heading}
@@ -337,9 +337,9 @@ export default function Changelog() {
                   </OsdsTabPanel>
                   {!isRegionUS && (
                     <OsdsTabPanel name="roadmap-changelog-tab-tiles-hosting-collab">
-                      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-2">
+                      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-2">
                         <OsdsTile>
-                          <div className="flex flex-col w-full">
+                          <div className="flex w-full flex-col">
                             <div className="pb-6">
                               <OsdsText
                                 level={ODS_TEXT_LEVEL.heading}
@@ -374,7 +374,7 @@ export default function Changelog() {
                           </div>
                         </OsdsTile>
                         <OsdsTile>
-                          <div className="flex flex-col w-full">
+                          <div className="flex w-full flex-col">
                             <div className="pb-6">
                               <OsdsText
                                 level={ODS_TEXT_LEVEL.heading}
@@ -409,7 +409,7 @@ export default function Changelog() {
                           </div>
                         </OsdsTile>
                         <OsdsTile>
-                          <div className="flex flex-col w-full">
+                          <div className="flex w-full flex-col">
                             <div className="pb-6">
                               <OsdsText
                                 level={ODS_TEXT_LEVEL.heading}
@@ -448,7 +448,7 @@ export default function Changelog() {
                   )}
                 </OsdsTabs>
               </div>
-              <div className="block p-8 mt-6 my-4 bg-[var(--ods-color-primary-075)]">
+              <div className="my-4 mt-6 block bg-[var(--ods-color-primary-075)] p-8">
                 <OsdsText
                   level={ODS_TEXT_LEVEL.heading}
                   size={ODS_TEXT_SIZE._400}

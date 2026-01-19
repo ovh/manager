@@ -71,6 +71,14 @@ export type TClusterCustomization = {
 export enum TClusterPlanEnum {
   FREE = 'free',
   STANDARD = 'standard',
+  ALL = 'all',
+}
+
+export enum TClusterPlanCodeEnum {
+  FREE1AZ = 'mks.free.hour.consumption',
+  FREE3AZ = 'mks.free.hour.consumption.3az',
+  STANDARD1AZ = 'mks.standard.hour.consumption',
+  STANDARD3AZ = 'mks.standard.hour.consumption.3az',
 }
 
 export type TClusterPlan = (typeof TClusterPlanEnum)[keyof typeof TClusterPlanEnum];
@@ -207,11 +215,16 @@ export type TSelectedAvailabilityZones = {
   checked: boolean;
 }[];
 
+export type TAttachFloatingIPs = {
+  enabled: boolean;
+};
+
 export type NodePoolState = {
   name: string;
   isTouched: boolean;
   scaling: TScalingState;
   antiAffinity: boolean;
+  attachFloatingIps?: TAttachFloatingIPs;
   selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
 };
 
@@ -224,17 +237,17 @@ export type TCreateNodePoolParam = {
   autoscale: boolean;
   minNodes?: number;
   desiredNodes: number;
+  attachFloatingIps?: TAttachFloatingIPs;
   maxNodes?: number;
 };
 
 export type TPlan = {
   title: string;
-  type: DeploymentMode;
   description: string;
   content: string[];
   footer?: string;
   value: TClusterPlan;
-  code: string;
+  code: string | null;
   price: number | null;
 };
 
@@ -249,6 +262,19 @@ export type NodePool = {
   flavorName: string;
   maxNodes?: number;
   monthlyBilled: boolean;
+  attachFloatingIps?: TAttachFloatingIPs;
 };
 
 export type NodePoolPrice = NodePool & { monthlyPrice: number };
+
+export enum ResourceStatus {
+  READY = 'READY',
+  DISABLED = 'DISABLED',
+  UPDATING = 'UPDATING',
+  CREATING = 'CREATING',
+  DELETING = 'DELETING',
+  ERROR = 'ERROR',
+  ENABLED = 'ENABLED',
+}
+
+export * from './region';

@@ -1,5 +1,5 @@
 {
-  "exportIpToCsvTitle": "Eksport adresów IP do pliku CSV",
+  "exportIpToCsvTitle": "Eksportuj adresy IP do pliku CSV",
   "exportIpToCsvExplanation": "Eksport listy adresów IP trwa kilka sekund (w zależności od liczby posiadanych adresów IP).",
   "exportIpToCsvConfirm": "Czy chcesz wyeksportować listę adresów IP w formacie CSV?",
   "exportIpToCsvSuccess": "Eksport listy adresów IP został zakończony.",

@@ -1,7 +1,7 @@
 import {
   ProjectStorageCreation,
   StorageContainerCreation,
-} from '@datatr-ux/ovhcloud-types/cloud/index';
+} from '@datatr-ux/ovhcloud-types/cloud';
 import { Button, Separator, Skeleton } from '@datatr-ux/uxlib';
 import {
   Copy,
@@ -12,6 +12,7 @@ import {
   Puzzle,
   Tag,
   User,
+  FolderLock,
 } from 'lucide-react';
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -99,7 +100,13 @@ const OrderSummary = ({
     );
   };
 
-  if (!order) return <Skeleton className="w-full h-[40vh]" />;
+  if (!order)
+    return (
+      <Skeleton
+        className="w-full h-[40vh]"
+        data-testid="order-summary-skeleton"
+      />
+    );
   return (
     <div className="grid grid-cols-1 gap-2 bg-neutral-50 border border-neutral-200 px-3 py-2 rounded-sm text-heading font-semibold text-sm max-h-[40vh] overflow-auto">
       {isS3Order(order) && (
@@ -162,7 +169,7 @@ const OrderSummary = ({
             <>
               <SummarySection
                 label={t('summaryVersionningSection')}
-                onAnchorClicked={() => scrollToDiv('replication')}
+                onAnchorClicked={() => scrollToDiv('versions')}
               >
                 <SummaryItem>
                   <History className="size-4" />
@@ -171,6 +178,21 @@ const OrderSummary = ({
                     storages.VersioningStatusEnum.enabled
                       ? t('summaryVersionningEnabled')
                       : t('summaryVersionningDisabled')}
+                  </span>
+                </SummaryItem>
+              </SummarySection>
+
+              <SummarySection
+                label={t('summaryObjectLockSection')}
+                onAnchorClicked={() => scrollToDiv('object-lock')}
+              >
+                <SummaryItem>
+                  <FolderLock className="size-4" />
+                  <span>
+                    {order.objectLock.status ===
+                    storages.ObjectLockStatusEnum.enabled
+                      ? t('summaryObjectLockEnabled')
+                      : t('summaryObjectLockDisabled')}
                   </span>
                 </SummaryItem>
               </SummarySection>

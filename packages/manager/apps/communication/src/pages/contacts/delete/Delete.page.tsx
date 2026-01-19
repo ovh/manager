@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, MODAL_COLOR } from '@ovh-ux/muk';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ModalOpenChangeDetail, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import {
   ButtonType,
   PageLocation,
@@ -77,27 +77,31 @@ export default function DeleteContactPage() {
 
   return (
     <Modal
-      isOpen
-      type={ODS_MODAL_COLOR.warning}
+      open
+      type={MODAL_COLOR.warning}
       heading={t('delete_contact_modal_title')}
-      onDismiss={() => navigate(urls.contact.listing)}
-      onSecondaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['delete_contact', 'cancel'],
-          subApp: TrackingSubApps.Contacts,
-        });
-        navigate(urls.contact.listing);
+      onOpenChange={(detail?: ModalOpenChangeDetail) => (detail?.open === false) && navigate(urls.contact.listing)}
+      primaryButton={{
+        label: t('confirm', { ns: NAMESPACES.ACTIONS }),
+        onClick: onConfirm,
+        loading: isPending,
       }}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={onConfirm}
-      isPrimaryButtonLoading={isPending}
-      isLoading={isPending}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['delete_contact', 'cancel'],
+            subApp: TrackingSubApps.Contacts,
+          });
+          navigate(urls.contact.listing);
+        },
+      }}
+      loading={isPending}
     >
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <Trans
           t={t}
           i18nKey="delete_contact_modal_info"
@@ -108,7 +112,7 @@ export default function DeleteContactPage() {
             contactName: contactMean?.description,
           }}
         />
-      </OdsText>
+      </Text>
     </Modal>
   );
 }

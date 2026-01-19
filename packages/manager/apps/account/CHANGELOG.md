@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.15...@ovh-ux/manager-account-app@0.6.16) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.14...@ovh-ux/manager-account-app@0.6.15) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.13...@ovh-ux/manager-account-app@0.6.14) (2026-01-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.12...@ovh-ux/manager-account-app@0.6.13) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.11...@ovh-ux/manager-account-app@0.6.12) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.10...@ovh-ux/manager-account-app@0.6.11) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.9...@ovh-ux/manager-account-app@0.6.10) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.8...@ovh-ux/manager-account-app@0.6.9) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.7...@ovh-ux/manager-account-app@0.6.8) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.6...@ovh-ux/manager-account-app@0.6.7) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.5...@ovh-ux/manager-account-app@0.6.6) (2025-12-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.4...@ovh-ux/manager-account-app@0.6.5) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
+## [0.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.3...@ovh-ux/manager-account-app@0.6.4) (2025-12-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-account-app
+
+
+
+
+
 ## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-app@0.6.2...@ovh-ux/manager-account-app@0.6.3) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-app

@@ -8,6 +8,10 @@
     "pnpm": "packages/manager/core/ovh-product-icons"
   },
   {
+    "turbo": "--filter @ovh-ux/backup-agent",
+    "pnpm": "packages/manager/modules/backup-agent"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-core-utils",
     "pnpm": "packages/manager/core/utils"
   },
@@ -76,6 +80,10 @@
     "pnpm": "packages/manager/modules/cloud-universe-components"
   },
   {
+    "turbo": "--filter @ovh-ux/manager-common-translations",
+    "pnpm": "packages/manager/modules/common-translations"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-module-common-api",
     "pnpm": "packages/manager/modules/common-api"
   },
@@ -126,10 +134,6 @@
   {
     "turbo": "--filter @ovh-ux/manager-iplb",
     "pnpm": "packages/manager/modules/iplb"
-  },
-  {
-    "turbo": "--filter @ovh-ux/logs-to-customer",
-    "pnpm": "packages/manager/modules/logs-to-customer"
   },
   {
     "turbo": "--filter @ovh-ux/manager-components",

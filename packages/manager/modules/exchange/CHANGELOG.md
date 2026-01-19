@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.4...@ovh-ux/manager-exchange@4.17.0) (2025-12-18)
+
+
+### Features
+
+* **web:** remove beta badge for logs to customer ([ca05327](https://github.com/ovh/manager/commit/ca05327eeece948dd0ce72a8f8dab734db1c9203)), closes [#MAOBS-165](https://github.com/ovh/manager/issues/MAOBS-165)
+
+
+
+
+
+## [4.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.3...@ovh-ux/manager-exchange@4.16.4) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange
+
+
+
+
+
+## [4.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.2...@ovh-ux/manager-exchange@4.16.3) (2025-12-16)
+
+
+### Bug Fixes
+
+* **exchange:** display activate double authentification in dedicated cluster offer ([57f4f5e](https://github.com/ovh/manager/commit/57f4f5e7099bf2deece6ddcdb8cdd62a86b64fd1)), closes [#PRDCOL-76](https://github.com/ovh/manager/issues/PRDCOL-76)
+* **manager:** promote new OMM ([d26dc8e](https://github.com/ovh/manager/commit/d26dc8ee2b57d7481c8b34543d880b45cc63d445)), closes [#PRDCOL-280](https://github.com/ovh/manager/issues/PRDCOL-280)
+
+
+
+
+
+## [4.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.1...@ovh-ux/manager-exchange@4.16.2) (2025-12-09)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([bc46e04](https://github.com/ovh/manager/commit/bc46e04d67ba2f7dd443b855385295cc7e28167e))
+
+
+
+
+
 ## [4.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.0...@ovh-ux/manager-exchange@4.16.1) (2025-12-04)
 
 

@@ -1,11 +1,39 @@
+import React, { ComponentType } from 'react';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, screen } from '@testing-library/react';
 import { download as exportToCsvDownload } from 'export-to-csv';
-import { describe, expect, vi } from 'vitest';
+import { I18nextProvider } from 'react-i18next';
+import { beforeEach, describe, expect, vi } from 'vitest';
 
 import { attachedDomainDigStatusMock, websitesMocks } from '@/data/__mocks__';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { render, screen } from '@/utils/test.provider';
+import { createWrapper, i18n } from '@/utils/test.provider';
 
 import Websites from './Websites.page';
+
+const testQueryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      retry: false,
+    },
+    queries: {
+      retry: false,
+    },
+  },
+});
+
+const RouterWrapper = createWrapper();
+
+const Wrappers = ({ children }: { children: React.ReactElement }) => {
+  return (
+    <RouterWrapper>
+      <QueryClientProvider client={testQueryClient}>
+        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+      </QueryClientProvider>
+    </RouterWrapper>
+  );
+};
 
 const hoistedMock = vi.hoisted(() => ({
   useWebHostingAttachedDomaindigStatus: vi.fn(),
@@ -46,14 +74,14 @@ describe('Websites page', () => {
   // an issue in ODS that cause `has-error` to be empty randomly so let's
   // unskip this test when it is fixed
   it.skip('should render correctly', () => {
-    const { container } = render(<Websites />);
+    const { container } = render(<Websites />, { wrapper: Wrappers as ComponentType });
     expect(container).toBeInTheDocument();
   });
   // @TODO: this test can fail randomly for no apparent reason, I think there's
   // an issue in ODS that cause `has-error` to be empty randomly so let's
   // unskip this test when it is fixed
   it.skip('should display all headers with correct text', () => {
-    render(<Websites />);
+    render(<Websites />, { wrapper: Wrappers as ComponentType });
     const headers = [
       {
         id: 'header-fqdn',
@@ -66,10 +94,6 @@ describe('Websites page', () => {
       {
         id: 'header-path',
         text: commonTranslation.web_hosting_status_header_path,
-      },
-      {
-        id: 'header-serviceName',
-        text: commonTranslation.web_hosting_status_header_serviceName,
       },
       {
         id: 'header-displayName',
@@ -115,7 +139,7 @@ describe('Websites page', () => {
   // an issue in ODS that cause `has-error` to be empty randomly so let's
   // unskip this test when it is fixed
   it.skip('should display order and export buttons', () => {
-    render(<Websites />);
+    render(<Websites />, { wrapper: Wrappers as ComponentType });
     const orderButton = screen.getByTestId('websites-page-order-button');
     expect(orderButton).toBeInTheDocument();
     const exportButton = screen.getByTestId('websites-page-export-button');
@@ -125,7 +149,7 @@ describe('Websites page', () => {
   // an issue in ODS that cause `has-error` to be empty randomly so let's
   // unskip this test when it is fixed
   it.skip('should open order URL in new tab when clicking order button', () => {
-    render(<Websites />);
+    render(<Websites />, { wrapper: Wrappers as ComponentType });
     const orderButton = screen.getByTestId('websites-page-order-button');
     orderButton.click();
     expect(hoistedMock.open).toHaveBeenCalledWith(expect.any(String), '_blank');
@@ -134,7 +158,7 @@ describe('Websites page', () => {
   // an issue in ODS that cause `has-error` to be empty randomly so let's
   // unskip this test when it is fixed
   it.skip('should trigger export when clicking export button', () => {
-    render(<Websites />);
+    render(<Websites />, { wrapper: Wrappers as ComponentType });
     const exportButton = screen.getByTestId('websites-page-export-button');
     exportButton.click();
     const exportDisplayedButton = screen.getByTestId('websites-page-export-button-1');

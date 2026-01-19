@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
+import { useKubeRegions } from '@/api/hooks/useKubeRegions';
 import { useProjectLocalisation } from '@/api/hooks/useRegions';
 import { TLocation } from '@/types/region';
 
@@ -22,16 +23,30 @@ export function useRegionSelector({
   } | null>(null);
   const [selectedMacroRegion, setSelectedMacroRegion] = useState<string | null>(null);
   const [selectedMicroRegion, setSelectedMicroRegion] = useState<string | null>(null);
-  const { localisationData: query, isPending } = useProjectLocalisation(projectId, 'kubernetes');
-  const { continents: unfilteredContinents, regions: unfilteredRegions } = query || {};
-  const regions = unfilteredRegions?.filter((region) =>
-    regionFilter ? regionFilter(region) : true,
+  const { localisationData: query, isPending: isPendingLocalisation } = useProjectLocalisation(
+    projectId,
+    'mks',
   );
+  const { data: kubeRegions, isPending: isPendingKubeRegions } = useKubeRegions(projectId);
+  const isPending = isPendingLocalisation || isPendingKubeRegions;
+  const { continents: unfilteredContinents, regions: unfilteredRegions } = query || {};
 
+  // Filter regions based on kube capabilities only (for continent filtering)
+  const kubeFilteredRegions = unfilteredRegions?.filter((region) => {
+    return region.isMacro ? true : (kubeRegions?.includes(region.name) ?? true);
+  });
+
+  // Filter regions based on kube capabilities and custom filter (for display)
+  const regions = kubeFilteredRegions?.filter((region) => {
+    return regionFilter ? regionFilter(region) : true;
+  });
+
+  // Continents are filtered based on kube regions only (not custom filter like plan)
+  // This prevents continent tabs from resetting when changing plan filter
   const continents = unfilteredContinents?.filter(
     (continent) =>
       continent.id === WORLD ||
-      regions?.some(({ continentLabel }) => continentLabel === continent.name),
+      kubeFilteredRegions?.some(({ continentLabel }) => continentLabel === continent.name),
   );
 
   // filter regions by selected continent
@@ -82,11 +97,10 @@ export function useRegionSelector({
     onSelectRegion(region);
   };
 
-  // list of displayed micro regions
   const microRegions = useMemo(() => {
     const actualRegions = macroRegions.find((region) => region.name === selectedMacroRegion);
     return actualRegions ? filterMicrosRegions(actualRegions) : [];
-  }, [macroRegions, selectedMacroRegion]);
+  }, [filterMicrosRegions, macroRegions, selectedMacroRegion]);
 
   const selectedRegionIsDisabled = useMemo(
     () =>

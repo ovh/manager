@@ -6,7 +6,7 @@ import {
   PopoverContent,
 } from '@datatr-ux/uxlib';
 import { ExternalLink, HelpCircle } from 'lucide-react';
-import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 
 import A from '@/components/links/A.component';
 import { cn } from '@/lib/utils';
@@ -99,7 +99,7 @@ export const RegionTypeBadgeWithPopover = ({
       <span>{config.label}</span>
       {description && (
         <Popover>
-          <PopoverTrigger asChild>
+          <PopoverTrigger asChild data-testid="region-type-badge-popover">
             <HelpCircle className="size-4 ml-2" />
           </PopoverTrigger>
           <PopoverContent className="text-sm">

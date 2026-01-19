@@ -47,5 +47,5 @@
   "new_prefix_ipv6_card_description": "Obtenha o seu novo prefixo IPv6 para utilizar nos serviços vRack.",
   "ipv6_limit_reached_error": "O número máximo de blocos IPv6 adicionais já foi atingido",
   "ipv6_region_3_blocks_limit_reached_error": "O número máximo de 3 blocos IPv6 adicionais já foi atingido na região selecionada. Escolha outra região.",
-  "ipv6_region_already_used_error": "Já dispõe de um de um bloco da região escolhida no seu vRack. Escolha outra região."
+  "ipv6_region_already_used_error": "Já dispõe de um bloco da região selecionada no seu vRack. Escolha outra região."
 }

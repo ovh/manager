@@ -117,6 +117,7 @@ export const useGetColumns = ({
                 <Skeleton className="h-4 w-32" />
               ) : (
                 <DropdownMenuItem
+                  data-testid="user-enable-s3-button"
                   variant="primary"
                   onClick={() => {
                     onEnableUserClicked(row.original);
@@ -127,6 +128,7 @@ export const useGetColumns = ({
                 </DropdownMenuItem>
               )}
               <DropdownMenuItem
+                data-testid="user-import-user-access-button"
                 variant="primary"
                 onClick={() => {
                   onImportUserAccessClicked(row.original);
@@ -135,6 +137,7 @@ export const useGetColumns = ({
                 {t('tableActionImportUserAccess')}
               </DropdownMenuItem>
               <DropdownMenuItem
+                data-testid="user-download-user-access-button"
                 variant="primary"
                 onClick={() => {
                   onDownloadUserAccessClicked(row.original);
@@ -143,6 +146,7 @@ export const useGetColumns = ({
                 {t('tableActionDowloadUserAccess')}
               </DropdownMenuItem>
               <DropdownMenuItem
+                data-testid="user-download-rclone-button"
                 variant="primary"
                 onClick={() => {
                   onDownloadRcloneClicked(row.original);
@@ -154,6 +158,7 @@ export const useGetColumns = ({
                 <Skeleton className="h-4 w-32" />
               ) : (
                 <DropdownMenuItem
+                  data-testid="user-show-secret-key-button"
                   variant="primary"
                   onClick={() => {
                     onSecretKeyClicked(row.original);

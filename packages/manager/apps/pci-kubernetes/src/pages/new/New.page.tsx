@@ -12,7 +12,6 @@ import { OsdsBreadcrumb, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/rea
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
-  TProject,
   isDiscoveryProject,
   useProject,
   useParam as useSafeParams,
@@ -27,11 +26,11 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
-import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { isStandardPlan } from '@/helpers';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import { PAGE_PREFIX } from '@/tracking.constants';
-import { DeploymentMode, TClusterPlanEnum } from '@/types';
+import { TClusterPlanEnum } from '@/types';
 
 import {
   TClusterCreationForm,
@@ -42,16 +41,14 @@ import stepsConfig from './steps/stepsConfig';
 
 const formIsNonNullable = (form: TClusterCreationForm): form is TNonNullableForm => {
   if (!form.region?.type) return false;
+  if (!form.network) return false;
+  if (!form.updatePolicy) return false;
 
-  const regionType = form.region.type as DeploymentMode;
+  if (form.plan && isStandardPlan(form.plan)) {
+    return !!form.network.privateNetwork;
+  }
 
-  // TODO:  When 3AZ will be available, update condition to make form.plan mandatory to create a cluster & remove "free" fallback value in createCluster call
-  return (
-    !!form.network &&
-    ((isMultiDeploymentZones(regionType) && !!form.network.privateNetwork) ||
-      isMonoDeploymentZone(regionType)) &&
-    !!form.updatePolicy
-  );
+  return true;
 };
 
 export default function NewPage() {
@@ -185,24 +182,16 @@ export default function NewPage() {
       {/**  need to hide the global notif if opened * */}
       {(!stepper.location.step.isOpen || stepper.location.step.isChecked) && <Notifications />}
 
-      <div className="mb-5 sticky top-0 z-50">
+      <div className="sticky top-0 z-50 mb-5">
         {project && <PciDiscoveryBanner project={project} />}
       </div>
 
       <div className="mt-8">
         {allSteps
           .filter((step) => step.condition ?? true)
-          .map(
-            (
-              {
-                key,
-
-                component: StepComponent,
-                titleKey,
-                extraProps = {},
-              },
-              index,
-            ) => (
+          .map(({ key, component, titleKey, extraProps = {} }, index) => {
+            const Step = component;
+            return (
               <StepComponentLayout
                 key={key}
                 order={index + 1}
@@ -214,14 +203,10 @@ export default function NewPage() {
                   isDisabled: isCreationPending || (key === 'location' && isDiscovery),
                 }}
               >
-                <StepComponent
-                  step={stepper[key].step}
-                  onSubmit={stepper[key].submit}
-                  {...extraProps}
-                />
+                <Step step={stepper[key].step} onSubmit={stepper[key].submit} {...extraProps} />
               </StepComponentLayout>
-            ),
-          )}
+            );
+          })}
       </div>
     </>
   );

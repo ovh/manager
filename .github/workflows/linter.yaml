@@ -2,12 +2,22 @@ name: Lint Code Base
 
 on: [push]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  lint:
     name: Lint Code Base
     runs-on: ubuntu-latest
+
+    env:
+      PNPM_VERSION: "10.17.0" # must match playbook-config.js
+
     steps:
-      # choose with pkgs and storage you want to clean
+      # ------------------------------------------
+      # Free disk space
+      # ------------------------------------------
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@v1.3.1
         with:
@@ -18,35 +28,72 @@ jobs:
           large-packages: false
           docker-images: false
           swap-storage: true
-      # Checkout the code and include all commit history
+
+      # ------------------------------------------
+      # Checkout
+      # ------------------------------------------
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Setup Node.js 22.x environment
+      # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
+
+      # ------------------------------------------
+      # Node
+      # ------------------------------------------
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      # Restore and cache node_modules and yarn.lock related cache
-      - name: Restore node_modules cache
-        uses: actions/cache@v3
+      # ------------------------------------------
+      # pnpm binary cache (tool only)
+      # ------------------------------------------
+      - name: Restore pnpm binary
+        uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/yarn
-            node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: target/pnpm
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-pnpm-binary-
 
-      # Install dependencies only if necessary (cache hit will skip)
+      # ------------------------------------------
+      # Yarn cache (tarballs only, standard path)
+      # ------------------------------------------
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-cache-node22-
+
+      - name: Ensure yarn cache folder exists
+        run: mkdir -p ~/.cache/yarn
+
+      # ------------------------------------------
+      # Install deps (always deterministic)
+      # ------------------------------------------
       - name: Install dependencies
-        run: |
-          yarn install --frozen-lockfile
+        env:
+          YARN_CACHE_FOLDER: ~/.cache/yarn
+        run: yarn ci:install
 
-      # Lint the code base
+      # ------------------------------------------
+      # Lint
+      # ------------------------------------------
       - name: Lint Code Base
         run: |
-          yarn lint
+          yarn lint --runner nx --verbose

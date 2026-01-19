@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotificationContactStatus from './NotificationContactStatus.component';
 import { Contact } from '@/data/types';
 
@@ -22,11 +21,11 @@ const mockedContacts: Contact[] = [
     type: 'EMAIL',
   },
   {
-    error: 'Email bounced',
+    error: null,
     id: '01978dd8-0a35-70c0-bf90-b90a6d94e881',
     sentAt: '2025-01-01T14:00:00+00:00',
-    status: 'DROPPED',
-    to: 'test2@example.com',
+    status: 'BOUNCED' as Contact['status'],
+    to: 'test3@example.com',
     type: 'EMAIL',
   },
 ];
@@ -46,53 +45,65 @@ vi.mock('react-i18next', () => ({
   }) => <span>{t(i18nKey)}</span>,
 }));
 
-describe('NotificationPriorityChip.component', () => {
-  it.each([
-    mockedContacts.map((contact) => ({
-      notificationId: '01975e44-9b60-77b4-8af3-58efdcd12e90',
-      contacts: [contact],
-    })),
-  ])(
-    'should render with the the severity color',
-    ({ notificationId, contacts }) => {
-      const { container } = render(
-        <NotificationContactStatus
-          notificationId={notificationId}
-          contacts={contacts}
-        />,
-      );
-      const contactStatusElement = container.querySelector('ods-icon');
-      if (contacts[0].status === 'SENT') {
-        expect(contactStatusElement).not.toBeInTheDocument();
-        return;
-      }
-
-      expect(contactStatusElement).toBeInTheDocument();
-      expect(contactStatusElement).toHaveAttribute(
-        'name',
-        ODS_ICON_NAME.triangleExclamation,
-      );
-
-      if (contacts[0].status === 'DROPPED') {
-        expect(contactStatusElement).toHaveClass(
-          'text-[--ods-color-critical-500]',
-        );
-      } else {
-        expect(contactStatusElement).toHaveClass(
-          'text-[--ods-color-warning-500]',
-        );
-      }
-    },
-  );
-
-  it('should pick the highest severity contact (dropped)', () => {
-    const { container } = render(
+describe('NotificationContactStatus.component', () => {
+  it('should not render when no contact has error or BOUNCED status', () => {
+    const contactWithoutError = mockedContacts[0];
+    if (!contactWithoutError) {
+      throw new Error('Test contact not found');
+    }
+    const { queryByRole } = render(
       <NotificationContactStatus
-        notificationId="01975e44-9b60-77b4-8af3-58efdcd12e90"
+        contacts={[contactWithoutError]}
+      />,
+    );
+    const contactStatusElement = queryByRole('button');
+    expect(contactStatusElement).not.toBeInTheDocument();
+  });
+
+  it('should render when a contact has an error', () => {
+    const contactWithError = mockedContacts[1];
+    if (!contactWithError) {
+      throw new Error('Test contact not found');
+    }
+    const { getByRole } = render(
+      <NotificationContactStatus
+        contacts={[contactWithError]}
+      />,
+    );
+    const contactStatusElement = getByRole('button');
+    expect(contactStatusElement).toBeInTheDocument();
+    expect(contactStatusElement).toHaveClass(
+      'text-[var(--ods-color-warning-500)]',
+    );
+  });
+
+  it('should render when a contact has BOUNCED status', () => {
+    const contactWithBounced = mockedContacts[2];
+    if (!contactWithBounced) {
+      throw new Error('Test contact not found');
+    }
+    const { getByRole } = render(
+      <NotificationContactStatus
+        contacts={[contactWithBounced]}
+      />,
+    );
+    const contactStatusElement = getByRole('button');
+    expect(contactStatusElement).toBeInTheDocument();
+    expect(contactStatusElement).toHaveClass(
+      'text-[var(--ods-color-warning-500)]',
+    );
+  });
+
+  it('should pick the first contact with error or BOUNCED status', () => {
+    const { getByRole } = render(
+      <NotificationContactStatus
         contacts={mockedContacts}
       />,
     );
-    const contactStatusElement = container.querySelector('ods-icon');
-    expect(contactStatusElement).toHaveClass('text-[--ods-color-critical-500]');
+    const contactStatusElement = getByRole('button');
+    expect(contactStatusElement).toBeInTheDocument();
+    expect(contactStatusElement).toHaveClass(
+      'text-[var(--ods-color-warning-500)]',
+    );
   });
 });

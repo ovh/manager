@@ -21,5 +21,8 @@
   "cliTitle": "Gleichwertiger CLI-Befehl",
   "cliToastMessage": "Auftrag kopiert",
   "restartJobButtonConfirm": "Neu starten",
-  "restartJobToastSuccessDescription": "Der Job {{name}} wurde gestartet."
+  "restartJobToastSuccessDescription": "Der Job {{name}} wurde gestartet.",
+  "cloneJobTitle": "Einen neuen Job klonen",
+  "shutdownLabel": "Stoppen Sie den ",
+  "restartLabel": "Neustart am "
 }

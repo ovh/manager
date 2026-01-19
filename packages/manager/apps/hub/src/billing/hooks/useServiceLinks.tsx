@@ -17,7 +17,9 @@ export const useServiceLinks = (service: BillingService, autoRenewLink?: string)
     const determineLinks = async () => {
       const availableLinks: ServiceLinks = {};
       const serviceTypeParam = service.serviceType ? `&serviceType=${service.serviceType}` : '';
-      const renewUrl = `${RENEW_URL[user.ovhSubsidiary] || RENEW_URL.default}${service.serviceId}`;
+      const renewUrl = RENEW_URL[user.ovhSubsidiary]
+        ? `${RENEW_URL[user.ovhSubsidiary]}${service.serviceId}`
+        : null;
       const [organization, exchangeName] = service.serviceId.split('/service/');
       // When we will fully migrate billing in React, we should add a possibility to give
       // the cancelResiliation link (with an additional parameter in useServiceLinks)
@@ -95,11 +97,16 @@ export const useServiceLinks = (service: BillingService, autoRenewLink?: string)
           ) {
             availableLinks.configureRenewal = `${autoRenewLink}/update?serviceId=${service.serviceId}${serviceTypeParam}`;
           }
-          if (!service.hasManualRenew() && !service.canBeEngaged && !service.hasPendingEngagement) {
+          if (
+            !service.hasManualRenew() &&
+            !service.canBeEngaged &&
+            !service.hasPendingEngagement &&
+            renewUrl !== null
+          ) {
             availableLinks.anticipatePayment = renewUrl;
           }
         }
-        if (service.hasManualRenew() && service.canHandleRenew()) {
+        if (service.hasManualRenew() && service.canHandleRenew() && renewUrl !== null) {
           availableLinks.renewManually = renewUrl;
         }
       }
@@ -174,7 +181,7 @@ export const useServiceLinks = (service: BillingService, autoRenewLink?: string)
       }
       return availableLinks;
     };
-    determineLinks().then(setLinks);
+    void determineLinks().then(setLinks);
   }, [service, autoRenewLink]);
 
   return links;

@@ -5,6 +5,7 @@ import { Environment, User } from '@ovh-ux/manager-config';
 import { useCookies } from 'react-cookie';
 import CookiePolicy from './CookiePolicy';
 import ApplicationContext from '@/context/application.context';
+import { WEBSITE_PRIVACY_COOKIE_NAME, WEBSITE_TRACKING_CONSENT_VALUE } from './CookiePolicy.constants';
 
 const onValidate = vi.fn();
 const trackingInit = vi.fn().mockResolvedValue(undefined);
@@ -16,7 +17,7 @@ vi.mock('@ovh-ux/shell');
 const renderCookiePolicy = async () => {
   const shell = initShell({} as Environment);
   const environment = shell.getPlugin('environment').getEnvironment();
-  render(
+  return render(
     <ApplicationContext.Provider value={{ shell, environment }}>
       <CookiePolicy onValidate={onValidate} shell={shell} />
     </ApplicationContext.Provider>,
@@ -56,9 +57,9 @@ describe('CookiePolicy.component', () => {
   ])(
     'should init tracking if region is %s and cookie is %s',
     async (region, cookieValidity) => {
-      const cookieValue = cookieValidity === 'valid' ? '1' : '0';
+      const cookieValue = cookieValidity === 'valid' ? WEBSITE_TRACKING_CONSENT_VALUE : '0';
       vi.mocked(useCookies).mockReturnValue([
-        { MANAGER_TRACKING: cookieValue },
+        { [WEBSITE_PRIVACY_COOKIE_NAME]: cookieValue },
         vi.fn(),
         vi.fn(),
       ]);
@@ -79,16 +80,17 @@ describe('CookiePolicy.component', () => {
 
   it('should show consent modal if cookie is null and region is not US', async () => {
     vi.mocked(useCookies).mockReturnValue([
-      { MANAGER_TRACKING: null },
+      { [WEBSITE_PRIVACY_COOKIE_NAME]: null },
       vi.fn(),
       vi.fn(),
     ]);
     (await import('@ovh-ux/shell')).initShell = vi
       .fn()
       .mockReturnValue(mockedShell('EU'));
-    renderCookiePolicy();
+    const { container } = await renderCookiePolicy();
     await waitFor(
       () => {
+        expect(container).toBeAccessible();
         expect(trackingInit).not.toHaveBeenCalled();
         expect(trackingSetEnabled).not.toHaveBeenCalled();
         expect(trackingOnConsentModalDisplay).toHaveBeenCalled();
@@ -99,7 +101,7 @@ describe('CookiePolicy.component', () => {
 
   it('should disable tracking plugin if cookie is invalid and region is not US', async () => {
     vi.mocked(useCookies).mockReturnValue([
-      { MANAGER_TRACKING: '0' },
+      { [WEBSITE_PRIVACY_COOKIE_NAME]: '0' },
       vi.fn(),
       vi.fn(),
     ]);

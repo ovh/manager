@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.26...@ovh-ux/manager-pci-billing-app@0.12.27) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.25...@ovh-ux/manager-pci-billing-app@0.12.26) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.24...@ovh-ux/manager-pci-billing-app@0.12.25) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.23...@ovh-ux/manager-pci-billing-app@0.12.24) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.22...@ovh-ux/manager-pci-billing-app@0.12.23) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.21...@ovh-ux/manager-pci-billing-app@0.12.22) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.20...@ovh-ux/manager-pci-billing-app@0.12.21) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.19...@ovh-ux/manager-pci-billing-app@0.12.20) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.18...@ovh-ux/manager-pci-billing-app@0.12.19) (2025-12-09)
+
+
+### Bug Fixes
+
+* flaky build issues ([1bfacbd](https://github.com/ovh/manager/commit/1bfacbd737193d386bd268fcacf70d95e0bbb9d1)), closes [#MANAGER-20363](https://github.com/ovh/manager/issues/MANAGER-20363)
+
+
+
+
+
 ## [0.12.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.17...@ovh-ux/manager-pci-billing-app@0.12.18) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-billing-app

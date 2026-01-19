@@ -3,6 +3,129 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.12...@ovh-ux/manager-vrack-services-app@0.26.13) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.11...@ovh-ux/manager-vrack-services-app@0.26.12) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.10...@ovh-ux/manager-vrack-services-app@0.26.11) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.9...@ovh-ux/manager-vrack-services-app@0.26.10) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.8...@ovh-ux/manager-vrack-services-app@0.26.9) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.7...@ovh-ux/manager-vrack-services-app@0.26.8) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.6...@ovh-ux/manager-vrack-services-app@0.26.7) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.5...@ovh-ux/manager-vrack-services-app@0.26.6) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.4...@ovh-ux/manager-vrack-services-app@0.26.5) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.3...@ovh-ux/manager-vrack-services-app@0.26.4) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.2...@ovh-ux/manager-vrack-services-app@0.26.3) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.1...@ovh-ux/manager-vrack-services-app@0.26.2) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.26.0...@ovh-ux/manager-vrack-services-app@0.26.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.25.1...@ovh-ux/manager-vrack-services-app@0.26.0) (2025-12-12)
+
+
+### Features
+
+* **playright-helper:** clean playwright helper folder ([2c80387](https://github.com/ovh/manager/commit/2c803878257bc049cea849ab0c720eacb2e37448)), closes [#MANAGER-15903](https://github.com/ovh/manager/issues/MANAGER-15903)
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.25.0...@ovh-ux/manager-vrack-services-app@0.25.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
 # [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.24.2...@ovh-ux/manager-vrack-services-app@0.25.0) (2025-12-05)
 
 

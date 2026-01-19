@@ -1,9 +1,8 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 
 export type DeleteIpReverseParams = {
-  /**  */
-  ipReverse: string;
   ip: string;
+  ipReverse: string;
 };
 
 export const deleteIpReverseQueryKey = ({
@@ -23,7 +22,5 @@ export const deleteIpReverse = async ({
   ipReverse,
 }: DeleteIpReverseParams): Promise<ApiResponse<null>> =>
   apiClient.v6.delete<null>(
-    `/ip/${encodeURIComponent(ipReverse)}/reverse/${encodeURIComponent(
-      ipReverse,
-    )}`,
+    `/ip/${encodeURIComponent(ip)}/reverse/${encodeURIComponent(ipReverse)}`,
   );

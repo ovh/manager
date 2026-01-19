@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.7...@ovh-ux/manager-module-vcd-api@0.10.0) (2026-01-12)
+
+
+### Features
+
+* **vcfaas:** add acl network for organisation ([f70e14a](https://github.com/ovh/manager/commit/f70e14a2b57c8cdf8b84eb5007a26a6fbf4bdb2d)), closes [#MANAGER-19918](https://github.com/ovh/manager/issues/MANAGER-19918)
+
+
+
+
+
+## [0.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.6...@ovh-ux/manager-module-vcd-api@0.9.7) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.5...@ovh-ux/manager-module-vcd-api@0.9.6) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.4...@ovh-ux/manager-module-vcd-api@0.9.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.3...@ovh-ux/manager-module-vcd-api@0.9.4) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.2...@ovh-ux/manager-module-vcd-api@0.9.3) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.1...@ovh-ux/manager-module-vcd-api@0.9.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.0...@ovh-ux/manager-module-vcd-api@0.9.1) (2025-12-09)
+
+
+### Bug Fixes
+
+* **public-vcf:** fix and refactor breadcrumb translations ([08617ff](https://github.com/ovh/manager/commit/08617ffe58bddf68dba94e2ee5fda758263bd3fd)), closes [#MANAGER-20296](https://github.com/ovh/manager/issues/MANAGER-20296)
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.8.21...@ovh-ux/manager-module-vcd-api@0.9.0) (2025-12-05)
 
 

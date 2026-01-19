@@ -6,6 +6,10 @@ import { Region } from '@ovh-ux/manager-config';
 import { TrackingPlugin } from '@ovh-ux/shell';
 import Cookies from 'universal-cookie';
 import { useDataUsageConsent } from './useDataUsageConsent';
+import {
+  WEBSITE_PRIVACY_COOKIE_NAME,
+  WEBSITE_TRACKING_CONSENT_VALUE,
+} from './useDataUsage.constants';
 
 const trackingPluginMock = new TrackingPlugin();
 trackingPluginMock.onUserConsentFromModal = vi.fn(
@@ -15,12 +19,16 @@ trackingPluginMock.onUserConsentFromModal = vi.fn(
 const buildWrapper = (cookieValue?: string) => ({
   children,
 }: PropsWithChildren) => {
-  const cookie = new Cookies({ MANAGER_TRACKING: cookieValue });
+  const cookie = new Cookies({ [WEBSITE_PRIVACY_COOKIE_NAME]: cookieValue });
   return <CookiesProvider cookies={cookie}>{children}</CookiesProvider>;
 };
 
 describe('useDataUsageConsent', () => {
   describe('useDataUsageConsent', () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+    });
+
     it('should indicate there is no need to request consent for US', async () => {
       const wrapper = buildWrapper();
 
@@ -37,13 +45,15 @@ describe('useDataUsageConsent', () => {
     });
 
     it('should indicate there is no need to request consent if it is already accepted', async () => {
-      const wrapper = buildWrapper('1');
-
+      const wrapper = buildWrapper(WEBSITE_TRACKING_CONSENT_VALUE);
       const { result } = renderHook(
         () => useDataUsageConsent(Region.EU, trackingPluginMock),
         {
           wrapper,
         },
+      );
+      expect(trackingPluginMock.onUserConsentFromModal).toHaveBeenCalledWith(
+        true,
       );
       expect(result.current.shouldRequestConsent).toBe(false);
     });
@@ -56,6 +66,9 @@ describe('useDataUsageConsent', () => {
         {
           wrapper,
         },
+      );
+      expect(trackingPluginMock.onUserConsentFromModal).toHaveBeenCalledWith(
+        false,
       );
       expect(result.current.shouldRequestConsent).toBe(false);
     });

@@ -101,7 +101,6 @@ export default /* @ngInject */ ($stateProvider) => {
         queryParameters.refresh === 'true',
 
       services: /* @ngInject */ (
-        $state,
         BillingAutoRenew,
         filters,
         nicBilling,
@@ -123,6 +122,7 @@ export default /* @ngInject */ ($stateProvider) => {
           sort,
           nicBilling,
           refresh,
+          filters.renew,
         ),
 
       choiceRenewDayTooltipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
@@ -139,6 +139,47 @@ export default /* @ngInject */ ($stateProvider) => {
 
       sort: /* @ngInject */ ($transition$) =>
         JSON.parse($transition$.params().sort || '{}'),
+
+      goToCorrespondingBills: /* @ngInject */ (
+        $state,
+        $translate,
+        $anchorScroll,
+        coreConfig,
+        ServiceService,
+        Alerter,
+      ) => {
+        if (coreConfig.isRegion('US')) return null;
+
+        return ({ id }) =>
+          ServiceService.getBillsIds(id)
+            .then(({ data: ids }) => {
+              if (!ids?.length) {
+                Alerter.warning(
+                  $translate.instant('billing_autorenew_service_no_bills'),
+                );
+                $anchorScroll('tabs');
+                return null;
+              }
+              return $state.go('billing.main.history', {
+                filter: JSON.stringify([
+                  {
+                    field: 'billId',
+                    comparator: ids.length === 1 ? 'is' : 'in',
+                    reference: ids,
+                  },
+                ]),
+              });
+            })
+            .catch((error) => {
+              Alerter.error(
+                $translate.instant(
+                  'billing_autorenew_service_bills_retrieval_failure',
+                  { message: error?.data?.message },
+                ),
+              );
+              $anchorScroll('tabs');
+            });
+      },
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_title'),

@@ -1,11 +1,5 @@
 import { ControllerRenderProps, FieldValues } from 'react-hook-form';
-import {
-  Check,
-  ChevronsUpDown,
-  FileJson,
-  PlusCircle,
-  Trash2,
-} from 'lucide-react';
+import { FileJson, PlusCircle, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -20,22 +14,22 @@ import {
   RadioGroupItem,
   Input,
   useToast,
-  ScrollArea,
-  ScrollBar,
   Button,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  CommandList,
+  Code,
+  json,
+  Combobox,
+  ComboboxTrigger,
+  ComboboxValue,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxList,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxItem,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import {
@@ -43,9 +37,9 @@ import {
   useAdvancedConfigurationForm,
 } from './useAdvancedConfigurationForm.hook';
 import { useServiceData } from '../../../Service.context';
-import { cn } from '@/lib/utils';
 import { useEditAdvancedConfiguration } from '@/hooks/api/database/advancedConfiguration/useEditAdvancedConfiguration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface AdvancedConfigurationFormProps {
   advancedConfiguration: Record<string, string>;
@@ -61,11 +55,13 @@ const AdvancedConfigurationForm = ({
     'pci-databases-analytics/services/service/settings',
   );
   const [value, setValue] = useState('');
-  const [open, setOpen] = useState(false);
   const { projectId, service, serviceQuery } = useServiceData();
-  const isDisabled =
-    service.capabilities.advancedConfiguration?.update ===
-    database.service.capability.StateEnum.disabled;
+  const isDisabled = isCapabilityDisabled(
+    service,
+    'advancedConfiguration',
+    'update',
+  );
+
   const toast = useToast();
   const {
     updateAdvancedConfiguration,
@@ -73,7 +69,7 @@ const AdvancedConfigurationForm = ({
   } = useEditAdvancedConfiguration({
     onError: (error) => {
       toast.toast({
-        variant: 'destructive',
+        variant: 'critical',
         title: t('advancedConfigurationUpdateErrorTitle'),
         description: getCdbApiErrorMessage(error),
       });
@@ -188,20 +184,17 @@ const AdvancedConfigurationForm = ({
                 control={model.form.control}
                 name={model.methods.sanitizePropertyName(property.name)}
                 render={({ field }) => (
-                  <FormItem className="border rounded-md p-2 relative">
-                    <FormLabel>{property.name}</FormLabel>
-                    <div className="flex gap-2">
-                      <FormControl
-                        className="w-full"
-                        data-testid="advanced-config-input"
-                      >
-                        {getInput(field, property)}
-                      </FormControl>
+                  <FormItem className="flex flex-col gap-2 border rounded-md p-2 w-full">
+                    <div className="flex flex-row gap-2 items-center w-full min-w-0">
+                      <FormLabel className="break-words whitespace-normal flex-1 min-w-0">
+                        {property.name}
+                      </FormLabel>
                       {property.isDeletable && (
                         <Button
                           data-testid={`remove-property-${property.name}`}
-                          className="text-red-500 rounded-full p-1 hover:text-red-500 absolute top-0 right-0"
-                          mode={'ghost'}
+                          mode="ghost"
+                          variant="critical"
+                          className="p-1 h-auto shrink-0"
                           type="button"
                           onClick={() => model.methods.removeProperty(property)}
                         >
@@ -209,6 +202,12 @@ const AdvancedConfigurationForm = ({
                         </Button>
                       )}
                     </div>
+                    <FormControl
+                      className="w-full"
+                      data-testid="advanced-config-input"
+                    >
+                      {getInput(field, property)}
+                    </FormControl>
                     <FormDescription>{property.description}</FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -218,54 +217,33 @@ const AdvancedConfigurationForm = ({
           </form>
         </Form>
         <div className="flex mt-4">
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                role="combobox"
-                aria-expanded={open}
-                className="text-text border border-input bg-background h-10 w-full rounded-md px-3 py-2 text-sm justify-between hover:bg-background active:bg-background"
-              >
-                {value
-                  ? model.lists.availableProperties.find(
-                      (property) => property.name === value,
-                    )?.name
-                  : t('advancedConfigurationAddPropertyPlaceholder')}
-                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height] p-0">
-              <Command>
-                <CommandInput placeholder="Search property..." />
-                <CommandList>
-                  <CommandEmpty>
-                    {t('advancedConfigurationAddPropertyNotFound')}
-                  </CommandEmpty>
-                  <CommandGroup className="max-h-64 overflow-auto">
-                    {model.lists.availableProperties.map((property) => (
-                      <CommandItem
-                        key={property.name}
-                        value={property.name}
-                        onSelect={(currentValue) => {
-                          setValue(currentValue === value ? '' : currentValue);
-                          setOpen(false);
-                        }}
-                      >
-                        <Check
-                          className={cn(
-                            'mr-2 h-4 w-4',
-                            value === property.name
-                              ? 'opacity-100'
-                              : 'opacity-0',
-                          )}
-                        />
-                        {property.name}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+          <Combobox value={value} onValueChange={setValue}>
+            <ComboboxTrigger>
+              <ComboboxValue
+                placeholder={t('advancedConfigurationAddPropertyPlaceholder')}
+                value={
+                  model.lists.availableProperties.find(
+                    (property) => property.name === value,
+                  )?.name
+                }
+              />
+            </ComboboxTrigger>
+            <ComboboxContent>
+              <ComboboxInput placeholder="Search property..." />
+              <ComboboxList>
+                <ComboboxEmpty>
+                  {t('advancedConfigurationAddPropertyNotFound')}
+                </ComboboxEmpty>
+                <ComboboxGroup>
+                  {model.lists.availableProperties.map((property) => (
+                    <ComboboxItem key={property.name} value={property.name}>
+                      {property.name}
+                    </ComboboxItem>
+                  ))}
+                </ComboboxGroup>
+              </ComboboxList>
+            </ComboboxContent>
+          </Combobox>
           <Button
             data-testid="advanced-config-add-button"
             mode={'ghost'}
@@ -287,16 +265,15 @@ const AdvancedConfigurationForm = ({
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <ScrollArea
-              className="p-2 bg-[#122844] text-white whitespace-pre w-full"
-              viewportClassName="max-h-[400px]"
-            >
-              <div>
-                {model.result.payload &&
-                  JSON.stringify(model.result.payload, null, 2)}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+            <Code
+              className="max-h-[400px]"
+              lang={json}
+              code={
+                model.result.payload
+                  ? JSON.stringify(model.result.payload, null, 2)
+                  : '{}'
+              }
+            ></Code>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

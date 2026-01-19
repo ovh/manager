@@ -6,12 +6,17 @@ import {
   useNavigate,
   useResolvedPath,
 } from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-react-components';
+import { Tabs, Tab, TabList, TabsValueChangeEvent } from '@ovhcloud/ods-react';
+import { BaseLayout, HeaderProps, Breadcrumb } from '@ovh-ux/muk';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import { useTracking } from '@/hooks/useTracking/useTracking';
 import { TrackingSubApps } from '@/tracking.constant';
+import { GuidePlacement, GuidedTourProvider, GuideStep } from '@/hooks/useGuidedTour';
+import SenderEmailBanner from '@/components/senderEmailBanner/SenderEmailBanner.component'
+import { GuideMenu } from '@/components/guideMenu/GuideMenu.component';
+import GuidedTour from '@/components/guidedTour/GuidedTour.component';
+import GuidedTourIntroduction from '@/components/guidedTour/Introduction.component';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -25,7 +30,36 @@ export default function DashboardLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('common');
+  const steps: GuideStep[] = [
+    {
+      route: urls.communication.listing,
+      anchor: '#communications-tab',
+      text: t('guided_tour_communications'),
+      placement: GuidePlacement.Bottom,
+      onAfterEnter: () => {
+        // tracking the guide_tab_communications step
+      },
+    },
+    {
+      route: urls.contact.listing,
+      anchor: '#contacts-tab',
+      text: t('guided_tour_contacts'),
+      placement: GuidePlacement.Bottom,
+      onAfterEnter: () => {
+        // tracking the guide_tab_contacts step
+      },
+    },
 
+    {
+      route: urls.routing.listing,
+      anchor: '#rules-parameter-tab',
+      text: t('guided_tour_settings'),
+      placement: GuidePlacement.Bottom,
+      onAfterEnter: () => {
+        // tracking the guide_tab_settings step
+      },
+    },
+  ];
   const tabsList: DashboardTabItemProps[] = [
     {
       name: 'communications',
@@ -58,44 +92,59 @@ export default function DashboardLayout() {
     if (activeTab) {
       setActivePanel(activeTab.name);
     } else {
-      setActivePanel(tabsList[0].name);
+      setActivePanel(tabsList[0]?.name ?? '');
     }
-  }, [location.pathname]);
+  }, [location.pathname, tabsList]);
 
-  const header = {
+  const header: HeaderProps = {
     title: t('title'),
+    guideMenu: <GuideMenu />,
   };
 
   return (
-    <BaseLayout
-      breadcrumb={<Breadcrumb rootLabel={t('title')} appName="communication" />}
-      header={header}
-      tabs={
-        <OdsTabs>
-          {tabsList.map((tab: DashboardTabItemProps) => (
-            <OdsTab
-              key={`osds-tab-bar-item-${tab.name}`}
-              className="select-none"
-              isSelected={tab.name === panel}
-              onOdsTabSelected={() => {
+    <GuidedTourProvider steps={steps} postGuideRoute={urls.communication.listing}>
+      <BaseLayout
+        breadcrumb={<Breadcrumb rootLabel={t('title')} appName="communication" />}
+        header={header}
+        tabs={
+          <Tabs
+          value={panel}
+          onValueChange={(event: TabsValueChangeEvent) => {
+            const selectedTab = tabsList.find((tab) => tab.name === event.value);
+              if (selectedTab) {
                 trackClick({
                   location: PageLocation.mainTabnav,
                   actionType: 'navigation',
                   buttonType: ButtonType.tab,
-                  actions: [tab.name],
+                  actions: [selectedTab.name],
                   subApp:
-                    TrackingSubApps[tab.name as keyof typeof TrackingSubApps],
+                    TrackingSubApps[selectedTab.name as keyof typeof TrackingSubApps],
                 });
-                navigate(tab.to);
-              }}
-            >
-              {tab.title}
-            </OdsTab>
-          ))}
-        </OdsTabs>
-      }
-    >
-      <Outlet />
-    </BaseLayout>
+                navigate(selectedTab.to);
+              }
+            }}
+          >
+            <TabList>
+            {tabsList.map((tab: DashboardTabItemProps) => (
+              <Tab
+                key={`osds-tab-bar-item-${tab.name}`}
+                id={`${tab.name}-tab`}
+                className="select-none"
+                value={tab.name}
+              >
+                {tab.title}
+              </Tab>
+            ))}
+          </TabList>
+          </Tabs>
+        }
+      >
+        <SenderEmailBanner />
+
+        <Outlet />
+        <GuidedTourIntroduction />
+      </BaseLayout>
+      <GuidedTour />
+    </GuidedTourProvider>
   );
 }

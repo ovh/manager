@@ -16,6 +16,7 @@ export enum StateEnum {
   OK = 'ok',
   PENDING_DEBT = 'pendingDebt',
   UNPAID = 'unPaid',
+  AWAITING_SIGNATURE = 'awaitingSignature',
 }
 
 export type RenewType = {

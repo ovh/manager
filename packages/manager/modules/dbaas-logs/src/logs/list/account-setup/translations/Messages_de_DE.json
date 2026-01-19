@@ -1,0 +1,10 @@
+{
+  "dbaas_logs_account_setup": "Konfigurieren",
+  "dbaas_logs_account_setup_auth_mode": "Authentifizierungsmodus",
+  "dbaas_logs_account_setup_close": "Schließen",
+  "dbaas_logs_account_setup_title": "LDP-Account konfigurieren",
+  "dbaas_logs_account_setup_enable_iam": "OVHcloud IAM aktivieren",
+  "dbaas_logs_account_setup_select_password": "Passwort auswählen",
+  "dbaas_logs_account_setup_select_password_alert_title": "Künftige Entwicklung",
+  "dbaas_logs_account_setup_select_password_alert_detail": "Diese Option wird in Kürze zugunsten des IAM von OVHcloud, der neuen Lösung für Identitäts- und Zugriffsmanagement, eingestellt. Wir empfehlen Ihnen, OVHcloud IAM jetzt zu verwenden, um einen reibungslosen Übergang ohne Dienstunterbrechungen zu gewährleisten."
+}

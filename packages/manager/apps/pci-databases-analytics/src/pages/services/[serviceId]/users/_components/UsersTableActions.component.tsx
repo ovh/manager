@@ -1,5 +1,4 @@
 import { MoreHorizontal } from 'lucide-react';
-
 import { useTranslation } from 'react-i18next';
 import {
   DropdownMenu,
@@ -11,7 +10,7 @@ import {
 } from '@datatr-ux/uxlib';
 import { GenericUser } from '@/data/api/database/user.api';
 import { useServiceData } from '../../Service.context';
-import * as database from '@/types/cloud/project/database';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface UserActionsProps {
   user: GenericUser;
@@ -48,10 +47,7 @@ const UserActions = ({
             <DropdownMenuItem
               data-testid="user-action-edit-button"
               variant="primary"
-              disabled={
-                service.capabilities.users?.update ===
-                database.service.capability.StateEnum.disabled
-              }
+              disabled={isCapabilityDisabled(service, 'users', 'update')}
               onClick={() => onEditClicked(user)}
             >
               {t('tableActionsMenuEdit')}
@@ -60,10 +56,11 @@ const UserActions = ({
           <DropdownMenuItem
             data-testid="user-action-reset-password-button"
             variant="primary"
-            disabled={
-              service.capabilities.userCredentialsReset?.create ===
-              database.service.capability.StateEnum.disabled
-            }
+            disabled={isCapabilityDisabled(
+              service,
+              'userCredentialsReset',
+              'create',
+            )}
             onClick={() => onResetPasswordClicked(user)}
           >
             {t('tableActionsMenuResetPassword')}
@@ -73,10 +70,7 @@ const UserActions = ({
               <DropdownMenuItem
                 data-testid="user-action-view-certificate-button"
                 variant="primary"
-                disabled={
-                  service.capabilities.userAccess?.read ===
-                  database.service.capability.StateEnum.disabled
-                }
+                disabled={isCapabilityDisabled(service, 'userAccess', 'read')}
                 onClick={() => onViewCertificatesClicked(user)}
               >
                 {t('tableActionsMenuViewCertificate')}
@@ -84,29 +78,26 @@ const UserActions = ({
               <DropdownMenuItem
                 data-testid="user-action-show-access-key"
                 variant="primary"
-                disabled={
-                  service.capabilities.userAccess?.read ===
-                  database.service.capability.StateEnum.disabled
-                }
+                disabled={isCapabilityDisabled(service, 'userAccess', 'read')}
                 onClick={() => onShowAccessTokenClicked(user)}
               >
                 {t('tableActionsMenuShowAccessKey')}
               </DropdownMenuItem>
             </>
           )}
-          <DropdownMenuSeparator />
+
           {service.capabilities.users?.delete && (
-            <DropdownMenuItem
-              data-testid="user-action-delete-button"
-              variant="destructive"
-              disabled={
-                service.capabilities.users?.delete ===
-                database.service.capability.StateEnum.disabled
-              }
-              onClick={() => onDeleteClicked(user)}
-            >
-              {t('tableActionsMenuDelete')}
-            </DropdownMenuItem>
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                data-testid="user-action-delete-button"
+                variant="critical"
+                disabled={isCapabilityDisabled(service, 'users', 'delete')}
+                onClick={() => onDeleteClicked(user)}
+              >
+                {t('tableActionsMenuDelete')}
+              </DropdownMenuItem>
+            </>
           )}
         </DropdownMenuContent>
       </DropdownMenu>

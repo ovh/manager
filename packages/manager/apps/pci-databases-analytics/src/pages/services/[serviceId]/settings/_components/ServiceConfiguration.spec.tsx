@@ -59,6 +59,15 @@ const mockedService = {
       delete: database.service.capability.StateEnum.enabled,
       read: database.service.capability.StateEnum.enabled,
     },
+    serviceIpRestriction: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceFlavor: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceDisk: {
+      update: database.service.capability.StateEnum.enabled,
+    },
   },
 };
 
@@ -163,18 +172,14 @@ describe('Service configuration page', () => {
       expect(
         screen.getByTestId('service-configuration-table'),
       ).toBeInTheDocument();
-      expect(screen.getByText(mockedService.description)).toBeInTheDocument();
     });
-    expect(screen.getByTestId('maintenance-time-cell')).toBeInTheDocument();
-    expect(screen.getByTestId('backup-time-cell')).toBeInTheDocument();
-    expect(
-      screen.getByTestId('service-config-rename-button'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('maintenance-time')).toBeInTheDocument();
+    expect(screen.getByTestId('backup-time')).toBeInTheDocument();
     expect(
       screen.getByTestId('service-config-delete-button'),
     ).toBeInTheDocument();
     expect(
-      screen.getByTestId('service-config-deletion-protection-button'),
+      screen.getByTestId('service-config-deletion-protection-link'),
     ).toBeInTheDocument();
   });
 
@@ -194,10 +199,8 @@ describe('Service configuration page', () => {
     });
     render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('maintenance-time-cell'),
-      ).not.toBeInTheDocument();
-      expect(screen.queryByTestId('backup-time-cell')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('maintenance-time')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('backup-time')).not.toBeInTheDocument();
       expect(
         screen.queryByTestId('service-config-rename-button'),
       ).not.toBeInTheDocument();
@@ -205,7 +208,7 @@ describe('Service configuration page', () => {
         screen.queryByTestId('service-config-delete-button'),
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByTestId('service-config-deletion-protection-button'),
+        screen.queryByTestId('service-config-deletion-protection-link'),
       ).not.toBeInTheDocument();
     });
   });
@@ -235,6 +238,12 @@ describe('Service configuration page', () => {
             read: database.service.capability.StateEnum.enabled,
             update: database.service.capability.StateEnum.disabled,
           },
+          serviceFlavor: {
+            update: database.service.capability.StateEnum.disabled,
+          },
+          serviceDisk: {
+            update: database.service.capability.StateEnum.disabled,
+          },
         },
       },
       category: 'operational',
@@ -242,26 +251,19 @@ describe('Service configuration page', () => {
     });
     render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.queryByTestId('maintenance-time-cell')).toBeInTheDocument();
-      expect(screen.queryByTestId('backup-time-cell')).toBeInTheDocument();
-      expect(
-        screen.queryByTestId('service-config-rename-button'),
-      ).toBeInTheDocument();
-      expect(
-        screen.queryByTestId('service-config-rename-button'),
-      ).toBeDisabled();
+      expect(screen.queryByTestId('maintenance-time')).toBeInTheDocument();
+      expect(screen.queryByTestId('backup-time')).toBeInTheDocument();
       expect(
         screen.queryByTestId('service-config-delete-button'),
       ).toBeInTheDocument();
       expect(
         screen.queryByTestId('service-config-delete-button'),
       ).toBeDisabled();
-      expect(
-        screen.queryByTestId('service-config-deletion-protection-button'),
-      ).toBeInTheDocument();
-      expect(
-        screen.queryByTestId('service-config-deletion-protection-button'),
-      ).toBeDisabled();
+      const deleteProtectionButton = screen.getByTestId(
+        'service-config-deletion-protection-link',
+      );
+      expect(deleteProtectionButton).toBeInTheDocument();
+      expect(deleteProtectionButton.className).toContain('cursor-not-allowed');
     });
   });
 });
@@ -276,31 +278,13 @@ describe('Open modals', () => {
     });
     render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByText(mockedService.description)).toBeInTheDocument();
+      expect(
+        screen.getByTestId('service-configuration-table'),
+      ).toBeInTheDocument();
     });
   });
   afterEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('open rename service Modal', async () => {
-    act(() => {
-      fireEvent.click(screen.getByTestId('service-config-rename-button'));
-    });
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./rename');
-    });
-  });
-
-  it('open deletion protection Modal', async () => {
-    act(() => {
-      fireEvent.click(
-        screen.getByTestId('service-config-deletion-protection-button'),
-      );
-    });
-    await waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('./deletion-protection');
-    });
   });
 
   it('open delete service Modal', async () => {

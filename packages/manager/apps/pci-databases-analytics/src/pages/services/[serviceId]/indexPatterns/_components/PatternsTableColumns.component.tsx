@@ -13,6 +13,7 @@ import {
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface PatternsTableColumnsProps {
   onDeleteClick: (pattern: database.opensearch.Pattern) => void;
@@ -69,11 +70,12 @@ export const getPatternsColumns = ({
                       {service.capabilities.patterns?.delete && (
                         <DropdownMenuItem
                           data-testid="patterns-action-delete-button"
-                          variant="destructive"
-                          disabled={
-                            service.capabilities.patterns?.delete ===
-                            database.service.capability.StateEnum.disabled
-                          }
+                          variant="critical"
+                          disabled={isCapabilityDisabled(
+                            service,
+                            'patterns',
+                            'delete',
+                          )}
                           onClick={() => {
                             onDeleteClick(row.original);
                           }}

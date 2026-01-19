@@ -17,6 +17,7 @@ import {
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
+import { invariant } from '@/common/utils/tools/invariant';
 
 import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 
@@ -25,6 +26,7 @@ const mockedSecret = mockSecret1;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
   mockOkmsId,
   mockedSecret.path,
+  1,
 );
 
 // Mocking ODS components
@@ -83,14 +85,32 @@ describe('Secret create version drawer page test suite', () => {
     // Check if the data input contains the secret value
     const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
     expect(dataInput).toBeInTheDocument();
-    expect(dataInput).toHaveValue(JSON.stringify(getSecretMockWithData(mockedSecret).version.data));
+    expect(dataInput).toHaveValue(
+      JSON.stringify(getSecretMockWithData(mockedSecret).version?.data),
+    );
+  });
+
+  it('should display no value if the url does not specify a default version id', async () => {
+    const { user } = await renderPage({
+      url: SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(mockOkmsId, mockedSecret.path),
+    });
+
+    // Click on the JSON toggle to switch to the JSON editor
+    await clickJsonEditorToggle(user);
+
+    // Check if the data input is empty
+    const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
+    expect(dataInput).toBeInTheDocument();
+    expect(dataInput).toHaveValue('');
   });
 
   it('should add cas to the createSecretVersion request and close the drawer after submission', async () => {
     const { container, user } = await renderPage();
-    vi.spyOn(secretVersionsApi, 'createSecretVersion').mockResolvedValue(
-      getSecretMockWithData(mockedSecret).version,
-    );
+
+    // Mock the createSecretVersion request
+    const version = getSecretMockWithData(mockedSecret).version;
+    invariant(version, 'Version is required');
+    vi.spyOn(secretVersionsApi, 'createSecretVersion').mockResolvedValue(version);
 
     // Click on the JSON toggle to switch to the JSON editor
     await clickJsonEditorToggle(user);

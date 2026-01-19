@@ -40,7 +40,7 @@ const DeleteReplicationModal = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteReplicationToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -68,7 +68,7 @@ const DeleteReplicationModal = () => {
 
   return (
     <RouteModal isLoading={!replications || !deletedReplication}>
-      <DialogContent>
+      <DialogContent variant="warning">
         <DialogHeader>
           <DialogTitle data-testid="delete-replications-modal">
             {t('deleteReplicationTitle')}
@@ -79,12 +79,12 @@ const DeleteReplicationModal = () => {
             })}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex justify-end">
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-replications-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deleteReplicationButtonCancel')}
             </Button>

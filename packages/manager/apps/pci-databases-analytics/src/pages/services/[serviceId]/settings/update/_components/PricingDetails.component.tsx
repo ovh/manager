@@ -8,13 +8,8 @@ import Price from '@/components/price/Price.component';
 interface PrincingDetailsProps {
   service: database.Service;
   pricing: ServicePricing;
-  showMonthly?: boolean;
 }
-const PricingDetails = ({
-  service,
-  pricing,
-  showMonthly = false,
-}: PrincingDetailsProps) => {
+const PricingDetails = ({ service, pricing }: PrincingDetailsProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/settings/update',
   );
@@ -31,26 +26,18 @@ const PricingDetails = ({
           {t('pricingDetailsFlavor')}&nbsp;
           <Price
             className="inline"
-            priceInUcents={
-              pricing.flavorPrice[showMonthly ? 'monthly' : 'hourly'].price
-            }
-            taxInUcents={
-              pricing.flavorPrice[showMonthly ? 'monthly' : 'hourly'].tax
-            }
-            decimals={showMonthly ? 2 : 3}
+            priceInUcents={pricing.flavorPrice.price}
+            taxInUcents={pricing.flavorPrice.tax}
+            decimals={3}
           />
         </p>
         <p>
           {t('pricingDetailsStorage')}&nbsp;
           <Price
             className="inline"
-            priceInUcents={
-              pricing.storagePrice[showMonthly ? 'monthly' : 'hourly'].price
-            }
-            taxInUcents={
-              pricing.storagePrice[showMonthly ? 'monthly' : 'hourly'].tax
-            }
-            decimals={showMonthly ? 2 : 3}
+            priceInUcents={pricing.storagePrice.price}
+            taxInUcents={pricing.storagePrice.tax}
+            decimals={3}
           />
         </p>
       </PopoverContent>

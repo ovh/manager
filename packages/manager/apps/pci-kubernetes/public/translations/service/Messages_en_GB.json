@@ -100,5 +100,11 @@
   "kube_service_etcd_quota_error_link": "How do I manage my ETCD resources?",
   "kube_service_show_optional": "See more settings",
   "kube_service_hide_optional": "See fewer settings",
-  "kube_service_cluster_status_MULTI_ZONES": "The MKS Premium solution is currently in beta. We are still working on some features, which will be added soon."
+  "kube_service_cluster_status_MULTI_ZONES": "The MKS Premium solution is currently in beta. We are still working on some features, which will be added soon.",
+  "kube_service_copy_kubeconfig": "Copy kubeconfig",
+  "kube_service_download_kubeconfig": "Download kubeconfig",
+  "kube_service_download_kubeconfig_success": "Downloading kubeconfig.",
+  "kube_service_download_kubeconfig_error": "Unable to download kubeconfig file.",
+  "kube_service_copy_kubeconfig_success": "The kubeconfig has been copied.",
+  "kube_service_copy_kubeconfig_error": "Failed to copy kubeconfig."
 }

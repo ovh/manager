@@ -1,18 +1,23 @@
 import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
-import { DeploymentMode, NodePoolState } from '@/types';
+import { DeploymentMode, TScalingState } from '@/types';
 
-import { isMonoDeploymentZone } from '.';
+type TScalingStateTest = {
+  antiAffinity: boolean;
+  scaling: TScalingState;
+  selectedAvailabilityZones: { checked: boolean; zone: string }[] | null;
+};
 
 export const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
 
-export const isZoneAzChecked = (type: DeploymentMode, nodePoolState: NodePoolState) =>
-  !!isMonoDeploymentZone(type) ||
-  !!nodePoolState.selectedAvailabilityZones?.some((zone) => zone.checked);
+export const isZoneAzChecked = (
+  selectedAvailabilityZones: { checked: boolean; zone: string }[] | null,
+) =>
+  !selectedAvailabilityZones?.length || !!selectedAvailabilityZones?.some((zone) => zone.checked);
 
-export const isScalingValid = (nodePoolState: Pick<NodePoolState, 'scaling'>) => {
-  if (!nodePoolState.scaling) return true;
+export const isScalingValid = (scaling: TScalingState) => {
+  if (!scaling) return true;
 
-  const { isAutoscale, quantity } = nodePoolState.scaling;
+  const { isAutoscale, quantity } = scaling;
   const { desired, min, max } = quantity;
 
   if (!isAutoscale) {
@@ -26,17 +31,34 @@ export const isScalingValid = (nodePoolState: Pick<NodePoolState, 'scaling'>) =>
   return isMinValid && isMaxValid && isDesiredInRange;
 };
 
-export const hasMax5NodesAntiAffinity = (nodePoolState: NodePoolState) =>
-  !nodePoolState.antiAffinity ||
-  (nodePoolState.antiAffinity &&
-    nodePoolState.scaling &&
-    nodePoolState.scaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES) ||
+export const hasMax5NodesAntiAffinity = ({
+  antiAffinity,
+  scaling,
+}: {
+  antiAffinity: boolean;
+  scaling: TScalingState;
+}) =>
+  !antiAffinity ||
+  (antiAffinity && scaling && scaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES) ||
   false;
 
-export const hasInvalidScalingOrAntiAffinityConfig = (
-  type: DeploymentMode,
-  nodePoolState: NodePoolState,
-) =>
-  !isScalingValid(nodePoolState) ||
-  !hasMax5NodesAntiAffinity(nodePoolState) ||
-  !isZoneAzChecked(type, nodePoolState);
+export const hasInvalidScalingOrAntiAffinityConfig = (nodePoolState: TScalingStateTest) =>
+  !isScalingValid(nodePoolState.scaling) ||
+  !hasMax5NodesAntiAffinity({
+    antiAffinity: nodePoolState?.antiAffinity,
+    scaling: nodePoolState.scaling,
+  }) ||
+  !isZoneAzChecked(nodePoolState.selectedAvailabilityZones);
+
+export const getPlanCodeFloatingIps = (
+  time: 'hour' | 'month',
+  deploymentMode: DeploymentMode | null,
+): string | null => {
+  if (!deploymentMode) {
+    return null;
+  }
+
+  return `floatingip.floatingip.${time}.consumption${
+    deploymentMode === DeploymentMode.MULTI_ZONES && time !== 'month' ? '.3AZ' : ''
+  }`;
+};

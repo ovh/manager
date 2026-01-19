@@ -178,7 +178,7 @@ describe('ToggleAcl Component', () => {
       });
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'toggleAclErrorTitle',
-        variant: 'destructive',
+        variant: 'critical',
         description: 'Error Message',
       });
     });
@@ -216,7 +216,7 @@ describe('ToggleAcl Component', () => {
         serviceId: 'serviceId',
       });
       expect(useToast().toast).toHaveBeenCalledWith({
-        title: 'toggleAclSuccessTitle',
+        title: 'userSuccessTitle',
         description: 'toggleAclEnabledSuccessDescription',
       });
     });

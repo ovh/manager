@@ -6,5 +6,6 @@
   "goToPreviousPage": "Przejdź do poprzedniej strony",
   "goToNextPage": "Przejdź do następnej strony",
   "goToLastPage": "Przejdź do ostatniej strony",
-  "noResult": "Brak wyników"
+  "noResult": "Brak wyników",
+  "searchPlaceholder": "Wyszukiwanie..."
 }

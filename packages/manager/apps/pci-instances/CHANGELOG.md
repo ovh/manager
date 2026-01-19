@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.18...@ovh-ux/manager-pci-instances-app@0.10.19) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.17...@ovh-ux/manager-pci-instances-app@0.10.18) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.16...@ovh-ux/manager-pci-instances-app@0.10.17) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.15...@ovh-ux/manager-pci-instances-app@0.10.16) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.14...@ovh-ux/manager-pci-instances-app@0.10.15) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.13...@ovh-ux/manager-pci-instances-app@0.10.14) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.12...@ovh-ux/manager-pci-instances-app@0.10.13) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.11...@ovh-ux/manager-pci-instances-app@0.10.12) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.10...@ovh-ux/manager-pci-instances-app@0.10.11) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.9...@ovh-ux/manager-pci-instances-app@0.10.10) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.8...@ovh-ux/manager-pci-instances-app@0.10.9) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.7...@ovh-ux/manager-pci-instances-app@0.10.8) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.6...@ovh-ux/manager-pci-instances-app@0.10.7) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
 ## [0.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.5...@ovh-ux/manager-pci-instances-app@0.10.6) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app

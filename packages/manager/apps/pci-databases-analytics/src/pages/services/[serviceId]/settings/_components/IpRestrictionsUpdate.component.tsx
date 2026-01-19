@@ -16,6 +16,7 @@ import { useEditService } from '@/hooks/api/database/service/useEditService.hook
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface IpsRestrictionsUpdateProps {
   initialValue: database.service.IpRestriction[];
@@ -47,7 +48,7 @@ const IpsRestrictionsUpdate = ({
     onError: (err) => {
       toast.toast({
         title: t('ipsUpdateErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getCdbApiErrorMessage(err),
       });
     },
@@ -83,10 +84,11 @@ const IpsRestrictionsUpdate = ({
               <FormControl>
                 <IpsRestrictionsForm
                   {...field}
-                  disabled={
-                    service.capabilities.ipRestrictions?.update !==
-                    database.service.capability.StateEnum.enabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'serviceIpRestriction',
+                    'update',
+                  )}
                   value={field.value as database.IpRestrictionCreation[]}
                   onChange={field.onChange}
                 />
@@ -110,8 +112,7 @@ const IpsRestrictionsUpdate = ({
               data-testid="ips-update-submit-button"
               disabled={
                 isPending ||
-                service.capabilities.ipRestrictions?.update ===
-                  database.service.capability.StateEnum.disabled
+                isCapabilityDisabled(service, 'serviceIpRestriction', 'update')
               }
             >
               {t('ipsUpdateSubmitButton')}

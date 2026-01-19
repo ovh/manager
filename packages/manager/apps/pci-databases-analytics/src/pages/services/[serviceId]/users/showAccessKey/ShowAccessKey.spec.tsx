@@ -55,62 +55,17 @@ describe('Show Access Key modal', () => {
         serviceQuery: {} as UseQueryResult<database.Service, Error>,
       })),
     }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();
   });
   it('should open the modal', async () => {
-    const { rerender } = render(<ShowAccessKey />, {
-      wrapper: RouterWithQueryClientWrapper,
-    });
-    await waitFor(() => {
-      expect(screen.queryByTestId('show-access-modal')).not.toBeInTheDocument();
-    });
-    rerender(<ShowAccessKey />);
+    render(<ShowAccessKey />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.queryByTestId('show-access-modal')).toBeInTheDocument();
       expect(
-        screen.queryByTestId('show-access-key-dowload-button'),
+        screen.queryByTestId('show-access-key-clipboard'),
       ).toBeInTheDocument();
-    });
-  });
-
-  it('should download the certificate', async () => {
-    vi.mock('@/hooks/useDownload', () => ({
-      default: vi.fn(() => ({ download: downloadMock })),
-    }));
-
-    render(<ShowAccessKey />, { wrapper: RouterWithQueryClientWrapper });
-
-    await waitFor(() => {
-      expect(screen.getByTestId('show-access-modal')).toBeInTheDocument();
-    });
-
-    act(() => {
-      fireEvent.click(screen.getByTestId('show-access-key-dowload-button'));
-    });
-
-    await waitFor(() => {
-      expect(downloadMock).toHaveBeenCalledWith(
-        mockedKafkaUserAccess.key,
-        'service.key',
-      );
     });
   });
 });

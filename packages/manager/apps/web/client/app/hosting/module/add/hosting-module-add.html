@@ -11,7 +11,7 @@
             data-wizard-step
             data-wizard-step-on-load="loadModuleTemplates(); loadDatabasesCapabilities()"
             data-wizard-step-on-next="onNextStep"
-            data-wizard-step-valid="model.templateSelected && (!advancedMode.value ? (model.capabilities && model.capabilities.length > 0) : true)"
+            data-wizard-step-valid="model.templateSelected && (!advancedMode.value ? (model.capabilities && model.capabilities.length > 0 && (!!model.domain || model.domains.length === 1)) : true)"
         >
             <div class="text-center" data-ng-if="!model.moduleTemplates">
                 <oui-spinner></oui-spinner>
@@ -61,7 +61,10 @@
                         for="module-domain"
                         data-translate="hosting_configuration_tab_modules_create_step1_module_domain"
                     ></label>
-                    <div class="oui-select mb-0">
+                    <div
+                        class="oui-select mb-0"
+                        data-ng-class="{'has-error': !model.domain}"
+                    >
                         <select
                             class="oui-select__input"
                             id="module-domain"
@@ -69,6 +72,12 @@
                             data-ng-model="model.domain"
                             data-ng-options="domain for domain in model.domains track by domain"
                         >
+                            <option
+                                value
+                                disabled
+                                data-translate="hosting_configuration_tab_modules_create_step1_module_domain_placeholder"
+                            >
+                            </option>
                         </select>
                         <span
                             class="oui-icon oui-icon-chevron-down"
@@ -179,7 +188,8 @@
                         <option
                             value
                             data-translate="hosting_configuration_tab_modules_create_step2_db_custom"
-                        ></option>
+                        >
+                        </option>
                     </select>
                     <span
                         class="oui-icon oui-icon-chevron-down"

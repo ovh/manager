@@ -3,6 +3,97 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.6.0...@ovh-ux/manager-billing-informations@1.6.1) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.9...@ovh-ux/manager-billing-informations@1.6.0) (2026-01-15)
+
+
+### Features
+
+* **billing-informations:** change h-full by h-fit for billing standard ([07c141e](https://github.com/ovh/manager/commit/07c141e9145e1e5e8a77d12a8f4d44402a58353f)), closes [#BKP-713](https://github.com/ovh/manager/issues/BKP-713)
+
+
+
+
+
+## [1.5.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.8...@ovh-ux/manager-billing-informations@1.5.9) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+## [1.5.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.7...@ovh-ux/manager-billing-informations@1.5.8) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+## [1.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.6...@ovh-ux/manager-billing-informations@1.5.7) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+## [1.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.5...@ovh-ux/manager-billing-informations@1.5.6) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+## [1.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.4...@ovh-ux/manager-billing-informations@1.5.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.3...@ovh-ux/manager-billing-informations@1.5.4) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.2...@ovh-ux/manager-billing-informations@1.5.3) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.1...@ovh-ux/manager-billing-informations@1.5.2) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.5.0...@ovh-ux/manager-billing-informations@1.5.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-informations
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.4.13...@ovh-ux/manager-billing-informations@1.5.0) (2025-12-05)
 
 

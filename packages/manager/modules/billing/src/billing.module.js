@@ -29,6 +29,7 @@ import sortingFieldButtonDirective from './components/directives/sortingFieldBut
 import renewDateComponent from './components/renewDate/billing-renew-date.component';
 import renewLabelComponent from './components/renewLabel/billing-renew-label.component';
 import renewFrequenceFilter from './components/filters/renewFrequence';
+import serviceRenewalBadge from './components/service-renewal-badge';
 import servicesHelper from './services/servicesHelper.service';
 
 import routing from './billing.routing';
@@ -69,6 +70,7 @@ angular
     paymentMehtod,
     sla,
     termination,
+    serviceRenewalBadge,
   ])
   .service('billingFeatureAvailability', featureAvailability)
   .service('BillingdateRangeSelection', dateRangeSelectionService)

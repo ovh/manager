@@ -40,6 +40,7 @@ import AppImagesSelect from '@/components/order/app-image/AppImageSelect.compone
 import LabelsForm from '@/components/labels/LabelsForm.component';
 import { getAppSpec } from '@/lib/orderFunnelHelper';
 import ScalingStrategy from '@/components/order/app-scaling/ScalingStrategy.component';
+import { ScalingStrategySchema } from '@/components/order/app-scaling/scalingHelper';
 import Price from '@/components/price/Price.component';
 import { APP_CONFIG } from '@/configuration/app';
 import ProbeForm from '@/components/order/app-probe/ProbeForm.component';
@@ -58,6 +59,38 @@ interface OrderAppsFunnelProps {
   suggestions: AppSuggestions;
 }
 
+const extractScalingFromValidatedData = (
+  data: ScalingStrategySchema,
+): ScalingStrategySchema => {
+  const {
+    autoScaling,
+    replicas,
+    replicasMin,
+    replicasMax,
+    resourceType,
+    averageUsageTarget,
+    metricUrl,
+    dataFormat,
+    dataLocation,
+    targetMetricValue,
+    aggregationType,
+  } = data;
+
+  return {
+    autoScaling,
+    replicas,
+    replicasMin,
+    replicasMax,
+    resourceType,
+    averageUsageTarget,
+    metricUrl,
+    dataFormat,
+    dataLocation,
+    targetMetricValue,
+    aggregationType,
+  };
+};
+
 const OrderFunnel = ({
   regions,
   catalog,
@@ -71,7 +104,6 @@ const OrderFunnel = ({
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
-  const [invalidScalingInput, setInvalidScalingInput] = useState(false);
   const [activeTab, setActiveTab] = useState<'customerImage' | 'partnerImage'>(
     'customerImage',
   );
@@ -147,13 +179,25 @@ const OrderFunnel = ({
     },
   });
 
-  const getCliCommand = () => {
-    const appInfo: ai.app.AppSpecInput = getAppSpec(
-      model.result,
-      model.lists.appImages,
-    );
-    getCommand({ projectId, appInfo });
-  };
+  const getCliCommand = model.form.handleSubmit(
+    (validatedData) => {
+      const appInfo: ai.app.AppSpecInput = getAppSpec(
+        {
+          ...model.result,
+          scaling: extractScalingFromValidatedData(validatedData),
+        },
+        model.lists.appImages,
+      );
+      getCommand({ projectId, appInfo });
+    },
+    (error) => {
+      toast({
+        className: 'bg-yellow-200 text-yellow-800',
+        title: t('warningCLITitle'),
+        description: <ErrorList error={error} />,
+      });
+    },
+  );
 
   const scrollToDiv = (target: string) => {
     const div = document.getElementById(target);
@@ -178,7 +222,7 @@ const OrderFunnel = ({
   };
 
   const onSubmit = model.form.handleSubmit(
-    () => {
+    (validatedData) => {
       // if partner Image and contract not checked, throw error
       if (!model.result.isContractChecked) throwErrorContract();
       // if partner Image and contract need to be sign
@@ -193,9 +237,11 @@ const OrderFunnel = ({
         // Sign and deploy app
         signPartnerContract(signPartnerInfo);
       } else {
-        // Deploy the app
         const appInfo: ai.app.AppSpecInput = getAppSpec(
-          model.result,
+          {
+            ...model.result,
+            scaling: extractScalingFromValidatedData(validatedData),
+          },
           model.lists.appImages,
         );
 
@@ -268,7 +314,6 @@ const OrderFunnel = ({
                 />
               </CardContent>
             </Card>
-
             <Card
               id="region"
               data-testid="region-section"
@@ -300,7 +345,6 @@ const OrderFunnel = ({
                 />
               </CardContent>
             </Card>
-
             <Card
               id="flavor"
               data-testid="flavor-section"
@@ -378,7 +422,6 @@ const OrderFunnel = ({
                 />
               </CardContent>
             </Card>
-
             <Card
               id="image"
               data-testid="image-section"
@@ -439,28 +482,11 @@ const OrderFunnel = ({
                 <CardTitle>{t('fielddScalingLabel')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <FormField
-                  control={model.form.control}
-                  name="scaling"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <ScalingStrategy
-                          {...field}
-                          scaling={field.value}
-                          onChange={(newScaling) =>
-                            model.form.setValue('scaling', newScaling)
-                          }
-                          onNonValidForm={(val) => setInvalidScalingInput(val)}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <ScalingStrategy
+                  pricingFlavor={model.result.pricing?.resourcePricing}
                 />
               </CardContent>
             </Card>
-
             {!isPartnerSelected && (
               <Card
                 id="httpPort"
@@ -495,7 +521,6 @@ const OrderFunnel = ({
                 </CardContent>
               </Card>
             )}
-
             <Card
               id="access"
               data-testid="access-section"
@@ -521,7 +546,6 @@ const OrderFunnel = ({
                 />
               </CardContent>
             </Card>
-
             {/* Advanced configuration */}
             <section id="advancedConfig" data-testid="advance-config-section">
               <Card className="mt-4">
@@ -603,7 +627,6 @@ const OrderFunnel = ({
                         />
                       </section>
                     )}
-
                     <section id="labels">
                       <FormField
                         control={model.form.control}
@@ -768,10 +791,7 @@ const OrderFunnel = ({
                 data-testid="cli-command-button"
                 type="button"
                 disabled={isPendingCommand}
-                onClick={() => {
-                  getCliCommand();
-                  cliEquivalentModale.open();
-                }}
+                onClick={getCliCommand}
                 className="flex flex-row gap-2 items-center underline bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline"
               >
                 {t('cliCode')} <TerminalSquare className="size-4 stroke-2" />
@@ -780,7 +800,7 @@ const OrderFunnel = ({
                 type="submit"
                 data-testid="order-submit-button"
                 className="w-full"
-                disabled={isPendingAddApp || invalidScalingInput}
+                disabled={isPendingAddApp}
               >
                 {t('orderButton')}
               </Button>

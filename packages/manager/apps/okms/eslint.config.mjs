@@ -18,7 +18,21 @@ export default [
   /* ------------------------------------------------------------------------ */
   /* Basic Rules                                                              */
   /* ------------------------------------------------------------------------ */
-  typescriptEslintConfig,
+  {
+    ...typescriptEslintConfig,
+    rules: {
+      ...(typescriptEslintConfig.rules ?? {}),
+      '@typescript-eslint/no-misused-promises': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_+$',
+          varsIgnorePattern: '^_+$',
+        },
+      ],
+    },
+  },
   javascriptEslintConfig,
   reactEslintConfig,
   prettierEslintConfig,
@@ -26,7 +40,6 @@ export default [
   htmlEslintConfig,
   {
     rules: {
-      '@typescript-eslint/no-misused-promises': 'off',
       'react/no-multi-comp': 'off',
     },
   },

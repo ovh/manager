@@ -1,4 +1,4 @@
-import { Region } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { Region } from '@datatr-ux/ovhcloud-types/cloud';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import Flag from '../flag/Flag.component';
 
@@ -6,10 +6,8 @@ const RegionWithFlag = ({ region }: { region: Region }) => {
   const { translateMicroRegion } = useTranslatedMicroRegions();
   return (
     <div className="flex items-center gap-2">
-      <Flag flagName={region?.countryCode} />
-      <span className="whitespace-nowrap">
-        {translateMicroRegion(region.name)}
-      </span>
+      <Flag className="shrink-0" flagName={region?.countryCode} />
+      <span className="break-words">{translateMicroRegion(region.name)}</span>
     </div>
   );
 };

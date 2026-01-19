@@ -86,6 +86,19 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('billing.orders.order.retract', {
           orderId,
         }),
+
+      goToCorrespondingBill: /* @ngInject */ ($state, coreConfig) => {
+        const user = coreConfig.getUser();
+        if (user.isEnterprise) return null;
+
+        return ({ orderId }) =>
+          $state.go('billing.main.history', {
+            filter: JSON.stringify([
+              { field: 'orderId', comparator: 'is', reference: [orderId] },
+            ]),
+          });
+      },
+
       updateFilterParam: /* @ngInject */ ($state) => (filter) =>
         $state.go(
           'billing.orders.orders',

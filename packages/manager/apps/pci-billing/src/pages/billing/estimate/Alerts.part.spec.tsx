@@ -1,9 +1,9 @@
 import { describe, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import { wrapper } from '@ovh-ux/manager-pci-load-balancer-app/src/wrapperRenders';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { AlertsPart, TAlertsPart } from './Alerts.part';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
   const {

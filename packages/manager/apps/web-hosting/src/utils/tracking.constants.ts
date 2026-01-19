@@ -46,14 +46,37 @@ export const GUIDE_EDIT_DNS_ZONE = 'edit-dns-zone-guide';
 export const GUIDE_GETTING_STARTED = 'getting-started-guide';
 export const GUIDE_PUBLISHING = 'publishing-guide';
 export const MULTISITE = 'multisite';
+export const EDIT_NAME = 'edit-name';
 
 // domain
 export const ADD_DOMAIN = 'add-domain';
+export const ADD_WEBSITE = 'add-website';
+export const DETACHE_DOMAIN = 'detache-domain';
+export const MODIFY_DOMAIN = 'modify-domain';
 export const ORDER_DOMAIN = 'order-domain';
+
+// git
+export const ASSOCIATE_GIT = 'associate-git';
+export const CONFIGURE_GIT = 'configure-git';
+export const DELETE_GIT = 'delete-git';
+export const DEPLOYE_GIT = 'deploye-git';
+export const LAST_DEPLOYEMENT_GIT = 'last-deployment-git';
+
+// cdn
+export const MODIFY_CDN = 'modify-cdn';
+export const PURGE_CDN = 'purge-cdn';
+export const ADVANCED_FLUSH_CDN = 'advanced-flush-cdn';
+export const CDN_CACHE_RULE = 'cdn-cache-rule';
+export const CDN_EDIT_URLS = 'cdn-edit-urls';
+export const CDN_CORS_RESOURCE_SHARING = 'cdn-cors-resource-sharing';
+export const CDN_CONFIRMATION = 'cdn-confirmation';
 
 // module
 export const ADD_MODULE = 'add-module';
 export const DELETE_MODULE = 'delete-module';
+
+// site
+export const DELETE_SITE = 'delete-site';
 
 // ssl
 export const DISABLE_SSL = 'disable-ssl';

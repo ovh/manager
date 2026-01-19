@@ -5,7 +5,7 @@
     "target": "ESNext",
     "types": ["vite/client", "node", "jest", "@testing-library/jest-dom"],
     "module": "esnext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "removeComments": true,
     "outDir": "dist",
     "esModuleInterop": true,
@@ -21,8 +21,7 @@
     // "strictNullChecks": true,
     // "exactOptionalPropertyTypes": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],

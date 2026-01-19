@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.6...@ovh-ux/manager-network-common@0.7.7) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+## [0.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.5...@ovh-ux/manager-network-common@0.7.6) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.4...@ovh-ux/manager-network-common@0.7.5) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.3...@ovh-ux/manager-network-common@0.7.4) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+## [0.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.2...@ovh-ux/manager-network-common@0.7.3) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.1...@ovh-ux/manager-network-common@0.7.2) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.0...@ovh-ux/manager-network-common@0.7.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-network-common
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.6.1...@ovh-ux/manager-network-common@0.7.0) (2025-12-05)
 
 

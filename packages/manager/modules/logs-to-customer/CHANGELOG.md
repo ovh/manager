@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.8](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.7...@ovh-ux/logs-to-customer@1.10.8) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.10.7](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.6...@ovh-ux/logs-to-customer@1.10.7) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.10.6](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.5...@ovh-ux/logs-to-customer@1.10.6) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4539] ([b90b9d2](https://github.com/ovh/manager/commit/b90b9d2b605ba03e7e364830f9e261479a2c1b7d))
+
+
+
+
+
+## [1.10.5](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.4...@ovh-ux/logs-to-customer@1.10.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.3...@ovh-ux/logs-to-customer@1.10.4) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4533] ([62d9869](https://github.com/ovh/manager/commit/62d9869ef2d79d81ea51960894547eaf988b0c6c))
+
+
+
+
+
+## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.2...@ovh-ux/logs-to-customer@1.10.3) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.1...@ovh-ux/logs-to-customer@1.10.2) (2025-12-15)
+
+
+### Bug Fixes
+
+* **observability.logs:** fix incorrect path for dep libraries ([8558d7a](https://github.com/ovh/manager/commit/8558d7a06a203e7f101622a2d6ff7603fc8e28ad)), closes [#MAOBS-136](https://github.com/ovh/manager/issues/MAOBS-136)
+
+
+
+
+
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.0...@ovh-ux/logs-to-customer@1.10.1) (2025-12-10)
+
+
+### Bug Fixes
+
+* **observability.logs:** fix display of logs notifications ([2c63c38](https://github.com/ovh/manager/commit/2c63c38da66b2a5264d3e41f364220d5fee29a47)), closes [#MAOBS-151](https://github.com/ovh/manager/issues/MAOBS-151)
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.9.2...@ovh-ux/logs-to-customer@1.10.0) (2025-12-05)
 
 

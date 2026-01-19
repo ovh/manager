@@ -7,6 +7,13 @@ import NotificationsButton from './NotificationsButton';
 import { Environment } from '@ovh-ux/manager-config';
 import { Shell } from '@ovh-ux/shell';
 
+vi.mock('@/core/notifications/useGetHelpUrl', () => ({
+  useGetHelpUrl: vi.fn(() => ({
+    availability: false,
+    href: 'https://help.ovhcloud.com/csm',
+  })),
+}));
+
 let notificationsVisible = false;
 const setIsNotificationsSidebarVisible = vi.fn((visibility) => { notificationsVisible = visibility; });
 const postNotificationsUpdate = vi.fn(() => Promise.resolve(null));
@@ -76,7 +83,8 @@ describe('NotificationsButton', () => {
           level: 'HIGH',
         }],
       });
-      renderNotificationsButton();
+      const { container } = renderNotificationsButton();
+      expect(container).toBeAccessible();
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
 
@@ -122,7 +130,7 @@ describe('NotificationsButton', () => {
         }],
       });
       vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
-    
+
       renderNotificationsButton();
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
@@ -187,7 +195,7 @@ describe('NotificationsButton', () => {
       await waitFor(() => {
         expect(notificationsVisible).toBe(false);
       });
-      
+
       expect(aapi.post).toHaveBeenCalledWith(
         '/notification',
         { 'acknowledged': ['1'] },

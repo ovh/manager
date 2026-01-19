@@ -32,6 +32,10 @@
   "summaryMaximumReplicas": "Maximum de réplicas: {{rep}}",
   "summaryScalingResource": "Métrique surveillée: {{resource}}",
   "summaryScalingAverage": "Seuil: {{tresh}} %",
+  "summaryCustomMetricsUrlLabel": "URL: ",
+  "summaryCustomMetricsFormatLabel": "Format : {{for}}",
+  "summaryCustomMetricsLocationLabel": "Emplacement: ",
+  "summaryCustomMetricsTargetValueLabel": "Valeur : {{val}}",
   "fieldHttpPortLabel": "Port Http",
   "fieldHttpPortDescription": "Port HTTP sur lequel votre app est déployée",
   "summaryFieldHttpPortLabel": "Port Http:",
@@ -65,5 +69,6 @@
   "cliEquivalentModalToastMessage": "Le code a été copié",
   "errorCreatingApp": "Erreur",
   "successCreatingAppTitle": "Succès",
-  "successCreatingAppDescription": "Votre app a été créé avec succès"
+  "successCreatingAppDescription": "Votre app a été créé avec succès",
+  "warningCLITitle": "Impossible de generer l'équivalent CLI"
 }

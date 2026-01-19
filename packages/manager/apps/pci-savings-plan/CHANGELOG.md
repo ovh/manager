@@ -3,6 +3,106 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.11...@ovh-ux/manager-pci-savings-plan-app@1.22.12) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.22.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.10...@ovh-ux/manager-pci-savings-plan-app@1.22.11) (2026-01-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.22.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.9...@ovh-ux/manager-pci-savings-plan-app@1.22.10) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.22.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.8...@ovh-ux/manager-pci-savings-plan-app@1.22.9) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.22.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.7...@ovh-ux/manager-pci-savings-plan-app@1.22.8) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+## [1.22.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.6...@ovh-ux/manager-pci-savings-plan-app@1.22.7) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4537] ([0e72f25](https://github.com/ovh/manager/commit/0e72f25756f159f8e9f1a4ac26885e5f9e435abb))
+
+
+
+
+
+## [1.22.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.5...@ovh-ux/manager-pci-savings-plan-app@1.22.6) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.22.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.4...@ovh-ux/manager-pci-savings-plan-app@1.22.5) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4533] ([62d9869](https://github.com/ovh/manager/commit/62d9869ef2d79d81ea51960894547eaf988b0c6c))
+
+
+
+
+
+## [1.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.3...@ovh-ux/manager-pci-savings-plan-app@1.22.4) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.2...@ovh-ux/manager-pci-savings-plan-app@1.22.3) (2025-12-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4530] ([7e3e3fe](https://github.com/ovh/manager/commit/7e3e3fe87aea2b7799c75bb8440e36e5cecac077))
+
+
+
+
+
+## [1.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.1...@ovh-ux/manager-pci-savings-plan-app@1.22.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
 ## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.0...@ovh-ux/manager-pci-savings-plan-app@1.22.1) (2025-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

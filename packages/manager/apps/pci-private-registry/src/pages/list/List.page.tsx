@@ -6,13 +6,13 @@ import {
   FilterList,
   Headers,
   Notifications,
-  PciGuidesHeader,
   RedirectionGuard,
   useColumnFilters,
   useDataGrid,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -36,6 +36,7 @@ import {
   getRegistryQueryPrefix,
   useAllRegistries,
 } from '@/api/hooks/useRegistry';
+import { PciGuidesHeader } from '@/components/guides-header';
 import { useDatagridColumn } from './hooks/useDatagridColumn';
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';

@@ -1,0 +1,73 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Manager UI Kit/What's new/Common issues/Correct tailwind issues" />
+
+# Import style files
+
+## Import Order
+
+The order of CSS imports is **very important**. The `@ovh-ux/muk/dist/style.css` file should be imported after ODS styles import to avoid side effects with Tailwind configuration.
+
+### Correct Import Order
+
+```index.scss
+@tailwind utilities;
+@import '@ovhcloud/ods-themes/default';
+@import '@ovh-ux/muk/dist/style.css';
+```
+
+### Why This Matters
+
+Importing MUK styles last ensures that:
+- Tailwind utilities are properly applied
+- ODS themes are correctly loaded
+- MUK styles don't interfere with Tailwind configuration
+- No unexpected side effects occur in your styling
+
+**Important**: Always import `@ovh-ux/muk/dist/style.css` as the final CSS import in your main stylesheet.
+
+## Tailwind Configuration
+
+Don't forget to configure your `tailwind.config.mjs` to include `@ovh-ux/muk` in the `content` attributes. This ensures Tailwind can scan MUK components for utility classes.
+
+### Example Configuration
+
+```tailwind.config.mjs
+import { createRequire } from 'node:module';
+import path from 'node:path';
+
+import baseConfig from '@ovh-ux/manager-tailwind-config';
+
+const require = createRequire(import.meta.url);
+const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
+const toGlob = (dir) =>
+  `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx,cjs,mjs}`;
+
+const reactComponentsDir = pkgDir('@ovh-ux/muk');
+
+const baseTailwindConfig = [
+  ...(baseConfig.content ?? []),
+  './src/**/*.{js,jsx,ts,tsx}',
+  toGlob(reactComponentsDir),
+];
+
+export const pciTailwindConfig = [...baseTailwindConfig];
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  ...baseConfig,
+  content: baseTailwindConfig,
+  corePlugins: {
+    preflight: false,
+  },
+};
+```
+
+### Key Points
+
+- Use `pkgDir('@ovh-ux/muk')` to get the MUK package directory
+- Convert it to a glob pattern using `toGlob()` function
+- Add it to your `content` array in the Tailwind config
+- This allows Tailwind to properly scan MUK components for utility classes
+
+**Important**: Without this configuration, Tailwind won't be able to detect utility classes used in MUK components, which may result in missing styles in production builds.

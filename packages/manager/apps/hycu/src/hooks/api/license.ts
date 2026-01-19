@@ -67,7 +67,7 @@ export const useActivateLicenseHYCUMutation = (
     mutationFn: (params) => postLicenseHycuActivateService(params),
     onSuccess: (data, variables, context) => {
       invalidateCacheForService(variables.serviceName);
-      onSuccess?.(data, variables, context);
+      onSuccess?.(data, variables, context, undefined);
     },
     ...(restOptions ?? {}),
   });
@@ -90,7 +90,7 @@ export const useRegenerateLicenseHYCUMutation = (
     mutationFn: (params) => postLicenseHycuRegenerateService(params),
     onSuccess: (data, variables, context) => {
       invalidateCacheForService(variables.serviceName);
-      onSuccess?.(data, variables, context);
+      onSuccess?.(data, variables, context, undefined);
     },
     ...(restOptions ?? {}),
   });
@@ -119,7 +119,7 @@ export const useDownloadLicenseHYCUMutation = (
         data.data.content,
       );
 
-      onSuccess?.(data, variables, context);
+      onSuccess?.(data, variables, context, undefined);
     },
     ...(restOptions ?? {}),
   });

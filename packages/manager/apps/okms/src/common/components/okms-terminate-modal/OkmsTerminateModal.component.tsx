@@ -8,13 +8,9 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 import { DeleteModal, useNotifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useShellContext } from '@/common/hooks/useShellContext';
 
 type OkmsTerminateModalProps = {
@@ -24,7 +20,7 @@ type OkmsTerminateModalProps = {
 export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) {
   const navigate = useNavigate();
   const { t } = useTranslation(['key-management-service/terminate', NAMESPACES.ERROR]);
-  const { trackPage, trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOkmsTracking();
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const { ovhSubsidiary } = useShellContext().environment.getUser();
 
@@ -51,7 +47,7 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
     );
     trackPage({
       pageType: PageType.bannerSuccess,
-      pageName: 'delete_kms_success',
+      pageTags: ['delete', 'okms'],
     });
   };
 
@@ -67,7 +63,7 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
     );
     trackPage({
       pageType: PageType.bannerError,
-      pageName: 'delete_kms_error',
+      pageTags: ['delete', 'okms'],
     });
   };
 
@@ -86,7 +82,7 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
           location: PageLocation.popup,
           buttonType: ButtonType.button,
           actionType: 'navigation',
-          actions: ['delete_kms', 'cancel'],
+          actions: ['delete', 'okms', 'cancel'],
         });
         closeModal();
       }}
@@ -95,7 +91,7 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
           location: PageLocation.popup,
           buttonType: ButtonType.button,
           actionType: 'navigation',
-          actions: ['delete_kms', 'confirm'],
+          actions: ['delete', 'okms', 'confirm'],
         });
         terminateService({ resourceName: okmsId });
       }}

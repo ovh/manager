@@ -24,5 +24,6 @@
   "period_current": "Bieżący miesiąc",
   "period_last": "Ostatni miesiąc",
   "period_last_months": "Ostatnie: {{value}} mies.",
-  "no_result_found": "Brak wyników"
+  "no_result_found": "Brak wyników",
+  "reference": "Usługa"
 }

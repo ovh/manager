@@ -34,7 +34,7 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
 
   const {
     data: credentials,
-    isLoading: isLoadingCredentials,
+    isPending: isPending,
     error: credentialsError,
   } = useOkmsCredentials({
     okmsId: okms.id,
@@ -49,7 +49,9 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
       .catch((error) => console.error(error));
   };
 
-  if (isLoadingCredentials) return <Loading />;
+  if (isPending) {
+    return <Loading />;
+  }
 
   if (credentialsError)
     return (
@@ -108,8 +110,8 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
   return (
     <Datagrid
       columns={columns}
-      items={credentials?.data || []}
-      totalItems={credentials?.data.length || 0}
+      items={credentials}
+      totalItems={credentials.length}
       contentAlignLeft
     />
   );

@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.7.6...@ovh-ux/manager-gcj-module@0.8.0) (2026-01-13)
+
+
+### Features
+
+* **gcj:** update data usage consent cookie name ([089a395](https://github.com/ovh/manager/commit/089a39543adbef880548793d78cfb1326d0b09a7)), closes [#MANAGER-20176](https://github.com/ovh/manager/issues/MANAGER-20176)
+
+
+
+
+
+## [0.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.7.5...@ovh-ux/manager-gcj-module@0.7.6) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
+## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.7.4...@ovh-ux/manager-gcj-module@0.7.5) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
+## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.7.3...@ovh-ux/manager-gcj-module@0.7.4) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
+## [0.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.7.2...@ovh-ux/manager-gcj-module@0.7.3) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.7.1...@ovh-ux/manager-gcj-module@0.7.2) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.7.0...@ovh-ux/manager-gcj-module@0.7.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.6.1...@ovh-ux/manager-gcj-module@0.7.0) (2025-12-05)
 
 

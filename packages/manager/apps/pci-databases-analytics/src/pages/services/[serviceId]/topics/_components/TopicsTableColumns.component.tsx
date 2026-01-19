@@ -12,6 +12,7 @@ import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import DataTable from '@/components/data-table';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface TopicsTableColumnsProps {
   onDeleteClick: (topic: database.kafka.Topic) => void;
@@ -114,10 +115,7 @@ export const getColumns = ({
               <DropdownMenuContent data-testid="topic-menu-content" align="end">
                 <DropdownMenuItem
                   data-testid="topic-action-edit-button"
-                  disabled={
-                    service.capabilities.topic?.update ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(service, 'topic', 'update')}
                   onClick={() => {
                     onEditClick(row.original);
                   }}
@@ -127,11 +125,8 @@ export const getColumns = ({
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   data-testid="topic-action-delete-button"
-                  variant="destructive"
-                  disabled={
-                    service.capabilities.topic?.delete ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  variant="critical"
+                  disabled={isCapabilityDisabled(service, 'topic', 'delete')}
                   onClick={() => {
                     onDeleteClick(row.original);
                   }}

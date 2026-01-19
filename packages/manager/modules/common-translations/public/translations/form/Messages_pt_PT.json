@@ -32,5 +32,12 @@
   "no": "Não",
   "ok": "OK",
   "optional": "facultativo",
-  "step_number": "Etapa {{step}}"
+  "step_number": "Etapa {{step}}",
+  "required": "obrigatório",
+  "all_fields_are_required": "Todos os campos são obrigatórios.",
+  "companyName": "Nome da organização",
+  "language": "Língua",
+  "country": "País",
+  "phone": "Telefone",
+  "email": "O seu e-mail"
 }

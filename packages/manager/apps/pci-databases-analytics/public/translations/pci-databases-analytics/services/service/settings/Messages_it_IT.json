@@ -51,5 +51,9 @@
   "kafkaSettingsSchemaRegistryDescription": "Interfaccia di servizio HTTP REST per archiviare gli schemi Apache Kafka (basata sul progetto <anchor>Karapace</anchor>)",
   "serviceConfigurationServiceDeletionProtection": " Protezione da eliminazione",
   "serviceDeletionProtectionActivated": "Attivata",
-  "serviceDeletionProtectionActivatedDeactivated": "Disattivata"
+  "serviceDeletionProtectionActivatedDeactivated": "Disattivata",
+  "serviceDeletionProtectionActivate": "Attivare",
+  "serviceDeletionProtectionActivatedDeactivate": "Disattivare",
+  "serviceDeletionProtectionDeactivate": "Disattivare",
+  "serviceDeletionProtectionDeactivated": "Disattivata"
 }

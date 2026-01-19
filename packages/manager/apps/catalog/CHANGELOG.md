@@ -3,6 +3,124 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.2...@ovh-ux/manager-catalog-app@1.28.3) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.1...@ovh-ux/manager-catalog-app@1.28.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.0...@ovh-ux/manager-catalog-app@1.28.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.8...@ovh-ux/manager-catalog-app@1.28.0) (2026-01-13)
+
+
+### Features
+
+* **catalog:** migrate from mrc 1 to muk ([9c7da98](https://github.com/ovh/manager/commit/9c7da984427b7c6fac5db1e2ad89ea7447e6338b)), closes [#MANAGER-20332](https://github.com/ovh/manager/issues/MANAGER-20332)
+
+
+
+
+
+## [1.27.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.7...@ovh-ux/manager-catalog-app@1.27.8) (2026-01-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.27.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.6...@ovh-ux/manager-catalog-app@1.27.7) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.27.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.5...@ovh-ux/manager-catalog-app@1.27.6) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.4...@ovh-ux/manager-catalog-app@1.27.5) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.27.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.3...@ovh-ux/manager-catalog-app@1.27.4) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.2...@ovh-ux/manager-catalog-app@1.27.3) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.1...@ovh-ux/manager-catalog-app@1.27.2) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.0...@ovh-ux/manager-catalog-app@1.27.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+# [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.26.1...@ovh-ux/manager-catalog-app@1.27.0) (2025-12-12)
+
+
+### Features
+
+* **playright-helper:** clean playwright helper folder ([2c80387](https://github.com/ovh/manager/commit/2c803878257bc049cea849ab0c720eacb2e37448)), closes [#MANAGER-15903](https://github.com/ovh/manager/issues/MANAGER-15903)
+
+
+
+
+
+## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.26.0...@ovh-ux/manager-catalog-app@1.26.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
 # [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.25.4...@ovh-ux/manager-catalog-app@1.26.0) (2025-12-05)
 
 

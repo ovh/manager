@@ -108,3 +108,13 @@ export const webHostingMock = {
   },
   updates: ['string'],
 };
+
+export const WebHostingWebsiteV6Mock = ['1'];
+
+export const vcsWebhookUrlsMock = {
+  push: 'https://example.com/webhook/push',
+};
+
+export const sshKeyMock = {
+  publicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7...',
+};

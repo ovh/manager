@@ -3,6 +3,235 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.29.0...@ovh-ux/manager-pci-object-storage-app@0.30.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **object-storage:** typo in dashboard ([e5c3c4b](https://github.com/ovh/manager/commit/e5c3c4b93d7886841578652924114a562202f67b)), closes [#DATATR-2860](https://github.com/ovh/manager/issues/DATATR-2860)
+
+
+### Features
+
+* **object-storage:** add bulk delete objects ([efc7b3a](https://github.com/ovh/manager/commit/efc7b3a3fa86702b3cd1c0d1b6e824cadf626092)), closes [#DATATR-2747](https://github.com/ovh/manager/issues/DATATR-2747)
+* **pci.os:** add unit test in listing onboarding and user creation pages ([333a845](https://github.com/ovh/manager/commit/333a84544936d08ff25753d42206202785e3dd38)), closes [#DATATR-2568](https://github.com/ovh/manager/issues/DATATR-2568)
+* **pci.os:** add unit test in order funnel ([c4a2eb1](https://github.com/ovh/manager/commit/c4a2eb137e89deab5362f01b94da5c3d7b646809)), closes [#DATATR-2569](https://github.com/ovh/manager/issues/DATATR-2569)
+* **pci.os:** add unit test in s3 dashboard ([4e16ab0](https://github.com/ovh/manager/commit/4e16ab0ccdfd268b0b472a4d600c559cb9c10728)), closes [#DATATR-2572](https://github.com/ovh/manager/issues/DATATR-2572)
+* **pci.os:** add unit test on replication ([f0a960e](https://github.com/ovh/manager/commit/f0a960ec6aeeb6c92ec5ac5ab5f1981965c08136)), closes [#DATATR-2571](https://github.com/ovh/manager/issues/DATATR-2571)
+
+
+
+
+
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.5...@ovh-ux/manager-pci-object-storage-app@0.29.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4586] ([4f66a9b](https://github.com/ovh/manager/commit/4f66a9bd4322284c2a6c8b45e1d41268ba0805e4))
+* **i18n:** add missing translations [CDS 4588] ([8ce4d06](https://github.com/ovh/manager/commit/8ce4d0691a5bb4dfa32d3b76ce1dc57b217df929))
+
+
+### Features
+
+* replacing nx with turbo ([4c91a10](https://github.com/ovh/manager/commit/4c91a102cc7717f68751d7768748faaeff878696))
+
+
+
+
+
+## [0.28.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.4...@ovh-ux/manager-pci-object-storage-app@0.28.5) (2026-01-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4583] ([7a43c5d](https://github.com/ovh/manager/commit/7a43c5dde44da6d83e2c01f70b7be6141d004d33))
+* **i18n:** add missing translations [CDS 983] ([7617a72](https://github.com/ovh/manager/commit/7617a7288b651d7e540c486f566dc58a742f242c))
+* **object-storage:** wrong machine translation ([4a9af8f](https://github.com/ovh/manager/commit/4a9af8f66c8a303b9adc5d6706c2db3bbdf3e747))
+
+
+
+
+
+## [0.28.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.3...@ovh-ux/manager-pci-object-storage-app@0.28.4) (2026-01-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4579] ([bbd8b4c](https://github.com/ovh/manager/commit/bbd8b4c93b94105ff4cc5c87360d3ca86d3d72fd))
+
+
+
+
+
+## [0.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.2...@ovh-ux/manager-pci-object-storage-app@0.28.3) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.1...@ovh-ux/manager-pci-object-storage-app@0.28.2) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.28.0...@ovh-ux/manager-pci-object-storage-app@0.28.1) (2025-12-30)
+
+
+### Bug Fixes
+
+* **object-storage:** trasnlation issue ([c546b0f](https://github.com/ovh/manager/commit/c546b0ffa7729c6ff0f19f079dfd01e3857520a2)), closes [#DATATR-2829](https://github.com/ovh/manager/issues/DATATR-2829)
+
+
+
+
+
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.27.0...@ovh-ux/manager-pci-object-storage-app@0.28.0) (2025-12-23)
+
+
+### Bug Fixes
+
+* **pci.db:** cli equivalent modal style issue ([f933ac0](https://github.com/ovh/manager/commit/f933ac0bee9ba7585aaefe3159716fe8398c6d9c)), closes [#DATATR-2798](https://github.com/ovh/manager/issues/DATATR-2798)
+
+
+### Features
+
+* **pci-os:** add unit test in component and hooks ([8d52dc2](https://github.com/ovh/manager/commit/8d52dc2d81c8501c171c227a7850880a6166e945)), closes [#DATATR-2573](https://github.com/ovh/manager/issues/DATATR-2573)
+
+
+
+
+
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.26.2...@ovh-ux/manager-pci-object-storage-app@0.27.0) (2025-12-23)
+
+
+### Bug Fixes
+
+* **pci.db:** cli equivalent modal style issue ([f933ac0](https://github.com/ovh/manager/commit/f933ac0bee9ba7585aaefe3159716fe8398c6d9c)), closes [#DATATR-2798](https://github.com/ovh/manager/issues/DATATR-2798)
+
+
+### Features
+
+* **pci-os:** add unit test in component and hooks ([8d52dc2](https://github.com/ovh/manager/commit/8d52dc2d81c8501c171c227a7850880a6166e945)), closes [#DATATR-2573](https://github.com/ovh/manager/issues/DATATR-2573)
+
+
+
+
+
+## [0.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.26.1...@ovh-ux/manager-pci-object-storage-app@0.26.2) (2025-12-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4542] ([8bf2af4](https://github.com/ovh/manager/commit/8bf2af4fe7e606a203e5da394e5a42ad41d75f62))
+
+
+
+
+
+## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.26.0...@ovh-ux/manager-pci-object-storage-app@0.26.1) (2025-12-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4537] ([0e72f25](https://github.com/ovh/manager/commit/0e72f25756f159f8e9f1a4ac26885e5f9e435abb))
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.25.2...@ovh-ux/manager-pci-object-storage-app@0.26.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** add missing translation key for object version deletion error ([086ffd8](https://github.com/ovh/manager/commit/086ffd80acd239df7add5b1b01ff2188457e2e08)), closes [#DATATR-2792](https://github.com/ovh/manager/issues/DATATR-2792)
+
+
+### Features
+
+* **object-storage:** add service type parameter on rclone route ([763c504](https://github.com/ovh/manager/commit/763c504ccb9e494530cf89da9da9a28942b0ab42)), closes [#DATATR-2712](https://github.com/ovh/manager/issues/DATATR-2712)
+* **pci-object-storage:** add Object Lock feature ([439fbe0](https://github.com/ovh/manager/commit/439fbe027cad1e69ba7a814a9a4387b76f63e4b2)), closes [#DATATR-2728](https://github.com/ovh/manager/issues/DATATR-2728) [#DATATR-2637](https://github.com/ovh/manager/issues/DATATR-2637) [#DATATR-2636](https://github.com/ovh/manager/issues/DATATR-2636) [#DATATR-2635](https://github.com/ovh/manager/issues/DATATR-2635)
+
+
+
+
+
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.25.1...@ovh-ux/manager-pci-object-storage-app@0.25.2) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.25.0...@ovh-ux/manager-pci-object-storage-app@0.25.1) (2025-12-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4536] ([08adb80](https://github.com/ovh/manager/commit/08adb8017f44ae5c825d3f734017715185af6035))
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.24.1...@ovh-ux/manager-pci-object-storage-app@0.25.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* **pci-os:** add missing flag and translation ([97f9a31](https://github.com/ovh/manager/commit/97f9a311b63e8ac5a75848ddaebccf72a899cd82)), closes [#DATATR-2680](https://github.com/ovh/manager/issues/DATATR-2680)
+* **pci-os:** breadcrumb missing in container and filter translation issue ([fb17c05](https://github.com/ovh/manager/commit/fb17c05738dee0f3e7c29fdafe35b14657bdfe72)), closes [#DATATR-2717](https://github.com/ovh/manager/issues/DATATR-2717) [#DATATR-2711](https://github.com/ovh/manager/issues/DATATR-2711)
+* **pci.db:** update tailwind path ([cc12a4b](https://github.com/ovh/manager/commit/cc12a4bfe35cfd0f139411af5a7f772017f4876a)), closes [#DATATR-1234](https://github.com/ovh/manager/issues/DATATR-1234)
+
+
+### Features
+
+* **object-store:** add cold archive on replication ([d322d8f](https://github.com/ovh/manager/commit/d322d8f70d225f1ddfd72c69c08956e7320d96b1)), closes [#DATATR-2629](https://github.com/ovh/manager/issues/DATATR-2629)
+* **object-storeage:** add search on lz and swift ([392b3f4](https://github.com/ovh/manager/commit/392b3f483f153f035061a5db4dd3e1412f1646e2)), closes [#DATATR-2695](https://github.com/ovh/manager/issues/DATATR-2695)
+* **os:** add refresh button on objects ([875a48d](https://github.com/ovh/manager/commit/875a48dec284cc5554d13f38fbae07f7ea74e61b)), closes [#DATATR-2633](https://github.com/ovh/manager/issues/DATATR-2633)
+* **os:** add warning on infrequent access ([f5602fa](https://github.com/ovh/manager/commit/f5602fa4acb5edba87963474741c58120dc5c94e)), closes [#DATATR-2715](https://github.com/ovh/manager/issues/DATATR-2715)
+* **pci-os:** remove number of object in tab ([f7979cc](https://github.com/ovh/manager/commit/f7979cca52d54db0a3c34111df49cdaaefa51069)), closes [#DATATR-2696](https://github.com/ovh/manager/issues/DATATR-2696)
+* **pci-os:** use separate logic for bucket deletion ([74c4602](https://github.com/ovh/manager/commit/74c46029010b0c7d2261a520bb58ae23aafb33e5)), closes [#DATATR-2648](https://github.com/ovh/manager/issues/DATATR-2648)
+* **pci.os:** update types ([68f2a84](https://github.com/ovh/manager/commit/68f2a842c1463f79527f302c220bf7d92be558c2)), closes [#DATATR-2719](https://github.com/ovh/manager/issues/DATATR-2719)
+
+
+
+
+
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.24.0...@ovh-ux/manager-pci-object-storage-app@0.24.1) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.23.2...@ovh-ux/manager-pci-object-storage-app@0.24.0) (2025-12-12)
+
+
+### Features
+
+* **playright-helper:** clean playwright helper folder ([2c80387](https://github.com/ovh/manager/commit/2c803878257bc049cea849ab0c720eacb2e37448)), closes [#MANAGER-15903](https://github.com/ovh/manager/issues/MANAGER-15903)
+
+
+
+
+
+## [0.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.23.1...@ovh-ux/manager-pci-object-storage-app@0.23.2) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
 ## [0.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.23.0...@ovh-ux/manager-pci-object-storage-app@0.23.1) (2025-12-05)
 
 

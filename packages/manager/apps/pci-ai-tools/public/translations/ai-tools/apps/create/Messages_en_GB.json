@@ -65,5 +65,10 @@
   "errorCreatingApp": "Error",
   "successCreatingAppTitle": "Success",
   "successCreatingAppDescription": "Your app has been created.",
-  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM",
+  "summaryCustomMetricsUrlLabel": "URL: ",
+  "summaryCustomMetricsFormatLabel": "Format: {{for}}",
+  "summaryCustomMetricsLocationLabel": "Location: ",
+  "summaryCustomMetricsTargetValueLabel": "Value: {{val}}",
+  "warningCLITitle": "Unable to generate the CLI equivalent"
 }

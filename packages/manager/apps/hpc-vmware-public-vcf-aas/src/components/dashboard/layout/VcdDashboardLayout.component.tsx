@@ -4,7 +4,6 @@ import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
-import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { MessageList } from '@/components/message/MessageList.component';
 import { getTabTrackingParams } from '@/tracking.constants';
 
@@ -12,12 +11,11 @@ export type DashboardTab = {
   name: string;
   title: string;
   to: string;
-  trackingActions: string[];
+  trackingActions?: string[];
 };
 
 export type TDashboardLayoutProps = {
   tabs: DashboardTab[];
-  breadcrumbItems: BreadcrumbItem[];
   header: HeadersProps;
   message?: React.ReactElement;
   backLinkLabel?: string;
@@ -26,7 +24,6 @@ export type TDashboardLayoutProps = {
 
 export default function VcdDashboardLayout({
   tabs,
-  breadcrumbItems,
   header,
   message,
   backLinkLabel,
@@ -54,9 +51,11 @@ export default function VcdDashboardLayout({
                 to={tab.to}
                 className="no-underline"
                 key={tab.name}
-                onClick={() =>
-                  trackClick(getTabTrackingParams(tab.trackingActions))
-                }
+                onClick={() => {
+                  if (tab.trackingActions) {
+                    trackClick(getTabTrackingParams(tab.trackingActions));
+                  }
+                }}
               >
                 <OdsTab isSelected={tab?.name === activeTab?.name}>
                   {tab.title}
@@ -65,7 +64,7 @@ export default function VcdDashboardLayout({
             ))}
           </OdsTabs>
         }
-        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+        breadcrumb={<Breadcrumb />}
         message={
           message ? (
             <>

@@ -36,5 +36,6 @@
   "netapp_volumes_snapshots_hold_action_success": "Snapshot został wykonany.",
   "netapp_volumes_snapshots_hold_action_error": "Wystąpił błąd podczas wykonywania snapshota.",
   "netapp_volumes_snapshots_actions_create_volume": "Utwórz wolumen",
-  "netapp_volumes_snapshots_size": "Rozmiar"
+  "netapp_volumes_snapshots_size": "Rozmiar",
+  "netapp_volumes_snapshots_path": "Ścieżka dostępu"
 }

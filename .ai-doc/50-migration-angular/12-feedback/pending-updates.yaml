@@ -1,0 +1,116 @@
+---
+title: Pending Documentation Updates
+version: 1.0.0
+last_update: 2025-01-27
+description: |
+  Structured list of pending updates to migration documentation.
+  Items should be processed regularly and marked as resolved.
+tags: [feedback, updates, improvements]
+---
+
+# Pending Updates Queue
+
+## Format
+
+Each item includes:
+- id: Unique identifier
+- priority: critical | high | medium | low
+- category: pattern | pitfall | documentation | tooling
+- target_file: Which file to update
+- description: What needs to be done
+- discovered_in: Which migration discovered this
+- created_at: When added
+- status: pending | in_progress | resolved
+- resolved_at: When resolved (if applicable)
+
+---
+
+pending_updates:
+  # Example entry (commented out)
+  # - id: UPDATE-2025-001
+  #   priority: high
+  #   category: pattern
+  #   target_file: migration-patterns.md
+  #   description: |
+  #     Add pattern for WebSocket migration.
+  #     AngularJS uses $websocket service, need to document
+  #     React equivalent using native WebSocket or socket.io-client.
+  #   discovered_in: module-realtime
+  #   created_at: 2025-01-27
+  #   status: pending
+  #   resolved_at: null
+  #   notes: |
+  #     See implementation in packages/manager/apps/realtime/src/hooks/useWebSocket.ts
+
+---
+
+# Resolved Updates Archive
+
+resolved_updates:
+  - id: UPDATE-2025-000
+    priority: high
+    category: documentation
+    target_file: multiple
+    description: |
+      Phase 3 documentation improvements:
+      - Add semantic index
+      - Add pitfalls catalog
+      - Add migration diffs
+      - Enhance decision tree
+      - Add state schema
+      - Add pattern validation
+      - Add feedback loop
+    discovered_in: documentation-review
+    created_at: 2025-01-27
+    status: resolved
+    resolved_at: 2025-01-27
+    notes: |
+      All improvements implemented in single session.
+
+---
+
+# Statistics
+
+stats:
+  pending:
+    critical: 0
+    high: 0
+    medium: 0
+    low: 0
+    total: 0
+
+  resolved:
+    total: 1
+    this_month: 1
+    this_quarter: 1
+
+---
+
+# Processing Instructions
+
+## For AI Assistants
+
+When discovering something that should be documented:
+
+1. Add entry to `pending_updates` section
+2. Use format: `UPDATE-YYYY-NNN`
+3. Set appropriate priority
+4. Reference discovery context
+5. Add to improvement-log.md as well
+
+## For Documentation Maintainers
+
+Weekly process:
+
+1. Review all pending items
+2. Prioritize critical and high items
+3. Update target files
+4. Mark as resolved with date
+5. Move to resolved_updates archive
+
+## Priority Guidelines
+
+- **critical**: Blocking migrations, incorrect information
+- **high**: Missing common patterns, frequent confusion
+- **medium**: Edge cases, improvements
+- **low**: Nice-to-have, minor clarifications

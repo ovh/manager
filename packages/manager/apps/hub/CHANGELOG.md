@@ -3,6 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.11...@ovh-ux/manager-hub-app@0.29.0) (2026-01-13)
+
+
+### Features
+
+* **hub:** apply eslint strategy of static analysis kit adaption ([d448237](https://github.com/ovh/manager/commit/d44823721d005278c516233591957dff2c3b2c41)), closes [#MANAGER-20420](https://github.com/ovh/manager/issues/MANAGER-20420)
+
+
+
+
+
+## [0.28.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.10...@ovh-ux/manager-hub-app@0.28.11) (2026-01-09)
+
+
+### Bug Fixes
+
+* **hub:** ensure feature set / reset for billing test ([f90578c](https://github.com/ovh/manager/commit/f90578ca398cd6ba91edc304f7e888529161b8fc))
+
+
+
+
+
+## [0.28.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.9...@ovh-ux/manager-hub-app@0.28.10) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.28.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.8...@ovh-ux/manager-hub-app@0.28.9) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.28.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.7...@ovh-ux/manager-hub-app@0.28.8) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.28.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.6...@ovh-ux/manager-hub-app@0.28.7) (2025-12-22)
+
+
+### Bug Fixes
+
+* **hub:** open external payment status links in new tab ([0f53184](https://github.com/ovh/manager/commit/0f53184a36b1dcea9b24bdd32310e94e8f845d9a)), closes [#MANAGER-20624](https://github.com/ovh/manager/issues/MANAGER-20624)
+
+
+
+
+
+## [0.28.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.5...@ovh-ux/manager-hub-app@0.28.6) (2025-12-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.28.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.4...@ovh-ux/manager-hub-app@0.28.5) (2025-12-18)
+
+
+### Bug Fixes
+
+* fix unknown service renewal link ([4569198](https://github.com/ovh/manager/commit/4569198a20df19ec7f9ec3fedc719d8850c289f3)), closes [#MANAGER-20616](https://github.com/ovh/manager/issues/MANAGER-20616)
+
+
+
+
+
+## [0.28.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.3...@ovh-ux/manager-hub-app@0.28.4) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.2...@ovh-ux/manager-hub-app@0.28.3) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.1...@ovh-ux/manager-hub-app@0.28.2) (2025-12-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.28.0...@ovh-ux/manager-hub-app@0.28.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
 # [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.27.0...@ovh-ux/manager-hub-app@0.28.0) (2025-12-05)
 
 

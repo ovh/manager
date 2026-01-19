@@ -3,6 +3,167 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.8...@ovh-ux/manager-pci-block-storage-app@0.25.0) (2026-01-16)
+
+
+### Features
+
+* **pci-block-storage:** update file storage banner ([bd5f452](https://github.com/ovh/manager/commit/bd5f452009e2edf0c04fc04fd16e6b557b023b24)), closes [#TAPC-5624](https://github.com/ovh/manager/issues/TAPC-5624)
+
+
+
+
+
+## [0.24.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.7...@ovh-ux/manager-pci-block-storage-app@0.24.8) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.24.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.6...@ovh-ux/manager-pci-block-storage-app@0.24.7) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.24.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.5...@ovh-ux/manager-pci-block-storage-app@0.24.6) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.24.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.4...@ovh-ux/manager-pci-block-storage-app@0.24.5) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.24.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.3...@ovh-ux/manager-pci-block-storage-app@0.24.4) (2026-01-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.2...@ovh-ux/manager-pci-block-storage-app@0.24.3) (2026-01-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.1...@ovh-ux/manager-pci-block-storage-app@0.24.2) (2025-12-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.24.0...@ovh-ux/manager-pci-block-storage-app@0.24.1) (2025-12-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.23.0...@ovh-ux/manager-pci-block-storage-app@0.24.0) (2025-12-22)
+
+
+### Features
+
+* **pci-block-storage:** add missing translations [CDS 917] ([fe70909](https://github.com/ovh/manager/commit/fe70909f9da35dee85f02ae39e9f17ff51be7095))
+* **pci-block-storage:** add retyping without api ([48b3e5c](https://github.com/ovh/manager/commit/48b3e5cd507346d36adc5b785f2757dc91b25d19)), closes [#TAPC-4564](https://github.com/ovh/manager/issues/TAPC-4564)
+* **pci-block-storage:** block retyping for classic 3az volumes ([5d91c5d](https://github.com/ovh/manager/commit/5d91c5d365ec701d89d7f1c01763e8e58add13cd)), closes [#TAPC-4567](https://github.com/ovh/manager/issues/TAPC-4567)
+* **pci-block-storage:** delete snapshots before retyping ([2b1a0cd](https://github.com/ovh/manager/commit/2b1a0cd6e82ae6068e426179230bf56b7c83c501)), closes [#TAPC-4569](https://github.com/ovh/manager/issues/TAPC-4569)
+* **pci-block-storage:** detach instance before retyping ([a2ad6ba](https://github.com/ovh/manager/commit/a2ad6ba2dc1cb389a547623a5d74a7053990d09b)), closes [#TAPC-4568](https://github.com/ovh/manager/issues/TAPC-4568)
+* **pci-block-storage:** disable retyping for encrypted volumes ([a3d8399](https://github.com/ovh/manager/commit/a3d83999343b7a801bc6ece87f38a6ed8630feed)), closes [#TAPC-5213](https://github.com/ovh/manager/issues/TAPC-5213)
+* **pci-block-storage:** handle retyping ([cb67a40](https://github.com/ovh/manager/commit/cb67a4094b3ebe7916aeeda0074f9aba5b09353a)), closes [#TAPC-4358](https://github.com/ovh/manager/issues/TAPC-4358)
+* **pci-block-storage:** implement deleting snapshots before retyping ([5003506](https://github.com/ovh/manager/commit/5003506f2cf7e8820bd004d77d7e4ef468f7ba7f)), closes [#TAPC-4569](https://github.com/ovh/manager/issues/TAPC-4569)
+* **pci-block-storage:** remove retyping encryption ([1be6619](https://github.com/ovh/manager/commit/1be661990d8d1c2e2f498d1841c605daa0adfbd2)), closes [#TAPC-5125](https://github.com/ovh/manager/issues/TAPC-5125)
+
+
+
+
+
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.6...@ovh-ux/manager-pci-block-storage-app@0.23.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** fix displayed attachable instances ([560b802](https://github.com/ovh/manager/commit/560b802daae09480e119c8656d11805d7803c5b1)), closes [#TAPC-5257](https://github.com/ovh/manager/issues/TAPC-5257)
+
+
+### Features
+
+* **pci-block-storage:** fix region next button being visible when it should not ([0539102](https://github.com/ovh/manager/commit/053910204780aa320968f1f7b75c9a246e438599)), closes [#TAPC-5343](https://github.com/ovh/manager/issues/TAPC-5343)
+
+
+
+
+
+## [0.22.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.5...@ovh-ux/manager-pci-block-storage-app@0.22.6) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.22.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.4...@ovh-ux/manager-pci-block-storage-app@0.22.5) (2025-12-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.3...@ovh-ux/manager-pci-block-storage-app@0.22.4) (2025-12-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.2...@ovh-ux/manager-pci-block-storage-app@0.22.3) (2025-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.1...@ovh-ux/manager-pci-block-storage-app@0.22.2) (2025-12-12)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** bandwidth unit fix ([c75880c](https://github.com/ovh/manager/commit/c75880c44fb49bf4adedfb44d62f1a494b946bcd)), closes [#TAPC-5477](https://github.com/ovh/manager/issues/TAPC-5477)
+
+
+
+
+
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.22.0...@ovh-ux/manager-pci-block-storage-app@0.22.1) (2025-12-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
 # [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.21.7...@ovh-ux/manager-pci-block-storage-app@0.22.0) (2025-12-05)
 
 

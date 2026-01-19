@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax-app",
-  "version": "9.0.63",
+  "version": "9.0.71",
   "private": true,
   "description": "Freefax standalone application.",
   "repository": {
@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.6",
-    "@ovh-ux/manager-config": "^8.8.1",
-    "@ovh-ux/manager-core": "^13.3.2",
+    "@ovh-ux/manager-config": "^8.8.6",
+    "@ovh-ux/manager-core": "^13.4.0",
     "@ovh-ux/manager-freefax": "^7.9.5",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.12.1",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.13.0",
     "@ovh-ux/manager-telecom-styles": "^4.8.7",
-    "@ovh-ux/ng-at-internet": "^6.0.38",
+    "@ovh-ux/ng-at-internet": "^6.0.43",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.6",
     "@ovh-ux/ng-ovh-contracts": "^4.6.5",
@@ -29,7 +29,7 @@
     "@ovh-ux/ng-ovh-http": "^5.1.6",
     "@ovh-ux/ng-ovh-order-tracking": "^2.5.6",
     "@ovh-ux/ng-ovh-payment-method": "^9.18.1",
-    "@ovh-ux/ng-ovh-request-tagger": "^2.0.15",
+    "@ovh-ux/ng-ovh-request-tagger": "^2.0.16",
     "@ovh-ux/ng-ovh-sso-auth": "^4.10.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.6",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.29.3",
@@ -38,8 +38,9 @@
     "@ovh-ux/ng-translate-async-loader": "^2.2.6",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.2",
     "@ovh-ux/ng-ui-router-title": "^3.1.6",
-    "@ovh-ux/request-tagger": "^0.5.10",
+    "@ovh-ux/request-tagger": "^0.6.0",
     "@uirouter/angularjs": "^1.0.23",
+    "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
     "angular-cookies": "^1.7.8",
@@ -56,7 +57,6 @@
     "chartjs-adapter-date-fns": "^3.0.0",
     "clipboard": "^2.0.4",
     "core-js": "^3.6.5",
-    "CSV-JS": "^1.2.0",
     "flatpickr": "^4.6.3",
     "ip-address": "^5.9.2",
     "jsplumb": "^2.12.0",
@@ -76,7 +76,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.2.1",
+    "@ovh-ux/manager-webpack-config": "^7.2.2",
     "webpack-merge": "^4.2.2"
   },
   "regions": [

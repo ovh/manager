@@ -3,6 +3,7 @@ import {
   sharedConfig,
   mergeConfig,
   createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
 } from '@ovh-ux/manager-tests-setup';
 
@@ -11,6 +12,9 @@ export default mergeConfig(
   createConfig({
     test: {
       setupFiles: './src/setupTests.tsx',
+      deps: {
+        inline: ['@ovh-ux/logs-to-customer', '@ovhcloud/ods-components'],
+      },
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
@@ -24,6 +28,7 @@ export default mergeConfig(
       },
     },
     resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
         '@secret-manager': path.resolve(

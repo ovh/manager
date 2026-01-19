@@ -1,20 +1,15 @@
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
-import KmsTabs, {
-  KmsTabProps,
-} from '@key-management-service/components/layout-helpers/dashboard/KmsTabs';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
-
-import { OdsBadge } from '@ovhcloud/ods-components/react';
 
 import {
   BaseLayout,
@@ -26,11 +21,17 @@ import {
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
+import {
+  TabNavigation,
+  TabNavigationItem,
+} from '@/common/components/tab-navigation/TabNavigation.component';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+import { filterFalsy } from '@/common/utils/tools/filterFalsy';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 import { KmsDashboardOutletContext } from './KmsDashboard.type';
+import { kmsDashboardTabNames } from './kmsDashboard.constants';
 
 export default function DashboardPage() {
   const { t } = useTranslation([
@@ -48,35 +49,32 @@ export default function DashboardPage() {
     KMS_FEATURES.LOGS,
   ]);
 
-  const tabsList: KmsTabProps[] = useMemo(() => {
-    const tabs: KmsTabProps[] = [
-      {
-        url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
-        content: <>{t('key-management-service/dashboard:general_informations')}</>,
-      },
-      {
-        url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
-        content: <>{SERVICE_KEYS_LABEL}</>,
-      },
-      {
-        url: KMS_ROUTES_URLS.credentialListing(okmsId),
-        content: <>{t('key-management-service/dashboard:access_certificates')}</>,
-      },
-    ];
-    if (features?.[KMS_FEATURES.LOGS]) {
-      tabs.push({
-        url: KMS_ROUTES_URLS.kmsLogs(okmsId),
-        content: (
-          <div className="flex gap-2">
-            {t('key-management-service/dashboard:logs')}{' '}
-            <OdsBadge size="sm" label="beta" color="information" className="font-normal" />
-          </div>
-        ),
-      });
-    }
-
-    return tabs;
-  }, [features, t, okmsId]);
+  const tabsList: TabNavigationItem[] = filterFalsy<TabNavigationItem>([
+    {
+      name: kmsDashboardTabNames.generalInformation,
+      title: t('key-management-service/dashboard:general_informations'),
+      url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
+      tracking: ['general-informations'],
+    },
+    {
+      name: kmsDashboardTabNames.serviceKeys,
+      title: SERVICE_KEYS_LABEL,
+      url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
+      tracking: ['service-key'],
+    },
+    {
+      name: kmsDashboardTabNames.credentials,
+      title: t('key-management-service/dashboard:access_certificates'),
+      url: KMS_ROUTES_URLS.credentialListing(okmsId),
+      tracking: ['credential'],
+    },
+    features?.[KMS_FEATURES.LOGS] && {
+      name: kmsDashboardTabNames.logs,
+      title: t('key-management-service/dashboard:logs'),
+      url: KMS_ROUTES_URLS.kmsLogs(okmsId),
+      tracking: ['logs'],
+    },
+  ]);
 
   if (isOkmsLoading || isFeatureAvailabilityLoading) {
     return <PageSpinner />;
@@ -96,7 +94,7 @@ export default function DashboardPage() {
     );
   }
 
-  const { displayName } = okms.data.iam;
+  const { displayName } = okms.iam;
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
@@ -132,9 +130,7 @@ export default function DashboardPage() {
     changelogButton: <KmsChangelogButton />,
   };
 
-  const contextValue: KmsDashboardOutletContext = {
-    okms: okms.data,
-  };
+  const contextValue: KmsDashboardOutletContext = { okms };
 
   return (
     <Suspense fallback={<PageSpinner />}>
@@ -148,7 +144,7 @@ export default function DashboardPage() {
         )}
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         message={<Notifications />}
-        tabs={<KmsTabs tabs={tabsList} />}
+        tabs={<TabNavigation tabs={tabsList} />}
       >
         <Outlet context={contextValue} />
       </BaseLayout>

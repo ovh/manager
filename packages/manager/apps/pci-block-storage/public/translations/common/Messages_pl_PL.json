@@ -28,5 +28,6 @@
   "pci_projects_project_storages_blocks_up_to": "do",
   "pci_projects_project_storages_blocks_guides_header": "Przewodniki",
   "pci_projects_project_storages_blocks_guides_all_block_storage_guides": "Przewodniki dotyczące block storage",
-  "pci_projects_project_storages_blocks_guides_first_steps_with_volumes": "Pierwsze kroki z wolumenami"
+  "pci_projects_project_storages_blocks_guides_first_steps_with_volumes": "Pierwsze kroki z wolumenami",
+  "pci_projects_project_storages_blocks_change_type": "Zmień typ wolumenu"
 }

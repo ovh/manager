@@ -3,6 +3,6 @@ import { ComponentProps, PropsWithoutRef } from 'react';
 
 type Props = PropsWithoutRef<ComponentProps<'span'> & { name: IconName }>;
 
-export const Icon = ({ name, className, ...spanProps }: Props) => (
+export const Icon = ({ name, ...spanProps }: Props) => (
   <OdsIcon name={name} {...spanProps} />
 );

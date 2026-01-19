@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.0.2...@ovh-ux/manager-react-shell-client@1.1.0) (2026-01-13)
+
+
+### Features
+
+* replacing nx with turbo ([4c91a10](https://github.com/ovh/manager/commit/4c91a102cc7717f68751d7768748faaeff878696))
+
+
+
+
+
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.0.1...@ovh-ux/manager-react-shell-client@1.0.2) (2025-12-18)
+
+
+### Update
+
+*   **dependencies update:** update `@ovh-ux/ovh-at-internet` to last version ([3655306](https://github.com/ovh/manager/commit/3655306a8ad31a88d8c42657a323fd119d4baad3))
+
+
+
+
+
+
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.0.0...@ovh-ux/manager-react-shell-client@1.0.1) (2025-12-10)
+
+
+### Bug Fixes
+
+*   **tracking:** add additional data for page tracking ([d3973dd](https://github.com/ovh/manager/commit/d3973dd4dc40448df71695e717d1667e606a81b3))
+
+
+
+
+
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.11.2...@ovh-ux/manager-react-shell-client@1.0.0) (2025-12-04)
+
+
+### Build System
+
+* **shell-client:** convert library to ESM ([e35766a](https://github.com/ovh/manager/commit/e35766a3c522d94af24c16078601fae3a24d1b19)), closes [#MANAGER-20424](https://github.com/ovh/manager/issues/MANAGER-20424)
+
+
+### BREAKING CHANGES
+
+* **shell-client:** Convert CJS module to ESM
+
+
+
+
+
 ## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.11.1...@ovh-ux/manager-react-shell-client@0.11.2) (2025-11-07)
 
 

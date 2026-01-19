@@ -1,25 +1,31 @@
 import { useState } from 'react';
-import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@datatr-ux/uxlib';
 import { getColumns } from './S3ObjectVersionListColumns.component';
 import DataTable from '@/components/data-table';
 import { getFilters } from './S3VersionObjectFilters.component';
 import storages from '@/types/Storages';
-import useDownload from '@/hooks/useDownload';
+import useDownload from '@/hooks/useDownload.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { useS3Data } from '../../../../S3.context';
-import Link from '@/components/links/Link.component';
+import RefreshButton from '@/components/refresh-button/RefreshButton.component';
+import { BulkActionButton } from '../../../_components/BulkActionButton.component';
 
 interface ObjectsListProps {
   objects: StorageObject[];
+  onRefreshClicked: () => void;
+  isLoading: boolean;
 }
 
-export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
+export default function S3ObjectVersionList({
+  objects,
+  onRefreshClicked,
+  isLoading,
+}: ObjectsListProps) {
   const { projectId } = useParams();
   const { s3 } = useS3Data();
   const [objectName, setObjectName] = useState<string>('');
@@ -46,6 +52,7 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
 
   const columns: ColumnDef<StorageObject>[] = getColumns({
     isPending: pendingGetPresignUrl,
+    objects,
     onDownloadClicked: (object: StorageObject) => {
       setObjectName(object.key);
       return getPresignUrlS3({
@@ -79,6 +86,10 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
       filtersDefinition={storagesFilters}
     >
       <DataTable.Header>
+        <DataTable.Action>
+          <BulkActionButton />
+        </DataTable.Action>
+        <RefreshButton onClick={onRefreshClicked} isLoading={isLoading} />
         <DataTable.SearchBar />
         <DataTable.FiltersButton />
       </DataTable.Header>
