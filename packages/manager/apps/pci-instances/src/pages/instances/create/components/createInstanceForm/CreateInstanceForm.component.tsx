@@ -87,7 +87,7 @@ export const CreateInstanceForm = () => {
           )}
           <Divider spacing="64" />
           <FlavorBlock />
-          <DistributionImage />
+          {microRegion && <DistributionImage microRegion={microRegion} />}
           {microRegion && !isWindowsSelected && (
             <SshKey microRegion={microRegion} />
           )}

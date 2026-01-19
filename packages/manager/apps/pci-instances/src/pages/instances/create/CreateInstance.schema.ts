@@ -37,7 +37,7 @@ export const distributionImageTypeSchema = z.enum([
   'linux',
   'apps',
   'windows',
-  'snapshot',
+  'backups',
 ]);
 
 export const distributionImageVariantIdSchema = z.string().nullable();
