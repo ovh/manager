@@ -5,24 +5,27 @@ import {
   TImageTypeName,
   TImage,
   TInstancesCatalog,
-  TOsType,
   TRegionalizedFlavor,
   TRegionalizedFlavorOsType,
   TRegionalizedImage,
   IMAGE_TYPES,
+  TFlavor,
 } from '@/domain/entities/instancesCatalog';
+import { TOsType } from '@/domain/entities/common.types';
+import { TBackup } from '@/domain/entities/backup';
 import { Reader } from '@/types/utils.type';
 import { SelectOptionItem } from '@ovhcloud/ods-react';
 
 export type TOption = { labelKey: string; value: string; disabled: boolean };
 export type TImageTypeOption = TOption & {
-  value: 'linux' | 'apps' | 'windows';
+  value: 'linux' | 'apps' | 'windows' | 'backups';
 };
 
 type TSelectAvailableImageTypesData = (
   projectId: string,
   regionalizedFlavorId: string | null,
   microRegion: string | null,
+  hasEligibleBackup: boolean,
 ) => TImageTypeOption[];
 
 type TSelectAvailableImageTypes = Reader<Deps, TSelectAvailableImageTypesData>;
@@ -31,6 +34,80 @@ type TGetImageTypeAvailabilityArgs = {
   entities: TInstancesCatalog['entities'];
   regionalizedFlavorId: string;
   microRegion: string;
+};
+
+export type TBackupsEligibilityContext = {
+  flavorMinDisk: number;
+  flavorRam: number;
+  flavorAcceptedOsTypes: TOsType[];
+};
+
+const getFlavorMinimumDiskSize = (flavor: TFlavor) =>
+  flavor.specifications.disks.reduce<number>(
+    (min, disk) => Math.min(min, disk.capacity.value),
+    Infinity,
+  );
+
+export const selectBackupsEligibilityContext = (
+  regionalizedFlavorId: string | null,
+) => (catalog?: TInstancesCatalog): TBackupsEligibilityContext | null => {
+  if (!catalog || !regionalizedFlavorId) return null;
+
+  const regionalizedFlavor = catalog.entities.regionalizedFlavors.byId.get(
+    regionalizedFlavorId,
+  );
+  if (!regionalizedFlavor) return null;
+
+  const flavor = catalog.entities.flavors.byId.get(regionalizedFlavor.flavorId);
+  if (!flavor) return null;
+
+  return {
+    flavorMinDisk: getFlavorMinimumDiskSize(flavor),
+    flavorRam: flavor.specifications.ram.value,
+    flavorAcceptedOsTypes: regionalizedFlavor.osTypes,
+  };
+};
+
+export const isBackupEligible = (
+  backup: TBackup,
+  eligibilityContext: TBackupsEligibilityContext,
+): boolean =>
+  eligibilityContext.flavorMinDisk > backup.minDisk &&
+  eligibilityContext.flavorRam > backup.minRam &&
+  eligibilityContext.flavorAcceptedOsTypes.includes(backup.type);
+
+export const hasAnyEligibleBackup = (
+  eligibilityContext: TBackupsEligibilityContext | null,
+) => (backups?: TBackup[]): boolean => {
+  if (!eligibilityContext || !backups?.length) return false;
+  return backups.some((backup) => isBackupEligible(backup, eligibilityContext));
+};
+
+export const selectEligibleBackups = (
+  eligibilityContext: TBackupsEligibilityContext | null,
+) => {
+  return (backups?: TBackup[]): TSelectImagesOptions => {
+    if (!eligibilityContext || !backups?.length) return emptyResult;
+
+    const images = backups.map((backup) => ({
+      label: backup.name,
+      value: backup.id,
+      osType: backup.type,
+      available: isBackupEligible(backup, eligibilityContext),
+    }));
+
+    const preselectedFirstAvailableVariantId =
+      images.find((variant) => variant.available)?.value ?? null;
+
+    return {
+      images,
+      versions: [],
+      preselected: {
+        preselectedFirstAvailableVariantId,
+        preselectedFirstAvailableVersion: null,
+      },
+    };
+  };
 };
 
 const getImageTypeAvailability = ({
@@ -86,15 +163,24 @@ const getImageTypeAvailability = ({
 
 export const selectAvailableImagesTypes: TSelectAvailableImageTypes = (
   deps,
-) => (projectId, regionalizedFlavorId, microRegion) => {
+) => (projectId, regionalizedFlavorId, microRegion, hasEligibleBackup) => {
   const { instancesCatalogPort } = deps;
   const entities = instancesCatalogPort.selectInstancesCatalog(projectId)
     ?.entities;
 
-  if (!entities || !regionalizedFlavorId) return [];
+  const imageTypesOrder: TImageTypeName[] = ['linux', 'apps', 'windows'];
+  const allImageTypes = [...imageTypesOrder, 'backups'] as const;
+
+  if (!entities || !regionalizedFlavorId) {
+    return allImageTypes.map((type) => ({
+      labelKey: `pci_instances_common_${type}_image_type`,
+      value: type,
+      disabled: true,
+    }));
+  }
 
   if (!microRegion) {
-    return entities.imageTypes.allIds.map((type) => ({
+    return allImageTypes.map((type) => ({
       labelKey: `pci_instances_common_${type}_image_type`,
       value: type,
       disabled: true,
@@ -107,7 +193,15 @@ export const selectAvailableImagesTypes: TSelectAvailableImageTypes = (
     microRegion,
   });
 
-  return entities.imageTypes.allIds.map((type) => {
+  return allImageTypes.map((type) => {
+    if (type === 'backups') {
+      return {
+        labelKey: `pci_instances_common_${type}_image_type`,
+        value: type,
+        disabled: !hasEligibleBackup,
+      };
+    }
+
     const disabled = !typeAvailability[type];
 
     return {
@@ -154,7 +248,7 @@ type TSelectImageData = (args: TSelectImageDataArgs) => TSelectImagesOptions;
 
 type TSelectImages = Reader<Deps, TSelectImageData>;
 
-const emptyResult = {
+export const emptyResult = {
   images: [],
   versions: [],
   preselected: {
