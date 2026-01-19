@@ -122,13 +122,7 @@ export const useIpGroupDatagridColumns = ({
     {
       id: 'ip-edge-firewall',
       label: t('listingColumnsIpEdgeFirewall'),
-      cell: (ip: string) => (
-        <IpEdgeFirewall
-          ip={parentIp}
-          ipOnFirewall={ip}
-          isByoipSlice={isByoipSlice}
-        />
-      ),
+      cell: (ip: string) => <IpEdgeFirewall ip={parentIp} ipOnFirewall={ip} />,
       size: parentHeaders.current['ip-edge-firewall'].clientWidth,
     },
     {
@@ -138,7 +132,7 @@ export const useIpGroupDatagridColumns = ({
         <IpGameFirewallDisplay
           ip={parentIp}
           ipOnGame={ip}
-          enabled={isGameFirewallAvailable && !isByoipSlice}
+          enabled={isGameFirewallAvailable}
         />
       ),
       size: parentHeaders.current['ip-game-firewall'].clientWidth,
