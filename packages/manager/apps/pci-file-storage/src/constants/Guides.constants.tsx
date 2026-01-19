@@ -39,5 +39,16 @@ export const GUIDES: OnboardingGuide[] = [
   { key: 'discord', links: { DEFAULT: 'https://discord.com/invite/ovhcloud' } },
 ];
 
-export const getOnboardingLinkFor = (links: GuideLinks, subsidiary: Subsidiary) =>
-  links[subsidiary] ?? links.DEFAULT;
+export function getOnboardingLinkFor(links: GuideLinks, subsidiary: Subsidiary): string;
+export function getOnboardingLinkFor(guideKey: string, subsidiary: Subsidiary): string;
+export function getOnboardingLinkFor(
+  linksOrKey: GuideLinks | string,
+  subsidiary: Subsidiary,
+): string {
+  if (typeof linksOrKey === 'string') {
+    const guide = GUIDES.find((g) => g.key === linksOrKey);
+    if (!guide) return '';
+    return guide.links[subsidiary] ?? guide.links.DEFAULT;
+  }
+  return linksOrKey[subsidiary] ?? linksOrKey.DEFAULT;
+}

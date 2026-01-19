@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 
 import { Subsidiary } from '@ovh-ux/manager-config';
 
-import { GuideLinks, getOnboardingLinkFor } from '@/pages/onboarding/Onboarding.guides.constants';
+import { GuideLinks, getOnboardingLinkFor } from '@/constants/Guides.constants';
 
 describe('Onboarding guides constants', () => {
   const links: GuideLinks = {

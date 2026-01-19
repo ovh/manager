@@ -39,9 +39,9 @@ vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
   Breadcrumb: () => <div>Breadcrumb</div>,
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useEnvironment: () => ({
-    getUser: () => ({ ovhSubsidiary: 'FR' }),
+vi.mock('@/hooks/useGetUser', () => ({
+  useGetUser: () => ({
+    ovhSubsidiary: 'FR',
   }),
 }));
 
