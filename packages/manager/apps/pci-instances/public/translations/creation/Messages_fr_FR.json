@@ -44,6 +44,7 @@
   "pci_instance_creation_table_header_vcore_unit": "(Go)",
   "pci_instance_creation_table_header_storage": "Stockage",
   "pci_instance_creation_table_header_storage_unit": "(Go)",
+  "pci_instance_creation_table_storage_unit_tb": "To",
   "pci_instance_creation_table_header_mode": "Déploiement",
   "pci_instance_creation_table_header_price": "Prix",
   "pci_instance_creation_table_header_price_hourly_unit": "HT/heure",

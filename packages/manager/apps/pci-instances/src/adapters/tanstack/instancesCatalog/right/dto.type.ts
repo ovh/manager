@@ -53,14 +53,20 @@ export type TSpecDetailsDTO = {
   value: number;
 };
 
+export type TDiskDTO = {
+  capacity: TSpecDetailsDTO;
+  number: number;
+  interface?: string;
+};
+
 export type TSpecificationsDTO = {
   cpu: TSpecDetailsDTO;
   ram: TSpecDetailsDTO;
-  storage: TSpecDetailsDTO;
   bandwidth: {
     public: TSpecDetailsDTO;
     private: TSpecDetailsDTO;
   };
+  disks: TDiskDTO[];
   gpu?: {
     memory: {
       interface: string;

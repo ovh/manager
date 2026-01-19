@@ -99,13 +99,19 @@ export type TInstanceAction = {
 
 type TInstanceFlavorSpec = TFlavorSpec;
 
+export type TInstanceDisk = {
+  capacity: TInstanceFlavorSpec;
+  number: number;
+  interface?: string;
+};
+
 export type TInstanceFlavor = {
   id: string;
   name: string;
   specs: {
     cpu: TInstanceFlavorSpec;
     ram: TInstanceFlavorSpec;
-    storage: TInstanceFlavorSpec;
+    disks: TInstanceDisk[];
     bandwidth: {
       public: TInstanceFlavorSpec;
       private: TInstanceFlavorSpec;

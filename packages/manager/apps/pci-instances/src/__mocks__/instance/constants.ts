@@ -178,10 +178,15 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
           value: 2,
           unit: 'GB',
         },
-        storage: {
-          value: 25,
-          unit: 'GB',
-        },
+        disks: [
+          {
+            capacity: {
+              value: 25,
+              unit: 'GB',
+            },
+            number: 1,
+          },
+        ],
         bandwidth: {
           public: {
             value: 100,
@@ -551,10 +556,15 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
                 unit: 'GB',
                 value: 2,
               },
-              storage: {
-                unit: 'GB',
-                value: 25,
-              },
+              disks: [
+                {
+                  capacity: {
+                    unit: 'GB',
+                    value: 25,
+                  },
+                  number: 1,
+                },
+              ],
               bandwidth: {
                 public: {
                   unit: 'Mbit',

@@ -15,6 +15,7 @@ import {
   getRegionalizedFlavorId,
   getRegionalizedFlavorOsTypePriceId,
 } from '@/utils';
+import { mapDisksToViewModel, TDiskViewModel } from './mappers/diskMapper';
 
 type TSelectFlavorsArgs = {
   projectId: string;
@@ -343,7 +344,7 @@ export type TBaseFlavorDataForTable = {
   name: string;
   memory: number;
   vCore: number;
-  storage: number;
+  disks: TDiskViewModel[];
   mode: TDeploymentMode | null;
   realMinimumHourlyPrice: number | null;
   realMinimumMonthlyPrice: number | null;
@@ -379,7 +380,7 @@ const buildBaseFlavorForTable = (
     name: flavor.name,
     memory: flavor.specifications.ram.value,
     vCore: flavor.specifications.cpu.value,
-    storage: flavor.specifications.storage.value,
+    disks: mapDisksToViewModel(flavor.specifications.disks),
     mode: deploymentMode,
     realMinimumHourlyPrice: null,
     realMinimumMonthlyPrice: null,
@@ -439,7 +440,7 @@ const buildUnavailableBaseFlavorForTable = (
   name: flavor.name,
   memory: flavor.specifications.ram.value,
   vCore: flavor.specifications.cpu.value,
-  storage: flavor.specifications.storage.value,
+  disks: mapDisksToViewModel(flavor.specifications.disks),
   mode: null,
   realMinimumHourlyPrice: null,
   realMinimumMonthlyPrice: null,

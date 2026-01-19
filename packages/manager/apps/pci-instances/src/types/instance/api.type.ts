@@ -84,13 +84,19 @@ type TInstanceRegionTypeDto = TRegionType;
 
 type TInstanceFlavorSpecDto = TFlavorSpec;
 
+type TInstanceDiskDto = {
+  capacity: TInstanceFlavorSpecDto;
+  number: number;
+  interface?: string;
+};
+
 type TInstanceFlavorDto = {
   id: string;
   name: string;
   specs: {
     cpu: TInstanceFlavorSpecDto;
     ram: TInstanceFlavorSpecDto;
-    storage: TInstanceFlavorSpecDto;
+    disks: TInstanceDiskDto[];
     bandwidth: {
       public: TInstanceFlavorSpecDto;
       private: TInstanceFlavorSpecDto;
