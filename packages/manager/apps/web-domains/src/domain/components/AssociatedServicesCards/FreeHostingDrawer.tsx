@@ -64,7 +64,7 @@ export default function FreeHostingDrawer({
     }));
   };
 
-  if (isOrderFreeHostingPending || isInitialOrderFreeHostingPending) {
+  if (isOrderFreeHostingPending) {
     return (
       <LoadingState isOpen={isDrawerOpen} onOpenChange={handleOpenChange} />
     );
