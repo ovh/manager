@@ -48,6 +48,27 @@ sioUniverse.children = [
       },
     ],
   },
+  {
+    id: 'settings',
+    idAttr: 'settings-link',
+    translation: 'sidebar_observability_settings',
+    universe: sioUniverse.id,
+    features: ['observability:settings'],
+    children: [
+      {
+        id: 'observability-settings-services',
+        idAttr: 'observability-settings-services-link',
+        translation: 'sidebar_observability_settings_service_management',
+        universe: sioUniverse.id,
+        features: ['observability:settings:services'],
+        routing: {
+          application: 'observability',
+          hash: '#/settings/services',
+          pathMatcher: /observability\/settings\/services/,
+        },
+      },
+    ],
+  },
 ];
 
 export default sioUniverse;
