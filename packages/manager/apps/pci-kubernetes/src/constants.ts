@@ -35,8 +35,32 @@ export const STATUS = {
 
 export const CONFIG_FILENAME = 'kubeconfig';
 
-export const KUBECONFIG_3AZ_GATEWAY =
-  'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055392';
+export const KUBECONFIG_3AZ_GATEWAY = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0050015',
+  ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0050009',
+  AU: 'https://help.ovhcloud.com/csm/en-au-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0050010',
+  CA: 'https://help.ovhcloud.com/csm/en-ca-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0050025',
+  DE: 'https://help.ovhcloud.com/csm/de-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055381',
+  ES: 'https://help.ovhcloud.com/csm/es-es-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055384',
+  EU: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0037610',
+  FR: 'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055392',
+  GB: 'https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0050016',
+  IE: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0037610',
+  IN: 'https://help.ovhcloud.com/csm/en-in-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0069363',
+  IT: 'https://help.ovhcloud.com/csm/it-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055388',
+  MA: 'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055392',
+  NL: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0037610',
+  PL: 'https://help.ovhcloud.com/csm/pl-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055394',
+  PT: 'https://help.ovhcloud.com/csm/pt-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055390',
+  QC: 'https://help.ovhcloud.com/csm/fr-ca-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055387',
+  SG: 'https://help.ovhcloud.com/csm/en-sg-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0050017',
+  SN: 'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055392',
+  TN: 'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055392',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500009286462-How-to-Use-vRack-with-OVHcloud-Managed-Kubernetes',
+  WE: 'https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0050015',
+  WS: 'https://help.ovhcloud.com/csm/es-public-cloud-kubernetes-using-vrack?id=kb_article_view&sysparm_article=KB0055385',
+};
 
 export const VERSIONS_GUIDE_URL = 'https://docs.ovh.com/gb/en/kubernetes/eos-eol-policies/';
 
