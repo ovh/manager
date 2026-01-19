@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.61.0...@ovh-ux/manager-billing@0.62.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* **billing:** replace go back with go to autorenew ([808fe35](https://github.com/ovh/manager/commit/808fe3540b573499c01d06fc7319fc422d5196c5)), closes [#MANAGER-20665](https://github.com/ovh/manager/issues/MANAGER-20665)
+* **i18n:** add missing translations [CDS 4598] ([aac4367](https://github.com/ovh/manager/commit/aac4367eea0565956bd630b12a97c7377dfbe63b))
+* **i18n:** add missing translations [CDS 4599] ([2f7b5b8](https://github.com/ovh/manager/commit/2f7b5b891c5df9aa3e3de4922962ff0f35ff1706))
+
+
+### Features
+
+* **billing:** add redirection to bills page for a service ([af82232](https://github.com/ovh/manager/commit/af82232e1deb511709c52384dc6e2fd91424246b)), closes [#MANAGER-17709](https://github.com/ovh/manager/issues/MANAGER-17709)
+* **billing:** block invoices download for fr corporation without siret ([809b7de](https://github.com/ovh/manager/commit/809b7de6e2b2623b1d7b73145e7136ed4c56b920)), closes [#MANAGER-20838](https://github.com/ovh/manager/issues/MANAGER-20838)
+
+
+
+
+
 # [0.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.60.0...@ovh-ux/manager-billing@0.61.0) (2026-01-13)
 
 
