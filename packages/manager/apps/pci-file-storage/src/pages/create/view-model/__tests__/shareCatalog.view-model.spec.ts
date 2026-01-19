@@ -2,16 +2,16 @@ import { DeepPartial } from 'react-hook-form';
 import { describe, expect, it, vi } from 'vitest';
 
 import {
-  selectContinent,
-  selectDeploymentModes,
-  selectLocalizations,
-} from '@/pages/create/view-model/shareCatalog.view-model';
-import {
   TContinent,
   TDeploymentMode,
   TMacroRegion,
   TShareCatalog,
 } from '@/domain/entities/catalog.entity';
+import {
+  selectContinent,
+  selectDeploymentModes,
+  selectLocalizations,
+} from '@/pages/create/view-model/shareCatalog.view-model';
 
 vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
   mapRegionToLocalizationCard: () => (region: TMacroRegion) => {
@@ -200,4 +200,3 @@ describe('share catalog selectors', () => {
     );
   });
 });
-

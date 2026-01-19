@@ -1,5 +1,6 @@
 import {
-  TContinentData, TDeploymentModeData,
+  TContinentData,
+  TDeploymentModeData,
   TDeploymentModeDataForCard,
   TRegionData,
 } from '@/adapters/catalog/left/shareCatalog.data';
@@ -66,4 +67,3 @@ export const selectContinent =
       value: continent,
     }));
   };
-

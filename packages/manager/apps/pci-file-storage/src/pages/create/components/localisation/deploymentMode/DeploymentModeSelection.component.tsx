@@ -7,11 +7,11 @@ import { Checkbox, CheckboxControl, CheckboxGroup, CheckboxLabel, Text } from '@
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { selectDeploymentModes } from '@/pages/create/view-model/shareCatalog.view-model';
 import { DeploymentModeBadge } from '@/components/new-lib/deploymentModeBadge/DeploymentModeBadge.component';
 import { PciCard } from '@/components/new-lib/pciCard/PciCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { TDeploymentMode } from '@/domain/entities/catalog.entity';
+import { selectDeploymentModes } from '@/pages/create/view-model/shareCatalog.view-model';
 
 type TDeploymentModeSelection = {
   deploymentModes: TDeploymentMode[];

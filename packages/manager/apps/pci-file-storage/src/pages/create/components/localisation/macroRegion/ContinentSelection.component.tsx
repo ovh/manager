@@ -12,9 +12,9 @@ import {
   SelectValueChangeDetail,
 } from '@ovhcloud/ods-react';
 
-import { selectContinent } from '@/pages/create/view-model/shareCatalog.view-model';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { selectContinent } from '@/pages/create/view-model/shareCatalog.view-model';
 
 export const ContinentSelection = () => {
   const { t } = useTranslation(['create']);
@@ -24,7 +24,9 @@ export const ContinentSelection = () => {
     name: ['deploymentModes', 'continent'],
   });
 
-  const { data: continentOptions = [] } = useShareCatalog({ select: selectContinent(deploymentModes) });
+  const { data: continentOptions = [] } = useShareCatalog({
+    select: selectContinent(deploymentModes),
+  });
 
   const translatedContinents = useMemo(
     () =>
