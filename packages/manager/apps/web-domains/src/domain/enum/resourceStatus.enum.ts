@@ -1,8 +1,0 @@
-export enum ResourceStatusEnum {
-  CREATING = 'CREATING',
-  DELETING = 'DELETING',
-  ERROR = 'ERROR',
-  READY = 'READY',
-  SUSPENDED = 'SUSPENDED',
-  UPDATING = 'UPDATING',
-}

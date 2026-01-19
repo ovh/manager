@@ -1,7 +1,0 @@
-export enum StatusEnum {
-  ENABLED = 'ENABLED',
-  DELETING = 'DELETING',
-  ACTIVATING = 'ACTIVATING',
-  UPDATING = 'UPDATING',
-  ERROR = 'ERROR',
-}
