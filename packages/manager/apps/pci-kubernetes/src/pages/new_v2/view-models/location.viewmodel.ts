@@ -1,5 +1,6 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+import { TKubeRegions } from '@/domain/entities/kubeRegion';
 import {
   TCountryCode,
   TDeploymentMode,
@@ -85,6 +86,21 @@ export const filterMacroRegions =
     });
   };
 
+export const filterMacroRegionsByKubeRegions =
+  (kubeRegions?: TKubeRegions) => (regions?: Array<TMacroRegion>) => {
+    if (!regions) return undefined;
+    if (!kubeRegions) return regions;
+
+    return regions
+      .map((region) => ({
+        ...region,
+        microRegionIds: region.microRegionIds.filter((microRegionId) =>
+          kubeRegions.includes(microRegionId),
+        ),
+      }))
+      .filter((region) => region.microRegionIds.length > 0);
+  };
+
 export const mapMacroRegionForCards = (regions?: TMacroRegion[]): TRegionCard[] | undefined =>
   regions?.map((region) => {
     // Custom case for Mumbai region until common-translations is updated
@@ -108,3 +124,22 @@ export const selectAre3azRegionsAvailable = (regions?: TRegions): boolean => {
 
   return hasFree3azRegions || hasStandard3azRegions;
 };
+
+export const filterAndMapRegions =
+  (
+    continentField: TCreateClusterSchema['location']['continent'],
+    planField: TCreateClusterSchema['location']['plan'],
+    deploymentModeField: TCreateClusterSchema['location']['deploymentMode'],
+    kubeRegions?: TKubeRegions,
+  ) =>
+  (regions?: TRegions) => {
+    const macroRegions = selectMacroRegions(regions);
+    const filteredRegionsByKubeRegions = filterMacroRegionsByKubeRegions(kubeRegions)(macroRegions);
+    const filteredRegions = filterMacroRegions(
+      continentField,
+      planField,
+      deploymentModeField,
+    )(filteredRegionsByKubeRegions);
+    const mappedRegions = mapMacroRegionForCards(filteredRegions);
+    return mappedRegions;
+  };

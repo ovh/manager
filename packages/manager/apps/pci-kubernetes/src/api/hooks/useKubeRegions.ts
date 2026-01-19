@@ -1,15 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { getKubeRegionsQueryKey } from '@/adapters/tanstack/kubeRegions/kubeRegions.queryKey';
 import { getKubeRegions } from '@/api/data/regions';
+import { useParam } from '@/hooks/useParam';
 
-export const getKubeRegionsQueryKey = (projectId: string) => [
-  'project',
-  projectId,
-  'kube',
-  'regions',
-];
+export const useKubeRegions = () => {
+  const projectId = useParam('projectId');
 
-export const useKubeRegions = (projectId: string) => {
   return useQuery({
     queryKey: getKubeRegionsQueryKey(projectId),
     queryFn: () => getKubeRegions(projectId),

@@ -1,20 +1,21 @@
-import { type FC, useEffect, useMemo } from 'react';
+import { type FC, useContext, useEffect, useMemo } from 'react';
 
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/ods-react';
 
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
+import { useKubeRegions } from '@/api/hooks/useKubeRegions';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
+import { PLAN_DOC_LINKS } from '@/constants';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import {
-  filterMacroRegions,
-  mapMacroRegionForCards,
-  selectMacroRegions,
-} from '../view-models/location.viewmodel';
+import { filterAndMapRegions } from '../view-models/location.viewmodel';
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
 import { MicroRegionSelect } from './location/MicroRegionSelect.component';
@@ -26,7 +27,9 @@ type TClusterLocationSectionProps = {
 };
 
 export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3azAvailable }) => {
-  const { t } = useTranslation('add');
+  const { t } = useTranslation(['add', 'region-selector']);
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
 
   const { control } = useFormContext<TCreateClusterSchema>();
   const [macroRegionField, microRegionField, continentField, planField, deploymentModeField] =
@@ -43,15 +46,10 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
 
   const { setValue } = useFormContext<TCreateClusterSchema>();
 
+  const { data: kubeRegions } = useKubeRegions();
+
   const { data: regions } = useAvailabilityRegions({
-    select: (regions) =>
-      mapMacroRegionForCards(
-        filterMacroRegions(
-          continentField,
-          planField,
-          deploymentModeField,
-        )(selectMacroRegions(regions)),
-      ),
+    select: filterAndMapRegions(continentField, planField, deploymentModeField, kubeRegions),
   });
 
   const selectedMacroRegion = useMemo(
@@ -70,6 +68,9 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
     setValue('location.microRegion', firstMicroRegion);
   }, [macroRegionField, microRegionField, regions, setValue]);
 
+  const planDocumentationLink =
+    PLAN_DOC_LINKS[ovhSubsidiary as keyof typeof PLAN_DOC_LINKS] ?? PLAN_DOC_LINKS.DEFAULT;
+
   return (
     <>
       <Text preset="heading-3" className="mb-6">
@@ -85,9 +86,9 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
           <Message dismissible={false}>
             <MessageIcon name="circle-info" />
             <MessageBody className="flex flex-col gap-4">
-              TODO : Reprendre le contenu après la MEP du plan standard
-              <Link href="https://ovhcloud.com" target="_blank">
-                Todo : Récupérer liens et clés de trad après la MEP{' '}
+              {t('region-selector:pci_projects_project_regions_filter_plan_message')}
+              <Link href={planDocumentationLink} target={OdsHTMLAnchorElementTarget._blank}>
+                {t('region-selector:pci_projects_project_regions_filter_plan_compare')}
                 <Icon name="external-link"></Icon>
               </Link>
             </MessageBody>
