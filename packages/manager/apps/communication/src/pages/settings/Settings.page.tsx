@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { Icon, Message, MessageBody, MessageIcon, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import {
   ActionMenu,
   ActionMenuItem,
   Datagrid,
   DatagridColumn,
   DataGridTextCell,
-  ManagerButton,
   Notifications,
   useNotifications,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
+import { Button as ManagerButton } from '@ovh-ux/muk';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -203,14 +203,17 @@ function SettingsPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <OdsText preset="paragraph" className="mb-6">
+      <Text preset={TEXT_PRESET.paragraph} className="mb-6">
         {t('description')}
-      </OdsText>
+      </Text>
 
       {!isLoading && !isAuthorized && (
-        <OdsMessage color="warning" isDismissible={false} className="w-full">
-          {t('iam_display_content_message', { ns: 'common' })}
-        </OdsMessage>
+        <Message color="warning" dismissible={false} className="w-full">
+          <MessageIcon name="triangle-exclamation" />
+          <MessageBody>
+            {t('iam_display_content_message', { ns: 'common' })}
+          </MessageBody>
+        </Message>
       )}
 
       <Notifications clearAfterRead />
@@ -225,8 +228,6 @@ function SettingsPage() {
             id="add-routing-button"
             iamActions={['account:apiovh:notification/routing/create']}
             urn={accountUrn}
-            icon="plus"
-            label={t('add_routing_button')}
             aria-label={t('add_routing_button')}
             size="sm"
             onClick={() => {
@@ -239,7 +240,12 @@ function SettingsPage() {
               });
               navigate(urls.routing.create);
             }}
-          />
+          >
+            <>
+              <Icon name="plus" />
+              {t('add_routing_button')}
+            </>
+          </ManagerButton>
         }
         totalItems={flattenData?.length || 0}
         hasNextPage={hasNextPage}

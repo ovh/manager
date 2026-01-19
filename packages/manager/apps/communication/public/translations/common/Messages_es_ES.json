@@ -34,5 +34,6 @@
   "guided_tour_introduction_start_guide": "Hacer la visita guiada",
   "guided_tour_communications": "Consulte todos los mensajes de correo enviados por OVHcloud, excepto las solicitudes de asistencia.",
   "guided_tour_contacts": "Gestione aquí su lista de contactos y agrega contactos para asociarlos a su configuración de envío.",
-  "guided_tour_settings": "Añada y defina sus reglas de envío para elegir los contactos que recibirán las comunicaciones, en función de las categorías y prioridades seleccionadas."
+  "guided_tour_settings": "Añada y defina sus reglas de envío para elegir los contactos que recibirán las comunicaciones, en función de las categorías y prioridades seleccionadas.",
+  "guide_menu_account_messages": "Gestionar las comunicaciones"
 }

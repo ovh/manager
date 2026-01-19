@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotificationContactStatus from './NotificationContactStatus.component';
 import { Contact } from '@/data/types';
 
@@ -52,13 +51,12 @@ describe('NotificationContactStatus.component', () => {
     if (!contactWithoutError) {
       throw new Error('Test contact not found');
     }
-    const { container } = render(
+    const { queryByRole } = render(
       <NotificationContactStatus
-        notificationId="01975e44-9b60-77b4-8af3-58efdcd12e90"
         contacts={[contactWithoutError]}
       />,
     );
-    const contactStatusElement = container.querySelector('ods-icon');
+    const contactStatusElement = queryByRole('button');
     expect(contactStatusElement).not.toBeInTheDocument();
   });
 
@@ -67,18 +65,13 @@ describe('NotificationContactStatus.component', () => {
     if (!contactWithError) {
       throw new Error('Test contact not found');
     }
-    const { container } = render(
+    const { getByRole } = render(
       <NotificationContactStatus
-        notificationId="01975e44-9b60-77b4-8af3-58efdcd12e90"
         contacts={[contactWithError]}
       />,
     );
-    const contactStatusElement = container.querySelector('ods-icon');
+    const contactStatusElement = getByRole('button');
     expect(contactStatusElement).toBeInTheDocument();
-    expect(contactStatusElement).toHaveAttribute(
-      'name',
-      ODS_ICON_NAME.triangleExclamation,
-    );
     expect(contactStatusElement).toHaveClass(
       'text-[var(--ods-color-warning-500)]',
     );
@@ -89,31 +82,25 @@ describe('NotificationContactStatus.component', () => {
     if (!contactWithBounced) {
       throw new Error('Test contact not found');
     }
-    const { container } = render(
+    const { getByRole } = render(
       <NotificationContactStatus
-        notificationId="01975e44-9b60-77b4-8af3-58efdcd12e90"
         contacts={[contactWithBounced]}
       />,
     );
-    const contactStatusElement = container.querySelector('ods-icon');
+    const contactStatusElement = getByRole('button');
     expect(contactStatusElement).toBeInTheDocument();
-    expect(contactStatusElement).toHaveAttribute(
-      'name',
-      ODS_ICON_NAME.triangleExclamation,
-    );
     expect(contactStatusElement).toHaveClass(
       'text-[var(--ods-color-warning-500)]',
     );
   });
 
   it('should pick the first contact with error or BOUNCED status', () => {
-    const { container } = render(
+    const { getByRole } = render(
       <NotificationContactStatus
-        notificationId="01975e44-9b60-77b4-8af3-58efdcd12e90"
         contacts={mockedContacts}
       />,
     );
-    const contactStatusElement = container.querySelector('ods-icon');
+    const contactStatusElement = getByRole('button');
     expect(contactStatusElement).toBeInTheDocument();
     expect(contactStatusElement).toHaveClass(
       'text-[var(--ods-color-warning-500)]',

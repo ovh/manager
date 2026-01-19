@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useGuidedTour } from '../../hooks/useGuidedTour/useGuidedTour.context';
 import { GuidePlacement } from '../../hooks/useGuidedTour/useGuidedTour.type';
-import { BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT } from '@ovh-ux/muk';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge, BADGE_COLOR, BADGE_SIZE, Card, Text, Button, BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 import {
   computePopoverPosition,
   getTargetElementRect,
   updateStepHighlight,
 } from './GuidedTour.helpers';
-import { Card, Text } from '@ovh-ux/muk';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { STEP_ELEMENT_OFFSET } from './GuidedTour.constants';
@@ -167,11 +165,12 @@ export default function GuidedTour(): JSX.Element | null {
         <Card className="bg-white w-full min-h-content">
           <div className="p-5 relative flex flex-col max-h-full">
             <div className="flex justify-end">
-              <OdsBadge
+              <Badge
                 color={BADGE_COLOR.information}
-                label={`${currentStep + 1} / ${steps.length}`}
                 size={BADGE_SIZE.sm}
-              />
+              >
+                {`${currentStep + 1} / ${steps.length}`}
+              </Badge>
             </div>
             <Text className="flex-1 min-h-min mb-5 flex-1">{currentStepData.text}</Text>
             <div className="flex flex-row gap-4 items-center">

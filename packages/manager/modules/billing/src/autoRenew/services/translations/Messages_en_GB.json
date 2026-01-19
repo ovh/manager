@@ -11,5 +11,7 @@
   "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "We’re sorry, but this action is not available.",
   "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "We’re sorry, but this action is not available because ",
   "reason_billing_right": "You’re not the <b>{{contactBilling}}</b> billing contact",
-  "reason_admin_right": "You’re not the <b>{{contactAdmin}}</b> admin contact"
+  "reason_admin_right": "You’re not the <b>{{contactAdmin}}</b> admin contact",
+  "billing_autorenew_service_no_bills": "No bills found for this service",
+  "billing_autorenew_service_bills_retrieval_failure": "Unable to retrieve bills for the service: {{ message }}"
 }

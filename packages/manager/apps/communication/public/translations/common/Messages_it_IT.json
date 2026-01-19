@@ -34,5 +34,6 @@
   "guided_tour_introduction_start_guide": "Segui il tour guidato",
   "guided_tour_communications": "Qui sono disponibili tutti i messaggi inviati da OVHcloud, ad eccezione delle richieste di assistenza.",
   "guided_tour_contacts": "Gestisci qui la tua lista dei contatti e aggiungine per associarli ai tuoi parametri di invio.",
-  "guided_tour_settings": "Aggiungi e definisci le tue regole di invio per scegliere quali contatti riceveranno le comunicazioni, in base alle categorie e alle priorità selezionate."
+  "guided_tour_settings": "Aggiungi e definisci le tue regole di invio per scegliere quali contatti riceveranno le comunicazioni, in base alle categorie e alle priorità selezionate.",
+  "guide_menu_account_messages": "Gestire le comunicazioni"
 }

@@ -3,11 +3,14 @@ import {
   sharedConfig,
   mergeConfig,
   createConfig,
+  stubStylesPlugin,
+  defaultDedupedDependencies,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
+    plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
     test: {
       setupFiles: './src/setupTests.ts',
       fileParallelism: false,
@@ -16,8 +19,12 @@ export default mergeConfig(
         forks: { singleFork: true },
         threads: { singleThread: true },
       },
+      deps: {
+        inline: ['@ovhcloud/ods-react'],
+      },
     },
     resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },

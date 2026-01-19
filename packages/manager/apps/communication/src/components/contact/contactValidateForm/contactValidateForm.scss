@@ -1,7 +1,7 @@
-.otp-input::part(input) {
+.otp-input input,
+ods-input.otp-input input {
   text-align: center;
-  padding: 0.5rem;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   letter-spacing: 0.5rem;
   color: var(--ods-color-neutral-500);
 }
