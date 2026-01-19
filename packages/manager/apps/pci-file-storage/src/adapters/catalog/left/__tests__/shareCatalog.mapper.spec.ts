@@ -19,7 +19,7 @@ vi.mock('../../../../public/assets/LZ.svg', () => ({
 
 // Mock service functions
 vi.mock('@/domain/services/catalog.service', () => ({
-  getMicroRegions: (macroRegion: TMacroRegion) => () => {
+  getMicroRegions: (macroRegion: TMacroRegion) => {
     return macroRegion.microRegions.map((id) => ({
       name: `micro-${id}`,
       availabilityZones: ['zone1'],
@@ -27,7 +27,7 @@ vi.mock('@/domain/services/catalog.service', () => ({
       isInMaintenance: false,
     }));
   },
-  isMacroRegionAvailable: (macroRegion: TMacroRegion) => () => {
+  isMacroRegionAvailable: (macroRegion: TMacroRegion) => {
     return macroRegion.microRegions.length > 0;
   },
 }));

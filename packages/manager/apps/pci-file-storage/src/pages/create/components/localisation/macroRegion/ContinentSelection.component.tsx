@@ -12,7 +12,7 @@ import {
   SelectValueChangeDetail,
 } from '@ovhcloud/ods-react';
 
-import { selectContinent } from '@/adapters/catalog/left/shareCatalog.selector';
+import { selectContinent } from '@/pages/create/view-model/shareCatalog.view-model';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 

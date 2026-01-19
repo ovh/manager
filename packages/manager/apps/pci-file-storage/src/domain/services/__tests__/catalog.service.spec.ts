@@ -39,7 +39,10 @@ describe('catalog.service', () => {
         expectedIds: [],
       },
     ])('$description', ({ macroRegion, microRegionsById, expectedIds }) => {
-      const result = getMicroRegions(macroRegion as TMacroRegion | undefined)(microRegionsById);
+      const result = getMicroRegions(
+        macroRegion as TMacroRegion | undefined,
+        microRegionsById,
+      );
 
       expectedIds.forEach((id, index) => {
         expect(result[index]).toEqual(microRegionsById.get(id));
@@ -107,7 +110,8 @@ describe('catalog.service', () => {
         expected: false,
       },
     ])('$description', ({ macroRegion, microRegionsById, expected }) => {
-      const result = isMacroRegionAvailable(macroRegion as TMacroRegion | undefined)(
+      const result = isMacroRegionAvailable(
+        macroRegion as TMacroRegion | undefined,
         microRegionsById,
       );
 

@@ -53,7 +53,7 @@ export const mapRegionToLocalizationCard =
       microRegion: getMicroRegionName(region, microRegionsById),
       countryCode: region.country,
       deploymentMode: region.deploymentMode,
-      microRegions: getMicroRegions(region)(microRegionsById),
-      available: isMacroRegionAvailable(region)(microRegionsById),
+      microRegions: getMicroRegions(region, microRegionsById),
+      available: isMacroRegionAvailable(region, microRegionsById),
     };
   };

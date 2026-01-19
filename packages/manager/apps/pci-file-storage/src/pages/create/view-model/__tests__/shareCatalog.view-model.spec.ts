@@ -5,7 +5,7 @@ import {
   selectContinent,
   selectDeploymentModes,
   selectLocalizations,
-} from '@/adapters/catalog/left/shareCatalog.selector';
+} from '@/pages/create/view-model/shareCatalog.view-model';
 import {
   TContinent,
   TDeploymentMode,
@@ -200,3 +200,4 @@ describe('share catalog selectors', () => {
     );
   });
 });
+

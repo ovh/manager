@@ -9,7 +9,7 @@ import { RadioGroup } from '@ovhcloud/ods-react';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { TRegionData } from '@/adapters/catalog/left/data.type';
-import { selectLocalizations } from '@/adapters/catalog/left/shareCatalog.selector';
+import { selectLocalizations } from '@/pages/create/view-model/shareCatalog.view-model';
 import { LocalizationCard } from '@/components/new-lib/localizationCard/LocalizationCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { ContinentSelection } from '@/pages/create/components/localisation/macroRegion/ContinentSelection.component';
