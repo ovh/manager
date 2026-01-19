@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Translation, useTranslation } from 'react-i18next';
 
@@ -16,8 +16,6 @@ import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
-  OdsRadioGroupValueChangeEventDetail,
-  OsdsRadioGroupCustomEvent,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
@@ -36,6 +34,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useParam } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -55,15 +54,15 @@ import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
 import NoGatewayLinkedMessage from '@/components/network/NoGatewayLinkedWarning.component';
 import { SubnetSelector } from '@/components/network/SubnetSelector.component';
 import { WORKER_NODE_POLICIES } from '@/constants';
-import { getFormatedKubeVersion, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { getFormatedKubeVersion, isStandardPlan } from '@/helpers';
+import { isValidGateway } from '@/helpers/networks';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
-
-import { isValidGateway3AZ } from '../new/steps/NetworkClusterStep.component';
+import { TClusterPlanEnum } from '@/types';
 
 export default function ResetClusterPage() {
   const { t } = useTranslation(['network-add', 'listing', 'reset', 'add']);
   const { addError, addSuccess } = useNotifications();
-  const { projectId, kubeId } = useParams();
+  const { projectId, kubeId } = useParam('projectId', 'kubeId');
   const navigate = useNavigate();
   const { tracking } = useContext(ShellContext)?.shell || {};
   const [isExpanded, setIsExpanded] = useState(false);
@@ -115,13 +114,15 @@ export default function ResetClusterPage() {
   const shouldWarnSubnet =
     formState.subnet &&
     !formState.subnet?.gatewayIp &&
-    !isMultiDeploymentZones(regionInformations?.type);
+    kubernetesCluster?.plan &&
+    !isStandardPlan(kubernetesCluster.plan);
 
   const shouldWarnLoadBalancerSubnet =
     formState.subnet?.gatewayIp &&
     formState.loadBalancersSubnet &&
     !formState.loadBalancersSubnet?.gatewayIp &&
-    !isMultiDeploymentZones(regionInformations?.type);
+    kubernetesCluster?.plan &&
+    !isStandardPlan(kubernetesCluster.plan);
 
   const { resetCluster, isPending: isPendingResetCluster } = useResetCluster({
     onError(error: ApiError) {
@@ -200,17 +201,16 @@ export default function ResetClusterPage() {
                 />
               </OsdsMessage>
 
-              {isMultiDeploymentZones(regionInformations.type) && (
-                <>
-                  <MultiZoneInfo />
-                  {gateways && (
-                    <NoGatewayLinkedMessage
-                      type={regionInformations?.type}
-                      gateways={gateways}
-                      network={privateNetworks}
-                    />
-                  )}
-                </>
+              <MultiZoneInfo
+                isStandard={kubernetesCluster?.plan && isStandardPlan(kubernetesCluster.plan)}
+              />
+
+              {kubernetesCluster?.plan && isStandardPlan(kubernetesCluster.plan) && gateways && (
+                <NoGatewayLinkedMessage
+                  gateways={gateways}
+                  network={privateNetworks}
+                  plan={TClusterPlanEnum.STANDARD}
+                />
               )}
             </div>
 
@@ -225,13 +225,13 @@ export default function ResetClusterPage() {
               </OsdsText>
               <OsdsRadioGroup
                 value={formState.workerNodesPolicy}
-                onOdsValueChange={(
-                  event: OsdsRadioGroupCustomEvent<OdsRadioGroupValueChangeEventDetail>,
-                ) => {
-                  setFormState({
-                    ...formState,
-                    workerNodesPolicy: event.detail.newValue,
-                  });
+                onOdsValueChange={(event) => {
+                  if (event.detail.newValue) {
+                    setFormState({
+                      ...formState,
+                      workerNodesPolicy: event.detail.newValue,
+                    });
+                  }
                 }}
               >
                 <OsdsRadio value={WORKER_NODE_POLICIES.DELETE}>
@@ -249,7 +249,9 @@ export default function ResetClusterPage() {
                   </OsdsRadioButton>
                 </OsdsRadio>
                 <OsdsRadio
-                  disabled={isMultiDeploymentZones(regionInformations?.type) ?? undefined}
+                  disabled={
+                    (kubernetesCluster?.plan && isStandardPlan(kubernetesCluster.plan)) || undefined
+                  }
                   value={WORKER_NODE_POLICIES.REINSTALL}
                   className="mt-2"
                 >
@@ -264,7 +266,7 @@ export default function ResetClusterPage() {
                     >
                       <div className="flex items-center gap-2">
                         {t('reset:pci_projects_project_kubernetes_service_reset_common_reinstall')}
-                        {isMultiDeploymentZones(regionInformations?.type) && (
+                        {kubernetesCluster?.plan && isStandardPlan(kubernetesCluster.plan) && (
                           <OsdsChip size={ODS_CHIP_SIZE.sm} inline>
                             {t('add:kube_add_plan_content_coming_very_soon')}
                           </OsdsChip>
@@ -290,7 +292,7 @@ export default function ResetClusterPage() {
                 onOdsValueChange={(event) => {
                   setFormState({
                     ...formState,
-                    selectedVersion: event.detail.value.toString(),
+                    selectedVersion: event.detail.value?.toString(),
                   });
                 }}
               >
@@ -315,9 +317,9 @@ export default function ResetClusterPage() {
               <SelectComponent
                 value={
                   formState.privateNetworkId ||
-                  (isMonoDeploymentZone(regionInformations.type)
+                  (kubernetesCluster?.plan && !isStandardPlan(kubernetesCluster?.plan)
                     ? defaultNetwork?.id
-                    : privateNetworks[0]?.id)
+                    : privateNetworks?.[0]?.id)
                 }
                 onOdsValueChange={(event) => {
                   const value = `${event.detail.value}`;
@@ -329,7 +331,7 @@ export default function ResetClusterPage() {
                   });
                 }}
               >
-                {isMonoDeploymentZone(regionInformations.type) && (
+                {kubernetesCluster?.plan && !isStandardPlan(kubernetesCluster.plan) && (
                   <OsdsSelectOption value={defaultNetwork.id}>
                     {defaultNetwork.name}
                   </OsdsSelectOption>
@@ -365,7 +367,8 @@ export default function ResetClusterPage() {
 
             {formState.privateNetworkId &&
               formState.subnet &&
-              isMonoDeploymentZone(regionInformations.type) && (
+              kubernetesCluster?.plan &&
+              !isStandardPlan(kubernetesCluster?.plan) && (
                 <>
                   <GatewaySelector
                     initialValue={formState.gateway}
@@ -440,8 +443,9 @@ export default function ResetClusterPage() {
           isPending ||
           isLoadingListGateways ||
           (formState.gateway.mode === ModeEnum.CUSTOM && formState.gateway.ip === '') ||
-          (!isValidGateway3AZ(regionInformations?.type, gateways) &&
-            isMultiDeploymentZones(regionInformations.type)) ||
+          (kubernetesCluster?.plan &&
+            isStandardPlan(kubernetesCluster?.plan) &&
+            !isValidGateway(gateways)) ||
           undefined
         }
         onClick={() => {

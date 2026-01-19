@@ -124,7 +124,7 @@ describe('ClusterAccessAndSecurity', () => {
   it('renders nodes URL with clipboard component in 1az', () => {
     const { container, getByText } = render(
       <ClusterAccessAndSecurity
-        kubeDetail={{ status: 'READY', nodesUrl: 'http://nodes.url' } as TKube}
+        kubeDetail={{ status: 'READY', nodesUrl: 'http://nodes.url', plan: 'free' } as TKube}
       />,
       { wrapper },
     );

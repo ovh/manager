@@ -71,6 +71,14 @@ export type TClusterCustomization = {
 export enum TClusterPlanEnum {
   FREE = 'free',
   STANDARD = 'standard',
+  ALL = 'all',
+}
+
+export enum TClusterPlanCodeEnum {
+  FREE1AZ = 'mks.free.hour.consumption',
+  FREE3AZ = 'mks.free.hour.consumption.3az',
+  STANDARD1AZ = 'mks.standard.hour.consumption',
+  STANDARD3AZ = 'mks.standard.hour.consumption.3az',
 }
 
 export type TClusterPlan = (typeof TClusterPlanEnum)[keyof typeof TClusterPlanEnum];
@@ -235,12 +243,11 @@ export type TCreateNodePoolParam = {
 
 export type TPlan = {
   title: string;
-  type: DeploymentMode;
   description: string;
   content: string[];
   footer?: string;
   value: TClusterPlan;
-  code: string;
+  code: string | null;
   price: number | null;
 };
 
@@ -269,3 +276,5 @@ export enum ResourceStatus {
   ERROR = 'ERROR',
   ENABLED = 'ENABLED',
 }
+
+export * from './region';

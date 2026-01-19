@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useMemo, useState } from 'react';
+import { FormEvent, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -17,53 +17,46 @@ import {
 import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 import RadioTile from '@/components/radio-tile/RadioTile.component';
-import { cn, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { cn, isMultiDeploymentZones } from '@/helpers';
+import useStandardPlanAvailable from '@/hooks/useStandardPlanAvailable';
 import { DeploymentMode, TClusterPlan, TClusterPlanEnum } from '@/types';
 
 import usePlanData from '../hooks/usePlanData';
 import { StepState } from '../hooks/useStep';
 
-const PlanTile = ({
-  onSubmit,
-  step,
-  type,
-}: {
+export type TPlanTileProps = {
   onSubmit: (plan: TClusterPlan) => void;
   step: StepState;
   type: DeploymentMode;
-}) => {
-  const [selected, setSelected] = useState<TClusterPlan>(
-    isMonoDeploymentZone(type) ? TClusterPlanEnum.FREE : TClusterPlanEnum.STANDARD,
-  );
+  codes: string[];
+};
+
+const PlanTile = ({ onSubmit, step, type, codes }: TPlanTileProps) => {
   const { t } = useTranslation(['add', 'stepper']);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(selected);
   };
-  const { plans, isPending: isPendingPlans } = usePlanData();
+  const { plans, isPending: isPendingPlans } = usePlanData(codes, isMultiDeploymentZones(type));
 
-  const planIsDisabled = (plan: TClusterPlan) =>
-    (isMonoDeploymentZone(type) && plan === TClusterPlanEnum.STANDARD) ||
-    (isMultiDeploymentZones(type) && plan === TClusterPlanEnum.FREE);
+  const planIsDisabled = (code: string | null) => !code;
 
-  const getSortOrder = useCallback(
-    (typeRegion: string) => {
-      const priority = {
-        [DeploymentMode.MULTI_ZONES]: TClusterPlanEnum.STANDARD,
-        [DeploymentMode.MONO_ZONE]: TClusterPlanEnum.FREE,
-      };
-      return priority[type as keyof typeof priority]
-        ? (a: { value: string }) =>
-            a.value === priority[typeRegion as keyof typeof priority] ? -1 : 1
-        : () => 0;
-    },
-    [type],
-  );
+  const CODE_PRIORITY = ['standard', 'free'];
 
   const sortedPlans = useMemo(
-    () => [...plans].sort(getSortOrder(type)),
-    [plans, getSortOrder, type],
+    () =>
+      [...plans].sort((a, b) => {
+        if (a.code === null) return 1;
+        if (b.code === null) return -1;
+
+        return CODE_PRIORITY.indexOf(a.code) - CODE_PRIORITY.indexOf(b.code);
+      }),
+    [plans],
+  );
+
+  const [selected, setSelected] = useState<TClusterPlan>(
+    sortedPlans?.[0]?.value ?? TClusterPlanEnum.FREE,
   );
 
   return (
@@ -78,17 +71,17 @@ const PlanTile = ({
       <div>
         {!step.isLocked &&
           (isPendingPlans ? (
-            <Spinner size="md" />
+            <Spinner size="md" data-testid="spinner" />
           ) : (
             <div className="my-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {sortedPlans.map((plan) => (
                 <RadioTile
-                  disabled={planIsDisabled(plan.value)}
+                  disabled={planIsDisabled(plan.code)}
                   key={plan.value}
                   data-testid={`plan-tile-radio-tile-${plan.value}`}
                   name="plan-select"
                   tileClassName="h-full"
-                  onChange={() => !planIsDisabled(plan.value) && setSelected(plan.value)}
+                  onChange={() => !planIsDisabled(plan.code) && setSelected(plan.value)}
                   value={plan.value}
                   checked={selected === plan.value}
                 >
@@ -96,10 +89,10 @@ const PlanTile = ({
                     <PlanTile.Header
                       type={type}
                       value={plan.value}
-                      selected={!planIsDisabled(plan.value) && selected === plan.value}
+                      selected={!planIsDisabled(plan.code) && selected === plan.value}
                       title={plan.title}
                       description={plan.description}
-                      disabled={planIsDisabled(plan.value)}
+                      disabled={planIsDisabled(plan.code)}
                     />
                   )}
                   <div className="px-6 py-2">
@@ -108,14 +101,14 @@ const PlanTile = ({
 
                   <div className="flex flex-col gap-3 px-6 py-4 text-sm">
                     <PlanTile.Content
-                      disabled={planIsDisabled(plan.value)}
+                      disabled={planIsDisabled(plan.code)}
                       contents={plan.content}
                     />
                   </div>
 
                   <PlanTile.Footer
                     isFreePlan={plan.value === TClusterPlanEnum.FREE}
-                    isDisabled={planIsDisabled(plan.value)}
+                    isDisabled={planIsDisabled(plan.code)}
                     price={plan.price}
                     content={`kube_add_plan_footer_${plan.value}`}
                   />
@@ -125,7 +118,7 @@ const PlanTile = ({
           ))}
         {step.isLocked && (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <PlanTile.LockedView value={selected} />
+            <PlanTile.LockedView value={selected} codes={codes} type={type} />
           </div>
         )}
       </div>
@@ -146,9 +139,11 @@ const PlanTile = ({
 
 PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
   const { t } = useTranslation(['add']);
+  const hasStandardFeature = useStandardPlanAvailable();
   const [open, setOpen] = useState(true);
   return (
-    open && (
+    open &&
+    ((isMultiDeploymentZones(type) && hasStandardFeature) || !hasStandardFeature) && (
       <Message
         variant="default"
         dismissible
@@ -171,9 +166,17 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
   );
 };
 
-PlanTile.LockedView = function PlanTileLockedView({ value }: { value: TClusterPlan }) {
+PlanTile.LockedView = function PlanTileLockedView({
+  value,
+  codes,
+  type,
+}: {
+  value: TClusterPlan;
+  codes: string[];
+  type: DeploymentMode;
+}) {
   const { t } = useTranslation(['add']);
-  const { plans } = usePlanData();
+  const { plans } = usePlanData(codes, isMultiDeploymentZones(type));
   const plan = useMemo(() => plans.find((p) => p.value === value), [plans, value]);
 
   if (!plan) return null;
@@ -196,8 +199,6 @@ PlanTile.Header = function PlanTileHeader({
   title,
   description,
   disabled,
-  value,
-  type,
 }: {
   selected: boolean;
   title: string;
@@ -207,10 +208,6 @@ PlanTile.Header = function PlanTileHeader({
   type: DeploymentMode;
 }) {
   const { t } = useTranslation(['add']);
-  const displayWarningMessage =
-    disabled &&
-    ((value === TClusterPlanEnum.FREE && isMultiDeploymentZones(type)) ||
-      (value === TClusterPlanEnum.STANDARD && isMonoDeploymentZone(type)));
 
   return (
     <div className=" px-6 py-4">
@@ -221,9 +218,9 @@ PlanTile.Header = function PlanTileHeader({
         >
           {t(title)}
         </h5>
-        {displayWarningMessage && (
+        {disabled && (
           <Badge className="rounded-[1rem]" color="information">
-            {t('kube_add_plan_content_coming_very_soon')}
+            {t('kube_add_plan_content_not_available')}
           </Badge>
         )}
       </div>

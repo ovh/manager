@@ -21,7 +21,7 @@ import {
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import { useRegionSubnets } from '@/api/hooks/useSubnets';
 import { PROCESSING_STATUS } from '@/constants';
-import { isMonoDeploymentZone } from '@/helpers';
+import { isStandardPlan } from '@/helpers';
 import { TKube } from '@/types';
 
 import TileLine from './TileLine.component';
@@ -42,15 +42,14 @@ export default function ClusterNetwork({ projectId, kubeDetail }: Readonly<Clust
     kubeDetail.privateNetworkId,
   );
 
-  const { data: regionInformations, isPending: isPendingRegionInformation } = useRegionInformations(
+  const { isPending: isPendingRegionInformation } = useRegionInformations(
     projectId,
     kubeDetail.region,
   );
 
   const shouldLoadSubnets = !!kubeDetail.privateNetworkId;
 
-  const shoulShowChangePrivateNetwork =
-    regionInformations?.type && isMonoDeploymentZone(regionInformations?.type);
+  const shoulShowChangePrivateNetwork = kubeDetail.plan && !isStandardPlan(kubeDetail.plan);
 
   const ip = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
 
