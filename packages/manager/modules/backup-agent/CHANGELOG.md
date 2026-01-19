@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.8.1...@ovh-ux/backup-agent@1.9.0) (2026-01-19)
+
+
+### Features
+
+* **backup-agent:** add guides on all dashboard ([9bac090](https://github.com/ovh/manager/commit/9bac0903272fc03a1b6dd242f3d2d87fb81d7861)), closes [#BKP-736](https://github.com/ovh/manager/issues/BKP-736)
+* **backup-agent:** add powershell command for windows agent ([256b8e6](https://github.com/ovh/manager/commit/256b8e60be2442df37104600ccbebad373659c04)), closes [#BKP-733](https://github.com/ovh/manager/issues/BKP-733)
+* **backup-agent:** add server column on agent listing ([3794efa](https://github.com/ovh/manager/commit/3794efa7b6ef02a2eae1a7fe68830937247a14af)), closes [#BKP-734](https://github.com/ovh/manager/issues/BKP-734)
+* **backup-agent:** disabled configuration for agent not enabled ([b29ad41](https://github.com/ovh/manager/commit/b29ad41223790e4b86fbbc441452872785eba88a)), closes [#BKP-735](https://github.com/ovh/manager/issues/BKP-735)
+* **download-agent:** add get link filename utils ([174c426](https://github.com/ovh/manager/commit/174c42606297b9ffeb49fedbf3fb88618fe50c3b)), closes [#BKP-733](https://github.com/ovh/manager/issues/BKP-733)
+
+
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.8.0...@ovh-ux/backup-agent@1.8.1) (2026-01-15)
 
 **Note:** Version bump only for package @ovh-ux/backup-agent
