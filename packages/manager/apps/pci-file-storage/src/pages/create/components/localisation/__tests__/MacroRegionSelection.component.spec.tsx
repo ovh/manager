@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { ControllerRenderProps, FieldValues, useFormContext } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TRegionData } from '@/adapters/catalog/left/data.type';
+import { TRegionData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { MacroRegionSelection } from '@/pages/create/components/localisation/macroRegion/MacroRegionSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';

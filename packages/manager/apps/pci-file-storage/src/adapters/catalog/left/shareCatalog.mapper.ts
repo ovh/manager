@@ -2,7 +2,7 @@ import {
   TDeploymentModeDataForCard,
   TRegionData,
   TSVGImage,
-} from '@/adapters/catalog/left/data.type';
+} from '@/adapters/catalog/left/shareCatalog.data';
 import { TDeploymentMode, TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
 import { getMicroRegions, isMacroRegionAvailable } from '@/domain/services/catalog.service';
 

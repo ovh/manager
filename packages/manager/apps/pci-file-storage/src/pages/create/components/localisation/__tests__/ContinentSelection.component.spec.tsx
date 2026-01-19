@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { FieldValues, useFormContext } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TContinentData } from '@/adapters/catalog/left/data.type';
+import { TContinentData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { ContinentSelection } from '@/pages/create/components/localisation/macroRegion/ContinentSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';

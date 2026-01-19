@@ -1,19 +1,19 @@
 import {
-  TContinentData,
+  TContinentData, TDeploymentModeData,
   TDeploymentModeDataForCard,
   TRegionData,
-} from '@/adapters/catalog/left/data.type';
+} from '@/adapters/catalog/left/shareCatalog.data';
 import {
   mapDeploymentModeForCard,
   mapRegionToLocalizationCard,
 } from '@/adapters/catalog/left/shareCatalog.mapper';
-import { TDeploymentMode, TMacroRegion, TShareCatalog } from '@/domain/entities/catalog.entity';
+import { TMacroRegion, TShareCatalog } from '@/domain/entities/catalog.entity';
 
 export const selectDeploymentModes = (data?: TShareCatalog): TDeploymentModeDataForCard[] =>
   (data?.entities?.deploymentModes?.allIds ?? []).map(mapDeploymentModeForCard);
 
 export type SelectLocalizationsParams = {
-  deploymentModes: TDeploymentMode[];
+  deploymentModes: TDeploymentModeData[];
   continentId: string;
 };
 
@@ -46,7 +46,7 @@ export const selectLocalizations =
   };
 
 export const selectContinent =
-  (deploymentModes: TDeploymentMode[]) =>
+  (deploymentModes: TDeploymentModeData[]) =>
   (data?: TShareCatalog): TContinentData[] => {
     if (!data) return [];
 

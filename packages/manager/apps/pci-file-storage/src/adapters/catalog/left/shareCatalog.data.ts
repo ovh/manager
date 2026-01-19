@@ -1,12 +1,13 @@
 import { ComponentType, SVGProps } from 'react';
 
 import { TCountryIsoCode } from '@/components/new-lib/flag/country-iso-code';
-import { TDeploymentMode } from '@/domain/entities/catalog.entity';
 
 export type TSVGImage = ComponentType<SVGProps<SVGSVGElement>>;
 
+export type TDeploymentModeData = 'region' | 'localzone' | 'region-3-az';
+
 export type TDeploymentModeDataForCard = {
-  mode: TDeploymentMode;
+  mode: TDeploymentModeData;
   labelKey: string;
   descriptionKey: string;
   Image: TSVGImage;
@@ -24,10 +25,11 @@ export type TRegionData = {
   datacenterDetails: string | null;
   macroRegion: string | null;
   microRegion: string | null;
-  deploymentMode: TDeploymentMode;
+  deploymentMode: TDeploymentModeData;
   countryCode: TCountryIsoCode | null;
   microRegions: TMicroRegionDataForCard[];
   available: boolean;
 };
 
 export type TContinentData = { labelKey: string; value: string };
+
