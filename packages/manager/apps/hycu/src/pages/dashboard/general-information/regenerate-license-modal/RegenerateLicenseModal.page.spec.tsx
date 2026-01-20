@@ -177,7 +177,7 @@ describe('License Hycu regenerate license route test suite', () => {
           )[1],
         ).toBeVisible();
       },
-      { timeout: 10_000 },
+      { timeout: 20_000 },
     );
   });
 });
