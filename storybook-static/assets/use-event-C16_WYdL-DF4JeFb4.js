@@ -1,1 +1,0 @@
-import{r as l}from"./index-Bnop-kX6.js";function i(n,e={}){const{sync:t=!1}=e,r=a(n);return l.useCallback((...u)=>{var c;return t?queueMicrotask(()=>{var o;return(o=r.current)==null?void 0:o.call(r,...u)}):(c=r.current)==null?void 0:c.call(r,...u)},[t,r])}function a(n){const e=l.useRef(n);return e.current=n,e}export{i as p};

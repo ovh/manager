@@ -1,1 +1,0 @@
-import{j as s}from"./jsx-runtime-BRNY0I4F.js";import{m as a}from"./index-2w0W-O47-BJ19ihbZ.js";import{r as o}from"./index-Bnop-kX6.js";const i="_medium_1wz46_2",t={medium:i},d=o.forwardRef(({className:m,...r},e)=>s.jsx("img",{className:a(t.medium,m),"data-ods":"medium",ref:e,...r}));d.displayName="Medium";export{d as t};

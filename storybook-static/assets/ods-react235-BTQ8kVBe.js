@@ -1,1 +1,0 @@
-var o=(t=>(t.bottom="bottom",t.bottomEnd="bottom-end",t.bottomStart="bottom-start",t.left="left",t.leftEnd="left-end",t.leftStart="left-start",t.right="right",t.rightEnd="right-end",t.rightStart="right-start",t.top="top",t.topEnd="top-end",t.topStart="top-start",t))(o||{});const r=Object.freeze(Object.values(o));export{o,r};

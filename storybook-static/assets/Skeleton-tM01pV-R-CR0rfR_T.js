@@ -1,1 +1,0 @@
-import{j as a}from"./jsx-runtime-BRNY0I4F.js";import{m as r}from"./index-2w0W-O47-BJ19ihbZ.js";import{r as t}from"./index-Bnop-kX6.js";const m="_skeleton_kauw8_2",l={skeleton:m},n=t.forwardRef(({className:e,...s},o)=>a.jsx("div",{"aria-hidden":"true",className:r(l.skeleton,e),"data-ods":"skeleton",ref:o,...s}));n.displayName="Skeleton";export{n as m};
