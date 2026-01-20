@@ -17,6 +17,7 @@ export const createShareSchema = z.object({
   deploymentModes: deploymentModesShema,
   continent: continentShema,
   macroRegion: stringShema,
+  availabilityZone: z.string().nullable(),
 });
 
 export type CreateShareFormValues = z.infer<typeof createShareSchema>;

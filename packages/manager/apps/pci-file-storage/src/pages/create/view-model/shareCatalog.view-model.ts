@@ -1,7 +1,9 @@
 import {
+  TAvailabilityZoneData,
   TContinentData,
   TDeploymentModeData,
-  TDeploymentModeDataForCard, TMicroRegionData,
+  TDeploymentModeDataForCard,
+  TMicroRegionData,
   TRegionData,
 } from '@/adapters/catalog/left/shareCatalog.data';
 import {
@@ -71,17 +73,31 @@ export const selectContinent =
 
 export const selectMicroRegions =
   (macroRegionId: string) =>
-    (data?: TShareCatalog): TMicroRegionData[] => {
-      if (!data || !macroRegionId) return [];
+  (data?: TShareCatalog): TMicroRegionData[] => {
+    if (!data || !macroRegionId) return [];
 
-      const macroRegion = data.entities.macroRegions.byId.get(macroRegionId);
-      if (!macroRegion) return [];
+    const macroRegion = data.entities.macroRegions.byId.get(macroRegionId);
+    if (!macroRegion) return [];
 
-      const microRegions = getMicroRegions(macroRegion, data.entities.microRegions.byId);
+    const microRegions = getMicroRegions(macroRegion, data.entities.microRegions.byId);
 
-      return microRegions.map((microRegion) => ({
-        label: microRegion.name,
-        value: microRegion.name,
-        disabled: !microRegion.isActivable || microRegion.isInMaintenance,
-      }));
-    };
+    return microRegions.map((microRegion) => ({
+      label: microRegion.name,
+      value: microRegion.name,
+      disabled: !microRegion.isActivable || microRegion.isInMaintenance,
+    }));
+  };
+
+export const selectAvailabilityZones =
+  (microRegionName: string) =>
+  (data?: TShareCatalog): TAvailabilityZoneData[] => {
+    if (!data || !microRegionName) return [];
+
+    const microRegion = data.entities.microRegions.byId.get(microRegionName);
+    if (!microRegion) return [];
+
+    return microRegion.availabilityZones.map((availabilityZone) => ({
+      label: availabilityZone,
+      value: availabilityZone,
+    }));
+  };

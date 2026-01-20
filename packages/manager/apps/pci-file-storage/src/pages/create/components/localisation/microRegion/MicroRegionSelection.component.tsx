@@ -10,7 +10,7 @@ import {
   SelectContent,
   SelectControl,
   SelectValueChangeDetail,
-  Text
+  Text,
 } from '@ovhcloud/ods-react';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
@@ -36,13 +36,8 @@ export const MicroRegionSelection = () => {
       (microRegionOption) => microRegionOption.value === selectedMicroRegion,
     );
 
-    if (
-      !isSelectedMicroRegionInOptions &&
-      microRegionOptions.length > 1
-    ) {
-      const firstEnabledMicroRegion = microRegionOptions.find(
-        (option) => !option.disabled,
-      );
+    if (!isSelectedMicroRegionInOptions && microRegionOptions.length > 1) {
+      const firstEnabledMicroRegion = microRegionOptions.find((option) => !option.disabled);
 
       if (firstEnabledMicroRegion?.value) {
         setValue('shareData.microRegion', firstEnabledMicroRegion.value);
@@ -52,23 +47,18 @@ export const MicroRegionSelection = () => {
 
   return (
     <section>
-      <Text preset="heading-4">
-        {t('create:localisation.microRegion.title')}
-      </Text>
+      <Text preset="heading-4">{t('create:localisation.microRegion.title')}</Text>
       <div className="max-w-[32%]">
         <Controller
           name="shareData.microRegion"
           control={control}
           render={({ field }) => {
-            const handleMicroRegionChange = (
-              microRegions: SelectValueChangeDetail,
-            ) => field.onChange(microRegions.value[0]);
+            const handleMicroRegionChange = (microRegions: SelectValueChangeDetail) =>
+              field.onChange(microRegions.value[0]);
 
             return (
               <FormField>
-                <FormFieldLabel>
-                  {t('create:localisation.microRegion.label')}
-                </FormFieldLabel>
+                <FormFieldLabel>{t('create:localisation.microRegion.label')}</FormFieldLabel>
                 <Select
                   items={microRegionOptions ?? []}
                   value={field.value ? [field.value] : []}

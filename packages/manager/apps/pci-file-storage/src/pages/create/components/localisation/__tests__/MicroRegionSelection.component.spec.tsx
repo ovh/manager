@@ -9,7 +9,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { TMicroRegionData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { MicroRegionSelection } from '@/pages/create/components/localisation/microRegion/MicroRegionSelection.component';
-import { CreateShareFormValues, shareDataShema } from '@/pages/create/schema/CreateShare.schema';
+import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');
@@ -94,7 +94,7 @@ describe('MicroRegionSelection', () => {
     let formValues: DeepPartial<CreateShareFormValues>;
 
     renderWithMockedForm(<MicroRegionSelection />, {
-      defaultValues: { macroRegion: 'GRA', shareData: { microRegion: 'GRA1' }},
+      defaultValues: { macroRegion: 'GRA', shareData: { microRegion: 'GRA1' } },
       onFormChange: (values) => {
         formValues = values;
       },
@@ -145,13 +145,15 @@ describe('MicroRegionSelection', () => {
         data: microRegionOptions,
       } as unknown as QueryObserverSuccessResult<TMicroRegionData[]>);
 
-
       renderWithMockedForm(<MicroRegionSelection />, {
         defaultValues: { macroRegion: 'GRA', shareData: { microRegion: selectedMicroRegion } },
       });
 
       await waitFor(() => {
-        expect(screen.getByRole('combobox')).toHaveAttribute('data-value', `["${expectedMicroRegion}"]`);
+        expect(screen.getByRole('combobox')).toHaveAttribute(
+          'data-value',
+          `["${expectedMicroRegion}"]`,
+        );
       });
     },
   );
@@ -180,21 +182,20 @@ describe('MicroRegionSelection', () => {
       selectedMicroRegion: 'GRA1',
       microRegionOptions: [],
     },
-  ])(
-    'should not auto-select $description',
-    async ({ selectedMicroRegion, microRegionOptions }) => {
-      mockUseShareCatalog.mockReturnValue({
-        data: microRegionOptions,
-      } as unknown as QueryObserverSuccessResult<TMicroRegionData[]>);
+  ])('should not auto-select $description', async ({ selectedMicroRegion, microRegionOptions }) => {
+    mockUseShareCatalog.mockReturnValue({
+      data: microRegionOptions,
+    } as unknown as QueryObserverSuccessResult<TMicroRegionData[]>);
 
-      renderWithMockedForm(<MicroRegionSelection />, {
-        defaultValues: { macroRegion: 'GRA', shareData: { microRegion: selectedMicroRegion } },
-      });
+    renderWithMockedForm(<MicroRegionSelection />, {
+      defaultValues: { macroRegion: 'GRA', shareData: { microRegion: selectedMicroRegion } },
+    });
 
-      await waitFor(() => {
-        expect(screen.getByRole('combobox')).toHaveAttribute('data-value', `["${selectedMicroRegion}"]`);
-      });
-    },
-  );
+    await waitFor(() => {
+      expect(screen.getByRole('combobox')).toHaveAttribute(
+        'data-value',
+        `["${selectedMicroRegion}"]`,
+      );
+    });
+  });
 });
-

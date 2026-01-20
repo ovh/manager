@@ -9,6 +9,7 @@ import {
   TShareCatalog,
 } from '@/domain/entities/catalog.entity';
 import {
+  selectAvailabilityZones,
   selectContinent,
   selectDeploymentModes,
   selectLocalizations,
@@ -212,11 +213,7 @@ describe('share catalog selectors', () => {
   });
 
   describe('selectMicroRegions', () => {
-    const createMicroRegion = (
-      name: string,
-      isActivable: boolean,
-      isInMaintenance: boolean,
-    ) =>
+    const createMicroRegion = (name: string, isActivable: boolean, isInMaintenance: boolean) =>
       ({
         name,
         availabilityZones: [`${name}-A`],
@@ -287,5 +284,81 @@ describe('share catalog selectors', () => {
 
       expect(result).toEqual([]);
     });
+  });
+
+  describe('selectAvailabilityZones', () => {
+    const createMicroRegion = (name: string, availabilityZones: string[]) =>
+      ({
+        name,
+        availabilityZones,
+        isActivable: true,
+        isInMaintenance: false,
+        macroRegionId: 'GRA',
+      }) as TMicroRegion;
+
+    const microRegionsById = new Map<string, TMicroRegion>([
+      ['GRA1', createMicroRegion('GRA1', ['GRA1-A', 'GRA1-B', 'GRA1-C'])],
+      ['GRA2', createMicroRegion('GRA2', ['GRA2-A'])],
+      ['GRA3', createMicroRegion('GRA3', [])],
+    ]);
+
+    const catalog = {
+      entities: {
+        microRegions: {
+          byId: microRegionsById,
+          allIds: ['GRA1', 'GRA2', 'GRA3'],
+        },
+      },
+    } as DeepPartial<TShareCatalog>;
+
+    it.each([
+      {
+        description: 'for a valid micro region with multiple zones',
+        microRegionName: 'GRA1',
+        data: catalog as TShareCatalog,
+        expected: [
+          { label: 'GRA1-A', value: 'GRA1-A' },
+          { label: 'GRA1-B', value: 'GRA1-B' },
+          { label: 'GRA1-C', value: 'GRA1-C' },
+        ],
+      },
+      {
+        description: 'for micro region with one zone',
+        microRegionName: 'GRA2',
+        data: catalog as TShareCatalog,
+        expected: [{ label: 'GRA2-A', value: 'GRA2-A' }],
+      },
+      {
+        description: 'for micro region with no availability zones',
+        microRegionName: 'GRA3',
+        data: catalog as TShareCatalog,
+        expected: [],
+      },
+      {
+        description: 'when micro region does not exist',
+        microRegionName: 'INVALID',
+        data: catalog as TShareCatalog,
+        expected: [],
+      },
+      {
+        description: 'when data is undefined',
+        microRegionName: 'GRA1',
+        data: undefined,
+        expected: [],
+      },
+      {
+        description: 'when microRegionName is empty',
+        microRegionName: '',
+        data: catalog as TShareCatalog,
+        expected: [],
+      },
+    ])(
+      'should return correct availability zones $description',
+      ({ microRegionName, data, expected }) => {
+        const result = selectAvailabilityZones(microRegionName)(data);
+
+        expect(result).toEqual(expected);
+      },
+    );
   });
 });

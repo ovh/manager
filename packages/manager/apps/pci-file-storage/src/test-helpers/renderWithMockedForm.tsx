@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 import { RenderOptions, render } from '@testing-library/react';
-import { DeepPartial, FormProvider, useForm, useWatch } from 'react-hook-form';
+import { DeepPartial, FormProvider, useForm } from 'react-hook-form';
 
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 
@@ -29,7 +29,7 @@ export const renderWithMockedForm: TRenderWithMockedForm = (
         shareData: {
           name: '',
           microRegion: '',
-          ...defaultValues?.shareData
+          ...defaultValues?.shareData,
         },
       },
       mode: 'onChange',
