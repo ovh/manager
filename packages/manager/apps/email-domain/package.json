@@ -18,6 +18,7 @@
     "@ovh-ux/manager-core": "^13.4.0",
     "@ovh-ux/manager-email-domain": "^1.11.14",
     "@ovh-ux/manager-ng-layout-helpers": "^2.13.0",
+    "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.1.6",
     "@ovh-ux/ng-ovh-http": "^5.1.6",
@@ -31,6 +32,7 @@
     "@ovh-ux/ng-ovh-web-universe-components": "^9.21.2",
     "@ovh-ux/ng-pagination-front": "^10.3.6",
     "@ovh-ux/ng-translate-async-loader": "^2.2.6",
+    "@ovh-ux/ng-shell-tracking": "^0.1.1",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.2",
     "@ovh-ux/ng-ui-router-layout": "^4.3.6",
     "@ovh-ux/request-tagger": "^0.6.0",
@@ -60,6 +62,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^7.2.2",
+    "babel-loader": "^10.0.0",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
