@@ -11,9 +11,9 @@ export type ResourceLocationCellProps = {
 };
 
 export const ResourceLocationCell = ({ region }: ResourceLocationCellProps) => {
-  const { data, isLoading, isError } = useLocationDetails(region);
+  const { data, isPending, isError } = useLocationDetails(region);
 
-  if (isLoading) return <OdsSkeleton className="w-full" />;
+  if (isPending) return <OdsSkeleton className="w-full" />;
   if (isError) return <DataGridTextCell>{region}</DataGridTextCell>;
 
   return <DataGridTextCell>{data?.location}</DataGridTextCell>;

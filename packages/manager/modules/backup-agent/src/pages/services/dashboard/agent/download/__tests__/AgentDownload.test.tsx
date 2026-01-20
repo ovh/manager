@@ -131,7 +131,7 @@ describe('AgentDownload', () => {
     const user = userEvent.setup();
     useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
       data: mockAgentDownloadLinks.linuxUrl,
-      isLoading: false,
+      isPending: false,
     });
     render(<DownloadAgentPage />);
 
@@ -155,7 +155,7 @@ describe('AgentDownload', () => {
     // Prepare mock for change value
     useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
       data: mockAgentDownloadLinks.windowsUrl,
-      isLoading: false,
+      isPending: false,
     });
     useBackupVSPCTenantAgentDownloadLinkMock.mockClear();
 

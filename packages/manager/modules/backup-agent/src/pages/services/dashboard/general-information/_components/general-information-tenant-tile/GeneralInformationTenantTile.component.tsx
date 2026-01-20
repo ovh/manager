@@ -17,7 +17,7 @@ export function GeneralInformationTenantTile({ tenantId }: GeneralInformationTen
   const { data, isPending, isError } = useBackupVSPCTenantDetails({ tenantId });
 
   return (
-    <GeneralInformationTile resourceDetails={data} isLoading={isPending}>
+    <GeneralInformationTile resourceDetails={data} isPending={isPending}>
       <ManagerTile.Item>
         {isPending ? (
           <OdsSkeleton />

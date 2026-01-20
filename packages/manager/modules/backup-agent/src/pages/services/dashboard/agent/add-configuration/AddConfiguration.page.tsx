@@ -101,7 +101,7 @@ const AddConfigurationPage = () => {
 
   const os = useWatch({ name: 'os', control });
 
-  const { data: downloadLink, isLoading: isLoadingDownloadLink } =
+  const { data: downloadLink, isPending: isPendingDownloadLink } =
     useBackupVSPCTenantAgentDownloadLink({ tenantId, os: os as OS | undefined });
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -193,10 +193,10 @@ const AddConfigurationPage = () => {
             type="button"
             label={t(`${NAMESPACES.ACTIONS}:download`)}
             isDisabled={!isDownloadEnabled}
-            isLoading={isLoadingDownloadLink}
+            isLoading={isPendingDownloadLink}
           />
         </a>
-        {!isLoadingDownloadLink && (
+        {!isPendingDownloadLink && (
           <DownloadCode
             className="break-all [&::part(tooltip)]:hidden"
             osCompatibility={(os as OS) ?? 'LINUX'}

@@ -20,12 +20,12 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
     NAMESPACES.REGION,
     'dashboard',
   ]);
-  const { data: vault, isLoading: isLoadingVault } = useBackupVaultDetails({ vaultId });
-  const { data: locationData, isLoading: isLocationLoading } = useLocationDetails(
+  const { data: vault, isPending: isPendingVault } = useBackupVaultDetails({ vaultId });
+  const { data: locationData, isPending: isLocationPending } = useLocationDetails(
     vault?.currentState.region,
   );
 
-  const isLoading = isLoadingVault;
+  const isPending = isPendingVault;
 
   /*
   The code below is a copy of GeneralInformationTile component, made specifically for vaults.
@@ -41,14 +41,14 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:name`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{vault!.currentState.name}</OdsText>}
+          {isPending ? <OdsSkeleton /> : <OdsText>{vault!.currentState.name}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.STATUS}:status`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? (
+          {isPending ? (
             <OdsSkeleton />
           ) : (
             <ResourceStatusBadge resourceStatus={vault!.resourceStatus} />
@@ -59,7 +59,7 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:localisation`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isPending || isLocationPending ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{locationData?.location ?? vault!.currentState.region}</OdsText>
@@ -70,7 +70,7 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:region`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isPending || isLocationPending ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{locationData?.name ?? vault!.currentState.region}</OdsText>
@@ -81,7 +81,7 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:reference`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isPending || isLocationPending ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{vault!.currentState.resourceName}</OdsText>

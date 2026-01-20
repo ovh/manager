@@ -36,7 +36,7 @@ export type ResourcesFacadeResult<T> = {
   totalCount?: number;
   hasNextPage?: boolean;
   fetchNextPage?: () => Promise<unknown> | void;
-  isLoading?: boolean;
+  isPending?: boolean;
   status?: 'pending' | 'success' | 'error';
   sorting?: ColumnSort;
   setSorting?: React.Dispatch<React.SetStateAction<ColumnSort>>;

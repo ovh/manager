@@ -20,7 +20,7 @@ import { useBucketColumns } from './_hooks/useBucketColumns.hooks';
 
 export default function VaultBucketsPage() {
   const { vaultId } = useParams<{ vaultId: string }>();
-  const { data: vaultResource, isLoading } = useBackupVaultDetails({ vaultId: vaultId! });
+  const { data: vaultResource, isPending } = useBackupVaultDetails({ vaultId: vaultId! });
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING, NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
   const columns = useBucketColumns();
@@ -37,7 +37,7 @@ export default function VaultBucketsPage() {
               icon="refresh"
               color="primary"
               onClick={void reloadDatagrid}
-              isLoading={isLoading}
+              isLoading={isPending}
               variant="outline"
               data-arialabel={t(`${NAMESPACES.ACTIONS}:refresh`)}
               label=""

@@ -31,7 +31,7 @@ export default function DownloadAgentPage() {
   const closeModal = () => navigate('..');
 
   const { tenantId } = useRequiredParams('tenantId');
-  const { data: downloadLink, isLoading } = useBackupVSPCTenantAgentDownloadLink({
+  const { data: downloadLink, isPending } = useBackupVSPCTenantAgentDownloadLink({
     tenantId,
     os: osSelected,
   });
@@ -74,7 +74,7 @@ export default function DownloadAgentPage() {
             <a href={isDownloadEnabled ? downloadLink : undefined} download>
               <OdsButton
                 label={t(`${NAMESPACES.ACTIONS}:download`)}
-                isLoading={isLoading}
+                isLoading={isPending}
                 isDisabled={!isDownloadEnabled}
               />
             </a>
@@ -84,7 +84,7 @@ export default function DownloadAgentPage() {
           <OdsText>
             {t(`${BACKUP_AGENT_NAMESPACES.AGENT}:download_agent_with_command_line`)}
           </OdsText>
-          {isLoading && downloadLink ? (
+          {isPending && downloadLink ? (
             <OdsSpinner />
           ) : (
             <DownloadCode
