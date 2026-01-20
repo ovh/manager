@@ -60,7 +60,7 @@ export default function Websites() {
   const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
     useDebouncedValue('');
 
-  const { data, isLoading, hasNextPage, fetchAllPages, fetchNextPage, isFetchingNextPage } =
+  const { data, isLoading, hasNextPage, fetchAllPages, fetchNextPage, isFetchingAllPages } =
     useWebHostingAttachedDomain({
       domain: punycode.toASCII(debouncedSearchInput),
     });
@@ -425,10 +425,11 @@ export default function Websites() {
         containerHeight={500}
         data={data ?? []}
         isLoading={isLoading}
-        hasNextPage={!isFetchingNextPage && hasNextPage}
+        hasNextPage={!isFetchingAllPages && hasNextPage}
         onFetchNextPage={(): void => {
           void fetchNextPage();
         }}
+        autoScroll={false}
         onFetchAllPages={fetchAllPages}
         columnVisibility={{ columnVisibility, setColumnVisibility }}
         topbar={

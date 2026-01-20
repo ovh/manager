@@ -311,20 +311,25 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                     >
                       <Tile.Item.Root>
                         <Tile.Item.Description>
-                          <Radio id="import-all-database" value="true">
+                          <Radio
+                            id="import-all-database"
+                            value="true"
+                            className="w-full break-words"
+                          >
                             <RadioControl />
-                            <RadioLabel>
-                              <Text preset={TEXT_PRESET.span}>
-                                {t(
-                                  'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_description',
-                                )}
-                              </Text>
+                            <RadioLabel className="flex w-full min-w-0 flex-row flex-wrap items-start gap-3">
+                              <div className="min-w-0 flex-1 break-words">
+                                <Text preset={TEXT_PRESET.span}>
+                                  {t(
+                                    'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_description',
+                                  )}
+                                </Text>
+                              </div>
                             </RadioLabel>
                           </Radio>
                         </Tile.Item.Description>
                       </Tile.Item.Root>
                     </Tile.Root>
-
                     <Tile.Root
                       title={t(
                         'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_select',
@@ -333,14 +338,19 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
                     >
                       <Tile.Item.Root>
                         <Tile.Item.Description>
-                          <Radio id="import-database" value="false">
+                          <Radio id="import-database" value="false" className="w-full break-words">
                             <RadioControl />
-                            <RadioLabel>
-                              <Text preset={TEXT_PRESET.span}>
-                                {t(
-                                  'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_description',
-                                )}
-                              </Text>
+                            <RadioLabel className="flex w-full min-w-0 flex-row flex-wrap items-start gap-3">
+                              <div className="min-w-0 flex-1 break-words">
+                                <Text
+                                  preset={TEXT_PRESET.span}
+                                  className="block whitespace-normal break-words"
+                                >
+                                  {t(
+                                    'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_description',
+                                  )}
+                                </Text>
+                              </div>
                             </RadioLabel>
                           </Radio>
                         </Tile.Item.Description>
