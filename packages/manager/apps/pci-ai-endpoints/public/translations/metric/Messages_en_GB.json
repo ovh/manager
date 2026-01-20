@@ -3,7 +3,7 @@
   "ai_endpoints_metrics": "Metrics",
   "ai_endpoints_total": "Total",
   "ai_endpoints_totalAudio": "Total audio time (seconds)",
-  "ai_endpoints_noData": "No result",
+  "ai_endpoints_noData": "No metrics for this period",
   "ai_endpoints_loading": "Please wait, we are collecting your data",
   "ai_endpoints_error": "An error has occurred loading metrics. Please try again later",
   "ai_endpoints_input": "Input token",
