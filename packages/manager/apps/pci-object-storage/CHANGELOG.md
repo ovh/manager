@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.30.0...@ovh-ux/manager-pci-object-storage-app@0.31.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* **object-storage:** add replication banner ([d88711b](https://github.com/ovh/manager/commit/d88711b94d69d7eaff611913265b5642f620862f)), closes [#DATATR-2716](https://github.com/ovh/manager/issues/DATATR-2716)
+* **object-storage:** tag implementation and unit test ([cf4a639](https://github.com/ovh/manager/commit/cf4a63992246a939ab6463bbb30a57ba9e2cbaeb)), closes [#DATATR-2658](https://github.com/ovh/manager/issues/DATATR-2658)
+* **pci.os:** fix unit test on os ([a92a8d4](https://github.com/ovh/manager/commit/a92a8d4e587787d8d52a270b9f6c2272ac1529b2)), closes [#DATATR-2567](https://github.com/ovh/manager/issues/DATATR-2567)
+
+
+### Features
+
+* **object-storage:** delete bucket in dashboard ([2c5f056](https://github.com/ovh/manager/commit/2c5f056949e16ad6bfbdc0180713f3644ead6149)), closes [#DATATR-2744](https://github.com/ovh/manager/issues/DATATR-2744)
+
+
+
+
+
 # [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.29.0...@ovh-ux/manager-pci-object-storage-app@0.30.0) (2026-01-13)
 
 

@@ -142,10 +142,8 @@ const ApiTerraformDialog = ({
         } as Disk;
       }
       if (dialogData.network.type === database.NetworkTypeEnum.private) {
-        const networkOpenstackId = dialogData.network.network.regions.find(
-          (r) => r.region.includes(dialogData.region.name),
-        ).openstackId;
-        terraformService.body.networkId = networkOpenstackId;
+        // endpoint does not expect the network id, but the linked openstackId instead
+        terraformService.body.networkId = dialogData.network.networkOpenstackId;
         terraformService.body.subnetId = dialogData.network.subnet.id;
       }
       serviceToTerraform(terraformService);
@@ -165,10 +163,7 @@ const ApiTerraformDialog = ({
     ipRestrictions: dialogData.ipRestrictions,
   } as database.ServiceCreation;
   if (dialogData.network.type === database.NetworkTypeEnum.private) {
-    const networkOpenstackId = dialogData.network.network.regions.find((r) =>
-      r.region.includes(dialogData.availability.region),
-    ).openstackId;
-    apiBodyContent.networkId = networkOpenstackId;
+    apiBodyContent.networkId = dialogData.network.networkOpenstackId;
     apiBodyContent.subnetId = dialogData.network.subnet.id;
   }
   if (dialogData.flavor.storage) {

@@ -55,5 +55,16 @@
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confirm",
   "managed_vcd_dashboard_cancellation_tooltip": "If you would like to cancel your service, please contact our support team.",
   "managed_vcd_dashboard_vrack_title": "vRack networks",
-  "managed_vcd_dashboard_general_network_acl": "Permissions"
+  "managed_vcd_dashboard_general_network_acl": "Permissions",
+  "managed_vcd_dashboard_add_ip_public_block_description": "You can add one of your saved public IP blocks to your vDC, allowing you to assign any IP address it contains to your VMs.",
+  "managed_vcd_dashboard_add_ip_public_block_information": "To view your available IP blocks, you need to first link them to your vDC vRack. Click below to access your vRack.",
+  "managed_vcd_dashboard_add_ip_public_block_no_vrack_ip_information": "Your vRack doesn’t seem to have any IP blocks linked to it. Go to the vRack manager below to link an IP block.",
+  "managed_vcd_dashboard_add_ip_public_block_label": "Public IP block",
+  "managed_vcd_dashboard_add_ip_public_block_modal_heading": "Add a new public IP block",
+  "managed_vcd_dashboard_add_ip_public_block_message_success": "Your request to add the {{gateway}} gateway for the {{blockIp}} public IP block has been processed.",
+  "managed_vcd_dashboard_tile_ip_block_title": "Public access",
+  "managed_vcd_dashboard_tile_ip_block_label": "Number of public IP blocks:",
+  "managed_vcd_dashboard_tile_action_add_ip_block": "Add a new IP block",
+  "managed_vcd_dashboard_tile_action_manage_vrack_segments": "Manage your vRack segments",
+  "managed_vcd_dashboard_add_ip_public_block_add_already_exist": "The gateway {{gateway}} for the IP block {{blockIp}} already exists in the VRack segment, so it can’t be added to the network configuration."
 }

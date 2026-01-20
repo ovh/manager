@@ -2,6 +2,10 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as s3Api from '@/data/api/storage/s3Storage.api';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import S3Layout, { Loader, breadcrumb as Breadcrumb } from './S3.layout';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
@@ -29,18 +33,6 @@ vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   })),
 }));
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      region: 'GRA',
-      s3Name: 's3name',
-    }),
-  };
-});
-
 vi.mock('@/data/api/storage/s3Storage.api', () => ({
   getS3Storage: vi.fn(() => mockedStorageContainer),
 }));
@@ -48,6 +40,12 @@ vi.mock('@/data/api/storage/s3Storage.api', () => ({
 describe('S3.layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
+      region: 'GRA',
+      s3Name: 's3name',
+    });
   });
 
   afterEach(() => {

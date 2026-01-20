@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.40.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.2...@ovh-ux/manager-pci-databases-analytics-app@1.40.3) (2026-01-20)
+
+
+### Bug Fixes
+
+* **database:** missing translation for continent and border style ([3ae8d1b](https://github.com/ovh/manager/commit/3ae8d1bf02c9f8308d853d4ee0025a20d34945f7)), closes [#DATATR-2864](https://github.com/ovh/manager/issues/DATATR-2864)
+* **database:** rework matching subregion to get region Id ([edf2b39](https://github.com/ovh/manager/commit/edf2b39dc1f7c6c6fb1aba13abe120fa8f219708)), closes [#DATATR-2358](https://github.com/ovh/manager/issues/DATATR-2358)
+
+
+
+
+
 ## [1.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.1...@ovh-ux/manager-pci-databases-analytics-app@1.40.2) (2026-01-15)
 
 

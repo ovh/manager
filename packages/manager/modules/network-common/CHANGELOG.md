@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.7...@ovh-ux/manager-network-common@0.8.0) (2026-01-20)
+
+
+### Features
+
+* **vcfaas:** setting blocks ip from generate informations tab ([aee7e8b](https://github.com/ovh/manager/commit/aee7e8b4b10ff55ed07ca73dd582940a043d891e)), closes [#MANAGER-20163](https://github.com/ovh/manager/issues/MANAGER-20163)
+
+
+
+
+
 ## [0.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.7.6...@ovh-ux/manager-network-common@0.7.7) (2026-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-network-common

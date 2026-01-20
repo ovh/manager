@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.28.2...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.29.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* **vcfaas:** display error when acl of orga are in error ([86b0fd6](https://github.com/ovh/manager/commit/86b0fd628bd91945d7c35d21795eac93bf455914)), closes [#MANAGER-20747](https://github.com/ovh/manager/issues/MANAGER-20747)
+
+
+### Features
+
+* **vcfaas:** setting blocks ip from generate informations tab ([aee7e8b](https://github.com/ovh/manager/commit/aee7e8b4b10ff55ed07ca73dd582940a043d891e)), closes [#MANAGER-20163](https://github.com/ovh/manager/issues/MANAGER-20163)
+
+
+
+
+
+## [0.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.28.1...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.28.2) (2026-01-19)
+
+
+### Bug Fixes
+
+* build issues ([eafd05c](https://github.com/ovh/manager/commit/eafd05c672d42235ebf59e0dcd3b1284ac85343f)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
 ## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.28.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.28.1) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
