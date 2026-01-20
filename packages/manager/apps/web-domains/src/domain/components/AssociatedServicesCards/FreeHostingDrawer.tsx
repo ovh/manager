@@ -114,8 +114,8 @@ export default function FreeHostingDrawer({
               disabled={!freeHostingOptions.consent}
               onClick={() =>
                 orderFreeHosting({
-                  cartId: orderCartDetails.cartId,
-                  itemId: orderCartDetails.details[0].cartItemID,
+                  cartId: orderCartDetails?.cartId,
+                  itemId: orderCartDetails?.details[0]?.cartItemID,
                   options: freeHostingOptions,
                 })
               }
