@@ -21,5 +21,6 @@ export const getLocationMocks = ({
     api: 'v2',
     method: 'get',
     status: isLocationError ? 500 : 200,
+    delay: 0,
   },
 ];
