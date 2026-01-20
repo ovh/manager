@@ -1276,10 +1276,10 @@ export const mockedFlavorCategories = [
 ];
 
 export const mockedPrivateNetworks = [
-  { label: 'Priv_roubaix_ovh', value: 'networkId-1' },
-  { label: 'test-waw1_2', value: 'networkId-2' },
-  { label: 'SGB1NET', value: 'networkId-3' },
-  { label: 'test-sbg7-gateway', value: 'networkId-4' },
+  { label: 'Priv_roubaix_ovh', value: 'networkId-1', hasGateway: false },
+  { label: 'test-waw1_2', value: 'networkId-2', hasGateway: true },
+  { label: 'SGB1NET', value: 'networkId-3', hasGateway: false },
+  { label: 'test-sbg7-gateway', value: 'networkId-4', hasGateway: false },
 ];
 
 export const mockedOvhPrivateNetwork = {
@@ -1515,3 +1515,8 @@ export const mockedBackupConfigurationEntity: TBackupConfiguration[] = [
     ],
   },
 ];
+
+export const mockedGatewayConfiguration = {
+  price: 10000,
+  size: 'S',
+};

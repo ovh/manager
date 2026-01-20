@@ -4,10 +4,14 @@ import userEvent from '@testing-library/user-event';
 import Network from '../Network.component';
 import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
 import {
+  mockedGatewayConfiguration,
   mockedOvhPrivateNetwork,
   mockedPrivateNetworks,
 } from '@/__mocks__/instance/constants';
-import { selectPrivateNetworks } from '../../view-models/networksViewModel';
+import {
+  selectPrivateNetworks,
+  selectGatewayConfiguration,
+} from '../../view-models/networksViewModel';
 import {
   ButtonType,
   PageLocation,
@@ -26,6 +30,10 @@ const DEFAULT_CIDR = '10.1.0.0/16';
 
 vi.mock('../../view-models/networksViewModel');
 vi.mocked(selectPrivateNetworks).mockImplementation(selectPrivateNetworksMock);
+vi.mocked(selectGatewayConfiguration).mockReturnValue({
+  ...mockedGatewayConfiguration,
+  isDisabled: false,
+});
 
 type TNetworkItem = { label: string; value: string };
 
@@ -183,5 +191,19 @@ describe('Considering Network component', () => {
         name: 'creation:pci_instance_creation_network_add_new',
       }),
     ).not.toBeInTheDocument();
+  });
+
+  it('should display gateway configuration', () => {
+    setupTest();
+
+    expect(
+      screen.getByText('creation:pci_instance_creation_network_gateway_title'),
+    ).toBeVisible();
+
+    expect(
+      screen.getByLabelText(
+        /creation:pci_instance_creation_network_gateway_toggle_label/i,
+      ),
+    ).not.toBeChecked();
   });
 });

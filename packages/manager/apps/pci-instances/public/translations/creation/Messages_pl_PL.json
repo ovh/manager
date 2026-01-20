@@ -140,5 +140,8 @@
     "custom": "Wybierz samodzielnie harmonogram (format UNIX Cron), liczbę rotacji i maksymalne wykonania, które chcesz."
   },
   "pci_instance_creation_error_title": "Wystąpił błąd",
-  "pci_instance_creation_table_storage_unit_tb": "TB"
+  "pci_instance_creation_table_storage_unit_tb": "TB",
+  "pci_instance_creation_network_gateway_title": "Gateway",
+  "pci_instance_creation_network_gateway_toggle_label": "Przypisz bramkę",
+  "pci_instance_creation_network_gateway_price_label": "Rozmiar {{ size }} - {{ price }}"
 }
