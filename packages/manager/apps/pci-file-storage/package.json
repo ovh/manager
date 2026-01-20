@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-file-storage-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "PCI file storage react app",
   "repository": {
@@ -20,13 +20,13 @@
   },
   "dependencies": {
     "@hookform/resolvers": "3.3.4",
-    "@ovh-ux/manager-common-translations": "*",
+    "@ovh-ux/manager-common-translations": "^0.28.2",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-pci-common": "^2.7.31",
-    "@ovh-ux/manager-react-core-application": "*",
-    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-react-core-application": "^0.15.1",
+    "@ovh-ux/manager-react-shell-client": "^1.2.0",
     "@ovh-ux/muk": "0.5.0",
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "^4.5.7",

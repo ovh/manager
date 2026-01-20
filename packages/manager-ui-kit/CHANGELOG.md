@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.0.0-alpha.0...@ovh-ux/muk@1.0.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* **muk:** datagrid delete row selection in column viiblity ([d1035c1](https://github.com/ovh/manager/commit/d1035c18e002d6f81ccbd081e75caa505b5b8d40)), closes [#MANAGER-20734](https://github.com/ovh/manager/issues/MANAGER-20734)
+* **muk:** link component polymorphism ability ([da29275](https://github.com/ovh/manager/commit/da2927530ddb5bd3b7ffe7dfed4b04ff81a51677)), closes [#EK-2554](https://github.com/ovh/manager/issues/EK-2554)
+
+
+* feat(muk)!: delete ods components ([06a0163](https://github.com/ovh/manager/commit/06a0163addfbe26d81f48edf8b759f107dea6af8)), closes [#MANAGER-20371](https://github.com/ovh/manager/issues/MANAGER-20371)
+
+
+### Features
+
+* **muk:** manually bump muk to v1 ([19ca460](https://github.com/ovh/manager/commit/19ca460f4755e874e4044e64ae95eb43e9d4f929)), closes [#MANAGER-20371](https://github.com/ovh/manager/issues/MANAGER-20371)
+* **muk:** update error boundary component ([2dff7fa](https://github.com/ovh/manager/commit/2dff7fa3a127bdcbc0f3721c028161d3b266df05)), closes [#MANAGER-20684](https://github.com/ovh/manager/issues/MANAGER-20684)
+
+
+### BREAKING CHANGES
+
+* delete export of ods components
+
+Signed-off-by: Alex Boungnaseng <alex.boungnaseng.ext@corp.ovh.com>
+
+
+
+
+
 ## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.13.2...@ovh-ux/muk@0.13.3) (2026-01-15)
 
 **Note:** Version bump only for package @ovh-ux/muk

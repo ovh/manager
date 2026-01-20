@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-app",
-  "version": "0.6.16",
+  "version": "0.6.17",
   "private": true,
   "description": "User account and contacts management application",
   "repository": {
@@ -60,8 +60,8 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^17.0.0",
     "office-ui-fabric-core": "^11.0.0",
+    "ovh-api-services": "^17.0.0",
     "regenerator-runtime": "^0.13.7",
     "whatwg-fetch": "^3.5.0"
   },

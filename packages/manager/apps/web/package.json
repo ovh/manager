@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "19.36.0",
+  "version": "19.36.1",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -129,8 +129,8 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^7.2.2",
-    "eslint-plugin-angular": "4.0.1",
     "babel-loader": "^9.1.0",
+    "eslint-plugin-angular": "4.0.1",
     "glob": "^7.1.4",
     "webpack": "^5.76.2",
     "webpack-merge": "^5.0.2"
