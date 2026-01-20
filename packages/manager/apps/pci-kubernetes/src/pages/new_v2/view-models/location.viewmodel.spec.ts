@@ -1,4 +1,3 @@
-/* eslint-disable max-nested-callbacks */
 import { describe, expect, it } from 'vitest';
 
 import { TContinentCode, TMacroRegion, TPlanCode } from '@/domain/entities/regions';
@@ -6,20 +5,10 @@ import { TContinentCode, TMacroRegion, TPlanCode } from '@/domain/entities/regio
 import {
   filterMacroRegions,
   mapMacroRegionForCards,
-  selectContinentOptions,
   selectMacroRegions,
 } from './location.viewmodel';
 
 describe('location.viewmodel', () => {
-  describe('selectContinentOptions', () => {
-    it('returns all continent options including ALL', () => {
-      const options = selectContinentOptions();
-      expect(options.length).toBeGreaterThan(0);
-      expect(options[0]!.continentCode).toBe('ALL');
-      expect(options.some((opt) => opt.continentCode === 'EU')).toBe(true);
-    });
-  });
-
   describe('selectMacroRegions', () => {
     it('returns undefined when regions is undefined', () => {
       const result = selectMacroRegions(undefined);

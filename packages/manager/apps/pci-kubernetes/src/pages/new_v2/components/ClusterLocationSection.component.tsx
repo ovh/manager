@@ -15,7 +15,13 @@ import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.com
 import { PLAN_DOC_LINKS } from '@/constants';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import { filterAndMapRegions } from '../view-models/location.viewmodel';
+import {
+  filterMacroRegions,
+  mapMacroRegionForCards,
+  selectAvailableContinentOptions,
+  selectAvailablePlanOptions,
+  selectAvailableRegions,
+} from '../view-models/location.viewmodel';
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
 import { MicroRegionSelect } from './location/MicroRegionSelect.component';
@@ -49,24 +55,31 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
   const { data: kubeRegions } = useKubeRegions();
 
   const { data: regions } = useAvailabilityRegions({
-    select: filterAndMapRegions(continentField, planField, deploymentModeField, kubeRegions),
+    select: selectAvailableRegions(deploymentModeField, kubeRegions),
   });
 
+  const continentOptions = useMemo(() => selectAvailableContinentOptions(regions), [regions]);
+
+  const planOptions = useMemo(() => selectAvailablePlanOptions(regions), [regions]);
+
+  const cardRegions = useMemo(
+    () => mapMacroRegionForCards(filterMacroRegions(continentField, planField)(regions)),
+    [regions, continentField, planField],
+  );
+
   const selectedMacroRegion = useMemo(
-    () => regions?.find(({ id }) => id === macroRegionField),
-    [macroRegionField, regions],
+    () => cardRegions?.find(({ id }) => id === macroRegionField),
+    [macroRegionField, cardRegions],
   );
 
   // Default Value Handler
   useEffect(() => {
-    const firstMacroRegion = regions?.find((region) => !region.disabled);
+    const firstMacroRegion = cardRegions?.find((region) => !region.disabled);
     const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
-
     if (macroRegionField || microRegionField || !firstMacroRegion || !firstMicroRegion) return;
-
     setValue('location.macroRegion', firstMacroRegion.id);
     setValue('location.microRegion', firstMicroRegion);
-  }, [macroRegionField, microRegionField, regions, setValue]);
+  }, [macroRegionField, microRegionField, cardRegions, setValue]);
 
   const planDocumentationLink =
     PLAN_DOC_LINKS[ovhSubsidiary as keyof typeof PLAN_DOC_LINKS] ?? PLAN_DOC_LINKS.DEFAULT;
@@ -95,12 +108,12 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
           </Message>
           <DeploymentModeSelect />
           <div className="my-6 grid items-end gap-6 sm:grid-cols-2 lg:w-max">
-            <ContinentSelect />
-            <PlanSelect />
+            <ContinentSelect options={continentOptions ?? []} />
+            <PlanSelect options={planOptions} />
           </div>
         </>
       )}
-      <RegionSelect regions={regions} />
+      <RegionSelect regions={cardRegions} />
       {selectedMacroRegion?.microRegions && selectedMacroRegion?.microRegions.length > 1 && (
         <MicroRegionSelect regions={selectedMacroRegion?.microRegions} />
       )}
