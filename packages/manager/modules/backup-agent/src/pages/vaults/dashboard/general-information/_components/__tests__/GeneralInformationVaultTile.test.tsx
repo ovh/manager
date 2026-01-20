@@ -24,16 +24,16 @@ vi.mock(
   () => ({
     GeneralInformationTile: <T extends { name: string }>({
       resourceDetails,
-      isLoading,
+      isPending,
     }: GeneralInformationTileProps<T>) =>
-      isLoading ? <>is loading</> : <>{resourceDetails?.currentState.name}</>,
+      isPending ? <>is loading</> : <>{resourceDetails?.currentState.name}</>,
   }),
 );
 
 describe('GeneralInformationVaultTile', () => {
   it('Should render GeneralInformationVaultTile component', async () => {
-    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: false });
-    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isLoading: false });
+    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isPending: false });
+    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isPending: false });
     const { container } = render(<GeneralInformationVaultTile vaultId={mockVaults[0]!.id} />);
 
     await expect(container).toBeAccessible();
@@ -42,8 +42,8 @@ describe('GeneralInformationVaultTile', () => {
   });
 
   it('Should render GeneralInformationVaultTile component', async () => {
-    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: true });
-    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isLoading: true });
+    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isPending: true });
+    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isPending: true });
     const { container } = render(<GeneralInformationVaultTile vaultId={mockVaults[0]!.id} />);
 
     await expect(container).toBeAccessible();

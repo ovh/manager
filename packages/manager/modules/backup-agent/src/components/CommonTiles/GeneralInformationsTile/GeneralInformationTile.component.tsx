@@ -12,13 +12,13 @@ import { WithRegion } from '@/types/Utils.type';
 
 export type GeneralInformationTileProps<T extends { name: string }> = {
   resourceDetails?: Pick<Resource<T>, 'resourceStatus'> & { currentState: WithRegion<T> };
-  isLoading: boolean;
+  isPending: boolean;
   children?: React.ReactNode;
 };
 
 export function GeneralInformationTile<T extends { name: string }>({
   resourceDetails,
-  isLoading,
+  isPending,
   children,
 }: GeneralInformationTileProps<T>) {
   const { t } = useTranslation([
@@ -27,7 +27,7 @@ export function GeneralInformationTile<T extends { name: string }>({
     NAMESPACES.REGION,
     'dashboard',
   ]);
-  const { data: locationData, isLoading: isLocationLoading } = useLocationDetails(
+  const { data: locationData, isPending: isLocationPending } = useLocationDetails(
     resourceDetails?.currentState.region,
   );
 
@@ -38,14 +38,14 @@ export function GeneralInformationTile<T extends { name: string }>({
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:name`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{resourceDetails!.currentState.name}</OdsText>}
+          {isPending ? <OdsSkeleton /> : <OdsText>{resourceDetails!.currentState.name}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.STATUS}:status`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? (
+          {isPending ? (
             <OdsSkeleton />
           ) : (
             <ResourceStatusBadge resourceStatus={resourceDetails!.resourceStatus} />
@@ -56,7 +56,7 @@ export function GeneralInformationTile<T extends { name: string }>({
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:localisation`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isPending || isLocationPending ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{locationData?.location ?? resourceDetails!.currentState.region}</OdsText>
@@ -67,7 +67,7 @@ export function GeneralInformationTile<T extends { name: string }>({
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:region`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isPending || isLocationPending ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{locationData?.name ?? resourceDetails!.currentState.region}</OdsText>

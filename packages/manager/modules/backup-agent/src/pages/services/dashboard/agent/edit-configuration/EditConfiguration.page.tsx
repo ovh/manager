@@ -48,7 +48,7 @@ export const EditConfigurationPage = () => {
   const goBack = () => navigate('..');
   const {
     data: resourceAgent,
-    isLoading,
+    isPending: isAgentPending,
     error,
     isSuccess,
     refetch,
@@ -58,11 +58,11 @@ export const EditConfigurationPage = () => {
   });
   const isAgentEnabled = resourceAgent?.status === 'ENABLED';
 
-  const { data: policies, isLoading: isPoliciesLoading } = useBackupTenantPolicies({
+  const { data: policies, isPending: isPoliciesPending } = useBackupTenantPolicies({
     tenantId: tenantId,
   });
 
-  const { mutate, isPending } = useEditConfigurationVSPCTenantAgent({
+  const { mutate, isPending: isEditPending } = useEditConfigurationVSPCTenantAgent({
     onSuccess: () => {
       addSuccess(t('update_agent_banner_success', { agentName: resourceAgent?.currentState.name }));
       goBack();
@@ -117,12 +117,12 @@ export const EditConfigurationPage = () => {
         onDismiss={goBack}
         primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:edit`)}
         onPrimaryButtonClick={() => formRef.current?.requestSubmit()}
-        isPrimaryButtonDisabled={(isSubmitted && !isValid) || isLoading || !isAgentEnabled}
-        isPrimaryButtonLoading={isPending}
+        isPrimaryButtonDisabled={(isSubmitted && !isValid) || isAgentPending || !isAgentEnabled}
+        isPrimaryButtonLoading={isEditPending}
         secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
         onSecondaryButtonClick={goBack}
       >
-        {isLoading && (
+        {isAgentPending && (
           <div className="flex justify-center items-center h-full">
             <OdsSpinner />
           </div>
@@ -182,7 +182,7 @@ export const EditConfigurationPage = () => {
               <RhfField.Select
                 placeholder={LABELS.BACKUP_POLICY}
                 isRequired
-                isDisabled={isPoliciesLoading || !isAgentEnabled}
+                isDisabled={isPoliciesPending || !isAgentEnabled}
               >
                 {policies?.map((policy) => (
                   <option key={policy} value={policy}>

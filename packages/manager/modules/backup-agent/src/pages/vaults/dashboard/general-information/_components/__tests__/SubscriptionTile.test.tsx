@@ -53,7 +53,7 @@ vi.mock('@/hooks/useRequiredParams', () => {
 
 describe('SubscriptionTile', () => {
   it('Should render SubscriptionTile component', async () => {
-    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: false });
+    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isPending: false });
     useQuery.mockReturnValue({
       data: [{ planCode: VAULT_PLAN_CODE, quantity: 100, price: { text: '100 €' } }],
       isPending: false,

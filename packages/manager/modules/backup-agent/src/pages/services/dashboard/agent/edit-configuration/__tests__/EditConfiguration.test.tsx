@@ -193,7 +193,7 @@ const {
 } = vi.hoisted(() => ({
   useBackupTenantPoliciesMock: vi
     .fn()
-    .mockReturnValue({ data: undefined, isLoading: true, isError: false }),
+    .mockReturnValue({ data: undefined, isPending: true, isError: false }),
   useEditConfigurationVSPCTenantAgentMock: vi
     .fn()
     .mockReturnValue({ isPending: false, mutate: vi.fn() }),
@@ -232,7 +232,7 @@ const getSubmitButton = () =>
 describe('EditConfigurationComponent', () => {
   beforeAll(() => {
     useBackupVSPCTenantAgentDetailsMock.mockReturnValue({
-      isLoading: false,
+      isPending: false,
       isError: false,
       isSuccess: true,
       data: mockAgents[0]!,
@@ -249,7 +249,7 @@ describe('EditConfigurationComponent', () => {
 
     useBackupTenantPoliciesMock.mockReturnValue({
       data: mockTenantBackupPolicies,
-      isLoading: false,
+      isPending: false,
       isError: false,
       isSuccess: true,
     });
@@ -295,7 +295,7 @@ describe('EditConfigurationComponent', () => {
 
   it('renders edit configuration loading drawer component', () => {
     useBackupVSPCTenantAgentDetailsMock.mockReturnValue({
-      isLoading: true,
+      isPending: true,
       isError: false,
       isSuccess: false,
       data: undefined,

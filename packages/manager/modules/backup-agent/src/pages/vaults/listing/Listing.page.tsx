@@ -18,7 +18,7 @@ import { useColumns } from './_hooks/useColumns.hooks';
 export default function ListingPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING, NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
-  const { data, isLoading } = useBackupVaultsList();
+  const { data, isPending } = useBackupVaultsList();
   const columns = useColumns();
 
   const reloadDatagrid = () => {
@@ -34,7 +34,7 @@ export default function ListingPage() {
               icon="refresh"
               color="primary"
               onClick={() => reloadDatagrid()}
-              isLoading={isLoading}
+              isLoading={isPending}
               variant="outline"
               data-arialabel={t(`${NAMESPACES.ACTIONS}:refresh`)}
               label=""

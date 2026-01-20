@@ -28,7 +28,7 @@ describe('ResourceLocationCell', () => {
   it('renders resourceName from currentState', async () => {
     mockLocationDetails.mockReturnValue({
       data: mockLocations[0],
-      isLoading: false,
+      isPending: false,
       isError: false,
     });
     const vault = { ...mockVaults[0]! };
@@ -42,7 +42,7 @@ describe('ResourceLocationCell', () => {
   });
 
   it('renders during loading', async () => {
-    mockLocationDetails.mockReturnValue({ data: null, isLoading: true, isError: false });
+    mockLocationDetails.mockReturnValue({ data: null, isPending: true, isError: false });
     const vault = mockVaults[0]!;
 
     const { container } = render(<ResourceLocationCell region={vault.currentState.region} />);
@@ -52,7 +52,7 @@ describe('ResourceLocationCell', () => {
   });
 
   it('renders during error', async () => {
-    mockLocationDetails.mockReturnValue({ data: null, isLoading: false, isError: true });
+    mockLocationDetails.mockReturnValue({ data: null, isPending: false, isError: true });
     const vault = mockVaults[0]!;
 
     render(<ResourceLocationCell region={vault.currentState.region} />);

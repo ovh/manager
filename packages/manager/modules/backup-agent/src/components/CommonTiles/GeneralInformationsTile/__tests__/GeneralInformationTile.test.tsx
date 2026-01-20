@@ -33,9 +33,9 @@ vi.mock('react-i18next', () => ({
 
 describe('GeneralInformationTile', () => {
   it('Should render GeneralInformationTile component', async () => {
-    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isLoading: false });
+    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isPending: false });
     const { container } = render(
-      <GeneralInformationTile resourceDetails={mockVaults[0]} isLoading={false} />,
+      <GeneralInformationTile resourceDetails={mockVaults[0]} isPending={false} />,
     );
 
     await expect(container).toBeAccessible();
@@ -46,10 +46,10 @@ describe('GeneralInformationTile', () => {
   });
 
   it('Should render GeneralInformationTile component', async () => {
-    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: true });
-    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isLoading: true });
+    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isPending: true });
+    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isPending: true });
     const { container } = render(
-      <GeneralInformationTile resourceDetails={mockVaults[0]} isLoading={true} />,
+      <GeneralInformationTile resourceDetails={mockVaults[0]} isPending={true} />,
     );
 
     await expect(container).toBeAccessible();

@@ -19,9 +19,9 @@ vi.mock(
   () => ({
     GeneralInformationTile: <T extends { name: string }>({
       resourceDetails,
-      isLoading,
+      isPending,
     }: GeneralInformationTileProps<T>) =>
-      isLoading ? <>is loading</> : <>{resourceDetails?.currentState.name}</>,
+      isPending ? <>is loading</> : <>{resourceDetails?.currentState.name}</>,
   }),
 );
 

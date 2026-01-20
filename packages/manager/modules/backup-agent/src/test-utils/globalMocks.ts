@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 const { useNavigationGetUrl: useNavigationGetUrlMock } = vi.hoisted(() => ({
   useNavigationGetUrl: vi.fn().mockImplementation((urlParams: []) => ({
     data: JSON.stringify(urlParams),
-    isLoading: false,
+    isPending: false,
     error: null,
   })),
 }));
