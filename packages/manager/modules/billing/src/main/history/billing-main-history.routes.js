@@ -182,7 +182,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             .then((feature) => !feature.isFeatureAvailable(featureName));
         },
         canDownloadInvoices: /* @ngInject */ (currentUser) =>
-          currentUser.ovhSubsidiary !== 'FR' ||
+          currentUser.country !== 'FR' ||
           currentUser.legalform !== 'corporation' ||
           currentUser.companyNationalIdentificationNumber,
         breadcrumb: () => null,
