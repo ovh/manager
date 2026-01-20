@@ -1,5 +1,5 @@
 {
-  "kubernetes_add": "Kubernetes-Cluster erstellen",
+  "kubernetes_add": "Einen MKS-Cluster erstellen",
   "kubernetes_add_success": "Ihr Cluster wurde erstellt",
   "kubernetes_add_error": "Bei der Erstellung Ihres Clusters ist ein Fehler aufgetreten: {{ message }}",
   "kubernetes_add_loading": "Cluster wird erstellt",
@@ -98,5 +98,14 @@
     "last_char": "mit einem alphanumerischen Zeichen enden (a-z, A-Z, 0-9)"
   },
   "kubernetes_add_cluster_name_input_error": "Der Clustername ist ungültig",
-  "kubernetes_add_cluster_name_input_error_empty": "Der Clustername ist erforderlich"
+  "kubernetes_add_cluster_name_input_error_empty": "Der Clustername ist erforderlich",
+  "kubernetes_add_location": "Standort",
+  "kubernetes_add_location_subtitle": "Einen Bereitstellungsmodus wählen",
+  "kubernetes_add_region_title_region_alt": "Logo Region 1-AZ",
+  "kubernetes_add_region_title_region-3-az_alt": "Logo Region 3-AZ",
+  "kubernetes_add_region_continent_select": "Eine geografische Zone auswählen",
+  "kubernetes_add_region_plan_select": "Nach Plänen filtern",
+  "kubernetes_add_region_plan_all": "Alle Pläne",
+  "kubernetes_add_micro_region_choose": "Ein Rechenzentrum wählen",
+  "kubernetes_add_micro_region_select": "Ein Rechenzentrum auswählen"
 }
