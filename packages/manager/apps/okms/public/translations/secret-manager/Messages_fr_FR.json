@@ -71,6 +71,7 @@
   "path_field_helper": "Pour créer une hiérarchie, utilisez des '/'. Exemple : prod/database/MySQL",
   "reveal_secret": "Afficher la valeur",
   "secret_manager": "Secret Manager",
+  "secret_settings": "Paramètres du secret",
   "secrets_pricing_subtitle": "La facturation s'applique à chaque version du secret.",
   "secrets_pricing_title": "Tarification Secret Manager",
   "setting_default": "paramètre par défaut",
