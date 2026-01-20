@@ -6,7 +6,7 @@ import {
   getPollingInterval,
   isPollingStatus,
 } from '@/data/hooks/tenants/useTenants.polling';
-import { TenantResourceStatus } from '@/types/tenants.type';
+import { ResourceStatus } from '@/types/resource.type';
 
 describe('useTenants.polling', () => {
   describe('POLLING_STATUSES', () => {
@@ -26,13 +26,13 @@ describe('useTenants.polling', () => {
 
   describe('isPollingStatus', () => {
     it.each([
-      { status: 'DELETING' as TenantResourceStatus, expected: true },
-      { status: 'UPDATING' as TenantResourceStatus, expected: true },
-      { status: 'CREATING' as TenantResourceStatus, expected: true },
-      { status: 'READY' as TenantResourceStatus, expected: false },
-      { status: 'ERROR' as TenantResourceStatus, expected: false },
-      { status: 'SUSPENDED' as TenantResourceStatus, expected: false },
-      { status: 'UNKNOWN' as TenantResourceStatus, expected: false },
+      { status: 'DELETING' as ResourceStatus, expected: true },
+      { status: 'UPDATING' as ResourceStatus, expected: true },
+      { status: 'CREATING' as ResourceStatus, expected: true },
+      { status: 'READY' as ResourceStatus, expected: false },
+      { status: 'ERROR' as ResourceStatus, expected: false },
+      { status: 'SUSPENDED' as ResourceStatus, expected: false },
+      { status: 'UNKNOWN' as ResourceStatus, expected: false },
       { status: undefined, expected: false },
     ])('should return $expected for $status status', ({ status, expected }) => {
       expect(isPollingStatus(status)).toBe(expected);
@@ -41,13 +41,13 @@ describe('useTenants.polling', () => {
 
   describe('getPollingInterval', () => {
     it.each([
-      { status: 'DELETING' as TenantResourceStatus, expected: POLLING_INTERVAL },
-      { status: 'UPDATING' as TenantResourceStatus, expected: POLLING_INTERVAL },
-      { status: 'CREATING' as TenantResourceStatus, expected: POLLING_INTERVAL },
-      { status: 'READY' as TenantResourceStatus, expected: false },
-      { status: 'ERROR' as TenantResourceStatus, expected: false },
-      { status: 'SUSPENDED' as TenantResourceStatus, expected: false },
-      { status: 'UNKNOWN' as TenantResourceStatus, expected: false },
+      { status: 'DELETING' as ResourceStatus, expected: POLLING_INTERVAL },
+      { status: 'UPDATING' as ResourceStatus, expected: POLLING_INTERVAL },
+      { status: 'CREATING' as ResourceStatus, expected: POLLING_INTERVAL },
+      { status: 'READY' as ResourceStatus, expected: false },
+      { status: 'ERROR' as ResourceStatus, expected: false },
+      { status: 'SUSPENDED' as ResourceStatus, expected: false },
+      { status: 'UNKNOWN' as ResourceStatus, expected: false },
       { status: undefined, expected: false },
     ])('should return $expected for $status status', ({ status, expected }) => {
       expect(getPollingInterval(status)).toBe(expected);

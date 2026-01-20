@@ -11,7 +11,7 @@ import { FilterCategories, FilterTypeCategories } from '@ovh-ux/manager-core-api
 import { BUTTON_VARIANT, Button, DatagridColumn, TagsList, useNotifications } from '@ovh-ux/muk';
 
 import FilteredDatagrid from '@/components/listing/common/datagrid/filtered-datagrid/FilteredDatagrid.component';
-import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.component';
+import ResourceBadgeStatus from '@/components/services/status/ResourceBadgeStatus.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useTenantSubscriptions } from '@/data/hooks/tenants/useTenantSubscriptions.hook';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
@@ -73,7 +73,7 @@ export default function SubscriptionPage() {
         accessorFn: (row: TenantSubscriptionListing) => row,
         cell: ({ getValue }) => {
           const { resourceStatus } = getValue() as TenantSubscriptionListing;
-          return <TenantStatus status={resourceStatus} />;
+          return <ResourceBadgeStatus status={resourceStatus} />;
         },
         comparator: FilterCategories.String,
         type: FilterTypeCategories.String,

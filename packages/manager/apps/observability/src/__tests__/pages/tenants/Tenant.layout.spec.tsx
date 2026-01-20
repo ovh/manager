@@ -148,6 +148,7 @@ describe('TenantLayout', () => {
     createdAt: '2025-11-01T08:00:00.001Z',
     updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Test Service' },
+    resourceStatus: 'READY' as const,
   };
 
   const mockTenant: Tenant = {
