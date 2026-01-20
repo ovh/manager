@@ -1,0 +1,23 @@
+{
+  "dashboard": {
+    "title": "Gestion des services",
+    "enable_service": "Activer un service",
+    "links": {
+      "tenants": "Tenants",
+      "datastreams": "Flux de données",
+      "managed_dashboards": "Tableaux de bord managés",
+      "link": "Accéder à la liste",
+      "title": "Objets liés"
+    }
+  },
+  "status": {
+    "title": "Statut",
+    "READY": "Actif",
+    "UPDATING": "Mise à jour",
+    "ERROR": "Erreur",
+    "DELETING": "Suppression en cours",
+    "SUSPENDED": "Suspendu",
+    "CREATING": "Création en cours",
+    "UNKNOWN": "Inconnu"
+  }
+}

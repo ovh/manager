@@ -40,12 +40,15 @@ vi.mock('@ovh-ux/muk', () => ({
       ),
     },
   },
-  Clipboard: ({ value }: { value?: string }) => <div data-testid="clipboard">{value}</div>,
+  Clipboard: ({ value }: { value?: string }) => (
+    <div data-testid="clipboard" data-value={value}>
+      {value}
+    </div>
+  ),
   useFormatDate: () => mockFormatDate,
 }));
 
 vi.mock('@ovhcloud/ods-react', () => ({
-  Skeleton: () => <div data-testid="skeleton">loading</div>,
   Text: ({ children }: { children: React.ReactNode }) => <span data-testid="text">{children}</span>,
   TEXT_PRESET: {
     span: 'span',
@@ -67,6 +70,11 @@ vi.mock('@ovhcloud/ods-react', () => ({
     warning: 'warning',
     neutral: 'neutral',
   },
+}));
+
+vi.mock('@/components/dashboard/SkeletonWrapper.component', () => ({
+  default: ({ isLoading, children }: { isLoading: boolean; children: React.ReactNode }) =>
+    isLoading ? <div data-testid="skeleton">loading</div> : <>{children}</>,
 }));
 
 describe('GeneralInformationTile.component', () => {
@@ -114,5 +122,43 @@ describe('GeneralInformationTile.component', () => {
     fireEvent.click(screen.getByTestId('edit-link'));
 
     expect(mockNavigate).toHaveBeenCalledWith(getEditTenantUrl(baseProps));
+  });
+
+  it('should display tenantId in ID clipboard', () => {
+    render(<GeneralInformationTile {...baseProps} isLoading={false} />);
+
+    const clipboards = screen.getAllByTestId('clipboard');
+    expect(clipboards[0]).toHaveAttribute('data-value', 'tenant-id');
+  });
+
+  it('should display iam URN in clipboard', () => {
+    render(<GeneralInformationTile {...baseProps} isLoading={false} />);
+
+    const clipboards = screen.getAllByTestId('clipboard');
+    expect(clipboards[1]).toHaveAttribute('data-value', 'iam-urn');
+  });
+
+  it('should display endpoint in clipboard', () => {
+    render(<GeneralInformationTile {...baseProps} isLoading={false} />);
+
+    const clipboards = screen.getAllByTestId('clipboard');
+    expect(clipboards[2]).toHaveAttribute('data-value', 'https://api.endpoint');
+  });
+
+  it('should handle undefined iam gracefully', () => {
+    render(<GeneralInformationTile {...baseProps} iam={undefined} isLoading={false} />);
+
+    const clipboards = screen.getAllByTestId('clipboard');
+    // First clipboard uses tenantId, so it should still have a value
+    expect(clipboards[0]).toHaveAttribute('data-value', 'tenant-id');
+    // Second clipboard uses iam.urn, so it should not have a value
+    expect(clipboards[1]).not.toHaveAttribute('data-value');
+  });
+
+  it('should handle undefined tenantId gracefully', () => {
+    render(<GeneralInformationTile {...baseProps} tenantId={undefined} isLoading={false} />);
+
+    const clipboards = screen.getAllByTestId('clipboard');
+    expect(clipboards[0]).not.toHaveAttribute('data-value');
   });
 });
