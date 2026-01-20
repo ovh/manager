@@ -116,10 +116,7 @@ const OrderFunnel = ({
       };
       if (data.network.type === database.NetworkTypeEnum.private) {
         // endpoint does not expect the network id, but the linked openstackId instead
-        const networkOpenstackId = model.result.network.network.regions.find(
-          (r) => r.region.includes(data.region),
-        ).openstackId;
-        serviceInfos.networkId = networkOpenstackId;
+        serviceInfos.networkId = model.result.network.networkOpenstackId;
         serviceInfos.subnetId = data.network.subnetId;
       }
       if (model.result.flavor.storage) {

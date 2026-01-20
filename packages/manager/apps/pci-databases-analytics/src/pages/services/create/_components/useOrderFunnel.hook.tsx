@@ -189,14 +189,22 @@ export function useOrderFunnel(
     () => listFlavors.find((f) => f.name === flavor),
     [listFlavors, flavor],
   );
-  const networkObject = useMemo(
-    () => ({
+  const networkObject = useMemo(() => {
+    const networkObj = networksData.networks.find(
+      (n) => n.id === network.networkId,
+    );
+    const subnetObj = networksData.subnets.find(
+      (s) => s.id === network.subnetId,
+    );
+    return {
       type: network.type,
-      network: networksData.networks.find((n) => n.id === network.networkId),
-      subnet: networksData.subnets.find((s) => s.id === network.subnetId),
-    }),
-    [network, networksData],
-  );
+      network: networkObj,
+      networkOpenstackId: networkObj?.regions.find(
+        (r) => r.region === subnetObj?.ipPools[0]?.region,
+      )?.openstackId,
+      subnet: subnetObj,
+    };
+  }, [network, networksData]);
 
   // find the availability corresponding to selected items
   const availability: database.Availability | undefined = useMemo(

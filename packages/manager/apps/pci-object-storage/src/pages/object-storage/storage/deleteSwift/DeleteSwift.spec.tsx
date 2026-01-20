@@ -11,6 +11,10 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import * as swiftStorageAPI from '@/data/api/storage/swiftStorage.api';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
+import {
+  mockedUsedNavigate,
+  setMockedUseParams,
+} from '@/__tests__/helpers/mockRouterDomHelper';
 import DeleteSwiftModal from './DeleteSwift.modal';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 import { mockedSwiftContainer } from '@/__tests__/helpers/mocks/swift/swift';
@@ -35,18 +39,6 @@ vi.mock('@/data/hooks/swift-storage/useGetSwift.hook', () => ({
   })),
 }));
 
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      swiftId: 'swiftId',
-    }),
-    useNavigate: () => vi.fn(),
-  };
-});
-
 vi.mock('@/data/api/storage/swiftStorage.api', () => ({
   deleteSwiftStorage: vi.fn(),
 }));
@@ -54,6 +46,8 @@ vi.mock('@/data/api/storage/swiftStorage.api', () => ({
 describe('Delete Swift', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({ projectId: 'projectId', swiftId: 'swiftId' });
   });
 
   afterEach(() => {

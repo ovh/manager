@@ -1,24 +1,24 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import * as s3Api from '@/data/api/storage/s3Storage.api';
+import * as swiftApi from '@/data/api/storage/swiftStorage.api';
 import {
   mockedUsedNavigate,
   setMockedUseParams,
 } from '@/__tests__/helpers/mockRouterDomHelper';
-import S3Layout, { Loader, breadcrumb as Breadcrumb } from './S3.layout';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 import {
   mocked3AZRegion,
   mockedRegion,
 } from '@/__tests__/helpers/mocks/region/region';
+import SwiftLayout, { Loader, breadcrumb as Breadcrumb } from './Swift.layout';
+import { mockedContainerDetail } from '@/__tests__/helpers/mocks/swift/swift';
 
 const loaderParam = {
   params: {
     projectId: 'projectId',
-    region: 'GRA',
-    s3Name: 's3name',
+    swiftId: 'swift-id',
   },
   request: new Request('https://my-api.com/endpoint'),
 };
@@ -33,18 +33,17 @@ vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   })),
 }));
 
-vi.mock('@/data/api/storage/s3Storage.api', () => ({
-  getS3Storage: vi.fn(() => mockedStorageContainer),
+vi.mock('@/data/api/storage/swiftStorage.api', () => ({
+  getSwiftStorage: vi.fn(() => mockedContainerDetail),
 }));
 
-describe('S3.layout', () => {
+describe('Swift.layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     mockedUsedNavigate();
     setMockedUseParams({
       projectId: 'projectId',
-      region: 'GRA',
-      s3Name: 's3name',
+      swiftId: 'swift-id',
     });
   });
 
@@ -55,35 +54,39 @@ describe('S3.layout', () => {
   it('renders loader function', async () => {
     Loader(loaderParam);
     await waitFor(() => {
-      expect(s3Api.getS3Storage).toHaveBeenCalled();
+      expect(swiftApi.getSwiftStorage).toHaveBeenCalled();
     });
   });
 
   it('renders breadcrumb', async () => {
-    vi.mocked(s3Api.getS3Storage).mockResolvedValue(mockedStorageContainer);
+    vi.mocked(swiftApi.getSwiftStorage).mockResolvedValue(
+      mockedContainerDetail,
+    );
     render(<Breadcrumb />, {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText('s3name')).toBeTruthy();
+      expect(screen.getByText(mockedContainerDetail.name)).toBeTruthy();
     });
   });
 
   it('renders skeleton of service Layout', async () => {
-    vi.mocked(s3Api.getS3Storage).mockResolvedValue(mockedStorageContainer);
-    render(<S3Layout />, {
+    vi.mocked(swiftApi.getSwiftStorage).mockResolvedValue(
+      mockedContainerDetail,
+    );
+    render(<SwiftLayout />, {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByText('Loading your container data')).toBeTruthy();
+      expect(screen.getByTestId('swift-header-skeleton-title')).toBeTruthy();
     });
   });
   it('renders fully service layout', async () => {
-    render(<S3Layout />, {
+    render(<SwiftLayout />, {
       wrapper: RouterWithQueryClientWrapper,
     });
     await waitFor(() => {
-      expect(screen.getByTestId('s3-header-container')).toBeTruthy();
+      expect(screen.getByTestId('swift-header-container')).toBeTruthy();
     });
   });
 });
