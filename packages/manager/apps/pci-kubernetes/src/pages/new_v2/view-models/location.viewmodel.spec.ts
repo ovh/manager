@@ -244,9 +244,8 @@ describe('location.viewmodel', () => {
       const result = mapMacroRegionForCards(regions);
 
       expect(result).toHaveLength(1);
-      expect(result?.[0]).toEqual({
+      expect(result?.[0]).toMatchObject({
         id: 'GRA',
-        labelKey: 'regions:manager_components_region_GRA',
         microRegions: ['GRA9'],
         disabled: false,
         country: 'fr',

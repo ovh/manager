@@ -125,12 +125,14 @@ describe('CreateClusterForm location management', () => {
     const renderedDom = render(<CreateClusterForm />);
 
     const targetedRegion = renderedDom.getByRole('radio', {
-      name: /regions:manager_components_region_UK/i,
+      name: /@ovh-ux\/manager-common-translations\/region:region_UK/i,
     });
     expect(targetedRegion).toBeInTheDocument();
     await act(() => user.click(targetedRegion));
 
     const cartElement = renderedDom.getByTestId('cart');
-    expect(cartElement).toHaveTextContent('regions:manager_components_region_UK');
+    expect(cartElement).toHaveTextContent(
+      '@ovh-ux/manager-common-translations/region:region_UK_micro',
+    );
   });
 });

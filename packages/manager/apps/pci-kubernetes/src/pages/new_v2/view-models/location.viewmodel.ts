@@ -1,3 +1,5 @@
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import {
   TCountryCode,
   TDeploymentMode,
@@ -84,11 +86,16 @@ export const filterMacroRegions =
   };
 
 export const mapMacroRegionForCards = (regions?: TMacroRegion[]): TRegionCard[] | undefined =>
-  regions?.map((region) => ({
-    labelKey: `regions:manager_components_region_${region.name}`,
-    id: region.name,
-    microRegions: region.microRegionIds,
-    disabled: !region.enabled,
-    country: region.countryCode,
-    plans: region.plans.map(mapPlanCodeToViewPlan),
-  }));
+  regions?.map((region) => {
+    // Custom case for Mumbai region until common-translations is updated
+    const regionKey = region.name === 'YNM' ? 'MUM' : region.name;
+
+    return {
+      labelKey: `${NAMESPACES.REGION}:region_${regionKey}`,
+      id: region.name,
+      microRegions: region.microRegionIds,
+      disabled: !region.enabled,
+      country: region.countryCode,
+      plans: region.plans.map(mapPlanCodeToViewPlan),
+    };
+  });
