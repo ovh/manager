@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-import { ContinentOption } from '../../view-models/location.viewmodel';
+import { ContinentOption } from '../../view-models/continents.viewmodel';
 
 type TContinentSelectProps = {
   options: Array<ContinentOption>;

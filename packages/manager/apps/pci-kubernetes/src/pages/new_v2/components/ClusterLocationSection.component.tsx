@@ -15,13 +15,13 @@ import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.com
 import { PLAN_DOC_LINKS } from '@/constants';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
+import { selectAvailableContinentOptions } from '../view-models/continents.viewmodel';
+import { selectAvailablePlanOptions } from '../view-models/plans.viewmodel';
 import {
   filterMacroRegions,
   mapMacroRegionForCards,
-  selectAvailableContinentOptions,
-  selectAvailablePlanOptions,
   selectAvailableRegions,
-} from '../view-models/location.viewmodel';
+} from '../view-models/regions.viewmodel';
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
 import { MicroRegionSelect } from './location/MicroRegionSelect.component';

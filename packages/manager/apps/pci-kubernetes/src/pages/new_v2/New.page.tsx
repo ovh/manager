@@ -7,7 +7,7 @@ import { Breadcrumb } from '@/components/nav/Breadcrumb.component';
 import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 
 import { CreateClusterForm } from './components/CreateClusterForm.component';
-import { selectAre3azRegionsAvailable } from './view-models/location.viewmodel';
+import { selectAre3azRegionsAvailable } from './view-models/regions.viewmodel';
 
 export default function New() {
   const { t } = useTranslation(['add', 'listing', 'common']);

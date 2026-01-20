@@ -95,7 +95,9 @@ vi.mock('react-i18next', () => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  const mod: typeof import('@ovh-ux/manager-react-shell-client') = await vi.importActual(
+    '@ovh-ux/manager-react-shell-client',
+  );
   return {
     ...mod,
     useTracking: vi.fn(() => ({

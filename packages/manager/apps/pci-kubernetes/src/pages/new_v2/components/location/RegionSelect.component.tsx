@@ -10,7 +10,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { RegionCard } from '@/components/location/RegionCard.component';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-import { TRegionCard } from '../../view-models/location.viewmodel';
+import { TRegionCard } from '../../view-models/regions.viewmodel';
 
 type TRegionSelectProps = {
   regions: Array<TRegionCard> | undefined;
