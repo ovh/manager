@@ -8,6 +8,7 @@ import uiRouter from '@uirouter/angularjs';
 import history from './history/history.module';
 import payments from './payments/billing-payments.module';
 import payAsYouGo from './payAsYouGo/billing-main-pay-as-you-go.module';
+import correctiveInvoices from './correctiveInvoices/billing-corrective-invoices.module';
 
 import routing from './billing-main.routes';
 
@@ -22,6 +23,7 @@ angular
     ovhManagerCore,
     payments,
     payAsYouGo,
+    correctiveInvoices,
     uiRouter,
   ])
   .config(routing)
