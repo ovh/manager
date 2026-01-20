@@ -11,6 +11,8 @@ export const subroutes = {
   tenants: 'tenants',
   resource: URL_PARAMS.resourceName,
   metrics: 'metrics',
+  settings: 'settings',
+  services: 'services',
   onboarding: 'onboarding',
   dashboards: 'dashboards',
   deleteTenant: `delete/${URL_PARAMS.tenantId}`,
@@ -38,6 +40,8 @@ export const urls = {
   deleteTenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.subscription}/${subroutes.deleteTenantSubscription}`,
   tenantTags: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.tags}`,
   onboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.onboarding}`,
+  settings: `${getRoot()}/${subroutes.settings}`,
+  services: `${getRoot()}/${subroutes.settings}/${subroutes.services}`,
 } as const;
 
 export type LocationPathParams = {
