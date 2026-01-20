@@ -78,7 +78,7 @@ export default function PermanentTokensListing() {
       actionType: 'action',
       actions: PERMANENT_TOKENS_TRACKING.LISTING.GO_BACK,
     });
-    shell?.navigation.navigateTo('', '/iam/identities/users', {});
+    shell?.navigation.navigateTo('iam', '/identities/users', {});
   };
 
   const handleCreateToken = () => {
