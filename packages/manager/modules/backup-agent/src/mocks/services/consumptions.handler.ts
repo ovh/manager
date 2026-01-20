@@ -17,5 +17,6 @@ export const getServiceConsumptionMocks = ({
     api: 'v6',
     method: 'get',
     status: isServiceConsumptionError ? 500 : 200,
+    delay: 0,
   },
 ];

@@ -18,6 +18,7 @@ export const getTenantMocks = ({ tenants, isTenantError }: TTenantMockParams): H
     api: 'v2',
     method: 'get',
     status: 200,
+    delay: 0,
   },
   {
     url: '/backupServices/tenant/:backupServicesId',
@@ -28,5 +29,6 @@ export const getTenantMocks = ({ tenants, isTenantError }: TTenantMockParams): H
     api: 'v2',
     method: 'get',
     status: isTenantError ? 500 : 200,
+    delay: 0,
   },
 ];

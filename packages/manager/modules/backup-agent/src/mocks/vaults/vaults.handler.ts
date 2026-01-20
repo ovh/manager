@@ -17,6 +17,7 @@ export const getVaultMocks = ({ vault, isVaultError }: TVaultMockParams): Handle
     api: 'v2',
     method: 'get',
     status: 200,
+    delay: 0,
   },
   {
     url: '/backupServices/tenant/:backupServicesId/vault/:vaultId',
@@ -27,5 +28,6 @@ export const getVaultMocks = ({ vault, isVaultError }: TVaultMockParams): Handle
     api: 'v2',
     method: 'get',
     status: isVaultError ? 500 : 200,
+    delay: 0,
   },
 ];

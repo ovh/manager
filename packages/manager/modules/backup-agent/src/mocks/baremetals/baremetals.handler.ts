@@ -17,5 +17,6 @@ export const getBaremetalsMocks = ({
     api: 'v6',
     method: 'get',
     status: isBaremetalsError ? 500 : 200,
+    delay: 0,
   },
 ];
