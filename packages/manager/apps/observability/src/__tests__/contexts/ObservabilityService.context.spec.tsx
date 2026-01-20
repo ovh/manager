@@ -87,6 +87,7 @@ const TestComponent = () => {
             createdAt: '2025-11-01T08:00:00.001Z',
             updatedAt: '2025-11-01T08:00:00.001Z',
             currentState: { displayName: 'Test Service' },
+            resourceStatus: 'READY',
           })
         }
       >
@@ -110,12 +111,14 @@ describe('ObservabilityServiceContext', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
         },
         {
           id: 'service-2',
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service 2' },
+          resourceStatus: 'READY',
         },
       ];
 
@@ -237,6 +240,7 @@ describe('ObservabilityServiceContext', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
         },
       ];
 
@@ -298,6 +302,7 @@ describe('ObservabilityServiceContext', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
         },
       ];
 
@@ -348,6 +353,7 @@ describe('ObservabilityServiceContext', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'New Service' },
+          resourceStatus: 'READY',
         });
       });
 
@@ -377,6 +383,7 @@ describe('ObservabilityServiceContext', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Some Service' },
+          resourceStatus: 'READY',
         });
       });
 
@@ -401,6 +408,7 @@ describe('ObservabilityServiceContext', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
         },
       ];
 
@@ -410,12 +418,14 @@ describe('ObservabilityServiceContext', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
         },
         {
           id: 'service-2',
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service 2' },
+          resourceStatus: 'READY',
         },
       ];
 

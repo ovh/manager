@@ -1,11 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { TagsTile } from '@/components/dashboard/TagsTile.component';
 
-const { mockNavigate, mockGetTenantTagsUrl } = vi.hoisted(() => ({
-  mockNavigate: vi.fn(),
-  mockGetTenantTagsUrl: vi.fn(),
+const { mockUseHref } = vi.hoisted(() => ({
+  mockUseHref: vi.fn((href: string) => href),
 }));
 
 vi.mock('react-i18next', () => ({
@@ -15,11 +14,7 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('react-router-dom', () => ({
-  useNavigate: () => mockNavigate,
-}));
-
-vi.mock('@/routes/Routes.utils', () => ({
-  getTenantTagsUrl: mockGetTenantTagsUrl,
+  useHref: mockUseHref,
 }));
 
 vi.mock('@ovh-ux/muk', () => ({
@@ -49,18 +44,17 @@ vi.mock('@ovh-ux/muk', () => ({
 }));
 
 vi.mock('@ovhcloud/ods-react', () => ({
-  Link: ({ children, onClick }: { children: React.ReactNode; onClick?: () => void }) => (
-    <button type="button" data-testid="tile-link" onClick={onClick}>
+  Link: ({ children, href }: { children: React.ReactNode; href?: string }) => (
+    <a data-testid="tile-link" href={href}>
       {children}
-    </button>
+    </a>
   ),
   Skeleton: () => <div data-testid="skeleton">Loading...</div>,
 }));
 
 describe('TagsTile.component', () => {
   const baseProps = {
-    tenantId: 'tenant-123',
-    resourceName: 'resource-123',
+    href: '/tenants/tenant-123/tags',
     title: 'tenant 123',
     tags: {
       environment: 'prod',
@@ -70,7 +64,6 @@ describe('TagsTile.component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockGetTenantTagsUrl.mockReturnValue('/tenants/tenant-123/tags');
   });
 
   it('renders the tile header, tags list and manage link', () => {
@@ -82,18 +75,17 @@ describe('TagsTile.component', () => {
     expect(screen.getByTestId('tag-environment-prod')).toBeInTheDocument();
   });
 
-  it('navigates to the tags page when clicking the manage tags link', () => {
-    const targetUrl = '/tenants/tenant-123/tags';
-    mockGetTenantTagsUrl.mockReturnValue(targetUrl);
-
+  it('renders the link with the correct href from useHref', () => {
     render(<TagsTile {...baseProps} />);
 
-    fireEvent.click(screen.getByTestId('tile-link'));
+    const link = screen.getByTestId('tile-link');
+    expect(mockUseHref).toHaveBeenCalledWith(baseProps.href);
+    expect(link).toHaveAttribute('href', baseProps.href);
+  });
 
-    expect(mockGetTenantTagsUrl).toHaveBeenCalledWith({
-      tenantId: baseProps.tenantId,
-      resourceName: baseProps.resourceName,
-    });
-    expect(mockNavigate).toHaveBeenCalledWith(targetUrl);
+  it('hides the manage tags link when hideLink is true', () => {
+    render(<TagsTile {...baseProps} hideLink />);
+
+    expect(screen.queryByTestId('tile-link')).not.toBeInTheDocument();
   });
 });
