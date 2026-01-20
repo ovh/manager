@@ -69,6 +69,7 @@ export default function PermanentTokensListing() {
     hasNextPage,
     isLoading,
     sorting,
+    filters,
     setSorting,
     search,
   } = useIamUserTokenList({ userId, columns, pageSize: 10 });
@@ -118,6 +119,7 @@ export default function PermanentTokensListing() {
           hasNextPage={hasNextPage && !isLoading}
           sorting={sorting}
           onSortChange={setSorting}
+          filters={filters}
           manualSorting={false}
           search={search}
           contentAlignLeft

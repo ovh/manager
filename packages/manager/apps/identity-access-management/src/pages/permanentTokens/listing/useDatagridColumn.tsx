@@ -5,7 +5,10 @@ import {
   DataGridTextCell,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
-import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import {
+  FilterTypeCategories,
+  FilterCategories,
+} from '@ovh-ux/manager-core-api';
 
 import { IamUserToken } from '@/data/api/iam-users';
 import { Actions } from './Actions.component';
@@ -25,6 +28,7 @@ export function useDatagridColumn(): DatagridColumn<IamUserToken>[] {
       type: FilterTypeCategories.String,
       isSearchable: true,
       isSortable: true,
+      isFilterable: true,
     },
     {
       id: 'description',
@@ -35,6 +39,7 @@ export function useDatagridColumn(): DatagridColumn<IamUserToken>[] {
       type: FilterTypeCategories.String,
       isSearchable: true,
       isSortable: true,
+      isFilterable: true,
     },
     {
       id: 'creation',
@@ -44,7 +49,9 @@ export function useDatagridColumn(): DatagridColumn<IamUserToken>[] {
           {formatDate({ date: token.creation, format: 'P' })}
         </DataGridTextCell>
       ),
+      type: FilterTypeCategories.Date,
       isSortable: true,
+      isFilterable: true,
     },
     {
       id: 'expiration',
@@ -54,7 +61,9 @@ export function useDatagridColumn(): DatagridColumn<IamUserToken>[] {
           {formatDate({ date: token.expiresAt, format: 'P' })}
         </DataGridTextCell>
       ),
+      type: FilterTypeCategories.Date,
       isSortable: true,
+      isFilterable: true,
     },
     {
       id: 'exporationStatus',
@@ -73,7 +82,9 @@ export function useDatagridColumn(): DatagridColumn<IamUserToken>[] {
           {formatDate({ date: token.lastUsed, format: 'P' })}
         </DataGridTextCell>
       ),
+      type: FilterTypeCategories.Date,
       isSortable: true,
+      isFilterable: true,
     },
     {
       id: 'actions',
