@@ -19,6 +19,7 @@ export const subroutes = {
   deleteTenantSubscription: `delete/${URL_PARAMS.subscriptionId}`,
   edit: 'edit',
   creation: 'creation',
+  delete: 'delete',
   tenant: URL_PARAMS.tenantId,
   subscription: 'subscription',
   tags: 'tags',
@@ -42,6 +43,7 @@ export const urls = {
   onboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.onboarding}`,
   settings: `${getRoot()}/${subroutes.settings}`,
   services: `${getRoot()}/${subroutes.settings}/${subroutes.services}`,
+  deleteService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.delete}`,
 } as const;
 
 export type LocationPathParams = {
