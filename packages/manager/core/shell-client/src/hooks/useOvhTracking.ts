@@ -143,10 +143,23 @@ export const usePageTracking = (): TrackingPageParams | undefined => {
   return undefined;
 };
 
+const DefaultTrackingContext = {
+  trackCurrentPage: () => {},
+  trackPage: () => {},
+  trackClick: () => {},
+};
+
 export const useOvhTracking = () => {
   const pageTracking = usePageTracking();
-  const { shell, tracking, environment } = React.useContext(ShellContext);
-  const region = environment?.getRegion();
+  const context = React.useContext(ShellContext);
+  const { shell, tracking, environment } = context;
+  const isEmptyObject =
+    environment && typeof environment === 'object' && Object.keys(environment).length === 0;
+
+  if (isEmptyObject) {
+    return DefaultTrackingContext;
+  }
+  const region = environment?.getRegion?.();
   const level2 =
     (region && (tracking?.level2Config as RegionsTrackingConfig)?.[region]?.config?.level2) ||
     tracking?.level2;

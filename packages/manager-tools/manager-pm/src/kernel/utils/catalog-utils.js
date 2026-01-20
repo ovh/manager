@@ -8,6 +8,7 @@ import {
   managerRootPath,
   pnpmAppsPlaybookPath,
   privateModulesPath,
+  toolsPlaybookPath,
   yarnAppsPlaybookPath,
 } from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
@@ -23,6 +24,7 @@ export function getCatalogsPaths() {
   return {
     pnpmCatalogPath: pnpmAppsPlaybookPath,
     yarnCatalogPath: yarnAppsPlaybookPath,
+    toolsCatalogPath: toolsPlaybookPath,
   };
 }
 
@@ -382,4 +384,17 @@ export async function removePrivateModuleFromCatalog({ turboFilter, pnpmPath }) 
     logger.debug(`Stack trace: ${err.stack}`);
     return false;
   }
+}
+
+/**
+ * Load the tools catalog JSON (tools-catalog.json).
+ *
+ * @async
+ * @function loadToolsCatalog
+ * @returns {Promise<Record<string, import('../src/kernel/utils/tools-injector.js').ToolCatalogEntry>>}
+ * Parsed catalog object.
+ */
+export async function loadToolsCatalog() {
+  const toolsCatalogRaw = await fs.readFile(toolsPlaybookPath, 'utf-8');
+  return JSON.parse(toolsCatalogRaw);
 }

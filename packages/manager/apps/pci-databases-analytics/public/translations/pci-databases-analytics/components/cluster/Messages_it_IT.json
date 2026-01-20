@@ -3,5 +3,5 @@
   "inputStorageLabel": "Seleziona lo storage aggiuntivo del cluster",
   "inputStorageNoneValue": "Nessuna",
   "storageFlavorDescription": "Il modello di nodo {{flavor}} include {{includedStorage}} di storage, a cui è possibile aggiungere fino a {{maxAdditionalStorage}} di storage supplementare in intervalli di {{step}}.",
-  "inputNodeTooltip": "Il numero di nodi è predefinito dall'offerta selezionata sopra e non è modificabile in questo caso."
+  "inputNodeTooltip": "Il numero di nodi è predefinito per il piano selezionato e non può essere modificato in questo caso"
 }
