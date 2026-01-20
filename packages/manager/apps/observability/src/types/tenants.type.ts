@@ -1,6 +1,6 @@
 import { InfrastructureSettings } from '@/types/infrastructures.type';
 import { TIdentifier, TObservabilityResource } from '@/types/observability.type';
-import { Resource } from '@/types/resource.type';
+import { Resource, ResourceStatus } from '@/types/resource.type';
 
 type TMetricLimits = {
   mimir: {
@@ -8,15 +8,6 @@ type TMetricLimits = {
     max_global_series_per_user: number;
   };
 };
-
-export type TenantResourceStatus =
-  | 'READY'
-  | 'UPDATING'
-  | 'ERROR'
-  | 'DELETING'
-  | 'SUSPENDED'
-  | 'CREATING'
-  | 'UNKNOWN';
 
 export type TenantInfrastructure = InfrastructureSettings & TIdentifier;
 
@@ -31,7 +22,7 @@ export type TenantState = {
 export type Tenant = {
   currentState: TenantState;
   targetSpec?: TenantState;
-  resourceStatus: TenantResourceStatus;
+  resourceStatus: ResourceStatus;
 } & TObservabilityResource;
 
 export type TenantFormData = {
@@ -45,7 +36,7 @@ export type TenantFormData = {
 
 export type TenantListing = {
   name: string;
-  resourceStatus: TenantResourceStatus;
+  resourceStatus: ResourceStatus;
   endpoint: string | undefined;
   entryPoint: string | undefined;
   infrastructure: TenantInfrastructure | undefined;
@@ -56,7 +47,7 @@ export type TenantListing = {
 } & TIdentifier;
 
 export type TenantSubscription = {
-  resourceStatus: TenantResourceStatus;
+  resourceStatus: ResourceStatus;
   currentState: {
     kind: string;
     link: string;
@@ -69,7 +60,7 @@ export type TenantSubscription = {
 } & TObservabilityResource;
 
 export type TenantSubscriptionListing = {
-  resourceStatus: TenantResourceStatus;
+  resourceStatus: ResourceStatus;
   resource: Resource;
   tags: { [key: string]: string };
   search: string;

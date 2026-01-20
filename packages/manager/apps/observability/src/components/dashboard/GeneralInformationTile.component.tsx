@@ -2,12 +2,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { Link, Skeleton, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import { Link, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Clipboard, Tile, useFormatDate } from '@ovh-ux/muk';
 
 import { GeneralInformationTileProps } from '@/components/dashboard/GeneralInformationTile.props';
-import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.component';
+import SkeletonWrapper from '@/components/dashboard/SkeletonWrapper.component';
+import ResourceBadgeStatus from '@/components/services/status/ResourceBadgeStatus.component';
 import { getEditTenantUrl } from '@/routes/Routes.utils';
 
 export const GeneralInformationTile = ({
@@ -22,7 +24,7 @@ export const GeneralInformationTile = ({
   resourceStatus,
   resourceName,
 }: GeneralInformationTileProps) => {
-  const { t } = useTranslation('tenants');
+  const { t } = useTranslation(['tenants', NAMESPACES.STATUS]);
 
   const navigate = useNavigate();
 
@@ -37,68 +39,76 @@ export const GeneralInformationTile = ({
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard.general_information_tile.name')} />
         <Tile.Item.Description>
-          {isLoading ? <Skeleton /> : <Text preset={TEXT_PRESET.span}>{title}</Text>}
+          <SkeletonWrapper isLoading={isLoading}>
+            <Text preset={TEXT_PRESET.span}>{title}</Text>
+          </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>
 
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard.general_information_tile.description')} />
         <Tile.Item.Description>
-          {isLoading ? <Skeleton /> : <Text preset={TEXT_PRESET.paragraph}>{description}</Text>}
+          <SkeletonWrapper isLoading={isLoading}>
+            <Text preset={TEXT_PRESET.paragraph}>{description}</Text>
+          </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>
 
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard.general_information_tile.id')} />
         <Tile.Item.Description>
-          {isLoading ? <Skeleton /> : <Clipboard className="w-full" value={iam?.id} />}
+          <SkeletonWrapper isLoading={isLoading}>
+            <Clipboard className="w-full" value={iam?.id} />
+          </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>
 
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard.general_information_tile.urn')} />
         <Tile.Item.Description>
-          {isLoading ? <Skeleton /> : <Clipboard className="w-full" value={iam?.urn} />}
+          <SkeletonWrapper isLoading={isLoading}>
+            <Clipboard className="w-full" value={iam?.urn} />
+          </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>
 
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard.general_information_tile.endpoint')} />
         <Tile.Item.Description>
-          {isLoading ? <Skeleton /> : <Clipboard className="w-full" value={endpoint} />}
+          <SkeletonWrapper isLoading={isLoading}>
+            <Clipboard className="w-full" value={endpoint} />
+          </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>
 
       <Tile.Item.Root>
-        <Tile.Item.Term label={t('status.title')} />
+        <Tile.Item.Term label={t(`${NAMESPACES.STATUS}:status`)} />
         <Tile.Item.Description>
-          {isLoading ? <Skeleton /> : <TenantStatus status={resourceStatus} />}
+          <SkeletonWrapper isLoading={isLoading}>
+            <ResourceBadgeStatus status={resourceStatus} />
+          </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>
 
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard.general_information_tile.created_at')} />
         <Tile.Item.Description>
-          {isLoading ? (
-            <Skeleton />
-          ) : (
-            createdAt && (
+          <SkeletonWrapper isLoading={isLoading}>
+            {createdAt && (
               <Text preset={TEXT_PRESET.span}>{formatDate({ date: createdAt, format: 'P' })}</Text>
-            )
-          )}
+            )}
+          </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>
 
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard.general_information_tile.updated_at')} />
         <Tile.Item.Description>
-          {isLoading ? (
-            <Skeleton />
-          ) : (
-            updatedAt && (
+          <SkeletonWrapper isLoading={isLoading}>
+            {updatedAt && (
               <Text preset={TEXT_PRESET.span}>{formatDate({ date: updatedAt, format: 'P' })}</Text>
-            )
-          )}
+            )}
+          </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>
 

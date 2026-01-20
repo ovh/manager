@@ -1,5 +1,7 @@
 import { IamObject } from '@ovh-ux/muk';
 
+import { ResourceStatus } from '@/types/resource.type';
+
 export type TIdentifier = {
   id: string;
 };
@@ -12,4 +14,5 @@ export type TObservabilityResource = {
 
 export type ObservabilityService = {
   currentState: { displayName: string | null };
+  resourceStatus: ResourceStatus;
 } & TObservabilityResource;

@@ -187,6 +187,7 @@ describe('TenantForm', () => {
     createdAt: '2025-11-01T08:00:00.001Z',
     updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Test Service' },
+    resourceStatus: 'READY',
     iam: { id: 'iam-123', urn: 'urn:service:123' },
   };
 

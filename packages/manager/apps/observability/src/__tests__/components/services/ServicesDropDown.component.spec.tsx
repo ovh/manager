@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import ServicesDropDown from '@/components/services/ServicesDropDown.component';
+import ServicesDropDown from '@/components/services/dropdown/ServicesDropDown.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { ObservabilityService } from '@/types/observability.type';
 
@@ -105,18 +105,21 @@ const mockServices: ObservabilityService[] = [
     createdAt: '2025-11-01T08:00:00.001Z',
     updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Service One' },
+    resourceStatus: 'READY',
   },
   {
     id: 'service-2',
     createdAt: '2025-11-01T08:00:00.001Z',
     updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: 'Service Two' },
+    resourceStatus: 'READY',
   },
   {
     id: 'service-3',
     createdAt: '2025-11-01T08:00:00.001Z',
     updatedAt: '2025-11-01T08:00:00.001Z',
     currentState: { displayName: null }, // Test null displayName for fallback
+    resourceStatus: 'READY',
   },
 ];
 
@@ -441,6 +444,7 @@ describe('ServicesDropDown', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: 'Service & Co. <Test>' },
+          resourceStatus: 'READY',
         },
       ];
 
@@ -468,6 +472,7 @@ describe('ServicesDropDown', () => {
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
           currentState: { displayName: null },
+          resourceStatus: 'READY',
         },
       ];
 
@@ -494,6 +499,7 @@ describe('ServicesDropDown', () => {
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { displayName: `Service ${i}` },
+        resourceStatus: 'READY',
       }));
 
       mockUseObservabilityServiceContext.mockReturnValue({
