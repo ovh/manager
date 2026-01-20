@@ -1,13 +1,16 @@
+import { useHref } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
-import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import { BUTTON_VARIANT, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Clipboard, Tile, useFormatDate } from '@ovh-ux/muk';
+import { ActionMenu, ActionMenuItemProps, Clipboard, Tile, useFormatDate } from '@ovh-ux/muk';
 
 import SkeletonWrapper from '@/components/dashboard/SkeletonWrapper.component';
 import ResourceBadgeStatus from '@/components/services/status/ResourceBadgeStatus.component';
 import { ServiceGeneralInformationProps } from '@/pages/settings/services/general-information/ServiceGeneralInformation.props';
+import { urls } from '@/routes/Routes.constants';
 import { LABELS } from '@/utils/labels.constants';
 
 export const ServiceGeneralInformation = ({
@@ -17,9 +20,19 @@ export const ServiceGeneralInformation = ({
   isLoading,
   resourceStatus,
 }: ServiceGeneralInformationProps) => {
-  const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.STATUS, 'services']);
+  const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.STATUS, NAMESPACES.ACTIONS]);
+  const href = useHref(urls.deleteService);
 
   const formatDate = useFormatDate();
+
+  const actionItems: ActionMenuItemProps[] = [
+    {
+      id: 1,
+      label: t(`${NAMESPACES.ACTIONS}:terminate`),
+      href,
+      isDisabled: resourceStatus !== 'READY',
+    },
+  ];
 
   return (
     <Tile.Root title={t(`${NAMESPACES.DASHBOARD}:general_information`)}>
@@ -51,7 +64,17 @@ export const ServiceGeneralInformation = ({
       </Tile.Item.Root>
 
       <Tile.Item.Root>
-        <Tile.Item.Term label={t(`${NAMESPACES.STATUS}:status`)} />
+        <Tile.Item.Term
+          label={t(`${NAMESPACES.STATUS}:status`)}
+          actions={
+            <ActionMenu
+              id="status-action-menu"
+              items={actionItems}
+              isCompact
+              variant={BUTTON_VARIANT.ghost}
+            />
+          }
+        />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
             <ResourceBadgeStatus status={resourceStatus} />
