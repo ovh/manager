@@ -3,7 +3,7 @@ angular.module('App').config(
     $stateProvider.state('app', {
       abstract: true,
       resolve: {
-        currentUser: /* @ngInject */ (User) => User.getUser(),
+        currentUser: /* @ngInject */ (     User ) => { return User.getUser()},
         rootState: () => 'app.configuration',
       },
       templateUrl: 'app.html',
@@ -46,4 +46,4 @@ angular.module('App').config(
       );
     });
   },
-);
+)
