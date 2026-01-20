@@ -1,0 +1,13 @@
+{
+  "billing_payment_corrective_invoices": "Factures correctives",
+  "billing_corrective_invoices_load_error": "Une erreur est survenue lors du chargement des factures correctives.",
+  "billing_corrective_invoices_empty": "Nous tenons à vous informer qu'il n'y a pas de factures correctives émises pour les périodes concernées.",
+  "billing_corrective_invoices_table_id": "Référence",
+  "billing_corrective_invoices_table_order_id": "Numéro de commande",
+  "billing_corrective_invoices_table_original_invoice": "Facture originale",
+  "billing_corrective_invoices_table_date": "Date d'émission",
+  "billing_corrective_invoices_table_total": "Montant HT",
+  "billing_corrective_invoices_table_total_with_vat": "Montant TTC",
+  "billing_corrective_invoices_table_download_html": "Voir la version HTML",
+  "billing_corrective_invoices_table_download_pdf": "Voir la version PDF"
+}
