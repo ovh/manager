@@ -53,13 +53,13 @@ export const useWebHostingAttachedDomain = (props: UseWebsitesListParams = {}) =
     }
   }, [allPages, setAllPages]);
 
-  const { hasNextPage, isFetchingNextPage, fetchNextPage } = query;
+  const { hasNextPage, isFetchingNextPage, fetchNextPage, dataUpdatedAt } = query;
 
   useEffect(() => {
     if (allPages && hasNextPage && !isFetchingNextPage) {
       fetchNextPage().catch(console.error);
     }
-  }, [allPages, hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [allPages, hasNextPage, isFetchingNextPage, fetchNextPage, dataUpdatedAt]);
 
   // reset when searchParams changes
   useEffect(() => {
@@ -72,6 +72,7 @@ export const useWebHostingAttachedDomain = (props: UseWebsitesListParams = {}) =
   // to avoid unecessary rerenders
   return Object.assign(query, {
     fetchAllPages,
+    isFetchingAllPages: allPages && (hasNextPage || isFetchingNextPage),
   });
 };
 
