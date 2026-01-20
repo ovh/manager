@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { SelectField } from '@/components/form/select-field/SelectField.component';
-import { ServicesDropDownProps } from '@/components/services/ServicesDropDown.props';
+import { ServicesDropDownProps } from '@/components/services/dropdown/ServicesDropDown.props';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { ObservabilityService } from '@/types/observability.type';
 

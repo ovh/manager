@@ -12,7 +12,7 @@ import FilteredDatagrid from '@/components/listing/common/datagrid/filtered-data
 import { TenantsListDatagridProps } from '@/components/listing/tenants/TenantsListDatagrid.props';
 import TenantsListActions from '@/components/listing/tenants/actions/TenantsListActions.component';
 import TenantsListTopbar from '@/components/listing/tenants/top-bar/TenantsListTopbar.component';
-import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.component';
+import ResourceBadgeStatus from '@/components/services/status/ResourceBadgeStatus.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { TenantListing } from '@/types/tenants.type';
 import { RESOURCE_TYPES } from '@/utils/iam.constants';
@@ -24,7 +24,12 @@ export default function TenantsListDatagrid({
   error,
   isError,
 }: TenantsListDatagridProps) {
-  const { t } = useTranslation(['tenants', NAMESPACES.DASHBOARD, NAMESPACES.ERROR]);
+  const { t } = useTranslation([
+    'tenants',
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.ERROR,
+    NAMESPACES.STATUS,
+  ]);
   const { addError } = useNotifications();
   const dateFnsLocale = useDateFnsLocale();
   const { selectedService } = useObservabilityServiceContext();
@@ -63,12 +68,12 @@ export default function TenantsListDatagrid({
       },
       {
         id: 'status',
-        header: t(`tenants:status.title`),
-        label: t(`tenants:status.title`),
+        header: t(`${NAMESPACES.STATUS}:status`),
+        label: t(`${NAMESPACES.STATUS}:status`),
         accessorFn: (row: TenantListing) => row,
         cell: ({ getValue }) => {
           const { resourceStatus } = getValue() as TenantListing;
-          return <TenantStatus status={resourceStatus} />;
+          return <ResourceBadgeStatus status={resourceStatus} />;
         },
         comparator: FilterCategories.String,
         type: FilterTypeCategories.String,
