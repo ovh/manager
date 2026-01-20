@@ -3,8 +3,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { TenantStatus } from '@/components/metrics/tenant-status/TenantStatus.component';
-import { TenantResourceStatus } from '@/types/tenants.type';
+import { ResourceBadgeStatus } from '@/components/services/status/ResourceBadgeStatus.component';
+import { ResourceStatus } from '@/types/resource.type';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -27,21 +27,21 @@ vi.mock('@ovhcloud/ods-react', () => ({
   },
 }));
 
-describe('TenantStatus.component', () => {
+describe('ResourceBadgeStatus.component', () => {
   it.each([
-    { status: 'READY' as TenantResourceStatus, expectedColor: 'success' },
-    { status: 'ERROR' as TenantResourceStatus, expectedColor: 'warning' },
-    { status: 'UPDATING' as TenantResourceStatus, expectedColor: 'information' },
-    { status: 'DELETING' as TenantResourceStatus, expectedColor: 'information' },
-    { status: 'SUSPENDED' as TenantResourceStatus, expectedColor: 'critical' },
-    { status: 'CREATING' as TenantResourceStatus, expectedColor: 'information' },
-    { status: 'UNKNOWN' as TenantResourceStatus, expectedColor: 'neutral' },
+    { status: 'READY' as ResourceStatus, expectedColor: 'success' },
+    { status: 'ERROR' as ResourceStatus, expectedColor: 'warning' },
+    { status: 'UPDATING' as ResourceStatus, expectedColor: 'information' },
+    { status: 'DELETING' as ResourceStatus, expectedColor: 'information' },
+    { status: 'SUSPENDED' as ResourceStatus, expectedColor: 'critical' },
+    { status: 'CREATING' as ResourceStatus, expectedColor: 'information' },
+    { status: 'UNKNOWN' as ResourceStatus, expectedColor: 'neutral' },
     { status: undefined, expectedColor: 'neutral' },
   ])('renders $status status with $expectedColor color', ({ status, expectedColor }) => {
-    render(<TenantStatus status={status} />);
+    render(<ResourceBadgeStatus status={status} />);
 
     const badge = screen.getByTestId('badge');
     expect(badge).toHaveAttribute('data-color', expectedColor);
-    expect(badge).toHaveTextContent(`tenants:status.${status ?? 'UNKNOWN'}`);
+    expect(badge).toHaveTextContent(`services:status.${status ?? 'UNKNOWN'}`);
   });
 });
