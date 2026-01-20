@@ -20,15 +20,15 @@ import {
   Badge,
   BADGE_COLOR,
   BADGE_SIZE,
-  BUTTON_COLOR,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@ovh-ux/muk';
-import { MAX_VIEWS_NUMBER } from './manageView.constants';
+import { MAX_VIEWS_NUMBER, STANDARD_VIEW_ID } from './manageView.constants';
 import { ViewType } from './types';
 import ManageViewDrawer from './manageViewDrawer';
 import { ViewContext } from './viewContext';
+import ManageViewDelete from './manageViewDelete';
 
 export const ManageViewButton = () => {
   const { t } = useTranslation('manage-view');
@@ -81,21 +81,19 @@ export const ManageViewButton = () => {
               }}
               role="menuitem"
               variant={BUTTON_VARIANT.ghost}
-              disabled={currentView?.id === views[0]?.id}
+              disabled={currentView?.id === STANDARD_VIEW_ID}
             >
               <Icon name={ICON_NAME.pen} aria-hidden={true} />
               <span>{t('configure_current_view')}</span>
             </Button>
-
-            <Button
-              role="menuitem"
-              variant={BUTTON_VARIANT.ghost}
-              color={BUTTON_COLOR.critical}
-              disabled={currentView?.id === views[0]?.id}
-            >
-              <Icon name={ICON_NAME.trash} aria-hidden={true} />
-              <span>{t('delete_current_view')}</span>
-            </Button>
+            <ManageViewDelete
+              views={views}
+              view={currentView}
+              disabled={currentView?.id === STANDARD_VIEW_ID}
+              onOpenModal={() => {
+                setIsPopoverOpen(false);
+              }}
+            />
 
             <Divider className="my-3 w-full" />
 
