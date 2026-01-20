@@ -19,5 +19,8 @@
     "SUSPENDED": "Suspendu",
     "CREATING": "Création en cours",
     "UNKNOWN": "Inconnu"
+  },
+  "delete": {
+    "success": "Votre demande de résiliation de votre service {{serviceName}} a été prise en compte. Un e-mail contenant la procédure vous a été envoyé."
   }
 }
