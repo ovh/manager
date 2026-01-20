@@ -89,6 +89,8 @@ export default function ActivatePage() {
     });
 
   const {
+    isRedirectionNeeded,
+    redirectionTarget,
     isCreditPayment,
     needsSave,
     isSaved,
@@ -114,11 +116,16 @@ export default function ActivatePage() {
    * Auto-proceed with project creation when payment method is saved
    */
   useEffect(() => {
+    if (isRedirectionNeeded && redirectionTarget && window.top) {
+      window.top.location.href = redirectionTarget;
+      return;
+    }
+
     if (isSaved) {
       void handleActivateProject();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSaved]);
+  }, [isSaved, isRedirectionNeeded, redirectionTarget]);
 
   useEffect(() => {
     createAndAssignCart({ ovhSubsidiary });
