@@ -57,12 +57,14 @@ describe('useObservabilityServices', () => {
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { displayName: 'Service 1' },
+        resourceStatus: 'READY',
       },
       {
         id: '2',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { displayName: 'Service 2' },
+        resourceStatus: 'READY',
       },
     ];
     mockGetObservabilityServices.mockResolvedValue(mockServices);
@@ -108,12 +110,14 @@ describe('useObservabilityServices', () => {
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { displayName: 'Test Service 1' },
+        resourceStatus: 'READY',
       },
       {
         id: 'service-2',
         createdAt: '2025-11-01T08:00:00.001Z',
         updatedAt: '2025-11-01T08:00:00.001Z',
         currentState: { displayName: 'Test Service 2' },
+        resourceStatus: 'READY',
       },
     ];
     mockGetObservabilityServices.mockResolvedValue(mockServices);

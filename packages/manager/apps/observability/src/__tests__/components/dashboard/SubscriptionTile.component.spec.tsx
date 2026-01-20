@@ -1,11 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { SubscriptionTile } from '@/components/dashboard/SubscriptionTile.component';
 
-const { mockNavigate, mockGetTenantSubscriptionUrl } = vi.hoisted(() => ({
-  mockNavigate: vi.fn(),
-  mockGetTenantSubscriptionUrl: vi.fn(),
+const { mockUseHref } = vi.hoisted(() => ({
+  mockUseHref: vi.fn((href: string) => href),
 }));
 
 vi.mock('react-i18next', () => ({
@@ -15,11 +14,7 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('react-router-dom', () => ({
-  useNavigate: () => mockNavigate,
-}));
-
-vi.mock('@/routes/Routes.utils', () => ({
-  getTenantSubscriptionUrl: mockGetTenantSubscriptionUrl,
+  useHref: mockUseHref,
 }));
 
 vi.mock('@ovh-ux/muk', () => ({
@@ -43,12 +38,18 @@ vi.mock('@ovh-ux/muk', () => ({
 }));
 
 vi.mock('@ovhcloud/ods-react', () => ({
-  Skeleton: () => <div data-testid="skeleton">loading</div>,
-  Link: ({ children, onClick }: { children: React.ReactNode; onClick?: () => void }) => (
-    <button type="button" data-testid="tile-link" onClick={onClick}>
+  Link: ({ children, href }: { children: React.ReactNode; href?: string }) => (
+    <a data-testid="tile-link" href={href}>
       {children}
-    </button>
+    </a>
   ),
+  TEXT_PRESET: { paragraph: 'paragraph' },
+  Text: ({ children }: { children: React.ReactNode }) => <span data-testid="text">{children}</span>,
+}));
+
+vi.mock('@/components/dashboard/SkeletonWrapper.component', () => ({
+  default: ({ isLoading, children }: { isLoading: boolean; children: React.ReactNode }) =>
+    isLoading ? <div data-testid="skeleton">loading</div> : <>{children}</>,
 }));
 
 describe('SubscriptionTile.component', () => {
@@ -60,7 +61,6 @@ describe('SubscriptionTile.component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockGetTenantSubscriptionUrl.mockReturnValue('/tenants/tenant-123/subscriptions');
   });
 
   it('renders skeleton when loading', () => {
@@ -75,18 +75,11 @@ describe('SubscriptionTile.component', () => {
     expect(screen.getByText(String(baseProps.subscriptions))).toBeInTheDocument();
   });
 
-  it('navigates to the subscription page when clicking the link', () => {
-    const targetUrl = '/custom/subscriptions';
-    mockGetTenantSubscriptionUrl.mockReturnValue(targetUrl);
-
+  it('renders the link with the correct href from useHref', () => {
     render(<SubscriptionTile {...baseProps} isLoading={false} />);
 
-    fireEvent.click(screen.getByTestId('tile-link'));
-
-    expect(mockGetTenantSubscriptionUrl).toHaveBeenCalledWith({
-      tenantId: baseProps.tenantId,
-      resourceName: baseProps.resourceName,
-    });
-    expect(mockNavigate).toHaveBeenCalledWith(targetUrl);
+    const link = screen.getByTestId('tile-link');
+    expect(mockUseHref).toHaveBeenCalled();
+    expect(link).toHaveAttribute('href');
   });
 });
