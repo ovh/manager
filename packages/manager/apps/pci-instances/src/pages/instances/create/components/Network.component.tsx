@@ -20,15 +20,16 @@ import {
 import { useFormContext, useWatch } from 'react-hook-form';
 import { selectPrivateNetworks } from '../view-models/networksViewModel';
 import AddNetworkForm from './network/AddNetworkForm.component';
+import GatewayConfiguration from './network/GatewayConfiguration.component';
 import { TAddNetworkForm } from '../CreateInstance.schema';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import Banner from '@/components/banner/Banner.component';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 type TUpdateNetworkFieldsArgs = {
   networkId: string | null;
   newPrivateNetwork: TAddNetworkForm | null;
 };
-import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');
@@ -173,6 +174,7 @@ const Network: FC = () => {
           </Button>
         </>
       )}
+      <GatewayConfiguration />
     </section>
   );
 };

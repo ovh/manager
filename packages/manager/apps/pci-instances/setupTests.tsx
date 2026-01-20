@@ -90,3 +90,23 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
     }),
   };
 });
+
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/muk') = await importOriginal();
+
+  return {
+    ...original,
+    isLocalZone: vi
+      .fn()
+      .mockImplementation((microRegion) => microRegion === 'fake-LZ'),
+    useCatalogPrice: vi.fn().mockReturnValue({
+      getTextPrice: vi.fn((price: number) => `${price}`),
+      getFormattedHourlyCatalogPrice: vi.fn(
+        (price: number) => `${price} €/HT/hour`,
+      ),
+      getFormattedMonthlyCatalogPrice: vi.fn(
+        (price: number) => `${price} €/HT/month`,
+      ),
+    }),
+  };
+});

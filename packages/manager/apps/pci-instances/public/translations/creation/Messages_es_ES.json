@@ -141,5 +141,8 @@
   },
   "pci_instance_creation_backup_setting_price_unit": "~{{ price }} sin IVA/mes/GB",
   "pci_instance_creation_error_title": "Se ha producido un error",
-  "pci_instance_creation_table_storage_unit_tb": "TB"
+  "pci_instance_creation_table_storage_unit_tb": "TB",
+  "pci_instance_creation_network_gateway_title": "Gateway",
+  "pci_instance_creation_network_gateway_toggle_label": "Asignar una puerta de enlace",
+  "pci_instance_creation_network_gateway_price_label": "Tamaño {{ size }} - {{ price }}"
 }
