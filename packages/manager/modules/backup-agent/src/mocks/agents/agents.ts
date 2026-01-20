@@ -1,8 +1,8 @@
 /* eslint-disable max-lines */
 import { Agent } from '@/types/Agent.type';
-import { Resource } from '@/types/Resource.type';
+import { AgentResource } from '@/types/Resource.type';
 
-export const mockAgents: Resource<Agent>[] = [
+export const mockAgents: AgentResource<Agent>[] = [
   {
     createdAt: '2025-09-20T08:15:30.445Z',
     status: 'ENABLED',
@@ -27,7 +27,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:eu-west-1:prod-web-server-01',
     },
     id: 'a1b2c3d4-1234-4000-82dc-5366d6786a01',
-    resourceStatus: 'READY',
     targetSpec: {
       name: 'prod-web-server-01',
     },
@@ -57,7 +56,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:eu-central-1:staging-db-server',
     },
     id: 'b2c3d4e5-2345-4000-82dc-5366d6786a02',
-    resourceStatus: 'READY',
     targetSpec: {
       name: 'staging-db-server',
     },
@@ -94,7 +92,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:on-premise:on-prem-file-server',
     },
     id: 'c3d4e5f6-3456-4000-82dc-5366d6786a03',
-    resourceStatus: 'UPDATING',
     targetSpec: {
       name: 'on-prem-file-server',
     },
@@ -125,7 +122,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:eu-west-1:pci-compliance-server',
     },
     id: 'd4e5f6g7-4567-4000-82dc-5366d6786a04',
-    resourceStatus: 'READY',
     targetSpec: {
       name: 'pci-compliance-server',
     },
@@ -156,7 +152,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:eu-west-1:prod-app-cluster-node-1',
     },
     id: 'e5f6g7h8-5678-4000-82dc-5366d6786a05',
-    resourceStatus: 'READY',
     targetSpec: {
       name: 'prod-app-cluster-node-1',
     },
@@ -194,7 +189,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:eu-central-1:dev-test-vm',
     },
     id: 'f6g7h8i9-6789-4000-82dc-5366d6786a06',
-    resourceStatus: 'CREATING',
     targetSpec: {
       name: 'dev-test-vm',
     },
@@ -224,7 +218,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:on-premise:backup-storage-server',
     },
     id: 'g7h8i9j0-7890-4000-82dc-5366d6786a07',
-    resourceStatus: 'READY',
     targetSpec: {
       name: 'backup-storage-server',
     },
@@ -256,7 +249,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:eu-west-1:secure-payment-gateway',
     },
     id: 'h8i9j0k1-8901-4000-82dc-5366d6786a08',
-    resourceStatus: 'READY',
     targetSpec: {
       name: 'secure-payment-gateway',
     },
@@ -294,7 +286,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:eu-central-1:monitoring-server',
     },
     id: 'i9j0k1l2-9012-4000-82dc-5366d6786a09',
-    resourceStatus: 'UPDATING',
     targetSpec: {
       name: 'monitoring-server',
     },
@@ -332,7 +323,6 @@ export const mockAgents: Resource<Agent>[] = [
       urn: 'urn:ovh:agent:eu-west-1:legacy-mainframe-adapter',
     },
     id: 'j0k1l2m3-0123-4000-82dc-5366d6786a10',
-    resourceStatus: 'SUSPENDED',
     targetSpec: {
       name: 'legacy-mainframe-adapter',
     },

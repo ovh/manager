@@ -3,10 +3,10 @@ import React from 'react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { ResourceStatusBadge } from '@/components/ResourceStatusBadge/ResourceStatusBadge.component';
-import { ResourceStatus } from '@/types/Resource.type';
+import { AgentStatus, ResourceStatus } from '@/types/Resource.type';
 
 export type ResourceStatusBadgeProps = {
-  resourceStatus: ResourceStatus;
+  resourceStatus: ResourceStatus | AgentStatus;
 };
 
 export const ResourceStatusCell = ({ resourceStatus }: ResourceStatusBadgeProps) => {

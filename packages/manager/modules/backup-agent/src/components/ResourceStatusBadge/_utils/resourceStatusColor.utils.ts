@@ -1,8 +1,8 @@
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 
-import { AlternativeStatus, ResourceStatus } from '@/types/Resource.type';
+import { AgentStatus, ResourceStatus } from '@/types/Resource.type';
 
-export const vaultStatusColor: Record<ResourceStatus | AlternativeStatus, ODS_BADGE_COLOR> = {
+export const vaultStatusColor: Record<ResourceStatus | AgentStatus, ODS_BADGE_COLOR> = {
   CREATING: ODS_BADGE_COLOR.information,
   DELETING: ODS_BADGE_COLOR.critical,
   ERROR: ODS_BADGE_COLOR.critical,
