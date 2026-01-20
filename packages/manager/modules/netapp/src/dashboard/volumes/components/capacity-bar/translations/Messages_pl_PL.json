@@ -1,0 +1,7 @@
+{
+  "netapp_volumes_dashboard_volume_data_space": "Przestrzeń danych",
+  "netapp_volumes_dashboard_volume_used": "Używane",
+  "netapp_volumes_dashboard_volume_overflow": "Skalowanie zasobów",
+  "netapp_volumes_dashboard_volume_available": "Dostępny",
+  "netapp_volumes_dashboard_snapshot_space": "Rezerwa migawki"
+}
