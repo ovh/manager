@@ -11,7 +11,7 @@ import {
 export default mergeConfig(
   sharedConfig,
   createConfig({
-    plugins: [stubStylesPlugin()],
+    plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
     test: {
       setupFiles: './src/setupTests.ts',
       coverage: {
