@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "7.10.14",
+  "version": "7.10.15",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/manager-log-to-customer": "^2.8.1",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.2.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.13.0",
-    "@ovh-ux/manager-pci": "^6.101.0",
+    "@ovh-ux/manager-pci": "^6.102.0",
     "@ovh-ux/manager-telecom-styles": "^4.8.7",
     "@ovh-ux/ng-at-internet": "^6.0.43",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.5",
