@@ -65,7 +65,7 @@ export default function ImportForm() {
     if (!websiteId || step === 2) return;
 
     let attempts = 0;
-    const maxAttempts = 3;
+    const maxAttempts = 6;
 
     const interval = setInterval(() => {
       attempts += 1;
