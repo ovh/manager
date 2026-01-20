@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/backup-agent",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -95,8 +95,8 @@
     "test:coverage": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-billing-informations": "^1.6.1",
-    "@ovh-ux/manager-common-translations": "^0.28.1",
+    "@ovh-ux/manager-billing-informations": "^1.6.2",
+    "@ovh-ux/manager-common-translations": "^0.28.2",
     "@ovh-ux/manager-core-api": "^0.20.0",
     "@ovh-ux/manager-module-common-api": "*",
     "@ovh-ux/manager-react-components": "^2.43.1",
