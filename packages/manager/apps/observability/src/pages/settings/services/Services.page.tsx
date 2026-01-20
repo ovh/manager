@@ -1,3 +1,5 @@
+import { Outlet } from 'react-router-dom';
+
 import TagsTile from '@/components/dashboard/TagsTile.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import ServiceLinks from '@/pages/settings/services/links/ServiceLinks.component';
@@ -27,6 +29,7 @@ export default function ServicesPage() {
         <TagsTile href="#" title={title} tags={tags} isLoading={isLoading} hideLink={true} />
         <ServiceLinks />
       </div>
+      <Outlet />
     </section>
   );
 }
