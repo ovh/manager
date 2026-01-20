@@ -1,5 +1,5 @@
 {
-  "kubernetes_add": "Create a Kubernetes cluster",
+  "kubernetes_add": "Create an MKS cluster",
   "kubernetes_add_success": "Your cluster was successfully created",
   "kubernetes_add_error": "An error has occurred creating your cluster: {{message}}",
   "kubernetes_add_loading": "Cluster creation is in progress",
@@ -98,5 +98,14 @@
     "last_char": "end with an alphanumeric character (a-z, A-Z, 0-9)"
   },
   "kubernetes_add_cluster_name_input_error": "The cluster name is invalid",
-  "kubernetes_add_cluster_name_input_error_empty": "The cluster name is required"
+  "kubernetes_add_cluster_name_input_error_empty": "The cluster name is required",
+  "kubernetes_add_location": "Location",
+  "kubernetes_add_location_subtitle": "Choose a deployment mode",
+  "kubernetes_add_region_title_region_alt": "Region logo 1-AZ",
+  "kubernetes_add_region_title_region-3-az_alt": "Region logo 3-AZ",
+  "kubernetes_add_region_continent_select": "Select a geographical area",
+  "kubernetes_add_region_plan_select": "Filter by plans",
+  "kubernetes_add_region_plan_all": "All plans",
+  "kubernetes_add_micro_region_choose": "Choose a datacentre",
+  "kubernetes_add_micro_region_select": "Select a datacentre"
 }

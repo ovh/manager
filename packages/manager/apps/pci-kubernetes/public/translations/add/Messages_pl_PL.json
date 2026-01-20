@@ -1,5 +1,5 @@
 {
-  "kubernetes_add": "Utwórz klaster Kubernetes",
+  "kubernetes_add": "Utwórz klaster MKS",
   "kubernetes_add_success": "Klaster Kubernetes został utworzony.",
   "kubernetes_add_error": "Wystąpił błąd podczas tworzenia klastra: {{message}}",
   "kubernetes_add_loading": "Trwa tworzenie klastra",
@@ -91,12 +91,21 @@
   "kube_add_plan_content_standard_1AZ_SLA": "SLA 99,9%",
   "kubernetes_add_create_cluster": "Utwórz mój klaster",
   "kubernetes_add_cluster_name_input_helper": {
-    "introduction": "Musi:",
+    "introduction": "Musisz:",
     "char_number": "zawierać od 2 do 64 znaków",
     "char_whitelist": "zawierać tylko litery, cyfry, myślniki lub podkreślenia",
     "first_char": "zaczynać się od litery",
     "last_char": "kończyć się znakiem alfanumerycznym (a-z, A-Z, 0-9)"
   },
   "kubernetes_add_cluster_name_input_error": "Nazwa klastra jest nieprawidłowa",
-  "kubernetes_add_cluster_name_input_error_empty": "Nazwa klastra jest wymagana"
+  "kubernetes_add_cluster_name_input_error_empty": "Nazwa klastra jest wymagana",
+  "kubernetes_add_location": "Lokalizacja",
+  "kubernetes_add_location_subtitle": "Wybierz tryb wdrożenia",
+  "kubernetes_add_region_title_region_alt": "Logo regionu 1-AZ",
+  "kubernetes_add_region_title_region-3-az_alt": "Logo regionu 3-AZ",
+  "kubernetes_add_region_continent_select": "Wybierz strefę geograficzną",
+  "kubernetes_add_region_plan_select": "Filtruj według planów",
+  "kubernetes_add_region_plan_all": "Wszystkie plany",
+  "kubernetes_add_micro_region_choose": "Wybierz centrum danych",
+  "kubernetes_add_micro_region_select": "Wybierz centrum danych"
 }
