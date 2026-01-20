@@ -24,12 +24,12 @@ export const initialOrderFreeHosting = async (
     ovhSubsidiary: subsidiary,
   });
 
-  await v6.post(`order/cart/${orderCart.cartId}/assign`, {
-    cartId: orderCart.cartId,
+  await v6.post(`order/cart/${orderCart?.cartId}/assign`, {
+    cartId: orderCart?.cartId,
   });
 
   await v6.post(`order/cartServiceOption/domain/${serviceName}`, {
-    cartId: orderCart.cartId,
+    cartId: orderCart?.cartId,
     duration: 'P1Y',
     planCode: FREE_HOSTING_PLAN_CODE,
     pricingMode: pricingMode,
@@ -37,10 +37,10 @@ export const initialOrderFreeHosting = async (
   });
 
   const { data: checkout } = await v6.get(
-    `order/cart/${orderCart.cartId}/checkout`,
+    `order/cart/${orderCart?.cartId}/checkout`,
   );
 
-  const result = { cartId: orderCart.cartId, ...checkout };
+  const result = { cartId: orderCart?.cartId, ...checkout };
 
   return result;
 };
