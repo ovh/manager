@@ -15,6 +15,9 @@ declare global {
   var __VERSION__: string;
 }
 
+// Patch for ODS - PointerEvent polyfill for jsdom
+vi.stubGlobal('PointerEvent', MouseEvent);
+
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
   observe() {

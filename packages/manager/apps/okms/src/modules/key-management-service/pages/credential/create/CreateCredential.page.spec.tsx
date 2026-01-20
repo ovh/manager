@@ -4,15 +4,18 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { kmsServicesMock } from '@key-management-service/mocks/services/services.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
-import { describe, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { assertOdsModalVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
+import {
+  assertPageTitleVisibility,
+  changeOdsInputValueByTestId,
+} from '@/common/utils/tests/uiTestHelpers';
 
 const WAIT_TIMEOUT = { timeout: 5000 };
 const mockOkmsItem: OKMS = {
@@ -69,9 +72,6 @@ const testStep1Content = () => {
 
   return {
     buttonNextStep,
-    inputName,
-    inputDescription,
-    inputValidity,
     inputMethodKey,
     inputMethodNoKey,
     inputCertificateTypeEC,
@@ -185,10 +185,10 @@ const assertCredentialListPageVisibility = async () => {
 
 const testStep1 = async (user: UserEvent) => {
   // Check and get content of step 1
-  const { inputName, buttonNextStep } = testStep1Content();
+  const { buttonNextStep } = testStep1Content();
 
   // Fill the name
-  fireEvent.input(inputName, { target: { value: 'test-value-input' } });
+  await changeOdsInputValueByTestId('input-name', 'test-value-input');
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -196,21 +196,18 @@ const testStep1 = async (user: UserEvent) => {
   });
 
   // Submit step 1
-  await user.click(buttonNextStep);
+  await act(async () => {
+    await user.click(buttonNextStep);
+  });
 };
 
 const testStep1CustomCsr = async (user: UserEvent) => {
   // Check and get content of step 1
-  const {
-    inputName,
-    buttonNextStep,
-    inputMethodKey,
-    inputCertificateTypeEC,
-    inputCertificateTypeRSA,
-  } = testStep1Content();
+  const { buttonNextStep, inputMethodKey, inputCertificateTypeEC, inputCertificateTypeRSA } =
+    testStep1Content();
 
   // Fill the name
-  fireEvent.input(inputName, { target: { value: 'test-value-input' } });
+  await changeOdsInputValueByTestId('input-name', 'test-value-input');
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -218,7 +215,9 @@ const testStep1CustomCsr = async (user: UserEvent) => {
   });
 
   // choose the custom csr option
-  await user.click(inputMethodKey);
+  await act(async () => {
+    await user.click(inputMethodKey);
+  });
 
   // check that the form has updated properly
   const inputCsr = screen.getByTestId('textarea-csr');
@@ -230,7 +229,7 @@ const testStep1CustomCsr = async (user: UserEvent) => {
   });
 
   // Fill the csr
-  fireEvent.input(inputCsr, { target: { value: 'custom-csr-value' } });
+  await changeOdsInputValueByTestId('textarea-csr', 'custom-csr-value');
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -238,7 +237,9 @@ const testStep1CustomCsr = async (user: UserEvent) => {
   });
 
   // Submit step 1
-  await user.click(buttonNextStep);
+  await act(async () => {
+    await user.click(buttonNextStep);
+  });
 };
 
 const testStep2 = async (container: HTMLElement, user: UserEvent) => {
@@ -246,16 +247,22 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   const { buttonOpenAddUsersModal, buttonCreateCredentials } = await testStep2Content();
 
   // Open user selection modal
-  await user.click(buttonOpenAddUsersModal);
+  await act(async () => {
+    await user.click(buttonOpenAddUsersModal);
+  });
 
   // Check modal title
   const { user1Card, buttonAddUsers } = await testStep2ContentAddUsersModal(container);
 
   // Select user 1
-  await user.click(user1Card);
+  await act(async () => {
+    await user.click(user1Card);
+  });
 
   // Close modal
-  await user.click(buttonAddUsers);
+  await act(async () => {
+    await user.click(buttonAddUsers);
+  });
 
   // Wait for modal to close
   await waitFor(async () => {
@@ -271,7 +278,9 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   }, WAIT_TIMEOUT);
 
   // Submit step 2
-  await user.click(buttonCreateCredentials);
+  await act(async () => {
+    await user.click(buttonCreateCredentials);
+  });
 };
 
 const testStep3 = async (user: UserEvent) => {
@@ -281,14 +290,18 @@ const testStep3 = async (user: UserEvent) => {
   expect(buttonFinish).toBeDisabled();
 
   // Check confirmation checkbox
-  fireEvent.click(checkboxConfirm);
+  await act(async () => {
+    await user.click(checkboxConfirm);
+  });
 
   await waitFor(() => {
     expect(buttonFinish).toBeEnabled();
   });
 
   // Submit step 3
-  await user.click(buttonFinish);
+  await act(async () => {
+    await user.click(buttonFinish);
+  });
 };
 
 /* TESTS */
