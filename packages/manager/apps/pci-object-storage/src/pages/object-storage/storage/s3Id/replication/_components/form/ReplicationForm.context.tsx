@@ -12,6 +12,7 @@ interface ReplicationFormContextProps {
   form: UseFormReturn<ReplicationFormValues>;
   isPending: boolean;
   isEditMode: boolean;
+  replicationTitle: string;
   showScopeFields: boolean;
   showStorageClassField: boolean;
   isDeleteMarkerDisabled: boolean;
@@ -38,6 +39,7 @@ interface ReplicationFormProviderProps {
   form: UseFormReturn<ReplicationFormValues>;
   isPending: boolean;
   isEditMode?: boolean;
+  replicationTitle: string;
   children: React.ReactNode;
 }
 
@@ -45,6 +47,7 @@ export const ReplicationFormProvider = ({
   form,
   isPending,
   isEditMode = false,
+  replicationTitle,
   children,
 }: ReplicationFormProviderProps) => {
   const { projectId } = useParams();
@@ -89,6 +92,7 @@ export const ReplicationFormProvider = ({
     form,
     isPending,
     isEditMode,
+    replicationTitle,
     showScopeFields: formValues.isReplicationApplicationLimited,
     showStorageClassField: formValues.useStorageClass,
     availableStorageClasses,
