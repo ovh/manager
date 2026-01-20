@@ -45,7 +45,6 @@ vi.mock('@ovh-ux/muk', () => ({
 }));
 
 vi.mock('@ovhcloud/ods-react', () => ({
-  Skeleton: () => <div data-testid="skeleton">loading</div>,
   Text: ({ children }: { children: React.ReactNode }) => <span data-testid="text">{children}</span>,
   TEXT_PRESET: {
     span: 'span',
@@ -67,6 +66,11 @@ vi.mock('@ovhcloud/ods-react', () => ({
     warning: 'warning',
     neutral: 'neutral',
   },
+}));
+
+vi.mock('@/components/dashboard/SkeletonWrapper.component', () => ({
+  default: ({ isLoading, children }: { isLoading: boolean; children: React.ReactNode }) =>
+    isLoading ? <div data-testid="skeleton">loading</div> : <>{children}</>,
 }));
 
 describe('GeneralInformationTile.component', () => {

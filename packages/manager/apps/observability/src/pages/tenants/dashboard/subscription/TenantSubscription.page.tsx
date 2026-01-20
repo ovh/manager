@@ -11,7 +11,7 @@ import { FilterCategories, FilterTypeCategories } from '@ovh-ux/manager-core-api
 import { BUTTON_VARIANT, Button, DatagridColumn, TagsList, useNotifications } from '@ovh-ux/muk';
 
 import FilteredDatagrid from '@/components/listing/common/datagrid/filtered-datagrid/FilteredDatagrid.component';
-import TenantStatus from '@/components/metrics/tenant-status/TenantStatus.component';
+import ResourceBadgeStatus from '@/components/services/status/ResourceBadgeStatus.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useTenantSubscriptions } from '@/data/hooks/tenants/useTenantSubscriptions.hook';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
@@ -22,7 +22,13 @@ import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { mapSubscriptionsToListing } from '@/utils/tenants.utils';
 
 export default function SubscriptionPage() {
-  const { t } = useTranslation(['tenants', NAMESPACES.DASHBOARD, NAMESPACES.ERROR, 'shared']);
+  const { t } = useTranslation([
+    'tenants',
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.ERROR,
+    'shared',
+    NAMESPACES.STATUS,
+  ]);
   const { addError } = useNotifications();
 
   const { selectedService } = useObservabilityServiceContext();
@@ -68,12 +74,12 @@ export default function SubscriptionPage() {
       },
       {
         id: 'status',
-        header: t('tenants:status.title'),
-        label: t('tenants:status.title'),
+        header: t(`${NAMESPACES.STATUS}:status`),
+        label: t(`${NAMESPACES.STATUS}:status`),
         accessorFn: (row: TenantSubscriptionListing) => row,
         cell: ({ getValue }) => {
           const { resourceStatus } = getValue() as TenantSubscriptionListing;
-          return <TenantStatus status={resourceStatus} />;
+          return <ResourceBadgeStatus status={resourceStatus} />;
         },
         comparator: FilterCategories.String,
         type: FilterTypeCategories.String,

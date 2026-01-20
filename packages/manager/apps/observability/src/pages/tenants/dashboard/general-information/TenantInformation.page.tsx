@@ -15,6 +15,7 @@ import GrafanaButton from '@/components/metrics/grafana-button/GrafanaButton.com
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useTenantSubscriptions } from '@/data/hooks/tenants/useTenantSubscriptions.hook';
 import { useTenant } from '@/data/hooks/tenants/useTenants.hook';
+import { getTenantTagsUrl } from '@/routes/Routes.utils';
 
 export default function TenantsInformationPage() {
   const { t } = useTranslation(['tenants', NAMESPACES.ERROR]);
@@ -81,8 +82,7 @@ export default function TenantsInformationPage() {
             />
 
             <TagsTile
-              tenantId={tenantId}
-              resourceName={resourceName}
+              href={getTenantTagsUrl({ tenantId, resourceName })}
               title={title ?? ''}
               tags={iam?.tags ?? {}}
               isLoading={isLoading}
