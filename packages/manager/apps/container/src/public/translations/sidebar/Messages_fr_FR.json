@@ -38,6 +38,7 @@
   "sidebar_hpc_short": "HPC",
   "sidebar_sap_features_hub": "SAP Features Hub",
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
+  "sidebar_vmware_private_vcf": "Private VCF as-a-Service",
   "sidebar_vmware_vcd": "Public VCF as-a-Service",
   "sidebar_vmware_all": "Tous mes services",
   "sidebar_nutanix": "Nutanix",

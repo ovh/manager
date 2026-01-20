@@ -15,5 +15,6 @@ packages/manager/apps/okms
 packages/manager/apps/web-ongoing-operations
 packages/manager/apps/communication
 packages/manager/apps/zimbra
+packages/manager/apps/hpc-vmware-private-vcf-aas
 packages/manager/apps/hub
 packages/manager/apps/pci-file-storage
