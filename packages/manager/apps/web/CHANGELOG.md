@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.2...@ovh-ux/manager-web@19.36.0) (2026-01-20)
+
+
+### Features
+
+* **web-hosting:** add server info on database ([fbee4f2](https://github.com/ovh/manager/commit/fbee4f2e797259834abee10e68a13d734b97fcba)), closes [#PUWEBPT-50](https://github.com/ovh/manager/issues/PUWEBPT-50)
+* **web:** add action button résiliate for sql extra perso ([caf7e17](https://github.com/ovh/manager/commit/caf7e17a57eb713e65ab747497ce8d379d8c81a0)), closes [#PUWEBPT-161](https://github.com/ovh/manager/issues/PUWEBPT-161)
+
+
+
+
+
 ## [19.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.1...@ovh-ux/manager-web@19.35.2) (2026-01-15)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
