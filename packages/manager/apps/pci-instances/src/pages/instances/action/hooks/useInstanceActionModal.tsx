@@ -15,7 +15,7 @@ import { useInstance } from '@/data/hooks/instance/useInstance';
 import {
   selectAggregatedInstanceById,
   selectInstanceById,
-} from '@/adapters/tanstack-query/store/instances/selectors';
+} from '@/adapters/tanstack/instances/selectors';
 
 const formatSection = (section: TSectionType | null): string | null => {
   if (!section) return null;

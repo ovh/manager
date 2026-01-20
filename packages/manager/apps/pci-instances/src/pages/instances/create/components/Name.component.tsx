@@ -1,0 +1,42 @@
+import { useTranslation } from 'react-i18next';
+import { FormField, FormFieldLabel, Input, Text } from '@ovhcloud/ods-react';
+import clsx from 'clsx';
+import { useFormContext } from 'react-hook-form';
+
+export const nameDefaultValue = 'default_name_to_add';
+
+export const Name = () => {
+  const { t } = useTranslation(['common', 'creation']);
+
+  const {
+    register,
+    formState: {
+      errors: { name: error },
+    },
+  } = useFormContext<{ name: string }>();
+
+  return (
+    <article className="flex w-full flex-col">
+      <Text preset="heading-2">
+        {t('common:pci_instances_common_instance_name')}
+      </Text>
+      {/* TODO: Pre-fill name with combination of {flavor_name region_id month day hour minute} */}
+      <div className="mt-4 pb-4 pt-3">
+        <FormField className="max-w-[50%]">
+          <FormFieldLabel>
+            {t('common:pci_instances_common_instance_name')}
+          </FormFieldLabel>
+          <Input {...register('name')} invalid={!!error} className="w-full" />
+        </FormField>
+      </div>
+      <Text
+        className={clsx('text-sm', {
+          'text-[--ods-color-critical-500]': !!error,
+        })}
+        preset="span"
+      >
+        {t('creation:pci_instance_creation_name_rule')}
+      </Text>
+    </article>
+  );
+};

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
 import {
   FormField,
   FormFieldLabel,
@@ -14,15 +14,14 @@ type InputFieldProps = {
 } & Omit<ComponentPropsWithoutRef<'input'>, 'type'> &
   Pick<InputProp, 'type'>;
 
-export const InputField = ({
-  label,
-  invalid,
-  errorMessage,
-  ...inputProps
-}: InputFieldProps) => (
-  <FormField invalid={invalid}>
-    <FormFieldLabel>{label}</FormFieldLabel>
-    <Input {...inputProps} invalid={invalid} />
-    {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
-  </FormField>
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
+  ({ label, invalid, errorMessage, ...inputProps }, ref) => (
+    <FormField invalid={invalid}>
+      <FormFieldLabel>{label}</FormFieldLabel>
+      <Input ref={ref} {...inputProps} invalid={invalid} />
+      {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+    </FormField>
+  ),
 );
+
+InputField.displayName = 'InputField';
