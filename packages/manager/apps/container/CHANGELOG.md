@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.179.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.178.0...@ovh-ux/manager-container-app@0.179.0) (2026-01-20)
+
+
+### Features
+
+* **container:** remove cloud web order on legacy sidebar ([bcee055](https://github.com/ovh/manager/commit/bcee055574740e65b74576ded3659e09c0c539e6)), closes [#PUWEBPT-181](https://github.com/ovh/manager/issues/PUWEBPT-181)
+
+
+
+
+
 # [0.178.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.177.0...@ovh-ux/manager-container-app@0.178.0) (2026-01-16)
 
 
