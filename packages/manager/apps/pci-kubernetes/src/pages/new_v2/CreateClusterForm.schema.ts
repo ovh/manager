@@ -16,8 +16,8 @@ export const createClusterSchema = z.object({
     deploymentMode: z.enum(DEPLOYMENT_MODES),
     continent: z.enum(createClusterFormContinentCodes),
     plan: z.enum(createClusterFormPlanKeys),
-    macroRegion: z.string(),
-    microRegion: z.string(),
+    macroRegion: z.string().nullable(),
+    microRegion: z.string().nullable(),
   }),
 });
 

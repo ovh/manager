@@ -72,11 +72,25 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
     [macroRegionField, cardRegions],
   );
 
+  const onDeploymentModeChange = (value: TCreateClusterSchema['location']['deploymentMode']) => {
+    if (value === deploymentModeField) return;
+
+    setValue('location.continent', 'ALL');
+    setValue('location.plan', 'all');
+
+    // Will retrigger the default values handler
+    setValue('location.macroRegion', null);
+    setValue('location.microRegion', null);
+  };
+
   // Default Value Handler
   useEffect(() => {
+    if (macroRegionField || microRegionField) return;
+
     const firstMacroRegion = cardRegions?.find((region) => !region.disabled);
     const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
-    if (macroRegionField || microRegionField || !firstMacroRegion || !firstMicroRegion) return;
+    if (!firstMacroRegion || !firstMicroRegion) return;
+
     setValue('location.macroRegion', firstMacroRegion.id);
     setValue('location.microRegion', firstMicroRegion);
   }, [macroRegionField, microRegionField, cardRegions, setValue]);
@@ -106,7 +120,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
               </Link>
             </MessageBody>
           </Message>
-          <DeploymentModeSelect />
+          <DeploymentModeSelect onDeploymentModeChange={onDeploymentModeChange} />
           <div className="my-6 grid items-end gap-6 sm:grid-cols-2 lg:w-max">
             <ContinentSelect options={continentOptions ?? []} />
             <PlanSelect options={planOptions} />
