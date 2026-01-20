@@ -7,8 +7,10 @@ import {
   VCDNetworkAclNetwork,
   useVcdOrganization,
   isStatusTerminated,
+  VCDNetworkAclResourceStatus,
 } from '@ovh-ux/manager-module-vcd-api';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
+import { ApiError } from '@ovh-ux/manager-core-api';
 
 const INTERVAL_POLLING = 2 * 1000; // 2s
 const ACTIVE_TASK_STATUS = ['PENDING', 'RUNNING'];
@@ -51,6 +53,8 @@ interface NetworkAclContextValue {
   isPending: boolean;
   isError: boolean;
   isActiveOrganisation: boolean;
+  resourceStatus: VCDNetworkAclResourceStatus;
+  error: ApiError;
 }
 
 const NetworkAclContext = createContext<NetworkAclContextValue | null>(null);
@@ -58,7 +62,7 @@ const NetworkAclContext = createContext<NetworkAclContextValue | null>(null);
 export function NetworkAclProvider({ children }: { children: ReactNode }) {
   const { id } = useParams();
   const { data: vcdOrganisation } = useVcdOrganization({ id });
-  const { flattenData, isPending, isError } = useResourcesIcebergV2<
+  const { flattenData, isPending, isError, error } = useResourcesIcebergV2<
     VCDNetworkAcl
   >({
     route: getVcdOrganisationNetworkAclList(id),
@@ -132,6 +136,8 @@ export function NetworkAclProvider({ children }: { children: ReactNode }) {
         hasActiveTasks,
         isPending,
         isError,
+        resourceStatus: acl?.resourceStatus,
+        error: error as ApiError,
       }}
     >
       {children}
