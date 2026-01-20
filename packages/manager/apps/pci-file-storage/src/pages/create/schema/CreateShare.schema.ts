@@ -4,7 +4,7 @@ import { DEPLOYMENT_MODES } from '@/domain/entities/catalog.entity';
 
 const stringShema = z.string();
 
-const shareDataShema = z.object({
+export const shareDataShema = z.object({
   name: stringShema,
   microRegion: stringShema,
 });

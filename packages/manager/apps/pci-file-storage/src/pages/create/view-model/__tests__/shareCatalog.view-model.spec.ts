@@ -5,12 +5,14 @@ import {
   TContinent,
   TDeploymentMode,
   TMacroRegion,
+  TMicroRegion,
   TShareCatalog,
 } from '@/domain/entities/catalog.entity';
 import {
   selectContinent,
   selectDeploymentModes,
   selectLocalizations,
+  selectMicroRegions,
 } from '@/pages/create/view-model/shareCatalog.view-model';
 
 vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
@@ -18,6 +20,15 @@ vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
     return region.name;
   },
   mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
+}));
+
+vi.mock('@/domain/services/catalog.service', () => ({
+  getMicroRegions: (macroRegion: TMacroRegion, microRegionsById: Map<string, TMicroRegion>) => {
+    if (!macroRegion?.microRegions) return [];
+    return macroRegion.microRegions
+      .map((id) => microRegionsById.get(id))
+      .filter((micro) => !!micro);
+  },
 }));
 
 describe('share catalog selectors', () => {
@@ -198,5 +209,83 @@ describe('share catalog selectors', () => {
         expect(result).toEqual(expected);
       },
     );
+  });
+
+  describe('selectMicroRegions', () => {
+    const createMicroRegion = (
+      name: string,
+      isActivable: boolean,
+      isInMaintenance: boolean,
+    ) =>
+      ({
+        name,
+        availabilityZones: [`${name}-A`],
+        isActivable,
+        isInMaintenance,
+        macroRegionId: 'GRA',
+      }) as TMicroRegion;
+
+    const macroRegion: TMacroRegion = {
+      name: 'GRA',
+      deploymentMode: 'region' as TDeploymentMode,
+      continentIds: ['Europe'],
+      country: 'fr',
+      microRegions: ['GRA1', 'GRA2', 'GRA3', 'GRA4'],
+    };
+
+    const microRegionsById = new Map<string, TMicroRegion>([
+      ['GRA1', createMicroRegion('GRA1', true, false)],
+      ['GRA2', createMicroRegion('GRA2', false, false)],
+      ['GRA3', createMicroRegion('GRA3', true, true)],
+      ['GRA4', createMicroRegion('GRA4', false, true)],
+    ]);
+
+    const catalog = {
+      entities: {
+        macroRegions: {
+          byId: new Map([['GRA', macroRegion]]),
+          allIds: ['GRA'],
+        },
+        microRegions: {
+          byId: microRegionsById,
+          allIds: ['GRA1', 'GRA2', 'GRA3', 'GRA4'],
+        },
+      },
+    } as DeepPartial<TShareCatalog>;
+
+    it('should return micro regions with disable if nopt activable or in maintenance', () => {
+      const selector = selectMicroRegions('GRA');
+      const result = selector(catalog as TShareCatalog);
+
+      expect(result).toEqual([
+        { label: 'GRA1', value: 'GRA1', disabled: false },
+        { label: 'GRA2', value: 'GRA2', disabled: true },
+        { label: 'GRA3', value: 'GRA3', disabled: true },
+        { label: 'GRA4', value: 'GRA4', disabled: true },
+      ]);
+    });
+
+    it.each([
+      {
+        description: 'when macro region does not exist',
+        macroRegionId: 'INVALID',
+        data: catalog as TShareCatalog,
+      },
+      {
+        description: 'when data is undefined',
+        macroRegionId: 'GRA',
+        data: undefined,
+      },
+      {
+        description: 'when macroRegionId is empty',
+        macroRegionId: '',
+        data: catalog as TShareCatalog,
+      },
+    ])('should return empty array $description', ({ macroRegionId, data }) => {
+      const selector = selectMicroRegions(macroRegionId);
+      const result = selector(data);
+
+      expect(result).toEqual([]);
+    });
   });
 });

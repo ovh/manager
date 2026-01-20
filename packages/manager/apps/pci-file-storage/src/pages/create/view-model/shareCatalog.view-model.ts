@@ -1,7 +1,7 @@
 import {
   TContinentData,
   TDeploymentModeData,
-  TDeploymentModeDataForCard,
+  TDeploymentModeDataForCard, TMicroRegionData,
   TRegionData,
 } from '@/adapters/catalog/left/shareCatalog.data';
 import {
@@ -9,6 +9,7 @@ import {
   mapRegionToLocalizationCard,
 } from '@/adapters/catalog/left/shareCatalog.mapper';
 import { TMacroRegion, TShareCatalog } from '@/domain/entities/catalog.entity';
+import { getMicroRegions } from '@/domain/services/catalog.service';
 
 export const selectDeploymentModes = (data?: TShareCatalog): TDeploymentModeDataForCard[] =>
   (data?.entities?.deploymentModes?.allIds ?? []).map(mapDeploymentModeForCard);
@@ -67,3 +68,20 @@ export const selectContinent =
       value: continent,
     }));
   };
+
+export const selectMicroRegions =
+  (macroRegionId: string) =>
+    (data?: TShareCatalog): TMicroRegionData[] => {
+      if (!data || !macroRegionId) return [];
+
+      const macroRegion = data.entities.macroRegions.byId.get(macroRegionId);
+      if (!macroRegion) return [];
+
+      const microRegions = getMicroRegions(macroRegion, data.entities.microRegions.byId);
+
+      return microRegions.map((microRegion) => ({
+        label: microRegion.name,
+        value: microRegion.name,
+        disabled: !microRegion.isActivable || microRegion.isInMaintenance,
+      }));
+    };

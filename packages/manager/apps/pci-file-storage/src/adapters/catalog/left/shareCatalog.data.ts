@@ -32,3 +32,5 @@ export type TRegionData = {
 };
 
 export type TContinentData = { labelKey: string; value: string };
+
+export type TMicroRegionData = { label: string; value: string; disabled: boolean };

@@ -34,6 +34,10 @@
         "north_africa": "Afrique du Nord",
         "north_america": "Amérique du Nord"
       }
+    },
+    "microRegion": {
+      "title": "Sélectionnez un datacentre",
+      "label": "Choisissez un datacentre"
     }
   }
 }
