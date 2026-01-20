@@ -4,5 +4,6 @@
   "billing_main_bills_tab": "Invoices",
   "billing_main_payments_tab": "Payment tracking",
   "billing_payment_refunds_title": "My credit notes",
-  "billing_main_description": "Find and download your invoices. Track your payment status. View your credit notes."
+  "billing_main_description": "Find and download your invoices. Track your payment status. View your credit notes.",
+  "billing_payment_corrective_invoices_title": "Corrective invoices"
 }

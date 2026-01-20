@@ -1,0 +1,13 @@
+{
+  "billing_payment_corrective_invoices": "Fatture correttive",
+  "billing_corrective_invoices_table_id": "Referenza",
+  "billing_corrective_invoices_table_order_id": "Numero dell'ordine",
+  "billing_corrective_invoices_table_original_invoice": "Fattura originale",
+  "billing_corrective_invoices_table_date": "Data di emissione",
+  "billing_corrective_invoices_table_total": "Importo al netto",
+  "billing_corrective_invoices_table_total_with_vat": "Importo totale",
+  "billing_corrective_invoices_table_download_html": "Vedi la versione HTML",
+  "billing_corrective_invoices_table_download_pdf": "Vedi la versione PDF",
+  "billing_corrective_invoices_load_error": "Si è verificato un errore durante il caricamento delle fatture correttive.",
+  "billing_corrective_invoices_empty": "Desideriamo informarvi che non ci sono fatture correttive emesse per i periodi interessati."
+}
