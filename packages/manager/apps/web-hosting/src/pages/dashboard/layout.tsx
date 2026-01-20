@@ -154,6 +154,7 @@ export default function Layout() {
       },
     ],
     [
+      availability,
       t,
       generalUrl,
       availability,
