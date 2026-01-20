@@ -7,7 +7,7 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { Link, Skeleton, Text } from '@ovhcloud/ods-react';
-import { Subsidiary } from '@ovh-ux/manager-config';
+import { Region, Subsidiary } from '@ovh-ux/manager-config';
 import {
   useGetAssociatedHosting,
   useGetFreeHostingServices,
@@ -45,6 +45,7 @@ export interface FreeHostingOptions {
 export default function Hosting({ serviceName }: HostingProps) {
   const { t } = useTranslation(['domain']);
   const context = useContext(ShellContext);
+  const region = context.environment.getRegion();
   const ovhSubsidiary = context.environment.getUser()
     .ovhSubsidiary as Subsidiary;
   const [isFreeHostingOpen, setIsFreeHostingOpen] = useState(false);
@@ -71,6 +72,7 @@ export default function Hosting({ serviceName }: HostingProps) {
     ovhSubsidiary,
     serviceInfo?.billing?.pricing?.pricingMode,
   );
+
   const {
     orderFreeHosting,
     isOrderFreeHostingPending,
@@ -101,7 +103,7 @@ export default function Hosting({ serviceName }: HostingProps) {
     });
 
   const actionMenuItems = [
-    ...(!hasFreeHosting
+    ...(region === Region.EU && !hasFreeHosting
       ? [
           {
             id: 1,
