@@ -8,6 +8,7 @@ import { ReplicationRuleAdvanced } from './ReplicationRuleAdvanced.component';
 
 interface ReplicationFormProps {
   isEditMode?: boolean;
+  replicationTitle: string;
   form: UseFormReturn<ReplicationFormValues>;
   isPending: boolean;
   onSubmit: () => void;
@@ -15,6 +16,7 @@ interface ReplicationFormProps {
 
 export const ReplicationForm = ({
   isEditMode = false,
+  replicationTitle,
   form,
   isPending,
   onSubmit,
@@ -23,6 +25,7 @@ export const ReplicationForm = ({
     form={form}
     isPending={isPending}
     isEditMode={isEditMode}
+    replicationTitle={replicationTitle}
   >
     <form onSubmit={onSubmit} className="space-y-4" id="replication-form">
       <ReplicationRuleIdentification />
