@@ -3,7 +3,7 @@
 exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -103,7 +103,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
 exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility enabled' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -203,7 +203,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
 exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container height' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 400px; height: 400px;
+  style=min-height: 150px; max-height: 400px; height: 400px;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -303,7 +303,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
 exports[`Datagrid Snapshot Tests > should match snapshot with 'empty data' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -351,7 +351,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'empty data' 1`] =
 exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -451,7 +451,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
 exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--lg table table-fixed w-full
@@ -551,7 +551,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
 exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -971,7 +971,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
 exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -1071,7 +1071,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
 exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -1171,7 +1171,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
 exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -1467,7 +1467,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
 exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -1567,7 +1567,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
 exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--sm table table-fixed w-full
@@ -1667,7 +1667,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
 exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -1805,7 +1805,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
 exports[`Datagrid Snapshot Tests > should match snapshot with all features enabled 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 500px; height: 500px;
+  style=min-height: 150px; max-height: 500px; height: 500px;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -2233,7 +2233,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
 exports[`Datagrid Snapshot Tests > should match snapshot with conditional row selection 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -2534,7 +2534,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
 exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -2690,7 +2690,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
 exports[`Datagrid Snapshot Tests > should match snapshot with hideHeader enabled 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md table table-fixed w-full
@@ -2772,7 +2772,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with hideHeader enabled
 exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`] = `
 <div
   class=overflow-auto relative w-full
-  style=max-height: 100%; height: 100%;
+  style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
     class=_table--md _table--striped table table-fixed w-full
