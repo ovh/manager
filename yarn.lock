@@ -12333,11 +12333,6 @@ JSONStream@^1.0.4, JSONStream@^1.3.5:
     jsonparse "^1.2.0"
     through ">=2.2.7 <3"
 
-URIjs@^1.14.0:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/URIjs/-/URIjs-1.16.1.tgz#edebc678b8b74b26b05d2b481e12383f5ae04b8b"
-  integrity sha512-ycFsR7J7p7Q+iJA4oVQP9tEnBEA7N/JD5RiOkLAhEeAmR1djRvZBpKCsWhmDaEoBNJLMhaCVpfLcRgqfaG6COw==
-
 abab@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"
@@ -18064,7 +18059,7 @@ filenamify@^4.3.0:
     strip-outer "^1.0.1"
     trim-repeated "^1.0.0"
 
-filesize@^3.5.10, filesize@^3.6.1:
+filesize@^3.6.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/filesize/-/filesize-3.6.1.tgz#090bb3ee01b6f801a8a8be99d31710b3422bb317"
   integrity sha512-7KjR1vv6qnicaPMi1iiTcI85CyYwRO/PSFCu6SvqL8jN2Wjt/NIYQTFtFs7fSDCYOstUkEWIQGFUg5YZQfjlcg==
@@ -23772,7 +23767,7 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha512-0QWRnf2qmdgeui8GJ0osvBfpx7Ph6mfiKOOus85EccuWr1lE9i6f0SalLdssg2aoAZR/qLKDo8jp6T7025GKZQ==
 
-ovh-ui-kit-bs@^4.1.6, ovh-ui-kit-bs@^4.1.8, ovh-ui-kit-bs@^4.2.0:
+ovh-ui-kit-bs@^4.1.6, ovh-ui-kit-bs@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-4.2.0.tgz#d4e4b9c0acbaaaafb284bcd660ae7f4d920fb6d4"
   integrity sha512-/U/H3e5anKliI8zzVVIzRvqJeH9m9jPvpHZaj8BjCyWCYiAfFtXJSw8Rewzos4ERUZgX61chbYNvnZSgRMbAUQ==
@@ -25736,11 +25731,6 @@ regenerate@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
-
-regenerator-runtime@0.13.5:
-  version "0.13.5"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz#d878a1d094b4306d10b9096484b33ebd55e26697"
-  integrity sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA==
 
 regenerator-runtime@^0.10.5:
   version "0.10.5"
