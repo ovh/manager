@@ -7,6 +7,7 @@ export interface HeadersProps {
   description?: string;
   headerButton?: React.ReactElement;
   changelogButton?: React.ReactElement;
+  surveyLink?: React.ReactElement;
 }
 
 export const Headers: React.FC<HeadersProps> = ({
@@ -15,6 +16,7 @@ export const Headers: React.FC<HeadersProps> = ({
   description,
   headerButton,
   changelogButton,
+  surveyLink,
 }) => {
   return (
     <div className="flex items-center justify-between">
@@ -29,6 +31,7 @@ export const Headers: React.FC<HeadersProps> = ({
         <div className="flex flex-wrap justify-end">
           {changelogButton}
           {headerButton}
+          {surveyLink}
         </div>
       )}
     </div>
