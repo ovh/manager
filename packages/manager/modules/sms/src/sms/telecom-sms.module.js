@@ -4,7 +4,6 @@ import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'angular-messages';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
-import '@ovh-ux/ng-pagination-front';
 import 'ovh-api-services';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
