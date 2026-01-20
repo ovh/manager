@@ -52,7 +52,7 @@ describe('mapper', () => {
       expect(result.relations.planRegions['mks.free.hour.consumption']).toEqual(['GRA9']);
     });
 
-    it('merges multiple micro-regions into a single macro-region', () => {
+    it('merges multiple micro-regions into a single macro-region and sets enabled to true if at least one micro-region is enabled', () => {
       const mockDto: TProductAvailabilityResponseDTO = {
         plans: [
           {
@@ -89,7 +89,7 @@ describe('mapper', () => {
       const macroRegion = result.entities.macroRegions.byId.get('GRA');
       expect(macroRegion).toMatchObject({
         microRegionIds: ['GRA9', 'GRA11'],
-        enabled: true, // Should be true because at least one micro-region is enabled
+        enabled: true,
       });
     });
 
