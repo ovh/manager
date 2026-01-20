@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -7,23 +7,11 @@ import { Link, Skeleton } from '@ovhcloud/ods-react';
 import { TagsList, Tile } from '@ovh-ux/muk';
 
 import { TagsTileProps } from '@/components/dashboard/TagsTile.props';
-import { getTenantTagsUrl } from '@/routes/Routes.utils';
 
-export const TagsTile = ({
-  tenantId,
-  resourceName,
-  title,
-  tags,
-  isLoading,
-  hideLink = false,
-}: TagsTileProps) => {
+export const TagsTile = ({ href, title, tags, isLoading, hideLink = false }: TagsTileProps) => {
   const { t } = useTranslation('tenants');
 
-  const navigate = useNavigate();
-
-  const onClickManageTagsLink = () => {
-    navigate(getTenantTagsUrl({ tenantId, resourceName }));
-  };
+  const _href = useHref(href);
 
   return (
     <Tile.Root title={t('dashboard.tags_tile.title')}>
@@ -35,7 +23,7 @@ export const TagsTile = ({
         )}
 
         {!hideLink && (
-          <Link onClick={onClickManageTagsLink}>
+          <Link href={_href}>
             <span>{t('dashboard.tags_tile.manage_tags')}</span>
           </Link>
         )}
