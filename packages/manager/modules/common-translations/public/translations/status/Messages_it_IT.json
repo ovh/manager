@@ -23,5 +23,8 @@
   "unPaid": "Fattura non pagata",
   "error": "Errore",
   "ready": "Attivo",
-  "awaiting_signature": "In attesa di firma"
+  "awaiting_signature": "Attesa di firma",
+  "not_installed": "Non installato",
+  "not_configured": "Non configurato",
+  "enabled": "Attivato"
 }
