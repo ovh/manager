@@ -28,6 +28,9 @@ const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantCreat
 const EditTenantPage = React.lazy(() => import('@/pages/tenants/edit/EditTenant.page'));
 const OnboardingServicePage = React.lazy(() => import('@/pages/metrics/OnboardingService.page'));
 const ServicesPage = React.lazy(() => import('@/pages/settings/services/Services.page'));
+const ServiceDeletePage = React.lazy(
+  () => import('@/pages/settings/services/delete/ServiceDelete.page'),
+);
 
 const TenantDashboardPage = React.lazy(
   () => import('@/pages/tenants/dashboard/TenantDashboard.page'),
@@ -82,7 +85,18 @@ export default (
         <Route path={subroutes.settings}>
           <Route index element={<Navigate to={urls.services} replace />} />
           <Route path={subroutes.services} Component={ServicesBaseLayout}>
-            <Route index Component={ServicesPage} />
+            <Route path="" Component={ServicesPage}>
+              <Route
+                path={subroutes.delete}
+                Component={ServiceDeletePage}
+                handle={{
+                  tracking: {
+                    pageName: 'service-delete',
+                    pageType: PageType.popup,
+                  },
+                }}
+              />
+            </Route>
           </Route>
         </Route>
         {/* Metrics route */}
