@@ -11,6 +11,7 @@ import { MacroRegionSelection } from '@/pages/create/components/localisation/mac
 import { MicroRegionSelection } from '@/pages/create/components/localisation/microRegion/MicroRegionSelection.component';
 import { NameInput } from '@/pages/create/components/name/NameInput.component';
 import { ShareSelection } from '@/pages/create/components/share/ShareSelection.component';
+import { ShareSizeSelection } from '@/pages/create/components/share/ShareSizeSelection.component';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
 import {
   selectAvailabilityZones,
@@ -55,6 +56,7 @@ export const CreateShareForm = () => {
         <Divider className="w-full" />
         <section>
           <ShareSelection />
+          <ShareSizeSelection />
         </section>
       </div>
     </FormProvider>

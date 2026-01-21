@@ -113,6 +113,7 @@ export const selectShareSpecs =
       .map((spec) => ({
         name: spec.name,
         capacityMin: spec.capacity.min,
+        capacityMax: spec.capacity.max,
         iopsLevel: spec.iops.level,
         bandwidthLevel: spec.bandwidth.level,
         bandwidthUnit: spec.bandwidth.unit,

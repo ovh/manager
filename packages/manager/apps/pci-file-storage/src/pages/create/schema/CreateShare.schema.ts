@@ -8,6 +8,7 @@ export const shareDataShema = z.object({
   name: stringShema,
   microRegion: stringShema,
   specName: stringShema,
+  size: z.number(),
 });
 
 const deploymentModesShema = z.array(z.enum(DEPLOYMENT_MODES));

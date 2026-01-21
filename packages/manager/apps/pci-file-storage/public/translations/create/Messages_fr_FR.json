@@ -51,5 +51,9 @@
   "share": {
     "title": "Mode de performance du share",
     "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS et {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Taille du share",
+    "label": "Allocation de performance linéaire (GB)"
   }
 }

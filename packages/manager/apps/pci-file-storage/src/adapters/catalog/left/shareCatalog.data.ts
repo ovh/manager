@@ -40,6 +40,7 @@ export type TAvailabilityZoneData = { label: string; value: string };
 export type TShareSpecData = {
   name: string;
   capacityMin: number;
+  capacityMax: number;
   iopsLevel: number;
   bandwidthLevel: number;
   bandwidthUnit: string;
