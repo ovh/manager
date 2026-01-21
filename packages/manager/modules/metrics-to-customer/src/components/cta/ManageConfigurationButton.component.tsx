@@ -16,8 +16,7 @@ export default function ManageConfigurationButton({
   const navigate = useNavigate();
 
   const onClickManageConfigurationButton = () => {
-    // TODO: Once the "subscriptionsConfig" route is added
-    console.log(`navigate to ${configUrl}`)
+    navigate(configUrl);
   }
 
   return (

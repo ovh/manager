@@ -1,0 +1,19 @@
+{
+  "tenants_drawer" : {
+    "title": "Liste des tenants",
+    "disclaimer": "Seuls les tenants situés dans la même région {{region}} que votre ressource peuvent être sélectionnés",
+    "no_results_found": "Aucun tenant trouvé pour la recherche \"{{searchQuery}}\"",
+    "region": "region"
+  },
+  "search": {
+    "placeholder": "recherche"
+  },
+  "subscription": {
+    "subscribe": {
+      "cta": "S'abonner"
+    },
+    "unsubscribe": {
+      "cta": "Se désabonner"
+    }
+  }
+}

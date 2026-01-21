@@ -1,0 +1,87 @@
+[
+  {
+    "id": "1",
+    "createdAt": "2025-11-21T14:26:14.041Z",
+    "updatedAt": "2025-11-21T14:26:14.041Z",
+    "resourceStatus": "READY",
+    "iam": {
+      "id": "TENANT_ID",
+      "tags": {
+        "ovh:metrics:name": "RESOURCE_NAME",
+        "environment": "Prod"
+      },
+      "urn": "urn:v1:eu:resource:ldp:RESOURCE_NAME"
+    },
+    "currentState": {
+      "kind": "Subscription",
+      "link": "https://api.ovh.com/v2/observability/resource/RESOURCE_NAME/metric/tenant/TENANT_ID/subscription",
+      "resource": {
+        "name": "RESOURCE_NAME-TENANT_ID-subscription-1",
+        "type": "PCI/Instance"
+      }
+    }
+  },
+  {
+    "id": "2",
+    "createdAt": "2025-11-21T14:26:14.041Z",
+    "updatedAt": "2025-11-21T14:26:14.041Z",
+    "resourceStatus": "READY",
+    "iam": {
+      "id": "TENANT_ID",
+      "tags": {
+        "environment": "Dev"
+      },
+      "urn": "urn:v1:eu:resource:ldp:RESOURCE_NAME"
+    },
+    "currentState": {
+      "kind": "Subscription",
+      "link": "https://api.ovh.com/v2/observability/resource/RESOURCE_NAME/metric/tenant/TENANT_ID/subscription",
+      "resource": {
+        "name": "RESOURCE_NAME-TENANT_ID-subscription-2",
+        "type": "PCI/Instance"
+      }
+    }
+  },
+  {
+    "id": "3",
+    "createdAt": "2025-11-21T14:26:14.041Z",
+    "updatedAt": "2025-11-21T14:26:14.041Z",
+    "resourceStatus": "READY",
+    "iam": {
+      "id": "019ad9a2-7438-735e-bb05-e397e1d9be7e",
+      "tags": {
+        "environment": "Dev"
+      },
+      "urn": "urn:v1:eu:resource:ldp:ldp-gr-55078"
+    },
+    "currentState": {
+      "kind": "Subscription",
+      "link": "https://api.ovh.com/v2/observability/resource/ldp-gr-55078/metric/tenant/019ad9a2-7438-735e-bb05-e397e1d9be7e/subscription",
+      "resource": {
+        "name": "9042f190-6431-495e-b870-35fc7c6f3222",
+        "type": "PCI/Instance"
+      }
+    }
+  },
+  {
+    "id": "4",
+    "createdAt": "2025-11-21T14:26:14.041Z",
+    "updatedAt": "2025-11-21T14:26:14.041Z",
+    "resourceStatus": "READY",
+    "iam": {
+      "id": "019ada67-6f23-779b-aa16-de2068bc9d2f",
+      "tags": {
+        "environment": "Dev"
+      },
+      "urn": "urn:v1:eu:resource:ldp:ldp-gr-55078"
+    },
+    "currentState": {
+      "kind": "Subscription",
+      "link": "https://api.ovh.com/v2/observability/resource/ldp-gr-55078/metric/tenant/019ada67-6f23-779b-aa16-de2068bc9d2f/subscription",
+      "resource": {
+        "name": "9042f190-6431-495e-b870-35fc7c6f3222",
+        "type": "PCI/Instance"
+      }
+    }
+  }
+]
