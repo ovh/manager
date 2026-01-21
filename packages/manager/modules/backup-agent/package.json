@@ -85,6 +85,11 @@
       "types": "./dist/types/src/hooks/useGuideUtils.d.ts",
       "import": "./dist/src/hooks/useGuideUtils",
       "require": "./dist/src/hooks/useGuideUtils.js"
+    },
+    "./hooks/useRequiredParams": {
+      "types": "./dist/types/src/hooks/useRequiredParams.d.ts",
+      "import": "./dist/src/hooks/useRequiredParams",
+      "require": "./dist/src/hooks/useRequiredParams.js"
     }
   },
   "main": "./dist/src/lib.js",
