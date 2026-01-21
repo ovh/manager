@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.12...@ovh-ux/manager-zimbra-app@0.42.13) (2026-01-21)
+
+
+### Bug Fixes
+
+* **zimbra:** disable change domain on account edition ([70c336b](https://github.com/ovh/manager/commit/70c336bb5cf6b57acf0ae60b21b37b980545b615)), closes [#PRDCOL-331](https://github.com/ovh/manager/issues/PRDCOL-331)
+* **zimbra:** show correctly the tooltip when creating an account ([b84b823](https://github.com/ovh/manager/commit/b84b823781712f3a736aed21a745d54e710a99a0)), closes [#PRDCOL-331](https://github.com/ovh/manager/issues/PRDCOL-331)
+
+
+
+
+
 ## [0.42.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.11...@ovh-ux/manager-zimbra-app@0.42.12) (2026-01-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
