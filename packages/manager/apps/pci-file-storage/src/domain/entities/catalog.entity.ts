@@ -62,7 +62,7 @@ export type TShareBandwidth = {
 type TSharePricing = {
   price: number;
   interval: string;
-}
+};
 
 export type TShareSpecs = {
   name: TShareSpecsName;

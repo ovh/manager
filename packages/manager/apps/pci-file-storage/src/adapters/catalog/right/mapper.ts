@@ -6,13 +6,12 @@ import type {
   TDeploymentModeId,
   TMacroRegion,
   TMicroRegion,
-  TMicroRegionId,
   TShare,
   TShareBandwidth,
   TShareCapacity,
   TShareCatalog,
-  TShareId,
   TShareIOPS,
+  TShareId,
   TShareSpecs,
   TShareSpecsId,
 } from '@/domain/entities/catalog.entity';
@@ -27,8 +26,6 @@ import type {
   TShareDTO,
   TShareIOPSDTO,
   TSharePricingDTO,
-  TShareShareDTO,
-  TShareSpecsDTO,
 } from './dto.type';
 
 type TNormalizedEntity<ID, Entity> = {
@@ -182,14 +179,12 @@ const mapShareBandwidthDTOToEntity = (bandwidth: TShareBandwidthDTO): TShareBand
   unit: bandwidth.unit,
 });
 
-const mapShareSpecsDTOToEntity = (
-  pricing: TSharePricingDTO,
-): TShareSpecs => ({
+const mapShareSpecsDTOToEntity = (pricing: TSharePricingDTO): TShareSpecs => ({
   name: pricing.specs.name,
   capacity: mapShareCapacityDTOToEntity(pricing.specs.share.capacity),
   iops: mapShareIOPSDTOToEntity(pricing.specs.share.iops),
   bandwidth: mapShareBandwidthDTOToEntity(pricing.specs.bandwidth),
-  microRegionIds: pricing.regions as TMicroRegionId[],
+  microRegionIds: pricing.regions,
   pricing: {
     price: pricing.price,
     interval: pricing.interval,

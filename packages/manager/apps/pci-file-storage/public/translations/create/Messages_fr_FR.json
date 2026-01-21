@@ -47,5 +47,9 @@
         "user": "Je choisis ma zone de disponibilité"
       }
     }
+  },
+  "share": {
+    "title": "Mode de performance du share",
+    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS et {{bandwidthLevel}} {{bandwidthUnit}}"
   }
 }

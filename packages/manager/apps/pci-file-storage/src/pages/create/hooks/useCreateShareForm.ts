@@ -18,6 +18,7 @@ export const useCreateShareForm = () => {
       shareData: {
         name: '',
         microRegion: localizations[0]?.microRegion ?? '',
+        specName: '',
       },
       deploymentModes: ['region', 'region-3-az'],
       continent: 'all',
