@@ -5,21 +5,26 @@ import { Button } from '@/components/button/Button.component';
 import { Link } from '@/components/link/Link.component';
 
 export const ActionMenuItem = ({
-  item,
-  isTrigger,
   id,
+  item,
+  closeMenu,
 }: {
-  item: Omit<ActionMenuItemProps, 'id'>;
-  isTrigger: boolean;
   id: number;
+  item: Omit<ActionMenuItemProps, 'id'>;
+  closeMenu: () => void;
 }) => {
   const buttonProps = {
+    ...item,
     size: BUTTON_SIZE.sm,
     variant: BUTTON_VARIANT.ghost,
     displayTooltip: false,
     className: 'menu-item-button w-full',
     disabled: item.isDisabled,
-    ...item,
+    loading: item.isLoading,
+    onClick: () => {
+      item.onClick?.();
+      closeMenu();
+    },
   };
 
   if (item.href) {
@@ -31,7 +36,7 @@ export const ActionMenuItem = ({
         target={item.target}
         urn={item.urn}
         iamActions={item.iamActions}
-        onClick={item.onClick}
+        onClick={buttonProps.onClick}
         disabled={item.isDisabled}
       >
         {item.label}
@@ -43,8 +48,12 @@ export const ActionMenuItem = ({
     delete buttonProps.isDisabled;
   }
 
+  if (item.isLoading) {
+    delete buttonProps.isLoading;
+  }
+
   return (
-    <Button id={`${id}`} isIamTrigger={isTrigger} {...buttonProps}>
+    <Button id={id?.toString()} {...buttonProps}>
       {item.label}
     </Button>
   );
