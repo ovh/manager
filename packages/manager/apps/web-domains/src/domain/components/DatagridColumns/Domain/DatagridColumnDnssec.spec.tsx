@@ -1,8 +1,11 @@
-import { render, screen } from '@/common/utils/test.provider';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
 import '@/common/setupTests';
-import { beforeEach } from 'vitest';
-import { wrapper, renderHook } from '@/common/utils/test.provider';
+import {
+  wrapper,
+  renderHook,
+  render,
+  screen,
+} from '@/common/utils/test.provider';
 import DatagridColumnDnssec from './DatagridColumnDnssec';
 import { useGetDnssecStatus } from '@/domain/hooks/data/query';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';

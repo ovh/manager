@@ -44,7 +44,13 @@ export default function DataProtection({
 
   const status = dataProtectionStatus(domainResource);
   const statusDetails = ConfigurationDataProtectionBadgeColorAndContent[status];
-
+  const isConfigurationForced = Object.values(
+    domainResource?.currentState?.contactsConfiguration,
+  ).every(
+    (contact: TContactDetails) =>
+      !contact?.disclosurePolicy?.visibleViaRdds ||
+      contact?.disclosurePolicy?.forcedDisclosureConfiguration,
+  );
   return (
     <ManagerTile.Item>
       <ManagerTile.Item.Label>
@@ -61,20 +67,14 @@ export default function DataProtection({
                 <ActionMenu
                   id={'data-protection-action-menu'}
                   isCompact
-                  isDisabled={isServiceInCreation(serviceInfo)}
+                  isDisabled={
+                    isServiceInCreation(serviceInfo) || isConfigurationForced
+                  }
                   items={[
                     {
                       id: 1,
                       label: t(
                         'domain_tab_general_information_data_protection_manage_button',
-                      ),
-                      isDisabled: Object.values(
-                        domainResource?.currentState?.contactsConfiguration,
-                      ).every(
-                        (contact: TContactDetails) =>
-                          !contact?.disclosurePolicy?.visibleViaRdds ||
-                          contact?.disclosurePolicy
-                            ?.forcedDisclosureConfiguration,
                       ),
                       onClick: () => setDataProtectionDrawerOpened(true),
                       iamActions: ['domain:apiovh:name/edit'],
@@ -87,6 +87,13 @@ export default function DataProtection({
             {isServiceInCreation(serviceInfo) && (
               <TooltipContent>
                 {t('domain_tab_name_service_in_creation')}
+              </TooltipContent>
+            )}
+            {isConfigurationForced && (
+              <TooltipContent>
+                {t(
+                  'domain_tab_general_information_data_protection_manage_button_disabled',
+                )}
               </TooltipContent>
             )}
           </Tooltip>

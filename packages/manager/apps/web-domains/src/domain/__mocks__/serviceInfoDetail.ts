@@ -77,6 +77,75 @@ export const domainResourceOK: TDomainResource = {
   resourceStatus: ResourceStatusEnum.READY,
 };
 
+export const domainResourceInTransfer: TDomainResource = {
+  checksum: 'example-checksum',
+  currentState: {
+    additionalStates: [],
+    dnsConfiguration: {
+      configurationType: DnsConfigurationTypeEnum.HOSTING,
+      glueRecordIPv6Supported: true,
+      hostSupported: true,
+      maxDNS: 10,
+      minDNS: 2,
+      nameServers: [
+        {
+          nameServer: 'ns1.ovh.net',
+          nameServerType: DnsConfigurationTypeEnum.HOSTING,
+        },
+        {
+          nameServer: 'ns2.ovh.net',
+          nameServerType: DnsConfigurationTypeEnum.HOSTING,
+        },
+      ],
+      dnssecSupported: true,
+    },
+    hostsConfiguration: {
+      ipv4Supported: true,
+      ipv6Supported: true,
+      multipleIPsSupported: true,
+      hostSupported: true,
+      hosts: [
+        {
+          host: 'ns1.example.com',
+          ips: ['1.0.0.0'],
+          status: StatusEnum.ENABLED,
+        },
+      ],
+    },
+    authInfoManagedByOVHcloud: true,
+    authInfoSupported: true,
+    dnssecConfiguration: {
+      dnssecSupported: true,
+      dsData: [
+        {
+          algorithm: 8,
+          keyTag: 0,
+          flags: 0,
+          publicKey:
+            'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+        },
+      ],
+      supportedAlgorithms,
+    },
+    extension: '.com',
+    mainState: DomainStateEnum.OK,
+    protectionState: ProtectionStateEnum.PROTECTED,
+    suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
+    contactsConfiguration: {
+      contactOwner: { id: 'owner-id' },
+      contactAdministrator: { id: 'admin-id' },
+      contactTechnical: { id: 'tech-id' },
+      contactBilling: { id: 'billing-id' },
+    },
+    createdAt: '2023-01-01T00:00:00Z',
+    name: 'example.com',
+  },
+  currentTasks: [],
+  iam: null,
+  id: 'example-domain-id',
+  resourceStatus: ResourceStatusEnum.READY,
+};
+
 export const serviceInfoDetail: TDomainResource = {
   id: 'example.com',
   checksum: 'b33b25a0c92de994bb085f4d3b1eee47',
