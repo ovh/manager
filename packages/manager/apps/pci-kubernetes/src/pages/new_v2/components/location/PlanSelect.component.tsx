@@ -13,19 +13,23 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-import { selectPlanOptions } from '../../view-models/location.viewmodel';
+import { PlanOption } from '../../view-models/plans.viewmodel';
 
-export const PlanSelect = () => {
+type TPlanSelectProps = {
+  options: Array<PlanOption>;
+};
+
+export const PlanSelect = ({ options }: TPlanSelectProps) => {
   const { t } = useTranslation('add');
 
   const { control } = useFormContext<TCreateClusterSchema>();
 
   const planOptions = useMemo(() => {
-    return selectPlanOptions().map(({ plan, labelKey }) => ({
+    return options.map(({ plan, labelKey }) => ({
       value: plan,
       label: t(labelKey),
     }));
-  }, [t]);
+  }, [options, t]);
 
   return (
     <Controller
