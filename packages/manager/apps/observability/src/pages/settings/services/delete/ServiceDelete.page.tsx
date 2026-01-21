@@ -31,7 +31,7 @@ export default function ServiceDeletePage() {
   return (
     <DeleteModal
       open
-      serviceTypeName={selectedService?.currentState.displayName ?? selectedService?.id}
+      serviceTypeName={selectedService?.currentState.displayName ?? resourceName}
       onConfirmDelete={handleConfirmDelete}
       onClose={handleClose}
       isLoading={isPending || !resourceName}
