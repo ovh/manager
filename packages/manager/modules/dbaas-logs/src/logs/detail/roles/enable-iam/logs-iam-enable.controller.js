@@ -44,7 +44,7 @@ export default class LogsIamEnableModalCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsHomeService.enableIam(this.serviceName, this.service)
+        this.LogsHomeService.enableIam(this.service)
           .then((response) => this.$uibModalInstance.close(response))
           .catch((response) => this.$uibModalInstance.dismiss(response))
           .finally(() => {
