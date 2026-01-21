@@ -4,5 +4,5 @@
   "pci_project_new_payment_credit_info": "* Os créditos não podem ser transferidos nem são reembolsáveis, e não possuem qualquer valor monetário. Qualquer crédito não utilizado nos 13 meses a seguir à compra será perdido. Ao clicar em “Creditar e criar o meu projeto”, vai ser redirecionado para um voucher para pagar os seus créditos por cartão de crédito ou PayPal.",
   "pci_project_new_payment_credit_credit_and_pay": "Creditar e criar o meu projeto",
   "pci_project_new_payment_credit_checkout_error": "Ocorreu um erro na criação do seu projeto Public Cloud. Tente novamente.",
-  "pci_project_new_payment_credit_confirmation_title": "Confirmação do seu método de pagamento"
+  "pci_project_new_payment_credit_confirmation_title": "Confirmação do método de pagamento"
 }

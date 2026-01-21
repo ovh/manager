@@ -1,6 +1,22 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable max-lines */
+import React from 'react';
+
 import { Path, To } from 'react-router-dom';
 
-import { vi } from 'vitest';
+import '@testing-library/jest-dom';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { afterEach, vi } from 'vitest';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
+import countriesCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/countries/Messages_fr_FR.json';
+import dashboardCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import formCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/form/Messages_fr_FR.json';
+import languageCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/language/Messages_fr_FR.json';
+import statusCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
 
 import {
   WebHostingWebsiteDomainMocks,
@@ -28,6 +44,31 @@ import {
   managedWordpressWebsitesDetailsMock,
   managedWordpressWebsitesMock,
 } from '@/data/__mocks__/managedWordpress/website';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
+import multisiteTranslation from '@/public/translations/multisite/Messages_fr_FR.json';
+import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
+
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+i18n.use(initReactI18next).init({
+  lng: 'fr',
+  fallbackLng: 'fr',
+  resources: {
+    fr: {
+      common: commonTranslation,
+      dashboard: dashboardTranslation,
+      onboarding: onboardingTranslation,
+      multisite: multisiteTranslation,
+      [NAMESPACES.ACTIONS]: actionsCommonTranslation,
+      [NAMESPACES.STATUS]: statusCommonTranslation,
+      [NAMESPACES.DASHBOARD]: dashboardCommonTranslation,
+      [NAMESPACES.FORM]: formCommonTranslation,
+      [NAMESPACES.COUNTRIES]: countriesCommonTranslation,
+      [NAMESPACES.LANGUAGE]: languageCommonTranslation,
+    },
+  },
+  ns: ['common', 'onboarding', 'multisite', 'dashboard'],
+});
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -36,17 +77,7 @@ const mocksAxios = vi.hoisted(() => ({
   delete: vi.fn(),
 }));
 
-export const deleteMock = vi.fn();
-
-vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@ovh-ux/manager-core-api')>()),
-  v6: {
-    put: vi.fn().mockResolvedValue({ data: {} }),
-    post: vi.fn().mockResolvedValue({ data: {} }),
-    delete: deleteMock,
-    fetchIcebergV2: vi.fn().mockResolvedValue({ data: {}, cursorNext: null }),
-  },
-}));
+const mockUseDataApi = vi.hoisted(() => vi.fn());
 
 vi.mock('axios', async (importActual) => {
   const actual = await importActual<typeof import('axios')>();
@@ -84,32 +115,19 @@ vi.mock('export-to-csv', () => ({
   download: vi.fn().mockImplementation(() => vi.fn()),
 }));
 
-/* eslint-disable react/no-multi-comp */
-vi.mock('@ovh-ux/muk', () => {
+vi.mock('@ovh-ux/muk', async (importActual) => {
+  const actual = await importActual<typeof import('@ovh-ux/muk')>();
   return {
-    Datagrid: ({
-      columns,
-      topbar,
-      ...props
-    }: React.PropsWithChildren<{
-      columns?: Array<{ id: string; header?: string }>;
-      topbar?: React.ReactElement;
-      [key: string]: unknown;
-    }>) => (
-      <div data-testid="datagrid" {...props}>
-        {topbar}
-        {columns?.map((column) => (
-          <div key={column.id} data-testid={`header-${column.id}`}>
-            {column.header || column.id}
-          </div>
-        ))}
-      </div>
-    ),
-    Notifications: ({
-      message,
-    }: React.PropsWithChildren<{
-      message?: string;
-    }>) => <div>{message}</div>,
+    ...actual,
+    useDataApi: mockUseDataApi,
+    useNotifications: vi.fn(() => ({
+      notifications: [],
+      addSuccess: vi.fn(),
+      addError: vi.fn(),
+      addWarning: vi.fn(),
+      addInfo: vi.fn(),
+    })),
+    useFormatDate: vi.fn(),
     ActionMenu: ({
       id,
       items,
@@ -127,6 +145,156 @@ vi.mock('@ovh-ux/muk', () => {
         ))}
       </div>
     ),
+    Badge: ({
+      children,
+      'data-testid': dataTestId,
+      color,
+      onClick,
+      ...props
+    }: React.PropsWithChildren<{
+      children: React.ReactNode;
+      'data-testid'?: string;
+      color?: string;
+      onClick?: () => void;
+      [key: string]: unknown;
+    }>) => (
+      <span
+        data-testid={dataTestId}
+        color={color}
+        onClick={onClick}
+        onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
+        role={onClick ? 'button' : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        {...props}
+      >
+        {children}
+      </span>
+    ),
+    BaseLayout: ({
+      breadcrumb,
+      message,
+      children,
+      tabs,
+    }: React.PropsWithChildren<{
+      children: React.ReactNode;
+      message: React.ReactElement;
+      breadcrumb: React.ReactElement;
+      tabs: React.ReactElement;
+    }>) => (
+      <div>
+        <div>{breadcrumb}</div>
+        {message && <div>{message}</div>}
+        {tabs && <div>{tabs}</div>}
+        {children}
+      </div>
+    ),
+    Datagrid: ({
+      children,
+      isLoading,
+      data,
+      columns,
+      topbar,
+      expandable,
+      ...props
+    }: {
+      children?: React.ReactNode;
+      isLoading?: boolean;
+      data?: unknown[];
+      columns?: Array<{
+        id: string;
+        header?: string | React.ReactNode;
+        cell?: (context: {
+          row: { original: unknown };
+          getValue: () => unknown;
+        }) => React.ReactNode;
+        accessorFn?: (row: unknown) => unknown;
+      }>;
+      topbar?: React.ReactElement;
+      expandable?: {
+        expanded: Record<string, boolean>;
+        setExpanded: (state: Record<string, boolean>) => void;
+        getRowCanExpand: (row: { original: unknown }) => boolean;
+      };
+      [key: string]: unknown;
+    }) => {
+      if (isLoading) {
+        return (
+          <div data-testid="datagrid" {...props}>
+            <div data-testid="datagrid-loading">Loading...</div>
+          </div>
+        );
+      }
+
+      const renderCell = (
+        column: {
+          id: string;
+          cell?: (context: {
+            row: { original: unknown };
+            getValue: () => unknown;
+          }) => React.ReactNode;
+          accessorFn?: (row: unknown) => unknown;
+        },
+        row: unknown,
+      ) => {
+        if (column.cell) {
+          const getValue = () => column.accessorFn?.(row) ?? '';
+          const cellContent = column.cell({ row: { original: row }, getValue });
+          return (
+            <div key={column.id} data-testid={`cell-${column.id}`}>
+              {cellContent}
+            </div>
+          );
+        }
+        const value = column.accessorFn?.(row) ?? '';
+        const displayValue =
+          typeof value === 'string' || typeof value === 'number' ? String(value) : '';
+        return (
+          <div key={column.id} data-testid={`cell-${column.id}`}>
+            {displayValue}
+          </div>
+        );
+      };
+
+      const renderRow = (row: unknown, index: number, isSubRow = false, parentIndex = 0) => {
+        const rowKey = isSubRow ? `subrow-${parentIndex}-${index}` : `row-${index}`;
+        const rowData = row as { subRows?: unknown[] };
+        const hasSubRows = rowData?.subRows && rowData.subRows.length > 0;
+        const shouldExpand = hasSubRows && expandable?.getRowCanExpand({ original: row }) !== false;
+
+        return (
+          <React.Fragment key={rowKey}>
+            <div
+              data-testid={
+                isSubRow ? `datagrid-subrow-${parentIndex}-${index}` : `datagrid-row-${index}`
+              }
+            >
+              {columns?.map((col) => renderCell(col, row))}
+            </div>
+            {shouldExpand &&
+              rowData.subRows?.map((subRow, subIndex) => renderRow(subRow, subIndex, true, index))}
+          </React.Fragment>
+        );
+      };
+
+      return (
+        <div data-testid="datagrid" {...props}>
+          {topbar}
+          {columns && columns.length > 0 && (
+            <div data-testid="datagrid-headers">
+              {columns.map((col, index) => (
+                <div key={col.id || index} data-testid={`header-${col.id || index}`}>
+                  {typeof col.header === 'string' ? col.header : col.header}
+                </div>
+              ))}
+            </div>
+          )}
+          {data && data.length > 0 && (
+            <div data-testid="datagrid-rows">{data.map((row, index) => renderRow(row, index))}</div>
+          )}
+          {children}
+        </div>
+      );
+    },
     ChangelogMenu: ({
       id,
       links,
@@ -193,75 +361,6 @@ vi.mock('@ovh-ux/muk', () => {
         )}
       </div>
     ),
-    BaseLayout: ({
-      breadcrumb,
-      message,
-      children,
-      tabs,
-    }: React.PropsWithChildren<{
-      children: React.ReactNode;
-      message: React.ReactElement;
-      breadcrumb: React.ReactElement;
-      tabs: React.ReactElement;
-    }>) => (
-      <div>
-        <div>{breadcrumb}</div>
-        {message && <div>{message}</div>}
-        {tabs && <div>{tabs}</div>}
-        {children}
-      </div>
-    ),
-    OnboardingLayout: ({
-      title,
-      description,
-      children,
-      orderButtonLabel,
-      onOrderButtonClick,
-    }: React.PropsWithChildren<{
-      title: string;
-      children: React.ReactNode;
-      description: string;
-      orderButtonLabel?: string;
-      onOrderButtonClick?: () => void;
-    }>) => (
-      <main>
-        <section aria-labelledby="onboarding-title">
-          {title}
-          {description}
-        </section>
-        {orderButtonLabel && onOrderButtonClick && (
-          <button onClick={onOrderButtonClick} data-testid="onboarding-order-button">
-            {orderButtonLabel}
-          </button>
-        )}
-        {children && <div>{children}</div>}
-      </main>
-    ),
-    Badge: ({
-      children,
-      'data-testid': dataTestId,
-      color,
-      onClick,
-      ...props
-    }: React.PropsWithChildren<{
-      children: React.ReactNode;
-      'data-testid'?: string;
-      color?: string;
-      onClick?: () => void;
-      [key: string]: unknown;
-    }>) => (
-      <span
-        data-testid={dataTestId}
-        color={color}
-        onClick={onClick}
-        onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
-        role={onClick ? 'button' : undefined}
-        tabIndex={onClick ? 0 : undefined}
-        {...props}
-      >
-        {children}
-      </span>
-    ),
     LinkCard: ({
       href,
       externalHref,
@@ -300,31 +399,45 @@ vi.mock('@ovh-ux/muk', () => {
       success: 'success',
       warning: 'warning',
     },
-    useNotifications: vi.fn(() => ({
-      addSuccess: vi.fn(),
-      addError: vi.fn(),
-      addWarning: vi.fn(),
-      addInfo: vi.fn(),
-    })),
-    useDataApi: vi.fn(() => ({
-      flattenData: [],
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
-      isLoading: false,
-      filters: {},
-      sorting: {},
-    })),
-    useFormatDate: vi.fn(() => (params: { date?: string; format?: string }) => {
-      if (params.date) {
-        return `formatted-${params.date}`;
-      }
-      return 'formatted-date';
-    }),
   };
 });
-/* eslint-enable react/no-multi-comp */
+
+mockUseDataApi.mockReturnValue({
+  flattenData: [],
+  isLoading: false,
+  isError: false,
+  error: null,
+  isSuccess: true,
+  isFetching: false,
+  status: 'success',
+  fetchNextPage: vi.fn(),
+  hasNextPage: false,
+  isFetchingNextPage: false,
+  pageIndex: 0,
+  totalCount: 0,
+});
+vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
+  const actual = await importActual<typeof import('@ovh-ux/manager-react-shell-client')>();
+  return {
+    ...actual,
+    useOvhTracking: vi.fn(() => {
+      return {
+        trackClick: vi.fn(),
+        trackPage: vi.fn(),
+        trackCurrentPage: vi.fn(),
+      };
+    }),
+    PageLocation: {
+      ...actual.PageLocation,
+    },
+    ButtonType: {
+      ...actual.ButtonType,
+    },
+  };
+});
 
 export const navigate = vi.fn();
+export { mockUseDataApi, mockUseInfiniteQuery };
 
 vi.mock('react-router-dom', async (importActual) => {
   return {
@@ -345,8 +458,9 @@ vi.mock('react-router-dom', async (importActual) => {
     useParams: vi.fn(
       () =>
         ({
-          serviceName: 'serviceName',
-          domain: 'domain',
+          serviceName: 'test-service',
+          domain: 'test-domain.com',
+          path: '/public_html',
         }) as Record<string, string | undefined>,
     ),
   };
@@ -390,9 +504,17 @@ vi.mock('@/data/api/dashboard', async (importActual) => {
 });
 vi.mock('@/data/api/git', () => ({
   deleteGitAssociation: vi.fn(),
+  fetchHostingWebsiteIds: vi.fn().mockResolvedValue([1, 2, 3]),
+  fetchWebsiteDeployments: vi.fn().mockResolvedValue([1, 2, 3]),
+  fetchDeploymentLogs: vi.fn().mockResolvedValue([{ id: 1, message: 'test' }]),
+  postWebsiteDeploy: vi.fn().mockResolvedValue(undefined),
 }));
 
 vi.mock('@/data/api/cdn', () => ({
+  createCdnOption: vi.fn().mockResolvedValue(undefined),
+  updateCdnOption: vi.fn().mockResolvedValue(undefined),
+  updateCdnOptions: vi.fn().mockResolvedValue(undefined),
+  deleteCdnOption: vi.fn().mockResolvedValue(undefined),
   getCDNProperties: vi.fn(() => Promise.resolve(cdnPropertiesMock)),
 }));
 
@@ -445,7 +567,13 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (import
 vi.mock('@/data/api/managedWordpress', () => ({
   getManagedCmsResource: vi.fn(() => Promise.resolve(managedWordpressResourceMock)),
   getManagedCmsResourceDetails: vi.fn(() => Promise.resolve(managedWordpressResourceDetailsMock)),
-  getManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
+  getManagedCmsResourceWebsites: vi.fn(() =>
+    Promise.resolve({
+      data: managedWordpressWebsitesMock,
+      cursorNext: null,
+      status: 200,
+    }),
+  ),
   getAllManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
   getManagedCmsResourceWebsiteDetails: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesDetailsMock),
@@ -460,9 +588,146 @@ vi.mock('@/data/api/managedWordpress', () => ({
   ),
   getManagedCmsResourceWebsiteDetailsQueryKey: vi.fn(),
   getManagedCmsResourceWebsitesQueryKey: vi.fn(),
+  postManagedCmsResourceWebsite: vi.fn(() => Promise.resolve({ id: 'mock-website-id' })),
+  putManagedCmsResourceWebsiteTasks: vi.fn(() => Promise.resolve({ id: 'mock-task-id' })),
 }));
+
+const mockUseInfiniteQuery = vi.fn();
+
+vi.mock('@tanstack/react-query', async (importActual) => {
+  const actual = await importActual<typeof import('@tanstack/react-query')>();
+  return {
+    ...actual,
+    useInfiniteQuery: mockUseInfiniteQuery,
+  };
+});
+
+export const mockInfiniteQueryResult = {
+  data: managedWordpressWebsitesMock,
+  status: 'success' as const,
+  isSuccess: true,
+  isError: false,
+  error: null,
+  isPending: false,
+  isLoading: false,
+  isLoadingError: false,
+  isRefetchError: false,
+  isRefetching: false,
+  isFetching: false,
+  isFetchingNextPage: false,
+  isFetchingPreviousPage: false,
+  hasNextPage: false,
+  hasPreviousPage: false,
+  fetchNextPage: vi.fn(),
+  fetchPreviousPage: vi.fn(),
+  refetch: vi.fn(),
+  remove: vi.fn(),
+  pages: [
+    {
+      data: managedWordpressWebsitesMock,
+      cursorNext: null,
+      status: 200,
+    },
+  ],
+  pageParams: [null],
+};
+
+mockUseInfiniteQuery.mockReturnValue(
+  mockInfiniteQueryResult as unknown as ReturnType<typeof mockUseInfiniteQuery>,
+);
 afterEach(() => {
   vi.clearAllMocks();
+});
+
+vi.mock('@ovhcloud/ods-react', async (importActual) => {
+  const actual = await importActual<typeof import('@ovhcloud/ods-react')>();
+  return {
+    ...actual,
+    Select: ({
+      items,
+      onChange,
+      onValueChange,
+      'data-testid': dataTestId,
+      id,
+      name,
+      multiple,
+      ...props
+    }: React.PropsWithChildren<{
+      items?: Array<{ label: string; value: string }>;
+      onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+      onValueChange?: (detail: { value: string[] }) => void;
+      'data-testid'?: string;
+      id?: string;
+      name?: string;
+      multiple?: boolean;
+      [key: string]: unknown;
+    }>) => (
+      <select
+        id={id}
+        name={name}
+        data-testid={dataTestId}
+        multiple={multiple}
+        onChange={(e) => {
+          if (onValueChange) {
+            const selectedValues = multiple
+              ? Array.from(e.target.selectedOptions).map((option) => option.value)
+              : [e.target.value];
+            onValueChange({ value: selectedValues });
+          }
+          if (onChange) {
+            onChange(e);
+          }
+        }}
+        {...props}
+      >
+        {items?.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
+          </option>
+        ))}
+      </select>
+    ),
+    SelectControl: ({ children }: React.PropsWithChildren) => <>{children}</>,
+    SelectContent: ({ children }: React.PropsWithChildren) => <>{children}</>,
+    RadioGroup: ({ children, ...props }: React.PropsWithChildren) => (
+      <div data-testid="radio-group" {...props}>
+        {children}
+      </div>
+    ),
+    Radio: ({
+      value,
+      onChange,
+      disabled,
+      id,
+      'input-id': inputId,
+      ...props
+    }: React.PropsWithChildren<{
+      value?: string;
+      onChange?: () => void;
+      disabled?: boolean;
+      id?: string;
+      'input-id'?: string;
+      [key: string]: unknown;
+    }>) => (
+      <div data-testid={`radio-${value}`} {...props}>
+        <input
+          type="radio"
+          id={inputId || id}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+        />
+      </div>
+    ),
+    RadioControl: ({ ...props }: React.PropsWithChildren) => (
+      <span data-testid="radio-control" {...props} />
+    ),
+    RadioLabel: ({ children, ...props }: React.PropsWithChildren) => (
+      <label data-testid="radio-label" {...props}>
+        {children}
+      </label>
+    ),
+  };
 });
 
 vi.mock(

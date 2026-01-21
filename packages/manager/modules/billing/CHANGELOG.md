@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.62.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.62.0...@ovh-ux/manager-billing@0.62.1) (2026-01-20)
+
+
+### Bug Fixes
+
+* **billing:** allow belbium customer to access their bills ([1271dda](https://github.com/ovh/manager/commit/1271ddaaa31536dd1618145d38d892f705190e71))
+
+
+
+
+
 # [0.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.61.0...@ovh-ux/manager-billing@0.62.0) (2026-01-19)
 
 

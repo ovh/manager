@@ -2,14 +2,14 @@
   "databases.title": "Développez plutôt vos bases de données, au lieu de vous en soucier.",
   "databases.subtitle": "Avec nos bases de données entièrement gérées, libérez-vous des contraintes administratives et concentrez-vous sur vos applications et vos produits.",
   "databases.description1": "SQL, NoSQL ou mise en cache : nous avons la solution. Déployez votre moteur de base de données préféré en quelques minutes grâce à notre gamme de solutions gérées : <strong>PostgreSQL, MySQL, MongoDB et Valkey</strong>.",
-  "databases.description2": "Nos équipes gèrent l'infrastructure, les sauvegardes et la surveillance pour que vous puissiez vous concentrer sur le développement d'applications performantes, et non sur la maintenance des serveurs.",
+  "databases.description2": "Nos équipes gèrent l’infrastructure, les sauvegardes et la surveillance pour que vous puissiez vous concentrer sur le développement d’applications performantes, et non sur la maintenance des serveurs.",
   "databases.description3": "De plus, commencez petit et évoluez facilement au fur et à mesure que vos données augmentent, le tout avec une <strong>tarification prévisible</strong>, la <strong>souveraineté des données</strong> et une <strong>haute disponibilité</strong> intégrée.",
   "databases.createServiceButton": "Créer votre base de données managée",
 
-  "databases.tile.quickStart.title": "Démarrage rapide",
+  "databases.tile.quickStart.title": "Quick Start",
   "databases.tile.quickStart.content": "Retrouvez tous les guides et tutoriels de nos bases de données managées",
 
-  "databases.tile.documentation.title": "Documentation et tutoriels",
+  "databases.tile.documentation.title": "Documentation & tutoriels",
   "databases.tile.documentation.content": "Apprenez à déployer rapidement votre première base de données managée.",
 
   "databases.tile.freeTier.title": "MongoDB Free Tier",
@@ -23,8 +23,8 @@
   "analytics.description3": "Des tableaux de bord aux pipelines de données, <strong>gagnez en visibilité et en performance</strong> tout en conservant un <strong>contrôle total et la souveraineté de vos données</strong>.",
   "analytics.createServiceButton": "Créer votre service d'analytics managé",
 
-  "analytics.tile.quickStart.title": "Démarrage rapide",
-  "analytics.tile.quickStart.content": "Apprenez à déployer rapidement vos pipelines et tableaux de bord managés.",
+  "analytics.tile.quickStart.title": "Quick Start",
+  "analytics.tile.quickStart.content": "Apprenez à déployer rapidement vos pipelines et dashboards managés.",
 
   "analytics.tile.documentation.title": "Documentation et tutoriels",
   "analytics.tile.documentation.content": "Retrouvez tous les guides et tutoriels de nos moteurs Analytics managés",

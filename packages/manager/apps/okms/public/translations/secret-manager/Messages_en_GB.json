@@ -83,5 +83,5 @@
   "version_state_reactivate": "Reactivate ",
   "versions": "Versions",
   "no_version": "No version",
-  "no_version_message": "This secret has no version."
+  "no_version_message": "There is no version associated with this secret."
 }

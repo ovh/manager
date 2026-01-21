@@ -1844,7 +1844,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
         >
           <div
             class=h-[20px] h-auto
-            data-testid=header-select
+            data-testid=header-row-selection
           >
             <span
               class=whitespace-normal wrap-break-word

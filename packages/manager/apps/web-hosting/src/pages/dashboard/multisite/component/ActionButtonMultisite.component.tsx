@@ -279,6 +279,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
   return (
     <ActionMenu
       id={`actions-${context}-${siteId ?? domainId}`}
+      data-testid={`action-button-${context}-${siteId ?? domainId}-${domain ?? site}`}
       items={allActions}
       isCompact
       variant={BUTTON_VARIANT.ghost}

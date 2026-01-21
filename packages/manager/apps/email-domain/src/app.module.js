@@ -6,7 +6,7 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
-
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 import EmailDomain from '@ovh-ux/manager-email-domain';
 
 export default (containerEl, environment) => {
@@ -20,6 +20,7 @@ export default (containerEl, environment) => {
         ngUiRouterBreadcrumb,
         EmailDomain,
         uiRouter,
+        ngAtInternet,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )

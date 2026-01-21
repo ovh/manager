@@ -48,7 +48,7 @@ import { buildURLSearchParams } from '@/utils/url';
 
 import ActionButtonStatistics from './ActionButtonStatistics.component';
 import { BadgeStatusCell, DiagnosticCell, LinkCell } from './Cells.component';
-import { GUIDE_URL, ORDER_URL } from './websites.constants';
+import { GUIDE_URL, ORDER_URL } from './constant/websites.constants';
 
 export default function Websites() {
   const { t } = useTranslation('common');
@@ -475,6 +475,7 @@ export default function Websites() {
                         onClick={action.onClick}
                         variant={BUTTON_VARIANT.ghost}
                         role="menuitem"
+                        data-testid={`websites-page-export-button-${action.id}`}
                         className="w-full justify-start"
                       >
                         {action.label}

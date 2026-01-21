@@ -173,11 +173,16 @@ export default function MyWebsitesPage() {
               {t('dashboard:hosting_managed_wordpress_websites_description')}
             </Text>
             <div className="m-4 flex flex-wrap items-center gap-4">
-              <Button id="my-websites-create" onClick={handleCreateClick}>
+              <Button
+                id="my-websites-create"
+                data-testid="my-websites-create"
+                onClick={handleCreateClick}
+              >
                 {t(`${NAMESPACES.ACTIONS}:create`)}
               </Button>
               <Button
                 id="my-websites-import"
+                data-testid="my-websites-import"
                 variant={BUTTON_VARIANT.outline}
                 onClick={handleImportClick}
               >
@@ -185,6 +190,7 @@ export default function MyWebsitesPage() {
               </Button>
               <Button
                 id="my-websites-manage"
+                data-testid="my-websites-manage"
                 variant={BUTTON_VARIANT.outline}
                 onClick={handleManageClick}
                 disabled={!data?.length}
@@ -197,6 +203,7 @@ export default function MyWebsitesPage() {
               {!!Object.keys(rowSelection).length && (
                 <Button
                   id="my-websites-delete-all"
+                  data-testid="my-websites-delete-all"
                   color={BUTTON_COLOR.critical}
                   variant={BUTTON_VARIANT.outline}
                   onClick={handleDeleteModalClick}
