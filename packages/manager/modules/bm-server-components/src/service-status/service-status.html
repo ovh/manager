@@ -89,6 +89,45 @@
         </oui-tile-description>
     </oui-tile-definition>
 
+    <!--Backup agent options-->
+    <oui-tile-definition
+        class="overide-flex"
+        data-ng-if="$ctrl.isBackupOptionAvailable"
+    >
+        <oui-tile-term>
+            {{ :: $ctrl.LABELS.BACKUP_AGENT }}
+            <span
+                class="oui-badge oui-badge_s oui-badge_new"
+                data-translate="dedicated_server_dashboard_badge_new"
+            >
+            </span>
+        </oui-tile-term>
+        <oui-tile-description>
+            <span
+                class="oui-badge text-wrap"
+                data-ng-class="{
+                    'oui-badge_warning': $ctrl.backupAgent.globalStatus === 'NOT_ENABLED' || $ctrl.backupAgent.globalStatus === 'NOT_INSTALLED',
+                    'oui-badge_info': $ctrl.backupAgent.globalStatus === 'CREATING' || $ctrl.backupAgent.globalStatus === 'UPDATED',
+                    'oui-badge_success': $ctrl.backupAgent.globalStatus === 'ENABLED',
+                }"
+                data-translate="dedicated_server_dashboard_backup_status_{{$ctrl.backupAgent.globalStatus}}"
+                data-oui-tooltip-placement="top-start"
+            ></span>
+        </oui-tile-description>
+        <oui-tile-description>
+            <oui-button
+                class="my-2"
+                data-variant="link"
+                data-icon-right="oui-icon-chevron-right"
+                data-on-click="$ctrl.onBackupAgentClick()"
+            >
+                <span
+                    data-translate="dedicated_server_dashboard_backup_status_{{:: $ctrl.getBackupAgentActionLabel() }}_action"
+                ></span>
+            </oui-button>
+        </oui-tile-description>
+    </oui-tile-definition>
+
     <!-- Links -->
     <oui-tile-definition
         data-term="{{ ::'dedicated_server_dashboard_services_state_links' | translate }}"

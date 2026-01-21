@@ -17,3 +17,7 @@ export default {
   VMS_URL_OTHERS,
   MONITORING_STATUSES,
 };
+
+export const LABELS = Object.freeze({
+  BACKUP_AGENT: 'Backup agent',
+});

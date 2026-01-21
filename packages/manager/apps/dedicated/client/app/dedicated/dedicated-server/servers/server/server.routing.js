@@ -28,6 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicated-server:dns',
           'dedicated-server:upgradeWithTicket',
           'dedicated-server:rbx1-eol-banner',
+          'dedicated-server:backupAgent',
         ]),
       ola: /* @ngInject */ (
         $stateParams,

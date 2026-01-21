@@ -30,5 +30,14 @@
   "dedicated_server_dashboard_services_state_links": "Pomocne linki",
   "dedicated_server_dashboard_services_state_links_weathermap": "Weathermap",
   "dedicated_server_dashboard_services_state_links_vms": "VMS",
-  "dedicated_server_dashboard_services_state_links_travaux": "Status"
+  "dedicated_server_dashboard_services_state_links_travaux": "Status",
+  "dedicated_server_dashboard_backup_status_NOT_ENABLED": "Wyłączona",
+  "dedicated_server_dashboard_backup_status_NOT_INSTALLED": "Nie zainstalowano",
+  "dedicated_server_dashboard_backup_status_CREATING": "W trakcie tworzenia",
+  "dedicated_server_dashboard_backup_status_UPDATING": "Aktualizacja",
+  "dedicated_server_dashboard_backup_status_ENABLED": "Aktywowano",
+  "dedicated_server_dashboard_badge_new": "Nowość",
+  "dedicated_server_dashboard_backup_status_activate_action": "Aktywuj agenta kopii zapasowej",
+  "dedicated_server_dashboard_backup_status_install_action": "Zainstaluj agenta",
+  "dedicated_server_dashboard_backup_status_manage_action": "Zarządzaj agentem kopii zapasowej"
 }
