@@ -18,7 +18,7 @@
     "guide3": {
       "category": "FAQ",
       "title": "FAQ",
-      "description": "Una guida con le domande frequenti che affronta le problematiche più comuni.",
+      "description": "Una guida con le domande frequenti che trattano le problematiche più comuni.",
       "cta": "Leggi le FAQ"
     }
   },
@@ -26,5 +26,9 @@
   "select_baremetal": "Seleziona il tuo server BareMetal",
   "save_a_baremetal_server": "Eseguire il backup di un server Bare Metal",
   "baremetal_label_delay_order": "Dopo la convalida del tuo ordine, questa schermata verrà aggiornata e riceverai un'email non appena il tuo prodotto Backup Agent sarà consegnato. Potrai consultare il progresso del tuo ordine <OrderLink>qui</OrderLink>.",
-  "baremetal_label_order_in_progress": "L'ordine è stato ricevuto, il tuo prodotto è in fase di consegna e puoi seguire i suoi progressi <OrderLink>qui</OrderLink>."
+  "baremetal_label_order_in_progress": "L'ordine è stato ricevuto, il tuo prodotto è in fase di consegna e puoi seguire il suo progresso <OrderLink>qui</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Attivazione del Backup Tenant",
+  "first_order_terms_and_conditions_description": "Per attivare il tuo servizio è necessario creare un Backup Tenant. Vuoi continuare l'attivazione del tuo servizio?",
+  "first_order_terms_and_conditions_confirm_label": "Ho preso visione e accetto le Condizioni Generali, l'Appendice relativa al trattamento dei dati e le Condizioni Particolari di Servizio di OVH.",
+  "first_order_terms_and_conditions_annexe_label": "Allegato Trattamento dei dati a carattere personale"
 }

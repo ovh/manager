@@ -6,13 +6,13 @@
     "guide1": {
       "category": "Koszt",
       "title": "Koszt i fakturowanie",
-      "description": "Dokumentacja wyjaśniająca koszt i fakturowanie agenta kopii zapasowej.",
+      "description": "Dokumentacja wyjaśniająca koszt i fakturowanie Backup Agent.",
       "cta": "Sprawdź"
     },
     "guide2": {
       "category": "Samouczek",
       "title": "Pierwsza konfiguracja",
-      "description": "Przewodnik krok po kroku, który pomoże Ci skonfigurować i uruchomić swoją pierwszą kopię zapasową.",
+      "description": "Przewodnik krok po kroku, który pomoże Ci skonfigurować i uruchomić pierwszą kopię zapasową.",
       "cta": "Sprawdź dokumentację"
     },
     "guide3": {
@@ -26,5 +26,9 @@
   "select_baremetal": "Wybierz swój serwer BareMetal",
   "save_a_baremetal_server": "Zrób kopię zapasową serwera Bare Metal",
   "baremetal_label_delay_order": "Po zatwierdzeniu zamówienia ten ekran zostanie zaktualizowany, a Ty otrzymasz e-mail, gdy Twój produkt Backup Agent zostanie dostarczony. Będziesz mógł śledzić postęp swojego zamówienia <OrderLink>tutaj</OrderLink>.",
-  "baremetal_label_order_in_progress": "Zamówienie zostało pomyślnie odebrane, Twój produkt jest w trakcie dostawy i możesz śledzić jego postęp <OrderLink>tutaj</OrderLink>."
+  "baremetal_label_order_in_progress": "Zamówienie zostało pomyślnie przyjęte, Twój produkt jest w trakcie dostawy i możesz śledzić jego postęp <OrderLink>tutaj</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Aktywacja Backup Tenant",
+  "first_order_terms_and_conditions_description": "Aby aktywować usługę, konieczne jest utworzenie Backup Tenant. Czy chcesz kontynuować aktywację swojej usługi?",
+  "first_order_terms_and_conditions_confirm_label": "Zapoznałem się z ogólnymi i szczegółowymi warunkami świadczenia usług OVH oraz dokumentem dotyczącym przetwarzania danych osobowych i akceptuję je.",
+  "first_order_terms_and_conditions_annexe_label": "Aneks Przetwarzanie danych osobowych"
 }

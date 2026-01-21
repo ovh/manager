@@ -6,13 +6,13 @@
     "guide1": {
       "category": "Custo",
       "title": "Custo e Faturação",
-      "description": "Documentação explicando o custo e a faturação do Agente de Backup.",
+      "description": "Documentação explicando o custo e a faturação do Backup Agent.",
       "cta": "Descobrir"
     },
     "guide2": {
       "category": "Tutorial",
       "title": "Primeira configuração",
-      "description": "Um guia passo a passo para ajudá-lo a configurar e executar seu primeiro backup.",
+      "description": "Um guia passo a passo para ajudá-lo a configurar e executar o seu primeiro backup.",
       "cta": "Consultar o tutorial"
     },
     "guide3": {
@@ -25,6 +25,10 @@
   "no_baremetal_available": "Encomendar um servidor Bare Metal e protegê-lo com o Backup Agent",
   "select_baremetal": "Selecione o seu servidor BareMetal",
   "save_a_baremetal_server": "Fazer backup de um servidor Bare Metal",
-  "baremetal_label_delay_order": "Após a validação do seu pedido, esta tela será atualizada e você receberá um e-mail assim que seu produto Agente de Backup for entregue. Você poderá consultar o progresso do seu pedido <OrderLink>aqui</OrderLink>.",
-  "baremetal_label_order_in_progress": "O pedido foi recebido com sucesso, o seu produto está a ser entregue e pode acompanhar o seu progresso <OrderLink>aqui</OrderLink>."
+  "baremetal_label_delay_order": "Após a validação do seu pedido, esta tela será atualizada e você receberá um e-mail assim que o seu produto Backup Agent for entregue. Você poderá consultar o progresso do seu pedido <OrderLink>aqui</OrderLink>.",
+  "baremetal_label_order_in_progress": "O pedido foi recebido com sucesso, seu produto está em processo de entrega e você pode acompanhar seu progresso <OrderLink>aqui</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Ativação do Backup Tenant",
+  "first_order_terms_and_conditions_description": "Para ativar o seu serviço, é necessário criar um Backup Tenant. Deseja continuar a ativação do seu serviço?",
+  "first_order_terms_and_conditions_confirm_label": "Li e aceito os termos e condições, o apêndice relacionado ao processamento de dados pessoais e os termos e condições especiais dos serviços da OVH.",
+  "first_order_terms_and_conditions_annexe_label": "Anexo Tratamento de dados pessoais"
 }
