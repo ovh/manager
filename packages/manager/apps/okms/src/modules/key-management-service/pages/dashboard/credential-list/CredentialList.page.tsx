@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 
 import CredentialDatagrid from '@key-management-service/components/credential/credential-datagrid/CredentialDatagrid';
@@ -53,7 +55,9 @@ const CredentialList = () => {
         ) : (
           <Text preset="paragraph">{t('key_management_service_credential_not_authorized')}</Text>
         ))}
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

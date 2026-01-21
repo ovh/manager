@@ -11,8 +11,8 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsModal } from '@ovhcloud/ods-components/react';
-import { Spinner, Text } from '@ovhcloud/ods-react';
+import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import { Modal, ModalBody, ModalContent, ModalOpenChangeDetail, Text } from '@ovhcloud/ods-react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
@@ -36,6 +36,12 @@ export const EditServiceKeyNameModal = () => {
   const navigate = useNavigate();
 
   const closeModal = () => navigate('..');
+
+  const handleClose = (detail: ModalOpenChangeDetail) => {
+    if (!detail.open) {
+      closeModal();
+    }
+  };
 
   const { updateKmsServiceKey, isPending } = useUpdateOkmsServiceKey({
     okmsId,
@@ -83,43 +89,52 @@ export const EditServiceKeyNameModal = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <OdsModal isOpen isDismissible onOdsClose={closeModal}>
-      <Text preset="heading-3">
-        {t('key_management_service_service-keys_dashboard_field_name')}
-      </Text>
-      {isPending ? (
-        <Spinner className="my-3 block" />
-      ) : (
-        <OdsFormField className="my-3 block" error={getErrorMessage(serviceKeyNameError)}>
-          <OdsInput
-            className="w-full"
-            name="input-edit-service-key-name"
-            aria-label="input-edit-service-key-name"
-            hasError={!!serviceKeyNameError}
-            type={ODS_INPUT_TYPE.text}
-            value={serviceKeyName}
-            isRequired
-            onOdsChange={(event) => {
-              setServiceKeyName(event.target.value as string);
+    <Modal onOpenChange={handleClose} open>
+      <ModalContent dismissible>
+        <ModalBody className="space-y-4">
+          <Text preset="heading-3">
+            {t('key_management_service_service-keys_dashboard_field_name')}
+          </Text>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              updateKmsServiceKey({ name: serviceKeyName });
             }}
-          />
-        </OdsFormField>
-      )}
-      <Button slot="actions" variant="outline" color="primary" onClick={closeModal}>
-        {tCommon('key_management_service_cancel')}
-      </Button>
-      <Button
-        loading={isPending}
-        disabled={!!serviceKeyNameError || serviceKeyName === data?.name}
-        slot="actions"
-        data-testid={SERVICE_KEY_TEST_IDS.modifyNameButton}
-        color="primary"
-        onClick={() => updateKmsServiceKey({ name: serviceKeyName })}
-        aria-label="edit-name-okms"
-      >
-        {tCommon('key_management_service_modify')}
-      </Button>
-    </OdsModal>
+          >
+            <OdsFormField className="my-3 block" error={getErrorMessage(serviceKeyNameError)}>
+              <OdsInput
+                isDisabled={isPending}
+                className="w-full"
+                name="input-edit-service-key-name"
+                aria-label="input-edit-service-key-name"
+                hasError={!!serviceKeyNameError}
+                type={ODS_INPUT_TYPE.text}
+                value={serviceKeyName}
+                isRequired
+                onOdsChange={(event) => {
+                  setServiceKeyName(event.target.value as string);
+                }}
+              />
+            </OdsFormField>
+          </form>
+          <div className="flex justify-end gap-2">
+            <Button variant="outline" color="primary" onClick={closeModal}>
+              {tCommon('key_management_service_cancel')}
+            </Button>
+            <Button
+              loading={isPending}
+              disabled={!!serviceKeyNameError || serviceKeyName === data?.name}
+              data-testid={SERVICE_KEY_TEST_IDS.modifyNameButton}
+              color="primary"
+              onClick={() => updateKmsServiceKey({ name: serviceKeyName })}
+              aria-label="edit-name-okms"
+            >
+              {tCommon('key_management_service_modify')}
+            </Button>
+          </div>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 

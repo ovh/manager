@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import CredentialCreationMethod from '@key-management-service/components/credential/credential-creation-method/credentialCreationMethod.component';
@@ -152,7 +154,9 @@ const CredentialGeneralInformations = () => {
         title={t('key_management_service_credential_dashboard_tile_general_informations')}
         items={items}
       />
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
