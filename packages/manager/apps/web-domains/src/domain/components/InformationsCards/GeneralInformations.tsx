@@ -44,7 +44,7 @@ export default function GeneralInformationsCards({
           {t('domain_tab_general_information_tile_title_domain_state')}
           <CircleQuestionTooltip
             translatedMessage={t(
-              'domain_tab_general_information_tile_title_domain_state',
+              'domain_tab_general_information_tooltip_domain_state',
             )}
           />
         </ManagerTile.Item.Label>
