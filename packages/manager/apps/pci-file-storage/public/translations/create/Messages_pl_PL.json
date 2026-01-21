@@ -1,0 +1,49 @@
+{
+  "name": {
+    "title": "Nazwa udostępnienia",
+    "label": "Wybierz nazwę dla swojego pliku udostępnienia",
+    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki."
+  },
+  "localisation": {
+    "title": "Wybierz lokalizację",
+    "deploymentMode": {
+      "title": "Filtruj tryb wdrożenia",
+      "modes": {
+        "region": {
+          "label": "Region 1-AZ",
+          "description": "Wdrożenie odporne i ekonomiczne w 1 strefie dostępności."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Wdrożenie o wysokiej odporności/wysokiej dostępności dla Twoich krytycznych aplikacji w 3 strefach dostępności."
+        },
+        "region-3-az": {
+          "label": "Region 3-AZ",
+          "description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników w celu zapewnienia niskiej latencji i lokalizacji danych."
+        }
+      }
+    },
+    "continents": {
+      "label": "",
+      "options": {
+        "all": "Wszystkie",
+        "asia_oceania": "Azja-Pacyfik",
+        "europe": "Europa",
+        "north_africa": "Afryka Północna",
+        "north_america": "Ameryka Północna"
+      }
+    },
+    "microRegion": {
+      "title": "Wybierz centrum danych",
+      "label": "Wybierz centrum danych"
+    },
+    "availabilityZone": {
+      "title": "Wybierz swoją strefę dostępności",
+      "informations": "Wybrano domyślną strefę dostępności. Masz możliwość dostosowania tego wyboru.",
+      "choice": {
+        "company": "Wybierz za mnie",
+        "user": "Wybieram swoją strefę dostępności"
+      }
+    }
+  }
+}
