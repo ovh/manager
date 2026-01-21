@@ -1,5 +1,11 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Text } from '@ovhcloud/ods-react';
+import {
+  Skeleton,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
 import {
   useNavigation,
@@ -8,13 +14,15 @@ import {
 import { useTranslation } from 'react-i18next';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { contactsMapping } from '@/domain/constants/susbcriptions';
-import { TDomainContact } from '@/common/types/common.types';
+import { TDomainContact, TServiceInfo } from '@/common/types/common.types';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 import { Universe } from '@/common/enum/common.enum';
+import { isServiceInCreation } from '@/domain/utils/helpers';
 
 interface ContactsProps {
   readonly serviceName: string;
   readonly domainResource: TDomainResource;
+  readonly serviceInfo: TServiceInfo;
   readonly domainContact: TDomainContact;
   readonly isFetchingDomainContact: boolean;
 }
@@ -22,6 +30,7 @@ interface ContactsProps {
 export default function Contacts({
   domainResource,
   serviceName,
+  serviceInfo,
   domainContact,
   isFetchingDomainContact,
 }: ContactsProps) {
@@ -52,7 +61,11 @@ export default function Contacts({
     return Object.entries(contacts)
       .map(([contactType, contactDetail]) => {
         if (contactType === 'contactOwner') {
-          if (isFetchingDomainContact || !domainContact) {
+          if (isFetchingDomainContact) {
+            return <Skeleton key={contactType} />;
+          }
+
+          if (!domainContact) {
             return null;
           }
 
@@ -70,9 +83,8 @@ export default function Contacts({
         }
 
         return (
-          <Text key={`${contactDetail.id}-${contactType}`}>{`${
-            contactDetail.id
-          }: ${t(contactsMapping[contactType])}`}</Text>
+          <Text key={`${contactDetail.id}-${contactType}`}>{`${contactDetail.id
+            }: ${t(contactsMapping[contactType])}`}</Text>
         );
       })
       .filter(Boolean);
@@ -85,33 +97,45 @@ export default function Contacts({
       </ManagerTile.Item.Label>
       <div className="flex items-center justify-between">
         <div>{renderContactsList()}</div>
-        <ActionMenu
-          id="contacts"
-          isCompact
-          items={[
-            {
-              id: 1,
-              label: t(
-                'domain_tab_general_information_subscription_handle_contacts',
-              ),
-              href: reassignContactUrl as string,
-            },
-            {
-              id: 2,
-              label: t(
-                'domain_tab_general_information_subscription_edit_owner',
-              ),
-              onClick: () => {
-                navigateTo(
-                  'web',
-                  `#/domain/${serviceName}/contact-management/edit-contact/${ownerId}/`,
-                  {},
-                );
-              },
-              isDisabled: id !== account,
-            },
-          ]}
-        />
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div>
+              <ActionMenu
+                id="contacts"
+                isCompact
+                isDisabled={isServiceInCreation(serviceInfo)}
+                items={[
+                  {
+                    id: 1,
+                    label: t(
+                      'domain_tab_general_information_subscription_handle_contacts',
+                    ),
+                    href: reassignContactUrl as string,
+                  },
+                  {
+                    id: 2,
+                    label: t(
+                      'domain_tab_general_information_subscription_edit_owner',
+                    ),
+                    onClick: () => {
+                      navigateTo(
+                        'web',
+                        `#/domain/${serviceName}/contact-management/edit-contact/${ownerId}/`,
+                        {},
+                      );
+                    },
+                    isDisabled: id !== account,
+                  },
+                ]}
+              />
+            </div>
+          </TooltipTrigger>
+          {isServiceInCreation(serviceInfo) && (
+            <TooltipContent>
+              {t('domain_tab_name_service_in_creation')}
+            </TooltipContent>
+          )}
+        </Tooltip>
       </div>
     </ManagerTile.Item>
   );

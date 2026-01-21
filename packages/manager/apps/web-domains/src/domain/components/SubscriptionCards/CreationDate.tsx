@@ -5,10 +5,10 @@ import { ManagerTile, useFormatDate } from '@ovh-ux/manager-react-components';
 import { TDomainResource } from '@/domain/types/domainResource';
 
 interface CreationDateProps {
-  readonly domainResources: TDomainResource;
+  readonly domainResource: TDomainResource;
 }
 
-export default function CreationDate({ domainResources }: CreationDateProps) {
+export default function CreationDate({ domainResource }: CreationDateProps) {
   const { t } = useTranslation([
     'domain',
     NAMESPACES.DASHBOARD,
@@ -24,7 +24,7 @@ export default function CreationDate({ domainResources }: CreationDateProps) {
       </ManagerTile.Item.Label>
       <div className="flex items-center justify-between">
         <Text>
-          {formatDate({ date: domainResources.currentState.createdAt })}
+          {formatDate({ date: domainResource?.currentState?.createdAt })}
         </Text>
       </div>
     </ManagerTile.Item>

@@ -36,7 +36,7 @@ export default function SubscriptionCards({
     domainContact,
     isFetchingDomainContact,
   } = useGetDomainContact(
-    domainResource?.currentState?.contactsConfiguration.contactOwner.id,
+    domainResource.currentState?.contactsConfiguration?.contactOwner?.id,
     { enabled: true },
   );
 
@@ -96,7 +96,7 @@ export default function SubscriptionCards({
         {t(`${NAMESPACES.BILLING}:subscription`)}
       </ManagerTile.Title>
       <ManagerTile.Divider />
-      <CreationDate domainResources={domainResource} />
+      <CreationDate domainResource={domainResource} />
       <ManagerTile.Divider />
       <ExpirationDate
         date={serviceInfo.billing?.expirationDate}
@@ -114,7 +114,7 @@ export default function SubscriptionCards({
       <ManagerTile.Divider />
       <RenewFrequencyTileItem
         mode={serviceInfo.billing.renew.current.mode}
-        period={serviceInfo.billing.renew.current.period}
+        serviceInfo={serviceInfo}
         serviceName={serviceName}
         isDomainPage={true}
         universe={Universe.DOMAIN}
@@ -122,6 +122,7 @@ export default function SubscriptionCards({
       <ManagerTile.Divider />
       <Contacts
         domainResource={domainResource}
+        serviceInfo={serviceInfo}
         serviceName={serviceName}
         domainContact={domainContact}
         isFetchingDomainContact={isFetchingDomainContact}

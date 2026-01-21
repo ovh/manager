@@ -1,22 +1,28 @@
 import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
-import { Text } from '@ovhcloud/ods-react';
+import {
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { ServiceInfoRenewModeEnum, Universe } from '@/common/enum/common.enum';
 import { translateRenewPeriod } from '@/domain/utils/utils';
-import { goToUpdateRenewFrequencyParams } from '@/domain/utils/helpers';
+import { goToUpdateRenewFrequencyParams, isServiceInCreation } from '@/domain/utils/helpers';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
+import { TServiceInfo } from '@/common/types/common.types';
 
 interface RenewFrequencyProps {
+  readonly serviceInfo: TServiceInfo;
   readonly mode: ServiceInfoRenewModeEnum;
-  readonly period: string;
   readonly serviceName: string;
   readonly isDomainPage: boolean;
   readonly universe: Universe;
 }
 export default function RenewFrequencyTileItem({
   mode,
-  period,
+  serviceInfo,
   serviceName,
   isDomainPage,
   universe,
@@ -39,31 +45,44 @@ export default function RenewFrequencyTileItem({
           <CircleQuestionTooltip
             translatedMessage={`${t(
               'domain_tab_general_information_subscription_manual_renew_tooltip',
-            )}${
-              isDomainPage
-                ? ` ${t(
-                    'domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain',
-                  )}`
-                : ''
-            }`}
+            )}${isDomainPage
+              ? ` ${t(
+                'domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain',
+              )}`
+              : ''
+              }`}
           />
         )}
       </ManagerTile.Item.Label>
       <div className="flex items-center justify-between">
-        <Text>{translateRenewPeriod(period, t)}</Text>
-        <ActionMenu
-          id="renew-frequency"
-          isCompact
-          items={[
-            {
-              id: 3,
-              label: t(
-                'domain_tab_general_information_subscription_handle_renew_frequency',
-              ),
-              href: renewFrequencyURL as string,
-            },
-          ]}
-        />
+        <Text>
+          {translateRenewPeriod(serviceInfo.billing?.renew?.current.period, t)}
+        </Text>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div>
+              <ActionMenu
+                id="renew-frequency"
+                isCompact
+                isDisabled={isServiceInCreation(serviceInfo)}
+                items={[
+                  {
+                    id: 3,
+                    label: t(
+                      'domain_tab_general_information_subscription_handle_renew_frequency',
+                    ),
+                    href: renewFrequencyURL as string,
+                  },
+                ]}
+              />
+            </div>
+          </TooltipTrigger>
+          {isServiceInCreation(serviceInfo) && (
+            <TooltipContent>
+              {t('domain_tab_name_service_in_creation')}
+            </TooltipContent>
+          )}
+        </Tooltip>
       </div>
     </ManagerTile.Item>
   );

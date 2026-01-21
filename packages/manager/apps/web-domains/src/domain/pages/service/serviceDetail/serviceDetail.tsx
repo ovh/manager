@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -6,7 +6,6 @@ import {
   Breadcrumb,
   ChangelogButton,
   ErrorBanner,
-  GuideButton,
   GuideItem,
   HeadersProps,
   Notifications,
@@ -20,6 +19,7 @@ import { urls } from '@/domain/routes/routes.constant';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useLinks } from '@/domain/constants/guideLinks';
+import { GuideMenu } from '@ovh-ux/muk';
 
 export default function ServiceDetail() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
@@ -42,7 +42,7 @@ export default function ServiceDetail() {
   const header: HeadersProps = {
     title: serviceName,
     changelogButton: <ChangelogButton links={changelogLinks} />,
-    headerButton: <GuideButton items={guideItems} />,
+    headerButton: <GuideMenu items={guideItems} />,
   };
 
   const {

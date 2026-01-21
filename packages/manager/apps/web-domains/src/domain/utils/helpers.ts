@@ -1,4 +1,6 @@
 import { Universe } from '@/common/enum/common.enum';
+import { LifecycleCurrentStateEnum } from '@/common/enum/common.enum';
+import { TServiceInfo } from '@/common/types/common.types';
 
 /**
  * Converts the first character of str to upper case and the remaining to lower case.
@@ -25,3 +27,7 @@ export const goToUpdateRenewFrequencyParams = (
     },
   };
 };
+
+export const isServiceInCreation = (service: TServiceInfo) =>
+  service?.billing?.lifecycle?.current?.state ===
+  LifecycleCurrentStateEnum.InCreation;

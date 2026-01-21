@@ -5,6 +5,7 @@ import {
   DrawerActionEnum,
   LegalFormEnum,
   LifecycleCapacitiesEnum,
+  LifecycleCurrentStateEnum,
   PrincingTypeEnum,
   ServiceInfoRenewModeEnum,
 } from '@/common/enum/common.enum';
@@ -40,6 +41,7 @@ export interface TServiceInfo {
       current: {
         creationDate: string | null;
         pendingActions: LifecycleCapacitiesEnum[];
+        state: LifecycleCurrentStateEnum;
       };
     } | null;
     plan?: {

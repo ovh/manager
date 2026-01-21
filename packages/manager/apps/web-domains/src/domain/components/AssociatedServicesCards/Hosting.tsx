@@ -6,15 +6,21 @@ import {
   ShellContext,
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
-import { Link, Skeleton, Text } from '@ovhcloud/ods-react';
-import { Region, Subsidiary } from '@ovh-ux/manager-config';
+import { Region } from '@ovh-ux/manager-config';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  Link,
+  Skeleton,
+  Text,
+} from '@ovhcloud/ods-react';
 import {
   useGetAssociatedHosting,
   useGetFreeHostingServices,
   useInitialOrderFreeHosting,
   useOrderFreeHosting,
 } from '@/domain/hooks/data/query';
-
 import FreeHostingDrawer from './FreeHostingDrawer';
 import { FREE_HOSTING_PLAN_CODE } from '@/domain/constants/order';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +28,7 @@ import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import { ServiceRoutes } from '@/common/enum/common.enum';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
+import { isServiceInCreation } from '@/domain/utils/helpers';
 
 interface HostingProps {
   readonly serviceName: string;
@@ -46,8 +53,7 @@ export default function Hosting({ serviceName }: HostingProps) {
   const { t } = useTranslation(['domain']);
   const context = useContext(ShellContext);
   const region = context.environment.getRegion();
-  const ovhSubsidiary = context.environment.getUser()
-    .ovhSubsidiary as Subsidiary;
+  const { ovhSubsidiary } = context.environment.getUser();
   const [isFreeHostingOpen, setIsFreeHostingOpen] = useState(false);
   const [freeHostingOptions, setFreeHostingOptions] = useState<
     FreeHostingOptions
@@ -105,14 +111,14 @@ export default function Hosting({ serviceName }: HostingProps) {
   const actionMenuItems = [
     ...(region === Region.EU && !hasFreeHosting
       ? [
-          {
-            id: 1,
-            label: t(
-              'domain_tab_general_information_associated_services_hosting_action_activate',
-            ),
-            onClick: () => setIsFreeHostingOpen(true),
-          },
-        ]
+        {
+          id: 1,
+          label: t(
+            'domain_tab_general_information_associated_services_hosting_action_activate',
+          ),
+          onClick: () => setIsFreeHostingOpen(true),
+        },
+      ]
       : []),
     {
       id: 2,
@@ -162,7 +168,23 @@ export default function Hosting({ serviceName }: HostingProps) {
               )}
             </Text>
           )}
-          <ActionMenu id="hosting-service" isCompact items={actionMenuItems} />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div>
+                <ActionMenu
+                  id="hosting-service"
+                  isCompact
+                  items={actionMenuItems}
+                  isDisabled={isServiceInCreation(serviceInfo)}
+                />
+              </div>
+            </TooltipTrigger>
+            {isServiceInCreation(serviceInfo) && (
+              <TooltipContent>
+                {t('domain_tab_name_service_in_creation')}
+              </TooltipContent>
+            )}
+          </Tooltip>
         </div>
       </ManagerTile.Item>
       <FreeHostingDrawer

@@ -21,9 +21,12 @@ import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { transferStatusFromState } from '@/domain/utils/transferStatus';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
 import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
+import { TServiceInfo } from '@/common/types/common.types';
+import { isServiceInCreation } from '@/domain/utils/helpers';
 
 interface TransferToggleStatusProps {
   readonly domainResource: TDomainResource;
+  readonly serviceInfo: TServiceInfo;
   readonly transferModalOpened: boolean;
   readonly setTransferModalOpened: React.Dispatch<
     React.SetStateAction<boolean>
@@ -36,6 +39,7 @@ interface TransferToggleStatusProps {
 
 export default function TransferToggleStatus({
   domainResource,
+  serviceInfo,
   transferModalOpened,
   setTransferModalOpened,
   setTransferAuthInfoModalOpened,
@@ -77,7 +81,11 @@ export default function TransferToggleStatus({
         <Toggle
           withLabels={true}
           className="items-end"
-          disabled={transferStatus.toggleStatus === 'disabled' || !isAuthorized}
+          disabled={
+            transferStatus.toggleStatus === 'disabled' ||
+            !isAuthorized ||
+            isServiceInCreation(serviceInfo)
+          }
           checked={
             domainResource?.currentState?.protectionState ===
             ProtectionStateEnum.PROTECTED
@@ -101,18 +109,26 @@ export default function TransferToggleStatus({
                 {t(`${NAMESPACES.IAM}:iam_actions_message`)}
               </TooltipContent>
             )}
+            {isServiceInCreation(serviceInfo) && (
+              <TooltipContent>
+                {t('domain_tab_name_service_in_creation')}
+              </TooltipContent>
+            )}
           </Tooltip>
         </Toggle>
-        {!domainResource?.currentState?.authInfoSupported && !isTn && (
-          <Text>
-            {t(
-              'domain_tab_general_information_transfer_authinfo_not_supported',
-            )}
-          </Text>
-        )}
+        {!domainResource?.currentState?.authInfoSupported &&
+          !isTn &&
+          !isServiceInCreation(serviceInfo) && (
+            <Text>
+              {t(
+                'domain_tab_general_information_transfer_authinfo_not_supported',
+              )}
+            </Text>
+          )}
         {domainResource?.currentState?.protectionState ===
           ProtectionStateEnum.UNPROTECTED &&
           domainResource?.currentState?.authInfoSupported &&
+          !isServiceInCreation(serviceInfo) &&
           !isTn && (
             <div>
               <Link onClick={() => setTransferAuthInfoModalOpened(true)}>
@@ -120,13 +136,15 @@ export default function TransferToggleStatus({
               </Link>
             </div>
           )}
-        {!domainResource?.currentState?.authInfoSupported && !isTn && (
-          <div>
-            <Link onClick={() => setTagModalOpened(true)}>
-              {t('domain_tab_general_information_transfer_tag')}
-            </Link>
-          </div>
-        )}
+        {!domainResource?.currentState?.authInfoSupported &&
+          !isTn &&
+          !isServiceInCreation(serviceInfo) && (
+            <div>
+              <Link onClick={() => setTagModalOpened(true)}>
+                {t('domain_tab_general_information_transfer_tag')}
+              </Link>
+            </div>
+          )}
       </ManagerTile.Item.Description>
     </ManagerTile.Item>
   );
