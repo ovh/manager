@@ -9,7 +9,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/not-found/404.page';
 
-import { redirectionApp, subRoutes, urls } from './Routes.constants';
+import { redirectionApp, subRoutes, urlParams, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
@@ -48,7 +48,7 @@ export default (
         }}
       >
         <Route
-          path={subRoutes.firstOrderConfirmation}
+          path={`${subRoutes.firstOrderConfirmation}/${urlParams.baremetalName}`}
           Component={FirstOrderConfirmationModalPage}
           handle={{
             tracking: { pageName: 'order-confirmation', pageType: PageType.funnel },
