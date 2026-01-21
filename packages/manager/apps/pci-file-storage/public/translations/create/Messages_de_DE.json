@@ -1,0 +1,49 @@
+{
+  "name": {
+    "title": "Name des Shares",
+    "label": "Wählen Sie einen Namen für Ihre Freigabedatei",
+    "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten."
+  },
+  "localisation": {
+    "title": "Wählen Sie einen Standort",
+    "deploymentMode": {
+      "title": "Filtern Sie einen Bereitstellungsmodus",
+      "modes": {
+        "region": {
+          "label": "1-AZ Region",
+          "description": "Widerstandsfähige und kostengünstige Bereitstellung in 1 Verfügbarkeitszone."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Hochverfügbare/hocheffiziente Bereitstellung für Ihre kritischen Anwendungen in 3 Verfügbarkeitszonen."
+        },
+        "region-3-az": {
+          "label": "3-AZ Region",
+          "description": "Bereitstellung Ihrer Anwendungen so nah wie möglich an Ihren Benutzern für geringe Latenz und Datenresidenz."
+        }
+      }
+    },
+    "continents": {
+      "label": "",
+      "options": {
+        "all": "Alle",
+        "asia_oceania": "Asiatisch-pazifischer Raum",
+        "europe": "Europe",
+        "north_africa": "Nordafrika",
+        "north_america": "Nordamerika"
+      }
+    },
+    "microRegion": {
+      "title": "Wählen Sie ein Rechenzentrum",
+      "label": "Wählen Sie ein Rechenzentrum"
+    },
+    "availabilityZone": {
+      "title": "Wählen Sie Ihre Verfügbarkeitszone",
+      "informations": "Eine Standardverfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
+      "choice": {
+        "company": "Für mich wählen",
+        "user": "Ich wähle meine Verfügbarkeitszone"
+      }
+    }
+  }
+}

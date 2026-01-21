@@ -1,0 +1,49 @@
+{
+  "name": {
+    "title": "Share name",
+    "label": "Choose a name for your share file",
+    "info": "Must only contain numbers, letters, underscores, dashes, or dots."
+  },
+  "localisation": {
+    "title": "Select a location",
+    "deploymentMode": {
+      "title": "Filter a deployment mode",
+      "modes": {
+        "region": {
+          "label": "1-AZ Region",
+          "description": "Resilient and cost-effective deployment in 1 availability zone."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "High resilience/high availability deployment for your critical applications across 3 availability zones."
+        },
+        "region-3-az": {
+          "label": " 3-AZ Region",
+          "description": "Deploy your applications as close to your users as possible for low latency and data residency."
+        }
+      }
+    },
+    "continents": {
+      "label": "",
+      "options": {
+        "all": "All",
+        "asia_oceania": "Asia-Pacific",
+        "europe": "Europe",
+        "north_africa": "North Africa",
+        "north_america": "North America"
+      }
+    },
+    "microRegion": {
+      "title": "Select a datacentre",
+      "label": "Choose a datacentre"
+    },
+    "availabilityZone": {
+      "title": "Choose your availability zone",
+      "informations": "A default availability zone has been selected. You have the option to customize this choice.",
+      "choice": {
+        "company": "Choose for me",
+        "user": "I choose my availability zone"
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from 'react';
 import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { FieldValues, useFormContext } from 'react-hook-form';
+import { DeepPartial, FieldValues, useFormContext } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TContinentData } from '@/adapters/catalog/left/shareCatalog.data';
@@ -67,7 +67,7 @@ describe('ContinentSelection', () => {
       data: continentOptions,
     } as unknown as QueryObserverSuccessResult<TContinentData>);
 
-    let formValues: Partial<CreateShareFormValues> | undefined;
+    let formValues: DeepPartial<CreateShareFormValues> | undefined;
 
     renderWithMockedForm(<ContinentSelection />, {
       defaultValues: { continent: 'all' },

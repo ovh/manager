@@ -4,7 +4,7 @@ import { DEPLOYMENT_MODES } from '@/domain/entities/catalog.entity';
 
 const stringShema = z.string();
 
-const shareDataShema = z.object({
+export const shareDataShema = z.object({
   name: stringShema,
   microRegion: stringShema,
 });
@@ -17,6 +17,7 @@ export const createShareSchema = z.object({
   deploymentModes: deploymentModesShema,
   continent: continentShema,
   macroRegion: stringShema,
+  availabilityZone: z.string().nullable(),
 });
 
 export type CreateShareFormValues = z.infer<typeof createShareSchema>;
