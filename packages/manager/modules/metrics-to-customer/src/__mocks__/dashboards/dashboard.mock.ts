@@ -29,5 +29,7 @@ export const getPredefinedDashboard = async ({
   return {
     id: '1',
     currentState: charts,
+    createdAt: '2025-11-21T14:26:14.041Z',
+    updatedAt: '2025-11-21T14:26:14.041Z',
   };
 };
