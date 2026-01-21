@@ -189,9 +189,26 @@ describe('ObservabilityServiceContext', () => {
 
     it('should update selected service when setSelectedService is called', () => {
       // Arrange
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'test-service-id',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Test Service' },
+          resourceStatus: 'READY',
+        },
+      ];
+
       mockUseObservabilityServices.mockReturnValue(
         createMockQueryResult({
-          data: [],
+          data: mockServices,
           isSuccess: true,
           status: 'success',
           isFetched: true,
@@ -202,12 +219,15 @@ describe('ObservabilityServiceContext', () => {
         wrapper: createWrapper(),
       });
 
+      // Initially should be first service
+      expect(getByTestId('selected-service')).toHaveTextContent('service-1');
+
       // Act
       act(() => {
         getByTestId('set-service').click();
       });
 
-      // Assert
+      // Assert - should now be the selected service
       expect(getByTestId('selected-service')).toHaveTextContent('test-service-id');
     });
 
@@ -333,9 +353,26 @@ describe('ObservabilityServiceContext', () => {
 
     it('should allow updating selected service through context', () => {
       // Arrange
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'new-service-id',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'New Service' },
+          resourceStatus: 'READY',
+        },
+      ];
+
       mockUseObservabilityServices.mockReturnValue(
         createMockQueryResult({
-          data: [],
+          data: mockServices,
           isSuccess: true,
           status: 'success',
           isFetched: true,
@@ -345,6 +382,9 @@ describe('ObservabilityServiceContext', () => {
       const { result } = renderHook(() => useObservabilityServiceContext(), {
         wrapper: createWrapper(),
       });
+
+      // Initially should be first service
+      expect(result.current.selectedService?.id).toBe('service-1');
 
       // Act
       act(() => {
@@ -363,9 +403,19 @@ describe('ObservabilityServiceContext', () => {
 
     it('should allow clearing selected service', () => {
       // Arrange
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'some-service-id',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Some Service' },
+          resourceStatus: 'READY',
+        },
+      ];
+
       mockUseObservabilityServices.mockReturnValue(
         createMockQueryResult({
-          data: [],
+          data: mockServices,
           isSuccess: true,
           status: 'success',
           isFetched: true,
@@ -376,17 +426,7 @@ describe('ObservabilityServiceContext', () => {
         wrapper: createWrapper(),
       });
 
-      // Act - Set a service first
-      act(() => {
-        result.current.setSelectedService({
-          id: 'some-service-id',
-          createdAt: '2025-11-01T08:00:00.001Z',
-          updatedAt: '2025-11-01T08:00:00.001Z',
-          currentState: { displayName: 'Some Service' },
-          resourceStatus: 'READY',
-        });
-      });
-
+      // Initially should be first service (auto-selected)
       expect(result.current.selectedService?.id).toBe('some-service-id');
 
       // Act - Clear the service
@@ -460,6 +500,126 @@ describe('ObservabilityServiceContext', () => {
 
       // Assert updated state
       expect(result.current.services).toEqual(updatedServices);
+    });
+
+    it('should update selectedService data when services list is refreshed', () => {
+      // Arrange
+      const initialServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Old Name' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      const updatedServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'New Name' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      // Start with initial services
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: initialServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      const { result, rerender } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert initial selected service
+      expect(result.current.selectedService?.currentState.displayName).toBe('Old Name');
+
+      // Act - Simulate services list refresh with updated data
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: updatedServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      rerender();
+
+      // Assert - selectedService should have the updated data
+      expect(result.current.selectedService?.currentState.displayName).toBe('New Name');
+    });
+
+    it('should fallback to first service when selected service is deleted', () => {
+      // Arrange
+      const initialServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-2',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 2' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      const updatedServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: initialServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      const { result, rerender } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Select service-2
+      act(() => {
+        result.current.setSelectedService(initialServices[1]);
+      });
+
+      expect(result.current.selectedService?.id).toBe('service-2');
+
+      // Act - Simulate service-2 being deleted
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: updatedServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      rerender();
+
+      // Assert - should fallback to first available service
+      expect(result.current.selectedService?.id).toBe('service-1');
     });
   });
 });
