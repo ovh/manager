@@ -44,7 +44,7 @@ export interface DNSConfiguration {
   dnssecSupported: boolean;
 }
 
-interface Task {
+export interface Task {
   id: string; // UUID
   link: string;
   status: TaskStatusEnum;
