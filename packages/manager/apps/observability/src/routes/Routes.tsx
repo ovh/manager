@@ -31,7 +31,7 @@ const ServicesPage = React.lazy(() => import('@/pages/settings/services/Services
 const ServiceDeletePage = React.lazy(
   () => import('@/pages/settings/services/delete/ServiceDelete.page'),
 );
-
+const ServiceEditPage = React.lazy(() => import('@/pages/settings/services/edit/ServiceEdit.page'));
 const TenantDashboardPage = React.lazy(
   () => import('@/pages/tenants/dashboard/TenantDashboard.page'),
 );
@@ -92,6 +92,16 @@ export default (
                 handle={{
                   tracking: {
                     pageName: 'service-delete',
+                    pageType: PageType.popup,
+                  },
+                }}
+              />
+              <Route
+                path={subroutes.edit}
+                Component={ServiceEditPage}
+                handle={{
+                  tracking: {
+                    pageName: 'service-edit',
                     pageType: PageType.popup,
                   },
                 }}
