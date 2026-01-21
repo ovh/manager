@@ -35,10 +35,23 @@ export const postConfigureCartItem = async ({
 }) =>
   apiClient.v6.post<ConfigurationItem>(`/order/cart/${cartId}/item/${itemId}/configuration`, data);
 
+export type CartItemProductOption = {
+  planCode: string;
+  pricingMode: string;
+  quantity: number;
+  duration?: string;
+  configurations?: { label: string; value: string }[];
+};
+
 export type CartItem = {
   itemEndpoint: string;
   options?: unknown;
   configurations?: { label: string; value: string }[];
+  /**
+   * Product options (child items) to add to the main item.
+   * These are added via /order/cart/{cartId}/{itemEndpoint}/options endpoint.
+   */
+  productOptions?: CartItemProductOption[];
 };
 
 export type CreateCartParams = {
@@ -51,6 +64,44 @@ export type CreateCartResult = {
   cartId: string;
 };
 
+const applyConfigurations = async (
+  cartId: string,
+  itemId: number,
+  configurations: { label: string; value: string }[],
+) => {
+  await Promise.all(
+    configurations.map(({ label, value }) =>
+      postConfigureCartItem({ cartId, itemId, label, value }),
+    ),
+  );
+};
+
+const addProductOptions = async (
+  cartId: string,
+  itemEndpoint: string,
+  parentItemId: number,
+  productOptions: CartItemProductOption[],
+) => {
+  await Promise.all(
+    productOptions.map(async (productOption) => {
+      const optionResponse = await apiClient.v6.post<Item>(
+        `/order/cart/${cartId}/${itemEndpoint}/options`,
+        {
+          itemId: parentItemId,
+          planCode: productOption.planCode,
+          pricingMode: productOption.pricingMode,
+          quantity: productOption.quantity,
+          duration: productOption.duration,
+        },
+      );
+
+      if (productOption.configurations) {
+        await applyConfigurations(cartId, optionResponse.data.itemId, productOption.configurations);
+      }
+    }),
+  );
+};
+
 export const createCart = async ({
   ovhSubsidiary,
   items,
@@ -60,22 +111,22 @@ export const createCart = async ({
   });
 
   await Promise.all(
-    items.map(async ({ itemEndpoint, options, configurations }) => {
+    items.map(async ({ itemEndpoint, options, configurations, productOptions }) => {
       const itemResponse = await apiClient.v6.post<Item>(
         `/order/cart/${data?.cartId}/${itemEndpoint}`,
         options,
       );
 
       if (configurations) {
-        await Promise.all(
-          configurations.map(({ label, value }) =>
-            postConfigureCartItem({
-              cartId: data?.cartId,
-              itemId: itemResponse.data.itemId,
-              label,
-              value,
-            }),
-          ),
+        await applyConfigurations(data?.cartId, itemResponse.data.itemId, configurations);
+      }
+
+      if (productOptions) {
+        await addProductOptions(
+          data?.cartId,
+          itemEndpoint,
+          itemResponse.data.itemId,
+          productOptions,
         );
       }
     }),
