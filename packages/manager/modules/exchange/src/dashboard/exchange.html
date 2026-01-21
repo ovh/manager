@@ -29,24 +29,28 @@
                 <oui-header-tabs-item
                     href="{{ ctrl.domainLink }}"
                     active="ctrl.currentActiveLink() === ctrl.domainLink"
+                    disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                 >
                     <span data-translate="exchange_tab_DOMAIN"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     href="{{ ctrl.accountLink }}"
                     active="ctrl.currentActiveLink() === ctrl.accountLink"
+                    disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                 >
                     <span data-translate="exchange_tab_ACCOUNT"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     href="{{ ctrl.groupLink }}"
                     active="ctrl.currentActiveLink() === ctrl.groupLink"
+                    disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                 >
                     <span data-translate="exchange_tab_GROUP"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     href="{{ ctrl.externalContactLink }}"
                     active="ctrl.currentActiveLink() === ctrl.externalContactLink"
+                    disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                 >
                     <span data-translate="exchange_tab_EXTERNAL_CONTACT"></span>
                 </oui-header-tabs-item>
@@ -54,18 +58,21 @@
                     data-ng-if="ctrl.services.exchangeVersion.isAfter(2010)"
                     href="{{ ctrl.sharedAccountLink }}"
                     active="ctrl.currentActiveLink() === ctrl.sharedAccountLink"
+                    disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                 >
                     <span data-translate="exchange_tab_SHARED_ACCOUNT"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     href="{{ ctrl.diagnosticLink }}"
                     active="ctrl.currentActiveLink() === ctrl.diagnosticLink"
+                    disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                 >
                     <span data-translate="exchange_tab_DIAGNOSTIC"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     href="{{ ctrl.securityLink }}"
                     active="ctrl.currentActiveLink() === ctrl.securityLink"
+                    disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                 >
                     <span data-translate="exchange_tab_SECURITY"></span>
                 </oui-header-tabs-item>
@@ -75,12 +82,14 @@
                     <oui-header-tabs-item
                         href="{{ ctrl.resourceLink }}"
                         active="ctrl.currentActiveLink() === ctrl.resourceLink"
+                        disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                     >
                         <span data-translate="exchange_tab_RESOURCES"></span>
                     </oui-header-tabs-item>
                     <oui-header-tabs-item
                         href="{{ ctrl.disclaimerLink }}"
                         active="ctrl.currentActiveLink() === ctrl.disclaimerLink"
+                        disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                     >
                         <span data-translate="exchange_tab_DISCLAIMER"></span>
                     </oui-header-tabs-item>
@@ -90,18 +99,21 @@
                         ctrl.services.exchangeVersion.isVersion(2010)"
                         href="{{ ctrl.sharedLink }}"
                         active="ctrl.currentActiveLink() === ctrl.sharedLink"
+                        disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                     >
                         <span data-translate="exchange_tab_SHARED"></span>
                     </oui-header-tabs-item>
                     <oui-header-tabs-item
                         href="{{ ctrl.taskLink }}"
                         active="ctrl.currentActiveLink() === ctrl.taskLink"
+                        disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                     >
                         <span data-translate="exchange_tab_TASKS"></span>
                     </oui-header-tabs-item>
                     <oui-header-tabs-item
                         href="{{ ctrl.logsLink }}"
                         active="ctrl.currentActiveLink() === ctrl.logsLink"
+                        disabled="!ctrl.exchange.sslExpirationDate && ctrl.services.exchangeServiceInfrastructure.isDedicated()"
                         data-ng-if=":: ctrl.isLogsAvailable"
                     >
                         <span data-translate="exchange_tab_LOGS"></span>
