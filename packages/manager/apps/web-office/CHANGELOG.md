@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.5...@ovh-ux/manager-web-office-app@0.7.6) (2026-01-21)
+
+
+### Bug Fixes
+
+* **web-office:** add feature availability for order ([0a6f7ff](https://github.com/ovh/manager/commit/0a6f7ff76a7799389ec3ca4ce26e656fbe9e53eb)), closes [#PRDCOL-314](https://github.com/ovh/manager/issues/PRDCOL-314)
+* **web-office:** fix french typo error ([767fc18](https://github.com/ovh/manager/commit/767fc18bf3c16563c695f96ded0111395c852961)), closes [#PRDCOL-364](https://github.com/ovh/manager/issues/PRDCOL-364)
+* **web-office:** update tailwind config MUK for web-office ([9dfd9bc](https://github.com/ovh/manager/commit/9dfd9bc6bee6227f2d97f346747798115c47e065)), closes [#PRDCOL-365](https://github.com/ovh/manager/issues/PRDCOL-365)
+
+
+
+
+
 ## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.4...@ovh-ux/manager-web-office-app@0.7.5) (2026-01-20)
 
 

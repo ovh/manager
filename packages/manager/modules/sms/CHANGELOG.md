@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.7...@ovh-ux/manager-sms@8.20.0) (2026-01-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1008] ([8b4b285](https://github.com/ovh/manager/commit/8b4b285a571b150b68b3fe37b323df0921a40692))
+* **sms:** fix front pagination on sms app ([9c1db88](https://github.com/ovh/manager/commit/9c1db88486307c9fa9d43e6eb51e4b6a662ed0e8)), closes [#MANAGER-20647](https://github.com/ovh/manager/issues/MANAGER-20647)
+* **telecom.sms:** improvement on time2chat form ([8f955fe](https://github.com/ovh/manager/commit/8f955fe8710ddeed82dc0f9fa6906556d3c1004b)), closes [#PRDCOL-329](https://github.com/ovh/manager/issues/PRDCOL-329)
+* **telecom:** change sms reply options text ([4ec77c3](https://github.com/ovh/manager/commit/4ec77c37c86f35eed57c722834bb4890b4c67a49)), closes [#PRDCOL-16](https://github.com/ovh/manager/issues/PRDCOL-16)
+
+
+### Features
+
+* remove duplicated directive ([5308272](https://github.com/ovh/manager/commit/5308272ba689228a9435f2d3c278999e320973d0)), closes [#MANAGER-20647](https://github.com/ovh/manager/issues/MANAGER-20647)
+* **telecom:** add order button in onboarding page in sms ([e6dbd9a](https://github.com/ovh/manager/commit/e6dbd9a5c8de98d73b41f9610051879c63c7d6ba)), closes [#PRDCOL-296](https://github.com/ovh/manager/issues/PRDCOL-296)
+* **telecom:** display format guidelines when adding an sms sender ([167e5cb](https://github.com/ovh/manager/commit/167e5cb77defcad3d496180bd4a932eceed74ad3)), closes [#PRDCOL-299](https://github.com/ovh/manager/issues/PRDCOL-299)
+
+
+
+
+
 ## [8.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.6...@ovh-ux/manager-sms@8.19.7) (2025-11-19)
 
 

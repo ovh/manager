@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.179.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.0...@ovh-ux/manager-container-app@0.179.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* **web-office:** add feature availability for order ([0a6f7ff](https://github.com/ovh/manager/commit/0a6f7ff76a7799389ec3ca4ce26e656fbe9e53eb)), closes [#PRDCOL-314](https://github.com/ovh/manager/issues/PRDCOL-314)
+
+
+
+
+
 # [0.179.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.178.0...@ovh-ux/manager-container-app@0.179.0) (2026-01-20)
 
 

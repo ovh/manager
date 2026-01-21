@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.11...@ovh-ux/manager-emailpro@3.17.12) (2026-01-21)
+
+
+### Bug Fixes
+
+* **mxplan:** remove upgrade button in general information and clean code ([77c9bba](https://github.com/ovh/manager/commit/77c9bbae907fadd08935231682c8447a2cd7b60c)), closes [#PRDCOL-308](https://github.com/ovh/manager/issues/PRDCOL-308)
+
+
+
+
+
 ## [3.17.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.10...@ovh-ux/manager-emailpro@3.17.11) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-emailpro
