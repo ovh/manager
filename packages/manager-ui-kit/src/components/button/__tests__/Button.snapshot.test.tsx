@@ -43,12 +43,7 @@ describe('Button Snapshot Tests', () => {
       });
 
       const { container } = render(
-        <Button
-          iamActions={['test:action']}
-          urn="urn:test:resource"
-          displayTooltip={true}
-          isIamTrigger={true}
-        >
+        <Button iamActions={['test:action']} urn="urn:test:resource" displayTooltip={true}>
           Authorized Button
         </Button>,
       );
@@ -64,12 +59,7 @@ describe('Button Snapshot Tests', () => {
       });
 
       const { container } = render(
-        <Button
-          iamActions={['test:action']}
-          urn="urn:test:resource"
-          displayTooltip={true}
-          isIamTrigger={true}
-        >
+        <Button iamActions={['test:action']} urn="urn:test:resource" displayTooltip={true}>
           Full Featured Button
         </Button>,
       );
@@ -208,22 +198,6 @@ describe('Button Snapshot Tests', () => {
       const { container } = render(
         <Button iamActions={['test:action']} urn="urn:test:resource">
           <span>JSX Children Button</span>
-        </Button>,
-      );
-
-      expect(container).toMatchSnapshot();
-    });
-
-    it('should render button with isIamTrigger set to false', () => {
-      mockedHook.mockReturnValue({
-        isAuthorized: true,
-        isLoading: false,
-        isFetched: true,
-      });
-
-      const { container } = render(
-        <Button iamActions={['test:action']} urn="urn:test:resource" isIamTrigger={false}>
-          Non-IAM Trigger Button
         </Button>,
       );
 

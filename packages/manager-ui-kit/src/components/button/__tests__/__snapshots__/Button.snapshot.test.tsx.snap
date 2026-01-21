@@ -93,19 +93,6 @@ exports[`Button Snapshot Tests > Edge Cases > should render button with JSX chil
 </div>
 `;
 
-exports[`Button Snapshot Tests > Edge Cases > should render button with isIamTrigger set to false 1`] = `
-<div>
-  <button
-    class=_button _button--primary _button--md _button--default
-    data-ods=button
-    data-testid=manager-button
-    type=button
-  >
-    Non-IAM Trigger Button
-  </button>
-</div>
-`;
-
 exports[`Button Snapshot Tests > Loading States > should render button when IAM is loading 1`] = `
 <div>
   <button
