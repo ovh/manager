@@ -12,5 +12,6 @@
   "backup_agent_guide": "Guides de Backup Agent",
   "baremetal_label_order_in_progress": "La commande a bien été reçue, votre produit est en cours de livraison et vous pouvez suivre sa progression <OrderLink>ici</OrderLink> .",
   "server": "Serveur",
-  "billings_tab_description": "Vous retrouverez ici votre facturation à jour de votre Tenant. Celui-ci vous sera facturé au début du mois prochain. Pour en savoir plus, consultez la <Link>documentation OVHcloud Backup Agent</Link>"
+  "billings_tab_description": "Vous retrouverez ici votre facturation à jour de votre Tenant. Celui-ci vous sera facturé au début du mois prochain. Pour en savoir plus, consultez la <Link>documentation OVHcloud Backup Agent</Link>",
+  "go_to_general_informations": "Aller aux informations générales"
 }

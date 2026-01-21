@@ -18,5 +18,6 @@
   "agent_status_not_configured_legend": "Votre Agent est détecté comme installé mais n'a pas encore sa politique appliquée, nous nous occupons de cela dans les plus brefs délais.",
   "agent_status_creating_legend": "Votre Agent est en cours de création.",
   "agent_status_updating_legend": "Votre Agent est en cours de modification.",
-  "agent_status_enabled_legend": "Votre Agent est actif, des sauvegardes se feront à partir de votre serveur."
+  "agent_status_enabled_legend": "Votre Agent est actif, des sauvegardes se feront à partir de votre serveur.",
+  "go_to_general_informations": "Aller aux informations générales"
 }
