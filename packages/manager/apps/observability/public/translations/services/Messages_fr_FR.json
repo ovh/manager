@@ -22,5 +22,9 @@
   },
   "delete": {
     "success": "Votre demande de résiliation de votre service {{serviceName}} a été prise en compte. Un e-mail contenant la procédure vous a été envoyé."
+  },
+  "edit": {
+    "title": "Modifier le nom du service",
+    "success": "Le nom du service a été modifié avec succès."
   }
 }
