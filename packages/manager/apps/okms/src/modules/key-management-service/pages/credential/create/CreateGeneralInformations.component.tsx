@@ -10,7 +10,8 @@ import { validateCredentialName } from '@key-management-service/utils/credential
 import { validateValidityDate } from '@key-management-service/utils/credential/validateValidityDate';
 import { useTranslation } from 'react-i18next';
 
-import { Subtitle } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
 
@@ -76,9 +77,9 @@ const CreateGeneralInformations = ({
     <div className="max-w-lg gap-4 lg:gap-6">
       <div className="flex flex-col gap-7 md:gap-9">
         <div className="flex flex-col gap-3 md:gap-4">
-          <Subtitle>
+          <Text preset="heading-3">
             {t('key_management_service_credential_create_general_information_title')}
-          </Subtitle>
+          </Text>
           <CreateGeneralInformationsName
             name={name}
             setName={setName}

@@ -9,7 +9,7 @@ import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { TIMEOUT } from '@/common/utils/tests/uiTestHelpers';
+import { TIMEOUT, assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkms = okmsRoubaix1Mock;
 const mockCredential = credentialMock1;
@@ -72,9 +72,13 @@ describe('Credential dashboard test suite', () => {
       await user.click(screen.getByText(identitiesTabLabel));
     });
 
-    await waitFor(() => {
-      expect(screen.getByText(userTitleLabel)).toBeVisible();
-      expect(screen.getByText(userGroupsTitleLabel)).toBeVisible();
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    await assertTitleVisibility({
+      title: userTitleLabel,
+      level: 3,
+    });
+    await assertTitleVisibility({
+      title: userGroupsTitleLabel,
+      level: 3,
+    });
   });
 });

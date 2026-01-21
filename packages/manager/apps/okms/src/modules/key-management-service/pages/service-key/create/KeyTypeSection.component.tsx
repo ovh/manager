@@ -14,7 +14,6 @@ import { OdsSelectChangeEventDetail, OdsSelectCustomEvent } from '@ovhcloud/ods-
 import { OdsFormField, OdsSelect } from '@ovhcloud/ods-components/react';
 import { Text } from '@ovhcloud/ods-react';
 
-import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -76,7 +75,9 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
   return (
     <>
       <div className="flex flex-col gap-3 md:gap-4">
-        <Subtitle>{t('key_management_service_service-keys_create_crypto_title')}</Subtitle>
+        <Text preset="heading-3">
+          {t('key_management_service_service-keys_create_crypto_title')}
+        </Text>
         <div className="space-y-2">
           <Text className="block" preset="heading-5">
             {t('key_management_service_service-keys_create_crypto_origin_title')}

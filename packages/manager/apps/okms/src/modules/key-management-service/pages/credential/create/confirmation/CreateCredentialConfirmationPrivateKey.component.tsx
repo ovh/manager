@@ -13,8 +13,6 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
-import { Subtitle } from '@ovh-ux/manager-react-components';
-
 import { MukLink } from '@/common/components/link/Link.component';
 
 type CreateCredentialConfirmationPrivateKeyProps = {
@@ -39,9 +37,9 @@ const CreateCredentialConfirmationPrivateKey = ({
   return (
     <OdsCard className="p-4">
       <div className="flex w-full flex-col gap-4 md:gap-5">
-        <Subtitle>
+        <Text preset="heading-3">
           {t('key_management_service_credential_create_confirmation_private-key_title')}
-        </Subtitle>
+        </Text>
         <Message color="warning" dismissible={false}>
           {t('key_management_service_credential_create_confirmation_private-key_warn')}
         </Message>

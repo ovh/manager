@@ -8,8 +8,6 @@ import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 import { Text } from '@ovhcloud/ods-react';
 
-import { Subtitle } from '@ovh-ux/manager-react-components';
-
 type GeneralInformationSectionProps = {
   serviceKeyNameError: ServiceKeyNameErrors | undefined;
   setServiceKeyNameError: (error: ServiceKeyNameErrors | undefined) => void;
@@ -41,9 +39,9 @@ export const GeneralInformationSection = ({
 
   return (
     <div className="flex flex-col space-y-3 md:space-y-4">
-      <Subtitle>
+      <Text preset="heading-3">
         {t('key_management_service_service-keys_create_general_information_title')}
-      </Subtitle>
+      </Text>
 
       <OdsFormField error={getErrorMessage(serviceKeyNameError)}>
         <div slot="label" className="mb-2 space-y-2">
