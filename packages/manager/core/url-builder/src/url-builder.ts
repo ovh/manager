@@ -68,12 +68,11 @@ export const buildURL = (
 };
 
 export function buildURLs(routes: Array<OvhURL>): Array<OvhURL>;
-
 export function buildURLs(routes: Record<string, OvhURL>): Record<string, OvhURL>;
 
 export function buildURLs(routes: Array<OvhURL> | Record<string, OvhURL>) {
   if (Array.isArray(routes)) {
-    return routes.map(({ baseURL, path, params }) => buildURL(baseURL, path, params || {}));
+    return routes.map(({ baseURL, path, params }) => buildURL(baseURL, path, params ?? {}));
   }
   return Object.keys(routes).reduce((result, name) => {
     const route = routes[name];
