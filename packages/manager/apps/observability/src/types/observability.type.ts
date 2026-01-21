@@ -16,3 +16,7 @@ export type ObservabilityService = {
   currentState: { displayName: string | null };
   resourceStatus: ResourceStatus;
 } & TObservabilityResource;
+
+export type ObservabilityServiceFormData = {
+  displayName: string;
+};
