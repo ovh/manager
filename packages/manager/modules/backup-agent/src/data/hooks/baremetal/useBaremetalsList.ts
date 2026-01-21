@@ -1,7 +1,7 @@
 import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 
-import { BAREMETAL_LIST_ROUTE } from '@/data/api/baremetal/baremetals';
 import { Baremetal } from '@/types/Baremetal.type';
+import { BAREMETAL_LIST_ROUTE } from '@/utils/apiRoutes';
 
 export const BAREMETAL_QUERY_KEYS = {
   baremetals: ['baremetals'],
