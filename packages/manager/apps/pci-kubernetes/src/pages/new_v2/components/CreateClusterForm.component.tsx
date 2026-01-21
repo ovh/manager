@@ -15,6 +15,10 @@ const MOCK_is3azAvailable = true;
 export const CreateClusterForm = () => {
   const { t } = useTranslation('add');
 
+  /*   const featureFlipping3az = use3AZPlanAvailable();
+  const { uniqueRegions, contains3AZ } = useHas3AZRegions();
+  const has3AZ = contains3AZ && featureFlipping3az; */
+
   const form = useCreateClusterForm(MOCK_is3azAvailable);
 
   return (
