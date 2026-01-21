@@ -2,13 +2,17 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen, waitFor, within } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+import {
+  TIMEOUT,
+  assertDrawerVisibility,
+  changeOdsInputValueByTestId,
+} from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockSecret = mockSecret1;
@@ -20,9 +24,7 @@ const renderPage = async (mockParams = {}) => {
   const { container } = await renderTestApp(mockPageUrl, mockParams);
 
   // Check if the drawer is open
-  expect(
-    await screen.findByTestId('edit-metadata-drawer', {}, { timeout: 10_000 }),
-  ).toBeInTheDocument();
+  await assertDrawerVisibility({ state: 'visible' });
 
   return { user, container };
 };
@@ -32,8 +34,12 @@ describe('Edit Metadata Drawer page test suite', () => {
     await renderPage();
 
     // Should show the drawer title
-    const drawer = screen.getByTestId('edit-metadata-drawer');
-    expect(within(drawer).getByText(labels.secretManager.edit_metadata)).toBeInTheDocument();
+    await waitFor(
+      () => {
+        expect(screen.getByText(labels.secretManager.edit_metadata)).toBeInTheDocument();
+      },
+      { timeout: TIMEOUT.LONG },
+    );
   });
 
   it('should display error message when secret smart config fetch fails', async () => {
@@ -85,12 +91,12 @@ describe('Edit Metadata Drawer page test suite', () => {
       name: labels.common.actions.validate,
     });
 
-    await user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Wait for drawer to close (navigation)
-    await waitFor(() => {
-      expect(screen.queryByTestId('edit-metadata-drawer')).not.toBeInTheDocument();
-    });
+    await assertDrawerVisibility({ state: 'hidden' });
   });
 
   it('should handle form submission errors', async () => {
@@ -104,12 +110,14 @@ describe('Edit Metadata Drawer page test suite', () => {
     const submitButton = screen.getByRole('button', {
       name: labels.common.actions.validate,
     });
-    await user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Verify error is displayed
     expect(await screen.findByText('update-secret-error-message')).toBeInTheDocument();
 
     // Drawer should still be open
-    expect(screen.getByTestId('edit-metadata-drawer')).toBeInTheDocument();
+    await assertDrawerVisibility({ state: 'visible' });
   });
 });

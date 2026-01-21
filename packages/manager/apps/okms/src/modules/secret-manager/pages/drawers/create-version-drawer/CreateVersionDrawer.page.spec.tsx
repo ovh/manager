@@ -4,16 +4,14 @@ import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { getSecretMockWithData } from '@secret-manager/mocks/secrets/secretsMock.utils';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen, waitFor, within } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
+import { assertDrawerVisibility, clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
 import { invariant } from '@/common/utils/tools/invariant';
-
-import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockedSecret = mockSecret1;
@@ -46,14 +44,14 @@ const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
   await renderTestApp(url);
 
   // Check if the drawer is open
-  expect(
-    await screen.findByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer, {}, { timeout: 5000 }),
-  ).toBeInTheDocument();
+  await assertDrawerVisibility({ state: 'visible' });
 
-  const drawer = screen.getByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer);
+  const drawer = screen.getByTestId('drawer');
 
-  // title
-  expect(within(drawer).getByText(labels.secretManager.add_new_version)).toBeInTheDocument();
+  // Wait for the title to appear (drawer content to load)
+  await waitFor(() => {
+    expect(within(drawer).getByText(labels.secretManager.add_new_version)).toBeInTheDocument();
+  });
 
   // switch label
   await waitFor(() => {
@@ -132,7 +130,9 @@ describe('Secret create version drawer page test suite', () => {
     expect(submitButton).toBeInTheDocument();
     expect(submitButton).toBeEnabled();
 
-    await user.click(submitButton);
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Wait for the createSecretVersion to be called
     await waitFor(() => {
@@ -145,8 +145,6 @@ describe('Secret create version drawer page test suite', () => {
     });
 
     // Wait for the drawer to close
-    await waitFor(() => {
-      expect(screen.queryByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer)).not.toBeInTheDocument();
-    });
+    await assertDrawerVisibility({ state: 'hidden' });
   });
 });

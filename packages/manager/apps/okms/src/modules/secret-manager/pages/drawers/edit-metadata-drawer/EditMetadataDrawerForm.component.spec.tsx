@@ -2,7 +2,7 @@ import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { Secret } from '@secret-manager/types/secret.type';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -75,7 +75,9 @@ const submitForm = async (user: UserEvent) => {
   const submitButton = screen.getByRole('button', {
     name: commonLabels.actions.validate,
   });
-  await user.click(submitButton);
+  await act(async () => {
+    await user.click(submitButton);
+  });
 
   return submitButton;
 };
@@ -127,7 +129,9 @@ describe('EditMetadataDrawerForm component test suite', () => {
       const submitButton = screen.getByRole('button', {
         name: commonLabels.actions.validate,
       });
-      await user.click(submitButton);
+      await act(async () => {
+        await user.click(submitButton);
+      });
 
       // THEN
       await waitFor(() => {
@@ -213,7 +217,11 @@ describe('EditMetadataDrawerForm component test suite', () => {
 
       // THEN
       const submitButton = await submitForm(user);
-      expect(submitButton).toHaveAttribute('data-loading', 'true');
+
+      // The submit button should contain a spinner while loading
+      await waitFor(() => {
+        expect(submitButton.querySelector('[data-ods="spinner"]')).toBeInTheDocument();
+      });
     });
   });
 

@@ -69,6 +69,25 @@ export const assertModalVisibility = async ({
   return modal as unknown as HTMLElement;
 };
 
+export const assertDrawerVisibility = async ({
+  state = 'visible',
+  timeout = TIMEOUT.DEFAULT,
+}: Omit<AssertModalVisibilityProps, 'role'>) => {
+  let drawer: HTMLElement | null = null;
+  await waitFor(
+    () => {
+      drawer = screen.queryByTestId('drawer');
+      if (state === 'visible') {
+        expect(drawer).toBeInTheDocument();
+      } else {
+        expect(drawer).not.toBeInTheDocument();
+      }
+    },
+    { timeout },
+  );
+  return drawer as unknown as HTMLElement;
+};
+
 /**
  * Clicks on the JSON toggle
  */

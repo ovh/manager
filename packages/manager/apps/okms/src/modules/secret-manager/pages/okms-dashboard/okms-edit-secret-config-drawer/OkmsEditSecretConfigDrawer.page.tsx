@@ -8,12 +8,11 @@ import { useTranslation } from 'react-i18next';
 import { Message } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Drawer } from '@ovh-ux/manager-react-components';
+import { Drawer } from '@ovh-ux/muk';
 
 import { EditOkmsSecretConfigDrawerForm } from '@/common/components/okms-secret-config-drawer-form/EditOkmsSecretConfigDrawerForm.component';
 
 import { OkmsDashboardOutletContext } from '../OkmsDashboard.type';
-import { OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS } from './OkmsEditSecretConfigDrawer.page.constants';
 
 const OkmsEditSecretConfigDrawer = () => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
@@ -27,18 +26,15 @@ const OkmsEditSecretConfigDrawer = () => {
   };
 
   return (
-    <Drawer
-      isOpen
-      heading={t('edit_okms_secret_config')}
-      onDismiss={handleDismiss}
-      isLoading={isPending}
-      data-testid={OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS.drawer}
-    >
+    <Drawer.Root isOpen onDismiss={handleDismiss} isLoading={isPending}>
+      <Drawer.Header title={t('edit_okms_secret_config')} />
       <Suspense>
         {error && (
-          <Message color="critical" className="mb-4" dismissible={false}>
-            {error?.response?.data?.message}
-          </Message>
+          <Drawer.Content>
+            <Message color="critical" className="mb-4" dismissible={false}>
+              {error?.response?.data?.message}
+            </Message>
+          </Drawer.Content>
         )}
         {!error && !isPending && (
           <EditOkmsSecretConfigDrawerForm
@@ -48,7 +44,7 @@ const OkmsEditSecretConfigDrawer = () => {
           />
         )}
       </Suspense>
-    </Drawer>
+    </Drawer.Root>
   );
 };
 

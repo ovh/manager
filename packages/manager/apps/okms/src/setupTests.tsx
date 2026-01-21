@@ -59,33 +59,11 @@ afterEach(() => {
   server.resetHandlers();
 });
 
-type DrawerProps = {
-  children?: React.ReactNode;
-  className?: string;
-  'data-testid'?: string;
-  heading?: React.ReactNode;
-  isLoading?: boolean;
-};
-
-// Mocking ODS Drawer component
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const original = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...original,
-    Drawer: vi.fn(({ children, className, ...props }: DrawerProps) => (
-      <div data-testid={props['data-testid']} className={className}>
-        <header>{props.heading}</header>
-        {!props.isLoading && children}
-      </div>
-    )),
-  };
-});
-
 vi.mock('@/common/hooks/useOkmsTracking', () => ({
   useOkmsTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
 }));
 
-// Mocking ODS Drawer component
+// Mocking ODS components
 vi.mock('@ovh-ux/muk', async () => {
   const original = await vi.importActual('@ovh-ux/muk');
   return {

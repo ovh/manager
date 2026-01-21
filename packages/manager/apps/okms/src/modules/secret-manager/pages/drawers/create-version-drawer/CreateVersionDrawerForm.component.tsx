@@ -14,11 +14,8 @@ import { Message } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Drawer } from '@ovh-ux/muk';
 
-import {
-  DrawerContent,
-  DrawerFooter,
-} from '@/common/components/drawer/DrawerInnerComponents.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { VersionStatusMessage } from './VersionStatusMessage.component';
@@ -103,8 +100,8 @@ export const CreateVersionDrawerForm = ({
   };
 
   return (
-    <div className="flex h-full flex-col">
-      <DrawerContent>
+    <>
+      <Drawer.Content>
         <FormProvider {...form}>
           <form
             className="m-1" // give room to display the outline of all inputs
@@ -119,15 +116,19 @@ export const CreateVersionDrawerForm = ({
             <SecretDataFormField name="data" control={control} />
           </form>
         </FormProvider>
-      </DrawerContent>
-      <DrawerFooter
-        primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:add`)}
-        isPrimaryButtonDisabled={!isDirty || !isValid}
-        isPrimaryButtonLoading={isCreating}
-        onPrimaryButtonClick={handleSubmit(handleSubmitForm)}
-        secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
-        onSecondaryButtonClick={handleDismiss}
+      </Drawer.Content>
+      <Drawer.Footer
+        primaryButton={{
+          label: t(`${NAMESPACES.ACTIONS}:add`),
+          isDisabled: !isDirty || !isValid,
+          isLoading: isCreating,
+          onClick: handleSubmit(handleSubmitForm),
+        }}
+        secondaryButton={{
+          label: t(`${NAMESPACES.ACTIONS}:close`),
+          onClick: handleDismiss,
+        }}
       />
-    </div>
+    </>
   );
 };
