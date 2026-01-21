@@ -39,9 +39,9 @@ export default function Contacts({
     '/contacts/services',
     {
       serviceName,
-      category: 'DOMAIN',
+      category: Universe.DOMAIN,
       service: serviceName,
-      categoryType: 'DOMAIN',
+      categoryType: Universe.DOMAIN,
     },
   ]);
 
