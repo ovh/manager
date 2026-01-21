@@ -1842,4 +1842,18 @@ export default class Exchange {
       currency: currencyCode,
     });
   }
+
+  getSSLDoingTasks(organizationName, exchangeService) {
+    return this.services
+      .iceberg(
+        `/email/exchange/${organizationName}/service/${exchangeService}/task`,
+      )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .addFilter('function', 'eq', 'installSSL')
+      .execute(null, true)
+      .$promise.then(({ data }) =>
+        data.filter(({ status }) => ['todo', 'doing'].includes(status)),
+      );
+  }
 }
