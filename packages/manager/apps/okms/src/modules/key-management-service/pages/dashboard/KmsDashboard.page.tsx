@@ -12,13 +12,12 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes
 import { useTranslation } from 'react-i18next';
 
 import {
-  BaseLayout,
   ErrorBanner,
-  HeadersProps,
   Notifications,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { BaseLayout, HeaderProps } from '@ovh-ux/muk';
 
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
 import {
@@ -124,9 +123,9 @@ export default function DashboardPage() {
     },
   ];
 
-  const headerProps: HeadersProps = {
+  const headerProps: HeaderProps = {
     title: displayName,
-    headerButton: <KmsGuidesHeader />,
+    guideMenu: <KmsGuidesHeader />,
     changelogButton: <KmsChangelogButton />,
   };
 
@@ -136,12 +135,12 @@ export default function DashboardPage() {
     <Suspense fallback={<PageSpinner />}>
       <BaseLayout
         header={headerProps}
-        onClickReturn={() => {
-          navigate(KMS_ROUTES_URLS.kmsListing);
+        backLink={{
+          label: t('key-management-service/dashboard:key_management_service_dashboard_back_link'),
+          onClick: () => {
+            navigate(KMS_ROUTES_URLS.kmsListing);
+          },
         }}
-        backLinkLabel={t(
-          'key-management-service/dashboard:key_management_service_dashboard_back_link',
-        )}
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         message={<Notifications />}
         tabs={<TabNavigation tabs={tabsList} />}

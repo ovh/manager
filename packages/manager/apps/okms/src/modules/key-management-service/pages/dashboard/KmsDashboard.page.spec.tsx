@@ -4,12 +4,12 @@ import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { TIMEOUT, assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 import { kmsDashboardTabNames } from './kmsDashboard.constants';
@@ -50,14 +50,13 @@ describe('KMS dashboard test suite', () => {
 
   it(`should navigate back to the kms list on click on ${labels.dashboard.key_management_service_dashboard_back_link}`, async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
-    // TODO: [ODS19] Remove this getOdsButtonByLabel after BaseLayout migration
-    const backLink = await getOdsButtonByLabel({
-      container,
-      label: labels.dashboard.key_management_service_dashboard_back_link,
-      isLink: true,
-    });
+    const backLink = await screen.findByText(
+      labels.dashboard.key_management_service_dashboard_back_link,
+      {},
+      { timeout: TIMEOUT.MEDIUM },
+    );
 
     await act(() => user.click(backLink));
 

@@ -88,31 +88,29 @@ export const assertDrawerVisibility = async ({
   return drawer as unknown as HTMLElement;
 };
 
+type AssertTitleVisibilityParams = {
+  title: string;
+  level: number;
+  timeout?: number;
+};
+
+export const assertTitleVisibility = async ({
+  title,
+  level,
+  timeout = TIMEOUT.DEFAULT,
+}: AssertTitleVisibilityParams) => {
+  await waitFor(
+    () => expect(screen.getByRole('heading', { level, name: title })).toBeInTheDocument(),
+    { timeout },
+  );
+};
+
 /**
  * Clicks on the JSON toggle
  */
 export const clickJsonEditorToggle = async (user: UserEvent) => {
   const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
   await act(() => user.click(jsonToggle));
-};
-
-export const assertTitleVisibilityOds18 = async (
-  title: string,
-  type: 'heading-1' | 'heading-2' | 'heading-3',
-  timeout = TIMEOUT.DEFAULT,
-) => {
-  await waitFor(
-    () => {
-      const titleElement = document.querySelector(`.ods-text[preset="${type}"]`);
-      expect(titleElement).toBeInTheDocument();
-      expect(titleElement).toHaveTextContent(title);
-    },
-    { timeout },
-  );
-};
-
-export const assertPageTitleVisibility = async (title: string, timeout = TIMEOUT.DEFAULT) => {
-  await assertTitleVisibilityOds18(title, 'heading-1', timeout);
 };
 
 /**

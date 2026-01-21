@@ -9,7 +9,6 @@ import { describe, expect, it } from 'vitest';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
-  TIMEOUT,
   assertDrawerVisibility,
   changeOdsInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
@@ -34,12 +33,9 @@ describe('Edit Metadata Drawer page test suite', () => {
     await renderPage();
 
     // Should show the drawer title
-    await waitFor(
-      () => {
-        expect(screen.getByText(labels.secretManager.edit_metadata)).toBeInTheDocument();
-      },
-      { timeout: TIMEOUT.LONG },
-    );
+    await waitFor(() => {
+      expect(screen.getByText(labels.secretManager.edit_metadata)).toBeInTheDocument();
+    });
   });
 
   it('should display error message when secret smart config fetch fails', async () => {

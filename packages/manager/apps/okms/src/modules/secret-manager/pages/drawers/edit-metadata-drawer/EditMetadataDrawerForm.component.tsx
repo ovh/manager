@@ -99,17 +99,10 @@ export const EditMetadataDrawerForm = ({
     onDismiss();
   };
 
-  const handleError = () => {
-    console.log('handleError', updateError);
-  };
-
   return (
     <>
       <Drawer.Content>
-        <form
-          className="flex flex-col gap-4 p-1"
-          onSubmit={handleSubmit(handleSubmitForm, handleError)}
-        >
+        <form className="flex flex-col gap-4 p-1" onSubmit={handleSubmit(handleSubmitForm)}>
           {updateError && (
             <Message color="critical" className="mb-4">
               {updateError?.response?.data?.message || t('error_update_settings')}

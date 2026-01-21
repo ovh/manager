@@ -14,12 +14,8 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import {
-  BaseLayout,
-  DashboardGridLayout,
-  ErrorBanner,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
+import { DashboardGridLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -116,13 +112,15 @@ export default function ServiceKeyDashboard() {
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: serviceKey.name || serviceKey.id,
-          headerButton: <KmsGuidesHeader />,
+          guideMenu: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
-        onClickReturn={() => {
-          navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
+        backLink={{
+          label: t('key_management_service_service_keys_back_link'),
+          onClick: () => {
+            navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
+          },
         }}
-        backLinkLabel={t('key_management_service_service_keys_back_link')}
         message={<Notifications />}
         tabs={<TabNavigation tabs={tabsList} />}
       >

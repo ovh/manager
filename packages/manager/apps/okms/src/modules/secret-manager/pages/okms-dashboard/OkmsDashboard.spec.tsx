@@ -9,7 +9,7 @@ import { PAGE_SPINNER_TEST_ID } from '@/common/components/page-spinner/PageSpinn
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
 
@@ -57,7 +57,10 @@ describe('OkmsDashboard page test suite', () => {
     await renderTestApp(mockPageUrl, { feature: KMS_FEATURES.LOGS });
 
     // THEN
-    await assertPageTitleVisibility(labels.secretManager.okms_dashboard_title, 3000);
+    await assertTitleVisibility({
+      title: labels.secretManager.okms_dashboard_title,
+      level: 1,
+    });
 
     await assertBreadcrumbItems([
       'RootBreadcrumbItem',

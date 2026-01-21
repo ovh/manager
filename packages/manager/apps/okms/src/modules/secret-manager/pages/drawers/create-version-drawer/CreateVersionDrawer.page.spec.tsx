@@ -44,9 +44,7 @@ const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
   await renderTestApp(url);
 
   // Check if the drawer is open
-  await assertDrawerVisibility({ state: 'visible' });
-
-  const drawer = screen.getByTestId('drawer');
+  const drawer = await assertDrawerVisibility({ state: 'visible' });
 
   // Wait for the title to appear (drawer content to load)
   await waitFor(() => {

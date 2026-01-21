@@ -12,7 +12,7 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
   assertModalVisibility,
-  assertPageTitleVisibility,
+  assertTitleVisibility,
   changeOdsInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
 
@@ -35,10 +35,11 @@ const renderPage = async (options: { fromCSR: boolean }) => {
     fromCSR: options.fromCSR,
   });
 
-  await assertPageTitleVisibility(
-    labels.credentials.key_management_service_credential_create_title,
-    5000,
-  );
+  // Check title
+  await assertTitleVisibility({
+    title: labels.credentials.key_management_service_credential_create_title,
+    level: 1,
+  });
 
   return { container };
 };
@@ -80,11 +81,10 @@ const testStep1Content = () => {
 
 const testStep2Content = async () => {
   // Check title
-  expect(
-    await screen.findByText(
-      labels.credentials.key_management_service_credential_create_identities_title,
-    ),
-  ).toBeVisible();
+  await assertTitleVisibility({
+    title: labels.credentials.key_management_service_credential_create_identities_title,
+    level: 3,
+  });
 
   // Check add users button
   const buttonOpenAddUsersModal = screen.getByRole('button', {
@@ -112,12 +112,10 @@ const testStep2ContentAddUsersModal = async (container: HTMLElement) => {
   await assertModalVisibility({ role: 'dialog' });
 
   // Check modal title
-  expect(
-    await screen.findByRole('heading', {
-      level: 3,
-      name: labels.credentials.key_management_service_credentials_identity_modal_user_list_headline,
-    }),
-  ).toBeVisible();
+  await assertTitleVisibility({
+    title: labels.credentials.key_management_service_credentials_identity_modal_user_list_headline,
+    level: 3,
+  });
 
   // Wait for spinner to disappear
   await waitFor(() => {
@@ -173,11 +171,11 @@ const testStep3Content = async () => {
 };
 
 const assertCredentialListPageVisibility = async () => {
-  await assertPageTitleVisibility(mockOkmsItem.iam.displayName);
-  // Check headline on credentials list page
-  expect(
-    await screen.findByText(labels.credentials.key_management_service_credential_headline),
-  ).toBeVisible();
+  // Check title on kms credentials list page
+  await assertTitleVisibility({
+    title: mockOkmsItem.iam.displayName,
+    level: 1,
+  });
 };
 
 const testStep1 = async (user: UserEvent) => {

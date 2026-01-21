@@ -13,7 +13,6 @@ import { vi } from 'vitest';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
-  TIMEOUT,
   assertDrawerVisibility,
   changeOdsInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
@@ -45,12 +44,9 @@ describe('okms edit secret config drawer page test suite', () => {
     await renderPage();
 
     // THEN
-    await waitFor(
-      () => {
-        expect(screen.getByText(labels.secretManager.edit_okms_secret_config)).toBeInTheDocument();
-      },
-      { timeout: TIMEOUT.LONG },
-    );
+    await waitFor(() => {
+      expect(screen.getByText(labels.secretManager.edit_okms_secret_config)).toBeInTheDocument();
+    });
   });
 
   it('should display error message when okms secret config fetch fails', async () => {

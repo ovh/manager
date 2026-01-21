@@ -16,8 +16,9 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
+import { ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { BaseLayout } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -106,14 +107,14 @@ const CredentialDashboard = () => {
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: credential.name || credential.id,
-          headerButton: <KmsGuidesHeader />,
+          guideMenu: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
-        backLinkLabel={t('key_management_service_credential_dashboard_backlink')}
-        message={<Notifications />}
-        onClickReturn={() => {
-          navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
+        backLink={{
+          label: t('key_management_service_credential_dashboard_backlink'),
+          onClick: () => navigate(KMS_ROUTES_URLS.credentialListing(okmsId)),
         }}
+        message={<Notifications />}
         tabs={<TabNavigation tabs={tabsList} />}
       >
         <Outlet context={{ credential, okms } as CredentialContextType} />

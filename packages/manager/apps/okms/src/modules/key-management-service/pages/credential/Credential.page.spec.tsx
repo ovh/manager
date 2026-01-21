@@ -4,15 +4,12 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { TIMEOUT } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkms = okmsRoubaix1Mock;
 const mockCredential = credentialMock1;
@@ -40,14 +37,13 @@ describe('Credential dashboard test suite', () => {
 
   it(`should navigate back to the credentials list on click on ${labels.credentials.key_management_service_credential_dashboard_backlink}`, async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
-    // TODO: [ODS19] Remove this getOdsButtonByLabel after BaseLayout migration
-    const backLink = await getOdsButtonByLabel({
-      container,
-      label: labels.credentials.key_management_service_credential_dashboard_backlink,
-      isLink: true,
-    });
+    const backLink = await screen.findByText(
+      labels.credentials.key_management_service_credential_dashboard_backlink,
+      {},
+      { timeout: TIMEOUT.MEDIUM },
+    );
 
     await act(async () => {
       await user.click(backLink);

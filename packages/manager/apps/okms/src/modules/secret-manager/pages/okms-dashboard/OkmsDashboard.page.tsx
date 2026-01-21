@@ -14,13 +14,13 @@ import { useTranslation } from 'react-i18next';
 import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import {
-  BaseLayout,
   ErrorBanner,
   Notifications,
   useFeatureAvailability,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { BaseLayout } from '@ovh-ux/muk';
 
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
 import {
@@ -87,10 +87,12 @@ export default function OkmsDashboardPage() {
       header={{
         title: t('okms_dashboard_title'),
         changelogButton: <SecretManagerChangelogButton />,
-        headerButton: <SecretManagerGuidesButton />,
+        guideMenu: <SecretManagerGuidesButton />,
       }}
-      backLinkLabel={t('back_to_secret_list')}
-      onClickReturn={() => navigate('..')}
+      backLink={{
+        label: t('back_to_secret_list'),
+        onClick: () => navigate('..'),
+      }}
       breadcrumb={
         <Breadcrumb>
           <RootBreadcrumbItem />

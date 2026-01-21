@@ -10,7 +10,7 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { TIMEOUT, assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { invariant } from '@/common/utils/tools/invariant';
 import { PATH_LABEL } from '@/constants';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
@@ -22,7 +22,11 @@ const renderPage = async () => {
   const results = await renderTestApp(mockPageUrl);
 
   // Check title
-  await assertPageTitleVisibility(labels.secretManager.secret_manager, 5000);
+  await assertTitleVisibility({
+    title: labels.secretManager.secret_manager,
+    level: 1,
+    timeout: TIMEOUT.MEDIUM,
+  });
 
   return results;
 };
@@ -40,7 +44,10 @@ describe('Secret list page test suite', () => {
   it('should display the secrets list page', async () => {
     await renderPage();
 
-    await assertPageTitleVisibility(labels.secretManager.secret_manager, 3000);
+    await assertTitleVisibility({
+      title: labels.secretManager.secret_manager,
+      level: 1,
+    });
   });
 
   it('should display the breadcrumb', async () => {

@@ -19,7 +19,6 @@ import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
-  BaseLayout,
   Datagrid,
   DatagridColumn,
   ErrorBanner,
@@ -27,7 +26,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { Button } from '@ovh-ux/muk';
+import { BaseLayout, BaseLayoutProps, Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -50,12 +49,22 @@ export default function SecretListPage() {
 
   const okmsListUrl = useBackToOkmsListUrl();
 
+  // if okmsListUrl is not defined, we do not display the back link label
+  const backLink: BaseLayoutProps['backLink'] = okmsListUrl
+    ? {
+        label: t('back_to_okms_list'),
+        onClick: () => {
+          navigate(okmsListUrl);
+        },
+      }
+    : undefined;
+
   return (
     <BaseLayout
       header={{
         title: t('secret_manager'),
         changelogButton: <SecretManagerChangelogButton />,
-        headerButton: <SecretManagerGuidesButton />,
+        guideMenu: <SecretManagerGuidesButton />,
       }}
       breadcrumb={
         <Breadcrumb>
@@ -64,13 +73,7 @@ export default function SecretListPage() {
         </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
-      onClickReturn={() => {
-        if (okmsListUrl) {
-          navigate(okmsListUrl);
-        }
-      }}
-      // if okmsListUrl is not defined, we do not display the back link label
-      backLinkLabel={okmsListUrl ? t('back_to_okms_list') : ''}
+      backLink={backLink}
     >
       <div className="space-y-6">
         <div className="flex justify-between">

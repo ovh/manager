@@ -16,8 +16,9 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes
 import { CertificateType, OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
+import { ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -111,10 +112,10 @@ const CreateCredential = () => {
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: t('key_management_service_credential_create_title'),
-          description: t('key_management_service_credential_create_subtitle'),
-          headerButton: <KmsGuidesHeader />,
+          guideMenu: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
+        description={t('key_management_service_credential_create_subtitle')}
         message={<Notifications />}
       >
         <IdentityDataProvider>

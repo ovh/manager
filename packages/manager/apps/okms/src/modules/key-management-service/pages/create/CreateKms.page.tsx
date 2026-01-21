@@ -10,9 +10,9 @@ import { useTranslation } from 'react-i18next';
 import { Message } from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
-import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
+import { Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { Button } from '@ovh-ux/muk';
+import { BaseLayout, Button } from '@ovh-ux/muk';
 
 import { RegionPicker } from '@/common/components/region-picker/RegionPicker.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';

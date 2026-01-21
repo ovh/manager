@@ -20,9 +20,9 @@ import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServi
 import { ServiceKeyNameErrors } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
+import { ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
-import { Button } from '@ovh-ux/muk';
+import { BaseLayout, Button } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -166,10 +166,10 @@ export default function CreateKey() {
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: t('key_management_service_service-keys_create_title'),
-          description: t('key_management_service_service-keys_create_subtitle'),
-          headerButton: <KmsGuidesHeader />,
+          guideMenu: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
+        description={t('key_management_service_service-keys_create_subtitle')}
         message={<Notifications />}
       >
         <div className="block w-full">

@@ -10,7 +10,7 @@ import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
 import { locationsMock } from '@/common/mocks/locations/locations.mock';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertPageTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
 
@@ -57,7 +57,10 @@ describe('KMS creation page test suite', () => {
   it('should display the KMS creation page', async () => {
     await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
-    await assertPageTitleVisibility(labels.create.key_management_service_create_title);
+    await assertTitleVisibility({
+      title: labels.create.key_management_service_create_title,
+      level: 1,
+    });
     await assertTextVisibility(labels.create.region_selection);
     await assertTextVisibility(labels.create.region_selection_description);
 

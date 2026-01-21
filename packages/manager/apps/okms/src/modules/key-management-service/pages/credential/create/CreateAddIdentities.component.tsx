@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 import { OdsDivider } from '@ovhcloud/ods-components/react';
 import { Icon, Text } from '@ovhcloud/ods-react';
 
-import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
 
@@ -71,7 +70,9 @@ const CreateAddIdentities = ({
     <div className="max-w-screen-lg">
       <div className="flex flex-col gap-7 md:gap-9">
         <div className="flex flex-col gap-6 md:gap-8">
-          <Subtitle>{t('key_management_service_credential_create_identities_title')}</Subtitle>
+          <Text preset="heading-3">
+            {t('key_management_service_credential_create_identities_title')}
+          </Text>
           <IdentitiesRootAccount
             isRootAccount={isRootAccount}
             setIsRootAccount={setIsRootAccount}

@@ -11,7 +11,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Breadcrumb } from '@ovhcloud/ods-react';
 
-import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
+import { Notifications, useNotifications } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/muk';
 
 import { PriceTile } from '@/common/components/price-tile/PriceTile';
 
@@ -31,7 +32,7 @@ export default function SecretCreatePage() {
       header={{
         title: t('create_a_secret'),
         changelogButton: <SecretManagerChangelogButton />,
-        headerButton: <SecretManagerGuidesButton />,
+        guideMenu: <SecretManagerGuidesButton />,
       }}
       breadcrumb={
         <Breadcrumb>
