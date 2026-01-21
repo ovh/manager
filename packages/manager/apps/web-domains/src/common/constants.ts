@@ -25,5 +25,3 @@ export const RENEW_URL: Record<string, string> = {
   SN: `https://www.ovh.sn/${URL_SUFFIX}`,
   TN: `https://www.ovh.com/tn/${URL_SUFFIX}`,
 };
-
-export const DOMAIN = 'DOMAIN';
