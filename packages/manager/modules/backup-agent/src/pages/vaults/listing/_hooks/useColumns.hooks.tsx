@@ -6,12 +6,12 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ResourceLocationCell } from '@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.component';
 import { ResourceRegionCell } from '@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.component';
 import { ResourceStatusCell } from '@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.component';
-import { VaultIdCell } from '@/pages/vaults/listing/_components/VaultIdCell.component';
 import { VaultReferenceCell } from '@/pages/vaults/listing/_components/VaultReferenceCell.component';
 import { Resource } from '@/types/Resource.type';
 import { Vault } from '@/types/Vault.type';
 
 import { VaultActionCell } from '../_components/VaultActionCell.component';
+import { VaultIdCell } from '../_components/VaultIdCell.component';
 
 export const useColumns = () => {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING, NAMESPACES.DASHBOARD]);
@@ -19,7 +19,9 @@ export const useColumns = () => {
   return [
     {
       id: 'id',
-      cell: VaultIdCell,
+      cell: ({ id, currentState: { name } }: Resource<Vault>) => (
+        <VaultIdCell id={id} name={name} />
+      ),
       label: t('resource_name_label'),
     },
     {
@@ -43,14 +45,14 @@ export const useColumns = () => {
     },
     {
       id: 'resourceStatus',
-      cell: (vaultResource: Resource<Vault>) => (
-        <ResourceStatusCell resourceStatus={vaultResource.resourceStatus} />
+      cell: ({ resourceStatus }: Resource<Vault>) => (
+        <ResourceStatusCell resourceStatus={resourceStatus} />
       ),
       label: t('status_label'),
     },
     {
       id: 'vaultActions',
-      cell: VaultActionCell,
+      cell: ({ id }: Resource<Vault>) => <VaultActionCell id={id} />,
       label: '',
     },
   ];
