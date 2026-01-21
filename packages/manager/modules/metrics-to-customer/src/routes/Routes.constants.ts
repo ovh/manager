@@ -1,6 +1,7 @@
 export const URL_PARAMS = {
   resourceName: ':resourceName?',
   dashboardWidget: ':widgetId',
+  subscriptionId: ':subscriptionId',
 };
 
 export const subroutes = {
@@ -8,6 +9,7 @@ export const subroutes = {
   dashboardWidget: URL_PARAMS.dashboardWidget,
   metrics: 'metrics',
   subscriptionsConfig: `subscriptions/config`,
+  subscription: 'subscription',
 } as const;
 
 export const urls = {
