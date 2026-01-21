@@ -1,4 +1,4 @@
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import { QueryKey, queryOptions, useQuery } from '@tanstack/react-query';
 
 import { getVSPCTenantDetails } from '@/data/api/tenants/tenants.requests';
 
@@ -9,7 +9,7 @@ type UseVSPCTenantDetailsParams = {
   tenantId: string;
 };
 
-export const BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY = (vspcTenantID: string) => [
+export const BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY = (vspcTenantID?: string | QueryKey) => [
   ...GET_VSPC_TENANTS_QUERY_KEY,
   vspcTenantID,
 ];
