@@ -27,7 +27,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { isStandardPlan } from '@/helpers';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import { TClusterPlanEnum } from '@/types';
@@ -54,7 +54,7 @@ const formIsNonNullable = (form: TClusterCreationForm): form is TNonNullableForm
 export default function NewPage() {
   const { t } = useTranslation(['add', 'listing', 'stepper']);
   const { contains3AZ } = useHas3AZRegions();
-  const is3AZAvailable = use3AZPlanAvailable();
+  const { data: is3AZAvailable } = use3azAvailability();
   const has3AZ = contains3AZ && is3AZAvailable;
 
   const { projectId } = useSafeParams('projectId');

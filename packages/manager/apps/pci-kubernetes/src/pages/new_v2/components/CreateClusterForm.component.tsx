@@ -10,16 +10,14 @@ import { CreationCart } from './CreationCart.component';
 
 const dividerSpacing = '64';
 
-const MOCK_is3azAvailable = true;
+type TCreateClusterFormProps = {
+  is3azAvailable: boolean;
+};
 
-export const CreateClusterForm = () => {
+export const CreateClusterForm = ({ is3azAvailable }: TCreateClusterFormProps) => {
   const { t } = useTranslation('add');
 
-  /*   const featureFlipping3az = use3AZPlanAvailable();
-  const { uniqueRegions, contains3AZ } = useHas3AZRegions();
-  const has3AZ = contains3AZ && featureFlipping3az; */
-
-  const form = useCreateClusterForm(MOCK_is3azAvailable);
+  const form = useCreateClusterForm(is3azAvailable);
 
   return (
     <FormProvider {...form}>
@@ -30,7 +28,7 @@ export const CreateClusterForm = () => {
           </Text>
           <ClusterNameSection />
           <Divider spacing={dividerSpacing} />
-          <ClusterLocationSection is3azAvailable={MOCK_is3azAvailable} />
+          <ClusterLocationSection is3azAvailable={is3azAvailable} />
           <Divider spacing={dividerSpacing} />
         </section>
         <aside className="flex-1">

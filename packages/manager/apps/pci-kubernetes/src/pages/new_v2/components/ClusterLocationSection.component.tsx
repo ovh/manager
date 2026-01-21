@@ -97,11 +97,11 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
             <ContinentSelect />
             <PlanSelect />
           </div>
-          <RegionSelect regions={regions} />
-          {selectedMacroRegion?.microRegions && selectedMacroRegion?.microRegions.length > 1 && (
-            <MicroRegionSelect regions={selectedMacroRegion?.microRegions} />
-          )}
         </>
+      )}
+      <RegionSelect regions={regions} />
+      {selectedMacroRegion?.microRegions && selectedMacroRegion?.microRegions.length > 1 && (
+        <MicroRegionSelect regions={selectedMacroRegion?.microRegions} />
       )}
     </>
   );

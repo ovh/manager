@@ -95,7 +95,7 @@ describe('CreateClusterForm name management', () => {
 
   beforeEach(async () => {
     user = userEvent.setup();
-    renderedDom = render(<CreateClusterForm />);
+    renderedDom = render(<CreateClusterForm is3azAvailable />);
 
     const field = renderedDom.getByRole('textbox', { name: 'kubernetes_add_name_placeholder' });
     if (!field) throw new Error('Unable to find name field');
@@ -122,7 +122,7 @@ describe('CreateClusterForm name management', () => {
 describe('CreateClusterForm location management', () => {
   it('keeps synchronized location selection and cart display', async () => {
     let user = userEvent.setup();
-    const renderedDom = render(<CreateClusterForm />);
+    const renderedDom = render(<CreateClusterForm is3azAvailable />);
 
     const targetedRegion = renderedDom.getByRole('radio', {
       name: /@ovh-ux\/manager-common-translations\/region:region_UK/i,
