@@ -44,14 +44,6 @@ export const renderWithMockedForm: TRenderWithMockedForm = (
       return () => subscription.unsubscribe();
     }, [form]);
 
-    // const watch = useWatch({
-    //   control: form.control,
-    // });
-    //
-    // useEffect(() => {
-    //   onFormChange?.(watch)
-    // }, [watch, form]);
-
     return <FormProvider {...form}>{children}</FormProvider>;
   };
 
