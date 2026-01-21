@@ -5,13 +5,16 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
 import { Cart, TCartItem } from '@/components/cart/Cart.component';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import { MOCK_REGIONS } from '../mocks/regions.mock';
+import { mapMacroRegionForCards, selectMacroRegions } from '../view-models/location.viewmodel';
 
 export const CreationCart = () => {
-  const { t } = useTranslation(['listing', 'add']);
+  const { t } = useTranslation(['listing', 'add', NAMESPACES.REGION]);
 
   const form = useFormContext<TCreateClusterSchema>();
   const [nameField, macroRegionField, microRegionField] = useWatch({
@@ -19,9 +22,12 @@ export const CreationCart = () => {
     name: ['name', 'location.macroRegion', 'location.microRegion'],
   });
 
-  // TODO (TAPC-5549) : mock format, will be updated or removed
+  const { data: regions } = useAvailabilityRegions({
+    select: (regions) => mapMacroRegionForCards(selectMacroRegions(regions)),
+  });
+
   const cartItems = useMemo<Array<TCartItem>>(() => {
-    const selectedRegion = MOCK_REGIONS.find(({ id }) => id === macroRegionField);
+    const selectedRegion = regions?.find(({ id }) => id === macroRegionField);
     return [
       {
         title: t('listing:kube_list_title'),
@@ -31,14 +37,14 @@ export const CreationCart = () => {
           {
             name: t('add:kubernetes_add_location'),
             description: selectedRegion ? (
-              <Text preset="heading-6">{`${selectedRegion.title} (${microRegionField})`}</Text>
+              <Text preset="heading-6">{`${t(`${NAMESPACES.REGION}:region_${selectedRegion.id}_micro`, { micro: microRegionField })}`}</Text>
             ) : undefined,
           },
         ],
         expanded: true,
       },
     ];
-  }, [macroRegionField, microRegionField, nameField, t]);
+  }, [macroRegionField, microRegionField, nameField, regions, t]);
 
   return <Cart items={cartItems} isSubmitDisabled={!form.formState.isValid} />;
 };

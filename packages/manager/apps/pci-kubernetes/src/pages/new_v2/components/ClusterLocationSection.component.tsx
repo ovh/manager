@@ -5,12 +5,16 @@ import { useTranslation } from 'react-i18next';
 
 import { Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/ods-react';
 
+import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import { MOCK_REGIONS } from '../mocks/regions.mock';
-import { filterMacroRegions } from '../view-models/location.viewmodel';
+import {
+  filterMacroRegions,
+  mapMacroRegionForCards,
+  selectMacroRegions,
+} from '../view-models/location.viewmodel';
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
 import { MicroRegionSelect } from './location/MicroRegionSelect.component';
@@ -25,32 +29,46 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
   const { t } = useTranslation('add');
 
   const { control } = useFormContext<TCreateClusterSchema>();
-  const [macroRegionField, microRegionField, continentField, planField] = useWatch({
-    control,
-    name: ['location.macroRegion', 'location.microRegion', 'location.continent', 'location.plan'],
-  });
+  const [macroRegionField, microRegionField, continentField, planField, deploymentModeField] =
+    useWatch({
+      control,
+      name: [
+        'location.macroRegion',
+        'location.microRegion',
+        'location.continent',
+        'location.plan',
+        'location.deploymentMode',
+      ],
+    });
 
   const { setValue } = useFormContext<TCreateClusterSchema>();
 
+  const { data: regions } = useAvailabilityRegions({
+    select: (regions) =>
+      mapMacroRegionForCards(
+        filterMacroRegions(
+          continentField,
+          planField,
+          deploymentModeField,
+        )(selectMacroRegions(regions)),
+      ),
+  });
+
   const selectedMacroRegion = useMemo(
-    () => MOCK_REGIONS.find(({ id }) => id === macroRegionField),
-    [macroRegionField],
+    () => regions?.find(({ id }) => id === macroRegionField),
+    [macroRegionField, regions],
   );
 
   // Default Value Handler
   useEffect(() => {
-    const firstMacroRegion = MOCK_REGIONS.find((region) => !region.disabled);
+    const firstMacroRegion = regions?.find((region) => !region.disabled);
     const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
 
     if (macroRegionField || microRegionField || !firstMacroRegion || !firstMicroRegion) return;
 
     setValue('location.macroRegion', firstMacroRegion.id);
     setValue('location.microRegion', firstMicroRegion);
-  }, [macroRegionField, microRegionField, setValue]);
-
-  const filteredRegions = useMemo(() => {
-    return filterMacroRegions(continentField, planField)(MOCK_REGIONS);
-  }, [continentField, planField]);
+  }, [macroRegionField, microRegionField, regions, setValue]);
 
   return (
     <>
@@ -79,7 +97,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
             <ContinentSelect />
             <PlanSelect />
           </div>
-          <RegionSelect regions={filteredRegions} />
+          <RegionSelect regions={regions} />
           {selectedMacroRegion?.microRegions && selectedMacroRegion?.microRegions.length > 1 && (
             <MicroRegionSelect regions={selectedMacroRegion?.microRegions} />
           )}

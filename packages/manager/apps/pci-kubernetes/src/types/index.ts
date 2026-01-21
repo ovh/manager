@@ -28,6 +28,11 @@ export enum PlaceHolder {
   usernamePrefix = 'oidc:',
 }
 
+export type TNormalizedEntity<ID, Entity> = {
+  byId: Map<ID, Entity>;
+  allIds: ID[];
+};
+
 export type TKube = {
   id: string;
   region: string;
@@ -278,8 +283,3 @@ export enum ResourceStatus {
 }
 
 export * from './region';
-
-export type TNormalizedEntity<ID, Entity> = {
-  byId: Map<ID, Entity>;
-  allIds: ID[];
-};

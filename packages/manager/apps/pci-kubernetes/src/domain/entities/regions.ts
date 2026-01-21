@@ -1,3 +1,5 @@
+import { TNormalizedEntity } from '@/types';
+
 export const DEPLOYMENT_MODES = ['region', 'localzone', 'region-3-az'] as const;
 export type TDeploymentMode = (typeof DEPLOYMENT_MODES)[number];
 
@@ -23,3 +25,72 @@ export const COUNTRY_CODES = [
   /* eslint-enable prettier/prettier */
 ] as const;
 export type TCountryCode = (typeof COUNTRY_CODES)[number];
+
+export type TMacroRegionName = string;
+export type TMacroRegionID = TMacroRegionName;
+export type TMicroRegionName = string;
+export type TMicroRegionID = TMicroRegionName;
+
+export type TOpenstackRegionStatus = 'DOWN' | 'MAINTENANCE' | 'UP';
+
+export type TServiceStatus = 'DOWN' | 'UP';
+export type TService = {
+  endpoint: string;
+  name: string;
+  status: TServiceStatus;
+};
+
+export const PLAN_CODES = [
+  'mks.free.hour.consumption',
+  'mks.free.hour.consumption.3az',
+  'mks.standard.hour.consumption',
+  'mks.standard.hour.consumption.3az',
+] as const;
+export type TPlanCode = (typeof PLAN_CODES)[number];
+
+export type TMacroRegion = {
+  name: string;
+  countryCode: TCountryCode | null;
+  continentCode: TContinentCode;
+  microRegionIds: Array<TMicroRegionID>;
+  plans: Array<TPlanCode>;
+  enabled: boolean;
+};
+
+export type TMicroRegion = {
+  name: string;
+  macroRegionId: TMacroRegionID;
+  availabilityZones: string[];
+  deploymentMode: TDeploymentMode;
+  enabled: boolean;
+};
+
+export type TRegions = {
+  entities: {
+    macroRegions: TNormalizedEntity<TMacroRegionID, TMacroRegion>;
+    microRegions: TNormalizedEntity<TMicroRegionID, TMicroRegion>;
+  };
+  relations: {
+    planRegions: Partial<Record<TPlanCode, TMacroRegionID[]>>;
+  };
+};
+
+export type IpCountry =
+  | 'au'
+  | 'be'
+  | 'ca'
+  | 'cz'
+  | 'de'
+  | 'es'
+  | 'fi'
+  | 'fr'
+  | 'ie'
+  | 'in'
+  | 'it'
+  | 'lt'
+  | 'nl'
+  | 'pl'
+  | 'pt'
+  | 'sg'
+  | 'uk'
+  | 'us';
