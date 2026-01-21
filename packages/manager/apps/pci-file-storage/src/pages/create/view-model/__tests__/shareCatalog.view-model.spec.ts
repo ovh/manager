@@ -39,9 +39,9 @@ describe('share catalog selectors', () => {
         entities: {
           deploymentModes: {
             byId: new Map([
-              ['region', { name: 'region', tags: ['tag1'] }],
-              ['localzone', { name: 'localzone', tags: null }],
-              ['region-3-az', { name: 'region-3-az', tags: ['tag2'] }],
+              ['region', { name: 'region' }],
+              ['localzone', { name: 'localzone' }],
+              ['region-3-az', { name: 'region-3-az' }],
             ]),
             allIds: ['region', 'localzone', 'region-3-az'],
           },
