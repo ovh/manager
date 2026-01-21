@@ -1,8 +1,17 @@
-import { useHref } from 'react-router-dom';
+import { useHref, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { BUTTON_VARIANT, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import {
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItemProps, Clipboard, Tile, useFormatDate } from '@ovh-ux/muk';
@@ -22,6 +31,7 @@ export const ServiceGeneralInformation = ({
 }: ServiceGeneralInformationProps) => {
   const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.STATUS, NAMESPACES.ACTIONS]);
   const href = useHref(urls.deleteService);
+  const navigate = useNavigate();
 
   const formatDate = useFormatDate();
 
@@ -37,7 +47,19 @@ export const ServiceGeneralInformation = ({
   return (
     <Tile.Root title={t(`${NAMESPACES.DASHBOARD}:general_information`)}>
       <Tile.Item.Root>
-        <Tile.Item.Term label={t(`${NAMESPACES.DASHBOARD}:name`)} />
+        <Tile.Item.Term
+          label={t(`${NAMESPACES.DASHBOARD}:name`)}
+          actions={
+            <Button
+              variant={BUTTON_VARIANT.ghost}
+              color={BUTTON_COLOR.primary}
+              size={BUTTON_SIZE.sm}
+              onClick={() => navigate(urls.editService)}
+            >
+              <Icon name={ICON_NAME.pen} />
+            </Button>
+          }
+        />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
             <Text preset={TEXT_PRESET.span}>{title}</Text>
