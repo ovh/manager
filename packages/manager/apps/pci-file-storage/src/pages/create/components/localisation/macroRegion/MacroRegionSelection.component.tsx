@@ -93,7 +93,7 @@ export const MacroRegionSelection = () => {
 
                         return displayCard ? (
                           <LocalizationCard
-                            key={city}
+                            key={`${city}_${macroRegion}_${microRegion}`}
                             city={city}
                             datacenterDetails={datacenterDetails}
                             macroRegion={macroRegion}
