@@ -24,17 +24,22 @@ export const ObservabilityServiceProvider: React.FC<ObservabilityServiceProvider
   children,
 }) => {
   const { data: services, isLoading, error, isSuccess } = useObservabilityServices();
-  const [selectedServiceState, setSelectedServiceState] = useState<
-    ObservabilityService | undefined
-  >();
-  const [isInitialised, setIsInitialised] = useState(false);
+  const [selectedServiceId, setSelectedServiceId] = useState<string | null | undefined>(undefined);
 
-  // Use explicitly selected service, or initialise the first time with first service from query
-  const selectedService = isInitialised ? selectedServiceState : services?.[0];
+  // Derive selectedService from services list using the selected ID
+  // This ensures the selected service is always up-to-date when the services list is refreshed
+  // - undefined: not initialised yet, use first service
+  // - null: explicitly cleared
+  // - string: find the service by ID
+  const selectedService = useMemo(() => {
+    if (!services?.length) return undefined;
+    if (selectedServiceId === undefined) return services[0];
+    if (selectedServiceId === null) return undefined;
+    return services.find((service) => service.id === selectedServiceId) ?? services[0];
+  }, [services, selectedServiceId]);
 
   const setSelectedService = useCallback((service: ObservabilityService | undefined) => {
-    setIsInitialised(true);
-    setSelectedServiceState(service);
+    setSelectedServiceId(service?.id ?? null);
   }, []);
 
   const value = useMemo(

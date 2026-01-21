@@ -44,6 +44,7 @@ export const urls = {
   settings: `${getRoot()}/${subroutes.settings}`,
   services: `${getRoot()}/${subroutes.settings}/${subroutes.services}`,
   deleteService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.delete}`,
+  editService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.edit}`,
 } as const;
 
 export type LocationPathParams = {
