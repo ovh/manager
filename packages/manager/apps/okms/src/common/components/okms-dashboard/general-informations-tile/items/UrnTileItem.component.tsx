@@ -1,7 +1,6 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { Clipboard } from '@ovh-ux/muk';
+import { Clipboard, Tile } from '@ovh-ux/muk';
 
 import { URN_LABEL } from '@/constants';
 
@@ -11,11 +10,11 @@ type UrnTileItemProps = {
 
 export const UrnTileItem = ({ okms }: UrnTileItemProps) => {
   return (
-    <ManagerTile.Item>
-      <ManagerTile.Item.Label>{URN_LABEL}</ManagerTile.Item.Label>
-      <ManagerTile.Item.Description>
+    <Tile.Item.Root>
+      <Tile.Item.Term label={URN_LABEL} />
+      <Tile.Item.Description divider={false}>
         <Clipboard value={okms.iam.urn} className="w-full" />
-      </ManagerTile.Item.Description>
-    </ManagerTile.Item>
+      </Tile.Item.Description>
+    </Tile.Item.Root>
   );
 };

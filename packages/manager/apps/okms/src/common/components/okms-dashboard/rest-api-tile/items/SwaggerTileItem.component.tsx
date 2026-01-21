@@ -1,7 +1,7 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Tile } from '@ovh-ux/muk';
 
 import { ExternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -15,9 +15,9 @@ export const SwaggerTileItem = ({ okms }: SwaggerTileItemProps) => {
   const { trackClick } = useOkmsTracking();
 
   return (
-    <ManagerTile.Item>
-      <ManagerTile.Item.Label>{SWAGGER_UI_LABEL}</ManagerTile.Item.Label>
-      <ManagerTile.Item.Description>
+    <Tile.Item.Root>
+      <Tile.Item.Term label={SWAGGER_UI_LABEL} />
+      <Tile.Item.Description divider={false}>
         <ExternalLink
           className="block [&::part(link)]:flex"
           href={okms.swaggerEndpoint}
@@ -32,7 +32,7 @@ export const SwaggerTileItem = ({ okms }: SwaggerTileItemProps) => {
         >
           {okms.swaggerEndpoint}
         </ExternalLink>
-      </ManagerTile.Item.Description>
-    </ManagerTile.Item>
+      </Tile.Item.Description>
+    </Tile.Item.Root>
   );
 };

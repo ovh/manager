@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Tile } from '@ovh-ux/muk';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
@@ -42,12 +42,10 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
   }
 
   return (
-    <ManagerTile>
-      <ManagerTile.Title>{t('settings')}</ManagerTile.Title>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('maximum_number_of_versions')}</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
+    <Tile.Root title={t('settings')}>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('maximum_number_of_versions')} />
+        <Tile.Item.Description>
           {isPending ? (
             <Skeleton data-testid="skeleton" />
           ) : (
@@ -55,12 +53,11 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
               {secretConfig.maxVersions.value} {labels[secretConfig.maxVersions.origin]}
             </Text>
           )}
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('deactivate_version_after')}</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('deactivate_version_after')} />
+        <Tile.Item.Description>
           {isPending ? (
             <Skeleton data-testid="skeleton" />
           ) : (
@@ -71,14 +68,14 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
               {labels[secretConfig.deactivateVersionAfter.origin]}
             </Text>
           )}
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label tooltip={t('cas_with_description_tooltip')}>
-          {t('cas_with_description')}
-        </ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term
+          label={t('cas_with_description')}
+          tooltip={t('cas_with_description_tooltip')}
+        />
+        <Tile.Item.Description>
           {isPending ? (
             <Skeleton data-testid="skeleton" />
           ) : (
@@ -89,10 +86,13 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
               {labels[secretConfig.casRequired.origin]}
             </Text>
           )}
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-      <ManagerTile.Divider />
-      <EditMetadataLink secret={secret} />
-    </ManagerTile>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Description divider={false}>
+          <EditMetadataLink secret={secret} />
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+    </Tile.Root>
   );
 };

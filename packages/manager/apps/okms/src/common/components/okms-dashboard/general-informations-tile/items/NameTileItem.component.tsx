@@ -8,8 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { Button } from '@ovh-ux/muk';
+import { Button, Tile } from '@ovh-ux/muk';
 
 import { ProductType, useProductType } from '@/common/hooks/useProductType';
 
@@ -35,9 +34,9 @@ export const NameTileItem = ({ okms }: NameTileItemProps) => {
   const renameLink = useRenameLink(okms);
 
   return (
-    <ManagerTile.Item>
-      <ManagerTile.Item.Label>{t('display_name')}</ManagerTile.Item.Label>
-      <ManagerTile.Item.Description>
+    <Tile.Item.Root>
+      <Tile.Item.Term label={t('display_name')} />
+      <Tile.Item.Description>
         <div className="flex items-center justify-between gap-2">
           <Text preset="span" className="break-all">
             {okms.iam.displayName}
@@ -54,7 +53,7 @@ export const NameTileItem = ({ okms }: NameTileItemProps) => {
             </Button>
           </div>
         </div>
-      </ManagerTile.Item.Description>
-    </ManagerTile.Item>
+      </Tile.Item.Description>
+    </Tile.Item.Root>
   );
 };

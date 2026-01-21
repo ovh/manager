@@ -11,8 +11,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Icon, Text } from '@ovhcloud/ods-react';
 
-import { DashboardTile, DashboardTileBlockItem } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Tile } from '@ovh-ux/muk';
 import { Button, GridLayout } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
@@ -40,120 +40,117 @@ const CredentialGeneralInformations = () => {
 
   const { filename, href: downloadHref, isDisabled } = getDownloadCredentialParameters(credential);
 
-  const items: DashboardTileBlockItem[] = [
-    {
-      id: 'name',
-      label: t('key_management_service_credential_dashboard_name'),
-      value: (
-        <Text
-          preset="span"
-          // Temporary fix: wrap text without whitespace
-          style={{ overflowWrap: 'anywhere' }}
-        >
-          {credential.name || credential.id}
-        </Text>
-      ),
-    },
-    {
-      id: 'id',
-      label: t('key_management_service_credential_dashboard_id'),
-      value: <Clipboard className="w-full" value={credential.id} />,
-    },
-    {
-      id: 'description',
-      label: t('key_management_service_credential_dashboard_description'),
-      value: (
-        <Text
-          preset="span"
-          // Temporary fix: wrap text without whitespace
-          style={{ overflowWrap: 'anywhere' }}
-        >
-          {credential.description || ''}
-        </Text>
-      ),
-    },
-    {
-      id: 'status',
-      label: t('key_management_service_credential_dashboard_status'),
-      value: <CredentialStatus state={credential.status} />,
-    },
-    {
-      id: 'type',
-      label: t('key_management_service_credential_dashboard_type'),
-      value: <Text preset="span">{credential.certificateType}</Text>,
-    },
-    {
-      id: 'origin',
-      label: t('key_management_service_credential_dashboard_origin'),
-      value: <CredentialCreationMethod fromCSR={credential.fromCSR} />,
-    },
-    {
-      id: 'creation',
-      label: t('key_management_service_credential_dashboard_creation'),
-      value: <TileValueDate value={credential.createdAt} options={dateFormat} />,
-    },
-    {
-      id: 'expiration',
-      label: t('key_management_service_credential_dashboard_expiration'),
-      value: <TileValueDate value={credential.expiredAt} options={dateFormat} />,
-    },
-  ];
-
-  items.push({
-    id: 'actions',
-    label: t('key_management_service_credential_dashboard_actions'),
-    value: (
-      <div className="flex items-center gap-4">
-        {downloadHref && (
-          <MukLink
-            href={downloadHref}
-            download={filename}
-            disabled={isDisabled}
-            onClick={() =>
-              trackClick({
-                location: PageLocation.page,
-                buttonType: ButtonType.button,
-                actionType: 'action',
-                actions: ['download', 'credential'],
-              })
-            }
-            label={t('key_management_service_credential_download')}
-          >
-            <>
-              {t('key_management_service_credential_download')}
-              <Icon name="download" />
-            </>
-          </MukLink>
-        )}
-        <Button
-          id="deleteAccessCertificate"
-          size="sm"
-          color="critical"
-          variant="ghost"
-          iamActions={[kmsIamActions.credentialDelete]}
-          onClick={() => {
-            trackClick({
-              location: PageLocation.page,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['delete', 'credential'],
-            });
-            navigate(KMS_ROUTES_URIS.credentialDelete);
-          }}
-          urn={okms.iam.urn}
-        >
-          {t('key_management_service_credential_delete')}
-        </Button>
-      </div>
-    ),
-  });
-
   return (
     <GridLayout>
-      <DashboardTile
-        title={t('key_management_service_credential_dashboard_tile_general_informations')}
-        items={items}
-      />
+      <Tile.Root title={t('key_management_service_credential_dashboard_tile_general_informations')}>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_name')} />
+          <Tile.Item.Description>
+            <Text
+              preset="span"
+              // Temporary fix: wrap text without whitespace
+              style={{ overflowWrap: 'anywhere' }}
+            >
+              {credential.name || credential.id}
+            </Text>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_id')} />
+          <Tile.Item.Description>
+            <Clipboard className="w-full" value={credential.id} />
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_description')} />
+          <Tile.Item.Description>
+            <Text
+              preset="span"
+              // Temporary fix: wrap text without whitespace
+              style={{ overflowWrap: 'anywhere' }}
+            >
+              {credential.description || ''}
+            </Text>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_status')} />
+          <Tile.Item.Description>
+            <CredentialStatus state={credential.status} />
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_type')} />
+          <Tile.Item.Description>
+            <Text preset="span">{credential.certificateType}</Text>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_origin')} />
+          <Tile.Item.Description>
+            <CredentialCreationMethod fromCSR={credential.fromCSR} />
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_creation')} />
+          <Tile.Item.Description>
+            <TileValueDate value={credential.createdAt} options={dateFormat} />
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_expiration')} />
+          <Tile.Item.Description>
+            <TileValueDate value={credential.expiredAt} options={dateFormat} />
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label={t('key_management_service_credential_dashboard_actions')} />
+          <Tile.Item.Description divider={false}>
+            <div className="flex items-center gap-4">
+              {downloadHref && (
+                <MukLink
+                  href={downloadHref}
+                  download={filename}
+                  disabled={isDisabled}
+                  onClick={() =>
+                    trackClick({
+                      location: PageLocation.page,
+                      buttonType: ButtonType.button,
+                      actionType: 'action',
+                      actions: ['download', 'credential'],
+                    })
+                  }
+                  label={t('key_management_service_credential_download')}
+                >
+                  <>
+                    {t('key_management_service_credential_download')}
+                    <Icon name="download" />
+                  </>
+                </MukLink>
+              )}
+              <Button
+                id="deleteAccessCertificate"
+                size="sm"
+                color="critical"
+                variant="ghost"
+                iamActions={[kmsIamActions.credentialDelete]}
+                onClick={() => {
+                  trackClick({
+                    location: PageLocation.page,
+                    buttonType: ButtonType.button,
+                    actionType: 'action',
+                    actions: ['delete', 'credential'],
+                  });
+                  navigate(KMS_ROUTES_URIS.credentialDelete);
+                }}
+                urn={okms.iam.urn}
+              >
+                {t('key_management_service_credential_delete')}
+              </Button>
+            </div>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+      </Tile.Root>
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

@@ -4,8 +4,8 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Tile } from '@ovh-ux/muk';
 
 import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -18,7 +18,7 @@ export const EditSecretConfigLinkTileItem = ({ okms }: EditSecretConfigTileItemP
   const { t } = useTranslation('secret-manager');
 
   return (
-    <ManagerTile.Item>
+    <Tile.Item.Root>
       <MukLink
         type={MukLinkType.next}
         onClick={() => {
@@ -33,6 +33,6 @@ export const EditSecretConfigLinkTileItem = ({ okms }: EditSecretConfigTileItemP
       >
         {t('edit_metadata')}
       </MukLink>
-    </ManagerTile.Item>
+    </Tile.Item.Root>
   );
 };

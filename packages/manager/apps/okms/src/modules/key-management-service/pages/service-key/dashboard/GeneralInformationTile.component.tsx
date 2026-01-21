@@ -10,8 +10,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Icon, Text } from '@ovhcloud/ods-react';
 
-import { DashboardTile } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Tile } from '@ovh-ux/muk';
 import { Button } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
@@ -32,79 +32,77 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
   const { trackClick } = useOkmsTracking();
 
   return (
-    <DashboardTile
-      title={t('key_management_service_service-keys_dashboard_tile_general_informations')}
-      items={[
-        {
-          id: 'name',
-          label: t('key_management_service_service-keys_dashboard_field_name'),
-          value: (
-            <div className="flex items-center justify-between gap-2">
-              <Text className="max-w-1/2 overflow-hidden text-ellipsis" preset="paragraph">
-                {serviceKey.name}
-              </Text>
-              <Button
-                id="editName"
-                data-testid={SERVICE_KEY_TEST_IDS.editNameButton}
-                size="sm"
-                variant="ghost"
-                color="primary"
-                urn={serviceKey.iam.urn}
-                iamActions={[kmsIamActions.serviceKeyUpdate]}
-                onClick={() => {
-                  trackClick({
-                    location: PageLocation.page,
-                    buttonType: ButtonType.button,
-                    actionType: 'action',
-                    actions: ['rename', 'service-key'],
-                  });
-                  navigate(KMS_ROUTES_URLS.serviceKeyEditName(kms.id, serviceKey.id));
-                }}
-              >
-                <Icon name="pen" />
-              </Button>
-            </div>
-          ),
-        },
-        {
-          id: 'id',
-          label: t('key_management_service_service-keys_dashboard_field_id'),
-          value: <Clipboard className="w-full" value={serviceKey.id} />,
-        },
-        {
-          id: 'urn',
-          label: URN_LABEL,
-          value: <Clipboard className="w-full" value={serviceKey.iam.urn} />,
-        },
-        {
-          id: 'state',
-          label: t('key_management_service_service-keys_dashboard_field_state'),
-          value: (
-            <div>
-              <ServiceKeyStatus state={serviceKey.state} />
-              <ServiceKeyStateActions okms={kms} okmsKey={serviceKey} />
-            </div>
-          ),
-        },
-        {
-          id: 'createdAt',
-          label: t('key_management_service_service-keys_dashboard_field_created_at'),
-          value: (
-            <TileValueDate
-              value={serviceKey.createdAt}
-              options={{
-                hour12: false,
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric',
+    <Tile.Root title={t('key_management_service_service-keys_dashboard_tile_general_informations')}>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_name')} />
+        <Tile.Item.Description>
+          <div className="flex items-center justify-between gap-2">
+            <Text className="max-w-1/2 overflow-hidden text-ellipsis" preset="paragraph">
+              {serviceKey.name}
+            </Text>
+            <Button
+              id="editName"
+              data-testid={SERVICE_KEY_TEST_IDS.editNameButton}
+              size="sm"
+              variant="ghost"
+              color="primary"
+              urn={serviceKey.iam.urn}
+              iamActions={[kmsIamActions.serviceKeyUpdate]}
+              onClick={() => {
+                trackClick({
+                  location: PageLocation.page,
+                  buttonType: ButtonType.button,
+                  actionType: 'action',
+                  actions: ['rename', 'service-key'],
+                });
+                navigate(KMS_ROUTES_URLS.serviceKeyEditName(kms.id, serviceKey.id));
               }}
-            />
-          ),
-        },
-      ]}
-    />
+            >
+              <Icon name="pen" />
+            </Button>
+          </div>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_id')} />
+        <Tile.Item.Description>
+          <Clipboard className="w-full" value={serviceKey.id} />
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={URN_LABEL} />
+        <Tile.Item.Description>
+          <Clipboard className="w-full" value={serviceKey.iam.urn} />
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_state')} />
+        <Tile.Item.Description>
+          <div>
+            <ServiceKeyStatus state={serviceKey.state} />
+            <ServiceKeyStateActions okms={kms} okmsKey={serviceKey} />
+          </div>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term
+          label={t('key_management_service_service-keys_dashboard_field_created_at')}
+        />
+        <Tile.Item.Description divider={false}>
+          <TileValueDate
+            value={serviceKey.createdAt}
+            options={{
+              hour12: false,
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+              second: 'numeric',
+            }}
+          />
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+    </Tile.Root>
   );
 };

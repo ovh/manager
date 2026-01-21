@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Skeleton, Text } from '@ovhcloud/ods-react';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Tile } from '@ovh-ux/muk';
 
 import { ErrorResponse } from '@/common/types/api.type';
 
@@ -24,9 +24,9 @@ export const DeactivateVersionAfterTileItem = ({
   }
 
   return (
-    <ManagerTile.Item>
-      <ManagerTile.Item.Label>{t('deactivate_version_after')}</ManagerTile.Item.Label>
-      <ManagerTile.Item.Description>
+    <Tile.Item.Root>
+      <Tile.Item.Term label={t('deactivate_version_after')} />
+      <Tile.Item.Description>
         {isPending ? (
           <Skeleton
             data-testid={SECRET_CONFIG_TILE_TEST_IDS.skeleton}
@@ -35,7 +35,7 @@ export const DeactivateVersionAfterTileItem = ({
         ) : (
           <Text preset="span">{data.deactivateVersionAfter}</Text>
         )}
-      </ManagerTile.Item.Description>
-    </ManagerTile.Item>
+      </Tile.Item.Description>
+    </Tile.Item.Root>
   );
 };
