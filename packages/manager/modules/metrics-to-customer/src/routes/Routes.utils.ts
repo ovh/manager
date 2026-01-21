@@ -9,8 +9,7 @@ export function getSubscriptionsConfigUrl(params?: LocationPathParams) {
 }
 
 function getURL(url: UrlValue, params?: LocationPathParams) {
-  if (!params) {
-    return url;
-  }
-  return url.replace(URL_PARAMS.resourceName, params.resourceName ?? '');
+  return url
+    .replace(URL_PARAMS.resourceName, params?.resourceName ?? '')
+    .replace(URL_PARAMS.subscriptionId, params?.subscriptionId ?? '');
 }
