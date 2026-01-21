@@ -8,7 +8,6 @@ import { Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/o
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
 import { PLAN_DOC_LINKS } from '@/constants';
 
@@ -20,6 +19,7 @@ import {
   mapMacroRegionForCards,
   useCombinedRegions,
 } from '../view-models/regions.viewmodel';
+import { ClusterLocationHelpDrawer } from './location/ClusterLocationHelpDrawer.component';
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
 import { MicroRegionSelect } from './location/MicroRegionSelect.component';
@@ -104,7 +104,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
       <Text preset="heading-4" className="mb-6 flex items-center">
         {t('kubernetes_add_location_subtitle')}
         <HelpDrawerDivider />
-        <HelpDrawer></HelpDrawer>
+        <ClusterLocationHelpDrawer />
       </Text>
       {is3azAvailable && (
         <>
