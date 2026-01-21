@@ -22,11 +22,14 @@ import { TDomainResource } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
 import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
+import { isServiceInCreation } from '@/domain/utils/helpers';
+import { TServiceInfo } from '@/common/types/common.types';
 
 interface DnssecToggleStatusProps {
   readonly dnssecStatus: DnssecStatusEnum;
   readonly isDnssecStatusLoading: boolean;
   readonly domainResource: TDomainResource;
+  readonly serviceInfo: TServiceInfo;
   readonly dnssecModalOpened: boolean;
   readonly setDnssecModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -35,6 +38,7 @@ export default function DnssecToggleStatus({
   dnssecStatus,
   isDnssecStatusLoading,
   domainResource,
+  serviceInfo,
   dnssecModalOpened,
   setDnssecModalOpened,
 }: DnssecToggleStatusProps) {
@@ -78,7 +82,9 @@ export default function DnssecToggleStatus({
               domainResource.currentState.dnsConfiguration.configurationType ===
                 DnsConfigurationTypeEnum.MIXED ||
               domainResource.currentState.dnsConfiguration.configurationType ===
-                DnsConfigurationTypeEnum.EXTERNAL
+                DnsConfigurationTypeEnum.EXTERNAL ||
+              // Customer should not be able to activate OVH dnssec if the service is in creation
+              isServiceInCreation(serviceInfo)
             }
             checked={
               dnssecStatus === DnssecStatusEnum.ENABLED ||
@@ -109,6 +115,21 @@ export default function DnssecToggleStatus({
               {!isAuthorized && !isPending && (
                 <TooltipContent>
                   {t(`${NAMESPACES.IAM}:iam_actions_message`)}
+                </TooltipContent>
+              )}
+              {isServiceInCreation(serviceInfo) && (
+                <TooltipContent>
+                  {t('domain_tab_name_service_in_creation')}
+                </TooltipContent>
+              )}
+              {(domainResource.currentState.dnsConfiguration
+                .configurationType === DnsConfigurationTypeEnum.MIXED ||
+                domainResource.currentState.dnsConfiguration
+                  .configurationType === DnsConfigurationTypeEnum.EXTERNAL) && (
+                <TooltipContent>
+                  {t(
+                    'domain_tab_general_information_dnssec_tooltip_external_zone',
+                  )}
                 </TooltipContent>
               )}
             </Tooltip>

@@ -33,35 +33,41 @@ export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
     id: 'dns',
     name: 'domain_tab_name_dns_server',
     value: 'dns',
+    rule: (_, isInCreation) => isInCreation,
   },
   {
     id: 'redirection',
     name: 'domain_tab_name_redirection',
     value: 'redirection',
+    rule: (_, isInCreation) => isInCreation,
   },
   {
     id: 'dynhost',
     name: 'domain_tab_name_dynhost',
     value: 'dynhost',
+    rule: (_, isInCreation) => isInCreation,
   },
   {
     id: 'hosts',
     name: 'domain_tab_name_host',
     value: 'hosts',
-    rule: (domainResource) =>
-      !domainResource.currentState.hostsConfiguration.hostSupported,
+    rule: (domainResource, isInCreation) =>
+      !domainResource.currentState.hostsConfiguration.hostSupported ||
+      isInCreation,
   },
   {
     id: 'ds-records',
     name: 'domain_tab_name_ds_records',
     value: 'ds-records',
-    rule: (domainResource) =>
-      !domainResource.currentState.dnssecConfiguration.dnssecSupported,
+    rule: (domainResource, isInCreation) =>
+      !domainResource.currentState.dnssecConfiguration.dnssecSupported ||
+      isInCreation,
   },
   {
     id: 'contact-management',
     name: 'domain_tab_name_contact_management',
     value: 'contact-management',
+    rule: (_, isInCreation: boolean) => isInCreation,
   },
 ];
 

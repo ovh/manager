@@ -16,12 +16,8 @@ export default function GeneralInformations() {
           <GeneralInformationsCards serviceName={serviceName} />
           <AssociatedServicesCards serviceName={serviceName} />
         </div>
-        <div>
-          <ConfigurationCards serviceName={serviceName} />
-        </div>
-        <div>
-          <SubscriptionCards serviceName={serviceName} />
-        </div>
+        <ConfigurationCards serviceName={serviceName} />
+        <SubscriptionCards serviceName={serviceName} />
       </div>
     </div>
   );

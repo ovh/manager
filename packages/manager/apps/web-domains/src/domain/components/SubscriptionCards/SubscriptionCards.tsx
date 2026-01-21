@@ -34,7 +34,7 @@ export default function SubscriptionCards({
     domainContact,
     isFetchingDomainContact,
   } = useGetDomainContact(
-    domainResource?.currentState?.contactsConfiguration.contactOwner.id,
+    domainResource.currentState?.contactsConfiguration?.contactOwner?.id,
     { enabled: true },
   );
 
@@ -97,7 +97,8 @@ export default function SubscriptionCards({
       </ManagerTile.Title>
       <ManagerTile.Divider />
       <CreationDate
-        domainResources={domainResource}
+        domainResource={domainResource}
+        serviceInfo={serviceInfo}
         isFetchingDomainResources={isFetchingDomainResource}
         serviceName={serviceName}
       />
@@ -113,6 +114,7 @@ export default function SubscriptionCards({
       <ManagerTile.Divider />
       <Contacts
         domainResource={domainResource}
+        serviceInfo={serviceInfo}
         serviceName={serviceName}
         domainContact={domainContact}
         isFetchingDomainContact={isFetchingDomainContact}

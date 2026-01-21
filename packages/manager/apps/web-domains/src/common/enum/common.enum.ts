@@ -27,6 +27,17 @@ export enum LifecycleCapacitiesEnum {
   TerminateAtExpirationDate = 'terminateAtExpirationDate',
 }
 
+export enum LifecycleCurrentStateEnum {
+  Active = 'active',
+  Error = 'error',
+  InCreation = 'inCreation',
+  Rupture = 'rupture',
+  Terminated = 'terminated',
+  ToRenew = 'toRenew',
+  Unpaind = 'unpaid',
+  Unrenewed = 'unrenewed',
+}
+
 export enum BillingCapacitiesEnum {
   Consumption = 'consumption',
   Detach = 'detach',

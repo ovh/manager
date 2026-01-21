@@ -21,6 +21,9 @@ import {
 } from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
+import { ServiceRoutes } from '@/common/enum/common.enum';
+import { isServiceInCreation } from '@/domain/utils/helpers';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface ServiceDetailsTabsProps {
   readonly domainResource: TDomainResource;
@@ -36,6 +39,11 @@ export default function ServiceDetailsTabs({
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
+  const { serviceInfo } = useGetServiceInformation(
+    'domain',
+    serviceName,
+    ServiceRoutes.Domain,
+  );
 
   const handleValueChange = async (event: TabsValueChangeEvent) => {
     if (legacyTabs.includes(event.value)) {
@@ -68,7 +76,9 @@ export default function ServiceDetailsTabs({
     <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
       <TabList>
         {ServiceDetailTabsProps.map((tab) => {
-          const disabled = tab.rule ? tab.rule(domainResource) : false;
+          const disabled = tab.rule
+            ? tab.rule(domainResource, isServiceInCreation(serviceInfo))
+            : false;
           return (
             <Tab
               key={tab.id}
@@ -84,7 +94,11 @@ export default function ServiceDetailsTabs({
                     <Icon name={ICON_NAME.circleInfo} />
                   </TooltipTrigger>
                   <TooltipContent>
-                    {t('domain_tab_name_not_supported')}
+                    {t(
+                      isServiceInCreation(serviceInfo)
+                        ? 'domain_tab_name_service_in_creation'
+                        : 'domain_tab_name_not_supported',
+                    )}
                   </TooltipContent>
                 </Tooltip>
               )}

@@ -29,6 +29,8 @@ import {
 } from '@/domain/types/domainResource';
 import DnsState from './DnsState';
 import AnycastTerminateModal from '../AnycastOrder/AnycastTerminateModal';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
+import { ServiceRoutes } from '@/common/enum/common.enum';
 
 interface ConfigurationCardsProps {
   readonly serviceName: string;
@@ -39,6 +41,11 @@ export default function ConfigurationCards({
 }: ConfigurationCardsProps) {
   const { t } = useTranslation(['domain']);
   const { domainResource } = useGetDomainResource(serviceName);
+  const { serviceInfo } = useGetServiceInformation(
+    'domain',
+    serviceName,
+    ServiceRoutes.Domain,
+  );
   const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(
     serviceName,
     domainResource?.currentState.protectionState ===
@@ -250,12 +257,14 @@ export default function ConfigurationCards({
           dnssecModalOpened={dnssecModalOpened}
           dnssecStatus={dnssecStatus}
           domainResource={domainResource}
+          serviceInfo={serviceInfo}
           isDnssecStatusLoading={isDnssecStatusLoading}
           setDnssecModalOpened={setDnssecModalOpened}
         />
         <ManagerTile.Divider />
         <TransferToggleStatus
           domainResource={domainResource}
+          serviceInfo={serviceInfo}
           transferModalOpened={transferModalOpened}
           setTransferModalOpened={setTransferModalOpened}
           setTransferAuthInfoModalOpened={setTransferAuthInfoModalOpened}
@@ -270,6 +279,7 @@ export default function ConfigurationCards({
         <ManagerTile.Divider />
         <DataProtection
           domainResource={domainResource}
+          serviceInfo={serviceInfo}
           setDataProtectionDrawerOpened={setDataProtectionDrawerOpened}
         />
         <TransferModal
