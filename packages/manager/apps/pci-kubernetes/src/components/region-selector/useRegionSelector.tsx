@@ -27,7 +27,7 @@ export function useRegionSelector({
     projectId,
     'mks',
   );
-  const { data: kubeRegions, isPending: isPendingKubeRegions } = useKubeRegions(projectId);
+  const { data: kubeRegions, isPending: isPendingKubeRegions } = useKubeRegions();
   const isPending = isPendingLocalisation || isPendingKubeRegions;
   const { continents: unfilteredContinents, regions: unfilteredRegions } = query || {};
 

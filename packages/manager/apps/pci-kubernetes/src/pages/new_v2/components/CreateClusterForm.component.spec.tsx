@@ -1,3 +1,5 @@
+import { createContext } from 'react';
+
 import { RenderResult, act, render } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 
@@ -87,6 +89,30 @@ vi.mock('@/api/hooks/useAvailabilityRegions', () => ({
       }) as any,
   ),
 }));
+
+vi.mock('@/api/hooks/useKubeRegions', () => ({
+  useKubeRegions: vi.fn().mockReturnValue({
+    data: ['BHS5', 'UK1', 'GRA5', 'GRA7'],
+    isLoading: false,
+  }),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const mod: typeof import('@ovh-ux/manager-react-shell-client') = await vi.importActual(
+    '@ovh-ux/manager-react-shell-client',
+  );
+
+  return {
+    ...mod,
+    ShellContext: createContext({
+      environment: {
+        getUser: vi.fn(() => ({
+          ovhSubsidiary: 'FR',
+        })),
+      },
+    }),
+  };
+});
 
 describe('CreateClusterForm name management', () => {
   let user: UserEvent;

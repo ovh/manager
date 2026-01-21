@@ -9,9 +9,10 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
 import { Cart, TCartItem } from '@/components/cart/Cart.component';
+import { selectMacroRegions } from '@/domain/processors/regions.service';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import { mapMacroRegionForCards, selectMacroRegions } from '../view-models/location.viewmodel';
+import { mapMacroRegionForCards } from '../view-models/regions.viewmodel';
 
 export const CreationCart = () => {
   const { t } = useTranslation(['listing', 'add', NAMESPACES.REGION]);

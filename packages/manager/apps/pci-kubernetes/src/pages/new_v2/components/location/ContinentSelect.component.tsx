@@ -13,19 +13,25 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-import { selectContinentOptions } from '../../view-models/location.viewmodel';
+import { ContinentOption } from '../../view-models/continents.viewmodel';
 
-export const ContinentSelect = () => {
+type TContinentSelectProps = {
+  options: Array<ContinentOption>;
+};
+
+export const ContinentSelect = ({ options }: TContinentSelectProps) => {
   const { t } = useTranslation(['common', 'add']);
 
   const { control } = useFormContext<TCreateClusterSchema>();
 
-  const continentOptions = useMemo(() => {
-    return selectContinentOptions().map(({ continentCode, labelKey }) => ({
-      value: continentCode,
-      label: t(labelKey),
-    }));
-  }, [t]);
+  const continentOptions = useMemo(
+    () =>
+      options.map(({ continentCode, labelKey }) => ({
+        value: continentCode,
+        label: t(labelKey),
+      })),
+    [options, t],
+  );
 
   return (
     <Controller

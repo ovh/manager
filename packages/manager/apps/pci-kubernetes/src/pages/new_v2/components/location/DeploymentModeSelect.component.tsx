@@ -41,7 +41,11 @@ const deploymentModesInfo: Array<TDeploymentModeCardInfos> = [
   },
 ];
 
-export const DeploymentModeSelect = () => {
+type TDeploymentModeSelectProps = {
+  onDeploymentModeChange?: (value: TCreateClusterSchema['location']['deploymentMode']) => void;
+};
+
+export const DeploymentModeSelect = ({ onDeploymentModeChange }: TDeploymentModeSelectProps) => {
   const { t } = useTranslation(['add', 'common']);
   const { control } = useFormContext<TCreateClusterSchema>();
 
@@ -55,9 +59,6 @@ export const DeploymentModeSelect = () => {
             name="deploymentMode"
             className="grid grid-cols-1 gap-4 lg:grid-cols-2"
             value={field.value}
-            onValueChange={(value) => {
-              field.onChange(value);
-            }}
           >
             {deploymentModesInfo.map(({ mode, title: titleKey, descriptionKey, medium }) => (
               <PciCard
@@ -65,7 +66,10 @@ export const DeploymentModeSelect = () => {
                 selected={field.value === mode}
                 className="h-full"
                 key={mode}
-                onClick={() => field.onChange(mode)}
+                onClick={() => {
+                  field.onChange(mode);
+                  onDeploymentModeChange?.(mode);
+                }}
               >
                 <PciCard.Header>
                   <Radio className="w-full" value={mode}>
