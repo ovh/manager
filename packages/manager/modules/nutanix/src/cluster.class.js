@@ -78,7 +78,6 @@ export default class Cluster {
       Cluster.compareVersions(a, b),
     );
 
-    // Use Array.prototype.some instead of for...of
     let isGTE = sortedAllowed.some(
       (a) => Cluster.compareVersions(wantedVersion, a) >= 0,
     );
@@ -87,7 +86,6 @@ export default class Cluster {
       return false;
     }
 
-    // Use forEach with index instead of for loop and ++
     sortedAllowed.slice(0, -1).forEach((ai, i) => {
       const ai1 = sortedAllowed[i + 1];
       const cmp1 = Cluster.compareVersions(wantedVersion, ai);
