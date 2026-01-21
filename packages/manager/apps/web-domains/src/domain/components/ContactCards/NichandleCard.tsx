@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import { ServiceInfoContactEnum } from '@/common/enum/common.enum';
+import { ServiceInfoContactEnum, Universe } from '@/common/enum/common.enum';
 import NichandleInformation from './NichandleInformation';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 
@@ -98,9 +98,9 @@ export default function NichandleCard({
           onClick={() =>
             navigateTo('account', '/contacts/services/edit', {
               serviceName,
-              category: 'DOMAIN',
+              category: Universe.DOMAIN,
               service: serviceName,
-              categoryType: 'DOMAIN',
+              categoryType: Universe.DOMAIN,
             })
           }
           variant={BUTTON_VARIANT.ghost}

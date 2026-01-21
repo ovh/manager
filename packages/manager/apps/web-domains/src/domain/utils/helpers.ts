@@ -1,4 +1,4 @@
-import { DOMAIN } from '@/common/constants';
+import { Universe } from '@/common/enum/common.enum';
 
 /**
  * Converts the first character of str to upper case and the remaining to lower case.
@@ -12,13 +12,16 @@ export const capitalize = (str: string) => {
   return `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;
 };
 
-export const goToUpdateRenewFrequencyParams = (serviceName: string) => {
+export const goToUpdateRenewFrequencyParams = (
+  serviceName: string,
+  universe: Universe,
+) => {
   return {
     scope: 'billing',
     target: '/autorenew/services/update',
     params: {
       serviceId: serviceName,
-      serviceType: DOMAIN,
+      serviceType: universe,
     },
   };
 };

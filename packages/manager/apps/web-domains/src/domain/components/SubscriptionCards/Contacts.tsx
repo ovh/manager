@@ -10,6 +10,7 @@ import { TDomainResource } from '@/domain/types/domainResource';
 import { contactsMapping } from '@/domain/constants/susbcriptions';
 import { TDomainContact } from '@/common/types/common.types';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
+import { Universe } from '@/common/enum/common.enum';
 
 interface ContactsProps {
   readonly serviceName: string;
@@ -39,9 +40,9 @@ export default function Contacts({
     '/contacts/services',
     {
       serviceName,
-      category: 'DOMAIN',
+      category: Universe.DOMAIN,
       service: serviceName,
-      categoryType: 'DOMAIN',
+      categoryType: Universe.DOMAIN,
     },
   ]);
 
