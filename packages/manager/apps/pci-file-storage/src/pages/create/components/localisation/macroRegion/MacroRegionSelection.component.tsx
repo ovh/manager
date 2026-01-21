@@ -41,8 +41,6 @@ export const MacroRegionSelection = () => {
   const updateSelection = (macroRegion: string, microRegion: string) => {
     setValue('macroRegion', macroRegion);
     setValue('shareData.microRegion', microRegion);
-    setValue('availabilityZone', null);
-    setValue('shareSpec', null);
 
     trackClick({
       location: PageLocation.funnel,
