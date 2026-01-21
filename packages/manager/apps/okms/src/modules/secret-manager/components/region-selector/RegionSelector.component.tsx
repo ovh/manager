@@ -1,11 +1,10 @@
-import { Fragment, useRef } from 'react';
+import { Fragment, useState } from 'react';
 
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { OdsDivider, OdsPopover } from '@ovhcloud/ods-components/react';
-import { Icon, Text } from '@ovhcloud/ods-react';
+import { Divider, Icon, Popover, PopoverContent, PopoverTrigger, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
@@ -19,7 +18,7 @@ export const RegionSelector = () => {
   const { geographyGroups, currentRegion, isLoading, isError } = useRegionSelector();
   const { t } = useTranslation(NAMESPACES.REGION);
   const { translateRegionName, translateGeographyName } = useRegionName();
-  const popoverRef = useRef<HTMLOdsPopoverElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   // Render nothing if there is an error
   // useRegionSelector will send an error notification
@@ -30,25 +29,21 @@ export const RegionSelector = () => {
   return (
     <div className="flex items-center gap-2">
       <Text preset="heading-6">{t('region')}</Text>
-      <div>
-        <Button
-          id="trigger-region-selector-popover"
-          variant="ghost"
-          loading={isLoading}
-          data-testid={REGION_SELECTOR_TEST_IDS.TRIGGER_REGION_SELECTOR_BUTTON}
-        >
-          <>
-            {currentRegion ? translateRegionName(currentRegion.region) : ''}
-            <Icon name="chevron-down" />
-          </>
-        </Button>
-        <OdsPopover
-          data-testid="region-selector-popover"
-          ref={popoverRef}
-          triggerId="trigger-region-selector-popover"
-          position="bottom-start"
-          className="m-0 p-0"
-        >
+      <Popover open={isOpen} onOpenChange={({ open }) => setIsOpen(open)}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="ghost"
+            loading={isLoading}
+            data-testid={REGION_SELECTOR_TEST_IDS.TRIGGER_REGION_SELECTOR_BUTTON}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <>
+              {currentRegion ? translateRegionName(currentRegion.region) : ''}
+              <Icon name="chevron-down" />
+            </>
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent data-testid="region-selector-popover" className="m-0 p-0">
           <div className="flex flex-col gap-2 p-4">
             {geographyGroups.map((geographyGroup, index) => (
               <Fragment key={geographyGroup.continentCode}>
@@ -64,25 +59,28 @@ export const RegionSelector = () => {
                       className={clsx(
                         'ml-1',
                         link.region === currentRegion?.region
-                          ? '[&::part(link)]:text-[var(--ods-color-heading)]'
-                          : '[&::part(link)]:text-[var(--ods-color-primary-500)]',
+                          ? 'text-[var(--ods-color-heading)]'
+                          : 'text-[var(--ods-color-primary-500)]',
                       )}
                       key={link.region}
                       to={link.href}
-                      onClick={async () => {
-                        await popoverRef.current?.hide();
-                      }}
+                      onClick={() => setIsOpen(false)}
                     >
                       {translateRegionName(link.region)}
                     </InternalLink>
                   ))}
                 </div>
-                {index < geographyGroups.length - 1 && <OdsDivider className="-mx-4 mb-1 mt-2" />}
+                {index < geographyGroups.length - 1 && (
+                  <Divider
+                    data-testid={REGION_SELECTOR_TEST_IDS.DIVIDER}
+                    className="-mx-4 mb-1 mt-2"
+                  />
+                )}
               </Fragment>
             ))}
           </div>
-        </OdsPopover>
-      </div>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };

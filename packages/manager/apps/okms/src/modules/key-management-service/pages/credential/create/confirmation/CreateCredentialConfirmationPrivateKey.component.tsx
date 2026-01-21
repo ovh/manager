@@ -2,14 +2,14 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsCard } from '@ovhcloud/ods-components/react';
-import { Message } from '@ovhcloud/ods-react';
 import {
+  Card,
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
   FormField,
   Icon,
+  Message,
   Text,
 } from '@ovhcloud/ods-react';
 
@@ -35,7 +35,7 @@ const CreateCredentialConfirmationPrivateKey = ({
   }
 
   return (
-    <OdsCard className="p-4">
+    <Card className="p-4">
       <div className="flex w-full flex-col gap-4 md:gap-5">
         <Text preset="heading-3">
           {t('key_management_service_credential_create_confirmation_private-key_title')}
@@ -72,7 +72,7 @@ const CreateCredentialConfirmationPrivateKey = ({
           </Checkbox>
         </FormField>
       </div>
-    </OdsCard>
+    </Card>
   );
 };
 

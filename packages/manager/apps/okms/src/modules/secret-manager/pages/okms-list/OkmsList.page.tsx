@@ -13,9 +13,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Breadcrumb } from '@ovhcloud/ods-react';
 
-import { ErrorBanner, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, Button } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, Button, Error, Notifications } from '@ovh-ux/muk';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -59,7 +59,7 @@ export default function OkmsListPage() {
 
   if (error) {
     return (
-      <ErrorBanner
+      <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
         onReloadPage={refetch}

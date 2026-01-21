@@ -8,9 +8,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Message } from '@ovhcloud/ods-react';
 
-import { Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, Button, HeaderProps, RedirectionGuard } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, Button, HeaderProps, Notifications, RedirectionGuard } from '@ovh-ux/muk';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';

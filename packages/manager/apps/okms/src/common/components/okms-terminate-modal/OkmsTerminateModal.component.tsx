@@ -6,9 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
-import { DeleteModal, useNotifications } from '@ovh-ux/manager-react-components';
+import { DeleteModal } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useShellContext } from '@/common/hooks/useShellContext';

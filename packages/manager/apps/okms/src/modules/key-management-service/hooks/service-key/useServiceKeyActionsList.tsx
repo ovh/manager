@@ -12,8 +12,8 @@ import { useTranslation } from 'react-i18next';
 
 import { BUTTON_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';

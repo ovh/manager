@@ -13,14 +13,10 @@ import { useTranslation } from 'react-i18next';
 
 import { Breadcrumb } from '@ovhcloud/ods-react';
 
-import {
-  ErrorBanner,
-  Notifications,
-  useFeatureAvailability,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { BaseLayout } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, Error, Notifications } from '@ovh-ux/muk';
 
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
 import {
@@ -67,7 +63,7 @@ export default function OkmsDashboardPage() {
 
   if (error) {
     return (
-      <ErrorBanner
+      <Error
         error={error.response}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.root)}
         onReloadPage={() =>

@@ -60,8 +60,8 @@ vi.mock('@secret-manager/hooks/useCurrentRegion', () => ({
 
 // Mock the useNotifications hook
 const mockAddError = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/muk', async () => {
+  const actual = await vi.importActual('@ovh-ux/muk');
   return {
     ...actual,
     useNotifications: () => ({ addError: mockAddError }),

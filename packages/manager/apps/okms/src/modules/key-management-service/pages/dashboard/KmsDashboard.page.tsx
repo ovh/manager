@@ -11,13 +11,9 @@ import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useB
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ErrorBanner,
-  Notifications,
-  useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { BaseLayout, HeaderProps } from '@ovh-ux/muk';
+import { BaseLayout, Error, HeaderProps, Notifications } from '@ovh-ux/muk';
 
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
 import {
@@ -81,7 +77,7 @@ export default function DashboardPage() {
 
   if (okmsError) {
     return (
-      <ErrorBanner
+      <Error
         error={okmsError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>

@@ -6,11 +6,10 @@ import { useIdentityData } from '@key-management-service/hooks/credential/useIde
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsDivider } from '@ovhcloud/ods-components/react';
 import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { Button } from '@ovh-ux/muk';
+import { Button, Divider } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -78,7 +77,7 @@ const CreateAddIdentities = ({
             setIsRootAccount={setIsRootAccount}
           />
 
-          <OdsDivider />
+          <Divider />
 
           {!isRootAccount && (
             <>

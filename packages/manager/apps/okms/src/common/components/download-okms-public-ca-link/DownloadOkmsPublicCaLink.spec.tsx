@@ -4,16 +4,29 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
+import { LinkProps } from '@ovh-ux/muk';
+
 import { initiateTextFileDownload } from '@/common/utils/dom/download';
 
 import { CertificateType, DownloadOkmsPublicCaLink } from './DownloadOkmsPublicCaLink';
 
-const addErrorMock = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useNotifications: () => ({
-    addError: addErrorMock,
-  }),
-}));
+const mockAddError = vi.fn();
+vi.mock('@ovh-ux/muk', async () => {
+  const actual = await vi.importActual('@ovh-ux/muk');
+  return {
+    ...actual,
+    useNotifications: () => ({ addError: mockAddError }),
+    Link: vi.fn((props: LinkProps & { 'data-testid'?: string }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { iamActions, isIamTrigger, displayTooltip, ...htmlProps } = props;
+      return (
+        <a data-testid={props['data-testid']} href={htmlProps.href} {...htmlProps}>
+          {props.children}
+        </a>
+      );
+    }),
+  };
+});
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -154,7 +167,7 @@ describe('DownloadOkmsPublicCaLink component tests suite', () => {
 
     await waitFor(() => {
       // Error notification should be shown
-      expect(addErrorMock).toHaveBeenCalledWith(
+      expect(mockAddError).toHaveBeenCalledWith(
         'key_management_service_dashboard_error_download_ca',
       );
     });

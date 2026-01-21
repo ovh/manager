@@ -14,8 +14,8 @@ import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 import { Modal, ModalBody, ModalContent, ModalOpenChangeDetail, Text } from '@ovhcloud/ods-react';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 import { Button } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';

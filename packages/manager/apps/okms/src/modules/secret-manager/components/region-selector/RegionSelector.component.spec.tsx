@@ -2,7 +2,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -61,6 +62,12 @@ const renderRegionSelector = async () => {
       </I18nextProvider>
     </BrowserRouter>,
   );
+};
+
+const openPopover = async () => {
+  const user = userEvent.setup();
+  const button = screen.getByRole('button', { name: mockRegionLabels.GRA });
+  await act(() => user.click(button));
 };
 
 const mockRegionLabels = {
@@ -172,13 +179,14 @@ describe('RegionSelector Component', () => {
     it('should display all geography groups in the popover', async () => {
       // When
       await renderRegionSelector();
+      await openPopover();
 
       // Then
       expect(screen.getByText(mockGeographyNames.EU)).toBeInTheDocument();
       expect(screen.getByText(mockGeographyNames.CA)).toBeInTheDocument();
 
       // Check region links
-      const graLink = screen.getByRole('link', { name: mockRegionLabels.GRA });
+      const graLink = await screen.findByRole('link', { name: mockRegionLabels.GRA });
       expect(graLink).toHaveAttribute(
         'href',
         SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name),
@@ -198,22 +206,24 @@ describe('RegionSelector Component', () => {
     it('should highlight the link for the current region', async () => {
       // When
       await renderRegionSelector();
+      await openPopover();
 
       // Then
-      const current = screen.getByRole('link', { name: mockRegionLabels.GRA });
-      expect(current).toHaveClass('[&::part(link)]:text-[var(--ods-color-heading)]');
+      const current = await screen.findByRole('link', { name: mockRegionLabels.GRA });
+      expect(current).toHaveClass('text-[var(--ods-color-heading)]');
 
       const notCurrent = screen.getByRole('link', { name: mockRegionLabels.DE });
-      expect(notCurrent).toHaveClass('[&::part(link)]:text-[var(--ods-color-primary-500)]');
+      expect(notCurrent).toHaveClass('text-[var(--ods-color-primary-500)]');
     });
 
     it('should display dividers between geography groups', async () => {
       // When
       await renderRegionSelector();
+      await openPopover();
 
       // Then
       await waitFor(() => {
-        const dividers = document.querySelectorAll('ods-divider');
+        const dividers = screen.getAllByTestId(REGION_SELECTOR_TEST_IDS.DIVIDER);
         // Should have 1 divider between 2 geography groups
         expect(dividers).toHaveLength(1);
       });

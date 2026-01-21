@@ -13,6 +13,7 @@ import { vi } from 'vitest';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
+  TIMEOUT,
   assertDrawerVisibility,
   changeOdsInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
@@ -31,7 +32,7 @@ const renderPage = async (mockParams = {}) => {
   const { container } = await renderTestApp(mockPageUrl, mockParams);
 
   // Check if the drawer is open
-  await assertDrawerVisibility({ state: 'visible' });
+  await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.MEDIUM });
 
   return { user, container };
 };

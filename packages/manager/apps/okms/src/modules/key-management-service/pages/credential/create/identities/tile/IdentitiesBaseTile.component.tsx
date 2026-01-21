@@ -3,8 +3,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 import clsx from 'clsx';
 
 import { ODS_CARD_COLOR } from '@ovhcloud/ods-components';
-import { OdsCard } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { Card, Text } from '@ovhcloud/ods-react';
 
 type IdentitiesBaseTileProps = {
   title: string;
@@ -21,7 +20,7 @@ const IdentitiesBaseTile = ({
   setIsChecked,
   children,
 }: IdentitiesBaseTileProps) => (
-  <OdsCard
+  <Card
     className={clsx(
       'cursor-pointer p-3',
       !isChecked && 'border-[--ods-color-form-element-border-default]',
@@ -38,7 +37,7 @@ const IdentitiesBaseTile = ({
       {title}
     </Text>
     {children}
-  </OdsCard>
+  </Card>
 );
 
 export default IdentitiesBaseTile;

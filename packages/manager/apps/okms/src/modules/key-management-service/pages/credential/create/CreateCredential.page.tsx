@@ -16,9 +16,8 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes
 import { CertificateType, OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout } from '@ovh-ux/muk';
+import { BaseLayout, Error, Notifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -100,7 +99,7 @@ const CreateCredential = () => {
 
   if (error)
     return (
-      <ErrorBanner
+      <Error
         error={error.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.credentialListing(okmsId))}
       />

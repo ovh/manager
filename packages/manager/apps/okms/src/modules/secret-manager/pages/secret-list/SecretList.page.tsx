@@ -18,15 +18,10 @@ import { useTranslation } from 'react-i18next';
 import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Datagrid,
-  DatagridColumn,
-  ErrorBanner,
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, BaseLayoutProps, Button } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, BaseLayoutProps, Button, Error, Notifications } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -112,7 +107,7 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
 
   if (error)
     return (
-      <ErrorBanner
+      <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
         onReloadPage={refetch}

@@ -20,9 +20,8 @@ import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServi
 import { ServiceKeyNameErrors } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
 
-import { ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, Button } from '@ovh-ux/muk';
+import { BaseLayout, Button, Error, Notifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -142,7 +141,7 @@ export default function CreateKey() {
 
   if (okmsError) {
     return (
-      <ErrorBanner
+      <Error
         error={okmsError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={refetchOkms}
@@ -152,7 +151,7 @@ export default function CreateKey() {
 
   if (serviceKeyReferenceError) {
     return (
-      <ErrorBanner
+      <Error
         error={serviceKeyReferenceError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={refetchServiceKeyReference}

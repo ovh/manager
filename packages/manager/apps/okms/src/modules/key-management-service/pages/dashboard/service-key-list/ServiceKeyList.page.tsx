@@ -18,10 +18,10 @@ import { useTranslation } from 'react-i18next';
 import { Message } from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
-import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { Datagrid } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { Button } from '@ovh-ux/muk';
+import { Button, Error } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -44,7 +44,7 @@ export default function Keys() {
 
   if (error)
     return (
-      <ErrorBanner
+      <Error
         error={error}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>

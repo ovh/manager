@@ -2,8 +2,7 @@ import { OkmsCredential } from '@key-management-service/types/okmsCredential.typ
 import { getDaysFromDate } from '@key-management-service/utils/credential/validityDateUtils';
 import { useTranslation } from 'react-i18next';
 
-import { OdsCard } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import { Card, Text } from '@ovhcloud/ods-react';
 
 import CreateCredentialConfirmationDetailsText from './CreateCredentialConfirmationDetailsText.component';
 
@@ -17,7 +16,7 @@ const CreateCredentialConfirmationDetails = ({
   const { t } = useTranslation('key-management-service/credential');
 
   return (
-    <OdsCard className="p-4">
+    <Card className="p-4">
       <div className="flex w-full flex-col gap-4 break-words md:gap-5">
         <Text preset="heading-3">
           {t('key_management_service_credential_create_confirmation_details_title')}
@@ -46,7 +45,7 @@ const CreateCredentialConfirmationDetails = ({
           )}
         />
       </div>
-    </OdsCard>
+    </Card>
   );
 };
 

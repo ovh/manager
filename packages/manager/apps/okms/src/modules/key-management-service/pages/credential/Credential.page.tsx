@@ -16,9 +16,8 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { BaseLayout } from '@ovh-ux/muk';
+import { BaseLayout, Error, Notifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -56,7 +55,7 @@ const CredentialDashboard = () => {
 
   if (errorCredential || errorKms) {
     return (
-      <ErrorBanner
+      <Error
         error={errorCredential?.response || errorKms?.response || {}}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>

@@ -14,8 +14,7 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
-import { BaseLayout, GridLayout } from '@ovh-ux/muk';
+import { BaseLayout, Error, GridLayout, Notifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -49,7 +48,7 @@ export default function ServiceKeyDashboard() {
 
   if (okmsError) {
     return (
-      <ErrorBanner
+      <Error
         error={okmsError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
@@ -63,7 +62,7 @@ export default function ServiceKeyDashboard() {
 
   if (serviceKeyError)
     return (
-      <ErrorBanner
+      <Error
         error={serviceKeyError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
