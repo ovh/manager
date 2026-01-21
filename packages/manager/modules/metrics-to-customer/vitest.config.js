@@ -3,8 +3,10 @@ import {
   createConfig,
   defaultDedupedDependencies,
   defaultExcludedFiles,
+  INLINE_DEPS,
   mergeConfig,
   sharedConfig,
+  sharedCssConfig,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
@@ -12,6 +14,11 @@ export default mergeConfig(
   createConfig({
     test: {
       setupFiles: ['./setupTests.ts'],
+      server: {
+        deps: {
+          inline: INLINE_DEPS,
+        },
+      },
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
@@ -24,6 +31,7 @@ export default mergeConfig(
           'src/data/types',
         ],
       },
+      ...sharedCssConfig,
     },
     resolve: {
       dedupe: defaultDedupedDependencies,
