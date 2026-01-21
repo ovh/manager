@@ -71,18 +71,13 @@ export const useGetDomainResource = (serviceName: string) => {
 export const useGetDomainZone = (
   serviceName: string,
   domainResource: TDomainResource,
+  enabled: boolean = false,
 ) => {
-  const isInternalDnsConfiguration =
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.EXTERNAL &&
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.MIXED;
-
   const { data, isLoading, error } = useQuery<TDomainZone>({
     queryKey: ['domain', 'zone', serviceName],
     queryFn: () => getDomainZone(serviceName),
     retry: false,
-    enabled: isInternalDnsConfiguration,
+    enabled: enabled,
   });
   return {
     domainZone: data,
