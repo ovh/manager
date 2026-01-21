@@ -83,5 +83,5 @@
   "version_state_reactivate": "Reactivar",
   "versions": "Versiones",
   "no_version": "Ninguna versión",
-  "no_version_message": "Este secreto no tiene versión."
+  "no_version_message": "Este secreto no tiene ninguna versión."
 }

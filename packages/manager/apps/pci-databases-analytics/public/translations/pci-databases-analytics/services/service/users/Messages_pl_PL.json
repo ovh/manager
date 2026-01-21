@@ -22,7 +22,7 @@
   "resetUserPasswordDescription": "Czy na pewno chcesz ponownie wygenerować hasło dla użytkownika {{name}}?",
   "resetUserPasswordToastErrorTitle": "Wystąpił błąd podczas ponownego generowania hasła użytkownika",
   "resetUserPasswordToastSuccessDescription": "Hasło użytkownika {{name}} zostało ponownie wygenerowane.",
-  "resetUserPasswordSuccess": "Hasło użytkownika zostało pomyślnie zregenerowane. Proszę je zanotować, ponieważ nie będzie można go później odzyskać.",
+  "resetUserPasswordSuccess": "Hasło użytkownika zostało ponownie wygenerowane. Zapisz je, ponieważ nie będzie można go później odzyskać.",
   "resetUserPasswordCopy": "Hasło zostało skopiowane do schowka",
   "addUserToastErrorTitle": "Wystąpił błąd podczas dodawania użytkownika",
   "editUserToastErrorTitle": "Wystąpił błąd podczas modyfikowania danych użytkownika.",
@@ -84,11 +84,11 @@
   "viewCertificateCopy": "Certyfikat został skopiowany",
   "showAccessKeyTitle": "Klucz dostępu",
   "showAccessKeyCopy": "Klucz dostępu został skopiowany",
-  "addUserPasswordSuccess": "Użytkownik został pomyślnie utworzony. Poniżej znajdują się wszystkie informacje potrzebne do jego użycia.",
+  "addUserPasswordSuccess": "Profil użytkownika został utworzony. Poniżej znajdziesz wszystkie niezbędne informacje dotyczące korzystania jego użytkowania",
   "userCancelButton": "Anuluj",
   "userConfirmButton": "Zatwierdź",
   "userCloseButton": "Zamknij",
-  "userSuccessTitle": "Sukces",
-  "addUserMySQLInfo": "Domyślnie nowy użytkownik MySQL może połączyć się z serwerem bazy danych, ale ma tylko bardzo ograniczone uprawnienia. Jego uprawnienia muszą być wyraźnie przyznawane w razie potrzeby za pośrednictwem CLI (na przykład za pomocą poleceń GRANT), zgodnie z składnią określoną w <anchor>oficjalnej dokumentacji MySQL</anchor>.",
-  "addUserPGInfo": "Domyślnie nowy użytkownik może połączyć się z bazą danych i dziedziczy wszystkie uprawnienia przyznane PUBLIC lub rolom, których jest członkiem. Jego uprawnienia są zazwyczaj ograniczone i muszą być wyraźnie przyznawane w razie potrzeby za pośrednictwem CLI, zgodnie z składnią <anchor>oficjalnej dokumentacji PostgreSQL</anchor>."
+  "userSuccessTitle": "Operacja zakończona pomyślnie",
+  "addUserMySQLInfo": "Domyślnie nowy użytkownik MySQL może połączyć się z serwerem bazy danych, ale ma bardzo ograniczone uprawnienia. Muszą one zostać przyznane według potrzeb, za pośrednictwem CLI (na przykład komend GRANT), zgodnie ze składnią opisaną w <anchor>oficjalnej dokumentacji MySQL</anchor>.",
+  "addUserPGInfo": "Domyślnie nowy użytkownik może połączyć się z bazą danych i uzyskuje wszystkie uprawnienia przyznane roli PUBLIC oraz rolom, które zostały mu przypisane. Uprawnienia są zazwyczaj ograniczone i muszą zostać przyznane według potrzeb, za pośrednictwem CLI, zgodnie ze składnią opisaną w <anchor>oficjalnej dokumentacji PostgreSQL</anchor>."
 }
