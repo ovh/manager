@@ -74,12 +74,19 @@ export async function fetchIcebergV2<T>({
     .setDisabledCache(disableCache)
     .setPaginationSort(sortBy, sortOrder)
     .setPaginationFilter(filters)
-    .setIamTags(params, filters, route.includes('/iam/resource') ? 'tags' : 'iamTags')
+    .setIamTags(
+      params,
+      filters,
+      route?.includes('/iam/resource') ? 'tags' : 'iamTags',
+    )
     .build();
 
-  const response: AxiosResponse<T[]> = await v2.get<T[]>(getRouteWithParams(route, params), {
-    headers: requestHeaders,
-  });
+  const response: AxiosResponse<T[]> = await v2.get<T[]>(
+    getRouteWithParams(route, params),
+    {
+      headers: requestHeaders,
+    },
+  );
 
   const headers = response.headers as Record<string, string | undefined>;
 
@@ -111,9 +118,12 @@ export async function fetchIcebergV6<T>({
     .setIamTags(params, filters)
     .build();
 
-  const response: AxiosResponse<T[]> = await v6.get<T[]>(getRouteWithParams(route, params), {
-    headers: requestHeaders,
-  });
+  const response: AxiosResponse<T[]> = await v6.get<T[]>(
+    getRouteWithParams(route, params),
+    {
+      headers: requestHeaders,
+    },
+  );
 
   const totalCount = Number(response.headers['x-pagination-elements']) || 0;
 

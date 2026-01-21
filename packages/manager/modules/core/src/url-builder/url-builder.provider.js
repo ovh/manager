@@ -26,7 +26,7 @@ export default class CoreUrlBuilder {
     }
 
     return buildURLs(
-      Object.keys(routes).reduce((all, name) => {
+      Object.keys(routes)?.reduce((all, name) => {
         const { application, path, params } = routes[name];
         return {
           ...all,
