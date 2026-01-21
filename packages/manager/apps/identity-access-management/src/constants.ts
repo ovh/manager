@@ -20,3 +20,6 @@ export const CHANGELOG_CHAPTERS = [
 ];
 
 export const API_MESSAGE_TOKEN_ALREADY_EXISTS = 'This token already exists';
+
+export const PERMANENT_TOKENS_INPUT_MAX_LENGTH = 255;
+export const PERMANENT_TOKENS_INPUT_PATTERN = /^[a-zA-Z0-9\._ @-]+$/;

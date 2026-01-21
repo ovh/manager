@@ -49,7 +49,7 @@ export default function PermanentTokensListing() {
     title: t('iam_user_tokens_title'),
     description: ((
       <div>
-        <span className="mr-8">{t('iam_user_tokens_user_name')}</span>
+        <span className="mr-4">{t('iam_user_tokens_user_name')}</span>
         <strong>{userId}</strong>
       </div>
     ) as unknown) as string,

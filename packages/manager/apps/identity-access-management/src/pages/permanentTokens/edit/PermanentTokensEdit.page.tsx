@@ -11,6 +11,10 @@ import {
 import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  PERMANENT_TOKENS_INPUT_MAX_LENGTH,
+  PERMANENT_TOKENS_INPUT_PATTERN,
+} from '@/constants';
 
 import { useParam } from '@/hooks/useParam';
 import {
@@ -26,7 +30,11 @@ import { PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
 import { API_MESSAGE_TOKEN_ALREADY_EXISTS } from '@/constants';
 
 export default function PermanentTokensAdd() {
-  const { t } = useTranslation(['permanent-tokens', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([
+    'permanent-tokens',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
@@ -153,7 +161,32 @@ export default function PermanentTokensAdd() {
     goBack();
   };
 
-  const isFormValid = !!name && !expiryModel.invalid;
+  const checkInputError = (
+    value: string,
+    isMandatory: boolean,
+  ): string | undefined => {
+    if (value.trim() === '') {
+      return isMandatory
+        ? t('required_field', { ns: NAMESPACES.FORM })
+        : undefined;
+    }
+    if (value.length > PERMANENT_TOKENS_INPUT_MAX_LENGTH) {
+      return t('max_chars', {
+        ns: NAMESPACES.FORM,
+        value: { value: PERMANENT_TOKENS_INPUT_MAX_LENGTH },
+      });
+    }
+    if (!PERMANENT_TOKENS_INPUT_PATTERN.test(value)) {
+      return t('error_pattern', { ns: NAMESPACES.FORM });
+    }
+
+    return undefined;
+  };
+
+  const nameError = checkInputError(name, true);
+  const descriptionError = checkInputError(description, false);
+  const isFormValid =
+    !!name && !nameError && !descriptionError && !expiryModel.invalid;
   return (
     <Modal
       type={ODS_MODAL_COLOR.neutral}
@@ -178,7 +211,7 @@ export default function PermanentTokensAdd() {
 
       {formDataLoaded && (
         <>
-          <OdsFormField className="mb-6">
+          <OdsFormField className="mb-6" error={nameError}>
             <label htmlFor="tokenName" slot="label">
               {t('iam_user_token_modal_field_name_label')}
             </label>
@@ -186,12 +219,14 @@ export default function PermanentTokensAdd() {
               type={ODS_INPUT_TYPE.text}
               name="tokenName"
               value={name}
+              maxlength={PERMANENT_TOKENS_INPUT_MAX_LENGTH}
               onOdsChange={(e) => setName(e.detail.value as string)}
               isDisabled={!isCreationMode}
+              hasError={!!nameError}
               data-testid="tokenName"
             />
           </OdsFormField>
-          <OdsFormField className="mb-6">
+          <OdsFormField className="mb-6" error={descriptionError}>
             <label htmlFor="tokenDescription" slot="label">
               {t('iam_user_token_modal_field_description_label')}
             </label>
@@ -199,6 +234,8 @@ export default function PermanentTokensAdd() {
               name="tokenDescription"
               value={description}
               onOdsChange={(e) => setDescription(e.detail.value as string)}
+              maxlength={PERMANENT_TOKENS_INPUT_MAX_LENGTH}
+              hasError={!!descriptionError}
               rows={3}
               data-testid="tokenDescription"
             />
