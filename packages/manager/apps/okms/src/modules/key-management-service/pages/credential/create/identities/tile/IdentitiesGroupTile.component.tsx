@@ -3,10 +3,8 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IdentityGroup } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { Text } from '@ovhcloud/ods-react';
-
 import IdentitiesBaseTile from './IdentitiesBaseTile.component';
-import IdentitiesTileText from './IdentitiesTileText.component';
+import { IdentityRow } from './IdentityRow.component';
 
 type IdentitiesGroupTileProps = {
   group: IdentityGroup;
@@ -44,17 +42,17 @@ const IdentitiesGroupTile = ({
       isChecked={isChecked}
       setIsChecked={setIsChecked}
     >
-      <div>
-        <Text preset="caption">
-          {t('key_management_service_credential_create_identities_group_tile_description_label')}:
-        </Text>
-        <IdentitiesTileText>{group.description}</IdentitiesTileText>
-      </div>
-      <div>
-        <Text preset="caption">
-          {t('key_management_service_credential_create_identities_group_tile_identity_label')}:
-        </Text>
-        <IdentitiesTileText>{group.urn}</IdentitiesTileText>
+      <div className="mb-2 space-y-1">
+        <IdentityRow
+          label={t(
+            'key_management_service_credential_create_identities_group_tile_description_label',
+          )}
+          value={group.description || ''}
+        />
+        <IdentityRow
+          label={t('key_management_service_credential_create_identities_group_tile_identity_label')}
+          value={group.urn || ''}
+        />
       </div>
     </IdentitiesBaseTile>
   );

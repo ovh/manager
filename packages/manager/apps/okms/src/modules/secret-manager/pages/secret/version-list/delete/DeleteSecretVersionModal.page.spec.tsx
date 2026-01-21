@@ -7,10 +7,11 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertOdsModalVisibility, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(
   'okmsId',
@@ -27,9 +28,9 @@ describe('Secret version delete modal test suite', () => {
   });
 
   it('should display the delete modal', async () => {
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
-    await assertOdsModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ role: 'alertdialog' });
 
     const title = labels.secretManager.delete_version_modal_title.replace('{{versionId}}', '1');
     await assertTextVisibility(title);
@@ -37,9 +38,9 @@ describe('Secret version delete modal test suite', () => {
 
   it('should navigate back after successful deletion', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
-    await assertOdsModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ role: 'alertdialog' });
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,
@@ -55,13 +56,12 @@ describe('Secret version delete modal test suite', () => {
 
   it('should show a notification after failed deletion', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl, {
+    await renderTestApp(mockPageUrl, {
       isVersionUpdateKO: true,
     });
 
-    await assertOdsModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ role: 'alertdialog' });
 
-    // TODO: [ODS19] Remove getOdsButtonByLabel after Modal migration
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,
     });

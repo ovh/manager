@@ -34,8 +34,10 @@ const IdentitiesBaseTile = ({
       updateCallback(!isChecked);
     }}
   >
-    <Text preset="heading-5">{title}</Text>
-    <div className="grid gap-1">{children}</div>
+    <Text preset="heading-5" className="mb-2">
+      {title}
+    </Text>
+    {children}
   </OdsCard>
 );
 

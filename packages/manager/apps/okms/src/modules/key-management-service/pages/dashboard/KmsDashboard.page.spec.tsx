@@ -1,18 +1,15 @@
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import {
-  assertOdsModalVisibility,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 import { kmsDashboardTabNames } from './kmsDashboard.constants';
@@ -62,7 +59,7 @@ describe('KMS dashboard test suite', () => {
       isLink: true,
     });
 
-    await user.click(backLink);
+    await act(() => user.click(backLink));
 
     await assertTextVisibility(labels.listing.key_management_service_listing_title);
   });
@@ -73,7 +70,9 @@ describe('KMS dashboard test suite', () => {
 
     await waitFor(() => expect(screen.getByTestId(kmsDashboardTabNames.serviceKeys)).toBeEnabled());
 
-    await user.click(screen.getByTestId(kmsDashboardTabNames.serviceKeys));
+    await act(async () => {
+      await user.click(screen.getByTestId(kmsDashboardTabNames.serviceKeys));
+    });
 
     await waitFor(() =>
       expect(
@@ -88,7 +87,9 @@ describe('KMS dashboard test suite', () => {
 
     await waitFor(() => expect(screen.getByTestId(kmsDashboardTabNames.credentials)).toBeEnabled());
 
-    await user.click(screen.getByText(labels.dashboard.access_certificates));
+    await act(async () => {
+      await user.click(screen.getByText(labels.dashboard.access_certificates));
+    });
 
     await waitFor(() =>
       expect(
@@ -99,14 +100,16 @@ describe('KMS dashboard test suite', () => {
 
   it('should navigate to the rename modal on click on rename button', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
     await waitFor(() => expect(screen.getByLabelText('edit')).toBeEnabled());
 
-    await user.click(screen.getByLabelText('edit'));
+    await act(async () => {
+      await user.click(screen.getByLabelText('edit'));
+    });
 
     // Wait for modal to open
-    await assertOdsModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ role: 'dialog' });
 
     expect(await screen.findByText(labels.common.actions.modify_name)).toBeVisible();
   });

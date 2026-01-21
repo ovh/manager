@@ -8,11 +8,10 @@ import { act, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
-import { assertOdsModalVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
+  assertModalVisibility,
   assertPageTitleVisibility,
   changeOdsInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
@@ -110,9 +109,7 @@ const testStep2Content = async () => {
 
 const testStep2ContentAddUsersModal = async (container: HTMLElement) => {
   // Wait for modal to open
-  await waitFor(async () => {
-    await assertOdsModalVisibility({ container, isVisible: true });
-  }, WAIT_TIMEOUT);
+  await assertModalVisibility({ role: 'dialog' });
 
   // Check modal title
   expect(
@@ -132,7 +129,7 @@ const testStep2ContentAddUsersModal = async (container: HTMLElement) => {
 
   // Get submit button
   const buttonAddUsers = screen.getByRole('button', {
-    name: labels.credentials.key_management_service_credentials_identity_modal_user_list_add,
+    name: labels.common.actions.add,
   });
 
   return {
@@ -265,9 +262,7 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Wait for modal to close
-  await waitFor(async () => {
-    await assertOdsModalVisibility({ container, isVisible: false });
-  }, WAIT_TIMEOUT);
+  await assertModalVisibility({ role: 'dialog', state: 'hidden' });
 
   // Check user1 is added to the list
   expect(await screen.findByText(mockIdentityUser.login, {}, WAIT_TIMEOUT)).toBeInTheDocument();

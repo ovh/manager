@@ -8,10 +8,11 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertOdsModalVisibility, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDeleteSecret(
   okmsRoubaix1Mock.id,
@@ -29,9 +30,9 @@ describe('Delete secret modal test suite', () => {
   });
 
   it('should display the delete modal', async () => {
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
-    await assertOdsModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ role: 'alertdialog' });
 
     const title = labels.secretManager.delete_secret_modal_title;
 
@@ -45,9 +46,9 @@ describe('Delete secret modal test suite', () => {
 
   it('should navigate back after successful deletion', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
-    await assertOdsModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ role: 'alertdialog' });
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,
@@ -63,11 +64,11 @@ describe('Delete secret modal test suite', () => {
 
   it('should show a notification after failed deletion', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl, {
+    await renderTestApp(mockPageUrl, {
       isDeleteSecretKO: true,
     });
 
-    await assertOdsModalVisibility({ container, isVisible: true });
+    await assertModalVisibility({ role: 'alertdialog' });
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,

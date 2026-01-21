@@ -5,6 +5,12 @@ import { expect } from 'vitest';
 
 import { BadgeColor } from '@ovhcloud/ods-react';
 
+export const TIMEOUT = {
+  DEFAULT: 3000,
+  MEDIUM: 5000,
+  LONG: 10000,
+};
+
 /* GET BY TEST ID */
 
 export const changeOdsInputValueByTestId = async (inputTestId: string, value: string) => {
@@ -37,6 +43,32 @@ export const assertClipboardVisibility = async (value: string, timeout?: number)
   return clipboardInput;
 };
 
+type AssertModalVisibilityProps = {
+  role: 'alertdialog' | 'dialog';
+  state?: 'visible' | 'hidden';
+  timeout?: number;
+};
+
+export const assertModalVisibility = async ({
+  role,
+  state = 'visible',
+  timeout = TIMEOUT.DEFAULT,
+}: AssertModalVisibilityProps) => {
+  let modal: HTMLElement | null = null;
+  await waitFor(
+    () => {
+      modal = screen.queryByRole(role);
+      if (state === 'visible') {
+        expect(modal).toBeInTheDocument();
+      } else {
+        expect(modal).not.toBeInTheDocument();
+      }
+    },
+    { timeout },
+  );
+  return modal as unknown as HTMLElement;
+};
+
 /**
  * Clicks on the JSON toggle
  */
@@ -48,7 +80,7 @@ export const clickJsonEditorToggle = async (user: UserEvent) => {
 export const assertTitleVisibilityOds18 = async (
   title: string,
   type: 'heading-1' | 'heading-2' | 'heading-3',
-  timeout?: number,
+  timeout = TIMEOUT.DEFAULT,
 ) => {
   await waitFor(
     () => {
@@ -56,11 +88,11 @@ export const assertTitleVisibilityOds18 = async (
       expect(titleElement).toBeInTheDocument();
       expect(titleElement).toHaveTextContent(title);
     },
-    { timeout: timeout ?? 3000 },
+    { timeout },
   );
 };
 
-export const assertPageTitleVisibility = async (title: string, timeout?: number) => {
+export const assertPageTitleVisibility = async (title: string, timeout = TIMEOUT.DEFAULT) => {
   await assertTitleVisibilityOds18(title, 'heading-1', timeout);
 };
 

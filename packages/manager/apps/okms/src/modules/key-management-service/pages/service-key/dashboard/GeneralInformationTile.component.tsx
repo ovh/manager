@@ -40,11 +40,7 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
           label: t('key_management_service_service-keys_dashboard_field_name'),
           value: (
             <div className="flex items-center justify-between gap-2">
-              <Text
-                className="max-w-1/2 overflow-hidden text-ellipsis"
-                preset="paragraph"
-                data-testid="truc"
-              >
+              <Text className="max-w-1/2 overflow-hidden text-ellipsis" preset="paragraph">
                 {serviceKey.name}
               </Text>
               <Button

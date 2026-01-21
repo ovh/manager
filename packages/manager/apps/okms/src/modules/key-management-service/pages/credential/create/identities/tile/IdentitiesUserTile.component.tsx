@@ -3,11 +3,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IdentityUser } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { Text } from '@ovhcloud/ods-react';
-
 import IdentitiesStatusBadge from '../badge/IdentitiesStatusBadge.component';
 import IdentitiesBaseTile from './IdentitiesBaseTile.component';
-import IdentitiesTileText from './IdentitiesTileText.component';
+import { IdentityRow } from './IdentityRow.component';
 
 type IdentitiesUserTileProps = {
   user: IdentityUser;
@@ -48,23 +46,19 @@ const IdentitiesUserTile = ({
       isChecked={isChecked}
       setIsChecked={setIsChecked}
     >
-      <div>
-        <Text preset="caption">
-          {t('key_management_service_credential_create_identities_user_tile_email_label')}:
-        </Text>
-        <IdentitiesTileText>{user.email}</IdentitiesTileText>
-      </div>
-      <div>
-        <Text preset="caption">
-          {t('key_management_service_credential_create_identities_user_tile_group_label')}:
-        </Text>
-        <IdentitiesTileText>{user.group} </IdentitiesTileText>
-      </div>
-      <div>
-        <Text preset="caption">
-          {t('key_management_service_credential_create_identities_user_tile_identity_label')}:
-        </Text>
-        <IdentitiesTileText>{user.urn}</IdentitiesTileText>
+      <div className="mb-2 space-y-1">
+        <IdentityRow
+          label={t('key_management_service_credential_create_identities_user_tile_email_label')}
+          value={user.email}
+        />
+        <IdentityRow
+          label={t('key_management_service_credential_create_identities_user_tile_group_label')}
+          value={user.group}
+        />
+        <IdentityRow
+          label={t('key_management_service_credential_create_identities_user_tile_identity_label')}
+          value={user.urn}
+        />
       </div>
       <IdentitiesStatusBadge status={user.status} />
     </IdentitiesBaseTile>

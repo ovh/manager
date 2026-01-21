@@ -5,7 +5,7 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { UpdateNameModal } from '@ovh-ux/manager-react-components';
+import { UpdateNameModal } from '@ovh-ux/muk';
 
 type OkmsUpdateNameModalProps = {
   okms: OKMS;
@@ -38,9 +38,7 @@ const OkmsUpdateNameModal = ({ okms }: OkmsUpdateNameModalProps) => {
       defaultValue={okms.iam.displayName}
       isLoading={isPending}
       error={updateError?.message}
-      closeModal={() => {
-        navigate('..');
-      }}
+      onClose={() => navigate('..')}
       updateDisplayName={handleUpdateDisplayName}
     />
   );

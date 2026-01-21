@@ -148,7 +148,9 @@ const CreateCredential = () => {
               <CreateCredentialConfirmation okmsCredential={okmsCredential} />
             )}
           </div>
-          <Outlet />
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
         </IdentityDataProvider>
       </BaseLayout>
     </Suspense>

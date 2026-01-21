@@ -1,16 +1,14 @@
 import { credentialMock1 } from '@key-management-service/mocks/credentials/credentials.mock';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertOdsModalVisibility,
-} from '@ovh-ux/manager-core-test-utils';
+import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkms = okmsRoubaix1Mock;
 const mockCredentialItem = credentialMock1;
@@ -37,14 +35,12 @@ describe('Credential general informations test suite', () => {
 
   test('should navigate to the delete modal on click on delete button', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
+    await renderTestApp(mockPageUrl);
 
     const deleteButtonLabel = labels.credentials.key_management_service_credential_delete;
 
     // Check modal is closed
-    await waitFor(async () => {
-      await assertOdsModalVisibility({ container, isVisible: false });
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    await assertModalVisibility({ role: 'alertdialog', state: 'hidden' });
 
     // Wait for the delete button to be enabled by iam rights
     await waitFor(() => {
@@ -60,11 +56,11 @@ describe('Credential general informations test suite', () => {
       name: deleteButtonLabel,
     });
 
-    await user.click(deleteButton);
+    await act(async () => {
+      await user.click(deleteButton);
+    });
 
     // Check modal is opened
-    await waitFor(async () => {
-      await assertOdsModalVisibility({ container, isVisible: true });
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    await assertModalVisibility({ role: 'alertdialog', state: 'visible' });
   });
 });
