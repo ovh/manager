@@ -122,12 +122,12 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
   return (
     <>
       <Text preset={TEXT_PRESET.heading2}>{t('configuration.title')}</Text>
-      <div className="space-y-4">
+      <div className="mt-6">
         <Controller
           name="retentionDuration"
           control={control}
           render={({ field }) => (
-            <FormField className="block">
+            <FormField className="block my-6">
               <FormFieldLabel>
                 <Text preset={TEXT_PRESET.paragraph}>
                   {toRequiredLabel(
@@ -164,7 +164,7 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
           name="maxSeries"
           control={control}
           render={({ field }) => (
-            <FormField className="block">
+            <FormField className="block my-6">
               <FormFieldLabel>
                 <Text preset={TEXT_PRESET.paragraph}>
                   {toRequiredLabel(t('tenants:configuration.limit.title'), t('shared:mandatory'))}
