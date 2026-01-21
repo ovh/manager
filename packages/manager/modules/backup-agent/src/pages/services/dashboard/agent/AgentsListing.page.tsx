@@ -11,7 +11,8 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, ManagerButton } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useBackupAgentList } from '@/data/hooks/agents/getAgents';
+import { ReloadButton } from '@/components/ReloadButton/ReloadButton.component';
+import { BACKUP_AGENTS_LIST_QUERY_KEY, useBackupAgentList } from '@/data/hooks/agents/getAgents';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { BACKUP_AGENT_IAM_RULES } from '@/module.constants';
 import { urlParams, urls } from '@/routes/routes.constants';
@@ -43,25 +44,35 @@ export default function AgentsListingPage() {
         {columns && (
           <Datagrid
             topbar={
-              <div className="flex flex-row gap-4">
-                <ManagerButton
-                  id="add-server"
-                  size={ODS_BUTTON_SIZE.md}
-                  label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_server`)}
-                  onClick={handleAddConfiguration}
-                  iamActions={[BACKUP_AGENT_IAM_RULES['vault/edit']]}
+              <section
+                className="flex justify-between"
+                role="toolbar"
+                aria-label={t('more_action')}
+              >
+                <div className="flex flex-row gap-4">
+                  <ManagerButton
+                    id="add-server"
+                    size={ODS_BUTTON_SIZE.md}
+                    label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_server`)}
+                    onClick={handleAddConfiguration}
+                    iamActions={[BACKUP_AGENT_IAM_RULES['vault/edit']]}
+                  />
+                  <OdsButton
+                    variant="outline"
+                    size={ODS_BUTTON_SIZE.md}
+                    label={t(`${NAMESPACES.ACTIONS}:download`)}
+                    onClick={handleDownloadButton}
+                  />
+                </div>
+                <ReloadButton
+                  isLoading={isPending}
+                  queryKeys={[BACKUP_AGENTS_LIST_QUERY_KEY(tenantId)]}
                 />
-                <OdsButton
-                  variant="outline"
-                  size={ODS_BUTTON_SIZE.md}
-                  label={t(`${NAMESPACES.ACTIONS}:download`)}
-                  onClick={handleDownloadButton}
-                />
-              </div>
+              </section>
             }
             columns={columns}
             items={flattenData || []}
-            totalItems={flattenData?.length || 0}
+            totalItems={columns.length || 0}
             isLoading={isPending}
           />
         )}

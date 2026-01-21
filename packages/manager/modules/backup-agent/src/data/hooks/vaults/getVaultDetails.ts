@@ -6,11 +6,8 @@ import { VaultResource } from '@/types/Vault.type';
 
 import { useGetBackupServicesId } from '../backup/useBackupServicesId';
 
-export const BACKUP_VAULT_DETAILS_QUERY_KEY = (vaultId: string) => [
-  ...BACKUP_VAULTS_LIST_QUERY_KEY,
-  'details',
-  vaultId,
-];
+export const BACKUP_VAULT_DETAILS_QUERY_KEY = (vaultId?: string | QueryKey) =>
+  [...BACKUP_VAULTS_LIST_QUERY_KEY, 'details', vaultId] as QueryKey[];
 
 export const useGetBackupVaultDetailsOptions = () => {
   const getBackupServiceId = useGetBackupServicesId();
@@ -21,7 +18,7 @@ export const useGetBackupVaultDetailsOptions = () => {
         const backupServicesId = await getBackupServiceId();
         return getVaultDetails(backupServicesId!, vaultId!);
       },
-      queryKey: BACKUP_VAULT_DETAILS_QUERY_KEY(vaultId!),
+      queryKey: BACKUP_VAULT_DETAILS_QUERY_KEY(vaultId),
       enabled: !!vaultId,
     });
 };
