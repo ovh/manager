@@ -1,12 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
 import { mockVaults } from '@/mocks/vaults/vaults.mock';
-import { ManagerButtonMock } from '@/test-utils/mocks/manager-react-components';
-import { useNavigateMock } from '@/test-utils/mocks/react-router-dom';
-import { VaultResource } from '@/types/Vault.type';
+import { DataGridTextCellMock } from '@/test-utils/mocks/manager-react-components';
+import { useHrefMock } from '@/test-utils/mocks/react-router-dom';
 
 import { VaultActionCell } from '../VaultActionCell.component';
 
@@ -15,41 +12,18 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 
   return {
     ...actual,
-    ManagerButton: ManagerButtonMock,
+    DataGridTextCell: DataGridTextCellMock,
   };
 });
 
 vi.mock('react-router-dom', () => ({
-  useNavigate: useNavigateMock,
+  useHref: useHrefMock
 }));
 
-describe('VaultActionCell test suite', () => {
+describe('VaultActionCell', () => {
   const vault = mockVaults[0]!;
-  const withVspc: VaultResource = {
-    ...vault,
-    currentState: { ...vault.currentState, vspcTenants: ['vspc1'] },
-  };
-  const withoutVspc: VaultResource = {
-    ...vault,
-    currentState: { ...vault.currentState, vspcTenants: [] },
-  };
+  render(<VaultActionCell id={vault.id} />);
 
-  const testCases: Array<{ desc: string; vault: VaultResource }> = [
-    {
-      desc: 'renders an enabled button if vault has no VSPC',
-      vault: withoutVspc,
-    },
-    {
-      desc: 'renders a enabled button if vault has VSPC',
-      vault: withVspc,
-    },
-  ];
-
-  it.each(testCases)('$desc', ({ vault }) => {
-    render(<VaultActionCell {...vault} />);
-
-    const button = screen.getByTestId('delete-vault-button');
-    expect(button).toHaveAttribute('data-icon', ODS_ICON_NAME.trash);
-    expect(button).toHaveAttribute('data-variant', ODS_BUTTON_VARIANT.ghost);
-  });
+  const button = screen.getByTestId('arrow-link-cell');
+  expect(button).toHaveAttribute('href', '/vaults/dashboard/a1b2c3d4-1234-4000-82dc-5366d6786f80');
 });
