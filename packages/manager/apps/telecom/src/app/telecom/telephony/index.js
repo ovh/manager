@@ -61,13 +61,16 @@ angular
 
             svaWalletOnboarding: /* @ngInject */ (
               $q,
+              coreURLBuilder,
               isSvaWalletFeatureAvailable,
               TelephonySvaWalletService,
               svaWallet,
               isSvaWalletValid,
             ) =>
               svaWallet && !isSvaWalletValid && isSvaWalletFeatureAvailable
-                ? TelephonySvaWalletService.getWalletOnboarding()
+                ? TelephonySvaWalletService.getWalletOnboarding(
+                    coreURLBuilder.buildURL('telecom', '#/telephony'),
+                  )
                 : $q.resolve(false),
 
             goToSvaWallet: /* @ngInject */ (

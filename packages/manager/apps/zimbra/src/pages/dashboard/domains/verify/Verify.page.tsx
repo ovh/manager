@@ -4,17 +4,18 @@ import { useParams } from 'react-router-dom';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_LINK_COLOR, ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-
 import {
-  Clipboard,
-  IconLinkAlignmentType,
-  LinkType,
-  Links,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
+  ICON_NAME,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
+
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Clipboard, Link, LinkType } from '@ovh-ux/muk';
 
 import { GuideLink, Loading } from '@/components';
 import { useDomain } from '@/data/hooks';
@@ -49,11 +50,10 @@ export const VerifyDomain = () => {
         className="flex w-full flex-col items-start gap-4 md:w-1/2"
         data-testid="validate-domain-page"
       >
-        <Links
-          iconAlignment={IconLinkAlignmentType.left}
+        <Link
           type={LinkType.back}
           href={goBackUrl}
-          onClickReturn={() => {
+          onClick={() => {
             trackClick({
               location: PageLocation.page,
               buttonType: ButtonType.button,
@@ -61,63 +61,69 @@ export const VerifyDomain = () => {
               actions: [VERIFY_DOMAIN, BACK_PREVIOUS_PAGE],
             });
           }}
-          color={ODS_LINK_COLOR.primary}
-          label={t('zimbra_domains_add_domain_cta_back')}
-        />
-        <Subtitle className="mb-6">
+        >
+          {t('zimbra_domains_add_domain_cta_back')}
+        </Link>
+        <Text preset={TEXT_PRESET.heading3} className="mb-6">
           {t('zimbra_domains_add_domain_configuration_cname_title')}
-        </Subtitle>
+        </Text>
         {domain && cname && !isFetching && (
           <>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <Text preset={TEXT_PRESET.paragraph}>
               <Trans
                 i18nKey="zimbra_domains_add_domain_configuration_cname_description"
                 t={t}
                 values={{ domain: domain.currentState?.name }}
               />
-            </OdsText>
-            <OdsText className="dns-field mt-4" preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text className="dns-field mt-4" preset={TEXT_PRESET.paragraph}>
               <strong>{t('zimbra_domains_add_domain_configuration_cname_field_type')}</strong>
               {' CNAME'}
-            </OdsText>
-            <OdsText className="dns-field" preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text className="dns-field" preset={TEXT_PRESET.paragraph}>
               <strong>{t('zimbra_domains_add_domain_configuration_cname_field_subdomain')}</strong>
               <Clipboard value={`${cname}.${domain?.currentState?.name}`} />
-            </OdsText>
-            <OdsText className="dns-field mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text className="dns-field mb-4" preset={TEXT_PRESET.paragraph}>
               <strong>{t('zimbra_domains_add_domain_configuration_cname_field_target')}</strong>
               <Clipboard value={'ovh.com'} />
-            </OdsText>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            </Text>
+            <Text preset={TEXT_PRESET.paragraph}>
               <Trans i18nKey="zimbra_domains_add_domain_configuration_info" t={t} />
-            </OdsText>
-            <OdsMessage isDismissible={false} className="w-full" color={ODS_MESSAGE_COLOR.warning}>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('zimbra_domains_add_domain_configuration_part_1')}{' '}
-                {t('zimbra_domains_add_domain_configuration_part_2')}
-                <span className="mt-2 block">
-                  <GuideLink
-                    guide={GUIDES_LIST.cname_guide}
-                    label={t('zimbra_domains_add_domain_configuration_guides_referee')}
-                  />
-                </span>
-              </OdsText>
-            </OdsMessage>
+            </Text>
+            <Message dismissible={false} className="w-full" color={MESSAGE_COLOR.warning}>
+              <MessageIcon name={ICON_NAME.triangleExclamation} />
+              <MessageBody>
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {t('zimbra_domains_add_domain_configuration_part_1')}{' '}
+                  {t('zimbra_domains_add_domain_configuration_part_2')}
+                  <span className="mt-2 block">
+                    <GuideLink
+                      guide={GUIDES_LIST.cname_guide}
+                      label={t('zimbra_domains_add_domain_configuration_guides_referee')}
+                    />
+                  </span>
+                </Text>
+              </MessageBody>
+            </Message>
           </>
         )}
         {domain && !cname && !isFetching && (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Text preset={TEXT_PRESET.paragraph}>
             {t('zimbra_domains_add_domain_configuration_cname_validated', {
               domain: domain.currentState?.name,
             })}
-          </OdsText>
+          </Text>
         )}
         {(isError || !domainId) && (
-          <OdsMessage isDismissible={false} className="w-full" color={ODS_MESSAGE_COLOR.critical}>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('zimbra_domains_add_domain_configuration_cname_not_found')}
-            </OdsText>
-          </OdsMessage>
+          <Message dismissible={false} className="w-full" color={MESSAGE_COLOR.critical}>
+            <MessageIcon name={ICON_NAME.hexagonExclamation} />
+            <MessageBody>
+              <Text preset={TEXT_PRESET.paragraph}>
+                {t('zimbra_domains_add_domain_configuration_cname_not_found')}
+              </Text>
+            </MessageBody>
+          </Message>
         )}
       </div>
       {isFetching && <Loading />}

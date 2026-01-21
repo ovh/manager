@@ -14,7 +14,7 @@ describe('Redirections page', () => {
 
     await waitFor(() => {
       const button = getByTestId('add-redirection-btn');
-      expect(button).toHaveAttribute('label', commonTranslation.add_redirection);
+      expect(button).toHaveTextContent(commonTranslation.add_redirection);
     });
   });
 });

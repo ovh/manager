@@ -4,26 +4,32 @@ import { Outlet, useResolvedPath, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
-import { OdsSkeleton, OdsTag } from '@ovhcloud/ods-components/react';
+import { TAG_COLOR, TAG_SIZE, Tag } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  BaseLayout,
-  ChangelogButton,
-  GuideButton,
-  GuideItem,
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import {
+  BaseLayout,
+  ChangelogMenu,
+  GuideMenu,
+  GuideMenuItem,
+  Notifications,
+  Skeleton,
+  useNotifications,
+} from '@ovh-ux/muk';
 
-import { Breadcrumb, Loading, TabItemProps, TabsPanel, useComputePathMatchers } from '@/components';
+import {
+  BreadcrumbComponent as Breadcrumb,
+  Loading,
+  TabItemProps,
+  TabsPanel,
+  useComputePathMatchers,
+} from '@/components';
 import { useOrganization } from '@/data/hooks';
 import { CHANGELOG_LINKS, GUIDES_LIST } from '@/guides.constants';
 import { useGenerateUrl, useOverridePage } from '@/hooks';
@@ -62,7 +68,7 @@ export const DashboardLayout: React.FC = () => {
     MAIL_MIGRATE_GUIDE: 'mail_migrate_guide',
   } as const;
 
-  const guideItems: GuideItem[] = Object.values(TopButtonGuidesListEnum).map(
+  const guideItems: GuideMenuItem[] = Object.values(TopButtonGuidesListEnum).map(
     (
       value: (typeof TopButtonGuidesListEnum)[keyof typeof TopButtonGuidesListEnum],
       key: number,
@@ -152,14 +158,14 @@ export const DashboardLayout: React.FC = () => {
   return (
     <BaseLayout
       breadcrumb={
-        <Suspense fallback={<OdsSkeleton className="[&::part(skeleton)]:max-w-80" />}>
+        <Suspense fallback={<Skeleton className="[&::part(skeleton)]:max-w-80" />}>
           <Breadcrumb namespace={['common', NAMESPACES.DASHBOARD]} />
         </Suspense>
       }
       header={{
         title: 'Zimbra',
-        headerButton: <GuideButton items={guideItems} />,
-        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+        guideMenu: <GuideMenu items={guideItems} />,
+        changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
       }}
       subtitle={
         selectedOrganizationId &&
@@ -167,8 +173,8 @@ export const DashboardLayout: React.FC = () => {
         ((
           <>
             <span>{organization.currentState.name}</span>
-            <OdsTag
-              color={ODS_TAG_COLOR.information}
+            <Tag
+              color={TAG_COLOR.information}
               onClick={() => {
                 trackClick({
                   location: PageLocation.page,
@@ -182,9 +188,10 @@ export const DashboardLayout: React.FC = () => {
                 });
               }}
               className="org-tag ml-6 font-normal"
-              size={ODS_TAG_SIZE.lg}
-              label={organization.currentState.label}
-            />
+              size={TAG_SIZE.lg}
+            >
+              {organization.currentState.label}
+            </Tag>
           </>
         ) as unknown as string) // subtitle should accept a ReactElement
       }

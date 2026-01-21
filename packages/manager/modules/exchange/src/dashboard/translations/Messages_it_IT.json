@@ -1382,8 +1382,8 @@
   "exchange_ACTION_configure_help_putinjunk_text": "Sposta automaticamente nel cestino le email contrassegnate come SPAM.",
   "exchange_ACTION_display_pst_check_existing_export": "Stiamo verificando se sono in corso altre esportazioni, ti preghiamo di attendere...",
   "exchange_ACTION_display_pst_wait_label": "L'esportazione in un file .pst può richiedere fino a qualche ora. Puoi controllare lo stato dell'operazione in qualsiasi momento (è possibile chiudere questa finestra e riaprirla in seguito).",
-  "exchange_ACTION_display_pst_get_file": "Il tuo file è disponibile al download tramite questo URL: ATTENZIONE: l'URL sarà valido solo per 30 minuti.",
-  "exchange_ACTION_display_pst_start": "Avvia l'esportazione",
+  "exchange_ACTION_display_pst_get_file": "Il tuo account <strong>{{ currentEmail }}</strong> è adesso disponibile in formato .pst.",
+  "exchange_ACTION_display_pst_start": "Scaricare",
   "exchange_ACTION_display_pst_progress": "Esportazione in corso: {0}% completato.",
   "exchange_ACTION_display_pst_export_done": "L’esportazione del file .pst è stata completata. Da questo momento, è possibile eseguire il download.",
   "exchange_ACTION_display_pst_genlink": "Genera il link",
@@ -1393,9 +1393,9 @@
   "exchange_ACTION_display_pst_retry": "Riprova adesso",
   "exchange_ACTION_display_pst_error": "L'esportazione del file .pst non è andata a buon fine, ti preghiamo di riprovare.",
   "exchange_ACTION_display_pst_already_exist": "Esiste già un file .pst per questo account email:",
-  "exchange_ACTION_display_pst_ask_generate_new": "Vuoi creare una nuova esportazione in .pst?",
-  "exchange_ACTION_display_pst_warning_erase": "Attenzione: questa azione sostituirà il file già esistente.",
-  "exchange_ACTION_add_pst_title": "Esporta in .pst",
+  "exchange_ACTION_display_pst_ask_generate_new": "Vuoi generare un nuovo export del tuo account?",
+  "exchange_ACTION_display_pst_warning_erase": "Questa azione comporterà <strong>la cancellazione automatica e diretta</strong> dell'ultimo file .pst.",
+  "exchange_ACTION_add_pst_title": "Esportare in formato .pst",
   "exchange_action_order_space_disk_title": "Ordina spazio disco aggiuntivo",
   "exchange_action_order_space_disk_intro": "Ordina spazio disco aggiuntivo",
   "exchange_action_order_space_disk_price": "Prezzo totale IVA esclusa:",
@@ -1687,5 +1687,7 @@
   "exchange_reset_mfa_success": "L’autenticazione a due fattori è stata ripristinata correttamente.",
   "exchange_mfa_error": "Si è verificato un errore: {{error}}",
   "exchange_delete_mfa_success": "L’autenticazione a due fattori è stata eliminata correttamente.",
-  "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}"
+  "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}",
+  "exchange_ACTION_display_pst_message_info": "Il download del file è <strong>disponibile fino al {{ expirationDate }} alle {{ expirationHour }}</strong>. Trascorso questo termine, il file verrà automaticamente eliminato.",
+  "exchange_ACTION_display_pst_ask_generate_new_link": "Avviare una nuova esportazione"
 }

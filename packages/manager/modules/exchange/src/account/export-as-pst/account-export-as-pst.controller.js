@@ -41,6 +41,7 @@ export default class ExchangeExportAsPstCtrl {
     this.exportStep = 1;
     this.timer = null;
     this.getExportDetails(true);
+    this.currentEmail = this.selectedAccount.primaryEmailAddress
   }
 
   getSelected() {
@@ -282,7 +283,10 @@ export default class ExchangeExportAsPstCtrl {
         break;
 
       case 6:
-        this.deleteExportDetails(this.exchange);
+        if (this.exportURL && this.exportURL.url) {
+          window.open(this.exportURL.url, '_blank')
+          this.closeExportWindow()
+        }
         break;
 
       case -1:

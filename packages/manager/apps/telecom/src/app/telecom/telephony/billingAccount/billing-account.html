@@ -16,10 +16,14 @@
                             data-maxlength="24"
                         >
                         </tuc-editable-service-name>
-                        <changelog-button
-                            links="BillingAccountCtrl.CHANGELOG.telephony.links"
-                            chapters="BillingAccountCtrl.CHANGELOG.telephony.chapters"
-                        ></changelog-button>
+                        <div class="d-flex no-wrap">
+                            <changelog-button
+                                links="BillingAccountCtrl.CHANGELOG.telephony.links"
+                                chapters="BillingAccountCtrl.CHANGELOG.telephony.chapters"
+                            ></changelog-button>
+                            <telecom-telephony-billing-account-guides>
+                            </telecom-telephony-billing-account-guides>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,12 +55,9 @@
                     ><span data-translate="telephony_group_tab_billing"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
-                    data-href="{{:: BillingAccountCtrl.orderAliasLink }}"
-                    data-disabled="!BillingAccountCtrl.canOrderAlias"
-                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.orderAliasLink"
-                    ><span
-                        data-translate="telephony_group_tab_orderAlias"
-                    ></span>
+                    data-href="{{:: BillingAccountCtrl.orderProductLink }}"
+                    data-active="BillingAccountCtrl.isOrderProductActive()"
+                    ><span data-translate="telephony_order"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     data-href="{{:: BillingAccountCtrl.phonebookLink }}"
@@ -81,11 +82,6 @@
                     ><span
                         data-translate="telephony_group_tab_contacts_manage"
                     ></span>
-                </oui-header-tabs-item>
-                <oui-header-tabs-item
-                    data-href="{{:: BillingAccountCtrl.guidesLink }}"
-                    data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.guidesLink"
-                    ><span data-translate="telephony_group_tab_guides"></span>
                 </oui-header-tabs-item>
             </oui-header-tabs>
         </nav>

@@ -5,22 +5,25 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_ICON_ALIGNMENT,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { useDomains, usePlatform } from '@/data/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
@@ -110,63 +113,73 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
 
   return (
     <div className="flex gap-6">
-      <div id="add-account-tooltip-trigger">
-        <ManagerButton
-          id="add-account-btn"
-          color={ODS_BUTTON_COLOR.primary}
-          size={ODS_BUTTON_SIZE.sm}
-          urn={platformUrn}
-          iamActions={[IAM_ACTIONS.account.create]}
-          onClick={handleAddEmailAccountClick}
-          data-testid="add-account-btn"
-          icon={ODS_ICON_NAME.plus}
-          label={t('zimbra_account_account_add')}
-          isDisabled={!canCreateAccount}
-        />
-      </div>
-      {!canCreateAccount && (
-        <OdsTooltip triggerId="add-account-tooltip-trigger">
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t(
-              domains?.length
-                ? 'zimbra_account_tooltip_need_slot'
-                : 'zimbra_account_tooltip_need_domain',
-            )}
-          </OdsText>
-        </OdsTooltip>
-      )}
-      <ManagerButton
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            id="add-account-btn"
+            color={BUTTON_COLOR.primary}
+            size={BUTTON_SIZE.sm}
+            urn={platformUrn}
+            iamActions={[IAM_ACTIONS.account.create]}
+            onClick={handleAddEmailAccountClick}
+            data-testid="add-account-btn"
+            disabled={!canCreateAccount}
+          >
+            <>
+              <Icon name={ICON_NAME.plus} />
+              {t('zimbra_account_account_add')}
+            </>
+          </Button>
+        </TooltipTrigger>
+        {!canCreateAccount && (
+          <TooltipContent withArrow>
+            <Text preset={TEXT_PRESET.paragraph}>
+              {t(
+                domains?.length
+                  ? 'zimbra_account_tooltip_need_slot'
+                  : 'zimbra_account_tooltip_need_domain',
+              )}
+            </Text>
+          </TooltipContent>
+        )}
+      </Tooltip>
+      <Button
         id="order-account-btn"
         urn={platformUrn}
         iamActions={[IAM_ACTIONS.account.create]}
         data-testid="order-account-btn"
-        color={ODS_BUTTON_COLOR.primary}
-        variant={ODS_BUTTON_VARIANT.outline}
-        size={ODS_BUTTON_SIZE.sm}
+        color={BUTTON_COLOR.primary}
+        variant={BUTTON_VARIANT.outline}
+        size={BUTTON_SIZE.sm}
         onClick={handleOrderEmailAccountClick}
-        label={t('zimbra_account_account_order')}
-      />
-      <ManagerButton
+      >
+        {t('zimbra_account_account_order')}
+      </Button>
+      <Button
         id="ovh-mail-migrator-btn"
-        color={ODS_BUTTON_COLOR.primary}
-        variant={ODS_BUTTON_VARIANT.outline}
-        size={ODS_BUTTON_SIZE.sm}
+        color={BUTTON_COLOR.primary}
+        variant={BUTTON_VARIANT.outline}
+        size={BUTTON_SIZE.sm}
         onClick={handleOvhMailMigratorAccountClick}
-        label={t('zimbra_account_account_migrate')}
-        iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-        icon={ODS_ICON_NAME.externalLink}
-      />
+      >
+        <>
+          {t('zimbra_account_account_migrate')}
+          <Icon name={ICON_NAME.externalLink} />
+        </>
+      </Button>
       <EmailAccountsExportCsv />
       {!!selectedRows?.length && (
-        <ManagerButton
+        <Button
           id="ovh-mail-delete-selected-btn"
-          color={ODS_BUTTON_COLOR.critical}
-          size={ODS_BUTTON_SIZE.sm}
+          color={BUTTON_COLOR.critical}
+          size={BUTTON_SIZE.sm}
           onClick={handleSelectEmailAccounts}
-          label={t('zimbra_account_delete_all', { count: selectedRows.length })}
-          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-          icon={ODS_ICON_NAME.trash}
-        />
+        >
+          <>
+            {t('zimbra_account_delete_all', { count: selectedRows.length })}
+            <Icon name={ICON_NAME.trash} />
+          </>
+        </Button>
       )}
     </div>
   );

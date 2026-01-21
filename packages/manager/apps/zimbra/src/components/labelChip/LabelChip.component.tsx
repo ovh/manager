@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { BADGE_SIZE, Badge } from '@ovhcloud/ods-react';
 
 export interface LabelChipProps {
   id: string;
@@ -33,7 +32,9 @@ export const LabelChip: React.FC<LabelChipProps> = ({ id, children }) => {
       aria-hidden="true"
       className="inline-block cursor-pointer"
     >
-      <OdsBadge id={id} label={children} size={ODS_BADGE_SIZE.lg} />
+      <Badge id={id} size={BADGE_SIZE.lg}>
+        {children}
+      </Badge>
     </div>
   );
 };

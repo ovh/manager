@@ -1,22 +1,17 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button, Datagrid, DatagridColumn, Icon } from '@ovh-ux/muk';
 
 import { BadgeStatus, IdLink, LabelChip } from '@/components';
+import { ResourceStatus } from '@/data/api';
 import { useOrganizations, usePlatform } from '@/data/hooks';
 import { useDebouncedValue, useGenerateUrl, useOverridePage } from '@/hooks';
 import { ADD_ORGANIZATION } from '@/tracking.constants';
@@ -25,38 +20,6 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 import ActionButton from './ActionButton.component';
 import { OrganizationItem } from './Organizations.types';
-
-const columns: DatagridColumn<OrganizationItem>[] = [
-  {
-    id: 'name',
-    cell: (item: OrganizationItem) => <IdLink id={item.id} label={item.name} />,
-    label: 'zimbra_organization_name',
-    isSearchable: true,
-  },
-  {
-    id: 'label',
-    cell: (item: OrganizationItem) =>
-      item.label && <LabelChip id={item.id}>{item.label}</LabelChip>,
-    label: 'zimbra_organization_label',
-  },
-  {
-    id: 'account',
-    cell: (item: OrganizationItem) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>
-    ),
-    label: 'zimbra_organization_account_number',
-  },
-  {
-    id: 'status',
-    cell: (item: OrganizationItem) => <BadgeStatus status={item.status} />,
-    label: `${NAMESPACES.STATUS}:status`,
-  },
-  {
-    id: 'tooltip',
-    cell: (item: OrganizationItem) => <ActionButton item={item} />,
-    label: '',
-  },
-];
 
 export default function Organizations() {
   const { t } = useTranslation(['organizations', NAMESPACES.STATUS]);
@@ -75,17 +38,57 @@ export default function Organizations() {
       refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
     });
 
-  const items: OrganizationItem[] =
-    data?.map((item) => ({
-      id: item.id,
-      name: item.currentState.name,
-      label: item.currentState.label,
-      account: item.currentState.accountsStatistics.reduce(
-        (acc, current) => acc + current.configuredAccountsCount,
-        0,
-      ),
-      status: item.resourceStatus,
-    })) ?? [];
+  const items: OrganizationItem[] = useMemo(
+    () =>
+      data?.map((item) => ({
+        id: item.id,
+        name: item.currentState.name,
+        label: item.currentState.label,
+        account: item.currentState.accountsStatistics.reduce(
+          (acc, current) => acc + current.configuredAccountsCount,
+          0,
+        ),
+        status: item.resourceStatus,
+      })) ?? [],
+    [data],
+  );
+
+  const columns: DatagridColumn<OrganizationItem>[] = useMemo(
+    () => [
+      {
+        id: 'name',
+        accessorKey: 'name',
+        cell: ({ row, getValue }) => <IdLink id={row.original.id} label={getValue<string>()} />,
+        label: 'zimbra_organization_name',
+        isSearchable: true,
+      },
+      {
+        id: 'label',
+        accessorKey: 'label',
+        cell: ({ row }) =>
+          row.original.label && <LabelChip id={row.original.id}>{row.original.label}</LabelChip>,
+        label: 'zimbra_organization_label',
+      },
+      {
+        id: 'account',
+        accessorKey: 'account',
+        label: 'zimbra_organization_account_number',
+      },
+      {
+        id: 'status',
+        accessorKey: 'status',
+        cell: ({ getValue }) => <BadgeStatus status={getValue<keyof typeof ResourceStatus>()} />,
+        label: `${NAMESPACES.STATUS}:status`,
+      },
+      {
+        id: 'tooltip',
+        maxSize: 50,
+        cell: ({ row }) => <ActionButton item={row.original} />,
+        label: '',
+      },
+    ],
+    [],
+  );
 
   const hrefAddOrganization = useGenerateUrl('./add', 'path');
 
@@ -105,18 +108,20 @@ export default function Organizations() {
       {!isOverridedPage && (
         <Datagrid
           topbar={
-            <ManagerButton
+            <Button
               id="add-organization-btn"
-              color={ODS_BUTTON_COLOR.primary}
-              inline-block
-              size={ODS_BUTTON_SIZE.sm}
+              color={BUTTON_COLOR.primary}
+              size={BUTTON_SIZE.sm}
               onClick={handleOrganizationClick}
               urn={platformUrn}
               iamActions={[IAM_ACTIONS.organization.create]}
               data-testid="add-organization-btn"
-              icon={ODS_ICON_NAME.plus}
-              label={t('common:add_organization')}
-            />
+            >
+              <>
+                <Icon name={ICON_NAME.plus} />
+                {t('common:add_organization')}
+              </>
+            </Button>
           }
           search={{
             searchInput,
@@ -125,10 +130,10 @@ export default function Organizations() {
           }}
           columns={columns.map((column) => ({
             ...column,
-            label: t(column.label),
+            header: t(column.label),
           }))}
-          items={items}
-          totalItems={items.length}
+          data={items}
+          totalCount={items.length}
           hasNextPage={hasNextPage}
           onFetchNextPage={fetchNextPage}
           onFetchAllPages={fetchAllPages}
