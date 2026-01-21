@@ -1,11 +1,10 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Button, Text } from '@ovhcloud/ods-react';
+import { Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { FlavorDetails } from '../components/cart/FlavorDetails.component';
 import { useCatalogPrice } from '@ovh-ux/muk';
 import { useInstanceCreation } from './useInstanceCreation';
 import CartOptionDetailItem from '../components/cart/CartOptionDetailItem.component';
-import Banner from '@/components/banner/Banner.component';
 
 export type TCartItem = {
   id: string;
@@ -23,7 +22,6 @@ export type TCartItemDetail = {
 
 type TCartItems = {
   cartItems: TCartItem[];
-  cartActions: JSX.Element;
 };
 
 export const useCartItems = (): TCartItems => {
@@ -35,13 +33,7 @@ export const useCartItems = (): TCartItems => {
     NAMESPACES.REGION,
   ]);
 
-  const {
-    instanceData,
-    isCreationEnabled,
-    isCreatingInstance,
-    handleCreateInstance,
-    errorMessage,
-  } = useInstanceCreation();
+  const { instanceData } = useInstanceCreation();
 
   const {
     localizationDetails,
@@ -203,28 +195,5 @@ export const useCartItems = (): TCartItems => {
     },
   ];
 
-  const ActionButtons = (
-    <>
-      {errorMessage && (
-        <Banner className="my-4" color="critical">
-          <p className="text-critical text-md m-0 font-bold">
-            {t('creation:pci_instance_creation_error_title')}
-          </p>
-          {errorMessage}
-        </Banner>
-      )}
-      <Button
-        loading={isCreatingInstance}
-        onClick={handleCreateInstance}
-        disabled={!isCreationEnabled}
-      >
-        {t('creation:pci_instance_creation_create_my_instance')}
-      </Button>
-      <Button variant="outline">
-        {t('creation:pci_instance_creation_configuration_code')}
-      </Button>
-    </>
-  );
-
-  return { cartItems, cartActions: ActionButtons };
+  return { cartItems };
 };

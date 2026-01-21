@@ -160,5 +160,8 @@
     "floating_ip_unavailable_LZ_tooltip": "Os IPs flutuantes não estão disponíveis nas localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "O Gateway não está disponível nas localZones.",
-  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Um Gateway já está atribuído à rede privada selecionada."
+  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Um Gateway já está atribuído à rede privada selecionada.",
+  "pci_instance_creation_discovery_project_title": "Modo descoberta",
+  "pci_instance_creation_discovery_project_message": "Para concluir a criação do seu recurso, você deve ativar seu projeto.",
+  "pci_instance_creation_discovery_project_activate": "Ativar"
 }

@@ -20,6 +20,8 @@ import {
   selectLocalBackupConfigurations,
 } from '../view-models/backupConfigurationViewModel';
 import { useBackupConfigurations } from '@/data/hooks/configuration/useBackupConfiguration';
+import { isDiscoveryProject } from '@/data/utils/project.utils';
+import { useProject } from '@ovh-ux/manager-pci-common';
 
 type TBackupConfigurationPrices = {
   localBackupPrice: number;
@@ -90,6 +92,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'distantBackupLocalization',
     ],
   });
+  const { data: project } = useProject();
 
   const { data: backupConfiguration } = useBackupConfigurations({
     select: selectLocalBackupConfigurations(microRegion),
@@ -179,7 +182,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const hasSshRequirements = !needsSshKey || !!sshKeyId || !!newSshPublicKey;
 
-  const isCreationEnabled = hasBaseRequirements && hasSshRequirements;
+  const isCreationEnabled =
+    hasBaseRequirements && hasSshRequirements && !isDiscoveryProject(project);
 
   const handleCreateInstance = () => {
     if (!isCreationEnabled || isCreatingInstance) return;
