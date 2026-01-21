@@ -8,14 +8,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Message } from '@ovhcloud/ods-react';
 
-import {
-  HeadersProps,
-  Notifications,
-  RedirectionGuard,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { BaseLayout, Button } from '@ovh-ux/muk';
+import { BaseLayout, Button, HeaderProps, RedirectionGuard } from '@ovh-ux/muk';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -39,9 +34,9 @@ export default function Listing() {
   const flattenData = data?.pages.flatMap((page) => page.data);
   const okmsList = flattenData || [];
 
-  const headerProps: HeadersProps = {
+  const headerProps: HeaderProps = {
     title: t('key_management_service_listing_title'),
-    headerButton: <KmsGuidesHeader />,
+    guideMenu: <KmsGuidesHeader />,
     changelogButton: <KmsChangelogButton />,
   };
 

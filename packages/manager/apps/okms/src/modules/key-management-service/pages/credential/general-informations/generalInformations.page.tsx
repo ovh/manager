@@ -13,7 +13,7 @@ import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { DashboardTile, DashboardTileBlockItem } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { Button } from '@ovh-ux/muk';
+import { Button, GridLayout } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
 import { MukLink } from '@/common/components/link/Link.component';
@@ -149,7 +149,7 @@ const CredentialGeneralInformations = () => {
   });
 
   return (
-    <div className="grid grid-cols-1 gap-4 break-words md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+    <GridLayout>
       <DashboardTile
         title={t('key_management_service_credential_dashboard_tile_general_informations')}
         items={items}
@@ -157,7 +157,7 @@ const CredentialGeneralInformations = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </div>
+    </GridLayout>
   );
 };
 

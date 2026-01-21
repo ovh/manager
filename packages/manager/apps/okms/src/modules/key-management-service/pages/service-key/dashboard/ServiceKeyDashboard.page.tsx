@@ -14,8 +14,8 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { DashboardGridLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
-import { BaseLayout } from '@ovh-ux/muk';
+import { ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
+import { BaseLayout, GridLayout } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -124,10 +124,10 @@ export default function ServiceKeyDashboard() {
         message={<Notifications />}
         tabs={<TabNavigation tabs={tabsList} />}
       >
-        <DashboardGridLayout>
+        <GridLayout>
           <GeneralInformationTile kms={okms} serviceKey={serviceKey} />
           <CryptoPropertiesTile serviceKey={serviceKey} />
-        </DashboardGridLayout>
+        </GridLayout>
         <Outlet />
       </BaseLayout>
     </Suspense>
