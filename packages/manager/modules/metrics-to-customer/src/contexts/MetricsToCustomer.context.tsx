@@ -22,14 +22,21 @@ export const MetricsToCustomerProvider = ({
   children,
   context,
 }: ContextProviderProps<MetricsToCustomerState>) => {
-  const { resourceName, productType, resourceURN, regions, enableConfigurationManagement } =
-    context;
+  const {
+    resourceName,
+    productType,
+    resourceURN,
+    regions,
+    subscriptionUrls,
+    enableConfigurationManagement,
+  } = context;
 
   const [state, setState] = useState<MetricsToCustomerState>({
     resourceName,
     productType,
     resourceURN,
     regions,
+    subscriptionUrls,
     enableConfigurationManagement,
   });
 

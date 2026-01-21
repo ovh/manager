@@ -24,6 +24,7 @@ export function MetricsToCustomerModule(
     productType,
     resourceURN,
     regions,
+    subscriptionUrls,
     enableConfigurationManagement = false,
   } = moduleProps;
   return (
@@ -34,6 +35,7 @@ export function MetricsToCustomerModule(
           resourceName,
           resourceURN,
           regions,
+          subscriptionUrls,
           enableConfigurationManagement,
         }}>
         <DashboardProvider>
