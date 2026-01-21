@@ -49,7 +49,9 @@ export default function ConfigurationCards({
   const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(
     serviceName,
     domainResource?.currentState.protectionState ===
-      ProtectionStateEnum.UNPROTECTED,
+      ProtectionStateEnum.UNPROTECTED &&
+      domainResource.currentState?.authInfoManagedByOVHcloud &&
+      domainResource.currentState?.authInfoSupported,
   );
   const { anycastOption, isFetchingAnycastOption } = useGetDomainAnycastOption(
     serviceName,
