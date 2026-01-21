@@ -1,0 +1,49 @@
+{
+  "name": {
+    "title": "Nome do share",
+    "label": "Escolha um nome para o seu ficheiro de partilha",
+    "info": "Deve conter apenas números, letras, underscores, hífens ou pontos."
+  },
+  "localisation": {
+    "title": "Selecione uma localização",
+    "deploymentMode": {
+      "title": "Filtre um modo de implantação",
+      "modes": {
+        "region": {
+          "label": "Região 1-AZ",
+          "description": "Implantação resiliente e económica em 1 zona de disponibilidade."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Implantação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade."
+        },
+        "region-3-az": {
+          "label": "Região 3-AZ",
+          "description": "Implantação das suas aplicações o mais próximo possível dos seus utilizadores para uma baixa latência e a residência dos dados."
+        }
+      }
+    },
+    "continents": {
+      "label": "",
+      "options": {
+        "all": "Todos",
+        "asia_oceania": "Ásia-Pacífico",
+        "europe": "Europe",
+        "north_africa": "África do Norte",
+        "north_america": "América do Norte"
+      }
+    },
+    "microRegion": {
+      "title": "Selecione um datacenter",
+      "label": "Escolha um datacenter"
+    },
+    "availabilityZone": {
+      "title": "Escolha a sua zona de disponibilidade",
+      "informations": "Uma zona de disponibilidade por defeito foi selecionada. Você tem a possibilidade de personalizar esta escolha.",
+      "choice": {
+        "company": "Escolher por mim",
+        "user": "Eu escolho a minha zona de disponibilidade"
+      }
+    }
+  }
+}

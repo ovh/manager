@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 
 import { RenderOptions, render } from '@testing-library/react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { DeepPartial, FormProvider, useForm } from 'react-hook-form';
 
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 
 type TRenderWithMockedFormOptions = {
-  defaultValues?: Partial<CreateShareFormValues>;
-  onFormChange?: (values: Partial<CreateShareFormValues>) => void;
+  defaultValues?: DeepPartial<CreateShareFormValues>;
+  onFormChange?: (values: DeepPartial<CreateShareFormValues>) => void;
 };
 
 type TRenderWithMockedForm = (
@@ -22,15 +22,17 @@ export const renderWithMockedForm: TRenderWithMockedForm = (
   const TestWrapper = ({ children }: { children: React.ReactNode }) => {
     const form = useForm<CreateShareFormValues>({
       defaultValues: {
-        shareData: {
-          name: '',
-          microRegion: '',
-        },
         deploymentModes: [],
         continent: 'all',
         macroRegion: '',
         ...defaultValues,
+        shareData: {
+          name: '',
+          microRegion: '',
+          ...defaultValues?.shareData,
+        },
       },
+      mode: 'onChange',
     });
 
     useEffect(() => {
@@ -38,6 +40,7 @@ export const renderWithMockedForm: TRenderWithMockedForm = (
       const subscription = form.watch((values) => {
         onFormChange?.(values as Partial<CreateShareFormValues>);
       });
+
       return () => subscription.unsubscribe();
     }, [form]);
 
