@@ -30,7 +30,7 @@ describe('useGuideItemKmip test suite', () => {
       expect.objectContaining({
         id: MOCKED_ID,
         href: MOCKED_LINK,
-        label: labels.guide.guides_header_connect_kmip_product,
+        children: labels.guide.guides_header_connect_kmip_product,
         target: '_blank',
       }),
     );

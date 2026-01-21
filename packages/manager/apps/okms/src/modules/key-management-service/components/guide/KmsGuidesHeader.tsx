@@ -1,5 +1,5 @@
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
-import { GuideButton } from '@ovh-ux/manager-react-components';
+import { GuideMenu } from '@ovh-ux/muk';
 
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { filterFalsy } from '@/common/utils/tools/filterFalsy';
@@ -19,7 +19,7 @@ export default function KmsGuidesHeader() {
   const guideKmip = useGuideItemKmip(2);
 
   return (
-    <GuideButton
+    <GuideMenu
       isLoading={isPending}
       items={filterFalsy([
         guideQuickStart,

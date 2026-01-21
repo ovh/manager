@@ -25,7 +25,7 @@ describe('useGuideItemKv2Api test suite', () => {
     expect(result.current).toStrictEqual({
       id: MOCKED_ID,
       href: MOCKED_LINK,
-      label: labels.secretManager.guide_use_with_kv2_api,
+      children: labels.secretManager.guide_use_with_kv2_api,
       target: '_blank',
     });
   });

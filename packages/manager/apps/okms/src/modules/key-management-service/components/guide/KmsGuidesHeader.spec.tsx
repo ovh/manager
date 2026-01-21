@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
 import {
@@ -7,11 +7,11 @@ import {
 } from '@ovh-ux/manager-module-common-api';
 
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import KmsGuidesHeader from './KmsGuidesHeader';
 
-const MOCKED_GUIDE_ITEM_TEST_IDS = {
+const labels = {
   quickStart: 'quick-start',
   usage: 'usage',
   kmip: 'kmip',
@@ -20,21 +20,21 @@ const MOCKED_GUIDE_ITEM_TEST_IDS = {
 vi.mock('./guide-quick-start/useGuideItemQuickStart', () => ({
   useGuideItemQuickStart: vi.fn(() => ({
     id: 0,
-    dataTestid: MOCKED_GUIDE_ITEM_TEST_IDS.quickStart,
+    children: labels.quickStart,
   })),
 }));
 
 vi.mock('./guide-usage/useGuideItemUsage', () => ({
   useGuideItemUsage: vi.fn(() => ({
     id: 1,
-    dataTestid: MOCKED_GUIDE_ITEM_TEST_IDS.usage,
+    children: labels.usage,
   })),
 }));
 
 vi.mock('./guide-kmip/useGuideItemKmip', () => ({
   useGuideItemKmip: vi.fn(() => ({
     id: 2,
-    dataTestid: MOCKED_GUIDE_ITEM_TEST_IDS.kmip,
+    children: labels.kmip,
   })),
 }));
 
@@ -54,12 +54,13 @@ describe('KMS Guides Header tests suite', () => {
     } as unknown as UseFeatureAvailabilityResult);
 
     // WHEN
-    await renderWithI18n(<KmsGuidesHeader />);
+    const wrapper = await testWrapperBuilder().withQueryClient().withI18next().build();
+    render(<KmsGuidesHeader />, { wrapper });
 
     // THEN
-    expect(screen.getByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.quickStart)).toBeInTheDocument();
-    expect(screen.getByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.usage)).toBeInTheDocument();
-    expect(screen.getByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.kmip)).toBeInTheDocument();
+    expect(screen.getByText(labels.quickStart)).toBeInTheDocument();
+    expect(screen.getByText(labels.usage)).toBeInTheDocument();
+    expect(screen.getByText(labels.kmip)).toBeInTheDocument();
   });
 
   it('should only display quick start guide when feature flipping is false', async () => {
@@ -72,11 +73,12 @@ describe('KMS Guides Header tests suite', () => {
     } as unknown as UseFeatureAvailabilityResult);
 
     // WHEN
-    await renderWithI18n(<KmsGuidesHeader />);
+    const wrapper = await testWrapperBuilder().withQueryClient().withI18next().build();
+    render(<KmsGuidesHeader />, { wrapper });
 
     // THEN
-    expect(screen.getByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.quickStart)).toBeInTheDocument();
-    expect(screen.queryByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.usage)).not.toBeInTheDocument();
-    expect(screen.queryByTestId(MOCKED_GUIDE_ITEM_TEST_IDS.kmip)).not.toBeInTheDocument();
+    expect(screen.getByText(labels.quickStart)).toBeInTheDocument();
+    expect(screen.queryByText(labels.usage)).not.toBeInTheDocument();
+    expect(screen.queryByText(labels.kmip)).not.toBeInTheDocument();
   });
 });
