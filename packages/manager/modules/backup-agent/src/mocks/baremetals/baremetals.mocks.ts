@@ -1,6 +1,6 @@
 import { Baremetal } from '@/types/Baremetal.type';
 
-export const BAREMETAL_MOCK: Baremetal[] = [
+export const BAREMETALS_MOCK: Baremetal[] = [
   {
     name: 'baremetal-server-1',
     state: 'active',

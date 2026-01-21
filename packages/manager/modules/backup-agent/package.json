@@ -26,6 +26,11 @@
       "import": "./dist/src/data/hooks/baremetal/useBaremetalsList",
       "require": "./dist/src/data/hooks/baremetal/useBaremetalsList.js"
     },
+    "./data/hooks/baremetal/useBaremetalDetails": {
+      "types": "./dist/types/src/data/hooks/baremetal/useBaremetalDetails.d.ts",
+      "import": "./dist/src/data/hooks/baremetal/useBaremetalDetails",
+      "require": "./dist/src/data/hooks/baremetal/useBaremetalDetails.js"
+    },
     "./data/hooks/vaults/getVault": {
       "types": "./dist/types/src/data/hooks/vaults/getVault.d.ts",
       "import": "./dist/src/data/hooks/vaults/getVault",
