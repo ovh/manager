@@ -1,7 +1,13 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
+import { useKubeRegions } from '@/api/hooks/useKubeRegions';
 import { TKubeRegions } from '@/domain/entities/kubeRegion';
 import { TCountryCode, TMacroRegion, TRegions } from '@/domain/entities/regions';
+import {
+  filterMacroRegionsByKubeRegions,
+  selectMacroRegions,
+} from '@/domain/processors/regions.service';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { TViewPlan, mapPlanCodeToDeploymentMode, mapPlanCodeToViewPlan } from './plans.viewmodel';
@@ -16,10 +22,6 @@ export type TRegionCard = {
   continentCode: TCreateClusterSchema['location']['continent'];
 };
 
-export const selectMacroRegions = (regions?: TRegions) => {
-  return regions ? [...regions.entities.macroRegions.byId.values()] : undefined;
-};
-
 export const filterMacroRegionsByDeploymentMode =
   (deploymentMode: TCreateClusterSchema['location']['deploymentMode']) =>
   (regions?: Array<TMacroRegion>) => {
@@ -29,21 +31,6 @@ export const filterMacroRegionsByDeploymentMode =
       const regionDeploymentMode = region.plans.map(mapPlanCodeToDeploymentMode);
       return regionDeploymentMode.includes(deploymentMode);
     });
-  };
-
-export const filterMacroRegionsByKubeRegions =
-  (kubeRegions?: TKubeRegions) => (regions?: Array<TMacroRegion>) => {
-    if (!regions) return undefined;
-    if (!kubeRegions) return regions;
-
-    return regions
-      .map((region) => ({
-        ...region,
-        microRegionIds: region.microRegionIds.filter((microRegionId) =>
-          kubeRegions.includes(microRegionId),
-        ),
-      }))
-      .filter((region) => region.microRegionIds.length > 0);
   };
 
 export const filterMacroRegions =
@@ -101,4 +88,18 @@ export const selectAre3azRegionsAvailable = (regions?: TRegions): boolean => {
     !!regions?.relations.planRegions['mks.standard.hour.consumption.3az']?.length;
 
   return hasFree3azRegions || hasStandard3azRegions;
+};
+
+export const useCombinedRegions = (
+  deploymentMode: TCreateClusterSchema['location']['deploymentMode'],
+) => {
+  const { data: kubeRegions } = useKubeRegions();
+
+  const { data: regions } = useAvailabilityRegions({
+    select: selectAvailableRegions(deploymentMode, kubeRegions),
+  });
+
+  return {
+    regions,
+  };
 };

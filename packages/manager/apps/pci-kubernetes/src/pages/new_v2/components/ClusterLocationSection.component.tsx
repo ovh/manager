@@ -8,8 +8,6 @@ import { Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/o
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
-import { useKubeRegions } from '@/api/hooks/useKubeRegions';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
 import { PLAN_DOC_LINKS } from '@/constants';
@@ -20,7 +18,7 @@ import { selectAvailablePlanOptions } from '../view-models/plans.viewmodel';
 import {
   filterMacroRegions,
   mapMacroRegionForCards,
-  selectAvailableRegions,
+  useCombinedRegions,
 } from '../view-models/regions.viewmodel';
 import { ContinentSelect } from './location/ContinentSelect.component';
 import { DeploymentModeSelect } from './location/DeploymentModeSelect.component';
@@ -52,15 +50,15 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
 
   const { setValue } = useFormContext<TCreateClusterSchema>();
 
-  const { data: kubeRegions } = useKubeRegions();
+  const { regions } = useCombinedRegions(deploymentModeField);
 
-  const { data: regions } = useAvailabilityRegions({
-    select: selectAvailableRegions(deploymentModeField, kubeRegions),
-  });
-
-  const continentOptions = useMemo(() => selectAvailableContinentOptions(regions), [regions]);
-
-  const planOptions = useMemo(() => selectAvailablePlanOptions(regions), [regions]);
+  const { continents: continentOptions, plans: planOptions } = useMemo(
+    () => ({
+      continents: selectAvailableContinentOptions(regions),
+      plans: selectAvailablePlanOptions(regions),
+    }),
+    [regions],
+  );
 
   const cardRegions = useMemo(
     () => mapMacroRegionForCards(filterMacroRegions(continentField, planField)(regions)),
@@ -87,7 +85,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
   useEffect(() => {
     if (macroRegionField || microRegionField) return;
 
-    const firstMacroRegion = cardRegions?.find((region) => !region.disabled);
+    const firstMacroRegion = cardRegions?.at(0);
     const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
     if (!firstMacroRegion || !firstMicroRegion) return;
 

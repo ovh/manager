@@ -24,12 +24,14 @@ export const ContinentSelect = ({ options }: TContinentSelectProps) => {
 
   const { control } = useFormContext<TCreateClusterSchema>();
 
-  const continentOptions = useMemo(() => {
-    return options.map(({ continentCode, labelKey }) => ({
-      value: continentCode,
-      label: t(labelKey),
-    }));
-  }, [options, t]);
+  const continentOptions = useMemo(
+    () =>
+      options.map(({ continentCode, labelKey }) => ({
+        value: continentCode,
+        label: t(labelKey),
+      })),
+    [options, t],
+  );
 
   return (
     <Controller
