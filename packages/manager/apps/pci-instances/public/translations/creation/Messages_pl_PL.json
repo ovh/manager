@@ -159,5 +159,8 @@
     "floating_ip_unavailable_LZ_tooltip": "Floating IP nie są dostępne w lokalnych strefach."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Brama nie jest dostępna w lokalnych strefach.",
-  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Brama jest już przypisana do wybranej sieci prywatnej."
+  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Brama jest już przypisana do wybranej sieci prywatnej.",
+  "pci_instance_creation_discovery_project_title": "Tryb odkrywania",
+  "pci_instance_creation_discovery_project_message": "Aby zakończyć tworzenie zasobu, musisz aktywować swój projekt.",
+  "pci_instance_creation_discovery_project_activate": "Włącz"
 }

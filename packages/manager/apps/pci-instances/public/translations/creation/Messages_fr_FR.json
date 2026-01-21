@@ -21,7 +21,7 @@
   "pci_instance_creation_create_my_instance": "Lancer mon instance",
   "pci_instance_creation_error_title": "Une erreur est survenue",
   "pci_instance_creation_configuration_code": "Code de ma configuration",
-  "pci_instance_creation_select_flavor_title": "Sélectionnez un modèle",
+  "pci_instance_creation_select_flavor_title": "Sélectionnez un modèle",  
   "pci_instance_creation_select_flavor_cart_section": "Modèle",
   "pci_instance_creation_select_flavor_help_title": "Modèles",
   "pci_instance_creation_select_flavor_help_description": "OVHcloud propose une variété d’instances pour répondre à vos besoins en matière de calcul, de mémoire, de stockage et de performance.",
@@ -162,5 +162,8 @@
     "floating_ip_create_new_label": "Créer une nouvelle - {{ price }}",
     "floating_ip_reuse_existing_label": "Reutiliser une floating IP existante",
     "floating_ip_unavailable_LZ_tooltip": "Les Floating IP ne sont pas disponibles dans les localZones."
-  }
+  },
+  "pci_instance_creation_discovery_project_title": "Mode découverte",
+  "pci_instance_creation_discovery_project_message": "Pour terminer la création de votre ressource, vous devez activer votre projet.",
+  "pci_instance_creation_discovery_project_activate": "Activer"
 }

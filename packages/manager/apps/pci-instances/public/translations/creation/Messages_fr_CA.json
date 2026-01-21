@@ -162,5 +162,8 @@
     "floating_ip_create_new_label": "Créer une nouvelle - {{ price }}",
     "floating_ip_reuse_existing_label": "Reutiliser une floating IP existante",
     "floating_ip_unavailable_LZ_tooltip": "Les Floating IP ne sont pas disponibles dans les localZones."
-  }
+  },
+  "pci_instance_creation_discovery_project_title": "Mode découverte",
+  "pci_instance_creation_discovery_project_message": "Pour terminer la création de votre ressource, vous devez activer votre projet.",
+  "pci_instance_creation_discovery_project_activate": "Activer"
 }
