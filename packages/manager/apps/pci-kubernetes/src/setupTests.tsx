@@ -4,9 +4,16 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
 
-vi.mock('@/hooks/use3azPlanAvaible', () => ({
-  default: vi.fn().mockReturnValue(true),
-}));
+vi.mock('@/hooks/useFeatureAvailability', async () => {
+  const mod = await vi.importActual('@/hooks/useFeatureAvailability');
+  return {
+    ...mod,
+    use3azAvailability: vi.fn(() => ({
+      data: true,
+      isPending: false,
+    })),
+  };
+});
 
 vi.mock('@/hooks/useStandardPlanAvailable.ts', () => ({
   default: vi.fn().mockReturnValue(true),

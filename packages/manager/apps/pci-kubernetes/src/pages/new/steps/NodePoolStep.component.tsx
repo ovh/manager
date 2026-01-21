@@ -16,7 +16,7 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 
 import BillingStep from '@/components/create/BillingStep.component';
 import { isStandardPlan } from '@/helpers';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import { TClusterPlanEnum, TScalingState } from '@/types';
 
 import useCreateNodePools from '../hooks/useCreateNodePool';
@@ -44,7 +44,7 @@ const NodePoolStep = ({
     name: stepper.form.region?.name,
   });
 
-  const has3AZFeature = use3AZPlanAvailable();
+  const { data: has3AZFeature } = use3azAvailability();
   const { projectId } = useSafeParams('projectId');
 
   const isStandard = has3AZFeature && isStandardPlan(plan);
