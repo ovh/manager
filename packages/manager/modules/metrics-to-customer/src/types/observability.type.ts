@@ -1,20 +1,24 @@
-import { IamObject } from '@ovh-ux/manager-react-components';
+import { IamObject } from '@ovh-ux/muk';
 
 import { ChartData } from '@/components/charts/base';
 import { ChartWidget } from '@/components/widget/ChartWidget.type';
 import { RequestPayload } from '@/types/RequestPayload.type';
 
-type TObservability = {
+export type TIdentifier = {
   id: string;
-  iam?: IamObject;
 };
 
-export type Tenant = { currentState: { title: string } } & TObservability;
+export type TObservabilityResource = {
+  iam?: IamObject;
+  createdAt: string;
+  updatedAt: string | null;
+} & TIdentifier;
+
 export type ObservabilityService = {
   currentState: { displayName: string | null };
-} & TObservability;
+} & TObservabilityResource;
 
-export type Dashboard = { currentState: ChartWidget[] } & TObservability;
+export type Dashboard = { currentState: ChartWidget[] } & TObservabilityResource;
 
 export type Kind = {
   currentState: {
@@ -22,7 +26,7 @@ export type Kind = {
     displayName: string;
     chart: ChartWidget;
   };
-} & TObservability;
+} & TObservabilityResource;
 
 export type MetricData<TData> = ChartData<TData>;
 
