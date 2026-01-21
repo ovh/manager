@@ -41,6 +41,7 @@ export const MacroRegionSelection = () => {
   const updateSelection = (macroRegion: string, microRegion: string) => {
     setValue('macroRegion', macroRegion);
     setValue('shareData.microRegion', microRegion);
+    setValue('availabilityZone', null);
 
     trackClick({
       location: PageLocation.funnel,
@@ -93,6 +94,7 @@ export const MacroRegionSelection = () => {
 
                         return displayCard ? (
                           <LocalizationCard
+                            key={city}
                             city={city}
                             datacenterDetails={datacenterDetails}
                             macroRegion={macroRegion}

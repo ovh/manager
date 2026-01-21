@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from 'react';
 import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ControllerRenderProps, FieldValues, useFormContext } from 'react-hook-form';
+import { DeepPartial } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TRegionData } from '@/adapters/catalog/left/shareCatalog.data';
@@ -65,16 +65,6 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {children}
     </div>
   ),
-  Controller: ({ render, name }: FieldValues) => {
-    const formContext = useFormContext<CreateShareFormValues>();
-    const field = {
-      value: formContext.watch(name) || null,
-      onChange: (value: string) => {
-        formContext.setValue(name, value);
-      },
-    } as ControllerRenderProps<CreateShareFormValues, 'macroRegion'>;
-    return render({ field });
-  },
 }));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
@@ -112,7 +102,7 @@ describe('MacroRegionSelection', () => {
       data: localizations,
     } as unknown as QueryObserverSuccessResult<TRegionData>);
 
-    let formValues: Partial<CreateShareFormValues> | undefined;
+    let formValues: DeepPartial<CreateShareFormValues> | undefined;
 
     renderWithMockedForm(<MacroRegionSelection />, {
       defaultValues: { continent: 'all', macroRegion: 'GRA' },
