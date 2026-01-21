@@ -112,5 +112,8 @@
   "iam_resource_type_ldp/stream": "Logs Data Platform: Flussi di dati",
   "iam_resource_type_ldp/tenant": "Logs Data Platform: Tenant di metriche",
   "iam_resource_type_publicCloudProject/managedRancher": "Progetto Public Cloud/Managed Rancher Service (MRS)",
-  "iam_resource_type_okms/secret": "Secret Manager (OKMS) / Secret"
+  "iam_resource_type_okms/secret": "Secret Manager (OKMS) / Secret",
+  "iam_resource_type_backupServices": "Backup Agent",
+  "iam_resource_type_backupServices/vault": "Backup Agent/Vault",
+  "iam_resource_type_backupServices/vspc": "Backup Agent/VSPC"
 }
