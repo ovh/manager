@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -10,11 +10,15 @@ import {
   CheckboxLabel,
 } from '@ovh-ux/muk';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { PREFERENCES_KEY, STANDARD_VIEW_ID } from './manageView.constants';
+import {
+  DEFAULT_COLUMN_VISIBILITY,
+  PREFERENCES_KEY,
+} from './manageView.constants';
 import { ViewType } from './types';
 import { useSaveViewsPreference } from '@/hooks/manage-views/useSaveViewPreference';
 import ManageViewDrawerTitle from './manageViewDrawerTitle';
 import ManageViewConfig from './manageViewConfig';
+import { ViewContext } from './viewContext';
 
 export type ManageViewDrawerProps = {
   views: ViewType[];
@@ -32,6 +36,7 @@ export const ManageViewDrawer = ({
   handleConfirm,
   handleCancel,
 }: ManageViewDrawerProps) => {
+  const { setColumnVisibility, currentView } = useContext(ViewContext);
   const { t } = useTranslation('manage-view');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const [editingView, setEditingView] = useState<ViewType>(null);
@@ -68,6 +73,13 @@ export const ManageViewDrawer = ({
     handleConfirm();
   };
 
+  const cancelChanges = () => {
+    setColumnVisibility(
+      currentView?.columnVisibility || DEFAULT_COLUMN_VISIBILITY,
+    );
+    handleCancel();
+  };
+
   return (
     <div
       className={`fixed top-0 right-0 h-full w-96 z-50
@@ -77,7 +89,7 @@ export const ManageViewDrawer = ({
       {isOpen && (
         <aside className="h-full w-full bg-white shadow-lg relative flex flex-col">
           <div
-            onClick={handleCancel}
+            onClick={cancelChanges}
             className="absolute top-9 -left-12 h-12 w-12 z-50 bg-white rounded-l-md shadow-md flex items-center justify-center border-0 outline-none focus:outline-none"
             aria-label={tCommon('close')}
           >
@@ -116,7 +128,7 @@ export const ManageViewDrawer = ({
             <Button
               aria-label={tCommon('cancel')}
               variant={BUTTON_VARIANT.ghost}
-              onClick={handleCancel}
+              onClick={cancelChanges}
             >
               {tCommon('cancel')}
             </Button>
