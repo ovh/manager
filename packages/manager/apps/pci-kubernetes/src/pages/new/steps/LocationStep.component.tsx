@@ -35,7 +35,7 @@ import { useRefreshProductAvailability } from '@/api/hooks/useAvailability';
 import { KubeDeploymentTile } from '@/components/region-selector/KubeDeploymentTile';
 import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
 import { DEPLOYMENT_URL, PLAN_DOC_LINKS } from '@/constants';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import useStandardPlanAvailable from '@/hooks/useStandardPlanAvailable';
 import { DeploymentMode } from '@/types';
@@ -61,7 +61,7 @@ export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationSte
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const [region, setRegion] = useState<TLocation | null>();
-  const featureFlipping3az = use3AZPlanAvailable();
+  const { data: featureFlipping3az } = use3azAvailability();
 
   const { uniqueRegions, contains3AZ } = useHas3AZRegions();
   const has3AZ = contains3AZ && featureFlipping3az;

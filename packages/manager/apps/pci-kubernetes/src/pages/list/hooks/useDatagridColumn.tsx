@@ -9,7 +9,7 @@ import { Clipboard, DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-rea
 
 import ActionsComponent from '@/components/listing/actions.component';
 import ClusterStatus from '@/components/service/ClusterStatus.component';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import { TKube } from '@/types';
 
 import Mode from '../components/Mode.component';
@@ -17,7 +17,7 @@ import Mode from '../components/Mode.component';
 export const useDatagridColumn = () => {
   const { t } = useTranslation(['listing', 'kube']);
   const { projectId = '' } = useParams();
-  const has3AZ = use3AZPlanAvailable();
+  const { data: has3AZ } = use3azAvailability();
 
   const columns: DatagridColumn<TKube>[] = [
     {

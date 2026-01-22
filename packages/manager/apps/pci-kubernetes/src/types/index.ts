@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { Subsidiary } from '@ovh-ux/manager-config';
 
 import { pluginData } from '@/api/data/plugins';
 import { isBase64 } from '@/helpers';
@@ -27,6 +27,11 @@ export enum PlaceHolder {
   usernameClaim = 'sub',
   usernamePrefix = 'oidc:',
 }
+
+export type TNormalizedEntity<ID, Entity> = {
+  byId: Map<ID, Entity>;
+  allIds: ID[];
+};
 
 export type TKube = {
   id: string;
@@ -197,7 +202,7 @@ export enum DeploymentMode {
   LOCAL_ZONE = 'localzone',
 }
 
-export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
+export type UrlRecord = { [Key in Subsidiary]?: string } & {
   DEFAULT: string;
 };
 

@@ -41,7 +41,7 @@ import {
 
 import { useKubes } from '@/api/hooks/useKubernetes';
 import { CHANGELOG_LINKS } from '@/constants';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 
 import FileStorageAlert from './components/FileStorageAlert.component';
@@ -60,7 +60,7 @@ export default function ListPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
-  const featureFlipping3az = use3AZPlanAvailable();
+  const { data: featureFlipping3az } = use3azAvailability();
   const [showStorageModal, setShowStorageModal] = useState(true);
 
   const { data: allKube, isPending } = useKubes(projectId, pagination, filters);

@@ -3,18 +3,18 @@ import { useCallback, useState } from 'react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import { DeploymentMode, TClusterPlanEnum } from '@/types';
 import { TLocation } from '@/types/region';
 
 import usePlanToRegionAvailability from '../../api/hooks/usePlanToRegionAvailability';
 import './KubeRegionSelector.css';
-import { RegionSelector, RegionSelectorProps } from './RegionSelector.component';
+import { RegionSelector } from './RegionSelector.component';
 
 export interface KubeRegionSelectorProps {
   projectId: string;
-  onSelectRegion: RegionSelectorProps['onSelectRegion'];
+  onSelectRegion: (region: TLocation | null) => void;
   selectedDeployment?: DeploymentMode;
 }
 
@@ -27,7 +27,8 @@ export function KubeRegionSelector({
 
   const [selectedPlan, setSelectedPlan] = useState<TClusterPlanEnum>(TClusterPlanEnum.ALL);
 
-  const featureFlipping3az = use3AZPlanAvailable();
+  const { data: featureFlipping3az } = use3azAvailability();
+
   const { contains3AZ } = useHas3AZRegions();
   const has3AZ = contains3AZ && featureFlipping3az;
 

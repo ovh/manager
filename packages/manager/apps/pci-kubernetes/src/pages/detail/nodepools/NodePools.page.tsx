@@ -33,7 +33,7 @@ import {
 import { usePaginatedClusterNodePools } from '@/api/hooks/node-pools';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import { useDatagridColumns } from '@/pages/detail/nodepools/useDatagridColumn';
 import queryClient from '@/queryClient';
 
@@ -63,7 +63,7 @@ export default function NodePoolsPage() {
       queryKey: ['project', projectId, 'kubernetes', kubeId, 'nodePools'],
     });
   const isStandardPlan = cluster?.plan === 'standard';
-  const has3AZFeature = use3AZPlanAvailable();
+  const { data: has3AZFeature } = use3azAvailability();
 
   const columns = useDatagridColumns({ showFloatingIp: has3AZFeature && isStandardPlan });
 

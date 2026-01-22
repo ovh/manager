@@ -34,7 +34,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import { PLAN_DOC_LINKS } from '@/constants';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import { DeploymentMode, TKube } from '@/types';
 
 import AdmissionPlugins from './AdmissionPlugins.component';
@@ -55,7 +55,7 @@ export default function ClusterInformation({ kubeDetail }: Readonly<ClusterInfor
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const { clearNotifications } = useNotifications();
-  const has3AZ = use3AZPlanAvailable();
+  const { data: has3AZ } = use3azAvailability();
 
   const planDocumentationLink =
     PLAN_DOC_LINKS[ovhSubsidiary as keyof typeof PLAN_DOC_LINKS] ?? PLAN_DOC_LINKS.DEFAULT;
