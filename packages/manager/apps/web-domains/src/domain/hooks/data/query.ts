@@ -38,6 +38,7 @@ import { getOrderCatalog } from '@/domain/data/api/order';
 import {
   getDomainContact,
   getMXPlan,
+  getRedirectionEmail,
   getZimbra,
   updateServiceOption,
 } from '@/common/data/api/common.api';
@@ -261,8 +262,22 @@ export function useEmailService(serviceName: string) {
         // MXplan not found return redirect
       }
 
+      try {
+        const redirection = await getRedirectionEmail(serviceName);
+        if (redirection) {
+          if (redirection.length > 0) {
+            return {
+              serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION,
+              data: redirection[0],
+            };
+          }
+        }
+      } catch (_) {
+        // Redirection not found return nothing
+      }
+
       return {
-        serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION,
+        serviceDetected: AssociatedEmailsServicesEnum.NOTHING,
         data: serviceName,
       };
     },
