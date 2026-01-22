@@ -53,7 +53,7 @@ describe('ServiceCreateButton', () => {
     // Assert
     const button = screen.getByTestId('create-button');
     expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent('services:dashboard.create_service');
+    expect(button).toHaveTextContent('services:dashboard.enable_service');
   });
 
   it('should render button with outline variant and sm size', () => {

@@ -1,7 +1,7 @@
 {
   "dashboard": {
     "title": "Gestion des services",
-    "create_service": "Créer un service",
+    "enable_service": "Activer un service",
     "links": {
       "tenants": "Tenants",
       "datastreams": "Flux de données",

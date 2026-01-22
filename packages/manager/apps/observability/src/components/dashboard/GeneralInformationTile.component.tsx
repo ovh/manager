@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Link, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Clipboard, Tile, useFormatDate } from '@ovh-ux/muk';
 
 import { GeneralInformationTileProps } from '@/components/dashboard/GeneralInformationTile.props';
@@ -23,7 +24,7 @@ export const GeneralInformationTile = ({
   resourceStatus,
   resourceName,
 }: GeneralInformationTileProps) => {
-  const { t } = useTranslation('tenants');
+  const { t } = useTranslation(['tenants', NAMESPACES.STATUS]);
 
   const navigate = useNavigate();
 
@@ -81,7 +82,7 @@ export const GeneralInformationTile = ({
       </Tile.Item.Root>
 
       <Tile.Item.Root>
-        <Tile.Item.Term label={t('status.title')} />
+        <Tile.Item.Term label={t(`${NAMESPACES.STATUS}:status`)} />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
             <ResourceBadgeStatus status={resourceStatus} />

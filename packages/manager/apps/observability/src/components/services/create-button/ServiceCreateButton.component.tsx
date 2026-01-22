@@ -13,7 +13,7 @@ export default function ServiceCreateButton() {
       size={BUTTON_SIZE.sm}
       onClick={() => window.open(orderLink, '_blank', 'noopener,noreferrer')}
     >
-      {t('services:dashboard.create_service')}
+      {t('services:dashboard.enable_service')}
     </Button>
   );
 }

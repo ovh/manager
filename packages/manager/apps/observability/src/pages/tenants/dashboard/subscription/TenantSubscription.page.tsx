@@ -22,7 +22,13 @@ import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { mapSubscriptionsToListing } from '@/utils/tenants.utils';
 
 export default function SubscriptionPage() {
-  const { t } = useTranslation(['tenants', NAMESPACES.DASHBOARD, NAMESPACES.ERROR, 'shared']);
+  const { t } = useTranslation([
+    'tenants',
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.ERROR,
+    'shared',
+    NAMESPACES.STATUS,
+  ]);
   const { addError } = useNotifications();
 
   const { selectedService } = useObservabilityServiceContext();
@@ -68,8 +74,8 @@ export default function SubscriptionPage() {
       },
       {
         id: 'status',
-        header: t('tenants:status.title'),
-        label: t('tenants:status.title'),
+        header: t(`${NAMESPACES.STATUS}:status`),
+        label: t(`${NAMESPACES.STATUS}:status`),
         accessorFn: (row: TenantSubscriptionListing) => row,
         cell: ({ getValue }) => {
           const { resourceStatus } = getValue() as TenantSubscriptionListing;

@@ -24,7 +24,12 @@ export default function TenantsListDatagrid({
   error,
   isError,
 }: TenantsListDatagridProps) {
-  const { t } = useTranslation(['tenants', NAMESPACES.DASHBOARD, NAMESPACES.ERROR]);
+  const { t } = useTranslation([
+    'tenants',
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.ERROR,
+    NAMESPACES.STATUS,
+  ]);
   const { addError } = useNotifications();
   const dateFnsLocale = useDateFnsLocale();
   const { selectedService } = useObservabilityServiceContext();
@@ -63,8 +68,8 @@ export default function TenantsListDatagrid({
       },
       {
         id: 'status',
-        header: t(`tenants:status.title`),
-        label: t(`tenants:status.title`),
+        header: t(`${NAMESPACES.STATUS}:status`),
+        label: t(`${NAMESPACES.STATUS}:status`),
         accessorFn: (row: TenantListing) => row,
         cell: ({ getValue }) => {
           const { resourceStatus } = getValue() as TenantListing;
