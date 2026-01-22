@@ -1520,3 +1520,18 @@ export const mockedGatewayConfiguration = {
   price: 10000,
   size: 'S',
 };
+
+export const mockedBasicPublicIpConfiguration = {
+  price: 0,
+};
+
+export const mockedFloatingIpConfiguration = {
+  price: 10000,
+  size: 'S',
+};
+
+export const mockedExistingFloatingIps = [
+  { value: '1', label: '51.38.xxx.xxx' },
+  { value: '2', label: '51.39.xxx.xxx' },
+  { value: '3', label: '51.40.xxx.xxx' },
+];

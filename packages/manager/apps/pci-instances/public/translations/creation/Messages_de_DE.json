@@ -136,7 +136,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Drehung 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Angepasst",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Ein Backup wird jeden Tag zwischen 22:00 und 6:00 Uhr (UTC) erstellt, und die Rotation hält einen Verlauf der letzten {{ numEntries }} Einträge. Wenn das neue Backup abgeschlossen ist, wird das älteste gelöscht.",
+    "predefined": "Ein Backup wird täglich zwischen 22:00 und 6:00 Uhr (UTC) erstellt, und die Rotation hält einen Verlauf der {{ numEntries }} letzten Einträge. Wenn das neue Backup abgeschlossen ist, wird das älteste gelöscht.",
     "custom": "Wählen Sie selbst die Planung (UNIX Cron-Format), die Anzahl der Rotationen und die maximalen Ausführungen, die Sie wünschen."
   },
   "pci_instance_creation_backup_setting_price_unit": "~{{ price }} zzgl. MwSt./Monat/GB",
@@ -144,5 +144,21 @@
   "pci_instance_creation_table_storage_unit_tb": "TB",
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Eine Gateway zuweisen",
-  "pci_instance_creation_network_gateway_price_label": "Größe {{ size }} - {{ price }}"
+  "pci_instance_creation_network_gateway_price_label": "Größe {{ size }} - {{ price }}",
+  "pci_instance_creation_network_add_public_connectivity": {
+    "title": "Öffentliche Konnektivität zuweisen",
+    "description": "<p>Die Zuweisung einer öffentlichen IP-Adresse ermöglicht den Zugriff auf Ihre Instanz von außerhalb des OVHcloud-Netzwerks. <span>Die Erstellung der Floating IP erfolgt am Ende der Konfiguration.</span></p>",
+    "toggle_label": "Eine öffentliche IP zuweisen",
+    "basic_ip_label": "Basis-Öffentliche IP (An die Instanz gebunden) - {{ price }}",
+    "basic_ip_description": "Eine Basis-Öffentliche IP ist eine IP-Adresse, die nicht über die Lebensdauer der Ressource hinaus besteht. ",
+    "basic_ip_warning": "Die Aktivierung der Basis-Öffentlichen IP ist nicht mit einem Gateway kompatibel.",
+    "floating_ip_label": "Eine Floating IP erstellen (Wiederverwendbar) - {{ price }}",
+    "floating_ip_description": "Die Reservierung einer Floating IP weist die Adresse Ihrem Projekt zu, bis Sie sie ausdrücklich freigeben. ",
+    "floating_ip_warning": "Wenn Sie diese Option auswählen, weisen wir Ihnen ein Gateway der Größe {{ size }} zu.",
+    "floating_ip_create_new_label": "Eine neue erstellen - {{ price }}",
+    "floating_ip_reuse_existing_label": "Eine vorhandene Floating IP wiederverwenden",
+    "floating_ip_unavailable_LZ_tooltip": "Floating IPs sind in den lokalen Zonen nicht verfügbar."
+  },
+  "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Das Gateway ist in den lokalen Zonen nicht verfügbar.",
+  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Ein Gateway ist bereits dem ausgewählten privaten Netzwerk zugewiesen."
 }
