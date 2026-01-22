@@ -1,6 +1,7 @@
 import { TMacroRegion } from '@/domain/entities/regions';
 
 import { TCreateClusterSchema, createClusterFormContinentCodes } from '../CreateClusterForm.schema';
+import { filterMacroRegions } from './regions.viewmodel';
 
 export type ContinentOption = {
   labelKey: string;
@@ -12,25 +13,27 @@ const ALL_CONTINENT_OPTION: ContinentOption = {
   continentCode: 'ALL',
 };
 
-export const selectAvailableContinentOptions = (
-  regions?: Array<TMacroRegion>,
-): Array<ContinentOption> => {
-  if (!regions || regions.length === 0) {
-    return [ALL_CONTINENT_OPTION];
-  }
-
-  const uniqueContinents = new Set(regions.map((region) => region.continentCode));
-
-  const options: Array<ContinentOption> = [ALL_CONTINENT_OPTION];
-
-  createClusterFormContinentCodes.forEach((code) => {
-    if (code !== 'ALL' && uniqueContinents.has(code)) {
-      options.push({
-        labelKey: `common_continent_label_${code}`,
-        continentCode: code,
-      });
+export const selectAvailableContinentOptions =
+  (planField: TCreateClusterSchema['location']['plan']) =>
+  (regions?: Array<TMacroRegion>): Array<ContinentOption> => {
+    if (!regions || regions.length === 0) {
+      return [ALL_CONTINENT_OPTION];
     }
-  });
 
-  return options;
-};
+    const filteredRegions = filterMacroRegions('ALL', planField)(regions);
+
+    const uniqueContinents = new Set(filteredRegions?.map((region) => region.continentCode));
+
+    const options: Array<ContinentOption> = [ALL_CONTINENT_OPTION];
+
+    createClusterFormContinentCodes.forEach((code) => {
+      if (code !== 'ALL' && uniqueContinents.has(code)) {
+        options.push({
+          labelKey: `common_continent_label_${code}`,
+          continentCode: code,
+        });
+      }
+    });
+
+    return options;
+  };
