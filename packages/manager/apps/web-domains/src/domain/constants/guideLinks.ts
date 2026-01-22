@@ -11,7 +11,7 @@ export enum GuideNameEnum {
   FAQ_LINK = 'FAQ_LINK',
 }
 
-const helpRoot = 'https://help.ovhcloud.com/csm/';
+export const helpRoot = 'https://help.ovhcloud.com/csm/';
 
 export interface Links {
   [key: string]: string;
@@ -58,16 +58,16 @@ export const Languages = {
 } as const;
 
 export type LanguageKey = keyof typeof Languages;
-type ArticleGuide = {
+export type ArticleGuide = {
   type: 'article';
   target: string;
   articles: Record<LanguageKey, string>;
 };
-type CategoryGuide = {
+export type CategoryGuide = {
   type: 'category';
   suffix: string;
 };
-type GuideConfig = ArticleGuide | CategoryGuide;
+export type GuideConfig = ArticleGuide | CategoryGuide;
 
 const guides: Record<GuideNameEnum, GuideConfig> = {
   [GuideNameEnum.DOMAINS_LINK]: {
@@ -221,30 +221,32 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
   },
 };
 
-const buildLinksByLanguage = (
-  guides: Record<GuideNameEnum, GuideConfig>,
-): Record<string, Record<GuideNameEnum, string>> =>
+export const buildLinksByLanguage = <T extends string>(
+  guides: Record<T, GuideConfig>,
+  languages: Record<string, string>,
+): Record<string, Record<T, string>> =>
   Object.fromEntries(
-    (Object.keys(Languages) as LanguageKey[]).map((lang) => {
-      const urls: Record<GuideNameEnum, string> = {} as Record<
-        GuideNameEnum,
-        string
-      >;
-      for (const [guideKey, config] of Object.entries(guides)) {
+    (Object.keys(languages) as string[]).map((lang) => {
+      const urls: Record<T, string> = {} as Record<T, string>;
+      for (const [guideKey, config] of Object.entries(guides) as [
+        string,
+        GuideConfig,
+      ][]) {
         if (config.type === 'category') {
-          urls[
-            guideKey as GuideNameEnum
-          ] = `${helpRoot}${Languages[lang]}${config.suffix}`;
+          urls[guideKey as T] = `${helpRoot}${languages[lang]}${config.suffix}`;
         } else {
-          urls[guideKey as GuideNameEnum] =
-            `${helpRoot}${Languages[lang]}${config.target}?id=kb_article_view&sysparm_article=` +
-            (config.articles[lang] ?? config.articles.DEFAULT);
+          const articleKey =
+            (config.articles as Record<string, string>)[lang] ??
+            config.articles.DEFAULT;
+          urls[guideKey as T] =
+            `${helpRoot}${languages[lang]}${config.target}?id=kb_article_view&sysparm_article=` +
+            articleKey;
         }
       }
       return [lang, urls];
     }),
-  ) as Record<LanguageKey, Record<GuideNameEnum, string>>;
-export const LINKS_BY_LANGUAGE = buildLinksByLanguage(guides);
+  ) as Record<string, Record<T, string>>;
+export const LINKS_BY_LANGUAGE = buildLinksByLanguage(guides, Languages);
 
 export const useLinks = (language: Subsidiary): Record<GuideNameEnum, string> =>
   useMemo(() => LINKS_BY_LANGUAGE[language] || LINKS_BY_LANGUAGE.DEFAULT, [
