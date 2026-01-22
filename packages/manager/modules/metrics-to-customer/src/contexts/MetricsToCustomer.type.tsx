@@ -5,6 +5,7 @@ export interface MetricsToCustomerState {
   productType: string;
   resourceURN: string;
   regions: string[];
+  defaultRetention: string;
   subscriptionUrls: SubscriptionUrls;
   enableConfigurationManagement: boolean;
 }
