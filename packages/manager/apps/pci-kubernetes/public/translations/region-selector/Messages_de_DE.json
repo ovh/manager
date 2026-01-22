@@ -22,5 +22,17 @@
   "pci_projects_project_filter_by_region": "Nach Standort filtern",
   "pci_projects_project_filter_by_plan_all": "Alle",
   "pci_projects_project_regions_filter_plan_message": "Der Free Plan ist nur in den 1-AZ-Regionen verfügbar, der Standard Plan ist in allen 3-AZ-Regionen und in einigen 1-AZ-Regionen verfügbar.",
-  "pci_projects_project_regions_filter_plan_compare": "Die Pläne vergleichen"
+  "pci_projects_project_regions_filter_plan_compare": "Die Pläne vergleichen",
+  "cluster_location_help_drawer": {
+    "title": "Wahl der Bereitstellungsregion",
+    "intro": "Die Region bestimmt den physischen Standort Ihres Clusters. Diese Wahl definiert die Architektur Ihres <strong>Kontrollplans</strong> und die mögliche Verteilung Ihrer <strong>Worker-Nodes</strong>.",
+    "3az_title": "3-AZ Region",
+    "3az_control_plane": "<strong>Kontrollplan</strong> : Er ist <strong>regionalisiert</strong>, das heißt, er ist redundant auf 3 verschiedene Verfügbarkeitszonen verteilt.",
+    "3az_worker_nodes": "<strong>Worker-Nodes</strong> : Sie haben die Freiheit, Ihre Nodes in jeder Zone der Region zu verteilen, um die Fehlertoleranz zu maximieren.",
+    "1az_title": "1-AZ Region",
+    "1az_control_plane": "<strong>Kontrollplan</strong> : Es wird in einer <strong>einzigen Zone</strong> spezifisch gehostet.",
+    "1az_worker_nodes": "<strong>Worker-Nodes</strong> : Ihre Nodes werden in derselben Zone wie der Kontrollplan bereitgestellt.",
+    "regions_title": "Mehr über die Regionen erfahren",
+    "deployment_types_title": "Mehr über die Regionstypen erfahren"
+  }
 }

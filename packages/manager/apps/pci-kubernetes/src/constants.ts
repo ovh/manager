@@ -83,7 +83,7 @@ export const TAGS_BLOB = {
 
 export const GATEWAY_IP_REGEX = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$/;
 
-export const SUBNET_DOC = {
+export const SUBNET_DOC: UrlRecord = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-known-limits?id=kb_article_view&sysparm_article=KB0049873',
   ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-kubernetes-known-limits?id=kb_article_view&sysparm_article=KB0037444',
@@ -110,7 +110,7 @@ export const SUBNET_DOC = {
   WS: 'https://help.ovhcloud.com/csm/es-public-cloud-kubernetes-known-limits?id=kb_article_view&sysparm_article=KB0055210',
 };
 
-export const LOAD_BALANCER_DOC = {
+export const LOAD_BALANCER_DOC: UrlRecord = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059277',
   ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059273',
@@ -146,7 +146,7 @@ export const CHANGELOG_LINKS: ChangelogLinks = {
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
 
-export const DEPLOYMENT_URL = {
+export const DEPLOYMENT_URL: UrlRecord = {
   ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066023',
   AU: 'https://help.ovhcloud.com/csm/en-au-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066022',
   CA: 'https://help.ovhcloud.com/csm/en-ca-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066032',
@@ -196,7 +196,7 @@ export const PLAN_DOC_LINKS: UrlRecord = {
   US: 'https://us.ovhcloud.com/public-cloud/kubernetes/#prix',
 };
 
-export const IAM_AUTHENTICATION_INFOS_PRICE = {
+export const IAM_AUTHENTICATION_INFOS_PRICE: UrlRecord = {
   DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/prices/#compute',
   ASIA: 'https://www.ovhcloud.com/asia/public-cloud/prices/#compute',
   AU: 'https://www.ovhcloud.com/en-au/public-cloud/prices/#compute',
@@ -221,7 +221,7 @@ export const IAM_AUTHENTICATION_INFOS_PRICE = {
   US: 'https://us.ovhcloud.com/public-cloud/prices/#compute',
 };
 
-export const IAM_AUTHENTICATION_INFOS = {
+export const IAM_AUTHENTICATION_INFOS: UrlRecord = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050152',
   ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050155',
@@ -245,6 +245,31 @@ export const IAM_AUTHENTICATION_INFOS = {
   WE: 'https://help.ovhcloud.com/csm/en-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050152',
   WS: 'https://help.ovhcloud.com/csm/es-public-cloud-network-additional-ip-vs-floating-ip?id=kb_article_view&sysparm_article=KB0050169',
   US: 'https://support.us.ovhcloud.com/hc/en-us/articles/21134381741715-Concepts-Additional-IP-or-Floating-IP',
+};
+
+export const REGIONS_DOCUMENTATION_LINK: UrlRecord = {
+  DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/regions-availability/',
+  ASIA: 'https://www.ovhcloud.com/asia/public-cloud/regions-availability/',
+  AU: 'https://www.ovhcloud.com/en-au/public-cloud/regions-availability/',
+  CA: 'https://www.ovhcloud.com/en-ca/public-cloud/regions-availability/',
+  DE: 'https://www.ovhcloud.com/de/public-cloud/regions-availability/',
+  ES: 'https://www.ovhcloud.com/es-es/public-cloud/regions-availability/',
+  FR: 'https://www.ovhcloud.com/fr/public-cloud/regions-availability/',
+  GB: 'https://www.ovhcloud.com/en-gb/public-cloud/regions-availability/',
+  IE: 'https://www.ovhcloud.com/en-ie/public-cloud/regions-availability/',
+  IN: 'https://www.ovhcloud.com/en-in/public-cloud/regions-availability/',
+  IT: 'https://www.ovhcloud.com/it/public-cloud/regions-availability/',
+  MA: 'https://www.ovhcloud.com/fr-ma/public-cloud/regions-availability/',
+  NL: 'https://www.ovhcloud.com/nl/public-cloud/regions-availability/',
+  PL: 'https://www.ovhcloud.com/pl/public-cloud/regions-availability/',
+  PT: 'https://www.ovhcloud.com/pt/public-cloud/regions-availability/',
+  QC: 'https://www.ovhcloud.com/fr-ca/public-cloud/regions-availability/',
+  SG: 'https://www.ovhcloud.com/en-sg/public-cloud/regions-availability/',
+  SN: 'https://www.ovhcloud.com/fr-sn/public-cloud/regions-availability/',
+  TN: 'https://www.ovhcloud.com/fr-tn/public-cloud/regions-availability/',
+  WE: 'https://www.ovhcloud.com/en/public-cloud/regions-availability/',
+  WS: 'https://www.ovhcloud.com/es/public-cloud/regions-availability/',
+  US: 'https://us.ovhcloud.com/public-cloud/regions-availability/',
 };
 
 export type KubeconfigPricingRegion = keyof typeof PLAN_DOC_LINKS;

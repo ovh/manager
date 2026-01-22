@@ -21,6 +21,18 @@
   "pci_projects_project_regions_add_region_success": "Lokalizacja {{code } została dodana do Twojego projektu.",
   "pci_projects_project_filter_by_region": "Filtruj według lokalizacji",
   "pci_projects_project_filter_by_plan_all": "Wszystkie",
-  "pci_projects_project_regions_filter_plan_message": "Oferta Free jest dostępna tylko w regionach 1-AZ, a oferta Standard - we wszystkich regionach 3-AZ i w wybranych regionach 1-AZ.",
-  "pci_projects_project_regions_filter_plan_compare": "Porównaj oferty"
+  "pci_projects_project_regions_filter_plan_message": "Plan Free jest dostępny tylko w regionach 1-AZ, plan Standard jest dostępny we wszystkich regionach 3-AZ oraz w niektórych regionach 1-AZ.",
+  "pci_projects_project_regions_filter_plan_compare": "Porównaj plany",
+  "cluster_location_help_drawer": {
+    "title": "Wybór regionu wdrożenia",
+    "intro": "Region określa fizyczną lokalizację twojego klastra. Ten wybór definiuje architekturę twojego <strong>planu kontrolnego</strong> oraz możliwą dystrybucję twoich <strong>węzłów roboczych</strong>.",
+    "3az_title": "Region 3-AZ",
+    "3az_control_plane": "<strong>Plan kontrolny</strong> : Jest <strong>regionalizowany</strong>, co oznacza, że jest rozłożony w sposób redundantny na 3 odrębne strefy dostępności.",
+    "3az_worker_nodes": "<strong>Węzły robocze</strong> : Masz swobodę rozmieszczania swoich węzłów w dowolnej strefie regionu, aby zmaksymalizować tolerancję na awarie.",
+    "1az_title": "Region 1-AZ",
+    "1az_control_plane": "<strong>Plan kontrolny</strong> : Jest hostowany w <strong>jednej strefie</strong> specyficznej.",
+    "1az_worker_nodes": "<strong>Węzły robocze</strong> : Twoje węzły są wdrażane w tej samej strefie co plan kontrolny.",
+    "regions_title": "Więcej informacji o regionach",
+    "deployment_types_title": "Więcej informacji o typach regionów"
+  }
 }
