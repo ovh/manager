@@ -7,9 +7,8 @@ import DistributionImageVariants from './distributionImage/DistributionImageVari
 import DistributionVersionList from './distributionImage/DistributionVersionList.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { deps } from '@/deps/deps';
 import {
-  selectImages,
+  selectImagesFromCatalog,
   emptyResult,
   selectEligibleBackups,
   selectFlavorBackupConstraints,
@@ -60,26 +59,36 @@ const DistributionImage = ({ microRegion }: TDistributionImageProps) => {
     { limit: 100 },
   );
 
+  const imagesSelect = useMemo(
+    () => (catalog: Parameters<typeof selectImagesFromCatalog>[0]) =>
+      distributionImageType === 'backups'
+        ? emptyResult
+        : selectImagesFromCatalog(catalog, {
+            projectId,
+            selectedImageType: distributionImageType,
+            microRegion,
+            regionalizedFlavorId: flavorId,
+            distributionImageVariantId,
+          }),
+    [
+      distributionImageType,
+      flavorId,
+      microRegion,
+      projectId,
+      distributionImageVariantId,
+    ],
+  );
+
+  const { data: catalogImagesResult } = useInstancesCatalogWithSelect({
+    select: imagesSelect,
+  });
+
   const { images: imageVariants, versions } = useMemo(() => {
     if (distributionImageType === 'backups') {
       return eligibleBackups ?? emptyResult;
     }
-
-    return selectImages(deps)({
-      projectId,
-      selectedImageType: distributionImageType,
-      microRegion,
-      regionalizedFlavorId: flavorId,
-      distributionImageVariantId,
-    });
-  }, [
-    distributionImageType,
-    flavorId,
-    microRegion,
-    projectId,
-    distributionImageVariantId,
-    eligibleBackups,
-  ]);
+    return catalogImagesResult ?? emptyResult;
+  }, [distributionImageType, eligibleBackups, catalogImagesResult]);
 
   return (
     <section>

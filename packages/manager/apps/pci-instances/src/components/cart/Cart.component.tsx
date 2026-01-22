@@ -44,7 +44,10 @@ export const Cart = ({ items, actionsButtons }: TCartProps) => {
                 </Text>
               )}
             </CartItemHeader>
-            <CartItemDetails details={item.details} />
+            <CartItemDetails
+              details={item.details}
+              quantityHintParams={item.quantityHintParams}
+            />
           </CartItem>
         )}
       />

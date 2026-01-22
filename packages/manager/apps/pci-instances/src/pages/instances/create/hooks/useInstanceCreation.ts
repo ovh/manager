@@ -6,8 +6,8 @@ import {
   TSelectLocalizationDetails,
 } from '../view-models/cartViewModel';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { deps } from '@/deps/deps';
 import { useMemo } from 'react';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 import { selectPrivateNetworks } from '../view-models/networksViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { mapFlavorToDTO } from '@/adapters/tanstack/instances/right/mapper';
@@ -102,37 +102,44 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const instancesListUrl = `/pci/projects/${projectId}/instances`;
 
+  const { data: catalog } = useInstancesCatalogWithSelect({
+    select: (c) => c,
+  });
+
   const localizationDetails = useMemo(
     () =>
-      selectLocalisationDetails(deps)(
-        projectId,
-        macroRegion,
-        microRegion,
-        availabilityZone,
-      ),
-    [availabilityZone, macroRegion, microRegion, projectId],
+      catalog
+        ? selectLocalisationDetails(catalog)(
+            macroRegion,
+            microRegion,
+            availabilityZone,
+          )
+        : null,
+    [catalog, availabilityZone, macroRegion, microRegion],
   );
 
   const flavorDetails = useMemo(
     () =>
-      selectFlavorDetails(deps)(
-        projectId,
-        flavorId,
-        distributionImageOsType,
-        billingType,
-      ),
-    [distributionImageOsType, flavorId, projectId, billingType],
+      catalog
+        ? selectFlavorDetails(catalog)(
+            flavorId,
+            distributionImageOsType,
+            billingType,
+          )
+        : null,
+    [catalog, distributionImageOsType, flavorId, billingType],
   );
 
   const windowsImageLicensePrice = useMemo(
     () =>
-      selectWindowsImageLicensePrice(deps)(
-        projectId,
-        distributionImageOsType,
-        billingType,
-        flavorId,
-      ),
-    [distributionImageOsType, projectId, billingType, flavorId],
+      catalog
+        ? selectWindowsImageLicensePrice(catalog)(
+            distributionImageOsType,
+            billingType,
+            flavorId,
+          )
+        : null,
+    [catalog, distributionImageOsType, billingType, flavorId],
   );
 
   const backupConfigurationPrices = useMemo(() => {

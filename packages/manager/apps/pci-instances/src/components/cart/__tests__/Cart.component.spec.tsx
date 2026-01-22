@@ -3,6 +3,7 @@ import { Button, Text } from '@ovhcloud/ods-react';
 import { describe, vi, expect, test } from 'vitest';
 import { Cart } from '../Cart.component';
 import { t } from 'i18next';
+import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 
 const instanceDetails = [
   {
@@ -75,21 +76,17 @@ const ActionButtons = (
   </>
 );
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useCatalogPrice: vi.fn().mockReturnValue({
-    getTextPrice: vi.fn((price: number) => `${price}`),
-    getFormattedHourlyCatalogPrice: vi.fn(),
-    getFormattedMonthlyCatalogPrice: vi.fn(),
-  }),
-}));
-
 afterEach(() => {
   vi.clearAllMocks();
 });
 
 describe('Considering the Cart component', () => {
   test('Should render correct cart items expanded states', () => {
-    render(<Cart items={cartItems} actionsButtons={ActionButtons} />);
+    render(
+      <TestCreateInstanceFormWrapper>
+        <Cart items={cartItems} actionsButtons={ActionButtons} />
+      </TestCreateInstanceFormWrapper>,
+    );
 
     const instancelocalizationElt = screen.getByTestId(
       `cart-item-details-instance localization`,
@@ -103,7 +100,11 @@ describe('Considering the Cart component', () => {
   });
 
   test('Should render correct cart items details', () => {
-    render(<Cart items={cartItems} actionsButtons={ActionButtons} />);
+    render(
+      <TestCreateInstanceFormWrapper>
+        <Cart items={cartItems} actionsButtons={ActionButtons} />
+      </TestCreateInstanceFormWrapper>,
+    );
 
     const instanceLocalizationElt = screen.getByTestId(
       `cart-item-details-instance localization`,
@@ -120,7 +121,11 @@ describe('Considering the Cart component', () => {
   });
 
   test.skip('Should render expected total price', () => {
-    render(<Cart items={cartItems} actionsButtons={ActionButtons} />);
+    render(
+      <TestCreateInstanceFormWrapper>
+        <Cart items={cartItems} actionsButtons={ActionButtons} />
+      </TestCreateInstanceFormWrapper>,
+    );
 
     const price = screen.getByTestId('cart-total-price');
     expect(price).toHaveTextContent('90');
