@@ -1,6 +1,12 @@
 import { ChangeEventHandler, ComponentProps, MouseEventHandler } from 'react';
 
-import { OdsInput, OdsSwitch, OdsSwitchItem, OdsTextarea } from '@ovhcloud/ods-components/react';
+import {
+  OdsInput,
+  OdsQuantity,
+  OdsSwitch,
+  OdsSwitchItem,
+  OdsTextarea,
+} from '@ovhcloud/ods-components/react';
 
 type DataTestIdProps = {
   'data-testid'?: string;
@@ -44,6 +50,31 @@ export const odsTextareaMock = (props: OdsTextareaProps) => {
       data-testid={props['data-testid']}
       onChange={handleChange}
       onBlur={handleChange}
+    />
+  );
+};
+
+/**
+ * Mocks the OdsQuantity component
+ */
+type OdsQuantityProps = ComponentProps<typeof OdsQuantity> & DataTestIdProps;
+
+export const odsQuantityMock = (props: OdsQuantityProps) => {
+  const handleChange = props.onOdsChange as unknown as ChangeEventHandler<HTMLInputElement>;
+  const handleBlur = props.onOdsBlur as unknown as (() => void) | undefined;
+
+  return (
+    <input
+      type="number"
+      id={props.id}
+      key={props.key}
+      name={props.name}
+      value={props.value ?? undefined}
+      data-testid={props['data-testid']}
+      min={props.min}
+      max={props.max}
+      onChange={handleChange}
+      onBlur={handleBlur}
     />
   );
 };
