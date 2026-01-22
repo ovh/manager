@@ -13,6 +13,7 @@ import CreationDate from './CreationDate';
 import RenewFrequency from './RenewFrequency';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
+import ExpirationDate from './ExpirationDate';
 
 interface SubscriptionCardsProps {
   readonly serviceName: string;
@@ -96,19 +97,13 @@ export default function SubscriptionCards({
         {t(`${NAMESPACES.BILLING}:subscription`)}
       </ManagerTile.Title>
       <ManagerTile.Divider />
-      <CreationDate
-        domainResource={domainResource}
+      <CreationDate domainResource={domainResource} />
+      <ManagerTile.Divider />
+      <ExpirationDate
         serviceInfo={serviceInfo}
-        isFetchingDomainResources={isFetchingDomainResource}
+        isFetchingServiceInfo={isServiceInfoLoading}
         serviceName={serviceName}
       />
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>
-          {t('domain_tab_general_information_subscription_expiration_date')}
-        </ManagerTile.Item.Label>
-        <Text>{formatDate({ date: serviceInfo.billing?.expirationDate })}</Text>
-      </ManagerTile.Item>
       <ManagerTile.Divider />
       <RenewFrequency serviceInfo={serviceInfo} serviceName={serviceName} />
       <ManagerTile.Divider />

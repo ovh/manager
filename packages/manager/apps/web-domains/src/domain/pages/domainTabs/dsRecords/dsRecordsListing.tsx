@@ -67,7 +67,6 @@ export default function DsRecordsListing() {
 
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    domainResource,
     isInternalDnsConfiguration,
   );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

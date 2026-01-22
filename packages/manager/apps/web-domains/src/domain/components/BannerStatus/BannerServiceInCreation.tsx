@@ -4,7 +4,10 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import { ServiceRoutes } from '@/common/enum/common.enum';
 import { isServiceInCreation } from '@/domain/utils/helpers';
-import { useGetDomainResource } from '@/domain/hooks/data/query';
+import {
+  useGetDomainResource,
+  useGetDomainZone,
+} from '@/domain/hooks/data/query';
 import { Task } from '@/domain/types/domainResource';
 import LinkToOngoingOperations from '../LinkToOngoingOperations/LinkToOngoingOperations';
 
@@ -16,17 +19,26 @@ export default function BannerServiceInCreation({
   serviceName,
 }: BannerServiceInCreationProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
-  const { serviceInfo } = useGetServiceInformation(
+  const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
     'domain',
     serviceName,
     ServiceRoutes.Domain,
   );
+  const { domainResource } = useGetDomainResource(serviceName);
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(
+    serviceName,
+    true,
+  );
 
-  if (!isServiceInCreation(serviceInfo)) {
+  if (
+    isServiceInfoLoading ||
+    !isServiceInCreation(serviceInfo) ||
+    isFetchingDomainZone
+  ) {
     return null;
   }
 
-  const { domainResource } = useGetDomainResource(serviceName);
+  // const { data: domain, isLoading: domainLoading } = useDomain(paramId);
 
   const isCreateTask =
     domainResource?.currentTasks.length > 0 &&
@@ -42,7 +54,6 @@ export default function BannerServiceInCreation({
       data-testid={'banner-service-in-creation'}
     >
       <MessageIcon name="triangle-exclamation" />
-
       <MessageBody data-testid="banner-body">
         <span className="font-bold">
           <Trans
@@ -73,6 +84,14 @@ export default function BannerServiceInCreation({
                 ),
           }}
         />
+        <br />
+        {domainZone && (
+          <span>
+            {t(
+              'domain_tab_general_information_banner_service_in_creation_body_zone',
+            )}
+          </span>
+        )}
         <br />
         <LinkToOngoingOperations target="domain" />
       </MessageBody>

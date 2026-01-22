@@ -10,13 +10,12 @@ import {
   transformTarget,
 } from '@/domain/utils/dnsUtils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
-import { DNS_UPDATE_OPERATION } from '@/domain/constants/dns.const';
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 import { THost } from '@/domain/types/host';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { algorithm_RSASHZA3457 } from '@/domain/constants/dsRecords';
-import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import { TaskTypesEnum } from '../constants/meTasks';
 
 export function computeDnsDetails(
   domainResource: TDomainResource,
@@ -25,7 +24,7 @@ export function computeDnsDetails(
   const target = domainResource.targetSpec.dnsConfiguration.nameServers;
   const updateIsInError = domainResource.currentTasks.find(
     (task) =>
-      task.type === DNS_UPDATE_OPERATION &&
+      task.type === TaskTypesEnum.DomainDnsUpdate &&
       task.status.toLowerCase() === StatusEnum.ERROR.toLowerCase(),
   );
 

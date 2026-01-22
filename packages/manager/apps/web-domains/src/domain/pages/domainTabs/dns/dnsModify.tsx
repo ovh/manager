@@ -44,7 +44,6 @@ export default function DnsModifyPage() {
   );
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    domainResource,
     true,
   );
   const context = useContext(ShellContext);

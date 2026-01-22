@@ -1,20 +1,12 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen, waitFor } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
-import CreationDate from '@/domain/components/SubscriptionCards/CreationDate';
 import { domainResourceOK } from '@/domain/__mocks__/serviceInfoDetail';
+import CreationDate from './CreationDate';
 
 describe('CreationDate component', () => {
   it('renders loading state when data is fetching', () => {
-    render(
-      <CreationDate
-        domainResources={domainResourceOK}
-        isFetchingDomainResources={true}
-        serviceName="example.com"
-      />,
-      { wrapper },
-    );
+    render(<CreationDate domainResource={domainResourceOK} />, { wrapper });
 
     expect(
       screen.getByTestId('navigation-action-trigger-action'),
@@ -22,14 +14,7 @@ describe('CreationDate component', () => {
   });
 
   it('renders populated state with creation date information', async () => {
-    render(
-      <CreationDate
-        domainResources={domainResourceOK}
-        isFetchingDomainResources={false}
-        serviceName="example.com"
-      />,
-      { wrapper },
-    );
+    render(<CreationDate domainResource={domainResourceOK} />, { wrapper });
 
     await waitFor(() => {
       expect(
