@@ -94,7 +94,7 @@ export default function AddEditNetworkAcl() {
           path: ['network'],
         },
       ),
-    [currentNetworks],
+    [currentNetworks, searchParams],
   );
 
   const {
