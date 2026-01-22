@@ -27,6 +27,7 @@ export const MetricsToCustomerProvider = ({
     productType,
     resourceURN,
     regions,
+    defaultRetention,
     subscriptionUrls,
     enableConfigurationManagement,
   } = context;
@@ -36,6 +37,7 @@ export const MetricsToCustomerProvider = ({
     productType,
     resourceURN,
     regions,
+    defaultRetention,
     subscriptionUrls,
     enableConfigurationManagement,
   });
