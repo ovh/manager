@@ -295,8 +295,8 @@
             ></p>
             <p
                 class="oui-badge ng-scope text-wrap"
-                data-ng-class="'oui-badge_' + $ctrl.gameDDoSStatus.badge"
-                data-translate="server_network_game_ddos_{{ $ctrl.gameDDoSStatus.text }}"
+                data-ng-class="$ctrl.gameDDoSStatus.class"
+                data-translate="server_network_game_protection_{{ $ctrl.gameDDoSStatus.value }}"
             ></p>
         </oui-tile-description>
         <oui-action-menu
