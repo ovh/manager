@@ -86,6 +86,14 @@ vi.mock('@/components/services/ServicesDropDown.component', () => ({
   ),
 }));
 
+vi.mock('@/components/subscriptions/NoTenantsMessage.component', () => ({
+  default: ({ regions, defaultRetention }: any) => (
+    <div data-testid="no-tenants-message">
+      <div data-testid="no-tenants-regions">{regions?.join(', ')}</div>
+      <div data-testid="no-tenants-retention">{defaultRetention}</div>
+    </div>
+  ),
+}));
 
 vi.mock('@ovh-ux/muk', () => ({
   Drawer: {
@@ -350,6 +358,7 @@ describe('TenantsSubscriptionsDrawer', () => {
   const defaultProps = {
     resourceName: 'test-resource',
     regions: ['EU'],
+    defaultRetention: '30d',
     subscriptionUrls: {
       subscribeUrl: 'https://api.example.com/subscribe',
       unsubscribeUrl: 'https://api.example.com/unsubscribe',
@@ -498,13 +507,8 @@ describe('TenantsSubscriptionsDrawer', () => {
         wrapper: createWrapper(),
       });
 
-      // Assert - use getAllByText since there may be multiple elements with this text
-      const elements = screen.getAllByText((_, element) => {
-        return element?.textContent?.includes('tenants_drawer.region') && 
-               element?.textContent?.includes('EU');
-      });
-      expect(elements.length).toBeGreaterThan(0);
-      expect(elements[0]).toBeInTheDocument();
+      // Assert - check for the region translation key
+      expect(screen.getByText('tenants_regions.region')).toBeInTheDocument();
     });
 
     it('should update filter when service is selected', async () => {
@@ -845,13 +849,8 @@ describe('TenantsSubscriptionsDrawer', () => {
         wrapper: createWrapper(),
       });
 
-      // Assert - use getAllByText since there may be multiple elements with this text
-      const elements = screen.getAllByText((_, element) => {
-        return element?.textContent?.includes('tenants_drawer.region') && 
-               element?.textContent?.includes('EU');
-      });
-      expect(elements.length).toBeGreaterThan(0);
-      expect(elements[0]).toBeInTheDocument();
+      // Assert - check for the region translation key
+      expect(screen.getByText('tenants_regions.region')).toBeInTheDocument();
     });
 
     it('should handle filter changes', () => {
