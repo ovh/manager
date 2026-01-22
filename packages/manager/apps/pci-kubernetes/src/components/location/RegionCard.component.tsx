@@ -11,7 +11,7 @@ type TRegionCardProps = {
   datacenterDetails: string;
   regionId: string;
   countryCode: TCountryCode | null;
-  disabled: boolean;
+  disabled?: boolean;
   labels?: Array<string>;
   onSelect: () => void;
 };

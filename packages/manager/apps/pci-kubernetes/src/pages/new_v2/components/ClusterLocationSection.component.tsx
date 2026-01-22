@@ -16,6 +16,8 @@ import { selectAvailableContinentOptions } from '../view-models/continents.viewm
 import { selectAvailablePlanOptions } from '../view-models/plans.viewmodel';
 import {
   filterMacroRegions,
+  findDefaultMacroRegion,
+  findDefaultMicroRegion,
   mapMacroRegionForCards,
   useCombinedRegions,
 } from '../view-models/regions.viewmodel';
@@ -85,13 +87,26 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
   useEffect(() => {
     if (macroRegionField || microRegionField) return;
 
-    const firstMacroRegion = cardRegions?.at(0);
-    const firstMicroRegion = firstMacroRegion?.microRegions.at(0);
-    if (!firstMacroRegion || !firstMicroRegion) return;
+    const defaultMacroRegion = findDefaultMacroRegion(
+      is3azAvailable,
+      deploymentModeField,
+    )(cardRegions);
+    const defaultMicroRegion = findDefaultMicroRegion(
+      is3azAvailable,
+      deploymentModeField,
+    )(defaultMacroRegion?.microRegions);
+    if (!defaultMacroRegion || !defaultMicroRegion) return;
 
-    setValue('location.macroRegion', firstMacroRegion.id);
-    setValue('location.microRegion', firstMicroRegion);
-  }, [macroRegionField, microRegionField, cardRegions, setValue]);
+    setValue('location.macroRegion', defaultMacroRegion.id);
+    setValue('location.microRegion', defaultMicroRegion);
+  }, [
+    macroRegionField,
+    microRegionField,
+    cardRegions,
+    setValue,
+    is3azAvailable,
+    deploymentModeField,
+  ]);
 
   const planDocumentationLink =
     PLAN_DOC_LINKS[ovhSubsidiary as keyof typeof PLAN_DOC_LINKS] ?? PLAN_DOC_LINKS.DEFAULT;
