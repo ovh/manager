@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import clsx from 'clsx';
+import { useEffect } from 'react';
 import {
   FormField,
   FormFieldLabel,
@@ -11,12 +11,15 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 import {
-  quantityRules,
+  quantityDefaultValue,
   TInstanceCreationForm,
 } from '@/pages/instances/create/CreateInstance.schema';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-
-export const quantityDefaultValue = 1;
+import {
+  calculateQuantityValue,
+  normalizeQuantity,
+} from '@/pages/instances/create/utils/quantityUtils';
+import { ControllerRenderProps, UseFormSetValue } from 'react-hook-form';
 
 type TQuantityProps = {
   quota: number;
@@ -24,26 +27,64 @@ type TQuantityProps = {
   region: string;
 };
 
+type TCreateQuantityHandlersParams = {
+  quota: number;
+  quantity: number;
+  min: number;
+  field: ControllerRenderProps<TInstanceCreationForm, 'quantity'>;
+  setValue: UseFormSetValue<TInstanceCreationForm>;
+};
+
+export const createQuantityHandlers = ({
+  quota,
+  quantity,
+  min,
+  field,
+  setValue,
+}: TCreateQuantityHandlersParams) => {
+  const handleValueChange = ({ valueAsNumber }: { valueAsNumber: number }) => {
+    const calculatedValue = calculateQuantityValue(quota, valueAsNumber);
+    if (!Number.isNaN(calculatedValue)) {
+      field.onChange(calculatedValue);
+    }
+  };
+
+  const handleBlur = () => {
+    const normalizedValue = normalizeQuantity(quota, quantity, min);
+    if (normalizedValue !== quantity) {
+      setValue('quantity', normalizedValue, { shouldValidate: true });
+    }
+    field.onBlur();
+  };
+
+  return { handleValueChange, handleBlur };
+};
+
 export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
   const { t } = useTranslation('creation');
   const projectUrl = useProjectUrl('public-cloud');
 
-  const {
-    formState: {
-      errors: { quantity: error },
-    },
-    control,
-  } = useFormContext<TInstanceCreationForm>();
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const quantity = useWatch({
     control,
     name: 'quantity',
   });
 
+  const isDisabled = quota === 0;
+  const normalizedQuantity = normalizeQuantity(
+    quota,
+    quantity,
+    quantityDefaultValue,
+  );
+
+  useEffect(() => {
+    if (normalizedQuantity !== quantity) {
+      setValue('quantity', normalizedQuantity, { shouldValidate: true });
+    }
+  }, [normalizedQuantity, quantity, setValue]);
+
   return (
     <article className="mb-8 flex w-full flex-col">
-      <Text preset="heading-2">
-        {t('pci_instances_creation_quantity_title')}
-      </Text>
       <div className="mt-4 pb-4 pt-3">
         <FormField>
           <FormFieldLabel>
@@ -52,31 +93,35 @@ export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
           <Controller
             control={control}
             name="quantity"
-            render={({ field }) => (
-              <Quantity
-                min={quantityRules.min}
-                max={quantityRules.max}
-                invalid={!!error}
-                onValueChange={({ valueAsNumber }) =>
-                  field.onChange(valueAsNumber)
-                }
-                value={String(quantity)}
-                required
-              >
-                <QuantityControl>
-                  <QuantityInput />
-                </QuantityControl>
-              </Quantity>
-            )}
+            render={({ field }) => {
+              const { handleValueChange, handleBlur } = createQuantityHandlers({
+                quota,
+                quantity,
+                min: quantityDefaultValue,
+                field,
+                setValue,
+              });
+
+              return (
+                <Quantity
+                  min={quantityDefaultValue}
+                  max={quota}
+                  disabled={isDisabled}
+                  onValueChange={handleValueChange}
+                  onBlur={handleBlur}
+                  value={String(normalizedQuantity)}
+                  required
+                >
+                  <QuantityControl>
+                    <QuantityInput />
+                  </QuantityControl>
+                </Quantity>
+              );
+            }}
           />
         </FormField>
       </div>
-      <Text
-        className={clsx('text-sm', {
-          'text-[--ods-color-critical-500]': !!error,
-        })}
-        preset="span"
-      >
+      <Text preset="span">
         <Trans
           t={t}
           i18nKey="pci_instance_creation_quantity_rule"
@@ -86,6 +131,7 @@ export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
           components={{
             Link: (
               <Link
+                target="_blank"
                 className="visited:text-[var(--ods-color-primary-500)]"
                 href={`${projectUrl}/quota`}
               />

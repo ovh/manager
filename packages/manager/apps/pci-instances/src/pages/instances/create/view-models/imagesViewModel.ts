@@ -244,7 +244,7 @@ export type TSelectImagesOptions = {
   };
 };
 
-type TSelectImageDataArgs = {
+export type TSelectImageDataArgs = {
   projectId: string;
   selectedImageType: TImageTypeName;
   microRegion: string | null;
@@ -255,6 +255,96 @@ type TSelectImageDataArgs = {
 type TSelectImageData = (args: TSelectImageDataArgs) => TSelectImagesOptions;
 
 type TSelectImages = Reader<Deps, TSelectImageData>;
+
+export const selectImagesFromCatalog = (
+  catalog: TInstancesCatalog | undefined,
+  args: TSelectImageDataArgs,
+): TSelectImagesOptions => {
+  const {
+    selectedImageType,
+    microRegion,
+    regionalizedFlavorId,
+    distributionImageVariantId,
+  } = args;
+  const entities = catalog?.entities;
+
+  if (!entities || !microRegion || !regionalizedFlavorId) return emptyResult;
+
+  const imagesVersionIds =
+    entities.imageTypes.byId.get(selectedImageType)?.imageIds ?? [];
+
+  const imagesVersionsMap = new Map<string, TAvailableOption[]>();
+
+  const variantOptionsMap = imagesVersionIds.reduce((acc, imageId) => {
+    const image = entities.images.byId.get(imageId);
+    if (!image) return acc;
+
+    const selectedFlavorAcceptsOsImage = hasAvailableImageOsInSelectedFlavor(
+      entities.regionalizedFlavors.byId,
+      regionalizedFlavorId,
+      image.osType,
+    );
+
+    const variantInMap = acc.get(image.variant);
+
+    if (!variantInMap) {
+      if (image.osType === 'windows') {
+        if (!selectedFlavorAcceptsOsImage) {
+          acc.set(imageId, {
+            label: imageId,
+            value: imageId,
+            available: false,
+            osType: image.osType,
+          });
+          return acc;
+        }
+
+        return createWindowsImageVariant(acc, {
+          regionalizedFlavorId,
+          image,
+          entities,
+          imagesVersionIds,
+          microRegion,
+        });
+      } else {
+        acc.set(image.variant, {
+          label: image.variant,
+          value: image.variant,
+          available: false,
+          osType: image.osType,
+        });
+        if (!selectedFlavorAcceptsOsImage) return acc;
+      }
+    }
+
+    return handleImageVersions(acc, {
+      regionalizedFlavorId,
+      image,
+      entities,
+      microRegion,
+      imagesVersionsMap,
+    });
+  }, new Map<string, TImageOption>());
+
+  return getOptions(
+    variantOptionsMap,
+    imagesVersionsMap,
+    distributionImageVariantId,
+  );
+};
+
+export type TSelectImagesForInstanceCreationArgs = Omit<
+  TSelectImageDataArgs,
+  'selectedImageType'
+> & { selectedImageType: TImageTypeOption['value'] };
+
+export const selectImagesForInstanceCreation = (
+  catalog: TInstancesCatalog | undefined,
+  args: TSelectImagesForInstanceCreationArgs,
+): TSelectImagesOptions =>
+  args.selectedImageType === 'backups'
+    ? emptyResult
+    : selectImagesFromCatalog(catalog, args as TSelectImageDataArgs);
 
 export const emptyResult = {
   images: [],
@@ -495,79 +585,9 @@ const createWindowsImageVariant = (
   return acc;
 };
 
-export const selectImages: TSelectImages = (deps) => ({
-  projectId,
-  selectedImageType,
-  microRegion,
-  regionalizedFlavorId,
-  distributionImageVariantId,
-}) => {
-  const { instancesCatalogPort } = deps;
-  const entities = instancesCatalogPort.selectInstancesCatalog(projectId)
-    ?.entities;
-
-  if (!entities || !microRegion || !regionalizedFlavorId) return emptyResult;
-
-  const imagesVersionIds =
-    entities.imageTypes.byId.get(selectedImageType)?.imageIds ?? [];
-
-  const imagesVersionsMap = new Map<string, TAvailableOption[]>();
-
-  const variantOptionsMap = imagesVersionIds.reduce((acc, imageId) => {
-    const image = entities.images.byId.get(imageId);
-    if (!image) return acc;
-
-    const selectedFlavorAcceptsOsImage = hasAvailableImageOsInSelectedFlavor(
-      entities.regionalizedFlavors.byId,
-      regionalizedFlavorId,
-      image.osType,
-    );
-
-    const variantInMap = acc.get(image.variant);
-
-    if (!variantInMap) {
-      if (image.osType === 'windows') {
-        if (!selectedFlavorAcceptsOsImage) {
-          acc.set(imageId, {
-            label: imageId,
-            value: imageId,
-            // `available` will be updated according to image versions availability
-            available: false,
-            osType: image.osType,
-          });
-          return acc;
-        }
-
-        return createWindowsImageVariant(acc, {
-          regionalizedFlavorId,
-          image,
-          entities,
-          imagesVersionIds,
-          microRegion,
-        });
-      } else {
-        acc.set(image.variant, {
-          label: image.variant,
-          value: image.variant,
-          available: false,
-          osType: image.osType,
-        });
-        if (!selectedFlavorAcceptsOsImage) return acc;
-      }
-    }
-
-    return handleImageVersions(acc, {
-      regionalizedFlavorId,
-      image,
-      entities,
-      microRegion,
-      imagesVersionsMap,
-    });
-  }, new Map<string, TImageOption>());
-
-  return getOptions(
-    variantOptionsMap,
-    imagesVersionsMap,
-    distributionImageVariantId,
+/** @deprecated Use selectImagesFromCatalog with useInstancesCatalogWithSelect */
+export const selectImages: TSelectImages = (deps) => (args) =>
+  selectImagesFromCatalog(
+    deps.instancesCatalogPort.selectInstancesCatalog(args.projectId),
+    args,
   );
-};

@@ -88,7 +88,7 @@ const mapFlavor = ({ name, specs }: TInstanceFlavor) => ({
   name,
   ram: specs ? `${specs.ram.value} ${specs.ram.unit}` : '-',
   cpu: specs ? `${specs.cpu.value} ${specs.cpu.unit}` : '-',
-  disks: specs
+  disks: specs?.disks
     ? mapDisksToViewModel(specs.disks)
     : [{ id: 'no-disk', display: '-' }],
   publicBandwidth: specs

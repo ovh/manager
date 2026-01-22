@@ -1,8 +1,9 @@
-import { Deps } from '@/deps/deps';
-import { Reader } from '@/types/utils.type';
+import {
+  TInstancesCatalog,
+  TFlavorPrices,
+} from '@/domain/entities/instancesCatalog';
 import { getRegionNameKey } from './localizationsViewModel';
 import { getRegionalizedFlavorOsTypePriceId } from '@/utils';
-import { TFlavorPrices } from '@/domain/entities/instancesCatalog';
 import { BILLING_TYPE } from '@/types/instance/common.type';
 import { mapDisksToViewModel, TDiskViewModel } from './mappers/diskMapper';
 
@@ -11,23 +12,16 @@ export type TSelectLocalizationDetails = {
   datacenterDetails: string;
 };
 
-type TSelectLocalizationData = (
-  projectId: string,
+export const selectLocalisationDetails = (
+  catalog: TInstancesCatalog | undefined,
+) => (
   macroRegionId: string | null,
   microRegionId: string | null,
   availabilityZone: string | null,
-) => TSelectLocalizationDetails | null;
-
-export const selectLocalisationDetails: Reader<
-  Deps,
-  TSelectLocalizationData
-> = (deps) => (projectId, macroRegionId, microRegionId, availabilityZone) => {
+): TSelectLocalizationDetails | null => {
   if (!macroRegionId || !microRegionId) return null;
 
-  const { instancesCatalogPort } = deps;
-  const data = instancesCatalogPort.selectInstancesCatalog(projectId);
-
-  const macroRegion = data?.entities.macroRegions.byId.get(macroRegionId);
+  const macroRegion = catalog?.entities.macroRegions.byId.get(macroRegionId);
 
   if (!macroRegion) return null;
 
@@ -43,6 +37,17 @@ export const selectLocalisationDetails: Reader<
   return { cityKey, datacenterDetails };
 };
 
+export const selectLocalisationDetailsForCreation = (
+  macroRegionId: string | null,
+  microRegionId: string | null,
+  availabilityZone: string | null,
+) => (catalog: TInstancesCatalog | undefined) =>
+  selectLocalisationDetails(catalog)(
+    macroRegionId,
+    microRegionId,
+    availabilityZone,
+  );
+
 export type TSelectFlavorDetails = {
   id: string;
   name: string;
@@ -55,14 +60,8 @@ export type TSelectFlavorDetails = {
   gpu?: string;
   numberOfGpu?: number;
   vRamTotal?: number;
+  gpuMemoryInterface?: string;
 };
-
-type TSelectFlavorData = (
-  projectId: string,
-  regionalizedFlavorId: string | null,
-  osType: string | null,
-  billingType: BILLING_TYPE,
-) => TSelectFlavorDetails | null;
 
 type TFlavorPricesArgs = {
   flavorName: string;
@@ -98,89 +97,150 @@ const getFlavorPrice = ({
   );
 };
 
-export const selectFlavorDetails: Reader<Deps, TSelectFlavorData> = (deps) => {
-  return (projectId, regionalizedFlavorId, osType, billingType) => {
-    if (!regionalizedFlavorId || !osType) return null;
+export const selectFlavorDetails = (catalog: TInstancesCatalog | undefined) => (
+  regionalizedFlavorId: string | null,
+  osType: string | null,
+  billingType: BILLING_TYPE,
+): TSelectFlavorDetails | null => {
+  if (!regionalizedFlavorId || !osType || !catalog) return null;
 
-    const { instancesCatalogPort } = deps;
-    const data = instancesCatalogPort.selectInstancesCatalog(projectId);
-    if (!data) return null;
+  const data = catalog;
+  const foundRegionalizedFlavor = data.entities.regionalizedFlavors.byId.get(
+    regionalizedFlavorId,
+  );
 
-    const foundRegionalizedFlavor = data.entities.regionalizedFlavors.byId.get(
-      regionalizedFlavorId,
-    );
+  if (!foundRegionalizedFlavor) return null;
 
-    if (!foundRegionalizedFlavor) return null;
+  const foundFlavor = data.entities.flavors.byId.get(
+    foundRegionalizedFlavor.flavorId,
+  );
 
-    const foundFlavor = data.entities.flavors.byId.get(
-      foundRegionalizedFlavor.flavorId,
-    );
+  const flavorId =
+    data.entities.regionalizedFlavorOsTypes.byId.get(
+      `${regionalizedFlavorId}_${osType}`,
+    )?.flavorId ?? null;
 
-    const flavorId =
-      data.entities.regionalizedFlavorOsTypes.byId.get(
-        `${regionalizedFlavorId}_${osType}`,
-      )?.flavorId ?? null;
+  if (!foundFlavor || !flavorId) return null;
 
-    if (!foundFlavor || !flavorId) return null;
+  const price = getFlavorPrice({
+    flavorName: foundFlavor.name,
+    regionId: foundRegionalizedFlavor.regionId,
+    osType,
+    flavorPricesById: data.entities.flavorPrices.byId,
+    billingType,
+  });
 
-    const price = getFlavorPrice({
-      flavorName: foundFlavor.name,
-      regionId: foundRegionalizedFlavor.regionId,
-      osType,
-      flavorPricesById: data.entities.flavorPrices.byId,
-      billingType,
-    });
+  if (price === null) return null;
 
-    if (price === null) return null;
-
-    return {
-      id: flavorId,
-      name: foundFlavor.name,
-      memory: foundFlavor.specifications.ram.value,
-      vCore: foundFlavor.specifications.cpu.value,
-      disks: mapDisksToViewModel(foundFlavor.specifications.disks),
-      bandwidthPublic: foundFlavor.specifications.bandwidth.public.value,
-      bandwidthPrivate: foundFlavor.specifications.bandwidth.private.value,
-      gpu: foundFlavor.specifications.gpu?.model.unit,
-      numberOfGpu: foundFlavor.specifications.gpu?.model.value,
-      vRamTotal: foundFlavor.specifications.gpu?.memory.size.value,
-      gpuMemoryInterface: foundFlavor.specifications.gpu?.memory.interface,
-      price,
-    };
+  return {
+    id: flavorId,
+    name: foundFlavor.name,
+    memory: foundFlavor.specifications.ram.value,
+    vCore: foundFlavor.specifications.cpu.value,
+    disks: mapDisksToViewModel(foundFlavor.specifications.disks),
+    bandwidthPublic: foundFlavor.specifications.bandwidth.public.value,
+    bandwidthPrivate: foundFlavor.specifications.bandwidth.private.value,
+    gpu: foundFlavor.specifications.gpu?.model.unit,
+    numberOfGpu: foundFlavor.specifications.gpu?.model.value,
+    vRamTotal: foundFlavor.specifications.gpu?.memory.size.value,
+    gpuMemoryInterface: foundFlavor.specifications.gpu?.memory.interface,
+    price,
   };
 };
 
-type TSelectWindowsImageLicensePrice = (
-  projectId: string,
+export const selectFlavorDetailsForCreation = (
+  regionalizedFlavorId: string | null,
   osType: string | null,
   billingType: BILLING_TYPE,
-  flavorId?: string | null,
-) => number | null;
+) => (catalog: TInstancesCatalog | undefined) =>
+  selectFlavorDetails(catalog)(regionalizedFlavorId, osType, billingType);
 
-export const selectWindowsImageLicensePrice: Reader<
-  Deps,
-  TSelectWindowsImageLicensePrice
-> = (deps) => {
-  return (projectId, osType, billingType, flavorId) => {
-    const { instancesCatalogPort } = deps;
-    const data = instancesCatalogPort.selectInstancesCatalog(projectId);
+export const selectWindowsImageLicensePrice = (
+  catalog: TInstancesCatalog | undefined,
+) => (
+  osType: string | null,
+  billingType: BILLING_TYPE,
+  flavorId: string | null,
+): number | null => {
+  if (!flavorId || !osType) return null;
 
-    if (!flavorId || !osType) return null;
+  const flavorOsTypePriceId = `${flavorId}_${osType}_price`;
 
-    const flavorOsTypePriceId = `${flavorId}_${osType}_price`;
+  const flavorPrices = catalog?.entities.flavorPrices.byId.get(
+    flavorOsTypePriceId,
+  );
 
-    const flavorPrices = data?.entities.flavorPrices.byId.get(
-      flavorOsTypePriceId,
-    );
+  if (!flavorPrices) return null;
 
-    if (!flavorPrices) return null;
+  const licensePrice = flavorPrices.prices.find((price) =>
+    billingType === BILLING_TYPE.Hourly
+      ? price.type === 'licence'
+      : price.type === 'licenceMonth',
+  );
 
-    const licensePrice = flavorPrices.prices.find((price) =>
-      billingType === BILLING_TYPE.Hourly
-        ? price.type === 'licence'
-        : price.type === 'licenceMonth',
-    );
+  return licensePrice?.price.priceInUcents ?? null;
+};
 
-    return licensePrice?.price.priceInUcents ?? null;
+export const selectWindowsImageLicensePriceForCreation = (
+  osType: string | null,
+  billingType: BILLING_TYPE,
+  flavorId: string | null,
+) => (catalog: TInstancesCatalog | undefined) =>
+  selectWindowsImageLicensePrice(catalog)(osType, billingType, flavorId);
+
+export type TQuantityHintParams = {
+  quota: number | null;
+  type: string | null;
+  region: string | null;
+  regionId: string | null;
+};
+
+export type TSelectQuantityHintParamsArgs = {
+  regionalizedFlavorId: string | null;
+  macroRegionId: string | null;
+  microRegionId: string | null;
+  availabilityZone: string | null;
+  flavorType: string | null;
+};
+
+export const selectQuantityHintParams = (
+  catalog: TInstancesCatalog | undefined,
+) => (args: TSelectQuantityHintParamsArgs): TQuantityHintParams => {
+  const {
+    regionalizedFlavorId,
+    macroRegionId,
+    microRegionId,
+    availabilityZone,
+    flavorType,
+  } = args;
+
+  if (!catalog) {
+    return {
+      quota: null,
+      type: null,
+      region: null,
+      regionId: null,
+    };
+  }
+
+  const data = catalog;
+  const regionalizedFlavor = regionalizedFlavorId
+    ? data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId)
+    : null;
+  const quota = regionalizedFlavor?.quota ?? null;
+
+  const macroRegion = macroRegionId
+    ? data.entities.macroRegions.byId.get(macroRegionId)
+    : null;
+  const region = macroRegion
+    ? getRegionNameKey(macroRegion.deploymentMode, macroRegion.name) ?? null
+    : null;
+  const regionId = macroRegion ? availabilityZone ?? microRegionId : null;
+
+  return {
+    quota,
+    type: flavorType ?? null,
+    region,
+    regionId,
   };
 };
