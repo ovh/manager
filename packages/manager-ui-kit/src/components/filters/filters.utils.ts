@@ -4,6 +4,7 @@ import { FilterWithLabel } from '@/components/filters/Filter.props';
 
 export function formatFilter(filter: FilterWithLabel, locale?: string): string {
   if (!filter) return '';
+  if (filter.displayValue) return filter.displayValue;
 
   const value = Array.isArray(filter.value) ? filter.value.join(', ') : String(filter.value ?? '');
 
