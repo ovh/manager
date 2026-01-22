@@ -6,6 +6,7 @@ import isString from 'lodash/isString';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import Nutanix from '@ovh-ux/manager-nutanix';
 
@@ -21,6 +22,7 @@ export default (containerEl, environment) => {
     .module(
       moduleName,
       [
+        ngAtInternet,
         registerCoreModule(environment),
         ngUiRouterBreadcrumb,
         uiRouter,
