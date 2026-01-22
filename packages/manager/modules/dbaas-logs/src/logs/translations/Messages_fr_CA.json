@@ -68,6 +68,7 @@
   "logs_onboarding_product_page": "Page produit",
   "logs_onboarding_documentation": "Documentation",
   "logs_onboarding_forum": "Forum",
+  "logs_iam_policies_get_error": "Une erreur est survenue lors du chargement des politiques IAM.",
   "logs_iam_enable_error": "Une erreur est survenue lors de l'activation de l'IAM OVHcloud.",
   "logs_iam_enable_success": "L'IAM OVHcloud a été activé avec succès pour le service « {{accountName}} »",
   "logs_order_title": "Création de compte Logs Data Platform",
