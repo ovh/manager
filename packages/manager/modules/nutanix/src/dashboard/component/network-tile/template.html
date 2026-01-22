@@ -75,7 +75,7 @@
 
     <!-- Dataservice Ip -->
     <oui-tile-definition
-        data-ng-if="$ctrl.getCanModifyDataserviceIp()"
+        data-ng-if="$ctrl.cluster.canModifyDataServiceIp()"
         term="{{:: 'nutanix_cluster_dataservice_ip' | translate}}"
     >
         <oui-tile-description>

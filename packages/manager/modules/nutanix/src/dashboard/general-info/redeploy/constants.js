@@ -20,13 +20,6 @@ export const IPV4_BLOCK_REGEX = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){
 
 export const IP_FOR_SCALE_REDEPLOY = 3;
 
-export const MIN_VERSION_DATASERVICEIP = [
-  '6.10.1.11',
-  '7.0.1.10',
-  '7.3.1.1',
-  '7.5',
-];
-
 export default {
   TRACKING_PREFIX,
   REDEPLOY_CONFIG_OPTIONS,
@@ -35,5 +28,4 @@ export default {
   PRISM_CENTRAL_TYPES,
   IPV4_REGEX,
   IPV4_BLOCK_REGEX,
-  MIN_VERSION_DATASERVICEIP,
 };

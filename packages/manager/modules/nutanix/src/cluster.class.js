@@ -72,7 +72,7 @@ export default class Cluster {
     this.stateBilling = state;
   }
 
-  getCanModifyDataServiceIp() {
+  canModifyDataServiceIp() {
     const wantedVersion = this.targetSpec.version;
     const sortedAllowed = [...MIN_VERSION_DATASERVICEIP].sort((a, b) =>
       Cluster.compareVersions(a, b),

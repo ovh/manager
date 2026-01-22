@@ -114,8 +114,4 @@ export default class NutanixNetworkTileController {
       this.onError({ error });
     }
   }
-
-  getCanModifyDataserviceIp() {
-    return this.cluster.getCanModifyDataServiceIp();
-  }
 }

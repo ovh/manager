@@ -7,8 +7,9 @@ import {
   IPV4_BLOCK_REGEX,
   TRACKING_PREFIX,
   IP_FOR_SCALE_REDEPLOY,
-  MIN_VERSION_DATASERVICEIP,
 } from './constants';
+
+import { MIN_VERSION_DATASERVICEIP } from '../../../constants';
 
 export default class NutanixGeneralInfoRedeployCtrl {
   /* @ngInject */
@@ -199,9 +200,5 @@ export default class NutanixGeneralInfoRedeployCtrl {
   goToPreviousPage() {
     this.trackClick('cancel');
     this.goBack();
-  }
-
-  getCanModifyDataserviceIp() {
-    return this.cluster.getCanModifyDataServiceIp();
   }
 }

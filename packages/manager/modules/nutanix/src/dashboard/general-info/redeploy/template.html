@@ -202,7 +202,7 @@
                         ></h5>
                         <span
                             class="oui-icon oui-icon-info ml-1 mb-3"
-                            data-ng-if="!$ctrl.getCanModifyDataserviceIp()"
+                            data-ng-if="!$ctrl.cluster.canModifyDataServiceIp()"
                             data-oui-popover="{{:: ('nutanix_redeploy_version_to_old' | translate) + ' ' + $ctrl.MIN_VERSION_DATASERVICEIP.join(', ') }}"
                             data-oui-popover-placement="right"
                         ></span>
@@ -216,7 +216,7 @@
                         }"
                     >
                         <input
-                            data-ng-disabled="!$ctrl.getCanModifyDataserviceIp()"
+                            data-ng-disabled="!$ctrl.cluster.canModifyDataServiceIp()"
                             type="text"
                             class="oui-input w-50"
                             name="dataserviceIp"
