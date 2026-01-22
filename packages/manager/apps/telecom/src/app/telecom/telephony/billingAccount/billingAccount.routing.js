@@ -72,6 +72,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('telecom.telephony.billingAccount.orderAlias', {
           billingAccount: billingAccountId,
         }),
+      orderProductLink: /* @ngInject */ ($state, billingAccountId) =>
+        $state.href('telecom.telephony.billingAccount.orderProduct', {
+          billingAccount: billingAccountId,
+        }),
       phonebookLink: /* @ngInject */ ($state, billingAccountId) =>
         $state.href('telecom.telephony.billingAccount.phonebook', {
           billingAccount: billingAccountId,

@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { UseQueryResult } from '@tanstack/react-query';
+import { waitFor } from '@testing-library/dom';
 import { describe, expect, vi } from 'vitest';
 
 import { OrganizationType, organizationMock } from '@/data/api';
 import * as hooks from '@/data/hooks';
-import { render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import GeneralInformations from './GeneralInformations.page';
 

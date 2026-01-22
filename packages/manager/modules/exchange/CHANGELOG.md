@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.17.0...@ovh-ux/manager-exchange@4.18.0) (2026-01-21)
+
+
+### Bug Fixes
+
+* **exchange:** check domain zones ([08fe8ab](https://github.com/ovh/manager/commit/08fe8ab0e40ed81de4e6ecf7e8f15b042a94645d)), closes [#PRDCOL-287](https://github.com/ovh/manager/issues/PRDCOL-287)
+
+
+### Features
+
+* **exchange:** enhance ux in pst export ([6525f41](https://github.com/ovh/manager/commit/6525f41899694af66636d8605545c82e0595f8cb)), closes [#PRDCOL-269](https://github.com/ovh/manager/issues/PRDCOL-269)
+
+
+
+
+
 # [4.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.16.4...@ovh-ux/manager-exchange@4.17.0) (2025-12-18)
 
 

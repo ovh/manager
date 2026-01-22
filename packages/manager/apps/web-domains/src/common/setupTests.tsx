@@ -80,7 +80,7 @@ const mocks = vi.hoisted(() => ({
     },
   },
   environment: {
-    getRegion: vi.fn(),
+    getRegion: vi.fn(() => 'EU'),
     getUserLocale: vi.fn(() => 'fr_FR'),
     getUser: vi.fn(() => {
       return { ovhSubsidiary: 'FR' };

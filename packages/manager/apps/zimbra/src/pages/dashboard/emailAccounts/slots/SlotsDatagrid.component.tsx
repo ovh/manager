@@ -2,18 +2,12 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { Skeleton, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import {
-  Datagrid,
-  DatagridColumn,
-  useBytes,
-  useFormatDate,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn, useBytes, useFormatDate } from '@ovh-ux/muk';
 
 import { BillingStateBadge } from '@/components';
-import { getOfferDefaultQuota } from '@/data/api';
+import { SlotService, ZimbraOffer, getOfferDefaultQuota } from '@/data/api';
 import { SlotWithService, useSlotsWithService } from '@/data/hooks';
 import { useOverridePage } from '@/hooks';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
@@ -45,53 +39,56 @@ export const SlotsDatagrid = () => {
     () => [
       {
         id: 'offer',
-        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>,
-        label: 'zimbra_account_datagrid_offer_label',
+        accessorKey: 'offer',
+        header: t('zimbra_account_datagrid_offer_label'),
       },
       {
         id: 'quota',
-        cell: (item) => {
+        accessorKey: 'offer',
+        cell: ({ getValue }) => {
           return (
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {formatBytes(getOfferDefaultQuota(item.offer), 0, 1024)}
-            </OdsText>
+            <Text preset={TEXT_PRESET.paragraph}>
+              {formatBytes(getOfferDefaultQuota(getValue<keyof typeof ZimbraOffer>()), 0, 1024)}
+            </Text>
           );
         },
-        label: 'zimbra_account_datagrid_quota',
+        header: t('zimbra_account_datagrid_quota'),
       },
       {
         id: 'renewal_date',
-        cell: (item) => {
-          if (!item.service) {
-            return <OdsSkeleton className="[&::part(skeleton)]:max-w-20" />;
+        accessorKey: 'service',
+        cell: ({ row }) => {
+          if (!row.original.service) {
+            return <Skeleton className="[&::part(skeleton)]:max-w-20" />;
           }
-          return <span>{format({ date: item.service?.nextBillingDate, format: 'P' })}</span>;
+          return (
+            <span>{format({ date: row.original.service?.nextBillingDate, format: 'P' })}</span>
+          );
         },
-        label: 'zimbra_account_datagrid_renewal_date',
+        header: t('zimbra_account_datagrid_renewal_date'),
       },
       {
         id: 'renewal_type',
-        cell: (item) => <BillingStateBadge service={item.service} />,
-        label: 'zimbra_account_datagrid_renewal_type',
+        accessorKey: 'service',
+        cell: ({ getValue }) => <BillingStateBadge service={getValue<SlotService>()} />,
+        header: t('zimbra_account_datagrid_renewal_type'),
       },
       {
         id: 'tooltip',
-        cell: (item: SlotWithService) => <ActionButtonSlot item={item} />,
-        label: '',
+        maxSize: 50,
+        cell: ({ row }) => <ActionButtonSlot item={row.original} />,
+        header: '',
       },
     ],
-    [format, formatBytes],
+    [format, formatBytes, t],
   );
 
   return (
     <Datagrid
       topbar={<DatagridTopbar />}
-      columns={columns.map((column) => ({
-        ...column,
-        label: t(column.label),
-      }))}
-      items={items}
-      totalItems={items.length}
+      columns={columns}
+      data={items}
+      totalCount={items.length}
       hasNextPage={hasNextPage}
       onFetchNextPage={fetchNextPage}
       onFetchAllPages={fetchAllPages}

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.3...@ovh-ux/manager-web-domains-app@1.9.4) (2026-01-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4607] ([c0bfd2c](https://github.com/ovh/manager/commit/c0bfd2c4f14214cf60d06a67b168a8d3fdfc72d7))
+* **web-domains:** fix dataprotection status map ([e9f5388](https://github.com/ovh/manager/commit/e9f5388484356e46ad56093df4d32dcf298fc1da)), closes [#DCE-156](https://github.com/ovh/manager/issues/DCE-156)
+* **web-domains:** redirect client to order when have no email services(mxplan,zimbra,redirection) ([ba8c365](https://github.com/ovh/manager/commit/ba8c365c90fe5df33be0c2a9132c943402feb76b)), closes [#DCE-157](https://github.com/ovh/manager/issues/DCE-157)
+
+
+
+
+
+## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.2...@ovh-ux/manager-web-domains-app@1.9.3) (2026-01-21)
+
+
+### Bug Fixes
+
+* **web-domains:** fetch zone dns on modify page ([45304c3](https://github.com/ovh/manager/commit/45304c3c0da365c6cb47d565c840720eb28a7d63)), closes [#DCE-155](https://github.com/ovh/manager/issues/DCE-155)
+* **web-domains:** fix free hosting only available on EU ([5f3669e](https://github.com/ovh/manager/commit/5f3669e289439090b03c01c27faf17a4095371d6)), closes [#DCE-152](https://github.com/ovh/manager/issues/DCE-152)
+* **web-domains:** fix onboarding page access ([5cd03f0](https://github.com/ovh/manager/commit/5cd03f0bdf2aa819764ee818fd4c721001a00060)), closes [#DCE-146](https://github.com/ovh/manager/issues/DCE-146)
+* **web-domains:** undefined cartId ([5153fdd](https://github.com/ovh/manager/commit/5153fddabe782a8027b18ca7c7541056e2f90f6a))
+
+
+
+
+
 ## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.1...@ovh-ux/manager-web-domains-app@1.9.2) (2026-01-20)
 
 

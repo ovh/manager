@@ -49,7 +49,7 @@ export const mockShellContext = ({
     },
     getUser: () => ({ ovhSubsidiary: 'FR' }),
     getUserLocale: () => ({}),
-    getRegion: () => ({}),
+    getRegion: () => 'EU',
   },
   shell: {
     navigation: {

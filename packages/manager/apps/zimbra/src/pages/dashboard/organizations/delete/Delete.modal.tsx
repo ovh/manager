@@ -5,18 +5,26 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  ICON_NAME,
+  MESSAGE_COLOR,
+  MODAL_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import {
   deleteZimbraPlatformOrganization,
@@ -51,7 +59,7 @@ export const DeleteOrganizationModal = () => {
         pageName: DELETE_ORGANIZATION,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</Text>,
         true,
       );
     },
@@ -61,11 +69,11 @@ export const DeleteOrganizationModal = () => {
         pageName: DELETE_ORGANIZATION,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -101,20 +109,24 @@ export const DeleteOrganizationModal = () => {
   return (
     <Modal
       heading={t('common:delete_organization')}
-      type={ODS_MODAL_COLOR.critical}
-      onDismiss={onClose}
-      isOpen
-      isLoading={isOrganizationLoading || isDomainsLoading}
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
-      primaryButtonTestId="delete-btn"
-      onPrimaryButtonClick={handleDeleteClick}
-      isPrimaryButtonLoading={isSending || isOrganizationLoading || isDomainsLoading}
-      isPrimaryButtonDisabled={domains?.length > 0 || !organizationId}
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
+      type={MODAL_COLOR.critical}
+      onOpenChange={onClose}
+      open
+      loading={isOrganizationLoading || isDomainsLoading}
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
+        testId: 'delete-btn',
+        onClick: handleDeleteClick,
+        loading: isSending || isOrganizationLoading || isDomainsLoading,
+        disabled: domains?.length > 0 || !organizationId,
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+      }}
     >
       <>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           <Trans
             t={t}
             i18nKey={'zimbra_organization_delete_modal_content'}
@@ -122,23 +134,26 @@ export const DeleteOrganizationModal = () => {
               organization: organization?.currentState.label,
             }}
           />
-        </OdsText>
+        </Text>
         {domains?.length > 0 && (
-          <OdsMessage
-            color={ODS_MESSAGE_COLOR.critical}
-            isDismissible={false}
+          <Message
+            color={MESSAGE_COLOR.critical}
+            dismissible={false}
             className="mt-4"
             data-testid="banner-message"
           >
-            <div className="ml-4 flex flex-col text-left">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
-                {t('zimbra_organization_delete_modal_message_disabled_part1')}
-              </OdsText>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('zimbra_organization_delete_modal_message_disabled_part2')}
-              </OdsText>
-            </div>
-          </OdsMessage>
+            <MessageIcon name={ICON_NAME.hexagonExclamation} />
+            <MessageBody>
+              <div className="ml-4 flex flex-col text-left">
+                <Text preset={TEXT_PRESET.paragraph} className="font-bold">
+                  {t('zimbra_organization_delete_modal_message_disabled_part1')}
+                </Text>
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {t('zimbra_organization_delete_modal_message_disabled_part2')}
+                </Text>
+              </div>
+            </MessageBody>
+          </Message>
         )}
       </>
     </Modal>

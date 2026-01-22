@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Navigate, Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
@@ -42,7 +42,7 @@ export default function Layout() {
   return (
     <>
       <Outlet />
-      {isSuccess && !flattenData && (
+      {isSuccess && (!flattenData || flattenData?.length === 0) && (
         <Navigate key={location.pathname} to="onboarding" replace={true} />
       )}
     </>

@@ -58,9 +58,17 @@ export default function DsRecordsListing() {
     ['dnsZone:apiovh:dnssec/create', 'dnsZone:apiovh:dnssec/delete'],
     urn,
   );
+
+  const isInternalDnsConfiguration =
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.EXTERNAL &&
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.MIXED;
+
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
     domainResource,
+    isInternalDnsConfiguration,
   );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDnssecModalOpen, setIsDnssecModalOpen] = useState<boolean>(false);
@@ -182,12 +190,6 @@ export default function DsRecordsListing() {
       {t(actionMessage)}
     </span>
   );
-
-  const isInternalDnsConfiguration =
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.EXTERNAL &&
-    domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.MIXED;
 
   if (isInternalDnsConfiguration) {
     switch (dnssecStatus) {

@@ -15,7 +15,7 @@
   "sms_senders_add_sender_label": "Sender: ",
   "sms_senders_add_sender_placeholder": "Sender",
   "sms_senders_add_sender_error_required": "The “sender” field is mandatory.",
-  "sms_senders_add_sender_error_pattern": "The “sender” field must only contain alphabetical characters.",
+  "sms_senders_add_sender_error_pattern": "The “sender” field must contain alphanumeric characters and at least one letter.",
   "sms_senders_add_sender_error_maxlength": "The “sender” field must not exceed 11 characters.",
   "sms_senders_add_sender_description_label": "Description: ",
   "sms_senders_add_sender_description_placeholder": "Description (optional)",
@@ -34,5 +34,6 @@
   "sms_senders_add_senders_success": "Adding...",
   "sms_senders_add_sender_supporting_document": "Documents required",
   "sms_senders_add_sender_supporting_document_help": "As part of our security policy, we ask for a supporting document. By default, this is a company or trademark letterhead, including the authorisation of an official with signature and stamp of the same company, an identity paper, or a Kbis extract if it is not a trademark.",
-  "sms_senders_add_sender_supporting_document_info": "You can upload up to 10 files, each no bigger than 10 MB, in PDF, JPG, JPEG, or PNG format."
+  "sms_senders_add_sender_supporting_document_info": "You can upload up to 10 files, each no bigger than 10 MB, in PDF, JPG, JPEG, or PNG format.",
+  "sms_senders_add_sender_info": "Use only alphanumeric characters, with a maximum of 11 characters, and at least one letter."
 }
