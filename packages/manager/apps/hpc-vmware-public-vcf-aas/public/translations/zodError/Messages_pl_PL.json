@@ -1,4 +1,6 @@
 {
   "ZOD_ERROR_IPV4_OR_IPV4CIDR_INVALID": "Musi to być prawidłowy adres IPv4 lub CIDR IPv4 (np. 192.168.0.1 lub 192.168.0.0/24)",
-  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Ten zakres nakłada się z innym istniejącym zakresem sieci. Wprowadź inną wartość"
+  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Ten zakres nakłada się z innym istniejącym zakresem sieci. Wprowadź inną wartość",
+  "ZOD_ERROR_VLAN_ID_HELPER": "ID VLAN musi zawierać się w przedziale od {{minId}} do {{maxId}}",
+  "ZOD_ERROR_VLAN_ID_ALREADY_IN_USE": "Ten ID VLAN jest już używany"
 }
