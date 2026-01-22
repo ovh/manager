@@ -7,7 +7,7 @@ import { TCountryCode, TMacroRegion, TRegions } from '@/domain/entities/regions'
 import {
   filterMacroRegionsByKubeRegions,
   selectMacroRegions,
-} from '@/domain/processors/regions.service';
+} from '@/domain/services/regions.service';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { TViewPlan, mapPlanCodeToDeploymentMode, mapPlanCodeToViewPlan } from './plans.viewmodel';
@@ -16,7 +16,6 @@ export type TRegionCard = {
   labelKey: string;
   id: string;
   microRegions: string[];
-  disabled: boolean;
   country: TCountryCode | null;
   plans: Array<TViewPlan>;
   continentCode: TCreateClusterSchema['location']['continent'];
@@ -60,7 +59,6 @@ export const mapMacroRegionForCards = (regions?: TMacroRegion[]): TRegionCard[] 
       labelKey: `${NAMESPACES.REGION}:region_${regionKey}`,
       id: region.name,
       microRegions: region.microRegionIds,
-      disabled: !region.enabled,
       country: region.countryCode,
       plans: region.plans.map(mapPlanCodeToViewPlan),
       continentCode: region.continentCode,
@@ -89,6 +87,62 @@ export const selectAre3azRegionsAvailable = (regions?: TRegions): boolean => {
 
   return hasFree3azRegions || hasStandard3azRegions;
 };
+
+const DEFAULT_EU_3AZ_MACRO_REGION_ID = 'PAR';
+const DEFAULT_EU_1AZ_MACRO_REGION_ID = 'RBX';
+const DEFAULT_US_MACRO_REGION_ID = 'VA';
+export const findDefaultMacroRegion =
+  (is3azAvailable: boolean, deploymentMode: TCreateClusterSchema['location']['deploymentMode']) =>
+  (regions?: Array<TRegionCard>): TRegionCard | undefined => {
+    const fallbackRegion = regions?.at(0);
+
+    // US case
+    if (!is3azAvailable) {
+      return regions?.find((region) => region.id === DEFAULT_US_MACRO_REGION_ID) ?? fallbackRegion;
+    }
+
+    // EU 1AZ case
+    if (deploymentMode === 'region') {
+      return (
+        regions?.find((region) => region.id === DEFAULT_EU_1AZ_MACRO_REGION_ID) ?? fallbackRegion
+      );
+    }
+
+    // EU 3AZ case
+    if (deploymentMode === 'region-3-az') {
+      return (
+        regions?.find((region) => region.id === DEFAULT_EU_3AZ_MACRO_REGION_ID) ?? fallbackRegion
+      );
+    }
+
+    return fallbackRegion;
+  };
+
+const DEFAULT_EU_3AZ_MICRO_REGION_ID = 'eu-west-par';
+const DEFAULT_EU_1AZ_MICRO_REGION_ID = 'RBX-A';
+const DEFAULT_US_MICRO_REGION_ID = 'VA1';
+export const findDefaultMicroRegion =
+  (is3azAvailable: boolean, deploymentMode: TCreateClusterSchema['location']['deploymentMode']) =>
+  (regions?: Array<string>): string | undefined => {
+    const fallbackRegion = regions?.at(0);
+
+    // US case
+    if (!is3azAvailable) {
+      return regions?.find((region) => region === DEFAULT_US_MICRO_REGION_ID) ?? fallbackRegion;
+    }
+
+    // EU 1AZ case
+    if (deploymentMode === 'region') {
+      return regions?.find((region) => region === DEFAULT_EU_1AZ_MICRO_REGION_ID) ?? fallbackRegion;
+    }
+
+    // EU 3AZ case
+    if (deploymentMode === 'region-3-az') {
+      return regions?.find((region) => region === DEFAULT_EU_3AZ_MICRO_REGION_ID) ?? fallbackRegion;
+    }
+
+    return fallbackRegion;
+  };
 
 export const useCombinedRegions = (
   deploymentMode: TCreateClusterSchema['location']['deploymentMode'],

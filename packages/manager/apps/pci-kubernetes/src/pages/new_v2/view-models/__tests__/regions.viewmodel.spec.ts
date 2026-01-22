@@ -162,7 +162,6 @@ describe('regions.viewmodel', () => {
       expect(result?.[0]).toMatchObject({
         id: 'GRA',
         microRegions: ['GRA9'],
-        disabled: false,
         country: 'fr',
         plans: ['free'],
         continentCode: 'EU',
@@ -180,16 +179,6 @@ describe('regions.viewmodel', () => {
       const result = mapMacroRegionForCards(regions);
 
       expect(result?.[0]?.plans).toEqual(['free', 'standard']);
-    });
-
-    it('maps disabled regions correctly', () => {
-      const regions: TMacroRegion[] = [
-        createMockMacroRegion('GRA', ['mks.free.hour.consumption'], false),
-      ];
-
-      const result = mapMacroRegionForCards(regions);
-
-      expect(result?.[0]?.disabled).toBe(true);
     });
 
     it('maps multiple micro regions correctly', () => {

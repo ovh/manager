@@ -9,7 +9,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
 import { Cart, TCartItem } from '@/components/cart/Cart.component';
-import { selectMacroRegions } from '@/domain/processors/regions.service';
+import { selectMacroRegions } from '@/domain/services/regions.service';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { mapMacroRegionForCards } from '../view-models/regions.viewmodel';

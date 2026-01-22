@@ -11,8 +11,9 @@ type TRegionCardProps = {
   datacenterDetails: string;
   regionId: string;
   countryCode: TCountryCode | null;
-  disabled: boolean;
+  disabled?: boolean;
   labels?: Array<string>;
+  selected?: boolean;
   onSelect: () => void;
 };
 
@@ -23,9 +24,10 @@ export const RegionCard = ({
   countryCode,
   disabled,
   labels,
+  selected,
   onSelect,
 }: TRegionCardProps) => (
-  <PciCard selectable compact onClick={onSelect} disabled={disabled}>
+  <PciCard selectable compact onClick={onSelect} disabled={disabled} selected={selected}>
     <PciCard.Header>
       <Radio value={regionId} disabled={disabled}>
         <RadioControl />

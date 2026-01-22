@@ -1,6 +1,7 @@
 import { TDeploymentMode, TMacroRegion, TPlanCode } from '@/domain/entities/regions';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
+import { filterMacroRegions } from './regions.viewmodel';
 
 export type TViewPlan = 'free' | 'standard';
 
@@ -27,21 +28,25 @@ const ALL_PLAN_OPTION: PlanOption = {
   plan: 'all',
 };
 
-export const selectAvailablePlanOptions = (regions?: Array<TMacroRegion>): Array<PlanOption> => {
-  if (!regions || regions.length === 0) {
-    return [ALL_PLAN_OPTION];
-  }
+export const selectAvailablePlanOptions =
+  (continentField: TCreateClusterSchema['location']['continent']) =>
+  (regions?: Array<TMacroRegion>): Array<PlanOption> => {
+    if (!regions || regions.length === 0) {
+      return [ALL_PLAN_OPTION];
+    }
 
-  const uniquePlans = new Set<TViewPlan>();
-  regions.forEach((region) => {
-    const regionViewPlans = region.plans.map(mapPlanCodeToViewPlan);
-    regionViewPlans.forEach((plan) => uniquePlans.add(plan));
-  });
+    const filteredRegions = filterMacroRegions(continentField, 'all')(regions);
 
-  const options = [...uniquePlans].map((plan) => ({
-    labelKey: plan === 'standard' ? 'kube_add_plan_title_standard' : 'kube_add_plan_title_free',
-    plan: plan,
-  }));
+    const uniquePlans = new Set<TViewPlan>();
+    filteredRegions?.forEach((region) => {
+      const regionViewPlans = region.plans.map(mapPlanCodeToViewPlan);
+      regionViewPlans.forEach((plan) => uniquePlans.add(plan));
+    });
 
-  return [ALL_PLAN_OPTION, ...options];
-};
+    const options = [...uniquePlans].map((plan) => ({
+      labelKey: plan === 'standard' ? 'kube_add_plan_title_standard' : 'kube_add_plan_title_free',
+      plan: plan,
+    }));
+
+    return [ALL_PLAN_OPTION, ...options];
+  };

@@ -56,19 +56,19 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
       render={() => (
         <RadioGroup
           name="region"
-          value={macroRegionField}
+          value={macroRegionField ?? undefined}
           onValueChange={({ value }) => handleSelectMacroRegion(value)}
           className="grid w-full grid-cols-2 gap-6 lg:grid-cols-3 xxl:grid-cols-4"
         >
           {regionOptions?.map((region) => (
             <RegionCard
+              selected={macroRegionField === region.id}
               key={region.id}
               city={region.label}
               regionId={region.id}
               datacenterDetails={region.datacenterDetails ?? ''}
               countryCode={region.country}
               labels={region.plans}
-              disabled={region.disabled}
               onSelect={() => {
                 handleSelectMacroRegion(region.id);
               }}
