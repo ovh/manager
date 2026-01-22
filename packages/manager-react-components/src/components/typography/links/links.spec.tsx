@@ -1,6 +1,7 @@
 import React from 'react';
 import { Links, LinkType } from './links.component';
 import { render } from '../../../utils/test.provider';
+import { useSurveyLink } from '../../../hooks/survey/useSurveyLink';
 
 describe('Links component', () => {
   it('renders a back link correctly', () => {
@@ -49,6 +50,23 @@ describe('Links component', () => {
     const linkElement = container.querySelector('[label="External Page"]');
 
     expect(linkElement).toBeInTheDocument();
+  });
+
+  it('renders a survey link correctly', () => {
+    const { container } = render(
+      <Links
+        type={LinkType.survey}
+        surveyApplicationKey="survey"
+      />,
+    );
+    const linkElement = container.querySelector('[label="Donnez-nous votre avis !"]');
+    expect(linkElement).toBeInTheDocument();
+    expect(linkElement).toHaveAttribute('icon', 'emoticon-smile');
+    expect(linkElement).toHaveAttribute(
+      'href',
+      useSurveyLink({ applicationKey: 'survey', languageCode: 'fr' }),
+    );
+    expect(linkElement).toHaveAttribute('target', '_blank');
   });
 });
 
