@@ -3,8 +3,16 @@ import { Secret } from '@secret-manager/types/secret.type';
 import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsRadio } from '@ovhcloud/ods-components/react';
-import { Skeleton, Text } from '@ovhcloud/ods-react';
+import { OdsFormField } from '@ovhcloud/ods-components/react';
+import {
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  RadioValueChangeDetail,
+  Skeleton,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -38,34 +46,24 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
         <span>{t('cas_with_description')}</span>
         <HelpIconWithTooltip label={t('cas_with_description_tooltip')} />
       </label>
-      <div className="flex gap-4">
-        <div className="flex items-center gap-2">
-          <OdsRadio
-            inputId={`${field.name}-active`}
-            name={field.name}
-            value="active"
-            isChecked={field.value === 'active'}
-            onOdsChange={field.onChange}
-            data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE}
-          />
-          <label htmlFor={`${field.name}-active`}>
+      <RadioGroup
+        value={field.value}
+        onValueChange={(detail: RadioValueChangeDetail) => field.onChange(detail.value)}
+        className="flex flex-row gap-4"
+      >
+        <Radio value="active" data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE}>
+          <RadioControl />
+          <RadioLabel>
             <Text preset="paragraph">{t('activated')}</Text>
-          </label>
-        </div>
-        <div className="flex items-center gap-2">
-          <OdsRadio
-            inputId={`${field.name}-inactive`}
-            name={field.name}
-            value="inactive"
-            isChecked={field.value === 'inactive'}
-            onOdsChange={field.onChange}
-            data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE}
-          />
-          <label htmlFor={`${field.name}-inactive`}>
+          </RadioLabel>
+        </Radio>
+        <Radio value="inactive" data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE}>
+          <RadioControl />
+          <RadioLabel>
             <Text preset="paragraph">{t('disabled', { ns: NAMESPACES.STATUS })}</Text>
-          </label>
-        </div>
-      </div>
+          </RadioLabel>
+        </Radio>
+      </RadioGroup>
       {okmsId ? <FormHelper secret={secret} okmsId={okmsId} /> : null}
     </OdsFormField>
   );
