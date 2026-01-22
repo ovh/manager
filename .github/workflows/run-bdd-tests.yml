@@ -1,8 +1,6 @@
 name: Run tests
 
-on:
-  push:
-    branches-ignore: [master]
+on: [push]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
