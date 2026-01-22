@@ -138,6 +138,16 @@ export const localBackupRotationSchema = z.string().nullable();
 
 export const distantBackupLocalizationSchema = z.string().nullable();
 
+export const assignNewGatewaySchema = z.boolean();
+
+export const ipPublicTypeSchema = z.enum(['basicIp', 'floatingIp']).nullable();
+
+export const floatingIpAssignmentSchema = z
+  .enum(['createNew', 'reuseExisting'])
+  .nullable();
+
+export const existingFloatingIpSchema = z.string().nullable();
+
 export type TAddNetworkForm = z.infer<typeof networkSchema>;
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -159,6 +169,10 @@ export const instanceCreationSchema = z.object({
   newSshPublicKey: sshPublicKeySchema.nullable(),
   networkId: networkIdSchema,
   newPrivateNetwork: networkSchema,
+  assignNewGateway: assignNewGatewaySchema,
+  ipPublicType: ipPublicTypeSchema,
+  floatingIpAssignment: floatingIpAssignmentSchema,
+  existingFloatingIp: existingFloatingIpSchema,
   billingType: billingTypeSelectionSchema,
   localBackupRotation: localBackupRotationSchema,
   distantBackupLocalization: distantBackupLocalizationSchema,

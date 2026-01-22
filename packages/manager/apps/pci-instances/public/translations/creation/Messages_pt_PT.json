@@ -144,5 +144,21 @@
   "pci_instance_creation_table_storage_unit_tb": "TB",
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Atribuir um gateway",
-  "pci_instance_creation_network_gateway_price_label": "Tamanho {{ size }} - {{ price }}"
+  "pci_instance_creation_network_gateway_price_label": "Tamanho {{ size }} - {{ price }}",
+  "pci_instance_creation_network_add_public_connectivity": {
+    "title": "Atribuir conectividade pública",
+    "description": "<p>A atribuição de um endereço IP público permite o acesso à sua instância a partir de fora da rede OVHcloud. <span>A criação do IP flutuante será feita no final da configuração.</span></p>",
+    "toggle_label": "Atribuir um IP público",
+    "basic_ip_label": "IP Público Básico (Vinculado à instância) - {{ price }}",
+    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da vida útil do recurso. ",
+    "basic_ip_warning": "A ativação do IP público básico não é compatível com um gateway.",
+    "floating_ip_label": "Criar um IP Flutuante (Reutilizável) - {{ price }}",
+    "floating_ip_description": "A reserva de um endereço IP flutuante atribui o endereço ao seu projeto até que você o libere explicitamente. ",
+    "floating_ip_warning": "Ao selecionar esta opção, vamos atribuir-lhe um gateway de tamanho {{ size }}.",
+    "floating_ip_create_new_label": "Criar um novo - {{ price }}",
+    "floating_ip_reuse_existing_label": "Reutilizar um IP flutuante existente",
+    "floating_ip_unavailable_LZ_tooltip": "Os IPs flutuantes não estão disponíveis nas localZones."
+  },
+  "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "O Gateway não está disponível nas localZones.",
+  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Um Gateway já está atribuído à rede privada selecionada."
 }

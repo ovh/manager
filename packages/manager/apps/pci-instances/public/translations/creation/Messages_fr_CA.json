@@ -109,6 +109,8 @@
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Attribuer une gateway",
   "pci_instance_creation_network_gateway_price_label": "Taille {{ size }} - {{ price }}",
+  "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway n'est pas disponible dans les localZones.",
+  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Un Gateway est déjà attribuée au réseau privé sélectionné.",
   "pci_instance_creation_select_network_dropdown_label": "Sélectionnez un réseau privé existant",
   "pci_instance_creation_network_add_new": "Créer un réseau privé",
   "pci_instance_creation_network_add_new_warning": "La création de votre réseau privé se fera à la fin du processus de configuration. Vous pouvez l’éditer.",
@@ -146,5 +148,19 @@
   "pci_instance_creation_backup_setting_rotation_description": {
     "predefined": "Une sauvegarde est effectuée tous les jours entre 22h00 et 6h00 (UTC) et la rotation maintient un historique des {{ numEntries }} dernières entrées. Lorsque la nouvelle sauvegarde est terminée, la plus ancienne est supprimée.",
     "custom": "Choisissez vous-même l'ordonnancement (format UNIX Cron), le nombre de rotations et les exécutions maximales que vous souhaitez."
+  },
+  "pci_instance_creation_network_add_public_connectivity": {
+    "title": "Attribuer une connectivité publique",
+    "description": "<p>L'attribution d'une adresse IP publique permet l'accès à votre instance depuis l'extérieur du réseau OVHcloud. <span>La création de la floating IP se fera à la fin de la configuration.</span></p>",
+    "toggle_label": "Attribuer une ip publique",
+    "basic_ip_label": "Basic Public IP (Lié à l'instance) - {{ price }}",
+    "basic_ip_description": "Une IP publique de base est une adresse IP qui ne persiste pas au-delà de la durée de vie de la ressource. ",
+    "basic_ip_warning": "L'activation de la basic public Ip n'est pas compatible avec une gateway.",
+    "floating_ip_label": "Créer une Floating IP (Réutilisable) - {{ price }}",
+    "floating_ip_description": "La réservation d'une adresse IP flottante attribue l'adresse à votre projet jusqu'à ce que vous la libériez explicitement. ",
+    "floating_ip_warning": "En sélectionnant cette option nous allons vous attribuer une gateway taille {{ size }}.",
+    "floating_ip_create_new_label": "Créer une nouvelle - {{ price }}",
+    "floating_ip_reuse_existing_label": "Reutiliser une floating IP existante",
+    "floating_ip_unavailable_LZ_tooltip": "Les Floating IP ne sont pas disponibles dans les localZones."
   }
 }
