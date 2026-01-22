@@ -107,13 +107,19 @@ describe('EditMetadataDrawerForm component test suite', () => {
       expect(input2).toBeInTheDocument();
       expect(input2).toHaveValue(mockSecretConfig.maxVersions.value);
 
-      const input3 = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE);
+      const input3 = screen.getByRole('radio', {
+        name: allLabels.secretManager.activated,
+      });
+      screen.debug(input3);
       expect(input3).toBeInTheDocument();
-      expect(input3).toHaveAttribute('is-checked', 'true');
+      expect(input3).toBeChecked();
 
-      const input4 = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE);
+      const input4 = screen.getByRole('radio', {
+        name: allLabels.common.status.disabled,
+      });
+      screen.debug(input4);
       expect(input4).toBeInTheDocument();
-      expect(input4).not.toHaveAttribute('is-checked', 'true');
+      expect(input4).not.toBeChecked();
     });
   });
 
