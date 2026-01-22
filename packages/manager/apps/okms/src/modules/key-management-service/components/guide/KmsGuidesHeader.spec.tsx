@@ -38,10 +38,9 @@ vi.mock('./guide-kmip/useGuideItemKmip', () => ({
   })),
 }));
 
-vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
-  const module = await importOriginal<typeof import('@ovh-ux/manager-module-common-api')>();
-  return { ...module, useFeatureAvailability: vi.fn() };
-});
+vi.mock('@ovh-ux/manager-module-common-api', () => ({
+  useFeatureAvailability: vi.fn(),
+}));
 
 describe('KMS Guides Header tests suite', () => {
   it('should display all guides when feature flipping is true', async () => {
@@ -51,6 +50,7 @@ describe('KMS Guides Header tests suite', () => {
         [KMS_FEATURES.KMIP_CONNECTION_GUIDE]: true,
         [KMS_FEATURES.KMS_USAGE_GUIDE]: true,
       },
+      isPending: false,
     } as unknown as UseFeatureAvailabilityResult);
 
     // WHEN
@@ -70,6 +70,7 @@ describe('KMS Guides Header tests suite', () => {
         [KMS_FEATURES.KMIP_CONNECTION_GUIDE]: false,
         [KMS_FEATURES.KMS_USAGE_GUIDE]: false,
       },
+      isPending: false,
     } as unknown as UseFeatureAvailabilityResult);
 
     // WHEN

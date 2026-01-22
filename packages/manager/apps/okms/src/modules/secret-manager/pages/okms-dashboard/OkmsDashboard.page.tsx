@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Breadcrumb } from '@ovhcloud/ods-react';
 
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { useNotifications } from '@ovh-ux/muk';
 import { BaseLayout, Error, Notifications } from '@ovh-ux/muk';

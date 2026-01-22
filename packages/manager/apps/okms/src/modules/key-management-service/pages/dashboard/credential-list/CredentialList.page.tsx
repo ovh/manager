@@ -9,8 +9,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
-import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useAuthorizationIam } from '@ovh-ux/muk';
 import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';

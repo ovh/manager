@@ -9,7 +9,7 @@ import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
 import {
   UseFeatureAvailabilityResult,
   useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-module-common-api';
 
 import { ProductType, useProductType } from '@/common/hooks/useProductType';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
@@ -30,8 +30,8 @@ vi.mock('@key-management-service/data/hooks/useOkms', () => ({
     ({ data: { id, iam: { urn: `urn:${id}` } } }) as UseQueryResult<OKMS>,
 }));
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const module = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
+  const module = await importOriginal<typeof import('@ovh-ux/manager-module-common-api')>();
   return { ...module, useFeatureAvailability: vi.fn() };
 });
 

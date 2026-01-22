@@ -3,7 +3,7 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 
 import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { RedirectionGuard } from '@ovh-ux/muk';
 
 import { useProductType } from '@/common/hooks/useProductType';

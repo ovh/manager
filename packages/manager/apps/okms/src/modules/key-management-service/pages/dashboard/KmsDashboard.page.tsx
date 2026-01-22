@@ -11,7 +11,7 @@ import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useB
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { BaseLayout, Error, HeaderProps, Notifications } from '@ovh-ux/muk';
 

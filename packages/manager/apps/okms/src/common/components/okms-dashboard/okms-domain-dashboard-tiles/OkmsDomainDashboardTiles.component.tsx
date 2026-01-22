@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 
 import { SECRET_MANAGER_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 
