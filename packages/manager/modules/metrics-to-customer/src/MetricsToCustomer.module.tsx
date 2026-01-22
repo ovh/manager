@@ -24,6 +24,7 @@ export function MetricsToCustomerModule(
     productType,
     resourceURN,
     regions,
+    defaultRetention,
     subscriptionUrls,
     enableConfigurationManagement = false,
   } = moduleProps;
@@ -35,6 +36,7 @@ export function MetricsToCustomerModule(
           resourceName,
           resourceURN,
           regions,
+          defaultRetention,
           subscriptionUrls,
           enableConfigurationManagement,
         }}>
