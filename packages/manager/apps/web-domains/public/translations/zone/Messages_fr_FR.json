@@ -6,5 +6,7 @@
   "zone_page_modify_textual": "Modifier en mode textuel",
   "zone_page_modify_default_ttl": "Modifier le TTL par défaut",
   "zone_page_view_history": "Voir l'historique de ma zone DNS",
-  "zone_page_reset": "Réinitialiser ma zone DNS"
+  "zone_page_reset": "Réinitialiser ma zone DNS",
+  "zone_page_guide_button_edit_label": "Comment éditer ma zone DNS ?",
+  "zone_page_guide_button_history_label": "Gérer l'historique d'une zone DNS"
 }

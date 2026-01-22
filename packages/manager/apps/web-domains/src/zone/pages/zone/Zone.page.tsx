@@ -1,9 +1,10 @@
 import { urls as domainUrls } from "@/domain/routes/routes.constant";
 import { useOverridePage } from "@/zone/hooks/overridePage/useOverridePage";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
-import { ActionMenu, Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, Datagrid, POPOVER_POSITION } from "@ovh-ux/muk";
+import { ActionMenu, Datagrid } from "@ovh-ux/muk";
+import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION } from "@ovhcloud/ods-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams, Outlet } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ZonePage() {
   const { t } = useTranslation(['zone', NAMESPACES.ACTIONS]);
@@ -13,6 +14,7 @@ export default function ZonePage() {
   const buildUrl = (baseUrl: string) => {
     return baseUrl.replace(':serviceName', serviceName || '');
   };
+
   const tabsZone = domainUrls.domainTabZone
   const actionItems = [
     {
