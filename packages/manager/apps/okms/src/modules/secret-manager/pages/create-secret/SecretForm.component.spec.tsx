@@ -1,29 +1,28 @@
 import { useSearchParams } from 'react-router-dom';
 
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
+import { mockSecretConfigOkms } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.mock';
+import { mockSecretConfigReference } from '@secret-manager/mocks/secret-reference/secretReference.mock';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
 import {
   MOCK_DATA_VALID_JSON,
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constants';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import { vi } from 'vitest';
 
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
-import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 import {
   changeOdsInputValueByTestId,
   clickJsonEditorToggle,
 } from '@/common/utils/tests/uiTestHelpers';
 
 import { SecretForm } from './SecretForm.component';
-
-let i18nValue: i18n;
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
@@ -37,9 +36,8 @@ vi.mock('react-router-dom', async (importOriginal) => {
 
 // Mocking ODS Input component
 vi.mock('@ovhcloud/ods-components/react', async () => {
-  const { odsInputMock, odsTextareaMock, odsSwitchMock, odsSwitchItemMock } = await import(
-    '@/common/utils/tests/odsMocks'
-  );
+  const { odsInputMock, odsTextareaMock, odsSwitchMock, odsSwitchItemMock, odsQuantityMock } =
+    await import('@/common/utils/tests/odsMocks');
   const original = await vi.importActual('@ovhcloud/ods-components/react');
   return {
     ...original,
@@ -47,32 +45,61 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
     OdsTextarea: vi.fn(odsTextareaMock),
     OdsSwitch: vi.fn(odsSwitchMock),
     OdsSwitchItem: vi.fn(odsSwitchItemMock),
+    OdsQuantity: vi.fn(odsQuantityMock),
   };
 });
 
 vi.mocked(useSearchParams).mockReturnValue([new URLSearchParams(), vi.fn()]);
 
+// Mock the useOkmsById hook
+const mockUseOkmsById = vi.fn();
+vi.mock('@key-management-service/data/hooks/useOkms', () => ({
+  useOkmsById: (okmsId: string): unknown => mockUseOkmsById(okmsId),
+}));
+
+// Mock the useSecretConfigOkms hook
+const mockUseSecretConfigOkms = vi.fn();
+vi.mock('@secret-manager/data/hooks/useSecretConfigOkms', () => ({
+  useSecretConfigOkms: (okmsId: string): unknown => mockUseSecretConfigOkms(okmsId),
+}));
+
+// Mock the useSecretConfigReference hook
+const mockUseSecretConfigReference = vi.fn();
+vi.mock('@secret-manager/data/hooks/useSecretConfigReference', () => ({
+  useSecretConfigReference: (region: string): unknown => mockUseSecretConfigReference(region),
+}));
+
 /**
  * Renders the secret form
  */
 const renderSecretForm = async (okmsId?: string) => {
-  const queryClient = new QueryClient();
-  if (!i18nValue) {
-    i18nValue = await initTestI18n();
-  }
-
-  return render(
-    <I18nextProvider i18n={i18nValue}>
-      <QueryClientProvider client={queryClient}>
-        <SecretForm okmsId={okmsId} />
-      </QueryClientProvider>
-    </I18nextProvider>,
-  );
+  const wrapper = await testWrapperBuilder().withI18next().withQueryClient().build();
+  return render(<SecretForm okmsId={okmsId} />, { wrapper });
 };
 
 const MOCK_OKMS_ID = 'a1c3e7f8-5fc5-4c4e-8eac-60076ac25c00';
 
 describe('Secrets creation form test suite', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+
+    // Default mock implementations
+    mockUseOkmsById.mockReturnValue({
+      data: okmsRoubaix1Mock,
+      isPending: false,
+      error: null,
+    });
+    mockUseSecretConfigOkms.mockReturnValue({
+      data: mockSecretConfigOkms,
+      isPending: false,
+      error: null,
+    });
+    mockUseSecretConfigReference.mockReturnValue({
+      data: mockSecretConfigReference,
+      isPending: false,
+      error: null,
+    });
+  });
   it.each([
     { shouldButtonBeDisabled: true },
     {
@@ -133,4 +160,72 @@ describe('Secrets creation form test suite', () => {
       );
     },
   );
+
+  it('should hide optional fields when toggles are disabled', async () => {
+    // GIVEN
+    await renderSecretForm(MOCK_OKMS_ID);
+    await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
+
+    // THEN - fields should not be visible
+    expect(
+      screen.queryByTestId(SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId(SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS)).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE),
+    ).not.toBeInTheDocument();
+  });
+
+  it('should show optional fields when toggles are enabled', async () => {
+    // GIVEN
+    const user = userEvent.setup();
+    await renderSecretForm(MOCK_OKMS_ID);
+    await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
+
+    // WHEN - enable deactivate version after toggle
+    await act(() =>
+      user.click(
+        screen.getByRole('checkbox', {
+          name: labels.secretManager.enable_deactivate_version_after,
+        }),
+      ),
+    );
+
+    // THEN - field should be visible
+    await waitFor(() => {
+      expect(
+        screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER),
+      ).toBeInTheDocument();
+    });
+
+    // WHEN - enable max versions toggle
+    await act(() =>
+      user.click(
+        screen.getByRole('checkbox', {
+          name: labels.secretManager.enable_max_versions,
+        }),
+      ),
+    );
+
+    // THEN - field should be visible
+    await waitFor(() => {
+      expect(screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS)).toBeInTheDocument();
+    });
+
+    // WHEN - enable CAS required toggle
+    await act(() =>
+      user.click(
+        screen.getByRole('checkbox', {
+          name: labels.secretManager.enable_cas_required,
+        }),
+      ),
+    );
+
+    // THEN - field should be visible
+    await waitFor(() => {
+      expect(
+        screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE),
+      ).toBeInTheDocument();
+    });
+  });
 });
