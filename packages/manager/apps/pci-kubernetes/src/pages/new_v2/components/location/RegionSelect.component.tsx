@@ -62,6 +62,7 @@ export const RegionSelect = ({ regions }: TRegionSelectProps) => {
         >
           {regionOptions?.map((region) => (
             <RegionCard
+              selected={macroRegionField === region.id}
               key={region.id}
               city={region.label}
               regionId={region.id}

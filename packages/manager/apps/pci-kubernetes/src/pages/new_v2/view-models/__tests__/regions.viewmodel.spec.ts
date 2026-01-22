@@ -162,7 +162,6 @@ describe('regions.viewmodel', () => {
       expect(result?.[0]).toMatchObject({
         id: 'GRA',
         microRegions: ['GRA9'],
-        disabled: false,
         country: 'fr',
         plans: ['free'],
         continentCode: 'EU',

@@ -54,12 +54,14 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
 
   const { regions } = useCombinedRegions(deploymentModeField);
 
-  const { continents: continentOptions, plans: planOptions } = useMemo(
-    () => ({
-      continents: selectAvailableContinentOptions(regions),
-      plans: selectAvailablePlanOptions(regions),
-    }),
-    [regions],
+  const continentOptions = useMemo(
+    () => selectAvailableContinentOptions(planField)(regions),
+    [planField, regions],
+  );
+
+  const planOptions = useMemo(
+    () => selectAvailablePlanOptions(continentField)(regions),
+    [continentField, regions],
   );
 
   const cardRegions = useMemo(
