@@ -43,6 +43,28 @@ describe('FilterList tests', () => {
     expect(filterChipItems).toHaveLength(1);
   });
 
+  it('should display displayValue if exists', () => {
+    const propsWithOneFiltersItem = {
+      filters: [
+        {
+          key: 'os',
+          comparator: 'is_in',
+          displayValue: 'windows',
+          value: 'win_64,win32,win_server64,win_server32',
+          label: 'operating system',
+        },
+      ],
+      onRemoveFilter: vitest.fn(),
+    } as FilterListProps;
+
+    const { container, getByTestId } = renderComponent(propsWithOneFiltersItem);
+
+    const filterChipItem = getByTestId('filter-list_tag_item');
+
+    expect(container).not.toBeEmptyDOMElement();
+    expect(filterChipItem.textContent).toContain('windows');
+  });
+
   it('should display 2 tags when the filters array props have two elements', () => {
     const propsWithTwoFiltersItem = {
       filters: [
