@@ -21,9 +21,14 @@ export default class LogsIAMPoliciesController extends AbstractCursorDatagridCon
   }
 
   createItemsPromise({ cursor }) {
+    const {
+      serviceName,
+      iam: { urn },
+    } = this.service;
     return this.logsIAMPoliciesService.fetch({
       cursor,
-      resourceURN: this.service.iam.urn,
+      serviceName,
+      urn,
     });
   }
 }
