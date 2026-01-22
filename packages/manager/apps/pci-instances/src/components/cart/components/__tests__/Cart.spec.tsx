@@ -1,8 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import React from 'react';
 import { Cart } from '../../Cart.component';
 import { TCartItem } from '@/pages/instances/create/hooks/useCartItems';
 import { BILLING_TYPE } from '@/types/instance/common.type';
+import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 
 vi.mock('@ovh-ux/muk', () => ({
   useCatalogPrice: () => ({
@@ -14,6 +16,8 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
   }),
+  Trans: ({ i18nKey }: { i18nKey?: string }) =>
+    React.createElement('span', {}, i18nKey ?? ''),
 }));
 
 describe('Cart', () => {
@@ -52,11 +56,13 @@ describe('Cart', () => {
       ];
 
       render(
-        <Cart
-          items={cartItems}
-          actionsButtons={mockActionsButtons}
-          billingType={BILLING_TYPE.Hourly}
-        />,
+        <TestCreateInstanceFormWrapper>
+          <Cart
+            items={cartItems}
+            actionsButtons={mockActionsButtons}
+            billingType={BILLING_TYPE.Hourly}
+          />
+        </TestCreateInstanceFormWrapper>,
       );
 
       expect(screen.getByTestId('cart-total-price')).toBeDefined();
@@ -82,11 +88,13 @@ describe('Cart', () => {
       ];
 
       render(
-        <Cart
-          items={cartItems}
-          actionsButtons={mockActionsButtons}
-          billingType={BILLING_TYPE.Monthly}
-        />,
+        <TestCreateInstanceFormWrapper>
+          <Cart
+            items={cartItems}
+            actionsButtons={mockActionsButtons}
+            billingType={BILLING_TYPE.Monthly}
+          />
+        </TestCreateInstanceFormWrapper>,
       );
 
       expect(screen.getByTestId('cart-total-price')).toBeDefined();
@@ -102,11 +110,13 @@ describe('Cart', () => {
       ];
 
       render(
-        <Cart
-          items={cartItems}
-          actionsButtons={mockActionsButtons}
-          billingType={BILLING_TYPE.Hourly}
-        />,
+        <TestCreateInstanceFormWrapper>
+          <Cart
+            items={cartItems}
+            actionsButtons={mockActionsButtons}
+            billingType={BILLING_TYPE.Hourly}
+          />
+        </TestCreateInstanceFormWrapper>,
       );
 
       expect(screen.getByTestId('cart-total-price')).toBeDefined();
@@ -122,11 +132,13 @@ describe('Cart', () => {
       ];
 
       render(
-        <Cart
-          items={cartItems}
-          actionsButtons={mockActionsButtons}
-          billingType={BILLING_TYPE.Hourly}
-        />,
+        <TestCreateInstanceFormWrapper>
+          <Cart
+            items={cartItems}
+            actionsButtons={mockActionsButtons}
+            billingType={BILLING_TYPE.Hourly}
+          />
+        </TestCreateInstanceFormWrapper>,
       );
 
       expect(screen.getByTestId('cart-total-price')).toBeDefined();
@@ -142,11 +154,13 @@ describe('Cart', () => {
       ];
 
       render(
-        <Cart
-          items={cartItems}
-          actionsButtons={mockActionsButtons}
-          billingType={BILLING_TYPE.Hourly}
-        />,
+        <TestCreateInstanceFormWrapper>
+          <Cart
+            items={cartItems}
+            actionsButtons={mockActionsButtons}
+            billingType={BILLING_TYPE.Hourly}
+          />
+        </TestCreateInstanceFormWrapper>,
       );
 
       expect(screen.getByTestId('cart-hourly-total-price')).toBeDefined();
@@ -161,11 +175,13 @@ describe('Cart', () => {
       ];
 
       render(
-        <Cart
-          items={cartItems}
-          actionsButtons={mockActionsButtons}
-          billingType={BILLING_TYPE.Monthly}
-        />,
+        <TestCreateInstanceFormWrapper>
+          <Cart
+            items={cartItems}
+            actionsButtons={mockActionsButtons}
+            billingType={BILLING_TYPE.Monthly}
+          />
+        </TestCreateInstanceFormWrapper>,
       );
 
       expect(screen.getByTestId('cart-monthly-total-price')).toBeDefined();
@@ -183,11 +199,13 @@ describe('Cart', () => {
       ];
 
       render(
-        <Cart
-          items={cartItems}
-          actionsButtons={mockActionsButtons}
-          billingType={BILLING_TYPE.Monthly}
-        />,
+        <TestCreateInstanceFormWrapper>
+          <Cart
+            items={cartItems}
+            actionsButtons={mockActionsButtons}
+            billingType={BILLING_TYPE.Monthly}
+          />
+        </TestCreateInstanceFormWrapper>,
       );
 
       expect(screen.getByTestId('cart-total-price')).toBeDefined();
@@ -204,11 +222,13 @@ describe('Cart', () => {
       ];
 
       render(
-        <Cart
-          items={cartItems}
-          actionsButtons={mockActionsButtons}
-          billingType={BILLING_TYPE.Hourly}
-        />,
+        <TestCreateInstanceFormWrapper>
+          <Cart
+            items={cartItems}
+            actionsButtons={mockActionsButtons}
+            billingType={BILLING_TYPE.Hourly}
+          />
+        </TestCreateInstanceFormWrapper>,
       );
 
       expect(screen.getByTestId('cart-total-price')).toBeDefined();

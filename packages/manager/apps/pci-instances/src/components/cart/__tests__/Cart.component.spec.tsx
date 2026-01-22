@@ -3,6 +3,7 @@ import { Button, Text } from '@ovhcloud/ods-react';
 import { describe, vi, expect, test } from 'vitest';
 import { Cart } from '../Cart.component';
 import { t } from 'i18next';
+import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 import { BILLING_TYPE } from '@/types/instance/common.type';
 
 const instanceDetails = [
@@ -84,20 +85,6 @@ const ActionButtons = (
   </>
 );
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useCatalogPrice: vi.fn().mockReturnValue({
-    getTextPrice: vi.fn((price: number) => `${price}`),
-    getFormattedHourlyCatalogPrice: vi.fn(),
-    getFormattedMonthlyCatalogPrice: vi.fn(),
-  }),
-}));
-
-vi.mock('@ovh-ux/muk', () => ({
-  useCatalogPrice: () => ({
-    getTextPrice: (price: number) => `${(price / 100).toFixed(4)} €`,
-  }),
-}));
-
 afterEach(() => {
   vi.clearAllMocks();
 });
@@ -105,11 +92,13 @@ afterEach(() => {
 describe('Considering the Cart component', () => {
   test('Should render correct cart items expanded states', () => {
     render(
-      <Cart
-        items={cartItems}
-        actionsButtons={ActionButtons}
-        billingType={BILLING_TYPE.Hourly}
-      />,
+      <TestCreateInstanceFormWrapper>
+        <Cart
+          items={cartItems}
+          actionsButtons={ActionButtons}
+          billingType={BILLING_TYPE.Hourly}
+        />
+      </TestCreateInstanceFormWrapper>,
     );
 
     const instancelocalizationElt = screen.getByTestId(
@@ -125,11 +114,13 @@ describe('Considering the Cart component', () => {
 
   test('Should render correct cart items details', () => {
     render(
-      <Cart
-        items={cartItems}
-        actionsButtons={ActionButtons}
-        billingType={BILLING_TYPE.Hourly}
-      />,
+      <TestCreateInstanceFormWrapper>
+        <Cart
+          items={cartItems}
+          actionsButtons={ActionButtons}
+          billingType={BILLING_TYPE.Hourly}
+        />
+      </TestCreateInstanceFormWrapper>,
     );
 
     const instanceLocalizationElt = screen.getByTestId(
@@ -148,11 +139,13 @@ describe('Considering the Cart component', () => {
 
   test.skip('Should render expected total price', () => {
     render(
-      <Cart
-        items={cartItems}
-        actionsButtons={ActionButtons}
-        billingType={BILLING_TYPE.Hourly}
-      />,
+      <TestCreateInstanceFormWrapper>
+        <Cart
+          items={cartItems}
+          actionsButtons={ActionButtons}
+          billingType={BILLING_TYPE.Hourly}
+        />
+      </TestCreateInstanceFormWrapper>,
     );
 
     const price = screen.getByTestId('cart-total-price');

@@ -85,6 +85,9 @@ const calculateTotals = (
 
       return { hourlyTotal: null, monthlyTotal };
     }
+
+    default:
+      return { hourlyTotal: null, monthlyTotal: null };
   }
 };
 
@@ -110,7 +113,10 @@ export const Cart = ({ items, actionsButtons, billingType }: TCartProps) => {
                 </Text>
               )}
             </CartItemHeader>
-            <CartItemDetails details={item.details} />
+            <CartItemDetails
+              details={item.details}
+              quantityHintParams={item.quantityHintParams}
+            />
           </CartItem>
         )}
       />

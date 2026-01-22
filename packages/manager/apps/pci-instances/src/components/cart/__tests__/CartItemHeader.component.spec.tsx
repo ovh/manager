@@ -8,8 +8,8 @@ const headerText = 'Header text';
 describe('Considering CartItemHeader component', () => {
   test('Should render children', () => {
     render(
-      <Accordion>
-        <AccordionItem value="">
+      <Accordion value={['test-item']}>
+        <AccordionItem value="test-item">
           <CartItemHeader>
             <Text>{headerText}</Text>
           </CartItemHeader>

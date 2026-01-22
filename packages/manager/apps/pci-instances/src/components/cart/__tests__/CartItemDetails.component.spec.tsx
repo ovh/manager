@@ -3,6 +3,9 @@ import { describe, expect, test, vi } from 'vitest';
 import { Accordion, AccordionItem } from '@ovhcloud/ods-react';
 import { CartItemDetails } from '../components';
 import { TCartItemDetail } from '@/pages/instances/create/hooks/useCartItems';
+import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
+import { TQuantityHintParams } from '@/pages/instances/create/view-models/cartViewModel';
+import { ComponentProps } from 'react';
 
 vi.mock('@ovh-ux/muk', () => ({
   useCatalogPrice: () => ({
@@ -47,21 +50,27 @@ const details: TCartItemDetail[] = detailsData.map(
   }),
 );
 
+type TCartItemDetailsProps = ComponentProps<typeof CartItemDetails>;
+
+const renderCartItemDetails = (props: Partial<TCartItemDetailsProps> = {}) =>
+  render(
+    <TestCreateInstanceFormWrapper>
+      <Accordion value={['cart-item']}>
+        <AccordionItem value="cart-item">
+          <CartItemDetails details={details} {...props} />
+        </AccordionItem>
+      </Accordion>
+    </TestCreateInstanceFormWrapper>,
+  );
+
 describe('Considering CartItemDetails component', () => {
   test('Should return expected details', () => {
-    render(
-      <Accordion>
-        <AccordionItem value="">
-          <CartItemDetails details={details} />
-        </AccordionItem>
-      </Accordion>,
-    );
+    renderCartItemDetails();
 
     const imageDetails = screen.getByTestId(`cart-item-details-${imageName}`);
     expect(imageDetails).toHaveTextContent(imageName);
     expect(imageDetails).toHaveTextContent(imageDescriptionName);
-    expect(imageDetails).toHaveTextContent('50.0000 €');
-    expect(imageDetails).toHaveTextContent('HT/heure');
+    expect(imageDetails).toHaveTextContent(String(imagePrice));
 
     const networkDetails = screen.getByTestId(
       `cart-item-details-${networkName}`,
@@ -77,53 +86,26 @@ describe('Considering CartItemDetails component', () => {
     expect(carItemDividerElements).toHaveLength(details.length - 1);
   });
 
-  test('Should display price only when displayPrice is true', () => {
-    const detailsWithPrice: TCartItemDetail[] = [
-      {
-        id: 'flavor',
-        name: 'Flavor',
-        description: <p>B3-8</p>,
-        displayPrice: true,
-        price: 10000,
-        priceUnit: 'HT/mois',
-      },
-    ];
+  test('Should use default quota of 1 when quantityHintParams is not provided', () => {
+    renderCartItemDetails();
 
-    render(
-      <Accordion>
-        <AccordionItem value="">
-          <CartItemDetails details={detailsWithPrice} />
-        </AccordionItem>
-      </Accordion>,
-    );
-
-    expect(screen.getByTestId('cart-item-details-price')).toHaveTextContent(
-      '100.0000 €',
-    );
-    expect(screen.getByText('HT/mois')).toBeInTheDocument();
+    const quantitySelector = screen.getByRole('spinbutton', { hidden: true });
+    expect(quantitySelector).toBeInTheDocument();
+    expect(quantitySelector).toHaveAttribute('aria-valuemax', '1');
   });
 
-  test('Should not display price when displayPrice is false', () => {
-    const detailsWithoutPrice: TCartItemDetail[] = [
-      {
-        id: 'backup',
-        name: 'Backup',
-        description: <p>Custom backup display</p>,
-        displayPrice: false,
-        price: 5000,
-      },
-    ];
+  test('Should use provided quota from quantityHintParams', () => {
+    const quantityHintParams: TQuantityHintParams = {
+      quota: 10,
+      type: 'test-type',
+      region: 'test-region',
+      regionId: 'test-region-id',
+    };
 
-    render(
-      <Accordion>
-        <AccordionItem value="">
-          <CartItemDetails details={detailsWithoutPrice} />
-        </AccordionItem>
-      </Accordion>,
-    );
+    renderCartItemDetails({ quantityHintParams });
 
-    expect(
-      screen.queryByTestId('cart-item-details-price'),
-    ).not.toBeInTheDocument();
+    const quantitySelector = screen.getByRole('spinbutton', { hidden: true });
+    expect(quantitySelector).toBeInTheDocument();
+    expect(quantitySelector).toHaveAttribute('aria-valuemax', '10');
   });
 });
