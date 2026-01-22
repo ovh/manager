@@ -5,6 +5,15 @@
     "no_results_found": "Aucun tenant trouvé pour la recherche \"{{searchQuery}}\"",
     "region": "region"
   },
+  "tenants_regions": {
+    "region_one": "Région : {{region}}",
+    "region_other": "Régions : {{region}}"
+  },
+  "no_tenants_message": {
+    "title": "Collectez des métriques dans votre premier tenant sur cette region",
+    "description": "Pour vous aider à démarrer rapidement, nous créerons automatiquement votre premier tenant avec les paramètres suivants:",
+    "retention": "Rétention : {{retention}}"
+  },
   "search": {
     "placeholder": "recherche"
   },

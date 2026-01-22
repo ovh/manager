@@ -5,6 +5,7 @@ export interface IMetricsToCustomerModule {
   productType: string;
   resourceURN: string;
   regions: string[];
+  defaultRetention: string;
   subscriptionUrls: SubscriptionUrls;
   enableConfigurationManagement?: boolean;
 }
