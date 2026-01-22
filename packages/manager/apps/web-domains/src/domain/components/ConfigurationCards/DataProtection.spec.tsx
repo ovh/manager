@@ -7,6 +7,7 @@ import DataProtection from './DataProtection';
 import {
   TDomainResource,
   DisclosureConfigurationEnum,
+  TContactsConfiguration,
 } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { DomainStateEnum } from '@/domain/enum/domainState.enum';
@@ -14,6 +15,7 @@ import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
+import { serviceInfoAuto, serviceInfoInCreation } from '@/domain/__mocks__/serviceInfo';
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
   const actual = await vi.importActual('@ovh-ux/manager-react-components');
@@ -125,6 +127,7 @@ describe('DataProtection component', () => {
       render(
         <DataProtection
           domainResource={domainResource}
+          serviceInfo={serviceInfoAuto}
           setDataProtectionDrawerOpened={mockSetDataProtectionDrawerOpened}
         />,
         {
@@ -157,6 +160,7 @@ describe('DataProtection component', () => {
       render(
         <DataProtection
           domainResource={domainResource}
+          serviceInfo={serviceInfoAuto}
           setDataProtectionDrawerOpened={mockSetDataProtectionDrawerOpened}
         />,
         {
@@ -201,6 +205,7 @@ describe('DataProtection component', () => {
       render(
         <DataProtection
           domainResource={domainResource}
+          serviceInfo={serviceInfoAuto}
           setDataProtectionDrawerOpened={mockSetDataProtectionDrawerOpened}
         />,
         {
@@ -234,6 +239,7 @@ describe('DataProtection component', () => {
       render(
         <DataProtection
           domainResource={domainResource}
+          serviceInfo={serviceInfoAuto}
           setDataProtectionDrawerOpened={mockSetDataProtectionDrawerOpened}
         />,
         {
@@ -267,6 +273,7 @@ describe('DataProtection component', () => {
       render(
         <DataProtection
           domainResource={domainResource}
+          serviceInfo={serviceInfoAuto}
           setDataProtectionDrawerOpened={mockSetDataProtectionDrawerOpened}
         />,
         {
@@ -283,6 +290,32 @@ describe('DataProtection component', () => {
           'domain_tab_general_information_data_protection_disabled',
         ),
       ).toBeInTheDocument();
+    });
+  });
+
+  describe('when service is in creation', () => {
+    it('should display only generic information when forceDisclosure is true', () => {
+      const domainResource = createMockDomainResource({} as TContactsConfiguration);
+
+      render(
+        <DataProtection
+          domainResource={domainResource}
+          serviceInfo={serviceInfoInCreation}
+          setDataProtectionDrawerOpened={mockSetDataProtectionDrawerOpened}
+        />,
+        {
+          wrapper,
+        },
+      );
+
+      const actionButton = screen.getByTestId('data-protection-action-menu');
+      expect(
+        actionButton
+      ).toBeInTheDocument();
+
+      expect(
+        actionButton,
+      ).toBeDisabled();
     });
   });
 });

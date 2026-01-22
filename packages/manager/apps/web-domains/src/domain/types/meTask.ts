@@ -1,0 +1,15 @@
+export interface TOngoingOperations {
+  id: number;
+  domain?: string;
+  zone?: string;
+  function: string;
+  comment?: string;
+  creationDate: string;
+  todoDate: string;
+  lastUpdate: string;
+  doneDate?: string;
+  status: string;
+  canCancel: boolean;
+  canRelaunch: boolean;
+  canAccelerate: boolean;
+}

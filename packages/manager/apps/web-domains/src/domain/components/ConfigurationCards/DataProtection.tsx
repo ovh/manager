@@ -35,13 +35,11 @@ export default function DataProtection({
   setDataProtectionDrawerOpened,
 }: DataProtectionProps) {
   const { t } = useTranslation(['domain', NAMESPACES.IAM]);
-
   const urn = domainResource?.iam?.urn;
   const { isPending, isAuthorized } = useAuthorizationIam(
     ['domain:apiovh:name/edit'],
     urn,
   );
-
   const status = dataProtectionStatus(domainResource);
   const statusDetails = ConfigurationDataProtectionBadgeColorAndContent[status];
   const isConfigurationForced = Object.values(
@@ -66,7 +64,9 @@ export default function DataProtection({
               <div>
                 <ActionMenu
                   id={'data-protection-action-menu'}
+                  data-testid={'data-protection-action-menu'}
                   isCompact
+                  isLoading={isPending}
                   isDisabled={
                     isServiceInCreation(serviceInfo) || isConfigurationForced
                   }
@@ -77,23 +77,19 @@ export default function DataProtection({
                         'domain_tab_general_information_data_protection_manage_button',
                       ),
                       onClick: () => setDataProtectionDrawerOpened(true),
-                      iamActions: ['domain:apiovh:name/edit'],
-                      urn: domainResource?.iam?.urn || '',
                     },
                   ]}
                 />
               </div>
             </TooltipTrigger>
+            {!isAuthorized && (
+              <TooltipContent>
+                {t(`${NAMESPACES.IAM}:iam_actions_message`)}
+              </TooltipContent>
+            )}
             {isServiceInCreation(serviceInfo) && (
               <TooltipContent>
                 {t('domain_tab_name_service_in_creation')}
-              </TooltipContent>
-            )}
-            {isConfigurationForced && (
-              <TooltipContent>
-                {t(
-                  'domain_tab_general_information_data_protection_manage_button_disabled',
-                )}
               </TooltipContent>
             )}
           </Tooltip>

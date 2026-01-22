@@ -56,6 +56,8 @@ import {
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import { getMeTaskIds } from '@/domain/data/api/meTasks';
+import { TaskTypesEnum } from '@/domain/constants/meTasks';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -71,7 +73,6 @@ export const useGetDomainResource = (serviceName: string) => {
 
 export const useGetDomainZone = (
   serviceName: string,
-  domainResource: TDomainResource,
   enabled: boolean = false,
 ) => {
   const { data, isLoading, error } = useQuery<TDomainZone>({
@@ -393,9 +394,9 @@ export const useGetDnssecStatus = (
 
   if (
     resourceCurrentState?.dnsConfiguration?.configurationType ===
-      DnsConfigurationTypeEnum.EXTERNAL ||
+    DnsConfigurationTypeEnum.EXTERNAL ||
     resourceCurrentState?.dnsConfiguration?.configurationType ===
-      DnsConfigurationTypeEnum.MIXED
+    DnsConfigurationTypeEnum.MIXED
   ) {
     // If the configuration is not hosted by OVH, check the registry declaration to know whether DNSSEC is activated
     let status: DnssecStatusEnum;
@@ -516,4 +517,14 @@ export const useTransferTag = (serviceName: string, tag: string) => {
     transferTagError: error,
     isTransferTagPending: isPending,
   };
+};
+
+export const useGetMeTaskIds = (
+  serviceName: string,
+  taskType?: TaskTypesEnum,
+) => {
+  return useQuery<number[]>({
+    queryKey: ['domain', serviceName],
+    queryFn: () => getMeTaskIds(serviceName, taskType),
+  });
 };

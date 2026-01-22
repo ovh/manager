@@ -45,7 +45,6 @@ export default function AnycastOrder() {
   );
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    domainResource,
     true,
   );
   const [dnssecSelected, setDnssecSelected] = useState<boolean>(false);

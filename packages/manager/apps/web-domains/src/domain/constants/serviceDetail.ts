@@ -87,10 +87,18 @@ export type TOngoingOperationTarget = 'alldom' | 'dns' | 'domain';
 export const ongoingOperationLink = (
   target: TOngoingOperationTarget,
 ): [string, string, Record<string, ParamValueType>] => [
-  'web-ongoing-operations',
-  `/${target}`,
-  {},
-];
+    'web-ongoing-operations',
+    `/${target}`,
+    {},
+  ];
+
+export const followTransferLink = (
+  operationId: number,
+): [string, string, Record<string, ParamValueType>] => [
+    'web-ongoing-operations',
+    `/tracking/${operationId}`,
+    {},
+  ];
 
 export const ERROR_RULES: ComboRule[] = [
   {
