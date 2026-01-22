@@ -80,6 +80,7 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
+    "babel-loader": "10.0.0",
     "webpack-merge": "^4.2.2"
   },
   "regions": [
