@@ -1,6 +1,6 @@
 name: Auto-label merge conflicts
 
-on: [pull_request]
+on: [push, pull_request]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -14,5 +14,5 @@ jobs:
         with:
           CONFLICT_LABEL_NAME: "has conflicts"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MAX_RETRIES: 10
-          WAIT_MS: 10000
+          MAX_RETRIES: 5
+          WAIT_MS: 5000
