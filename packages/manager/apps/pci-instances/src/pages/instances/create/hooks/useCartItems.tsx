@@ -5,6 +5,15 @@ import { FlavorDetails } from '../components/cart/FlavorDetails.component';
 import { useCatalogPrice } from '@ovh-ux/muk';
 import { useInstanceCreation } from './useInstanceCreation';
 import CartOptionDetailItem from '../components/cart/CartOptionDetailItem.component';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { useMemo } from 'react';
+import { deps } from '@/deps/deps';
+import {
+  selectQuantityHintParams,
+  TQuantityHintParams,
+} from '../view-models/cartViewModel';
 
 export type TCartItem = {
   id: string;
@@ -12,6 +21,7 @@ export type TCartItem = {
   name?: string;
   details: TCartItemDetail[];
   expanded: boolean;
+  quantityHintParams?: TQuantityHintParams;
 };
 
 export type TCartItemDetail = {
@@ -32,8 +42,47 @@ export const useCartItems = (): TCartItems => {
     'creation',
     NAMESPACES.REGION,
   ]);
+  const projectId = useProjectId();
+  const { control } = useFormContext<TInstanceCreationForm>();
 
   const { instanceData } = useInstanceCreation();
+
+  const [
+    flavorId,
+    macroRegion,
+    microRegion,
+    availabilityZone,
+    flavorType,
+  ] = useWatch({
+    control,
+    name: [
+      'flavorId',
+      'macroRegion',
+      'microRegion',
+      'availabilityZone',
+      'flavorType',
+    ],
+  });
+
+  const quantityHintParams = useMemo(
+    () =>
+      selectQuantityHintParams(deps)({
+        projectId,
+        regionalizedFlavorId: flavorId,
+        macroRegionId: macroRegion,
+        microRegionId: microRegion,
+        availabilityZone: availabilityZone,
+        flavorType: flavorType ?? null,
+      }),
+    [
+      projectId,
+      flavorId,
+      macroRegion,
+      microRegion,
+      availabilityZone,
+      flavorType,
+    ],
+  );
 
   const {
     localizationDetails,
@@ -192,6 +241,7 @@ export const useCartItems = (): TCartItems => {
       name,
       details,
       expanded: true,
+      quantityHintParams,
     },
   ];
 

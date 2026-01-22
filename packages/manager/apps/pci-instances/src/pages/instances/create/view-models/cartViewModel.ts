@@ -184,3 +184,68 @@ export const selectWindowsImageLicensePrice: Reader<
     return licensePrice?.price.priceInUcents ?? null;
   };
 };
+
+export type TQuantityHintParams = {
+  quota: number | null;
+  type: string | null;
+  region: string | null;
+  regionId: string | null;
+};
+
+type TSelectQuantityHintParamsArgs = {
+  projectId: string;
+  regionalizedFlavorId: string | null;
+  macroRegionId: string | null;
+  microRegionId: string | null;
+  availabilityZone: string | null;
+  flavorType: string | null;
+};
+
+type TSelectQuantityHintParams = (
+  args: TSelectQuantityHintParamsArgs,
+) => TQuantityHintParams;
+export const selectQuantityHintParams: Reader<
+  Deps,
+  TSelectQuantityHintParams
+> = (deps) => {
+  return ({
+    projectId,
+    regionalizedFlavorId,
+    macroRegionId,
+    microRegionId,
+    availabilityZone,
+    flavorType,
+  }) => {
+    const { instancesCatalogPort } = deps;
+    const data = instancesCatalogPort.selectInstancesCatalog(projectId);
+
+    if (!data) {
+      return {
+        quota: null,
+        type: null,
+        region: null,
+        regionId: null,
+      };
+    }
+
+    const regionalizedFlavor = regionalizedFlavorId
+      ? data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId)
+      : null;
+    const quota = regionalizedFlavor?.quota ?? null;
+
+    const macroRegion = macroRegionId
+      ? data.entities.macroRegions.byId.get(macroRegionId)
+      : null;
+    const region = macroRegion
+      ? getRegionNameKey(macroRegion.deploymentMode, macroRegion.name) ?? null
+      : null;
+    const regionId = macroRegion ? availabilityZone ?? microRegionId : null;
+
+    return {
+      quota,
+      type: flavorType ?? null,
+      region,
+      regionId,
+    };
+  };
+};
