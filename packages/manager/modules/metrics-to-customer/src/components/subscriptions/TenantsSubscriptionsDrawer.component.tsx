@@ -24,6 +24,7 @@ import SubscriptionsDrawer from '@/components/subscriptions/SubscriptionManager/
 import SubscriptionManager from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.component';
 
 import { TenantsSubscriptionsDrawerProps } from '@/components/subscriptions/TenantsSubscriptionsDrawer.props';
+import NoTenantsMessage from '@/components/subscriptions/NoTenantsMessage.component';
 
 const FILTER_KEYS = {
   REGION: 'region',
@@ -32,6 +33,7 @@ const FILTER_KEYS = {
 
 const TenantsSubscriptionsDrawer = ({
   regions,
+  defaultRetention,  
   subscriptionUrls,
 }: TenantsSubscriptionsDrawerProps) => {
   const { t } = useTranslation(NAMESPACES.SUBSCRIPTIONS);
@@ -143,7 +145,7 @@ const TenantsSubscriptionsDrawer = ({
           {({ filterValues, onFilterChange }) => (
             <div className="flex flex-col gap-4">
               <Text preset={TEXT_PRESET.label}>
-                {t('tenants_drawer.region')} : {regions?.join(',')}
+                {t('tenants_regions.region', { count: regions?.length, region: regions?.join(', ') })}
               </Text>
               <ServicesDropDown
                 services={services}
@@ -158,11 +160,12 @@ const TenantsSubscriptionsDrawer = ({
         <Divider className="w-full" spacing="4" />
 
         {
-          tenantsData && tenantsData.length > 0 && (
+          tenantsData?.length ? (
             <TenantsSubscriptionsDisclaimer
               text={t('tenants_drawer.disclaimer')}
             />
           )
+            : <NoTenantsMessage regions={regions} defaultRetention={defaultRetention} />
         }
 
         <SubscriptionManager.List<TenantWithSubscriptions, TenantSubscription>
