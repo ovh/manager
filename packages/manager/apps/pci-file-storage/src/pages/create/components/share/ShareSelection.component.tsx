@@ -28,7 +28,7 @@ export const ShareSelection = () => {
     if (shareOptions[0]) {
       setValue('shareData.specName', shareOptions[0].name);
     }
-  }, [shareOptions, setValue, selectedMicroRegion]);
+  }, [shareOptions, setValue]);
 
   const handleShareSpecChange = (spec: TShareSpecData) => () => {
     setValue('shareData.specName', spec.name);
