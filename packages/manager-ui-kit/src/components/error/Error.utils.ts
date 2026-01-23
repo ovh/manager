@@ -1,4 +1,5 @@
-import { ErrorMessage, TRACKING_LABELS } from './Error.props';
+import { TRACKING_LABELS } from '@/components/error/Error.constants';
+import { ErrorMessage } from '@/components/error/Error.props';
 
 function getTrackingTypology(error: ErrorMessage) {
   if (error?.status && Math.floor(error.status / 100) === 4) {
