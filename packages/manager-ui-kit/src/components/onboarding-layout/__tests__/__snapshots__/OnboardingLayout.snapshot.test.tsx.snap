@@ -19,7 +19,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -49,7 +49,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -113,7 +113,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -143,7 +143,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -196,20 +196,20 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Compute
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Virtual Machines
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Deploy and manage your virtual machines
@@ -257,7 +257,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -287,7 +287,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -312,20 +312,20 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Compute
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Virtual Machines
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Deploy and manage your virtual machines
@@ -367,20 +367,20 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Storage
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Object Storage
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Store and retrieve your data
@@ -428,7 +428,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -453,20 +453,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Compute
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Virtual Machines
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Deploy and manage your virtual machines
@@ -505,20 +505,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Storage
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Object Storage
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Store and retrieve your data
@@ -566,7 +566,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -597,7 +597,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Compute
@@ -620,13 +620,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               </span>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Virtual Machines
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Deploy and manage your virtual machines with full control over your infrastructure
@@ -673,7 +673,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Container
@@ -690,13 +690,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               </span>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Kubernetes
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Orchestrate your containers with managed Kubernetes
@@ -744,7 +744,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -797,20 +797,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Compute
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Virtual Machines
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Deploy and manage your virtual machines
@@ -851,20 +851,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Storage
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Object Storage
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Store and retrieve your data
@@ -912,7 +912,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -939,7 +939,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Compute
@@ -956,13 +956,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               </span>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Virtual Machines
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Deploy and manage your virtual machines
@@ -1008,20 +1008,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Storage
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Object Storage
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Store and retrieve your data
@@ -1060,7 +1060,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Network
@@ -1083,13 +1083,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               </span>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Network Services
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Connect your resources securely
@@ -1137,7 +1137,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -1162,20 +1162,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Compute
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Virtual Machines
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Deploy and manage your virtual machines
@@ -1223,7 +1223,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
         />
       </div>
       <h1
-        class=_text--heading-1 text-center
+        class=_text _text--heading-1 text-center
         data-ods=text
       >
         Welcome to OVHcloud
@@ -1248,7 +1248,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Category 1
@@ -1265,13 +1265,13 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               </span>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Service 1
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Description for service 1
@@ -1310,20 +1310,20 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Category 2
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Service 2
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Description for service 2
@@ -1362,7 +1362,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Category 3
@@ -1379,13 +1379,13 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               </span>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Service 3
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Description for service 3
@@ -1424,20 +1424,20 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Category 4
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Service 4
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Description for service 4
@@ -1476,7 +1476,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Category 5
@@ -1493,13 +1493,13 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               </span>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Service 5
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Description for service 5
@@ -1538,20 +1538,20 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class=flex flex-row leading-[28px]
             >
               <h4
-                class=_text--heading-4 text-[--ods-color-primary-500]
+                class=_text _text--heading-4 text-[--ods-color-primary-500]
                 data-ods=text
               >
                 Category 6
               </h4>
             </div>
             <h3
-              class=_text--heading-3 mb-[8px]
+              class=_text _text--heading-3 mb-[8px]
               data-ods=text
             >
               Service 6
             </h3>
             <p
-              class=_text--paragraph m-0 p-0 mb-4
+              class=_text _text--paragraph m-0 p-0 mb-4
               data-ods=text
             >
               Description for service 6

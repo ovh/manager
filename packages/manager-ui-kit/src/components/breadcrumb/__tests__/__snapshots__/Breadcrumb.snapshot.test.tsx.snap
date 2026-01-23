@@ -14,7 +14,6 @@ exports[`Breadcrumb component - snapshot > matches snapshot when hideRootLabel i
       <li
         class=_breadcrumb-item
         data-ods=breadcrumb-item
-        role=listitem
       >
         <a
           class=_link
@@ -31,7 +30,6 @@ exports[`Breadcrumb component - snapshot > matches snapshot when hideRootLabel i
       <li
         class=_breadcrumb-item
         data-ods=breadcrumb-item
-        role=listitem
       >
         <a
           class=_link
@@ -48,7 +46,6 @@ exports[`Breadcrumb component - snapshot > matches snapshot when hideRootLabel i
       <li
         class=_breadcrumb-item
         data-ods=breadcrumb-item
-        role=listitem
       >
         <span
           aria-current=page
@@ -77,7 +74,6 @@ exports[`Breadcrumb component - snapshot > matches snapshot when hideRootLabel i
       <li
         class=_breadcrumb-item
         data-ods=breadcrumb-item
-        role=listitem
       >
         <a
           class=_link
@@ -94,7 +90,6 @@ exports[`Breadcrumb component - snapshot > matches snapshot when hideRootLabel i
       <li
         class=_breadcrumb-item
         data-ods=breadcrumb-item
-        role=listitem
       >
         <span
           aria-current=page

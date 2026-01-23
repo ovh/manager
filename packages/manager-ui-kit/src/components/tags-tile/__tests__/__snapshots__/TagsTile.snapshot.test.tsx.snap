@@ -10,13 +10,13 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Tags
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -32,7 +32,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Tags assignés
@@ -119,7 +119,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
               />
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -140,13 +140,13 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Tags
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -162,7 +162,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Tags assignés
@@ -200,7 +200,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
               />
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -221,13 +221,13 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Tags
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -243,7 +243,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Tags assignés
@@ -273,7 +273,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
               />
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -294,13 +294,13 @@ exports[`TagsTile Snapshot Tests > Empty State > should render with empty tags 1
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Tags
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -316,7 +316,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render with empty tags 1
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Tags assignés
@@ -346,7 +346,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render with empty tags 1
               />
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -367,13 +367,13 @@ exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTag
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Tags
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -389,7 +389,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTag
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Tags assignés
@@ -419,7 +419,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTag
               />
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -440,13 +440,13 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Tags
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -462,7 +462,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Tags assignés
@@ -514,7 +514,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
               />
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -535,13 +535,13 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Tags
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -557,7 +557,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Tags assignés
@@ -609,7 +609,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
               />
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -630,13 +630,13 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with displayInterna
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Tags
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -652,7 +652,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with displayInterna
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Tags assignés
@@ -704,7 +704,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with displayInterna
               />
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>

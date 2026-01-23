@@ -3,45 +3,45 @@
 exports[`Price Component > displays both GST-excl and GST-incl in Asia format if tax exists 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span
-      class=_text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
+      class=_text _text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
       data-ods=text
     >
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 $SG
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         ex. GST
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         /mois
       </span>
     </span>
     <span
-      class=_text--span font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]
+      class=_text _text--span font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]
       data-ods=text
     >
       (
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 $SG
       </span>
       <span
-        class=_text--span
+        class=_text _text--span
         data-ods=text
       >
         incl. GST
@@ -55,45 +55,45 @@ exports[`Price Component > displays both GST-excl and GST-incl in Asia format if
 exports[`Price Component > displays both HT and TTC in French format when tax > 0 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span
-      class=_text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
+      class=_text _text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
       data-ods=text
     >
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 €
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         HT
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         /mois
       </span>
     </span>
     <span
-      class=_text--span font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]
+      class=_text _text--span font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]
       data-ods=text
     >
       (
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 €
       </span>
       <span
-        class=_text--span
+        class=_text _text--span
         data-ods=text
       >
         TTC
@@ -107,27 +107,27 @@ exports[`Price Component > displays both HT and TTC in French format when tax > 
 exports[`Price Component > displays only GST-excl in Asia format if no tax 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span
-      class=_text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
+      class=_text _text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
       data-ods=text
     >
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 $SG
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         ex. GST
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         /mois
@@ -140,27 +140,27 @@ exports[`Price Component > displays only GST-excl in Asia format if no tax 1`] =
 exports[`Price Component > displays only HT in French format when no tax 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span
-      class=_text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
+      class=_text _text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
       data-ods=text
     >
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 €
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         HT
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         /mois
@@ -173,21 +173,21 @@ exports[`Price Component > displays only HT in French format when no tax 1`] = `
 exports[`Price Component > displays price with tax in German format 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span
-      class=_text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
+      class=_text _text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
       data-ods=text
     >
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 €
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         /mois
@@ -200,21 +200,21 @@ exports[`Price Component > displays price with tax in German format 1`] = `
 exports[`Price Component > displays price without tax label in US format 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span
-      class=_text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
+      class=_text _text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
       data-ods=text
     >
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 $US
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         /mois
@@ -227,39 +227,39 @@ exports[`Price Component > displays price without tax label in US format 1`] = `
 exports[`Price Component > does not show intervalUnitText if intervalUnit is "none" 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span
-      class=_text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
+      class=_text _text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
       data-ods=text
     >
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 €
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         HT
       </span>
     </span>
     <span
-      class=_text--span font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]
+      class=_text _text--span font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]
       data-ods=text
     >
       (
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         12,00 €
       </span>
       <span
-        class=_text--span
+        class=_text _text--span
         data-ods=text
       >
         TTC
@@ -273,45 +273,45 @@ exports[`Price Component > does not show intervalUnitText if intervalUnit is "no
 exports[`Price Component > handles different interval units correctly 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span
-      class=_text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
+      class=_text _text--span font-semibold text-[--ods-color-text] text-[16px] leading-[20px]
       data-ods=text
     >
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         10,00 €
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         HT
       </span>
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         /an
       </span>
     </span>
     <span
-      class=_text--span font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]
+      class=_text _text--span font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]
       data-ods=text
     >
       (
       <span
-        class=_text--span mr-1
+        class=_text _text--span mr-1
         data-ods=text
       >
         12,00 €
       </span>
       <span
-        class=_text--span
+        class=_text _text--span
         data-ods=text
       >
         TTC
@@ -325,7 +325,7 @@ exports[`Price Component > handles different interval units correctly 1`] = `
 exports[`Price Component > renders free price when value is 0 1`] = `
 <div>
   <p
-    class=_text--paragraph
+    class=_text _text--paragraph
     data-ods=text
   >
     <span>

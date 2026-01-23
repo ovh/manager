@@ -10,6 +10,7 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
     data-state=open
     dir=ltr
     id=dialog::r0::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -17,6 +18,7 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
     data-scope=dialog
     dir=ltr
     id=dialog::r0::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -60,7 +62,7 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -76,7 +78,7 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r2:
@@ -137,6 +139,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
     dir=ltr
     hidden=
     id=dialog::r8::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -144,7 +147,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
     data-scope=dialog
     dir=ltr
     id=dialog::r8::positioner
-    style=pointer-events: none;
+    style=pointer-events: none; z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -159,6 +162,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
       hidden=
       id=dialog::r8::content
       role=dialog
+      style=display: none;
       tabindex=-1
     >
       <div
@@ -189,7 +193,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -205,7 +209,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:ra:
@@ -265,6 +269,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
     data-state=open
     dir=ltr
     id=dialog::r4::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -272,6 +277,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
     data-scope=dialog
     dir=ltr
     id=dialog::r4::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -315,7 +321,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Display Name
@@ -326,7 +332,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
         >
           <div>
             <p
-              class=_text--paragraph pt-1 pb-3
+              class=_text _text--paragraph pt-1 pb-3
               data-ods=text
             >
               Please enter a new display name for your account
@@ -337,7 +343,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r6:
@@ -363,7 +369,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
                 />
               </div>
               <span
-                class=_text--span text-right
+                class=_text _text--span text-right
                 data-ods=text
                 id=update-name-modal-pattern-message
                 style=color: var(--ods-color-critical-400);
@@ -410,6 +416,7 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
     data-state=open
     dir=ltr
     id=dialog::r2c::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -417,6 +424,7 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
     data-scope=dialog
     dir=ltr
     id=dialog::r2c::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -460,7 +468,7 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Display Name
@@ -471,7 +479,7 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
         >
           <div>
             <p
-              class=_text--paragraph pt-1 pb-3
+              class=_text _text--paragraph pt-1 pb-3
               data-ods=text
             >
               Please enter a new display name for your account. This name will be visible to other users.
@@ -482,7 +490,7 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r2e:
@@ -508,7 +516,7 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
                 />
               </div>
               <span
-                class=_text--span text-right
+                class=_text _text--span text-right
                 data-ods=text
                 id=update-name-modal-pattern-message
                 style=color: var(--ods-color-critical-400);
@@ -555,6 +563,7 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
     data-state=open
     dir=ltr
     id=dialog::r28::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -562,6 +571,7 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
     data-scope=dialog
     dir=ltr
     id=dialog::r28::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -605,7 +615,7 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -644,7 +654,7 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
               </button>
             </div>
             <p
-              class=_text--paragraph pt-1 pb-3
+              class=_text _text--paragraph pt-1 pb-3
               data-ods=text
             >
               Please enter a valid name
@@ -655,7 +665,7 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r2a:
@@ -683,7 +693,7 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
                 />
               </div>
               <span
-                class=_text--span text-right
+                class=_text _text--span text-right
                 data-ods=text
                 id=update-name-modal-pattern-message
                 style=color: var(--ods-color-critical-400);
@@ -730,6 +740,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-state=open
     dir=ltr
     id=dialog::r18::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -737,6 +748,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-scope=dialog
     dir=ltr
     id=dialog::r18::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -780,7 +792,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -796,7 +808,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r1a:
@@ -856,6 +868,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-state=open
     dir=ltr
     id=dialog::r1g::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -863,6 +876,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-scope=dialog
     dir=ltr
     id=dialog::r1g::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -906,7 +920,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -922,7 +936,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r1i:
@@ -982,6 +996,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-state=open
     dir=ltr
     id=dialog::r1c::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -989,6 +1004,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-scope=dialog
     dir=ltr
     id=dialog::r1c::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -1032,7 +1048,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -1048,7 +1064,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r1e:
@@ -1108,6 +1124,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
     data-state=open
     dir=ltr
     id=dialog::r1k::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -1115,6 +1132,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
     data-scope=dialog
     dir=ltr
     id=dialog::r1k::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -1158,7 +1176,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -1174,7 +1192,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r1m:
@@ -1234,6 +1252,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
     data-state=open
     dir=ltr
     id=dialog::r20::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -1241,6 +1260,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
     data-scope=dialog
     dir=ltr
     id=dialog::r20::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -1284,7 +1304,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             This is a very long headline that might wrap to multiple lines in the modal
@@ -1323,7 +1343,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
               </button>
             </div>
             <p
-              class=_text--paragraph pt-1 pb-3
+              class=_text _text--paragraph pt-1 pb-3
               data-ods=text
             >
               This is a very long description text that contains a lot of information about what the user should do when updating their display name. It might wrap to multiple lines and should be displayed properly in the modal.
@@ -1334,7 +1354,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r22:
@@ -1357,7 +1377,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
                 />
               </div>
               <span
-                class=_text--span text-right
+                class=_text _text--span text-right
                 data-ods=text
                 id=update-name-modal-pattern-message
                 style=color: var(--ods-color-text);
@@ -1403,6 +1423,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
     data-state=open
     dir=ltr
     id=dialog::r1o::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -1410,6 +1431,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
     data-scope=dialog
     dir=ltr
     id=dialog::r1o::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -1453,7 +1475,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -1469,7 +1491,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r1q:
@@ -1529,6 +1551,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
     data-state=open
     dir=ltr
     id=dialog::r24::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -1536,6 +1559,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
     data-scope=dialog
     dir=ltr
     id=dialog::r24::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -1579,7 +1603,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name & Details
@@ -1618,7 +1642,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
               </button>
             </div>
             <p
-              class=_text--paragraph pt-1 pb-3
+              class=_text _text--paragraph pt-1 pb-3
               data-ods=text
             >
               Please enter your name (required field)
@@ -1629,7 +1653,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r26:
@@ -1652,7 +1676,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
                 />
               </div>
               <span
-                class=_text--span text-right
+                class=_text _text--span text-right
                 data-ods=text
                 id=update-name-modal-pattern-message
                 style=color: var(--ods-color-text);
@@ -1698,6 +1722,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
     data-state=open
     dir=ltr
     id=dialog::r1s::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -1705,6 +1730,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
     data-scope=dialog
     dir=ltr
     id=dialog::r1s::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -1748,7 +1774,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -1764,7 +1790,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r1u:
@@ -1824,6 +1850,7 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
     data-state=open
     dir=ltr
     id=dialog::ro::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -1831,6 +1858,7 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
     data-scope=dialog
     dir=ltr
     id=dialog::ro::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -1874,7 +1902,7 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -1913,7 +1941,7 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
               </button>
             </div>
             <p
-              class=_text--paragraph pt-1 pb-3
+              class=_text _text--paragraph pt-1 pb-3
               data-ods=text
             >
               Please enter a new name
@@ -1924,7 +1952,7 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:rq:
@@ -1984,6 +2012,7 @@ exports[`UpdateNameModal > Error States > should render modal with error message
     data-state=open
     dir=ltr
     id=dialog::rk::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -1991,6 +2020,7 @@ exports[`UpdateNameModal > Error States > should render modal with error message
     data-scope=dialog
     dir=ltr
     id=dialog::rk::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -2034,7 +2064,7 @@ exports[`UpdateNameModal > Error States > should render modal with error message
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -2078,7 +2108,7 @@ exports[`UpdateNameModal > Error States > should render modal with error message
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:rm:
@@ -2138,6 +2168,7 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
     data-state=open
     dir=ltr
     id=dialog::rc::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -2145,6 +2176,7 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
     data-scope=dialog
     dir=ltr
     id=dialog::rc::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -2188,7 +2220,7 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -2204,7 +2236,7 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:re:
@@ -2267,6 +2299,7 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
     data-state=open
     dir=ltr
     id=dialog::rg::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -2274,6 +2307,7 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
     data-scope=dialog
     dir=ltr
     id=dialog::rg::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -2317,7 +2351,7 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -2333,7 +2367,7 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:ri:
@@ -2396,6 +2430,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-state=open
     dir=ltr
     id=dialog::r14::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -2403,6 +2438,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-scope=dialog
     dir=ltr
     id=dialog::r14::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -2446,7 +2482,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -2462,7 +2498,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r16:
@@ -2488,7 +2524,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
                 />
               </div>
               <span
-                class=_text--span text-right
+                class=_text _text--span text-right
                 data-ods=text
                 id=update-name-modal-pattern-message
                 style=color: var(--ods-color-critical-400);
@@ -2535,6 +2571,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-state=open
     dir=ltr
     id=dialog::rs::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -2542,6 +2579,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-scope=dialog
     dir=ltr
     id=dialog::rs::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -2585,7 +2623,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -2601,7 +2639,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:ru:
@@ -2627,7 +2665,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
                 />
               </div>
               <span
-                class=_text--span text-right
+                class=_text _text--span text-right
                 data-ods=text
                 id=update-name-modal-pattern-message
                 style=color: var(--ods-color-critical-400);
@@ -2674,6 +2712,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-state=open
     dir=ltr
     id=dialog::r10::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -2681,6 +2720,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-scope=dialog
     dir=ltr
     id=dialog::r10::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -2724,7 +2764,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Update Name
@@ -2740,7 +2780,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
               role=group
             >
               <label
-                class=_text--label _form-field-label
+                class=_text _text--label _form-field-label
                 data-ods=form-field-label
                 for=update-name-modal-input
                 id=:r12:
@@ -2766,7 +2806,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
                 />
               </div>
               <span
-                class=_text--span text-right
+                class=_text _text--span text-right
                 data-ods=text
                 id=update-name-modal-pattern-message
                 style=color: var(--ods-color-critical-400);

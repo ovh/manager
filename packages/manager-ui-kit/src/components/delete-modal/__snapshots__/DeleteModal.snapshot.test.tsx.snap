@@ -10,6 +10,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r0::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -17,6 +18,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r0::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -60,7 +62,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Résilier serviceType ?
@@ -73,7 +75,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
             class=flex flex-col gap-4
           >
             <p
-              class=_text--paragraph
+              class=_text _text--paragraph
               data-ods=text
               data-testid=manager-delete-modal-description
               id=delete-modal-description
@@ -118,6 +120,7 @@ exports[`Delete Modal component > renders loading modal 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r1::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -125,6 +128,7 @@ exports[`Delete Modal component > renders loading modal 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r1::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -168,7 +172,7 @@ exports[`Delete Modal component > renders loading modal 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Résilier serviceType ?
@@ -233,6 +237,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r4::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -240,6 +245,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r4::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -283,7 +289,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Résilier serviceType ?
@@ -296,7 +302,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
             class=flex flex-col gap-4
           >
             <p
-              class=_text--paragraph
+              class=_text _text--paragraph
               data-ods=text
               data-testid=manager-delete-modal-description
               id=delete-modal-description
@@ -344,6 +350,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r3::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -351,6 +358,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r3::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -394,7 +402,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Résilier Custom Service ?
@@ -407,7 +415,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
             class=flex flex-col gap-4
           >
             <p
-              class=_text--paragraph
+              class=_text _text--paragraph
               data-ods=text
               data-testid=manager-delete-modal-description
               id=delete-modal-description
@@ -452,6 +460,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r2::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -459,6 +468,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r2::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -502,7 +512,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Résilier serviceType ?
@@ -543,7 +553,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
               </button>
             </div>
             <p
-              class=_text--paragraph
+              class=_text _text--paragraph
               data-ods=text
               data-testid=manager-delete-modal-description
               id=delete-modal-description
