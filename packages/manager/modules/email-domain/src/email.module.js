@@ -9,7 +9,6 @@ import '@ovh-ux/ui-kit';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import webUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
-import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ng-ui-router-layout';
 
@@ -34,7 +33,7 @@ angular
     mailingList,
     ngOvhUtils,
     'ngUiRouterLayout',
-    ngPaginationFront,
+    'ngPaginationFront',
     ngTranslateAsyncLoader,
     order,
     'oui',

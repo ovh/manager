@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.3...@ovh-ux/manager-web-domains-app@1.9.4) (2026-01-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4607] ([c0bfd2c](https://github.com/ovh/manager/commit/c0bfd2c4f14214cf60d06a67b168a8d3fdfc72d7))
+* **web-domains:** fix dataprotection status map ([e9f5388](https://github.com/ovh/manager/commit/e9f5388484356e46ad56093df4d32dcf298fc1da)), closes [#DCE-156](https://github.com/ovh/manager/issues/DCE-156)
+* **web-domains:** redirect client to order when have no email services(mxplan,zimbra,redirection) ([ba8c365](https://github.com/ovh/manager/commit/ba8c365c90fe5df33be0c2a9132c943402feb76b)), closes [#DCE-157](https://github.com/ovh/manager/issues/DCE-157)
+
+
+
+
+
 ## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.2...@ovh-ux/manager-web-domains-app@1.9.3) (2026-01-21)
 
 
