@@ -37,10 +37,10 @@ export const AvailabilityZoneSelection = () => {
     useState<TAvailabilityZoneChoice>('companyChoice');
 
   useEffect(() => {
-    if (availabilityZones[0] && !selectedAvailabilityZone) {
+    if (availabilityZones[0]) {
       setValue('availabilityZone', availabilityZones[0].value);
     }
-  }, [availabilityZones, selectedAvailabilityZone, setValue, selectedMicroRegion]);
+  }, [availabilityZones, setValue, selectedMicroRegion]);
 
   const handleChoiceChange = (choice: RadioValueChangeDetail) => {
     const value = choice.value as TAvailabilityZoneChoice;
@@ -60,7 +60,7 @@ export const AvailabilityZoneSelection = () => {
   }, []);
 
   return (
-    <section className="pb-5 pt-9">
+    <section>
       <div className="flex flex-col gap-4">
         <div className="flex items-center space-x-4">
           <Text preset="heading-4">{t('create:localisation.availabilityZone.title')}</Text>
