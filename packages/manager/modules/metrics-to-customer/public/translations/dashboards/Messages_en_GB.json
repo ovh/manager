@@ -1,6 +1,5 @@
 {
   "dashboard_widget_config_not_found": "No widget on this dashboard",
-  "dashboard_widget_analyse_in_all_metrics": "Analyse all metrics",
   "dashboard_widget_close": "Close",
   "dashboard_no_widget": "No widget configured for this dashboard",
   "dashboard_loading": "Loading dashboard"

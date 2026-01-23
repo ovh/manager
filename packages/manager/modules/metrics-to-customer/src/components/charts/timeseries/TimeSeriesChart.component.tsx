@@ -13,8 +13,17 @@ import {
   YAxis,
 } from 'recharts';
 
-import { ColorScale, DEFAULT_BRUSH_HEIGHT, DEFAULT_LEGEND_TYPE, formatTimestampToDateTime, getFormatter } from '../config';
-import { TimeSeriesChartConfig, TimeSeriesChartProps } from './TimeSeriesChart.type';
+import {
+  ColorScale,
+  DEFAULT_BRUSH_HEIGHT,
+  DEFAULT_LEGEND_TYPE,
+  getFormatter,
+} from '../config';
+
+import {
+  TimeSeriesChartConfig,
+  TimeSeriesChartProps,
+} from './TimeSeriesChart.type';
 
 export const TimeSeriesChartComponent = <TData,>({
   data,
@@ -28,14 +37,22 @@ export const TimeSeriesChartComponent = <TData,>({
     interval: xAxisInterval,
   } = timeseriesChartConfig.XAxis;
 
-  const { dataKeys: YAxisDataKeys, formatter: yAxisFormatter, } = timeseriesChartConfig.YAxis;
+  const { dataKeys: YAxisDataKeys, formatter: yAxisFormatter } =
+    timeseriesChartConfig.YAxis;
+
+  const tooltipKeyFormatterConfig =
+    timeseriesChartConfig.tooltip?.key?.formatter;
+
+  const tooltipValueFormatterConfig =
+    timeseriesChartConfig.tooltip?.value?.formatter;
 
   const curveType = timeseriesChartConfig.curveType ?? 'monotone';
-
   const { brush } = timeseriesChartConfig;
 
   const xFormatter = getFormatter(xAxisFormatter);
   const yFormatter = getFormatter(yAxisFormatter);
+  const tooltipKeyFormatter = getFormatter(tooltipKeyFormatterConfig);
+  const tooltipValueFormatter = getFormatter(tooltipValueFormatterConfig);
 
   const legendPayload: LegendProps['payload'] = YAxisDataKeys.map(
     (yAxisDataKey: string, index: number) => ({
@@ -57,7 +74,7 @@ export const TimeSeriesChartComponent = <TData,>({
   const [lineChartData, setLineChartData] = useState<TData[]>([]);
 
   useEffect(() => {
-    if (data && data.length > 0) {
+    if (data?.length) {
       setLineChartData(data);
     }
   }, [data]);
@@ -65,7 +82,7 @@ export const TimeSeriesChartComponent = <TData,>({
   return (
     <ResponsiveContainer className="w-full h-full">
       <LineChart data={lineChartData} margin={chartMargin}>
-        {YAxisDataKeys && YAxisDataKeys.length > 1 && (
+        {YAxisDataKeys.length > 1 && (
           <Legend
             layout="horizontal"
             align={legendAlign}
@@ -82,17 +99,23 @@ export const TimeSeriesChartComponent = <TData,>({
             interval: Math.floor(lineChartData.length / xAxisInterval),
           })}
         />
-        <YAxis 
+        <YAxis
           padding={{ top: 20 }}
-          {...(yFormatter && { tickFormatter: yFormatter })}          
+          {...(yFormatter && { tickFormatter: yFormatter })}
         />
         <Tooltip
-          {...(xFormatter && { labelFormatter: xFormatter })}
-          labelFormatter={formatTimestampToDateTime}
-          formatter={(value: number) => {            
-            return [value, YAxisDataKeys]
+          {...(tooltipKeyFormatter && {
+            labelFormatter: tooltipKeyFormatter,
+          })}
+          formatter={(value: number, name: string) => {
+            const formattedValue = tooltipValueFormatter
+              ? tooltipValueFormatter(value)
+              : value;
+
+            return [formattedValue, name];
           }}
         />
+
         {YAxisDataKeys.map((yAxisDataKey: string, index: number) => (
           <Line
             isAnimationActive={false}
@@ -107,7 +130,7 @@ export const TimeSeriesChartComponent = <TData,>({
         {brush && (
           <Brush
             dataKey={XAxisDataKey}
-            height={brush?.height || DEFAULT_BRUSH_HEIGHT}
+            height={brush.height ?? DEFAULT_BRUSH_HEIGHT}
             stroke={ColorScale.dark}
             {...(xFormatter && { tickFormatter: xFormatter })}
           />
