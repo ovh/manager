@@ -2,9 +2,8 @@ import { Outlet } from 'react-router-dom';
 
 import TagsTile from '@/components/dashboard/TagsTile.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
+import ServiceGeneralInformation from '@/pages/settings/services/general-information/ServiceGeneralInformation.component';
 import ServiceLinks from '@/pages/settings/services/links/ServiceLinks.component';
-
-import ServiceGeneralInformation from './general-information/ServiceGeneralInformation.component';
 
 export default function ServicesPage() {
   const { selectedService, isLoading } = useObservabilityServiceContext();
