@@ -1,24 +1,26 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
-  MESSAGE_COLOR,
   ICON_NAME,
-  SPINNER_SIZE,
   Icon,
+  MESSAGE_COLOR,
   Message,
   MessageBody,
+  MessageIcon,
+  SPINNER_SIZE,
   Spinner,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-  MessageIcon,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
-import {
-  VrackServicesResourceStatus,
-  VrackServicesWithIAM,
-} from '@ovh-ux/manager-network-common';
-import { getDisplayName } from '@/utils/vrack-services';
+
+import { VrackServicesResourceStatus } from '@ovh-ux/manager-network-common';
+import type { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { getDisplayName } from '@/utils/vrack-services';
 
 export type InfoInconProps = {
   className?: string;
@@ -38,19 +40,13 @@ export const InfoIcon: React.FC<InfoInconProps> = ({ className, vs }) => {
       {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
         <Tooltip>
           <TooltipTrigger>
-            <Icon
-              id={`${vs.id}-info`}
-              className={className}
-              name={ICON_NAME.triangleExclamation}
-            />
+            <Icon id={`${vs.id}-info`} className={className} name={ICON_NAME.triangleExclamation} />
           </TooltipTrigger>
           <TooltipContent withArrow>
             {vs.resourceStatus === VrackServicesResourceStatus.ERROR ? (
               <Message dismissible={false} color={MESSAGE_COLOR.warning}>
                 <MessageIcon name="triangle-exclamation" />
-                <MessageBody>
-                  {t('vrackServicesInErrorMessage', { displayName })}
-                </MessageBody>
+                <MessageBody>{t('vrackServicesInErrorMessage', { displayName })}</MessageBody>
               </Message>
             ) : (
               t('vrackServicesNotReadyInfoMessage', { displayName })
@@ -58,11 +54,7 @@ export const InfoIcon: React.FC<InfoInconProps> = ({ className, vs }) => {
           </TooltipContent>
         </Tooltip>
       ) : (
-        <Spinner
-          className={className}
-          style={{ maxWidth: 20 }}
-          size={SPINNER_SIZE.sm}
-        />
+        <Spinner className={className} style={{ maxWidth: 20 }} size={SPINNER_SIZE.sm} />
       )}
     </>
   );

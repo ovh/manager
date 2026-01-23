@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
+
+import type { ColumnSort } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
+
 import { Text } from '@ovhcloud/ods-react';
-import { Datagrid, DatagridColumn } from '@ovh-ux/muk';
-import {
-  VrackServicesWithIAM,
-  useVrackServicesList,
-} from '@ovh-ux/manager-network-common';
-import { ColumnSort } from '@tanstack/react-table';
+
+import { useVrackServicesList } from '@ovh-ux/manager-network-common';
+import type { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+import { ovhLocaleToI18next } from '@ovh-ux/manager-react-shell-client';
+import { Datagrid } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
+
 import { DisplayName } from '@/components/display-name/DisplayName.component';
+import { ProductStatusChip } from '@/components/product-status-chip/ProductStatusChip.component';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
-import { ProductStatusChip } from '@/components/ProductStatusChip.component';
-import { ActionCell } from './ActionCell.component';
-import { getDisplayName } from '@/utils/vrack-services';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { getDisplayName } from '@/utils/vrack-services';
+
+import { ActionCell } from './ActionCell.component';
 
 const sortVrackServicesListing = (
   sorting: ColumnSort,
@@ -23,21 +27,17 @@ const sortVrackServicesListing = (
   vsList.sort((vs1, vs2) => {
     switch (sorting?.id ?? '') {
       case 'displayName':
-        return getDisplayName(vs1)?.localeCompare(getDisplayName(vs2));
+        return (getDisplayName(vs1) || '').localeCompare(getDisplayName(vs2) || '');
       case 'createdAt':
-        return (vs1.createdAt || '').localeCompare(vs2.createdAt);
+        return (vs1.createdAt || '').localeCompare(vs2.createdAt || '');
       case 'productStatus':
         return (vs1.currentState.productStatus || '').localeCompare(
-          vs2.currentState.productStatus,
+          vs2.currentState.productStatus || '',
         );
       case 'region':
-        return (vs1.currentState.region || '').localeCompare(
-          vs2.currentState.region,
-        );
+        return (vs1.currentState.region || '').localeCompare(vs2.currentState.region || '');
       case 'vrackId':
-        return (vs1.currentState.vrackId || '').localeCompare(
-          vs2.currentState.vrackId,
-        );
+        return (vs1.currentState.vrackId || '').localeCompare(vs2.currentState.vrackId || '');
       default:
         return 0;
     }
@@ -65,9 +65,7 @@ export const VrackServicesDatagrid: React.FC = () => {
       accessorKey: 'id',
       isSortable: true,
       enableHiding: false,
-      cell: (cellContext) => (
-        <DisplayName {...cellContext.row.original} isListing />
-      ),
+      cell: (cellContext) => <DisplayName {...cellContext.row.original} isListing />,
     },
     {
       id: 'productStatus',
@@ -77,9 +75,7 @@ export const VrackServicesDatagrid: React.FC = () => {
       isSortable: true,
       enableHiding: false,
       cell: (cellContext) => (
-        <ProductStatusChip
-          productStatus={cellContext.row.original.currentState.productStatus}
-        />
+        <ProductStatusChip productStatus={cellContext.row.original.currentState.productStatus} />
       ),
     },
     {
@@ -89,9 +85,7 @@ export const VrackServicesDatagrid: React.FC = () => {
       accessorKey: 'region',
       isSortable: true,
       enableHiding: false,
-      cell: (cellContext) => (
-        <Text>{t(cellContext.row.original.currentState.region)}</Text>
-      ),
+      cell: (cellContext) => <Text>{t(cellContext.row.original.currentState.region)}</Text>,
     },
     {
       id: 'vrackId',
@@ -100,9 +94,7 @@ export const VrackServicesDatagrid: React.FC = () => {
       accessorKey: 'vrackId',
       isSortable: true,
       enableHiding: false,
-      cell: (cellContext) => (
-        <VrackId isListing {...cellContext.row.original} />
-      ),
+      cell: (cellContext) => <VrackId isListing {...cellContext.row.original} />,
     },
     {
       id: 'createdAt',
@@ -142,7 +134,7 @@ export const VrackServicesDatagrid: React.FC = () => {
         manualSorting: true,
       }}
       columns={columns}
-      data={sortVrackServicesListing(sorting[0], data?.data)}
+      data={sortVrackServicesListing(sorting[0] || { id: 'displayName', desc: false }, data?.data)}
       totalCount={data?.data.length}
     />
   ) : (

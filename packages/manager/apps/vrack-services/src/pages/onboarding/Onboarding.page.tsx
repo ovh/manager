@@ -1,29 +1,25 @@
 import React from 'react';
+
+import { Navigate, useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { useNavigate, Navigate } from 'react-router-dom';
+
 import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
-import {
-  LinkCard,
-  LinkCardProps,
-  OnboardingLayout,
-  BaseLayout,
-} from '@ovh-ux/muk';
-import {
-  OrderDescription,
-  useOrderPollingStatus,
-} from '@ovh-ux/manager-module-order';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { getVrackServicesResourceListQueryKey } from '@ovh-ux/manager-network-common';
+
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
-import { useGuideUtils } from './useGuideUtils';
+import { OrderDescription, useOrderPollingStatus } from '@ovh-ux/manager-module-order';
+import { getVrackServicesResourceListQueryKey } from '@ovh-ux/manager-network-common';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, LinkCard, OnboardingLayout } from '@ovh-ux/muk';
+import type { LinkCardProps } from '@ovh-ux/muk';
+
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { urls } from '@/routes/routes.constants';
-import { onboardingRefetchInterval } from './onboarding.constants';
+import { urls } from '@/routes/RoutesAndUrl.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+
+import { useGuideUtils } from './useGuideUtils';
+
+const onboardingRefetchInterval = 30000;
 
 export default function OnboardingPage() {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.onboarding);
@@ -35,9 +31,7 @@ export default function OnboardingPage() {
     queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
     refetchInterval: onboardingRefetchInterval,
   });
-  const { data: features, isSuccess } = useFeatureAvailability([
-    'vrack-services:order',
-  ]);
+  const { data: features, isSuccess } = useFeatureAvailability(['vrack-services:order']);
 
   const tileList: LinkCardProps[] = [
     {
@@ -46,7 +40,7 @@ export default function OnboardingPage() {
         category: t('guideCategory'),
         description: t('guide1Description'),
       },
-      href: link?.guideLink1,
+      href: link?.guideLink1 ?? '',
       onClick: () =>
         trackClick({
           location: PageLocation.page,
@@ -63,7 +57,7 @@ export default function OnboardingPage() {
         category: t('guideCategory'),
         description: t('guide2Description'),
       },
-      href: link?.guideLink2,
+      href: link?.guideLink2 ?? '',
       onClick: () =>
         trackClick({
           location: PageLocation.page,
@@ -76,19 +70,16 @@ export default function OnboardingPage() {
     },
   ];
 
-  if (
-    vrackServicesDeliveringOrders &&
-    vrackServicesDeliveringOrders?.length > 0
-  ) {
+  if (vrackServicesDeliveringOrders && vrackServicesDeliveringOrders?.length > 0) {
     return <Navigate to={urls.listing} />;
   }
 
   return (
     <BaseLayout>
-      <Text preset={TEXT_PRESET.heading1} className="block mb-6">
+      <Text preset={TEXT_PRESET.heading1} className="mb-6 block">
         {t('introTitle')}
       </Text>
-      <Text className="block mb-8" preset={TEXT_PRESET.paragraph}>
+      <Text className="mb-8 block" preset={TEXT_PRESET.paragraph}>
         {t('intro')}
       </Text>
       <OnboardingLayout
@@ -96,9 +87,7 @@ export default function OnboardingPage() {
         description={t('onboardingPageDescription')}
         img={{ src: onboardingImgSrc }}
         orderButtonLabel={
-          isSuccess && features?.['vrack-services:order']
-            ? t('orderButtonLabel')
-            : undefined
+          isSuccess && features?.['vrack-services:order'] ? t('orderButtonLabel') : undefined
         }
         onOrderButtonClick={() => {
           trackClick({

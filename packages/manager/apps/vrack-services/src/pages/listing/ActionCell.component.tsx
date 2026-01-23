@@ -1,26 +1,24 @@
 import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu } from '@ovh-ux/muk';
+
+import { useTranslation } from 'react-i18next';
+
 import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
-import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { urls } from '@/routes/routes.constants';
+import type { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu } from '@ovh-ux/muk';
+
 import { useVrackMenuItems } from '@/components/vrack-id/useVrackMenuItems.hook';
-import { isEditable } from '@/utils/vrack-services';
+import { urls } from '@/routes/RoutesAndUrl.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { isEditable } from '@/utils/vrack-services';
 
 export const ActionCell = (vs: VrackServicesWithIAM) => {
   const navigate = useNavigate();
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.common,
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.common, NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const vrackActionsMenuItems = useVrackMenuItems({ vs, isListing: true });
 
@@ -29,7 +27,9 @@ export const ActionCell = (vs: VrackServicesWithIAM) => {
     () =>
       Boolean(
         vs?.currentState?.subnets &&
-          vs?.currentState?.subnets[0]?.serviceEndpoints.length > 0,
+          vs.currentState.subnets.length > 0 &&
+          vs.currentState.subnets[0]?.serviceEndpoints &&
+          vs.currentState.subnets[0].serviceEndpoints.length > 0,
       ),
     [vs],
   );

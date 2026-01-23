@@ -1,0 +1,255 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OverviewTab > should display the general informations of the vs 1`] = `
+<div>
+  <div
+    class="grid py-6 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+  >
+    <div
+      class="p-3"
+    >
+      <div
+        class="_card_17gu3_2 _card--neutral_17gu3_22 w-full flex-col p-[1rem]"
+        data-ods="card"
+      >
+        <section
+          class="flex flex-col w-full"
+        >
+          <h4
+            class="_text_b5nz7_6 _text--heading-4_b5nz7_38"
+            data-ods="text"
+          >
+            Informations
+          </h4>
+          <hr
+            class="_divider_l59rc_2 _divider--24_l59rc_38 w-full"
+            data-ods="divider"
+          />
+          <dl
+            class="flex flex-col m-0"
+          >
+            <div
+              class="flex flex-col gap-1"
+            >
+              <dt
+                class="flex justify-between"
+              >
+                <div
+                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                >
+                  <span
+                    class="_text_b5nz7_6 _text--span_b5nz7_72 font-bold"
+                    data-ods="text"
+                  >
+                    Nom
+                  </span>
+                </div>
+              </dt>
+              <dd
+                class="m-0"
+              >
+                <div
+                  class="flex items-center"
+                >
+                  <div
+                    class="grow"
+                  >
+                    <p
+                      class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+                      data-ods="text"
+                    >
+                      test-qa
+                    </p>
+                  </div>
+                  <div
+                    class="flex-none"
+                  >
+                    <button
+                      class="_button_6crpx_2 _button--primary_6crpx_276 _button--sm_6crpx_209 _button--ghost_6crpx_327 ml-2"
+                      data-ods="button"
+                      type="button"
+                    >
+                      <span
+                        class="_icon_1iyhc_2 _icon--pen_1iyhc_427"
+                        data-ods="icon"
+                        role="presentation"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <hr
+                  class="_divider_l59rc_2 _divider--24_l59rc_38"
+                  data-ods="divider"
+                />
+              </dd>
+            </div>
+            <div
+              class="flex flex-col gap-1"
+            >
+              <dt
+                class="flex justify-between"
+              >
+                <div
+                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                >
+                  <span
+                    class="_text_b5nz7_6 _text--span_b5nz7_72 font-bold"
+                    data-ods="text"
+                  >
+                    Statut
+                  </span>
+                </div>
+              </dt>
+              <dd
+                class="m-0"
+              >
+                <span
+                  class="_badge_14ftx_2 _badge--information_14ftx_49 _badge--md_14ftx_82"
+                  data-ods="badge"
+                >
+                  À configurer
+                </span>
+                <hr
+                  class="_divider_l59rc_2 _divider--24_l59rc_38"
+                  data-ods="divider"
+                />
+              </dd>
+            </div>
+            <div
+              class="flex flex-col gap-1"
+            >
+              <dt
+                class="flex justify-between"
+              >
+                <div
+                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                >
+                  <span
+                    class="_text_b5nz7_6 _text--span_b5nz7_72 font-bold"
+                    data-ods="text"
+                  >
+                    Région
+                  </span>
+                </div>
+              </dt>
+              <dd
+                class="m-0"
+              >
+                <p
+                  class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+                  data-ods="text"
+                >
+                  <p
+                    class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+                    data-ods="text"
+                  >
+                    region_eu-west-lim
+                  </p>
+                  <div>
+                    eu-west-lim
+                  </div>
+                </p>
+                <hr
+                  class="_divider_l59rc_2 _divider--24_l59rc_38"
+                  data-ods="divider"
+                />
+              </dd>
+            </div>
+            <div
+              class="flex flex-col gap-1"
+            >
+              <dt
+                class="flex justify-between"
+              >
+                <div
+                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                >
+                  <span
+                    class="_text_b5nz7_6 _text--span_b5nz7_72 font-bold"
+                    data-ods="text"
+                  >
+                    Private Network
+                  </span>
+                </div>
+              </dt>
+              <dd
+                class="m-0"
+              >
+                <div
+                  class="flex items-center"
+                >
+                  <div
+                    class="grow"
+                  >
+                    <p
+                      class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+                      data-ods="text"
+                    />
+                  </div>
+                  <div
+                    class="flex-none"
+                  >
+                    <button
+                      aria-controls=":r1:"
+                      aria-expanded="false"
+                      aria-haspopup="dialog"
+                      class="_button_6crpx_2 _button--primary_6crpx_276 _button--sm_6crpx_209 _button--ghost_6crpx_327 _popover-trigger_zwyzw_2"
+                      data-ods="popover-trigger"
+                      data-part="trigger"
+                      data-scope="popover"
+                      data-state="closed"
+                      dir="ltr"
+                      id="popover::r0::trigger"
+                      role="button"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <span
+                        class="_icon_1iyhc_2 _icon--ellipsis-vertical_1iyhc_217"
+                        data-ods="icon"
+                        role="presentation"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <hr
+                  class="_divider_l59rc_2 _divider--24_l59rc_38"
+                  data-ods="divider"
+                />
+              </dd>
+            </div>
+            <div
+              class="flex flex-col gap-1"
+            >
+              <dt
+                class="flex justify-between"
+              >
+                <div
+                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                >
+                  <span
+                    class="_text_b5nz7_6 _text--span_b5nz7_72 font-bold"
+                    data-ods="text"
+                  >
+                    Date de création
+                  </span>
+                </div>
+              </dt>
+              <dd
+                class="m-0"
+              >
+                <p
+                  class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+                  data-ods="text"
+                >
+                  10 mars 2023
+                </p>
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+`;

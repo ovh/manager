@@ -1,0 +1,325 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Vrack Services subnets page test suite > should display a subnet creation page 1`] = `
+<div>
+  <div
+    class="py-8 px-4 md:py-9 md:px-10 md:mt-2"
+  >
+    <div />
+    <nav
+      class="mb-4"
+      data-ods="breadcrumb"
+      id=":r0:"
+      role="navigation"
+    >
+      <ol
+        class="_breadcrumb__list_1jn0o_2"
+      >
+        <li
+          class="_breadcrumb-item_15jgm_2"
+          data-ods="breadcrumb-item"
+        >
+          <a
+            class="_link_1qra4_2"
+            data-ods="breadcrumb-link"
+          >
+            vRack Services
+          </a>
+          <span
+            class="_breadcrumb-separator_s0t1u_2"
+            role="presentation"
+          />
+        </li>
+        <li
+          class="_breadcrumb-item_15jgm_2"
+          data-ods="breadcrumb-item"
+        >
+          <a
+            class="_link_1qra4_2"
+            data-ods="breadcrumb-link"
+          >
+            vrs-ahc-fw4-od1-efq
+          </a>
+          <span
+            class="_breadcrumb-separator_s0t1u_2"
+            role="presentation"
+          />
+        </li>
+        <li
+          class="_breadcrumb-item_15jgm_2"
+          data-ods="breadcrumb-item"
+        >
+          <span
+            aria-current="page"
+            data-ods="breadcrumb-link"
+          >
+            Créer un sous-réseau
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <h2
+      class="_text_b5nz7_6 _text--heading-2_b5nz7_26 mb-7 block"
+      data-ods="text"
+    >
+      Créer un sous-réseau
+    </h2>
+    <form>
+      <div
+        class="_form-field_12ogr_2 mb-4 max-w-md"
+        data-ods="form-field"
+        role="group"
+      >
+        <label
+          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1udkg_2"
+          data-ods="form-field-label"
+          for="displayName"
+          id=":r2:"
+        >
+          Nom du sous-réseau (facultatif)
+        </label>
+        <div
+          class="_input_1k3we_6"
+        >
+          <input
+            aria-busy="false"
+            aria-describedby=""
+            class="_input__field_1k3we_45"
+            data-ods="input"
+            id="displayName"
+            name="displayName"
+            placeholder="Mon sous-réseau"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="_form-field_12ogr_2 mb-4 max-w-md"
+        data-ods="form-field"
+        role="group"
+      >
+        <label
+          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1udkg_2"
+          data-ods="form-field-label"
+          for="cidr"
+          id=":r5:"
+        >
+          Plage d'adresses du sous-réseau (CIDR)
+        </label>
+        <div
+          class="_input_1k3we_6"
+        >
+          <input
+            aria-busy="false"
+            aria-describedby=":r7:"
+            class="_input__field_1k3we_45"
+            data-ods="input"
+            id="cidr"
+            name="cidr"
+            placeholder="10.0.0.0/24"
+            type="text"
+            value=""
+          />
+        </div>
+        <span
+          data-ods="form-field-helper"
+          id=":r7:"
+        >
+          <span
+            class="_text_b5nz7_6 _text--caption_b5nz7_9"
+            data-ods="text"
+          >
+            La plage d'adresses du sous-réseau doit être en /24.
+          </span>
+        </span>
+      </div>
+      <div
+        class="_form-field_12ogr_2 mb-4 max-w-md"
+        data-ods="form-field"
+        role="group"
+      >
+        <label
+          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1udkg_2"
+          data-ods="form-field-label"
+          for="serviceRange"
+          id=":r9:"
+        >
+          Plage d'adresses de service (CIDR)
+        </label>
+        <div
+          class="_input_1k3we_6"
+        >
+          <input
+            aria-busy="false"
+            aria-describedby=":rb:"
+            class="_input__field_1k3we_45"
+            data-ods="input"
+            id="serviceRange"
+            name="serviceRange"
+            placeholder="10.0.0.0/29"
+            type="text"
+            value=""
+          />
+        </div>
+        <span
+          data-ods="form-field-helper"
+          id=":rb:"
+        >
+          <span
+            class="_text_b5nz7_6 _text--caption_b5nz7_9"
+            data-ods="text"
+          >
+            La plage d'adresses de service sera utilisée par les services du vRack Services. Par conséquent, les adresses de cette plage ne doivent pas être utilisées par d'autres nœuds connectés au vRack. La plage d'adresse de service doit être un sous-ensemble de la plage d'addresses du sous-réseau, et sa taille doit être comprise entre /27 et /29.
+          </span>
+        </span>
+      </div>
+      <div
+        class="_form-field_12ogr_2 mb-4 grid gap-2"
+        data-ods="form-field"
+        role="group"
+      >
+        <label
+          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1udkg_2"
+          data-ods="form-field-label"
+          for=":rc:"
+          id=":rd:"
+        >
+          VLAN
+        </label>
+        <span
+          data-ods="form-field-helper"
+          id=":re:"
+        >
+          <span
+            class="_text_b5nz7_6 _text--caption_b5nz7_9"
+            data-ods="text"
+            slot="helper"
+          >
+            Vous pouvez exposer ce sous-réseau sur un VLAN spécifique.
+          </span>
+        </span>
+        <div
+          aria-labelledby=""
+          aria-orientation="vertical"
+          class="_radio-group_11l71_2"
+          data-ods="radio-group"
+          data-orientation="vertical"
+          data-part="root"
+          data-scope="radio-group"
+          dir="ltr"
+          id="radio-group::rf:"
+          role="radiogroup"
+          style="position: relative;"
+        >
+          <label
+            class="_radio_1c28j_2"
+            data-ods="radio"
+            data-orientation="vertical"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="checked"
+            dir="ltr"
+            for="radio-group::rf::radio:input:noVlan"
+            id="radio-group::rf::radio:noVlan"
+          >
+            <div
+              aria-hidden="true"
+              class="_radio-control_15vm3_2"
+              data-ods="radio-control"
+              data-orientation="vertical"
+              data-part="item-control"
+              data-scope="radio-group"
+              data-state="checked"
+              dir="ltr"
+              id="radio-group::rf::radio:control:noVlan"
+            />
+            <span
+              data-ods="radio-label"
+              data-orientation="vertical"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="checked"
+              dir="ltr"
+              id="radio-group::rf::radio:label:noVlan"
+            >
+              <p
+                class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+                data-ods="text"
+              >
+                Pas de VLAN
+              </p>
+            </span>
+            <input
+              aria-describedby=":re:"
+              checked=""
+              data-ownedby="radio-group::rf:"
+              id="radio-group::rf::radio:input:noVlan"
+              name="hasVlan"
+              style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              type="radio"
+              value="noVlan"
+            />
+          </label>
+          <label
+            class="_radio_1c28j_2"
+            data-ods="radio"
+            data-orientation="vertical"
+            data-part="item"
+            data-scope="radio-group"
+            data-state="unchecked"
+            dir="ltr"
+            for="radio-group::rf::radio:input:vlanNumber"
+            id="radio-group::rf::radio:vlanNumber"
+          >
+            <div
+              aria-hidden="true"
+              class="_radio-control_15vm3_2"
+              data-ods="radio-control"
+              data-orientation="vertical"
+              data-part="item-control"
+              data-scope="radio-group"
+              data-state="unchecked"
+              dir="ltr"
+              id="radio-group::rf::radio:control:vlanNumber"
+            />
+            <span
+              data-ods="radio-label"
+              data-orientation="vertical"
+              data-part="item-text"
+              data-scope="radio-group"
+              data-state="unchecked"
+              dir="ltr"
+              id="radio-group::rf::radio:label:vlanNumber"
+            >
+              <p
+                class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+                data-ods="text"
+              >
+                Sélectionnez un VLAN
+              </p>
+            </span>
+            <input
+              aria-describedby=":re:"
+              data-ownedby="radio-group::rf:"
+              id="radio-group::rf::radio:input:vlanNumber"
+              name="hasVlan"
+              style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              type="radio"
+              value="vlanNumber"
+            />
+          </label>
+        </div>
+      </div>
+      <button
+        class="_button_6crpx_2 _button--primary_6crpx_276 _button--sm_6crpx_209 _button--default_6crpx_225"
+        data-ods="button"
+        disabled=""
+        type="submit"
+      >
+        Créer un sous-réseau
+      </button>
+    </form>
+  </div>
+</div>
+`;

@@ -1,19 +1,19 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { Outlet } from 'react-router-dom';
-import {
-  BUTTON_SIZE,
-  BUTTON_VARIANT,
-  ICON_NAME,
-  Button,
-  Icon,
-} from '@ovhcloud/ods-react';
+
+import { useTranslation } from 'react-i18next';
+
+import { BUTTON_SIZE, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
+
 import { useVrackService } from '@ovh-ux/manager-network-common';
 import { BaseLayout } from '@ovh-ux/muk';
-import { EndpointDatagrid } from './EndpointDataGrid.component';
-import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
-import { isEditable } from '@/utils/vrack-services';
+
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { isEditable } from '@/utils/vrack-services';
+
+import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
+import { EndpointDatagrid } from './EndpointDataGrid.component';
 
 export default function EndpointsListing() {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);

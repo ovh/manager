@@ -1,12 +1,16 @@
+/* eslint-disable max-lines */
 import React from 'react';
-import { RouteObject, Route } from 'react-router-dom';
-import {
-  PageType,
-  TrackingPageParams,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { Route } from 'react-router-dom';
+import type { RouteObject } from 'react-router-dom';
+
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+import type { TrackingPageParams } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/muk';
-import { urls } from './routes.constants';
+
 import { PageName } from '@/utils/tracking';
+
+import { urls } from './RoutesAndUrl.constants';
 
 export type RouteConfig = {
   id?: string;
@@ -18,71 +22,49 @@ export type RouteConfig = {
 };
 
 const RootWrapper = React.lazy(() => import('@/pages/RootWrapper.page'));
-const DashboardWrapper = React.lazy(() =>
-  import('@/pages/DashboardWrapper.page'),
-);
+const DashboardWrapper = React.lazy(() => import('@/pages/DashboardWrapper.page'));
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
-const AssociateVrackModal = React.lazy(() =>
-  import('@/pages/associate/AssociateVrackModal.page'),
+const AssociateVrackModal = React.lazy(() => import('@/pages/associate/AssociateVrackModal.page'));
+const AssociateAnotherVrackModal = React.lazy(
+  () => import('@/pages/associate-another/AssociateAnotherVrackModal.page'),
 );
-const AssociateAnotherVrackModal = React.lazy(() =>
-  import('@/pages/associate-another/AssociateAnotherVrackModal.page'),
+const DissociateModal = React.lazy(() => import('@/pages/dissociate/DissociateModal.page'));
+const EditVrackServicesDisplayNameModal = React.lazy(
+  () => import('@/pages/edit-display-name/EditVrackServicesDisplayNameModal.page'),
 );
-const DissociateModal = React.lazy(() =>
-  import('@/pages/dissociate/DissociateModal.page'),
+const DeleteVrackServicesModal = React.lazy(
+  () => import('@/pages/listing/delete/DeleteVrackServicesModal.page'),
 );
-const EditVrackServicesDisplayNameModal = React.lazy(() =>
-  import('@/pages/edit-display-name/EditVrackServicesDisplayNameModal.page'),
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const CreateVrackServicesPage = React.lazy(
+  () => import('@/pages/create-vs/CreateVrackServices.page'),
 );
-const DeleteVrackServicesModal = React.lazy(() =>
-  import('@/pages/listing/delete/DeleteVrackServicesModal.page'),
+const CreateConfirmModal = React.lazy(
+  () => import('@/pages/create-vs/confirm/CreateConfirmModal.page'),
 );
-const OnboardingPage = React.lazy(() =>
-  import('@/pages/onboarding/Onboarding.page'),
+const OverviewTabPage = React.lazy(() => import('@/pages/overview/OverviewTab.page'));
+const SubnetsTabPage = React.lazy(() => import('@/pages/subnets/SubnetsTab.page'));
+const SubnetsOnboardingPage = React.lazy(
+  () => import('@/pages/subnets/onboarding/SubnetsOnboarding.page'),
 );
-const CreateVrackServicesPage = React.lazy(() =>
-  import('@/pages/create-vs/CreateVrackServices.page'),
+const SubnetsListingPage = React.lazy(
+  () => import('@/pages/subnets/subnets-listing/SubnetsListing.page'),
 );
-const CreateConfirmModal = React.lazy(() =>
-  import('@/pages/create-vs/confirm/CreateConfirmModal.page'),
+const EditSubnetModal = React.lazy(() => import('@/pages/subnets/edit/EditSubnetModal.page'));
+const SubnetDeleteModal = React.lazy(() => import('@/pages/subnets/delete/SubnetDeleteModal.page'));
+const SubnetCreatePage = React.lazy(() => import('@/pages/create-subnet/SubnetCreate.page'));
+const EndpointsTabPage = React.lazy(() => import('@/pages/endpoints/EndpointsTab.page'));
+const EndpointsOnboardingPage = React.lazy(
+  () => import('@/pages/endpoints/onboarding/EndpointsOnboarding.page'),
 );
-const OverviewTabPage = React.lazy(() =>
-  import('@/pages/overview/OverviewTab.page'),
+const EndpointsListingPage = React.lazy(
+  () => import('@/pages/endpoints/endpoints-listing/EndpointsListing.page'),
 );
-const SubnetsTabPage = React.lazy(() =>
-  import('@/pages/subnets/SubnetsTab.page'),
+const EndpointDeleteModal = React.lazy(
+  () => import('@/pages/endpoints/delete/EndpointDeleteModal.page'),
 );
-const SubnetsOnboardingPage = React.lazy(() =>
-  import('@/pages/subnets/onboarding/SubnetsOnboarding.page'),
-);
-const SubnetsListingPage = React.lazy(() =>
-  import('@/pages/subnets/subnets-listing/SubnetsListing.page'),
-);
-const EditSubnetModal = React.lazy(() =>
-  import('@/pages/subnets/edit/EditSubnetModal.page'),
-);
-const SubnetDeleteModal = React.lazy(() =>
-  import('@/pages/subnets/delete/SubnetDeleteModal.page'),
-);
-const SubnetCreatePage = React.lazy(() =>
-  import('@/pages/create-subnet/SubnetCreate.page'),
-);
-const EndpointsTabPage = React.lazy(() =>
-  import('@/pages/endpoints/EndpointsTab.page'),
-);
-const EndpointsOnboardingPage = React.lazy(() =>
-  import('@/pages/endpoints/onboarding/EndpointsOnboarding.page'),
-);
-const EndpointsListingPage = React.lazy(() =>
-  import('@/pages/endpoints/endpoints-listing/EndpointsListing.page'),
-);
-const EndpointDeleteModal = React.lazy(() =>
-  import('@/pages/endpoints/delete/EndpointDeleteModal.page'),
-);
-const EndpointCreatePage = React.lazy(() =>
-  import('@/pages/create-endpoint/EndpointCreate.page'),
-);
-const NotFound = React.lazy(() => import('@/pages/not-found/404.page'));
+const EndpointCreatePage = React.lazy(() => import('@/pages/create-endpoint/EndpointCreate.page'));
+const NotFound = React.lazy(() => import('@/pages/not-found/Error404.page'));
 
 export default (
   <>
@@ -267,11 +249,7 @@ export default (
           />
         </Route>
 
-        <Route
-          id="vrack-services.subnets"
-          path={urls.subnets}
-          Component={SubnetsTabPage}
-        >
+        <Route id="vrack-services.subnets" path={urls.subnets} Component={SubnetsTabPage}>
           <Route
             id="vrack-services.subnets.onboarding"
             path={urls.subnetsOnboarding}
@@ -334,11 +312,7 @@ export default (
           }}
           Component={SubnetCreatePage}
         />
-        <Route
-          id="vrack-services.endpoints"
-          path={urls.endpoints}
-          Component={EndpointsTabPage}
-        >
+        <Route id="vrack-services.endpoints" path={urls.endpoints} Component={EndpointsTabPage}>
           <Route
             id="vrack-services.endpoints.onboarding"
             path={urls.endpointsOnboarding}

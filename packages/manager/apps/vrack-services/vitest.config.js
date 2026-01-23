@@ -12,13 +12,13 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: ['./src/test-utils/setupIntegrationTests.ts'],
+      setupFiles: ['./src/__tests__/setupIntegrationTests.ts'],
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
           // App-specific exclusions (not in shared config):
           'src/types',
-          'src/test-utils',
+          'src/__tests__',
           'src/utils/tracking.ts',
           'src/pages/not-found',
           'src/data/mocks',

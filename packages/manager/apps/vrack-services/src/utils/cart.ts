@@ -1,4 +1,5 @@
-import { CartItem, createCart } from '@ovh-ux/manager-module-order';
+import { createCart } from '@ovh-ux/manager-module-order';
+import type { CartItem } from '@ovh-ux/manager-module-order';
 
 const vrackItem: CartItem = {
   itemEndpoint: 'vrack',
@@ -33,5 +34,5 @@ export const createVrackServicesCart = async ({
         configurations: [{ label: 'region_name', value: region }],
       },
       hasVrack && vrackItem,
-    ].filter(Boolean),
+    ].filter((item): item is CartItem => Boolean(item)),
   });

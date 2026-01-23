@@ -1,8 +1,12 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { SPINNER_SIZE, TEXT_PRESET, Spinner, Text } from '@ovhcloud/ods-react';
+
+import { SPINNER_SIZE, Spinner, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { useVrackServicesRegion } from '@ovh-ux/manager-network-common';
-import { RegionSelector } from '@/components/RegionSelector/region-selector.component';
+
+import { RegionSelector } from '@/components/region-selector/RegionSelector.component';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type RegionFormFieldProps = {
@@ -19,10 +23,10 @@ export const RegionFormField: React.FC<RegionFormFieldProps> = ({
 
   return (
     <>
-      <Text className="block mt-8 mb-4" preset={TEXT_PRESET.heading4}>
+      <Text className="mb-4 mt-8 block" preset={TEXT_PRESET.heading4}>
         {t('regionLabel')}
       </Text>
-      <Text className="block mb-6" preset={TEXT_PRESET.paragraph}>
+      <Text className="mb-6 block" preset={TEXT_PRESET.paragraph}>
         {t('regionDescription')}
       </Text>
       <div className="mb-5">
@@ -30,7 +34,7 @@ export const RegionFormField: React.FC<RegionFormFieldProps> = ({
           <Spinner size={SPINNER_SIZE.lg} />
         ) : (
           <RegionSelector
-            regionList={data?.data?.map(({ name }) => name)}
+            regionList={data?.data?.map(({ name }) => name) || []}
             setSelectedRegion={setSelectedRegion}
             selectedRegion={selectedRegion}
           />

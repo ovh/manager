@@ -1,52 +1,51 @@
 import React from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import {
   BUTTON_VARIANT,
+  Button,
   MESSAGE_COLOR,
-  TEXT_PRESET,
-  Text,
-  Select,
   Message,
   MessageBody,
   MessageIcon,
-  Button,
-  SelectControl,
+  Select,
   SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-import { useQueryClient } from '@tanstack/react-query';
-import {
-  PageLocation,
-  ButtonType,
-  useOvhTracking,
-  PageType,
-} from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getVrackServicesResourceListQueryKey,
   useAssociateVrack,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+
 import { LoadingText } from '@/components/LoadingText.component';
+import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 import { PageName } from '@/utils/tracking';
 import { getDisplayName } from '@/utils/vrack-services';
-import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type AssociateVrackProps = {
   vrackList: string[];
   closeModal: () => void;
 };
 
-export const AssociateVrack: React.FC<AssociateVrackProps> = ({
-  vrackList,
-  closeModal,
-}) => {
+export const AssociateVrack: React.FC<AssociateVrackProps> = ({ vrackList, closeModal }) => {
   const { id } = useParams();
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.associate,
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.associate, NAMESPACES.ACTIONS]);
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const [selectedVrack, setSelectedVrack] = React.useState('');
   const { data: vs } = useVrackService();
@@ -55,19 +54,19 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
   const navigate = useNavigate();
 
   const { associateVs, error, isError, isPending } = useAssociateVrack({
-    vrackServicesId: id,
+    vrackServicesId: id || '',
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: PageName.successAssociateVrack,
       });
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
       navigate('..');
       addSuccessMessage(
         t('vrackServicesAssociateSuccess', {
-          vs: getDisplayName(vs),
+          vs: getDisplayName(vs) || '',
           vrack: selectedVrack,
         }),
         { vrackServicesId: id },
@@ -83,7 +82,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
 
   return (
     <>
-      <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
+      <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
         {t('modalVrackAssociationDescription')}
       </Text>
       {isError && (
@@ -99,7 +98,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
       <Select
         id="select-vrack-input"
         name="select-vrack-input"
-        className="block mb-4"
+        className="mb-4 block"
         disabled={isPending}
         onValueChange={(event) => setSelectedVrack(event.value[0] as string)}
         items={vrackList.map((vrack) => ({ label: vrack, value: vrack }))}
