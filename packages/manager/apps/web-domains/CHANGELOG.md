@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.4...@ovh-ux/manager-web-domains-app@1.9.5) (2026-01-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4606] ([8a702ab](https://github.com/ovh/manager/commit/8a702ab6db65f6b4ec2c301cac5c1a80bb76b7ba))
+
+
+
+
+
 ## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.3...@ovh-ux/manager-web-domains-app@1.9.4) (2026-01-22)
 
 

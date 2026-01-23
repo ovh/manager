@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-creation-app",
-  "version": "0.9.12",
+  "version": "0.9.13",
   "private": true,
   "description": "Application used to finalize an account creation",
   "repository": {
