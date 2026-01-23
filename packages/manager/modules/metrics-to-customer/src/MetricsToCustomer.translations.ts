@@ -7,4 +7,5 @@ export const NAMESPACES = {
   CHART: `${NAMESPACE_PREFIX}/chart`,
   DASHBOARDS: `${NAMESPACE_PREFIX}/dashboards`,
   TIME_CONTROLS: `${NAMESPACE_PREFIX}/timeControls`,
+  DASHBOARD_TEXTS: `${NAMESPACE_PREFIX}/dashboard-texts`,
 };
