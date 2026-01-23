@@ -1,8 +1,11 @@
-import React, {
+import {
   PropsWithChildren,
   createContext,
   useMemo,
   useState,
+  useCallback,
+  SetStateAction,
+  useEffect,
 } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
@@ -65,7 +68,7 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
       queryFn: async () => {
         const result = await getIpDetails({ ip });
 
-        await queryClient.invalidateQueries({
+        queryClient.invalidateQueries({
           queryKey: getIpListQueryKey(apiFilter),
         });
 
@@ -83,12 +86,12 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
     })),
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setApiFilter((prev) => ({ ...prev, ...searchToApiFilter(search) }));
   }, [search]);
 
-  const setApiFilterWithUrlUpdate = React.useCallback(
-    (updater: React.SetStateAction<GetIpListParams>) => {
+  const setApiFilterWithUrlUpdate = useCallback(
+    (updater: SetStateAction<GetIpListParams>) => {
       setApiFilter((prev) => {
         const newFilter =
           typeof updater === 'function' ? updater(prev) : updater;
@@ -102,7 +105,7 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
     [setSearch],
   );
 
-  const addExpiredIp = React.useCallback((expiredIp: string) => {
+  const addExpiredIp = useCallback((expiredIp: string) => {
     setExpiredIps((ips) =>
       ips.indexOf(expiredIp) === -1 ? ips.concat(expiredIp) : ips,
     );
