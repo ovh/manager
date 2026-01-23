@@ -1,6 +1,5 @@
 {
   "dashboard_widget_config_not_found": "Nenhum widget neste painel",
-  "dashboard_widget_analyse_in_all_metrics": "Analisar todas as métricas",
   "dashboard_widget_close": "Fechar",
   "dashboard_no_widget": "Nenhum widget configurado para este painel",
   "dashboard_loading": "A carregar o painel"
