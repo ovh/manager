@@ -2,7 +2,7 @@ import { FC, useCallback, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
+import { BUTTON_VARIANT, ICON_NAME } from '@ovhcloud/ods-react';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
@@ -62,7 +62,8 @@ export const ChangelogMenu: FC<ChangelogMenuProps> = ({ links, chapters = [], pr
       variant={BUTTON_VARIANT.ghost}
       label={t('mrc_changelog_header')}
       id="changelog-button"
-      displayIcon={false}
+      displayIcon={true}
+      icon={ICON_NAME.github}
       items={linksMap}
     />
   );
