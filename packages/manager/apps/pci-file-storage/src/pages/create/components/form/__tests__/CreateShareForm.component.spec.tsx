@@ -4,7 +4,11 @@ import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TAvailabilityZoneData, TMicroRegionData } from '@/adapters/catalog/left/shareCatalog.data';
+import {
+  TAvailabilityZoneData,
+  TMicroRegionData,
+  TShareSpecData,
+} from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
@@ -74,6 +78,14 @@ vi.mock(
   }),
 );
 
+vi.mock('@/pages/create/components/share/ShareSelection.component', () => ({
+  ShareSelection: () => <div data-testid="share-selection">Share Selection</div>,
+}));
+
+vi.mock('@/pages/create/components/share/ShareSizeSelection.component', () => ({
+  ShareSizeSelection: () => <div data-testid="share-size-selection">Share Size Selection</div>,
+}));
+
 vi.mock('@ovhcloud/ods-react', () => ({
   Divider: ({ className }: { className: string }) => (
     <div data-testid="divider" className={className} />
@@ -93,13 +105,17 @@ describe('CreateShareForm', () => {
   it('should render all form sections', () => {
     mockUseShareCatalog.mockReturnValue({
       data: [],
-    } as unknown as QueryObserverSuccessResult<TMicroRegionData[] | TAvailabilityZoneData[]>);
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
 
     renderWithMockedForm(<CreateShareForm />);
 
     expect(screen.getByTestId('name-input')).toBeVisible();
     expect(screen.getByTestId('deployment-mode-section')).toBeVisible();
     expect(screen.getByTestId('macro-region-selection')).toBeVisible();
+    expect(screen.getByTestId('share-selection')).toBeVisible();
+    expect(screen.getByTestId('share-size-selection')).toBeVisible();
   });
 
   it.each([
