@@ -1,7 +1,15 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { LegalForm } from '@ovh-ux/manager-config';
 import AccountTypeTooltipContent from './TooltipContent.component';
+
+vi.mock(
+  'react-i18next',
+  async (importOriginal: () => Promise<typeof import('react-i18next')>) => ({
+    ...(await importOriginal()),
+    Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey,
+  }),
+);
 
 const renderComponent = (legalForms: LegalForm[]) =>
   render(<AccountTypeTooltipContent legalForms={legalForms} />);
