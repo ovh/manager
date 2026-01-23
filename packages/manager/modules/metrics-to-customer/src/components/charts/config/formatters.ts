@@ -1,18 +1,37 @@
 import { format } from 'date-fns';
 import { RoundingMode } from './roundModes';
+import { getLocaleObject } from '@/utils/dateTimeUtils';
 
-export const formatTimestamp = (timestamp: number): string => {
-  const date = new Date(timestamp);
-  return format(date, 'HH:mm:ss');
+export type FormatterOptions = {
+  precision?: number;
+  roundingMode?: RoundingMode;
+  locale?: string;
 };
 
-export const formatTimestampToDateTime = (timestamp: number): string => {
+export const formatTimestamp = (
+  timestamp: number,
+  options?: FormatterOptions,
+): string => {
   const date = new Date(timestamp);
-  return format(date, 'PPPP p');
+  const locale = getLocaleObject(options?.locale);
+  return format(date, 'pp', { locale });
 };
 
-export const formatLargeNumber = (value: number): string => {
-  return new Intl.NumberFormat('en-US', {
+export const formatTimestampToDateTime = (
+  timestamp: number,
+  options?: FormatterOptions,
+): string => {
+  const date = new Date(timestamp);
+  const locale = getLocaleObject(options?.locale);
+  return format(date, 'Ppp', { locale });
+};
+
+export const formatLargeNumber = (
+  value: number,
+  options?: FormatterOptions,
+): string => {
+  const locale = getLocaleObject(options?.locale);
+  return new Intl.NumberFormat(locale.code, {
     notation: 'compact',
     compactDisplay: 'short',
   }).format(value);
@@ -24,6 +43,7 @@ export type FormatterConfig =
       type: string;
       precision?: number;
       roundingMode?: RoundingMode;
+      locale?: string;
     };
 
 const roundNumber = (
@@ -75,17 +95,14 @@ const roundNumber = (
 
 export const formatNumber = (
   value: number,
-  {
-    precision = 2,
-    roundingMode = 'half-up',
-  }: {
-    precision?: number;
-    roundingMode?: RoundingMode;
-  } = {},
+  options?: FormatterOptions,
 ): string => {
+  const locale = getLocaleObject(options?.locale);
+  const precision = options?.precision ?? 2;
+  const roundingMode = options?.roundingMode ?? 'half-up';
   const rounded = roundNumber(value, precision, roundingMode);
 
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat(locale.code, {
     minimumFractionDigits: precision,
     maximumFractionDigits: precision,
   }).format(rounded);
@@ -100,27 +117,25 @@ export const formatters = {
 
 export const getFormatter = (
   formatter?: FormatterConfig,
+  options?: FormatterOptions,
 ): ((value: any) => string) | undefined => {
   if (!formatter) {
-    return undefined; // TODO: default formatter
-  }
-
-  if (typeof formatter === 'string') {
-    return formatter in formatters
-      ? formatters[formatter as keyof typeof formatters]
-      : undefined;
-  }
-
-  const { type, ...options } = formatter;
-
-  if (!(type in formatters)) {
     return undefined;
   }
 
+  const type = typeof formatter === 'string' ? formatter : formatter.type;
   const baseFormatter = formatters[type as keyof typeof formatters];
 
-  return (value: any) =>
-    typeof baseFormatter === 'function'
-      ? baseFormatter(value, options)
-      : value;
+  if (!baseFormatter) {
+    return undefined;
+  }
+
+  let formatterOptions: FormatterOptions | undefined = options;
+  
+  if (typeof formatter !== 'string') {
+    const { type: _, ...configOptions } = formatter;
+    formatterOptions = { ...configOptions, ...options };
+  }
+
+  return (value: any) => baseFormatter(value, formatterOptions);
 };

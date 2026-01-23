@@ -29,6 +29,7 @@ export const TimeSeriesChartComponent = <TData,>({
   data,
   chartConfig,
   isFullscreen = false,
+  locale,
 }: Readonly<TimeSeriesChartProps<TData>>): JSX.Element => {
   const timeseriesChartConfig = chartConfig as TimeSeriesChartConfig;
   const {
@@ -49,9 +50,9 @@ export const TimeSeriesChartComponent = <TData,>({
   const curveType = timeseriesChartConfig.curveType ?? 'monotone';
   const { brush } = timeseriesChartConfig;
 
-  const xFormatter = getFormatter(xAxisFormatter);
+  const xFormatter = getFormatter(xAxisFormatter, { locale });
   const yFormatter = getFormatter(yAxisFormatter);
-  const tooltipKeyFormatter = getFormatter(tooltipKeyFormatterConfig);
+  const tooltipKeyFormatter = getFormatter(tooltipKeyFormatterConfig, { locale });
   const tooltipValueFormatter = getFormatter(tooltipValueFormatterConfig);
 
   const legendPayload: LegendProps['payload'] = YAxisDataKeys.map(
