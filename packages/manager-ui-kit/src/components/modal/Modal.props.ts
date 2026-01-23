@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, ReactNode } from 'react';
 
-import { MODAL_COLOR, Modal } from '@ovhcloud/ods-react';
+import { MODAL_COLOR, Modal, ModalOpenChangeDetail } from '@ovhcloud/ods-react';
 
 type ModalButton = {
   /** Label of the button */
@@ -36,7 +36,7 @@ export type ModalProps = ComponentPropsWithRef<typeof Modal> & {
   /** Display dismissible button */
   dismissible?: boolean;
   /** Callback fired when the modal open state changes. */
-  onOpenChange?: () => void;
+  onOpenChange?: (detail?: ModalOpenChangeDetail) => void;
   /** Is modal open state */
   open?: boolean;
   /** Children of modal */

@@ -1,3 +1,5 @@
+import type { ModalOpenChangeDetail } from '@ovhcloud/ods-react';
+
 export type UpdateNameModalProps = Readonly<{
   headline: string;
   description?: string | null;
@@ -10,7 +12,7 @@ export type UpdateNameModalProps = Readonly<{
   isOpen?: boolean;
   cancelButtonLabel?: string;
   confirmButtonLabel?: string;
-  onOpenChange?: () => void;
+  onOpenChange?: (detail?: ModalOpenChangeDetail) => void;
   onClose?: () => void;
   updateDisplayName: (newDisplayName: string) => void;
 }>;
