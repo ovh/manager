@@ -5,17 +5,17 @@
     "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten."
   },
   "localisation": {
-    "title": "Wählen Sie einen Standort",
+    "title": "Wählen Sie einen Standort aus",
     "deploymentMode": {
       "title": "Filtern Sie einen Bereitstellungsmodus",
       "modes": {
         "region": {
           "label": "1-AZ Region",
-          "description": "Widerstandsfähige und kostengünstige Bereitstellung in 1 Verfügbarkeitszone."
+          "description": "Resiliente und kostengünstige Bereitstellung in 1 Verfügbarkeitszone."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Hochverfügbare/hocheffiziente Bereitstellung für Ihre kritischen Anwendungen in 3 Verfügbarkeitszonen."
+          "description": "Hochverfügbare/hoche Resilienz-Bereitstellung für Ihre kritischen Anwendungen in 3 Verfügbarkeitszonen."
         },
         "region-3-az": {
           "label": "3-AZ Region",
@@ -34,16 +34,25 @@
       }
     },
     "microRegion": {
-      "title": "Wählen Sie ein Rechenzentrum",
+      "title": "Wählen Sie ein Rechenzentrum aus",
       "label": "Wählen Sie ein Rechenzentrum"
     },
     "availabilityZone": {
-      "title": "Wählen Sie Ihre Verfügbarkeitszone",
+      "title": "Wählen Sie Ihre Verfügbarkeitszone aus",
       "informations": "Eine Standardverfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
       "choice": {
-        "company": "Für mich wählen",
-        "user": "Ich wähle meine Verfügbarkeitszone"
+        "company": "Für mich auswählen",
+        "user": "Ich wähle meine Verfügbarkeitszone aus"
       }
     }
+  },
+  "share": {
+    "title": "Leistungsmodus des Shares",
+    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS und {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Größe des Shares",
+    "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert.",
+    "label": "Lineare Leistungszuweisung (GB)"
   }
 }

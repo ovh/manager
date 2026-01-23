@@ -5,6 +5,7 @@ import {
   TDeploymentModeDataForCard,
   TMicroRegionData,
   TRegionData,
+  TShareSpecData,
 } from '@/adapters/catalog/left/shareCatalog.data';
 import {
   mapDeploymentModeForCard,
@@ -100,4 +101,21 @@ export const selectAvailabilityZones =
       label: availabilityZone,
       value: availabilityZone,
     }));
+  };
+
+export const selectShareSpecs =
+  (microRegionId?: string) =>
+  (data?: TShareCatalog): TShareSpecData[] => {
+    if (!data || !microRegionId) return [];
+
+    return Array.from(data.entities.shareSpecs.byId.values())
+      .filter((spec) => spec.microRegionIds.includes(microRegionId))
+      .map((spec) => ({
+        name: spec.name,
+        capacityMin: spec.capacity.min,
+        capacityMax: spec.capacity.max,
+        iopsLevel: spec.iops.level,
+        bandwidthLevel: spec.bandwidth.level,
+        bandwidthUnit: spec.bandwidth.unit,
+      }));
   };

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { CATALOG_FILTERS, CATALOG_REGIONS } from '@/__mocks__/dto/catalog.dto.mocks';
+import { CATALOG_FILTERS, CATALOG_REGIONS, CATALOG_SHARE } from '@/__mocks__/dto/catalog.dto.mocks';
 
 import type { TShareCatalogDTO } from '../dto.type';
 import { mapCatalogDTOToCatalog } from '../mapper';
@@ -26,6 +26,7 @@ describe('mapCatalogDTOToCatalog', () => {
         CATALOG_REGIONS.BHS5,
         CATALOG_REGIONS['EU-SOUTH-LZ-LIS-A'],
       ],
+      shares: [],
     };
 
     const result = mapCatalogDTOToCatalog(catalogDto);
@@ -40,7 +41,6 @@ describe('mapCatalogDTOToCatalog', () => {
               {
                 macroRegionIds: ['GRA', 'EU-SOUTH-LZ-LIS'],
                 name: 'europe',
-                tags: [],
               },
             ],
             [
@@ -48,7 +48,6 @@ describe('mapCatalogDTOToCatalog', () => {
               {
                 macroRegionIds: ['BHS'],
                 name: 'north_america',
-                tags: [],
               },
             ],
           ]),
@@ -60,21 +59,18 @@ describe('mapCatalogDTOToCatalog', () => {
               'region-3-az',
               {
                 name: 'region-3-az',
-                tags: [],
               },
             ],
             [
               'region',
               {
                 name: 'region',
-                tags: [],
               },
             ],
             [
               'localzone',
               {
                 name: 'localzone',
-                tags: [],
               },
             ],
           ]),
@@ -159,12 +155,129 @@ describe('mapCatalogDTOToCatalog', () => {
             ],
           ]),
         },
+        shares: {
+          allIds: [],
+          byId: new Map(),
+        },
+        shareSpecs: {
+          allIds: [],
+          byId: new Map(),
+        },
       },
       relations: {
         continentIdsByDeploymentModeId: new Map([
           ['region', ['europe', 'north_america']],
           ['localzone', ['europe']],
         ]),
+      },
+    });
+  });
+
+  it('should map shares and shareSpecs to domain entities', () => {
+    const catalogDto: TShareCatalogDTO = {
+      filters: CATALOG_FILTERS,
+      regions: [],
+      shares: [CATALOG_SHARE],
+    };
+
+    const result = mapCatalogDTOToCatalog(catalogDto);
+
+    expect(result.entities.shares.allIds).toEqual(['publiccloud-share-standard']);
+    expect(result.entities.shares.byId.get('publiccloud-share-standard')).toEqual({
+      name: 'publiccloud-share-standard',
+      filters: {
+        deployment: ['region', 'region-3-az', 'localzone'],
+      },
+      specsIds: ['publiccloud-share-standard1', 'publiccloud-share-standard2'],
+    });
+
+    expect(result.entities.shareSpecs.allIds).toEqual([
+      'publiccloud-share-standard1',
+      'publiccloud-share-standard2',
+    ]);
+    expect(result.entities.shareSpecs.byId.get('publiccloud-share-standard1')).toEqual({
+      name: 'publiccloud-share-standard1',
+      capacity: {
+        min: 150,
+        max: 10240,
+      },
+      iops: {
+        guaranteed: false,
+        level: 30,
+        max: 20000,
+        maxUnit: 'IOPS',
+        unit: 'IOPS/GB',
+      },
+      bandwidth: {
+        guaranteed: false,
+        level: 0.25,
+        min: 150,
+        max: 10240,
+        maxUnit: 'MB/s',
+        unit: 'MB/s/GB',
+      },
+      microRegionIds: [
+        'RBX-A',
+        'SGP1',
+        'BHS5',
+        'DE1',
+        'GRA7',
+        'SBG7',
+        'GRA11',
+        'GRA9',
+        'SBG5',
+        'UK1',
+        'RBX-A',
+        'SGP1',
+        'BHS5',
+        'DE1',
+        'AP-SOUTH-MUM-1',
+        'GRA7',
+        'SBG7',
+        'GRA11',
+        'GRA9',
+        'WAW1',
+        'SBG5',
+      ],
+      pricing: {
+        price: 11900,
+        interval: 'hour',
+      },
+    });
+    expect(result.entities.shareSpecs.byId.get('publiccloud-share-standard2')).toEqual({
+      name: 'publiccloud-share-standard2',
+      capacity: {
+        min: 150,
+        max: 10240,
+      },
+      iops: {
+        guaranteed: false,
+        level: 30,
+        max: 20000,
+        maxUnit: 'IOPS',
+        unit: 'IOPS/GB',
+      },
+      bandwidth: {
+        guaranteed: false,
+        level: 0.25,
+        min: 150,
+        max: 10240,
+        maxUnit: 'MB/s',
+        unit: 'MB/s/GB',
+      },
+      microRegionIds: [
+        'EU-WEST-LZ-MRS-A',
+        'EU-CENTRAL-LZ-BUH-A',
+        'EU-SOUTH-LZ-MIL-A',
+        'EU-NORTH-LZ-CPH-A',
+        'EU-WEST-PAR',
+        'EU-SOUTH-MIL',
+        'EU-WEST-PAR',
+        'EU-SOUTH-MIL',
+      ],
+      pricing: {
+        price: 22900,
+        interval: 'hour',
       },
     });
   });

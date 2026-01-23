@@ -10,6 +10,8 @@ import { DeploymentModeSection } from '@/pages/create/components/localisation/de
 import { MacroRegionSelection } from '@/pages/create/components/localisation/macroRegion/MacroRegionSelection.component';
 import { MicroRegionSelection } from '@/pages/create/components/localisation/microRegion/MicroRegionSelection.component';
 import { NameInput } from '@/pages/create/components/name/NameInput.component';
+import { ShareSelection } from '@/pages/create/components/share/ShareSelection.component';
+import { ShareSizeSelection } from '@/pages/create/components/share/ShareSizeSelection.component';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
 import {
   selectAvailabilityZones,
@@ -44,12 +46,20 @@ export const CreateShareForm = () => {
           <NameInput />
         </section>
         <Divider className="w-full" />
-        <section>
+        <section className="flex flex-col gap-6">
           <Text preset="heading-2">{t('create:localisation.title')}</Text>
           <DeploymentModeSection />
           <MacroRegionSelection />
           {shouldShowMicroRegionSelection && <MicroRegionSelection />}
           {shouldShowAvailabilityZoneSelection && <AvailabilityZoneSelection />}
+        </section>
+        <Divider className="w-full" />
+        <section>
+          <ShareSelection />
+        </section>
+        <Divider className="w-full" />
+        <section>
+          <ShareSizeSelection />
         </section>
       </div>
     </FormProvider>
