@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { LegalForm } from '@ovh-ux/manager-config';
@@ -21,7 +21,11 @@ export default function AccountTypeTooltipContent({ legalForms }: Props) {
             {t(`legal_form_${legalForm}`)}
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.caption}>
-            {t(`legal_form_tooltip_${legalForm}_description`)}
+            <Trans
+              t={t}
+              i18nKey={`legal_form_tooltip_${legalForm}_description`}
+              components={{ strong: <strong /> }}
+            />
           </OdsText>
         </div>
       ))}
