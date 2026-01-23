@@ -77,6 +77,8 @@ vi.mock('@ovh-ux/muk', () => ({
 vi.mock('@ovh-ux/manager-common-translations', () => ({
   NAMESPACES: {
     DASHBOARD: 'dashboard',
+    ERROR: 'error',
+    FORM: 'form',
   },
 }));
 
@@ -167,12 +169,12 @@ describe('InformationForm', () => {
       expect(titleInput).toHaveAttribute('placeholder', 'Enter name here');
       expect(titleInput).toHaveAttribute('required');
       expect(titleInput).toHaveAttribute('type', 'text');
-      expect(screen.getByLabelText('dashboard:name - shared:mandatory')).toBeInTheDocument();
+      expect(screen.getByLabelText('dashboard:name - form:required')).toBeInTheDocument();
 
       const descriptionInput = screen.getByTestId('description-input');
       expect(descriptionInput).toHaveAttribute('placeholder', 'Enter description here');
       expect(descriptionInput).toHaveAttribute('required');
-      expect(screen.getByLabelText('dashboard:description - shared:mandatory')).toBeInTheDocument();
+      expect(screen.getByLabelText('dashboard:description - form:required')).toBeInTheDocument();
     });
 
     it('should render without description placeholder when not provided', () => {
@@ -264,10 +266,8 @@ describe('InformationForm', () => {
 
       expect(titleInput).toHaveAttribute('id', 'title');
       expect(descriptionInput).toHaveAttribute('id', 'description');
-      expect(screen.getByLabelText('dashboard:name - shared:mandatory')).toBe(titleInput);
-      expect(screen.getByLabelText('dashboard:description - shared:mandatory')).toBe(
-        descriptionInput,
-      );
+      expect(screen.getByLabelText('dashboard:name - form:required')).toBe(titleInput);
+      expect(screen.getByLabelText('dashboard:description - form:required')).toBe(descriptionInput);
       expect(titleInput).toHaveAttribute('required');
       expect(descriptionInput).toHaveAttribute('required');
     });
