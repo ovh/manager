@@ -1,5 +1,4 @@
 {
-  "mandatory": "obligatoire",
   "service": "Service <strong>{{serviceName}}</strong>",
   "coming_soon": "Prochainement",
   "error": {
