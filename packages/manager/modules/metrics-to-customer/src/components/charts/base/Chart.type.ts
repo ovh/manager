@@ -24,4 +24,5 @@ export interface ChartProps<TData> {
   chartConfig: ChartConfig;
   isLoading: boolean;
   isFullscreen?: boolean;
+  locale?: string;
 }
