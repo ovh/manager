@@ -17,6 +17,8 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
+import { NAMESPACES as COMMON_NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
 import {
@@ -35,7 +37,7 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
   onRefresh,
   onCancel,
 }): JSX.Element => {
-  const { t } = useTranslation(NAMESPACES.TIME_CONTROLS);
+  const { t } = useTranslation([NAMESPACES.TIME_CONTROLS, COMMON_NAMESPACES.ACTIONS]);
 
   const onValueChange = (detail: SelectValueChangeDetail) => {
     const value = detail.value.at(0);
@@ -65,7 +67,7 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
         ) : (
           <Icon name={ICON_NAME.refresh} />
         )}
-        <span>{t(isLoading ? 'button_cancel' : 'button_refresh')}</span>
+        <span>{t(`${COMMON_NAMESPACES.ACTIONS}:${isLoading ? 'cancel' : 'update'}`)}</span>
       </Button>
 
       <Select
@@ -93,7 +95,7 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
             );
           }}
         />
-        <SelectContent>{t('button_refresh')}</SelectContent>
+        <SelectContent>{t(`${COMMON_NAMESPACES.ACTIONS}:update`)}</SelectContent>
       </Select>
     </div>
   );

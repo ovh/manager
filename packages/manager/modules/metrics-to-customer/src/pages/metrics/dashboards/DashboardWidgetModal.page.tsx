@@ -19,6 +19,8 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
+import { NAMESPACES as COMMON_NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 import { TimeControls } from '@/components';
 import { ChartRenderer } from '@/components/charts/base';
@@ -28,7 +30,7 @@ import { useChartWithData, useMetricToken } from '@/data/hooks';
 import '../styles.scss';
 
 const DashboardWidgetModal = <TData,>() => {
-  const { t } = useTranslation(NAMESPACES.DASHBOARDS);
+  const { t } = useTranslation([NAMESPACES.DASHBOARDS, COMMON_NAMESPACES.ACTIONS]);
 
   const navigate = useNavigate();
 
@@ -131,7 +133,7 @@ const DashboardWidgetModal = <TData,>() => {
                 onClick={onDismiss}
                 slot="actions"
               >
-                {t('dashboard_widget_close')}
+                {t(`${COMMON_NAMESPACES.ACTIONS}:close`)}
               </Button>
             </div>
           </div>
