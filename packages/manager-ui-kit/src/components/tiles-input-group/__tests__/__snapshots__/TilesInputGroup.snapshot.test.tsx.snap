@@ -143,27 +143,27 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group > t
       id=tabs::r0:
     >
       <div
-        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
-        data-orientation=horizontal
-        data-part=list
-        data-scope=tabs
-        dir=ltr
-        id=tabs::r0::list
-        role=tablist
       >
         <div
-          class=_tab-list__container
+          class=_tab-list__container _tab-list__container--md _tab-list__container--default
           tabindex=-1
         >
           <div
+            aria-orientation=horizontal
             class=_tab-list__container__tabs
+            data-orientation=horizontal
+            data-part=list
+            data-scope=tabs
+            dir=ltr
+            id=tabs::r0::list
+            role=tablist
           >
             <button
               aria-controls=tabs::r0::content-ALL
               aria-selected=true
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-focus=
               data-ods=tab
               data-orientation=horizontal
@@ -183,7 +183,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group > t
             </button>
             <button
               aria-selected=false
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-ods=tab
               data-orientation=horizontal
               data-ownedby=tabs::r0::list
@@ -201,7 +201,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group > t
             </button>
             <button
               aria-selected=false
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-ods=tab
               data-orientation=horizontal
               data-ownedby=tabs::r0::list
@@ -219,7 +219,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group > t
             </button>
             <button
               aria-selected=false
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-ods=tab
               data-orientation=horizontal
               data-ownedby=tabs::r0::list
@@ -237,7 +237,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group > t
             </button>
             <button
               aria-selected=false
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-ods=tab
               data-orientation=horizontal
               data-ownedby=tabs::r0::list
@@ -403,27 +403,27 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group and
       id=tabs::r1:
     >
       <div
-        aria-orientation=horizontal
         class=_tab-list
         data-ods=tab-list
-        data-orientation=horizontal
-        data-part=list
-        data-scope=tabs
-        dir=ltr
-        id=tabs::r1::list
-        role=tablist
       >
         <div
-          class=_tab-list__container
+          class=_tab-list__container _tab-list__container--md _tab-list__container--default
           tabindex=-1
         >
           <div
+            aria-orientation=horizontal
             class=_tab-list__container__tabs
+            data-orientation=horizontal
+            data-part=list
+            data-scope=tabs
+            dir=ltr
+            id=tabs::r1::list
+            role=tablist
           >
             <button
               aria-controls=tabs::r1::content-ALL
               aria-selected=true
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-focus=
               data-ods=tab
               data-orientation=horizontal
@@ -443,7 +443,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group and
             </button>
             <button
               aria-selected=false
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-ods=tab
               data-orientation=horizontal
               data-ownedby=tabs::r1::list
@@ -461,7 +461,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group and
             </button>
             <button
               aria-selected=false
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-ods=tab
               data-orientation=horizontal
               data-ownedby=tabs::r1::list
@@ -479,7 +479,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group and
             </button>
             <button
               aria-selected=false
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-ods=tab
               data-orientation=horizontal
               data-ownedby=tabs::r1::list
@@ -497,7 +497,7 @@ exports[`TilesInputGroup - Snapshot Tests > should match snapshot with group and
             </button>
             <button
               aria-selected=false
-              class=_tab
+              class=_tab _tab--md _tab--default
               data-ods=tab
               data-orientation=horizontal
               data-ownedby=tabs::r1::list

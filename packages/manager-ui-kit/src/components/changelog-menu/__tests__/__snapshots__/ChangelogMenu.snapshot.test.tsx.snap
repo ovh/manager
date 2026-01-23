@@ -16,6 +16,11 @@ exports[`ChangelogMenu Snapshot Tests > should match snapshot with chapters prop
   tabindex=0
   type=button
 >
+  <span
+    class=_icon _icon--github
+    data-ods=icon
+    role=presentation
+  />
   Roadmap & Changelog
 </button>
 `;
@@ -36,6 +41,11 @@ exports[`ChangelogMenu Snapshot Tests > should match snapshot with custom prefix
   tabindex=0
   type=button
 >
+  <span
+    class=_icon _icon--github
+    data-ods=icon
+    role=presentation
+  />
   Roadmap & Changelog
 </button>
 `;
@@ -56,6 +66,11 @@ exports[`ChangelogMenu Snapshot Tests > should match snapshot with default props
   tabindex=0
   type=button
 >
+  <span
+    class=_icon _icon--github
+    data-ods=icon
+    role=presentation
+  />
   Roadmap & Changelog
 </button>
 `;
@@ -76,6 +91,11 @@ exports[`ChangelogMenu Snapshot Tests > should match snapshot with different lin
   tabindex=0
   type=button
 >
+  <span
+    class=_icon _icon--github
+    data-ods=icon
+    role=presentation
+  />
   Roadmap & Changelog
 </button>
 `;
@@ -96,6 +116,11 @@ exports[`ChangelogMenu Snapshot Tests > should match snapshot with long URLs 1`]
   tabindex=0
   type=button
 >
+  <span
+    class=_icon _icon--github
+    data-ods=icon
+    role=presentation
+  />
   Roadmap & Changelog
 </button>
 `;
@@ -116,6 +141,11 @@ exports[`ChangelogMenu Snapshot Tests > should match snapshot with single chapte
   tabindex=0
   type=button
 >
+  <span
+    class=_icon _icon--github
+    data-ods=icon
+    role=presentation
+  />
   Roadmap & Changelog
 </button>
 `;
