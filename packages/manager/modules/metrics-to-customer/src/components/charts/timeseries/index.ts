@@ -1,5 +1,4 @@
 export type {
-  CurveType,
   TimeSeriesChartProps,
   TimeSeriesChartConfig,
 } from './TimeSeriesChart.type';
