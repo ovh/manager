@@ -21,6 +21,18 @@ export default mergeConfig(
     plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
     test: {
       environment: 'jsdom',
+      coverage: {
+        exclude: [
+          ...defaultExcludedFiles,
+          'src/pages/layout.tsx',
+          'src/**/routes.tsx',
+          'src/**/__tests__',
+          'src/**/__mocks__',
+          'src/**/data/**/*',
+          'src/**/hooks/**/*',
+          'src/**/types/**/*',
+        ],
+      },
       setupFiles: 'src/common/setupTests.tsx',
       deps: {
         inline: INLINE_DEPS,
