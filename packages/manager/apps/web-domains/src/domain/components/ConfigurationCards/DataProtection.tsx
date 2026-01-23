@@ -3,8 +3,18 @@ import {
   TContactDetails,
   TDomainResource,
 } from '@/domain/types/domainResource';
-import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
-import { Badge, Text } from '@ovhcloud/ods-react';
+import {
+  ActionMenu,
+  ManagerTile,
+  useAuthorizationIam,
+} from '@ovh-ux/manager-react-components';
+import {
+  Badge,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { dataProtectionStatus } from '@/domain/utils/dataProtection';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -21,6 +31,12 @@ export default function DataProtection({
   setDataProtectionDrawerOpened,
 }: DataProtectionProps) {
   const { t } = useTranslation(['domain', NAMESPACES.IAM]);
+
+  const urn = domainResource?.iam?.urn;
+  const { isPending, isAuthorized } = useAuthorizationIam(
+    ['domain:apiovh:name/edit'],
+    urn,
+  );
 
   const status = dataProtectionStatus(domainResource);
   const statusDetails = ConfigurationDataProtectionBadgeColorAndContent[status];
@@ -44,29 +60,32 @@ export default function DataProtection({
               <Badge color={statusDetails.color}>
                 {t(statusDetails.i18nkeyContent)}
               </Badge>
-              <ActionMenu
-                id={'data-protection-action-menu'}
-                isCompact
-                items={[
-                  {
-                    id: 1,
-                    label: t(
-                      'domain_tab_general_information_data_protection_manage_button',
-                    ),
-                    isDisabled: Object.values(
-                      domainResource?.currentState?.contactsConfiguration,
-                    ).every(
-                      (contact: TContactDetails) =>
-                        !contact?.disclosurePolicy?.visibleViaRdds ||
-                        contact?.disclosurePolicy
-                          ?.forcedDisclosureConfiguration,
-                    ),
-                    onClick: () => setDataProtectionDrawerOpened(true),
-                    iamActions: ['domain:apiovh:name/edit'],
-                    urn: domainResource?.iam?.urn || '',
-                  },
-                ]}
-              />
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div>
+                    <ActionMenu
+                      id={'data-protection-action-menu'}
+                      isCompact
+                      isLoading={isPending}
+                      isDisabled={!isAuthorized}
+                      items={[
+                        {
+                          id: 1,
+                          label: t(
+                            'domain_tab_general_information_data_protection_manage_button',
+                          ),
+                          onClick: () => setDataProtectionDrawerOpened(true),
+                        },
+                      ]}
+                    />
+                  </div>
+                </TooltipTrigger>
+                {!isAuthorized && (
+                  <TooltipContent>
+                    {t(`${NAMESPACES.IAM}:iam_actions_message`)}
+                  </TooltipContent>
+                )}
+              </Tooltip>
             </div>
             <Text>{t(statusDetails.i18nkeySubContent)}</Text>
           </>
