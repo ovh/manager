@@ -341,5 +341,6 @@
   "domain_tab_dsrecords_message_information_action_in_progress": "O DNSSEC está em curso {{action}}: pode seguir o progresso do seu pedido a partir da página de operações em curso. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "de ativação",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de desativação",
-  "domain_tab_general_information_subscription_edit_owner": "Modificar as informações do contacto titular"
+  "domain_tab_general_information_subscription_edit_owner": "Modificar as informações do contato titular",
+  "domain_tab_general_information_data_protection_disabled": "O registro responsável por este nome de domínio não permite a gestão personalizada da exibição dos dados."
 }
