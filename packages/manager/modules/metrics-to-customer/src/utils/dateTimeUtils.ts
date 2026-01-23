@@ -1,4 +1,7 @@
-import { formatDate, getUnixTime, setHours, setMinutes, setSeconds } from 'date-fns';
+import { Locale, formatDate, getUnixTime, setHours, setMinutes, setSeconds } from 'date-fns';
+import * as dateFnsLocales from 'date-fns/locale';
+
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 
@@ -105,4 +108,24 @@ export const calculateTimestamp = (date: Date | null, time: string): number => {
   );
 
   return getUnixTime(combinedDate);
+};
+
+/**
+ * Get date-fns locale object from a locale string (e.g., 'fr_FR' -> fr locale)
+ * @param locale - Optional locale string (e.g., 'fr_FR', 'en_GB')
+ * @returns date-fns Locale object or fallback locale if no is provided
+ */
+export const getLocaleObject = (locale?: string): Locale => {
+  const fallbackLocale = dateFnsLocales.fr;
+  if (!locale) {
+    return fallbackLocale;
+  }
+
+  try {
+    const userLocale = getDateFnsLocale(locale);
+    const localeObject = dateFnsLocales[userLocale as keyof typeof dateFnsLocales];
+    return localeObject || fallbackLocale;
+  } catch {
+    return fallbackLocale;
+  }
 };
