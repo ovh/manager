@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.179.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.1...@ovh-ux/manager-container-app@0.179.2) (2026-01-22)
+
+
+### Bug Fixes
+
+* **container:** fix pathmatcher regex for domain section ([2eb38a4](https://github.com/ovh/manager/commit/2eb38a4cdba4fe7c0e68aa216d5e96d3b0cba60e)), closes [#INC0183247](https://github.com/ovh/manager/issues/INC0183247)
+
+
+
+
+
 ## [0.179.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.0...@ovh-ux/manager-container-app@0.179.1) (2026-01-21)
 
 

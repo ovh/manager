@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.13...@ovh-ux/manager-zimbra-app@0.42.14) (2026-01-22)
+
+
+### Bug Fixes
+
+* **zimbra:** fix domain dropdown list ([a126529](https://github.com/ovh/manager/commit/a126529057f0d38b8e378e2a0fe7fbf4efde723a)), closes [#PRDCOL-370](https://github.com/ovh/manager/issues/PRDCOL-370)
+
+
+
+
+
 ## [0.42.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.12...@ovh-ux/manager-zimbra-app@0.42.13) (2026-01-21)
 
 

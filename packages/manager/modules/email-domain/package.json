@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-email-domain",
-  "version": "1.11.14",
+  "version": "1.11.15",
   "private": true,
   "description": "Email domain product.",
   "repository": {
@@ -26,7 +26,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
     "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-ovh-web-universe-components": "^8.0.0 || ^9.0.0",
-    "@ovh-ux/ng-pagination-front": "^10.1.0",
+    "@ovh-ux/ng-pagination-front": "^10.3.6",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
