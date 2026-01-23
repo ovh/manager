@@ -1,0 +1,5 @@
+{
+    "disk_read_bytes_title": "Octets lus sur le disque",
+    "disk_read_bytes_description_header": "Nombre moyen d'octets lus pendant une période donnée",
+    "disk_read_bytes_description_content": "Nombre d'octets lus à partir de l'ensemble des volumes de stockage associés à l'instance. Cette métrique permet d'évaluer le volume de données que l'application lit depuis le stockage disque et peut être utilisée pour analyser les performances d'E/S. La valeur rapportée correspond au nombre total d'octets lus pendant la période. Avec la surveillance de base (période de 5 minutes), divisez cette valeur par 300 pour obtenir les octets par seconde."
+}
