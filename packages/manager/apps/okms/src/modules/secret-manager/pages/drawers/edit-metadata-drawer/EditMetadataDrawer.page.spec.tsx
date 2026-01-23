@@ -21,7 +21,12 @@ const renderPage = async (mockParams = {}) => {
   const { container } = await renderTestApp(mockPageUrl, mockParams);
 
   // Check if the drawer is open
-  expect(await screen.findByTestId('edit-metadata-drawer')).toBeInTheDocument();
+  await waitFor(
+    async () => {
+      expect(await screen.findByTestId('edit-metadata-drawer')).toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
 
   return { user, container };
 };

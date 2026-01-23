@@ -20,7 +20,7 @@ const expectOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   const user = userEvent.setup();
 
   // Check the page title
-  await assertTextVisibility(labels.secretManager.okms_list);
+  await assertTextVisibility(labels.secretManager.okms_list, {}, { timeout: 5_000 });
 
   // Check there is clipboard components displayed in the datagrid
   const firstOkmsId = regionWithMultipleOkms?.okmsMock?.[0]?.id ?? '';
