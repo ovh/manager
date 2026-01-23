@@ -39,6 +39,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "devDependencies": {
+    "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "*",
