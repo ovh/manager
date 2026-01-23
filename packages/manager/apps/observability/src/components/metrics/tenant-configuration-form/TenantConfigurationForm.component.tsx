@@ -24,7 +24,7 @@ import type { TenantFormData } from '@/types/tenants.type';
 import { toRequiredLabel } from '@/utils/form.utils';
 
 export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigurationFormProps) => {
-  const { t } = useTranslation(['tenants', 'shared', NAMESPACES.FORM]);
+  const { t } = useTranslation(['tenants', NAMESPACES.FORM]);
   const {
     control,
     setValue,
@@ -127,12 +127,12 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
           name="retentionDuration"
           control={control}
           render={({ field }) => (
-            <FormField className="block my-6">
+            <FormField className="my-6 block">
               <FormFieldLabel>
                 <Text preset={TEXT_PRESET.paragraph}>
                   {toRequiredLabel(
                     t('tenants:configuration.retention.title'),
-                    t('shared:mandatory'),
+                    t(`${NAMESPACES.FORM}:required`),
                   )}
                 </Text>
               </FormFieldLabel>
@@ -164,10 +164,13 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
           name="maxSeries"
           control={control}
           render={({ field }) => (
-            <FormField className="block my-6">
+            <FormField className="my-6 block">
               <FormFieldLabel>
                 <Text preset={TEXT_PRESET.paragraph}>
-                  {toRequiredLabel(t('tenants:configuration.limit.title'), t('shared:mandatory'))}
+                  {toRequiredLabel(
+                    t('tenants:configuration.limit.title'),
+                    t(`${NAMESPACES.FORM}:required`),
+                  )}
                 </Text>
               </FormFieldLabel>
               <Quantity
