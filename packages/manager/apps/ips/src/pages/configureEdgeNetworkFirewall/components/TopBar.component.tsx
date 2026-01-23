@@ -79,13 +79,7 @@ export const TopBar: React.FC = () => {
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
           label={`${t('add', { ns: NAMESPACES.ACTIONS })} ${t('oneRule')}`}
-          isDisabled={
-            isLoading ||
-            isRulesLoading ||
-            maxRulesReached ||
-            isIpMitigationLoading ||
-            ipMitigation?.length > 0
-          }
+          isDisabled={isLoading || isRulesLoading || maxRulesReached}
           onClick={() => {
             trackClick({
               location: PageLocation.page,

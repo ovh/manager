@@ -108,7 +108,7 @@ export const GameFirewallContextProvider: FC<{
   const [newStartPort, setNewStartPort] = useState<string>();
   const [newEndPort, setNewEndPort] = useState<string>();
   // It's a state just to let the toggle animate when we try to change its value
-  const [tmpToggleState, setTmpToggleState] = useState<boolean>(null);
+  const [tmpToggleState, setTmpToggleState] = useState<boolean | null>(null);
   const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] = useState<boolean>(
     false,
   );

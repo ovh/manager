@@ -91,6 +91,7 @@ export const useIpGameFirewallRules = ({
         .sort((a, b) => {
           if (!a) return 1;
           if (!b) return -1;
+          if (!a.protocol || !b.protocol) return 0;
           return a.protocol?.localeCompare(b.protocol);
         }) || ([] as IpGameFirewallRule[]),
   };
