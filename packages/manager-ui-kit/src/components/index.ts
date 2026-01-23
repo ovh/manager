@@ -12,6 +12,7 @@ export { CellRow } from './datagrid/table/table-body/cell-row/CellRow.component'
 export { DeleteModal } from './delete-modal/DeleteModal.component';
 export { ErrorBoundary } from './error-boundary/ErrorBoundary.component';
 export { Error } from './error/Error.component';
+export { TRACKING_LABELS } from './error/Error.constants';
 export { FilterAdd } from './filters/filter-add/Filteradd.component';
 export { FilterList } from './filters/filter-list/FilterList.component';
 export { GridLayout } from './grid-layout/GridLayout.component';
@@ -86,3 +87,8 @@ export type {
   RowSelectionProps,
   SearchProps,
 } from './datagrid/Datagrid.props';
+export * from './badge/Badge.constants';
+export * from './breadcrumb/Breadcrumb.constants';
+export * from './button/Button.constants';
+export * from './modal/Modal.constants';
+export * from './text/Text.constants';
