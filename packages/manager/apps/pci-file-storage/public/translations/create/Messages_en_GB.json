@@ -2,7 +2,7 @@
   "name": {
     "title": "Share name",
     "label": "Choose a name for your share file",
-    "info": "Must only contain numbers, letters, underscores, dashes, or dots."
+    "info": "Must only contain numbers, letters, underscores, dashes or dots."
   },
   "localisation": {
     "title": "Select a location",
@@ -45,5 +45,14 @@
         "user": "I choose my availability zone"
       }
     }
+  },
+  "share": {
+    "title": "Share performance mode",
+    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS and {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Share size",
+    "description": "5% of the storage capacity is dedicated to snapshot storage",
+    "label": "Linear performance allocation (GB)"
   }
 }

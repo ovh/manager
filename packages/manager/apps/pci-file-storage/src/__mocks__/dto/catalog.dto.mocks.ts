@@ -1,4 +1,4 @@
-import { TFiltersDTO, TRegionDTO } from '@/adapters/catalog/right/dto.type';
+import { TFiltersDTO, TRegionDTO, TShareDTO } from '@/adapters/catalog/right/dto.type';
 
 export const CATALOG_FILTERS = {
   deployments: [
@@ -78,3 +78,108 @@ export const CATALOG_REGIONS = {
     },
   } as TRegionDTO,
 };
+
+export const CATALOG_SHARE = {
+  name: 'publiccloud-share-standard',
+  tags: [],
+  filters: {
+    deployment: ['region', 'region-3-az', 'localzone'],
+  },
+  pricings: [
+    {
+      regions: [
+        'RBX-A',
+        'SGP1',
+        'BHS5',
+        'DE1',
+        'GRA7',
+        'SBG7',
+        'GRA11',
+        'GRA9',
+        'SBG5',
+        'UK1',
+        'RBX-A',
+        'SGP1',
+        'BHS5',
+        'DE1',
+        'AP-SOUTH-MUM-1',
+        'GRA7',
+        'SBG7',
+        'GRA11',
+        'GRA9',
+        'WAW1',
+        'SBG5',
+      ],
+      price: 11900,
+      interval: 'hour',
+      showAvailabilityZones: false,
+      areIOPSDynamic: true,
+      isBandwidthDynamic: true,
+      specs: {
+        name: 'publiccloud-share-standard1',
+        share: {
+          capacity: {
+            min: 150,
+            max: 10240,
+          },
+          iops: {
+            guaranteed: false,
+            level: 30,
+            max: 20000,
+            maxUnit: 'IOPS',
+            unit: 'IOPS/GB',
+          },
+        },
+        bandwidth: {
+          guaranteed: false,
+          level: 0.25,
+          min: 150,
+          max: 10240,
+          maxUnit: 'MB/s',
+          unit: 'MB/s/GB',
+        },
+      },
+    },
+    {
+      regions: [
+        'EU-WEST-LZ-MRS-A',
+        'EU-CENTRAL-LZ-BUH-A',
+        'EU-SOUTH-LZ-MIL-A',
+        'EU-NORTH-LZ-CPH-A',
+        'EU-WEST-PAR',
+        'EU-SOUTH-MIL',
+        'EU-WEST-PAR',
+        'EU-SOUTH-MIL',
+      ],
+      price: 22900,
+      interval: 'hour',
+      showAvailabilityZones: false,
+      areIOPSDynamic: true,
+      isBandwidthDynamic: true,
+      specs: {
+        name: 'publiccloud-share-standard2',
+        share: {
+          capacity: {
+            min: 150,
+            max: 10240,
+          },
+          iops: {
+            guaranteed: false,
+            level: 30,
+            max: 20000,
+            maxUnit: 'IOPS',
+            unit: 'IOPS/GB',
+          },
+        },
+        bandwidth: {
+          guaranteed: false,
+          level: 0.25,
+          min: 150,
+          max: 10240,
+          maxUnit: 'MB/s',
+          unit: 'MB/s/GB',
+        },
+      },
+    },
+  ],
+} as TShareDTO;
