@@ -1,47 +1,47 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import {
-  OdsButton,
-  OdsInput,
-  OdsMessage,
-  OdsModal,
-  OdsSpinner,
-  OdsText,
-  OdsFormField,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+  BUTTON_VARIANT,
+  Button,
+  FormField,
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Modal,
+  ModalBody,
+  ModalContent,
+  SPINNER_SIZE,
+  Spinner,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useUpdateVrackServices, useVrackService } from '@ovh-ux/manager-network-common';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  useUpdateVrackServices,
-  useVrackService,
-} from '@ovh-ux/manager-network-common';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+
 import { LoadingText } from '@/components/LoadingText.component';
-import { PageName } from '@/utils/tracking';
-import {
-  defaultCidr,
-  defaultServiceRange,
-} from '@/pages/create-subnet/subnetCreate.constants';
+import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { defaultCidr, defaultServiceRange } from '@/pages/create-subnet/SubnetCreateForm.constants';
 import { isValidCidr } from '@/utils/cidr';
-import {
-  getDisplayName,
-  getSubnetFromCidr,
-  isValidVlanNumber,
-} from '@/utils/vrack-services';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { PageName } from '@/utils/tracking';
+import { getDisplayName, getSubnetFromCidr, isValidVlanNumber } from '@/utils/vrack-services';
 
 const sharedTrackingParams = {
   location: PageLocation.popup,
@@ -50,24 +50,16 @@ const sharedTrackingParams = {
 
 export default function EditSubnetModal() {
   const { id, cidr } = useParams();
-  const subnetCidr = cidr?.replace('_', '/');
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.subnets,
-    NAMESPACES.ACTIONS,
-  ]);
+  const subnetCidr = cidr?.replace('_', '/') ?? '';
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.subnets, NAMESPACES.ACTIONS]);
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { trackClick, trackPage } = useOvhTracking();
   const [newCidr, setNewCidr] = React.useState('');
   const [serviceRange, setServiceRange] = React.useState('');
   const [displayName, setDisplayName] = React.useState('');
-  const [vlan, setVlan] = React.useState<number>(null);
+  const [vlan, setVlan] = React.useState<number | null>(null);
   const navigate = useNavigate();
-  const {
-    data: vs,
-    isPending: isVrackServicesLoading,
-    isError,
-    error,
-  } = useVrackService();
+  const { data: vs, isPending: isVrackServicesLoading, isError, error } = useVrackService();
 
   const {
     updateSubnet,
@@ -75,15 +67,15 @@ export default function EditSubnetModal() {
     updateError,
     isError: isUpdateError,
   } = useUpdateVrackServices({
-    id,
+    id: id || '',
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: PageName.successUpdateSubnet,
       });
       navigate('..');
-      addSuccessMessage(t('subnetUpdateSuccess', { id: getDisplayName(vs) }), {
-        vrackServicesId: id,
+      addSuccessMessage(t('subnetUpdateSuccess', { id: getDisplayName(vs) || '' }), {
+        vrackServicesId: id || '',
       });
     },
     onError: () => {
@@ -100,12 +92,12 @@ export default function EditSubnetModal() {
 
       if (subnet) {
         setNewCidr(subnetCidr);
-        setDisplayName(subnet.displayName);
-        setServiceRange(subnet.serviceRange.cidr);
+        setDisplayName(subnet.displayName || '');
+        setServiceRange(subnet.serviceRange?.cidr || '');
         setVlan(subnet.vlan || null);
       }
     }
-  }, [vs?.checksum]);
+  }, [subnetCidr, vs, vs?.checksum]);
 
   const onClose = () => {
     trackClick({
@@ -117,136 +109,147 @@ export default function EditSubnetModal() {
   };
 
   const subnet = getSubnetFromCidr(vs, subnetCidr);
-
   const disabledInputs = isPending || isVrackServicesLoading || undefined;
 
   const hasDirtyInputs =
-    subnet.displayName !== displayName ||
-    subnet.cidr !== newCidr ||
-    subnet.serviceRange.cidr !== serviceRange ||
-    subnet.vlan !== vlan;
+    subnet?.displayName !== displayName ||
+    subnet?.cidr !== newCidr ||
+    subnet?.serviceRange.cidr !== serviceRange ||
+    subnet?.vlan !== vlan;
 
   return (
-    <OdsModal isOpen isDismissible onOdsClose={onClose}>
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
-        {t('modalSubnetUpdateHeadline')}
-      </OdsText>
-      {(isError || isUpdateError) && (
-        <OdsMessage
-          isDismissible={false}
-          className="block mb-8"
-          color={ODS_MESSAGE_COLOR.critical}
-        >
-          {t('subnetUpdateError', {
-            error: (error || updateError).response?.data?.message,
-          })}
-        </OdsMessage>
-      )}
+    <Modal
+      open
+      closeOnEscape={!isPending}
+      closeOnInteractOutside={!isPending}
+      onOpenChange={onClose}
+    >
+      <ModalContent dismissible>
+        <ModalBody>
+          <Text preset={TEXT_PRESET.heading4}>{t('modalSubnetUpdateHeadline')}</Text>
+          {(isError || isUpdateError) && (
+            <Message dismissible={false} className="mb-8" color={MESSAGE_COLOR.critical}>
+              <MessageIcon name="hexagon-exclamation" />
+              <MessageBody>
+                {t('subnetUpdateError', {
+                  error: (error || updateError)?.response?.data?.message || '',
+                })}
+              </MessageBody>
+            </Message>
+          )}
+          <Text className="mb-8 block" preset={TEXT_PRESET.paragraph}>
+            {t('modalSubnetUpdateDescription')}
+          </Text>
 
-      <OdsText className="block mb-8" preset={ODS_TEXT_PRESET.paragraph}>
-        {t('modalSubnetUpdateDescription')}
-      </OdsText>
+          <FormField className="mb-4 flex">
+            <FormFieldLabel htmlFor="display-name-input">
+              {t('subnetUpdateDisplayNameInputLabel')}
+            </FormFieldLabel>
+            <Input
+              id="display-name-input"
+              data-testid="display-name-input"
+              name="display-name-input"
+              disabled={disabledInputs}
+              type={INPUT_TYPE.text}
+              value={displayName}
+              placeholder={t('subnetNamePlaceholder')}
+              onChange={(e) => setDisplayName(e?.target.value || '')}
+            />
+          </FormField>
 
-      <OdsFormField className="flex mb-4">
-        <label htmlFor="display-name-input" slot="label">
-          {t('subnetUpdateDisplayNameInputLabel')}
-        </label>
-        <OdsInput
-          id="display-name-input"
-          name="display-name-input"
-          isDisabled={disabledInputs}
-          type={ODS_INPUT_TYPE.text}
-          value={displayName}
-          placeholder={t('subnetNamePlaceholder')}
-          onOdsChange={(e) => setDisplayName(e?.detail.value as string)}
-        />
-      </OdsFormField>
+          <FormField className="mb-4 flex">
+            <FormFieldLabel htmlFor="cidr-input">{t('cidrLabel')}</FormFieldLabel>
+            <FormFieldHelper>
+              <Text preset={TEXT_PRESET.caption}>{t('subnetRangeAdditionalText')}</Text>
+            </FormFieldHelper>
+            <Input
+              id="cidr-input"
+              data-testid="cidr-input"
+              name="cidr-input"
+              disabled={disabledInputs}
+              type={INPUT_TYPE.text}
+              value={newCidr}
+              placeholder={defaultCidr}
+              onChange={(e) => setNewCidr(e?.target.value)}
+            />
+            {!!newCidr && !isValidCidr(newCidr) && <FormFieldError />}
+          </FormField>
 
-      <OdsFormField className="flex mb-4">
-        <label htmlFor="cidr-input" slot="label">
-          {t('cidrLabel')}
-        </label>
-        <OdsText slot="helper" preset={ODS_TEXT_PRESET.caption}>
-          {t('subnetRangeAdditionalText')}
-        </OdsText>
-        <OdsInput
-          id="cidr-input"
-          name="cidr-input"
-          isDisabled={disabledInputs}
-          type={ODS_INPUT_TYPE.text}
-          value={newCidr}
-          placeholder={defaultCidr}
-          onOdsChange={(e) => setNewCidr(e?.detail.value as string)}
-          hasError={!!newCidr && !isValidCidr(newCidr)}
-        />
-      </OdsFormField>
+          <FormField className="mb-4 flex">
+            <FormFieldLabel htmlFor="service-range">{t('serviceRangeLabel')}</FormFieldLabel>
+            <Input
+              id="service-range"
+              data-testid="service-range"
+              name="service-range"
+              disabled={disabledInputs}
+              type={INPUT_TYPE.text}
+              value={serviceRange}
+              placeholder={defaultServiceRange}
+              onChange={(e) => setServiceRange(e?.target.value || '')}
+            />
+          </FormField>
 
-      <OdsFormField className="flex mb-4">
-        <label htmlFor="service-range" slot="label">
-          {t('serviceRangeLabel')}
-        </label>
-        <OdsInput
-          id="service-range"
-          name="service-range"
-          isDisabled={disabledInputs}
-          type={ODS_INPUT_TYPE.text}
-          value={serviceRange}
-          placeholder={defaultServiceRange}
-          onOdsChange={(e) => setServiceRange(e?.detail.value as string)}
-        />
-      </OdsFormField>
+          <FormField className="mb-4 flex">
+            <FormFieldLabel htmlFor="vlan-option">{t('vlanNumberLabel')}</FormFieldLabel>
+            <Input
+              id="vlan-option"
+              data-testid="vlan-option"
+              name="vlan-option"
+              disabled={disabledInputs}
+              type={INPUT_TYPE.number}
+              value={vlan ?? ''}
+              placeholder={t('vlanNoVlanOptionLabel')}
+              onChange={(e) => {
+                const value = e?.target.value;
+                setVlan(value ? Number(value) : null);
+              }}
+            />
+          </FormField>
 
-      <OdsFormField className="flex mb-4">
-        <label htmlFor="vlan-option" slot="label">
-          {t('vlanNumberLabel')}
-        </label>
-        <OdsInput
-          id="vlan-option"
-          name="vlan-option"
-          isDisabled={disabledInputs}
-          type={ODS_INPUT_TYPE.number}
-          value={vlan}
-          placeholder={t('vlanNoVlanOptionLabel')}
-          onOdsChange={(e) => setVlan(Number(e?.detail.value) || null)}
-        />
-      </OdsFormField>
-
-      {isVrackServicesLoading && <OdsSpinner size={ODS_SPINNER_SIZE.sm} />}
-      {isPending && <LoadingText title={t('subnetUpdatePending')} />}
-      <OdsButton
-        isLoading={isPending}
-        slot="actions"
-        type="button"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-        onClick={onClose}
-      />
-      <OdsButton
-        isDisabled={
-          (!!newCidr && !isValidCidr(newCidr)) ||
-          (vlan && !isValidVlanNumber(vlan)) ||
-          !hasDirtyInputs ||
-          disabledInputs
-        }
-        slot="actions"
-        type="button"
-        label={t('modify', { ns: NAMESPACES.ACTIONS })}
-        onClick={() => {
-          trackClick({
-            ...sharedTrackingParams,
-            actionType: 'action',
-            actions: ['edit_subnets', 'confirm'],
-          });
-          updateSubnet({
-            displayName,
-            newCidr,
-            serviceRange,
-            vlan,
-            cidr: subnetCidr,
-            vs,
-          });
-        }}
-      />
-    </OdsModal>
+          {isVrackServicesLoading && <Spinner size={SPINNER_SIZE.sm} />}
+          {isPending && <LoadingText title={t('subnetUpdatePending')} />}
+          <div className="flex justify-end">
+            <Button
+              loading={isPending}
+              type="button"
+              variant={BUTTON_VARIANT.ghost}
+              onClick={onClose}
+            >
+              {t('cancel', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+            <Button
+              data-testid="modify-button"
+              disabled={
+                (!!newCidr && !isValidCidr(newCidr)) ||
+                (vlan && !isValidVlanNumber(vlan)) ||
+                !hasDirtyInputs ||
+                disabledInputs
+              }
+              type="button"
+              onClick={() => {
+                trackClick({
+                  ...sharedTrackingParams,
+                  actionType: 'action',
+                  actions: ['edit_subnets', 'confirm'],
+                });
+                if (!vs) {
+                  return;
+                }
+                updateSubnet({
+                  displayName,
+                  newCidr,
+                  serviceRange,
+                  vlan: vlan ?? undefined,
+                  cidr: subnetCidr,
+                  vs,
+                });
+              }}
+            >
+              {t('modify', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+          </div>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 }

@@ -1,18 +1,19 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { Outlet } from 'react-router-dom';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
+
+import { useTranslation } from 'react-i18next';
+
+import { BUTTON_SIZE, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
+
 import { useVrackService } from '@ovh-ux/manager-network-common';
-import { PageLayout } from '@ovh-ux/manager-react-components';
-import { EndpointDatagrid } from './EndpointDataGrid.component';
-import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
-import { isEditable } from '@/utils/vrack-services';
+import { BaseLayout } from '@ovh-ux/muk';
+
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { isEditable } from '@/utils/vrack-services';
+
+import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
+import { EndpointDatagrid } from './EndpointDataGrid.component';
 
 export default function EndpointsListing() {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);
@@ -21,21 +22,24 @@ export default function EndpointsListing() {
 
   return (
     <>
-      <PageLayout>
-        <OdsButton
-          isDisabled={!isEditable(vs)}
+      <BaseLayout>
+        <Button
+          disabled={!isEditable(vs)}
           className="my-4"
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.outline}
+          size={BUTTON_SIZE.sm}
+          variant={BUTTON_VARIANT.outline}
           onClick={navigateToCreateEndpointPage}
-          icon={ODS_ICON_NAME.plus}
-          label={t('createEndpointButtonLabel')}
-        />
+        >
+          <Icon name={ICON_NAME.plus} />
+          {t('createEndpointButtonLabel')}
+        </Button>
         <section>
           <EndpointDatagrid />
         </section>
-      </PageLayout>
-      <Outlet />
+      </BaseLayout>
+      <React.Suspense>
+        <Outlet />
+      </React.Suspense>
     </>
   );
 }

@@ -1,24 +1,21 @@
 import React from 'react';
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
+import { SPINNER_SIZE, Spinner, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 export type LoadingTextProps = {
   title?: string;
   description?: string;
 };
 
-export const LoadingText: React.FC<LoadingTextProps> = ({
-  title,
-  description,
-}) => (
+export const LoadingText: React.FC<LoadingTextProps> = ({ title, description }) => (
   <div className="flex items-center">
-    <OdsSpinner size={ODS_SPINNER_SIZE.md} />
-    <div className="ml-5 mb-3 flex flex-col">
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{title}</OdsText>
+    <Spinner size={SPINNER_SIZE.md} />
+    <div className="mb-3 ml-5 flex flex-col">
+      <Text preset={TEXT_PRESET.paragraph}>{title}</Text>
       {description && (
-        <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+        <Text className="block" preset={TEXT_PRESET.paragraph}>
           {description}
-        </OdsText>
+        </Text>
       )}
     </div>
   </div>

@@ -1,0 +1,222 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SubnetsListing > should display the subnets listing if subnet exist 1`] = `
+<div>
+  <div
+    class="py-8 px-4 md:py-9 md:px-10 md:mt-2"
+  >
+    <div />
+    <div
+      class="flex flex-col gap-8"
+    >
+      <div
+        class="_message_gecjz_2 _message--information_gecjz_40 _message--default_gecjz_36 mt-4"
+        data-ods="message"
+      >
+        <span
+          class="_icon_1iyhc_2 _icon--circle-info_1iyhc_115 _message-icon_mpgx8_2"
+          data-ods="message-icon"
+          role="presentation"
+        />
+        <div
+          class="_message-body_fe7x3_2"
+          data-ods="message-body"
+        >
+          <p
+            class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+            data-ods="text"
+          >
+            Vous ne pouvez créer qu'un sous-réseau par vRack Services pour le moment.
+          </p>
+        </div>
+      </div>
+    </div>
+    <button
+      class="_button_6crpx_2 _button--primary_6crpx_276 _button--sm_6crpx_209 _button--outline_6crpx_435 my-4"
+      data-ods="button"
+      disabled=""
+      type="button"
+    >
+      <span
+        class="_icon_1iyhc_2 _icon--plus_1iyhc_445"
+        data-ods="icon"
+        role="presentation"
+      />
+      Créer un sous-réseau
+    </button>
+    <section>
+      <div
+        class="overflow-auto relative w-full"
+        style="max-height: 100%; height: 100%;"
+      >
+        <table
+          class="_table_4upov_2 _table--md_4upov_54 table table-fixed w-full"
+          data-ods="table"
+        >
+          <thead
+            class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+          >
+            <tr>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+              >
+                <div
+                  class="cursor-pointer select-none h-[20px]  h-auto"
+                  data-testid="header-displayName"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  >
+                    Nom
+                  </span>
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+              >
+                <div
+                  class="cursor-pointer select-none h-[20px]  h-auto"
+                  data-testid="header-cidr"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  >
+                    Plage d'adresses
+                  </span>
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 220px; min-width: 220px; max-width: 9007199254740991px;"
+              >
+                <div
+                  class="cursor-pointer select-none h-[20px]  h-auto"
+                  data-testid="header-serviceRange"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  >
+                    Plage d'adresses du service
+                  </span>
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 50px; min-width: 20px; max-width: 50px;"
+              >
+                <div
+                  class="cursor-pointer select-none h-[20px]  h-auto"
+                  data-testid="header-vlan"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  >
+                    VLAN
+                  </span>
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 50px; min-width: 50px; max-width: 50px;"
+              >
+                <div
+                  class=" h-[20px]  h-auto"
+                  data-testid="header-actions"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  />
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="relative p-0 overflow-hidden"
+            style="height: 49px;"
+          />
+        </table>
+      </div>
+      <div
+        class="flex justify-center items-center pt-3"
+      >
+        <div
+          class="flex-1"
+        />
+        <div
+          class="flex-[2] flex justify-center"
+        />
+        <div
+          class="flex-1 flex justify-end"
+        >
+          <div
+            class="text-right h-full flex items-bottom justify-end"
+          >
+            <p
+              class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+              data-ods="text"
+            >
+              1
+               
+              sur 1
+               
+              résultats
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+`;
