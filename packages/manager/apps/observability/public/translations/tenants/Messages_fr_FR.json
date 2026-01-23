@@ -48,18 +48,12 @@
     }
   },
   "dashboard": {
-    "general_information_tab": "Informations générales",
     "subscription_tab": "Souscription",
     "tags_tab": "Tags",
     "explore_in_grafana_button": "Explorer dans Grafana®",
     "general_information_tile": {
-      "title": "Informations générales",
       "name": "Nom du tenant",
-      "description": "Description",
-      "id": "ID",
-      "urn": "URN",
       "endpoint": "Endpoint",
-      "created_at": "Date de création",
       "updated_at": "Date de la dernière modification",
       "edit_information": "Modifier les informations"
     },

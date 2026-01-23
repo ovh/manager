@@ -13,7 +13,7 @@ import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.
 import { subroutes, urls } from '@/routes/Routes.constants';
 
 export default function TenantDashboardPage() {
-  const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS, 'shared']);
+  const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS, NAMESPACES.DASHBOARD, 'shared']);
   const href = useHref(urls.tenants);
   const { selectedService } = useObservabilityServiceContext();
 
@@ -21,7 +21,7 @@ export default function TenantDashboardPage() {
     () => [
       {
         name: 'general-information',
-        title: t('tenants:dashboard.general_information_tab'),
+        title: t(`${NAMESPACES.DASHBOARD}:general_information`),
         url: '',
       },
       {
