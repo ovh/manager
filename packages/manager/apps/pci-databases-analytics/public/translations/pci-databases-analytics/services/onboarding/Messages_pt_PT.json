@@ -1,37 +1,29 @@
 {
-  "databases.title": "Desenvolva as suas bases de dados em vez de se preocupar com elas.",
+  "databases.title": "Concentre-se no desenvolvimento das suas bases de dados em vez de se preocupar com elas.",
   "databases.subtitle": "Com as nossas bases de dados totalmente geridas, liberte-se das restrições administrativas e concentre-se nas suas aplicações e produtos.",
-  "databases.description1": "SQL, NoSQL ou cache: temos a solução. Implemente o seu motor de base de dados preferido em minutos com a nossa gama de soluções geridas: <strong>PostgreSQL, MySQL, MongoDB e Valkey</strong>.",
-  "databases.description2": "As nossas equipas gerem a infraestrutura, as cópias de segurança e a monitorização para que se possa concentrar no desenvolvimento de aplicações de alto desempenho, e não na manutenção de servidores.",
-  "databases.description3": "Além disso, comece pequeno e dimensione facilmente à medida que os seus dados crescem, tudo com <strong>preços previsíveis</strong>, <strong>soberania de dados</strong> e <strong>alta disponibilidade</strong> integrada.",
+  "databases.description1": "SQL, NoSQL ou colocação em cache: temos a solução. Implemente o seu motor de base de dados preferido em apenas alguns minutos graças à nossa gama de soluções geridas: <strong>PostgreSQL, MySQL, MongoDB e Valkey</strong>.",
+  "databases.description2": "As nossas equipas gerem a infraestrutura, os backups e a monitorização para que se possa concentrar no desenvolvimento de aplicações eficientes, e não na manutenção dos servidores.",
+  "databases.description3": "Além disso, comece de forma pequena e evolua facilmente à medida que os seus dados aumentam, tudo isto com um <strong>preço previsível</strong>, a <strong>soberania dos dados</strong> e uma <strong>alta disponibilidade</strong> integrada.",
   "databases.createServiceButton": "Criar a sua base de dados gerida",
-
-  "databases.tile.quickStart.title": "Início rápido",
-  "databases.tile.quickStart.content": "Encontre todos os guias e tutoriais das nossas bases de dados geridas",
-
+  "databases.tile.quickStart.title": "Quick Start",
+  "databases.tile.quickStart.content": "Descubra todos os manuais e tutoriais sobre as nossas bases de dados geridas",
   "databases.tile.documentation.title": "Documentação e tutoriais",
-  "databases.tile.documentation.content": "Aprenda a implementar rapidamente a sua primeira base de dados gerida.",
-
+  "databases.tile.documentation.content": "Saiba como implementar rapidamente a sua primeira base de dados gerida",
   "databases.tile.freeTier.title": "MongoDB Free Tier",
-  "databases.tile.freeTier.content": "Obtenha o seu primeiro cluster MongoDB gerido gratuito para sempre.",
+  "databases.tile.freeTier.content": "Beneficie de um primeiro cluster MongoDB gerido gratuito para sempre.",
   "databases.tile.freeTier.cta": "Criar a sua instância MongoDB em dois cliques",
-
-  "analytics.title": "Transforme os seus dados em informações acionáveis, não em fontes de problemas.",
-  "analytics.subtitle": "Com os nossos motores de análise totalmente geridos, liberte-se das restrições administrativas e concentre-se nas suas aplicações e produtos.",
-  "analytics.description1": "Analise, pesquise e monitore os seus dados em grande escala, sem gerir infraestrutura complexa.",
-  "analytics.description2": "Implemente <strong>Kafka, ClickHouse, OpenSearch e Grafana</strong> em minutos para otimizar os seus fluxos de dados, análises e cargas de trabalho de observabilidade.",
-  "analytics.description3": "Desde dashboards até pipelines de dados, <strong>ganhe visibilidade e desempenho</strong> mantendo o <strong>controlo total e a soberania dos seus dados</strong>.",
-  "analytics.createServiceButton": "Criar o seu serviço de análise gerido",
-
-  "analytics.tile.quickStart.title": "Início rápido",
+  "analytics.title": "Transforme os seus dados em informações exploráveis e não em fontes de problemas.",
+  "analytics.subtitle": "Graças aos nossos motores de análise totalmente geridos, liberte-se das restrições administrativas e concentre-se nas suas aplicações e produtos.",
+  "analytics.description1": "Analise, procure e monitorize os seus dados em grande escala, sem gerir infraestruturas complexas.",
+  "analytics.description2": "Implemente <strong>Kafka, ClickHouse, OpenSearch e Grafana</strong> em apenas alguns minutos para otimizar os seus fluxos de dados, análises e cargas de trabalho de observabilidade.",
+  "analytics.description3": "Dos painéis de controlo aos pipelines de dados, <strong>ganhe em visibilidade e performance,</strong> mantendo um <strong>controlo total e a soberania dos seus dados</strong>.",
+  "analytics.createServiceButton": "Criar o seu serviço de analytics gerido",
+  "analytics.tile.quickStart.title": "Quick Start",
   "analytics.tile.quickStart.content": "Aprenda a implementar rapidamente os seus pipelines e dashboards geridos.",
-
   "analytics.tile.documentation.title": "Documentação e tutoriais",
-  "analytics.tile.documentation.content": "Encontre todos os guias e tutoriais dos nossos motores de análise geridos",
-
+  "analytics.tile.documentation.content": "Descubra todos os manuais e tutoriais sobre os nossos motores Analytics geridos",
   "analytics.tile.integrations.title": "Integrações",
   "analytics.tile.integrations.content": "Conecte-se facilmente com as suas bases de dados, Object Storage ou clusters Kubernetes.",
   "analytics.tile.integrations.cta": "Experimentar agora",
-
   "common.cardLink": "Saber mais"
 }

@@ -64,14 +64,14 @@
   "selectObject": "Seleccionar el objeto {{name}}",
   "selectAll": "Seleccionar todo",
   "bulkDeleteTitle": "Eliminar varios objetos",
-  "bulkDeleteDescription_one": "Vas a eliminar {{count}} objeto.",
-  "bulkDeleteDescription_other": "Vas a eliminar {{count}} objetos.",
+  "bulkDeleteDescription_one": "Estás a punto de eliminar {{count}} objeto.",
+  "bulkDeleteDescription_other": "Estás a punto de eliminar {{count}} objetos.",
   "bulkDeleteButtonConfirm_one": "Eliminar {{count}} objeto",
   "bulkDeleteButtonConfirm_other": "Eliminar {{count}} objetos",
-  "bulkDeleteToastSuccessDescription_one": "{{count}} objeto eliminado con éxito.",
-  "bulkDeleteToastSuccessDescription_other": "{{count}} objetos eliminados con éxito.",
+  "bulkDeleteToastSuccessDescription_one": "{{count}} objeto eliminado correctamente.",
+  "bulkDeleteToastSuccessDescription_other": "{{count}} objetos eliminados correctamente.",
   "bulkDeleteVersionsTitle": "Eliminar varias versiones",
-  "bulkDeleteVersionsDescription_one": "¿Quieres eliminar permanentemente {{count}} versión? Esta acción no se puede deshacer.",
-  "bulkDeleteVersionsDescription_other": "¿Quieres eliminar permanentemente {{count}} versiones? Esta acción no se puede deshacer.",
-  "bulkDeleteVersionsConfirmation": "Escribe {{confirmation}} para confirmar"
+  "bulkDeleteVersionsDescription_one": "¿Quiere eliminar definitivamente {{count}} versión? Esta acción no se puede deshacer.",
+  "bulkDeleteVersionsDescription_other": "¿Desea eliminar {{count}} versiones de forma permanente? Esta acción no se puede deshacer.",
+  "bulkDeleteVersionsConfirmation": "Escriba {{confirmation}} para confirmar"
 }

@@ -18,6 +18,7 @@ export const getAuthenticationMocks = ({
     method: 'get',
     api: 'aapi',
     disabled: !isAuthMocked,
+    delay: 10,
   },
   {
     url: '/configuration',
@@ -26,5 +27,6 @@ export const getAuthenticationMocks = ({
     method: 'get',
     api: 'aapi',
     disabled: !isAuthMocked,
+    delay: 10,
   },
 ];

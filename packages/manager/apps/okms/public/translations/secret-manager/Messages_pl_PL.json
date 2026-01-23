@@ -83,5 +83,5 @@
   "version_state_reactivate": "Przywróć",
   "versions": "Wersje",
   "no_version": "Brak wersji",
-  "no_version_message": "Ten sekret nie ma wersji."
+  "no_version_message": "Ta poufna dana nie ma wersji."
 }

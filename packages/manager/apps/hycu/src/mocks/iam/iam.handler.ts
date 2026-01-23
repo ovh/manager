@@ -11,5 +11,6 @@ export const getIamMocks = (): Handler[] => [
     response: (_: unknown, params: PathParams) => findResourceByUrn(params),
     api: 'v2',
     method: 'post',
+    delay: 0,
   },
 ];

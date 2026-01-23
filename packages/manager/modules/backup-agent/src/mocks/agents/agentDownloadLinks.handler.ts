@@ -17,5 +17,6 @@ export const getAgentDownloadLinksMocks = ({
     api: 'v2',
     method: 'get',
     status: isAgentDownloadLinksError ? 500 : 200,
+    delay: 0,
   },
 ];

@@ -172,7 +172,7 @@
   "billing_autorenew_engagement_none": "Bez umowy terminowej",
   "billing_autorenew_service_type_DOMAIN_RESELLER": "Program dla resellerów domen",
   "billing_autorenew_service_renew_automatic": "Automatyczne",
-  "billing_autorenew_service_renew_manual": "Podręcznik",
+  "billing_autorenew_service_renew_manual": "Ręczne",
   "billing_autorenew_service_renew": "Odnowienie",
   "billing_autorenew_criterion_renew": "Odnowienie"
 }

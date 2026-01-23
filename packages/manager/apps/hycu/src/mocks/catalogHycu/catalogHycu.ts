@@ -18,6 +18,7 @@ export const getCatalogHycuMocks = ({
         : catalog,
       status: isCatalogHycuKo ? 500 : 200,
       api: 'v6',
+      delay: 0,
     },
   ];
 };

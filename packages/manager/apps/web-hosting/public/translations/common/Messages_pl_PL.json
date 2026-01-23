@@ -168,6 +168,6 @@
   "hosting_tab_DOMAINS_configuration_remove_success": "Domena zostanie odłączona od twojego hostingu współdzielonego.",
   "activate_cdn": "Aktywuj CDN",
   "multisite_delete_site_modal_description_part1": "Aby usunąć tę stronę, musisz najpierw odłączyć wszystkie powiązane z nią domeny.",
-  "multisite_delete_site_modal_description_part2": "Twoja strona zostanie wtedy automatycznie dezaktywowana.",
+  "multisite_delete_site_modal_description_part2": "Strona zostanie wówczas automatycznie wyłączona.",
   "multisite_delete_site_modal_description_part3": "Katalogi i pliki nie zostaną usunięte."
 }
