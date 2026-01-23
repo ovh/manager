@@ -20,6 +20,14 @@
                         "value"
                     ],
                     "formatter": "formatLargeNumber"
+                },
+                "tooltip": {
+                    "value": {
+                        "formatter": {
+                            "type": "formatNumber",
+                            "precision": 2
+                        }
+                    }
                 }
             }
         },
