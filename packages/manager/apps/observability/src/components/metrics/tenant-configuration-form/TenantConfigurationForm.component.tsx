@@ -131,12 +131,12 @@ export const TenantConfigurationForm = ({
           name="retentionDuration"
           control={control}
           render={({ field }) => (
-            <FormField className="block my-6">
+            <FormField className="my-6 block">
               <FormFieldLabel>
                 <Text preset={TEXT_PRESET.paragraph}>
                   {toRequiredLabel(
                     t('tenants:configuration.retention.title'),
-                    t('shared:mandatory'),
+                    t(`${NAMESPACES.FORM}:required`),
                   )}
                 </Text>
               </FormFieldLabel>
@@ -168,10 +168,13 @@ export const TenantConfigurationForm = ({
           name="maxSeries"
           control={control}
           render={({ field }) => (
-            <FormField className="block my-6">
+            <FormField className="my-6 block">
               <FormFieldLabel>
                 <Text preset={TEXT_PRESET.paragraph}>
-                  {toRequiredLabel(t('tenants:configuration.limit.title'), t('shared:mandatory'))}
+                  {toRequiredLabel(
+                    t('tenants:configuration.limit.title'),
+                    t(`${NAMESPACES.FORM}:required`),
+                  )}
                 </Text>
               </FormFieldLabel>
               <Quantity
