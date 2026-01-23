@@ -19,7 +19,7 @@ export const InformationForm = ({
   namePlaceholder,
   descriptionPlaceholder,
 }: InformationFormProps) => {
-  const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.ERROR, 'shared']);
+  const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.ERROR, NAMESPACES.FORM]);
   const {
     control,
     formState: { errors },
@@ -40,7 +40,10 @@ export const InformationForm = ({
           render={({ field }) => (
             <TextField
               id="title"
-              label={toRequiredLabel(t(`${NAMESPACES.DASHBOARD}:name`), t('shared:mandatory'))}
+              label={toRequiredLabel(
+                t(`${NAMESPACES.DASHBOARD}:name`),
+                t(`${NAMESPACES.FORM}:required`),
+              )}
               placeholder={namePlaceholder}
               type="text"
               isRequired
@@ -64,7 +67,7 @@ export const InformationForm = ({
               id="description"
               label={toRequiredLabel(
                 t(`${NAMESPACES.DASHBOARD}:description`),
-                t('shared:mandatory'),
+                t(`${NAMESPACES.FORM}:required`),
               )}
               placeholder={descriptionPlaceholder}
               type="textarea"
