@@ -9,6 +9,8 @@ import '@ovh-ux/ng-ui-router-title';
 import '@ovh-ux/ng-tail-logs';
 import ngOvhUiConfirmModal from '@ovh-ux/ng-ovh-ui-confirm-modal';
 
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
+
 import constant from './overTheBox.constant';
 
 import actions from './actions';
@@ -39,6 +41,7 @@ angular
     order,
     remote,
     tasks,
+    ApiV2ListHelper.moduleName,
   ])
   .config(routing)
   .component('ovhManagerOverTheBoxComponent', component)
