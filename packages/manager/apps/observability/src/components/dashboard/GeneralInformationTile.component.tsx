@@ -11,6 +11,7 @@ import { GeneralInformationTileProps } from '@/components/dashboard/GeneralInfor
 import SkeletonWrapper from '@/components/dashboard/SkeletonWrapper.component';
 import ResourceBadgeStatus from '@/components/services/status/ResourceBadgeStatus.component';
 import { getEditTenantUrl } from '@/routes/Routes.utils';
+import { LABELS } from '@/utils/labels.constants';
 
 export const GeneralInformationTile = ({
   tenantId,
@@ -24,7 +25,7 @@ export const GeneralInformationTile = ({
   resourceStatus,
   resourceName,
 }: GeneralInformationTileProps) => {
-  const { t } = useTranslation(['tenants', NAMESPACES.STATUS]);
+  const { t } = useTranslation(['tenants', NAMESPACES.STATUS, NAMESPACES.DASHBOARD]);
 
   const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ export const GeneralInformationTile = ({
   };
 
   return (
-    <Tile.Root title={t('dashboard.general_information_tile.title')}>
+    <Tile.Root title={t(`${NAMESPACES.DASHBOARD}:general_information`)}>
       <Tile.Item.Root>
         <Tile.Item.Term label={t('dashboard.general_information_tile.name')} />
         <Tile.Item.Description>
@@ -46,7 +47,7 @@ export const GeneralInformationTile = ({
       </Tile.Item.Root>
 
       <Tile.Item.Root>
-        <Tile.Item.Term label={t('dashboard.general_information_tile.description')} />
+        <Tile.Item.Term label={t(`${NAMESPACES.DASHBOARD}:description`)} />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
             <Text preset={TEXT_PRESET.paragraph}>{description}</Text>
@@ -55,7 +56,7 @@ export const GeneralInformationTile = ({
       </Tile.Item.Root>
 
       <Tile.Item.Root>
-        <Tile.Item.Term label={t('dashboard.general_information_tile.id')} />
+        <Tile.Item.Term label={LABELS.ID} />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
             <Clipboard className="w-full" value={tenantId} />
@@ -64,7 +65,7 @@ export const GeneralInformationTile = ({
       </Tile.Item.Root>
 
       <Tile.Item.Root>
-        <Tile.Item.Term label={t('dashboard.general_information_tile.urn')} />
+        <Tile.Item.Term label={LABELS.URN} />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
             <Clipboard className="w-full" value={iam?.urn} />
@@ -91,7 +92,7 @@ export const GeneralInformationTile = ({
       </Tile.Item.Root>
 
       <Tile.Item.Root>
-        <Tile.Item.Term label={t('dashboard.general_information_tile.created_at')} />
+        <Tile.Item.Term label={t(`${NAMESPACES.DASHBOARD}:creation_date`)} />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
             {createdAt && (
