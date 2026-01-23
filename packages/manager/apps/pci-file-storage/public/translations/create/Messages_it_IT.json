@@ -1,6 +1,6 @@
 {
   "name": {
-    "title": "Nome della condivisione",
+    "title": "Nome dello share",
     "label": "Scegli un nome per il tuo file di condivisione",
     "info": "Deve contenere solo numeri, lettere, underscore, trattini o punti."
   },
@@ -45,5 +45,14 @@
         "user": "Scelgo la mia zona di disponibilità"
       }
     }
+  },
+  "share": {
+    "title": "Modalità di prestazione dello share",
+    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Dimensione dello share",
+    "description": "Il 5% della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
+    "label": "Allocazione di performance lineare (GB)"
   }
 }

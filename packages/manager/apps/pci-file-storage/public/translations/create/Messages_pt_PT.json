@@ -1,7 +1,7 @@
 {
   "name": {
     "title": "Nome do share",
-    "label": "Escolha um nome para o seu ficheiro de partilha",
+    "label": "Escolha um nome para o seu arquivo de partilha",
     "info": "Deve conter apenas números, letras, underscores, hífens ou pontos."
   },
   "localisation": {
@@ -39,11 +39,20 @@
     },
     "availabilityZone": {
       "title": "Escolha a sua zona de disponibilidade",
-      "informations": "Uma zona de disponibilidade por defeito foi selecionada. Você tem a possibilidade de personalizar esta escolha.",
+      "informations": "Uma zona de disponibilidade por defeito foi selecionada. Tem a possibilidade de personalizar esta escolha.",
       "choice": {
         "company": "Escolher por mim",
         "user": "Eu escolho a minha zona de disponibilidade"
       }
     }
+  },
+  "share": {
+    "title": "Modo de desempenho do share",
+    "description": "Mín. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Tamanho do share",
+    "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento de snapshots",
+    "label": "Atribuição de desempenho linear (GB)"
   }
 }

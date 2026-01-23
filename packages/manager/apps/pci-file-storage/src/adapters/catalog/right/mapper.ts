@@ -6,14 +6,26 @@ import type {
   TDeploymentModeId,
   TMacroRegion,
   TMicroRegion,
+  TShare,
+  TShareBandwidth,
+  TShareCapacity,
   TShareCatalog,
+  TShareIOPS,
+  TShareId,
+  TShareSpecs,
+  TShareSpecsId,
 } from '@/domain/entities/catalog.entity';
 
 import type {
   TContinentRegionsDTO,
   TDeploymentModeDTO,
   TRegionDTO,
+  TShareBandwidthDTO,
+  TShareCapacityDTO,
   TShareCatalogDTO,
+  TShareDTO,
+  TShareIOPSDTO,
+  TSharePricingDTO,
 } from './dto.type';
 
 type TNormalizedEntity<ID, Entity> = {
@@ -42,7 +54,6 @@ const mapRegionDTOtoMicroRegionEntity = (regionDto: TRegionDTO): TMicroRegion =>
 
 const mapDeploymentModeDTOToEntity = (mode: TDeploymentModeDTO): TDeployment => ({
   name: mode.name,
-  tags: mode.tags,
 });
 
 const normalizeData = <ItemID extends string, DTOItem extends { name: ItemID }, EntityItem>(
@@ -115,7 +126,6 @@ const mapContinentDTOToEntity = (
   return {
     name: continentRegion.name,
     macroRegionIds,
-    tags: continentRegion.tags,
   };
 };
 
@@ -147,6 +157,69 @@ const getContinentIdsByDeploymentModeId = (regions: TRegionDTO[]) =>
     return acc;
   }, new Map<TDeploymentModeId, TContinentId[]>());
 
+const mapShareCapacityDTOToEntity = (capacity: TShareCapacityDTO): TShareCapacity => ({
+  min: capacity.min,
+  max: capacity.max,
+});
+
+const mapShareIOPSDTOToEntity = (iops: TShareIOPSDTO): TShareIOPS => ({
+  guaranteed: iops.guaranteed,
+  level: iops.level,
+  max: iops.max,
+  maxUnit: iops.maxUnit,
+  unit: iops.unit,
+});
+
+const mapShareBandwidthDTOToEntity = (bandwidth: TShareBandwidthDTO): TShareBandwidth => ({
+  guaranteed: bandwidth.guaranteed,
+  level: bandwidth.level,
+  min: bandwidth.min,
+  max: bandwidth.max,
+  maxUnit: bandwidth.maxUnit,
+  unit: bandwidth.unit,
+});
+
+const mapShareSpecsDTOToEntity = (pricing: TSharePricingDTO): TShareSpecs => ({
+  name: pricing.specs.name,
+  capacity: mapShareCapacityDTOToEntity(pricing.specs.share.capacity),
+  iops: mapShareIOPSDTOToEntity(pricing.specs.share.iops),
+  bandwidth: mapShareBandwidthDTOToEntity(pricing.specs.bandwidth),
+  microRegionIds: pricing.regions,
+  pricing: {
+    price: pricing.price,
+    interval: pricing.interval,
+  },
+});
+
+const normalizeShareSpecs = (
+  shares: TShareDTO[],
+): TNormalizedEntity<TShareSpecsId, TShareSpecs> => {
+  const result: TNormalizedEntity<TShareSpecsId, TShareSpecs> = {
+    byId: new Map(),
+    allIds: [],
+  };
+
+  shares.forEach((share) => {
+    share.pricings.forEach((pricing) => {
+      const specsId = pricing.specs.name;
+      if (!result.allIds.includes(specsId)) {
+        result.allIds.push(specsId);
+      }
+      result.byId.set(specsId, mapShareSpecsDTOToEntity(pricing));
+    });
+  });
+
+  return result;
+};
+
+const mapShareDTOToEntity = (share: TShareDTO): TShare => ({
+  name: share.name,
+  filters: {
+    deployment: share.filters.deployment as TDeploymentModeId[],
+  },
+  specsIds: share.pricings.map((pricing) => pricing.specs.name),
+});
+
 export const mapCatalogDTOToCatalog = (catalogDto: TShareCatalogDTO): TShareCatalog => {
   return {
     entities: {
@@ -156,6 +229,8 @@ export const mapCatalogDTOToCatalog = (catalogDto: TShareCatalogDTO): TShareCata
       })(catalogDto.regions),
       deploymentModes: normalizeData(catalogDto.filters.deployments, mapDeploymentModeDTOToEntity),
       continents: normalizeContinent(catalogDto.filters.regions, catalogDto.regions),
+      shares: normalizeData<TShareId, TShareDTO, TShare>(catalogDto.shares, mapShareDTOToEntity),
+      shareSpecs: normalizeShareSpecs(catalogDto.shares),
     },
     relations: {
       continentIdsByDeploymentModeId: getContinentIdsByDeploymentModeId(catalogDto.regions),

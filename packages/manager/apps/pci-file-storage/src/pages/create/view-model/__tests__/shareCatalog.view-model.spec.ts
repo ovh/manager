@@ -7,6 +7,7 @@ import {
   TMacroRegion,
   TMicroRegion,
   TShareCatalog,
+  TShareSpecs,
 } from '@/domain/entities/catalog.entity';
 import {
   selectAvailabilityZones,
@@ -14,6 +15,7 @@ import {
   selectDeploymentModes,
   selectLocalizations,
   selectMicroRegions,
+  selectShareSpecs,
 } from '@/pages/create/view-model/shareCatalog.view-model';
 
 vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
@@ -39,9 +41,9 @@ describe('share catalog selectors', () => {
         entities: {
           deploymentModes: {
             byId: new Map([
-              ['region', { name: 'region', tags: ['tag1'] }],
-              ['localzone', { name: 'localzone', tags: null }],
-              ['region-3-az', { name: 'region-3-az', tags: ['tag2'] }],
+              ['region', { name: 'region' }],
+              ['localzone', { name: 'localzone' }],
+              ['region-3-az', { name: 'region-3-az' }],
             ]),
             allIds: ['region', 'localzone', 'region-3-az'],
           },
@@ -360,5 +362,100 @@ describe('share catalog selectors', () => {
         expect(result).toEqual(expected);
       },
     );
+  });
+
+  describe('selectShareSpecs', () => {
+    const createShareSpec = (
+      name: string,
+      microRegionIds: string[],
+      capacityMin: number,
+      iopsLevel: number,
+      bandwidthLevel: number,
+      bandwidthUnit: string,
+    ): TShareSpecs => ({
+      name,
+      capacity: { min: capacityMin, max: 10240 },
+      iops: {
+        guaranteed: false,
+        level: iopsLevel,
+        max: 20000,
+        maxUnit: 'IOPS',
+        unit: 'IOPS/GB',
+      },
+      bandwidth: {
+        guaranteed: false,
+        level: bandwidthLevel,
+        min: 150,
+        max: 10240,
+        maxUnit: 'MB/s',
+        unit: bandwidthUnit,
+      },
+      microRegionIds,
+      pricing: {
+        price: 11900,
+        interval: 'hour',
+      },
+    });
+
+    const catalog = {
+      entities: {
+        shareSpecs: {
+          byId: new Map<string, TShareSpecs>([
+            ['spec1', createShareSpec('spec1', ['GRA1', 'GRA2'], 150, 30, 0.25, 'MB/s/GB')],
+            ['spec2', createShareSpec('spec2', ['GRA1'], 200, 50, 0.5, 'MB/s/GB')],
+            ['spec3', createShareSpec('spec3', ['GRA2', 'GRA3'], 300, 100, 1.0, 'MB/s/GB')],
+          ]),
+          allIds: ['spec1', 'spec2', 'spec3'],
+        },
+      },
+    } as DeepPartial<TShareCatalog>;
+
+    it.each([
+      {
+        description: 'for a valid micro region with matching specs',
+        microRegionId: 'GRA1',
+        data: catalog as TShareCatalog,
+        expected: [
+          {
+            name: 'spec1',
+            capacityMin: 150,
+            capacityMax: 10240,
+            iopsLevel: 30,
+            bandwidthLevel: 0.25,
+            bandwidthUnit: 'MB/s/GB',
+          },
+          {
+            name: 'spec2',
+            capacityMin: 200,
+            capacityMax: 10240,
+            iopsLevel: 50,
+            bandwidthLevel: 0.5,
+            bandwidthUnit: 'MB/s/GB',
+          },
+        ],
+      },
+      {
+        description: 'for a micro region with no matching specs',
+        microRegionId: 'GRA4',
+        data: catalog as TShareCatalog,
+        expected: [],
+      },
+      {
+        description: 'when data is undefined',
+        microRegionId: 'GRA1',
+        data: undefined,
+        expected: [],
+      },
+      {
+        description: 'when microRegionId is empty',
+        microRegionId: '',
+        data: catalog as TShareCatalog,
+        expected: [],
+      },
+    ])('should return correct share specs $description', ({ microRegionId, data, expected }) => {
+      const result = selectShareSpecs(microRegionId)(data);
+
+      expect(result).toEqual(expected);
+    });
   });
 });

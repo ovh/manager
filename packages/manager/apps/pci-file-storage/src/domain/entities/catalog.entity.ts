@@ -3,8 +3,6 @@ import { TCountryIsoCode } from '@/components/new-lib/flag/country-iso-code';
 export const DEPLOYMENT_MODES = ['region', 'localzone', 'region-3-az'] as const;
 export type TDeploymentMode = (typeof DEPLOYMENT_MODES)[number];
 
-type TTags = string[] | null;
-
 type TMacroRegionName = string;
 type TMicroRegionName = string;
 export type TMacroRegionId = TMacroRegionName;
@@ -17,7 +15,6 @@ export type TContinentId = TContinentName;
 export type TContinent = {
   name: TContinentName;
   macroRegionIds: TMacroRegionId[];
-  tags: TTags;
 };
 
 export type TMicroRegion = {
@@ -38,7 +35,56 @@ export type TMacroRegion = {
 
 export type TDeployment = {
   name: string;
-  tags: TTags;
+};
+
+export type TShareCapacity = {
+  min: number;
+  max: number;
+};
+
+export type TShareIOPS = {
+  guaranteed: boolean;
+  level: number;
+  max: number;
+  maxUnit: string;
+  unit: string;
+};
+
+export type TShareBandwidth = {
+  guaranteed: boolean;
+  level: number;
+  min: number;
+  max: number;
+  maxUnit: string;
+  unit: string;
+};
+
+type TSharePricing = {
+  price: number;
+  interval: string;
+};
+
+export type TShareSpecs = {
+  name: TShareSpecsName;
+  capacity: TShareCapacity;
+  iops: TShareIOPS;
+  bandwidth: TShareBandwidth;
+  microRegionIds: TMicroRegionId[];
+  pricing: TSharePricing;
+};
+
+type TShareSpecsName = string;
+export type TShareSpecsId = TShareSpecsName;
+
+export type TShareName = string;
+export type TShareId = TShareName;
+
+export type TShare = {
+  name: TShareName;
+  filters: {
+    deployment: TDeploymentModeId[];
+  };
+  specsIds: TShareSpecsId[];
 };
 
 export type TShareCatalog = {
@@ -58,6 +104,14 @@ export type TShareCatalog = {
     deploymentModes: {
       byId: Map<TDeploymentModeId, TDeployment>;
       allIds: TDeploymentModeId[];
+    };
+    shares: {
+      byId: Map<TShareId, TShare>;
+      allIds: TShareId[];
+    };
+    shareSpecs: {
+      byId: Map<TShareSpecsId, TShareSpecs>;
+      allIds: TShareSpecsId[];
     };
   };
   relations: {
