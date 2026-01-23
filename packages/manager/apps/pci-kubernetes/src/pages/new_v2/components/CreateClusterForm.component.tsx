@@ -9,6 +9,7 @@ import { useCreateClusterForm } from '../hooks/useCreateClusterForm/useCreateClu
 import { ClusterLocationSection } from './ClusterLocationSection.component';
 import { ClusterNameSection } from './ClusterNameSection.component';
 import { ClusterPlanSection } from './ClusterPlanSection.component';
+import { ClusterVersionAndUpdatePolicySection } from './ClusterVersionAndUpdatePolicySection.component';
 import { CreationCart } from './CreationCart.component';
 
 const dividerSpacing = '64';
@@ -43,6 +44,8 @@ export const CreateClusterForm = ({
           <ClusterLocationSection is3azAvailable={is3azAvailable} />
           <Divider spacing={dividerSpacing} />
           <ClusterPlanSection fieldName="plan" planCodes={planCodes} />
+          <ClusterVersionAndUpdatePolicySection />
+          <Divider spacing={dividerSpacing} />
         </section>
 
         <aside className="flex-1">
