@@ -2,11 +2,11 @@ import { useTranslation } from 'react-i18next';
 
 import { ICON_NAME, Icon, Text } from '@ovhcloud/ods-react';
 
-import { Vrack } from '@/data/api/get/vrack-details';
+import { Vrack } from '@/data/api/get/vrackDetails';
 import { useWebPageLink } from '@/hooks/useWebPageLink';
 import { useUpdateVrackDetails } from '@/hooks/vrack/useUpdateVrackDetails';
 
-import { EditableText } from './editableText/EditableText';
+import { EditableText } from './editable-text/EditableText';
 
 interface DashboardHeaderTitleProps {
   vrack: Vrack;

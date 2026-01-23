@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/muk';
 
-import NotFound from '@/pages/not-found/404.page';
+import NotFound from '@/pages/not-found/Error404.page';
 import PublicIpRouting from '@/pages/public-ip-routing/PublicIpRouting.page';
 
 import { redirectionApp, urls } from './Routes.constants';
@@ -13,7 +13,6 @@ import { redirectionApp, urls } from './Routes.constants';
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
-const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 
 export default (
   <>
@@ -29,17 +28,6 @@ export default (
         />
       }
     >
-      <Route
-        id="listing"
-        path={urls.listing}
-        Component={ListingPage}
-        handle={{
-          tracking: {
-            pageName: 'all-vrack',
-            pageType: PageType.listing,
-          },
-        }}
-      />
       <Route id="vrack.dashboard" path={urls.dashboard} Component={DashboardPage}>
         <Route
           id="vrack.dashboard.publicIpRouting"
