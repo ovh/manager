@@ -12,6 +12,7 @@ import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerOtb from '@ovh-ux/manager-overthebox';
 import * as dateFnsLocales from 'date-fns/locale';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 
@@ -36,6 +37,7 @@ export default (containerEl, environment) => {
         ngOvhApiWrappers,
         ngOvhChart,
         ngUiRouterBreadcrumb,
+        ngOvhFeatureFlipping,
         ovhManagerOtb,
         registerCoreModule(environment),
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
