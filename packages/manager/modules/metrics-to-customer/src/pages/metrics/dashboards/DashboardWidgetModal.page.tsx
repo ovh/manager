@@ -123,20 +123,7 @@ const DashboardWidgetModal = <TData,>() => {
               />
             </div>
           )}
-          <div className="flex justify-between">
-            <div>
-              {globalLoading ? null : (
-                <Button
-                  color="primary"
-                  variant={BUTTON_VARIANT.outline}
-                  disabled={globalLoading}
-                  slot="actions"
-                >
-                  {t('dashboard_widget_analyse_in_all_metrics')}
-                </Button>
-              )}
-            </div>
-
+          <div className="flex justify-end">
             <div>
               <Button
                 color="primary"
