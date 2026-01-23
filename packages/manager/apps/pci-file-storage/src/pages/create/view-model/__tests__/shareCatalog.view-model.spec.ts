@@ -419,6 +419,7 @@ describe('share catalog selectors', () => {
           {
             name: 'spec1',
             capacityMin: 150,
+            capacityMax: 10240,
             iopsLevel: 30,
             bandwidthLevel: 0.25,
             bandwidthUnit: 'MB/s/GB',
@@ -426,6 +427,7 @@ describe('share catalog selectors', () => {
           {
             name: 'spec2',
             capacityMin: 200,
+            capacityMax: 10240,
             iopsLevel: 50,
             bandwidthLevel: 0.5,
             bandwidthUnit: 'MB/s/GB',

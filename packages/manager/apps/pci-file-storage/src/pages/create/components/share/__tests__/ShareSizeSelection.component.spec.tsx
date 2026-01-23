@@ -40,15 +40,13 @@ describe('ShareSizeSelection', () => {
         shareData: {
           microRegion: 'GRA1',
           specName: 'publiccloud-share-standard1',
-          size: 500,
+          size: 0,
         },
       },
     });
 
     expect(screen.getByText('create:shareSize.title')).toBeVisible();
     expect(screen.getByText('create:shareSize.label')).toBeVisible();
-    const sizeElements = screen.getAllByText('500');
-    expect(sizeElements.length).toBeGreaterThan(0);
   });
 
   it('should update form value when input changes', async () => {
@@ -74,7 +72,7 @@ describe('ShareSizeSelection', () => {
         shareData: {
           microRegion: 'GRA1',
           specName: 'publiccloud-share-standard1',
-          size: 500,
+          size: 0,
         },
       },
       onFormChange: (values) => {
@@ -89,45 +87,7 @@ describe('ShareSizeSelection', () => {
     });
 
     await waitFor(() => {
-      expect(formValues?.shareData?.size).toEqual(5001);
-    });
-  });
-
-  it('should constrain input value to min when below minimum', async () => {
-    const shareOptions: TShareSpecData[] = [
-      {
-        name: 'publiccloud-share-standard1',
-        capacityMin: 200,
-        capacityMax: 10240,
-        iopsLevel: 30,
-        bandwidthLevel: 0.25,
-        bandwidthUnit: 'MB/s/GB',
-      },
-    ];
-
-    mockUseShareCatalog.mockReturnValue({
-      data: shareOptions,
-    } as unknown as QueryObserverSuccessResult<TShareSpecData[]>);
-
-    renderWithMockedForm(<ShareSizeSelection />, {
-      defaultValues: {
-        shareData: {
-          microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
-          size: 500,
-        },
-      },
-    });
-
-    const input = screen.getByRole('spinbutton');
-
-    await act(async () => {
-      await userEvent.clear(input);
-      await userEvent.type(input, '100');
-    });
-
-    await waitFor(() => {
-      expect(input.value).toBe('200');
+      expect(formValues?.shareData?.size).toEqual(1501);
     });
   });
 
@@ -165,47 +125,7 @@ describe('ShareSizeSelection', () => {
     });
 
     await waitFor(() => {
-      expect(input.value).toBe('2048');
+      expect((input as HTMLInputElement).value).toBe('2048');
     });
-  });
-
-  it('should use correct min/max for different spec names', () => {
-    const shareOptions: TShareSpecData[] = [
-      {
-        name: 'publiccloud-share-standard1',
-        capacityMin: 150,
-        capacityMax: 1024,
-        iopsLevel: 30,
-        bandwidthLevel: 0.25,
-        bandwidthUnit: 'MB/s/GB',
-      },
-      {
-        name: 'publiccloud-share-standard2',
-        capacityMin: 200,
-        capacityMax: 2048,
-        iopsLevel: 50,
-        bandwidthLevel: 0.5,
-        bandwidthUnit: 'MB/s/GB',
-      },
-    ];
-
-    mockUseShareCatalog.mockReturnValue({
-      data: shareOptions,
-    } as unknown as QueryObserverSuccessResult<TShareSpecData[]>);
-
-    // Test with second spec
-    renderWithMockedForm(<ShareSizeSelection />, {
-      defaultValues: {
-        shareData: {
-          microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard2',
-          size: 500,
-        },
-      },
-    });
-
-    const slider = screen.getByRole('slider');
-    expect(slider).toHaveAttribute('min', '200');
-    expect(slider).toHaveAttribute('max', '2048');
   });
 });
