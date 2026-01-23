@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.0.0...@ovh-ux/muk@1.0.1) (2026-01-23)
+
+
+### Bug Fixes
+
+* **muk:** add min height in the datagrid ([e8a3fc8](https://github.com/ovh/manager/commit/e8a3fc8495c0c59e0a7e8fcf871a914f64961553)), closes [#MANAGER-20783](https://github.com/ovh/manager/issues/MANAGER-20783)
+
+
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.0.0-alpha.0...@ovh-ux/muk@1.0.0) (2026-01-20)
 
 

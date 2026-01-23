@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.43.3...@ovh-ux/manager-okms-app@0.43.4) (2026-01-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4606] ([8a702ab](https://github.com/ovh/manager/commit/8a702ab6db65f6b4ec2c301cac5c1a80bb76b7ba))
+* **i18n:** add missing translations [CDS 4609] ([54b7e4a](https://github.com/ovh/manager/commit/54b7e4a775df6cdd4b2de0a6bf0528fec1f6e948))
+
+
+
+
+
 ## [0.43.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.43.2...@ovh-ux/manager-okms-app@0.43.3) (2026-01-20)
 
 
