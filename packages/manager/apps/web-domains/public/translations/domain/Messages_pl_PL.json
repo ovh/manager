@@ -341,5 +341,6 @@
   "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC jest w trakcie {{action}}: możesz śledzić postęp swojej prośby na stronie operacji w toku. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacji",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacji",
-  "domain_tab_general_information_subscription_edit_owner": "Zmień informacje o kontakcie właściciela"
+  "domain_tab_general_information_subscription_edit_owner": "Zmień informacje o kontakcie właściciela",
+  "domain_tab_general_information_data_protection_disabled": "Rejestr odpowiedzialny za tę nazwę domeny nie zezwala na niestandardowe zarządzanie wyświetlaniem danych."
 }
