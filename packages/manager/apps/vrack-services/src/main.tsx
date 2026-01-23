@@ -1,16 +1,15 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import {
-  ShellContext,
-  initShellContext,
-  initI18n,
-} from '@ovh-ux/manager-react-shell-client';
-import { App } from './App';
-import './index.scss';
+
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 import '@ovh-ux/muk/dist/style.css';
-import './vite-hmr';
-import { getTrackingContext } from './utils/tracking';
+
+import { App } from './App';
+import './style.scss';
 import { LEVEL2, TRANSLATION_NAMESPACES } from './utils/constants';
+import { getTrackingContext } from './utils/tracking';
+import './vite-hmr';
 
 const init = async ({ appName }: { appName: string }) => {
   const context = await initShellContext(appName, getTrackingContext(appName));
@@ -26,21 +25,23 @@ const init = async ({ appName }: { appName: string }) => {
   try {
     await import(`./config-${region}.js`);
   } catch (error) {
-    // nothing to do
+    console.warn('error while loading js file: ', error);
   }
 
   const rootElement = document.getElementById('ovh-app');
-  const root = ReactDOM.createRoot(rootElement);
+  if (rootElement) {
+    const root = ReactDOM.createRoot(rootElement);
 
-  root.render(
-    <React.StrictMode>
-      <ShellContext.Provider value={context}>
-        <App />
-      </ShellContext.Provider>
-    </React.StrictMode>,
-  );
+    root.render(
+      <React.StrictMode>
+        <ShellContext.Provider value={context}>
+          <App />
+        </ShellContext.Provider>
+      </React.StrictMode>,
+    );
+  }
 };
 
-init({
+void init({
   appName: 'vrack-services',
 });

@@ -1,11 +1,12 @@
 import React from 'react';
+
 import {
   BUTTON_SIZE,
   BUTTON_VARIANT,
-  ICON_NAME,
-  TEXT_PRESET,
   Button,
+  ICON_NAME,
   Icon,
+  TEXT_PRESET,
   Text,
 } from '@ovhcloud/ods-react';
 
@@ -14,10 +15,7 @@ export type EditButtonProps = React.PropsWithChildren<{
   onClick: () => void;
 }>;
 
-export const EditButton: React.FC<EditButtonProps> = ({
-  children,
-  ...props
-}) => (
+export const EditButton: React.FC<EditButtonProps> = ({ children, ...props }) => (
   <div className="flex items-center">
     <div className="grow">
       <Text preset={TEXT_PRESET.paragraph}>{children}</Text>

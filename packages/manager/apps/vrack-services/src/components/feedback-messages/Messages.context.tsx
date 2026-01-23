@@ -26,12 +26,8 @@ export const MessagesContext = React.createContext<MessagesContextType>({
   hideMessage: () => undefined,
 });
 
-export const MessageContextProvider: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
-  const [successMessages, setSuccessMessages] = React.useState<MessageData[]>(
-    [],
-  );
+export const MessageContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const [successMessages, setSuccessMessages] = React.useState<MessageData[]>([]);
   const [hiddenMessages, setHiddenMessages] = React.useState<number[]>([]);
 
   const messageContext = React.useMemo(
@@ -50,9 +46,5 @@ export const MessageContextProvider: React.FC<React.PropsWithChildren> = ({
     [successMessages, hiddenMessages],
   );
 
-  return (
-    <MessagesContext.Provider value={messageContext}>
-      {children}
-    </MessagesContext.Provider>
-  );
+  return <MessagesContext.Provider value={messageContext}>{children}</MessagesContext.Provider>;
 };

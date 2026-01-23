@@ -1,18 +1,19 @@
 import React from 'react';
+
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { useParams, Outlet, useLocation } from 'react-router-dom';
-import { useOvhTracking, ButtonType } from '@ovh-ux/manager-react-shell-client';
+
+import { useVrackService, useVrackServicesList } from '@ovh-ux/manager-network-common';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { Error } from '@ovh-ux/muk';
-import {
-  useVrackService,
-  useVrackServicesList,
-} from '@ovh-ux/manager-network-common';
+
 import {
   DashboardLayout,
   DashboardTabItemProps,
-} from '@/components/layout-helpers';
-import NotFound from '@/pages/not-found/404.page';
-import { urls } from '@/routes/routes.constants';
+} from '@/components/layout-helpers/DashboardLayout.component';
+import NotFound from '@/pages/not-found/Error404.page';
+import { urls } from '@/routes/RoutesAndUrl.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function DashboardWrapper() {
@@ -23,14 +24,15 @@ export default function DashboardWrapper() {
   const { data, isLoading } = useVrackServicesList();
   const { isError, error } = useVrackService();
 
-  const tabList: DashboardTabItemProps[] = React.useMemo(
-    () => [
+  const tabList: DashboardTabItemProps[] = React.useMemo(() => {
+    const safeId = id || '';
+    return [
       {
         name: 'overview',
         title: t('overviewTabLabel'),
-        to: urls.overview.replace(':id', id),
+        to: urls.overview.replace(':id', safeId),
         pathMatchers: [urls.overviewAssociate, urls.overview].map(
-          (path) => new RegExp(`${path.replace(':id', id)}$`),
+          (path) => new RegExp(`${path.replace(':id', safeId)}$`),
         ),
         onClick: () => {
           trackClick({
@@ -43,16 +45,13 @@ export default function DashboardWrapper() {
       {
         name: 'subnets',
         title: t('subnetsTabLabel'),
-        to: urls.subnets.replace(':id', id),
+        to: urls.subnets.replace(':id', safeId),
         pathMatchers: [
           urls.subnets,
           urls.subnetsDelete,
           urls.subnetsListing,
           urls.subnetsOnboarding,
-        ].map(
-          (path) =>
-            new RegExp(path.replace(':id', id).replace(':cidr', '\\S+')),
-        ),
+        ].map((path) => new RegExp(path.replace(':id', safeId).replace(':cidr', '\\S+'))),
         onClick: () => {
           trackClick({
             buttonType: ButtonType.tab,
@@ -64,15 +63,13 @@ export default function DashboardWrapper() {
       {
         name: 'endpoints',
         title: t('endpointsTabLabel'),
-        to: urls.endpoints.replace(':id', id),
+        to: urls.endpoints.replace(':id', safeId),
         pathMatchers: [
           urls.endpoints,
           urls.endpointsDelete,
           urls.endpointsListing,
           urls.endpointsOnboarding,
-        ].map(
-          (path) => new RegExp(path.replace(':id', id).replace(':urn', '\\S+')),
-        ),
+        ].map((path) => new RegExp(path.replace(':id', safeId).replace(':urn', '\\S+'))),
         onClick: () => {
           trackClick({
             buttonType: ButtonType.tab,
@@ -81,23 +78,20 @@ export default function DashboardWrapper() {
           });
         },
       },
-    ],
-    [id],
-  );
+    ];
+  }, [id, trackClick, t]);
 
   if (isError) {
     return <Error error={error} />;
   }
 
-  if (
-    !isLoading &&
-    !data?.data?.find((vrackServices) => vrackServices.id === id)
-  ) {
+  if (!isLoading && !data?.data?.find((vrackServices) => vrackServices.id === id)) {
     return <NotFound />;
   }
 
+  const safeId = id || '';
   return [urls.createEndpoint, urls.createSubnet]
-    .map((url) => url.replace(':id', id))
+    .map((url) => url.replace(':id', safeId))
     .includes(location.pathname) ? (
     <React.Suspense>
       <Outlet />

@@ -1,12 +1,11 @@
 import React from 'react';
-import {
-  MESSAGE_COLOR,
-  Message,
-  MessageBody,
-  MessageIcon,
-} from '@ovhcloud/ods-react';
+
 import { useTranslation } from 'react-i18next';
-import { DetailedOrder } from '@ovh-ux/manager-module-order';
+
+import { MESSAGE_COLOR, Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';
+
+import type { DetailedOrder } from '@ovh-ux/manager-module-order';
+
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type DeliveringMessagesProps = {
@@ -28,9 +27,7 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
         const date = new Date(order.date);
         const hours = date.getHours();
         const min = date.getMinutes();
-        const time = `${hours < 10 ? '0' : ''}${hours}:${
-          min < 10 ? '0' : ''
-        }${min}`;
+        const time = `${hours < 10 ? '0' : ''}${hours}:${min < 10 ? '0' : ''}${min}`;
 
         return (
           <Message

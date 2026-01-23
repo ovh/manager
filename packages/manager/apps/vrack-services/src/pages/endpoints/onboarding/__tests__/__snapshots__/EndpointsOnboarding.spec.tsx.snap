@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EndpointsOnboarding > should display the endpoints onboarding 1`] = `
+<div>
+  <div
+    class="py-8 px-4 md:py-9 md:px-10 md:mt-2"
+  >
+    <div />
+    <main
+      class="flex flex-col mx-auto sm:px-10"
+    >
+      <section
+        aria-labelledby="onboarding-title"
+        class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+      >
+        <div
+          class="flex justify-center"
+        >
+          <img
+            alt="placeholder image"
+            class="max-h-[150px] undefined"
+            src="/src/assets/onboarding-img.png"
+          />
+        </div>
+        <h1
+          class="_text_b5nz7_6 _text--heading-1_b5nz7_20 text-center"
+          data-ods="text"
+        >
+          Vous n'avez pas encore crée de Service Endpoint
+        </h1>
+        Exposez vos services managés OVHcloud sur le vRack avec la fonctionnalité Service Endpoint de vRack Services.
+        <div
+          class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
+        >
+          <button
+            class="_button_6crpx_2 _button--primary_6crpx_276 _button--md_6crpx_217 _button--default_6crpx_225 [&::part(button)]:w-full sm:w-auto"
+            data-ods="button"
+            data-testid="manager-button"
+            disabled=""
+            type="button"
+          >
+            Créer un Service Endpoint
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+`;

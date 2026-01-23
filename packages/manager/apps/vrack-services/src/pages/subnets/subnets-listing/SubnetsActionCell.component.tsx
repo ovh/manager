@@ -1,27 +1,25 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu } from '@ovh-ux/muk';
+
+import { useTranslation } from 'react-i18next';
+
 import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
-import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
-import { urls } from '@/routes/routes.constants';
-import { isEditable } from '@/utils/vrack-services';
+
+import type { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu } from '@ovh-ux/muk';
+
+import { urls } from '@/routes/RoutesAndUrl.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { isEditable } from '@/utils/vrack-services';
 
 export type SubnetsActionCellProps = {
   vs: VrackServicesWithIAM;
   cidr: string;
 };
 
-export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
-  vs,
-  cidr,
-}) => {
+export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({ vs, cidr }) => {
   const navigate = useNavigate();
   const { t } = useTranslation(TRANSLATION_NAMESPACES.subnets);
   const { trackClick } = useOvhTracking();
@@ -45,9 +43,7 @@ export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
               actions: ['edit_subnets'],
             });
             navigate(
-              urls.subnetsEdit
-                .replace(':id', vs.id)
-                .replace(':cidr', cidr.replace('/', '_')),
+              urls.subnetsEdit.replace(':id', vs.id).replace(':cidr', cidr.replace('/', '_')),
             );
           },
         },
@@ -63,9 +59,7 @@ export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
               actions: ['delete-subnet'],
             });
             navigate(
-              urls.subnetsDelete
-                .replace(':id', vs.id)
-                .replace(':cidr', cidr.replace('/', '_')),
+              urls.subnetsDelete.replace(':id', vs.id).replace(':cidr', cidr.replace('/', '_')),
             );
           },
         },

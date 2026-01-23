@@ -1,18 +1,20 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu } from '@ovh-ux/muk';
+
+import { useTranslation } from 'react-i18next';
+
 import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
-import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
-import { urls } from '@/routes/routes.constants';
-import { EndpointItem } from './useEndpointList.hook';
-import { isEditable } from '@/utils/vrack-services';
+
+import type { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu } from '@ovh-ux/muk';
+
+import { urls } from '@/routes/RoutesAndUrl.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { isEditable } from '@/utils/vrack-services';
+
+import { EndpointItem } from './useEndpointList.hook';
 
 export const ActionCell: React.FC<{
   vs: VrackServicesWithIAM;
@@ -43,7 +45,7 @@ export const ActionCell: React.FC<{
             navigate(
               urls.endpointsDelete
                 .replace(':id', vs.id)
-                .replace(':urn', endpoint.managedServiceURN),
+                .replace(':urn', endpoint.managedServiceURN || ''),
             );
           },
         },
