@@ -19,16 +19,21 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
+import { NAMESPACES as COMMON_NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
+
 import { TimeControls } from '@/components';
 import { ChartRenderer } from '@/components/charts/base';
+
 import { useDashboardContext, useMetricsToCustomerContext } from '@/contexts';
+
 import { useChartWithData, useMetricToken } from '@/data/hooks';
 
-import '../styles.scss';
+import '@/pages/metrics/styles.scss';
 
 const DashboardWidgetModal = <TData,>() => {
-  const { t } = useTranslation(NAMESPACES.DASHBOARDS);
+  const { t } = useTranslation([NAMESPACES.DASHBOARDS, NAMESPACES.DASHBOARD_TEXTS, COMMON_NAMESPACES.ACTIONS]);
 
   const navigate = useNavigate();
 
@@ -98,7 +103,7 @@ const DashboardWidgetModal = <TData,>() => {
       >
         <div className="flex items-center gap-4">
           <div>
-            <Text preset={TEXT_PRESET.heading3}>{title}</Text>
+            <Text preset={TEXT_PRESET.heading3}>{t(`${NAMESPACES.DASHBOARD_TEXTS}:${title}`)}</Text>
           </div>
           <div className="ml-auto flex justify-end gap-4">
             <TimeControls isLoading={globalLoading} state={dashboardState} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
@@ -131,7 +136,7 @@ const DashboardWidgetModal = <TData,>() => {
                 onClick={onDismiss}
                 slot="actions"
               >
-                {t('dashboard_widget_close')}
+                {t(`${COMMON_NAMESPACES.ACTIONS}:close`)}
               </Button>
             </div>
           </div>
