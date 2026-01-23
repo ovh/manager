@@ -1,6 +1,5 @@
 {
     "dashboard_widget_config_not_found": "Aucun widget sur ce tableau de bord",
-    "dashboard_widget_analyse_in_all_metrics": "Analyser toutes les métriques",
     "dashboard_widget_close": "Fermer",
     "dashboard_no_widget": "Aucun widget configuré pour ce tableau de bord",
     "dashboard_loading": "Chargement de tableau de bord en cours"
