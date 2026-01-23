@@ -1,25 +1,25 @@
 {
   "name": {
-    "title": "Nombre del recurso compartido",
-    "label": "Elija un nombre para su archivo compartido",
+    "title": "Nombre del share",
+    "label": "Elija un nombre para su archivo de compartición",
     "info": "Solo debe contener números, letras, guiones bajos, guiones o puntos."
   },
   "localisation": {
     "title": "Seleccione una ubicación",
     "deploymentMode": {
-      "title": "Filtrar un modo de implementación",
+      "title": "Filtre un modo de despliegue",
       "modes": {
         "region": {
           "label": "Región 1-AZ",
-          "description": "Implementación resiliente y económica en 1 zona de disponibilidad."
+          "description": "Despliegue resiliente y económico en 1 zona de disponibilidad."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Implementación de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad."
+          "description": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad."
         },
         "region-3-az": {
           "label": "Región 3-AZ",
-          "description": "Implementación de sus aplicaciones lo más cerca posible de sus usuarios para una baja latencia y la residencia de datos."
+          "description": "Despliegue de sus aplicaciones lo más cerca posible de sus usuarios para una baja latencia y la residencia de datos."
         }
       }
     },
@@ -29,7 +29,7 @@
         "all": "Todos",
         "asia_oceania": "Asia-Pacífico",
         "europe": "Europe",
-        "north_africa": "Norte de África",
+        "north_africa": "África del Norte",
         "north_america": "Norteamérica"
       }
     },
@@ -39,11 +39,20 @@
     },
     "availabilityZone": {
       "title": "Elija su zona de disponibilidad",
-      "informations": "Se ha seleccionado una zona de disponibilidad predeterminada. Tiene la opción de personalizar esta elección.",
+      "informations": "Se ha seleccionado una zona de disponibilidad por defecto. Tiene la opción de personalizar esta elección.",
       "choice": {
         "company": "Elegir por mí",
         "user": "Elijo mi zona de disponibilidad"
       }
     }
+  },
+  "share": {
+    "title": "Modo de rendimiento del share",
+    "description": "Mín. {{capacityMin}}GB, {{iopsLevel}} IOPS y {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Tamaño del share",
+    "description": "El 5 % de la capacidad de almacenamiento está dedicado al almacenamiento de snapshots",
+    "label": "Asignación de rendimiento lineal (GB)"
   }
 }

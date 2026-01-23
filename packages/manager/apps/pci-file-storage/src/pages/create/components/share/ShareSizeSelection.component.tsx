@@ -40,9 +40,10 @@ export const ShareSizeSelection = () => {
   }, [min]);
 
   return (
-    <section className="pb-5 pt-9">
+    <section>
       <div className="flex flex-col gap-4">
         <Text preset="heading-4">{t('create:shareSize.title')}</Text>
+        <Text preset="paragraph">{t('create:shareSize.description')}</Text>
       </div>
       <div className="pt-6">
         <FormField className="w-full">

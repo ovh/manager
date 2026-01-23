@@ -55,7 +55,7 @@ export const DeploymentModeSelection = () => {
     };
 
   return (
-    <section className="mt-6">
+    <section>
       <Controller<TDeploymentModeSelection, 'deploymentModes'>
         name="deploymentModes"
         control={control}

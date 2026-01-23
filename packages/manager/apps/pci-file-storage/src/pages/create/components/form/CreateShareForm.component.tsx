@@ -46,7 +46,7 @@ export const CreateShareForm = () => {
           <NameInput />
         </section>
         <Divider className="w-full" />
-        <section>
+        <section className="flex flex-col gap-6">
           <Text preset="heading-2">{t('create:localisation.title')}</Text>
           <DeploymentModeSection />
           <MacroRegionSelection />
@@ -56,6 +56,9 @@ export const CreateShareForm = () => {
         <Divider className="w-full" />
         <section>
           <ShareSelection />
+        </section>
+        <Divider className="w-full" />
+        <section>
           <ShareSizeSelection />
         </section>
       </div>
