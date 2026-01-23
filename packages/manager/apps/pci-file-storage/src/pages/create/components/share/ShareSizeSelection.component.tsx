@@ -37,7 +37,7 @@ export const ShareSizeSelection = () => {
 
   useEffect(() => {
     setValue('shareData.size', min);
-  }, [min]);
+  }, [min, setValue]);
 
   return (
     <section>

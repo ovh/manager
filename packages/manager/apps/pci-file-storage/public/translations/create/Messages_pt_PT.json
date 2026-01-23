@@ -52,7 +52,13 @@
   },
   "shareSize": {
     "title": "Tamanho do share",
-    "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento de snapshots",
-    "label": "Atribuição de desempenho linear (GB)"
+    "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento dos snapshots",
+    "label": "Alocação de desempenho linear (GB)"
+  },
+  "network": {
+    "title": "Rede Privada",
+    "description": "Selecione a rede privada à qual deseja que suas instâncias se conectem ao seu arquivo de compartilhamento",
+    "label": "Selecionar uma rede privada existente",
+    "empty": "Desculpe, mas você não tem uma rede privada para esta região"
   }
 }
