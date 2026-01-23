@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from 'react';
+import { useDateFnsLocale } from '@ovh-ux/muk';
 
 import { CHART_TYPE } from './Chart.type';
 import { ChartRendererProps } from './ChartRenderer.props';
@@ -14,16 +15,18 @@ export const ChartRendererComponent = <TData,>({
   ...rest
 }: Readonly<ChartRendererProps<TData>>) => {
   const { isLoading, data } = rest;
+  const dateFnsLocale = useDateFnsLocale();
+  const locale = dateFnsLocale.code;
 
   if (!isLoading && (!data || data.length === 0)) return <NoDataComponent />;
 
   let ChartComponent: React.ReactElement;
   switch (type) {
     case CHART_TYPE.TimeSeries:
-      ChartComponent = <LazyTimeSeriesChart {...rest} />;
+      ChartComponent = <LazyTimeSeriesChart {...rest} locale={locale} />;
       break;
     case CHART_TYPE.Bars:
-      ChartComponent = <LazyBarsChart {...rest} />;
+      ChartComponent = <LazyBarsChart {...rest} locale={locale} />;
       break;
     default:
       ChartComponent = <LazyUnknownChart message={`type: ${String(type)}`} />;
