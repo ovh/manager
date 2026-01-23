@@ -38,6 +38,8 @@ export const FEATURE_NAMES = {
   managedBareMetal: 'managed-bare-metal',
   managedBareMetalDatacenter: 'managed-bare-metal',
   ovhCloudConnect: 'cloud-connect',
+  vmwareCloudDirectorVirtualDataCenter:
+    'vmware-cloud-director-virtual-data-center',
   vrackServices: 'vrack-services',
   legacyVrackDelete: 'vrack:delete',
 };
@@ -70,6 +72,7 @@ export const TYPE_SERVICE = {
   ipv6: 'ipv6',
   ovhCloudConnect: 'ovhCloudConnect',
   vrackServices: 'vrackServices',
+  vmwareCloudDirectorVirtualDataCenter: 'vmwareCloudDirectorVirtualDataCenter',
 };
 
 // ALL ELIGIBLE SERVICES FOR VRACK
@@ -84,6 +87,7 @@ export const SERVICES = [
   'ipv6',
   'ovhCloudConnect',
   'vrackServices',
+  'vmwareCloudDirectorVirtualDataCenter',
 ];
 
 export const API_STATUS = {
