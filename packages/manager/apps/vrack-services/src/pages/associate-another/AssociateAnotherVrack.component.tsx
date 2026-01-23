@@ -1,40 +1,45 @@
 import React from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import {
   BUTTON_VARIANT,
-  MESSAGE_COLOR,
-  TEXT_PRESET,
-  Text,
-  Select,
-  Message,
   Button,
   FormField,
+  MESSAGE_COLOR,
+  Message,
   MessageBody,
-  SelectControl,
-  SelectContent,
   MessageIcon,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-import {
-  PageLocation,
-  ButtonType,
-  useOvhTracking,
-  PageType,
-} from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getVrackServicesResourceListQueryKey,
   useAssociateVrack,
   useDissociateVrack,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { PageName } from '@/utils/tracking';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+
 import { LoadingText } from '@/components/LoadingText.component';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { SuccessMessage } from '@/components/feedback-messages/SuccessMessage.component';
-import { getDisplayName } from '@/utils/vrack-services';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { PageName } from '@/utils/tracking';
+import { getDisplayName } from '@/utils/vrack-services';
 
 export type AssociateAnotherVrackProps = {
   vrackList: string[];
@@ -64,19 +69,19 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
     isError: isAssociateError,
     isPending: isAssociatePending,
   } = useAssociateVrack({
-    vrackServicesId: id,
+    vrackServicesId: id || '',
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: PageName.successAssociateVrack,
       });
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
       navigate('..');
       addSuccessMessage(
         t('vrackServicesAssociateSuccess', {
-          vs: getDisplayName(vs),
+          vs: getDisplayName(vs) || '',
           vrack: selectedVrack,
         }),
         { vrackServicesId: id },
@@ -87,7 +92,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
         pageType: PageType.bannerError,
         pageName: PageName.errorAssociateVrack,
       });
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
     },
@@ -100,7 +105,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
     isPending: isDissociatePending,
     isSuccess: isDissociateSuccess,
   } = useDissociateVrack({
-    vrackServicesId: id,
+    vrackServicesId: id || '',
     onSuccess: () => {
       associateVs({ vrackId: selectedVrack });
     },
@@ -114,20 +119,15 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
 
   return (
     <>
-      <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
+      <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
         {t('modalAssociateAnotherVrackDescription')}
       </Text>
       {(isAssociateError || isDissociateError) && (
-        <Message
-          dismissible={false}
-          className="mb-8"
-          color={MESSAGE_COLOR.critical}
-        >
+        <Message dismissible={false} className="mb-8" color={MESSAGE_COLOR.critical}>
           <MessageIcon name="hexagon-exclamation" />
           <MessageBody>
             {t('modalVrackAssociationError', {
-              error: (associateError || dissociateError)?.response?.data
-                .message,
+              error: (associateError || dissociateError)?.response?.data.message,
             })}
           </MessageBody>
         </Message>
@@ -136,8 +136,8 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
         <SuccessMessage
           message={t('vrackServicesDissociateSuccess', {
             ns: TRANSLATION_NAMESPACES.dissociate,
-            vs: getDisplayName(vs),
-            vrack: vrackId,
+            vs: getDisplayName(vs) || '',
+            vrack: vrackId || '',
           })}
         />
       )}
@@ -155,21 +155,21 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
       )}
       {!isDissociateSuccess && (
         <>
-          <FormField className="block mb-4">
+          <FormField className="mb-4 block">
             <label htmlFor="vrack-id" slot="label">
               {t('modalAssociateAnotherVrackCurrentVrack')}
             </label>
             <Select
               name="vrack-id"
-              items={[{ label: vrackId, value: vrackId }]}
-              defaultValue={vrackId}
+              items={[{ label: vrackId || '', value: vrackId || '' }]}
+              defaultValue={vrackId || ''}
               disabled
             >
               <SelectControl />
               <SelectContent />
             </Select>
           </FormField>
-          <FormField className="block mb-6">
+          <FormField className="mb-6 block">
             <label htmlFor="select-another-vrack" slot="label">
               {t('modalAssociateAnotherVrackSelect')}
             </label>
@@ -180,9 +180,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
               items={vrackList
                 .filter((vrack) => vrack !== vrackId)
                 .map((vrack) => ({ label: vrack, value: vrack }))}
-              onValueChange={(event) =>
-                setSelectedVrack(event.value[0] as string)
-              }
+              onValueChange={(event) => setSelectedVrack(event.value[0] as string)}
             >
               <SelectControl placeholder={t('vrackSelectPlaceholder')} />
               <SelectContent />

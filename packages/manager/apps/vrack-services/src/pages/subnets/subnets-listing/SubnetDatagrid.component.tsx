@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
+
+import type { ColumnSort } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
+
 import { Text } from '@ovhcloud/ods-react';
-import { DatagridColumn, Datagrid, Clipboard } from '@ovh-ux/muk';
-import { ColumnSort } from '@tanstack/react-table';
-import { useVrackService, Subnet } from '@ovh-ux/manager-network-common';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { SubnetsActionCell } from './SubnetsActionCell.component';
+import type { Subnet } from '@ovh-ux/manager-network-common';
+import { useVrackService } from '@ovh-ux/manager-network-common';
+import { Clipboard, Datagrid } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
+
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+
+import { SubnetsActionCell } from './SubnetsActionCell.component';
 
 const sortSubnets = (sorting: ColumnSort, subnetList: Subnet[] = []) => {
   subnetList.sort((s1, s2) => {
     switch (sorting?.id ?? '') {
       case 'displayName':
-        return s1.displayName?.localeCompare(s2.displayName);
+        return (s1.displayName || '').localeCompare(s2.displayName || '');
       case 'cidr':
-        return s1.cidr?.localeCompare(s2.cidr);
+        return (s1.cidr || '').localeCompare(s2.cidr || '');
       case 'serviceRange':
-        return s1.serviceRange?.cidr?.localeCompare(s2.serviceRange?.cidr);
+        return (s1.serviceRange?.cidr || '').localeCompare(s2.serviceRange?.cidr || '');
       case 'vlan':
-        return s1.vlan?.toString()?.localeCompare(s2.vlan?.toString());
+        return (s1.vlan?.toString() || '').localeCompare(s2.vlan?.toString() || '');
       default:
         return 0;
     }
@@ -28,10 +35,7 @@ const sortSubnets = (sorting: ColumnSort, subnetList: Subnet[] = []) => {
 };
 
 export const SubnetDatagrid: React.FC = () => {
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.subnets,
-    NAMESPACES.DASHBOARD,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.subnets, NAMESPACES.DASHBOARD]);
   const { data: vs } = useVrackService();
 
   const [sorting, setSorting] = useState<ColumnSort[]>([
@@ -52,8 +56,7 @@ export const SubnetDatagrid: React.FC = () => {
       isSortable: true,
       cell: (cellContext) => (
         <Text>
-          {cellContext.row.original?.displayName ??
-            t('none', { ns: NAMESPACES.DASHBOARD })}
+          {cellContext.row.original?.displayName ?? t('none', { ns: NAMESPACES.DASHBOARD })}
         </Text>
       ),
     },
@@ -63,9 +66,7 @@ export const SubnetDatagrid: React.FC = () => {
       label: t('subnetDatagridCidrLabel'),
       accessorKey: 'cidr',
       isSortable: true,
-      cell: (cellContext) => (
-        <Clipboard value={cellContext.row.original.cidr} />
-      ),
+      cell: (cellContext) => <Clipboard value={cellContext.row.original.cidr} />,
     },
     {
       id: 'serviceRange',
@@ -74,9 +75,7 @@ export const SubnetDatagrid: React.FC = () => {
       accessorKey: 'serviceRange.cidr',
       isSortable: true,
       minSize: 220,
-      cell: (cellContext) => (
-        <Text>{cellContext.row.original.serviceRange.cidr}</Text>
-      ),
+      cell: (cellContext) => <Text>{cellContext.row.original.serviceRange.cidr}</Text>,
     },
     {
       id: 'vlan',
@@ -95,9 +94,12 @@ export const SubnetDatagrid: React.FC = () => {
       enableHiding: false,
       maxSize: 50,
       minSize: 50,
-      cell: (cellContext) => (
-        <SubnetsActionCell cidr={cellContext.row.original.cidr} vs={vs} />
-      ),
+      cell: (cellContext) => {
+        if (!vs) {
+          return null;
+        }
+        return <SubnetsActionCell cidr={cellContext.row.original.cidr} vs={vs} />;
+      },
     },
   ];
 
@@ -106,7 +108,7 @@ export const SubnetDatagrid: React.FC = () => {
       // wrapperStyle={{ display: 'flex' }}
       // tableStyle={{ minWidth: '700px' }}
       columns={columns}
-      data={sortSubnets(sorting[0], subnetList)}
+      data={sortSubnets(sorting[0] || { id: 'displayName', desc: false }, subnetList)}
       totalCount={subnetList.length}
       sorting={{
         sorting,

@@ -1,46 +1,39 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import {
-  MESSAGE_COLOR,
-  TEXT_PRESET,
   BUTTON_VARIANT,
   Button,
+  MESSAGE_COLOR,
   Message,
-  Modal,
-  Text,
   MessageBody,
-  ModalContent,
-  ModalBody,
   MessageIcon,
+  Modal,
+  ModalBody,
+  ModalContent,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAllowedVrackList } from '@ovh-ux/manager-network-common';
-import { AssociateVrack } from './AssociateVrack.component';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { CreateVrack } from '@/components/CreateVrack.component';
 import { LoadingText } from '@/components/LoadingText.component';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+
+import { AssociateVrack } from './AssociateVrack.component';
 
 export default function AssociateVrackModal() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.associate,
-    NAMESPACES.ACTIONS,
-  ]);
-  const {
-    allowedVrackList,
-    isError,
-    isLoading,
-    error,
-    vrackListInError,
-  } = useAllowedVrackList(id);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.associate, NAMESPACES.ACTIONS]);
+  const { allowedVrackList, isError, isLoading, error, vrackListInError } = useAllowedVrackList(id);
   const closeModal = () => {
     trackClick({
       location: PageLocation.popup,
@@ -57,23 +50,14 @@ export default function AssociateVrackModal() {
   }
 
   return (
-    <Modal
-      open
-      closeOnEscape={false}
-      closeOnInteractOutside={false}
-      onOpenChange={closeModal}
-    >
+    <Modal open closeOnEscape={false} closeOnInteractOutside={false} onOpenChange={closeModal}>
       <ModalContent dismissible={false}>
         <ModalBody>
-          <Text className="block mb-4" preset={TEXT_PRESET.heading4}>
+          <Text className="mb-4 block" preset={TEXT_PRESET.heading4}>
             {t('modalVrackAssociationTitle')}
           </Text>
           {isError && (
-            <Message
-              dismissible={false}
-              className="mb-4"
-              color={MESSAGE_COLOR.critical}
-            >
+            <Message dismissible={false} className="mb-4" color={MESSAGE_COLOR.critical}>
               <MessageIcon name="hexagon-exclamation" />
               <MessageBody>
                 {t('modalVrackAssociationError', {
@@ -83,11 +67,7 @@ export default function AssociateVrackModal() {
             </Message>
           )}
           {vrackListInError.length > 0 && (
-            <Message
-              dismissible={false}
-              className="mb-4"
-              color={MESSAGE_COLOR.warning}
-            >
+            <Message dismissible={false} className="mb-4" color={MESSAGE_COLOR.warning}>
               <MessageIcon name="triangle-exclamation" />
               <MessageBody>
                 {t('modalVrackListInError', {
@@ -98,10 +78,7 @@ export default function AssociateVrackModal() {
           )}
           {isLoading && <LoadingText title={t('modalLoadingVrackList')} />}
           {!isLoading && !isError && allowedVrackList.length > 0 && (
-            <AssociateVrack
-              closeModal={closeModal}
-              vrackList={allowedVrackList}
-            />
+            <AssociateVrack closeModal={closeModal} vrackList={allowedVrackList} />
           )}
           {!isLoading && !isError && allowedVrackList.length === 0 && (
             <CreateVrack closeModal={closeModal} />

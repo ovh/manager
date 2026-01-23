@@ -1,18 +1,18 @@
 import React from 'react';
-import {
-  Outlet,
-  NavLink,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
-import { Tabs, Tab, TabList } from '@ovhcloud/ods-react';
+
+import { NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
+
 import { BaseLayout, ChangelogMenu } from '@ovh-ux/muk';
-import { OperationMessages } from '../feedback-messages/OperationMessages.component';
-import { SuccessMessages } from '../feedback-messages/SuccessMessage.component';
+
 import { CHANGELOG_LINKS, TRANSLATION_NAMESPACES } from '@/utils/constants';
+
 import { Breadcrumb } from '../Breadcrumb.component';
+import { OperationMessages } from '../feedback-messages/OperationMessages.component';
+import { SuccessMessages } from '../feedback-messages/SuccessMessages.component';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -34,22 +34,20 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (location.pathname === '') {
+    if (location.pathname === '' && tabs.length && tabs[0]) {
       setActivePanel(tabs[0].name);
       navigate(tabs[0].to);
     } else {
       const activeTab = tabs.find(
         (tab) =>
           tab.to === location.pathname ||
-          tab.pathMatchers?.some((pathMatcher) =>
-            pathMatcher.test(location.pathname),
-          ),
+          tab.pathMatchers?.some((pathMatcher) => pathMatcher.test(location.pathname)),
       );
       if (activeTab) {
         setActivePanel(activeTab.name);
       }
     }
-  }, [location.pathname]);
+  }, [location.pathname, navigate, tabs]);
 
   return (
     <BaseLayout
@@ -70,11 +68,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           <TabList>
             {tabs.map((tab: DashboardTabItemProps) => (
               <Tab value={tab.name} key={`osds-tab-${tab.name}`}>
-                <NavLink
-                  to={tab.to}
-                  className="no-underline"
-                  onClick={tab.onClick}
-                >
+                <NavLink to={tab.to} className="no-underline" onClick={tab.onClick}>
                   {tab.title}
                 </NavLink>
               </Tab>

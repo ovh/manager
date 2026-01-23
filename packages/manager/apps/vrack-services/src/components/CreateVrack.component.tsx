@@ -1,40 +1,43 @@
 import React from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import {
-  TEXT_PRESET,
   BUTTON_VARIANT,
-  SPINNER_SIZE,
-  MESSAGE_COLOR,
-  Text,
-  Spinner,
   Button,
+  MESSAGE_COLOR,
   Message,
-  MessageIcon,
   MessageBody,
+  MessageIcon,
+  SPINNER_SIZE,
+  Spinner,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   OrderDescription,
   getDeliveringOrderQueryKey,
   useOrderPollingStatus,
 } from '@ovh-ux/manager-module-order';
+import { getVrackListQueryKey, useCreateCartWithVrack } from '@ovh-ux/manager-network-common';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
-import {
-  getVrackListQueryKey,
-  useCreateCartWithVrack,
-} from '@ovh-ux/manager-network-common';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { DeliveringMessages } from '@/components/feedback-messages/DeliveringMessages.component';
-import { MessagesContext } from './feedback-messages/Messages.context';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+
 import { LoadingText } from './LoadingText.component';
 import { OrderSubmitModalContent } from './OrderSubmitModalContent.component';
-import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { MessagesContext } from './feedback-messages/Messages.context';
 
 const trackingParams = {
   location: PageLocation.popup,
@@ -46,23 +49,16 @@ export type CreateVrackProps = {
 };
 
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.createVrack,
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.createVrack, NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { environment } = React.useContext(ShellContext);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
-  const {
-    createCart,
-    data,
-    error,
-    isError,
-    isPending,
-  } = useCreateCartWithVrack(environment.user.ovhSubsidiary);
+  const { createCart, data, error, isError, isPending } = useCreateCartWithVrack(
+    environment.user.ovhSubsidiary,
+  );
 
   const {
     data: vrackDeliveringOrders,
@@ -76,20 +72,15 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
 
   return (
     <>
-      <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
+      <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
         {t('modalVrackCreationDescriptionLine1')}
       </Text>
-      <Text className="block mb-4" preset={TEXT_PRESET.paragraph}>
+      <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
         {t('modalVrackCreationDescriptionLine2')}
       </Text>
       {areVrackOrdersLoading && <Spinner size={SPINNER_SIZE.md} />}
-      <DeliveringMessages
-        messageKey="deliveringVrackMessage"
-        orders={vrackDeliveringOrders}
-      />
-      {isPending && (
-        <LoadingText title={t('modalVrackCreationOrderWaitMessage')} />
-      )}
+      <DeliveringMessages messageKey="deliveringVrackMessage" orders={vrackDeliveringOrders} />
+      {isPending && <LoadingText title={t('modalVrackCreationOrderWaitMessage')} />}
       {(isVrackOrdersError || isError) && (
         <Message dismissible={false} color={MESSAGE_COLOR.critical}>
           <MessageIcon name="hexagon-exclamation" />
@@ -100,29 +91,27 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
           </MessageBody>
         </Message>
       )}
-      <Button
-        slot="actions"
-        type="button"
-        variant={BUTTON_VARIANT.ghost}
-        onClick={closeModal}
-      >
+      <Button slot="actions" type="button" variant={BUTTON_VARIANT.ghost} onClick={closeModal}>
         {t('cancel', { ns: NAMESPACES.ACTIONS })}
       </Button>
-      {data?.contractList?.length > 0 ? (
+      {data?.contractList && data?.contractList?.length > 0 ? (
         <OrderSubmitModalContent
           submitButtonLabel={t('modalVrackCreationSubmitOrderButtonLabel')}
           cartId={data?.cartId}
           contractList={data?.contractList}
-          onSuccess={async (orderResponse) => {
-            await queryClient.invalidateQueries({
-              queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
-            });
-            navigate('..');
-            addSuccessMessage(t('vrackCreationSuccess'), {
-              linkLabel: t('vrackOrderLinkLabel'),
-              linkUrl: orderResponse.data.url,
-            });
-          }}
+          onSuccess={(orderResponse) =>
+            void queryClient
+              .invalidateQueries({
+                queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
+              })
+              .then(() => {
+                navigate('..');
+                addSuccessMessage(t('vrackCreationSuccess'), {
+                  linkLabel: t('vrackOrderLinkLabel'),
+                  linkUrl: orderResponse.data.url,
+                });
+              })
+          }
         />
       ) : (
         <Button
@@ -130,7 +119,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
           type="button"
           disabled={
             areVrackOrdersLoading ||
-            vrackDeliveringOrders.length > 0 ||
+            (vrackDeliveringOrders?.length ?? 0) > 0 ||
             isVrackOrdersError ||
             isPending
           }

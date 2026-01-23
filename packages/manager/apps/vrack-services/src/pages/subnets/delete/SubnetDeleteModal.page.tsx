@@ -1,37 +1,39 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
-  useOvhTracking,
-  ButtonType,
-  PageLocation,
-  PageType,
-  TrackingClickParams,
-} from '@ovh-ux/manager-react-shell-client';
-import {
+  BUTTON_VARIANT,
+  Button,
   MESSAGE_COLOR,
-  Text,
   Message,
   MessageBody,
   MessageIcon,
   Modal,
   ModalBody,
   ModalContent,
-  TEXT_PRESET,
-  BUTTON_VARIANT,
-  Button,
-  Spinner,
   SPINNER_SIZE,
+  Spinner,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useUpdateVrackServices, useVrackService } from '@ovh-ux/manager-network-common';
 import {
-  useVrackService,
-  useUpdateVrackServices,
-} from '@ovh-ux/manager-network-common';
-import { PageName } from '@/utils/tracking';
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import type { TrackingClickParams } from '@ovh-ux/manager-react-shell-client';
+
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import { getDisplayName } from '@/utils/vrack-services';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { PageName } from '@/utils/tracking';
+import { getDisplayName } from '@/utils/vrack-services';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -45,19 +47,14 @@ export default function SubnetDeleteModal() {
     TRANSLATION_NAMESPACES.common,
   ]);
   const { id, cidr } = useParams();
-  const cidrToDelete = cidr.replace('_', '/');
+  const cidrToDelete = cidr?.replace('_', '/') || '';
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { trackPage, trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
   const { data: vs, isLoading } = useVrackService();
-  const {
-    deleteSubnet,
-    isPending,
-    updateError,
-    isError,
-  } = useUpdateVrackServices({
-    id,
+  const { deleteSubnet, isPending, updateError, isError } = useUpdateVrackServices({
+    id: id || '',
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
@@ -66,10 +63,10 @@ export default function SubnetDeleteModal() {
       navigate('..');
       addSuccessMessage(
         t('subnetDeleteSuccess', {
-          id: getDisplayName(vs),
+          id: getDisplayName(vs) || '',
           cidr: cidrToDelete,
         }),
-        { vrackServicesId: id },
+        { vrackServicesId: id || '' },
       );
     },
     onError: () => {
@@ -100,13 +97,13 @@ export default function SubnetDeleteModal() {
     >
       <ModalContent>
         <ModalBody>
-          <div className="flex items-center mb-4">
-            <Text className="block mr-3 flex-1" preset={TEXT_PRESET.heading4}>
+          <div className="mb-4 flex items-center">
+            <Text className="mr-3 block flex-1" preset={TEXT_PRESET.heading4}>
               {t('modalDeleteSubnetHeadline')}
             </Text>
           </div>
           {isLoading && (
-            <div data-testid="spinner" className="flex justify-center my-5">
+            <div data-testid="spinner" className="my-5 flex justify-center">
               <Spinner size={SPINNER_SIZE.md} inline-block></Spinner>
             </div>
           )}
@@ -114,11 +111,7 @@ export default function SubnetDeleteModal() {
             <>
               <Text>{t('modalDeleteSubnetDescription')}</Text>
               {isError && (
-                <Message
-                  dismissible={false}
-                  className="mb-8"
-                  color={MESSAGE_COLOR.critical}
-                >
+                <Message dismissible={false} className="mb-8" color={MESSAGE_COLOR.critical}>
                   <MessageIcon name="hexagon-exclamation" />
                   <MessageBody>
                     {t('modalError', {
@@ -130,7 +123,7 @@ export default function SubnetDeleteModal() {
               )}
             </>
           )}
-          <div className="flex justify-end flex-wrap gap-4">
+          <div className="flex flex-wrap justify-end gap-4">
             <Button
               data-testid={'secondary-button'}
               variant={BUTTON_VARIANT.ghost}
@@ -153,7 +146,9 @@ export default function SubnetDeleteModal() {
                     actionType: 'action',
                     actions: ['delete_subnets', 'confirm'],
                   });
-                  deleteSubnet({ vs, cidrToDelete });
+                  if (vs) {
+                    deleteSubnet({ vs, cidrToDelete });
+                  }
                 }
               }}
               disabled={isPending}

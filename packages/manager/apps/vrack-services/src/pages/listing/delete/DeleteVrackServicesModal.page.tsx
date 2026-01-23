@@ -1,15 +1,29 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { DeleteModal } from '@ovh-ux/muk';
-import { useVrackService } from '@ovh-ux/manager-network-common';
+
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
+import { useVrackService } from '@ovh-ux/manager-network-common';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import type { TrackingClickParams } from '@ovh-ux/manager-react-shell-client';
+import { DeleteModal } from '@ovh-ux/muk';
+
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import { PageName } from '@/utils/tracking';
-import { sharedTrackingParams } from './deleteVrackServicesModal.constants';
-import { getDisplayName } from '@/utils/vrack-services';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { PageName } from '@/utils/tracking';
+import { getDisplayName } from '@/utils/vrack-services';
+
+const sharedTrackingParams: TrackingClickParams = {
+  location: PageLocation.popup,
+  buttonType: ButtonType.button,
+};
 
 export default function DeleteVrackServicesModal() {
   const { id } = useParams();
@@ -28,7 +42,7 @@ export default function DeleteVrackServicesModal() {
       navigate('..');
       addSuccessMessage(
         t('terminateVrackServicesSuccess', {
-          vrackServices: getDisplayName(vs),
+          vrackServices: getDisplayName(vs) || '',
         }),
         { vrackServicesId: id },
       );
@@ -62,9 +76,9 @@ export default function DeleteVrackServicesModal() {
           actionType: 'action',
           actions: ['delete_vrack-services', 'confirm'],
         });
-        terminateService({ resourceName: id });
+        terminateService({ resourceName: id || '' });
       }}
-      error={isError ? error?.response?.data?.message : null}
+      error={isError && error?.response?.data?.message ? error.response.data.message : undefined}
     />
   );
 }

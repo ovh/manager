@@ -1,20 +1,18 @@
 import React from 'react';
-import {
-  SPINNER_SIZE,
-  CARD_COLOR,
-  TEXT_PRESET,
-  Spinner,
-  Card,
-  Text,
-} from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
+
 import { Outlet } from 'react-router-dom';
-import { Tile, Error, useFormatDate } from '@ovh-ux/muk';
-import { useVrackService } from '@ovh-ux/manager-network-common';
+
+import { useTranslation } from 'react-i18next';
+
+import { CARD_COLOR, Card, SPINNER_SIZE, Spinner, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { NAMESPACES as COMMON_TRANSLATION_NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { VrackId } from '@/components/vrack-id/VrackId.component';
+import { useVrackService } from '@ovh-ux/manager-network-common';
+import { Error, Tile, useFormatDate } from '@ovh-ux/muk';
+
 import { DisplayName } from '@/components/display-name/DisplayName.component';
-import { ProductStatusChip } from '@/components/ProductStatusChip.component';
+import { ProductStatusChip } from '@/components/product-status-chip/ProductStatusChip.component';
+import { VrackId } from '@/components/vrack-id/VrackId.component';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function OverviewTab() {
@@ -29,13 +27,10 @@ export default function OverviewTab() {
     <Error error={error} />
   ) : (
     <>
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">
+      <div className="grid py-6 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         <div className="p-3">
           {isLoading ? (
-            <Card
-              className="w-full h-full justify-center"
-              color={CARD_COLOR.neutral}
-            >
+            <Card className="size-full justify-center" color={CARD_COLOR.neutral}>
               <Spinner size={SPINNER_SIZE.md} />
             </Card>
           ) : (
@@ -43,15 +38,15 @@ export default function OverviewTab() {
               <Tile.Item.Root>
                 <Tile.Item.Term label={t('displayName')} />
                 <Tile.Item.Description>
-                  <DisplayName {...vrackServices} />
+                  {vrackServices && <DisplayName {...vrackServices} />}
                 </Tile.Item.Description>
               </Tile.Item.Root>
               <Tile.Item.Root>
                 <Tile.Item.Term label={t('productStatus')} />
                 <Tile.Item.Description>
-                  <ProductStatusChip
-                    productStatus={vrackServices?.currentState.productStatus}
-                  />
+                  {vrackServices?.currentState?.productStatus && (
+                    <ProductStatusChip productStatus={vrackServices.currentState.productStatus} />
+                  )}
                 </Tile.Item.Description>
               </Tile.Item.Root>
               <Tile.Item.Root>
@@ -59,18 +54,16 @@ export default function OverviewTab() {
                 <Tile.Item.Description>
                   <Text preset={TEXT_PRESET.paragraph}>
                     <Text>
-                      {t(
-                        `region_${vrackServices?.currentState?.region?.toLowerCase()}`,
-                      )}
+                      {t(`region_${vrackServices?.currentState?.region?.toLowerCase() || ''}`)}
                     </Text>
-                    <div>{vrackServices?.currentState?.region}</div>
+                    <div>{vrackServices?.currentState?.region || ''}</div>
                   </Text>
                 </Tile.Item.Description>
               </Tile.Item.Root>
               <Tile.Item.Root>
                 <Tile.Item.Term label={t('vrackId')} />
                 <Tile.Item.Description>
-                  <VrackId {...vrackServices} />
+                  {vrackServices && <VrackId {...vrackServices} />}
                 </Tile.Item.Description>
               </Tile.Item.Root>
               <Tile.Item.Root>

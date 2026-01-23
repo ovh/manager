@@ -1,26 +1,26 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import {
-  TEXT_PRESET,
-  MESSAGE_COLOR,
-  ICON_NAME,
-  Text,
   Button,
-  Message,
   Checkbox,
+  ICON_NAME,
   Link,
+  MESSAGE_COLOR,
+  Message,
   MessageBody,
   MessageIcon,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Contract, Order } from '@ovh-ux/manager-module-order';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import type { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import type { Contract, Order } from '@ovh-ux/manager-module-order';
 import { useSendOrder } from '@ovh-ux/manager-network-common';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { LoadingText } from '@/components/LoadingText.component';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
@@ -39,10 +39,7 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
   onSuccess,
   onError,
 }) => {
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.common,
-    NAMESPACES.ORDER,
-  ]);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.common, NAMESPACES.ORDER]);
   const { trackClick } = useOvhTracking();
   const [isContractAccepted, setIsContractAccepted] = React.useState(false);
   const { sendOrder, isPending, error, isError } = useSendOrder();
@@ -50,11 +47,7 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
   return (
     <>
       {isError && (
-        <Message
-          dismissible={false}
-          color={MESSAGE_COLOR.critical}
-          className="mb-6"
-        >
+        <Message dismissible={false} color={MESSAGE_COLOR.critical} className="mb-6">
           <MessageIcon name="hexagon-exclamation" />
           <MessageBody>{error?.response?.data?.message}</MessageBody>
         </Message>
@@ -64,15 +57,11 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
           name="confirm-contract"
           checked={isContractAccepted}
           onCheckedChange={(event) =>
-            setIsContractAccepted(
-              event.checked && event.checked !== 'indeterminate',
-            )
+            setIsContractAccepted(event.checked && event.checked !== 'indeterminate')
           }
         />
         <label className="ml-3 cursor-pointer" htmlFor="confirm-contract">
-          <Text preset={TEXT_PRESET.paragraph}>
-            {t('accept_terms', { ns: NAMESPACES.ORDER })}
-          </Text>
+          <Text preset={TEXT_PRESET.paragraph}>{t('accept_terms', { ns: NAMESPACES.ORDER })}</Text>
         </label>
       </div>
       <ul>

@@ -1,0 +1,181 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EndpointsListing > should display the endpoints listing 1`] = `
+<div>
+  <div
+    class="py-8 px-4 md:py-9 md:px-10 md:mt-2"
+  >
+    <div />
+    <button
+      class="_button_6crpx_2 _button--primary_6crpx_276 _button--sm_6crpx_209 _button--outline_6crpx_435 my-4"
+      data-ods="button"
+      type="button"
+    >
+      <span
+        class="_icon_1iyhc_2 _icon--plus_1iyhc_445"
+        data-ods="icon"
+        role="presentation"
+      />
+      Créer un Service Endpoint
+    </button>
+    <section>
+      <div
+        class="overflow-auto relative w-full"
+        style="max-height: 100%; height: 100%;"
+      >
+        <table
+          class="_table_4upov_2 _table--md_4upov_54 table table-fixed w-full"
+          data-ods="table"
+        >
+          <thead
+            class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+          >
+            <tr>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+              >
+                <div
+                  class="cursor-pointer select-none h-[20px]  h-auto"
+                  data-testid="header-managedServiceURN"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  >
+                    Nom du service
+                  </span>
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-up_1iyhc_37"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 100px; min-width: 20px; max-width: 100px;"
+              >
+                <div
+                  class="cursor-pointer select-none h-[20px]  h-auto"
+                  data-testid="header-serviceType"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  >
+                    Type de service
+                  </span>
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 70px; min-width: 20px; max-width: 70px;"
+              >
+                <div
+                  class="cursor-pointer select-none h-[20px]  h-auto"
+                  data-testid="header-ip"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  >
+                    Adresse IP
+                  </span>
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 70px; min-width: 20px; max-width: 70px;"
+              >
+                <div
+                  class="cursor-pointer select-none h-[20px]  h-auto"
+                  data-testid="header-subnet"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  >
+                    Sous-réseau
+                  </span>
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th
+                class="text-left pl-4 whitespace-normal wrap-break-word"
+                style="word-break: break-word; width: 50px; min-width: 50px; max-width: 50px;"
+              >
+                <div
+                  class=" h-[20px]  h-auto"
+                  data-testid="header-actions"
+                >
+                  <span
+                    class="whitespace-normal wrap-break-word"
+                    style="word-break: break-word;"
+                  />
+                  <span
+                    class="align-middle inline-block pl-1 -mt-1"
+                  >
+                    <span
+                      class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="h-[3.25rem] w-full"
+            >
+              <td
+                class="absolute text-center w-full py-[15px]"
+                style="border-right: 1px solid var(--ods-color-neutral-100); left: 0px;"
+              >
+                <p
+                  class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+                  data-ods="text"
+                >
+                  Aucun résultat
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+`;
