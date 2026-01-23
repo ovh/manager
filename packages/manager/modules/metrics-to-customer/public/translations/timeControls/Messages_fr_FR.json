@@ -1,9 +1,7 @@
 {
-  "button_cancel": "Annuler",
   "option_custom": "Personnalisé",
   "option_day": "1 jour",
   "option_days": "{{nbDays}} jours",
-  "button_refresh": "Actualiser",
   "time_range_from": "Du",
   "time_range_to": "Au",
   "apply_time_range": "Appliquer"
