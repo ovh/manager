@@ -1,4 +1,4 @@
-import { IntervalUnit } from "@ovh-ux/muk";
+import { IntervalUnit } from '@ovh-ux/muk';
 
 export const getPriceUnit = (duration?: string) => {
   switch (duration) {

@@ -4,11 +4,11 @@ import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@
 
 import { render } from '@/utils/test.provider';
 
-import { EmailAccountsExportCsv } from './EmailAccountsExportCsv.component';
+import { ExportCsv } from './ExportCsv.component';
 
-describe('EmailAccountsExportCsv Component', () => {
+describe('ExportCsv Component', () => {
   test('renders Export CSV button', () => {
-    const { getByTestId } = render(<EmailAccountsExportCsv />);
+    const { getByTestId } = render(<ExportCsv />);
     expect(getByTestId('export-csv')).toHaveTextContent(
       actionsCommonTranslation.export_as.replace('{{ format }}', 'CSV'),
     );
