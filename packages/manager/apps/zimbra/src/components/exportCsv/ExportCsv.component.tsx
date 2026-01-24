@@ -16,8 +16,7 @@ import {
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { useBytes, useNotifications } from '@ovh-ux/muk';
-import { Button } from '@ovh-ux/muk';
+import { Button, useBytes, useNotifications } from '@ovh-ux/muk';
 
 import { AccountType } from '@/data/api';
 import { SlotWithService, useAccounts, usePlatform, useSlotsWithService } from '@/data/hooks';
@@ -35,7 +34,7 @@ type ItemCSV = {
   slot: SlotWithService;
 };
 
-export const EmailAccountsExportCsv = () => {
+export const ExportCsv = () => {
   const { t } = useTranslation([
     'accounts',
     'common',
@@ -230,7 +229,7 @@ export const EmailAccountsExportCsv = () => {
       .map((slot) => {
         return {
           account: accounts.find((account) => account.currentState.slotId === slot.id),
-          slot: slot,
+          slot,
         };
       })
       .sort((a: ItemCSV, b: ItemCSV) => {

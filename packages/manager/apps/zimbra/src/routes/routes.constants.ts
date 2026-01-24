@@ -44,4 +44,5 @@ export const urls = {
   redirections_delete: '/:platformId/redirections/delete',
   auto_replies: '/:platformId/auto_replies',
   auto_replies_delete: '/:platformId/auto_replies/:autoReplyId/delete',
+  services: '/:platformId/services',
 };
