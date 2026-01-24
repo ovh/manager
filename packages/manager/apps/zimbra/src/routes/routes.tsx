@@ -57,6 +57,7 @@ import {
   ORDER_ZIMBRA_EMAIL_ACCOUNT,
   ORGANIZATION,
   REDIRECTION,
+  SERVICES,
   UNDO_CANCEL_SLOT,
   UPDATE_OFFER_SLOT,
   VERIFY_DOMAIN,
@@ -163,6 +164,7 @@ const OnboardingDomainPage = React.lazy(
 const OnboardingEmailAccountsPage = React.lazy(
   () => import('@/pages/onboarding/configure/emailAccounts/EmailAccounts.page'),
 );
+const ServicePage = React.lazy(() => import('@/pages/dashboard/services/Services.page'));
 
 export default (
   <Route
@@ -719,6 +721,19 @@ export default (
           }}
         />
       </Route>
+      <Route
+        path={'services'}
+        Component={ServicePage}
+        handle={{
+          tracking: {
+            pageName: SERVICES,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:service',
+          },
+        }}
+      />
       <Route
         path={'redirections'}
         Component={RedirectionPage}

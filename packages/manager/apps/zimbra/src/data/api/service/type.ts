@@ -14,6 +14,8 @@ export type SlotService = {
   state: keyof typeof ServiceBillingState;
   planCode?: ZimbraPlanCodes;
   price?: string;
+  priceInUcents?: number;
+  duration?: string;
 };
 
 export const SlotServiceTerminationPolicy = {

@@ -42,6 +42,7 @@ import {
   MAILING_LIST,
   ORGANIZATION,
   REDIRECTION,
+  SERVICES,
   UNSELECT_ORGANIZATION,
 } from '@/tracking.constants';
 import { FEATURE_FLAGS } from '@/utils';
@@ -151,6 +152,13 @@ export const DashboardLayout: React.FC = () => {
       to: useGenerateUrl(`${basePath}/auto_replies`, 'path'),
       pathMatchers: useComputePathMatchers([urls.auto_replies]),
       hidden: !FEATURE_FLAGS.AUTOREPLIES,
+    },
+    {
+      name: 'service',
+      trackingName: SERVICES,
+      title: t('common:service'),
+      to: useGenerateUrl(`${basePath}/services`, 'path'),
+      pathMatchers: useComputePathMatchers([urls.services]),
     },
   ];
 

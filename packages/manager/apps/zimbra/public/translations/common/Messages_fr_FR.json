@@ -131,5 +131,6 @@
   "contactInformation_street": "Rue",
   "contactInformation_postcode": "Code postal",
   "contactInformation_city": "Ville",
-  "contactInformation_country": "Pays"
+  "contactInformation_country": "Pays",
+  "service": "Service"
 }
