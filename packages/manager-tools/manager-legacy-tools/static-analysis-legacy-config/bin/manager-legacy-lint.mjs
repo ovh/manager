@@ -47,9 +47,9 @@ const require = createRequire(import.meta.url);
 /* ────────────────────────────────────────────────────────────── */
 
 function parseArgs(argv) {
-  const hasFlag = (f) => argv.includes(f);
-  const getFlagValue = (f) => {
-    const i = argv.indexOf(f);
+  const hasFlag = (flag) => argv.includes(flag);
+  const getFlagValue = (flag) => {
+    const i = argv.indexOf(flag);
     return i >= 0 ? argv[i + 1] : undefined;
   };
 
