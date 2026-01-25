@@ -16,6 +16,7 @@
   "packages/manager/apps/email-pro",
   "packages/manager/apps/hpc-vmware-vsphere",
   "packages/manager/apps/hycu",
+  "packages/manager/apps/ips",
   "packages/manager/apps/okms",
   "packages/manager/apps/pci-ai-endpoints",
   "packages/manager/apps/pci-ai-tools",
@@ -24,6 +25,7 @@
   "packages/manager/apps/public-cloud",
   "packages/manager/apps/pci-cold-archive",
   "packages/manager/apps/pci-contacts",
+  "packages/manager/apps/pci-file-storage",
   "packages/manager/apps/pci-project",
   "packages/manager/apps/pci-databases-analytics",
   "packages/manager/apps/pci-dataplatform",
@@ -44,6 +46,7 @@
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/pci-vouchers",
   "packages/manager/apps/pci-workflow",
+  "packages/manager/apps/overthebox",
   "packages/manager/apps/telecom",
   "packages/manager/apps/telecom-dashboard",
   "packages/manager/apps/telecom-task",
@@ -51,7 +54,5 @@
   "packages/manager/apps/web",
   "packages/manager/apps/web-domains",
   "packages/manager/core/shell-client",
-  "packages/manager/modules/logs-to-customer",
-  "packages/manager/apps/ips",
-  "packages/manager/apps/pci-file-storage"
+  "packages/manager/modules/logs-to-customer"
 ]

@@ -21,7 +21,6 @@
   "packages/manager/apps/netapp",
   "packages/manager/apps/nutanix",
   "packages/manager/apps/order-tracking",
-  "packages/manager/apps/overthebox",
   "packages/manager/apps/pci",
   "packages/manager/apps/procedures",
   "packages/manager/apps/restricted",
