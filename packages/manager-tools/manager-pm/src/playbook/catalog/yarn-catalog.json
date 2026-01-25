@@ -15,7 +15,6 @@
   "packages/manager/apps/hub",
   "packages/manager/apps/iam",
   "packages/manager/apps/identity-access-management",
-  "packages/manager/apps/iplb",
   "packages/manager/apps/metrics",
   "packages/manager/apps/nasha",
   "packages/manager/apps/netapp",
