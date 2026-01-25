@@ -14,7 +14,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
     "coverage": "vitest run --coverage",
-    "lint": "eslint ./src",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "tsc && vite",
     "test": "vitest run --pool=threads",
     "test-ui": "vitest --ui --coverage.enabled=true"
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@tanstack/react-query-devtools": "5.91.1",
@@ -67,13 +69,10 @@
     "@types/node": "^20.10.6",
     "@types/react": "18.2.79",
     "@types/react-dom": "18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.9",
     "@vitest/ui": "^2.1.9",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
     "postcss": "^8.4.49",
     "rollup": "^4.18.0",
     "tailwindcss": "^3.4.4",

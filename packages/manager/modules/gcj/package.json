@@ -23,8 +23,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite build",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },

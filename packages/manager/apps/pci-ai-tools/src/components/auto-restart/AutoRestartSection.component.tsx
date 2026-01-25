@@ -25,7 +25,7 @@ interface AutoRestartSectionProps {
 
 export const AutoRestartSection = ({ form, app }: AutoRestartSectionProps) => {
   const { t } =
-    app == 'job'
+    app === 'job'
       ? useTranslation('ai-tools/jobs/create')
       : useTranslation('ai-tools/notebooks/create');
 
