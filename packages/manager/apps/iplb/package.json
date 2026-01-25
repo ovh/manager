@@ -27,6 +27,7 @@
     "@ovh-ux/ng-at-internet": "^6.0.44",
     "@ovh-ux/ng-log-live-tail": "^2.7.2",
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.7",
+    "@ovh-ux/manager-ng-apiv2-helper": "^0.2.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-chart": "^1.3.5",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.18.4",
