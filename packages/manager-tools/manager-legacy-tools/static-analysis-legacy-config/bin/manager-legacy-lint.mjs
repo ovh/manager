@@ -154,10 +154,10 @@ function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, 'utf8'));
 }
 
-function pickFirstExisting(dir, candidates) {
-  for (const file of candidates) {
-    const path = path.join(dir, file);
-    if (existsSync(path)) return path;
+function pickFirstExisting(directory, candidates) {
+  for (const candidateFile of candidates) {
+    const filePath = path.join(directory, candidateFile);
+    if (existsSync(filePath)) return filePath;
   }
   return null;
 }
