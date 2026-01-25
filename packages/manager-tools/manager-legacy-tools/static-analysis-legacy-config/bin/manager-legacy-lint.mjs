@@ -155,9 +155,9 @@ function readJson(filePath) {
 }
 
 function pickFirstExisting(dir, candidates) {
-  for (const f of candidates) {
-    const p = path.join(dir, f);
-    if (existsSync(p)) return p;
+  for (const file of candidates) {
+    const path = path.join(dir, file);
+    if (existsSync(path)) return path;
   }
   return null;
 }
