@@ -414,12 +414,10 @@ const actions = {
       return testModule(module, runner);
     }
   },
-  async lint({ app, module, passthrough, opts, runner }) {
+  async lint({ app, module, runner }) {
     if (!app && !module) {
       exitError(`Action "lint" requires either --app or --module`);
     }
-
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
 
     if (app) {
       logger.info(`🏗️  Linting application: ${app} (runner: ${runner})`);
