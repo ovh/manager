@@ -15,8 +15,8 @@
     "build": "tsc --project tsconfig.build.json && vite build",
     "build:strict": "tsc --project tsconfig.strict.json && vite build",
     "coverage": "manager-test run --coverage",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "tsc && vite",
     "test": "manager-test run",
     "test-ui": "manager-test --ui --coverage.enabled=true"

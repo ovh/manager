@@ -143,8 +143,8 @@ export { CONSTANT_NAME } from './ConstantName.constants';
     "test": "manager-test",
     "test:ui": "manager-test --ui",
     "test:ci": "manager-test run --coverage",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src ; yarn lint:modern:imports:fix",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src ; yarn lint:modern:imports:fix",
     "lint:modern:imports:fix": "node scripts/muk-exports-order.mjs",
     "type-check": "tsc --noEmit"
   },

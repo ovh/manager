@@ -14,11 +14,21 @@ module.exports = {
     test: false,
   },
   rules: {
+    "arrow-body-style": "warn",
+    'prefer-const': 'warn',
+    'import/order': 'warn',
+    'no-param-reassign': 'warn',
+    '@typescript-eslint/no-shadow': 'warn',
+    'no-prototype-builtins': 'warn',
+    'prefer-arrow-callback': 'warn',
+    'no-irregular-whitespace': 'warn',
+    'import/no-extraneous-dependencies': 'warn',
+    'prefer-destructuring': 'warn',
+    'no-void': 'warn',
+    'no-restricted-syntax': 'warn',
+    'no-underscore-dangle': 'warn',
+
     'no-bitwise': ['error', { allow: ['~'] }],
-    'import/no-extraneous-dependencies': [
-      'error',
-      { devDependencies: true, peerDependencies: true },
-    ],
     'import/no-unresolved': 0,
     'prettier/prettier': 'warn',
     'import/extensions': 'off',
@@ -111,6 +121,7 @@ module.exports = {
       ],
       rules: {
         'func-names': 'off',
+        'prefer-const': 'warn',
       },
       env: {
         mocha: true,
@@ -133,6 +144,7 @@ module.exports = {
       ],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        '@typescript-eslint/no-shadow': 'warn',
       },
       env: {
         mocha: true,

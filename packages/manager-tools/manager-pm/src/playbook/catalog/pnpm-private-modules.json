@@ -288,6 +288,10 @@
     "pnpm": "packages/manager-tools/manager-legacy-tools/test-utils"
   },
   {
+    "turbo": "--filter @ovh-ux/manager-static-analysis-legacy-kit",
+    "pnpm": "packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-tailwind-config",
     "pnpm": "packages/manager-tools/manager-tailwind-config"
   },

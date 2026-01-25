@@ -13,7 +13,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite",
-    "lint": "eslint ./src",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "tsc && vite",
     "test": "vitest --config vitest.config.mjs run",
     "test:coverage": "vitest --config vitest.config.mjs run --coverage"
@@ -51,13 +52,12 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.11.7",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.4",
     "element-internals-polyfill": "^3.0.2",

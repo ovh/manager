@@ -2,6 +2,10 @@
   "$schema": "https://turbo.build/schema.json",
   "daemon": false,
   "cacheDir": "node_modules/.cache/turbo",
+  "globalDependencies": [
+    "{workspaceRoot}/yarn.lock",
+    "{workspaceRoot}/pnpm-lock.yaml"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -11,6 +15,7 @@
     },
     "test": {
       "dependsOn": ["^test", "@ovh-ux/manager-static-analysis-kit#build"],
+      "outputLogs": "new-only",
       "outputs": []
     },
     "dev": {
@@ -35,13 +40,38 @@
       ],
       "dependsOn": ["^dev"]
     },
-    "lint:modern": {
+    
+    "lint": {
       "outputs": [],
-      "dependsOn": ["^lint:modern", "^build"]
+      "outputLogs": "new-only",
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**",
+        "package.json",
+        "{workspaceRoot}/.eslintrc*",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/.stylelintrc*",
+        "{workspaceRoot}/.stylelintignore",
+        "{workspaceRoot}/.htmlhintrc*",
+        "{workspaceRoot}/.remarkrc*",
+        "{workspaceRoot}/.remarkignore"
+      ]
     },
-    "lint:modern:fix": {
+    "lint:fix": {
       "outputs": [],
-      "dependsOn": ["^lint:modern", "^build"]
+      "outputLogs": "new-only",
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**",
+        "package.json",
+        "{workspaceRoot}/.eslintrc*",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/.stylelintrc*",
+        "{workspaceRoot}/.stylelintignore",
+        "{workspaceRoot}/.htmlhintrc*",
+        "{workspaceRoot}/.remarkrc*",
+        "{workspaceRoot}/.remarkignore"
+      ]
     }
   }
 }

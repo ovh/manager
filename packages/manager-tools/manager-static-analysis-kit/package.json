@@ -108,8 +108,8 @@
   "scripts": {
     "build": "tsx scripts/build.ts",
     "postinstall": "tsx scripts/build.ts",
-    "lint:modern": "manager-lint --config eslint.config.mts ./src/**/*.ts",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mts ./src/**/*.ts",
+    "lint": "manager-lint --config eslint.config.mts ./src/**/*.ts",
+    "lint:fix": "manager-lint --fix --config eslint.config.mts ./src/**/*.ts",
     "prepare": "tsx scripts/build.ts"
   },
   "dependencies": {
