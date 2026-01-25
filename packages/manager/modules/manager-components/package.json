@@ -20,14 +20,14 @@
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "lodash": "^4.17.15"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.10.0",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.4",
     "moment": "^2.24.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

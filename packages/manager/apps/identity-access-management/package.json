@@ -12,11 +12,11 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "vite",
     "test": "manager-test --config vitest.config.mjs run",
-    "test:coverage": "manager-test --config vitest.config.mjs run --coverage",
-    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.28.2",
@@ -43,14 +43,14 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.11.7",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/jest-dom": "^6.6.3",
     "msw": "2.1.7",
     "typescript": "^5.1.6",
-    "vitest": "^2.1.9",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "vitest": "^2.1.9"
   },
   "regions": [
     "CA",

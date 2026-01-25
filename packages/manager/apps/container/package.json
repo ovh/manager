@@ -13,7 +13,6 @@
   "scripts": {
     "build": "tsc && vite build",
     "build:strict": "tsc --project tsconfig.strict.json && vite build",
-    "lint": "eslint ./src",
     "lint": "manager-lint --config eslint.config.mjs ./src",
     "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",

@@ -19,6 +19,9 @@
     "@ovh-ux/manager-models": "^2.7.9",
     "lodash-es": "^4.17.15"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-components": "^1.25.3",
     "@ovh-ux/manager-config": "^8.0.0",
@@ -33,8 +36,5 @@
     "bootstrap": "~3.3.7",
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "moment": "^2.24.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

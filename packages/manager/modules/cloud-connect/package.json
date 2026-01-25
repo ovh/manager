@@ -20,6 +20,9 @@
     "date-fns": "^3.6.0",
     "lodash": "^4.17.14"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
@@ -44,8 +47,5 @@
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^14.0.6"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

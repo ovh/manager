@@ -11,9 +11,9 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env production",
-    "start": "webpack-dev-server",
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
+    "start": "webpack-dev-server"
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.6",
@@ -75,11 +75,11 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
-    "webpack-merge": "^4.2.2",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "webpack-merge": "^4.2.2"
   },
   "regions": [
     "CA",

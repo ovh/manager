@@ -24,6 +24,9 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
     "@ovh-ux/manager-config": "^8.0.0",
@@ -64,8 +67,5 @@
     "ovh-api-services": "^17.0.0",
     "ovh-ui-kit-bs": "^4.2.0",
     "punycode": "^1.4.1"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

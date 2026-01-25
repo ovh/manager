@@ -25,6 +25,9 @@
     "punycode": "^1.4.1",
     "urijs": "^1.19.2"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-components": "^1.22.4",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
@@ -44,8 +47,5 @@
     "chartjs-plugin-zoom": "^2.0.1",
     "date-fns": "^2.24.0",
     "oclazyload": "^1.1.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

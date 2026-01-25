@@ -20,11 +20,11 @@
     "build": "tsc && tsc-alias",
     "dev": "tsc && tsc-alias",
     "dev:watch": "tsc -w",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
-    "test:ci": "manager-test run --coverage",
-    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "test:ci": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.8.6",
@@ -37,8 +37,8 @@
     "nanoid": "^3.1.25"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
-    "tsc-alias": "^1.8.16",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "tsc-alias": "^1.8.16"
   }
 }

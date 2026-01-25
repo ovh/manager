@@ -24,6 +24,9 @@
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.1",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",
@@ -32,8 +35,5 @@
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "1.3.3"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

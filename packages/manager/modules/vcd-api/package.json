@@ -20,10 +20,10 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "test": "manager-test run",
-    "test:coverage": "manager-test run --coverage",
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.21.1",
@@ -33,12 +33,12 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.11.7",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "msw": "2.1.7",
     "typescript": "^5.1.6",
-    "vite": "^6.0.7",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "vite": "^6.0.7"
   },
   "peerDependencies": {
     "@tanstack/react-query": "5.x",

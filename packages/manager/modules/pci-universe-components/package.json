@@ -21,13 +21,13 @@
     "lodash": "^4.17.15",
     "ovh-api-services": "^15.0.0"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/ui-kit": "^4.4.3",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "oclazyload": "^1.1.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

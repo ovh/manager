@@ -14,7 +14,6 @@
     "build": "tsc && vite build",
     "build:strict": "tsc --project tsconfig.json && vite build",
     "coverage": "manager-test run --coverage",
-    "lint": "eslint ./src",
     "lint": "manager-lint --config eslint.config.mjs ./src",
     "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",

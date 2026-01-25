@@ -15,6 +15,9 @@
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-components": "^1.26.1",
@@ -44,8 +47,5 @@
     "ovh-api-services": "^17.0.0",
     "ovh-ui-kit-bs": "^4.2.0",
     "punycode": "^1.4.1"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

@@ -20,6 +20,9 @@
     "@ovhcloud/ods-themes": "18.6.4",
     "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.17",
@@ -27,8 +30,5 @@
     "@ovh-ux/ui-kit": "^6.10.0",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.4"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

@@ -18,6 +18,9 @@
   "dependencies": {
     "lodash": "^4.17.15"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-catalog-price": "^1.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
@@ -34,8 +37,5 @@
     "jsurl": "^0.1.5",
     "moment": "^2.24.0",
     "ovh-api-services": "^14.0.6"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

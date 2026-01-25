@@ -70,6 +70,9 @@
     "regenerator-runtime": "^0.13.7",
     "whatwg-fetch": "^3.5.0"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^13.0.0",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0",
@@ -80,8 +83,5 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "oclazyload": "^1.1.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

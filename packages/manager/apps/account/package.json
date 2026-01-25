@@ -12,9 +12,9 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env production",
-    "start": "webpack-dev-server",
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
+    "start": "webpack-dev-server"
   },
   "dependencies": {
     "@ovh-ux/manager-account": "^0.20.2",

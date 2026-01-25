@@ -12,12 +12,12 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env production",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "webpack-dev-server",
     "test": "jest --runInBand",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
-    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@module-federation/runtime": "^0.8.11",
@@ -154,6 +154,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
     "angular-mocks": "^1.7.x",
     "babel-loader": "^10.0.0",
@@ -161,8 +162,7 @@
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
     "webpack": "^5.76.2",
-    "webpack-merge": "^5.0.2",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "webpack-merge": "^5.0.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0"

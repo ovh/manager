@@ -29,14 +29,14 @@
     "build": "tsc && tsc-alias",
     "dev": "tsc && tsc-alias",
     "dev:watch": "tsc --watch",
-    "prepare": "tsc && tsc-alias",
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
+    "prepare": "tsc && tsc-alias"
   },
   "devDependencies": {
     "@ovh-ux/manager-config": "^8.8.6",
-    "tsc-alias": "^1.8.16",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "tsc-alias": "^1.8.16"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.1"

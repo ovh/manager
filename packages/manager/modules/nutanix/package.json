@@ -22,6 +22,9 @@
     "jsurl": "^0.1.4",
     "lodash": "^4.17.14"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-billing-components": "^4.19.1",
     "@ovh-ux/manager-bm-server-components": "^0.0.0 || ^1.0.0",
@@ -43,8 +46,5 @@
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-ui-kit-bs": "^4.2.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }

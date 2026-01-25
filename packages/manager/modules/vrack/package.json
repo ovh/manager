@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "bootstrap": "~3.3.7",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "bootstrap": "~3.3.7"
   },
   "peerDependencies": {
     "@ovh-ux/manager-billing-components": "^4.19.1",

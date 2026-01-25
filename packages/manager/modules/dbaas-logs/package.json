@@ -11,13 +11,17 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "scripts": {
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "lodash": "^4.17.20",
     "oclazyload": "^1.1.0"
   },
   "devDependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.0.0 || ^2.0.0",
@@ -47,9 +51,5 @@
     "chartjs-plugin-zoom": "^2.0.1",
     "moment": "^2.24.0",
     "ovh-api-services": "^14.0.6"
-  },
-  "scripts": {
-    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   }
 }

@@ -18,6 +18,9 @@
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.0.0"
   },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.19",
@@ -26,8 +29,5 @@
     "angular-translate": "^2.18.1",
     "lodash-es": "^4.17.15",
     "ovh-ui-kit-bs": "^4.2.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   }
 }
