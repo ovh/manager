@@ -60,6 +60,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       trackClick: vi.fn(),
     })),
     PciGuidesHeader: vi.fn().mockReturnValue(null),
+    convertHourlyPriceToMonthly: vi.fn((price: number) => price * 730), // Approximate: 24h * 30.42 days
   };
 });
 

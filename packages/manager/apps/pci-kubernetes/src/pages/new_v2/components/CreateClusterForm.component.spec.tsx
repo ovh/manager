@@ -56,6 +56,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     getFormattedHourlyCatalogPrice: vi.fn(),
     getFormattedMonthlyCatalogPrice: vi.fn(),
   }),
+  convertHourlyPriceToMonthly: vi.fn((price: number) => price * 730), // Approximate: 24h * 30.42 days
   useTranslatedMicroRegions: vi.fn().mockReturnValue({
     translateMacroRegion: (name: string) => {
       const translations: Record<string, string> = {
