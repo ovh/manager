@@ -1,6 +1,6 @@
 import React, { ReactNode, createContext, useContext, useMemo, useState } from 'react';
 
-import { defaultTimeRangeOptions } from '@/components/timeControls/TimeRangeOption.constants';
+import { defaultTimeRangeOptions } from '@/constants/timeControls/TimeRangeOption.constants';
 import { DashboardContextType } from '@/contexts/Dashboard.context.type';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 import { calculateDateTimeRange } from '@/utils/dateTimeUtils';

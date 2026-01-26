@@ -1,3 +1,7 @@
+import { useMemo, useState } from 'react';
+
+import { formatDate } from 'date-fns';
+
 import {
   Datepicker,
   DatepickerContent,
@@ -10,17 +14,9 @@ import {
   TimepickerValueChangeDetail,
 } from '@ovhcloud/ods-react';
 
-import { formatDate } from 'date-fns';
-import { useMemo, useState } from 'react';
-
 import { calculateTimestamp } from '@/utils/dateTimeUtils';
 
-interface DateTimePickerProps {
-  id: string;
-  label: string;
-  defaultValue?: number;
-  onValueChange: (value: number) => void;
-}
+import { DateTimePickerProps } from '@/components/timeControls/DateTimePicker.props';
 
 export const DateTimePicker: React.FC<Readonly<DateTimePickerProps>> = ({
   id,

@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { RoundingMode } from './roundModes';
+import { RoundingMode } from '@/types/charts/roundModes';
 import { getLocaleObject } from '@/utils/dateTimeUtils';
 
 export type FormatterOptions = {

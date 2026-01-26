@@ -24,10 +24,13 @@ import { NAMESPACES } from '@/MetricsToCustomer.translations';
 import {
   defaultRefreshTimeOption,
   defaultRefreshTimeOptions,
-} from './RefreshTimeControl.constants';
-import { RefreshTimeControlProps } from './RefreshTimeControl.props';
-import { SelectItemExtraData } from './RefreshTimeControl.type';
-import './time-controls.scss';
+} from '@/constants/timeControls/RefreshTimeControl.constants';
+
+import { SelectItemExtraData } from '@/types/timeControls/RefreshTimeControl.type';
+
+import { RefreshTimeControlProps } from '@/components/timeControls/RefreshTimeControl.props';
+
+import '@/components/timeControls/time-controls.scss';
 
 export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = ({
   refreshTimeOptions = defaultRefreshTimeOptions,

@@ -1,5 +1,3 @@
-import { CHART_TYPE, ChartConfigBase, ChartProps } from '../base';
+import { CHART_TYPE, ChartConfigBase } from '@/types/charts/base/Chart.type';
 
-export type BarsChartConfig = ChartConfigBase<typeof CHART_TYPE.Bars>;
-
-export type BarsChartProps<TData> = ChartProps<TData>;
+export type BarsChartConfig = ChartConfigBase<typeof CHART_TYPE.BARS>;
