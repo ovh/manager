@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input, INPUT_TYPE } from '@ovhcloud/ods-react';
-import { useSubscriptionManagerContext } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
-import { t } from 'i18next';
+import { useSubscriptionManagerContext } from '@/contexts/SubscriptionManager.context';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
