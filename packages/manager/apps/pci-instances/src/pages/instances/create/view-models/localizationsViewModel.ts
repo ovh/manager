@@ -1,6 +1,10 @@
 import { Deps } from '@/deps/deps';
 import { TDeploymentMode } from '@/types/instance/common.type';
-import { TMicroRegion, TMacroRegion } from '@/domain/entities/instancesCatalog';
+import {
+  TMicroRegion,
+  TMacroRegion,
+  TInstancesCatalog,
+} from '@/domain/entities/instancesCatalog';
 import { Reader } from '@/types/utils.type';
 import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { getLocalZoneTranslationKey } from '@/utils';
@@ -130,4 +134,21 @@ export const selectLocalizations: Reader<Deps, TSelectLocalizationsData> = (
   return {
     localizations,
   };
+};
+
+export const isAPACRegion = (microRegion: string | null) => (
+  catalog?: TInstancesCatalog,
+): boolean => {
+  if (!catalog || !microRegion) return false;
+
+  const microRegionsById = catalog.entities.microRegions.byId;
+  const macroRegionsById = catalog.entities.macroRegions.byId;
+
+  const microRegionEntity = microRegionsById.get(microRegion);
+  if (!microRegionEntity) return false;
+
+  const macroRegion = macroRegionsById.get(microRegionEntity.macroRegionId);
+  if (!macroRegion) return false;
+
+  return macroRegion.continentIds.includes('asia_oceania');
 };

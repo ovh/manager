@@ -18,6 +18,7 @@
   "pci_instance_creation_choose_datacenter_label": "Choisissez un datacentre",
   "pci_instance_creation_show_all_localizations": "Voir toutes les localisations",
   "pci_instance_creation_select_localization_help": "OVHcloud propose sa solution Public Cloud à travers le monde via nos datacenters présents sur plusieurs continents. Celle-ci est donc accessible en Europe, en Amérique du Nord et en Asie-Pacifique. Notre volonté : élargir la disponibilité de nos services à de nouvelles zones géographiques.",
+  "pci_instance_creation_select_localization_apac_warning": "Le trafic réseau public sortant pour les instances est inclus pour toutes les régions, à l'exception de la région Asie-Pacifique. Dans ces deux régions, 1 To/mois de trafic public sortant est inclus dans chaque projet Public Cloud. <strong>Au-delà de ce quota, chaque Go supplémentaire de trafic est facturé 0,01 €. Le trafic réseau public entrant est inclus dans tous les cas, pour toutes les régions.</strong>",
   "pci_instance_creation_create_my_instance": "Lancer mon instance",
   "pci_instance_creation_error_title": "Une erreur est survenue",
   "pci_instance_creation_configuration_code": "Code de ma configuration",

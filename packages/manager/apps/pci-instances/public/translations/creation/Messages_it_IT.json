@@ -160,5 +160,6 @@
     "floating_ip_unavailable_LZ_tooltip": "Le IP Flottanti non sono disponibili nelle localZone."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway non è disponibile nelle localZone.",
-  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Un Gateway è già assegnato alla rete privata selezionata."
+  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Un Gateway è già assegnato alla rete privata selezionata.",
+  "pci_instance_creation_select_localization_apac_warning": "Il traffico di rete pubblico in uscita per le istanze è incluso per tutte le regioni, ad eccezione della regione Asia-Pacifico. In queste due regioni, 1 TB/mese di traffico pubblico in uscita è incluso in ogni progetto Public Cloud. <strong>Oltre a questa quota, ogni GB aggiuntivo di traffico è addebitato 0,01 €. Il traffico di rete pubblico in entrata è incluso in tutti i casi, per tutte le regioni.</strong>"
 }
