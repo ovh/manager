@@ -54,6 +54,7 @@
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/pci-vouchers",
   "packages/manager/apps/pci-workflow",
+  "packages/manager/apps/sms",
   "packages/manager/apps/telecom",
   "packages/manager/apps/telecom-dashboard",
   "packages/manager/apps/telecom-task",
