@@ -1,4 +1,4 @@
-name: pr-inspector
+name: PR Inspector
 
 on:
   pull_request:
