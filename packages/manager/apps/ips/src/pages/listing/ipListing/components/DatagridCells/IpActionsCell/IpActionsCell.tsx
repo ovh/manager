@@ -22,7 +22,6 @@ import {
   useGetIpGameFirewall,
   useGetIpdetails,
   useIpHasAlerts,
-  useIpHasForcedMitigation,
   useIpHasVmac,
 } from '@/data/hooks';
 import {
@@ -161,12 +160,7 @@ export const IpActionsCell = ({
   const { ipGameFirewall } = useGetIpGameFirewall({
     ip: parentIpGroup || ip,
     ipOnGame: parentIpGroup ? ip : ipAddress,
-    enabled: availableGetGameFirewall && !isByoipSlice,
-  });
-
-  const { hasForcedMitigation } = useIpHasForcedMitigation({
-    ip,
-    enabled: !isIpExpired && !isByoipSlice,
+    enabled: availableGetGameFirewall,
   });
 
   const items = [
@@ -224,17 +218,15 @@ export const IpActionsCell = ({
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
-      !hasForcedMitigation &&
       !hasHousingServiceAttachedToIp && {
         id: 3,
         label: t('listingActionConfigureEdgeNetworkFirewall'),
         trackingLabel: 'configure_edge-network-firewall',
         onClick: () =>
           navigate(
-            `${urls.configureEdgeNetworkFirewall.replace(
-              urlDynamicParts.id,
-              id,
-            )}?${search.toString()}`,
+            `${urls.configureEdgeNetworkFirewall
+              .replace(urlDynamicParts.parentId, parentIpGroup ? parentId : id)
+              .replace(urlDynamicParts.id, id)}?${search.toString()}`,
           ),
       },
     ipaddr.IPv6.isIPv6(ipAddress) &&
