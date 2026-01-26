@@ -21,5 +21,5 @@
   },
   "title": "Teste o File Storage gratuitamente!",
   "description": "Precisa de um armazenamento partilhado para clusters ou instâncias? A nossa solução File Storage para Public Cloud, totalmente gerida, oferece volumes NFS que vão de <strong>150 GiB a 10 TiB</strong>, até <strong>16 000 IOPS</strong> e <strong>128 MB/s</strong>. Compatível com o <strong>Managed Kubernetes</strong> (PVCs RWX) e as <strong>instâncias Public Cloud</strong> (montagem NFS), permite partilhar ficheiros de forma transparente entre os nós, as zonas e as aplicações, por meio de uma faturação transparente.",
-  "action-button": "Descobrir a fase beta"
+  "action-button": "Criar um share"
 }
