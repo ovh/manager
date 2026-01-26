@@ -8,9 +8,9 @@ import { cn } from '@/helpers';
 export function PlanTileContent({ contents, disabled }: { contents: string[]; disabled: boolean }) {
   const { t } = useTranslation(['add']);
   return (
-    <PciCard.Content>
+    <PciCard.Content className="flex gap-4">
       {contents.map((text) => (
-        <span className="flex items-baseline gap-4 text-sm text-[--ods-color-text-500]" key={text}>
+        <span className="flex items-baseline gap-3 text-sm text-[--ods-color-text-500]" key={text}>
           <Icon
             name="check"
             className={cn('shrink-0', {

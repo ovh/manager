@@ -8,6 +8,8 @@ export const createClusterFormContinentCodes = ['ALL', ...CONTINENT_CODES] as co
 
 export const createClusterFormPlanKeys = ['all', 'free', 'standard'] as const;
 
+export const createClusterFormPlanTypes = ['free', 'standard'] as const;
+
 export const createClusterSchema = z.object({
   name: z
     .string()
@@ -20,7 +22,7 @@ export const createClusterSchema = z.object({
     macroRegion: z.string().nullable(),
     microRegion: z.string().nullable(),
   }),
-  plan: z.nativeEnum(TClusterPlanEnum),
+  planType: z.enum(createClusterFormPlanTypes),
 });
 
 export type TCreateClusterSchema = z.infer<typeof createClusterSchema>;
