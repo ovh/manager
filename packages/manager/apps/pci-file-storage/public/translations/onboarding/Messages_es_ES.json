@@ -21,5 +21,5 @@
   },
   "title": "¡Pruebe File Storage gratis!",
   "description": "¿Necesita un almacenamiento compartido para sus clústeres o instancias? Nuestra solución File Storage para Public Cloud totalmente administrada ofrece volúmenes NFS de <strong>150 GiB a 10 TiB</strong>, hasta <strong>16 000 IOPS</strong> y <strong>128 MB/s</strong>. Compatible con <strong>Managed Kubernetes</strong> (PVCs RWX) y <strong>las instancias Public Cloud</strong> (montajes NFS), comparta archivos de forma transparente entre nodos, zonas y aplicaciones, con una tarificación transparente.",
-  "action-button": "Descubrir la Beta"
+  "action-button": "Crear un share"
 }
