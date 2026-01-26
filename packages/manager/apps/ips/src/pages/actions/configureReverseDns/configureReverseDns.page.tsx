@@ -78,7 +78,7 @@ export default function ConfigureReverseDns() {
     error: updateIpReverseError,
   } = useUpdateIpReverse({
     ip: ipGroup,
-    ipReverse: ip,
+    ipReverse: isGroup ? currentIp : ip,
     onSuccess: () => {
       closeModal({ isSuccess: true });
       addSuccess(t('listingReverseDnsUpdateSuccess'));
@@ -95,7 +95,7 @@ export default function ConfigureReverseDns() {
     error: deleteIpReverseError,
   } = useDeleteIpReverse({
     ip: ipGroup,
-    ipReverse: ip,
+    ipReverse: isGroup ? currentIp : ip,
     onSuccess: () => {
       closeModal();
       addSuccess(t('listingReverseDnsUpdateSuccess'));
