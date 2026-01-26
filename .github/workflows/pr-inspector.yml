@@ -1,11 +1,10 @@
 name: PR Inspector
 
 on:
+  push:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
   pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
-  push:
 
 concurrency:
   group: pr-inspector-${{ github.head_ref || github.ref }}
@@ -21,13 +20,13 @@ jobs:
 
     steps:
       # -------------------------
-      # Checkout (required for scripts + yarn.lock diff)
+      # Checkout
       # -------------------------
       - name: Checkout
         uses: actions/checkout@v4
 
       # -------------------------
-      # 1) PR labeler (existing labels)
+      # labeler (only pull_request_target)
       # -------------------------
       - name: PR Labeler (actions/labeler)
         if: github.event_name == 'pull_request_target'
@@ -44,27 +43,27 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # -------------------------
-      # 2) Check regions metadata (log warning on PR)
+      # check-metadata (only push)
       # -------------------------
       - name: Check regions metadata
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         run: ./scripts/regions/check-regions.sh
         shell: bash
 
       # -------------------------
-      # 3) Merge conflict finder (log / detection)
+      # merge_conflict_finder (only push)
       # -------------------------
       - name: Merge Conflict finder
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         uses: olivernybroe/action-conflict-finder@v4.0
         with:
           exclude_dir: "node_modules/**"
 
       # -------------------------
-      # 4) Auto-label merge conflicts => adds "has conflicts"
+      # auto-label-merge-conflicts (push + pull_request)
       # -------------------------
       - name: Auto-label merge conflicts
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
         uses: mschilde/auto-label-merge-conflicts@master
         with:
           CONFLICT_LABEL_NAME: "has conflicts"
@@ -73,7 +72,7 @@ jobs:
           WAIT_MS: 5000
 
       # -------------------------
-      # 5) Yarn lock changes => comment summary
+      # yarn-explain (only pull_request)
       # -------------------------
       - name: Yarn Lock Changes
         if: github.event_name == 'pull_request'
