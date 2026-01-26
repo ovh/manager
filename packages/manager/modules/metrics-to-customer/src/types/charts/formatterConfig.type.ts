@@ -1,4 +1,4 @@
-import { RoundingMode } from "./roundModes";
+import { RoundingMode } from "@/types/charts/roundModes";
 
 export type FormatterConfig =
     | string
