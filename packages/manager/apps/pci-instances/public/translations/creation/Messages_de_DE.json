@@ -160,5 +160,6 @@
     "floating_ip_unavailable_LZ_tooltip": "Floating IPs sind in den lokalen Zonen nicht verfügbar."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Das Gateway ist in den lokalen Zonen nicht verfügbar.",
-  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Ein Gateway ist bereits dem ausgewählten privaten Netzwerk zugewiesen."
+  "pci_instance_creation_network_gateway_already_assigned_tooltip": "Ein Gateway ist bereits dem ausgewählten privaten Netzwerk zugewiesen.",
+  "pci_instance_creation_select_localization_apac_warning": "Der ausgehende öffentliche Netzwerkverkehr für die Instanzen ist in allen Regionen enthalten, mit Ausnahme der Region Asien-Pazifik. In diesen beiden Regionen sind 1 TB/Monat an ausgehendem öffentlichem Verkehr in jedem Public Cloud-Projekt enthalten. <strong>Über dieses Kontingent hinaus wird jeder zusätzliche GB Verkehr mit 0,01 € berechnet. Der eingehende öffentliche Netzwerkverkehr ist in allen Fällen für alle Regionen enthalten.</strong>"
 }
