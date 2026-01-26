@@ -52,7 +52,13 @@
   },
   "shareSize": {
     "title": "Rozmiar udostępnienia",
-    "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawk.",
-    "label": "Alokacja wydajności liniowej (GB)"
+    "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawków",
+    "label": "Przydział wydajności liniowej (GB)"
+  },
+  "network": {
+    "title": "Sieć prywatna",
+    "description": "Wybierz prywatną sieć, do której chcesz, aby twoje instancje połączyły się z twoim plikiem udostępniania",
+    "label": "Wybierz istniejącą prywatną sieć",
+    "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie"
   }
 }
