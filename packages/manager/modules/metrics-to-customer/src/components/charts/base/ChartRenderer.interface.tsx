@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ChartRendererComponent } from './ChartRenderer.component';
-import { ChartRendererProps } from './ChartRenderer.props';
+import { ChartRendererComponent } from '@/components/charts/base/ChartRenderer.component';
+import { ChartRendererProps } from '@/components/charts/base/ChartRenderer.props';
 
 const MemoizedChartRenderer = React.memo(ChartRendererComponent, (prev, next) => {
   if (prev.type !== next.type || prev.id !== next.id || prev.isLoading !== next.isLoading) {

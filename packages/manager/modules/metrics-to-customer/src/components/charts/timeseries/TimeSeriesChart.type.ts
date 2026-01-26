@@ -1,8 +1,8 @@
-import { CHART_TYPE, ChartConfigBase, ChartProps } from '../base';
-import { CurveType } from '../config/CurveType';
-import { FormatterConfig } from '../config/formatterConfig.type';
+import { CHART_TYPE, ChartConfigBase } from '@/types/charts/base/Chart.type';
+import { CurveType } from '@/types/charts/CurveType';
+import { FormatterConfig } from '@/types/charts/formatterConfig.type';
 
-export type TimeSeriesChartConfig = ChartConfigBase<typeof CHART_TYPE.TimeSeries> & {
+export type TimeSeriesChartConfig = ChartConfigBase<typeof CHART_TYPE.TIME_SERIES> & {
   curveType?: CurveType;
   XAxis: {
     dataKey: string;
@@ -25,5 +25,3 @@ export type TimeSeriesChartConfig = ChartConfigBase<typeof CHART_TYPE.TimeSeries
     height?: number;
   };
 };
-
-export type TimeSeriesChartProps<TData> = ChartProps<TData>;

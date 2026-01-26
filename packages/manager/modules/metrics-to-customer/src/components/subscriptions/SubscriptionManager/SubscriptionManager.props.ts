@@ -1,11 +1,6 @@
 import { ReactNode } from 'react';
 import { SubscriptionUrls } from '@/types/SubscriptionUrls.type';
 
-/**
- * Filter values type - a record of filter keys to their values
- */
-export type FilterValues = Record<string, (string | string[] | null)>;
-
 export interface SubscriptionManagerProps<TData = unknown, TSubscription = unknown> {
   children?: ReactNode;
   resourceName?: string;

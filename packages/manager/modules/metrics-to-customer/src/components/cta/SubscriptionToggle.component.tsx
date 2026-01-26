@@ -6,7 +6,7 @@ import { BUTTON_SIZE, BUTTON_VARIANT, Button } from '@ovh-ux/muk';
 
 import { SubscriptionToggleProps } from '@/components/cta/SubscriptionToggle.props';
 
-export default function SubscriptionToggle<TSubscription = unknown>({
+export function SubscriptionToggle<TSubscription = unknown>({
   itemId,
   resourceName,
   subscriptionUrls,
@@ -54,3 +54,5 @@ export default function SubscriptionToggle<TSubscription = unknown>({
     </Button>
   );
 }
+
+export default SubscriptionToggle;

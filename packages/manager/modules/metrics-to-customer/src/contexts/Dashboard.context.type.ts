@@ -1,4 +1,6 @@
-import { DashboardState } from '@/contexts';
+import React from 'react';
+
+import { DashboardState } from '@/contexts/Dashboard.context';
 
 export interface DashboardContextType {
   state: DashboardState;

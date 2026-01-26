@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { FilterValues } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.props';
+
+import { FilterValues } from '@/types/subscriptions/subscriptionManager.type';
 
 export interface SubscriptionManagerFiltersProps {
   filterValues: FilterValues;
@@ -9,4 +10,3 @@ export interface SubscriptionManagerFiltersProps {
     onFilterChange: (filterKey: string, value: string | null) => void;
   }) => ReactNode;
 }
-
