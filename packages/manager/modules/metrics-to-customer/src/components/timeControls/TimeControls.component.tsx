@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  BUTTON_VARIANT,
-  Button,
+  ButtonGroup,
+  ButtonGroupItem,
   ICON_NAME,
   Icon,
   POPOVER_POSITION,
@@ -61,39 +61,28 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
     <div className='flex items-start gap-4'>
       <div className='flex flex-col gap-2'>
         <div className="flex items-center space-x-2">
-          <div className="inline-flex">
+          <ButtonGroup value={[state.selectedTimeOption.value]}>
             {timeOptions.map((range: TimeRangeOptionWithLabel, index: number) => (
-              <Button
-                key={range.value}
+              <ButtonGroupItem
+                key={`${range.value}_${index}`}
+                value={range.value}
                 onClick={() => handleClick(range)}
-                variant={BUTTON_VARIANT.outline}
-                className={`font-medium
-                w-auto
-                rounded-none
-                ${index === 0 ? 'rounded-s-md' : ''}
-                border-r-0
-                ${value === range.value ? 'bg-[var(--ods-color-primary-200)] text-initial' : ''}
-              `}
               >
                 {t(range.label)}
-              </Button>
+              </ButtonGroupItem>
             ))}
-            {!customTimeOptionHidden && (
-              <Popover position={POPOVER_POSITION.bottomEnd}
+
+            {
+              !customTimeOptionHidden && <Popover position={POPOVER_POSITION.bottomEnd}
                 open={isDateRangePopoverOpen}
                 onOpenChange={(detail: PopoverOpenChangeDetail) => setIsDateRangePopoverOpen(detail.open)} >
                 <PopoverTrigger asChild className="z-40">
-                  <Button
-                    key={'time-option-custom'}
+                  <ButtonGroupItem value="custom"
                     onClick={() => handleClick(TimeRangeOptionCustom)}
-                    variant={BUTTON_VARIANT.outline}
-                    className={`font-medium w-auto rounded-s-none
-                      ${value === 'custom' ? 'bg-[var(--ods-color-primary-700)] text-white' : ''}
-                    `}
                   >
-                    <span>{t('option_custom')}</span>
                     <Icon name={ICON_NAME.calendar} />
-                  </Button>
+                    {t('option_custom')}
+                  </ButtonGroupItem>
                 </PopoverTrigger>
                 <PopoverContent>
                   <TimeRangeSelector
@@ -103,8 +92,8 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
                   />
                 </PopoverContent>
               </Popover>
-            )}
-          </div>
+            }
+          </ButtonGroup>
         </div>
       </div>
       <div>
