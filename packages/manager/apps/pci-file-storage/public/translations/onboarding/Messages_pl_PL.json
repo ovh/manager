@@ -21,5 +21,5 @@
   },
   "title": "Przetestuj File Storage za darmo!",
   "description": "Potrzebujesz współdzielonej przestrzeni dyskowej dla Twoich klastrów lub instancji? Nasze w pełni zarządzane rozwiązanie File Storage for Public Cloud zapewnia wolumeny NFS od <strong>150 GiB do 10 TiB</strong>, wydajność do <strong>16 000 IOPS</strong> i przepustowość <strong>128 Mb/s</strong>. Jest kompatybilne z <strong>Managed Kubernetes</strong> (PVCs RWX) oraz <strong>instancjami Public Cloud</strong> (montowanie NFS). Umożliwia współdzielenie plików między węzłami, strefami i aplikacjami oraz zapewnia przejrzysty model rozliczeń.",
-  "action-button": "Sprawdź wersję beta"
+  "action-button": "Utwórz udostępnienie"
 }
