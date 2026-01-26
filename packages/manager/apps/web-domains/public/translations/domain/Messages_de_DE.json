@@ -101,7 +101,7 @@
   "domain_tab_general_information_subscription_contact_technical": "Technisch",
   "domain_tab_general_information_subscription_contact_billing": "Abrechnung",
   "domain_tab_general_information_subscription_contact_administrator": "Administrator",
-  "domain_tab_general_information_subscription_manual_renew_tooltip": "Legen Sie eine Verlängerungsfrequenz fest und behalten Sie den Überblick: Ihre Domain wird automatisch verlängert, ohne Gefahr von Unterbrechungen.",
+  "domain_tab_general_information_subscription_manual_renew_tooltip": "Legen Sie eine Verlängerungsfrequenz fest und bleiben Sie ruhig.",
   "domain_tab_general_information_subscription_premium_tooltip": "Dieser Domainname wird aufgrund seines Werts auf dem Markt, seiner Seltenheit oder seiner Beliebtheit von der Registry als Premium eingestuft. Die geltenden Preise können von den auf unserer Website angegebenen Listenpreisen abweichen.",
   "domain_tab_general_information_subscription_premium_value": "Diese Domain ist eine Premium-Domain.",
   "domain_tab_general_information_subscription_creation_date_bouton": "Meine Dienste verwalten",
@@ -337,10 +337,13 @@
   "domain_tab_dsrecords_modal_delete_error_message": "Beim Löschen des DS-Eintrags ist ein Fehler aufgetreten",
   "domain_table_state_error": "Fehler",
   "domain_tab_general_information_update_success": "Ihre Updateanforderung wurde erfolgreich verarbeitet.",
-  "domain_tab_dsrecords_message_information_content": "Diese DS-Einträge werden zu Informationszwecken zur Verfügung gestellt und automatisch von OVHcloud verwaltet.",
-  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC wird gerade {{action}}: Sie können den Fortschritt Ihrer Anfrage auf der Seite mit den laufenden Vorgängen nachverfolgen. <Link />",
-  "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktiviert",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "deaktiviert",
-  "domain_tab_general_information_subscription_edit_owner": "Informationen des Inhaberkontakts bearbeiten",
-  "domain_tab_general_information_data_protection_disabled": "Die für diesen Domainnamen zuständige Registry lässt keine benutzerdefinierte Verwaltung der Datenansicht zu."
+  "domain_tab_dsrecords_message_information_content": "Diese DS-Einträge werden zu Informationszwecken bereitgestellt und von OVHcloud automatisch verwaltet.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC wird {{action}}: Sie können den Fortschritt Ihrer Anfrage auf der Seite der laufenden Operationen verfolgen. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "Aktivierung",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "Deaktivierung",
+  "domain_tab_general_information_subscription_edit_owner": "Ändern Sie die Informationen des Kontakthabers",
+  "domain_tab_general_information_data_protection_disabled": "Der Registrar für diese Domain erlaubt keine benutzerdefinierte Verwaltung der Anzeige von Daten.",
+  "domain_tab_general_information_subscription_manual_renew_mode_tooltip": "Wählen Sie die automatische Verlängerung und bleiben Sie ruhig.",
+  "domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain": "Ihr Domainname wird automatisch verlängert, ohne Risiko einer Unterbrechung.",
+  "domain_tab_general_information_subscription_handle_renew_modify": "Ändern Sie den Verlängerungsmodus"
 }

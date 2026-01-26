@@ -101,7 +101,7 @@
   "domain_tab_general_information_subscription_contact_technical": "Kontakt techniczny",
   "domain_tab_general_information_subscription_contact_billing": "Płatności",
   "domain_tab_general_information_subscription_contact_administrator": "Kontakt administracyjny",
-  "domain_tab_general_information_subscription_manual_renew_tooltip": "Ustaw częstotliwość odnawiania i zyskaj pewność, że Twoja domena będzie odnawiana automatycznie, bez ryzyka przerwy w dostępności usług.",
+  "domain_tab_general_information_subscription_manual_renew_tooltip": "Ustal częstotliwość odnawiania i miej spokój ducha.",
   "domain_tab_general_information_subscription_premium_tooltip": "Domena ta jest uznawana przez rejestr za domenę premium ze względu na jej wartość rynkową, rzadkość występowania lub popularność. Cennik usług hostingowych może różnić się od cen katalogowych podanych na naszej stronie.",
   "domain_tab_general_information_subscription_premium_value": "Ta domena ma status premium.",
   "domain_tab_general_information_subscription_creation_date_bouton": "Zarządzanie usługami",
@@ -337,10 +337,13 @@
   "domain_tab_dsrecords_modal_delete_error_message": "Wystąpił błąd podczas usuwania rekordu DS",
   "domain_table_state_error": "Błąd",
   "domain_tab_general_information_update_success": "Zlecenie aktualizacji zostało przetworzone.",
-  "domain_tab_dsrecords_message_information_content": "Rekordy DNS mają charakter informacyjny i są zarządzane automatycznie przez OVHcloud.",
-  "domain_tab_dsrecords_message_information_action_in_progress": "Trwa {{action}} DNSSEC: postęp możesz śledzić na stronie bieżących operacji. <Link />",
-  "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacja",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacja",
-  "domain_tab_general_information_subscription_edit_owner": "Zmień dane kontaktowe abonenta",
-  "domain_tab_general_information_data_protection_disabled": "Rejestr obsługujący tę domenę nie pozwala na spersonalizowane zarządzanie wyświetlaniem Twoich danych osobowych."
+  "domain_tab_dsrecords_message_information_content": "Te rekordy DS są dostarczane w celach informacyjnych i są zarządzane automatycznie przez OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC jest w trakcie {{action}}: możesz śledzić postęp swojej prośby na stronie operacji w toku. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacji",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacji",
+  "domain_tab_general_information_subscription_edit_owner": "Zmień informacje o kontakcie właściciela",
+  "domain_tab_general_information_data_protection_disabled": "Rejestr odpowiedzialny za tę nazwę domeny nie zezwala na niestandardowe zarządzanie wyświetlaniem danych.",
+  "domain_tab_general_information_subscription_manual_renew_mode_tooltip": "Wybierz automatyczne odnawianie i miej spokój ducha.",
+  "domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain": "Twoja domena odnawia się automatycznie, bez ryzyka przerwy.",
+  "domain_tab_general_information_subscription_handle_renew_modify": "Zmień tryb odnawiania"
 }

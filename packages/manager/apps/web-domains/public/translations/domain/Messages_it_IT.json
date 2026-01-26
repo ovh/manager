@@ -101,7 +101,7 @@
   "domain_tab_general_information_subscription_contact_technical": "Tecnico",
   "domain_tab_general_information_subscription_contact_billing": "Fatturazione",
   "domain_tab_general_information_subscription_contact_administrator": "Amministratore",
-  "domain_tab_general_information_subscription_manual_renew_tooltip": "Fissa una frequenza di rinnovo per la massima tranquillità: il tuo dominio si rinnova automaticamente, senza rischio di interruzione.",
+  "domain_tab_general_information_subscription_manual_renew_tooltip": "Imposta una frequenza di rinnovo e stai tranquillo.",
   "domain_tab_general_information_subscription_premium_tooltip": "Questo dominio è considerato premium dal Registro per il suo valore sul mercato, la sua rarità o la sua popolarità. Le tariffe applicate possono differire dai prezzi di catalogo pubblicati sul nostro sito web.",
   "domain_tab_general_information_subscription_premium_value": "Questo dominio è premium.",
   "domain_tab_general_information_subscription_creation_date_bouton": "Gestisci i tuoi servizi",
@@ -342,5 +342,8 @@
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "di attivazione",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "di disattivazione",
   "domain_tab_general_information_subscription_edit_owner": "Modificare le informazioni del contatto titolare",
-  "domain_tab_general_information_data_protection_disabled": "Il Registry responsabile di questo dominio non autorizza la gestione personalizzata della visualizzazione dei dati"
+  "domain_tab_general_information_data_protection_disabled": "Il registro responsabile di questo nome di dominio non consente la gestione personalizzata della visualizzazione dei dati.",
+  "domain_tab_general_information_subscription_manual_renew_mode_tooltip": "Scegli il rinnovo automatico e stai tranquillo.",
+  "domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain": "Il tuo nome di dominio si rinnova automaticamente, senza rischio di interruzione.",
+  "domain_tab_general_information_subscription_handle_renew_modify": "Modifica la modalità di rinnovo"
 }

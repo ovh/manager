@@ -1,38 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import '@/common/setupTests';
+import { render, screen } from '@/common/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
+import { describe, it, expect } from 'vitest';
 import RenewModeTileItem from './RenewModeTileItem';
 import {
   LifecycleCapacitiesEnum,
   ServiceInfoRenewModeEnum,
   Universe,
 } from '@/common/enum/common.enum';
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigationGetUrl: () => ({
-    data: '/billing/renew',
-  }),
-}));
-
-vi.mock('@/domain/utils/helpers', () => ({
-  goToUpdateRenewFrequencyParams: () => ({
-    scope: 'dedicated',
-    target: 'billing',
-    params: {},
-  }),
-}));
-
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
 
 describe('RenewModeTileItem', () => {
   const defaultProps = {
@@ -59,6 +34,21 @@ describe('RenewModeTileItem', () => {
       <RenewModeTileItem
         {...defaultProps}
         renewMode={ServiceInfoRenewModeEnum.Manual}
+      />,
+      { wrapper },
+    );
+
+    expect(
+      screen.getByText(`allDom_status_${ServiceInfoRenewModeEnum.Manual}`),
+    ).toBeInTheDocument();
+  });
+
+  it('should render with isDomainPage true and manual renew mode', () => {
+    render(
+      <RenewModeTileItem
+        {...defaultProps}
+        renewMode={ServiceInfoRenewModeEnum.Manual}
+        isDomainPage
       />,
       { wrapper },
     );

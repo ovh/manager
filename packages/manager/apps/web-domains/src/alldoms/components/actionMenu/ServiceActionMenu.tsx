@@ -126,12 +126,5 @@ export default function ServiceActionMenu({
       break;
   }
 
-  return (
-    <ActionMenu
-      id={id}
-      isCompact
-      variant={BUTTON_VARIANT.outline}
-      items={items}
-    />
-  );
+  return <ActionMenu id={id} isCompact items={items} />;
 }

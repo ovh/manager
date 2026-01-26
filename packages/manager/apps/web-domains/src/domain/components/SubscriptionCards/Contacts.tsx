@@ -1,9 +1,7 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Text } from '@ovhcloud/ods-react';
 import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
-import {
-  useNavigationGetUrl
-} from '@ovh-ux/manager-react-shell-client';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { contactsMapping } from '@/domain/constants/susbcriptions';
@@ -12,6 +10,7 @@ import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleIn
 import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { useNavigate } from 'react-router-dom';
+import { Universe } from '@/common/enum/common.enum';
 
 interface ContactsProps {
   readonly serviceName: string;
@@ -32,7 +31,9 @@ export default function Contacts({
 
   const { nichandleInformation } = useNichandleInformation();
   const account = nichandleInformation?.auth?.account;
-  const id = domainResource?.currentState?.contactsConfiguration?.contactAdministrator?.id;
+  const id =
+    domainResource?.currentState?.contactsConfiguration?.contactAdministrator
+      ?.id;
 
   const { data: reassignContactUrl } = useNavigationGetUrl([
     'account',
@@ -47,10 +48,17 @@ export default function Contacts({
 
   let ownerId = '';
 
-  const domainDetailUrl = useGenerateUrl(urls.domainTabContactManagementEdit, 'path', {
-    serviceName,
-    holderId: String(domainResource?.currentState?.contactsConfiguration?.contactOwner?.id ?? ''),
-  });
+  const domainDetailUrl = useGenerateUrl(
+    urls.domainTabContactManagementEdit,
+    'path',
+    {
+      serviceName,
+      holderId: String(
+        domainResource?.currentState?.contactsConfiguration?.contactOwner?.id ??
+          '',
+      ),
+    },
+  );
 
   const renderContactsList = () => {
     return Object.entries(contacts)
@@ -74,8 +82,9 @@ export default function Contacts({
         }
 
         return (
-          <Text key={`${contactDetail.id}-${contactType}`}>{`${contactDetail.id
-            }: ${t(contactsMapping[contactType])}`}</Text>
+          <Text key={`${contactDetail.id}-${contactType}`}>{`${
+            contactDetail.id
+          }: ${t(contactsMapping[contactType])}`}</Text>
         );
       })
       .filter(Boolean);

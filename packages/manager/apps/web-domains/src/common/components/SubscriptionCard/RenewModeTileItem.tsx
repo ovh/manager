@@ -4,7 +4,6 @@ import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
 import { goToUpdateRenewFrequencyParams } from '@/domain/utils/helpers';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
   LifecycleCapacitiesEnum,
   ServiceInfoRenewModeEnum,
