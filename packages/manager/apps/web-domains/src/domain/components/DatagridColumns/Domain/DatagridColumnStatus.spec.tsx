@@ -4,9 +4,9 @@ import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { useTranslation } from 'react-i18next';
 import DatagridColumnStatus from './DatagridColumnStatus';
-import { DomainServiceStateEnum } from '@/domain/types/domainResource';
 import { DOMAIN_STATE } from '@/domain/constants/serviceDetail';
 import { wrapper } from '@/common/utils/test.provider';
+import { DomainStateEnum } from '@/domain/enum/domainState.enum';
 
 vi.mock('react-i18next', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-i18next')>();
@@ -42,10 +42,10 @@ vi.mock('@/domain/utils/domainStatus', () => ({
     const statusDetails = mapping[state];
     return statusDetails
       ? {
-          statusColor: 'success',
-          icon: 'check-circle',
-          i18nKey: 'domain_tab_general_information_registered',
-        }
+        statusColor: 'success',
+        icon: 'check-circle',
+        i18nKey: 'domain_tab_general_information_registered',
+      }
       : null;
   }),
 }));
@@ -61,7 +61,7 @@ describe('DatagridColumnStatus', () => {
   });
 
   it('should render badge with status when state exists in mapping', () => {
-    const state = DomainServiceStateEnum.OK;
+    const state = DomainStateEnum.OK;
     const mapping = DOMAIN_STATE;
 
     render(<DatagridColumnStatus state={state} mapping={mapping} />, {
@@ -76,7 +76,7 @@ describe('DatagridColumnStatus', () => {
   });
 
   it('should not render badge when state does not exist in mapping', () => {
-    const state = 'INVALID_STATE' as DomainServiceStateEnum;
+    const state = 'INVALID_STATE' as DomainStateEnum;
     const mapping = {};
 
     render(<DatagridColumnStatus state={state} mapping={mapping} />, {
@@ -88,7 +88,7 @@ describe('DatagridColumnStatus', () => {
   });
 
   it('should render badge with correct test id', () => {
-    const state = DomainServiceStateEnum.EXPIRED;
+    const state = DomainStateEnum.EXPIRED;
     const mapping = DOMAIN_STATE;
 
     render(<DatagridColumnStatus state={state} mapping={mapping} />, {
