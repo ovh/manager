@@ -1,4 +1,4 @@
-import { ToolbarAction } from './ToolbarAction.type';
+import { ToolbarAction } from '@/types/toolbar/ToolbarAction.type';
 
 export interface ToolbarActionsProps {
   items: ToolbarAction[];

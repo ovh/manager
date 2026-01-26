@@ -1,6 +1,6 @@
 import { SPINNER_COLOR, SPINNER_SIZE, Spinner } from '@ovhcloud/ods-react';
 
-import { LoaderProps } from './Loader.props';
+import { LoaderProps } from '@/components/loaders/Loader.props';
 
 export const Loader: React.FC<Readonly<LoaderProps>> = ({
   message,

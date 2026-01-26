@@ -8,7 +8,7 @@ import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
 import { ManageConfigurationButtonProps } from '@/components/cta/ManageConfigurationButton.props';
 
-export default function ManageConfigurationButton({
+export function ManageConfigurationButton({
   configUrl,
 }: ManageConfigurationButtonProps) {
   const { t } = useTranslation(NAMESPACES.MODULE);
@@ -25,3 +25,5 @@ export default function ManageConfigurationButton({
     </Button>
   );
 }
+
+export default ManageConfigurationButton;

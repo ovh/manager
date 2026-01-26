@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useSubscriptionManagerContext } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
+import { useSubscriptionManagerContext } from '@/contexts/SubscriptionManager.context';
 
 export interface SubscriptionManagerFooterProps {
   children?: ReactNode;
@@ -16,4 +16,3 @@ export function SubscriptionManagerFooter({ children }: SubscriptionManagerFoote
 }
 
 export const Footer = SubscriptionManagerFooter;
-

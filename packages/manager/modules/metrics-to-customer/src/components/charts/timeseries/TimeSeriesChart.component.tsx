@@ -15,15 +15,18 @@ import {
 
 import {
   ColorScale,
+} from '@/types/charts/theme';
+
+import {
   DEFAULT_BRUSH_HEIGHT,
   DEFAULT_LEGEND_TYPE,
   getFormatter,
-} from '../config';
+} from '@/components/charts/config';
 
 import {
   TimeSeriesChartConfig,
   TimeSeriesChartProps,
-} from './TimeSeriesChart.type';
+} from '@/components/charts/timeseries';
 
 export const TimeSeriesChartComponent = <TData,>({
   data,

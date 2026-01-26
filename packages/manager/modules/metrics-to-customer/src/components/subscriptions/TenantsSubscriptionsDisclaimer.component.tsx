@@ -7,7 +7,9 @@ import {
     TEXT_PRESET,    
 } from '@ovhcloud/ods-react';
 
-import { TenantsSubscriptionsDisclaimerProps } from '@/components/subscriptions/TenantsSubscriptionsDisclaimer.props';
+import { 
+    TenantsSubscriptionsDisclaimerProps,
+} from '@/components/subscriptions/TenantsSubscriptionsDisclaimer.props';
 
 const TenantsSubscriptionsDisclaimer = ({ text }: TenantsSubscriptionsDisclaimerProps) => {
     

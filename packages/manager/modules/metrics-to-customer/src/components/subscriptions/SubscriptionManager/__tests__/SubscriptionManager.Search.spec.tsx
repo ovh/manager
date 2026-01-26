@@ -4,7 +4,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { SubscriptionManagerSearch } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.Search';
-import { SubscriptionManagerProvider } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
+import { SubscriptionManagerProvider } from '@/contexts/SubscriptionManager.context';
 
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
@@ -59,7 +59,7 @@ describe('SubscriptionManagerSearch', () => {
   describe('Search Query Management', () => {
     it('should display current search query from context', async () => {
       // Arrange
-      const { useSubscriptionManagerContext } = await import('@/components/subscriptions/SubscriptionManager/SubscriptionManager.context');
+      const { useSubscriptionManagerContext } = await import('@/contexts/SubscriptionManager.context');
       
       function TestComponent() {
         const { setSearchQuery } = useSubscriptionManagerContext();
@@ -87,7 +87,7 @@ describe('SubscriptionManagerSearch', () => {
 
     it('should update search query when input changes', async () => {
       // Arrange
-      const { useSubscriptionManagerContext } = await import('@/components/subscriptions/SubscriptionManager/SubscriptionManager.context');
+      const { useSubscriptionManagerContext } = await import('@/contexts/SubscriptionManager.context');
       
       function TestComponent() {
         const { searchQuery } = useSubscriptionManagerContext();

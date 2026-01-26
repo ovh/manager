@@ -1,9 +1,9 @@
-import { BarsChartConfig } from '../bars';
-import { TimeSeriesChartConfig } from '../timeseries/TimeSeriesChart.type';
+import { BarsChartConfig } from '@/components/charts/bars';
+import { TimeSeriesChartConfig } from '@/components/charts/timeseries';
 
 export const CHART_TYPE = {
-  TimeSeries: 'TimeSeries',
-  Bars: 'Bars',
+  TIME_SERIES: 'TimeSeries',
+  BARS: 'Bars',
 } as const;
 
 export type ChartType = (typeof CHART_TYPE)[keyof typeof CHART_TYPE];
