@@ -1,5 +1,7 @@
 import { TNormalizedEntity } from '@/types';
 
+import { TPlanCode } from './cloudCatalog';
+
 export const DEPLOYMENT_MODES = ['region', 'localzone', 'region-3-az'] as const;
 export type TDeploymentMode = (typeof DEPLOYMENT_MODES)[number];
 
@@ -39,14 +41,6 @@ export type TService = {
   name: string;
   status: TServiceStatus;
 };
-
-export const PLAN_CODES = [
-  'mks.free.hour.consumption',
-  'mks.free.hour.consumption.3az',
-  'mks.standard.hour.consumption',
-  'mks.standard.hour.consumption.3az',
-] as const;
-export type TPlanCode = (typeof PLAN_CODES)[number];
 
 export type TMacroRegion = {
   name: string;
