@@ -42,6 +42,6 @@
   "server_network_game_ddos_numbers": "{{ total }} addresse(s) IPv4 associée(s) à ce serveur",
   "server_network_game_ddos_button_configure": "Configurer Game Protection",
   "server_network_game_ddos_no_ip_configured": "Addresses IPv4 non protégées",
-  "server_network_game_ddos_some_ips_configured": "Quelques addresses IPv4 protégées",
+  "server_network_game_ddos_some_ips_configured": "Quelques addresses IPv4 sont protégées",
   "server_network_game_ddos_all_ips_configured": "Toutes les addresses IPv4 sont protégées"
 }
