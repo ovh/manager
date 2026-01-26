@@ -356,6 +356,16 @@ export default /* @ngInject */ ($stateProvider) => {
           server.datacenter === RBX1_DATACENTER
         );
       },
+      isBackupOptionAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable('dedicated-server:backupAgent'),
+      backupAgent: /* @ngInject */ (
+        serverName,
+        BackupAgent,
+        isBackupOptionAvailable,
+      ) =>
+        isBackupOptionAvailable
+          ? BackupAgent.getServerBackupAgent(serverName)
+          : { globalStatus: null },
     },
   });
 };

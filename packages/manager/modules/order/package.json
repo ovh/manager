@@ -21,7 +21,9 @@
     "build": "tsc",
     "dev": "tsc",
     "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
-    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts"
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.21.1",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
+    "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@playwright/test": "^1.49.1",
     "@types/jsurl": "^0.1.2"
   },
