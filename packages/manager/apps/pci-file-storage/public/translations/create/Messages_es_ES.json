@@ -1,25 +1,30 @@
 {
   "name": {
-    "title": "Nombre del share",
-    "label": "Elija un nombre para su archivo de compartición",
-    "info": "Solo debe contener números, letras, guiones bajos, guiones o puntos."
+    "title": "Nombre del recurso compartido",
+    "label": "Elija un nombre para su archivo compartido",
+    "info": "Solo debe contener números, letras, guiones bajos, guiones o puntos.",
+    "error": {
+      "required": "El nombre del recurso compartido no puede estar vacío. Por favor, introduzca un nombre.",
+      "max_length": "Formato de nombre no válido. Utilice solo letras, números, guiones bajos (_), guiones (-) o puntos (.) y no exceda los 255 caracteres",
+      "invalid_format": "Formato de nombre no válido. Utilice solo letras, números, guiones bajos (_), guiones (-) o puntos (.) y no exceda los 255 caracteres"
+    }
   },
   "localisation": {
     "title": "Seleccione una ubicación",
     "deploymentMode": {
-      "title": "Filtre un modo de despliegue",
+      "title": "Filtrar un modo de implementación",
       "modes": {
         "region": {
           "label": "Región 1-AZ",
-          "description": "Despliegue resiliente y económico en 1 zona de disponibilidad."
+          "description": "Implementación resiliente y económica en 1 zona de disponibilidad."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad."
+          "description": "Implementación de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad."
         },
         "region-3-az": {
           "label": "Región 3-AZ",
-          "description": "Despliegue de sus aplicaciones lo más cerca posible de sus usuarios para una baja latencia y la residencia de datos."
+          "description": "Implementación de sus aplicaciones lo más cerca posible de sus usuarios para una baja latencia y la residencia de datos."
         }
       }
     },
@@ -29,7 +34,7 @@
         "all": "Todos",
         "asia_oceania": "Asia-Pacífico",
         "europe": "Europe",
-        "north_africa": "África del Norte",
+        "north_africa": "Norte de África",
         "north_america": "Norteamérica"
       }
     },
@@ -47,17 +52,17 @@
     }
   },
   "share": {
-    "title": "Modo de rendimiento del share",
+    "title": "Modo de rendimiento del recurso compartido",
     "description": "Mín. {{capacityMin}}GB, {{iopsLevel}} IOPS y {{bandwidthLevel}} {{bandwidthUnit}}"
   },
   "shareSize": {
-    "title": "Tamaño del share",
+    "title": "Tamaño del recurso compartido",
     "description": "El 5 % de la capacidad de almacenamiento está dedicado al almacenamiento de instantáneas",
     "label": "Asignación de rendimiento lineal (GB)"
   },
   "network": {
     "title": "Red privada",
-    "description": "Seleccione la red privada a la que desea que sus instancias se conecten a su archivo compartido",
+    "description": "Seleccione la red privada a la que desea que sus instancias se conecten a su archivo de recurso compartido",
     "label": "Seleccionar una red privada existente",
     "empty": "Lo siento, pero no tiene una red privada para esta región"
   }

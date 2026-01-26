@@ -2,7 +2,12 @@
   "name": {
     "title": "Share name",
     "label": "Choose a name for your share file",
-    "info": "Must only contain numbers, letters, underscores, dashes or dots."
+    "info": "Must only contain numbers, letters, underscores, dashes or dots.",
+    "error": {
+      "required": "The share name cannot be empty. Please enter a name.",
+      "max_length": "Invalid name format. Please use only letters, numbers, underscores (_), dashes (-) or dots (.) and do not exceed 255 characters",
+      "invalid_format": "Invalid name format. Please use only letters, numbers, underscores (_), dashes (-) or dots (.) and do not exceed 255 characters"
+    }
   },
   "localisation": {
     "title": "Select a location",
@@ -19,7 +24,7 @@
         },
         "region-3-az": {
           "label": " 3-AZ Region",
-          "description": "Deploy your applications as close to your users as possible for low latency and data residency."
+          "description": "Deploy your applications closest to your users for low latency and data residency."
         }
       }
     },
@@ -59,6 +64,6 @@
     "title": "Private network",
     "description": "Select the private network you want your instances to connect to your share file",
     "label": "Select an existing private network",
-    "empty": "Sorry but you do not have a private network for this region"
+    "empty": "Sorry, but you do not have a private network for this region"
   }
 }

@@ -19,7 +19,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@hookform/resolvers": "3.3.4",
+    "@hookform/resolvers": "^5.1.1",
     "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
@@ -38,7 +38,7 @@
     "i18next-http-backend": "2.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.52.2",
+    "react-hook-form": "^7.59.0",
     "react-i18next": "14.1.0",
     "react-router-dom": "6.16.0",
     "zod": "4.1.12"
