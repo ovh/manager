@@ -16,10 +16,9 @@ import { fromIpToId } from '@/utils';
 describe('Configure edge network firewall page', () => {
   it('disable toggle when edge firewall has an ongoing update', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.configureEdgeNetworkFirewall.replace(
-        urlDynamicParts.id,
-        fromIpToId('239.99.244.14'),
-      ),
+      initialRoute: urls.configureEdgeNetworkFirewall
+        .replace(urlDynamicParts.parentId, fromIpToId('239.99.244.14/32'))
+        .replace(urlDynamicParts.id, fromIpToId('239.99.244.14')),
       nbIp: 6,
       edgeFirewallState: IpEdgeFirewallStateEnum.PENDING_ENABLE,
     });
@@ -33,10 +32,9 @@ describe('Configure edge network firewall page', () => {
 
   it('update firewall state successfully', async () => {
     const { container } = await renderTest({
-      initialRoute: urls.configureEdgeNetworkFirewall.replace(
-        urlDynamicParts.id,
-        fromIpToId('239.99.244.14'),
-      ),
+      initialRoute: urls.configureEdgeNetworkFirewall
+        .replace(urlDynamicParts.parentId, fromIpToId('239.99.244.14/32'))
+        .replace(urlDynamicParts.id, fromIpToId('239.99.244.14')),
       nbIp: 6,
       edgeFirewallState: IpEdgeFirewallStateEnum.OK,
       edgeFirewallDisable: true,
