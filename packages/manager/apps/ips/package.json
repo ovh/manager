@@ -76,7 +76,5 @@
     "EU",
     "US"
   ],
-  "universes": [
-    "dedicated"
-  ]
+  "universes": []
 }

@@ -45,7 +45,7 @@ export const urls = {
   listingMoveIp: `${subRoutes.root}/${subRoutes.moveIp}/${urlDynamicParts.id}`,
   listingExportIpToCsv: `${subRoutes.root}/${subRoutes.exportIpToCsv}`,
   upsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
-  configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
+  configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.parentId}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
   addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.addVirtualMac}`,
   viewVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.viewVirtualMac}`,
   deleteVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.deleteVirtualMac}`,

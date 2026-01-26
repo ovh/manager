@@ -62,7 +62,7 @@ export default function ImportIpFromSys() {
     ip,
     token,
     serviceName: destinationServer,
-    duration: duration,
+    duration,
     onSuccess: () => setCurrentStep(() => 5),
   });
 
