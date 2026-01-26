@@ -1,1 +1,1 @@
-export { useMetricToken } from './useMetricToken';
+export { useMetricToken } from '@/data/hooks/metrics/useMetricToken';

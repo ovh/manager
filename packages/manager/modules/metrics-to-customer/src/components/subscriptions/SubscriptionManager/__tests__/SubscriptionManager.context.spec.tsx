@@ -6,7 +6,7 @@ import { vi } from 'vitest';
 import {
   SubscriptionManagerProvider,
   useSubscriptionManagerContext,
-} from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
+} from '@/contexts/SubscriptionManager.context';
 
 // Test component that uses the context
 function TestComponent() {

@@ -16,7 +16,7 @@ import { useCreateSubscription } from '@/data/hooks/tenants/useCreateSubscriptio
 import { useDeleteSubscription } from '@/data/hooks/tenants/useDeleteSubscription.hook';
 
 import { TenantSubscription, TenantWithSubscriptions } from '@/types/tenants.type';
-import { FilterValues } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.props';
+import { FilterValues } from '@/types/subscriptions/subscriptionManager.type';
 
 import ServicesDropDown from '@/components/services/ServicesDropDown.component';
 import TenantsSubscriptionsDisclaimer from '@/components/subscriptions/TenantsSubscriptionsDisclaimer.component';
