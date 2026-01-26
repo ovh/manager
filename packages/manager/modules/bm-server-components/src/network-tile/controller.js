@@ -3,7 +3,7 @@ import ipaddr from 'ipaddr.js';
 import { GAME_DDOS_STATUS } from './constants';
 
 const parseIpGameUrl = (ipBlock, ip) =>
-  ['/ip', encodeURIComponent(ipBlock), 'game', ip].join('/');
+  ['/ip', encodeURIComponent(ipBlock), 'game', ip, 'rule'].join('/');
 
 export default class BmServerComponentsNetworkTileController {
   /* @ngInject */
@@ -127,10 +127,7 @@ export default class BmServerComponentsNetworkTileController {
       ipv4List.map((url) => {
         return this.$http
           .get(url, { serviceType: 'apiv6' })
-          .then(
-            ({ data: { firewallModeEnabled, state } } = {}) =>
-              firewallModeEnabled && state === 'ok',
-          )
+          .then(({ data } = {}) => data.length > 0)
           .catch(() => false);
       }),
     );
@@ -168,6 +165,16 @@ export default class BmServerComponentsNetworkTileController {
     return this.coreURLBuilder.buildURL('dedicated', '#/vrack/:serviceName', {
       serviceName: vrackId,
     });
+  }
+
+  getIpUrl() {
+    return this.coreURLBuilder.buildURL(
+      'ips',
+      '#/ip?routedTo.serviceName=:serviceName',
+      {
+        serviceName: this.server.name,
+      },
+    );
   }
 
   handleError(error) {
