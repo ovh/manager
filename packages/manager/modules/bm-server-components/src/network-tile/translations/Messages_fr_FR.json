@@ -29,21 +29,11 @@
   "server_network_ola_terminate": "Résilier OLA",
   "server_network_ola_mode_vrack_aggregation": "Agrégation privée",
   "server_network_ola_mode_default": "Défaut",
-<<<<<<< HEAD
   "server_network_game_ddos": "Game DDoS Protection",
   "server_network_game_ddos_no_ip": "Pas d'ip associée",
   "server_network_game_ddos_numbers": "{{ total }} addresse(s) IPv4 associée(s) à ce serveur",
   "server_network_game_ddos_button_configure": "Configurer Game Protection",
   "server_network_game_ddos_no_ip_configured": "Addresses IPv4 non protégées",
-  "server_network_game_ddos_some_ips_configured": "Quelques addresses IPv4 protégées",
+  "server_network_game_ddos_some_ips_configured": "Quelques addresses IPv4 sont protégées",
   "server_network_game_ddos_all_ips_configured": "Toutes les addresses IPv4 sont protégées"
-=======
-  "server_network_game_protection": "Game anti-DDoS Protection",
-  "server_network_game_protection_no_ip": "Pas d'ip associée",
-  "server_network_game_protection_numbers": "{{ total }} addresse(s) IP associée(s) à ce serveur",
-  "server_network_game_protection_button_configure": "Configurer Game Protection",
-  "server_network_game_protection_no_ip_configured": "Addresses IP non protégées",
-  "server_network_game_protection_some_ips_configured": "Quelques addresses IP sont protégées",
-  "server_network_game_protection_all_ips_configured": "Toutes les addresses IP sont protégées"
->>>>>>> bad371540e (feat(dedicated): add game ip ddos tracking)
 }
