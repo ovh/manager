@@ -12618,7 +12618,7 @@ angular-translate-loader-pluggable@^1.3.1:
   resolved "https://registry.yarnpkg.com/angular-translate-loader-pluggable/-/angular-translate-loader-pluggable-1.3.1.tgz#6f85fe5554546c686d40170a2d0f775fb838dac5"
   integrity sha512-sv9ULqfoHB1u8Q7Q0pjnRHKG702XkQuA2Ty370HUBFpl51f/XoRNjjRIpgTYwTXEI2ij32mP+Xw93PeauKPYrg==
 
-angular-translate@^2.11.0, angular-translate@^2.18.1, angular-translate@^2.18.2:
+angular-translate@^2.11.0, angular-translate@^2.18.1:
   version "2.19.1"
   resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.19.1.tgz#8636236f6a24d9dfbf11b88ad958c2246f72a3ce"
   integrity sha512-SrU40ndnL422vXiVoqVveCmSnCzMcIXxQgnl7Cv9krOKUg6B8KZK3ddYzidHR/rxVuySezYHNDgRvzQNKwAdNQ==
@@ -12664,16 +12664,6 @@ angular@*, "angular@>=1.3.0 <2.0.0", angular@^1.7.5, angular@^1.7.8, angular@^1.
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.8.3.tgz#851ad75d5163c105a7e329555ef70c90aa706894"
   integrity sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==
-
-angular@~1.7.5:
-  version "1.7.9"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
-  integrity sha512-5se7ZpcOtu0MBFlzGv5dsM1quQDoDeUTwZrWjGtTNA7O88cD8TEk5IEKCTDa3uECV9XnvKREVUr7du1ACiWGFQ==
-
-angularjs-scroll-glue@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/angularjs-scroll-glue/-/angularjs-scroll-glue-2.2.0.tgz#07d3399ac16ca874c63b6b5ee2ee30558b37e5d1"
-  integrity sha512-QnbH+8klNE/mdpiNSg3C76YdWSeYTsLzJSX55/D01a6Ur3KIGEXTJg3X3IOsVuCp22tOjX02pSZbkH8Ie+dM+Q==
 
 animate.css@^3.7.2:
   version "3.7.2"
