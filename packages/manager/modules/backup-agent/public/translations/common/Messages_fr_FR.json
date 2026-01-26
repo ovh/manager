@@ -11,5 +11,6 @@
   "without_engagement": "sans engagement",
   "backup_agent_guide": "Guides de Backup Agent",
   "baremetal_label_order_in_progress": "La commande a bien été reçue, votre produit est en cours de livraison et vous pouvez suivre sa progression <OrderLink>ici</OrderLink> .",
-  "server": "Serveur"
+  "server": "Serveur",
+  "help_banner": "Besoin d'aide pour installer votre Agent ? Vous pouvez suivre ce"
 }
