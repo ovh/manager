@@ -1,15 +1,14 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { Message, Text, ICON_NAME, MessageBody } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Region } from '@ovh-ux/manager-config';
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -19,7 +18,7 @@ import {
 
 import { LinkToOtherApp } from '@/components/LinkToOtherApp/LinkToOtherApp';
 
-import { US_API_CONSOLE_LINK } from '../actions.constants';
+import { US_API_CONSOLE_LINK } from './terminate.constants';
 
 export default function TerminateByoip() {
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
@@ -42,36 +41,39 @@ export default function TerminateByoip() {
   return (
     <Modal
       heading={t('listingTerminateByoip_title')}
-      isOpen
-      primaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={closeHandler}
-      onDismiss={closeHandler}
+      primaryButton={{
+        label: t('close', { ns: NAMESPACES.ACTIONS }),
+        onClick: closeHandler,
+      }}
+      onOpenChange={closeHandler}
     >
-      <OdsMessage color="warning" className="mb-4 block" isDismissible={false}>
-        <OdsText>
-          <Trans
-            t={t}
-            i18nKey={
-              region !== Region.US
-                ? 'listingTerminateByoip_info1'
-                : 'listingTerminateByoip_info2'
-            }
-            components={{
-              Link: (
-                <LinkToOtherApp
-                  appName="billing"
-                  path="#/autorenew/services"
-                  params={{ searchText: 'byoip' }}
-                  icon={ODS_ICON_NAME.externalLink}
-                  forcedHref={
-                    region === Region.US ? US_API_CONSOLE_LINK : undefined
-                  }
-                />
-              ),
-            }}
-          />
-        </OdsText>
-      </OdsMessage>
+      <Message color="warning" className="mb-4 block" dismissible={false}>
+        <MessageBody>
+          <Text>
+            <Trans
+              t={t}
+              i18nKey={
+                region !== Region.US
+                  ? 'listingTerminateByoip_info1'
+                  : 'listingTerminateByoip_info2'
+              }
+              components={{
+                Link: (
+                  <LinkToOtherApp
+                    appName="billing"
+                    path="#/autorenew/services"
+                    params={{ searchText: 'byoip' }}
+                    icon={ICON_NAME.externalLink}
+                    forcedHref={
+                      region === Region.US ? US_API_CONSOLE_LINK : undefined
+                    }
+                  />
+                ),
+              }}
+            />
+          </Text>
+        </MessageBody>
+      </Message>
     </Modal>
   );
 }

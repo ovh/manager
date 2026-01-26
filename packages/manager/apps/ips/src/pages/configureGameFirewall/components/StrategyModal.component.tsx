@@ -3,11 +3,10 @@ import React from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { getIpGameFirewallQueryKey } from '@/data/api';
@@ -73,28 +72,30 @@ export const StrategyModal: React.FC = () => {
 
   return (
     <Modal
-      isOpen={isStrategyConfirmationModalVisible}
-      onDismiss={hideStrategyConfirmationModal}
+      open={isStrategyConfirmationModalVisible}
+      onOpenChange={hideStrategyConfirmationModal}
       heading={
         firewallModeEnabled
           ? t('disable_deny_strategy_modal_title')
           : t('enable_deny_strategy_modal_title')
       }
-      type={ODS_MODAL_COLOR.neutral}
-      primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={() =>
-        updateGameFirewall({ firewallModeEnabled: !firewallModeEnabled })
-      }
-      isPrimaryButtonLoading={isUpdatePending}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      isSecondaryButtonDisabled={isUpdatePending}
-      onSecondaryButtonClick={hideStrategyConfirmationModal}
+      primaryButton={{
+        label: t('validate', { ns: NAMESPACES.ACTIONS }),
+        onClick: () =>
+          updateGameFirewall({ firewallModeEnabled: !firewallModeEnabled }),
+        loading: isUpdatePending,
+      }}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        disabled: isUpdatePending,
+        onClick: hideStrategyConfirmationModal,
+      }}
     >
-      <OdsText>
+      <Text>
         {firewallModeEnabled
           ? t('disable_deny_strategy_modal_description')
           : t('enable_deny_strategy_modal_description')}
-      </OdsText>
+      </Text>
     </Modal>
   );
 };

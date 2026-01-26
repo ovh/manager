@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
@@ -23,9 +23,11 @@ export const OrderPage: React.FC = () => {
 
   return (
     <BaseLayout
-      backLinkLabel={tCommon('back_link')}
-      onClickReturn={() => {
-        navigate(urls.listing);
+      backLink={{
+        label: tCommon('back_link'),
+        onClick: () => {
+          navigate(urls.listing);
+        },
       }}
       header={header}
       breadcrumb={<Breadcrumb />}

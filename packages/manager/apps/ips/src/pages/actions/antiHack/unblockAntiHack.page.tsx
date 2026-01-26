@@ -5,16 +5,11 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  Modal,
-  useFormatDate,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { Modal, useFormatDate, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -49,7 +44,7 @@ export default function AntiHackModal() {
   const { trackClick, trackPage } = useOvhTracking();
   const format = useFormatDate();
 
-  const { ipAntihack, isLoading: isIpAntihackLoading } = useGetIpAntihack({
+  const { ipAntihack, loading: isIpAntihackLoading } = useGetIpAntihack({
     ip: parentIp,
   });
 
@@ -160,40 +155,43 @@ export default function AntiHackModal() {
 
   return (
     <Modal
-      isOpen
-      onDismiss={closeHandler}
       heading={t('unblock_anti_hack_title')}
-      primaryLabel={t('unblock_anti_hack_ip_action')}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['anti-hack-unblock', 'confirm'],
-        });
-        unblockAntihackHandler();
+      onOpenChange={closeHandler}
+      primaryButton={{
+        label: t('unblock_anti_hack_ip_action'),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['anti-hack-unblock', 'confirm'],
+          });
+          unblockAntihackHandler();
+        },
+        loading: isPending,
       }}
-      isPrimaryButtonLoading={isPending}
-      secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
-      onSecondaryButtonClick={closeHandler}
-      isLoading={isIpAntihackLoading}
+      secondaryButton={{
+        label: t('close', { ns: NAMESPACES.ACTIONS }),
+        onClick: closeHandler,
+      }}
+      loading={isIpAntihackLoading}
     >
       <div className="flex w-full flex-col">
         {fields.map(({ label, value, key }) => (
           <div className="mb-2 flex gap-x-4" key={key}>
-            <OdsText
+            <Text
               className="w-1/2 text-right font-semibold"
-              preset={ODS_TEXT_PRESET.heading6}
+              preset={TEXT_PRESET.heading6}
             >
               {label}
-            </OdsText>
-            <OdsText className="w-1/2">{value}</OdsText>
+            </Text>
+            <Text className="w-1/2">{value}</Text>
           </div>
         ))}
         <div className="mb-2 flex">
-          <OdsText className={logsDisplayClasses} preset="code">
+          <Text className={logsDisplayClasses} preset="code">
             {logs}
-          </OdsText>
+          </Text>
         </div>
       </div>
     </Modal>

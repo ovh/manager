@@ -5,7 +5,7 @@ import { getOrganisationList, getOrganisationListQueryKey } from '@/data/api';
 export const useGetOrganisationsList = () => {
   const {
     data: organisationsResponse,
-    isLoading,
+    isLoading: loading,
     isError,
     error,
   } = useQuery({
@@ -15,7 +15,7 @@ export const useGetOrganisationsList = () => {
 
   return {
     organisations: organisationsResponse?.data,
-    isLoading,
+    loading,
     isError,
     error,
   };

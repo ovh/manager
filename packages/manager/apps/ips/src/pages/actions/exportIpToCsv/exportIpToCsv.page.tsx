@@ -4,11 +4,10 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -77,38 +76,41 @@ export default function ExportIpToCsv() {
 
   return (
     <Modal
-      isOpen
-      onDismiss={closeModal}
+      onOpenChange={closeModal}
       heading={t('exportIpToCsvTitle')}
-      primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['export-ip-to-csv', 'confirm'],
-        });
-        handleExportToCsv();
+      primaryButton={{
+        label: t('validate', { ns: NAMESPACES.ACTIONS }),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['export-ip-to-csv', 'confirm'],
+          });
+          handleExportToCsv();
+        },
+        loading: isCSVLoading,
       }}
-      isPrimaryButtonLoading={isCSVLoading}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      onSecondaryButtonClick={closeModal}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: closeModal,
+      }}
     >
       {isCSVLoading ? (
         <>
-          <OdsText className="mb-6" preset={ODS_TEXT_PRESET.paragraph}>
+          <Text className="mb-6" preset={TEXT_PRESET.paragraph}>
             {t('exportIpToCsvDownloadingFile')}
-          </OdsText>
+          </Text>
           <Loading />
         </>
       ) : (
         <>
-          <OdsText className="mb-2" preset={ODS_TEXT_PRESET.paragraph}>
+          <Text className="mb-2" preset={TEXT_PRESET.paragraph}>
             {t('exportIpToCsvExplanation')}
-          </OdsText>
-          <OdsText className="mb-6" preset={ODS_TEXT_PRESET.paragraph}>
+          </Text>
+          <Text className="mb-6" preset={TEXT_PRESET.paragraph}>
             {t('exportIpToCsvConfirm')}
-          </OdsText>
+          </Text>
         </>
       )}
       <ApiErrorMessage error={error} />

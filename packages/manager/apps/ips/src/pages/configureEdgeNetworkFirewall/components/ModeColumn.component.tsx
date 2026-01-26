@@ -3,10 +3,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  OdsFormField,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  FormField,
+  FormFieldError,
+  Select,
+  SelectContent,
+  SelectControl,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { IpEdgeFirewallRule } from '@/data/api';
 import { TRANSLATION_NAMESPACES } from '@/utils';
@@ -22,25 +25,27 @@ export const ModeColumn = (rule: IpEdgeFirewallRule & { isNew?: boolean }) => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.edgeNetworkFirewall);
 
   return rule?.isNew ? (
-    <OdsFormField className="min-w-[90px]" error={modeError}>
-      <OdsSelect
+    <FormField className="min-w-[90px]" invalid={!!modeError}>
+      <Select
         className="block"
         name="action-select"
-        value={newMode}
-        hasError={!!modeError}
-        onOdsChange={(e) => {
-          setNewMode(e.detail.value as 'deny' | 'permit');
+        value={[newMode]}
+        invalid={!!modeError}
+        onValueChange={(e) => {
+          setNewMode(e.value?.[0] as 'deny' | 'permit');
           setModeError(undefined);
         }}
+        items={validActions.map((action) => ({
+          label: t(`${action}_action`),
+          value: action,
+        }))}
       >
-        {validActions.map((action) => (
-          <option key={action} value={action}>
-            {t(`${action}_action`)}
-          </option>
-        ))}
-      </OdsSelect>
-    </OdsFormField>
+        <SelectContent />
+        <SelectControl />
+      </Select>
+      <FormFieldError>{modeError}</FormFieldError>
+    </FormField>
   ) : (
-    <OdsText>{t(`${rule?.action}_action`)}</OdsText>
+    <Text>{t(`${rule?.action}_action`)}</Text>
   );
 };

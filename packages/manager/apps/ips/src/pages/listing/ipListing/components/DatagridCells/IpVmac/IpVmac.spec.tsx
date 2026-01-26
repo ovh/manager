@@ -9,21 +9,21 @@ import { DedicatedServerVmacWithIpType, IpDetails } from '@/data/api';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
-import { IpVmac, IpVmacProps } from './IpVmac';
+import { IpVmac } from './IpVmac';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
 const useGetIpVmacWithIpMock = vi.hoisted(() =>
   vi.fn(() => ({
     vmacsWithIp: undefined as DedicatedServerVmacWithIpType[] | undefined,
-    isLoading: true,
+    loading: true,
     error: undefined,
   })),
 );
@@ -38,7 +38,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 }));
 
 /** RENDER */
-const renderComponent = (params: IpVmacProps) => {
+const renderComponent = (params) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ListingContext.Provider value={listingContextDefaultParams}>
@@ -52,13 +52,13 @@ describe('IpVmac Component', () => {
   it('Should display if vmac exist for a given ip', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
       vmacsWithIp: [
         { macAddress: '10.0.0.1', ip: '239.99.244.14' },
       ] as DedicatedServerVmacWithIpType[],
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText } = renderComponent({
@@ -72,13 +72,13 @@ describe('IpVmac Component', () => {
   it('Should not display if vmac exist for not a given ip', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
       vmacsWithIp: [
         { macAddress: '10.0.0.1', ip: '239.99.262.83' },
       ] as DedicatedServerVmacWithIpType[],
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { queryByText } = renderComponent({
@@ -92,13 +92,13 @@ describe('IpVmac Component', () => {
   it('Should display nothing if not linked to a dedicated server', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[1] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
       vmacsWithIp: [
         { macAddress: '10.0.0.1', ip: '239.99.262.83' },
       ] as DedicatedServerVmacWithIpType[],
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { queryByText } = renderComponent({
@@ -112,11 +112,11 @@ describe('IpVmac Component', () => {
   it('Should display "-" if linked tp dedicated server but have no vmac', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
       vmacsWithIp: [] as DedicatedServerVmacWithIpType[],
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText } = renderComponent({

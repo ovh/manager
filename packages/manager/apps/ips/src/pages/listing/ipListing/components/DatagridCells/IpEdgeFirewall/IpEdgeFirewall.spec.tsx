@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 
 import {
   ShellContext,
@@ -15,17 +15,17 @@ import {
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpEdgeFirewallStateEnum, IpEdgeFirewallType } from '@/data/api';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { getOdsBadgeByLabel } from '@/test-utils';
+import { getBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
-import { IpEdgeFirewall, IpEdgeFirewallProps } from './IpEdgeFirewall';
+import { IpEdgeFirewall } from './IpEdgeFirewall';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpEdgeFirewall = vi.hoisted(() =>
   vi.fn(() => ({
     ipEdgeFirewall: undefined as IpEdgeFirewallType | undefined,
-    isLoading: true,
+    loading: true,
     error: undefined,
   })),
 );
@@ -48,7 +48,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-const renderComponent = async (params: IpEdgeFirewallProps) => {
+const renderComponent = async (params) => {
   const context = (await initShellContext('ips')) as ShellContextType;
   return render(
     <ShellContext.Provider value={context}>
@@ -68,18 +68,18 @@ describe('IpEdgeFirewall Component', () => {
         enabled: true,
         state: IpEdgeFirewallStateEnum.OK,
       } as IpEdgeFirewallType,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0]?.ip,
     });
-    const badge = await getOdsBadgeByLabel({
+    const badge = await getBadgeByLabel({
       container,
       label: 'listingColumnsIpEdgeFirewallEnabled',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.information);
+      expect(badge.getAttribute('color')).toBe(BADGE_COLOR.information);
       expect(
         getByText(`listingColumnsIpEdgeFirewallEnabledTooltip`),
       ).toBeDefined();
@@ -89,18 +89,18 @@ describe('IpEdgeFirewall Component', () => {
   it('Should display disable state if there is no firewall', async () => {
     useGetIpEdgeFirewall.mockReturnValue({
       ipEdgeFirewall: undefined,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0]?.ip,
     });
-    const badge = await getOdsBadgeByLabel({
+    const badge = await getBadgeByLabel({
       container,
       label: 'listingColumnsIpEdgeFirewallDisabled',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
+      expect(badge.getAttribute('color')).toBe(BADGE_COLOR.neutral);
       expect(
         getByText(`listingColumnsIpEdgeFirewallDisabledTooltip`),
       ).toBeDefined();
@@ -113,18 +113,18 @@ describe('IpEdgeFirewall Component', () => {
         enabled: false,
         state: IpEdgeFirewallStateEnum.OK,
       } as IpEdgeFirewallType,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0]?.ip,
     });
-    const badge = await getOdsBadgeByLabel({
+    const badge = await getBadgeByLabel({
       container,
       label: 'listingColumnsIpEdgeFirewallDisabled',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
+      expect(badge.getAttribute('color')).toBe(BADGE_COLOR.neutral);
       expect(
         getByText(`listingColumnsIpEdgeFirewallDisabledTooltip`),
       ).toBeDefined();
@@ -137,18 +137,18 @@ describe('IpEdgeFirewall Component', () => {
         enabled: false,
         state: IpEdgeFirewallStateEnum.PENDING_ENABLE,
       } as IpEdgeFirewallType,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
       ip: ipDetailsList[0]?.ip,
     });
-    const badge = await getOdsBadgeByLabel({
+    const badge = await getBadgeByLabel({
       container,
       label: 'listingColumnsIpEdgeFirewallPending',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
+      expect(badge.getAttribute('color')).toBe(BADGE_COLOR.warning);
       expect(
         getByText(`listingColumnsIpEdgeFirewallPendingTooltip`),
       ).toBeDefined();

@@ -1,6 +1,9 @@
-@import '@ovh-ux/muk/dist/style.css';
-
 @tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default/css';
+@import '@ovhcloud/ods-themes/default/fonts';
+
+@import '@ovh-ux/muk/dist/style.css';
 
 html {
   font-family: var(--ods-font-family-default);

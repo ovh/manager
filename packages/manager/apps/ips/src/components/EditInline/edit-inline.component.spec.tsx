@@ -1,7 +1,7 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 
@@ -21,7 +21,7 @@ describe('EditInline Component', () => {
 
     const editButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.pen,
+      iconName: ICON_NAME.pen,
     });
 
     await waitFor(() => {
@@ -34,7 +34,7 @@ describe('EditInline Component', () => {
 
     const submitButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.check,
+      iconName: ICON_NAME.check,
     });
 
     const editInput = getByTestId('edit-inline-input');

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import {
   ApiError,
@@ -13,7 +13,8 @@ import {
   getIpReverse,
   getIpReverseQueryKey,
 } from '@/data/api';
-import { ipFormatter } from '@/utils';
+import { ipFormatter, isValidIpv6Block } from '@/utils';
+import { useGetIpDetailsList } from './useGetIpDetails';
 
 export type UseGetIcebergIpReverseParams = {
   ip: string;
@@ -76,4 +77,53 @@ export const useGetIpReverse = ({
     enabled,
     retry: false,
   });
+};
+
+export const useIcebergGetIpReverseList = ({
+  ipList,
+  isEnabled,
+}: {
+  ipList: string[];
+  isEnabled?: (ip?: string) => boolean;
+}): {
+  isLoading: boolean;
+  isError: boolean;
+  reverseListByIp: { [ip: string]: IpReverseType[] };
+} => {
+  const { detailsByIp, isLoading, isError } = useGetIpDetailsList({ ipList });
+  const queryClient = useQueryClient();
+
+  const queries = (ipList || []).map((ip) => ({
+    queryKey: ['reverseList', encodeURIComponent(ip)],
+    queryFn: async () => {
+      const result = await getIcebergIpReverse({ ip });
+      queryClient.setQueryData(getIcebergIpReverseQueryKey({ ip }), result);
+
+      return {
+        ...result,
+        data: { ip, reverseList: result.data },
+      };
+    },
+    enabled:
+      !isLoading &&
+      !isError &&
+      !detailsByIp?.[ip]?.bringYourOwnIp &&
+      isValidIpv6Block(ip) &&
+      (isEnabled ? isEnabled(ip) : true),
+    staleTime: Number.POSITIVE_INFINITY,
+    retry: false,
+  }));
+
+  const results = useQueries({ queries });
+
+  return {
+    isLoading: isLoading || results.some((result) => result.isLoading),
+    isError: isError || results.some((result) => result.isError),
+    reverseListByIp: results.reduce((acc, result) => {
+      if (result.data) {
+        acc[result.data.data.ip] = result.data.data.reverseList;
+      }
+      return acc;
+    }, {} as { [ip: string]: IpReverseType[] }),
+  };
 };

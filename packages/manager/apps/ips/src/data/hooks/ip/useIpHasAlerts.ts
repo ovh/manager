@@ -22,22 +22,20 @@ export const useIpHasAlerts = ({
   subIp,
   enabled = true,
 }: UseIpHasAlertsParams) => {
-  const { ipAntihack, isLoading: isIpAntihackLoading } = useGetIpAntihack({
+  const { ipAntihack, loading: isIpAntihackLoading } = useGetIpAntihack({
     ip,
     enabled,
   });
 
-  const { ipSpam, isLoading: isIpSpamLoading } = useGetIpSpam({ ip, enabled });
+  const { ipSpam, loading: isIpSpamLoading } = useGetIpSpam({ ip, enabled });
 
-  const { ipMitigation, isLoading: isIpMitigationLoading } = useGetIpMitigation(
-    {
-      ip,
-      enabled,
-    },
-  );
+  const { ipMitigation, loading: isIpMitigationLoading } = useGetIpMitigation({
+    ip,
+    enabled,
+  });
 
   return {
-    isLoading: isIpAntihackLoading && isIpMitigationLoading && isIpSpamLoading,
+    loading: isIpAntihackLoading || isIpMitigationLoading || isIpSpamLoading,
     hasAlerts: {
       antihack: ipAntihack?.filter(
         (antihack) =>

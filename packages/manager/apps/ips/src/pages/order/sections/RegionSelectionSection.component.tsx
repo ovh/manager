@@ -2,8 +2,12 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+import {
+  MESSAGE_COLOR,
+  MessageBody,
+  Message,
+  Spinner,
+} from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -36,7 +40,7 @@ export const RegionSelectionSection: React.FC = () => {
   const {
     hasReachedIpv6Limit,
     disabledRegionList,
-    isLoading: isRegionAvailabilityLoading,
+    loading: isRegionAvailabilityLoading,
     isError: isRegionAvailabilityError,
     error: regionAvailabilityError,
   } = useIpv6Availability({
@@ -48,9 +52,9 @@ export const RegionSelectionSection: React.FC = () => {
   if (hasReachedIpv6Limit) {
     return (
       <OrderSection title={t('region_selection_title')}>
-        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
-          {t('ipv6_limit_reached_error')}
-        </OdsMessage>
+        <Message color={MESSAGE_COLOR.critical}>
+          <MessageBody>{t('ipv6_limit_reached_error')}</MessageBody>
+        </Message>
       </OrderSection>
     );
   }
@@ -68,15 +72,17 @@ export const RegionSelectionSection: React.FC = () => {
 
   return (
     <OrderSection
-      isLoading={isLoading || isRegionAvailabilityLoading}
+      loading={isLoading || isRegionAvailabilityLoading}
       title={t('region_selection_title')}
     >
       {isError || isRegionAvailabilityError ? (
-        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
-          {t('error_message', { error: error || regionAvailabilityError })}
-        </OdsMessage>
+        <Message color={MESSAGE_COLOR.critical}>
+          <MessageBody>
+            {t('error_message', { error: error || regionAvailabilityError })}
+          </MessageBody>
+        </Message>
       ) : (
-        <React.Suspense fallback={<OdsSpinner />}>
+        <React.Suspense fallback={<Spinner />}>
           <RegionSelector
             regionList={regionList}
             selectedRegion={selectedRegion}

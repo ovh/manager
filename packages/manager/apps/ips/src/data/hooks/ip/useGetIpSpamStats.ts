@@ -21,7 +21,7 @@ export const useGetIpSpamStats = ({
 }: UseGetIpSpamStatsParams) => {
   const {
     data: ipSpamStatsResponse,
-    isLoading,
+    isLoading: loading,
     isError,
     error,
   } = useQuery<IcebergFetchResultV6<IpSpamStatType>, ApiError>({
@@ -34,7 +34,7 @@ export const useGetIpSpamStats = ({
 
   return {
     ipSpamStats: ipSpamStatsResponse?.data ?? [],
-    isLoading,
+    loading,
     isError,
     error,
   };

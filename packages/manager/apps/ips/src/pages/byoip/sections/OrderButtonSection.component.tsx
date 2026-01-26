@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -30,10 +30,9 @@ export const OrderButtonSection: React.FC = () => {
 
   return (
     <div className="flex gap-4">
-      <OdsButton
-        color={ODS_BUTTON_COLOR.primary}
-        size={ODS_BUTTON_SIZE.md}
-        label={t('next', { ns: NAMESPACES.ACTIONS })}
+      <Button
+        color={BUTTON_COLOR.primary}
+        size={BUTTON_SIZE.md}
         onClick={() => {
           trackClick({
             actionType: 'action',
@@ -48,12 +47,13 @@ export const OrderButtonSection: React.FC = () => {
           });
           navigate(urls.byoipOrderModal);
         }}
-      />
-      <OdsButton
-        color={ODS_BUTTON_COLOR.primary}
-        size={ODS_BUTTON_SIZE.md}
-        variant={ODS_BUTTON_VARIANT.outline}
-        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
+      >
+        {t('next', { ns: NAMESPACES.ACTIONS })}
+      </Button>
+      <Button
+        color={BUTTON_COLOR.primary}
+        size={BUTTON_SIZE.md}
+        variant={BUTTON_VARIANT.outline}
         onClick={() => {
           trackClick({
             actionType: 'action',
@@ -68,7 +68,9 @@ export const OrderButtonSection: React.FC = () => {
           });
           navigate(urls.listing);
         }}
-      />
+      >
+        {t('cancel', { ns: NAMESPACES.ACTIONS })}
+      </Button>
     </div>
   );
 };

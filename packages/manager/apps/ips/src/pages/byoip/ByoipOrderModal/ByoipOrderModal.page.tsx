@@ -5,18 +5,17 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-  OdsCheckboxChangeEventDetail,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsCheckbox,
-  OdsModal,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  CheckboxControl,
+  CheckboxLabel,
+  TEXT_PRESET,
+  Button,
+  Checkbox,
+  Modal,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOrderURL } from '@ovh-ux/manager-module-order';
@@ -79,12 +78,10 @@ export const ByoipOrderModal: React.FC = () => {
 
   const declaratiosChecked = Object.values(checkedItems).every(Boolean);
 
-  const handleCheckboxChange = (id: string) => (
-    e: CustomEvent<OdsCheckboxChangeEventDetail>,
-  ) => {
+  const handleCheckboxChange = (id: string) => (e) => {
     setCheckedItems((prev) => ({
       ...prev,
-      [id]: e.detail.checked,
+      [id]: e.checked,
     }));
   };
 
@@ -114,58 +111,48 @@ export const ByoipOrderModal: React.FC = () => {
   }, [ipRir, selectedRegion, ipRange]);
 
   return (
-    <OdsModal isOpen isDismissible onOdsClose={handleClose}>
-      <OdsText className="mb-2" preset={ODS_TEXT_PRESET.heading4}>
+    <Modal open onOpenChange={handleClose}>
+      <Text className="mb-2" preset={TEXT_PRESET.heading4}>
         {t('ip_byoip_disclaimer_title')}
-      </OdsText>
+      </Text>
       <div className="mb-3 flex flex-col gap-4">
-        <OdsText preset={ODS_TEXT_PRESET.span}>
+        <Text preset={TEXT_PRESET.span}>
           {t('ip_byoip_disclaimer_description')}
-        </OdsText>
+        </Text>
 
         {declarationItems.map(({ declaration, translationKey }) => (
-          <label
+          <Checkbox
+            name={declaration}
             key={declaration}
-            className="flex cursor-pointer items-center hover:bg-gray-100"
-            htmlFor={declaration}
-            slot="label"
+            checked={checkedItems[declaration]}
+            onCheckedChange={handleCheckboxChange(declaration)}
           >
-            <div className="flex items-center">
-              <OdsCheckbox
-                className="mr-3"
-                inputId={declaration}
-                name={declaration}
-                isChecked={checkedItems[declaration]}
-                onOdsChange={handleCheckboxChange(declaration)}
-              />
-            </div>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t(translationKey)}
-            </OdsText>
-          </label>
+            <CheckboxLabel>{t(translationKey)}</CheckboxLabel>
+            <CheckboxControl />
+          </Checkbox>
         ))}
 
-        <OdsText preset={ODS_TEXT_PRESET.span}>
+        <Text preset={TEXT_PRESET.span}>
           {t('ip_byoip_disclaimer_ordering_delay_message')}
-        </OdsText>
+        </Text>
       </div>
       <div className="flex justify-end gap-4">
-        <OdsButton
-          color={ODS_BUTTON_COLOR.primary}
-          size={ODS_BUTTON_SIZE.md}
-          variant={ODS_BUTTON_VARIANT.outline}
-          label={t('cancel', { ns: NAMESPACES.ACTIONS })}
+        <Button
+          color={BUTTON_COLOR.primary}
+          size={BUTTON_SIZE.md}
+          variant={BUTTON_VARIANT.outline}
           onClick={() => {
             startTransition(() => {
               navigate(urls.listing);
             });
           }}
-        />
-        <OdsButton
-          color={ODS_BUTTON_COLOR.primary}
-          size={ODS_BUTTON_SIZE.md}
-          label={t('confirm', { ns: NAMESPACES.ACTIONS })}
-          isDisabled={!declaratiosChecked}
+        >
+          {t('cancel', { ns: NAMESPACES.ACTIONS })}
+        </Button>
+        <Button
+          color={BUTTON_COLOR.primary}
+          size={BUTTON_SIZE.md}
+          disabled={!declaratiosChecked}
           onClick={() => {
             const payload = {
               ipRir,
@@ -224,9 +211,11 @@ export const ByoipOrderModal: React.FC = () => {
               navigate(urls.listing);
             });
           }}
-        />
+        >
+          {t('confirm', { ns: NAMESPACES.ACTIONS })}
+        </Button>
       </div>
-    </OdsModal>
+    </Modal>
   );
 };
 

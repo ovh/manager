@@ -57,7 +57,7 @@ export const useServiceRegion = ({
   });
 
   return {
-    isLoading:
+    loading:
       dedicatedServerData?.isLoading ||
       vpsDatacenter?.isLoading ||
       dedicatedCloudLocation?.isLoading,

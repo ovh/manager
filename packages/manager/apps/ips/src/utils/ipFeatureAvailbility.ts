@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export const useIpFeatureAvailability = () => {
   const context = useContext(ShellContext);
   const region = context.environment.getRegion();
+
   const allow = (...args: string[]) => {
     return Array.from(args).indexOf(region) > -1;
   };
@@ -13,21 +13,13 @@ export const useIpFeatureAvailability = () => {
     return Array.from(args).indexOf(region) === -1;
   };
 
-  const showState = () => {
-    return allow('US');
-  };
+  const showState = allow('US');
 
-  const allowIPFailoverImport = () => {
-    return deny('US');
-  };
+  const allowIPFailoverImport = deny('US');
 
-  const allowIPFailoverOrder = () => {
-    return deny('US');
-  };
+  const allowIPFailoverOrder = deny('US');
 
-  const allowIPFailoverAgoraOrder = () => {
-    return allow('US');
-  };
+  const allowIPFailoverAgoraOrder = allow('US');
 
   return {
     showState,

@@ -3,12 +3,13 @@ import React from 'react';
 import ipaddr from 'ipaddr.js';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  FormFieldLabel,
+  TEXT_PRESET,
+  FormField,
+  Input,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import {
   TRANSLATION_NAMESPACES,
@@ -53,34 +54,30 @@ export default function Step1({
   return (
     <>
       <div className="flex flex-col">
-        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+        <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
           {t('step1Description')}
-        </OdsText>
-        <OdsFormField className="mb-3 block">
-          <label htmlFor="ipOrBlock" slot="label">
-            {t('step1IpLabel')}
-          </label>
-          <OdsInput
+        </Text>
+        <FormField className="mb-3 block">
+          <FormFieldLabel>{t('step1IpLabel')}</FormFieldLabel>
+          <Input
             className="w-full"
             name="ipOrBlock"
             id="ipOrBlock"
-            hasError={Boolean(ip) && !isIpValid(ip)}
+            invalid={Boolean(ip) && !isIpValid(ip)}
             value={ip}
-            onOdsChange={(e) => setIp(e.detail.value as string)}
+            onChange={(e) => setIp(e.target.value)}
           />
-        </OdsFormField>
-        <OdsFormField>
-          <label htmlFor="token" slot="label">
-            {t('step1TokenLabel')}
-          </label>
-          <OdsInput
+        </FormField>
+        <FormField>
+          <FormFieldLabel>{t('step1TokenLabel')}</FormFieldLabel>
+          <Input
             name="token"
             id="token"
             value={token}
-            hasError={Boolean(token) && !isTokenValid(token)}
-            onOdsChange={(e) => setToken(e.detail.value as string)}
+            invalid={Boolean(token) && !isTokenValid(token)}
+            onChange={(e) => setToken(e.target.value)}
           />
-        </OdsFormField>
+        </FormField>
       </div>
       <ModalButtonGroup
         currentStep={1}

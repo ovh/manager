@@ -10,7 +10,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import {
@@ -63,7 +63,7 @@ export function useVrackMoveTasks({
   ]);
   const { clearNotifications, addSuccess } = useNotifications();
   const { trackPage } = useOvhTracking();
-  const { data, isLoading } = useQuery({
+  const { data, isLoading: loading } = useQuery({
     queryKey: getVrackTaskQueryKey({ serviceName }),
     queryFn: () => getVrackTaskList({ serviceName }),
     retry: false,
@@ -146,7 +146,7 @@ export function useVrackMoveTasks({
   });
 
   return {
-    isVrackTasksLoading: isLoading || queries.some((q) => q.isLoading),
+    isVrackTasksLoading: loading || queries.some((q) => q.isLoading),
     vrackTasksError: queries.find((q) => q.error)?.error as ApiError,
     hasOnGoingVrackMoveTasks:
       queries.map((q) => q.data).filter((d): d is ApiResponse<VrackTask> => !!d)

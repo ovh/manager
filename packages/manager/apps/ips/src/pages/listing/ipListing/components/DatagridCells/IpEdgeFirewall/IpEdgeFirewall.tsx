@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { ColumnDef } from '@tanstack/react-table';
 
 import { useGetIpEdgeFirewall } from '@/data/hooks/ip';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -6,11 +7,7 @@ import { ipFormatter } from '@/utils/ipFormatter';
 
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { IpEdgeFirewallDisplay } from './IpEdgeFirewallDisplay';
-
-export type IpEdgeFirewallProps = {
-  ip: string;
-  ipOnFirewall?: string;
-};
+import { IpRowData } from '../enableCellsUtils';
 
 /**
  * Component to display the cell content for Edge Firewall.
@@ -21,33 +18,38 @@ export type IpEdgeFirewallProps = {
  * @param ip the ip with mask
  * @returns React component
  */
-export const IpEdgeFirewall = ({ ip, ipOnFirewall }: IpEdgeFirewallProps) => {
+export const IpEdgeFirewall: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup } = row.original;
+  const ipToFetch = parentIpGroup || ip;
+  const ipOnFirewall = parentIpGroup ? ip : undefined;
+
   const { expiredIps } = useContext(ListingContext);
-  const { isGroup, ipAddress } = ipFormatter(ip);
+  const { isGroup, ipAddress } = ipFormatter(ipToFetch);
 
   const enabled = React.useMemo(
     () =>
       ((isGroup && !!ipOnFirewall) || !isGroup) &&
-      expiredIps.indexOf(ip) === -1,
+      expiredIps.indexOf(ip) === -1 &&
+      !!ip,
     [isGroup, ipOnFirewall, ip, expiredIps],
   );
 
   // Get edge firewall details
-  const { ipEdgeFirewall, isLoading, error } = useGetIpEdgeFirewall({
-    ip,
+  const { ipEdgeFirewall, loading, error } = useGetIpEdgeFirewall({
+    ip: ipToFetch,
     ipOnFirewall: ipOnFirewall ?? ipAddress,
     enabled,
   });
 
   return (
     <SkeletonCell
-      isLoading={isLoading}
+      loading={loading}
       enabled={enabled}
       error={error}
-      ip={ipOnFirewall ?? ip}
+      ip={ipOnFirewall ?? ipToFetch}
     >
       <IpEdgeFirewallDisplay
-        parentIp={ip}
+        parentIp={ipToFetch}
         ip={ipOnFirewall ?? ip}
         ipEdgeFirewall={ipEdgeFirewall}
       />

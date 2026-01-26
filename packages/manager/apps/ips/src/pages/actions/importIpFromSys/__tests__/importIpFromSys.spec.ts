@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { describe, vi } from 'vitest';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
@@ -38,7 +38,7 @@ describe('Import IP from Sys modal', () => {
 
     const settingsMenuButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.cog,
+      iconName: ICON_NAME.cog,
     });
 
     await waitFor(() => fireEvent.click(settingsMenuButton));

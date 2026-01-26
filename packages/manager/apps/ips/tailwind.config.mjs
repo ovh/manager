@@ -11,12 +11,7 @@ const reactComponentsDir = pkgDir('@ovh-ux/muk');
 
 const baseTailwindConfig = [
   ...(baseConfig.content ?? []),
-  './src/**/*.{js,jsx,ts,tsx}',
   toGlob(reactComponentsDir),
-  path.join(
-    path.dirname(require.resolve('@ovh-ux/manager-react-components')),
-    '**/*.{js,jsx,ts,tsx}',
-  ),
 ];
 
 /** @type {import('tailwindcss').Config} */

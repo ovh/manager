@@ -19,4 +19,5 @@ export const TRANSLATION_NAMESPACES = {
   exportIpToCsv: 'export-ip-to-csv',
   aggregateSlice: 'aggregate-slice',
   price: 'ips-price',
+  virtualMac: 'virtual-mac',
 };

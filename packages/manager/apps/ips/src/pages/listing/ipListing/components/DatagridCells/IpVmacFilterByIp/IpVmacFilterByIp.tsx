@@ -1,15 +1,8 @@
-import React from 'react';
-
-import { VmacWithIpType } from '@/data/hooks/ip';
+import { useGetIpdetails, useGetIpVmacWithIp } from '@/data/hooks/ip';
 
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-
-export type IpVmacFilterByIpProps = {
-  ip: string;
-  vmacsWithIp: VmacWithIpType[];
-  isLoading?: boolean;
-  enabled?: boolean;
-};
+import { ColumnDef } from '@tanstack/react-table';
+import { IpRowData } from '../enableCellsUtils';
 
 /**
  * Component to display the cell content for IP Vmac
@@ -23,21 +16,19 @@ export type IpVmacFilterByIpProps = {
  * @param enabled to show or not the information
  * @returns React Component
  */
-export const IpVmacFilterByIp = ({
-  ip,
-  vmacsWithIp,
-  isLoading,
-  enabled = true,
-}: IpVmacFilterByIpProps) => {
+export const IpVmacFilterByIp: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup } = row.original;
+  const { ipDetails, loading } = useGetIpdetails({ ip: parentIpGroup || ip });
+  const { vmacsWithIp, loading: isVmacsLoading } = useGetIpVmacWithIp({
+    serviceName: ipDetails?.routedTo?.serviceName || '',
+  });
   const vmac = vmacsWithIp.find((vmacs) =>
     vmacs?.ip?.some((vmacIp) => ip === vmacIp),
   );
 
   return (
-    <SkeletonCell isLoading={isLoading} enabled={enabled} ip={ip}>
-      {!enabled && null}
-      {enabled && !vmac && <>-</>}
-      {enabled && !!vmac && <div>{vmac.macAddress}</div>}
+    <SkeletonCell loading={loading || isVmacsLoading} ip={ip}>
+      {!vmac ? <>-</> : <div>{vmac.macAddress}</div>}
     </SkeletonCell>
   );
 };

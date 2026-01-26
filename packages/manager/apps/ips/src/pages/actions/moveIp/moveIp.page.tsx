@@ -4,15 +4,10 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { MESSAGE_COLOR, MessageBody, Message } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Modal,
-  ModalProps,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { MODAL_TYPE, Modal, ModalProps, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -56,7 +51,7 @@ export default function MoveIpModal() {
   }, [trackClick, search, navigate]);
 
   const {
-    isLoading: isIpDetailLoading,
+    loading: isIpDetailLoading,
     ipDetails,
     error: ipDetailsError,
   } = useGetIpdetails({
@@ -93,7 +88,7 @@ export default function MoveIpModal() {
     moveIpServiceError,
   ]);
 
-  const isLoading = React.useMemo(
+  const loading = React.useMemo(
     () => isIpDetailLoading || isMoveIpServiceLoading,
     [isIpDetailLoading, isMoveIpServiceLoading],
   );
@@ -104,51 +99,54 @@ export default function MoveIpModal() {
   ]);
 
   const props: ModalProps = {
-    isOpen: true,
     heading: `${t('move', { ns: NAMESPACES.ACTIONS })} Additional IP`,
     step: {
       current: currentStep,
       total: TOTAL_STEP_NUMBER,
     },
-    type: ODS_MODAL_COLOR.neutral,
-    isLoading,
-    onDismiss: closeModal,
-    isPrimaryButtonLoading: isMoveIpPending,
-    isPrimaryButtonDisabled:
-      !!error ||
-      hasOnGoingMoveIpTask ||
-      !destinationService ||
-      (isDedicatedCloudService(destinationService) && !nextHop),
-    primaryLabel: t(currentStep === 1 ? 'next' : 'confirm', {
-      ns: NAMESPACES.ACTIONS,
-    }),
-    secondaryLabel: t(currentStep === 1 || error ? 'cancel' : 'previous', {
-      ns: NAMESPACES.ACTIONS,
-    }),
-    onPrimaryButtonClick: () => {
-      if (currentStep === TOTAL_STEP_NUMBER) {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['move_additional-ip', 'confirm'],
-        });
-        postMoveIp({
-          ip,
-          to: destinationService,
-          nexthop: nextHop,
-          serviceName: ipDetails?.routedTo?.serviceName,
-        });
-      } else {
-        setCurrentStep((prev) => prev + 1);
-      }
+    type: MODAL_TYPE.information,
+    loading,
+    onOpenChange: closeModal,
+    primaryButton: {
+      label: t(currentStep === 1 ? 'next' : 'confirm', {
+        ns: NAMESPACES.ACTIONS,
+      }),
+      loading: isMoveIpPending,
+      disabled:
+        !!error ||
+        hasOnGoingMoveIpTask ||
+        !destinationService ||
+        (isDedicatedCloudService(destinationService) && !nextHop),
+      onClick: () => {
+        if (currentStep === TOTAL_STEP_NUMBER) {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['move_additional-ip', 'confirm'],
+          });
+          postMoveIp({
+            ip,
+            to: destinationService,
+            nexthop: nextHop,
+            serviceName: ipDetails?.routedTo?.serviceName,
+          });
+        } else {
+          setCurrentStep((prev) => prev + 1);
+        }
+      },
     },
-    onSecondaryButtonClick: () => {
-      if (currentStep === 1 || error) {
-        closeModal();
-      } else {
-        setCurrentStep((prev) => prev - 1);
-      }
+    secondaryButton: {
+      label: t(currentStep === 1 || error ? 'cancel' : 'previous', {
+        ns: NAMESPACES.ACTIONS,
+      }),
+      onClick: () => {
+        if (currentStep === 1 || error) {
+          closeModal();
+        } else {
+          setCurrentStep((prev) => prev - 1);
+        }
+      },
     },
   };
 
@@ -163,9 +161,9 @@ export default function MoveIpModal() {
   if (hasOnGoingMoveIpTask) {
     return (
       <Modal {...props}>
-        <OdsMessage color={ODS_MESSAGE_COLOR.danger} isDismissible={false}>
-          {t('moveIpOnGoingTaskMessage')}
-        </OdsMessage>
+        <Message color={MESSAGE_COLOR.critical} dismissible={false}>
+          <MessageBody>{t('moveIpOnGoingTaskMessage')}</MessageBody>
+        </Message>
       </Modal>
     );
   }

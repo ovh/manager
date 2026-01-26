@@ -12,10 +12,10 @@ import {
   IpSpamType,
 } from '@/data/api';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { getOdsBadgeByLabel } from '@/test-utils';
+import { getBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
-import { IpAlerts, IpAlertsProps } from './IpAlerts';
+import { IpAlerts } from './IpAlerts';
 
 type Alert = {
   antihack?: IpAntihackType[];
@@ -26,7 +26,7 @@ type Alert = {
 const queryClient = new QueryClient();
 /** MOCKS */
 const useIpHasAlertsMock = vi.hoisted(() =>
-  vi.fn(() => ({ hasAlerts: undefined as Alert | undefined, isLoading: true })),
+  vi.fn(() => ({ hasAlerts: undefined as Alert | undefined, loading: true })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
@@ -37,7 +37,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
-const renderComponent = (params: IpAlertsProps) => {
+const renderComponent = (params) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ListingContext.Provider value={listingContextDefaultParams}>
@@ -51,12 +51,12 @@ describe('IpAlerts Component', () => {
   it('Should display antihack badge', async () => {
     useIpHasAlertsMock.mockReturnValue({
       hasAlerts: { antihack: [{ ipBlocked: '10.0.0.1' }] } as Alert,
-      isLoading: false,
+      loading: false,
     });
     const { container } = renderComponent({
       ip: ipDetailsList?.[0]?.ip,
     });
-    await getOdsBadgeByLabel({
+    await getBadgeByLabel({
       container,
       label: 'listingColumnsIpAlertsAntihack',
     });
@@ -74,12 +74,12 @@ describe('IpAlerts Component', () => {
           },
         ],
       },
-      isLoading: false,
+      loading: false,
     });
     const { container } = renderComponent({
       ip: ipDetailsList?.[0]?.ip,
     });
-    await getOdsBadgeByLabel({
+    await getBadgeByLabel({
       container,
       label: 'listingColumnsIpAlertsSpam',
     });
@@ -90,12 +90,12 @@ describe('IpAlerts Component', () => {
       hasAlerts: {
         mitigation: [{ ipOnMitigation: '10.0.0.1', auto: true }],
       } as Alert,
-      isLoading: false,
+      loading: false,
     });
     const { container } = renderComponent({
       ip: ipDetailsList?.[0]?.ip,
     });
-    await getOdsBadgeByLabel({
+    await getBadgeByLabel({
       container,
       label: 'listingColumnsIpAlertsMitigation',
     });

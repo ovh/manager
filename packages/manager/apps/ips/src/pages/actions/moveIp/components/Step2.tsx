@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
@@ -18,9 +17,9 @@ export default function Step2({ ip, destinationService, nextHop }: Step2Props) {
 
   return (
     <div className="flex items-center">
-      <OdsText
+      <Text
         className="mb-4 block flex-1 text-center"
-        preset={ODS_TEXT_PRESET.paragraph}
+        preset={TEXT_PRESET.paragraph}
       >
         <span
           className="text-sm"
@@ -37,7 +36,7 @@ export default function Step2({ ip, destinationService, nextHop }: Step2Props) {
             ),
           }}
         />
-      </OdsText>
+      </Text>
     </div>
   );
 }

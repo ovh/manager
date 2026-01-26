@@ -2,8 +2,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { BADGE_COLOR, Skeleton } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -39,7 +38,6 @@ export const IpGameFirewallDisplay = ({
   ipOnGame,
   enabled,
 }: IpGameFirewallDisplayProps) => {
-  const id = `gamefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { t } = useTranslation('listing');
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
@@ -62,7 +60,7 @@ export const IpGameFirewallDisplay = ({
   }
 
   if (!ruleListQuery) {
-    return <OdsSkeleton />;
+    return <Skeleton />;
   }
 
   const navigateToConfigureGameFirewall = () => {
@@ -95,28 +93,25 @@ export const IpGameFirewallDisplay = ({
       {ipGameFirewall?.state === IpGameFirewallStateEnum.OK &&
         ruleListQuery?.data?.length === 0 && (
           <BadgeCell
-            badgeColor={ODS_BADGE_COLOR.neutral}
+            badgeColor={BADGE_COLOR.neutral}
             text={t('listingColumnsIpGameFirewallAvailable')}
             tooltip={t('listingColumnsIpGameFirewallAvailableTooltip')}
-            trigger={id}
           />
         )}
       {ipGameFirewall?.state === IpGameFirewallStateEnum.OK &&
         ruleListQuery?.data &&
         ruleListQuery.data.length > 0 && (
           <BadgeCell
-            badgeColor={ODS_BADGE_COLOR.success}
+            badgeColor={BADGE_COLOR.success}
             text={t('listingColumnsIpGameFirewallConfigured')}
             tooltip={t('listingColumnsIpGameFirewallConfiguredTooltip')}
-            trigger={id}
           />
         )}
       {ipGameFirewall?.state !== IpGameFirewallStateEnum.OK && (
         <BadgeCell
-          badgeColor={ODS_BADGE_COLOR.information}
+          badgeColor={BADGE_COLOR.information}
           text={t('listingColumnsIpGameFirewallPending')}
           tooltip={t('listingColumnsIpGameFirewallPendingTooltip')}
-          trigger={id}
         />
       )}
     </div>

@@ -1,12 +1,10 @@
-import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_VARIANT, ICON_NAME } from '@ovhcloud/ods-react';
 
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -15,13 +13,18 @@ import {
 
 import { OrgDetails } from '@/data/api';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+import { ColumnDef } from '@tanstack/react-table';
 
-export const OrganisationsActionsCell = (organisation: OrgDetails) => {
-  const { t } = useTranslation('manage-organisations');
+export const OrganisationsActionsCell: ColumnDef<OrgDetails>['cell'] = ({
+  row,
+}) => {
+  const { organisationId, registry } = row.original;
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.managerOrganisations);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     {
       id: 1,
       label: t('manageOrganisationsTabEditOrgAction'),
@@ -35,7 +38,7 @@ export const OrganisationsActionsCell = (organisation: OrgDetails) => {
         navigate(
           `${urls.openOrganisationsModal.replace(
             urlDynamicParts.organisationId,
-            organisation.organisationId,
+            organisationId,
           )}?mode="edit"`,
         );
       },
@@ -53,7 +56,7 @@ export const OrganisationsActionsCell = (organisation: OrgDetails) => {
         navigate(
           urls.deleteOrganisation.replace(
             urlDynamicParts.organisationId,
-            organisation.organisationId,
+            organisationId,
           ),
         );
       },
@@ -62,11 +65,11 @@ export const OrganisationsActionsCell = (organisation: OrgDetails) => {
 
   return (
     <ActionMenu
-      id={`manageOrgActionMenu-${organisation?.registry}-${organisation?.organisationId}`}
+      id={`manageOrgActionMenu-${registry}-${organisationId}`}
       items={items}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
-      icon={ODS_ICON_NAME.ellipsisVertical}
+      variant={BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
     />
   );
 };

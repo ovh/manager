@@ -2,14 +2,20 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  OdsCheckbox,
-  OdsIcon,
-  OdsSelect,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+  CheckboxControl,
+  CheckboxLabel,
+  ICON_NAME,
+  SelectContent,
+  SelectControl,
+  Checkbox,
+  Icon,
+  Select,
+  Text,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@ovhcloud/ods-react';
 
 import { IpEdgeFirewallProtocol, IpEdgeFirewallRule } from '@/data/api';
 import { TRANSLATION_NAMESPACES } from '@/utils';
@@ -38,51 +44,52 @@ export const TcpOptionColumn = (
     <div className="flex flex-col gap-4">
       {rule?.isNew && newProtocol === IpEdgeFirewallProtocol.TCP ? (
         <>
-          <OdsSelect
+          <Select
             className="block min-w-[130px]"
             name="action-select"
-            value={newTcpOption || TcpOptions.none}
-            onOdsChange={(e) => {
-              const newValue = e.detail.value as TcpOptions;
+            value={[newTcpOption || TcpOptions.none]}
+            onValueChange={(e) => {
+              const newValue = e.value?.[0] as TcpOptions;
               setNewTcpOption(
                 newValue === TcpOptions.none ? undefined : newValue,
               );
             }}
-          >
-            {Object.values(TcpOptions).map((option) => (
-              <option key={option} value={option}>
-                {option === TcpOptions.none
+            items={Object.values(TcpOptions).map((option) => ({
+              label:
+                option === TcpOptions.none
                   ? t(`${option}_label`)
-                  : option?.toUpperCase()}
-              </option>
-            ))}
-          </OdsSelect>
+                  : option?.toUpperCase(),
+              value: option,
+            }))}
+          >
+            <SelectContent />
+            <SelectControl />
+          </Select>
           <div className="flex items-center">
-            <OdsCheckbox
-              isChecked={newFragments}
-              onOdsChange={(e) => setNewFragments(e.detail.checked)}
-              className="mr-3"
-              inputId="fragments"
-              name="fragments"
-            />
-            <label htmlFor="fragments" slot="label">
-              {t('fragments_label')}
-            </label>
-            <OdsIcon
-              id="fragments-tooltip"
-              name={ODS_ICON_NAME.circleQuestion}
-              tabIndex={0}
-              className="ml-2 cursor-pointer text-[var(--ods-color-text)]"
-            />
-            <OdsTooltip triggerId="fragments-tooltip" withArrow>
-              <OdsText className="p-2">{t('fragments_tooltip')}</OdsText>
-            </OdsTooltip>
+            <Checkbox
+              checked={newFragments}
+              onCheckedChange={(e) => setNewFragments(e.checked as boolean)}
+            >
+              <CheckboxLabel>{t('fragments_label')}</CheckboxLabel>
+              <CheckboxControl />
+            </Checkbox>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Icon
+                  name={ICON_NAME.circleQuestion}
+                  className="ml-2 cursor-pointer text-[var(--ods-color-text)]"
+                />
+              </TooltipTrigger>
+              <TooltipContent withArrow>
+                {t('fragments_tooltip')}
+              </TooltipContent>
+            </Tooltip>
           </div>
         </>
       ) : (
         <>
-          {rule?.fragments && <OdsText>{t('fragments_label')}</OdsText>}
-          {rule?.tcpOption && <OdsText>{rule.tcpOption}</OdsText>}
+          {rule?.fragments && <Text>{t('fragments_label')}</Text>}
+          {rule?.tcpOption && <Text>{rule.tcpOption}</Text>}
         </>
       )}
     </div>

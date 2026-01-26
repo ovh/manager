@@ -15,12 +15,10 @@ export type UseGetServerModelsParams = {
 export const useGetServerModels = ({
   enabled = true,
 }: UseGetServerModelsParams) => {
-  const {
-    data: dedicatedServerModels,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<ApiResponse<ServerModelsType>, ApiError>({
+  const { data: dedicatedServerModels, isLoading, isError, error } = useQuery<
+    ApiResponse<ServerModelsType>,
+    ApiError
+  >({
     queryKey: getServerModelsQueryKey(),
     queryFn: () => getServerModels(),
     enabled,
@@ -30,7 +28,7 @@ export const useGetServerModels = ({
 
   return {
     models: dedicatedServerModels?.data?.models,
-    isLoading,
+    loading: isLoading,
     isError,
     error,
   };

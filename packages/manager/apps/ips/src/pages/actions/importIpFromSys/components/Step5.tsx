@@ -2,15 +2,17 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsDivider,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  MESSAGE_COLOR,
+  MessageBody,
+  TEXT_PRESET,
+  Divider,
+  Message,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { Price } from '@/components/price';
@@ -42,19 +44,19 @@ export default function Step5({
   return (
     <>
       <div className="flex flex-col">
-        <OdsMessage
+        <Message
           className="mb-4 block"
-          color={ODS_MESSAGE_COLOR.information}
-          isDismissible={false}
+          color={MESSAGE_COLOR.information}
+          dismissible={false}
         >
-          {t('step5Description')}
-        </OdsMessage>
+          <MessageBody>{t('step5Description')}</MessageBody>
+        </Message>
       </div>
       <div className="mb-6 flex flex-col gap-4">
         {orderData?.details?.map((detail) => (
           <div key={`${detail.domain}-${detail.detailType}`}>
             <div className="flex justify-between">
-              <OdsText>{detail.description}</OdsText>
+              <Text>{detail.description}</Text>
               <Price
                 value={detail.totalPrice.value * PRICE_MULTIPLIER}
                 tax={0}
@@ -62,32 +64,32 @@ export default function Step5({
                 locale={i18n.language}
               />
             </div>
-            <OdsDivider />
+            <Divider />
           </div>
         ))}
       </div>
       <div className="flex justify-end">
-        <OdsText preset={ODS_TEXT_PRESET.heading6}>
+        <Text preset={TEXT_PRESET.heading6}>
           {t('step5TotalPriceHT', {
             price: orderData?.prices?.withoutTax?.text,
           })}
-        </OdsText>
+        </Text>
       </div>
-      <OdsDivider className="mb-2 block" />
+      <Divider className="mb-2 block" />
       <div className="flex justify-end">
-        <OdsText preset={ODS_TEXT_PRESET.heading6}>
+        <Text preset={TEXT_PRESET.heading6}>
           {t('step5TotalPriceTTC', { price: orderData?.prices?.withTax?.text })}
-        </OdsText>
+        </Text>
       </div>
-      <OdsDivider className="mb-6 block" />
-      <OdsText className="mb-3 block">
+      <Divider className="mb-6 block" />
+      <Text className="mb-3 block">
         {t('step5ConfirmTextPart1', {
           confirmButtonLabel: t('confirm', { ns: NAMESPACES.ACTIONS }),
         })}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.caption} className="mb-4 block">
+      </Text>
+      <Text preset={TEXT_PRESET.caption} className="mb-4 block">
         {t('step5ConfirmTextPart2')}
-      </OdsText>
+      </Text>
       <ModalButtonGroup
         currentStep={5}
         onCancel={onCancel}

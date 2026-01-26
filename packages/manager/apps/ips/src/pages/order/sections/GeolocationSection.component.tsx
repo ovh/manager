@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Skeleton } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -49,19 +49,19 @@ export const GeolocationSection: React.FC = () => {
           : 'geolocation_selection_description',
       )}
     >
-      <React.Suspense fallback={<OdsSkeleton />}>
+      <React.Suspense fallback={<Skeleton />}>
         <CountrySelector
           name="ip-geolocation"
           className="max-w-[384px]"
           countryCodeList={geolocations}
-          isDisabled={isDisabled}
+          disabled={isDisabled}
           value={
             selectedGeolocation && geolocations.includes(selectedGeolocation)
               ? selectedGeolocation
               : geolocations?.[0]
           }
-          onChange={(event) => {
-            const newLocation = event.detail.value;
+          onValueChange={(event) => {
+            const newLocation = event.value?.[0];
             setSelectedGeolocation(newLocation);
 
             if (newLocation) {
