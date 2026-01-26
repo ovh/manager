@@ -1,33 +1,32 @@
 import React from 'react';
 
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsDivider,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  SPINNER_SIZE,
+  TEXT_PRESET,
+  Divider,
+  Spinner,
+  Text,
+} from '@ovhcloud/ods-react';
 
-export const OrderSection: React.FC<
-  React.PropsWithChildren<{
-    title: string;
-    description?: string;
-    isLoading?: boolean;
-  }>
-> = ({ title, description, isLoading, children }) => (
+export const OrderSection: React.FC<React.PropsWithChildren<{
+  title: string;
+  description?: string;
+  loading?: boolean;
+}>> = ({ title, description, loading, children }) => (
   <section className="mb-8 max-w-[1368px]">
-    <OdsText className="mb-3 block" preset={ODS_TEXT_PRESET.heading2}>
+    <Text className="mb-3 block" preset={TEXT_PRESET.heading2}>
       {title}
-    </OdsText>
-    <OdsText className="mb-3 block" preset={ODS_TEXT_PRESET.paragraph}>
+    </Text>
+    <Text className="mb-3 block" preset={TEXT_PRESET.paragraph}>
       {description}
-    </OdsText>
-    {isLoading ? (
+    </Text>
+    {loading ? (
       <div className="text-center">
-        <OdsSpinner size={ODS_SPINNER_SIZE.md} />
+        <Spinner size={SPINNER_SIZE.md} />
       </div>
     ) : (
       children
     )}
-    <OdsDivider className="mt-8 block" />
+    <Divider className="mt-8 block" />
   </section>
 );

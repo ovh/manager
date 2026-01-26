@@ -49,7 +49,7 @@ export const useGetOrganisationsDetails = ({
       queriesResults: UseQueryResult<ApiResponse<OrgDetails>, ApiError>[],
     ) => ({
       isPending: queriesResults.some((result) => result.isPending),
-      isLoading: queriesResults.some((result) => result.isLoading),
+      loading: queriesResults.some((result) => result.isLoading),
       error: queriesResults.find((result) => result.error)?.error,
       data: queriesResults
         .map(({ data }) => data?.data)
@@ -69,11 +69,7 @@ export const useGetSingleOrganisationDetail = ({
   organisationId,
   enabled = true,
 }: UseGetOrganisationDetailsParams) => {
-  const {
-    data: organisationDetail,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: organisationDetail, isLoading: loading, isError } = useQuery({
     queryKey: getOrganisationsDetailsQueryKey({
       organisationId,
     }),
@@ -82,7 +78,7 @@ export const useGetSingleOrganisationDetail = ({
   });
 
   const formattedResult = {
-    isLoading,
+    loading,
     isError,
     orgDetail: organisationDetail?.data,
   };

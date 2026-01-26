@@ -1,11 +1,12 @@
 import React from 'react';
 
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Icon,
+  ICON_NAME,
+  Button,
+} from '@ovhcloud/ods-react';
 
 import { IpGameFirewallRule } from '@/data/api';
 
@@ -20,28 +21,28 @@ export const ActionColumn = (
 
   return rule?.isNew ? (
     <div className="flex gap-4">
-      <OdsButton
-        size={ODS_BUTTON_SIZE.xs}
-        label=""
-        icon={ODS_ICON_NAME.xmark}
-        variant={ODS_BUTTON_VARIANT.ghost}
+      <Button
+        size={BUTTON_SIZE.xs}
+        variant={BUTTON_VARIANT.ghost}
         onClick={hideNewRuleRow}
-      />
-      <OdsButton
-        size={ODS_BUTTON_SIZE.xs}
-        label=""
-        icon={ODS_ICON_NAME.check}
-        variant={ODS_BUTTON_VARIANT.ghost}
+      >
+        <Icon name={ICON_NAME.xmark} />
+      </Button>
+      <Button
+        size={BUTTON_SIZE.xs}
+        variant={BUTTON_VARIANT.ghost}
         onClick={addRule}
-      />
+      >
+        <Icon name={ICON_NAME.check} />
+      </Button>
     </div>
   ) : (
-    <OdsButton
-      label=""
-      icon={ODS_ICON_NAME.trash}
-      variant={ODS_BUTTON_VARIANT.ghost}
-      isDisabled={rule?.state !== 'ok'}
+    <Button
+      variant={BUTTON_VARIANT.ghost}
+      disabled={rule?.state !== 'ok'}
       onClick={() => showConfirmDeleteModal(rule)}
-    />
+    >
+      <Icon name={ICON_NAME.trash} />
+    </Button>
   );
 };

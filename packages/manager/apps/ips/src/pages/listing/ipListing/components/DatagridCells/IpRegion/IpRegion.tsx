@@ -1,12 +1,8 @@
-import React from 'react';
-
+import { ColumnDef } from '@tanstack/react-table';
 import { useGetIpdetails } from '@/data/hooks/ip';
 
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-
-export type IpRegionProps = {
-  ip: string;
-};
+import { IpRowData } from '../enableCellsUtils';
 
 /**
  * Component to display the cell content for IP Region
@@ -15,11 +11,13 @@ export type IpRegionProps = {
  * @param ip the ip with mask
  * @returns React Component
  */
-export const IpRegion = ({ ip }: IpRegionProps) => {
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+export const IpRegion: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup } = row.original;
+  const ipToFetch = parentIpGroup || ip;
+  const { ipDetails, loading } = useGetIpdetails({ ip: ipToFetch });
 
   return (
-    <SkeletonCell isLoading={isLoading}>
+    <SkeletonCell loading={loading}>
       {!ipDetails?.regions && <>-</>}
       {ipDetails?.regions?.map((region) => (
         <div key={region}>{region}</div>

@@ -9,7 +9,7 @@ import {
 import { urls } from '@/routes/routes.constant';
 import {
   getComboboxByName,
-  getOdsCardByContentText,
+  getCardByContentText,
   getSelectByName,
   labels,
   renderTest,
@@ -95,7 +95,7 @@ export const selectOffer = async ({
 
     const subcomponent =
       offer === IpOffer.blockAdditionalIp ? 'ods-select' : 'ods-quantity';
-    offerOption = await getOdsCardByContentText({
+    offerOption = await getCardByContentText({
       container,
       text,
     });
@@ -137,7 +137,7 @@ export const selectIpv6Option = async ({
 }) => {
   let ipv6Option: HTMLElement;
   await waitFor(async () => {
-    ipv6Option = await getOdsCardByContentText({
+    ipv6Option = await getCardByContentText({
       container,
       text: labels.order.new_prefix_ipv6_card_title,
     });

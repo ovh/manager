@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 
+import { AxiosHeaders } from 'axios';
 import {
   IpEdgeFirewallStateEnum,
   IpEdgeFirewallType,
@@ -9,7 +10,6 @@ import {
   getIpEdgeFirewallQueryKey,
 } from '@/data/api';
 import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
-import { AxiosHeaders } from 'axios';
 
 export type UseGetIpEdgeFirewallParams = {
   ip: string;
@@ -26,7 +26,7 @@ export const useGetIpEdgeFirewall = ({
 }: UseGetIpEdgeFirewallParams) => {
   const {
     data: ipEdgeFirewallResponse,
-    isLoading,
+    isLoading: loading,
     isError,
     error,
   } = useQuery<ApiResponse<IpEdgeFirewallType>, ApiError>({
@@ -60,7 +60,7 @@ export const useGetIpEdgeFirewall = ({
 
   return {
     ipEdgeFirewall: ipEdgeFirewallResponse?.data,
-    isLoading,
+    loading,
     isError,
     error,
   };

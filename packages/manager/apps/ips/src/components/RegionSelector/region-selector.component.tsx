@@ -37,11 +37,7 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
         <RegionTabs
           regionList={regionList}
           currentFilter={currentFilter}
-          removeFilter={() => setCurrentFilter(RegionFilter.all)}
-          setCaFilter={() => setCurrentFilter(RegionFilter.ca)}
-          setEuFilter={() => setCurrentFilter(RegionFilter.eu)}
-          setUsFilter={() => setCurrentFilter(RegionFilter.us)}
-          setApFilter={() => setCurrentFilter(RegionFilter.ap)}
+          setCurrentFilter={setCurrentFilter}
         />
       )}
       <div className="flex flex-wrap gap-4">

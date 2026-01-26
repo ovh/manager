@@ -22,7 +22,7 @@ const queryClient = new QueryClient();
 const useGetIcebergIpReverseMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipsReverse: undefined as IpReverseType[] | undefined,
-    isLoading: true,
+    loading: true,
     error: undefined,
   })),
 );
@@ -60,7 +60,7 @@ describe('IpReverse Component', () => {
       ipsReverse: [
         { ipReverse: '10.0.0.1', reverse: 'reverse-10.0.0.1' },
       ] as IpReverseType[],
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText } = await renderComponent({ ip: '10.0.0.1' });
@@ -71,7 +71,7 @@ describe('IpReverse Component', () => {
   it('Should display "-" if no reverse exist', async () => {
     useGetIcebergIpReverseMock.mockReturnValue({
       ipsReverse: [] as IpReverseType[],
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText } = await renderComponent({

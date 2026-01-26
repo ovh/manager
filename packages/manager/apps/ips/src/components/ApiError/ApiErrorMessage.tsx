@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { MESSAGE_COLOR, MessageBody, Message } from '@ovhcloud/ods-react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 
@@ -42,17 +41,19 @@ export const ApiErrorMessage: React.FC<ApiErrorMessageProps> = ({
   }
 
   return (
-    <OdsMessage
-      isDismissible={isDismissible}
+    <Message
+      dismissible={isDismissible}
       className={`block ${className}`}
-      color={ODS_MESSAGE_COLOR.critical}
+      color={MESSAGE_COLOR.critical}
     >
-      <span
-        className="text-sm"
-        dangerouslySetInnerHTML={{
-          __html: errorMessage,
-        }}
-      />
-    </OdsMessage>
+      <MessageBody>
+        <span
+          className="text-sm"
+          dangerouslySetInnerHTML={{
+            __html: errorMessage,
+          }}
+        />
+      </MessageBody>
+    </Message>
   );
 };

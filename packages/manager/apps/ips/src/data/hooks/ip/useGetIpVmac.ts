@@ -22,7 +22,7 @@ export const useGetIpVmac = ({
 }: UseGetIpVmacParams) => {
   const {
     data: dedicatedServerVmacResponse,
-    isLoading,
+    isLoading: loading,
     isError,
     error,
   } = useQuery<IcebergFetchResultV6<DedicatedServerVmacType>, ApiError>({
@@ -48,7 +48,7 @@ export const useGetIpVmac = ({
 
   return {
     vmacs: dedicatedServerVmacResponse?.data || [],
-    isLoading,
+    loading,
     isError,
     error,
   };

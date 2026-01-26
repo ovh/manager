@@ -17,12 +17,10 @@ export const useGetIpAntihack = ({
   ip,
   enabled = true,
 }: UseGetIpAntihackParams) => {
-  const {
-    data: ipAntihackResponse,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<IcebergFetchResultV6<IpAntihackType>, ApiError>({
+  const { data: ipAntihackResponse, isLoading, isError, error } = useQuery<
+    IcebergFetchResultV6<IpAntihackType>,
+    ApiError
+  >({
     queryKey: getIpAntihackQueryKey({ ip }),
     queryFn: () => getIpAntihack({ ip }),
     enabled,
@@ -30,5 +28,10 @@ export const useGetIpAntihack = ({
     retry: false,
   });
 
-  return { ipAntihack: ipAntihackResponse?.data, isLoading, isError, error };
+  return {
+    ipAntihack: ipAntihackResponse?.data,
+    loading: isLoading,
+    isError,
+    error,
+  };
 };

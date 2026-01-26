@@ -17,12 +17,9 @@ export type IpRipeInformation = {
 export const useGetIpRipeInformation = ({
   ip,
 }: UseGetIpRipeInformationParams) => {
-  const {
-    data: ipRipeInfo,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<IpRipeInformation>({
+  const { data: ipRipeInfo, isLoading: loading, isError, error } = useQuery<
+    IpRipeInformation
+  >({
     queryKey: getIpRipeInformationQueryKey({ ip }),
     queryFn: () =>
       getIpRipeInformation({ ip }).then((response) => response.data),
@@ -30,5 +27,5 @@ export const useGetIpRipeInformation = ({
     staleTime: Number.POSITIVE_INFINITY,
   });
 
-  return { ipRipeInfo, isLoading, isError, error };
+  return { ipRipeInfo, loading, isError, error };
 };

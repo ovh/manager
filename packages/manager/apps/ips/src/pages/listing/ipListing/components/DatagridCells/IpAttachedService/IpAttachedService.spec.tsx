@@ -21,7 +21,7 @@ const queryClient = new QueryClient();
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
@@ -67,7 +67,7 @@ const renderComponent = (params: IpAttachedServiceProps) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ShellContext.Provider
-        value={shellContext as unknown as ShellContextType}
+        value={(shellContext as unknown) as ShellContextType}
       >
         <IpAttachedService {...params} />
       </ShellContext.Provider>
@@ -79,7 +79,7 @@ describe('IpAttachedService Component', () => {
   it('Should display routed service with link to service', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[3] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { container } = renderComponent({
       ip: ipDetailsList[3]?.ip,

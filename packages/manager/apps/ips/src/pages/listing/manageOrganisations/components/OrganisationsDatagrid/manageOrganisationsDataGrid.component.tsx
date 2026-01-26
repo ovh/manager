@@ -4,109 +4,90 @@ import { Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_SPINNER_SIZE, ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { TABLE_SIZE } from '@ovhcloud/ods-react';
 
-import {
-  DataGridTextCell,
-  Datagrid,
-  DatagridColumn,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { OrgDetails } from '@/data/api';
 import { useGetOrganisationsDetails } from '@/data/hooks/organisation';
 
-import { DatagridActionCell } from './DatagridActionCell.component';
-import { DatagridAddressCell } from './DatagridAddressCell.component';
+import { OrganisationsActionsCell } from '../DatagridCells/OrganisationsActionsCell';
+import { OrganisationsAddressCell } from '../DatagridCells/OrganisationsAddressCell';
+import { OrganisationsNameCell } from '../DatagridCells/OrganisationsNameCell';
 
 export const ManageOrganisationsDatagrid: React.FC = () => {
   const { t } = useTranslation('manage-organisations');
   const pageSize = 10;
   const [numberOfPageDisplayed, setNumberOfPageDisplayed] = useState(1);
-  const { data: orgDetails, isLoading } = useGetOrganisationsDetails({
+  const { data: orgDetails, loading } = useGetOrganisationsDetails({
     enabled: true,
   });
   const paginatedOrgList = useMemo(() => {
-    if (!orgDetails || isLoading) return [];
+    if (!orgDetails || loading) return [];
 
     return orgDetails.slice(0, pageSize * numberOfPageDisplayed) || [];
-  }, [numberOfPageDisplayed, isLoading, orgDetails]);
+  }, [numberOfPageDisplayed, loading, orgDetails]);
 
   const columns: DatagridColumn<OrgDetails>[] = [
     {
       id: 'organisationId',
-      label: t('manageOrganisationsTabOrganisaton'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{org?.organisationId}</DataGridTextCell>
-      ),
+      accessorKey: 'organisationId',
+      header: t('manageOrganisationsTabOrganisaton'),
+      size: 100,
     },
     {
       id: 'type',
-      label: t('manageOrganisationsTabType'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{org?.registry}</DataGridTextCell>
-      ),
+      accessorKey: 'registry',
+      header: t('manageOrganisationsTabType'),
+      size: 70,
     },
     {
       id: 'name',
-      label: t('manageOrganisationsTabSurname'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{`${org?.firstname} ${org?.lastname}`}</DataGridTextCell>
-      ),
+      accessorKey: 'firstname',
+      header: t('manageOrganisationsTabSurname'),
+      cell: OrganisationsNameCell,
     },
     {
       id: 'email',
-      label: t('manageOrganisationsTabEmail'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{org?.abuse_mailbox}</DataGridTextCell>
-      ),
+      accessorKey: 'abuse_mailbox',
+      header: t('manageOrganisationsTabEmail'),
     },
     {
       id: 'phone',
-      label: t('manageOrganisationsTabPhone'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{org?.phone}</DataGridTextCell>
-      ),
+      accessorKey: 'phone',
+      header: t('manageOrganisationsTabPhone'),
     },
     {
       id: 'address',
-      label: t('manageOrganisationsTabAddress'),
-      cell: DatagridAddressCell,
+      accessorKey: 'address',
+      header: t('manageOrganisationsTabAddress'),
+      cell: OrganisationsAddressCell,
     },
     {
       id: 'action',
-      label: '',
-      cell: DatagridActionCell,
+      accessorKey: 'organisationId',
+      header: '',
+      size: 50,
+      cell: OrganisationsActionsCell,
     },
   ];
 
-  const loadMoreOrgs = () => {
-    setNumberOfPageDisplayed(numberOfPageDisplayed + 1);
-  };
-
   return (
     <>
-      {isLoading ? (
-        <div>
-          <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
-        </div>
-      ) : (
-        <>
-          <Datagrid
-            className="-mx-6 pb-[200px]"
-            size={ODS_TABLE_SIZE.sm}
-            columns={columns}
-            items={paginatedOrgList}
-            totalItems={orgDetails?.length}
-            numberOfLoadingRows={10}
-            onFetchNextPage={loadMoreOrgs}
-            hasNextPage={numberOfPageDisplayed * pageSize < orgDetails?.length}
-            resetExpandedRowsOnItemsChange={true}
-            noResultLabel={t('manageOrganisationsTabNodata')}
-          />
-          <Outlet />
-        </>
-      )}
+      <Datagrid
+        containerHeight={numberOfPageDisplayed * pageSize * 51 + 50}
+        isLoading={loading}
+        size={TABLE_SIZE.sm}
+        columns={columns}
+        data={paginatedOrgList}
+        totalCount={orgDetails?.length}
+        onFetchNextPage={() => setNumberOfPageDisplayed((nb) => nb + 1)}
+        onFetchAllPages={() =>
+          setNumberOfPageDisplayed(orgDetails?.length / pageSize)
+        }
+        hasNextPage={numberOfPageDisplayed * pageSize < orgDetails?.length}
+      />
+      <Outlet />
     </>
   );
 };

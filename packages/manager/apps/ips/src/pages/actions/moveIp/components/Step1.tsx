@@ -2,24 +2,25 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsCombobox,
-  OdsComboboxGroup,
-  OdsComboboxItem,
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  ComboboxContent,
+  ComboboxControl,
+  FormFieldLabel,
+  TEXT_PRESET,
+  Combobox,
+  FormField,
+  Input,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
 import { MoveIpAvailableDestinationsResponse } from '@/data/api';
 import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 import { useGetProductServices } from '@/data/hooks';
 import { ipParkingOptionValue } from '@/types';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
 
 type Step1Props = {
   ip: string;
@@ -51,97 +52,102 @@ export default function Step1({
 
   return (
     <div className="flex flex-col">
-      <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+      <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
         <span
           dangerouslySetInnerHTML={{ __html: t('step1Description', { ip }) }}
         />
-      </OdsText>
+      </Text>
 
-      <OdsFormField className="mb-7 w-full">
-        <label htmlFor="service" slot="label">
-          {t('step1CurrentServiceLabel')}
-        </label>
-        <OdsInput
+      <FormField className="mb-7 w-full">
+        <FormFieldLabel>{t('step1CurrentServiceLabel')}</FormFieldLabel>
+        <Input
           name="from"
-          isReadonly
+          readOnly
           value={currentService || t('step1EmptyCurrentServiceValue')}
         />
-      </OdsFormField>
+      </FormField>
 
-      <OdsFormField className="w-full">
-        <label htmlFor="service" slot="label">
-          {t('step1DestinationServiceLabel')}
-        </label>
-        <OdsCombobox
+      <FormField className="w-full">
+        <FormFieldLabel>{t('step1DestinationServiceLabel')}</FormFieldLabel>
+        <Combobox
           id="service"
           name="service"
           className="w-full"
-          onOdsChange={(event) => {
-            setDestinationService(event.detail.value);
-            setNextHop(undefined);
+          highlightResults
+          onValueChange={(event) => {
+            const newValue = event.value?.[0];
+            if (newValue !== currentService) {
+              setDestinationService(newValue);
+              setNextHop(undefined);
+            } else {
+              setDestinationService(undefined);
+              setNextHop(undefined);
+            }
           }}
-          isClearable
-          allowNewElement={false}
-          placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
-          value={destinationService}
+          allowCustomValue={false}
+          value={[destinationService]}
+          customOptionRenderer={ComboboxServiceItem}
+          items={[
+            ...Object.entries(availableDestinations || [])
+              .filter(([, serviceList]) => serviceList.length > 0)
+              .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
+              .map(([key, services]) => ({
+                label: t(`service_destination_${key}_option_group_label`),
+                options: services.map(({ service }) => {
+                  const label = productList?.find(
+                    (s) => s.serviceName === service,
+                  )?.displayName;
+                  return {
+                    label:
+                      label && label !== service
+                        ? `${label} (${service})`
+                        : service,
+                    value: service,
+                    disabled: service === currentService,
+                  };
+                }),
+              })),
+            currentService !== null && {
+              label: t(
+                'service_selection_select_ip_parking_option_group_label',
+              ),
+              options: [
+                {
+                  label: t('service_selection_select_ip_parking_option_label'),
+                  value: ipParkingOptionValue,
+                },
+              ],
+            },
+          ].filter(Boolean)}
         >
-          {Object.entries(availableDestinations || [])
-            .filter(([, serviceList]) => serviceList.length > 0)
-            .sort(([keyA], [keyB]) => keyA.localeCompare(keyB))
-            .map(([key, services]) => (
-              <OdsComboboxGroup key={key}>
-                <span slot="title">
-                  {t(`service_destination_${key}_option_group_label`)}
-                </span>
-                {services.map(({ service }, index) => (
-                  <ComboboxServiceItem
-                    key={`${key}-${index}-${service}`}
-                    name={service}
-                    displayName={
-                      productList?.find((s) => s.serviceName === service)
-                        ?.displayName
-                    }
-                    isDisabled={service === currentService}
-                  />
-                ))}
-              </OdsComboboxGroup>
-            ))}
-          {currentService !== null && (
-            <OdsComboboxGroup>
-              <span slot="title">
-                {t('service_selection_select_ip_parking_option_group_label')}
-              </span>
-              <OdsComboboxItem value={ipParkingOptionValue}>
-                {t('service_selection_select_ip_parking_option_label')}
-              </OdsComboboxItem>
-            </OdsComboboxGroup>
-          )}
-        </OdsCombobox>
-      </OdsFormField>
+          <ComboboxContent />
+          <ComboboxControl
+            clearable
+            placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
+          />
+        </Combobox>
+      </FormField>
 
-      <OdsFormField
+      <FormField
         className={`mt-7 w-full ${nextHopList.length === 0 ? 'hidden' : ''}`}
       >
-        <label htmlFor="next-hop" slot="label">
-          {t('step1NextHopLabel')}
-        </label>
-        <OdsCombobox
+        <FormFieldLabel>{t('step1NextHopLabel')}</FormFieldLabel>
+        <Combobox
           id="next-hop"
           name="next-hop"
           className="w-full"
-          onOdsChange={(event) => setNextHop(event.detail.value)}
-          isClearable
-          allowNewElement={false}
-          placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
-          value={nextHop}
+          onValueChange={(event) => setNextHop(event.value?.[0])}
+          value={[nextHop]}
+          items={nextHopList.map((hop) => ({ label: hop, value: hop }))}
+          allowCustomValue={false}
         >
-          {nextHopList.map((hop) => (
-            <OdsComboboxItem key={hop} value={hop}>
-              {hop}
-            </OdsComboboxItem>
-          ))}
-        </OdsCombobox>
-      </OdsFormField>
+          <ComboboxContent />
+          <ComboboxControl
+            placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
+            clearable
+          />
+        </Combobox>
+      </FormField>
     </div>
   );
 }

@@ -33,7 +33,9 @@ describe('AggregateModal', () => {
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await getButtonByLabel({ container, label: 'confirm', disabled: true });
+    const button = await screen.findByText('confirm');
+    expect(button).toBeDisabled();
+
     await waitFor(
       () =>
         expect(
@@ -94,7 +96,9 @@ describe('AggregateModal', () => {
 
     await waitFor(
       () =>
-        within(modal).getByText(
+        within(
+          modal,
+        ).getByText(
           labels.error.managerApiErrorWithoutRequestId.replace(/<br>.*/g, ''),
           { exact: false },
         ),

@@ -3,11 +3,10 @@ import React, { startTransition, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  OdsCombobox,
-  OdsComboboxGroup,
-  OdsComboboxItem,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  Combobox,
+  ComboboxContent,
+  ComboboxControl,
+} from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -51,8 +50,9 @@ export const FilterService = ({ className }: { className?: string }) => {
           [t(getAllItemLabelKeyFromType(category))]: category,
         }),
         {
-          [t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))]:
-            IpTypeEnum.ADDITIONAL,
+          [t(
+            getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL),
+          )]: IpTypeEnum.ADDITIONAL,
         } as Record<string, IpTypeEnum>,
       ),
     [t],
@@ -76,15 +76,15 @@ export const FilterService = ({ className }: { className?: string }) => {
   }, [apiFilter]);
 
   return (
-    <OdsCombobox
+    <Combobox
       className={`h-min ${className}`}
       name="filter-service"
-      isClearable
-      allowNewElement={false}
-      placeholder={t('listingFilterTypeAllTypes')}
-      value={filterValueLabel}
-      onOdsChange={(e) => {
-        const { value } = e.detail;
+      allowCustomValue={false}
+      value={[filterValueLabel]}
+      customOptionRenderer={ComboboxServiceItem}
+      highlightResults
+      onValueChange={(e) => {
+        const value = e.value?.[0];
 
         if (value) {
           trackClick({
@@ -123,51 +123,49 @@ export const FilterService = ({ className }: { className?: string }) => {
               }),
         }));
       }}
-    >
-      <OdsComboboxGroup>
-        <span className="pl-3" slot="title">
-          {t(`listingColumnsType_${IpTypeEnum.ADDITIONAL}`)}
-        </span>
-        <OdsComboboxItem
-          value={t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))}
-        >
-          <OdsText className="pl-3">
-            {t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL))}
-          </OdsText>
-        </OdsComboboxItem>
-      </OdsComboboxGroup>
-      {Object.values(PRODUCT_PATHS_AND_CATEGORIES)
-        .filter(
-          ({ category }) =>
-            serviceByCategory?.[category] &&
-            serviceByCategory?.[category].length > 0,
-        )
-        .sort(
-          (a, b) =>
-            serviceOrder.findIndex((value) => value === a.category) -
-            serviceOrder.findIndex((value) => value === b.category),
-        )
-        .map(({ category }) => (
-          <OdsComboboxGroup key={category}>
-            <span className="pl-3" slot="title">
-              {t(`listingColumnsType_${category}`)}
-            </span>
-            <OdsComboboxItem value={t(getAllItemLabelKeyFromType(category))}>
-              <OdsText className="pl-3">
-                {t(getAllItemLabelKeyFromType(category))}
-              </OdsText>
-            </OdsComboboxItem>
-            {serviceByCategory?.[category]?.map(
-              ({ serviceName, displayName }) => (
-                <ComboboxServiceItem
-                  key={serviceName}
-                  name={serviceName}
-                  displayName={displayName}
-                />
+      items={[
+        {
+          label: t(`listingColumnsType_${IpTypeEnum.ADDITIONAL}`),
+          options: [
+            {
+              label: t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL)),
+              value: t(getAllItemLabelKeyFromType(IpTypeEnum.ADDITIONAL)),
+            },
+          ],
+        },
+        ...Object.values(PRODUCT_PATHS_AND_CATEGORIES)
+          .filter(
+            ({ category }) =>
+              serviceByCategory?.[category] &&
+              serviceByCategory?.[category].length > 0,
+          )
+          .sort(
+            (a, b) =>
+              serviceOrder.findIndex((value) => value === a.category) -
+              serviceOrder.findIndex((value) => value === b.category),
+          )
+          .map(({ category }) => ({
+            label: t(`listingColumnsType_${category}`),
+            options: [
+              {
+                label: t(getAllItemLabelKeyFromType(category)),
+                value: t(getAllItemLabelKeyFromType(category)),
+              },
+              ...serviceByCategory?.[category]?.map(
+                ({ serviceName, displayName }) => ({
+                  label:
+                    displayName && displayName !== serviceName
+                      ? `${displayName} (${serviceName})`
+                      : serviceName,
+                  value: serviceName,
+                }),
               ),
-            )}
-          </OdsComboboxGroup>
-        ))}
-    </OdsCombobox>
+            ],
+          })),
+      ]}
+    >
+      <ComboboxControl clearable placeholder={t('listingFilterTypeAllTypes')} />
+      <ComboboxContent />
+    </Combobox>
   );
 };

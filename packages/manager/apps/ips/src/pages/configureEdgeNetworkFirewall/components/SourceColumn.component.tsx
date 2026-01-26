@@ -2,11 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { FormField, FormFieldError, Input, Text } from '@ovhcloud/ods-react';
 
 import { IpEdgeFirewallRule } from '@/data/api';
 import { TRANSLATION_NAMESPACES, handleEnterAndEscapeKeyDown } from '@/utils';
@@ -27,14 +23,14 @@ export const SourceColumn = (
   const { t } = useTranslation(TRANSLATION_NAMESPACES.edgeNetworkFirewall);
 
   return rule?.isNew ? (
-    <OdsFormField error={sourceError}>
-      <OdsInput
+    <FormField>
+      <Input
         className="w-full"
         name="source-input"
         value={newSource}
-        hasError={!!sourceError}
-        onOdsChange={(e) => {
-          setNewSource(e.detail.value as string);
+        invalid={!!sourceError}
+        onChange={(e) => {
+          setNewSource(e.target.value);
           setSourceError(undefined);
         }}
         onKeyDown={handleEnterAndEscapeKeyDown({
@@ -42,8 +38,9 @@ export const SourceColumn = (
           onEscape: hideNewRuleRow,
         })}
       />
-    </OdsFormField>
+      <FormFieldError>{sourceError}</FormFieldError>
+    </FormField>
   ) : (
-    <OdsText>{rule?.source === 'any' ? t('any_source') : rule?.source}</OdsText>
+    <Text>{rule?.source === 'any' ? t('any_source') : rule?.source}</Text>
   );
 };
