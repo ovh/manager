@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.1.4...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.2.0) (2026-01-26)
+
+
+### Features
+
+* **backup-agent:** add modals on first order ([1f62814](https://github.com/ovh/manager/commit/1f62814aa8ecf135c6180ccf8c2ea5e92c864c20)), closes [#BKP-702](https://github.com/ovh/manager/issues/BKP-702)
+* **bmc-backup-agent-baremetal:** add shadow order on onboarding page ([7a8e06b](https://github.com/ovh/manager/commit/7a8e06b7830c908417de6169feb34c54d017b457)), closes [#BKP-705](https://github.com/ovh/manager/issues/BKP-705)
+
+
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.1.3...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.1.4) (2026-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-bmc-backup-agent-baremetal-app
