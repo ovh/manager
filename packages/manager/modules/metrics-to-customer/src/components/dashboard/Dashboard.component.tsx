@@ -2,16 +2,17 @@ import { useMemo } from 'react';
 
 import { useDashboardContext, useMetricsToCustomerContext } from '@/contexts';
 
+import { ChartWidgetWithData } from '@/types/widget/ChartWidgetWithData.type';
+
 import { ChartRenderer } from '@/components/charts/base';
 import { TimeControls } from '@/components/timeControls/TimeControls.component';
 import { ChartWidgetComponent } from '@/components/widget/ChartWidget.component';
-import { ChartWidgetWithData } from '@/components/widget/ChartWidgetWithData.type';
 import { DashboardProps } from '@/components/dashboard/Dashboard.props';
 import ManageConfigurationButton from '@/components/cta/ManageConfigurationButton.component';
-import { getSubscriptionsConfigUrl } from '@/routes/Routes.utils';
 
 export const Dashboard = <TData,>({
   charts: widgets,
+  configUrl,
   onRefresh,
   onCancel,
 }: Readonly<DashboardProps<TData>>): JSX.Element => {
@@ -47,7 +48,7 @@ export const Dashboard = <TData,>({
       <div className="w-full my-6 flex flex-col gap-4">
         <div className="flex justify-end items-center">
           {enableConfigurationManagement && (
-            <ManageConfigurationButton configUrl={getSubscriptionsConfigUrl()} />
+            <ManageConfigurationButton configUrl={configUrl} />
           )}
         </div>
         <div className="flex justify-end items-center">

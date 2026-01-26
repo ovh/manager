@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { SubscriptionManagerFilters } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.Filters';
-import { SubscriptionManagerProvider } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
+import { SubscriptionManagerProvider } from '@/contexts/SubscriptionManager.context';
 
 describe('SubscriptionManagerFilters', () => {
   const mockFilterValues = { serviceId: 'service-1', region: 'EU' };

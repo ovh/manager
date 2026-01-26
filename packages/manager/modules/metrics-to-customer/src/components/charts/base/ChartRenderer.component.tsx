@@ -1,14 +1,14 @@
 import React, { Suspense, lazy } from 'react';
 import { useDateFnsLocale } from '@ovh-ux/muk';
 
-import { CHART_TYPE } from './Chart.type';
-import { ChartRendererProps } from './ChartRenderer.props';
-import LoadingChartSpinnerComponent from './LoadingChartSpinner.component';
-import NoDataComponent from './NoData.component';
+import { CHART_TYPE } from '@/types/charts/base/Chart.type';
+import { ChartRendererProps } from '@/components/charts/base/ChartRenderer.props';
+import LoadingChartSpinnerComponent from '@/components/charts/base/LoadingChartSpinner.component';
+import NoDataComponent from '@/components/charts/base/NoData.component';
 
-const LazyUnknownChart = lazy(() => import('../unknown/UnknownChart.component'));
-const LazyTimeSeriesChart = lazy(() => import('../timeseries/TimeSeriesChart.component'));
-const LazyBarsChart = lazy(() => import('../bars/BarsChart.component'));
+const LazyUnknownChart = lazy(() => import('@/components/charts/unknown/UnknownChart.component'));
+const LazyTimeSeriesChart = lazy(() => import('@/components/charts/timeseries/TimeSeriesChart.component'));
+const LazyBarsChart = lazy(() => import('@/components/charts/bars/BarsChart.component'));
 
 export const ChartRendererComponent = <TData,>({
   type,
@@ -22,10 +22,10 @@ export const ChartRendererComponent = <TData,>({
 
   let ChartComponent: React.ReactElement;
   switch (type) {
-    case CHART_TYPE.TimeSeries:
+    case CHART_TYPE.TIME_SERIES:
       ChartComponent = <LazyTimeSeriesChart {...rest} locale={locale} />;
       break;
-    case CHART_TYPE.Bars:
+    case CHART_TYPE.BARS:
       ChartComponent = <LazyBarsChart {...rest} locale={locale} />;
       break;
     default:
