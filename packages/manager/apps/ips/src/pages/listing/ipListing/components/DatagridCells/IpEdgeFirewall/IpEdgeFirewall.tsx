@@ -10,7 +10,6 @@ import { IpEdgeFirewallDisplay } from './IpEdgeFirewallDisplay';
 export type IpEdgeFirewallProps = {
   ip: string;
   ipOnFirewall?: string;
-  isByoipSlice?: boolean;
 };
 
 /**
@@ -22,20 +21,15 @@ export type IpEdgeFirewallProps = {
  * @param ip the ip with mask
  * @returns React component
  */
-export const IpEdgeFirewall = ({
-  ip,
-  ipOnFirewall,
-  isByoipSlice,
-}: IpEdgeFirewallProps) => {
+export const IpEdgeFirewall = ({ ip, ipOnFirewall }: IpEdgeFirewallProps) => {
   const { expiredIps } = useContext(ListingContext);
   const { isGroup, ipAddress } = ipFormatter(ip);
 
   const enabled = React.useMemo(
     () =>
       ((isGroup && !!ipOnFirewall) || !isGroup) &&
-      expiredIps.indexOf(ip) === -1 &&
-      !isByoipSlice,
-    [isGroup, ipOnFirewall, ip, expiredIps, isByoipSlice],
+      expiredIps.indexOf(ip) === -1,
+    [isGroup, ipOnFirewall, ip, expiredIps],
   );
 
   // Get edge firewall details
@@ -53,6 +47,7 @@ export const IpEdgeFirewall = ({
       ip={ipOnFirewall ?? ip}
     >
       <IpEdgeFirewallDisplay
+        parentIp={ip}
         ip={ipOnFirewall ?? ip}
         ipEdgeFirewall={ipEdgeFirewall}
       />

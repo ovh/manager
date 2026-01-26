@@ -21,6 +21,7 @@ import {
 import { BadgeCell } from '../BadgeCell/BadgeCell';
 
 export type IpEdgeFirewallDetailsProps = {
+  parentIp: string;
   ip: string;
   ipEdgeFirewall?: IpEdgeFirewallType;
 };
@@ -34,6 +35,7 @@ export type IpEdgeFirewallDetailsProps = {
  * @returns React component
  */
 export const IpEdgeFirewallDisplay = ({
+  parentIp,
   ip,
   ipEdgeFirewall,
 }: IpEdgeFirewallDetailsProps) => {
@@ -51,10 +53,9 @@ export const IpEdgeFirewallDisplay = ({
       actions: ['configure_edge-network-firewall'],
     });
     navigate(
-      `${urls.configureEdgeNetworkFirewall.replace(
-        urlDynamicParts.id,
-        fromIpToId(ip),
-      )}?${search.toString()}`,
+      `${urls.configureEdgeNetworkFirewall
+        .replace(urlDynamicParts.parentId, fromIpToId(parentIp))
+        .replace(urlDynamicParts.id, fromIpToId(ip))}?${search.toString()}`,
     );
   };
 
