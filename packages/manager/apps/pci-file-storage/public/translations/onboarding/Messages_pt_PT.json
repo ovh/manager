@@ -3,13 +3,13 @@
     "learn-more": {
       "category": "Oferta",
       "title": "Saber mais",
-      "description": "Página Labs explicando a funcionalidade e a tarifação do Armazenamento de Arquivos.",
+      "description": "Página Labs explicando a funcionalidade e a precificação do Armazenamento de Arquivos.",
       "link-text": "Saber mais"
     },
     "get-started": {
       "category": "Guia",
-      "title": "Primeiros Passos",
-      "description": "Uma documentação passo a passo para ajudá-lo a criar o seu primeiro compartilhamento.",
+      "title": "Primeiros passos",
+      "description": "Uma documentação passo a passo para ajudá-lo a criar seu primeiro share.",
       "link-text": "Saber mais"
     },
     "discord": {
@@ -21,5 +21,5 @@
   },
   "title": "Teste o Armazenamento de Arquivos gratuitamente!",
   "description": "Precisa de armazenamento compartilhado para seus clusters ou suas instâncias? A nossa solução de Armazenamento de Arquivos para Cloud Pública totalmente gerida oferece volumes NFS que vão de <strong>150 GiB a 10 TiB</strong>, até <strong>16 000 IOPS</strong> e <strong>128 MB/s</strong>. Compatível com <strong>Managed Kubernetes</strong> (PVCs RWX) e <strong>as instâncias de Cloud Pública</strong> (montagens NFS), compartilhe arquivos de forma transparente entre nós, zonas e aplicações, com uma tarifação transparente.",
-  "action-button": "Descobrir a Beta"
+  "action-button": "Criar um share"
 }
