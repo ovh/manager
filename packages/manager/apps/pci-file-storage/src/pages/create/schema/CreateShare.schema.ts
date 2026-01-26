@@ -9,6 +9,7 @@ export const shareDataSchema = z.object({
   microRegion: stringSchema,
   specName: stringSchema,
   size: z.number(),
+  privateNetworkId: z.string().optional(),
 });
 
 const deploymentModesShema = z.array(z.enum(DEPLOYMENT_MODES));

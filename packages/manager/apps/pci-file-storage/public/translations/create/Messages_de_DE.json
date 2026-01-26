@@ -39,10 +39,10 @@
     },
     "availabilityZone": {
       "title": "Wählen Sie Ihre Verfügbarkeitszone aus",
-      "informations": "Eine Standardverfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
+      "informations": "Eine Standard-Verfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
       "choice": {
-        "company": "Für mich auswählen",
-        "user": "Ich wähle meine Verfügbarkeitszone aus"
+        "company": "Für mich wählen",
+        "user": "Ich wähle meine Verfügbarkeitszone"
       }
     }
   },
@@ -54,5 +54,11 @@
     "title": "Größe des Shares",
     "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert.",
     "label": "Lineare Leistungszuweisung (GB)"
+  },
+  "network": {
+    "title": "Privates Netzwerk",
+    "description": "Wählen Sie das private Netzwerk aus, mit dem Ihre Instanzen sich mit Ihrer Freigabedatei verbinden sollen",
+    "label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
+    "empty": "Es tut mir leid, aber Sie haben kein privates Netzwerk für diese Region"
   }
 }
