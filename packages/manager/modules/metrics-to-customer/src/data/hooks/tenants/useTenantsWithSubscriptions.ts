@@ -1,5 +1,5 @@
-import { UseQueryOptions, UseQueryResult, useQuery, useQueries } from '@tanstack/react-query';
 import { useMemo } from 'react';
+import { UseQueryOptions, UseQueryResult, useQueries } from '@tanstack/react-query';
 
 import { IamTagsFilter, IamTagsOperator } from '@/types/iam.type';
 import { TenantWithSubscriptions } from '@/types/tenants.type';

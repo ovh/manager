@@ -1,5 +1,5 @@
 import { getMetricKind, getMetricKinds } from '@/__mocks__/metrics/metric.mock';
-import { ChartWidget } from '@/components/widget/ChartWidget.type';
+import { ChartWidget } from '@/types/widget/ChartWidget.type';
 import { ObservabilityDashboardParams } from '@/types/ClientApi.type';
 import { Dashboard, Kind } from '@/types/observability.type';
 

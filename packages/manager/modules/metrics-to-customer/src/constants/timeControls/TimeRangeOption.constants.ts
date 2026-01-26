@@ -1,4 +1,4 @@
-import { TimeRangeOptionWithLabel } from './TimeRangeOptionWithLabel.type';
+import { TimeRangeOptionWithLabel } from '@/types/timeControls/TimeRangeOptionWithLabel.type';
 
 export const defaultTimeRangeOptions: TimeRangeOptionWithLabel[] = [
   {

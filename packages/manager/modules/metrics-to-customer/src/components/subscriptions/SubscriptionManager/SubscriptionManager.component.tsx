@@ -1,10 +1,11 @@
-import { SubscriptionManagerProvider } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
-import { SubscriptionManagerProps } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.props';
+import { SubscriptionManagerProvider } from '@/contexts/SubscriptionManager.context';
 
+import { SubscriptionManagerProps } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.props';
 import { Filters } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.Filters';
 import { Search } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.Search';
 import { List } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.List';
 import { Footer } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.Footer';
+
 function SubscriptionManager<TData = unknown, TSubscription = unknown>({
   children,
   resourceName,

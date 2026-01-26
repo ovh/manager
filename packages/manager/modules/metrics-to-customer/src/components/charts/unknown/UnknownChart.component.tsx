@@ -1,4 +1,4 @@
-import { UnknownChartProps } from './UnknownChart.props';
+import { UnknownChartProps } from '@/components/charts/unknown/UnknownChart.props';
 
 export const UnknownChartComponent = ({ message }: Readonly<UnknownChartProps>): JSX.Element => {
   return (
