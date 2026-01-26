@@ -6,7 +6,10 @@ import {
 import { RadioGroup } from '@ovhcloud/ods-react';
 import { LocalizationCard } from '@/components/localizationCard/LocalizationCard.component';
 import { deps } from '@/deps/deps';
-import { selectLocalizations } from '../../view-models/localizationsViewModel';
+import {
+  isAPACRegion,
+  selectLocalizations,
+} from '../../view-models/localizationsViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
@@ -15,9 +18,11 @@ import {
   selectMicroRegions,
 } from '../../view-models/microRegionsViewModel';
 import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { ContinentSelection } from '../continentSelection/ContinentSelection.component';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import Banner from '@/components/banner/Banner.component';
 
 export const LocalizationSelection = () => {
   const projectId = useProjectId();
@@ -25,9 +30,14 @@ export const LocalizationSelection = () => {
   const { t } = useTranslation(['creation', 'regions']);
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [deploymentModes, selectedContinent, selectedMacroRegion] = useWatch({
+  const [
+    deploymentModes,
+    selectedContinent,
+    selectedMacroRegion,
+    selectedMicroRegion,
+  ] = useWatch({
     control,
-    name: ['deploymentModes', 'continent', 'macroRegion'],
+    name: ['deploymentModes', 'continent', 'macroRegion', 'microRegion'],
   });
 
   const { localizations } = useMemo(
@@ -40,6 +50,10 @@ export const LocalizationSelection = () => {
       ),
     [deploymentModes, projectId, selectedContinent, selectedMacroRegion],
   );
+
+  const { data: isSelectedRegionAPAC } = useInstancesCatalogWithSelect({
+    select: isAPACRegion(selectedMicroRegion ?? null),
+  });
 
   const translatedLocalizations = useMemo(
     () =>
@@ -166,6 +180,14 @@ export const LocalizationSelection = () => {
             </div>
           )}
         />
+      )}
+      {isSelectedRegionAPAC && (
+        <Banner className="my-4">
+          <Trans
+            t={t}
+            i18nKey={`creation:pci_instance_creation_select_localization_apac_warning`}
+          />
+        </Banner>
       )}
     </section>
   );

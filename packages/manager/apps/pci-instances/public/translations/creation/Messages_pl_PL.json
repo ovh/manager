@@ -162,5 +162,6 @@
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Brama jest już przypisana do wybranej sieci prywatnej.",
   "pci_instance_creation_discovery_project_title": "Tryb odkrywania",
   "pci_instance_creation_discovery_project_message": "Aby zakończyć tworzenie zasobu, musisz aktywować swój projekt.",
-  "pci_instance_creation_discovery_project_activate": "Włącz"
+  "pci_instance_creation_discovery_project_activate": "Włącz",
+  "pci_instance_creation_select_localization_apac_warning": "Publiczny ruch sieciowy wychodzący dla instancji jest wliczany dla wszystkich regionów, z wyjątkiem regionu Azji-Pacyfiku. W tych dwóch regionach, 1 TB/miesiąc publicznego ruchu wychodzącego jest wliczane w każdy projekt Public Cloud. <strong>Powyżej tego limitu, każdy dodatkowy GB ruchu jest obciążany kwotą 0,01 €. Publiczny ruch sieciowy przychodzący jest wliczany we wszystkich przypadkach, dla wszystkich regionów.</strong>"
 }
