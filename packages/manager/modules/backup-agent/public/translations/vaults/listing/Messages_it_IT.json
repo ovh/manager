@@ -9,5 +9,6 @@
   "buckets_label": "Numero di bucket",
   "status_label": "Status",
   "order_vault": "Ordina un vault",
-  "more_action": "Azione aggiuntiva"
+  "more_action": "Azione aggiuntiva",
+  "vaults_tab_description": "I vostri Vaults si basano sull'Object Storage di OVHcloud. Sono configurati con crittografia e immutabilità (14 giorni) per dati sicuri e invariati. Per saperne di più, consultate la <Link>documentazione di OVHcloud Backup Agent</Link>"
 }

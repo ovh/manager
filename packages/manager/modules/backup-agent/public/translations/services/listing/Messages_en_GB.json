@@ -8,5 +8,6 @@
   "delete_tenant_banner_success": "Your Tenant {{tenantName}} has been successfully deleted",
   "delete_tenant_banner_error": "An error occurred. Please wait a few minutes before trying again.",
   "unable_to_delete_tenant_feature_unavailable": "The deletion of a Tenant is not available from the interface for security reasons. If you wish to delete a Tenant, please contact support.",
-  "data_location": "Data location"
+  "data_location": "Data location",
+  "services_tab_description": "Your Tenant is based on the Veeam Service Provider Console, and carries your Agents while linking them to your Vaults. You will be able to find all your Agents, configure them, and download your Agent in this section. To get further information, consult the <Link>OVHcloud Backup Agent documentation</Link>"
 }

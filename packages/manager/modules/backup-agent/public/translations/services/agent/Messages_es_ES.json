@@ -19,5 +19,6 @@
   "add_agent_banner_api_error": "Se ha producido un error. Por favor, espere unos minutos antes de volver a intentarlo. {{errorMessage}}",
   "add_agent_error_resource_not_found": "Se ha producido un error. Gracias por verificar que el servidor sea válido.",
   "update_agent_banner_success": "La modificación de la política está en curso, por favor espere unos segundos.",
-  "unable_edit_agent_not_enabled": "La configuración estará disponible una vez que se active el Agente."
+  "unable_edit_agent_not_enabled": "La configuración estará disponible una vez que se active el Agente.",
+  "agents_tab_description": "Encuentra aquí todos tus agentes protegidos. Es importante finalizar tu configuración para que tu servidor sea respaldado. Para saber más, consulta la <Link>documentación del Agente de Respaldo de OVHcloud</Link>"
 }
