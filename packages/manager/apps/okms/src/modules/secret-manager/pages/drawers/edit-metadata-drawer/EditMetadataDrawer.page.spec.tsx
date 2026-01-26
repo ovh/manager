@@ -28,6 +28,15 @@ const renderPage = async (mockParams = {}) => {
     { timeout: 10_000 },
   );
 
+  // Wait for drawer loading to complete (spinner inside drawer)
+  await waitFor(
+    () => {
+      const spinners = container.querySelectorAll('ods-spinner');
+      expect(spinners.length).toBe(0);
+    },
+    { timeout: 10_000 },
+  );
+
   return { user, container };
 };
 

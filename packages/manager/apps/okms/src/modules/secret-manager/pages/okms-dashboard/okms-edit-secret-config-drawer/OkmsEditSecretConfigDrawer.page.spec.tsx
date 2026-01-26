@@ -32,12 +32,29 @@ const renderPage = async (mockParams = {}) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(mockPageUrl, mockParams);
 
-  // Check if the drawer is open
+  // First, wait for the parent dashboard page to load (page-spinner to disappear)
+  await waitFor(
+    () => {
+      expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
+
+  // Then check if the drawer is open
   await waitFor(
     async () => {
       expect(
         await screen.findByTestId(OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS.drawer),
       ).toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
+
+  // Wait for drawer loading to complete
+  await waitFor(
+    () => {
+      const spinners = container.querySelectorAll('ods-spinner');
+      expect(spinners.length).toBe(0);
     },
     { timeout: 10_000 },
   );

@@ -19,15 +19,26 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithMultipleOkms.r
 const expectOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   const user = userEvent.setup();
 
+  // Wait for page to fully load (spinner to disappear)
+  await waitFor(
+    () => {
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
+
   // Check the page title
   await assertTextVisibility(labels.secretManager.okms_list, {}, { timeout: 5_000 });
 
   // Check there is clipboard components displayed in the datagrid
   const firstOkmsId = regionWithMultipleOkms?.okmsMock?.[0]?.id ?? '';
   const firstClipboardTestId = OKMS_LIST_CELL_TEST_IDS.id(firstOkmsId);
-  await waitFor(() => {
-    expect(screen.getByTestId(firstClipboardTestId)).toBeInTheDocument();
-  });
+  await waitFor(
+    () => {
+      expect(screen.getByTestId(firstClipboardTestId)).toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
 
   // Check the first okms link on the datagrid
   const okmsNameLink = await getOdsButtonByLabel({

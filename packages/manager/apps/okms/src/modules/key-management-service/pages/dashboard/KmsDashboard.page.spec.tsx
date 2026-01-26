@@ -70,6 +70,15 @@ describe('KMS dashboard test suite', () => {
     const user = userEvent.setup();
     await renderTestApp(mockPageUrl);
 
+    // Add explicit wait for ALL loading to complete:
+    await waitFor(
+      () => {
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
+    // Then wait for tab to be enabled
     await waitFor(() => expect(screen.getByTestId(kmsDashboardTabNames.serviceKeys)).toBeEnabled());
 
     await act(() => user.click(screen.getByTestId(kmsDashboardTabNames.serviceKeys)));
@@ -99,6 +108,14 @@ describe('KMS dashboard test suite', () => {
   it('should navigate to the rename modal on click on rename button', async () => {
     const user = userEvent.setup();
     const { container } = await renderTestApp(mockPageUrl);
+
+    // Wait for page to fully load
+    await waitFor(
+      () => {
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     await waitFor(() => expect(screen.getByLabelText('edit')).toBeEnabled());
 

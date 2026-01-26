@@ -32,6 +32,14 @@ const renderPage = async (options: { fromCSR: boolean }) => {
     fromCSR: options.fromCSR,
   });
 
+  // Wait for initial loading (okms data) to complete
+  await waitFor(
+    () => {
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
+
   // Check title
   expect(
     await screen.findByText(
@@ -191,6 +199,14 @@ const testContentStep3 = async (container: HTMLElement) => {
 };
 
 const assertCredentialListPageVisibility = async () => {
+  // Wait for navigation and loading to complete
+  await waitFor(
+    () => {
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
+
   // Check kms display name
   expect(await screen.findByText(mockOkmsItem.iam.displayName, {}, WAIT_TIMEOUT)).toBeVisible();
 

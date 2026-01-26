@@ -1,6 +1,6 @@
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {
@@ -65,6 +65,7 @@ describe('KMS listing test suite', () => {
   });
 
   it(`should navigate to the kms creation form on click on "${labels.listing.key_management_service_listing_add_kms_button}" button`, async () => {
+    const user = userEvent.setup();
     const { container } = await renderTestApp(KMS_ROUTES_URLS.kmsListing);
 
     const button = await getOdsButtonByLabel({
@@ -73,7 +74,15 @@ describe('KMS listing test suite', () => {
       altLabel: 'key_management_service_listing_add_kms_button',
     });
 
-    await waitFor(() => userEvent.click(button));
+    await act(() => user.click(button));
+
+    // Wait for navigation to complete by waiting for spinner to disappear
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     await assertTextVisibility(labels.create.key_management_service_create_title);
   });
