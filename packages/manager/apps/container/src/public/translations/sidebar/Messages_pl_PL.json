@@ -233,5 +233,6 @@
   "sidebar_backup_billing": "System fakturowania",
   "sidebar_backup_services": "Usługi",
   "sidebar_backup_agent_iaas": "Agent kopii zapasowej dla IaaS",
-  "sidebar_backup_agent_baremetal": "Agent kopii zapasowej"
+  "sidebar_backup_agent_baremetal": "Agent kopii zapasowej",
+  "sidebar_assistance_ai_chatbot": "Asystent AI"
 }
