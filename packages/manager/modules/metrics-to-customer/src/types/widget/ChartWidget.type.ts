@@ -1,5 +1,5 @@
-import { ChartConfig } from '../charts/base';
-import { WidgetTooltip } from './WidgetTooltip.type';
+import { ChartConfig } from '@/types/charts/base/Chart.type';
+import { WidgetTooltip } from '@/types/widget/WidgetTooltip.type';
 
 export type ChartWidget = {
   id: string;

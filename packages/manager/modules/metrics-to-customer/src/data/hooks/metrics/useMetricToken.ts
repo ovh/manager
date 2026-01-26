@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import getMetricTokenOptions from './getMetricTokenOptions';
 import { ObservabilityServiceParams } from '@/types/ClientApi.type';
+
+import getMetricTokenOptions from '@/data/hooks/metrics/getMetricTokenOptions';
 
 export const useMetricToken = (  
   params: ObservabilityServiceParams,

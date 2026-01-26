@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { ChartWidgetWithData } from '@/components/widget/ChartWidgetWithData.type';
 import { useDashboardContext } from '@/contexts';
 import { useDashboardConfig, useMultipleChartData } from '@/data/hooks/dashboards';
 import { ChartQueryResult } from '@/types/ChartQueryResult.type';
 import { Dashboard } from '@/types/observability.type';
+import { ChartWidgetWithData } from '@/types/widget/ChartWidgetWithData.type';
 import { buildQueryWithResourceUrn } from '@/utils/metrics.utils';
 
 /**

@@ -1,14 +1,18 @@
 import { Outlet } from 'react-router-dom';
-
+import { Message, MessageBody } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 
-import { Message, MessageBody } from '@ovhcloud/ods-react';
-
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
-import { Dashboard, Loader } from '@/components';
+
+import { getSubscriptionsConfigUrl } from '@/routes/Routes.utils';
+
 import { useMetricsToCustomerContext } from '@/contexts/MetricsToCustomer.context';
+
 import { useDashboardData } from '@/hooks';
+
 import { useMetricToken } from '@/data/hooks';
+
+import { Dashboard, Loader } from '@/components';
 
 type DataValueType = {
   timestamp: number;
@@ -27,7 +31,7 @@ const DashboardPage = () => {
   const productType = state.productType;
   const resourceURN = state.resourceURN;
 
-  const { data: metricToken } = useMetricToken({resourceName});
+  const { data: metricToken } = useMetricToken({ resourceName });
 
   const { charts, configLoading, refetchAll, cancelAll } = useDashboardData<DataValueType>(
     resourceName,
@@ -50,7 +54,11 @@ const DashboardPage = () => {
 
   return (
     <>
-      <Dashboard charts={charts} onRefresh={refetchAll} onCancel={cancelAll} />
+      <Dashboard
+        charts={charts}
+        configUrl={getSubscriptionsConfigUrl()}
+        onRefresh={refetchAll}
+        onCancel={cancelAll} />
       <Outlet />
     </>
   );

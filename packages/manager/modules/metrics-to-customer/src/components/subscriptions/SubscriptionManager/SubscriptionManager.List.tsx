@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSubscriptionManagerContext } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
-import SubscriptionCard from '@/components/subscriptions/SubscriptionManager/SubscriptionCard.component';
+
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
-import { SubscriptionManagerSearch } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.Search';
+
+import { useSubscriptionManagerContext } from '@/contexts/SubscriptionManager.context';
+
+import SubscriptionCard from '@/components/subscriptions/SubscriptionManager/SubscriptionCard.component';
 import { SubscriptionManagerListProps } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.List.props';
+import { SubscriptionManagerSearch } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.Search';
 
 export function SubscriptionManagerList<TData = unknown, TSubscription = unknown>({
   titleFn,
