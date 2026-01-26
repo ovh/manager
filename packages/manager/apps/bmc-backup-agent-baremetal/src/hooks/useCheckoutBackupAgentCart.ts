@@ -1,4 +1,5 @@
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 import { postOrderCartCartIdCheckout } from '@ovh-ux/manager-module-order';
 
@@ -6,7 +7,7 @@ type UseCheckoutBackupAgentCartOptions = Partial<
   Omit<
     UseMutationOptions<
       Awaited<ReturnType<typeof postOrderCartCartIdCheckout>>,
-      Error,
+      AxiosError<{ message: string }>,
       { cartId: string }
     >,
     'mutationFn'
