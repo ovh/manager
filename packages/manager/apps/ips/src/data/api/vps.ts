@@ -1,5 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
-import { IamObject } from '@ovh-ux/manager-react-components';
+import { IamObject } from '@ovh-ux/muk';
 
 import { ServiceStatus } from '@/types';
 

@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
 
 import { OrgDetails } from '@/data/api';
 
@@ -8,8 +6,8 @@ import { OrganisationsAddressCell } from '../DatagridCells';
 
 export function DatagridAddressCell(org: OrgDetails) {
   return (
-    <DataGridTextCell>
+    <Text>
       <OrganisationsAddressCell {...org} />
-    </DataGridTextCell>
+    </Text>
   );
 }

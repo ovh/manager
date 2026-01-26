@@ -1,9 +1,7 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Links } from '@ovh-ux/manager-react-components';
+import { Link } from '@ovhcloud/ods-react';
 import {
   ButtonType,
   PageLocation,
@@ -35,11 +33,10 @@ export const IpReverseError = ({ apiError }: IpReverseErrorProps) => {
       <div className="font-bold">{t('ip_reverse_update_failure_title')}</div>
       <div className="my-2">
         {t('ip_reverse_update_failure_hint')}
-        <Links
+        <Link
           href={links?.configureReverseDnsGuide?.link}
-          label={t('ip_reverse_update_failure_hint_link')}
           target="_blank"
-          onClickReturn={() => {
+          onClick={() => {
             trackClick({
               actionType: 'action',
               buttonType: ButtonType.link,
@@ -49,7 +46,9 @@ export const IpReverseError = ({ apiError }: IpReverseErrorProps) => {
               ],
             });
           }}
-        />
+        >
+          {t('ip_reverse_update_failure_hint_link')}
+        </Link>
         {'.'}
       </div>
       <p>

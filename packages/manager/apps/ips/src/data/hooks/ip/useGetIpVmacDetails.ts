@@ -21,7 +21,7 @@ export const useGetIpVmacDetails = ({
   ip,
   enabled = true,
 }: UseGetIpVmacDetailsParams) => {
-  const { data, isLoading, isError } = useQuery<
+  const { data, isLoading: loading, isError } = useQuery<
     ApiResponse<DedicatedServerVmacDetailsType>,
     ApiError
   >({
@@ -41,5 +41,5 @@ export const useGetIpVmacDetails = ({
     retry: false,
   });
 
-  return { dedicatedServerVmacWithIpResponse: data?.data, isLoading, isError };
+  return { dedicatedServerVmacWithIpResponse: data?.data, loading, isError };
 };

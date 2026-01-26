@@ -74,8 +74,7 @@ export function useDedicatedServerIpMigrationAvailableDurations({
       dedicatedServerInfoQuery?.data?.data?.includes('ipMigration') &&
       Boolean(ipMigrationQuery?.data?.data?.length),
     availableDurations: ipMigrationQuery?.data?.data,
-    isLoading:
-      dedicatedServerInfoQuery?.isLoading || ipMigrationQuery?.isLoading,
+    loading: dedicatedServerInfoQuery?.isLoading || ipMigrationQuery?.isLoading,
     error: dedicatedServerInfoQuery?.error || ipMigrationQuery?.error,
     isError: dedicatedServerInfoQuery?.isError || ipMigrationQuery?.isError,
   };

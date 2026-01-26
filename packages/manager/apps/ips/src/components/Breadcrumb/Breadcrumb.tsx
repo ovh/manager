@@ -1,12 +1,12 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
-import './breadcrumb.scss';
+  Breadcrumb as OdsBreadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+} from '@ovhcloud/ods-react';
 
 import { urls } from '@/routes/routes.constant';
 import { APP_NAME } from '@/tracking.constant';
@@ -27,7 +27,6 @@ export function Breadcrumb({
 }: BreadcrumbProps): JSX.Element {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.ips);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const pathnames = location.pathname.split('/').filter(Boolean);
   const paths = pathnames
@@ -36,9 +35,7 @@ export function Breadcrumb({
       mapper(
         {
           label: t(value),
-          onClick: () => {
-            navigate(`/#/${APP_NAME}/${value}`);
-          },
+          href: `/#/${APP_NAME}/${value}`,
         },
         index,
       ),
@@ -47,9 +44,7 @@ export function Breadcrumb({
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       label: t('breadcrumb_root_label'),
-      onClick: () => {
-        navigate(urls.listing);
-      },
+      href: urls.listing,
     },
     ...paths,
   ];
@@ -57,13 +52,11 @@ export function Breadcrumb({
   return (
     <OdsBreadcrumb>
       {breadcrumbItems?.map((item, index) => (
-        <OdsBreadcrumbItem
-          key={`breadcrumb-key-${item.label}-${index}`}
-          className="ips-breadcrumb-item"
-          href={item.href}
-          label={item.label}
-          onClick={item.onClick}
-        />
+        <BreadcrumbItem key={`breadcrumb-key-${item.label}-${index}`}>
+          <BreadcrumbLink as={Link} to={item.href}>
+            {item.label}
+          </BreadcrumbLink>
+        </BreadcrumbItem>
       ))}
     </OdsBreadcrumb>
   );

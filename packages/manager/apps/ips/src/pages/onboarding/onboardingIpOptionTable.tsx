@@ -2,10 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsTable, OdsText } from '@ovhcloud/ods-components/react';
-
-import { Links } from '@ovh-ux/manager-react-components';
+import { TEXT_PRESET, Table, Link, Text } from '@ovhcloud/ods-react';
 
 import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 import { useCatalogLowestPrice } from '@/data/hooks/catalog';
@@ -101,12 +98,13 @@ export function IpOptionTable() {
       ipv6: (
         <>
           {t('optionsAvailabilityCheck')}{' '}
-          <Links
+          <Link
             href={links?.presentationLink?.link}
-            label={t('optionsAvailabilityHere')}
             target="_blank"
             rel="noopener"
-          />
+          >
+            {t('optionsAvailabilityHere')}
+          </Link>
         </>
       ),
     },
@@ -118,36 +116,34 @@ export function IpOptionTable() {
   ];
   return (
     <>
-      <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+      <Text preset={TEXT_PRESET.heading3} className="mb-4">
         {t('optionsTitle')}
-      </OdsText>
-      <OdsTable className="w-full">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th className="pl-4 text-left">{t('optionsColumnFeature')}</th>
-              <th className="pl-4 text-left">{t('optionsColumnIpv4')}</th>
-              <th className="pl-4 text-left">{t('optionsColumnIpv6')}</th>
+      </Text>
+      <Table className="w-full border-collapse">
+        <thead>
+          <tr>
+            <th className="pl-4 text-left">{t('optionsColumnFeature')}</th>
+            <th className="pl-4 text-left">{t('optionsColumnIpv4')}</th>
+            <th className="pl-4 text-left">{t('optionsColumnIpv6')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {optionList.map((option: IpOptionRowProps) => (
+            <tr
+              key={`${option.feature}`}
+              className="border border-solid border-[--ods-color-blue-200]"
+            >
+              <td className="pl-4 text-left">{option.feature}</td>
+              <td className="whitespace-pre-line pl-4 text-left">
+                {option.ipv4}
+              </td>
+              <td className="whitespace-pre-line pl-4 text-left">
+                {option.ipv6}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {optionList.map((option: IpOptionRowProps) => (
-              <tr
-                key={`${option.feature}`}
-                className="border border-solid border-[--ods-color-blue-200]"
-              >
-                <td className="pl-4 text-left">{option.feature}</td>
-                <td className="whitespace-pre-line pl-4 text-left">
-                  {option.ipv4}
-                </td>
-                <td className="whitespace-pre-line pl-4 text-left">
-                  {option.ipv6}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </OdsTable>
+          ))}
+        </tbody>
+      </Table>
     </>
   );
 }

@@ -1,10 +1,4 @@
-import React from 'react';
-
-import {
-  ChangelogButton,
-  GuideButton,
-  GuideItem,
-} from '@ovh-ux/manager-react-components';
+import { ChangelogMenu, GuideMenu, GuideMenuItem } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -14,20 +8,20 @@ import {
 import { CHANGELOG_LINKS, useGuideUtils } from '@/utils';
 
 export type Header = {
-  title: string;
-  changelogButton: JSX.Element;
-  headerButton: JSX.Element;
+  title?: React.ReactNode | null;
+  guideMenu?: React.ReactElement | null;
+  changelogButton?: React.ReactElement | null;
 };
 
 export const useHeader = (title: string): Header => {
   const { guides } = useGuideUtils();
   const { trackClick } = useOvhTracking();
 
-  const guideItems: GuideItem[] = guides.map((guide, index) => ({
+  const guideItems: GuideMenuItem[] = guides.map((guide, index) => ({
     id: index,
     href: guide.href,
     target: '_blank',
-    label: guide.texts.title,
+    children: guide.texts.title,
     onClick: () => {
       trackClick({
         buttonType: ButtonType.externalLink,
@@ -41,8 +35,8 @@ export const useHeader = (title: string): Header => {
   return {
     title,
     changelogButton: (
-      <ChangelogButton chapters={['network::ip::ip']} links={CHANGELOG_LINKS} />
+      <ChangelogMenu chapters={['network::ip::ip']} links={CHANGELOG_LINKS} />
     ),
-    headerButton: <GuideButton items={guideItems} />,
+    guideMenu: <GuideMenu items={guideItems} />,
   };
 };

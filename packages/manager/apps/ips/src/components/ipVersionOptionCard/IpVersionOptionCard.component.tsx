@@ -3,27 +3,26 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_CARD_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsCard,
-  OdsRadio,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-
-import { handleClick } from '@ovh-ux/manager-react-components';
+  CARD_COLOR,
+  RadioControl,
+  RadioGroup,
+  SPINNER_SIZE,
+  TEXT_PRESET,
+  Card,
+  Radio,
+  Spinner,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { PriceDescription } from '../PriceDescription/PriceDescription';
+import { handleEnterAndEscapeKeyDown } from '@/utils';
 import './ip-version-option-card.scss';
 
 export type IpVersionOptionCardProps = React.PropsWithChildren<{
   className?: string;
   isDisabled?: boolean;
   isSelected?: boolean;
-  isLoading?: boolean;
+  loading?: boolean;
   onClick?: () => void;
   title: React.ReactNode;
   description?: string;
@@ -36,7 +35,7 @@ export const IpVersionOptionCard: React.FC<IpVersionOptionCardProps> = ({
   className,
   isDisabled,
   isSelected,
-  isLoading,
+  loading,
   onClick,
   title,
   description,
@@ -50,32 +49,39 @@ export const IpVersionOptionCard: React.FC<IpVersionOptionCardProps> = ({
     : 'cursor-pointer hover:shadow-md';
   const cardStyle = isSelected ? 'option_card_selected' : 'option_card m-[1px]';
   return (
-    <OdsCard
+    <Card
       tabIndex={0}
+      color={CARD_COLOR.neutral}
       className={`flex flex-col justify-between transition-shadow ${stateStyle} ${cardStyle} ${className}`}
-      {...handleClick(() => !isDisabled && onClick?.())}
-      color={ODS_CARD_COLOR.neutral}
+      onClick={() => !isDisabled && onClick?.()}
+      {...handleEnterAndEscapeKeyDown({
+        onEnter: () => !isDisabled && onClick?.(),
+      })}
     >
-      <OdsText
-        className="justify-left m-4 flex"
-        preset={ODS_TEXT_PRESET.heading4}
-      >
+      <Text className="justify-left m-4 flex" preset={TEXT_PRESET.heading4}>
         <span className="mr-3 h-full align-middle">
-          <OdsRadio name="" is-checked={isSelected}></OdsRadio>
+          <RadioGroup
+            value={isSelected ? 'selected' : 'notSelected'}
+            disabled={isDisabled}
+          >
+            <Radio value="selected" disabled={isDisabled}>
+              <RadioControl />
+            </Radio>
+          </RadioGroup>
         </span>
         <span>{title}</span>
-      </OdsText>
+      </Text>
       {description && (
-        <OdsText
+        <Text
           className="m-4 mt-0 flex justify-center text-left"
-          preset={ODS_TEXT_PRESET.paragraph}
+          preset={TEXT_PRESET.paragraph}
         >
           {description}
-        </OdsText>
+        </Text>
       )}
-      {isLoading ? (
+      {loading ? (
         <div className="text-center">
-          <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
+          <Spinner size={SPINNER_SIZE.xs} />
         </div>
       ) : (
         <span className="card-children rounded-b-md p-4">
@@ -91,6 +97,6 @@ export const IpVersionOptionCard: React.FC<IpVersionOptionCardProps> = ({
           )}
         </span>
       )}
-    </OdsCard>
+    </Card>
   );
 };

@@ -17,11 +17,11 @@ export type IpCountryProps = {
  * @returns React Component
  */
 export const IpCountry = ({ ip }: IpCountryProps) => {
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const { ipDetails, loading } = useGetIpdetails({ ip });
   const { t } = useTranslation('region-selector');
 
   return (
-    <SkeletonCell isLoading={isLoading}>
+    <SkeletonCell loading={loading}>
       {ipDetails?.country ? (
         t(`region-selector-country-name_${ipDetails?.country?.toUpperCase()}`)
       ) : (

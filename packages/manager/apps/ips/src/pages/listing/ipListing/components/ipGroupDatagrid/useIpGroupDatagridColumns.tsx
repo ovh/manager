@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { DatagridColumn } from '@ovh-ux/manager-react-components';
+import { DatagridColumn } from '@ovh-ux/muk';
 
 import {
   useGetIpMitigationWithoutIceberg,
@@ -43,99 +43,118 @@ export const useIpGroupDatagridColumns = ({
 
   const {
     ipMitigation,
-    isLoading: isMitigationLoading,
+    loading: isMitigationLoading,
   } = useGetIpMitigationWithoutIceberg({
     ip: parentIp,
   });
 
-  const { vmacsWithIp, isLoading: isVmacsLoading } = useGetIpVmacWithIp({
+  const { vmacsWithIp, loading: isVmacsLoading } = useGetIpVmacWithIp({
     serviceName,
   });
 
-  const columns: DatagridColumn<string>[] = [
+  const columns: DatagridColumn<{ ip: string }>[] = [
     {
       id: 'ip',
+      accessorKey: 'ip',
       label: t('listingColumnsIp'),
-      cell: (ip: string) => {
+      cell: ({ getValue }) => {
+        const ip = getValue() as string;
         return <IpCell ip={ip} parentIpGroup={parentIp}></IpCell>;
       },
       size: parentHeaders?.current.ip?.clientWidth,
     },
     {
       id: 'ip-type',
+      accessorKey: 'ip',
       label: t('listingColumnsIpType'),
       cell: () => <IpType ip={parentIp} />,
       size: parentHeaders?.current['ip-type']?.clientWidth,
     },
     {
       id: 'ip-alerts',
+      accessorKey: 'ip',
       label: t('listingColumnsIpAlerts'),
-      cell: (ip) => (
-        <IpAlerts subIp={ip} ip={parentIp} isByoipSlice={isByoipSlice} />
+      cell: ({ getValue }) => (
+        <IpAlerts
+          subIp={getValue() as string}
+          ip={parentIp}
+          isByoipSlice={isByoipSlice}
+        />
       ),
       size: parentHeaders?.current['ip-alerts']?.clientWidth,
     },
     {
       id: 'ip-region',
+      accessorKey: 'ip',
       label: t('listingColumnsIpRegion'),
       cell: () => <IpRegion ip={parentIp} />,
       size: parentHeaders?.current['ip-region']?.clientWidth,
     },
     {
       id: 'ip-country',
+      accessorKey: 'ip',
       label: t('listingColumnsIpCountry'),
       cell: () => <IpCountry ip={parentIp} />,
       size: parentHeaders?.current['ip-country']?.clientWidth,
     },
     {
       id: 'ip-attached-service',
+      accessorKey: 'ip',
       label: t('listingColumnsIpAttachedService'),
       cell: () => <IpAttachedService ip={parentIp} />,
       size: parentHeaders?.current['ip-attached-service']?.clientWidth,
     },
     {
       id: 'ip-reverse',
+      accessorKey: 'ip',
       label: t('listingColumnsIpReverseDNS'),
-      cell: (ip: string) => <IpReverse ip={ip} parentIpGroup={parentIp} />,
+      cell: ({ getValue }) => (
+        <IpReverse ip={getValue() as string} parentIpGroup={parentIp} />
+      ),
       size: parentHeaders?.current['ip-reverse']?.clientWidth,
     },
     {
       id: 'ip-vmac',
+      accessorKey: 'ip',
       label: t('listingColumnsIpVMac'),
-      cell: (ip: string) => (
+      cell: ({ getValue }) => (
         <IpVmacFilterByIp
-          ip={ip}
+          ip={getValue() as string}
           vmacsWithIp={vmacsWithIp}
-          isLoading={isVmacsLoading}
+          loading={isVmacsLoading}
         />
       ),
       size: parentHeaders?.current['ip-vmac']?.clientWidth,
     },
     {
       id: 'ip-ddos',
+      accessorKey: 'ip',
       label: t('listingColumnsIpAntiDDos'),
-      cell: (ip: string) => (
+      cell: () => (
         <IpAntiDdosDisplay
           ipMitigation={ipMitigation}
           enabled={!!isAntiDdosAvailable}
-          ip={ip}
         />
       ),
       size: parentHeaders?.current['ip-ddos']?.clientWidth,
     },
     {
       id: 'ip-edge-firewall',
+      accessorKey: 'ip',
       label: t('listingColumnsIpEdgeFirewall'),
-      cell: (ip: string) => <IpEdgeFirewall ip={parentIp} ipOnFirewall={ip} />,
+      cell: ({ getValue }) => (
+        <IpEdgeFirewall ip={parentIp} ipOnFirewall={getValue() as string} />
+      ),
       size: parentHeaders?.current['ip-edge-firewall']?.clientWidth,
     },
     {
       id: 'ip-game-firewall',
+      accessorKey: 'ip',
       label: t('listingColumnsIpGameFirewall'),
-      cell: (ip: string) => (
+      cell: ({ getValue }) => (
         <IpGameFirewallDisplay
           ip={parentIp}
-          ipOnGame={ip}
+          ipOnGame={getValue() as string}
           enabled={!!isGameFirewallAvailable}
         />
       ),
@@ -143,11 +162,12 @@ export const useIpGroupDatagridColumns = ({
     },
     {
       id: 'action',
+      accessorKey: 'ip',
       label: '',
-      cell: (ip: string) => (
+      cell: ({ getValue }) => (
         <IpActionsCell
           parentIpGroup={parentIp}
-          ip={ip}
+          ip={getValue() as string}
           isByoipSlice={isByoipSlice}
         />
       ),
@@ -157,6 +177,6 @@ export const useIpGroupDatagridColumns = ({
 
   return {
     columns,
-    isLoading: isMitigationLoading || isVmacsLoading,
+    loading: isMitigationLoading || isVmacsLoading,
   };
 };

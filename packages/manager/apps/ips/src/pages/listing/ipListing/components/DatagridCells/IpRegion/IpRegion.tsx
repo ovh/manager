@@ -16,10 +16,10 @@ export type IpRegionProps = {
  * @returns React Component
  */
 export const IpRegion = ({ ip }: IpRegionProps) => {
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const { ipDetails, loading } = useGetIpdetails({ ip });
 
   return (
-    <SkeletonCell isLoading={isLoading}>
+    <SkeletonCell loading={loading}>
       {!ipDetails?.regions && <>-</>}
       {ipDetails?.regions?.map((region) => (
         <div key={region}>{region}</div>

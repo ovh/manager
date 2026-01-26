@@ -1,13 +1,13 @@
 import React, { PropsWithChildren, useContext } from 'react';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { Skeleton } from '@ovhcloud/ods-react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 
 import { ListingContext } from '@/pages/listing/listingContext';
 
 export type SkeletonCellParams = {
-  isLoading?: boolean;
+  loading?: boolean;
   enabled?: boolean;
   error?: ApiError | null;
   ip?: string;
@@ -15,14 +15,14 @@ export type SkeletonCellParams = {
 
 /**
  * To render cell that is loading asynchronous datas
- * @param isLoading the loading state for the cell
+ * @param loading the loading state for the cell
  * @param enabled if false, return empty cell
  * @param error if error is defined, return empty cell
  * @param ip if ip is set and flag as expired, return empty cell
  * @returns React node of a datagrid cell
  */
 export const SkeletonCell = ({
-  isLoading,
+  loading,
   enabled = true,
   error,
   ip,
@@ -39,5 +39,5 @@ export const SkeletonCell = ({
 
   // If not enable or if there is an error, return an empty cell
   if (!enabled || !!error) return null;
-  return <>{isLoading ? <OdsSkeleton /> : children}</>;
+  return <>{loading ? <Skeleton /> : children}</>;
 };

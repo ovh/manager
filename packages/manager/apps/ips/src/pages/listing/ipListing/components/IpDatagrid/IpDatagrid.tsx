@@ -1,12 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
+import { ExpandedState, VisibilityState } from '@tanstack/react-table';
 
-import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+import { TABLE_SIZE } from '@ovhcloud/ods-react';
 
-import {
-  Datagrid,
-  ErrorBanner,
-  RedirectionGuard,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, Error, RedirectionGuard } from '@ovh-ux/muk';
 
 import { useGetIpList } from '@/data/hooks/ip';
 import { urls } from '@/routes/routes.constant';
@@ -31,6 +28,25 @@ export const IpDatagrid = () => {
   const { ipList, isLoading, error, isError } = useGetIpList(apiFilter);
   const [filteredIpList, setFilteredIpList] = useState<string[]>([]);
   const columns = useIpDatagridColumns();
+  const [expanded, setExpanded] = useState<ExpandedState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+    ip: true,
+    'ip-type': true,
+    'ip-alerts': true,
+    'ip-region': false,
+    'ip-country': false,
+    'ip-attached-service': false,
+    'ip-reverse': false,
+    'ip-vmac': false,
+    'ip-ddos': false,
+    'ip-edge-firewall': true,
+    'ip-game-firewall': true,
+    actions: true,
+  });
+
+  const handleFetchAllPages = async () => {
+    setNumberOfPageDisplayed(filteredIpList.length / pageSize);
+  };
 
   useEffect(() => {
     if (!ipList) return;
@@ -69,27 +85,37 @@ export const IpDatagrid = () => {
       condition={!isLoading && !ipList?.length && hasNoApiFilter}
       route={urls.onboarding}
       isError={isError}
-      errorComponent={<ErrorBanner error={error} />}
+      errorComponent={<Error error={error} />}
     >
       <Datagrid
-        size={ODS_TABLE_SIZE.sm}
+        containerHeight={numberOfPageDisplayed * pageSize * 51 + 50}
+        subComponentHeight={350}
+        size={TABLE_SIZE.sm}
         columns={columns}
-        items={paginatedIpList}
-        totalItems={filteredIpList?.length}
+        data={paginatedIpList}
+        totalCount={filteredIpList?.length}
         hasNextPage={numberOfPageDisplayed * pageSize < filteredIpList?.length}
         onFetchNextPage={() => setNumberOfPageDisplayed((nb) => nb + 1)}
-        getRowCanExpand={(row) =>
-          ipFormatter(row.original.ip).isGroup &&
-          !onGoingCreatedIps.includes(row.original.ip) &&
-          !onGoingAggregatedIps.includes(row.original.ip) &&
-          !onGoingSlicedIps.includes(row.original.ip)
-        }
-        renderSubComponent={(row, headerRefs) => (
-          <IpGroupDatagrid row={row} parentHeaders={headerRefs} />
-        )}
+        onFetchAllPages={handleFetchAllPages}
         isLoading={isLoading}
-        numberOfLoadingRows={pageSize}
-        resetExpandedRowsOnItemsChange
+        columnVisibility={{ columnVisibility, setColumnVisibility }}
+        resourceType="ip"
+        expandable={{
+          expanded,
+          setExpanded,
+          getRowCanExpand: (row) =>
+            ipFormatter(row.original.ip).isGroup &&
+            !onGoingCreatedIps.includes(row.original.ip) &&
+            !onGoingAggregatedIps.includes(row.original.ip) &&
+            !onGoingSlicedIps.includes(row.original.ip),
+        }}
+        renderSubComponent={(row, headerRefs) => (
+          <IpGroupDatagrid
+            row={row}
+            parentHeaders={headerRefs}
+            columnVisibility={columnVisibility}
+          />
+        )}
       />
     </RedirectionGuard>
   );

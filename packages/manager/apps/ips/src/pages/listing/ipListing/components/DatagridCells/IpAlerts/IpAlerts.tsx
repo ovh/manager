@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { BADGE_COLOR, Badge } from '@ovhcloud/ods-react';
 
 import { useIpHasAlerts } from '@/data/hooks/ip';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -27,7 +26,7 @@ export const IpAlerts = ({ ip, subIp, isByoipSlice }: IpAlertsProps) => {
   const { expiredIps } = useContext(ListingContext);
   const { t } = useTranslation('listing');
 
-  const { hasAlerts, isLoading } = useIpHasAlerts({
+  const { hasAlerts, loading } = useIpHasAlerts({
     ip,
     subIp,
     enabled: expiredIps.indexOf(ip) === -1 && !isByoipSlice,
@@ -35,7 +34,7 @@ export const IpAlerts = ({ ip, subIp, isByoipSlice }: IpAlertsProps) => {
 
   if (
     expiredIps.indexOf(ip) !== -1 ||
-    (!isLoading &&
+    (!loading &&
       !hasAlerts?.antihack?.length &&
       !hasAlerts?.spam?.length &&
       !hasAlerts?.mitigation?.length)
@@ -43,25 +42,22 @@ export const IpAlerts = ({ ip, subIp, isByoipSlice }: IpAlertsProps) => {
     return <></>;
 
   return (
-    <SkeletonCell isLoading={isLoading}>
+    <SkeletonCell loading={loading}>
       <div className="flex flex-col gap-2">
         {!!hasAlerts?.antihack?.length && (
-          <OdsBadge
-            label={t('listingColumnsIpAlertsAntihack')}
-            color={ODS_BADGE_COLOR.critical}
-          />
+          <Badge color={BADGE_COLOR.critical}>
+            {t('listingColumnsIpAlertsAntihack')}
+          </Badge>
         )}
         {!!hasAlerts?.spam?.length && (
-          <OdsBadge
-            label={t('listingColumnsIpAlertsSpam')}
-            color={ODS_BADGE_COLOR.critical}
-          />
+          <Badge color={BADGE_COLOR.critical}>
+            {t('listingColumnsIpAlertsSpam')}
+          </Badge>
         )}
         {!!hasAlerts?.mitigation?.length && (
-          <OdsBadge
-            label={t('listingColumnsIpAlertsMitigation')}
-            color={ODS_BADGE_COLOR.critical}
-          />
+          <Badge color={BADGE_COLOR.critical}>
+            {t('listingColumnsIpAlertsMitigation')}
+          </Badge>
         )}
       </div>
     </SkeletonCell>

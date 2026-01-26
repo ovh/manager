@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  Select,
+  SelectContent,
+  SelectControl,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { IpGameFirewallRule } from '@/data/api';
 import { startCaseFormat } from '@/utils/startCaseFormat';
@@ -10,21 +15,25 @@ import { GameFirewallContext } from '../gamefirewall.context';
 export const GameProtocolColumn = (
   rule: IpGameFirewallRule & { isNew?: boolean },
 ) => {
-  const { supportedProtocols, newGameProtocol, setNewGameProtocol } =
-    React.useContext(GameFirewallContext);
+  const {
+    supportedProtocols,
+    newGameProtocol,
+    setNewGameProtocol,
+  } = React.useContext(GameFirewallContext);
   return rule?.isNew ? (
-    <OdsSelect
+    <Select
       name="game-protocol-select"
-      value={newGameProtocol}
-      onOdsChange={(e) => setNewGameProtocol(e.detail.value)}
+      value={[newGameProtocol]}
+      onValueChange={(e) => setNewGameProtocol(e.value?.[0])}
+      items={supportedProtocols.map((protocol) => ({
+        label: startCaseFormat(protocol),
+        value: protocol,
+      }))}
     >
-      {supportedProtocols.map((protocol) => (
-        <option key={protocol} value={protocol}>
-          {startCaseFormat(protocol)}
-        </option>
-      ))}
-    </OdsSelect>
+      <SelectControl />
+      <SelectContent />
+    </Select>
   ) : (
-    <OdsText>{startCaseFormat(rule?.protocol)}</OdsText>
+    <Text>{startCaseFormat(rule?.protocol)}</Text>
   );
 };

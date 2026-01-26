@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { BADGE_COLOR, Badge, Skeleton } from '@ovhcloud/ods-react';
 
 import { useGetIpdetails } from '@/data/hooks/ip';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -25,41 +24,41 @@ export type IpCellProps = {
  */
 export const IpCell = ({ ip, parentIpGroup }: IpCellProps) => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
-  const { onGoingAggregatedIps, onGoingSlicedIps, onGoingCreatedIps } =
-    useContext(ListingContext);
-  const { ipDetails, isLoading } = useGetIpdetails({ ip: parentIpGroup || ip });
+  const {
+    onGoingAggregatedIps,
+    onGoingSlicedIps,
+    onGoingCreatedIps,
+  } = useContext(ListingContext);
+  const { ipDetails, loading } = useGetIpdetails({ ip: parentIpGroup || ip });
 
   return (
-    <>
+    <div>
       <div>{ipFormatter(ip).ip}</div>
-      {isLoading && (
+      {loading && (
         <div className="mt-2">
-          <OdsSkeleton />
+          <Skeleton />
         </div>
       )}
-      {!isLoading && !!ipDetails?.description && (
+      {!loading && !!ipDetails?.description && (
         <small className="mt-2 inline-block">{ipDetails?.description}</small>
       )}
       <div className="mt-2">
         {onGoingAggregatedIps.includes(ip) && (
-          <OdsBadge
-            label={t('aggregate_in_progress')}
-            color={ODS_BADGE_COLOR.information}
-          />
+          <Badge color={BADGE_COLOR.information}>
+            {t('aggregate_in_progress')}
+          </Badge>
         )}
         {onGoingSlicedIps.includes(ip) && (
-          <OdsBadge
-            label={t('slice_in_progress')}
-            color={ODS_BADGE_COLOR.information}
-          />
+          <Badge color={BADGE_COLOR.information}>
+            {t('slice_in_progress')}
+          </Badge>
         )}
         {onGoingCreatedIps.includes(ip) && (
-          <OdsBadge
-            label={t('creation_in_progress')}
-            color={ODS_BADGE_COLOR.information}
-          />
+          <Badge color={BADGE_COLOR.information}>
+            {t('creation_in_progress')}
+          </Badge>
         )}
       </div>
-    </>
+    </div>
   );
 };

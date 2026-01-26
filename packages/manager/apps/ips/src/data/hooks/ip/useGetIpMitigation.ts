@@ -27,7 +27,7 @@ export const useGetIpMitigation = ({
 }: UseGetIpMitigationParams) => {
   const {
     data: ipMitigationResponse,
-    isLoading,
+    isLoading: loading,
     isError,
     error,
   } = useQuery<IcebergFetchResultV6<IpMitigationType>, ApiError>({
@@ -54,7 +54,7 @@ export const useGetIpMitigation = ({
 
   return {
     ipMitigation: ipMitigationResponse?.data || [],
-    isLoading,
+    loading,
     isError,
     error,
   };
@@ -70,7 +70,7 @@ export const useGetIpMitigationWithoutIceberg = ({
   const { ipGroup: ipBlockip, ipAddress } = ipFormatter(ip);
   const {
     data: ipMitigationResponse,
-    isLoading,
+    isLoading: loading,
     isError,
     error,
   } = useQuery<ApiResponse<IpMitigationType>, ApiError>({
@@ -107,7 +107,7 @@ export const useGetIpMitigationWithoutIceberg = ({
     ipMitigation: ipMitigationResponse?.data
       ? ipMitigationResponse?.data
       : ({} as IpMitigationType),
-    isLoading,
+    loading,
     isError,
     error,
   };

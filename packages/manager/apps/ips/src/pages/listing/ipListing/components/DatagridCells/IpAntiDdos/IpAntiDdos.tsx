@@ -34,7 +34,7 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
   const { isGroup } = ipFormatter(ip);
 
   // Get ip details
-  const { ipDetails, isLoading: isDetailsLoading } = useGetIpdetails({
+  const { ipDetails, loading: isDetailsLoading } = useGetIpdetails({
     ip,
     enabled: !isGroup,
   });
@@ -45,23 +45,19 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
     !isDetailsLoading &&
     isAntiDdosAvailable(ipDetails);
 
-  const { ipMitigation, isLoading, error } = useGetIpMitigationWithoutIceberg({
+  const { ipMitigation, loading, error } = useGetIpMitigationWithoutIceberg({
     ip,
     enabled,
   });
 
   return (
     <SkeletonCell
-      isLoading={isLoading || isDetailsLoading}
+      loading={loading || isDetailsLoading}
       enabled={!isGroup}
       error={error}
       ip={ip}
     >
-      <IpAntiDdosDisplay
-        ipMitigation={ipMitigation}
-        enabled={enabled}
-        ip={ip}
-      />
+      <IpAntiDdosDisplay ipMitigation={ipMitigation} enabled={enabled} />
     </SkeletonCell>
   );
 };

@@ -6,7 +6,7 @@ import {
   apiClient,
   fetchIcebergV6,
 } from '@ovh-ux/manager-core-api';
-import { IamObject } from '@ovh-ux/manager-react-components';
+import { IamObject } from '@ovh-ux/muk';
 
 import { ServiceStatus } from '@/types';
 
@@ -155,14 +155,15 @@ export const getDedicatedServerTaskQueryKey = (
   )}/task/${taskId}`,
 ];
 
-export const createDedicatedServerTasksQueryKeyPredicate =
-  (serviceName?: string | null, functionList?: string[]) =>
-  ({ queryKey }: Query) =>
-    queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
-    !!functionList &&
-    functionList?.includes(
-      (queryKey[1] as { taskFunction: string })?.taskFunction,
-    );
+export const createDedicatedServerTasksQueryKeyPredicate = (
+  serviceName?: string | null,
+  functionList?: string[],
+) => ({ queryKey }: Query) =>
+  queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
+  !!functionList &&
+  functionList?.includes(
+    (queryKey[1] as { taskFunction: string })?.taskFunction,
+  );
 
 export const getDedicatedServerTasks = async ({
   serviceName,

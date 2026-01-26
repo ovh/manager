@@ -1,34 +1,33 @@
 import React from 'react';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsComboboxItem, OdsText } from '@ovhcloud/ods-components/react';
+import { Text, ComboboxOptionItem, TEXT_PRESET } from '@ovhcloud/ods-react';
 
-export type ComboboxServiceItemProps = {
+export type ServiceData = {
   name: string;
   displayName?: string;
-  isDisabled?: boolean;
 };
 
-export const ComboboxServiceItem: React.FC<ComboboxServiceItemProps> = ({
-  name,
-  displayName,
-  isDisabled,
-}) => (
-  <OdsComboboxItem
+export const ComboboxServiceItem = ({
+  label,
+  customRendererData,
+  disabled,
+}: ComboboxOptionItem<ServiceData>): React.ReactElement => (
+  <span
     className={
-      isDisabled ? 'pointer-events-none cursor-not-allowed bg-gray-100' : ''
+      disabled ? 'pointer-events-none cursor-not-allowed bg-gray-100' : ''
     }
-    selectionLabel={displayName ?? name}
-    value={name}
-    aria-disabled={isDisabled}
+    aria-disabled={disabled}
   >
-    {!displayName || displayName === name ? (
-      <OdsText className="px-3 py-1">{name}</OdsText>
+    {!customRendererData?.displayName ||
+    customRendererData?.displayName === customRendererData?.name ? (
+      <Text className="px-3 py-1">{customRendererData?.name || label}</Text>
     ) : (
       <div className="flex flex-col px-3 py-1">
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{displayName}</OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>{name}</OdsText>
+        <Text preset={TEXT_PRESET.paragraph}>
+          {customRendererData?.displayName}
+        </Text>
+        <Text preset={TEXT_PRESET.caption}>{customRendererData?.name}</Text>
       </div>
     )}
-  </OdsComboboxItem>
+  </span>
 );

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Spinner } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -26,7 +26,7 @@ type CampusType = {
 
 export const RegionSelectionSection: React.FC = () => {
   const { t } = useTranslation([TRANSLATION_NAMESPACES.byoip]);
-  const { data: catalog, isLoading } = useGetCatalog();
+  const { data: catalog, isLoading: loading } = useGetCatalog();
   const { selectedRegion, setSelectedRegion } = React.useContext(ByoipContext);
   const { trackClick } = useOvhTracking();
 
@@ -39,9 +39,9 @@ export const RegionSelectionSection: React.FC = () => {
     <OrderSection
       title={t('region_selection_title')}
       description={t('region_selection_description')}
-      isLoading={isLoading}
+      loading={loading}
     >
-      <React.Suspense fallback={<OdsSpinner />}>
+      <React.Suspense fallback={<Spinner />}>
         <div className="flex flex-wrap items-stretch gap-4">
           {campusValues.map((value) => {
             const region = DATACENTER_TO_REGION[value.name];

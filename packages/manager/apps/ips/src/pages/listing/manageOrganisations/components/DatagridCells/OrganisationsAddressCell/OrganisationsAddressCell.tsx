@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { OrgDetails } from '@/data/api/get/organisationsDetails';
 import { useIpFeatureAvailability } from '@/utils/ipFeatureAvailbility';
@@ -37,11 +36,7 @@ export const OrganisationsAddressCell: React.FC<OrgDetails> = (address) => {
       .join(' ');
   };
 
-  return (
-    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-      {formatAddress(address)}
-    </OdsText>
-  );
+  return <Text preset={TEXT_PRESET.paragraph}>{formatAddress(address)}</Text>;
 };
 
 export default OrganisationsAddressCell;

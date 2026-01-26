@@ -27,7 +27,7 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
   const { isGroup } = ipFormatter(ip);
 
   // check if ip is routed to a dedicated server
-  const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
+  const { ipDetails, loading: isIpDetailsLoading } = useGetIpdetails({
     ip,
     enabled: !isGroup,
   });
@@ -40,14 +40,14 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
 
   // get vmacs if ip is routed to a dedicated server
   const serviceName = ipDetails?.routedTo?.serviceName;
-  const { vmacsWithIp, isLoading } = useGetIpVmacWithIp({
+  const { vmacsWithIp, loading } = useGetIpVmacWithIp({
     serviceName,
     enabled,
   });
 
   return (
     <SkeletonCell
-      isLoading={isLoading || isIpDetailsLoading}
+      loading={loading || isIpDetailsLoading}
       enabled={!isGroup}
       ip={ip}
     >
