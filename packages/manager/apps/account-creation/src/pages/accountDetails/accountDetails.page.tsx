@@ -140,7 +140,7 @@ function AccountDetailsForm({
     handleSubmit,
     watch,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
   } = useForm({
     defaultValues: {
       country: currentUser.country || 'GB',
@@ -964,6 +964,7 @@ function AccountDetailsForm({
           type="submit"
           slot="actions"
           className="w-full"
+          isDisabled={!isValid || !isDirty}
           color={ODS_BUTTON_COLOR.primary}
           variant={ODS_BUTTON_VARIANT.default}
           isLoading={
