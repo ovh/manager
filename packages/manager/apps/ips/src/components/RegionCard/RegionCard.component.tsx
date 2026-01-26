@@ -63,7 +63,7 @@ export const RegionCard: React.FC<RegionCardProps> = ({
           style={{
             backgroundImage: `url('flags/${getCountryCode(region)}.svg')`,
           }}
-          className={`shadow-[ h-[17px] w-[24px] shadow-md${shadowColor}] mr-3 bg-cover`}
+          className={`h-[17px] w-[24px] shadow-md shadow-[${shadowColor}] mr-3 bg-cover`}
         />
         <div className="flex flex-col">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>

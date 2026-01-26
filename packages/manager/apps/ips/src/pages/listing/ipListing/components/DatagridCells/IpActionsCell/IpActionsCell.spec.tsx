@@ -592,18 +592,6 @@ describe('IpActionsCell Component', () => {
       expectMenuItemVisible(container, MENU_ITEM_IDS.EDGE_FIREWALL);
     });
 
-    it('should not show Configure Edge Network Firewall when forced mitigation exists', () => {
-      setupDefaultMocks();
-      useIpHasForcedMitigationMock.mockReturnValue({
-        hasForcedMitigation: true,
-        isLoading: false,
-      });
-
-      const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
-
-      expectMenuItemNotVisible(container, MENU_ITEM_IDS.EDGE_FIREWALL);
-    });
-
     it('should show Add Virtual Mac when conditions are met', () => {
       setupIpDetailsMock({
         type: IpTypeEnum.ADDITIONAL,

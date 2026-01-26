@@ -35,6 +35,7 @@ import { TopBar } from './TopBar.component';
 
 export default function EdgeNetworkFirewallPage() {
   const {
+    ip,
     ipOnFirewall,
     isError,
     rules,
@@ -60,13 +61,20 @@ export default function EdgeNetworkFirewallPage() {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
-  const breadcrumbMapper = (_: BreadcrumbItem, index: number) =>
-    index === 0
+  const breadcrumbMapper = (_: BreadcrumbItem, index: number) => {
+    if (index === 0) {
+      return {
+        label: ip,
+        onClick: () => navigate(`${urls.listing}?ip=${ip}`),
+      };
+    }
+    return index === 1
       ? {
           label: ipOnFirewall,
-          onClick: () => navigate(`${urls.listing}?ip=${ipOnFirewall}`),
+          onClick: () => navigate(`${urls.listing}?ip=${ip}`),
         }
       : { label: t('title') };
+  };
 
   if (isError || isRulesError) {
     return (
