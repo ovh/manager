@@ -19,5 +19,6 @@
   "add_agent_banner_api_error": "Si è verificato un errore. Si prega di attendere qualche minuto prima di riprovare. {{errorMessage}}",
   "add_agent_error_resource_not_found": "Si è verificato un errore. Grazie per verificare che il server sia valido.",
   "update_agent_banner_success": "La modifica della policy è in corso, si prega di attendere qualche secondo.",
-  "unable_edit_agent_not_enabled": "La configurazione sarà disponibile una volta attivato l'Agente."
+  "unable_edit_agent_not_enabled": "La configurazione sarà disponibile una volta attivato l'Agente.",
+  "agents_tab_description": "Trova qui tutti i tuoi agenti protetti. È importante completare la tua configurazione affinché il tuo server venga salvato. Per saperne di più, consulta la <Link>documentazione di OVHcloud Backup Agent</Link>"
 }
