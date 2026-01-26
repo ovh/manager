@@ -1,9 +1,8 @@
 import { getDataset } from '@/__datasets__/datasetsUtils';
-import { ChartData } from '@/components/charts/base';
-import {
-  ObservabilityMetricDataParams,  
-} from '@/types/ClientApi.type';
+
 import { MetricData } from '@/types/observability.type';
+import { ChartData } from '@/types/charts/base/Chart.type';
+import { ObservabilityMetricDataParams } from '@/types/ClientApi.type';
 
 export const fetchChartData = async <TData>(
   params: ObservabilityMetricDataParams,  

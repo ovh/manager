@@ -1,2 +1,2 @@
-export type { UnknownChartProps } from './UnknownChart.props';
-export { UnknownChartComponent } from './UnknownChart.component';
+export type { UnknownChartProps } from '@/components/charts/unknown/UnknownChart.props';
+export { UnknownChartComponent } from '@/components/charts/unknown/UnknownChart.component';

@@ -1,2 +1,2 @@
-export type { DashboardProps } from './Dashboard.props';
-export { Dashboard } from './Dashboard.component';
+export type { DashboardProps } from '@/components/dashboard/Dashboard.props';
+export { Dashboard } from '@/components/dashboard/Dashboard.component';

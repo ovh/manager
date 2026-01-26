@@ -15,12 +15,15 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
+
+import { TimeRangeOptionCustom, defaultTimeRangeOptions } from '@/constants/timeControls/TimeRangeOption.constants';
+
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
-import RefreshTimeControl from './RefreshTimeControl.component';
-import { TimeControlsProps } from './TimeControls.props';
-import { TimeRangeOptionCustom, defaultTimeRangeOptions } from './TimeRangeOption.constants';
-import { TimeRangeOptionWithLabel } from './TimeRangeOptionWithLabel.type';
-import TimeRangeSelector from './TimeRangeSelector.component';
+import { TimeRangeOptionWithLabel } from '@/types/timeControls/TimeRangeOptionWithLabel.type';
+
+import RefreshTimeControl from '@/components/timeControls/RefreshTimeControl.component';
+import { TimeControlsProps } from '@/components/timeControls/TimeControls.props';
+import TimeRangeSelector from '@/components/timeControls/TimeRangeSelector.component';
 
 export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
   timeOptions = defaultTimeRangeOptions,

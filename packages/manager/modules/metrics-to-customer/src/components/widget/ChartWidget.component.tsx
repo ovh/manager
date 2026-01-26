@@ -21,7 +21,7 @@ import {
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
-import { ChartWidgetProps } from './ChartWidget.props';
+import { ChartWidgetProps } from '@/components/widget/ChartWidget.props';
 
 const clamp = (value: number | undefined, min: number, max: number): number => {
   if (typeof value !== 'number' || Number.isNaN(value)) return min;
@@ -109,3 +109,5 @@ export const ChartWidgetComponent = ({
     </Card>
   );
 };
+
+export default ChartWidgetComponent;

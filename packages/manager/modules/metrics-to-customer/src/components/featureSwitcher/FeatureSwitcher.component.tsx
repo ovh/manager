@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 import { SWITCH_SIZE, Switch, SwitchItem } from '@ovhcloud/ods-react';
 
-import { FeatureSwitcherProps } from './FeatureSwitcher.props';
+import { FeatureSwitcherProps } from '@/components/featureSwitcher/FeatureSwitcher.props';
 
 export const FeatureSwitcher: React.FC<FeatureSwitcherProps> = (props) => {
   const { items, activeItemId } = props;
