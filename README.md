@@ -8,7 +8,7 @@
 
 ## Intro
 
-Manager is the control panel built on top of the [OVHcloud API](https://eu.api.ovh.com/) and based on our [UI Framework](https://github.com/ovh/design-system/). It helps you to manage your products.
+Manager is the control panel built on top of the [OVHcloud API](https://eu.api.ovh.com/) and based on our [UI Framework](https://github.com/ovh/design-system/). It helps you manage OVHcloud products.
 
 ## Prerequisites
 
