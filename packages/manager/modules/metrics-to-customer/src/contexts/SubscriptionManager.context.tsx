@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
-import { FilterValues } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.props';
+import { ReactNode, createContext, useCallback, useContext, useMemo, useState } from 'react';
+
 import { SubscriptionUrls } from '@/types/SubscriptionUrls.type';
+import { FilterValues } from '@/types/subscriptions/subscriptionManager.type';
 
 export interface SubscriptionManagerContextValue<TData = unknown, TSubscription = unknown> {
   resourceName: string;
@@ -14,8 +15,16 @@ export interface SubscriptionManagerContextValue<TData = unknown, TSubscription 
   subtitleFn?: (item: TData) => string;
   setTitleSubtitleFns?: (title: (item: TData) => string, subtitle: (item: TData) => string) => void;
   subscriptionUrls: SubscriptionUrls;
-  onCreateSubscription: (params: { subscribeUrl: string; itemId: string; resourceName: string }) => void;
-  onDeleteSubscription: (params: { subscription: TSubscription; itemId: string; resourceName: string }) => void;
+  onCreateSubscription: (params: {
+    subscribeUrl: string;
+    itemId: string;
+    resourceName: string;
+  }) => void;
+  onDeleteSubscription: (params: {
+    subscription: TSubscription;
+    itemId: string;
+    resourceName: string;
+  }) => void;
   isCreatingSubscription: boolean;
   isDeletingSubscription: boolean;
   data: TData[] | undefined;
@@ -33,7 +42,10 @@ export interface SubscriptionManagerContextValue<TData = unknown, TSubscription 
 const SubscriptionManagerContext = createContext<SubscriptionManagerContextValue | null>(null);
 
 export function useSubscriptionManagerContext<TData = unknown, TSubscription = unknown>() {
-  const context = useContext(SubscriptionManagerContext) as SubscriptionManagerContextValue<TData, TSubscription> | null;
+  const context = useContext(SubscriptionManagerContext) as SubscriptionManagerContextValue<
+    TData,
+    TSubscription
+  > | null;
   if (!context) {
     throw new Error('SubscriptionManager sub-components must be used within SubscriptionManager');
   }
@@ -47,8 +59,16 @@ interface SubscriptionManagerProviderProps<TData = unknown, TSubscription = unkn
   isSuccess?: boolean;
   isFiltersReady?: boolean;
   subscriptionUrls?: SubscriptionUrls;
-  onCreateSubscription?: (params: { subscribeUrl: string; itemId: string; resourceName: string }) => void;
-  onDeleteSubscription?: (params: { subscription: TSubscription; itemId: string; resourceName: string }) => void;
+  onCreateSubscription?: (params: {
+    subscribeUrl: string;
+    itemId: string;
+    resourceName: string;
+  }) => void;
+  onDeleteSubscription?: (params: {
+    subscription: TSubscription;
+    itemId: string;
+    resourceName: string;
+  }) => void;
   isCreatingSubscription?: boolean;
   isDeletingSubscription?: boolean;
 }
@@ -73,15 +93,18 @@ export function SubscriptionManagerProvider<TData = unknown, TSubscription = unk
     setSearchQueryState(query);
   }, []);
 
-  const setTitleSubtitleFns = useCallback((title: (item: TData) => string, subtitle: (item: TData) => string) => {
-    setTitleFn(() => title);
-    setSubtitleFn(() => subtitle);
-  }, []);
+  const setTitleSubtitleFns = useCallback(
+    (title: (item: TData) => string, subtitle: (item: TData) => string) => {
+      setTitleFn(() => title);
+      setSubtitleFn(() => subtitle);
+    },
+    [],
+  );
 
   const filteredData = useMemo(() => {
     if (!dataProp || !titleFn || !subtitleFn) return [];
     if (!searchQuery.trim()) return dataProp;
-    
+
     const query = searchQuery.toLowerCase();
     return dataProp.filter((item) => {
       const title = titleFn(item).toLowerCase();
@@ -126,4 +149,3 @@ export function SubscriptionManagerProvider<TData = unknown, TSubscription = unk
 }
 
 export { SubscriptionManagerContext };
-
