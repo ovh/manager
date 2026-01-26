@@ -262,8 +262,8 @@
             ></p>
             <p
                 class="oui-badge ng-scope text-wrap"
-                data-ng-class="'oui-badge_' + $ctrl.gameDDoSStatus.badge"
-                data-translate="server_network_game_ddos_{{ $ctrl.gameDDoSStatus.text }}"
+                data-ng-class="$ctrl.gameDDoSStatus.class"
+                data-translate="server_network_game_ddos_{{ $ctrl.gameDDoSStatus.value }}"
             ></p>
         </oui-tile-description>
         <oui-action-menu
@@ -272,7 +272,7 @@
             data-placement="end"
         >
             <oui-action-menu-item
-                data-ui-sref="app.ip({ serviceName: $ctrl.server.name})"
+                data-href="{{:: $ctrl.getIpUrl()}}"
                 data-on-click="$ctrl.trackClick('bm_server_network_manage_ips_clicked')"
             >
                 <span

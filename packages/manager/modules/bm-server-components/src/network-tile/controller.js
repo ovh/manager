@@ -1,8 +1,9 @@
 import isFunction from 'lodash/isFunction';
 import ipaddr from 'ipaddr.js';
+import { GAME_DDOS_STATUS } from './constants';
 
 const parseIpGameUrl = (ipBlock, ip) =>
-  ['/ip', encodeURIComponent(ipBlock), 'game', ip].join('/');
+  ['/ip', encodeURIComponent(ipBlock), 'game', ip, 'rule'].join('/');
 
 export default class BmServerComponentsNetworkTileController {
   /* @ngInject */
@@ -11,6 +12,7 @@ export default class BmServerComponentsNetworkTileController {
     this.$q = $q;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
+    this.totalAssocietedIps = 0;
   }
 
   $onInit() {
@@ -34,23 +36,20 @@ export default class BmServerComponentsNetworkTileController {
       });
     this.gameDDosGuide = this.dedicatedServer.gameDDosGuide;
     this.isGameServer = this.dedicatedServer.isGameServer;
-    if (this.isGameServer) this.getGameDDoSStatus();
+    if (this.isGameServer) {
+      this.getGameDDoSStatus()
+        .then((status) => {
+          this.atInternet.trackPage({
+            name: `${this.trackingPrefix}::game_protection_status_viewed::${status.trackingSuffix}`,
+          });
+        })
+        .catch(() => {
+          this.atInternet.trackPage({
+            name: `${this.trackingPrefix}::game_protection_status_error`,
+          });
+        });
+    }
   }
-
-  gameDDoSStatusCodes = {
-    noIpConfigured: {
-      text: 'no_ip_configured',
-      badge: 'error',
-    },
-    someIpsConfigured: {
-      text: 'some_ips_configured',
-      badge: 'warning',
-    },
-    allIpsConfigured: {
-      text: 'all_ips_configured',
-      badge: 'success',
-    },
-  };
 
   getGameDDoSStatus() {
     return this.$http
@@ -99,11 +98,12 @@ export default class BmServerComponentsNetworkTileController {
             );
 
             if (!protectedIpv4Count)
-              this.gameDDoSStatus = this.gameDDoSStatusCodes.noIpConfigured;
-            else if (protectedIpv4Count < this.totalAssocietedIps)
-              this.gameDDoSStatus = this.gameDDoSStatusCodes.someIpsConfigured;
-            else
-              this.gameDDoSStatus = this.gameDDoSStatusCodes.allIpsConfigured;
+              this.gameDDoSStatus = GAME_DDOS_STATUS.noIpConfigured;
+            else if (protectedIpv4Count < result.length)
+              this.gameDDoSStatus = GAME_DDOS_STATUS.someIpsConfigured;
+            else this.gameDDoSStatus = GAME_DDOS_STATUS.allIpsConfigured;
+
+            return this.gameDDoSStatus;
           }),
         );
       });
@@ -127,10 +127,7 @@ export default class BmServerComponentsNetworkTileController {
       ipv4List.map((url) => {
         return this.$http
           .get(url, { serviceType: 'apiv6' })
-          .then(
-            ({ data: { firewallModeEnabled, state } } = {}) =>
-              firewallModeEnabled && state === 'ok',
-          )
+          .then(({ data } = {}) => data.length > 0)
           .catch(() => false);
       }),
     );
@@ -168,6 +165,16 @@ export default class BmServerComponentsNetworkTileController {
     return this.coreURLBuilder.buildURL('dedicated', '#/vrack/:serviceName', {
       serviceName: vrackId,
     });
+  }
+
+  getIpUrl() {
+    return this.coreURLBuilder.buildURL(
+      'ips',
+      '#/ip?routedTo.serviceName=:serviceName',
+      {
+        serviceName: this.server.name,
+      },
+    );
   }
 
   handleError(error) {
