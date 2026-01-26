@@ -6,8 +6,8 @@
   "resource_name_label": "Nom",
   "location_label": "Location",
   "region_label": "Region",
-  "buckets_label": "Nombre de buckets",
   "status_label": "Statut",
   "order_vault": "Commander un vault",
-  "more_action": "Action supplémentaire"
+  "more_action": "Action supplémentaire",
+  "vaults_tab_description": "Vos Vaults se reposent sur l'Object Storage d'OVHcloud. Ils sont configurés avec chiffrement et l'immuabilité (14 jours) pour des données sûres et inchangées. Pour en savoir plus, consultez la <Link>documentation OVHcloud Backup Agent</Link>"
 }

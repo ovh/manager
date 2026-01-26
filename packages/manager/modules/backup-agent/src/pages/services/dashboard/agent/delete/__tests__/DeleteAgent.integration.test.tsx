@@ -16,7 +16,7 @@ describe('[INTEGRATION] - Delete Agent page', () => {
 
     await waitFor(
       () => {
-        expect(container.querySelector(`ods-text[preset="paragraph"]`)).toHaveTextContent(
+        expect(container.querySelectorAll(`ods-text[preset="paragraph"]`)[1]).toHaveTextContent(
           agent.currentState.name,
         );
       },

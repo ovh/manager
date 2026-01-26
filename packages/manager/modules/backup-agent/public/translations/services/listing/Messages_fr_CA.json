@@ -1,4 +1,5 @@
 {
+  "services_tab_description": "Votre Tenant est basé sur la Veeam Service Provider Console, et porte vos Agents tout en les liant à vos Vaults. Vous pourrez retrouver tous vos Agents, les configurer et télécharger votre Agent dans cette partie. Pour en savoir plus, consultez la <Link>documentation OVHcloud Backup Agent</Link>",
   "home": "Accueil",
   "order": "Commander un service",
   "open": "Ouvrir le tableau de bord",
