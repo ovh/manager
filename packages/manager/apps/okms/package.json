@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-okms-app",
-  "version": "0.43.4",
+  "version": "0.43.5",
   "private": true,
   "description": "ovh okms",
   "repository": {
@@ -29,7 +29,7 @@
     "@ovh-ux/manager-core-api": "^0.21.1",
     "@ovh-ux/manager-core-utils": "0.5.0",
     "@ovh-ux/manager-module-common-api": "^0.6.6",
-    "@ovh-ux/manager-module-order": "^0.13.3",
+    "@ovh-ux/manager-module-order": "^0.14.0",
     "@ovh-ux/manager-react-components": "2.43.1",
     "@ovh-ux/manager-react-core-application": "^0.15.1",
     "@ovh-ux/manager-react-shell-client": "0.11.2",

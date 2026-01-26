@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.9.2...@ovh-ux/backup-agent@1.10.0) (2026-01-26)
+
+
+### Features
+
+* **backup-agent:** add baremetal details hooks ([962d15b](https://github.com/ovh/manager/commit/962d15be9e135c46731bb5a7e3c94112ac027ca2)), closes [#BKP-705](https://github.com/ovh/manager/issues/BKP-705)
+* **backup-agent:** export use required params ([1582d8a](https://github.com/ovh/manager/commit/1582d8ac798ab2fac7520bc7a1ce83fc046aefb6)), closes [#BKP-705](https://github.com/ovh/manager/issues/BKP-705)
+
+
+
+
+
 ## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.9.1...@ovh-ux/backup-agent@1.9.2) (2026-01-23)
 
 **Note:** Version bump only for package @ovh-ux/backup-agent

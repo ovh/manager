@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.73.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.7...@ovh-ux/manager-dedicated@20.73.0) (2026-01-26)
+
+
+### Features
+
+* **dedicated:** add backup-agent on dashboard baremetal ([f80ee0c](https://github.com/ovh/manager/commit/f80ee0c3fabe95aef10da126d868865e9fc071b5)), closes [#BKP-655](https://github.com/ovh/manager/issues/BKP-655)
+
+
+
+
+
 ## [20.72.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.6...@ovh-ux/manager-dedicated@20.72.7) (2026-01-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
