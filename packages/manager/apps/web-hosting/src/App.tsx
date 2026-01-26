@@ -15,6 +15,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <div>Simulate a small change</div>
       <Suspense fallback={<Loading />}>
         <RouterProvider router={routes} />
       </Suspense>

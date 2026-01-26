@@ -28,6 +28,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense>
+        <div>Simulate a small change</div>
         <RouterProvider router={allRoutes} />
       </Suspense>
       <ReactQueryDevtools />
