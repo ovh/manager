@@ -53,6 +53,12 @@
   "shareSize": {
     "title": "Dimensione dello share",
     "description": "Il 5% della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
-    "label": "Allocazione di performance lineare (GB)"
+    "label": "Allocazione delle prestazioni lineari (GB)"
+  },
+  "network": {
+    "title": "Rete privata",
+    "description": "Seleziona la rete privata a cui desideri che le tue istanze si connettano al tuo file di condivisione",
+    "label": "Seleziona una rete privata esistente",
+    "empty": "Spiacente, ma non hai una rete privata per questa regione"
   }
 }

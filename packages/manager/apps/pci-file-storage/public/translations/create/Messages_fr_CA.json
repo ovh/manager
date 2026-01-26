@@ -56,5 +56,11 @@
     "title": "Taille du share",
     "description": "5 % de la capacité de stockage est dédiée au stockage des snapshots",
     "label": "Allocation de performance linéaire (GB)"
+  },
+  "network": {
+    "title": "Réseau privé",
+    "description": "Sélectionnez le réseau privé auquel vous souhaitez que vos instances se connectent à votre fichier de partage",
+    "label": "Sélectionner un réseau privé existant",
+    "empty": "Désolé mais vous n'avez pas de réseau privé pour cette région"
   }
 }
