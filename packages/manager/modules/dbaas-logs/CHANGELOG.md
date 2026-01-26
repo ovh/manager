@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.36.0...@ovh-ux/manager-dbaas-logs@1.36.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* **dedicated.dbaas:** fix iam activation from legacy roles ([34f684f](https://github.com/ovh/manager/commit/34f684f3bdecd79901ff4674e954ed65e1ac0638)), closes [#MABOS-222](https://github.com/ovh/manager/issues/MABOS-222)
+
+
+
+
+
 # [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.3...@ovh-ux/manager-dbaas-logs@1.36.0) (2026-01-19)
 
 

@@ -4,7 +4,6 @@ coverage
 .turbo
 build
 .type-coverage
-packages/components/ovh-shell
 www
 screenshot
 loader
@@ -58,6 +57,7 @@ packages/manager/apps/zimbra
 packages/manager-tools/manager-static-analysis-kit
 packages/manager-tools/manager-forge-cli
 packages/manager-tools/manager-forge-cli/template
+packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config
 packages/manager-tools/manager-legacy-tools/test-utils/src/utils/ui-test-helpers-ods18.ts
 packages/manager-ui-kit
 packages/manager-wiki

@@ -103,12 +103,12 @@ export const ConfigurationDataProtectionBadgeColorAndContent = {
       'domain_tab_general_information_data_protection_activated',
   },
   [DataProtectionStatus.DISABLED]: {
-    color: BADGE_COLOR.success,
+    color: BADGE_COLOR.critical,
     buttonStatus: true,
     i18nkeyContent:
-      'domain_tab_general_information_data_protection_status_enabled',
+      'domain_tab_general_information_data_protection_status_disabled',
     i18nkeySubContent:
-      'domain_tab_general_information_data_protection_activated',
+      'domain_tab_general_information_data_protection_deactivated',
   },
   [DataProtectionStatus.NONE]: {
     color: BADGE_COLOR.critical,

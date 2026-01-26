@@ -5,6 +5,7 @@ import uiRouter from '@uirouter/angularjs';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
@@ -22,6 +23,7 @@ export default (containerEl, environment) => {
         Emailpro,
         uiRouter,
         ngAtInternet,
+        ngPaginationFront,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )

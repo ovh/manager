@@ -42,7 +42,7 @@ export const ColumnsFilteringComponent = ({
           </>
         </Button>
       </PopoverTrigger>
-      <PopoverContent createPortal={false}>
+      <PopoverContent createPortal={false} className="min-w-[320px] box-border">
         <FilterAdd
           columns={columns}
           resourceType={resourceType}

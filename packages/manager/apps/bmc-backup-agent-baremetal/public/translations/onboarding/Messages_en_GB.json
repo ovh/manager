@@ -26,5 +26,9 @@
   "select_baremetal": "Select your BareMetal server",
   "save_a_baremetal_server": "Backup a Bare Metal server",
   "baremetal_label_delay_order": "After your order is validated, this screen will be updated and you will receive an email as soon as your Backup Agent product is delivered. You can check the progress of your order <OrderLink>here</OrderLink>.",
-  "baremetal_label_order_in_progress": "The order has been received, your product is on its way and you can track its progress <OrderLink>here</OrderLink>."
+  "baremetal_label_order_in_progress": "The order has been received, your product is being delivered and you can track its progress <OrderLink>here</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Activation of the Backup Tenant",
+  "first_order_terms_and_conditions_description": "To activate your service, it is necessary to create a Backup Tenant. Do you wish to continue the activation of your service?",
+  "first_order_terms_and_conditions_confirm_label": "I have read and accept the terms and conditions, the appendix relating to the processing of personal data and the special terms and conditions of OVH services.",
+  "first_order_terms_and_conditions_annexe_label": "Annex on the Processing of Personal Data"
 }

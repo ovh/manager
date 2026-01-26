@@ -71,12 +71,13 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   }, [isFetched, isError]);
 
   useEffect(() => {
-    if (availability && location.pathname !== urls.settings) {
-      if (!availability[NEW_ACCOUNT_CREATION_ACCESS_FEATURE]) {
-        redirectToLegacySignup();
-      } else {
-        navigate(`${urls.accountType}?${searchParams.toString()}`);
-      }
+    if (!availability || location.pathname === urls.settings) {
+      return;
+    }
+    if (!availability[NEW_ACCOUNT_CREATION_ACCESS_FEATURE]) {
+      redirectToLegacySignup();
+    } else if (location.pathname === urls.root) {
+      navigate(`${urls.accountType}?${searchParams.toString()}`);
     }
   }, [availability, location.pathname]);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 import {
@@ -48,7 +48,7 @@ export default function DnsConfigurationTab({
   const { data: ongoingOperationsURL } = useNavigationGetUrl(
     ongoingOperationLink('domain'),
   );
-  const zoneMasterUrl = 'https://www.zonemaster.net/en/run-test';
+  const zoneMasterUrl = 'https://www.zonemaster.net/en/';
   const onOpenAnycastTerminateModal = () => {
     setAnycastTerminateModalOpen(!anycastTerminateModalOpen);
   };

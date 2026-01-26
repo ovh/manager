@@ -30,5 +30,14 @@
   "dedicated_server_dashboard_services_state_links": "Links",
   "dedicated_server_dashboard_services_state_links_weathermap": "Weathermap",
   "dedicated_server_dashboard_services_state_links_vms": "VMS",
-  "dedicated_server_dashboard_services_state_links_travaux": "Status"
+  "dedicated_server_dashboard_services_state_links_travaux": "Status",
+  "dedicated_server_dashboard_backup_status_NOT_ENABLED": "Disabled",
+  "dedicated_server_dashboard_backup_status_NOT_INSTALLED": "Not installed",
+  "dedicated_server_dashboard_backup_status_CREATING": "In progress of creation",
+  "dedicated_server_dashboard_backup_status_UPDATING": "Update",
+  "dedicated_server_dashboard_backup_status_ENABLED": "Enabled",
+  "dedicated_server_dashboard_badge_new": "New",
+  "dedicated_server_dashboard_backup_status_activate_action": "Activate Backup Agent",
+  "dedicated_server_dashboard_backup_status_install_action": "Install Agent",
+  "dedicated_server_dashboard_backup_status_manage_action": "Manage Backup Agent"
 }

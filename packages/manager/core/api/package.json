@@ -15,8 +15,8 @@
   "scripts": {
     "build": "tsc && tsc-alias",
     "dev": "tsc && tsc-alias",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
     "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"

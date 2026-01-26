@@ -20,6 +20,7 @@ import SecurityIdentityOperation from './container/security_dentity_and_peration
 import ServerV2 from './container/server.svg';
 import ShieldCheck from './container/shield-check.svg';
 import ShoppingCartPlus from './container/shopping-cart-plus.svg';
+import Sparkle from './container/sparkle.svg';
 import Star from './container/star.svg';
 import Store from './container/store.svg';
 import Sunrise from './container/sunrise.svg';
@@ -72,6 +73,7 @@ export {
   ServerV2,
   ShieldCheck,
   ShoppingCartPlus,
+  Sparkle,
   Star,
   CloudChangelog,
   HostingChangelog,

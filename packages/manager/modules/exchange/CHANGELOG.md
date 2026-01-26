@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.18.0...@ovh-ux/manager-exchange@4.18.1) (2026-01-23)
+
+
+### Bug Fixes
+
+* **web:** remove dubplicate import on email ([0b426d5](https://github.com/ovh/manager/commit/0b426d51091832f22734885226dbe330d2e23e56)), closes [#INC0184652](https://github.com/ovh/manager/issues/INC0184652)
+
+
+
+
+
 # [4.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.17.0...@ovh-ux/manager-exchange@4.18.0) (2026-01-21)
 
 

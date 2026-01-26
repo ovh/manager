@@ -12,6 +12,8 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "tsc && vite",
     "test": "vitest --config vitest.config.mjs run",
     "test:coverage": "vitest --config vitest.config.mjs run --coverage",
@@ -57,6 +59,7 @@
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.6.2",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@ovhcloud/ods-components": "17.2.1",

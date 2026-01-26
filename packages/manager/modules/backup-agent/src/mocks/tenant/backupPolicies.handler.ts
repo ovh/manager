@@ -17,5 +17,6 @@ export const getTenantBackupPolicieMocks = ({
     api: 'v2',
     method: 'get',
     status: isTenantBackupPoliciesError ? 500 : 200,
+    delay: 0,
   },
 ];

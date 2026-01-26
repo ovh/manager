@@ -104,6 +104,15 @@ export const getMXPlan = async (serviceName: string): Promise<TMxPlan> => {
   return mxPlan;
 };
 
+export const getRedirectionEmail = async (
+  serviceName: string,
+): Promise<string[]> => {
+  const { data: redirection } = await v6.get(
+    `/email/domain/${serviceName}/redirection`,
+  );
+  return redirection;
+};
+
 export type IAMResource = {
   id: string;
   urn: string;

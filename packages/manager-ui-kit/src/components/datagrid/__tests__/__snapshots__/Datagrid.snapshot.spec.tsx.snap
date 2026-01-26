@@ -6,7 +6,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'basic props' 1`] 
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -106,7 +106,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'column visibility
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -206,7 +206,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'custom container 
   style=min-height: 150px; max-height: 400px; height: 400px;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -306,7 +306,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'empty data' 1`] =
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -336,7 +336,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'empty data' 1`] =
           style=border-right: 1px solid var(--ods-color-neutral-100); left: 0px;
         >
           <p
-            class=_text--paragraph
+            class=_text _text--paragraph
             data-ods=text
           >
             Aucun résultat
@@ -354,7 +354,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'filters enabled' 
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -454,7 +454,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'large size' 1`] =
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--lg table table-fixed w-full
+    class=_table _table--lg table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -554,7 +554,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'loading state' 1`
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -974,7 +974,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'medium size' 1`] 
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1074,7 +1074,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'pagination' 1`] =
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1174,7 +1174,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'row selection' 1`
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1470,7 +1470,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'search enabled' 1
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1570,7 +1570,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'small size' 1`] =
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--sm table table-fixed w-full
+    class=_table _table--sm table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1670,7 +1670,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with 'sorting enabled' 
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -1808,7 +1808,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
   style=min-height: 150px; max-height: 500px; height: 500px;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -2236,7 +2236,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with conditional row se
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -2537,7 +2537,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <thead
@@ -2693,7 +2693,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with hideHeader enabled
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md table table-fixed w-full
+    class=_table _table--md table table-fixed w-full
     data-ods=table
   >
     <tbody
@@ -2775,7 +2775,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`
   style=min-height: 150px; max-height: 100%; height: 100%;
 >
   <table
-    class=_table--md _table--striped table table-fixed w-full
+    class=_table _table--md _table--striped table table-fixed w-full
     data-ods=table
   >
     <thead

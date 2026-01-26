@@ -13,6 +13,8 @@ export default {
     goToMonitoringUpdate: '<',
     isMonitoringOptionsAvailable: '<',
     serverType: '<',
+    isBackupOptionAvailable: '<?',
+    backupAgent: '<?',
   },
   controller,
   template,

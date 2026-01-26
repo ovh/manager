@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ips-app",
-  "version": "0.3.4",
+  "version": "0.3.6",
   "private": true,
   "description": "Ips manager app",
   "repository": {
@@ -13,7 +13,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite",
-    "lint": "eslint ./src",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "tsc && vite",
     "test": "vitest --config vitest.config.mjs run",
     "test:coverage": "vitest --config vitest.config.mjs run --coverage"
@@ -23,8 +24,8 @@
     "@ovh-ux/manager-config": "^8.8.6",
     "@ovh-ux/manager-core-api": "^0.21.1",
     "@ovh-ux/manager-core-utils": "^0.5.0",
-    "@ovh-ux/manager-module-common-api": "^0.6.5",
-    "@ovh-ux/manager-module-order": "^0.13.3",
+    "@ovh-ux/manager-module-common-api": "^0.6.6",
+    "@ovh-ux/manager-module-order": "^0.14.0",
     "@ovh-ux/manager-react-components": "^2.43.1",
     "@ovh-ux/manager-react-core-application": "^0.15.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
@@ -50,14 +51,13 @@
     "react-router-dom": "6.30.2"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.11.6",
+    "@ovh-ux/manager-core-test-utils": "^0.11.7",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
     "@vitejs/plugin-react": "^4.3.0",
     "@vitest/coverage-v8": "^2.1.4",
     "element-internals-polyfill": "^3.0.2",

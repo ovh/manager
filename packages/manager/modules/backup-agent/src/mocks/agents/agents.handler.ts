@@ -17,6 +17,7 @@ export const getAgentMocks = ({ isAgentsError = false }: TAgentMockParams = {}):
     api: 'v2',
     method: 'get',
     status: isAgentsError ? 500 : 200,
+    delay: 0,
   },
   {
     url: '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId/backupAgent/:backupAgentId',
@@ -27,6 +28,7 @@ export const getAgentMocks = ({ isAgentsError = false }: TAgentMockParams = {}):
     api: 'v2',
     method: 'get',
     status: isAgentsError ? 500 : 200,
+    delay: 0,
   },
   {
     url: '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId/backupAgent/:backupAgentId',
@@ -37,5 +39,6 @@ export const getAgentMocks = ({ isAgentsError = false }: TAgentMockParams = {}):
     api: 'v2',
     method: 'delete',
     status: isAgentsError ? 500 : 200,
+    delay: 0,
   },
 ];

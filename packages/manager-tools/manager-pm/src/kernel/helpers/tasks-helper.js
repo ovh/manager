@@ -106,7 +106,7 @@ function getAllRunnerArgs(runner, task, concurrency = 1) {
 /**
  * Run a turbo/nx/.. task (`build` or `test`) in CI mode with optional CLI arguments.
  *
- * @param {"build"|"test"} task
+ * @param {"build"|"test"|"lint"} task
  * @param {string[]} [options=[]] - Extra CLI args passed to the runner.
  * @param {string} [runner="turbo"] - "turbo", "nx", ...
  */
@@ -214,6 +214,20 @@ export async function testCI(options = [], runner = DEFAULT_RUNNER) {
 }
 
 /**
+ * Run lint in CI mode with a given runner (default: turbo).
+ *
+ * @async
+ * @param {string[]} [options=[]] - turbo/nx/.. CLI options.
+ * @param {"turbo"|"nx"|string} [runner="turbo"] - Task runner binary to invoke.
+ * @returns {Promise<void>}
+ * @example
+ * await lintCI(['--filter=tag:unit'], 'nx');
+ */
+export async function lintCI(options = [], runner = DEFAULT_RUNNER) {
+  await runCITask('lint', options, runner);
+}
+
+/**
  * Build a single module.
  *
  * @param {string} moduleRef - Module reference or package name.
@@ -237,6 +251,19 @@ export async function buildModule(moduleRef, runner = DEFAULT_RUNNER) {
  */
 export async function testModule(moduleRef, runner = DEFAULT_RUNNER) {
   return runModuleTask('test', moduleRef, 1, runner);
+}
+
+/**
+ * Lint a single module.
+ *
+ * @param {string} moduleRef - Module reference or package name.
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
+ * @returns {Promise<void>}
+ * @example
+ * await lintModule('packages/manager/core/api');
+ */
+export async function lintModule(moduleRef, runner = DEFAULT_RUNNER) {
+  return runModuleTask('lint', moduleRef, 1, runner);
 }
 
 /**
@@ -266,6 +293,19 @@ export async function testApplication(appRef, runner = DEFAULT_RUNNER) {
 }
 
 /**
+ * Run lint for a single application.
+ *
+ * @param {string} appRef - Application reference or package name.
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
+ * @returns {Promise<void>}
+ * @example
+ * await lintApplication('@ovh-ux/manager-web');
+ */
+export async function lintApplication(appRef, runner = DEFAULT_RUNNER) {
+  return runApplicationTask('lint', appRef, 1, runner);
+}
+
+/**
  * Build all (apps + modules).
  *
  * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
@@ -290,71 +330,15 @@ export async function testAll(runner = DEFAULT_RUNNER) {
 }
 
 /**
- * Lint a single module using the hybrid lint runner.
+ * Lint all (apps + modules).
  *
- * @param {string} moduleRef - Module reference or package name.
- * @param {string[]} [options=[]] - Additional CLI flags (e.g., `--fix`).
- * @param {string} [runner=DEFAULT_RUNNER] - Task runner to use ("turbo" | "nx" | ...).
+ * @param {string} [runner="turbo"] - Task runner to use Turbo/NX/...
+ * @returns {Promise<void>}
+ * @example
+ * await lintAll();
  */
-export async function lintModule(moduleRef, options = [], runner = DEFAULT_RUNNER) {
-  if (!moduleRef) throw new Error('lintModule: moduleRef is required');
-
-  return withWorkspaces(async () => {
-    const pkgName = resolveModuleBuildFilter(moduleRef);
-
-    if (!pkgName) throw new Error(`Unable to resolve package name for "${moduleRef}"`);
-
-    await runTaskFromRoot(`lint (${moduleRef})`, 'yarn', [
-      'pm:lint:base',
-      '--module',
-      pkgName,
-      '--runner',
-      runner,
-      ...options,
-    ]);
-  });
-}
-
-/**
- * Lint a single application using the hybrid lint runner.
- *
- * @param {string} appRef - Application reference or package name.
- * @param {string[]} [options=[]] - Extra CLI args (e.g., `--fix`).
- * @param {string} [runner=DEFAULT_RUNNER] - Task runner to use ("turbo" | "nx" | ...).
- */
-export async function lintApplication(appRef, options = [], runner = DEFAULT_RUNNER) {
-  if (!appRef) throw new Error('lintApplication: appRef is required');
-
-  return withWorkspaces(async () => {
-    const pkgName = resolveApplicationBuildFilter(appRef);
-    if (!pkgName) throw new Error(`Unable to resolve package name for "${appRef}"`);
-
-    await runTaskFromRoot(`lint (${appRef})`, 'yarn', [
-      'pm:lint:base',
-      '--app',
-      pkgName,
-      '--runner',
-      runner,
-      ...options,
-    ]);
-  });
-}
-
-/**
- * Lint all (apps + modules) in the monorepo.
- *
- * @param {string[]} [options=[]]
- * @param {string} [runner=DEFAULT_RUNNER] - Task runner to use ("turbo" | "nx" | ...).
- */
-export async function lintAll(options = [], runner = DEFAULT_RUNNER) {
-  return withWorkspaces(() =>
-    runTaskFromRoot('lint (all: apps + modules)', 'yarn', [
-      'pm:lint:base',
-      '--runner',
-      runner,
-      ...options,
-    ]),
-  );
+export async function lintAll(runner = DEFAULT_RUNNER) {
+  return runAllTask('lint', 1, runner);
 }
 
 /**

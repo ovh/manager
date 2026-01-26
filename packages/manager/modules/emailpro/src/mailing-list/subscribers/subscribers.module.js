@@ -3,8 +3,6 @@ import 'angular-translate';
 import '@uirouter/angularjs';
 import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/ng-pagination-front';
-import '@ovh-ux/ng-ovh-export-csv';
 
 import routing from './subscribers.routing';
 

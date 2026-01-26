@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms-app",
-  "version": "9.0.82",
+  "version": "9.0.83",
   "private": true,
   "description": "SMS standalone application.",
   "repository": {
@@ -12,6 +12,8 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env production",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "webpack-dev-server"
   },
   "dependencies": {
@@ -19,7 +21,7 @@
     "@ovh-ux/manager-config": "^8.8.6",
     "@ovh-ux/manager-core": "^13.4.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.13.0",
-    "@ovh-ux/manager-sms": "^8.20.0",
+    "@ovh-ux/manager-sms": "^8.20.1",
     "@ovh-ux/manager-telecom-styles": "^4.8.7",
     "@ovh-ux/ng-at-internet": "^6.0.43",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.5",
@@ -67,6 +69,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "ovh-manager-webfont": "^1.2.0",

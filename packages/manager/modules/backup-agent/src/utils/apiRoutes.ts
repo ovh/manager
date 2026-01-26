@@ -47,3 +47,7 @@ export const getManagementAgentsRoute = (backupServicesId: string, vspcTenantId:
 // Service Consumption
 export const getServiceConsumptionRoute = (serviceId: string) =>
   `/services/${serviceId}/consumption/element`;
+
+// Baremetal
+export const BAREMETAL_LIST_ROUTE = '/dedicated/server';
+export const getBaremetalDetailsRoute = (serviceName: string) => `/dedicated/server/${serviceName}`;

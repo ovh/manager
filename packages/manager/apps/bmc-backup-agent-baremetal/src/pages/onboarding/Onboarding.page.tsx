@@ -1,4 +1,6 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
+
+import { useSearchParams } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
@@ -20,10 +22,12 @@ import { useOnboardingHeroImage } from '@/hooks/onboarding/useOnboardingHeroImag
 import { urls } from '@/routes/Routes.constants';
 
 export default function OnboardingPage() {
+  const [searchParams] = useSearchParams();
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
   const { productName, title, tiles } = useOnboardingContent();
   const links = useGuideUtils();
   const { flattenData, isPending } = useBaremetalsList({ pageSize: 1 });
+  const isOrderSuccess = searchParams.get('orderSuccess') === 'true';
   const {
     data: isBackupAgentReady,
     isPending: isVaultPending,
@@ -51,24 +55,25 @@ export default function OnboardingPage() {
     {},
   ]);
 
-  const orderInProgressMessage = isVaultSuccess ? (
-    <OdsMessage color="success">
-      <Trans
-        ns="onboarding"
-        i18nKey="baremetal_label_order_in_progress"
-        values={{ href: (billingUrl as string) ?? '#' }}
-        components={{
-          OrderLink: (
-            <Links
-              className="px-2"
-              href={(billingUrl as string) ?? '#'}
-              isDisabled={isBillingUrlPending}
-            />
-          ),
-        }}
-      />
-    </OdsMessage>
-  ) : null;
+  const orderInProgressMessage =
+    isVaultSuccess || isOrderSuccess ? (
+      <OdsMessage color="success">
+        <Trans
+          ns="onboarding"
+          i18nKey="baremetal_label_order_in_progress"
+          values={{ href: (billingUrl as string) ?? '#' }}
+          components={{
+            OrderLink: (
+              <Links
+                className="px-2"
+                href={(billingUrl as string) ?? '#'}
+                isDisabled={isBillingUrlPending}
+              />
+            ),
+          }}
+        />
+      </OdsMessage>
+    ) : null;
 
   return (
     <RedirectionGuard
@@ -87,7 +92,7 @@ export default function OnboardingPage() {
         isOrderLoading={isPending}
         orderHref={urls.firstOrder}
         moreInfoHref={links.main}
-        isOrderDisabled={!flattenData?.length || !isVaultError || isVaultPending}
+        isOrderDisabled={!flattenData?.length || !isVaultError || isVaultPending || isOrderSuccess}
         tooltipContent={!flattenData?.length ? t('no_baremetal_available') : undefined}
       >
         {validTiles.map(({ id, key, linkKey }) => {

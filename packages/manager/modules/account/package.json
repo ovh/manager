@@ -11,6 +11,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "scripts": {
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-beta-preference": "^1.0.0",
@@ -65,6 +69,9 @@
     "randexp": "fent/randexp.js#~0.4.0",
     "regenerator-runtime": "^0.13.7",
     "whatwg-fetch": "^3.5.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^13.0.0",

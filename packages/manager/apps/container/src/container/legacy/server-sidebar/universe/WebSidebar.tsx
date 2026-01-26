@@ -62,7 +62,7 @@ export default function WebSidebar() {
         label: t('sidebar_domain'),
         icon: getIcon('ovh-font ovh-font-domain'),
         routeMatcher: new RegExp(
-          `^((/configuration)?/(domain|all_dom|zone|dns|upload|tracking))|((/web-domains)?/(domain|alldoms))|((/web-ongoing-operations)?/)`,
+          `^(/configuration)?/(domain|all_dom|zone|web-domains|alldoms|web-ongoing-operations)`,
         ),
         async loader() {
           const allDom =

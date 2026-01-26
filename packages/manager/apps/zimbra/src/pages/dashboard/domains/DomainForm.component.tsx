@@ -303,11 +303,16 @@ export const DomainForm = ({
               {isOvhDomain ? (
                 <>
                   <Select
-                    items={existingDomains
-                      ?.filter((domain) => domainZones?.includes(domain?.currentState.name))
+                    items={domainZones
+                      ?.filter(
+                        (domain: string) =>
+                          !existingDomains?.some(
+                            (existingDomain) => existingDomain.currentState.name === domain,
+                          ),
+                      )
                       ?.map((domain) => ({
-                        label: domain?.currentState.name,
-                        value: domain?.currentState.name,
+                        label: domain,
+                        value: domain,
                       }))}
                     className="flex-1"
                     data-testid="select-domain"
@@ -395,6 +400,7 @@ export const DomainForm = ({
                   <div key={name} className="flex gap-4 leading-none">
                     <Checkbox
                       checked={value}
+                      id={name}
                       name={name}
                       onCheckedChange={(detail) => onChange(detail.checked)}
                     >
@@ -415,6 +421,7 @@ export const DomainForm = ({
                   <div key={name} className="flex gap-4 leading-none">
                     <Checkbox
                       checked={value}
+                      id={name}
                       name={name}
                       onCheckedChange={(detail) => onChange(detail.checked)}
                     >
@@ -435,6 +442,7 @@ export const DomainForm = ({
                   <div key={name} className="flex gap-4 leading-none">
                     <Checkbox
                       checked={value}
+                      id={name}
                       name={name}
                       onCheckedChange={(detail) => onChange(detail.checked)}
                     >
@@ -455,6 +463,7 @@ export const DomainForm = ({
                   <div key={name} className="flex gap-4 leading-none">
                     <Checkbox
                       checked={value}
+                      id={name}
                       name={name}
                       onCheckedChange={(detail) => onChange(detail.checked)}
                     >

@@ -14,6 +14,7 @@ export const OnboardingLayoutButton: FC<OnboardingLayoutButtonProps> = ({
   moreInfoHref,
   moreInfoButtonLabel,
   moreInfoButtonIcon = ICON_NAME.externalLink,
+  onMoreInfoButtonClick,
   isMoreInfoButtonDisabled,
 }) => {
   if (!orderButtonLabel && !moreInfoButtonLabel) {
@@ -45,6 +46,7 @@ export const OnboardingLayoutButton: FC<OnboardingLayoutButtonProps> = ({
           variant={BUTTON_VARIANT.outline}
           onClick={() => {
             if (!isMoreInfoButtonDisabled) {
+              onMoreInfoButtonClick?.();
               if (moreInfoHref) {
                 window.open(moreInfoHref, '_blank');
               }

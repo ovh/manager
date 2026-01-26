@@ -8,7 +8,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DrawerProps } from '@ovh-ux/manager-react-components';
 
 import { mockAgentDownloadLinks } from '@/mocks/agents/agentDownloadLinks';
-import { BAREMETAL_MOCK } from '@/mocks/baremetals/baremetals.mocks';
+import { BAREMETALS_MOCK } from '@/mocks/baremetals/baremetals.mocks';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { OS_LABELS } from '@/module.constants';
 
@@ -218,7 +218,7 @@ describe('FirstOrderFormComponent', () => {
     'renders onboarding and expected disabled if no baremetal : $expectedDisabled',
     async (isPendingMock) => {
       useBaremetalsListMock.mockReturnValue({
-        flattenData: BAREMETAL_MOCK,
+        flattenData: BAREMETALS_MOCK,
         isPending: isPendingMock,
         isError: false,
       });
@@ -238,7 +238,7 @@ describe('FirstOrderFormComponent', () => {
 
   it('renders onboarding and expected generate order link', async () => {
     useBaremetalsListMock.mockReturnValue({
-      flattenData: BAREMETAL_MOCK,
+      flattenData: BAREMETALS_MOCK,
       isPending: false,
       isError: false,
     });
@@ -250,7 +250,7 @@ describe('FirstOrderFormComponent', () => {
 
     render(<AddConfigurationPage />);
 
-    await waitFor(() => expect(getSelectServer().children.length).toBe(BAREMETAL_MOCK.length));
+    await waitFor(() => expect(getSelectServer().children.length).toBe(BAREMETALS_MOCK.length));
     await waitFor(() => expect(getSelectOs().children.length).toBe(Object.keys(OS_LABELS).length));
 
     await user.click(screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:add` }));

@@ -2,6 +2,7 @@ import {
   VMS_URL_OTHERS,
   WEATHERMAP_URL,
   MONITORING_STATUSES,
+  LABELS,
 } from './service-status.constants';
 
 export default class BmServerComponentsDashboardServiceStatusController {
@@ -14,6 +15,7 @@ export default class BmServerComponentsDashboardServiceStatusController {
     constants,
     coreConfig,
     Server,
+    shellClient,
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -22,6 +24,8 @@ export default class BmServerComponentsDashboardServiceStatusController {
     this.constants = constants;
     this.coreConfig = coreConfig;
     this.Server = Server;
+    this.LABELS = LABELS;
+    this.shellClient = shellClient;
   }
 
   $onInit() {
@@ -100,5 +104,19 @@ export default class BmServerComponentsDashboardServiceStatusController {
     });
 
     return this.goToMonitoringUpdate();
+  }
+
+  getBackupAgentActionLabel() {
+    if (this.backupAgent.globalStatus === 'NOT_ENABLED') return 'activate';
+    if (this.backupAgent.globalStatus === 'NOT_INSTALLED') return 'install';
+    return 'manage';
+  }
+
+  onBackupAgentClick() {
+    this.shellClient.navigation
+      .getURL('bmc-backup-agent-baremetal', '')
+      .then((redirectionUrl) => {
+        window.top.location.href = redirectionUrl;
+      });
   }
 }

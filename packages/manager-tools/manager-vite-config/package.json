@@ -14,8 +14,8 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.*js ./src/**/**.*js"
+    "lint": "manager-lint --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.*js ./src/**/**.*js"
   },
   "dependencies": {
     "@ovh-ux/manager-dev-server-config": "^6.2.3",

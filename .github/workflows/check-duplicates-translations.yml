@@ -25,6 +25,19 @@ jobs:
           fetch-depth: 0
 
       # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
+
+      # ------------------------------------------
       # Node
       # ------------------------------------------
       - name: Use Node.js 22.x
@@ -100,6 +113,18 @@ jobs:
       - name: Ensure yarn cache folder exists
         if: steps.gate.outputs.should_continue == 'true'
         run: mkdir -p ~/.cache/yarn
+
+      # ------------------------------------------
+      # Nx local cache
+      # ------------------------------------------
+      - name: Restore Nx cache
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-cache-node22-
+            ${{ runner.os }}-nx-cache-
 
       # ------------------------------------------
       # Install deps (deterministic)

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-product-icons",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "private": true,
   "description": "Ovh product icons",
   "license": "BSD-3-Clause",
@@ -12,8 +12,8 @@
   "scripts": {
     "build": "tsc && tsc-alias && yarn copy-files",
     "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
+    "lint": "manager-lint --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
     "start": "plop",
     "test": "manager-test run"
   },

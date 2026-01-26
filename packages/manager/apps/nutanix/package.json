@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "3.0.127",
+  "version": "3.0.128",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -12,10 +12,12 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env production",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-bm-server-components": "^2.19.10",
+    "@ovh-ux/manager-bm-server-components": "^2.20.0",
     "@ovh-ux/manager-components": "^1.27.1",
     "@ovh-ux/manager-config": "^8.8.6",
     "@ovh-ux/manager-core": "^13.4.1",
@@ -60,6 +62,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",

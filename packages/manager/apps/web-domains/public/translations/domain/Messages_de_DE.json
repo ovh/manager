@@ -341,5 +341,6 @@
   "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC wird {{action}}: Sie können den Fortschritt Ihrer Anfrage auf der Seite der laufenden Operationen verfolgen. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "Aktivierung",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "Deaktivierung",
-  "domain_tab_general_information_subscription_edit_owner": "Ändern Sie die Informationen des Kontakthabers"
+  "domain_tab_general_information_subscription_edit_owner": "Ändern Sie die Informationen des Kontakthabers",
+  "domain_tab_general_information_data_protection_disabled": "Der Registrar für diese Domain erlaubt keine benutzerdefinierte Verwaltung der Anzeige von Daten."
 }

@@ -33,6 +33,7 @@ import {
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
 } from './dashboard.constants';
+import backupAgentService from '../../../../../components/backup-agent/backupAgent.service';
 
 const moduleName = 'ovhManagerDedicatedServerDashboard';
 
@@ -60,6 +61,7 @@ angular
     installationOvh,
     installationProgress,
     serverDashboard,
+    backupAgentService,
   ])
   .config(routing)
   .constant('IMPRESSION_TRACKING_DATA', {

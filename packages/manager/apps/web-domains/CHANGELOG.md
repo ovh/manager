@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.5...@ovh-ux/manager-web-domains-app@1.9.6) (2026-01-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1034] ([16b608c](https://github.com/ovh/manager/commit/16b608cd89412783bd234ed2cb97f5c3611d1858))
+* **i18n:** add missing translations [CDS 1034] ([1f94e47](https://github.com/ovh/manager/commit/1f94e474f39686de0996bd9d5e7ba3120c6c111a))
+* **web-domains:** disable data protection button when user is not granted ([473fa45](https://github.com/ovh/manager/commit/473fa4591857e17491327fa9df2ee74b15729492)), closes [#D2I-5826](https://github.com/ovh/manager/issues/D2I-5826)
+* **web-domains:** fix tests ([d93f322](https://github.com/ovh/manager/commit/d93f322e023fbe9c596d6977d427744939d6b5a9)), closes [#D2I-5826](https://github.com/ovh/manager/issues/D2I-5826)
+* **web-domains:** invalid url ([4dc690a](https://github.com/ovh/manager/commit/4dc690a2dcf92ba3a4d539e779276119a8f7385c)), closes [#DCE-159](https://github.com/ovh/manager/issues/DCE-159)
+* **web-domains:** use generic sentence when data customization is not allowed ([86f98dd](https://github.com/ovh/manager/commit/86f98dd5c735692939fc11448ee169acc663d224)), closes [#D2I-5826](https://github.com/ovh/manager/issues/D2I-5826)
+
+
+
+
+
+## [1.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.4...@ovh-ux/manager-web-domains-app@1.9.5) (2026-01-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4606] ([8a702ab](https://github.com/ovh/manager/commit/8a702ab6db65f6b4ec2c301cac5c1a80bb76b7ba))
+
+
+
+
+
+## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.3...@ovh-ux/manager-web-domains-app@1.9.4) (2026-01-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4607] ([c0bfd2c](https://github.com/ovh/manager/commit/c0bfd2c4f14214cf60d06a67b168a8d3fdfc72d7))
+* **web-domains:** fix dataprotection status map ([e9f5388](https://github.com/ovh/manager/commit/e9f5388484356e46ad56093df4d32dcf298fc1da)), closes [#DCE-156](https://github.com/ovh/manager/issues/DCE-156)
+* **web-domains:** redirect client to order when have no email services(mxplan,zimbra,redirection) ([ba8c365](https://github.com/ovh/manager/commit/ba8c365c90fe5df33be0c2a9132c943402feb76b)), closes [#DCE-157](https://github.com/ovh/manager/issues/DCE-157)
+
+
+
+
+
 ## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.2...@ovh-ux/manager-web-domains-app@1.9.3) (2026-01-21)
 
 

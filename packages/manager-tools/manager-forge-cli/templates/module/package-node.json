@@ -16,8 +16,8 @@
   "scripts": {
     "build": "tsc && tsc-alias",
     "dev:watch": "concurrently \"tsc --watch\" \"tsc-alias --watch\"",
-    "lint:modern": "manager-lint --config eslint.config.mjs \"src/**/*.{ts,tsx}\"",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs \"src/**/*.{ts,tsx}\"",
+    "lint": "manager-lint --config eslint.config.mjs \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs \"src/**/*.{ts,tsx}\"",
     "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"

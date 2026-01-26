@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.13.3...@ovh-ux/manager-module-order@0.14.0) (2026-01-26)
+
+
+### Features
+
+* **order:** add possibility add order options ([f20b54b](https://github.com/ovh/manager/commit/f20b54bff2f31364535baf7233b2ce8e1b10ed06)), closes [#BKP-705](https://github.com/ovh/manager/issues/BKP-705)
+
+
+
+
+
 ## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.13.2...@ovh-ux/manager-module-order@0.13.3) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-order

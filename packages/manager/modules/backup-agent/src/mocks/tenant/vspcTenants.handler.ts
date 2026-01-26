@@ -21,6 +21,7 @@ export const getVSPCTenantMocks = ({
     api: 'v2',
     method: 'get',
     status: 200,
+    delay: 0,
   },
   {
     url: '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId',
@@ -31,5 +32,6 @@ export const getVSPCTenantMocks = ({
     api: 'v2',
     method: 'get',
     status: isVspcTenantsError ? 500 : 200,
+    delay: 0,
   },
 ];

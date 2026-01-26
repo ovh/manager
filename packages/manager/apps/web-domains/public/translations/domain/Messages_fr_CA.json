@@ -234,6 +234,7 @@
   "domain_tab_general_information_data_protection_deactivated": "Vos informations personnelles sont visibles : aucune donnée n’a été anonymisée.",
   "domain_tab_general_information_data_protection_partial": "Vos informations personnelles sont protégées selon vos préférences : les données que vous avez décidé d’anonymiser ont été masquées.",
   "domain_tab_general_information_data_protection_manage_button": "Gérer la protection des données",
+  "domain_tab_general_information_data_protection_disabled": "Le registre en charge de ce nom de domaine n'autorise pas la gestion personnalisée de l'affichage des données",
   "domain_tab_general_information_data_drawer_title": "Configurer l'affichage dans le RDDS (WHOIS/RDAP)",
   "domain_tab_general_information_data_drawer_description": "Vous pouvez ici choisir quelles informations personnelles seront affichées publiquement dans la base RDDS (WHOIS/RDAP) associée à votre nom de domaine.",
   "domain_tab_general_information_data_drawer_description_info": "<strong>Décochez les éléments que vous souhaitez garder privés</strong>. Ces paramètres n'affectent pas le bon fonctionnement de votre nom de domaine.",

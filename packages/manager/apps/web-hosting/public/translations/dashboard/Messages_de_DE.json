@@ -216,5 +216,5 @@
   "deploy_git_description": "Sie sind dabei, den Inhalt Ihres Remote-Repositorys manuell auf Ihrem Hosting bereitzustellen oder zu aktualisieren.",
   "deploy_git_overwrite_local_changes": "Im Falle eines Änderungs-Konflikts die Remote-Änderungen in Ihr lokales Repository erzwingen.",
   "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Subdomain erstellen",
-  "hosting_tab_WEBSITE": "Meine Seiten"
+  "hosting_tab_WEBSITE": "Meine Websites"
 }

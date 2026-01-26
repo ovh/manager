@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange-app",
-  "version": "0.13.43",
+  "version": "0.13.44",
   "private": true,
   "repository": {
     "type": "git",
@@ -11,13 +11,15 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env production",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "webpack-dev-server"
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.6",
     "@ovh-ux/manager-config": "^8.8.6",
     "@ovh-ux/manager-core": "^13.4.1",
-    "@ovh-ux/manager-exchange": "^4.18.0",
+    "@ovh-ux/manager-exchange": "^4.18.1",
     "@ovh-ux/manager-log-to-customer": "^2.8.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.13.0",
     "@ovh-ux/ng-at-internet": "^6.0.43",
@@ -40,6 +42,7 @@
     "@ovh-ux/request-tagger": "^0.6.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
+    "URIjs": "^1.14.0",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.8",
     "angular-cookies": "^1.7.8",
@@ -73,6 +76,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",

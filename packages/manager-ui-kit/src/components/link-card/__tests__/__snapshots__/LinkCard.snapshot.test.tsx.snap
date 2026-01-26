@@ -22,7 +22,7 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
           class=flex flex-row leading-[28px]
         >
           <h4
-            class=_text--heading-4 text-[--ods-color-primary-500]
+            class=_text _text--heading-4 text-[--ods-color-primary-500]
             data-ods=text
           >
             NAS
@@ -45,13 +45,13 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
           </span>
         </div>
         <h3
-          class=_text--heading-3 mb-[8px]
+          class=_text _text--heading-3 mb-[8px]
           data-ods=text
         >
           Titre du produit
         </h3>
         <p
-          class=_text--paragraph m-0 p-0 mb-4
+          class=_text _text--paragraph m-0 p-0 mb-4
           data-ods=text
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -95,7 +95,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
           class=flex flex-row leading-[28px]
         >
           <h4
-            class=_text--heading-4 text-[--ods-color-primary-500]
+            class=_text _text--heading-4 text-[--ods-color-primary-500]
             data-ods=text
           >
             NAS
@@ -118,13 +118,13 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
           </span>
         </div>
         <h3
-          class=_text--heading-3 mb-[8px]
+          class=_text _text--heading-3 mb-[8px]
           data-ods=text
         >
           Titre du produit
         </h3>
         <p
-          class=_text--paragraph m-0 p-0 mb-4
+          class=_text _text--paragraph m-0 p-0 mb-4
           data-ods=text
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -173,20 +173,20 @@ exports[`LinkCard Component Snapshot Tests > renders the component with image 1`
           class=flex flex-row leading-[28px]
         >
           <h4
-            class=_text--heading-4 text-[--ods-color-primary-500]
+            class=_text _text--heading-4 text-[--ods-color-primary-500]
             data-ods=text
           >
             NAS
           </h4>
         </div>
         <h3
-          class=_text--heading-3 mb-[8px]
+          class=_text _text--heading-3 mb-[8px]
           data-ods=text
         >
           Titre du produit
         </h3>
         <p
-          class=_text--paragraph m-0 p-0 mb-4
+          class=_text _text--paragraph m-0 p-0 mb-4
           data-ods=text
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -230,20 +230,20 @@ exports[`LinkCard Component Snapshot Tests > renders the component with texts 1`
           class=flex flex-row leading-[28px]
         >
           <h4
-            class=_text--heading-4 text-[--ods-color-primary-500]
+            class=_text _text--heading-4 text-[--ods-color-primary-500]
             data-ods=text
           >
             NAS
           </h4>
         </div>
         <h3
-          class=_text--heading-3 mb-[8px]
+          class=_text _text--heading-3 mb-[8px]
           data-ods=text
         >
           Titre du produit
         </h3>
         <p
-          class=_text--paragraph m-0 p-0 mb-4
+          class=_text _text--paragraph m-0 p-0 mb-4
           data-ods=text
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.

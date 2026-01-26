@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { beforeAll, vi } from 'vitest';
 
-import { BAREMETAL_MOCK } from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.mocks';
+import { BAREMETALS_MOCK } from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.mocks';
 import { mockVaults } from '@ovh-ux/backup-agent/mocks/vaults/vaults.mock';
 
 import OnboardingPage from './Onboarding.page';
@@ -12,6 +12,7 @@ vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
   return {
     ...actual,
+    useSearchParams: vi.fn().mockReturnValue([{ get: vi.fn() }]),
     Link: ({ to, children, ...props }: { to: string; children: React.ReactNode }) => (
       <a href={to} {...props}>
         {children}
@@ -165,7 +166,7 @@ describe('FirstOrderPage', () => {
   });
 
   it.each([
-    [BAREMETAL_MOCK, false],
+    [BAREMETALS_MOCK, false],
     [[], true],
   ])(
     'renders onboarding and expected disabled if no baremetal : $expectedDisabled',

@@ -20,6 +20,8 @@
     "build": "tsc && tsc-alias",
     "dev": "tsc && tsc-alias",
     "dev:watch": "tsc -w",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:ci": "manager-test run --coverage"
@@ -35,9 +37,8 @@
     "nanoid": "^3.1.25"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
-    "@typescript-eslint/eslint-plugin": "^4.7.4",
-    "@typescript-eslint/parser": "^4.7.4",
     "tsc-alias": "^1.8.16"
   }
 }

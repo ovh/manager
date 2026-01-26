@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-creation-app",
-  "version": "0.9.11",
+  "version": "0.9.13",
   "private": true,
   "description": "Application used to finalize an account creation",
   "repository": {
@@ -13,7 +13,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "coverage": "manager-test run --coverage",
-    "lint": "eslint ./src",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "tsc && vite",
     "test": "manager-test run"
   },
@@ -28,7 +29,7 @@
     "@ovh-ux/manager-react-core-application": "^0.15.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/shell": "^4.10.3",
+    "@ovh-ux/shell": "4.10.3",
     "@ovhcloud/ods-components": "18.6.4",
     "@ovhcloud/ods-react": "^19.3.0",
     "@ovhcloud/ods-themes": "19.3.0",
@@ -47,6 +48,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
     "@ovh-ux/manager-tests-setup": "^0.7.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@tanstack/react-query-devtools": "5.91.1",

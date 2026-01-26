@@ -6,7 +6,7 @@
     "guide1": {
       "category": "Coste",
       "title": "Costo y Facturación",
-      "description": "Documentación que explica el costo y la facturación del Agente de Respaldo.",
+      "description": "Documentación que explica el costo y la facturación de Backup Agent.",
       "cta": "Descubrir"
     },
     "guide2": {
@@ -25,6 +25,10 @@
   "no_baremetal_available": "Solicitar un servidor Bare Metal y protegerlo con el Agente de Copia de Seguridad",
   "select_baremetal": "Selecciona tu servidor BareMetal",
   "save_a_baremetal_server": "Hacer una copia de seguridad de un servidor Bare Metal",
-  "baremetal_label_delay_order": "Después de la validación de su pedido, esta pantalla se actualizará y recibirá un correo electrónico tan pronto como su producto Agente de Respaldo sea entregado. Podrá consultar el progreso de su pedido <OrderLink>aquí</OrderLink>.",
-  "baremetal_label_order_in_progress": "El pedido ha sido recibido correctamente, su producto está en camino y puede seguir su progreso <OrderLink>aquí</OrderLink>."
+  "baremetal_label_delay_order": "Después de la validación de su pedido, esta pantalla se actualizará y recibirá un correo electrónico tan pronto como su producto Backup Agent sea entregado. Podrá consultar el progreso de su pedido <OrderLink>aquí</OrderLink>.",
+  "baremetal_label_order_in_progress": "El pedido ha sido recibido correctamente, su producto está en proceso de entrega y puede seguir su progreso <OrderLink>aquí</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Activación del Backup Tenant",
+  "first_order_terms_and_conditions_description": "Para activar su servicio es necesario crear un Backup Tenant. ¿Desea continuar con la activación de su servicio?",
+  "first_order_terms_and_conditions_confirm_label": "He leído y acepto las Condiciones Generales, el Anexo relativo al tratamiento de datos personales y las Condiciones Particulares del Servicio de OVH.",
+  "first_order_terms_and_conditions_annexe_label": "Anexo Tratamiento de datos personales"
 }

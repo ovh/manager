@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   FileUpload,
   FileUploadAcceptDetail,
@@ -62,20 +62,22 @@ export default function UploadedFile({
           >
             <MessageIcon name={ICON_NAME.circleInfo} />
             <MessageBody>
-              <Text className="block">
-                {t('domain_operations_upload_file_template_1')}
-                <Link
-                  href={template}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    trackPageNavivationLink(template, true);
-                  }}
-                >
-                  {t('domain_operations_upload_file_template_link')}
-                </Link>
-                {t('domain_operations_upload_file_template_2')}
-              </Text>
+              <Trans
+                i18nKey="domain_operations_upload_file_template"
+                t={t}
+                components={{
+                  Link: (
+                    <Link
+                      href={template}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => {
+                        trackPageNavivationLink(template, true);
+                      }}
+                    />
+                  ),
+                }}
+              />
             </MessageBody>
           </Message>
         )}
@@ -86,7 +88,7 @@ export default function UploadedFile({
         }}
         onFileReject={(detail: FileUploadRejectDetail) => {
           const file = detail?.files[0] || null;
-          setErrorUpload(file?.errors[0]|| 'unknown_error');
+          setErrorUpload(file?.errors[0] || 'unknown_error');
         }}
         accept={fileUploadFormat}
         acceptedFileLabel={t('domain_operations_upload_accepted_file_types', {

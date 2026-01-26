@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.10...@ovh-ux/manager-bm-server-components@2.20.0) (2026-01-26)
+
+
+### Features
+
+* **dedicated:** add backup-agent on dashboard baremetal ([f80ee0c](https://github.com/ovh/manager/commit/f80ee0c3fabe95aef10da126d868865e9fc071b5)), closes [#BKP-655](https://github.com/ovh/manager/issues/BKP-655)
+
+
+
+
+
 ## [2.19.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.9...@ovh-ux/manager-bm-server-components@2.19.10) (2026-01-15)
 
 
