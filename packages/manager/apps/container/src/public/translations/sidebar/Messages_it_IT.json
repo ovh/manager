@@ -233,5 +233,6 @@
   "sidebar_backup_billing": "Fatturazione",
   "sidebar_backup_services": "Servizi",
   "sidebar_backup_agent_iaas": "Agente di backup per IaaS",
-  "sidebar_backup_agent_baremetal": "Agente di backup"
+  "sidebar_backup_agent_baremetal": "Agente di backup",
+  "sidebar_assistance_ai_chatbot": "Assistente IA"
 }
