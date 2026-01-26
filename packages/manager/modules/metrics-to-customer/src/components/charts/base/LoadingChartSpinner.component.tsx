@@ -1,5 +1,5 @@
-import { Loader } from '../../loaders/Loader.component';
-import { LoadingChartComponentSpinnerProps } from './LoadingChartSpinner.props';
+import { Loader } from '@/components/loaders/Loader.component';
+import { LoadingChartComponentSpinnerProps } from '@/components/charts/base/LoadingChartSpinner.props';
 
 export const LoadingChartSpinnerComponent = ({
   type,

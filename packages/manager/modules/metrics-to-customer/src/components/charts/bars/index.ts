@@ -1,2 +1,3 @@
-export type { BarsChartConfig, BarsChartProps } from './BarsChart.type';
-export { BarsChartComponent } from './BarsChart.component';
+export type { BarsChartConfig } from '@/components/charts/bars/BarsChart.type';
+export type { BarsChartProps } from '@/components/charts/bars/BarsChart.props';
+export { BarsChartComponent } from '@/components/charts/bars/BarsChart.component';

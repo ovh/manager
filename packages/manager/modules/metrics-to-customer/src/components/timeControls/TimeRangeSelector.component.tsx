@@ -5,9 +5,10 @@ import { Button, BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
-import DateTimePicker from './DateTimePicker.component';
-import { TimeRangeSelectorProps } from './TimeRangeSelector.props';
-import './time-controls.scss';
+import DateTimePicker from '@/components/timeControls/DateTimePicker.component';
+import { TimeRangeSelectorProps } from '@/components/timeControls/TimeRangeSelector.props';
+
+import '@/components/timeControls/time-controls.scss';
 
 export const TimeRangeSelector: React.FC<Readonly<TimeRangeSelectorProps>> = ({
   startDateTime,

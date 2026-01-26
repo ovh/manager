@@ -1,11 +1,14 @@
-import { ChartWidget } from '@/components/widget/ChartWidget.type';
+import { useQueryClient } from '@tanstack/react-query';
 import { useChartData, useDashboardConfig } from '@/data/hooks';
+
+import { ChartWidget } from '@/types/widget/ChartWidget.type';
 import { RequestPayload } from '@/types/RequestPayload.type';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
+
 import { buildQueryWithResourceUrn } from '@/utils/metrics.utils';
 import { getWindowSecAndStep } from '@/utils/dateTimeUtils';
-import { useQueryClient } from '@tanstack/react-query';
-import getChartDataQueryKey from './getChartDataQueryKey';
+
+import getChartDataQueryKey from '@/data/hooks/dashboards/getChartDataQueryKey';
 
 type UseChartWithDataParams = {
   chartId: string;
