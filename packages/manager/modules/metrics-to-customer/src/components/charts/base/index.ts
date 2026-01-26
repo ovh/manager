@@ -1,17 +1,7 @@
-export type {
-  ChartProps,
-  CHART_TYPE,
-  CHART_TYPES,
-  ChartType,
-  ChartConfigBase,
-  ChartConfig,
-  ChartData,
-} from './Chart.type';
+export type { NoDataComponent } from '@/components/charts/base/NoData.component';
 
-export type { NoDataComponent } from './NoData.component';
+export type { LoadingChartComponentSpinnerProps } from '@/components/charts/base/LoadingChartSpinner.props';
+export { LoadingChartSpinnerComponent } from '@/components/charts/base/LoadingChartSpinner.component';
 
-export type { LoadingChartComponentSpinnerProps } from './LoadingChartSpinner.props';
-export { LoadingChartSpinnerComponent } from './LoadingChartSpinner.component';
-
-export type { ChartRendererProps } from './ChartRenderer.props';
-export { ChartRenderer } from './ChartRenderer.interface';
+export type { ChartRendererProps } from '@/components/charts/base/ChartRenderer.props';
+export { ChartRenderer } from '@/components/charts/base/ChartRenderer.interface';

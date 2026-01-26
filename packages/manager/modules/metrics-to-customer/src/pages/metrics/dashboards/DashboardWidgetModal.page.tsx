@@ -22,12 +22,15 @@ import {
 import { NAMESPACES as COMMON_NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
+
 import { TimeControls } from '@/components';
 import { ChartRenderer } from '@/components/charts/base';
+
 import { useDashboardContext, useMetricsToCustomerContext } from '@/contexts';
+
 import { useChartWithData, useMetricToken } from '@/data/hooks';
 
-import '../styles.scss';
+import '@/pages/metrics/styles.scss';
 
 const DashboardWidgetModal = <TData,>() => {
   const { t } = useTranslation([NAMESPACES.DASHBOARDS, COMMON_NAMESPACES.ACTIONS]);

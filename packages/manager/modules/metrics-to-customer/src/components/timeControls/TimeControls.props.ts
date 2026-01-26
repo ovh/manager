@@ -1,6 +1,6 @@
-import { DashboardState } from '@/contexts';
+import { TimeRangeOptionWithLabel } from '@/types/timeControls/TimeRangeOptionWithLabel.type';
 
-import { TimeRangeOptionWithLabel } from './TimeRangeOptionWithLabel.type';
+import { DashboardState } from '@/contexts';
 
 export interface TimeControlsProps {
   timeOptions?: TimeRangeOptionWithLabel[];

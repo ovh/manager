@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, render, renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { defaultTimeRangeOptions } from '@/components/timeControls/TimeRangeOption.constants';
+import { defaultTimeRangeOptions } from '@/constants/timeControls/TimeRangeOption.constants';
 import {
   DashboardProvider,
   DashboardState,

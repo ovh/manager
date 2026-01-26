@@ -1,4 +1,4 @@
-import { WidgetTooltip } from './WidgetTooltip.type';
+import { WidgetTooltip } from '@/types/widget/WidgetTooltip.type';
 
 export interface ChartWidgetProps {
   id: string;

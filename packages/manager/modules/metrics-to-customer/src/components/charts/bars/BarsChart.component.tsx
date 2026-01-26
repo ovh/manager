@@ -1,4 +1,4 @@
-import { BarsChartConfig, BarsChartProps } from './BarsChart.type';
+import { BarsChartConfig, BarsChartProps } from '@/components/charts/bars';
 
 export const BarsChartComponent = <TData,>({
   chartConfig,

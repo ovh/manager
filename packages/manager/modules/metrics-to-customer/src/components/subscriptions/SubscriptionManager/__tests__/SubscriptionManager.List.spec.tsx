@@ -5,7 +5,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { SubscriptionManagerList } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.List';
-import { SubscriptionManagerProvider, useSubscriptionManagerContext } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
+import { SubscriptionManagerProvider, useSubscriptionManagerContext } from '@/contexts/SubscriptionManager.context';
 
 // Mock react-i18next
 vi.mock('react-i18next', () => ({

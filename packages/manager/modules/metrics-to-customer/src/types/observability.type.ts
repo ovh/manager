@@ -1,8 +1,8 @@
 import { IamObject } from '@ovh-ux/muk';
 
-import { ChartData } from '@/components/charts/base';
-import { ChartWidget } from '@/components/widget/ChartWidget.type';
 import { RequestPayload } from '@/types/RequestPayload.type';
+import { ChartData } from '@/types/charts/base/Chart.type';
+import { ChartWidget } from '@/types/widget/ChartWidget.type';
 
 export type TIdentifier = {
   id: string;

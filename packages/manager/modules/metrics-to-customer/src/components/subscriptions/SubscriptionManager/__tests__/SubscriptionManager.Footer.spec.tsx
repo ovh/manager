@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { SubscriptionManagerFooter } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.Footer';
-import { SubscriptionManagerProvider, useSubscriptionManagerContext } from '@/components/subscriptions/SubscriptionManager/SubscriptionManager.context';
+import { SubscriptionManagerProvider, useSubscriptionManagerContext } from '@/contexts/SubscriptionManager.context';
 
 describe('SubscriptionManagerFooter', () => {
   describe('Rendering', () => {
