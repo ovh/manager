@@ -163,5 +163,6 @@
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Una Gateway ya está asignada a la red privada seleccionada.",
   "pci_instance_creation_discovery_project_title": "Modo descubrimiento",
   "pci_instance_creation_discovery_project_message": "Para finalizar la creación de su recurso, debe activar su proyecto.",
-  "pci_instance_creation_discovery_project_activate": "Activar"
+  "pci_instance_creation_discovery_project_activate": "Activar",
+  "pci_instance_creation_select_localization_apac_warning": "El tráfico de red público saliente para las instancias está incluido para todas las regiones, excepto para la región de Asia-Pacífico. En estas dos regiones, se incluye 1 To/mes de tráfico público saliente en cada proyecto de Nube Pública. <strong>Más allá de este cupo, cada Go adicional de tráfico se cobra a 0,01 €. El tráfico de red público entrante está incluido en todos los casos, para todas las regiones.</strong>"
 }

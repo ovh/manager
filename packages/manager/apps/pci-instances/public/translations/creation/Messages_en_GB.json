@@ -163,5 +163,6 @@
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "A Gateway is already assigned to the selected private network.",
   "pci_instance_creation_discovery_project_title": "Discover mode",
   "pci_instance_creation_discovery_project_message": "To complete the creation of your resource, you need to activate your project.",
-  "pci_instance_creation_discovery_project_activate": "Activate"
+  "pci_instance_creation_discovery_project_activate": "Activate",
+  "pci_instance_creation_select_localization_apac_warning": "Public outgoing network traffic for instances is included for all regions, except for the Asia-Pacific region. In these two regions, 1 TB/month of public outgoing traffic is included in each Public Cloud project. <strong>Beyond this quota, each additional GB of traffic is charged at €0.01. Public incoming network traffic is included in all cases, for all regions.</strong>"
 }
