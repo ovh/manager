@@ -71,16 +71,15 @@ describe('ExpirationDate', () => {
   });
 
   it('should render action menu with manage and cancel options', () => {
-    const { container } = render(<ExpirationDate {...defaultProps} />, {
+    render(<ExpirationDate {...defaultProps} />, {
       wrapper,
     });
 
-    const actionMenu = container.querySelector('#expiration-date');
-    expect(actionMenu).toBeInTheDocument();
+    expect(screen.getByTestId('expiration-date')).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'domain_tab_general_information_subscription_expiration_date_bouton',
+        'domain_tab_general_information_subscription_expiration_date_action',
       ),
     ).toBeInTheDocument();
     expect(
