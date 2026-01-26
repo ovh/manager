@@ -54,5 +54,11 @@
     "title": "Share size",
     "description": "5% of the storage capacity is dedicated to snapshot storage",
     "label": "Linear performance allocation (GB)"
+  },
+  "network": {
+    "title": "Private network",
+    "description": "Select the private network you want your instances to connect to your share file",
+    "label": "Select an existing private network",
+    "empty": "Sorry but you do not have a private network for this region"
   }
 }

@@ -52,7 +52,13 @@
   },
   "shareSize": {
     "title": "Tamaño del share",
-    "description": "El 5 % de la capacidad de almacenamiento está dedicado al almacenamiento de snapshots",
+    "description": "El 5 % de la capacidad de almacenamiento está dedicado al almacenamiento de instantáneas",
     "label": "Asignación de rendimiento lineal (GB)"
+  },
+  "network": {
+    "title": "Red privada",
+    "description": "Seleccione la red privada a la que desea que sus instancias se conecten a su archivo compartido",
+    "label": "Seleccionar una red privada existente",
+    "empty": "Lo siento, pero no tiene una red privada para esta región"
   }
 }

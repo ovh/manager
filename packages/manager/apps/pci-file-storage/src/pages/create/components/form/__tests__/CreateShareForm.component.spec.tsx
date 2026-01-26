@@ -86,6 +86,12 @@ vi.mock('@/pages/create/components/share/ShareSizeSelection.component', () => ({
   ShareSizeSelection: () => <div data-testid="share-size-selection">Share Size Selection</div>,
 }));
 
+vi.mock('@/pages/create/components/network/PrivateNetworkSelection.component', () => ({
+  PrivateNetworkSelection: () => (
+    <div data-testid="private-network-selection">Private Network Selection</div>
+  ),
+}));
+
 vi.mock('@ovhcloud/ods-react', () => ({
   Divider: ({ className }: { className: string }) => (
     <div data-testid="divider" className={className} />
@@ -116,6 +122,7 @@ describe('CreateShareForm', () => {
     expect(screen.getByTestId('macro-region-selection')).toBeVisible();
     expect(screen.getByTestId('share-selection')).toBeVisible();
     expect(screen.getByTestId('share-size-selection')).toBeVisible();
+    expect(screen.getByTestId('private-network-selection')).toBeVisible();
   });
 
   it.each([
