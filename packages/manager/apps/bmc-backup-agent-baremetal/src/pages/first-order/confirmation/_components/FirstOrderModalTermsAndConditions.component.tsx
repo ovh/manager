@@ -64,7 +64,7 @@ export const FirstOrderModalTermsAndConditions = ({
         {error && (
           <OdsMessage color="danger" isDismissible={false} className="w-full">
             {t(`${NAMESPACES.ERROR}:error_message`, {
-              message: error.message,
+              message: error.response?.data.message ?? error.message,
             })}
           </OdsMessage>
         )}
