@@ -5,6 +5,8 @@ import { Text } from '@ovhcloud/ods-react';
 
 import { Tile } from '@ovh-ux/muk';
 
+import { KMIP_OBJECTS_TILE_TEST_IDS } from '../KmipObjectsTile.constants';
+
 type KmipObjectCountTileItemProps = {
   okms: OKMS;
 };
@@ -19,7 +21,9 @@ export const KmipObjectCountTileItem = ({ okms }: KmipObjectCountTileItemProps) 
         tooltip={t('okms_kmip_object_count_tooltip')}
       />
       <Tile.Item.Description divider={false}>
-        <Text preset="span">{okms.kmipObjectCount}</Text>
+        <Text preset="span" data-testid={KMIP_OBJECTS_TILE_TEST_IDS.kmipObjectCount}>
+          {okms.kmipObjectCount}
+        </Text>
       </Tile.Item.Description>
     </Tile.Item.Root>
   );
