@@ -3,7 +3,14 @@ import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { FormField, FormFieldLabel, Input, Text } from '@ovhcloud/ods-react';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
+  Input,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 
@@ -12,14 +19,15 @@ export const NameInput = () => {
 
   const {
     register,
-    formState: {
-      errors: { shareData: { name: nameError } = {} },
-    },
+    formState: { errors },
   } = useFormContext<CreateShareFormValues>();
 
+  const nameError = errors.shareData?.name;
+
   const errorMessage = useMemo(() => {
-    if (!nameError) return undefined;
-    switch (nameError.message) {
+    if (!nameError?.message) return undefined;
+    const message = String(nameError.message);
+    switch (message) {
       case 'name_required':
         return t('create:name.error.required');
       case 'name_max_length':
@@ -27,24 +35,20 @@ export const NameInput = () => {
       case 'name_invalid_format':
         return t('create:name.error.invalid_format');
       default:
-        return nameError.message;
+        return message;
     }
   }, [nameError, t]);
 
   return (
     <article className="flex w-full flex-col">
-      <div className="mt-4 pb-4 pt-3">
-        <FormField className="max-w-[50%]">
-          <FormFieldLabel>{t('create:name.label')}</FormFieldLabel>
-          <Input {...register('shareData.name')} invalid={!!errorMessage} className="w-full" />
-        </FormField>
-      </div>
-      {!!errorMessage && (
-        <Text className="text-sm text-[--ods-color-critical-500]" preset="span">
-          {errorMessage}
-        </Text>
-      )}
-      <Text preset="span">{t('create:name.info')}</Text>
+      <FormField invalid={!!errorMessage}>
+        <FormFieldLabel>{t('create:name.label')}</FormFieldLabel>
+        <Input {...register('shareData.name')} className="max-w-[50%]" />
+        <FormFieldError>{errorMessage}</FormFieldError>
+        <FormFieldHelper>
+          <Text>{t('create:name.info')}</Text>
+        </FormFieldHelper>
+      </FormField>
     </article>
   );
 };

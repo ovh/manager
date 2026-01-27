@@ -7,12 +7,6 @@ import { NameInput } from '@/pages/create/components/name/NameInput.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
 describe('NameInput', () => {
   beforeEach(() => {
     vi.clearAllMocks();

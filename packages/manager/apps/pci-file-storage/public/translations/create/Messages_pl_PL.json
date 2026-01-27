@@ -2,11 +2,11 @@
   "name": {
     "title": "Nazwa udostępnienia",
     "label": "Wybierz nazwę dla swojego pliku udostępnienia",
-    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki.",
+    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki i nie przekraczać 255 znaków.",
     "error": {
       "required": "Nazwa udostępnienia nie może być pusta. Proszę wpisać nazwę.",
-      "max_length": "Nieprawidłowy format nazwy. Proszę używać tylko liter, cyfr, podkreśleń (_), myślników (-) lub kropek (.) i nie przekraczać 255 znaków",
-      "invalid_format": "Nieprawidłowy format nazwy. Proszę używać tylko liter, cyfr, podkreśleń (_), myślników (-) lub kropek (.) i nie przekraczać 255 znaków"
+      "max_length": "Nieprawidłowy format nazwy",
+      "invalid_format": "Nieprawidłowy format nazwy"
     }
   },
   "localisation": {

@@ -2,11 +2,11 @@
   "name": {
     "title": "Name des Shares",
     "label": "Wählen Sie einen Namen für Ihre Freigabedatei",
-    "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten.",
+    "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten und darf 255 Zeichen nicht überschreiten.",
     "error": {
       "required": "Der Name des Shares darf nicht leer sein. Bitte geben Sie einen Namen ein.",
-      "max_length": "Ungültiges Namensformat. Bitte verwenden Sie nur Buchstaben, Zahlen, Unterstriche (_), Bindestriche (-) oder Punkte (.) und überschreiten Sie nicht 255 Zeichen",
-      "invalid_format": "Ungültiges Namensformat. Bitte verwenden Sie nur Buchstaben, Zahlen, Unterstriche (_), Bindestriche (-) oder Punkte (.) und überschreiten Sie nicht 255 Zeichen"
+      "max_length": "Ungültiges Namensformat",
+      "invalid_format": "Ungültiges Namensformat"
     }
   },
   "localisation": {

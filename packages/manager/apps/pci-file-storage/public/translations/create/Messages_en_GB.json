@@ -2,11 +2,11 @@
   "name": {
     "title": "Share name",
     "label": "Choose a name for your share file",
-    "info": "Must only contain numbers, letters, underscores, dashes or dots.",
+    "info": "Must only contain numbers, letters, underscores, dashes or dots and not exceed 255 characters.",
     "error": {
       "required": "The share name cannot be empty. Please enter a name.",
-      "max_length": "Invalid name format. Please use only letters, numbers, underscores (_), dashes (-) or dots (.) and do not exceed 255 characters",
-      "invalid_format": "Invalid name format. Please use only letters, numbers, underscores (_), dashes (-) or dots (.) and do not exceed 255 characters"
+      "max_length": "Invalid name format",
+      "invalid_format": "Invalid name format"
     }
   },
   "localisation": {

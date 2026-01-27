@@ -2,11 +2,11 @@
   "name": {
     "title": "Nome della condivisione",
     "label": "Scegli un nome per il tuo file di condivisione",
-    "info": "Deve contenere solo numeri, lettere, underscore, trattini o punti.",
+    "info": "Deve contenere solo numeri, lettere, underscore, trattini o punti e non superare i 255 caratteri.",
     "error": {
       "required": "Il nome della condivisione non può essere vuoto. Si prega di inserire un nome.",
-      "max_length": "Formato del nome non valido. Si prega di utilizzare solo lettere, numeri, underscore (_), trattini (-) o punti (.) e non superare i 255 caratteri",
-      "invalid_format": "Formato del nome non valido. Si prega di utilizzare solo lettere, numeri, underscore (_), trattini (-) o punti (.) e non superare i 255 caratteri"
+      "max_length": "Formato del nome non valido",
+      "invalid_format": "Formato del nome non valido"
     }
   },
   "localisation": {
