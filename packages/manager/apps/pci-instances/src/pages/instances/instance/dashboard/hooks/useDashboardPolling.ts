@@ -10,7 +10,7 @@ import {
   TPendingTask,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
-import { updateAllInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
+import { updateAllInstancesFromCache } from '@/adapters/tanstack/instances/updaters';
 
 type TDashboardPollingArgs = {
   instanceId: string;

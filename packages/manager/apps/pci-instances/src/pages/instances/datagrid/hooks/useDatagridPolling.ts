@@ -12,7 +12,7 @@ import {
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
 import { selectPollingDataForDatagrid } from '../view-models/selectPollingDataForDatagrid';
-import { updateAggregatedInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
+import { updateAggregatedInstancesFromCache } from '@/adapters/tanstack/instances/updaters';
 
 const getPartialDeletedInstanceDto = (id: string) =>
   buildPartialInstanceDto({ id })

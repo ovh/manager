@@ -1,0 +1,231 @@
+import {
+  selectFlavorDetails,
+  selectLocalisationDetails,
+  selectWindowsImageLicensePrice,
+  TSelectFlavorDetails,
+  TSelectLocalizationDetails,
+} from '../view-models/cartViewModel';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { deps } from '@/deps/deps';
+import { useMemo } from 'react';
+import { selectPrivateNetworks } from '../view-models/networksViewModel';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { mapFlavorToDTO } from '@/adapters/tanstack/instances/right/mapper';
+import { useCreateInstance } from '@/data/hooks/useCreateInstance';
+import { isApiErrorResponse } from '@/utils';
+import { useNavigate } from 'react-router-dom';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
+import {
+  selectDistantBackupLocalizations,
+  selectLocalBackups,
+} from '../view-models/backupViewModel';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+
+type TBackupSettingPrices = {
+  localBackupPrice: string | null;
+  distantBackupPrice: string | null;
+};
+
+type TInstanceData = {
+  name: string;
+  quantity: number;
+  distributionImageVariantId: string | null;
+  distributionImageVersionName: string | null;
+  sshKeyId: string | null;
+  localizationDetails: TSelectLocalizationDetails | null;
+  flavorDetails: TSelectFlavorDetails | null;
+  windowsImageLicensePrice: number | null;
+  backupSettingPrices: TBackupSettingPrices | null;
+  networkName?: string;
+};
+
+type TInstanceCreation = {
+  instanceData: TInstanceData;
+  isCreationEnabled: boolean;
+  handleCreateInstance: () => void;
+  isCreatingInstance: boolean;
+};
+
+// eslint-disable-next-line max-lines-per-function
+export const useInstanceCreation = (): TInstanceCreation => {
+  const navigate = useNavigate();
+  const projectId = useProjectId();
+  const { control } = useFormContext<TInstanceCreationForm>();
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4);
+  const [
+    name,
+    macroRegion,
+    microRegion,
+    availabilityZone,
+    quantity,
+    flavorId,
+    distributionImageVariantId,
+    distributionImageVersion,
+    distributionImageOsType,
+    sshKeyId,
+    networkId,
+    newSshPublicKey,
+    newPrivateNetwork,
+    billingType,
+    localBackupRotation,
+    distantBackupLocalization,
+  ] = useWatch({
+    control,
+    name: [
+      'name',
+      'macroRegion',
+      'microRegion',
+      'availabilityZone',
+      'quantity',
+      'flavorId',
+      'distributionImageVariantId',
+      'distributionImageVersion',
+      'distributionImageOsType',
+      'sshKeyId',
+      'networkId',
+      'newSshPublicKey',
+      'newPrivateNetwork',
+      'billingType',
+      'localBackupRotation',
+      'distantBackupLocalization',
+    ],
+  });
+
+  const instancesListUrl = `/pci/projects/${projectId}/instances`;
+
+  const localizationDetails = useMemo(
+    () =>
+      selectLocalisationDetails(deps)(
+        projectId,
+        macroRegion,
+        microRegion,
+        availabilityZone,
+      ),
+    [availabilityZone, macroRegion, microRegion, projectId],
+  );
+
+  const flavorDetails = useMemo(
+    () =>
+      selectFlavorDetails(deps)(
+        projectId,
+        flavorId,
+        distributionImageOsType,
+        billingType,
+      ),
+    [distributionImageOsType, flavorId, projectId, billingType],
+  );
+
+  const windowsImageLicensePrice = useMemo(
+    () =>
+      selectWindowsImageLicensePrice(deps)(
+        projectId,
+        distributionImageOsType,
+        billingType,
+        flavorId,
+      ),
+    [distributionImageOsType, projectId, billingType, flavorId],
+  );
+
+  const backupSettingPrices = useMemo(() => {
+    if (!localBackupRotation) return null;
+
+    const { price: localBackupPrice } = selectLocalBackups();
+    const distantBackupLocalizations = selectDistantBackupLocalizations();
+
+    const distantBackupPrice = distantBackupLocalizations
+      .flatMap(({ options }) => options)
+      .find(({ value }) => value === distantBackupLocalization)
+      ?.customRendererData?.backupPrice;
+
+    // TODO: local backup will be formatted here later since it will not be handled by viewModel
+    return {
+      localBackupPrice,
+      distantBackupPrice: distantBackupPrice
+        ? getFormattedMonthlyCatalogPrice(distantBackupPrice)
+        : null,
+    };
+  }, [
+    distantBackupLocalization,
+    getFormattedMonthlyCatalogPrice,
+    localBackupRotation,
+  ]);
+
+  const { networks } = useMemo(() => selectPrivateNetworks(microRegion), [
+    microRegion,
+  ]);
+
+  const networkName =
+    newPrivateNetwork?.name ??
+    networks.find(({ value }) => networkId === value)?.label;
+
+  const handleSuccess = () => {
+    // TODO: update with new success specs to come
+    navigate(instancesListUrl);
+  };
+
+  const handleError = (error: Error) => {
+    const errorMessage = isApiErrorResponse(error)
+      ? error.response?.data.message
+      : error.message;
+    // TODO: update with new error specs to come
+    console.error(errorMessage);
+  };
+
+  const {
+    mutate: createInstance,
+    isPending: isCreatingInstance,
+  } = useCreateInstance({
+    projectId,
+    callbacks: { onSuccess: handleSuccess, onError: handleError },
+  });
+
+  const needsSshKey = distributionImageOsType !== 'windows';
+
+  const hasBaseRequirements =
+    !!name &&
+    !!quantity &&
+    !!microRegion &&
+    !!flavorDetails?.id &&
+    !!distributionImageVersion.distributionImageVersionId;
+
+  const hasSshRequirements = !needsSshKey || !!sshKeyId || !!newSshPublicKey;
+
+  const isCreationEnabled = hasBaseRequirements && hasSshRequirements;
+
+  const handleCreateInstance = () => {
+    if (!isCreationEnabled || isCreatingInstance) return;
+
+    const instance = mapFlavorToDTO({
+      name,
+      quantity,
+      availabilityZone,
+      newSshPublicKey,
+      imageRegion: microRegion,
+      existingSshKeyId: sshKeyId,
+      id: flavorDetails.id,
+      imageId: distributionImageVersion.distributionImageVersionId,
+    });
+    createInstance({ regionName: microRegion, instance });
+  };
+
+  const instanceData = {
+    name,
+    quantity,
+    distributionImageVariantId,
+    sshKeyId,
+    localizationDetails,
+    flavorDetails,
+    windowsImageLicensePrice,
+    networkName,
+    distributionImageVersionName:
+      distributionImageVersion.distributionImageVersionName,
+    backupSettingPrices,
+  };
+
+  return {
+    instanceData,
+    isCreationEnabled,
+    handleCreateInstance,
+    isCreatingInstance,
+  };
+};

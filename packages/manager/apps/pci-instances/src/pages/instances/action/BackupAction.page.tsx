@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next';
 import {
-  useCatalogPrice,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
+import { useCatalogPrice } from '@ovh-ux/muk';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
@@ -141,7 +141,7 @@ const BackupActionPage = () => {
       section="backup"
       isLoading={isLoading}
       variant="primary"
-      className="max-h-[90vh] mt-[10vh] overflow-y-auto"
+      className="mt-[10vh] max-h-[90vh] overflow-y-auto"
       wrapper={({ children }: PropsWithChildren) => (
         <FormProvider
           formState={formState}
@@ -153,7 +153,7 @@ const BackupActionPage = () => {
         </FormProvider>
       )}
     >
-      <div className="flex flex-col gap-4 mt-6">
+      <div className="mt-6 flex flex-col gap-4">
         <Controller
           render={({ field, fieldState: { error, invalid } }) => (
             <InputField
