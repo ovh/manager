@@ -55,5 +55,7 @@
   "allDom_cancel_terminate_title": "Annuler la résiliation du service {{serviceName}}",
   "allDom_cancel_terminate_subtitle": "Souhaitez-vous annuler la résiliation du service {{serviceName}} ?",
   "allDom_cancel_terminate_success": "L'annulation de la résiliation de votre service {{serviceName}} a bien été prise en compte",
-  "allDom_cancel_terminate_error": "L'annulation de la résiliation de votre service {{serviceName}} a échoué"
+  "allDom_cancel_terminate_error": "L'annulation de la résiliation de votre service {{serviceName}} a échoué",
+  "allDom_detail_page_renew_information_advantage": "Le renouvellement de l'offre AllDom prolonge votre avantage tarifaire.",
+  "allDom_detail_page_renew_information_renew": "Les noms de domaine conservent chacun leur mode de renouvellement et leur date d'expiration."
 }
