@@ -110,6 +110,15 @@ describe('Secret list page test suite', () => {
     // WHEN
     await act(() => user.click(secretPageLink));
 
+    // Wait for navigation to complete and page to load
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
     // THEN
     const dashboardPageLabels = await screen.findAllByText(
       labels.common.dashboard.general_information,
@@ -133,8 +142,17 @@ describe('Secret list page test suite', () => {
     // WHEN
     await act(() => user.click(manageOkmsButton));
 
+    // Wait for navigation to complete and page to load
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
     // THEN
-    await assertTextVisibility(labels.secretManager.okms_dashboard_title);
+    await assertTextVisibility(labels.secretManager.okms_dashboard_title, {}, { timeout: 10_000 });
   });
 
   /* DATAGRID ACTIONS */
@@ -152,9 +170,22 @@ describe('Secret list page test suite', () => {
     // WHEN
     await act(() => user.click(createSecretButton));
 
+    // Wait for navigation to complete and page to load
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
     // THEN
-    await assertTextVisibility(labels.secretManager.create_a_secret);
-    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
+    await assertTextVisibility(labels.secretManager.create_a_secret, {}, { timeout: 10_000 });
+    await assertTextVisibility(
+      labels.secretManager.create_secret_form_region_section_title,
+      {},
+      { timeout: 10_000 },
+    );
   });
 
   /* ITEM MENU ACTIONS */

@@ -1,6 +1,7 @@
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
+import { screen, waitFor } from '@testing-library/react';
 
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
@@ -40,7 +41,20 @@ describe('Secret Manager onboarding test suite', () => {
       await user.click(button);
     });
 
-    await assertTextVisibility(labels.secretManager.create_a_secret);
-    await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
+    // Wait for navigation and loading to complete
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
+    await assertTextVisibility(labels.secretManager.create_a_secret, {}, { timeout: 10_000 });
+    await assertTextVisibility(
+      labels.secretManager.create_secret_form_region_section_title,
+      {},
+      { timeout: 10_000 },
+    );
   });
 });

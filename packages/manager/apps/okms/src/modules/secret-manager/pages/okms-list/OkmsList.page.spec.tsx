@@ -117,23 +117,57 @@ describe('Okms List page test suite', () => {
 
   describe('should redirect to the default region page', () => {
     it('when the kms list is empty', async () => {
-      const { container } = await renderTestApp(
-        SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithoutOkms.region),
-      );
+      await renderTestApp(SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithoutOkms.region));
 
       // manager redirects to the root page
       // then to the default region page that displays the okms list
-      await expectOkmsListPageToBeDisplayed(container);
+      // Wait for redirect chain to complete: OkmsList (empty) → Root → OkmsList (default region)
+      await waitFor(
+        () => {
+          expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        },
+        { timeout: 10_000 },
+      );
+
+      // Wait for the page title to appear after redirect
+      await assertTextVisibility(labels.secretManager.okms_list, {}, { timeout: 10_000 });
+
+      // Check there is clipboard components displayed in the datagrid (from default region)
+      const firstOkmsId = regionWithMultipleOkms?.okmsMock?.[0]?.id ?? '';
+      const firstClipboardTestId = OKMS_LIST_CELL_TEST_IDS.id(firstOkmsId);
+      await waitFor(
+        () => {
+          expect(screen.getByTestId(firstClipboardTestId)).toBeInTheDocument();
+        },
+        { timeout: 10_000 },
+      );
     });
 
     it('when the region is not valid', async () => {
-      const { container } = await renderTestApp(
-        SECRET_MANAGER_ROUTES_URLS.okmsList('notValidRegionName'),
-      );
+      await renderTestApp(SECRET_MANAGER_ROUTES_URLS.okmsList('notValidRegionName'));
 
       // manager redirects to the root page
       // then to the default region page that displays the okms list
-      await expectOkmsListPageToBeDisplayed(container);
+      // Wait for redirect chain to complete: OkmsList (invalid) → Root → OkmsList (default region)
+      await waitFor(
+        () => {
+          expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        },
+        { timeout: 10_000 },
+      );
+
+      // Wait for the page title to appear after redirect
+      await assertTextVisibility(labels.secretManager.okms_list, {}, { timeout: 10_000 });
+
+      // Check there is clipboard components displayed in the datagrid (from default region)
+      const firstOkmsId = regionWithMultipleOkms?.okmsMock?.[0]?.id ?? '';
+      const firstClipboardTestId = OKMS_LIST_CELL_TEST_IDS.id(firstOkmsId);
+      await waitFor(
+        () => {
+          expect(screen.getByTestId(firstClipboardTestId)).toBeInTheDocument();
+        },
+        { timeout: 10_000 },
+      );
     });
   });
 

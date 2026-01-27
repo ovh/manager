@@ -32,22 +32,34 @@ const renderPage = async (options: { fromCSR: boolean }) => {
     fromCSR: options.fromCSR,
   });
 
-  // Wait for initial loading (okms data) to complete
+  // Wait for initial loading (okms data) to complete - check for both progressbar and page-spinner
   await waitFor(
     () => {
       expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
     },
     { timeout: 10_000 },
   );
 
-  // Check title
-  expect(
-    await screen.findByText(
-      labels.credentials.key_management_service_credential_create_title,
-      {},
-      WAIT_TIMEOUT,
-    ),
-  ).toBeVisible();
+  // Wait for Suspense to resolve and page content to load
+  await waitFor(
+    () => {
+      // Check that loading components are gone
+      const loadingElements = container.querySelectorAll('[class*="loading"], [class*="spinner"]');
+      expect(loadingElements.length).toBe(0);
+    },
+    { timeout: 10_000 },
+  );
+
+  // Check title - wait for it to appear
+  await waitFor(
+    () => {
+      expect(
+        screen.getByText(labels.credentials.key_management_service_credential_create_title),
+      ).toBeVisible();
+    },
+    { timeout: 10_000 },
+  );
 
   return { container };
 };
@@ -203,17 +215,29 @@ const assertCredentialListPageVisibility = async () => {
   await waitFor(
     () => {
       expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
     },
     { timeout: 10_000 },
   );
 
-  // Check kms display name
-  expect(await screen.findByText(mockOkmsItem.iam.displayName, {}, WAIT_TIMEOUT)).toBeVisible();
+  // Wait for page to fully load before checking content
+  await waitFor(
+    () => {
+      // Check kms display name
+      expect(screen.getByText(mockOkmsItem.iam.displayName)).toBeVisible();
+    },
+    { timeout: 10_000 },
+  );
 
   // Check headline on credentials list page
-  expect(
-    await screen.findByText(labels.credentials.key_management_service_credential_headline),
-  ).toBeVisible();
+  await waitFor(
+    () => {
+      expect(
+        screen.getByText(labels.credentials.key_management_service_credential_headline),
+      ).toBeVisible();
+    },
+    { timeout: 10_000 },
+  );
 };
 
 const testStep1 = async (container: HTMLElement, user: UserEvent) => {

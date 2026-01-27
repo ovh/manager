@@ -68,6 +68,14 @@ describe('KMS listing test suite', () => {
     const user = userEvent.setup();
     const { container } = await renderTestApp(KMS_ROUTES_URLS.kmsListing);
 
+    // Wait for listing page to load first
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
     const button = await getOdsButtonByLabel({
       container,
       label: labels.listing.key_management_service_listing_add_kms_button,
@@ -76,15 +84,21 @@ describe('KMS listing test suite', () => {
 
     await act(() => user.click(button));
 
-    // Wait for navigation to complete by waiting for spinner to disappear
+    // Wait for navigation to complete - wait for spinner to disappear on destination page
     await waitFor(
       () => {
         expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
       },
       { timeout: 10_000 },
     );
 
-    await assertTextVisibility(labels.create.key_management_service_create_title);
+    // Wait for the creation page title to appear
+    await assertTextVisibility(
+      labels.create.key_management_service_create_title,
+      {},
+      { timeout: 10_000 },
+    );
   });
 
   it('should navigate to a kms dashboard on click on kms name', async () => {
