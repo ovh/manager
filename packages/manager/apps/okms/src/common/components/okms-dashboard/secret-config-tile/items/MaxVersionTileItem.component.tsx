@@ -29,7 +29,9 @@ export const MaxVersionTileItem = ({ data, isPending, isError }: MaxVersionTileI
             className="block h-5 content-center"
           />
         ) : (
-          <Text preset="span">{data.maxVersions}</Text>
+          <Text preset="span" data-testid={SECRET_CONFIG_TILE_TEST_IDS.maxVersion}>
+            {data.maxVersions}
+          </Text>
         )}
       </Tile.Item.Description>
     </Tile.Item.Root>
