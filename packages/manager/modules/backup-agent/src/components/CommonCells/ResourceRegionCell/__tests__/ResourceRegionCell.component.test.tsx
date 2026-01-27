@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { mockLocations } from '@/mocks/location/locations';
 import { mockVaults } from '@/mocks/vaults/vaults.mock';
+import { DataGridTextCellMock } from '@/test-utils/mocks/manager-react-components';
 
 import { ResourceRegionCell } from '../ResourceRegionCell.component';
 
@@ -19,9 +20,7 @@ vi.mock('@/data/hooks/location/getLocationDetails', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="cell">{children}</div>
-  ),
+  DataGridTextCell: DataGridTextCellMock,
 }));
 
 describe('ResourceRegionCell', () => {

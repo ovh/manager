@@ -3,17 +3,18 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { DataGridTextCellMock } from '@/test-utils/mocks/manager-react-components';
+import { useTranslationMock } from '@/test-utils/mocks/react-i18next';
+
 import { AgentPolicyCell } from '../AgentPolicyCell.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  DataGridTextCell: DataGridTextCellMock,
 }));
 
 // --- Mock translation ---
 vi.mock('react-i18next', () => ({
-  useTranslation: vi
-    .fn()
-    .mockImplementation(() => ({ t: (key: string) => `translated_${key.split(':')[1]}` })),
+  useTranslation: useTranslationMock,
 }));
 
 describe('AgentNameCell', () => {
