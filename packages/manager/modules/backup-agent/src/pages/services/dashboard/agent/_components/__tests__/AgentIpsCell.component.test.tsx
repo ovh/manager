@@ -5,9 +5,12 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { AgentIpsCell } from '@/pages/services/dashboard/agent/_components/AgentIpsCell.component';
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-}));
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const { DataGridTextCellMock } = await import('@/test-utils/mocks/manager-react-components');
+  return {
+    DataGridTextCell: DataGridTextCellMock,
+  };
+});
 
 describe('AgentNameCell', () => {
   it.each([
