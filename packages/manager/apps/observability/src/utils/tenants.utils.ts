@@ -7,6 +7,7 @@ import {
   TenantSubscriptionListing,
 } from '@/types/tenants.type';
 import { formatObservabilityDuration } from '@/utils/duration.utils';
+import { formatNumberWithLocale } from '@/utils/number.utils';
 
 export const mapTenantsToListing = (tenants: Tenant[], dateFnsLocale: Locale): TenantListing[] => {
   const result: TenantListing[] = tenants.map(({ id, currentState, iam, resourceStatus }) => {
@@ -28,7 +29,7 @@ export const mapTenantsToListing = (tenants: Tenant[], dateFnsLocale: Locale): T
       entryPoint,
       endpoint,
       retention,
-      numberOfSeries,
+      numberOfSeries: formatNumberWithLocale(numberOfSeries, dateFnsLocale),
       resourceStatus,
       tags,
       search: `${title} ${entryPoint ?? ''} ${retention ?? ''} ${numberOfSeries ?? ''} ${tagsStr}`,

@@ -6,16 +6,18 @@ import { enGB } from 'date-fns/locale';
 import { FormProvider, useForm } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { useDateFnsLocale } from '@ovh-ux/muk';
+
 import { TenantConfigurationForm } from '@/components/metrics/tenant-configuration-form/TenantConfigurationForm.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useInfrastructureSettings } from '@/data/hooks/infrastructures/useInfrastructureSettings.hook';
-import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import {
   FormattedExtraSettingsDuration,
   useFormattedDurationSetting,
 } from '@/hooks/useFormattedExtraSettings.hook';
 import { InfraStructureExtraSettings } from '@/types/infrastructures.type';
 import { TenantFormData } from '@/types/tenants.type';
+import { formatNumberWithLocale } from '@/utils/number.utils';
 
 // Mock dependencies
 vi.mock('@/contexts/ObservabilityService.context', () => ({
@@ -30,8 +32,8 @@ vi.mock('@/hooks/useFormattedExtraSettings.hook', () => ({
   useFormattedDurationSetting: vi.fn(),
 }));
 
-vi.mock('@/hooks/useDateFnsLocale.hook', () => ({
-  useDateFnsLocale: vi.fn(),
+vi.mock('@/utils/number.utils', () => ({
+  formatNumberWithLocale: vi.fn(),
 }));
 
 vi.mock('@/utils/form.utils', () => ({
@@ -211,6 +213,7 @@ vi.mock('@ovh-ux/muk', () => ({
     paragraph: 'paragraph',
     caption: 'caption',
   },
+  useDateFnsLocale: vi.fn(),
 }));
 
 // Mock BoundsFormFieldHelper
@@ -239,6 +242,7 @@ const mockUseObservabilityServiceContext = vi.mocked(useObservabilityServiceCont
 const mockUseInfrastructureSettings = vi.mocked(useInfrastructureSettings);
 const mockUseFormattedDurationSetting = vi.mocked(useFormattedDurationSetting);
 const mockUseDateFnsLocale = vi.mocked(useDateFnsLocale);
+const mockFormatNumberWithLocale = vi.mocked(formatNumberWithLocale);
 
 // Test wrapper component
 interface TestWrapperProps {
@@ -349,6 +353,10 @@ describe('TenantConfigurationForm', () => {
     });
 
     mockUseDateFnsLocale.mockReturnValue(enGB);
+
+    mockFormatNumberWithLocale.mockImplementation((value) =>
+      value !== undefined ? value.toLocaleString('en-GB') : undefined,
+    );
 
     mockUseInfrastructureSettings.mockReturnValue({
       data: mockExtraSettings,
