@@ -1,0 +1,794 @@
+# hexagonal_updated.md - PCI Kubernetes Hexagonal Architecture Rules
+
+This document contains architectural patterns, conventions, and best practices for the `pci-kubernetes` project to guide AI assistants and developers.
+
+## Project Overview
+
+- **Language**: TypeScript
+- **Framework**: React 18
+- **Architecture**: Hexagonal Architecture with MVVM pattern
+- **State Management**: TanStack Query (React Query) for server state
+- **Form Management**: React Hook Form with Zod validation
+- **Testing**: Vitest with Testing Library
+- **Styling**: Tailwind CSS + ODS (OVH Design System)
+
+## Technical Debt
+
+This project has technical debt, and not all files follow the same patterns. We are implementing Hexagonal Architecture as defined in this file. **All new components, hooks, types, etc. MUST follow this hexagonal architecture.**
+
+## Architecture Patterns
+
+### Hexagonal Architecture Structure
+
+```
+src/
+├── domain/           # Core business logic (pure, framework-agnostic)
+│   ├── entities/     # Domain entities (types)
+│   └── services/     # Domain services (pure functions)
+├── adapters/         # Adapters for external concerns
+│   ├── api/          # API adapters (DTO → Domain mapping)
+│   └── tanstack/     # TanStack Query adapters (query keys)
+├── api/              # API layer
+│   ├── data/         # API calls
+│   └── hooks/        # TanStack Query hooks (data fetching)
+├── components/       # Generic/reusable UI components
+├── pages/            # Page components and page-specific components
+│   └── */
+│       ├── components/      # Page-specific components
+│       ├── view-models/     # View models (MVVM pattern)
+│       └── hooks/           # Page-specific hooks
+├── hooks/            # Application-level utility hooks (non-API)
+└── types/            # Generic types not related to domain
+```
+
+## Domain Layer (`src/domain/`)
+
+### Entities (`src/domain/entities/`)
+
+- Pure TypeScript types/interfaces
+- **No framework dependencies** (no React, no TanStack Query, no router)
+- Represent core business concepts
+- Use normalized data structures: `TNormalizedEntity<ID, Entity> = { byId: Map<ID, Entity>, allIds: Array<ID> }`
+
+### Services (`src/domain/services/`)
+
+- **Pure functions only** - no side effects
+- No framework dependencies
+- Handle domain entities transformations
+- Use curried functions for dependency injection pattern
+- **Services are toolboxes** that can export different types of functions:
+  - `select*` - data selectors (e.g., `selectMacroRegions`)
+  - `filter*` - filtering functions (e.g., `filterMacroRegionsByKubeRegions`)
+  - `get*` - accessors (e.g., `getMicroRegions`)
+  - `compute*` / `calculate*` - computation functions
+- Example: `getMicroRegions = (macroRegion) => (microRegionsById) => ...`
+
+**Example:**
+
+```typescript
+// ✅ Good - Pure function with currying
+export const filterMacroRegionsByKubeRegions =
+  (kubeRegions?: TKubeRegions) =>
+  (regions?: Array<TMacroRegion>): Array<TMacroRegion> => {
+    if (!kubeRegions) return regions ?? [];
+    // ... pure transformation
+  };
+
+// ❌ Bad - Has side effects or framework dependencies
+export const fetchAndFilterRegions = async (kubeRegions) => {
+  const response = await fetch(...); // Side effect!
+  return response.data;
+};
+```
+
+## Adapters Layer (`src/adapters/`)
+
+### API Adapters (`src/adapters/api/`)
+
+Transform API DTOs into Domain entities:
+
+- **DTO Types** (`dto.type.ts`): Raw API response types
+- **Mappers** (`mapper.ts`): Pure functions mapping DTO → Domain entity
+- Normalize nested API data into flat, normalized structures
+- **Mapper identity functions are acceptable** to maintain explicit separation between domain and DTO layers (architectural principle)
+
+**Example:**
+
+```typescript
+// ✅ Good - Even if identity, maintains separation
+export const mapKubeRegionsToEntity = (dto: TKubeRegionsDTO): TKubeRegions => {
+  return dto.map((region) => region);
+};
+
+// ✅ Good - Complex transformation
+export const mapProductAvailabilityToEntity = (dto: TProductAvailabilityDTO): TRegions => {
+  // Normalize and transform
+};
+```
+
+### TanStack Query Adapters (`src/adapters/tanstack/`)
+
+**Query Keys** (`src/adapters/tanstack/*/queryKeys.ts`):
+
+- **Use factory pattern ONLY for `/project/:projectId` endpoints**
+- Public endpoints (e.g., `/cloud/catalog`) can construct keys manually
+- Factory from `src/adapters/tanstack/queryKey.ts`: `queryKey(projectId, [...])`
+
+**Examples:**
+
+```typescript
+// ✅ Good - Uses factory for project-scoped endpoint
+export const productAvailabilityQueryKey = (
+  projectId: string,
+  filter: TProductAvailabilityFilter,
+) => queryKey(projectId, ['productAvailability', JSON.stringify(filter)]);
+
+// ✅ Good - Manual construction for public endpoint
+export const cloudCatalogQueryKey = (ovhSubsidiary: string) => [
+  'public',
+  'cloudCatalog',
+  ovhSubsidiary,
+];
+
+// ❌ Bad - Manual construction for project-scoped endpoint
+export const myProjectQueryKey = (projectId: string) => [
+  'project',
+  projectId,
+  'myResource',
+];
+```
+
+## Data Layer (`src/api/`)
+
+### API Functions (`src/api/data/`)
+
+- API call functions
+- Use adapters to map DTOs to domain entities
+- **Return domain entities, not DTOs**
+
+**Example:**
+
+```typescript
+export const getAvailabilityRegions = async (
+  projectId: string,
+  filter: TProductAvailabilityFilter,
+): Promise<TRegions> => {
+  const data = await v6
+    .get<TProductAvailabilityResponseDTO>(
+      `/cloud/project/${projectId}/capabilities/productAvailability`,
+      { params: filter },
+    )
+    .then(({ data }) => mapProductAvailabilityToEntity(data));
+  return data;
+};
+```
+
+### Data Hooks (`src/api/hooks/`)
+
+**Purpose**: TanStack Query hooks for data fetching and mutations
+
+**Pattern - MANDATORY for all new hooks:**
+
+```typescript
+// ✅ Good - Uses TSelectOptions generic pattern
+export const useAvailabilityRegions = <TData>({
+  select,
+}: TSelectOptions<TRegions, TData>) => {
+  const projectId = useParam('projectId');
+
+  return useQuery({
+    queryKey: productAvailabilityQueryKey(projectId, { ... }),
+    queryFn: () => getAvailabilityRegions(projectId, { ... }),
+    select,
+  });
+};
+
+// Usage in component with view model selector:
+const { data } = useAvailabilityRegions({ 
+  select: selectContinentsForView(filters) 
+});
+```
+
+**Type Definition:**
+
+```typescript
+type TSelectOptions<TEntity, TData> = {
+  select?: (data: TEntity) => TData;
+};
+```
+
+**Requirements:**
+- Accept generic type parameter `<TData>`
+- Use `TSelectOptions<TEntity, TData>` interface
+- Allow consumers to pass custom `select` functions
+- Use query keys from adapters
+
+**Anti-patterns:**
+
+```typescript
+// ❌ Bad - No select option
+export const useFlavors = (projectId: string, region: string) =>
+  useQuery({
+    queryKey: getFlavorsQueryKey(projectId, region),
+    queryFn: () => getFlavors(projectId, region),
+    // Missing select option!
+  });
+
+// ❌ Bad - Inline transformation instead of allowing custom select
+export const useData = () =>
+  useQuery({
+    select: (data) => data.map(x => x.name), // Hardcoded transformation!
+  });
+
+// ❌ Bad - No flexibility for consumers
+export const useFlavors = (projectId: string) =>
+  useQuery({
+    queryKey: flavorsQueryKey(projectId),
+    queryFn: () => getFlavors(projectId),
+    // Missing select option!
+  });
+```
+
+## MVVM Pattern - View Models (`src/pages/*/view-models/`)
+
+### Core Principle: Views Never Call Domain Directly
+
+**CRITICAL RULE**: A view (page or page-specific component) MUST NEVER call domain services directly. It MUST always go through a view model.
+
+```
+View → ViewModel → Domain
+```
+
+### View Model Purpose
+
+View models adapt domain data to view-specific formats. They serve as the intermediary between the view layer and the domain layer.
+
+**View models can export:**
+- Types (view-specific data structures)
+- Constants (view-specific configurations)
+- Functions (selectors, transformations)
+
+### View Model Pattern
+
+**File location**: `src/pages/[page-name]/view-models/[feature].viewmodel.ts`
+
+**Example:**
+
+```typescript
+// src/pages/new_v2/view-models/regions.viewmodel.ts
+
+import { selectMacroRegions } from '@/domain/services/regions.service';
+import type { TRegions, TMacroRegion } from '@/domain/entities/regions';
+
+// View-specific type
+export type TRegionForView = {
+  id: string;
+  displayName: string;
+  isAvailable: boolean;
+};
+
+// View-specific constant
+export const DEFAULT_REGION_ID = 'EU-WEST';
+
+// Selector function for TanStack Query
+export const selectRegionsForView = 
+  (filters: { deploymentMode: string }) =>
+  (data?: TRegions): Array<TRegionForView> => {
+    if (!data) return [];
+    
+    // Call domain service
+    const macroRegions = selectMacroRegions(data);
+    
+    // Transform to view format
+    return macroRegions.map((region) => ({
+      id: region.id,
+      displayName: region.name.toUpperCase(),
+      isAvailable: region.microRegions.length > 0,
+    }));
+  };
+```
+
+**Usage in component:**
+
+```typescript
+// src/pages/new_v2/components/RegionSelector.component.tsx
+
+import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
+import { selectRegionsForView, DEFAULT_REGION_ID } from '../view-models/regions.viewmodel';
+
+export const RegionSelector = () => {
+  const deploymentMode = useWatch({ name: 'deploymentMode' });
+  
+  // ✅ Good - Uses view model selector
+  const { data: regions } = useAvailabilityRegions({
+    select: selectRegionsForView({ deploymentMode }),
+  });
+
+  // ❌ Bad - Would be calling domain directly
+  // const macroRegions = selectMacroRegions(rawData); // NEVER DO THIS!
+
+  return <div>{/* render regions */}</div>;
+};
+```
+
+### View Model Rules
+
+1. **Always use selectors from view models** when calling data hooks
+2. View models can compose multiple domain services
+3. View models can add view-specific logic (formatting, filtering for UI)
+4. Keep view models pure - no side effects, no hooks
+
+## Component Patterns
+
+### Component Philosophy
+
+**Component Organization**:
+- `src/components/`: Generic, reusable components (not page-specific)
+- `src/pages/*/components/`: Page-specific components
+
+**Dumb Components**:
+- Components should be as dumb/presentational as possible
+- Only use basic React logic (rendering, event handlers, useState for local UI state)
+- **No business logic inside components**
+
+### Data Access Patterns
+
+**1. Generic Components (`src/components/`)**:
+- **MUST receive all data via props**
+- **NEVER use data fetching hooks** (no `useQuery`, no custom data hooks)
+- Can use React utility hooks: `useState`, `useEffect`, `useCallback`, `useMemo`
+- Can use `useTranslation` for i18n
+
+**Example:**
+
+```typescript
+// ✅ Good - Generic component with props
+export const PciCard = ({ 
+  title, 
+  description, 
+  isAvailable 
+}: TPciCardProps) => {
+  return <div>{title}</div>;
+};
+
+// ❌ Bad - Generic component using data hook
+export const RegionTile = ({ regionId }: TRegionTileProps) => {
+  const { data } = useStandardPlanAvailable(); // NEVER DO THIS!
+  return <div>{regionId}</div>;
+};
+```
+
+**2. Page-Specific Components (`src/pages/*/components/`)**:
+- **Avoid props drilling** - retrieve data directly via hooks or form context
+- Use data hooks with view model selectors
+- Use `useFormContext` for form data
+- Can use router hooks (`useParams`, `useNavigate`)
+
+**Example:**
+
+```typescript
+// ✅ Good - Page-specific component with hooks
+export const ClusterLocationSection = () => {
+  const { control } = useFormContext<TCreateClusterSchema>();
+  const deploymentMode = useWatch({ control, name: 'deploymentMode' });
+  
+  const { data: regions } = useAvailabilityRegions({
+    select: selectRegionsForView({ deploymentMode }),
+  });
+
+  return <div>{/* render */}</div>;
+};
+```
+
+### Form Components
+
+- Use `useFormContext<FormValues>()` to access form state
+- Avoid passing form values as props
+- Register fields: `register('shareData.name')` for nested schemas
+- Access errors: `errors.shareData?.name`
+
+**Example:**
+
+```typescript
+export const NameSection = () => {
+  const { register, formState: { errors } } = useFormContext<TFormValues>();
+  
+  return (
+    <input {...register('clusterName')} />
+    {errors.clusterName && <span>{errors.clusterName.message}</span>}
+  );
+};
+```
+
+## Hook Usage Guidelines
+
+### Hook Location: `src/hooks/` vs `src/api/hooks/`
+
+**`src/hooks/`** - Utility hooks (non-API):
+- Router hooks wrappers (`useParam`)
+- Tracking/analytics hooks (`useTrack`, `usePageTracking`)
+- Feature flags (`useFeatureAvailability`, `useStandardPlanAvailable`)
+- Form utilities (`useFormField`)
+- DOM manipulation (`useResizeOsdsModal`)
+- Translation (`useTranslation`)
+
+**`src/api/hooks/`** - Data hooks (TanStack Query):
+- All hooks using `useQuery` or `useMutation`
+- Data fetching from API
+- Cache management and invalidation
+
+**Simple rule**: Does the hook use TanStack Query (`useQuery`/`useMutation`)? → `src/api/hooks/`
+
+### When NOT to Create Hooks
+
+**Avoid custom hooks for:**
+- Business logic (use pure functions/services in `src/domain/services/`)
+- Data transformation (use selectors in view models)
+- Complex calculations (use services or view models)
+
+**Example of violation:**
+
+```typescript
+// ❌ Bad - Business logic in hook (should be in service/view model)
+export const useMergedKubeFlavors = (projectId: string, region: string) => {
+  const { data: flavors } = useFlavors(projectId, region);
+  const { data: catalog } = useCatalog();
+  
+  const merged = useMemo(() => {
+    // 80+ lines of merging, price calculations, categorization
+    // This is business logic and should be in a service!
+  }, [flavors, catalog]);
+  
+  return merged;
+};
+
+// ✅ Good - Extract to service
+// src/domain/services/flavors.service.ts
+export const mergeFlavorsWithCatalog = 
+  (catalog: TCatalog) => 
+  (flavors: TFlavors): TMergedFlavors => {
+    // Pure function with business logic
+  };
+
+// Then use in view model with data hook + select
+```
+
+### Hook Naming Conventions
+
+**Rules:**
+- Never use "Get" prefix: `useData` not `useGetData`
+- Hook name MUST match file name: `useParam.ts` exports `useParam`
+- Query key functions MUST be suffixed with `QueryKey`: `productAvailabilityQueryKey`
+
+**Examples:**
+
+```typescript
+// ✅ Good naming
+export const useCloudCatalog = () => { ... }           // File: useCloudCatalog.ts
+export const useAvailabilityRegions = () => { ... }    // File: useAvailabilityRegions.ts
+export const productAvailabilityQueryKey = () => [...] // Always *QueryKey
+
+// ❌ Bad naming
+export const useGetCloudSchema = () => { ... }         // Remove "Get"
+export const useResponsiveModal = () => { ... }        // File: useResizeOsdsModal.ts (mismatch!)
+export const getKubernetesClusterQuery = () => [...]   // Should be *QueryKey
+```
+
+## TypeScript Conventions
+
+### Never Use `any`
+
+**Always use proper types:**
+- Type assertions: `as TType` when absolutely necessary
+- Type guards for runtime checks
+- `unknown` if type is truly unknown (then narrow it)
+- Proper generic types
+- **Always use `Array<MyType>`** rather than `MyType[]` to type arrays
+
+**Examples:**
+
+```typescript
+// ✅ Good
+const result = value as TMicroRegion;
+const data: TShareCatalog = mapDTOToEntity(dto);
+const regions: Array<TMacroRegion> = [];
+
+// ❌ Bad
+const result: any = value;
+const regions: TMacroRegion[] = []; // Use Array<TMacroRegion>
+```
+
+## Data Normalization Pattern
+
+Use `Map<ID, Entity>` pattern for O(1) lookups:
+
+```typescript
+type TNormalizedEntity<ID, Entity> = {
+  byId: Map<ID, Entity>;
+  allIds: Array<ID>;
+};
+
+type TRegions = {
+  entities: {
+    macroRegions: TNormalizedEntity<TMacroRegionID, TMacroRegion>;
+    microRegions: TNormalizedEntity<TMicroRegionID, TMicroRegion>;
+  };
+  relations: {
+    planRegions: Record<TPlanCode, Array<TMacroRegionID>>;
+  };
+};
+```
+
+**Benefits**:
+- O(1) lookups by ID
+- Maintains insertion order via `allIds`
+- Easy to iterate: `allIds.map(id => byId.get(id))`
+- Create as many relations as needed
+
+## Testing Patterns
+
+### Test Structure
+
+**File Naming**: `*.spec.ts` or `*.spec.tsx`
+
+**Location**: Tests MUST be in a `__tests__` subfolder
+
+**Test Organization**:
+- Group tests by function/method using `describe`
+- Use `it.each` for multiple test cases of the same function
+- Minimize mock data - only include fields needed for the test
+- Mock child components as simply as possible
+
+### Mock Data Guidelines
+
+**Minimal Mock Data**:
+- Only include fields necessary for the test
+- Use type assertions `as TType` to create minimal mocks
+- Avoid declaring unnecessary variables/values/fields
+
+**Example**:
+
+```typescript
+// ✅ Good - Minimal mock
+const createMicroRegion = (name: string) => ({ name }) as TMicroRegion;
+
+// ❌ Bad - Full object unnecessary
+const microRegion: TMicroRegion = {
+  name: 'EU-WEST-1',
+  id: '123',
+  countryCode: 'FR',
+  continent: 'EU',
+  // ... many unnecessary fields
+};
+```
+
+### Service Tests Example
+
+```typescript
+describe('regions.service', () => {
+  describe('filterMacroRegionsByKubeRegions', () => {
+    const createMacroRegion = (id: string) => ({ id }) as TMacroRegion;
+    
+    it.each([
+      { 
+        description: 'filters regions by kube regions', 
+        kubeRegions: ['EU-WEST'], 
+        expectedIds: ['EU-WEST'] 
+      },
+      // ...
+    ])('$description', ({ kubeRegions, expectedIds }) => {
+      // test implementation
+    });
+  });
+});
+```
+
+## File Organization
+
+### Naming Conventions
+
+- **Components**: `PascalCase.component.tsx`
+- **Hooks**: `camelCase.ts` (e.g., `useCreateClusterForm.ts`)
+- **Services**: `camelCase.service.ts`
+- **Mappers**: `camelCase.mapper.ts`
+- **View Models**: `camelCase.viewmodel.ts`
+- **Types**: `camelCase.ts`
+- **Schemas**: `PascalCase.schema.ts`
+- **Tests**: `*.spec.ts` or `*.spec.tsx`
+
+### Directory Structure
+
+```
+src/
+├── domain/
+│   ├── entities/
+│   │   └── regions.ts
+│   └── services/
+│       ├── __tests__/
+│       │   └── regions.service.spec.ts
+│       └── regions.service.ts
+├── adapters/
+│   ├── api/
+│   │   └── regions/
+│   │       ├── __tests__/
+│   │       ├── dto.type.ts
+│   │       └── mapper.ts
+│   └── tanstack/
+│       ├── queryKey.ts
+│       └── regions/
+│           └── regions.queryKey.ts
+├── api/
+│   ├── data/
+│   │   ├── __tests__/
+│   │   └── regions.api.ts
+│   └── hooks/
+│       └── useRegions.ts
+├── components/
+│   └── pciCard/
+│       ├── PciCard.component.tsx
+│       └── __tests__/
+├── hooks/
+│   ├── useParam.ts
+│   └── useTrack.ts
+└── pages/
+    └── new_v2/
+        ├── components/
+        │   ├── ClusterLocationSection.component.tsx
+        │   └── __tests__/
+        ├── view-models/
+        │   ├── regions.viewmodel.ts
+        │   └── plans.viewmodel.ts
+        └── New.page.tsx
+```
+
+## Common Anti-Patterns to Avoid
+
+### ❌ Business Logic in Components
+
+```typescript
+// ❌ Bad
+export const BillingStep = () => {
+  const calculatePrice = (basePrice: number, zones = 1, optional = 0) => {
+    return zones * (basePrice + optional); // Business logic!
+  };
+  // ...
+};
+
+// ✅ Good - Extract to service
+// src/domain/services/pricing.service.ts
+export const calculatePriceWithZones = 
+  (zones: number, optionalPrice: number) =>
+  (basePrice: number): number => 
+    zones * (basePrice + optionalPrice);
+```
+
+### ❌ Generic Component Using Data Hooks
+
+```typescript
+// ❌ Bad - Generic component fetching data
+export const RegionTile = ({ regionId }: { regionId: string }) => {
+  const { data } = useStandardPlanAvailable(); // NEVER!
+  return <div>{regionId}</div>;
+};
+
+// ✅ Good - Receive via props
+export const RegionTile = ({ 
+  regionId, 
+  isStandardAvailable 
+}: TRegionTileProps) => {
+  return <div>{regionId}</div>;
+};
+```
+
+### ❌ View Calling Domain Directly
+
+```typescript
+// ❌ Bad - Component calling domain service directly
+export const RegionSelector = () => {
+  const { data: rawRegions } = useAvailabilityRegions({ select: (d) => d });
+  const filtered = selectMacroRegions(rawRegions); // NEVER call domain directly!
+  // ...
+};
+
+// ✅ Good - Use view model selector
+export const RegionSelector = () => {
+  const { data: regions } = useAvailabilityRegions({
+    select: selectRegionsForView({ deploymentMode }),
+  });
+  // ...
+};
+```
+
+### ❌ Complex Logic in Hooks
+
+```typescript
+// ❌ Bad - 80 lines of business logic in hook
+export const useMergedFlavors = () => {
+  const { data: flavors } = useFlavors();
+  const { data: catalog } = useCatalog();
+  
+  const merged = useMemo(() => {
+    // Complex merging, price calculations, categorization
+    // This belongs in a service or view model!
+  }, [flavors, catalog]);
+  
+  return merged;
+};
+
+// ✅ Good - Keep hook simple, logic in service/view model
+export const useFlavors = <TData>({ select }: TSelectOptions<TFlavors, TData>) =>
+  useQuery({
+    queryKey: flavorsQueryKey(projectId),
+    queryFn: () => getFlavors(projectId),
+    select, // Consumer provides transformation via view model
+  });
+```
+
+## Form Handling
+
+### Schema Definition (`src/pages/*/*.schema.ts`)
+
+- Use Zod for validation schemas
+- Extract reusable schemas into constants
+- Support nested schemas
+- Export TypeScript type: `type FormValues = z.infer<typeof schema>`
+
+### Form Hook Pattern
+
+```typescript
+export const useCreateClusterForm = () => {
+  return useForm<TCreateClusterSchema>({
+    resolver: zodResolver(createClusterSchema),
+    defaultValues: { /* ... */ },
+    mode: 'onChange',
+  });
+};
+```
+
+### Form Component Pattern
+
+```typescript
+export const CreateClusterForm = () => {
+  const formMethods = useCreateClusterForm();
+  return (
+    <FormProvider {...formMethods}>
+      {/* children use useFormContext */}
+    </FormProvider>
+  );
+};
+```
+
+## Dependencies
+
+Read package.json for version numbers.
+
+### Core Dependencies
+- `react`, `react-dom`
+- `@tanstack/react-query`
+- `react-hook-form`, `zod`
+- `@ovhcloud/ods-react`
+
+### Testing Dependencies
+- `vitest`
+- `@testing-library/react`
+- `@testing-library/user-event`
+
+## Key Principles for AI Assistants
+
+When working on this codebase:
+
+1. **[CRITICAL] Hexagonal Architecture**: Domain is pure, adapters handle external concerns
+2. **[CRITICAL] MVVM Pattern**: Views → ViewModels → Domain (never skip view models)
+3. **[CRITICAL] Dumb Components**: Components are presentational, logic in services/view models
+4. **[CRITICAL] Generic Components**: Never use data fetching hooks, only props
+5. **[CRITICAL] TSelectOptions**: All data hooks MUST use `TSelectOptions<TEntity, TData>` pattern
+6. **[IMPORTANT] Hook Location**: TanStack Query hooks → `src/api/hooks/`, utilities → `src/hooks/`
+7. **[IMPORTANT] Form Context**: Use `useFormContext` to avoid props drilling
+8. **[IMPORTANT] Type Safety**: Never use `any`, always proper types, prefer `Array<T>` over `T[]`
+9. **[IMPORTANT] Query Keys**: Use factory pattern only for `/project/:projectId` endpoints
+10. **Minimal Hooks**: Only for React-specific needs, not business logic
+11. **Normalized Data**: Use `Map<ID, Entity>` pattern for efficient lookups
+12. **Test Coverage**: Almost every file should be tested, use `it.each` for multiple cases
+13. **Minimize Mock Data**: Only include fields necessary for tests
+14. **Naming Conventions**: No "Get" prefix in hooks, file names match exports
+15. **Extract Business Logic**: From hooks to services/view models

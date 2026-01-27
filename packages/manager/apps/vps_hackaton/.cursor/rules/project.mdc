@@ -1,0 +1,284 @@
+---
+alwaysApply: false
+---
+# Stack Technique - PCI File Storage
+
+Ce document décrit la stack technique complète du projet `pci-file-storage` pour permettre à un agent de régénérer un repository similaire.
+
+## Stack Technique Principale
+
+### Framework et Langage
+
+- React 18.2.0 avec TypeScript 5.9.3
+- Build: Vite 7.2.2
+- Module ES avec `type: "module"`
+
+### Dépendances OVH Manager
+
+- `@ovh-ux/manager-vite-config` - Configuration Vite partagée
+- `@ovh-ux/manager-tailwind-config` - Configuration Tailwind partagée
+- `@ovh-ux/manager-static-analysis-kit` - ESLint et TSConfig
+- `@ovh-ux/manager-tests-setup` - Configuration Vitest
+- `@ovh-ux/manager-react-shell-client` - Contexte Shell OVH (auth, tracking, i18n)
+- `@ovh-ux/manager-core-api` - Client API (`v6`)
+- `@ovh-ux/muk` - Composants React réutilisables (layouts, cards)
+- `@ovh-ux/manager-common-translations` - Namespaces de traduction communs
+- `@ovh-ux/manager-config` - Configuration partagée
+- `@ovh-ux/manager-core-utils` - Utilitaires partagés
+- `@ovh-ux/manager-react-core-application` - Core application React
+- `@ovh-ux/request-tagger` - Tagging des requêtes
+- `@ovh-ux/shell` - Shell OVH
+
+### Design System
+
+- `@ovhcloud/ods-react` ~19.3.0 - Composants ODS (Text, Spinner, Divider, etc.)
+- `@ovhcloud/ods-themes` ~19.3.0 - Thèmes ODS
+
+### State Management
+
+- `@tanstack/react-query` 5.51.21 - Server state
+- `react-hook-form` 7.52.2 + `zod` 4.1.12 - Formulaires
+- `@hookform/resolvers` 3.3.4 - Intégration Zod
+
+### Routing et i18n
+
+- `react-router-dom` 6.16.0 (Hash router)
+- `i18next` 23.8.2 + `react-i18next` 14.1.0 + `i18next-http-backend` 2.4.3
+
+### Styling
+
+- Tailwind CSS 3.4.4 avec `@tailwindcss/postcss` ^4.1.17
+- Import des styles ODS: `@ovhcloud/ods-themes/default`
+- Import des styles MUK: `@ovh-ux/muk/dist/style.css`
+
+### HTTP Client
+
+- `axios` ^1.13.2
+- Utilisation de `v6` depuis `@ovh-ux/manager-core-api` pour les appels API
+
+### Testing
+
+- `vitest` 3.2.4
+- `@testing-library/react` (via `@ovh-ux/manager-tests-setup`)
+- `msw` 2.12.1 - Mock Service Worker pour les mocks API
+- `@tanstack/react-query-devtools` 5.51.21
+
+## Structure des Fichiers de Configuration
+
+### package.json
+
+- Scripts: `build`, `start`, `test`, `test:coverage`, `lint:modern`, `lint:modern:fix`
+- Champs spéciaux: `regions` (CA, EU, US), `universes` (`@ovh-ux/manager-public-cloud`)
+
+### tsconfig.json
+
+- Extends: `@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict`
+- Paths aliases: `@/*` vers `./src/*`, `@/public/*` vers `./public/*`
+- Include: `["src"]`
+- Exclude: `["node_modules", "dist", "types", "src/__tests__"]`
+
+### vite.config.mjs
+
+- Utilise `getBaseConfig()` de `@ovh-ux/manager-vite-config`
+- Configuration PostCSS avec Tailwind CSS
+
+### tailwind.config.mjs
+
+- Extends `@ovh-ux/manager-tailwind-config`
+- Content inclut: `./src/**/*.{js,jsx,ts,tsx}` et les composants MUK
+- `corePlugins.preflight: false`
+
+### eslint.config.mjs
+
+- Compose les configs de `@ovh-ux/manager-static-analysis-kit`:
+  - javascript, typescript, react, a11y, html, tailwind-jsx, tanstack, vitest, prettier
+  - complexity pour jsx/tsx et ts/js
+- Règles spéciales pour les tests (complexity désactivée)
+- Règles spéciales pour ts/tsx (tailwindcss custom classes autorisées)
+
+### vitest.config.js
+
+- Utilise `@ovh-ux/manager-tests-setup` avec `mergeConfig` et `sharedConfig`
+- Setup files: `@ovh-ux/manager-core-test-utils/src/utils/setup-test.ts`
+- Coverage exclusions: fichiers vite, App.tsx, Routes.tsx, QueryClient.ts, etc.
+- Alias: `@/public` et `@` vers les répertoires correspondants
+
+### postcss.config.js
+
+- Plugins: `tailwindcss()` et `autoprefixer`
+
+### setupTests.ts
+
+- Mock de `react-i18next` avec `useTranslation` mocké
+
+## Structure des Répertoires src/
+
+```
+src/
+├── adapters/          # Couche d'adaptation entre API et domaine
+├── components/        # Composants React réutilisables (génériques)
+├── constants/         # Constantes globales (guides, etc.)
+├── data/
+│   ├── api/           # Fonctions d'appel API (utilise @ovh-ux/manager-core-api)
+│   └── hooks/         # Hooks TanStack Query pour le data fetching
+├── domain/
+│   ├── entities/      # Types métier purs (interfaces TypeScript)
+│   └── services/      # Fonctions pures de transformation métier
+├── hooks/             # Hooks utilitaires React (non-data)
+├── pages/
+│   └── */
+│       ├── components/   # Composants spécifiques à la page
+│       ├── hooks/        # Hooks spécifiques à la page
+│       ├── schema/       # Schémas Zod pour les formulaires
+│       └── view-model/   # Sélecteurs pour transformer domain -> vue
+├── routes/            # Configuration du routing React Router
+├── types/             # Types génériques partagés
+└── utils/             # Utilitaires (tests helpers, etc.)
+```
+
+## Gestion des Traductions (i18n)
+
+### Structure des fichiers
+
+```
+public/translations/
+├── onboarding/
+│   ├── Messages_en_GB.json
+│   ├── Messages_fr_FR.json
+│   └── Messages_*.json (de_DE, es_ES, fr_CA, it_IT, pl_PL, pt_PT)
+├── create/
+│   └── Messages_*.json
+└── regions/
+    └── Messages_*.json
+```
+
+### Initialisation
+
+- `initI18n()` appelé dans `index.tsx` avec le contexte Shell
+- Namespace par défaut = `appName` (ex: `pci-file-storage`)
+- Namespaces additionnels déclarés dans `ns: ['onboarding', ...]`
+- `reloadOnLocaleChange: false`
+
+### Utilisation dans les composants
+
+```tsx
+import { useTranslation, Trans } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS]);
+
+// Clé simple
+t('onboarding:title')
+
+// Avec interpolation
+t('key', { count: 5 })
+
+// Avec composants React
+<Trans i18nKey="description" components={[<Link key="0" />]} />
+```
+
+### Convention de nommage des clés
+
+- Format: `namespace:section.key` (ex: `onboarding:guides.learn-more.title`)
+- Fichiers nommés `Messages_<locale>.json`
+- Locales supportées: en_GB, fr_FR, de_DE, es_ES, fr_CA, it_IT, pl_PL, pt_PT
+
+## Patterns Clés
+
+### Initialisation de l'application
+
+- `initShellContext(appName, trackingContext)` dans `index.tsx`
+- `initI18n({ context, reloadOnLocaleChange, defaultNS, ns })`
+- Configuration du tracking par région: `context.shell.tracking.setConfig(region, LEVEL2)`
+- Chargement optionnel de config runtime par région: `config-${region}.js`
+- Mount React avec `ReactDOM.createRoot` et `React.StrictMode`
+
+### Routing
+
+- Hash router avec `createHashRouter(createRoutesFromElements(Routes))`
+- Routes lazy-loaded avec `React.lazy()`
+- Layout pattern avec `Outlet` dans `MainLayout`
+- Synchronisation route shell avec `useRouteSynchro()`
+- Tracking des pages avec `useOvhTracking()` et `trackCurrentPage()`
+- Tagging des requêtes avec `defineCurrentPage()`
+
+### Formulaires
+
+- `FormProvider` + `useFormContext` pour éviter le props drilling
+- Schémas Zod avec `zodResolver` de `@hookform/resolvers`
+- Validation mode: `onChange`
+- Nested schemas supportés (ex: `shareData.name`)
+
+### Data Fetching
+
+- Hooks avec pattern `TSelectOptions<TEntity, TData>`
+- Query keys dans `adapters/*/queryKeys.ts`
+- Factory pattern pour les endpoints `/project/:projectId`
+- Construction manuelle pour les endpoints publics
+- `select` option pour transformer les données via view models
+
+### Tests
+
+- Vitest avec Testing Library
+- Mocks avec `vi.mock()`
+- Test wrappers avec `createProviderWrapper()` pour QueryClient et ShellContext
+- Mock de `react-i18next` dans `setupTests.ts`
+- Tests dans `__tests__/` folders
+- Utilisation de `it.each` pour les cas multiples
+
+## Conventions de Nommage
+
+### Fichiers
+
+- Composants: `PascalCase.component.tsx`
+- Hooks: `useCamelCase.ts` (le nom du hook doit correspondre au nom du fichier)
+- Services: `camelCase.service.ts`
+- Mappers: `camelCase.mapper.ts`
+- View Models: `camelCase.view-model.ts`
+- Schemas: `PascalCase.schema.ts`
+- Tests: `*.spec.ts` ou `*.spec.tsx`
+
+### Types TypeScript
+
+- Types préfixés `T`: `TShareCatalog`, `TMacroRegion`, `TDeploymentMode`
+- Arrays typés `Array<T>` plutôt que `T[]`
+- Types normalisés: `TNormalizedEntity<ID, Entity>`
+- DTO types: `TShareCatalogDTO`
+- Entity types: `TShareCatalog`
+
+### Hooks
+
+- Ne jamais utiliser le préfixe "Get": `useData` pas `useGetData`
+- Query key functions: suffixe `QueryKey` (ex: `shareCatalogQueryKey`)
+
+### Composants
+
+- PascalCase pour les noms de composants
+- Props types: `TComponentNameProps`
+
+## Points d'Attention
+
+### Design System ODS
+
+- Toujours utiliser les composants de `@ovhcloud/ods-react` pour l'UI
+- Composants disponibles: `Text`, `Spinner`, `Divider`, etc.
+- Utiliser les presets: `preset="heading-1"`, `preset="heading-2"`
+- Importer les styles ODS dans `index.scss`
+
+### Architecture Hexagonale
+
+- Domain layer (`domain/`) = pur, sans dépendances framework
+- Adapters layer (`adapters/`) = transformation DTO ↔ Domain
+- Data layer (`data/`) = appels API et hooks TanStack Query
+- View models (`pages/*/view-model/`) = transformation Domain → Vue
+
+### Patterns MVVM
+
+- Les vues ne doivent jamais appeler directement les services du domaine
+- Toujours passer par les view models pour transformer les données
+- Utiliser les sélecteurs dans les hooks TanStack Query
+
+### Composants Génériques vs Page-Specific
+
+- `src/components/`: composants génériques, reçoivent tout via props, jamais de data hooks
+- `src/pages/*/components/`: composants spécifiques, peuvent utiliser data hooks et form context
