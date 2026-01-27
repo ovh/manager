@@ -55,5 +55,7 @@
   "allDom_cancel_terminate_title": "Kündigung des Dienstes {{serviceName}} stornieren",
   "allDom_cancel_terminate_subtitle": "Möchten Sie die Kündigung des Dienstes {{serviceName}} stornieren?",
   "allDom_cancel_terminate_success": "Die Stornierung der Kündigung Ihres Dienstes {{serviceName}} wurde registriert.",
-  "allDom_cancel_terminate_error": "Die Stornierung der Kündigung Ihres Dienstes {{serviceName}} ist fehlgeschlagen."
+  "allDom_cancel_terminate_error": "Die Stornierung der Kündigung Ihres Dienstes {{serviceName}} ist fehlgeschlagen.",
+  "allDom_detail_page_renew_information_advantage": "Die Erneuerung des AllDom-Angebots verlängert Ihren Preisvorteil.",
+  "allDom_detail_page_renew_information_renew": "Die Domainnamen behalten jeweils ihre Erneuerungsmodalitäten und ihr Ablaufdatum."
 }
