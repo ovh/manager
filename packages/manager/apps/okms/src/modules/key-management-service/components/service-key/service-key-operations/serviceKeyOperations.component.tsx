@@ -1,6 +1,7 @@
-import { TileValue } from '@key-management-service/components/dashboard/tile-value/tileValue.component';
 import { useServiceKeyOperationsTranslations } from '@key-management-service/hooks/service-key/useServiceKeyOperationsTranslations';
 import { OkmsServiceKeyOperations } from '@key-management-service/types/okmsServiceKey.type';
+
+import { Text } from '@ovhcloud/ods-react';
 
 type KeyStatusProps = {
   operations: OkmsServiceKeyOperations[];
@@ -10,5 +11,5 @@ type KeyStatusProps = {
 export const ServiceKeyOperations = ({ operations }: KeyStatusProps) => {
   const translatedOperations = useServiceKeyOperationsTranslations(operations);
 
-  return <TileValue value={translatedOperations.join(', ')} />;
+  return <Text preset="span">{translatedOperations.join(', ')}</Text>;
 };
