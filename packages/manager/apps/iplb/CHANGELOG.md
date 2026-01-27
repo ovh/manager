@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.42...@ovh-ux/manager-iplb-app@3.2.43) (2026-01-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
 ## [3.2.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.41...@ovh-ux/manager-iplb-app@3.2.42) (2026-01-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-iplb-app

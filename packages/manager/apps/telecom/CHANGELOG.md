@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.22.1...@ovh-ux/manager-telecom@16.23.0) (2026-01-27)
+
+
+### Features
+
+* **eligibility.address:** update call api for test address ([3d482b4](https://github.com/ovh/manager/commit/3d482b4b89b57dfb6595b5b0dee7d1cc5783fb27)), closes [#MANAGER-20541](https://github.com/ovh/manager/issues/MANAGER-20541)
+
+
+
+
+
 ## [16.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.22.0...@ovh-ux/manager-telecom@16.22.1) (2026-01-23)
 
 

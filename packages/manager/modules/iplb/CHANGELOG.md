@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.30.0...@ovh-ux/manager-iplb@1.30.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* **iplb:** fixing the LB UDP feature availability requesting ([9cd4434](https://github.com/ovh/manager/commit/9cd4434c80749cdab9fd4e1c2c66be5a153d8917)), closes [#MANAGER-20623](https://github.com/ovh/manager/issues/MANAGER-20623)
+
+
+
+
+
 # [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.29.2...@ovh-ux/manager-iplb@1.30.0) (2025-12-18)
 
 
