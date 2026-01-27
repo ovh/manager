@@ -162,7 +162,10 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
           </section>
           <Divider className="mb-12 mt-[30px]" />
           <section className="mt-6">
-            <TenantConfigurationForm onBoundsErrorChange={setHasBoundsError} />
+            <TenantConfigurationForm
+              onBoundsErrorChange={setHasBoundsError}
+              isCreation={!isEditionMode}
+            />
           </section>
           <section className="mx-auto mt-10 flex flex-row justify-between gap-6">
             <Button

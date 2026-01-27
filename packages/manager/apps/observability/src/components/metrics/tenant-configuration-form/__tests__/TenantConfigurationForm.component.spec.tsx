@@ -365,7 +365,7 @@ describe('TenantConfigurationForm', () => {
     it('should render the configuration title', () => {
       render(
         <TestWrapper>
-          <TenantConfigurationForm />
+          <TenantConfigurationForm isCreation />
         </TestWrapper>,
       );
 
@@ -742,12 +742,145 @@ describe('TenantConfigurationForm', () => {
             maxSeries: 100,
           }}
         >
-          <TenantConfigurationForm />
+          <TenantConfigurationForm isCreation />
         </TestWrapper>,
       );
 
       // Component should still render without crashing
       expect(screen.getByTestId('text-heading2')).toBeInTheDocument();
+    });
+  });
+
+  describe('isCreation prop behavior', () => {
+    it('should set default values when isCreation is true and infrastructure is selected', async () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm isCreation />
+        </TestWrapper>,
+      );
+
+      await waitFor(() => {
+        const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+        const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+        // Default values from mockFormattedDurationSetting and mockExtraSettings
+        expect(retentionInput).toHaveValue(7); // default retention from mock
+        expect(maxSeriesInput).toHaveValue(100); // default maxSeries from mock
+      });
+    });
+
+    it('should NOT set default values when isCreation is false (edit mode)', async () => {
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '30',
+            maxSeries: 500,
+          }}
+        >
+          <TenantConfigurationForm isCreation={false} />
+        </TestWrapper>,
+      );
+
+      // Wait for any potential updates
+      await waitFor(() => {
+        const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+        const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+        // Values should remain as provided, not overwritten with defaults
+        expect(retentionInput).toHaveValue(30);
+        expect(maxSeriesInput).toHaveValue(500);
+      });
+    });
+
+    it('should preserve existing values in edit mode when isCreation is false', async () => {
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '200',
+            maxSeries: 750,
+          }}
+        >
+          <TenantConfigurationForm isCreation={false} />
+        </TestWrapper>,
+      );
+
+      await waitFor(() => {
+        const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+        const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+        // Custom values should be preserved
+        expect(retentionInput).toHaveValue(200);
+        expect(maxSeriesInput).toHaveValue(750);
+      });
+    });
+
+    it('should default isCreation to true when not provided', async () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm />
+        </TestWrapper>,
+      );
+
+      await waitFor(() => {
+        const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+        const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+        // Default values should be set (isCreation defaults to true)
+        expect(retentionInput).toHaveValue(7);
+        expect(maxSeriesInput).toHaveValue(100);
+      });
+    });
+
+    it('should allow manual changes in creation mode after defaults are set', async () => {
+      render(
+        <TestWrapper defaultValues={{ infrastructureId: 'infra-123' }}>
+          <TenantConfigurationForm isCreation />
+        </TestWrapper>,
+      );
+
+      // Wait for defaults to be set
+      await waitFor(() => {
+        expect(screen.getByTestId('quantity-input-retention-quantity')).toHaveValue(7);
+      });
+
+      // Change values manually
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+      fireEvent.change(retentionInput, { target: { value: '50' } });
+      fireEvent.change(maxSeriesInput, { target: { value: '300' } });
+
+      await waitFor(() => {
+        expect(retentionInput).toHaveValue(50);
+        expect(maxSeriesInput).toHaveValue(300);
+      });
+    });
+
+    it('should allow manual changes in edit mode', async () => {
+      render(
+        <TestWrapper
+          defaultValues={{
+            infrastructureId: 'infra-123',
+            retentionDuration: '30',
+            maxSeries: 500,
+          }}
+        >
+          <TenantConfigurationForm isCreation={false} />
+        </TestWrapper>,
+      );
+
+      const retentionInput = screen.getByTestId('quantity-input-retention-quantity');
+      const maxSeriesInput = screen.getByTestId('quantity-input-limit-quantity');
+
+      fireEvent.change(retentionInput, { target: { value: '100' } });
+      fireEvent.change(maxSeriesInput, { target: { value: '800' } });
+
+      await waitFor(() => {
+        expect(retentionInput).toHaveValue(100);
+        expect(maxSeriesInput).toHaveValue(800);
+      });
     });
   });
 });

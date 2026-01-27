@@ -23,7 +23,10 @@ import { useFormattedDurationSetting } from '@/hooks/useFormattedExtraSettings.h
 import type { TenantFormData } from '@/types/tenants.type';
 import { toRequiredLabel } from '@/utils/form.utils';
 
-export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigurationFormProps) => {
+export const TenantConfigurationForm = ({
+  onBoundsErrorChange,
+  isCreation = true,
+}: TenantConfigurationFormProps) => {
   const { t } = useTranslation(['tenants', NAMESPACES.FORM]);
   const {
     control,
@@ -79,6 +82,7 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
   // Set default values only once when setting becomes available
   useEffect(() => {
     if (
+      isCreation &&
       retentionSetting?.default.value &&
       maxSeriesSetting?.default &&
       infrastructureId &&
@@ -89,7 +93,7 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
       setValue('maxSeries', maxSeriesSetting.default);
       initializedForInfrastructureRef.current = infrastructureId;
     }
-  }, [retentionSetting, maxSeriesSetting, infrastructureId, setValue]);
+  }, [retentionSetting, maxSeriesSetting, infrastructureId, setValue, isCreation]);
 
   // Validate bounds dynamically (bounds depend on selected infrastructure)
   const retentionValue = retentionDuration ? parseInt(retentionDuration, 10) : null;
