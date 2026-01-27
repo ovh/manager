@@ -1,11 +1,18 @@
 import React, { PropsWithChildren } from 'react';
 
 import { render, screen } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { LinkCardProps, OnboardingLayoutProps } from '@ovh-ux/muk';
 
 import OnboardingPage from '../Onboarding.page';
+
+const mockNavigate = vi.fn();
+
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => mockNavigate,
+}));
 
 vi.mock('@ovh-ux/muk', () => {
   const OnboardingLayout = ({
@@ -13,61 +20,109 @@ vi.mock('@ovh-ux/muk', () => {
     img,
     description,
     children,
-  }: OnboardingLayoutProps): JSX.Element => (
-    <div data-testid="layout">
+    orderButtonLabel,
+    onOrderButtonClick,
+  }: OnboardingLayoutProps): React.ReactElement => (
+    <div>
       <h1>{title}</h1>
-      {img && <img src={img.src} alt={img.alt} data-testid="hero-img" />}
-      <div data-testid="description">{description}</div>
-      <div data-testid="children">{children}</div>
+      {img && <img src={img.src} alt={img.alt} />}
+      <div>{description}</div>
+      {orderButtonLabel && onOrderButtonClick && (
+        <button onClick={onOrderButtonClick}>{orderButtonLabel}</button>
+      )}
+      <div>{children}</div>
     </div>
   );
 
-  const LinkCard = ({ href, texts }: LinkCardProps): JSX.Element => (
-    <a href={href} data-testid="link-card">
+  const LinkCard = ({ href, texts }: LinkCardProps): React.ReactElement => (
+    <a href={href}>
       <h2>{texts.title}</h2>
       <p>{texts.description}</p>
       <span>{texts.category}</span>
     </a>
   );
 
-  const BaseLayout = ({ children }: PropsWithChildren) => <div>{children}</div>;
+  const BaseLayout = ({ children }: PropsWithChildren): React.ReactElement => <div>{children}</div>;
 
   return { OnboardingLayout, LinkCard, BaseLayout };
 });
 
 vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
-  Breadcrumb: () => <div>Breadcrumb</div>,
+  Breadcrumb: () => <nav aria-label="Breadcrumb">Breadcrumb</nav>,
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useEnvironment: () => ({
-    getUser: () => ({ ovhSubsidiary: 'FR' }),
+vi.mock('@/hooks/useGetUser', () => ({
+  useGetUser: () => ({
+    ovhSubsidiary: 'FR',
   }),
 }));
 
 describe('OnboardingPage', () => {
+  beforeEach(() => {
+    mockNavigate.mockClear();
+  });
+
   afterEach(() => {
     vi.resetModules();
   });
 
-  it('renders layout with translated title, description, hero image and link cards', () => {
-    render(<OnboardingPage />);
+  describe('rendering', () => {
+    it('renders page structure with title, breadcrumb, and order button', () => {
+      render(<OnboardingPage />);
 
-    const layout = screen.getByTestId('layout');
-    expect(layout).toBeVisible();
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('onboarding:title');
+      expect(screen.getByRole('navigation', { name: 'Breadcrumb' })).toBeVisible();
+      expect(screen.getByRole('button', { name: 'onboarding:action-button' })).toBeVisible();
+    });
 
-    const title = screen.getByRole('heading', { level: 1 });
-    expect(title).toHaveTextContent('onboarding:title');
+    it('renders all guide link cards', () => {
+      render(<OnboardingPage />);
 
-    expect(screen.getByTestId('description')).toBeVisible();
+      const links = screen.getAllByRole('link');
+      expect(links).toHaveLength(3);
+    });
+  });
 
-    const cards = screen.getAllByTestId('link-card');
-    expect(cards).toHaveLength(3);
-    expect(cards[0]).toHaveAttribute('href', 'https://labs.ovhcloud.com/en/file-storage/');
-    expect(cards[1]).toHaveAttribute(
-      'href',
-      'https://help.ovhcloud.com/csm/fr-public-cloud-storage-file-storage-service-getting-started?id=kb_article_view&sysparm_article=KB0072902',
-    );
-    expect(cards[2]).toHaveAttribute('href', 'https://discord.com/invite/ovhcloud');
+  describe('guide link cards', () => {
+    it('renders link cards with correct hrefs for FR subsidiary', () => {
+      render(<OnboardingPage />);
+
+      const links = screen.getAllByRole('link');
+
+      expect(links[0]).toHaveAttribute('href', 'https://labs.ovhcloud.com/en/file-storage/');
+      expect(links[1]).toHaveAttribute(
+        'href',
+        'https://help.ovhcloud.com/csm/fr-public-cloud-storage-file-storage-service-getting-started?id=kb_article_view&sysparm_article=KB0072902',
+      );
+      expect(links[2]).toHaveAttribute('href', 'https://discord.com/invite/ovhcloud');
+    });
+
+    it('renders link cards with correct translations', () => {
+      render(<OnboardingPage />);
+
+      expect(screen.getByText('onboarding:guides.learn-more.title')).toBeVisible();
+      expect(screen.getByText('onboarding:guides.learn-more.description')).toBeVisible();
+      expect(screen.getByText('onboarding:guides.learn-more.category')).toBeVisible();
+
+      expect(screen.getByText('onboarding:guides.get-started.title')).toBeVisible();
+      expect(screen.getByText('onboarding:guides.get-started.description')).toBeVisible();
+      expect(screen.getByText('onboarding:guides.get-started.category')).toBeVisible();
+
+      expect(screen.getByText('onboarding:guides.discord.title')).toBeVisible();
+      expect(screen.getByText('onboarding:guides.discord.description')).toBeVisible();
+      expect(screen.getByText('onboarding:guides.discord.category')).toBeVisible();
+    });
+  });
+
+  describe('user interactions', () => {
+    it('navigates to create page when order button is clicked', async () => {
+      const user = userEvent.setup();
+      render(<OnboardingPage />);
+
+      const orderButton = screen.getByRole('button', { name: 'onboarding:action-button' });
+      await user.click(orderButton);
+
+      expect(mockNavigate).toHaveBeenCalledWith('../new');
+    });
   });
 });

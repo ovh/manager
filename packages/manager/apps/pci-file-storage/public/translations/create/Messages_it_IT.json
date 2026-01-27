@@ -1,0 +1,64 @@
+{
+  "name": {
+    "title": "Nome dello share",
+    "label": "Scegli un nome per il tuo file di condivisione",
+    "info": "Deve contenere solo numeri, lettere, underscore, trattini o punti."
+  },
+  "localisation": {
+    "title": "Seleziona una posizione",
+    "deploymentMode": {
+      "title": "Filtra una modalità di distribuzione",
+      "modes": {
+        "region": {
+          "label": "Region 1-AZ",
+          "description": "Distribuzione resiliente ed economica su 1 zona di disponibilità."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Distribuzione ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità."
+        },
+        "region-3-az": {
+          "label": "Region 3-AZ",
+          "description": "Distribuzione delle tue applicazioni il più vicino possibile ai tuoi utenti per una bassa latenza e la residenza dei dati."
+        }
+      }
+    },
+    "continents": {
+      "label": "",
+      "options": {
+        "all": "Tutti",
+        "asia_oceania": "Asia Pacifica",
+        "europe": "Europa",
+        "north_africa": "Africa del Nord",
+        "north_america": "Nord America"
+      }
+    },
+    "microRegion": {
+      "title": "Seleziona un datacenter",
+      "label": "Scegli un datacenter"
+    },
+    "availabilityZone": {
+      "title": "Scegli la tua zona di disponibilità",
+      "informations": "È stata selezionata una zona di disponibilità predefinita. Hai la possibilità di personalizzare questa scelta.",
+      "choice": {
+        "company": "Scegli per me",
+        "user": "Scelgo la mia zona di disponibilità"
+      }
+    }
+  },
+  "share": {
+    "title": "Modalità di prestazione dello share",
+    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Dimensione dello share",
+    "description": "Il 5% della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
+    "label": "Allocazione delle prestazioni lineari (GB)"
+  },
+  "network": {
+    "title": "Rete privata",
+    "description": "Seleziona la rete privata a cui desideri che le tue istanze si connettano al tuo file di condivisione",
+    "label": "Seleziona una rete privata esistente",
+    "empty": "Spiacente, ma non hai una rete privata per questa regione"
+  }
+}

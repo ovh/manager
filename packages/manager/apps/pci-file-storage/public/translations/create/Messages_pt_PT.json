@@ -1,0 +1,64 @@
+{
+  "name": {
+    "title": "Nome do share",
+    "label": "Escolha um nome para o seu arquivo de partilha",
+    "info": "Deve conter apenas números, letras, underscores, hífens ou pontos."
+  },
+  "localisation": {
+    "title": "Selecione uma localização",
+    "deploymentMode": {
+      "title": "Filtre um modo de implantação",
+      "modes": {
+        "region": {
+          "label": "Região 1-AZ",
+          "description": "Implantação resiliente e económica em 1 zona de disponibilidade."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Implantação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade."
+        },
+        "region-3-az": {
+          "label": "Região 3-AZ",
+          "description": "Implantação das suas aplicações o mais próximo possível dos seus utilizadores para uma baixa latência e a residência dos dados."
+        }
+      }
+    },
+    "continents": {
+      "label": "",
+      "options": {
+        "all": "Todos",
+        "asia_oceania": "Ásia-Pacífico",
+        "europe": "Europe",
+        "north_africa": "África do Norte",
+        "north_america": "América do Norte"
+      }
+    },
+    "microRegion": {
+      "title": "Selecione um datacenter",
+      "label": "Escolha um datacenter"
+    },
+    "availabilityZone": {
+      "title": "Escolha a sua zona de disponibilidade",
+      "informations": "Uma zona de disponibilidade por defeito foi selecionada. Tem a possibilidade de personalizar esta escolha.",
+      "choice": {
+        "company": "Escolher por mim",
+        "user": "Eu escolho a minha zona de disponibilidade"
+      }
+    }
+  },
+  "share": {
+    "title": "Modo de desempenho do share",
+    "description": "Mín. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Tamanho do share",
+    "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento dos snapshots",
+    "label": "Alocação de desempenho linear (GB)"
+  },
+  "network": {
+    "title": "Rede Privada",
+    "description": "Selecione a rede privada à qual deseja que suas instâncias se conectem ao seu arquivo de compartilhamento",
+    "label": "Selecionar uma rede privada existente",
+    "empty": "Desculpe, mas você não tem uma rede privada para esta região"
+  }
+}

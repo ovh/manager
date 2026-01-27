@@ -1,21 +1,23 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Trans, useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { BaseLayout, LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
-import { GUIDES, getOnboardingLinkFor } from '@/pages/onboarding/Onboarding.guides.constants';
+import { GUIDES, getOnboardingLinkFor } from '@/constants/Guides.constants';
+import { useGetUser } from '@/hooks/useGetUser';
+import { subRoutes } from '@/routes/Routes.constants';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
-  const environment = useEnvironment();
-
-  const { ovhSubsidiary } = environment.getUser();
+  const { ovhSubsidiary } = useGetUser();
+  const navigate = useNavigate();
 
   return (
     <BaseLayout>
@@ -33,8 +35,7 @@ export default function OnboardingPage() {
           </Text>
         }
         orderButtonLabel={t('onboarding:action-button')}
-        onOrderButtonClick={() => {}}
-        orderHref="https://labs.ovhcloud.com/en/file-storage"
+        onOrderButtonClick={() => navigate(`../${subRoutes.create}`)}
       >
         {GUIDES.map(({ key, links }) => {
           return (

@@ -1,7 +1,7 @@
 {
   "title": "Testez File Storage gratuitement !",
   "description": "Besoin d'un stockage partagé pour vos clusters ou vos instances ? Notre solution File Storage pour Public Cloud entièrement managée propose des volumes NFS allant de <strong>150 Gio à 10 Tio</strong>, jusqu'à <strong>16 000 IOPS</strong> et <strong>128 Mo/s</strong>. Compatible avec <strong>Managed Kubernetes</strong> (PVCs RWX) et <strong>les instances Public Cloud</strong> (montages NFS), partagez des fichiers de manière transparente entre les nœuds, les zones et les applications, avec une tarification transparente.",
-  "action-button": "Découvrir la Beta",
+  "action-button": "Créer un share",
   "guides": {
     "learn-more": {
       "category": "Offre",
@@ -11,7 +11,7 @@
     },
     "get-started": {
       "category": "Guide",
-      "title": "Premiers Pas",
+      "title": "Premiers pas",
       "description": "Une documentation étape par étape pour vous aider à créer votre premier share.",
       "link-text": "En savoir plus"
     },
