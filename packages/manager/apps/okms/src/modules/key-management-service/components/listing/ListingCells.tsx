@@ -15,6 +15,7 @@ import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { ServiceKeyStatus } from '../service-key/service-key-status-badge/ServiceKeyStatusBadge.component';
+import { SERVICE_KEY_LIST_CELL_TEST_IDS } from './ListingCells.constants';
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
         });
         navigate(`${props?.id}`);
       }}
-      data-testid={`service-key-link-${props.id}`}
+      data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.name(props.id)}
     >
       {props?.name}
     </MukLink>
@@ -39,12 +40,22 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
 };
 
 export const DatagridServiceKeyCellId = (props: OkmsServiceKey) => {
-  return <Clipboard className="w-full" value={props.id} />;
+  return (
+    <Clipboard
+      className="w-full"
+      value={props.id}
+      data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.keyId(props.id)}
+    />
+  );
 };
 
 export const DatagridCellType = (props: OkmsServiceKey) => {
   const translatedValue = useServiceKeyTypeTranslations(props.type);
-  return <DataGridTextCell>{translatedValue}</DataGridTextCell>;
+  return (
+    <DataGridTextCell data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.type(props.id)}>
+      {translatedValue}
+    </DataGridTextCell>
+  );
 };
 
 export const DatagridCreationDate = (props: OkmsServiceKey) => {
@@ -63,11 +74,20 @@ export const DatagridCreationDate = (props: OkmsServiceKey) => {
     },
   });
 
-  return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
+  return (
+    <DataGridTextCell data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.creationDate(props.id)}>
+      {formattedDate}
+    </DataGridTextCell>
+  );
 };
 
 export const DatagridStatus = (props: OkmsServiceKey) => {
-  return <ServiceKeyStatus state={props.state} />;
+  return (
+    <ServiceKeyStatus
+      state={props.state}
+      data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.status(props.id)}
+    />
+  );
 };
 
 export const DatagridServiceKeyActionMenu = (serviceKey: OkmsServiceKey, okms: OKMS) => {
@@ -78,15 +98,18 @@ export const DatagridServiceKeyActionMenu = (serviceKey: OkmsServiceKey, okms: O
     ...action,
     id: index,
     icon: undefined,
+    'data-testid': action.buttonId,
   }));
 
   return (
-    <ActionMenu
-      id={`service-key-actions-${serviceKey.id}`}
-      isCompact
-      variant={BUTTON_VARIANT.ghost}
-      icon={ICON_NAME.ellipsisVertical}
-      items={actionsWithId}
-    />
+    <div data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.actions(serviceKey.id)}>
+      <ActionMenu
+        id={`service-key-actions-${serviceKey.id}`}
+        isCompact
+        variant={BUTTON_VARIANT.ghost}
+        icon={ICON_NAME.ellipsisVertical}
+        items={actionsWithId}
+      />
+    </div>
   );
 };
