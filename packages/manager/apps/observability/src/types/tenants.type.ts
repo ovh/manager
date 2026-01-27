@@ -41,7 +41,7 @@ export type TenantListing = {
   entryPoint: string | undefined;
   infrastructure: TenantInfrastructure | undefined;
   retention: string | undefined;
-  numberOfSeries: number | undefined;
+  numberOfSeries: string | undefined;
   tags: { [key: string]: string };
   search: string;
 } & TIdentifier;
