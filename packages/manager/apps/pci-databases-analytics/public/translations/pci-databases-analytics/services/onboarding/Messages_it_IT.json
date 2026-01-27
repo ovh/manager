@@ -1,37 +1,29 @@
 {
-  "databases.title": "Sviluppate i vostri database invece di preoccuparvi di essi.",
-  "databases.subtitle": "Con i nostri database completamente gestiti, liberatevi dai vincoli amministrativi e concentratevi sulle vostre applicazioni e prodotti.",
-  "databases.description1": "SQL, NoSQL o cache: abbiamo la soluzione. Distribuite il vostro motore di database preferito in pochi minuti con la nostra gamma di soluzioni gestite: <strong>PostgreSQL, MySQL, MongoDB e Valkey</strong>.",
-  "databases.description2": "I nostri team gestiscono l'infrastruttura, i backup e il monitoraggio in modo che possiate concentrarvi sullo sviluppo di applicazioni performanti, non sulla manutenzione dei server.",
-  "databases.description3": "Inoltre, iniziate in piccolo e scalate facilmente man mano che i vostri dati crescono, il tutto con <strong>prezzi prevedibili</strong>, <strong>sovranità dei dati</strong> e <strong>alta disponibilità</strong> integrata.",
-  "databases.createServiceButton": "Crea il tuo database gestito",
-
-  "databases.tile.quickStart.title": "Guida rapida",
-  "databases.tile.quickStart.content": "Trova tutte le guide e i tutorial per i nostri database gestiti",
-
+  "databases.title": "Sviluppa i tuoi database invece di preoccupartene.",
+  "databases.subtitle": "Con i nostri database totalmente gestiti, ti liberi dei vincoli amministrativi e ti concentri sulle tue applicazioni e servizi.",
+  "databases.description1": "SQL, NoSQL o sistemi di cache: abbiamo la soluzione. Esegui il tuo motore di database preferito in pochi minuti grazie alla nostra gamma di soluzioni gestite: <strong>PostgreSQL, MySQL, MongoDB e Valkey</strong>.",
+  "databases.description2": "I nostri team gestiscono l'infrastruttura, i backup e il monitoraggio per permetterti di concentrarti sullo sviluppo di applicazioni performanti e non sulla manutenzione dei server.",
+  "databases.description3": "Inoltre, è possibile iniziare in piccolo ed evolversi in base all'aumento dei dati, il tutto con <strong>tariffe prevedibili</strong>, <strong>sovranità dei dati</strong> e <strong>alta disponibilità</strong> integrata.",
+  "databases.createServiceButton": "Creare il tuo database gestito",
+  "databases.tile.quickStart.title": "Quick Start",
+  "databases.tile.quickStart.content": "Consulta tutte le guide e i tutorial dei nostri database gestiti",
   "databases.tile.documentation.title": "Documentazione e tutorial",
-  "databases.tile.documentation.content": "Impara a distribuire rapidamente il tuo primo database gestito.",
-
+  "databases.tile.documentation.content": "Impara ad avviare rapidamente il tuo primo database gestito.",
   "databases.tile.freeTier.title": "MongoDB Free Tier",
-  "databases.tile.freeTier.content": "Ottieni il tuo primo cluster MongoDB gestito gratuito a vita.",
-  "databases.tile.freeTier.cta": "Crea la tua istanza MongoDB in due clic",
-
-  "analytics.title": "Trasformate i vostri dati in informazioni utilizzabili, non in fonti di problemi.",
-  "analytics.subtitle": "Con i nostri motori di analisi completamente gestiti, liberatevi dai vincoli amministrativi e concentratevi sulle vostre applicazioni e prodotti.",
-  "analytics.description1": "Analizzate, cercate e monitorate i vostri dati su larga scala, senza gestire infrastrutture complesse.",
-  "analytics.description2": "Distribuite <strong>Kafka, ClickHouse, OpenSearch e Grafana</strong> in pochi minuti per ottimizzare i vostri flussi di dati, analisi e carichi di lavoro di osservabilità.",
-  "analytics.description3": "Dai dashboard alle pipeline di dati, <strong>ottenete visibilità e prestazioni</strong> mantenendo il <strong>controllo completo e la sovranità dei vostri dati</strong>.",
-  "analytics.createServiceButton": "Crea il tuo servizio di analisi gestito",
-
-  "analytics.tile.quickStart.title": "Guida rapida",
-  "analytics.tile.quickStart.content": "Impara a distribuire rapidamente le tue pipeline e dashboard gestite.",
-
+  "databases.tile.freeTier.content": "Usufruisci di un primo cluster MongoDB gestito gratuito per sempre.",
+  "databases.tile.freeTier.cta": "Creare la tua istanza MongoDB in due click",
+  "analytics.title": "Trasforma i tuoi dati in informazioni utili e non in fonte di problemi.",
+  "analytics.subtitle": "Grazie ai nostri motori di analisi totalmente gestiti, ti liberi dei vincoli amministrativi e ti concentri sulle tue applicazioni e servizi.",
+  "analytics.description1": "Analizza, ricerca e monitora i tuoi dati su larga scala, senza gestire infrastrutture complesse.",
+  "analytics.description2": "Avvia <strong>Kafka, ClickHouse, OpenSearch e Grafana</strong> in pochi minuti per ottimizzare flussi di dati, analisi e carichi di lavoro di osservabilità.",
+  "analytics.description3": "Dalle dashboard alle pipeline di dati, <strong>aumenti la visibilità e le prestazioni</strong> mantenendo il <strong>controllo totale e la sovranità dei tuoi dati</strong>.",
+  "analytics.createServiceButton": "Creare il tuo servizio di analytics gestito",
+  "analytics.tile.quickStart.title": "Quick Start",
+  "analytics.tile.quickStart.content": "Impara a creare rapidamente pipeline e dashboard gestite.",
   "analytics.tile.documentation.title": "Documentazione e tutorial",
-  "analytics.tile.documentation.content": "Trova tutte le guide e i tutorial per i nostri motori di analisi gestiti",
-
+  "analytics.tile.documentation.content": "Trova tutte le guide e i tutorial dei nostri motori Analytics gestiti",
   "analytics.tile.integrations.title": "Integrazioni",
-  "analytics.tile.integrations.content": "Collegatevi facilmente con i vostri database, Object Storage o cluster Kubernetes.",
-  "analytics.tile.integrations.cta": "Prova ora",
-
+  "analytics.tile.integrations.content": "Connettiti facilmente con i tuoi database, Object Storage o cluster Kubernetes.",
+  "analytics.tile.integrations.cta": "Prova adesso",
   "common.cardLink": "Scopri di più"
 }

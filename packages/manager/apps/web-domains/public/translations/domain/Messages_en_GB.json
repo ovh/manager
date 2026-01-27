@@ -341,6 +341,6 @@
   "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC is currently running {{action}}: you can monitor the status of your request on the Ongoing Operations page. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "enabling",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "disabling",
-  "domain_tab_general_information_subscription_edit_owner": "Edit the account holder's contact information",
+  "domain_tab_general_information_subscription_edit_owner": "Edit holder contact details",
   "domain_tab_general_information_data_protection_disabled": "The registrar for this domain name does not allow custom management of data display."
 }

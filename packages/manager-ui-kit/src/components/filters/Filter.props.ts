@@ -1,7 +1,7 @@
 import type { Filter } from '@ovh-ux/manager-core-api';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 
-export type FilterWithLabel = Filter & { label: string };
+export type FilterWithLabel = Filter & { label: string; displayValue?: string };
 
 export type ColumnFilterProps = {
   comparator: FilterComparator;
