@@ -55,5 +55,7 @@
   "allDom_cancel_terminate_title": "Anuluj rezygnację z usługi {{serviceName}}",
   "allDom_cancel_terminate_subtitle": "Czy chcesz anulować rezygnację z usługi {{serviceName}}?",
   "allDom_cancel_terminate_success": "Anulowanie rezygnacji z usługi {{serviceName}} zostało zarejestrowane",
-  "allDom_cancel_terminate_error": "Anulowanie rezygnacji z usługi {{serviceName}} nie powiodło się"
+  "allDom_cancel_terminate_error": "Anulowanie rezygnacji z usługi {{serviceName}} nie powiodło się",
+  "allDom_detail_page_renew_information_advantage": "Odnowienie oferty AllDom przedłuża Twoją przewagę cenową.",
+  "allDom_detail_page_renew_information_renew": "Nazwy domen zachowują swój sposób odnawiania i datę wygaśnięcia."
 }
