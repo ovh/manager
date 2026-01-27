@@ -30,6 +30,7 @@ export const SecretDataJsonFormField = <T extends FormFieldInput>({
         isResizable
         rows={12}
         data-testid={SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA}
+        className="font-mono [&::part(textarea)]:text-sm"
       />
     </OdsFormField>
   );
