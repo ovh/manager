@@ -12,7 +12,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
+import { TEXT_PRESET, Text, useDateFnsLocale } from '@ovh-ux/muk';
 
 import { BoundsFormFieldHelper } from '@/components/form/bounds-form-field-helper/BoundsFormFieldHelper.component';
 import { TenantConfigurationFormProps } from '@/components/metrics/tenant-configuration-form/TenantConfigurationForm.props';
@@ -22,6 +22,7 @@ import { useDynamicBoundsValidation } from '@/hooks/form/useDynamicBoundsValidat
 import { useFormattedDurationSetting } from '@/hooks/useFormattedExtraSettings.hook';
 import type { TenantFormData } from '@/types/tenants.type';
 import { toRequiredLabel } from '@/utils/form.utils';
+import { formatNumberWithLocale } from '@/utils/number.utils';
 
 export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigurationFormProps) => {
   const { t } = useTranslation(['tenants', NAMESPACES.FORM]);
@@ -32,6 +33,7 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
   } = useFormContext<TenantFormData>();
 
   const { selectedService } = useObservabilityServiceContext();
+  const dateFnsLocale = useDateFnsLocale();
 
   const infrastructureId = useWatch({
     control,
@@ -189,8 +191,8 @@ export const TenantConfigurationForm = ({ onBoundsErrorChange }: TenantConfigura
                 </QuantityControl>
               </Quantity>
               <BoundsFormFieldHelper
-                min={settingBounds.maxSeries?.min?.toString()}
-                max={settingBounds.maxSeries?.max?.toString()}
+                min={formatNumberWithLocale(settingBounds.maxSeries?.min, dateFnsLocale)}
+                max={formatNumberWithLocale(settingBounds.maxSeries?.max, dateFnsLocale)}
                 error={errors.maxSeries}
                 hasRetentionError={hasMaxSeriesError}
               />
