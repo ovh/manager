@@ -20,10 +20,10 @@ export const PRISM_CENTRAL_SIZE_S = 'small';
 export const PRISM_CENTRAL_SIZE_XS = 'xsmall';
 
 export const PRISM_CENTRAL_SIZES = [
-  { label: 'XLarge', value: PRISM_CENTRAL_SIZE_XL },
-  { label: 'Large', value: PRISM_CENTRAL_SIZE_L },
-  { label: 'Small', value: PRISM_CENTRAL_SIZE_S },
-  { label: 'Tiny', value: PRISM_CENTRAL_SIZE_XS },
+  PRISM_CENTRAL_SIZE_XL,
+  PRISM_CENTRAL_SIZE_L,
+  PRISM_CENTRAL_SIZE_S,
+  PRISM_CENTRAL_SIZE_XS,
 ];
 
 export const IPV4_REGEX = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
