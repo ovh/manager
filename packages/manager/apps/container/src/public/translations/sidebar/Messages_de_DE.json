@@ -232,7 +232,7 @@
   "sidebar_ovhcloud_backup": "OVHcloud Backup",
   "sidebar_backup_billing": "Abrechnung",
   "sidebar_backup_services": "Dienste",
-  "sidebar_backup_agent_iaas": "Backup-Agent für IaaS",
-  "sidebar_backup_agent_baremetal": "Backup-Agent",
+  "sidebar_backup_agent_iaas": "Backup Agent for IaaS",
+  "sidebar_backup_agent_baremetal": "Backup Agent",
   "sidebar_assistance_ai_chatbot": "KI-Assistent"
 }
