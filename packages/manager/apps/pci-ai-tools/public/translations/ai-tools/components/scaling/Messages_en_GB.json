@@ -21,7 +21,7 @@
   "dataLocationLabel": "Data location",
   "dataLocationInfo": "The location of the metric value inside the response payload. Value dependent on location.",
   "targetMetricValueLabel": "Metric target value",
-  "targetMetricValueInfo": "Scaling target value. When the metric provided by the API is equal to or greater than this value, it scales up. Scaling is set to 0 when the metric is less than or equal to 0. (This value can be a decimal number.)",
+  "targetMetricValueInfo": "Scaling target value. When the metric provided by the API is equal to or greater than this value, it scales up. Scaling is set to 0 when the metric is less than or equal to 0. (This value can be a decimal number)",
   "targetMetricValueMinimum": "Metric target value must be greater than 0",
   "targetMetricValueRequired": "Metric target value is required",
   "dataLocationRequired": "Data location is required",
@@ -31,5 +31,16 @@
   "aggregationTypeLabel": "Aggregation type",
   "aggregationTypeInfo": " The aggregation type to perform before comparing the aggregated metric value to the target value. For example, if you choose AVERAGE, the scaling will use the average of the metric values across all replicas of your AI Deploy application to compare with the target value.",
   "aggregationTypeRequired": "Aggregation type is required",
-  "metricUrlInvalid": "The metric URL must be a valid URL starting with http:// or https://"
+  "metricUrlInvalid": "The metric URL must be a valid URL starting with http:// or https://",
+  "scaleToZeroInputLabel": "Time before scaling to 0 (s)",
+  "scaleToZeroInputInfo": "Number of seconds before reducing from 1 to 0 replica",
+  "scaleUpDelayInputLabel": "Time before scaling up (s)",
+  "scaleUpDelayInputInfo": "Number of seconds before scaling from N to N+1 replicas",
+  "scaleDownDelayInputLabel": "Time before scaling down (s)",
+  "scaleDownDelayInputInfo": "Number of seconds before scaling from N to N-1 replicas",
+  "scaleToZeroWarningFlavor": "You have selected scaling to 0. If your app is scaled to 0 and the flavor is no longer available, we may not be able to restart your app.",
+  "scaleToZeroWarningTraffic": "The number of replicas will be reduced to 0 when your application no longer receives calls during the defined period.",
+  "replicasSectionTitle": "Number of replicas",
+  "triggerSectionTitle": "Trigger",
+  "scaleWindowSectionTitle": "Scaling window"
 }

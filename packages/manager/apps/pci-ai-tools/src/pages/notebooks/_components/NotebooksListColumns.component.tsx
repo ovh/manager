@@ -280,9 +280,9 @@ export const getColumns = ({
           {t('tableHeaderStatus')}
         </DataTable.SortableHeader>
       ),
-      cell: ({ row }) => {
-        return <NotebookStatusBadge status={row.original.status.state} />;
-      },
+      cell: ({ row }) => (
+        <NotebookStatusBadge status={row.original.status.state} />
+      ),
     },
 
     {

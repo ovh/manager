@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Button, useToast } from '@datatr-ux/uxlib';
 import { useAppData } from '../../App.context';
-import { isStoppedApp } from '@/lib/statusHelper';
+import { isDeletableApp } from '@/lib/statusHelper';
 
 const Configurations = () => {
   const { app } = useAppData();
@@ -39,7 +39,7 @@ const Configurations = () => {
         variant="destructive"
         className="w-full mt-4"
         onClick={() => navigate('./delete')}
-        disabled={!isStoppedApp(app.status.state)}
+        disabled={!isDeletableApp(app.status.state)}
       >
         {t('deleteAppButton')}
       </Button>

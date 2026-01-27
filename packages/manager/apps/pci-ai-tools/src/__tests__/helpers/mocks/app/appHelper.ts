@@ -13,6 +13,8 @@ export const mockedOrderScaling: Scaling = {
   replicasMin: 2,
   replicasMax: 100,
   replicas: 2,
+  scaleUpStabilizationWindowSeconds: 0,
+  scaleDownStabilizationWindowSeconds: 300,
 };
 
 export const mockedFixedScaling: ai.app.ScalingStrategy = {
@@ -27,5 +29,23 @@ export const mockedAutoScaling: ai.app.ScalingStrategy = {
     replicasMax: 100,
     averageUsageTarget: 75,
     resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+  },
+};
+
+type AutomaticScalingInput = ai.app.ScalingStrategyInput['automatic'] & {
+  scaleUpStabilizationWindowSeconds?: number;
+  scaleDownStabilizationWindowSeconds?: number;
+};
+
+export const mockedAutoScalingInput: ai.app.ScalingStrategyInput & {
+  automatic: AutomaticScalingInput;
+} = {
+  automatic: {
+    replicasMin: 2,
+    replicasMax: 100,
+    averageUsageTarget: 75,
+    resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
+    scaleUpStabilizationWindowSeconds: 0,
+    scaleDownStabilizationWindowSeconds: 300,
   },
 };

@@ -197,28 +197,41 @@ export function getAppSpec(
   if (formResult.scaling.autoScaling) {
     const isCustom = formResult.scaling.resourceType === ResourceType.CUSTOM;
 
+    const automaticScaling: ai.app.ScalingStrategyInput['automatic'] & {
+      cooldownPeriodSeconds?: number;
+      scaleUpStabilizationWindowSeconds?: number;
+      scaleDownStabilizationWindowSeconds?: number;
+    } = {
+      replicasMin: formResult.scaling.replicasMin,
+      replicasMax: formResult.scaling.replicasMax,
+      scaleUpStabilizationWindowSeconds:
+        formResult.scaling.scaleUpStabilizationWindowSeconds,
+      scaleDownStabilizationWindowSeconds:
+        formResult.scaling.scaleDownStabilizationWindowSeconds,
+      ...(formResult.scaling.replicasMin === 0 && {
+        cooldownPeriodSeconds: formResult.scaling.cooldownPeriodSeconds,
+      }),
+      ...((!isCustom && {
+        averageUsageTarget: formResult.scaling.averageUsageTarget,
+        resourceType: formResult.scaling
+          .resourceType as ai.app.ScalingAutomaticStrategyResourceTypeEnum,
+      }) ||
+        {}),
+      ...(isCustom && {
+        customMetrics: {
+          apiUrl: formResult.scaling.metricUrl,
+          format: formResult.scaling
+            .dataFormat as ai.app.CustomMetricsFormatEnum,
+          targetValue: formResult.scaling.targetMetricValue,
+          valueLocation: formResult.scaling.dataLocation,
+          aggregationType: formResult.scaling
+            .aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
+        },
+      }),
+    };
+
     appInfos.scalingStrategy = {
-      automatic: {
-        replicasMin: formResult.scaling.replicasMin,
-        replicasMax: formResult.scaling.replicasMax,
-        ...((!isCustom && {
-          averageUsageTarget: formResult.scaling.averageUsageTarget,
-          resourceType: formResult.scaling
-            .resourceType as ai.app.ScalingAutomaticStrategyResourceTypeEnum,
-        }) ||
-          {}),
-        ...(isCustom && {
-          customMetrics: {
-            apiUrl: formResult.scaling.metricUrl,
-            format: formResult.scaling
-              .dataFormat as ai.app.CustomMetricsFormatEnum,
-            targetValue: formResult.scaling.targetMetricValue,
-            valueLocation: formResult.scaling.dataLocation,
-            aggregationType: formResult.scaling
-              .aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
-          },
-        }),
-      },
+      automatic: automaticScaling,
     };
   } else {
     appInfos.scalingStrategy = {

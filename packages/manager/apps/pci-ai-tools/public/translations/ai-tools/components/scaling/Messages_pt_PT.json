@@ -21,7 +21,7 @@
   "dataLocationLabel": "Localização dos dados",
   "dataLocationInfo": "Localização do valor da métrica na carga útil da resposta. O valor depende da localização.",
   "targetMetricValueLabel": "Valor-alvo da métrica",
-  "targetMetricValueInfo": "Valor-alvo para a escalabilidade. Quando a métrica fornecida pela API for igual ou superior a este valor, o redimensionamento é feito para cima. Se a métrica for igual ou inferior a 0, o redimensionamento é reduzido a 0. (Este valor pode ser um número decimal.)",
+  "targetMetricValueInfo": "Valor-alvo para a escalabilidade. Quando a métrica fornecida pela API for igual ou superior a este valor, o redimensionamento é feito para cima. Se a métrica for igual ou inferior a 0, o redimensionamento é reduzido a 0. (Este valor pode ser um número decimal)",
   "targetMetricValueMinimum": "O valor-alvo da métrica deve ser superior a 0",
   "targetMetricValueRequired": "O valor-alvo da métrica é obrigatório",
   "dataLocationRequired": "A localização dos dados é obrigatória",
@@ -31,5 +31,16 @@
   "aggregationTypeLabel": "Tipo de agregação",
   "aggregationTypeInfo": " Tipo de agregação a efetuar antes de comparar o valor da métrica agregada com o valor-alvo. Por exemplo, se escolher AVERAGE, o valor comparado com o valor-alvo para o redimensionamento será a média dos valores da métrica de cada réplica da sua aplicação AI Deploy.",
   "aggregationTypeRequired": "O tipo de agregação é obrigatório",
-  "metricUrlInvalid": "O URL da métrica deve ser um URL válido que comece por http:// ou https://"
+  "metricUrlInvalid": "O URL da métrica deve ser um URL válido que comece por http:// ou https://",
+  "scaleToZeroInputLabel": "Tempo antes da escalabilidade para 0 (s)",
+  "scaleToZeroInputInfo": "Número de segundos antes da redução de 1 a 0 réplicas",
+  "scaleUpDelayInputLabel": "Tempo antes da escalabilidade para cima (s)",
+  "scaleUpDelayInputInfo": "Número de segundos antes da escalabilidade de N para N+1 réplicas",
+  "scaleDownDelayInputLabel": "Tempo antes da escalabilidade para baixo (s)",
+  "scaleDownDelayInputInfo": "Número de segundos antes da escalabilidade de N para N-1 réplicas",
+  "scaleToZeroWarningFlavor": "Você selecionou a escalabilidade para 0. Se a sua aplicação for escalada para 0 e se o flavor não estiver mais disponível, talvez não consigamos reiniciar a sua aplicação.",
+  "scaleToZeroWarningTraffic": "O número de réplicas será reduzido para 0 quando a sua aplicação não receber mais chamadas durante o período definido.",
+  "replicasSectionTitle": "Número de réplicas",
+  "triggerSectionTitle": "Gatilho",
+  "scaleWindowSectionTitle": "Janela de escalabilidade"
 }

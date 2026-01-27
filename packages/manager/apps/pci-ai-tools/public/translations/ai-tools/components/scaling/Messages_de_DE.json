@@ -21,7 +21,7 @@
   "dataLocationLabel": "Datenspeicherort",
   "dataLocationInfo": "Ort des Metrikwerts in der Payload der Antwort. Der Wert hängt vom Ort ab.",
   "targetMetricValueLabel": "Zielwert der Metrik",
-  "targetMetricValueInfo": "Zielwert für die Skalierung. Wenn die von der API bereitgestellte Metrik diesem Wert entspricht oder diesen übersteigt, wird die Skalierung nach oben ausgeführt. Wenn die Metrik kleiner oder gleich 0 ist, wird die Skalierung auf 0 reduziert. (Dieser Wert kann eine Dezimalzahl sein.)",
+  "targetMetricValueInfo": "Zielwert für die Skalierung. Wenn die von der API bereitgestellte Metrik diesem Wert entspricht oder diesen übersteigt, wird die Skalierung nach oben ausgeführt. Wenn die Metrik kleiner oder gleich 0 ist, wird die Skalierung auf 0 reduziert. (Dieser Wert kann eine Dezimalzahl sein)",
   "targetMetricValueMinimum": "Der Zielwert für die Metrik muss größer als 0 sein.",
   "targetMetricValueRequired": "Metrikzielwert erforderlich",
   "dataLocationRequired": "Datenspeicherort erforderlich",
@@ -31,5 +31,16 @@
   "aggregationTypeLabel": "Aggregationstyp",
   "aggregationTypeInfo": " Der Aggregationstyp, der vor dem Vergleichen des Werts der aggregierten Metrik mit dem Zielwert ausgeführt werden soll. Wenn Sie zum Beispiel AVERAGE wählen, ist der für das Scaling mit dem Zielwert verglichene Wert der Durchschnitt der Metrikwerte jedes Replikats Ihrer AI Deploy Anwendung",
   "aggregationTypeRequired": "Aggregationstyp erforderlich",
-  "metricUrlInvalid": "Die Metrik-URL muss eine gültige URL sein, die mit http:// oder https:// beginnt."
+  "metricUrlInvalid": "Die Metrik-URL muss eine gültige URL sein, die mit http:// oder https:// beginnt.",
+  "scaleToZeroInputLabel": "Zeit bis zur Skalierung auf 0 (s)",
+  "scaleToZeroInputInfo": "Anzahl der Sekunden vor der Reduzierung von 1 auf 0 Replikate",
+  "scaleUpDelayInputLabel": "Zeit bis zur Skalierung nach oben (s)",
+  "scaleUpDelayInputInfo": "Anzahl der Sekunden bis zur Skalierung von N auf N+1 Replikate",
+  "scaleDownDelayInputLabel": "Zeit bis zur Skalierung nach unten (s)",
+  "scaleDownDelayInputInfo": "Anzahl der Sekunden bis zur Skalierung von N auf N-1 Replikate",
+  "scaleToZeroWarningFlavor": "Sie haben die Skalierung auf 0 ausgewählt. Wenn Ihre App auf 0 skaliert wird und der Flavor nicht mehr verfügbar ist, können wir Ihre App möglicherweise nicht neu starten.",
+  "scaleToZeroWarningTraffic": "Die Anzahl der Replikate wird auf 0 reduziert, wenn Ihre Anwendung während des festgelegten Zeitraums keine Anrufe mehr erhält.",
+  "replicasSectionTitle": "Anzahl der Replikate",
+  "triggerSectionTitle": "Auslöser",
+  "scaleWindowSectionTitle": "Skalierungsfenster"
 }

@@ -122,9 +122,23 @@ describe('Data Sync Component', () => {
   });
 
   it('trigger onSuccess on summit click for automatic scaling', async () => {
+    const appAutoScaling = {
+      ...mockedAppAutoScalingGPU,
+      spec: {
+        ...mockedAppAutoScalingGPU.spec,
+        scalingStrategy: {
+          automatic: {
+            ...mockedAppAutoScalingGPU.spec.scalingStrategy?.automatic,
+            replicasMin: 2,
+            replicasMax: 6,
+          },
+        },
+      },
+    };
+
     vi.mocked(useAppData).mockReturnValue({
       projectId: 'projectId',
-      app: mockedAppAutoScalingGPU,
+      app: appAutoScaling,
       appQuery: {} as UseQueryResult<ai.app.App, AIError>,
     });
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
@@ -132,14 +146,6 @@ describe('Data Sync Component', () => {
     await waitFor(() => {
       expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
       expect(screen.getByTestId('max-rep-input')).toBeTruthy();
-    });
-
-    act(() => {
-      fireEvent.change(screen.getByTestId('max-rep-input'), {
-        target: {
-          value: 6,
-        },
-      });
     });
 
     await waitFor(() => {
