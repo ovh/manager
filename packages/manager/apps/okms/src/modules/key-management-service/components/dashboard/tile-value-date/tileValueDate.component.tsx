@@ -7,9 +7,14 @@ import { Text } from '@ovhcloud/ods-react';
 type FormattedDateProps = {
   value: string;
   options: Intl.DateTimeFormatOptions;
+  'data-testid'?: string;
 };
 
-export const TileValueDate: React.FC<FormattedDateProps> = ({ value, options }) => {
+export const TileValueDate = ({
+  value,
+  options,
+  'data-testid': dataTestId,
+}: FormattedDateProps) => {
   const date = new Date(Date.parse(value));
 
   const formattedDate = useFormattedDate({
@@ -17,5 +22,9 @@ export const TileValueDate: React.FC<FormattedDateProps> = ({ value, options }) 
     options,
   });
 
-  return <Text preset="span">{formattedDate}</Text>;
+  return (
+    <Text preset="span" data-testid={dataTestId}>
+      {formattedDate}
+    </Text>
+  );
 };
