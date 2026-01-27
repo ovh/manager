@@ -34,6 +34,7 @@
   "nutanix_redeploy_gateway_CIDR": "Gateway CIDR",
   "nutanix_redeploy_prism_central": "Prism Central :",
   "nutanix_redeploy_prism_central_type": "Type",
+  "nutanix_redeploy_prism_central_size": "Size",
   "nutanix_redeploy_prism_central_vip": "VIP",
   "nutanix_redeploy_prism_central_ip": "IPs",
   "nutanix_redeploy_replication_factor": "Facteur de réplication",
