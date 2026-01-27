@@ -53,5 +53,5 @@
   "error_message": "La tua richiesta non è andata a buon fine: {{ error }}",
   "agreement": "Firma del contratto",
   "contract_signature": "Firma del contratto",
-  "contract_signature_tooltip": "Per accedere al tuo servizio, devi accettare il contratto utente Microsoft"
+  "contract_signature_tooltip": "Per accedere al tuo servizio, è necessario accettare il contratto utente di Microsoft"
 }

@@ -6,7 +6,6 @@
   "resource_name_label": "Nom",
   "location_label": "Location",
   "region_label": "Region",
-  "buckets_label": "Nombre de buckets",
   "status_label": "Statut",
   "order_vault": "Commander un vault",
   "more_action": "Action supplémentaire"

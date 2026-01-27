@@ -5,6 +5,6 @@
   "notification_unread": "No leído",
   "no_notifications_title": "¡No tiene nada pendiente!",
   "no_notifications_description": "No hay notificaciones.",
-  "notification_sender_email_title": "Nuestras direcciones de envío de correos electrónicos están cambiando",
-  "notification_sender_email_description": "Para verificar la autenticidad de nuestras comunicaciones, consulte nuestras recomendaciones contra el phishing."
+  "notification_sender_email_title": "Nuestras direcciones de envío de emails están cambiando.",
+  "notification_sender_email_description": "Para comprobar la autenticidad de nuestras comunicaciones, consulte nuestras recomendaciones antiphishing."
 }

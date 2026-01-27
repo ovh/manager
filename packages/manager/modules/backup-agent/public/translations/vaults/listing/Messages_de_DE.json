@@ -1,13 +1,13 @@
 {
-  "home": "Startseite",
+  "home": "Start",
   "order": "Bestellen",
   "open": "Dashboard öffnen",
   "title": "Liste",
   "resource_name_label": "Name",
-  "location_label": "Miete",
+  "location_label": "Ort",
   "region_label": "Region",
   "buckets_label": "Anzahl der Buckets",
   "status_label": "Status",
-  "order_vault": "Ein Vault bestellen",
+  "order_vault": "Einen Vault bestellen",
   "more_action": "Zusätzliche Aktion"
 }

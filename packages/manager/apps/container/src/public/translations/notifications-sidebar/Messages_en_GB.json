@@ -5,6 +5,6 @@
   "notification_unread": "Unread",
   "no_notifications_title": "You are up to date!",
   "no_notifications_description": "You do not have any notifications.",
-  "notification_sender_email_title": "We’ve updated our shipping email addresses",
-  "notification_sender_email_description": "Please refer to our anti-phishing guidance to verify the authenticity of our messages."
+  "notification_sender_email_title": "We’ve updated our sender email addresses.",
+  "notification_sender_email_description": "Please refer to our anti-phishing guidance to verify that messages are genuinely from us."
 }

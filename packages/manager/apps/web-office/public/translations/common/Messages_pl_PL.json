@@ -53,5 +53,5 @@
   "error_message": "Wykonanie Twojej dyspozycji nie powiodło się. {{error}}",
   "agreement": "Podpisanie umowy",
   "contract_signature": "Podpisanie umowy",
-  "contract_signature_tooltip": "Aby uzyskać dostęp do swojej usługi, musisz zaakceptować umowę użytkownika Microsoft"
+  "contract_signature_tooltip": "Aby uzyskać dostęp do usługi, zaakceptuj umowę Microsoft"
 }

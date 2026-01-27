@@ -19,5 +19,5 @@
   "add_agent_banner_api_error": "An error occurred. Please wait a few minutes before trying again. {{errorMessage}}",
   "add_agent_error_resource_not_found": "An error occurred. Please check that the server is valid.",
   "update_agent_banner_success": "The policy modification is in progress, please wait a few seconds.",
-  "unable_edit_agent_not_enabled": "The configuration will be available once the Agent is activated."
+  "unable_edit_agent_not_enabled": "The configuration will be available once the Agent is enabled."
 }
