@@ -81,7 +81,7 @@ export const useServiceKeyActionsList = (
 
   if (okmsKey.state === OkmsServiceKeyState.active) {
     items.push({
-      name: 'deactivate_encryption_key',
+      buttonId: 'service-key-deactivate_encryption_key',
       label: t('key_management_service_service-keys_link_deactivate_key'),
       color: BUTTON_COLOR.primary,
       onClick: () => {
@@ -103,7 +103,7 @@ export const useServiceKeyActionsList = (
 
   if ([OkmsServiceKeyState.deactivated, OkmsServiceKeyState.compromised].includes(okmsKey.state)) {
     items.push({
-      name: 'reactivate_encryption_key',
+      buttonId: 'service-key-reactivate_encryption_key',
       label: t('key_management_service_service-keys_link_reactivate_key'),
       color: BUTTON_COLOR.primary,
       loading: updateIsPending,
@@ -128,7 +128,7 @@ export const useServiceKeyActionsList = (
     )
   ) {
     items.push({
-      name: 'delete_encryption_key',
+      buttonId: 'service-key-delete_encryption_key',
       label: t('key_management_service_service-keys_link_delete_key'),
       color: BUTTON_COLOR.primary,
       disabled: okmsKey?.state === OkmsServiceKeyState.active,

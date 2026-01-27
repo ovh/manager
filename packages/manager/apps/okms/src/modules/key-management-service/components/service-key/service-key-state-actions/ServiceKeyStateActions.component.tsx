@@ -18,9 +18,9 @@ const ServiceKeyStateActions = ({ okms, okmsKey }: ServiceKeyStateActionsProps) 
     <div className="mt-2 flex max-w-fit flex-col justify-start gap-3">
       {actionList.map((action) => (
         <Button
-          key={`action-list-${action.name}`}
-          id={`action-list-${action.name}`}
-          data-testid={`action-list-${action.name}`}
+          key={action.buttonId}
+          id={action.buttonId}
+          data-testid={action.buttonId}
           color={action.color}
           variant="ghost"
           size="sm"

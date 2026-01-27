@@ -41,7 +41,7 @@ export const useServiceKeyDownload = ({
   }
 
   return {
-    name: 'download_encryption_key',
+    buttonId: 'service-key-download_encryption_key',
     label: t(
       'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
     ),
