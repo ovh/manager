@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useNavigate } from 'react-router-dom';
 
 import { FormProvider, useWatch } from 'react-hook-form';
@@ -58,6 +57,7 @@ export const CreateShareForm = () => {
 
   return (
     <FormProvider {...formMethods}>
+      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={formMethods.handleSubmit(onSubmit)} className="flex w-2/3 flex-col gap-6">
         <section>
           <Text preset="heading-2">{t('create:name.title')}</Text>
