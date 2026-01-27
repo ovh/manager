@@ -150,23 +150,26 @@
   "pci_instance_creation_network_gateway_toggle_label": "Przypisz bramkę",
   "pci_instance_creation_network_gateway_price_label": "Rozmiar {{ size }} - {{ price }}",
   "pci_instance_creation_network_add_public_connectivity": {
-    "title": "Przypisz łączność publiczną",
-    "description": "<p>Przypisanie publicznego adresu IP umożliwia dostęp do twojej instancji z zewnątrz sieci OVHcloud. <span>Tworzenie floating IP odbędzie się na końcu konfiguracji.</span></p>",
-    "toggle_label": "Przypisz publiczny adres IP",
-    "basic_ip_label": "Podstawowy publiczny adres IP (powiązany z instancją) - {{ price }}",
-    "basic_ip_description": "Podstawowy publiczny adres IP to adres IP, który nie utrzymuje się dłużej niż czas życia zasobu. ",
-    "basic_ip_warning": "Aktywacja podstawowego publicznego adresu IP nie jest zgodna z bramą.",
+    "title": "Przydziel publiczną łączność",
+    "description": "<p>Przydzielenie publicznego adresu IP umożliwia dostęp do twojej instancji z zewnątrz sieci OVHcloud. <span>Tworzenie floating IP odbędzie się na końcu konfiguracji.</span></p>",
+    "toggle_label": "Przydziel publiczne IP",
+    "basic_ip_label": "Podstawowe publiczne IP (powiązane z instancją) - {{ price }}",
+    "basic_ip_description": "Podstawowe publiczne IP to adres IP, który nie utrzymuje się poza czasem życia zasobu. ",
+    "basic_ip_warning": "Aktywacja podstawowego publicznego IP nie jest zgodna z bramą.",
     "floating_ip_label": "Utwórz Floating IP (do ponownego użycia) - {{ price }}",
-    "floating_ip_description": "Rezerwacja adresu IP floating przypisuje adres do twojego projektu, aż do momentu, gdy go jawnie zwolnisz. ",
-    "floating_ip_warning": "Wybierając tę opcję, przypiszemy ci bramę o rozmiarze {{ size }}.",
+    "floating_ip_description": "Rezerwacja adresu IP floating przydziela adres do twojego projektu, aż go jawnie zwolnisz. ",
+    "floating_ip_warning": "Wybierając tę opcję, przydzielimy ci bramę o rozmiarze {{ size }}.",
     "floating_ip_create_new_label": "Utwórz nową - {{ price }}",
     "floating_ip_reuse_existing_label": "Ponownie użyj istniejącego floating IP",
-    "floating_ip_unavailable_LZ_tooltip": "Floating IP nie są dostępne w lokalnych strefach."
+    "floating_ip_unavailable_LZ_tooltip": "Floating IP nie są dostępne w localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Brama nie jest dostępna w lokalnych strefach.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Brama jest już przypisana do wybranej sieci prywatnej.",
   "pci_instance_creation_discovery_project_title": "Tryb odkrywania",
   "pci_instance_creation_discovery_project_message": "Aby zakończyć tworzenie zasobu, musisz aktywować swój projekt.",
   "pci_instance_creation_discovery_project_activate": "Włącz",
-  "pci_instance_creation_select_localization_apac_warning": "Publiczny ruch sieciowy wychodzący dla instancji jest wliczany dla wszystkich regionów, z wyjątkiem regionu Azji-Pacyfiku. W tych dwóch regionach, 1 TB/miesiąc publicznego ruchu wychodzącego jest wliczane w każdy projekt Public Cloud. <strong>Powyżej tego limitu, każdy dodatkowy GB ruchu jest obciążany kwotą 0,01 €. Publiczny ruch sieciowy przychodzący jest wliczany we wszystkich przypadkach, dla wszystkich regionów.</strong>"
+  "pci_instance_creation_select_localization_apac_warning": "Publiczny ruch sieciowy wychodzący dla instancji jest wliczany dla wszystkich regionów, z wyjątkiem regionu Azji-Pacyfiku. W tych dwóch regionach, 1 TB/miesiąc publicznego ruchu wychodzącego jest wliczane w każdy projekt Public Cloud. <strong>Powyżej tego limitu, każdy dodatkowy GB ruchu jest obciążany kwotą 0,01 €. Publiczny ruch sieciowy przychodzący jest wliczany we wszystkich przypadkach, dla wszystkich regionów.</strong>",
+  "pci_instance_creation_post_install_script_title": "Skrypt po-instalacyjny",
+  "pci_instance_creation_post_install_script_description": "Wprowadź swój skrypt po instalacji.",
+  "pci_instance_creation_post_install_script_toggle_label": "Dodaj skrypt po instalacji"
 }

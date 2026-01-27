@@ -136,7 +136,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotação 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizado",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Um backup é realizado todos os dias entre as 22h00 e as 6h00 (UTC) e a rotação mantém um histórico das {{ numEntries }} últimas entradas. Quando o novo backup é concluído, o mais antigo é eliminado.",
+    "predefined": "Um backup é realizado todos os dias entre as 22h00 e as 6h00 (UTC) e a rotação mantém um histórico das {{ numEntries }} últimas entradas. Quando o novo backup estiver concluído, o mais antigo será removido.",
     "custom": "Escolha você mesmo a programação (formato UNIX Cron), o número de rotações e as execuções máximas que deseja."
   },
   "pci_instance_creation_backup_setting_price_unit": "sem IVA/mês/GB",
@@ -154,7 +154,7 @@
     "description": "<p>A atribuição de um endereço IP público permite o acesso à sua instância a partir de fora da rede OVHcloud. <span>A criação do IP flutuante será feita no final da configuração.</span></p>",
     "toggle_label": "Atribuir um IP público",
     "basic_ip_label": "IP Público Básico (Vinculado à instância) - {{ price }}",
-    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da vida útil do recurso. ",
+    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da duração da vida do recurso. ",
     "basic_ip_warning": "A ativação do IP público básico não é compatível com um gateway.",
     "floating_ip_label": "Criar um IP Flutuante (Reutilizável) - {{ price }}",
     "floating_ip_description": "A reserva de um endereço IP flutuante atribui o endereço ao seu projeto até que você o libere explicitamente. ",
@@ -168,5 +168,8 @@
   "pci_instance_creation_discovery_project_title": "Modo descoberta",
   "pci_instance_creation_discovery_project_message": "Para concluir a criação do seu recurso, você deve ativar seu projeto.",
   "pci_instance_creation_discovery_project_activate": "Ativar",
-  "pci_instance_creation_select_localization_apac_warning": "O tráfego de rede público de saída para as instâncias está incluído para todas as regiões, exceto para a região Ásia-Pacífico. Nessas duas regiões, 1 To/mês de tráfego público de saída está incluído em cada projeto de Nuvem Pública. <strong>Além deste limite, cada Go adicional de tráfego é cobrado a 0,01 €. O tráfego de rede público de entrada está incluído em todos os casos, para todas as regiões.</strong>"
+  "pci_instance_creation_select_localization_apac_warning": "O tráfego de rede público de saída para as instâncias está incluído para todas as regiões, exceto para a região Ásia-Pacífico. Nessas duas regiões, 1 To/mês de tráfego público de saída está incluído em cada projeto de Nuvem Pública. <strong>Além deste limite, cada Go adicional de tráfego é cobrado a 0,01 €. O tráfego de rede público de entrada está incluído em todos os casos, para todas as regiões.</strong>",
+  "pci_instance_creation_post_install_script_title": "Script de pós-instalação",
+  "pci_instance_creation_post_install_script_description": "Insira seu script pós-instalação.",
+  "pci_instance_creation_post_install_script_toggle_label": "Adicionar um script pós-instalação"
 }

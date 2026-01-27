@@ -114,6 +114,7 @@ export const useForm = (projectId: string) => {
       billingType: BILLING_TYPE.Hourly,
       localBackupRotation: null,
       distantBackupLocalization: null,
+      postInstallScript: null,
     },
     mode: 'onChange',
   });

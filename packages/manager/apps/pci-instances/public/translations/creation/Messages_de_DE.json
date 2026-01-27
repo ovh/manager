@@ -157,16 +157,19 @@
     "basic_ip_description": "Eine Basis-Öffentliche IP ist eine IP-Adresse, die nicht über die Lebensdauer der Ressource hinaus besteht. ",
     "basic_ip_warning": "Die Aktivierung der Basis-Öffentlichen IP ist nicht mit einem Gateway kompatibel.",
     "floating_ip_label": "Eine Floating IP erstellen (Wiederverwendbar) - {{ price }}",
-    "floating_ip_description": "Die Reservierung einer Floating IP weist die Adresse Ihrem Projekt zu, bis Sie sie ausdrücklich freigeben. ",
+    "floating_ip_description": "Die Reservierung einer Floating IP-Adresse weist die Adresse Ihrem Projekt zu, bis Sie sie ausdrücklich freigeben. ",
     "floating_ip_warning": "Wenn Sie diese Option auswählen, weisen wir Ihnen ein Gateway der Größe {{ size }} zu.",
     "floating_ip_create_new_label": "Eine neue erstellen - {{ price }}",
     "floating_ip_reuse_existing_label": "Eine vorhandene Floating IP wiederverwenden",
-    "floating_ip_unavailable_LZ_tooltip": "Floating IPs sind in den lokalen Zonen nicht verfügbar."
+    "floating_ip_unavailable_LZ_tooltip": "Floating IPs sind in den Local Zones nicht verfügbar."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Das Gateway ist in den lokalen Zonen nicht verfügbar.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Ein Gateway ist bereits dem ausgewählten privaten Netzwerk zugewiesen.",
   "pci_instance_creation_discovery_project_title": "Entdeckungsmodus",
   "pci_instance_creation_discovery_project_message": "Um die Erstellung Ihrer Ressource abzuschließen, müssen Sie Ihr Projekt aktivieren.",
   "pci_instance_creation_discovery_project_activate": "Aktivieren",
-  "pci_instance_creation_select_localization_apac_warning": "Der ausgehende öffentliche Netzwerkverkehr für die Instanzen ist in allen Regionen enthalten, mit Ausnahme der Region Asien-Pazifik. In diesen beiden Regionen sind 1 TB/Monat an ausgehendem öffentlichem Verkehr in jedem Public Cloud-Projekt enthalten. <strong>Über dieses Kontingent hinaus wird jeder zusätzliche GB Verkehr mit 0,01 € berechnet. Der eingehende öffentliche Netzwerkverkehr ist in allen Fällen für alle Regionen enthalten.</strong>"
+  "pci_instance_creation_select_localization_apac_warning": "Der ausgehende öffentliche Netzwerkverkehr für die Instanzen ist in allen Regionen enthalten, mit Ausnahme der Region Asien-Pazifik. In diesen beiden Regionen sind 1 TB/Monat an ausgehendem öffentlichem Verkehr in jedem Public Cloud-Projekt enthalten. <strong>Über dieses Kontingent hinaus wird jeder zusätzliche GB Verkehr mit 0,01 € berechnet. Der eingehende öffentliche Netzwerkverkehr ist in allen Fällen für alle Regionen enthalten.</strong>",
+  "pci_instance_creation_post_install_script_title": "Post-Installations-Skript",
+  "pci_instance_creation_post_install_script_description": "Geben Sie Ihr Post-Installations-Skript ein.",
+  "pci_instance_creation_post_install_script_toggle_label": "Ein Post-Installations-Skript hinzufügen"
 }

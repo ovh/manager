@@ -161,12 +161,15 @@
     "floating_ip_warning": "By selecting this option, we will assign you a gateway size {{ size }}.",
     "floating_ip_create_new_label": "Create a new - {{ price }}",
     "floating_ip_reuse_existing_label": "Reuse an existing floating IP",
-    "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in localZones."
+    "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in local zones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "The Gateway is not available in localZones.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "A Gateway is already assigned to the selected private network.",
   "pci_instance_creation_discovery_project_title": "Discover mode",
   "pci_instance_creation_discovery_project_message": "To complete the creation of your resource, you need to activate your project.",
   "pci_instance_creation_discovery_project_activate": "Activate",
-  "pci_instance_creation_select_localization_apac_warning": "Public outgoing network traffic for instances is included for all regions, except for the Asia-Pacific region. In these two regions, 1 TB/month of public outgoing traffic is included in each Public Cloud project. <strong>Beyond this quota, each additional GB of traffic is charged at €0.01. Public incoming network traffic is included in all cases, for all regions.</strong>"
+  "pci_instance_creation_select_localization_apac_warning": "Public outgoing network traffic for instances is included for all regions, except for the Asia-Pacific region. In these two regions, 1 TB/month of public outgoing traffic is included in each Public Cloud project. <strong>Beyond this quota, each additional GB of traffic is charged at €0.01. Public incoming network traffic is included in all cases, for all regions.</strong>",
+  "pci_instance_creation_post_install_script_title": "Post-installation script",
+  "pci_instance_creation_post_install_script_description": "Enter your post-installation script.",
+  "pci_instance_creation_post_install_script_toggle_label": "Add a post-installation script"
 }

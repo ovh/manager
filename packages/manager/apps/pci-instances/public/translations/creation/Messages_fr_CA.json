@@ -170,5 +170,8 @@
   },
   "pci_instance_creation_discovery_project_title": "Mode découverte",
   "pci_instance_creation_discovery_project_message": "Pour terminer la création de votre ressource, vous devez activer votre projet.",
-  "pci_instance_creation_discovery_project_activate": "Activer"
+  "pci_instance_creation_discovery_project_activate": "Activer",
+  "pci_instance_creation_post_install_script_title": "Script de post-installation",
+  "pci_instance_creation_post_install_script_description": "Saisissez votre script post-installation.",
+  "pci_instance_creation_post_install_script_toggle_label": "Ajouter un script post installation"
 }
