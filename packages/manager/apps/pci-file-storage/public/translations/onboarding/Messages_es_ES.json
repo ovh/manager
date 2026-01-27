@@ -8,7 +8,7 @@
     },
     "get-started": {
       "category": "Guía",
-      "title": "Primeros Pasos",
+      "title": "Primeros pasos",
       "description": "Una documentación paso a paso para ayudarte a crear tu primer share.",
       "link-text": "Más información"
     },
@@ -21,5 +21,5 @@
   },
   "title": "¡Prueba Almacenamiento de Archivos gratis!",
   "description": "¿Necesitas un almacenamiento compartido para tus clústeres o tus instancias? Nuestra solución de Almacenamiento de Archivos para Public Cloud completamente gestionada ofrece volúmenes NFS que van de <strong>150 GiB a 10 TiB</strong>, hasta <strong>16,000 IOPS</strong> y <strong>128 MB/s</strong>. Compatible con <strong>Managed Kubernetes</strong> (PVCs RWX) y <strong>las instancias de Public Cloud</strong> (montajes NFS), comparte archivos de manera transparente entre nodos, zonas y aplicaciones, con una tarificación transparente.",
-  "action-button": "Descubrir la Beta"
+  "action-button": "Crear un share"
 }

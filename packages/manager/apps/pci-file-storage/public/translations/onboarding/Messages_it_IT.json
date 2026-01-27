@@ -8,7 +8,7 @@
     },
     "get-started": {
       "category": "Guida",
-      "title": "Primi Passi",
+      "title": "Per iniziare",
       "description": "Una documentazione passo dopo passo per aiutarti a creare il tuo primo share.",
       "link-text": "Scopri di più"
     },
@@ -21,5 +21,5 @@
   },
   "title": "Prova File Storage gratuitamente!",
   "description": "Hai bisogno di uno storage condiviso per i tuoi cluster o le tue istanze? La nostra soluzione File Storage per Public Cloud completamente gestita offre volumi NFS che vanno da <strong>150 GiB a 10 TiB</strong>, fino a <strong>16.000 IOPS</strong> e <strong>128 MB/s</strong>. Compatibile con <strong>Managed Kubernetes</strong> (PVC RWX) e <strong>le istanze Public Cloud</strong> (montaggi NFS), condividi file in modo trasparente tra nodi, zone e applicazioni, con una tariffazione trasparente.",
-  "action-button": "Scoprire la Beta"
+  "action-button": "Crea un share"
 }

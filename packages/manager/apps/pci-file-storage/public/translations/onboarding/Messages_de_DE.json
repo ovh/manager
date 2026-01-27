@@ -7,19 +7,19 @@
       "link-text": "Mehr erfahren"
     },
     "get-started": {
-      "category": "Hilfe.",
+      "category": "Leitfaden",
       "title": "Erste Schritte",
-      "description": "Eine schrittweise Dokumentation, die Ihnen hilft, Ihr erstes Share zu erstellen.",
+      "description": "Eine Schritt-für-Schritt-Dokumentation, die Ihnen hilft, Ihr erstes Share zu erstellen.",
       "link-text": "Mehr erfahren"
     },
     "discord": {
       "category": "Discord",
-      "title": "Bleiben Sie über die neuesten Nachrichten informiert.",
+      "title": "Bleiben Sie über die neuesten Nachrichten informiert",
       "description": "Treten Sie uns direkt auf #beta-file-storage bei: Stellen Sie Ihre Fragen und teilen Sie Ihr Feedback.",
       "link-text": "Mehr erfahren"
     }
   },
   "title": "Testen Sie File Storage kostenlos!",
   "description": "Benötigen Sie einen gemeinsamen Speicher für Ihre Cluster oder Instanzen? Unsere vollständig verwaltete File Storage-Lösung für Public Cloud bietet NFS-Volumes von <strong>150 GiB bis 10 TiB</strong>, bis zu <strong>16.000 IOPS</strong> und <strong>128 MB/s</strong>. Kompatibel mit <strong>Managed Kubernetes</strong> (PVCs RWX) und <strong>Public Cloud-Instanzen</strong> (NFS-Mounts), teilen Sie Dateien nahtlos zwischen Knoten, Zonen und Anwendungen, mit transparenter Preisgestaltung.",
-  "action-button": "Beta entdecken"
+  "action-button": "Ein Share erstellen"
 }
