@@ -2,7 +2,11 @@ import { useTranslation } from 'react-i18next';
 import { Badge, BadgeProps } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
 
-const AppStatusBadge = ({ status }: { status: ai.app.AppStateEnum }) => {
+const AppStatusBadge = ({
+  status,
+}: {
+  status: ai.app.AppStateEnum;
+}) => {
   const { t } = useTranslation('ai-tools/apps/status');
   let variant: BadgeProps['variant'];
   switch (status) {
@@ -12,6 +16,9 @@ const AppStatusBadge = ({ status }: { status: ai.app.AppStateEnum }) => {
     case 'QUEUED':
     case 'STOPPING':
       variant = 'warning';
+      break;
+    case ai.app.AppStateEnum.STANDBY:
+      variant = 'primary';
       break;
     case 'FAILED':
     case 'ERROR':
@@ -23,6 +30,7 @@ const AppStatusBadge = ({ status }: { status: ai.app.AppStateEnum }) => {
       variant = 'success';
       break;
     default:
+      variant = 'primary';
       break;
   }
   return (

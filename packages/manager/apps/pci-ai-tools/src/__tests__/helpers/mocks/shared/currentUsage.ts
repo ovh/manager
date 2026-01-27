@@ -1,11 +1,14 @@
-import * as billingView from '@datatr-ux/ovhcloud-types/cloud/billingView/index';
-import * as usage from '@datatr-ux/ovhcloud-types/cloud/usage/index';
+import * as billingView from '@datatr-ux/ovhcloud-types/cloud/billingView';
+import * as usage from '@datatr-ux/ovhcloud-types/cloud/usage';
+import * as order from '@datatr-ux/ovhcloud-types/order';
 
 const mockedRegionalizedResource: billingView.RegionalizedResource = {
   components: [
     {
+      id: 'component-id-1',
       name: 'regResourceName',
       quantity: { unit: billingView.UnitQuantityEnum.Minute, value: 5 },
+      resourceId: 'resource-id-1',
       totalPrice: 10,
     },
   ],
@@ -40,4 +43,9 @@ export const mockedCurrentUsage: usage.UsageCurrent = {
       type: 'ai-app',
     },
   ],
+  totalPrice: {
+    currencyCode: order.CurrencyCodeEnum.EUR,
+    text: '100 EUR',
+    value: 100,
+  },
 };

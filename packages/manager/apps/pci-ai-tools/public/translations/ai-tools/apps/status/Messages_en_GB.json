@@ -8,5 +8,6 @@
   "status-FAILED": "Failed",
   "status-ERROR": "Error",
   "status-STOPPED": "Stopped",
-  "status-RUNNING": "Running"
+  "status-RUNNING": "Running",
+  "status-STANDBY": "Standby"
 }

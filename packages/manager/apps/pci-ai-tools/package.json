@@ -13,16 +13,17 @@
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
+    "build:strict": "tsc --project tsconfig.json && vite build",
     "coverage": "vitest run --coverage",
-    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
     "test": "vitest run --pool=threads",
     "test-ui": "vitest --ui --coverage.enabled=true --pool=threads"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "^1.0.3",
-    "@datatr-ux/ovhcloud-types": "^1.0.83",
+    "@datatr-ux/ovhcloud-types": "^2.0.79",
     "@datatr-ux/uxlib": "^0.0.11-beta-8",
     "@hookform/resolvers": "5.0.1",
     "@ovh-ux/manager-config": "^8.9.0",
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@jest/globals": "29.7.0",
+    "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-tests-setup": "^0.6.2",
     "@ovh-ux/manager-vite-config": "^0.15.6",
