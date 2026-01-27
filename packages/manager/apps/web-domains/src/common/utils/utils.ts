@@ -1,6 +1,7 @@
 import { TServiceInfo } from '@/common/types/common.types';
 import { ServiceInfoContactEnum } from '@/common/enum/common.enum';
 
+
 export const findContact = (
   contacts: TServiceInfo['customer']['contacts'],
   contactType: ServiceInfoContactEnum,
