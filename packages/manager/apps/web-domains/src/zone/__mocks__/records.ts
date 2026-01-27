@@ -1,0 +1,111 @@
+import {
+  ZoneRecord,
+  ZoneRecordFieldType,
+  PaginatedZoneRecords,
+  DomainZoneRecordsResponse,
+} from '@/zone/types/zoneRecords.types';
+
+export const zoneRecordsMock: ZoneRecord[] = [
+  {
+    fieldType: 'A',
+    id: '1',
+    subDomain: 'www',
+    subDomainToDisplay: 'www',
+    ttl: 3600,
+    target: '192.168.1.1',
+    targetToDisplay: '192.168.1.1',
+    zone: 'example.com',
+    zoneToDisplay: 'example.com',
+  },
+  {
+    fieldType: 'AAAA',
+    id: '2',
+    subDomain: 'www',
+    subDomainToDisplay: 'www',
+    ttl: 3600,
+    target: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+    targetToDisplay: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+    zone: 'example.com',
+    zoneToDisplay: 'example.com',
+  },
+  {
+    fieldType: 'MX',
+    id: '3',
+    subDomain: '',
+    subDomainToDisplay: '',
+    ttl: 3600,
+    target: '10 mail.example.com',
+    targetToDisplay: '10 mail.example.com',
+    zone: 'example.com',
+    zoneToDisplay: 'example.com',
+  },
+  {
+    fieldType: 'CNAME',
+    id: '4',
+    subDomain: 'blog',
+    subDomainToDisplay: 'blog',
+    ttl: 3600,
+    target: 'example.com',
+    targetToDisplay: 'example.com',
+    zone: 'example.com',
+    zoneToDisplay: 'example.com',
+  },
+  {
+    fieldType: 'TXT',
+    id: '5',
+    subDomain: '',
+    subDomainToDisplay: '',
+    ttl: 3600,
+    target: 'v=spf1 include:_spf.example.com ~all',
+    targetToDisplay: 'v=spf1 include:_spf.example.com ~all',
+    zone: 'example.com',
+    zoneToDisplay: 'example.com',
+  },
+  {
+    fieldType: 'NS',
+    id: '6',
+    subDomain: '',
+    subDomainToDisplay: '',
+    ttl: 3600,
+    target: 'ns1.example.com',
+    targetToDisplay: 'ns1.example.com',
+    zone: 'example.com',
+    zoneToDisplay: 'example.com',
+  },
+];
+
+export const fieldsTypesMock: ZoneRecordFieldType[] = [
+  'A',
+  'AAAA',
+  'CAA',
+  'CNAME',
+  'DKIM',
+  'DMARC',
+  'DNAME',
+  'HTTPS',
+  'LOC',
+  'MX',
+  'NAPTR',
+  'NS',
+  'RP',
+  'SPF',
+  'SRV',
+  'SSHFP',
+  'SVCB',
+  'TLSA',
+  'TXT',
+];
+
+export const paginatedZoneRecordsMock: PaginatedZoneRecords = {
+  count: zoneRecordsMock.length,
+  pagination: [0, 15, 30],
+  records: {
+    results: zoneRecordsMock,
+  },
+};
+
+export const domainZoneRecordsResponseMock: DomainZoneRecordsResponse = {
+  fieldsTypes: fieldsTypesMock,
+  fullRecordsIdsList: zoneRecordsMock.map((record) => parseInt(record.id, 10)),
+  paginatedZone: paginatedZoneRecordsMock,
+};

@@ -16,9 +16,8 @@ describe('CreationDate component', () => {
       { wrapper },
     );
 
-    expect(
-      screen.getByTestId('navigation-action-trigger-action'),
-    ).toBeInTheDocument();
+    const actionButtons = screen.getAllByTestId('navigation-action-trigger-action-popover');
+    expect(actionButtons.length).toBeGreaterThan(0);
   });
 
   it('renders populated state with creation date information', async () => {

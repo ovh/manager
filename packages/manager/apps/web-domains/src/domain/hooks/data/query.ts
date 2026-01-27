@@ -56,6 +56,7 @@ import {
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import { ApiError } from '@ovh-ux/manager-core-api';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -83,7 +84,7 @@ export const useGetDomainZone = (
   return {
     domainZone: data,
     isFetchingDomainZone: isLoading,
-    domainZoneError: error,
+    domainZoneError: error as ApiError,
   };
 };
 

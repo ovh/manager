@@ -65,7 +65,7 @@ export default function DsRecordsForm({
           })}
         />
         <FormFieldError className="text-sm">
-          {t(errors.keyTag?.message.toString())}
+          {errors.keyTag?.message ? t(String(errors.keyTag.message)) : null}
         </FormFieldError>
       </FormField>
 
@@ -116,7 +116,7 @@ export default function DsRecordsForm({
           })}
         />
         <FormFieldError className="text-sm">
-          {t(errors.publicKey?.message.toString())}
+          {errors.publicKey?.message ? t(String(errors.publicKey.message)) : null}
         </FormFieldError>
       </FormField>
     </section>

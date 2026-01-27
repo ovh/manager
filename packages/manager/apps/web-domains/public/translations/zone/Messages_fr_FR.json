@@ -3,10 +3,20 @@
   "zone_page_description_2": "Vous avez également la possibilité de configurer ces entrées pour relier votre domaine à vos différents services (bouton « ajouter une entrée »).",
   "zone_page_actions": "Actions sur ma zone",
   "zone_page_add_entry": "Ajouter une entrée",
+  "zone_page_activate_zone": "Activer ma zone",
+  "zone_page_modify_entry": "Modifier l'entrée",
+  "zone_page_delete_entry": "Supprimer l'entrée",
   "zone_page_modify_textual": "Modifier en mode textuel",
   "zone_page_modify_default_ttl": "Modifier le TTL par défaut",
   "zone_page_view_history": "Voir l'historique de ma zone DNS",
   "zone_page_reset": "Réinitialiser ma zone DNS",
+
   "zone_page_guide_button_edit_label": "Comment éditer ma zone DNS ?",
-  "zone_page_guide_button_history_label": "Gérer l'historique d'une zone DNS"
+  "zone_page_guide_button_history_label": "Gérer l'historique d'une zone DNS",
+  "zone_page_subdomain": "Domaine",
+  "zone_page_ttl": "TTL",
+  "zone_page_target": "Cible",
+  "zone_page_type": "Type",
+  "zone_page_error_message": "Une erreur est survenue lors de la récupération des informations de la zone : {{message}}",
+  "zone_page_message_no_zone":"Vous n'avez pas de zone DNS rattachée à ce domaine."
 }
