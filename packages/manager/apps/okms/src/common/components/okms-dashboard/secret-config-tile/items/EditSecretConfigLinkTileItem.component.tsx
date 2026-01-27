@@ -10,6 +10,8 @@ import { Tile } from '@ovh-ux/muk';
 import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
+import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
+
 type EditSecretConfigTileItemProps = { okms: OKMS };
 
 export const EditSecretConfigLinkTileItem = ({ okms }: EditSecretConfigTileItemProps) => {
@@ -21,6 +23,7 @@ export const EditSecretConfigLinkTileItem = ({ okms }: EditSecretConfigTileItemP
     <Tile.Item.Root>
       <MukLink
         type={MukLinkType.next}
+        data-testid={SECRET_CONFIG_TILE_TEST_IDS.editSecretConfigLink}
         onClick={() => {
           navigate(SECRET_MANAGER_ROUTES_URLS.okmsUpdateSecretConfigDrawer(okms.id));
           trackClick({
