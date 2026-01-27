@@ -37,7 +37,11 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
         <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_name')} />
         <Tile.Item.Description>
           <div className="flex items-center justify-between gap-2">
-            <Text className="max-w-1/2 overflow-hidden text-ellipsis" preset="paragraph">
+            <Text
+              className="max-w-1/2 overflow-hidden text-ellipsis"
+              preset="paragraph"
+              data-testid={SERVICE_KEY_TEST_IDS.displayName}
+            >
               {serviceKey.name}
             </Text>
             <Button
@@ -66,20 +70,28 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
       <Tile.Item.Root>
         <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_id')} />
         <Tile.Item.Description>
-          <Clipboard className="w-full" value={serviceKey.id} />
+          <Clipboard
+            className="w-full"
+            value={serviceKey.id}
+            data-testid={SERVICE_KEY_TEST_IDS.keyId}
+          />
         </Tile.Item.Description>
       </Tile.Item.Root>
       <Tile.Item.Root>
         <Tile.Item.Term label={URN_LABEL} />
         <Tile.Item.Description>
-          <Clipboard className="w-full" value={serviceKey.iam.urn} />
+          <Clipboard
+            className="w-full"
+            value={serviceKey.iam.urn}
+            data-testid={SERVICE_KEY_TEST_IDS.urn}
+          />
         </Tile.Item.Description>
       </Tile.Item.Root>
       <Tile.Item.Root>
         <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_state')} />
         <Tile.Item.Description>
           <div>
-            <ServiceKeyStatus state={serviceKey.state} />
+            <ServiceKeyStatus state={serviceKey.state} data-testid={SERVICE_KEY_TEST_IDS.status} />
             <ServiceKeyStateActions okms={kms} okmsKey={serviceKey} />
           </div>
         </Tile.Item.Description>
@@ -89,18 +101,20 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
           label={t('key_management_service_service-keys_dashboard_field_created_at')}
         />
         <Tile.Item.Description divider={false}>
-          <TileValueDate
-            value={serviceKey.createdAt}
-            options={{
-              hour12: false,
-              year: 'numeric',
-              month: 'numeric',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-              second: 'numeric',
-            }}
-          />
+          <div data-testid={SERVICE_KEY_TEST_IDS.creationDate}>
+            <TileValueDate
+              value={serviceKey.createdAt}
+              options={{
+                hour12: false,
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+              }}
+            />
+          </div>
         </Tile.Item.Description>
       </Tile.Item.Root>
     </Tile.Root>
