@@ -15,6 +15,13 @@ vi.mock('@/utils/duration.utils', () => ({
   formatObservabilityDuration: vi.fn((duration: string) => `formatted-${duration}`),
 }));
 
+// Mock formatNumberWithLocale to return a predictable value
+vi.mock('@/utils/number.utils', () => ({
+  formatNumberWithLocale: vi.fn((value: number | undefined) =>
+    value !== undefined ? `formatted-${value}` : undefined,
+  ),
+}));
+
 describe('tenants.utils', () => {
   describe('mapTenantsToListing', () => {
     const mockDateFnsLocale = { code: 'en-US' } as Locale;
@@ -108,7 +115,7 @@ describe('tenants.utils', () => {
           entryPoint: 'sbg1.metrics.ovh.com',
           endpoint: undefined,
           retention: 'formatted-180d',
-          numberOfSeries: 222,
+          numberOfSeries: 'formatted-222',
           resourceStatus: 'READY',
           tags: expectedTags,
           search: `Tenant 1 sbg1.metrics.ovh.com formatted-180d 222 ${expectedTagsStr}`,
@@ -335,7 +342,7 @@ describe('tenants.utils', () => {
           entryPoint: 'mimir.m2c.ovh.net',
           endpoint: undefined,
           retention: 'formatted-30d',
-          numberOfSeries: 100,
+          numberOfSeries: 'formatted-100',
           resourceStatus: 'READY',
           tags: expectedFirstTags,
           search: `First Tenant mimir.m2c.ovh.net formatted-30d 100 team:alpha`,
@@ -347,7 +354,7 @@ describe('tenants.utils', () => {
           entryPoint: undefined,
           endpoint: undefined,
           retention: 'formatted-7d',
-          numberOfSeries: 50,
+          numberOfSeries: 'formatted-50',
           resourceStatus: 'READY',
           tags: expectedSecondTags,
           search: `Second Tenant  formatted-7d 50 team:beta;env:test`,
@@ -390,12 +397,12 @@ describe('tenants.utils', () => {
       {
         description: 'zero value',
         numberOfSeries: 0,
-        expected: 0,
+        expected: 'formatted-0',
       },
       {
         description: 'positive value',
         numberOfSeries: 100,
-        expected: 100,
+        expected: 'formatted-100',
       },
     ])(
       'should handle max_global_series_per_user with $description',

@@ -6,11 +6,13 @@ import { useTranslation } from 'react-i18next';
 import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useDateFnsLocale } from '@ovh-ux/muk';
 
 import { InformationFormProps } from '@/components/form/information-form/InformationForm.props';
 import { TextField } from '@/components/form/text-field/TextField.component';
 import type { TenantFormData } from '@/types/tenants.type';
 import { toRequiredLabel } from '@/utils/form.utils';
+import { formatNumberWithLocale } from '@/utils/number.utils';
 import { DESCRIPTION_MAX_CHARS } from '@/utils/schemas/description.schema';
 import { TITLE_MAX_CHARS, TITLE_MIN_CHARS } from '@/utils/schemas/title.schema';
 
@@ -24,6 +26,8 @@ export const InformationForm = ({
     control,
     formState: { errors },
   } = useFormContext<TenantFormData>();
+
+  const dateFnsLocale = useDateFnsLocale();
 
   const infrastructureId = useWatch({
     control,
@@ -78,7 +82,9 @@ export const InformationForm = ({
               onBlur={field.onBlur}
               error={errors.description?.message}
               isDisabled={!infrastructureId}
-              helper={t(`${NAMESPACES.FORM}:error_max_chars`, { value: DESCRIPTION_MAX_CHARS })}
+              helper={t(`${NAMESPACES.FORM}:error_max_chars`, {
+                value: formatNumberWithLocale(DESCRIPTION_MAX_CHARS, dateFnsLocale),
+              })}
             />
           )}
         />
