@@ -23,6 +23,7 @@ import BillingChoice from '../BillingChoice.component';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
 import { useMemo } from 'react';
 import Backup from '../Backup.component';
+import PostInstallScript from '../PostInstallScript.component';
 
 const quantityHintParams = {
   quota: 1,
@@ -91,6 +92,7 @@ export const CreateInstanceForm = () => {
           {microRegion && <Backup microRegion={microRegion} />}
           <Divider spacing="64" />
           <Network />
+          <PostInstallScript />
           {billingTypes.length > 1 && (
             <BillingChoice billingTypes={billingTypes} />
           )}
