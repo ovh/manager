@@ -1,3 +1,5 @@
+
+import '@/common/setupTests';
 import React from 'react';
 import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach, Mock } from 'vitest';
@@ -45,60 +47,6 @@ vi.mock('react-i18next', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Badge: ({
-    children,
-    color,
-    'data-testid': testId,
-  }: {
-    children: React.ReactNode;
-    color: string;
-    'data-testid': string;
-  }) => (
-    <div data-testid={testId} data-color={color}>
-      {children}
-    </div>
-  ),
-  Skeleton: () => <div data-testid="skeleton" />,
-  Icon: ({ name, className }: { name: string; className: string }) => (
-    <span data-testid={`icon-${name}`} className={className}>
-      {name}
-    </span>
-  ),
-  Text: ({ children }: { children?: React.ReactNode }) => (
-    <span data-testid="text">{children}</span>
-  ),
-  Tooltip: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="tooltip">{children}</div>
-  ),
-  TooltipTrigger: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="tooltip-trigger">{children}</div>
-  ),
-  TooltipContent: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="tooltip-content">{children}</div>
-  ),
-  ICON_NAME: {
-    circleQuestion: 'circle-question',
-  },
-  BADGE_COLOR: {
-    alpha: 'alpha',
-    beta: 'beta',
-    critical: 'critical',
-    information: 'information',
-    neutral: 'neutral',
-    success: 'success',
-    warning: 'warning',
-  },
-  TEXT_PRESET: {
-    paragraph: 'paragraph',
-  },
-}));
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="datagrid-text-cell">{children}</div>
-  ),
-}));
 
 describe('DatagridColumnRenewFrequency', () => {
   const mockServiceName = 'test-domain.com';
@@ -235,7 +183,7 @@ describe('DatagridColumnRenewFrequency', () => {
     expect(screen.getByTestId('tooltip')).toBeInTheDocument();
     expect(screen.getByTestId('tooltip-trigger')).toBeInTheDocument();
     expect(screen.getByTestId('tooltip-content')).toBeInTheDocument();
-    expect(screen.getByTestId('icon-circle-question')).toBeInTheDocument();
+    expect(screen.getByTestId('question-circle-icon-Manual renewal tooltip')).toBeInTheDocument();
   });
 
   it('should not show tooltip for automatic mode', () => {

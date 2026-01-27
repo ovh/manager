@@ -5,6 +5,8 @@ import {
   screen,
   fireEvent,
   waitFor,
+  act,
+  within,
 } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -16,24 +18,34 @@ import { DrawerActionEnum } from '@/common/enum/common.enum';
 const mocks = vi.hoisted(() => ({
   getHostnameErrorMessageMock: vi.fn(),
   getIpsErrorMessageMock: vi.fn(),
-  tranformIpsStringToArrayMock: vi.fn((value: string) =>
-    value
+  tranformIpsStringToArrayMock: vi.fn((value: string | undefined) => {
+    if (!value) return [];
+    return value
       .split(',')
       .map((v) => v.trim())
-      .filter((v) => v !== ''),
-  ),
+      .filter((v) => v !== '');
+  }),
 }));
 
 vi.mock('@/domain/utils/utils', () => ({
   makeHostValidators: vi.fn((hostsTargetSpec, serviceName, t) => ({
-    custom: (value: string) =>
+    noDuplicate: (value: string) =>
+      mocks.getHostnameErrorMessageMock(value, serviceName, hostsTargetSpec) ||
+      true,
+    validSyntax: (value: string) =>
       mocks.getHostnameErrorMessageMock(value, serviceName, hostsTargetSpec) ||
       true,
   })),
-  makeIpsValidator: vi.fn((ipsSupported) => (value: string) => {
-    const ipsArray = mocks.tranformIpsStringToArrayMock(value);
-    return mocks.getIpsErrorMessageMock(ipsArray, ipsSupported) || true;
-  }),
+  makeIpsValidator: vi.fn((ipsSupported) => ({
+    noDuplicate: (value: string) => {
+      const ipsArray = mocks.tranformIpsStringToArrayMock(value);
+      return mocks.getIpsErrorMessageMock(ipsArray, ipsSupported) || true;
+    },
+    validIps: (value: string) => {
+      const ipsArray = mocks.tranformIpsStringToArrayMock(value);
+      return mocks.getIpsErrorMessageMock(ipsArray, ipsSupported) || true;
+    },
+  })),
   transformIpsStringToArray: mocks.tranformIpsStringToArrayMock,
 }));
 
@@ -44,8 +56,9 @@ type FormValues = {
 
 function FormWrapper({ children }: PropsWithChildren) {
   const methods = useForm<FormValues>({
-    mode: 'onChange',
+    mode: 'all',
     defaultValues: { host: '', ips: '' },
+    criteriaMode: 'all',
   });
 
   return <FormProvider {...methods}>{children}</FormProvider>;
@@ -74,12 +87,13 @@ const {
 describe('HostForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    tranformIpsStringToArrayMock.mockImplementation((value: string) =>
-      value
+    tranformIpsStringToArrayMock.mockImplementation((value: string | undefined) => {
+      if (!value) return [];
+      return value
         .split(',')
         .map((v) => v.trim())
-        .filter((v) => v !== ''),
-    );
+        .filter((v) => v !== '');
+    });
   });
 
   it('renders host and ips inputs', () => {
@@ -99,9 +113,12 @@ describe('HostForm', () => {
     renderHostForm();
 
     const [hostInput] = screen.getAllByRole('textbox');
+    const hostField = hostInput.closest('[data-testid="form-field"]') as HTMLElement;
 
-    fireEvent.change(hostInput, { target: { value: 'bad-host' } });
-    fireEvent.blur(hostInput);
+    await act(async () => {
+      fireEvent.change(hostInput, { target: { value: 'bad-host' } });
+      fireEvent.blur(hostInput);
+    });
 
     await waitFor(() => {
       expect(getHostnameErrorMessageMock).toHaveBeenCalledWith(
@@ -111,11 +128,13 @@ describe('HostForm', () => {
       );
     });
 
-    expect(
-      await screen.findByText(
+    await waitFor(() => {
+      const errorElement = within(hostField).getByTestId('form-field-error');
+      expect(errorElement).toBeInTheDocument();
+      expect(errorElement).toHaveTextContent(
         'domain_tab_hosts_drawer_add_invalid_host_format',
-      ),
-    ).toBeInTheDocument();
+      );
+    });
   });
 
   it('does not validate hostname in Modify mode and input is readonly', () => {
@@ -134,9 +153,12 @@ describe('HostForm', () => {
     renderHostForm();
 
     const [, ipsInput] = screen.getAllByRole('textbox');
+    const ipsField = ipsInput.closest('[data-testid="form-field"]') as HTMLElement;
 
-    fireEvent.change(ipsInput, { target: { value: 'not-an-ip' } });
-    fireEvent.blur(ipsInput);
+    await act(async () => {
+      fireEvent.change(ipsInput, { target: { value: 'not-an-ip' } });
+      fireEvent.blur(ipsInput);
+    });
 
     await waitFor(() => {
       expect(getIpsErrorMessageMock).toHaveBeenCalledWith(
@@ -145,9 +167,13 @@ describe('HostForm', () => {
       );
     });
 
-    expect(
-      await screen.findByText('domain_tab_hosts_drawer_add_invalid_ips_format'),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      const errorElement = within(ipsField).getByTestId('form-field-error');
+      expect(errorElement).toBeInTheDocument();
+      expect(errorElement).toHaveTextContent(
+        'domain_tab_hosts_drawer_add_invalid_ips_format',
+      );
+    });
   });
 
   it('shows warning message when ips list is not empty', async () => {
@@ -155,7 +181,9 @@ describe('HostForm', () => {
 
     const [, ipsInput] = screen.getAllByRole('textbox');
 
-    fireEvent.change(ipsInput, { target: { value: '1.2.3.4' } });
+    await act(async () => {
+      fireEvent.change(ipsInput, { target: { value: '1.2.3.4' } });
+    });
 
     await waitFor(() => {
       expect(
