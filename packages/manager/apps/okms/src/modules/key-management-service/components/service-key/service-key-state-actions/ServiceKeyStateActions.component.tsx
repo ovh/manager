@@ -20,6 +20,7 @@ const ServiceKeyStateActions = ({ okms, okmsKey }: ServiceKeyStateActionsProps) 
         <Button
           key={`action-list-${action.name}`}
           id={`action-list-${action.name}`}
+          data-testid={`action-list-${action.name}`}
           color={action.color}
           variant="ghost"
           size="sm"
