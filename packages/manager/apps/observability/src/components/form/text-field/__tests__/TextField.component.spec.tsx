@@ -147,8 +147,10 @@ vi.mock('@ovhcloud/ods-react', () => ({
   }),
 }));
 
-// Mock MUK components (only Text)
-vi.mock('@ovh-ux/muk', () => ({}));
+// Mock MUK hook
+vi.mock('@ovh-ux/muk', () => ({
+  useDateFnsLocale: () => ({ code: 'en-US' }),
+}));
 
 describe('TextField', () => {
   const defaultProps: TextFieldProps = {
