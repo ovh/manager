@@ -130,8 +130,9 @@ vi.mock('@/utils/labels.constants', () => ({
 describe('ServiceGeneralInformation', () => {
   const defaultProps = {
     title: 'My Service',
+    resourceName: 'service-123',
     iam: {
-      id: 'service-123',
+      id: 'iam-id-123',
       urn: 'urn:service:123',
     },
     createdAt: '2024-01-15T10:30:00Z',
@@ -192,7 +193,7 @@ describe('ServiceGeneralInformation', () => {
       expect(screen.getByText('My Service')).toBeInTheDocument();
     });
 
-    it('should display service ID in clipboard', () => {
+    it('should display resource name in ID clipboard', () => {
       render(<ServiceGeneralInformation {...defaultProps} />);
 
       const clipboards = screen.getAllByTestId('clipboard');
@@ -299,8 +300,17 @@ describe('ServiceGeneralInformation', () => {
       render(<ServiceGeneralInformation {...defaultProps} iam={undefined} />);
 
       const clipboards = screen.getAllByTestId('clipboard');
-      expect(clipboards[0]).not.toHaveAttribute('data-value');
+      // First clipboard uses resourceName, so it should still have a value
+      expect(clipboards[0]).toHaveAttribute('data-value', 'service-123');
+      // Second clipboard uses iam.urn, so it should not have a value
       expect(clipboards[1]).not.toHaveAttribute('data-value');
+    });
+
+    it('should handle undefined resourceName gracefully', () => {
+      render(<ServiceGeneralInformation {...defaultProps} resourceName={undefined} />);
+
+      const clipboards = screen.getAllByTestId('clipboard');
+      expect(clipboards[0]).not.toHaveAttribute('data-value');
     });
 
     it('should handle undefined title gracefully', () => {

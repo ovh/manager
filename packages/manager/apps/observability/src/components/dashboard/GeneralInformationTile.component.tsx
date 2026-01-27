@@ -59,7 +59,7 @@ export const GeneralInformationTile = ({
         <Tile.Item.Term label={LABELS.ID} />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
-            <Clipboard className="w-full" value={iam?.id} />
+            <Clipboard className="w-full" value={tenantId} />
           </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>

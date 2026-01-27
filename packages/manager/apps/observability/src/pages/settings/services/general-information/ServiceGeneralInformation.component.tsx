@@ -24,6 +24,7 @@ import { LABELS } from '@/utils/labels.constants';
 
 export const ServiceGeneralInformation = ({
   title,
+  resourceName,
   iam,
   createdAt,
   isLoading,
@@ -71,7 +72,7 @@ export const ServiceGeneralInformation = ({
         <Tile.Item.Term label={LABELS.ID} />
         <Tile.Item.Description>
           <SkeletonWrapper isLoading={isLoading}>
-            <Clipboard className="w-full" value={iam?.id} />
+            <Clipboard className="w-full" value={resourceName} />
           </SkeletonWrapper>
         </Tile.Item.Description>
       </Tile.Item.Root>

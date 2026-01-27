@@ -21,6 +21,7 @@ export default function ServicesPage() {
         <ServiceGeneralInformation
           title={title}
           iam={selectedService?.iam}
+          resourceName={selectedService?.id}
           resourceStatus={selectedService?.resourceStatus}
           createdAt={selectedService?.createdAt}
           isLoading={isLoading}
