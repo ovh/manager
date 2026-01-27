@@ -6,8 +6,11 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { describe, expect, it, vi } from 'vitest';
 
+import { BUTTON_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
+
 import { renderHookWithClient } from '@/common/utils/tests/testUtils';
 
+import { ServiceKeyAction } from './service-key.type';
 import { useServiceKeyActionsList } from './useServiceKeyActionsList';
 
 const okmsItemMock = okmsRoubaix1Mock;
@@ -54,7 +57,7 @@ vi.mock('./useServiceKeyDownload', () => ({
       return undefined;
     }
     return {
-      name: 'download_encryption_key',
+      buttonId: 'service-key-download_encryption_key',
       label:
         'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
       loading: false,
@@ -90,26 +93,26 @@ describe('useServiceKeyActionsList', () => {
       },
       expectedActions: [
         {
-          name: 'download_encryption_key',
+          buttonId: 'service-key-download_encryption_key',
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: 'primary',
+          color: BUTTON_COLOR.primary,
           disabled: false,
-          icon: 'download',
-        },
+          icon: ICON_NAME.download,
+        } satisfies Partial<ServiceKeyAction>,
         {
-          name: 'deactivate_encryption_key',
+          buttonId: 'service-key-deactivate_encryption_key',
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: 'primary',
-          icon: 'lock-close',
-        },
+          color: BUTTON_COLOR.primary,
+          icon: ICON_NAME.lockClose,
+        } satisfies Partial<ServiceKeyAction>,
         {
-          name: 'delete_encryption_key',
+          buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: 'primary',
+          color: BUTTON_COLOR.primary,
           disabled: true,
-          icon: 'trash',
-        },
+          icon: ICON_NAME.trash,
+        } satisfies Partial<ServiceKeyAction>,
       ],
     },
     {
@@ -121,26 +124,26 @@ describe('useServiceKeyActionsList', () => {
       },
       expectedActions: [
         {
-          name: 'download_encryption_key',
+          buttonId: 'service-key-download_encryption_key',
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: 'primary',
+          color: BUTTON_COLOR.primary,
           disabled: true,
-          icon: 'download',
-        },
+          icon: ICON_NAME.download,
+        } satisfies Partial<ServiceKeyAction>,
         {
-          name: 'reactivate_encryption_key',
+          buttonId: 'service-key-reactivate_encryption_key',
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: 'primary',
-          icon: 'refresh',
-        },
+          color: BUTTON_COLOR.primary,
+          icon: ICON_NAME.refresh,
+        } satisfies Partial<ServiceKeyAction>,
         {
-          name: 'delete_encryption_key',
+          buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: 'primary',
+          color: BUTTON_COLOR.primary,
           disabled: false,
-          icon: 'trash',
-        },
+          icon: ICON_NAME.trash,
+        } satisfies Partial<ServiceKeyAction>,
       ],
     },
     {
@@ -152,26 +155,26 @@ describe('useServiceKeyActionsList', () => {
       },
       expectedActions: [
         {
-          name: 'download_encryption_key',
+          buttonId: 'service-key-download_encryption_key',
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: 'primary',
+          color: BUTTON_COLOR.primary,
           disabled: true,
-          icon: 'download',
-        },
+          icon: ICON_NAME.download,
+        } satisfies Partial<ServiceKeyAction>,
         {
-          name: 'reactivate_encryption_key',
+          buttonId: 'service-key-reactivate_encryption_key',
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: 'primary',
-          icon: 'refresh',
-        },
+          color: BUTTON_COLOR.primary,
+          icon: ICON_NAME.refresh,
+        } satisfies Partial<ServiceKeyAction>,
         {
-          name: 'delete_encryption_key',
+          buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: 'primary',
+          color: BUTTON_COLOR.primary,
           disabled: false,
-          icon: 'trash',
-        },
+          icon: ICON_NAME.trash,
+        } satisfies Partial<ServiceKeyAction>,
       ],
     },
     {
@@ -192,18 +195,18 @@ describe('useServiceKeyActionsList', () => {
       },
       expectedActions: [
         {
-          name: 'deactivate_encryption_key',
+          buttonId: 'service-key-deactivate_encryption_key',
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: 'primary',
-          icon: 'lock-close',
-        },
+          color: BUTTON_COLOR.primary,
+          icon: ICON_NAME.lockClose,
+        } satisfies Partial<ServiceKeyAction>,
         {
-          name: 'delete_encryption_key',
+          buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: 'primary',
+          color: BUTTON_COLOR.primary,
           disabled: true,
-          icon: 'trash',
-        },
+          icon: ICON_NAME.trash,
+        } satisfies Partial<ServiceKeyAction>,
       ],
     },
   ];
