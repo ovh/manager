@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.180.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.4...@ovh-ux/manager-container-app@0.180.0) (2026-01-27)
+
+
+### Bug Fixes
+
+* **container:** sort alphabetically translations ([d8ad953](https://github.com/ovh/manager/commit/d8ad9532e460472afb81a55831a1cee2ac113490)), closes [#MANAGER-20633](https://github.com/ovh/manager/issues/MANAGER-20633)
+* **i18n:** add missing translations [CDS 1047] ([b38943b](https://github.com/ovh/manager/commit/b38943b73c2d1e69bd64c12a6a62d9bf8a70c751))
+
+
+### Features
+
+* **container:** implement ai chatbot federated module ([85caf1d](https://github.com/ovh/manager/commit/85caf1d7b42805149fb1f665c323a4d107920dc3)), closes [#MANAGER-20633](https://github.com/ovh/manager/issues/MANAGER-20633)
+
+
+
+
+
 ## [0.179.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.3...@ovh-ux/manager-container-app@0.179.4) (2026-01-27)
 
 
