@@ -6,6 +6,7 @@ import { Tile, useDateFnsLocale } from '@ovh-ux/muk';
 
 import { ConfigurationTileProps } from '@/components/dashboard/ConfigurationTile.props';
 import { formatObservabilityDuration } from '@/utils/duration.utils';
+import { formatNumberWithLocale } from '@/utils/number.utils';
 
 export const ConfigurationTile = ({
   retention,
@@ -39,7 +40,9 @@ export const ConfigurationTile = ({
           {isLoading ? (
             <Skeleton />
           ) : (
-            <Text preset={TEXT_PRESET.span}>{numberOfSeriesMaximum}</Text>
+            <Text preset={TEXT_PRESET.span}>
+              {formatNumberWithLocale(numberOfSeriesMaximum, dateFnsLocale)}
+            </Text>
           )}
         </Tile.Item.Description>
       </Tile.Item.Root>
