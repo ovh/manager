@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.180.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.0...@ovh-ux/manager-container-app@0.180.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* **container:** fix backup agent translation ([cd5f2e0](https://github.com/ovh/manager/commit/cd5f2e079d49f20edaa8c7584e29ea535350b3cf)), closes [#BKP-773](https://github.com/ovh/manager/issues/BKP-773)
+
+
+
+
+
 # [0.180.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.4...@ovh-ux/manager-container-app@0.180.0) (2026-01-27)
 
 
