@@ -6679,16 +6679,6 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
-"@ovh-ux/logs-to-customer@^1.10.7":
-  version "1.10.7"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/logs-to-customer/-/logs-to-customer-1.10.7.tgz#c5d893d57bfb7e78f92f3fda5c0f2b93e73ed46d"
-  integrity sha512-82Q3txy40CFxdFCQlwMEliGmGdTkBtm2zm3FEakPBo0yWeZQ3MIDMVi/IbKyIpJuYp2gz5kzq6wNPJ+X9NFwBQ==
-
-"@ovh-ux/manager-common-translations@^0.22.2":
-  version "0.22.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.22.2.tgz#4543cd343e2b893ebf417a920e55895cec0b56a9"
-  integrity sha512-eQVXnmDZifWB3JoE/+uPbk4O8y/L/IcRqexQVx2OEU4apJg/OYl/mFqFnwt4SK/HqXnq6v+00dQPMLNYUBVk8g==
-
 "@ovh-ux/manager-common-translations@^0.23.0":
   version "0.23.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.23.2.tgz#71f4812de2400a5897159a18bb9d7f5f3a05fd30"
@@ -6833,19 +6823,6 @@
     "@ovh-ux/url-builder" "^2.0.4"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
-
-"@ovh-ux/muk@0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/muk/-/muk-0.9.0.tgz#873f3d0146c78dd06d20730b8291dcd85311f14d"
-  integrity sha512-6LT51Tj49MDaJ5FBxu/FrXKWWKi2suFquYD7yrdxHbAqJ/qIdMy8eVJNG7MI6yJdiJwZW3fjBrwD+dV5Xekf/w==
-  dependencies:
-    clsx "^2.1.1"
-    dompurify "^3.2.6"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    sass "1.93.0"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
 
 "@ovh-ux/muk@^0.12.0":
   version "0.12.0"
@@ -16255,7 +16232,7 @@ element-internals-polyfill@^1.3.12:
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-1.3.12.tgz#4a9464a15f2d50a36c7e21e0c40aeed30fb8efb0"
   integrity sha512-KW1k+cMGwXlx3X9nqhgmuElAfR/c/ccFt0pG4KpwK++Mx9Y+mPExxJW+jgQnqux/NQrJejgOxxg4Naf3f6y67Q==
 
-element-internals-polyfill@^3.0.0, element-internals-polyfill@^3.0.1:
+element-internals-polyfill@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-3.0.1.tgz#46e69c38c87313d9863fa4ec949517c26ca3beb5"
   integrity sha512-gHt0mrRy/y7VIymHIcq1U/IZOci3Z8qUy/YyMBSoSIfMHqO4v6Sm6igGpoFeljroo0Q2wjkInUafB79M6WAocQ==
@@ -25435,11 +25412,6 @@ react-hook-form@^7.54.2:
   version "7.54.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.54.2.tgz#8c26ed54c71628dff57ccd3c074b1dd377cfb211"
   integrity sha512-eHpAUgUjWbZocoQYUHposymRb4ZP6d0uwUnooL2uOybA9/3tPUvoAKqEWK1WaSiTxxOfTpffNZP7QwlnM3/gEg==
-
-react-hook-form@^7.55.0:
-  version "7.56.0"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.56.0.tgz#2ab5911a959f0173f4194849615d73a4fff39390"
-  integrity sha512-U2QQgx5z2Y8Z0qlXv3W19hWHJgfKdWMz0O/osuY+o+CYq568V2R/JhzC6OAXfR8k24rIN0Muan2Qliaq9eKs/g==
 
 react-hook-form@^7.56.1:
   version "7.56.1"
