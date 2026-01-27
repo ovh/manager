@@ -1,16 +1,11 @@
-import React from 'react';
+import '@/common/setupTests';
+
 import { render, screen } from '@/common/utils/test.provider';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import DatagridColumnDns from './DatagridColumnDns';
 import { TNameServerWithType } from '@/domain/types/domainResource';
 import { wrapper } from '@/common/utils/test.provider';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="datagrid-text-cell">{children}</div>
-  ),
-}));
 
 const createMockNameServer = (nameServer: string): TNameServerWithType => ({
   ipv4: null,

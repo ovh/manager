@@ -12,122 +12,12 @@ import FreeHostingDrawer from './FreeHostingDrawer';
 import { FreeHostingOptions } from './Hosting';
 import { TInitialOrderFreeHosting } from '@/domain/types/hosting';
 
-interface MockDrawerProps {
-  children: React.ReactNode;
-  open: boolean;
-  onOpenChange: (detail: { open: boolean }) => void;
-}
-
-interface MockComponentProps {
-  children?: React.ReactNode;
-  className?: string;
-}
-
-interface MockButtonProps extends MockComponentProps {
-  onClick?: () => void;
-  disabled?: boolean;
-  variant?: string;
-}
-
-interface MockCheckboxProps extends MockComponentProps {
-  onCheckedChange?: (detail: { checked: boolean }) => void;
-  checked?: boolean;
-  disabled?: boolean;
-}
-
-interface MockTextProps extends MockComponentProps {
-  preset?: string;
-}
-
-interface MockLinkProps extends MockComponentProps {
-  href?: string;
-  target?: string;
-}
-
-interface MockIconProps {
-  name: string;
-}
-
 interface MockPriceCardProps {
   title?: string;
   checked?: boolean;
   disabled?: boolean;
   footer?: React.ReactNode;
 }
-
-vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
-  return {
-    ...actual,
-    Drawer: ({ children, open, onOpenChange }: MockDrawerProps) =>
-      open ? (
-        <div data-testid="drawer" data-open={open}>
-          {typeof onOpenChange === 'function' && (
-            <button
-              data-testid="drawer-close-trigger"
-              onClick={() => onOpenChange({ open: false })}
-            >
-              Close Drawer
-            </button>
-          )}
-          {children}
-        </div>
-      ) : null,
-    DrawerContent: ({ children }: MockComponentProps) => (
-      <div data-testid="drawer-content">{children}</div>
-    ),
-    DrawerBody: ({ children, className }: MockComponentProps) => (
-      <div data-testid="drawer-body" className={className}>
-        {children}
-      </div>
-    ),
-    Button: ({ children, onClick, disabled, variant }: MockButtonProps) => (
-      <button
-        data-testid={`button-${variant}`}
-        onClick={onClick}
-        disabled={disabled}
-      >
-        {children}
-      </button>
-    ),
-    Card: ({ children, className }: MockComponentProps) => (
-      <div data-testid="card" className={className}>
-        {children}
-      </div>
-    ),
-    Checkbox: ({
-      children,
-      onCheckedChange,
-      checked,
-      disabled,
-    }: MockCheckboxProps) => (
-      <div data-testid="checkbox">
-        <input
-          type="checkbox"
-          onChange={(e) => onCheckedChange?.({ checked: e.target.checked })}
-          checked={checked}
-          disabled={disabled}
-          data-testid="checkbox-input"
-        />
-        {children}
-      </div>
-    ),
-    CheckboxControl: () => <div data-testid="checkbox-control" />,
-    CheckboxLabel: ({ children }: MockComponentProps) => (
-      <label data-testid="checkbox-label">{children}</label>
-    ),
-    Text: ({ children, preset }: MockTextProps) => (
-      <span data-testid={`text-${preset}`}>{children}</span>
-    ),
-    Link: ({ children, href, target }: MockLinkProps) => (
-      <a data-testid="link" href={href} target={target}>
-        {children}
-      </a>
-    ),
-    Icon: ({ name }: MockIconProps) => <span data-testid={`icon-${name}`} />,
-    Spinner: () => <div data-testid="spinner">Loading...</div>,
-  };
-});
 
 vi.mock('../Card/PriceCard', () => ({
   default: ({ title, checked, disabled, footer }: MockPriceCardProps) => (
@@ -311,7 +201,7 @@ describe('FreeHostingDrawer Component', () => {
       renderComponent();
 
       const checkboxes = screen.getAllByTestId('checkbox-input');
-      const dnsMxCheckbox = checkboxes[1]; // Second checkbox should be DNS MX
+      const dnsMxCheckbox = checkboxes[1];
 
       fireEvent.click(dnsMxCheckbox);
 

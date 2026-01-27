@@ -1,3 +1,4 @@
+import '@/common/setupTests';
 import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
@@ -10,59 +11,8 @@ import {
 import { wrapper } from '@/common/utils/test.provider';
 import { DomainStateEnum } from '@/domain/enum/domainState.enum';
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
-  return {
-    ...actual,
-    useNavigationGetUrl: vi.fn(),
-  };
-});
-
 vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),
-}));
-
-interface MockActionItem {
-  id: number;
-  label: string;
-  href?: string;
-  onClick?: () => void;
-  color?: string;
-}
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  ActionMenu: ({
-    id,
-    items,
-    isLoading,
-    isCompact,
-  }: {
-    id: string;
-    items: MockActionItem[];
-    isLoading: boolean;
-    isCompact: boolean;
-  }) => (
-    <div
-      data-testid="action-menu"
-      data-id={id}
-      data-loading={isLoading}
-      data-compact={isCompact}
-    >
-      {items.map((item) => (
-        <div
-          key={item.id}
-          data-testid={`action-item-${item.id}`}
-          onClick={item.onClick}
-          data-href={item.href}
-          data-color={item.color}
-        >
-          {item.label}
-        </div>
-      ))}
-    </div>
-  ),
 }));
 
 describe('DatagridColumnActions', () => {
@@ -123,7 +73,9 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const actionMenu = screen.getByTestId('action-details');
+    const actionMenu = screen.getByText(
+      '@ovh-ux/manager-common-translations/actions:see_details',
+    );
     expect(actionMenu).toBeInTheDocument();
   });
 
@@ -137,7 +89,9 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const detailsAction = screen.getByTestId('action-details');
+    const detailsAction = screen.getByText(
+      '@ovh-ux/manager-common-translations/actions:see_details',
+    );
     expect(detailsAction).toBeInTheDocument();
   });
 
@@ -151,7 +105,9 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const contactAction = screen.getByTestId('action-manage-contacts');
+    const contactAction = screen.getByText(
+      '@ovh-ux/manager-common-translations/contact:manage_contacts',
+    );
     expect(contactAction).toBeInTheDocument();
   });
 
@@ -180,7 +136,9 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const renewAction = screen.getByTestId('action-manage-renew-frequency');
+    const renewAction = screen.getByText(
+      'domain_tab_general_information_subscription_handle_renew_frequency',
+    );
     expect(renewAction).toBeInTheDocument();
   });
 
@@ -194,7 +152,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const restoreAction = screen.getByTestId('action-restore');
+    const restoreAction = screen.getByText('domain_action_restore');
     expect(restoreAction).toBeInTheDocument();
 
     fireEvent.click(restoreAction);
@@ -211,7 +169,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const earlyRenewalAction = screen.getByTestId('action-renew');
+    const earlyRenewalAction = screen.getByText('domain_action_early_renewal');
     expect(earlyRenewalAction).toBeInTheDocument();
 
     fireEvent.click(earlyRenewalAction);
@@ -245,7 +203,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    expect(() => screen.getByTestId('action-renew')).toThrow();
+    expect(() => screen.getByText('domain_action_early_renewal')).toThrow();
   });
 
   it('should show terminate action when no pending termination', () => {
@@ -258,7 +216,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const terminateAction = screen.getByTestId('action-terminate');
+    const terminateAction = screen.getByText('domain_action_terminate');
     expect(terminateAction).toBeInTheDocument();
   });
 
@@ -289,7 +247,7 @@ describe('DatagridColumnActions', () => {
       { wrapper },
     );
 
-    const cancelTerminateAction = screen.getByTestId('action-cancel-terminate');
+    const cancelTerminateAction = screen.getByText('domain_action_cancel_terminate');
     expect(cancelTerminateAction).toBeInTheDocument();
   });
 });

@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import { render, screen } from '@/common/utils/test.provider';
 import { Mock, vi } from 'vitest';
-import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import {  useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { wrapper } from '@/common/utils/test.provider';
 import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 import DnssecToggleStatus from './DnssecToggleStatus';
@@ -18,6 +18,14 @@ import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 vi.mock('@/common/hooks/iam/useGetIAMResource', () => ({
   useGetIAMResource: vi.fn(),
 }));
+
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  return {
+    ...actual,
+    useAuthorizationIam: vi.fn(),
+  };
+});
 
 describe('DnssecToggleStatus component', () => {
   const mockDomainResource: TDomainResource = {
@@ -98,9 +106,33 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders loading state', () => {
-    (useAuthorizationIam as Mock).mockReturnValue({
-      isAuthorized: true,
-      isPending: false,
+    // Only mock what the component actually cares about, and fix types
+    vi.mocked(useAuthorizationIam).mockReturnValue({
+      isPending: true,
+      isAuthorized: false,
+      isError: false,
+      isLoading: true,
+      status: 'pending',
+      data: undefined,
+      error: undefined,
+      isLoadingError: false,
+      isRefetchError: false,
+      isSuccess: false,
+      dataUpdatedAt: 0,
+      errorUpdatedAt: 0,
+      failureCount: 0,
+      failureReason: undefined,
+      errorUpdateCount: 0,
+      isFetched: false,
+      isFetchedAfterMount: false,
+      isFetching: true,
+      isInitialLoading: true,
+      isPaused: false,
+      isPlaceholderData: false,
+      isRefetching: false,
+      isStale: false,
+      refetch: vi.fn(),
+      fetchStatus: 'fetching',
     });
     render(
       <DnssecToggleStatus
@@ -116,9 +148,32 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders unauthorized state', () => {
-    (useAuthorizationIam as Mock).mockReturnValue({
+    vi.mocked(useAuthorizationIam).mockReturnValue({
       isPending: false,
       isAuthorized: false,
+      error: new Error('Not authorized'),
+      isError: true,
+      isLoading: false,
+      isLoadingError: false, 
+      isRefetchError: true,
+      isSuccess: false,
+      status: 'error',
+      dataUpdatedAt: 0,
+      errorUpdatedAt: 0,
+      failureCount: 0,
+      failureReason: undefined,
+      errorUpdateCount: 0,
+      isFetched: true,
+      isFetchedAfterMount: true,
+      isFetching: false,
+      isInitialLoading: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isRefetching: false,
+      isStale: false,
+      refetch: vi.fn(),
+      fetchStatus: undefined,
+      data: undefined
     });
     render(
       <DnssecToggleStatus
@@ -136,9 +191,36 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC enabled', () => {
-    (useAuthorizationIam as Mock).mockReturnValue({
+    vi.mocked(useAuthorizationIam).mockReturnValue({
       isPending: false,
       isAuthorized: true,
+      error: undefined,
+      isError: false,
+      isLoading: false,
+      isLoadingError: false,
+      isRefetchError: false,
+      isSuccess: true,
+      status: 'success',
+      dataUpdatedAt: 0,
+      errorUpdatedAt: 0,
+      failureCount: 0,
+      failureReason: undefined,
+      errorUpdateCount: 0,
+      isFetched: true,
+      isFetchedAfterMount: true,
+      isFetching: false,
+      isInitialLoading: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isRefetching: false,
+      isStale: false,
+      refetch: vi.fn(),
+      fetchStatus: undefined,
+      data: {
+        urn: '',
+        authorizedActions: [],
+        unauthorizedActions: []
+      },
     });
     render(
       <DnssecToggleStatus
@@ -157,9 +239,36 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC disabled', () => {
-    (useAuthorizationIam as Mock).mockReturnValue({
+    vi.mocked(useAuthorizationIam).mockReturnValue({
       isPending: false,
       isAuthorized: true,
+      error: undefined,
+      isError: false,
+      isLoading: false,
+      isLoadingError: false,
+      isRefetchError: false,
+      isSuccess: true,
+      status: 'success',
+      dataUpdatedAt: 0,
+      errorUpdatedAt: 0,
+      failureCount: 0,
+      failureReason: undefined,
+      errorUpdateCount: 0,
+      isFetched: true,
+      isFetchedAfterMount: true,
+      isFetching: false,
+      isInitialLoading: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isRefetching: false,
+      isStale: false,
+      refetch: vi.fn(),
+      fetchStatus: undefined,
+      data: {
+        urn: '',
+        authorizedActions: [],
+        unauthorizedActions: []
+      },
     });
     render(
       <DnssecToggleStatus
@@ -178,9 +287,36 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC not supported', () => {
-    (useAuthorizationIam as Mock).mockReturnValue({
+    vi.mocked(useAuthorizationIam).mockReturnValue({
       isPending: false,
       isAuthorized: true,
+      error: undefined,
+      isError: false,
+      isLoading: false,
+      isLoadingError: false,
+      isRefetchError: false,
+      isSuccess: true,
+      status: 'success',
+      dataUpdatedAt: 0,
+      errorUpdatedAt: 0,
+      failureCount: 0,
+      failureReason: undefined,
+      errorUpdateCount: 0,
+      isFetched: true,
+      isFetchedAfterMount: true,
+      isFetching: false,
+      isInitialLoading: false,
+      isPaused: false,
+      isPlaceholderData: false,
+      isRefetching: false,
+      isStale: false,
+      refetch: vi.fn(),
+      fetchStatus: undefined,
+      data: {
+        urn: '',
+        authorizedActions: [],
+        unauthorizedActions: [],
+      },
     });
     render(
       <DnssecToggleStatus

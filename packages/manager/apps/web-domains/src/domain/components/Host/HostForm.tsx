@@ -70,7 +70,7 @@ export default function HostForm({
           />
 
           <FormFieldError className="text-sm">
-            {t(`${errors.host?.message.toString()}`)}
+            {errors.host?.message ? t(String(errors.host.message)) : null}
           </FormFieldError>
 
           <Text
@@ -104,7 +104,7 @@ export default function HostForm({
             })}
           />
           <FormFieldError className="text-sm">
-            {errors.ips?.message.toString()}
+            {errors.ips?.message ? String(errors.ips.message) : null}
           </FormFieldError>
           <HostIpsSupportedMessage ipsSupported={ipsSupported} />
         </FormField>

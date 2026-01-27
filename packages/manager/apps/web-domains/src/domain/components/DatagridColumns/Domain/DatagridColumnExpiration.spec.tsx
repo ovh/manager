@@ -1,3 +1,4 @@
+import '@/common/setupTests';
 import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
@@ -9,23 +10,24 @@ vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),
 }));
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Skeleton: () => <div data-testid="skeleton" />,
-}));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="datagrid-text-cell">{children}</div>
-  ),
-  useFormatDate: () => (options: { date: string }) => {
-    if (!options.date) return '';
-    return new Date(options.date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    });
-  },
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  return {
+    ...actual,
+    useFormatDate: () => (options: { date: string }) => {
+      if (!options.date) return '';
+      return new Date(options.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+    },
+    DataGridTextCell: ({ children }: { children?: React.ReactNode }) => (
+      <div data-testid="datagrid-text-cell">{children}</div>
+    ),
+  };
+});
 
 describe('DatagridColumnExpiration', () => {
   const mockServiceName = 'example.com';
