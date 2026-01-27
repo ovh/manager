@@ -7,6 +7,8 @@ import { Text } from '@ovhcloud/ods-react';
 
 import { Tile } from '@ovh-ux/muk';
 
+import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
+
 type CryptoPropertiesTileProps = {
   serviceKey: OkmsServiceKey;
 };
@@ -19,7 +21,7 @@ export const CryptoPropertiesTile = ({ serviceKey }: CryptoPropertiesTileProps) 
       <Tile.Item.Root>
         <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_origin')} />
         <Tile.Item.Description>
-          <Text preset="span">
+          <Text preset="span" data-testid={SERVICE_KEY_TEST_IDS.origin}>
             {t('key_management_service_service-keys_dashboard_field_origin_okms')}
           </Text>
         </Tile.Item.Description>
@@ -27,14 +29,18 @@ export const CryptoPropertiesTile = ({ serviceKey }: CryptoPropertiesTileProps) 
       <Tile.Item.Root>
         <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_type')} />
         <Tile.Item.Description>
-          <ServiceKeyType type={serviceKey.type} />
+          <div data-testid={SERVICE_KEY_TEST_IDS.type}>
+            <ServiceKeyType type={serviceKey.type} />
+          </div>
         </Tile.Item.Description>
       </Tile.Item.Root>
       {serviceKey.size && (
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_size')} />
           <Tile.Item.Description>
-            <Text preset="span">{serviceKey.size}</Text>
+            <Text preset="span" data-testid={SERVICE_KEY_TEST_IDS.size}>
+              {serviceKey.size}
+            </Text>
           </Tile.Item.Description>
         </Tile.Item.Root>
       )}
@@ -51,7 +57,9 @@ export const CryptoPropertiesTile = ({ serviceKey }: CryptoPropertiesTileProps) 
           label={t('key_management_service_service-keys_dashboard_field_operations')}
         />
         <Tile.Item.Description divider={false}>
-          <ServiceKeyOperations operations={serviceKey.operations} />
+          <div data-testid={SERVICE_KEY_TEST_IDS.usage}>
+            <ServiceKeyOperations operations={serviceKey.operations} />
+          </div>
         </Tile.Item.Description>
       </Tile.Item.Root>
     </Tile.Root>
