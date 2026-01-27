@@ -2,12 +2,16 @@ import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { enGB } from 'date-fns/locale';
 import { FormProvider, useForm } from 'react-hook-form';
 import { vi } from 'vitest';
+
+import { useDateFnsLocale } from '@ovh-ux/muk';
 
 import { InformationForm } from '@/components/form/information-form/InformationForm.component';
 import { InformationFormProps } from '@/components/form/information-form/InformationForm.props';
 import { TenantFormData } from '@/types/tenants.type';
+import { formatNumberWithLocale } from '@/utils/number.utils';
 
 // Mock the TextField component
 vi.mock('@/components/form/text-field/TextField.component', () => ({
@@ -71,7 +75,15 @@ vi.mock('@ovh-ux/muk', () => ({
   TEXT_PRESET: {
     heading4: 'heading4',
   },
+  useDateFnsLocale: vi.fn(),
 }));
+
+vi.mock('@/utils/number.utils', () => ({
+  formatNumberWithLocale: vi.fn(),
+}));
+
+const mockUseDateFnsLocale = vi.mocked(useDateFnsLocale);
+const mockFormatNumberWithLocale = vi.mocked(formatNumberWithLocale);
 
 // Mock translation namespaces
 vi.mock('@ovh-ux/manager-common-translations', () => ({
@@ -153,6 +165,12 @@ describe('InformationForm', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+
+    mockUseDateFnsLocale.mockReturnValue(enGB);
+
+    mockFormatNumberWithLocale.mockImplementation((value) =>
+      value !== undefined ? value.toLocaleString('en-GB') : undefined,
+    );
   });
 
   describe('Rendering', () => {
