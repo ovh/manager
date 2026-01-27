@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { Skeleton, Text } from '@ovhcloud/ods-react';
+import { Message, Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { TagsList } from '@ovh-ux/manager-react-components';
@@ -51,7 +51,14 @@ export const OkmsSelector = ({
   }
 
   if (okmsList.length === 0) {
-    return <ActivateRegion selectedRegion={selectedRegion} />;
+    return (
+      <div className="space-y-3">
+        <Message color="warning" dismissible={false}>
+          {t('create_secret_form_okms_not_selected')}
+        </Message>
+        <ActivateRegion selectedRegion={selectedRegion} />
+      </div>
+    );
   }
 
   return (

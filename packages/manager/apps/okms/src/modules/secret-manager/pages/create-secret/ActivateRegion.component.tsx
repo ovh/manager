@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Spinner, Text } from '@ovhcloud/ods-react';
 
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
 
 import { usePendingOkmsOrderStore } from '@/common/store/pendingOkmsOrder';
@@ -17,7 +16,7 @@ export type ActivateRegionParams = {
 };
 
 export const ActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
-  const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation('secret-manager');
   const { translateRegionName } = useRegionName();
   const navigate = useNavigate();
   const hasPendingOrder = usePendingOkmsOrderStore((state) => state.hasPendingOrder);
@@ -42,7 +41,7 @@ export const ActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
         data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON}
         onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.createSecretOrderOkms(selectedRegion))}
       >
-        {t('activate', { ns: NAMESPACES.ACTIONS })}
+        {t('create_okms_domain')}
       </Button>
     </div>
   );
