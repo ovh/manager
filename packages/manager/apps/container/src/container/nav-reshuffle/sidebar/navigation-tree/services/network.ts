@@ -26,7 +26,7 @@ networkUniverse.children = [
     idAttr: 'public-networking-link',
     universe: networkUniverse.id,
     translation: 'sidebar_public_networking',
-    features: ['ip'],
+    features: ['ip', 'ips'],
     children: [
       {
         id: 'ip',
@@ -50,6 +50,7 @@ networkUniverse.children = [
         routing: {
           application: 'ips',
           hash: '#/ip',
+          pathMatcher: /\/network\/ip/,
         },
         features: ['ips'],
       },
