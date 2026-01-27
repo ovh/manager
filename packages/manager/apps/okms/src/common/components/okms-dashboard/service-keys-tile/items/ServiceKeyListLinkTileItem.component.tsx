@@ -10,6 +10,8 @@ import { Tile } from '@ovh-ux/muk';
 import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
+import { SERVICE_KEYS_TILE_TEST_IDS } from '../ServiceKeysTile.constants';
+
 type ServiceKeyListLinkTileItemProps = {
   okms: OKMS;
 };
@@ -23,6 +25,7 @@ export const ServiceKeyListLinkTileItem = ({ okms }: ServiceKeyListLinkTileItemP
     <Tile.Item.Root>
       <MukLink
         type={MukLinkType.next}
+        data-testid={SERVICE_KEYS_TILE_TEST_IDS.serviceKeyListLink}
         onClick={() => {
           navigate(KMS_ROUTES_URLS.serviceKeyListing(okms.id));
           trackClick({
