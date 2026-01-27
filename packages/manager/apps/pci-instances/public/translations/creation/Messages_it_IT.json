@@ -136,7 +136,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotazione 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizzato",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Un backup viene effettuato ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci. Quando il nuovo backup è completato, il più vecchio viene eliminato.",
+    "predefined": "Un backup viene eseguito ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci. Quando il nuovo backup è completato, il più vecchio viene eliminato.",
     "custom": "Scegli tu stesso la pianificazione (formato UNIX Cron), il numero di rotazioni e le esecuzioni massime che desideri."
   },
   "pci_instance_creation_backup_setting_price_unit": "al mese/GB",
@@ -161,12 +161,15 @@
     "floating_ip_warning": "Selezionando questa opzione ti assegneremo una gateway di dimensione {{ size }}.",
     "floating_ip_create_new_label": "Creare un nuovo - {{ price }}",
     "floating_ip_reuse_existing_label": "Riutilizzare un'IP flottante esistente",
-    "floating_ip_unavailable_LZ_tooltip": "Le IP Flottanti non sono disponibili nelle localZone."
+    "floating_ip_unavailable_LZ_tooltip": "Le IP Flottanti non sono disponibili nelle localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway non è disponibile nelle localZone.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Un Gateway è già assegnato alla rete privata selezionata.",
   "pci_instance_creation_discovery_project_title": "Modalità scoperta",
   "pci_instance_creation_discovery_project_message": "Per completare la creazione della tua risorsa, devi attivare il tuo progetto.",
   "pci_instance_creation_discovery_project_activate": "Attiva",
-  "pci_instance_creation_select_localization_apac_warning": "Il traffico di rete pubblico in uscita per le istanze è incluso per tutte le regioni, ad eccezione della regione Asia-Pacifico. In queste due regioni, 1 TB/mese di traffico pubblico in uscita è incluso in ogni progetto Public Cloud. <strong>Oltre a questa quota, ogni GB aggiuntivo di traffico è addebitato 0,01 €. Il traffico di rete pubblico in entrata è incluso in tutti i casi, per tutte le regioni.</strong>"
+  "pci_instance_creation_select_localization_apac_warning": "Il traffico di rete pubblico in uscita per le istanze è incluso per tutte le regioni, ad eccezione della regione Asia-Pacifico. In queste due regioni, 1 TB/mese di traffico pubblico in uscita è incluso in ogni progetto Public Cloud. <strong>Oltre a questa quota, ogni GB aggiuntivo di traffico è addebitato 0,01 €. Il traffico di rete pubblico in entrata è incluso in tutti i casi, per tutte le regioni.</strong>",
+  "pci_instance_creation_post_install_script_title": "Script di post-installazione",
+  "pci_instance_creation_post_install_script_description": "Inserisci il tuo script di post-installazione.",
+  "pci_instance_creation_post_install_script_toggle_label": "Aggiungi uno script di post-installazione"
 }

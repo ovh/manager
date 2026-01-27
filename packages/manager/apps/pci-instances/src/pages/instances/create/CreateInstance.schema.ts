@@ -152,6 +152,8 @@ export const floatingIpAssignmentSchema = z
 
 export const existingFloatingIpSchema = z.string().nullable();
 
+export const postInstallScriptSchema = z.string().nullable();
+
 export type TAddNetworkForm = z.infer<typeof networkSchema>;
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -181,4 +183,5 @@ export const instanceCreationSchema = z.object({
   billingType: billingTypeSelectionSchema,
   localBackupRotation: localBackupRotationSchema,
   distantBackupLocalization: distantBackupLocalizationSchema,
+  postInstallScript: postInstallScriptSchema,
 });

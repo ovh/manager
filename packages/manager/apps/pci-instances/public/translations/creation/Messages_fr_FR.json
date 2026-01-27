@@ -170,5 +170,8 @@
   "pci_instance_creation_cart_total_label": "Total",
   "pci_instance_creation_cart_hourly_price_label": "Prix à l'heure estimé",
   "pci_instance_creation_cart_monthly_price_label": "Prix mensuel estimé",
-  "pci_instance_creation_cart_monthly_price_disclaimer": "Hors Savings plan"
+  "pci_instance_creation_cart_monthly_price_disclaimer": "Hors Savings plan",
+  "pci_instance_creation_post_install_script_title": "Script de post-installation",
+  "pci_instance_creation_post_install_script_description": "Saisissez votre script post-installation.",
+  "pci_instance_creation_post_install_script_toggle_label": "Ajouter un script post installation"
 }
