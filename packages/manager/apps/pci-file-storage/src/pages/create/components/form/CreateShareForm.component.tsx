@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useNavigate } from 'react-router-dom';
 
-import { useWatch } from 'react-hook-form';
-import { FormProvider } from 'react-hook-form';
+import { FormProvider, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Divider, Text } from '@ovhcloud/ods-react';
@@ -54,14 +54,11 @@ export const CreateShareForm = () => {
     navigate('../onboarding');
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    void formMethods.handleSubmit(onSubmit)();
-  };
+  const isFormValid = formMethods.formState.isValid;
 
   return (
     <FormProvider {...formMethods}>
-      <form onSubmit={handleFormSubmit} className="flex w-2/3 flex-col gap-6">
+      <form onSubmit={formMethods.handleSubmit(onSubmit)} className="flex w-2/3 flex-col gap-6">
         <section>
           <Text preset="heading-2">{t('create:name.title')}</Text>
           <NameInput />
@@ -87,11 +84,11 @@ export const CreateShareForm = () => {
           <PrivateNetworkSelection />
         </section>
         <Divider className="w-full" />
-        <section className="flex gap-4">
+        <section className="mt-8 flex gap-4">
           <Button type="button" variant="ghost" onClick={handleCancel}>
             {t(`${NAMESPACES.ACTIONS}:cancel`)}
           </Button>
-          <Button type="submit" variant="default">
+          <Button type="submit" variant="default" disabled={!isFormValid}>
             {t(`${NAMESPACES.ACTIONS}:validate`)}
           </Button>
         </section>

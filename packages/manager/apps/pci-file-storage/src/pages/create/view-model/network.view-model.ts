@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 import { TPrivateNetworkData } from '@/adapters/network/left/network.data';
 import { mapNetworkToPrivateNetworkData } from '@/adapters/network/left/network.mapper';
 import { TNetwork } from '@/domain/entities/network.entity';
@@ -9,3 +11,10 @@ export const selectPrivateNetworksForRegion =
     if (!networks || !region) return [];
     return getPrivateNetworks(networks).map(mapNetworkToPrivateNetworkData);
   };
+
+export const generateAutoName = (specName: string = 'share'): string => {
+  const now = new Date();
+  const datePart = format(now, 'dd_MM_yyyy');
+  const sanitizedSpecName = specName.replace(/[^a-zA-Z0-9_.-]/g, '_').substring(0, 200);
+  return `${sanitizedSpecName}_${datePart}`;
+};
