@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { Location, useLocation, useNavigate } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { putAttachedDomain } from '@/data/api/webHosting';
+import { useGetAttachedDomainDetails } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import {
   useGetDomainZone,
   useGetHostingService,
@@ -46,19 +47,37 @@ export default function ModifyModalDomain() {
   const { state } = useLocation() as Location<ModifyDomainState>;
   const { data: hosting } = useGetHostingService(state.serviceName);
   const { data: zones = [] } = useGetDomainZone();
+  const { data: domainDetails } = useGetAttachedDomainDetails(state.serviceName, state.domain);
   const isGitDisabled = state.gitStatus === GitStatus.DISABLED;
-  const isCdnAvailable = state.cdnStatus !== ServiceStatus.NONE;
-  const { control, watch, handleSubmit } = useForm<FormValues>({
+  const { control, watch, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: {
       domain: state.domain ?? '',
       path: state.path ?? '',
       cdn: state.cdnStatus ?? ServiceStatus.INACTIVE,
       firewall: state.firewallStatus ?? ServiceStatus.INACTIVE,
-      countriesIpEnabled: !!hosting.hostingIp,
+      countriesIpEnabled:
+        state.cdnStatus !== ServiceStatus.ACTIVE ? !!domainDetails?.ipLocation : false,
       enableOwnLog: false,
       ownLog: '',
     },
   });
+
+  useEffect(() => {
+    if (!domainDetails) return;
+    const next = {
+      domain: state.domain ?? '',
+      path: state.path ?? '',
+      cdn: state.cdnStatus ?? ServiceStatus.INACTIVE,
+      firewall: state.firewallStatus ?? ServiceStatus.INACTIVE,
+      countriesIpEnabled:
+        state.cdnStatus !== ServiceStatus.ACTIVE ? !!domainDetails?.ipLocation : false,
+      enableOwnLog: false,
+      ownLog: '',
+    };
+
+    reset(next);
+  }, [domainDetails, reset]);
+
   const { addError, addSuccess } = useNotifications();
   const onClose = () => navigate(-1);
 
@@ -148,9 +167,10 @@ export default function ModifyModalDomain() {
         <Step1
           control={control}
           isGitDisabled={isGitDisabled}
-          isCdnAvailable={isCdnAvailable}
           hosting={hosting}
+          domainDetails={domainDetails}
           zones={zones}
+          watch={watch}
         />
       )}
       {step === 2 && <Step2 watch={watch} hosting={hosting} />}

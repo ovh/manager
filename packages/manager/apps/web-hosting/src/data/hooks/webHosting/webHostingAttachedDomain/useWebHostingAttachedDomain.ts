@@ -1,11 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { UseInfiniteQueryOptions, useInfiniteQuery, useMutation } from '@tanstack/react-query';
+import {
+  UseInfiniteQueryOptions,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
 
 import { ApiError, IcebergFetchResultV2 } from '@ovh-ux/manager-core-api';
 
 import {
   deleteAttachedDomains,
+  getAttachedDomainDetails,
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
 } from '@/data/api/webHosting';
@@ -96,4 +102,12 @@ export const useDeleteAttachedDomains = (
     deleteAttachedDomains: mutation.mutate,
     ...mutation,
   };
+};
+
+export const useGetAttachedDomainDetails = (serviceName: string, domain: string) => {
+  return useQuery({
+    queryKey: ['hosting', 'web', serviceName, 'attachedDomain', domain],
+    queryFn: () => getAttachedDomainDetails(serviceName, domain),
+    enabled: Boolean(serviceName && domain),
+  });
 };

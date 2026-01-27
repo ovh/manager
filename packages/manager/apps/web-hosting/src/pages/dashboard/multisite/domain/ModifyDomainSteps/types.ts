@@ -1,6 +1,6 @@
 import { Control, UseFormWatch } from 'react-hook-form';
 
-import { HostingCountries } from '@/data/types/product/webHosting';
+import { AttachedDomainProps, HostingCountries } from '@/data/types/product/webHosting';
 import { ServiceStatus } from '@/data/types/status';
 
 export interface FormValues {
@@ -24,7 +24,8 @@ export interface CountryIp {
 export interface Step1Props {
   control: Control<FormValues>;
   isGitDisabled: boolean;
-  isCdnAvailable: boolean;
+  watch: UseFormWatch<FormValues>;
+  domainDetails?: AttachedDomainProps;
   hosting: {
     hostingIp?: string;
     countriesIp?: CountryIp[];
