@@ -35,7 +35,7 @@ export const CasTileItem = ({ data, isPending, isError, divider = true }: CasTil
             className="block h-5 content-center"
           />
         ) : (
-          <Text preset="span">
+          <Text preset="span" data-testid={SECRET_CONFIG_TILE_TEST_IDS.cas}>
             {data.casRequired ? t('activated') : t('disabled', { ns: NAMESPACES.STATUS })}
           </Text>
         )}
