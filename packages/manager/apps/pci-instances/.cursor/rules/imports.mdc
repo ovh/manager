@@ -1,0 +1,112 @@
+---
+description: Import organization and library usage patterns
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Import Organization
+
+## Import Order
+
+```typescript
+// ✅ GOOD: Import order with blank lines between groups
+// 1. React and React-related
+import { FC, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useRouteLoaderData } from 'react-router-dom';
+
+// 2. ODS Components and Constants
+import { Button, Input, Text } from '@ovhcloud/ods-react';
+import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+// 3. Manager Libraries
+import { TProject } from '@ovh-ux/manager-pci-common';
+import { PageLayout, Notifications } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+// 4. Third-party libraries
+import clsx from 'clsx';
+import { Search } from 'lucide-react';
+
+// 5. Internal imports (using @/ alias)
+import { useInstances } from '@/data/hooks/instance/useInstances';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
+import { deps } from '@/deps/deps';
+```
+
+## Import Patterns
+
+### Named vs Default Exports
+
+```typescript
+// ✅ GOOD: Named exports for components
+export const ComponentName = () => { /* ... */ };
+
+// ✅ GOOD: Default export for pages
+export default function PageName() { /* ... */ }
+
+// ✅ GOOD: Named exports for hooks
+export const useHookName = () => { /* ... */ };
+
+// ✅ GOOD: Named exports for types
+export type TTypeName = { /* ... */ };
+```
+
+### Path Aliases
+
+```typescript
+// ✅ GOOD: Use @/ alias for internal imports
+import { Component } from '@/components/Component.component';
+import { useHook } from '@/hooks/useHook';
+import { selectData } from '@/view-models/dataViewModel';
+import { TType } from '@/types/Type.types';
+import { deps } from '@/deps/deps';
+
+// ❌ BAD: Relative paths for internal imports
+import { Component } from '../../../components/Component.component';
+```
+
+### Library-Specific Patterns
+
+```typescript
+// ✅ GOOD: ODS React components
+import { Button, Text, Input, FormField } from '@ovhcloud/ods-react';
+
+// ✅ GOOD: ODS Web components
+import { OsdsButton, OsdsIcon, OsdsCard } from '@ovhcloud/ods-components/react';
+
+// ✅ GOOD: ODS Constants
+import { ODS_BUTTON_SIZE, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
+// ✅ GOOD: ODS Theming
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+// ✅ GOOD: Manager React Components
+import { PageLayout, Notifications, Title } from '@ovh-ux/manager-react-components';
+
+// ✅ GOOD: Manager Shell Client
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+```
+
+## Best Practices
+
+### Grouping
+- Separate import groups with blank lines
+- Group by: React → ODS → Manager libs → Third-party → Internal
+- Keep related imports together within groups
+
+### Path Aliases
+- Always use `@/` for internal imports
+- Configured in `tsconfig.json` paths
+
+### Type Imports
+- Import types with `import type` when possible
+- Or use regular imports for types (TypeScript handles it)
+
+### Side-Effect Imports
+- CSS imports: `import './styles.scss';`
+- Theme imports: `import '@ovhcloud/ods-themes/default';`
+- Place at top of file or in main entry point

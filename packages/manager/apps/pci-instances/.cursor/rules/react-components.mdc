@@ -1,0 +1,223 @@
+---
+description: React component patterns, forms with react-hook-form, and view-models architecture
+globs: "**/*.tsx, **/view-models/**/*.ts, **/domain/**/*.ts, **/adapters/**/*.ts, **/deps/**/*.ts"
+alwaysApply: false
+---
+
+# React Components, Forms, and View-Models
+
+## Component Structure
+
+### File Naming
+- **Components**: `ComponentName.component.tsx` (PascalCase)
+- **Pages**: `PageName.page.tsx` (PascalCase)
+- **Folders**: `componentName/` (camelCase)
+- **Hooks**: `useHookName.ts` or `useHookName.hook.ts` (camelCase with `use` prefix)
+
+### Component Patterns
+
+```typescript
+// ✅ GOOD: Functional component with TypeScript
+export const ComponentName = ({ prop1, prop2 }: ComponentProps) => {
+  const { t } = useTranslation(['common']);
+  
+  return (
+    <article className="flex w-full flex-col">
+      <Text preset="heading-2">{t('translation_key')}</Text>
+    </article>
+  );
+};
+
+// ✅ GOOD: Default export for pages
+export default function PageName() {
+  return <div>...</div>;
+}
+```
+
+### Hooks Organization
+- **Custom hooks**: `/hooks/` - Application-wide logic
+- **Data hooks**: `/data/hooks/` - Data fetching with TanStack Query
+- **Component hooks**: Co-located with components when component-specific
+
+### Component Composition
+- Prefer composition over complex props
+- Extract reusable logic into custom hooks
+- Use ODS components from `@ovhcloud/ods-react` or `@ovhcloud/ods-components/react`
+
+## Forms with react-hook-form
+
+### Form Setup
+
+```typescript
+// ✅ GOOD: Form hook with zod resolver
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm as useReactHookForm } from 'react-hook-form';
+import { instanceCreationSchema } from './Form.schema';
+
+export const useForm = (projectId: string) => {
+  return useReactHookForm({
+    resolver: zodResolver(instanceCreationSchema),
+    defaultValues: {
+      name: nameDefaultValue,
+      // ... other defaults
+    },
+    mode: 'onChange',
+  });
+};
+```
+
+### Form Schema (Zod)
+
+```typescript
+// ✅ GOOD: Define schemas in .schema.ts files
+import { z } from 'zod';
+
+export const nameSchema = z.string().regex(/^[a-zA-Z0-9._-]+$/);
+export const instanceCreationSchema = z.object({
+  name: nameSchema,
+  quantity: z.number().min(1).max(5),
+  // ... other fields
+});
+
+export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
+```
+
+### Form Components
+
+```typescript
+// ✅ GOOD: Use FormProvider and useFormContext
+import { FormProvider } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import { FormField, FormFieldLabel, Input } from '@ovhcloud/ods-react';
+
+export const FormComponent = () => {
+  const formMethods = useForm(projectId);
+  
+  return (
+    <FormProvider {...formMethods}>
+      <Name />
+    </FormProvider>
+  );
+};
+
+export const Name = () => {
+  const { register, formState: { errors } } = useFormContext<{ name: string }>();
+  
+  return (
+    <FormField>
+      <FormFieldLabel>Name</FormFieldLabel>
+      <Input {...register('name')} invalid={!!errors.name} />
+    </FormField>
+  );
+};
+```
+
+### Default Values
+- Export constants for default values: `export const nameDefaultValue = 'default_value';`
+- Use in form setup and components
+
+## View-Models Architecture
+
+### Reader Monad Pattern
+
+```typescript
+// ✅ GOOD: Reader monad pattern for view-models
+import { Deps } from '@/deps/deps';
+import { Reader } from '@/types/utils.type';
+
+type TSelectData = (projectId: string, arg: string | null) => TViewModel | null;
+
+export const selectData: Reader<Deps, TSelectData> = (deps) => 
+  (projectId, arg) => {
+    if (!arg) return null;
+    
+    const data = deps.instancesCatalogPort.selectInstancesCatalog(projectId);
+    if (!data) return null;
+    
+    // Transform domain entities to view data
+    return transformedData;
+  };
+```
+
+### Usage in Components
+
+```typescript
+// ✅ GOOD: Use view-models in components/hooks
+import { deps } from '@/deps/deps';
+import { selectData } from '@/view-models/dataViewModel';
+
+const Component = () => {
+  const projectId = useProjectId();
+  const viewData = selectData(deps)(projectId, someArg);
+  
+  return <div>{viewData?.label}</div>;
+};
+```
+
+### Domain Entities Structure
+
+```typescript
+// ✅ GOOD: Normalized domain entities
+export type TDomainEntity = {
+  entities: {
+    items: {
+      byId: Map<string, TItem>;
+      allIds: string[];
+    };
+  };
+};
+```
+
+### Ports & Adapters
+
+```typescript
+// ✅ GOOD: Define ports in /domain/port/
+export type TDataPort = {
+  selectData: (projectId: string) => TData | undefined;
+};
+
+// ✅ GOOD: Implement adapters in /adapters/
+export const dataAdapter: TDataPort = {
+  selectData: (projectId) => {
+    // TanStack Query implementation
+  },
+};
+
+// ✅ GOOD: Register in /deps/deps.ts
+export type Deps = {
+  dataPort: TDataPort;
+};
+
+export const deps: Deps = {
+  dataPort: dataAdapter,
+};
+```
+
+### View-Model Best Practices
+- Selectors should be pure functions (no side effects)
+- Always handle null/undefined cases
+- Export types for view-models and selectors
+- Use Reader monad pattern consistently
+- Transform domain entities to view-specific data structures
+
+## TypeScript Patterns
+
+### Props Types
+
+```typescript
+// ✅ GOOD: Explicit prop types
+type ComponentProps = {
+  prop1: string;
+  prop2?: number;
+  onAction: () => void;
+};
+
+export const Component = ({ prop1, prop2, onAction }: ComponentProps) => {
+  // ...
+};
+```
+
+### Exports
+- Prefer named exports for components
+- Use default exports for pages
+- Export types alongside implementations

@@ -1,0 +1,39 @@
+---
+alwaysApply: false
+---
+# React Best Practices
+
+You are an expert in React 18+ development and related web technologies.
+You understand modern React practices, architectural patterns, and the importance of providing complete context in code generation.
+
+## React-Specific Rules
+
+Cursor rules in React provide intelligent navigation and manipulation capabilities designed specifically for React development. These rules help you work more efficiently with components, hooks, and JSX.
+
+### Component Navigation
+
+- Navigate between component definitions and usages
+- Jump to hook declarations and dependencies
+- Move between JSX elements and their props
+- Access component boundaries and composition
+
+### Smart Selection
+
+- Select complete JSX blocks and expressions
+- Expand selection to include component props
+- Smart hook dependency selection
+- Select complete component definitions
+
+### Code Manipulation
+
+- Quick component creation and refactoring
+- Prop type and interface management
+- Hook declaration and cleanup optimization
+- JSX structure manipulation
+
+## Best Practices
+
+- Use component-aware navigation
+- Leverage hook-specific patterns
+- Utilize JSX-aware selection
+- Maintain clear component composition

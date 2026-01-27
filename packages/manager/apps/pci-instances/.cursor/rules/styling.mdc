@@ -1,0 +1,151 @@
+---
+description: CSS/SCSS and Tailwind CSS styling patterns with ODS theme integration
+globs: "**/*.{scss,css,tsx}"
+alwaysApply: false
+---
+
+# Styling Patterns
+
+## Tailwind CSS (Primary Method)
+
+### Utility Classes
+
+```tsx
+// ✅ GOOD: Use Tailwind utility classes
+<div className="flex w-full flex-col gap-6">
+  <article className="mb-9">
+    <Text preset="heading-1">Title</Text>
+  </article>
+</div>
+
+// ✅ GOOD: Responsive classes
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {/* content */}
+</div>
+```
+
+### ODS Theme Variables
+
+```tsx
+// ✅ GOOD: Use ODS CSS variables for colors
+<Text
+  className={clsx('text-sm', {
+    'text-[--ods-color-critical-500]': hasError,
+    'text-[--ods-color-primary-500]': isActive,
+  })}
+>
+  Content
+</Text>
+
+// ✅ GOOD: Background colors with ODS variables
+<div className="bg-[--ods-color-neutral-100] hover:bg-[--ods-color-primary-100]">
+  Content
+</div>
+```
+
+### Responsive Design
+
+```tsx
+// ✅ GOOD: Use Tailwind breakpoints
+<div className="mt-8 px-4 py-8 md:mt-2 md:px-10 md:py-9">
+  {/* Mobile: mt-8 px-4 py-8, Desktop: mt-2 px-10 py-9 */}
+</div>
+
+// ✅ GOOD: Responsive grid
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  {/* content */}
+</div>
+```
+
+## SCSS for ODS Component Parts
+
+### ODS Component Styling
+
+```scss
+// ✅ GOOD: Style ODS component parts using ::part()
+ods-text.font-bold::part(text) {
+  font-weight: bold;
+}
+
+ods-text.text-critical::part(text) {
+  color: var(--ods-color-critical-500);
+}
+
+ods-text.disabled::part(text) {
+  opacity: 0.6;
+}
+```
+
+### Custom SCSS
+
+```scss
+// ✅ GOOD: Custom styles in SCSS when needed
+.custom-component {
+  position: relative;
+  min-height: 90vh;
+  
+  .nested-element {
+    z-index: -1;
+    position: absolute;
+  }
+}
+```
+
+### SCSS File Structure
+
+```scss
+// ✅ GOOD: Main SCSS file structure
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '@ovhcloud/ods-themes/default';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+// ODS component customizations
+ods-text.custom-class::part(text) {
+  /* styles */
+}
+```
+
+## Styling Best Practices
+
+### When to Use Tailwind vs SCSS
+
+- **Tailwind**: Primary method for all styling
+- **SCSS**: 
+  - ODS component parts (`::part()` selectors)
+  - Complex custom styles that are hard to express with utilities
+  - Global styles in `index.scss`
+
+### ODS Theme Integration
+
+- Always use `var(--ods-color-*)` for colors
+- Use `var(--ods-font-family-default)` for fonts
+- Use `var(--ods-size-*)` for sizing when available
+- Import ODS theme: `@import '@ovhcloud/ods-themes/default';`
+
+### Responsive Patterns
+
+- Mobile-first approach
+- Use breakpoints: `sm:`, `md:`, `lg:`, `xl:`
+- Common pattern: `className="base-class md:desktop-class"`
+
+### Conditional Styling
+
+```tsx
+// ✅ GOOD: Use clsx for conditional classes
+import clsx from 'clsx';
+
+<div
+  className={clsx('base-class', {
+    'active-class': isActive,
+    'error-class': hasError,
+    'disabled-class': isDisabled,
+  })}
+>
+  Content
+</div>
+```
