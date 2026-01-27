@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
+import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey';
 import { useParams } from 'react-router-dom';
 import { AIError } from '@/data/api';
 import { AddSSHKey, addSSHKey } from '@/data/api/sshkey/sshkey.api';

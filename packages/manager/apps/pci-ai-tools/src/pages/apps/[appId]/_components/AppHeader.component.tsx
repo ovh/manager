@@ -13,7 +13,10 @@ import ai from '@/types/AI';
 import AppStatusBadge from '../../_components/AppStatusBadge.component';
 import StartApp from './StartApp.component';
 import StopApp from './StopApp.component';
-import { isDeletingApp, isRunningApp } from '@/lib/statusHelper';
+import {
+  isDeletingApp,
+  isRunningOrStandbyApp,
+} from '@/lib/statusHelper';
 import A from '@/components/links/A.component';
 
 export const AppHeader = ({ app }: { app: ai.app.App }) => {
@@ -37,7 +40,7 @@ export const AppHeader = ({ app }: { app: ai.app.App }) => {
           <div className="flex flex-row items-center gap-3">
             <h2>{app.spec.name ?? 'Dashboard'}</h2>
             <div>
-              {isRunningApp(app.status.state) ||
+              {isRunningOrStandbyApp(app.status.state) ||
               isDeletingApp(app.status.state) ? (
                 <Button
                   data-testid="open-stop-modal-button"

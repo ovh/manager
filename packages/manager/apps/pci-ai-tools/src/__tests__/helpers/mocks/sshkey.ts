@@ -1,4 +1,4 @@
-import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
+import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey';
 import { OrderSshKey } from '@/types/orderFunnel';
 
 export const mockedSshKey: sshkey.SshKey = {

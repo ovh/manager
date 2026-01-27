@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/index';
+import * as sshkey from '@datatr-ux/ovhcloud-types/cloud';
 import { PCIAi } from '..';
 
 export const getSshkey = async ({ projectId }: PCIAi) =>

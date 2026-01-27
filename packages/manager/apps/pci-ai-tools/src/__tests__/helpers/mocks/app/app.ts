@@ -1,6 +1,11 @@
 import ai from '@/types/AI';
 import { mockedDataSync } from '../volume/datasync';
-import { mockedAutoScaling, mockedFixedScaling } from './appHelper';
+import {
+  mockedAutoScaling,
+  mockedAutoScalingInput,
+  mockedFixedScaling,
+  mockedFixedScalingInput,
+} from './appHelper';
 import { mockedCPUResources, mockedGPUResources } from '../shared/resource';
 import {
   mockedGitVolume,
@@ -81,7 +86,7 @@ export const mockedAppSpecInput: ai.app.AppSpecInput = {
   },
   command: ['command', 'docker'],
   volumes: [mockedS3Volume, mockedGitVolume],
-  scalingStrategy: mockedAutoScaling,
+  scalingStrategy: mockedAutoScalingInput,
   probe: {
     path: '/health',
     port: 8080,
@@ -104,5 +109,5 @@ export const mockedAppSpecInputGPU: ai.app.AppSpecInput = {
   partnerId: 'lettria',
   resources: { flavor: 'ai1-1-gpu', gpu: 2 },
   volumes: [mockedPublicGitVolume],
-  scalingStrategy: mockedFixedScaling,
+  scalingStrategy: mockedFixedScalingInput,
 };

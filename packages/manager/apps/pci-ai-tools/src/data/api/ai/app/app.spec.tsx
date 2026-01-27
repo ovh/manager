@@ -11,7 +11,7 @@ import {
   updateApp,
 } from './app.api';
 import {
-  mockedAppSpec,
+  mockedAppSpecInput,
   mockedAppUpdate,
 } from '@/__tests__/helpers/mocks/app/app';
 
@@ -52,22 +52,11 @@ describe('app functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await addApp({
       projectId: 'projectId',
-      appInfo: mockedAppSpec,
+      appInfo: mockedAppSpecInput,
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/app',
-      {
-        image: mockedAppSpec.image,
-        name: mockedAppSpec.name,
-        grpcPort: mockedAppSpec.grpcPort,
-        command: mockedAppSpec.command,
-        defaultHttpPort: mockedAppSpec.defaultHttpPort,
-        deploymentStrategy: mockedAppSpec.deploymentStrategy,
-        region: mockedAppSpec.region,
-        resources: mockedAppSpec.resources,
-        scalingStrategy: mockedAppSpec.scalingStrategy,
-        unsecureHttp: false,
-      },
+      mockedAppSpecInput,
     );
   });
 
@@ -129,22 +118,11 @@ describe('app functions', () => {
     expect(apiClient.v6.post).not.toHaveBeenCalled();
     await getCommand({
       projectId: 'projectId',
-      appInfo: mockedAppSpec,
+      appInfo: mockedAppSpecInput,
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/app/command',
-      {
-        image: mockedAppSpec.image,
-        name: mockedAppSpec.name,
-        grpcPort: mockedAppSpec.grpcPort,
-        command: mockedAppSpec.command,
-        defaultHttpPort: mockedAppSpec.defaultHttpPort,
-        deploymentStrategy: mockedAppSpec.deploymentStrategy,
-        region: mockedAppSpec.region,
-        resources: mockedAppSpec.resources,
-        scalingStrategy: mockedAppSpec.scalingStrategy,
-        unsecureHttp: false,
-      },
+      mockedAppSpecInput,
     );
   });
 });

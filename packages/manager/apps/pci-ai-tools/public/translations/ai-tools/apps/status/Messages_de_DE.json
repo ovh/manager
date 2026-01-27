@@ -8,5 +8,6 @@
   "status-FAILED": "Fehlgeschlagen",
   "status-ERROR": "Fehler",
   "status-STOPPED": "Angehalten",
-  "status-RUNNING": "In Betrieb"
+  "status-RUNNING": "In Betrieb",
+  "status-STANDBY": "Bereit"
 }

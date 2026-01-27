@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Plus, Trash2 } from 'lucide-react';
-import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
+import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey';
 import { useTranslation } from 'react-i18next';
 import {
   Button,

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Badge, BadgeProps, badgeVariants } from '@datatr-ux/uxlib';
+import { Badge, BadgeProps } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
 
 const JobStatusBadge = ({ status }: { status: ai.job.JobStateEnum }) => {
@@ -11,24 +11,25 @@ const JobStatusBadge = ({ status }: { status: ai.job.JobStateEnum }) => {
     case 'INTERRUPTING':
     case 'QUEUED':
     case 'INTERRUPTED':
-      variant = badgeVariants({ variant: 'warning' });
+      variant = 'warning';
       break;
     case 'FAILED':
     case 'ERROR':
     case 'TIMEOUT':
     case 'SYNC_FAILED':
-      variant = badgeVariants({ variant: 'destructive' });
+      variant = 'destructive';
       break;
     case 'PENDING':
     case 'RESTARTING':
     case 'RUNNING':
     case 'DONE':
-      variant = badgeVariants({ variant: 'success' });
+      variant = 'success';
       break;
     default:
+      variant = 'primary';
       break;
   }
-  return <Badge className={variant}>{t(`status-${status}`)}</Badge>;
+  return <Badge variant={variant}>{t(`status-${status}`)}</Badge>;
 };
 
 export default JobStatusBadge;

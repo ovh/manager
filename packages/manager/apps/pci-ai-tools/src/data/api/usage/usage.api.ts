@@ -1,4 +1,4 @@
-import * as usage from '@datatr-ux/ovhcloud-types/cloud/usage/index';
+import * as usage from '@datatr-ux/ovhcloud-types/cloud/usage';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { PCIAi } from '..';
 
