@@ -33,13 +33,18 @@ describe('AutoScalingForm component', () => {
   const TestWrapper = ({
     resourceType = ai.app.ScalingAutomaticStrategyResourceTypeEnum
       .CPU as ResourceType,
+    replicasMin = 1,
   }: {
     resourceType?: ResourceType;
+    replicasMin?: number;
   }) => {
     const methods = useForm({
       defaultValues: {
-        replicasMin: 1,
+        replicasMin,
         replicasMax: 5,
+        cooldownPeriodSeconds: 300,
+        scaleUpStabilizationWindowSeconds: 0,
+        scaleDownStabilizationWindowSeconds: 300,
         resourceType,
         averageUsageTarget: 75,
         metricUrl: '',
@@ -64,6 +69,8 @@ describe('AutoScalingForm component', () => {
       expect(screen.getByTestId('auto-scaling-container')).toBeTruthy();
       expect(screen.getByTestId('min-rep-input')).toBeTruthy();
       expect(screen.getByTestId('max-rep-input')).toBeTruthy();
+      expect(screen.getByTestId('scale-up-delay-input')).toBeTruthy();
+      expect(screen.getByTestId('scale-down-delay-input')).toBeTruthy();
       expect(screen.getByTestId('resource-usage-slider')).toBeTruthy();
     });
   });
@@ -82,6 +89,16 @@ describe('AutoScalingForm component', () => {
       expect(screen.getByTestId('data-location-input')).toBeTruthy();
       expect(screen.getByTestId('target-metric-value-input')).toBeTruthy();
       expect(screen.getByTestId('aggregation-type-select')).toBeTruthy();
+    });
+  });
+
+  it('should render scale-to-zero fields when minimum replicas is 0', async () => {
+    render(<TestWrapper replicasMin={0} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('scale-to-zero-input')).toBeTruthy();
     });
   });
 });

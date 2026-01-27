@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.179.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.3...@ovh-ux/manager-container-app@0.179.4) (2026-01-27)
+
+
+### Bug Fixes
+
+* **container:** menu reset when selecting ips app ([7aa43d9](https://github.com/ovh/manager/commit/7aa43d9f72b9bf6f5340fc3f038af4aae69e2d3e)), closes [#MANAGER-20546](https://github.com/ovh/manager/issues/MANAGER-20546)
+
+
+
+
+
 ## [0.179.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.2...@ovh-ux/manager-container-app@0.179.3) (2026-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

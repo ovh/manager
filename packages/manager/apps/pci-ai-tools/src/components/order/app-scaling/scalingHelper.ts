@@ -18,6 +18,9 @@ export const SCALING_DEFAULTS = {
   DATA_FORMAT: ai.app.CustomMetricsFormatEnum.JSON,
   AGGREGATION_TYPE: ai.app.CustomMetricsAggregationTypeEnum.AVERAGE,
   REPLICAS: 1,
+  COOLDOWN_PERIOD_SECONDS: 300,
+  SCALE_UP_STABILIZATION_WINDOW_SECONDS: 0,
+  SCALE_DOWN_STABILIZATION_WINDOW_SECONDS: 300,
 } as const;
 
 export type ScalingStrategySchema = {
@@ -26,6 +29,9 @@ export type ScalingStrategySchema = {
   averageUsageTarget?: number;
   replicasMax?: number;
   replicasMin?: number;
+  cooldownPeriodSeconds?: number;
+  scaleUpStabilizationWindowSeconds?: number;
+  scaleDownStabilizationWindowSeconds?: number;
   resourceType?: ResourceType;
   metricUrl?: string;
   dataFormat?: ai.app.CustomMetricsFormatEnum;
@@ -46,13 +52,28 @@ export const baseScalingSchema = (t: (key: string) => string) =>
         .max(10),
       replicasMin: z.coerce
         .number()
-        .min(1)
+        .min(0)
         .max(10)
         .optional(),
       replicasMax: z.coerce
         .number()
         .min(1)
         .max(10)
+        .optional(),
+      cooldownPeriodSeconds: z.coerce
+        .number()
+        .int()
+        .min(0)
+        .optional(),
+      scaleUpStabilizationWindowSeconds: z.coerce
+        .number()
+        .int()
+        .min(0)
+        .optional(),
+      scaleDownStabilizationWindowSeconds: z.coerce
+        .number()
+        .int()
+        .min(0)
         .optional(),
       resourceType: z.nativeEnum(ResourceType).optional(),
       averageUsageTarget: z.coerce.number().optional(),
@@ -125,6 +146,14 @@ export const getInitialValues = (scaling: Scaling): FullScalingFormValues => ({
   replicas: scaling.replicas ?? SCALING_DEFAULTS.REPLICAS,
   replicasMin: scaling.replicasMin ?? SCALING_DEFAULTS.MIN_REPLICAS,
   replicasMax: scaling.replicasMax ?? SCALING_DEFAULTS.MAX_REPLICAS,
+  cooldownPeriodSeconds:
+    scaling.cooldownPeriodSeconds ?? SCALING_DEFAULTS.COOLDOWN_PERIOD_SECONDS,
+  scaleUpStabilizationWindowSeconds:
+    scaling.scaleUpStabilizationWindowSeconds ??
+    SCALING_DEFAULTS.SCALE_UP_STABILIZATION_WINDOW_SECONDS,
+  scaleDownStabilizationWindowSeconds:
+    scaling.scaleDownStabilizationWindowSeconds ??
+    SCALING_DEFAULTS.SCALE_DOWN_STABILIZATION_WINDOW_SECONDS,
   resourceType: scaling.resourceType ?? SCALING_DEFAULTS.RESOURCE_TYPE,
   averageUsageTarget:
     scaling.averageUsageTarget ?? SCALING_DEFAULTS.AVERAGE_USAGE,

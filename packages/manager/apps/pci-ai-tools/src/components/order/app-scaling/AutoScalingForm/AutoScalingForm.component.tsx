@@ -1,12 +1,12 @@
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import Price from '@/components/price/Price.component';
 import { AppPricing } from '@/types/orderFunnel';
 import { ScalingStrategySchema, ResourceType } from '../scalingHelper';
 import { ReplicaFields } from './ReplicaFields';
 import { ResourceTypeSelector } from './ResourceTypeSelector';
 import { CpuRamFields } from './CpuRamFields';
 import { CustomMetricsFields } from './CustomMetricsFields';
+import { ScalingDelayFields } from './ScalingDelayFields';
 
 interface AutoScalingFormProps {
   pricingFlavor?: AppPricing;
@@ -18,15 +18,17 @@ export function AutoScalingForm({ pricingFlavor }: AutoScalingFormProps) {
   const minRep = useWatch({ control, name: 'replicasMin' });
 
   const isCustom = resType === ResourceType.CUSTOM;
+  const showScaleToZero = Number(minRep) === 0;
 
   return (
-    <div data-testid="auto-scaling-container">
+    <div data-testid="auto-scaling-container" className="flex flex-col gap-6">
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-6 mb-4">
         <ReplicaFields />
         <ResourceTypeSelector />
         {!isCustom && <CpuRamFields />}
         {isCustom && <CustomMetricsFields />}
       </div>
+      <ScalingDelayFields showScaleToZero={showScaleToZero} />
     </div>
   );
 }

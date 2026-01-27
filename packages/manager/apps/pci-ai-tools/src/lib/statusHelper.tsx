@@ -65,9 +65,12 @@ export const isRunningApp = (currentState: ai.app.AppStateEnum) =>
     ai.app.AppStateEnum.QUEUED,
   ].includes(currentState);
 
-export const isStoppedApp = (currentState: ai.app.AppStateEnum) =>
+export const isStoppedApp = (
+  currentState: ai.app.AppStateEnum | 'STANDBY',
+) =>
   [
     ai.app.AppStateEnum.ERROR,
     ai.app.AppStateEnum.FAILED,
     ai.app.AppStateEnum.STOPPED,
+    'STANDBY',
   ].includes(currentState);

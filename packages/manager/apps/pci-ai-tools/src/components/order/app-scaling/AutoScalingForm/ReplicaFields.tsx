@@ -45,7 +45,7 @@ export function ReplicaFields() {
                   {...field}
                   type="number"
                   max={100}
-                  min={1}
+                  min={0}
                 />
               </FormControl>
               <FormMessage />

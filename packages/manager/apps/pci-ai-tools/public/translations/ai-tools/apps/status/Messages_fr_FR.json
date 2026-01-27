@@ -8,5 +8,6 @@
   "status-FAILED": "Echec",
   "status-ERROR": "Erreur",
   "status-STOPPED": "Arrêtée",
-  "status-RUNNING": "En service"
+  "status-RUNNING": "En service",
+  "status-STANDBY": "En veille"
 }
