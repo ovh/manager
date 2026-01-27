@@ -93,19 +93,12 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     self.countryCode = 'fr';
     self.streetNumberExtraEnum = PORTABILITY_STREET_NUMBER_EXTRA_ENUM.OTHER;
 
-    self.stepsList = ['number', 'contact', 'config', 'summary'];
-    self.step = 'number';
     self.minDate = moment()
       .add(15, 'days')
       .toDate();
     self.order.desireDate = moment(self.minDate).toDate();
     self.desireDatePickerOpened = false;
     self.isSDA = false;
-
-    // reset contract when step changes
-    $scope.$watch('PortabilityOrderCtrl.step', () => {
-      self.order.isContractsAccepted = false;
-    });
 
     $scope.$watch(
       'PortabilityOrderCtrl.order',
@@ -218,6 +211,20 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     self.desireDatePickerOpened = true;
   };
 
+  self.resetAddressFields = function resetAddressFields() {
+    self.order.zip = '';
+    self.order.city = '';
+    self.order.streetName = '';
+    self.order.building = '';
+    self.order.door = '';
+    self.order.floor = '';
+    self.order.stair = '';
+    self.order.streetNumber = '';
+    self.order.streetNumberExtra = '';
+    self.autoCompleteStreetName = [];
+    self.order.streetType = '';
+  };
+
   // select number corresponding country automatically
   self.onNumberChange = function onNumberChange() {
     const number = self.normalizeNumber(self.order.callNumber);
@@ -250,6 +257,10 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     self.streetNumberExtraEnum =
       PORTABILITY_STREET_NUMBER_EXTRA_ENUM[self.countryCode.toUpperCase()] ||
       PORTABILITY_STREET_NUMBER_EXTRA_ENUM.OTHER;
+
+    if (self.order.country) {
+      self.resetAddressFields();
+    }
   };
 
   self.onChooseRedirectToLine = function onChooseRedirectToLine(result) {
@@ -276,28 +287,6 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
       number = number.replace(/^\+/, '00');
     }
     return number;
-  };
-
-  self.goToConfigStep = function goToConfigStep() {
-    self.order.addressTooLong = false;
-
-    if (
-      `${get(self.order, 'streetName', '')}${get(
-        self.order,
-        'streetNumber',
-        '',
-      )}${get(self.order, 'streetNumberExtra', '')}${get(
-        self.order,
-        'streetType',
-        '',
-      )}`.length >= 35
-    ) {
-      self.order.addressTooLong = true;
-      return false;
-    }
-
-    self.step = 'config';
-    return true;
   };
 
   self.getOrderParams = function getOrderParams() {
@@ -371,7 +360,6 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
   };
 
   self.fetchPriceAndContracts = function fetchPriceAndContracts() {
-    self.step = 'summary';
     return OvhApiOrder.Telephony()
       .v6()
       .getPortability(self.getOrderParams())
@@ -381,8 +369,17 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
         self.prices = prices;
       })
       .catch((err) => {
-        self.step = 'number';
-        TucToast.error(get(err, 'data.message', ''));
+        const errorMessage = get(err, 'data.message', '');
+        if (
+          typeof errorMessage === 'string' &&
+          errorMessage.toLowerCase().includes('rio')
+        ) {
+          $scope.PortabilityOrderCtrl.portabilityOrderForm.rio.$setValidity(
+            'rioServerError',
+            false,
+          );
+        }
+        TucToast.error(errorMessage);
         return $q.reject(err);
       });
   };
@@ -428,6 +425,13 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     self.order.streetName = modelValue.streetName;
   };
 
+  self.onRioChange = function() {
+    $scope.PortabilityOrderCtrl.portabilityOrderForm.rio.$setValidity(
+      'rioServerError',
+      true,
+    );
+  };
+
   self.getStreetNameList = function(inseeCode) {
     // Available only if it is a FR service
     if (self.countryCode === 'fr') {
@@ -456,7 +460,22 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     );
   };
 
+  self.isSubmitDisabled = function() {
+    return (
+      self.portabilityOrderForm.$invalid ||
+      (self.isSDA &&
+        self.order.sdatype === 'select' &&
+        self.order.numbersList.length === 0) ||
+      (self.details && !self.order.isContractsAccepted) ||
+      self.order.isOrdering
+    );
+  };
+
   self.submitOrder = function submitOrder() {
+    if (!self.details) {
+      return self.fetchPriceAndContracts();
+    }
+
     self.order.isOrdering = true;
     return OvhApiOrder.Telephony()
       .v6()
