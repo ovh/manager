@@ -17,6 +17,7 @@ import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { CredentialStatus } from '../credential-status-badge/CredentialStatusBadge.component';
+import { CREDENTIAL_LIST_CELL_TEST_IDS } from './CredentialDatagridCells.constants';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ export const DatagridCredentialCellName = (credential: OkmsCredential) => {
           });
           navigate(`${credential.id}`);
         }}
+        data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.name(credential.id)}
       >
         {credential.name}
       </MukLink>
@@ -41,12 +43,22 @@ export const DatagridCredentialCellName = (credential: OkmsCredential) => {
 };
 
 export const DatagridCredentialCellId = (credential: OkmsCredential) => {
-  return <Clipboard className="w-full" value={credential.id} />;
+  return (
+    <Clipboard
+      className="w-full"
+      value={credential.id}
+      data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.id(credential.id)}
+    />
+  );
 };
 
 export const DatagridCredentialCellIdentities = (credential: OkmsCredential) => {
   const identities = credential.identityURNs.length;
-  return <DataGridTextCell>{identities}</DataGridTextCell>;
+  return (
+    <DataGridTextCell data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.nbUsersIds(credential.id)}>
+      {identities}
+    </DataGridTextCell>
+  );
 };
 
 const dateFormatOptions: Intl.DateTimeFormatOptions = {
@@ -67,7 +79,11 @@ export const DatagridCredentialCellCreationDate = (credential: OkmsCredential) =
     options: dateFormatOptions,
   });
 
-  return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
+  return (
+    <DataGridTextCell data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.creationDate(credential.id)}>
+      {formattedDate}
+    </DataGridTextCell>
+  );
 };
 
 export const DatagridCredentialCellExpirationDate = (credential: OkmsCredential) => {
@@ -78,11 +94,20 @@ export const DatagridCredentialCellExpirationDate = (credential: OkmsCredential)
     options: dateFormatOptions,
   });
 
-  return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
+  return (
+    <DataGridTextCell data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.expirationDate(credential.id)}>
+      {formattedDate}
+    </DataGridTextCell>
+  );
 };
 
 export const DatagridCredentialCellStatus = (credential: OkmsCredential) => {
-  return <CredentialStatus state={credential.status} />;
+  return (
+    <CredentialStatus
+      state={credential.status}
+      data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.status(credential.id)}
+    />
+  );
 };
 
 export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: OKMS) => {
@@ -124,11 +149,13 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: 
   ];
 
   return (
-    <ActionMenu
-      id={`credentialsActions-${credential.id}`}
-      items={items}
-      variant={BUTTON_VARIANT.ghost}
-      isCompact
-    />
+    <div data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.actions(credential.id)}>
+      <ActionMenu
+        id={`credentialsActions-${credential.id}`}
+        items={items}
+        variant={BUTTON_VARIANT.ghost}
+        isCompact
+      />
+    </div>
   );
 };
