@@ -5,29 +5,18 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { urlParams, urls } from '@/routes/routes.constants';
+import { DataGridTextCellMock, LinksMock } from '@/test-utils/mocks/manager-react-components';
+import { useHrefMock } from '@/test-utils/mocks/react-router-dom';
 
 import { VaultIdCell } from '../VaultIdCell.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="cell">{children}</div>
-  ),
-
-  Links: ({ label, href }: { label: string; href: string }) => (
-    <a data-testid="link" href={href}>
-      {label}
-    </a>
-  ),
+  DataGridTextCell: DataGridTextCellMock,
+  Links: LinksMock,
 }));
 
-const { useHref } = vi.hoisted(() => {
-  return {
-    useHref: vi.fn().mockImplementation((link) => link),
-  };
-});
-
 vi.mock('react-router-dom', () => ({
-  useHref,
+  useHref: useHrefMock,
 }));
 
 describe('VaultIdCell', () => {
@@ -36,7 +25,7 @@ describe('VaultIdCell', () => {
 
     render(<VaultIdCell {...vault} />);
 
-    expect(useHref).toBeCalled();
+    expect(useHrefMock).toBeCalled();
 
     const link = screen.getByTestId('link');
     expect(link).toHaveTextContent(vault.currentState.name);

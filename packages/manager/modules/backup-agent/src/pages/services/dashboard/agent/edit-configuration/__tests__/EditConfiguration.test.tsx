@@ -1,190 +1,75 @@
-import React, { ComponentProps } from 'react';
+import React from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { OdsInput } from '@ovhcloud/ods-components/react';
-
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { DrawerProps } from '@ovh-ux/manager-react-components';
-
-import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { mockAgents } from '@/mocks/agents/agents';
 import { mockTenantBackupPolicies } from '@/mocks/tenant/backupPolicies.mock';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { EditConfigurationPage } from '@/pages/services/dashboard/agent/edit-configuration/EditConfiguration.page';
+import { useParamsMock } from '@/test-utils/mocks/react-router-dom';
 
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
-
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  const { LinkMock, useNavigateMock, useParamsMock } = await import(
+    '@/test-utils/mocks/react-router-dom'
+  );
   return {
     ...actual,
-    useParams: vi
-      .fn()
-      .mockReturnValue({ tenantId: TENANTS_MOCKS[0]!.id, agentId: mockAgents[0]!.id }),
-    useNavigate: () => ({ navigate: vi.fn() }),
-    Link: ({ to, children, ...props }: { to: string; children: React.ReactNode }) => (
-      <a href={to} {...props}>
-        {children}
-      </a>
-    ),
+    useParams: useParamsMock,
+    useNavigate: useNavigateMock,
+    Link: LinkMock,
   };
 });
 
 // --- Mock translation ---
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => `translated_${key}`,
-  }),
-}));
-
-// --- Mock translation ---
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const actual = await vi.importActual('@ovhcloud/ods-components/react');
-
+vi.mock('react-i18next', async () => {
+  const { useTranslationMock } = await import('@/test-utils/mocks/react-i18next');
   return {
-    ...actual,
-    OdsText: vi
-      .fn()
-      .mockImplementation(({ children }: { children: React.ReactNode }) => <p>{children}</p>),
-    OdsButton: vi
-      .fn()
-      .mockImplementation(
-        ({
-          label,
-          isDisabled,
-          ...props
-        }: {
-          children: React.ReactNode;
-          isDisabled: boolean;
-          label: string;
-        }) => (
-          <button {...props} disabled={isDisabled}>
-            {label}
-          </button>
-        ),
-      ),
-    OdsFormField: vi
-      .fn()
-      .mockImplementation(
-        ({ children, error, ...props }: { children: React.ReactNode; error: string }) => (
-          <div {...props}>
-            {children}
-            {!!error && <div>{error}</div>}
-          </div>
-        ),
-      ),
-    OdsInput: vi
-      .fn()
-      .mockImplementation(
-        ({
-          onOdsChange,
-          onOdsBlur,
-          ...props
-        }: Pick<ComponentProps<typeof OdsInput>, 'onOdsChange' | 'onOdsBlur'>) => (
-          <input onChange={onOdsChange as () => void} onBlur={onOdsBlur as () => void} {...props} />
-        ),
-      ),
-    OdsSelect: vi
-      .fn()
-      .mockImplementation(
-        ({
-          children,
-          onOdsChange,
-          onOdsBlur,
-          isDisabled,
-          isRequired,
-          ...props
-        }: {
-          children: React.ReactNode;
-          name: string;
-          onOdsChange: () => void;
-          isDisabled: boolean;
-          isRequired: boolean;
-          onOdsBlur: () => void;
-        }) => (
-          <select
-            onChange={onOdsChange}
-            onBlur={onOdsBlur}
-            data-disabled={isDisabled}
-            data-required={isRequired}
-            data-testid={`select-${props.name}`}
-            {...props}
-          >
-            {children}
-          </select>
-        ),
-      ),
-    OdsCombobox: vi
-      .fn()
-      .mockImplementation(
-        ({
-          children,
-          onOdsChange,
-          onOdsBlur,
-          isDisabled,
-          isRequired,
-          ...props
-        }: {
-          children: React.ReactNode;
-          name: string;
-          onOdsChange: () => void;
-          isDisabled: boolean;
-          isRequired: boolean;
-          onOdsBlur: () => void;
-        }) => (
-          <select
-            onChange={onOdsChange}
-            onBlur={onOdsBlur}
-            data-disabled={isDisabled}
-            data-required={isRequired}
-            data-testid={`select-${props.name}`}
-            {...props}
-          >
-            {children}
-          </select>
-        ),
-      ),
-    OdsComboboxItem: vi
-      .fn()
-      .mockImplementation(({ children, ...props }: { children: React.ReactNode }) => (
-        <option {...props}>{children}</option>
-      )),
+    useTranslation: useTranslationMock,
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  Drawer: vi
-    .fn()
-    .mockImplementation(
-      ({
-        children,
-        heading,
-        primaryButtonLabel,
-        onPrimaryButtonClick,
-        isPrimaryButtonDisabled,
-        isSecondaryButtonDisabled,
-        secondaryButtonLabel,
-        onSecondaryButtonClick,
-        ...props
-      }: DrawerProps) => (
-        <section data-testid={'drawer'} {...props}>
-          <h2>{heading}</h2>
-          {children}
-          <button onClick={onPrimaryButtonClick} disabled={isPrimaryButtonDisabled}>
-            {primaryButtonLabel}
-          </button>
-          <button onClick={onSecondaryButtonClick} disabled={isSecondaryButtonDisabled}>
-            {secondaryButtonLabel}
-          </button>
-        </section>
-      ),
-    ),
-  useNotifications: vi.fn().mockReturnValue({
-    useSuccess: vi.fn(),
-  }),
-}));
+// --- Mock ODS ---
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-components/react')>();
+  const {
+    OdsTextMock,
+    OdsButtonMock,
+    OdsFormFieldMock,
+    OdsInputMock,
+    OdsSelectMock,
+    OdsComboboxMock,
+    OdsComboboxItemMock,
+    OdsSpinnerMock,
+    OdsMessageMock,
+  } = await import('@/test-utils/mocks/ods-components');
+  return {
+    ...actual,
+    OdsText: OdsTextMock,
+    OdsButton: OdsButtonMock,
+    OdsFormField: OdsFormFieldMock,
+    OdsInput: OdsInputMock,
+    OdsSelect: OdsSelectMock,
+    OdsCombobox: OdsComboboxMock,
+    OdsComboboxItem: OdsComboboxItemMock,
+    OdsSpinner: OdsSpinnerMock,
+    OdsMessage: OdsMessageMock,
+  };
+});
+
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  const { DrawerMock, useNotificationsMock } = await import(
+    '@/test-utils/mocks/manager-react-components'
+  );
+  return {
+    ...actual,
+    Drawer: DrawerMock,
+    useNotifications: useNotificationsMock,
+  };
+});
 
 const {
   useBackupTenantPoliciesMock,
@@ -217,20 +102,20 @@ const getUnableEditAgentNotEnabledBanner = () =>
 
 const getInputName = () =>
   screen.getByRole('textbox', {
-    name: 'translated_@ovh-ux/manager-common-translations/dashboard:name',
+    name: 'translated_name',
   });
 const getInputServiceName = () => screen.getByRole('textbox', { name: 'translated_service' });
 const getInputIp = () =>
   screen.getByRole('textbox', {
-    name: 'translated_@ovh-ux/manager-common-translations/system:address_ip',
+    name: 'translated_address_ip',
   });
 const getSelectPolicy = () => screen.getByTestId('select-policy');
 
-const getSubmitButton = () =>
-  screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:edit` });
+const getSubmitButton = () => screen.getByRole('button', { name: `translated_edit` });
 
 describe('EditConfigurationComponent', () => {
   beforeAll(() => {
+    useParamsMock.mockReturnValue({ tenantId: TENANTS_MOCKS[0]!.id, agentId: mockAgents[0]!.id });
     useBackupVSPCTenantAgentDetailsMock.mockReturnValue({
       isLoading: false,
       isError: false,
@@ -305,12 +190,12 @@ describe('EditConfigurationComponent', () => {
     render(<EditConfigurationPage />);
 
     screen.getByRole('heading', {
-      name: `translated_${BACKUP_AGENT_NAMESPACES.AGENT}:edit_configuration`,
+      name: `translated_edit_configuration`,
       level: 2,
     });
 
     expect(screen.queryAllByRole('textbox').length).toBe(0);
 
-    screen.getByRole('button', { name: `translated_${NAMESPACES.ACTIONS}:edit` });
+    screen.getByRole('button', { name: `translated_edit` });
   });
 });
