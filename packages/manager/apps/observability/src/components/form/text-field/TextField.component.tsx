@@ -11,7 +11,10 @@ import {
   Textarea,
 } from '@ovhcloud/ods-react';
 
+import { useDateFnsLocale } from '@ovh-ux/muk';
+
 import { TextFieldProps } from '@/components/form/text-field/TextField.props';
+import { formatNumberWithLocale } from '@/utils/number.utils';
 import { DESCRIPTION_MAX_CHARS } from '@/utils/schemas/description.schema';
 
 type TextFieldRefElement = HTMLInputElement | HTMLTextAreaElement;
@@ -43,6 +46,7 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
     };
     const onInput = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
       setCount(event.target.value.length);
+    const dateFnsLocale = useDateFnsLocale();
 
     const isTextarea = type === 'textarea';
 
@@ -85,7 +89,7 @@ export const TextField = forwardRef<TextFieldRefElement, TextFieldProps>(
           <Text preset={TEXT_PRESET.caption}>{helper}</Text>
           {isTextarea && (
             <Text preset={TEXT_PRESET.caption}>
-              {count}/{DESCRIPTION_MAX_CHARS}
+              {count}/{formatNumberWithLocale(DESCRIPTION_MAX_CHARS, dateFnsLocale)}
             </Text>
           )}
         </FormFieldHelper>
