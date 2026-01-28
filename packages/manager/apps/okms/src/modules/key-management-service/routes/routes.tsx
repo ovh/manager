@@ -98,20 +98,16 @@ const CredentialsCreate = React.lazy(
 );
 const CredentialsCreateUserListModal = React.lazy(
   () =>
-    import(
-      '@key-management-service/pages/credential/create/add-users/CreateCredentialIdentityUserList.page'
-    ),
+    import('@key-management-service/pages/credential/create/add-users-modal/AddUsersModal.page'),
 );
 const CredentialsCreateGroupListModal = React.lazy(
   () =>
-    import(
-      '@key-management-service/pages/credential/create/add-groups/CreateCredentialIdentityGroupList.page'
-    ),
+    import('@key-management-service/pages/credential/create/add-groups-modal/AddGroupsModal.page'),
 );
 const CredentialsCreateServiceAccountListModal = React.lazy(
   () =>
     import(
-      '@key-management-service/pages/credential/create/add-service-account/CreateCredentialIdentityServiceAccountList.page'
+      '@key-management-service/pages/credential/create/add-service-account-modal/AddServiceAccountsModal.page'
     ),
 );
 
