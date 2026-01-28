@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { RenderOptions, render } from '@testing-library/react';
 import { DeepPartial, FormProvider, useForm } from 'react-hook-form';
 
-import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { CreateShareFormValues, createShareSchema } from '@/pages/create/schema/CreateShare.schema';
 
 type TRenderWithMockedFormOptions = {
   defaultValues?: DeepPartial<CreateShareFormValues>;
@@ -21,6 +22,7 @@ export const renderWithMockedForm: TRenderWithMockedForm = (
 ) => {
   const TestWrapper = ({ children }: { children: React.ReactNode }) => {
     const form = useForm<CreateShareFormValues>({
+      resolver: zodResolver(createShareSchema),
       defaultValues: {
         deploymentModes: [],
         continent: 'all',
@@ -29,8 +31,11 @@ export const renderWithMockedForm: TRenderWithMockedForm = (
         shareData: {
           name: '',
           microRegion: '',
+          specName: '',
+          size: 150,
           ...defaultValues?.shareData,
         },
+        availabilityZone: null,
       },
       mode: 'onChange',
     });

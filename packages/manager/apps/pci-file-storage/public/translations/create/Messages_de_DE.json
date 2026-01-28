@@ -2,7 +2,12 @@
   "name": {
     "title": "Name des Shares",
     "label": "Wählen Sie einen Namen für Ihre Freigabedatei",
-    "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten."
+    "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten und darf 255 Zeichen nicht überschreiten.",
+    "error": {
+      "required": "Der Name des Shares darf nicht leer sein. Bitte geben Sie einen Namen ein.",
+      "max_length": "Ungültiges Namensformat",
+      "invalid_format": "Ungültiges Namensformat"
+    }
   },
   "localisation": {
     "title": "Wählen Sie einen Standort aus",
@@ -15,7 +20,7 @@
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Hochverfügbare/hoche Resilienz-Bereitstellung für Ihre kritischen Anwendungen in 3 Verfügbarkeitszonen."
+          "description": "Hochverfügbare Bereitstellung für Ihre kritischen Anwendungen in 3 Verfügbarkeitszonen."
         },
         "region-3-az": {
           "label": "3-AZ Region",
@@ -38,10 +43,10 @@
       "label": "Wählen Sie ein Rechenzentrum"
     },
     "availabilityZone": {
-      "title": "Wählen Sie Ihre Verfügbarkeitszone aus",
-      "informations": "Eine Standard-Verfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
+      "title": "Wählen Sie Ihre Verfügbarkeitszone",
+      "informations": "Eine Standardverfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
       "choice": {
-        "company": "Für mich wählen",
+        "company": "Für mich auswählen",
         "user": "Ich wähle meine Verfügbarkeitszone"
       }
     }
@@ -52,13 +57,13 @@
   },
   "shareSize": {
     "title": "Größe des Shares",
-    "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert.",
+    "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert",
     "label": "Lineare Leistungszuweisung (GB)"
   },
   "network": {
     "title": "Privates Netzwerk",
-    "description": "Wählen Sie das private Netzwerk aus, mit dem Ihre Instanzen sich mit Ihrer Freigabedatei verbinden sollen",
+    "description": "Wählen Sie das private Netzwerk aus, mit dem Ihre Instanzen eine Verbindung zu Ihrem Share herstellen sollen",
     "label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
-    "empty": "Es tut mir leid, aber Sie haben kein privates Netzwerk für diese Region"
+    "empty": "Entschuldigung, aber Sie haben kein privates Netzwerk für diese Region"
   }
 }
