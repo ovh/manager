@@ -1,15 +1,15 @@
 {
-  "home": "Home",
-  "order": "Ordina",
+  "home": "Home page",
+  "order": "Ordinare",
   "back": "Indietro",
-  "title": "Cruscotto",
+  "title": "Dashboard",
   "email": "Email",
   "subject": "Oggetto",
   "message": "Messaggio",
   "submitButton": "Inviare",
-  "successMessage": "La tua richiesta è stata inviata con successo.",
+  "successMessage": "La richiesta è stata inviata correttamente.",
   "errors": {
-    "emailRequired": "L'email è obbligatorio.",
+    "emailRequired": "L'email è obbligatoria.",
     "emailInvalid": "Inserisci un indirizzo email valido.",
     "subjectRequired": "L'oggetto è obbligatorio.",
     "messageRequired": "Il messaggio è obbligatorio."
@@ -17,6 +17,6 @@
   "general-information": "Informazioni generali",
   "help": "Aiuto",
   "type_billing": "Tipo di fatturazione",
-  "consumption_tooltip": "Lo spazio di archiviazione aggiuntivo non è disponibile in modalità self-service. Per aumentare la tua capacità di archiviazione, contatta il supporto.",
-  "vault_price": "O {{vaultPrice}} al mese"
+  "consumption_tooltip": "Lo storage aggiuntivo non è disponibile in modalità self-service. Per aumentare la tua capacità di storage, contatta il supporto.",
+  "vault_price": "{{vaultPrice}} +IVA/mese"
 }

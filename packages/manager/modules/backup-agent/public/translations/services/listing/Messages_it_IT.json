@@ -1,12 +1,13 @@
 {
-  "home": "Home",
-  "order": "Ordina un servizio",
-  "open": "Apri il cruscotto",
+  "home": "Home page",
+  "order": "Ordinare un servizio",
+  "open": "Aprire la dashboard",
   "title": "Servizi",
-  "delete_tenant_modal_title": "Elimina il Tenant",
-  "delete_tenant_modal_content": "Sei sicuro di voler eliminare il Tenant {{tenantName}}?",
-  "delete_tenant_banner_success": "Il tuo Tenant {{tenantName}} è stato eliminato correttamente",
-  "delete_tenant_banner_error": "Si è verificato un errore. Attendere qualche minuto prima di riprovare.",
+  "delete_tenant_modal_title": "Eliminare il Tenant",
+  "delete_tenant_modal_content": "Vuoi davvero eliminare il Tenant {{tenantName}}?",
+  "delete_tenant_banner_success": "Il Tenant {{tenantName}} è stato eliminato correttamente",
+  "delete_tenant_banner_error": "Si è verificato un errore. Attendi qualche minuto prima di riprovare.",
   "unable_to_delete_tenant_feature_unavailable": "La rimozione di un Tenant non è disponibile dall'interfaccia per motivi di sicurezza. Se desideri rimuovere un Tenant, ti preghiamo di contattare il supporto.",
-  "data_location": "Localizzazione dei dati"
+  "data_location": "Localizzazione dei dati",
+  "delete_tenant_feature_unavailable": "L’eliminazione di un Tenant non è disponibile dall'interfaccia per motivi di sicurezza. Per eliminare un Tenant, contatta il supporto."
 }

@@ -1,13 +1,13 @@
 {
-  "home": "Home",
-  "order": "Ordina",
-  "open": "Apri il cruscotto",
-  "title": "Elenco",
-  "resource_name_label": "Nome",
-  "location_label": "Locazione",
-  "region_label": "Regione",
+  "home": "Home page",
+  "order": "Ordinare",
+  "open": "Aprire la dashboard",
+  "title": "Lista",
+  "resource_name_label": "Cognome",
+  "location_label": "Localizzazione",
+  "region_label": "Region",
   "buckets_label": "Numero di bucket",
-  "status_label": "Status",
-  "order_vault": "Ordina un vault",
-  "more_action": "Azione aggiuntiva"
+  "status_label": "Stato",
+  "order_vault": "Ordinare un Vault",
+  "more_action": "Azione supplementare"
 }

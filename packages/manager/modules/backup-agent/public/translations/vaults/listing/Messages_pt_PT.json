@@ -1,7 +1,7 @@
 {
-  "home": "Início",
+  "home": "Página inicial",
   "order": "Encomendar",
-  "open": "Abrir o painel de controlo",
+  "open": "Abrir painel",
   "title": "Lista",
   "resource_name_label": "Nome",
   "location_label": "Locação",
@@ -9,5 +9,5 @@
   "buckets_label": "Número de buckets",
   "status_label": "Estado",
   "order_vault": "Encomendar um vault",
-  "more_action": "Ação adicional"
+  "more_action": "Ação suplementar"
 }

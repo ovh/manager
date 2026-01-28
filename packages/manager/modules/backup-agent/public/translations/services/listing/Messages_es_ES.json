@@ -3,10 +3,11 @@
   "order": "Contratar un servicio",
   "open": "Abrir el panel de control",
   "title": "Servicios",
-  "delete_tenant_modal_title": "Eliminar el inquilino",
-  "delete_tenant_modal_content": "¿Realmente desea eliminar el inquilino {{tenantName}}?",
-  "delete_tenant_banner_success": "Su inquilino {{tenantName}} ha sido eliminado correctamente",
+  "delete_tenant_modal_title": "Eliminar el Tenant",
+  "delete_tenant_modal_content": "¿Seguro que quiere eliminar el Tenant {{tenantName}}?",
+  "delete_tenant_banner_success": "El Tenant {{tenantName}} se ha eliminado correctamente",
   "delete_tenant_banner_error": "Se ha producido un error. Por favor, espere unos minutos antes de volver a intentarlo.",
   "unable_to_delete_tenant_feature_unavailable": "La eliminación de un inquilino no está disponible desde la interfaz por razones de seguridad. Si desea eliminar un inquilino, comuníquese con el soporte.",
-  "data_location": "Ubicación de los datos"
+  "data_location": "Ubicación de los datos",
+  "delete_tenant_feature_unavailable": "Por motivos de seguridad, la eliminación de un Tenant no está disponible desde la interfaz. Si desea eliminar un Tenant, póngase en contacto con el equipo de soporte."
 }

@@ -1,12 +1,13 @@
 {
-  "home": "Início",
+  "home": "Página inicial",
   "order": "Encomendar um serviço",
-  "open": "Abrir o painel de controlo",
+  "open": "Abrir painel",
   "title": "Serviços",
-  "delete_tenant_modal_title": "Eliminar o Tenant",
-  "delete_tenant_modal_content": "Tem certeza de que deseja eliminar o Tenant {{tenantName}}?",
-  "delete_tenant_banner_success": "O seu Tenant {{tenantName}} foi eliminado com sucesso",
-  "delete_tenant_banner_error": "Ocorreu um erro. Por favor, aguarde alguns minutos antes de tentar novamente.",
+  "delete_tenant_modal_title": "Eliminar o tenant",
+  "delete_tenant_modal_content": "Quer mesmo eliminar o tenant {{tenantName}} ?",
+  "delete_tenant_banner_success": "O tenant {{tenantName}} foi eliminado com êxito",
+  "delete_tenant_banner_error": "Ocorreu um erro. Aguarde alguns minutos e tente novamente.",
   "unable_to_delete_tenant_feature_unavailable": "A remoção de um Tenant não está disponível na interface por razões de segurança. Se desejar remover um Tenant, entre em contato com o suporte.",
-  "data_location": "Localização dos dados"
+  "data_location": "Localização dos dados",
+  "delete_tenant_feature_unavailable": "Por razões de segurança, a eliminação de um tenant não está disponível a partir da interface. Se pretende eliminar um tenant, contacte o suporte."
 }

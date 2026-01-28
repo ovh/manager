@@ -1,13 +1,15 @@
 {
-  "vaults": "Cofres",
+  "vaults": "Vaults",
   "services": "Serviços",
   "billing": "Faturação",
-  "agents": "Agentes",
-  "buckets": "Balde",
-  "policy": "Política",
+  "agents": "Agents",
+  "buckets": "Buckets",
+  "policy": "Policy",
   "actions": "Ações",
   "without_engagement": "sem compromisso",
-  "backup_agent_guide": "Guias do Agente de Backup",
-  "baremetal_label_order_in_progress": "O pedido foi recebido com sucesso, o seu produto está a ser entregue e pode acompanhar o seu progresso <OrderLink>aqui</OrderLink>.",
-  "server": "Servidor"
+  "backup_agent_guide": "Manuais do Backup Agent",
+  "baremetal_label_order_in_progress": "Acusamos a receção da encomenda; o seu produto será entregue em breve; pode acompanhar o avanço <OrderLink>aqui</OrderLink>.",
+  "server": "Servidor",
+  "primary": "Primário",
+  "secondary": "Secundário"
 }

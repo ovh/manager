@@ -1,13 +1,15 @@
 {
-  "vaults": "Cave",
+  "vaults": "Vault",
   "services": "Servizi",
   "billing": "Fatturazione",
-  "agents": "Agenti",
-  "buckets": "Secchi",
-  "policy": "Politica",
+  "agents": "Agent",
+  "buckets": "Bucket",
+  "policy": "Policy",
   "actions": "Azioni",
   "without_engagement": "senza impegno",
-  "backup_agent_guide": "Guide di Backup Agent",
-  "baremetal_label_order_in_progress": "L'ordine è stato ricevuto, il tuo prodotto è in fase di consegna e puoi seguire il suo progresso <OrderLink>qui</OrderLink>.",
-  "server": "Server"
+  "backup_agent_guide": "Guide Backup Agent",
+  "baremetal_label_order_in_progress": "L'ordine è stato ricevuto correttamente. Il servizio è in fase di consegna e lo stato di avanzamento è disponibile <OrderLink>qui</OrderLink>.",
+  "server": "Server",
+  "primary": "Primario",
+  "secondary": "Secondario"
 }

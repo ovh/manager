@@ -3,7 +3,7 @@
   "sms_order_time2chat_description": "Por favor, complete la siguiente información para que podamos procesar su pedido.",
   "sms_order_time2chat_action_order": "Continuar",
   "sms_order_time2chat_action_cancel": "Cancelar",
-  "sms_order_time2chat_label_phonenumber": "Número de la empresa",
+  "sms_order_time2chat_label_phonenumber": "Número de teléfono de la empresa",
   "sms_order_time2chat_label_website": "Sitio web de la empresa",
   "sms_order_time2chat_label_name": "Nombre de la empresa",
   "sms_order_time2chat_label_company_name": "Razón social",
@@ -12,5 +12,5 @@
   "sms_order_time2chat_label_operational_contact_name": "Nombre del contacto",
   "sms_order_time2chat_label_operational_contact_email": "Correo electrónico del contacto",
   "sms_order_time2chat_message_error": "Se ha producido un error: {{error}}",
-  "sms_order_time2chat_helper_phonenumber": "Introduzca el número en formato internacional (0033123456789 o +33123456789)"
+  "sms_order_time2chat_helper_phonenumber": "Introduzca el número de teléfono en formato internacional (0034123456789 o +34123456789)"
 }
