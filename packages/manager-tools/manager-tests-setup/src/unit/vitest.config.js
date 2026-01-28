@@ -127,20 +127,14 @@ export const sharedConfig = createConfig({
     environment: 'jsdom',
 
     // timeout config
-    retry: 10,
     testTimeout: 60_000,
     hookTimeout: 60_000,
     teardownTimeout: 60_000,
-    fileParallelism: false,
-    pollOptions: {
-      forks: {
-        singleFork: true,
-      },
-      threads: {
-        singleThread: true,
-      },
-    },
     
+    // main stability knobs
+    retry: 10,
+    fileParallelism: false,
+
     // coverage options
     coverage: {
       include: ['src'],
