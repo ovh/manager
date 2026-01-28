@@ -70,14 +70,13 @@ vi.mock('@ovhcloud/ods-react', () => ({
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 
 const createLocalization = (
-  overrides: Partial<TRegionData> & { macroRegion: string; microRegion: string },
+  overrides: Partial<TRegionData> & { macroRegion: string },
 ): TRegionData =>
   ({
     cityKey: 'manager_components_region_GRA',
-    datacenterDetails: overrides.microRegion,
+    datacenterDetails: overrides.macroRegion,
     deploymentMode: 'region',
     countryCode: 'fr',
-    microRegions: [],
     ...overrides,
   }) as TRegionData;
 
@@ -91,8 +90,8 @@ describe('MacroRegionSelection', () => {
       description: 'should reset to first available when selected macro is not in localizations',
       defaultMacroRegion: 'OTHER',
       localizations: [
-        createLocalization({ macroRegion: 'GRA', microRegion: 'GRA1', available: true }),
-        createLocalization({ macroRegion: 'SBG', microRegion: 'SBG1', available: false }),
+        createLocalization({ macroRegion: 'GRA', available: true }),
+        createLocalization({ macroRegion: 'SBG', available: false }),
       ],
       expectedMacroRegion: 'GRA',
     },
@@ -100,8 +99,8 @@ describe('MacroRegionSelection', () => {
       description: 'should not reset when selected macro is in localizations',
       defaultMacroRegion: 'GRA',
       localizations: [
-        createLocalization({ macroRegion: 'GRA', microRegion: 'GRA1', available: true }),
-        createLocalization({ macroRegion: 'SBG', microRegion: 'SBG1', available: true }),
+        createLocalization({ macroRegion: 'GRA', available: true }),
+        createLocalization({ macroRegion: 'SBG', available: true }),
       ],
       expectedMacroRegion: 'GRA',
     },
@@ -110,8 +109,8 @@ describe('MacroRegionSelection', () => {
         'should not reset when selected macro is not in localizations but no location is available',
       defaultMacroRegion: 'OTHER',
       localizations: [
-        createLocalization({ macroRegion: 'GRA', microRegion: 'GRA1', available: false }),
-        createLocalization({ macroRegion: 'SBG', microRegion: 'SBG1', available: false }),
+        createLocalization({ macroRegion: 'GRA', available: false }),
+        createLocalization({ macroRegion: 'SBG', available: false }),
       ],
       expectedMacroRegion: 'OTHER',
     },
@@ -140,20 +139,16 @@ describe('MacroRegionSelection', () => {
         cityKey: 'manager_components_region_GRA',
         datacenterDetails: 'GRA1',
         macroRegion: 'GRA',
-        microRegion: 'GRA1',
         deploymentMode: 'region',
         countryCode: 'fr',
-        microRegions: [],
         available: true,
       },
       {
         cityKey: 'manager_components_region_SBG',
         datacenterDetails: 'SBG1',
         macroRegion: 'SBG',
-        microRegion: 'SBG1',
         deploymentMode: 'region',
         countryCode: 'fr',
-        microRegions: [],
         available: true,
       },
     ];
@@ -185,7 +180,8 @@ describe('MacroRegionSelection', () => {
 
     await waitFor(() => {
       expect(formValues?.macroRegion).toEqual('SBG');
-      expect(formValues?.shareData?.microRegion).toEqual('SBG1');
     });
+    // shareData.microRegion is set by MicroRegionSelection when macro region changes;
+    // this test only renders MacroRegionSelection, so micro region is not updated here.
   });
 });

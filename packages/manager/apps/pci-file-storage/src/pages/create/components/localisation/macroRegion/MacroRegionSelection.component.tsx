@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next';
 
 import { RadioGroup } from '@ovhcloud/ods-react';
 
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-
 import { TRegionData } from '@/adapters/catalog/left/shareCatalog.data';
 import { LocalizationCard } from '@/components/new-lib/localizationCard/LocalizationCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
@@ -16,7 +14,6 @@ import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema'
 import { selectLocalizations } from '@/pages/create/view-model/shareCatalog.view-model';
 
 export const MacroRegionSelection = () => {
-  const { trackClick } = useOvhTracking();
   const { t } = useTranslation(['regions']);
 
   const { control, setValue } = useFormContext<CreateShareFormValues>();
@@ -38,16 +35,8 @@ export const MacroRegionSelection = () => {
     [localizations, t],
   );
 
-  const updateSelection = (macroRegion: string, microRegion: string) => {
+  const updateSelection = (macroRegion: string) => {
     setValue('macroRegion', macroRegion);
-    setValue('shareData.microRegion', microRegion);
-
-    trackClick({
-      location: PageLocation.funnel,
-      buttonType: ButtonType.tile,
-      actionType: 'action',
-      actions: ['add_instance', 'select_localisation', microRegion],
-    });
   };
 
   useEffect(() => {
@@ -57,13 +46,8 @@ export const MacroRegionSelection = () => {
 
     const firstAvailableLocation = localizations.find((loc) => loc.available);
 
-    if (
-      !availablePreviousSelectedLocalization &&
-      firstAvailableLocation?.macroRegion &&
-      firstAvailableLocation.microRegion
-    ) {
+    if (!availablePreviousSelectedLocalization && firstAvailableLocation?.macroRegion) {
       setValue('macroRegion', firstAvailableLocation.macroRegion);
-      setValue('shareData.microRegion', firstAvailableLocation.microRegion);
     }
   }, [localizations, selectedMacroRegion, setValue]);
 
@@ -86,22 +70,21 @@ export const MacroRegionSelection = () => {
                         city,
                         datacenterDetails,
                         macroRegion,
-                        microRegion,
                         countryCode,
                         deploymentMode,
                         available,
                       }) => {
-                        const displayCard = macroRegion && microRegion && datacenterDetails;
+                        const displayCard = macroRegion && datacenterDetails;
 
                         return displayCard ? (
                           <LocalizationCard
-                            key={`${city}_${macroRegion}_${microRegion}`}
+                            key={`${city}_${macroRegion}`}
                             city={city}
                             datacenterDetails={datacenterDetails}
                             macroRegion={macroRegion}
                             countryCode={countryCode}
                             deploymentMode={deploymentMode}
-                            onSelect={() => updateSelection(macroRegion, microRegion)}
+                            onSelect={() => updateSelection(macroRegion)}
                             disabled={!available}
                             selected={macroRegion === selectedMacroRegion}
                           />

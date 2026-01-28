@@ -62,6 +62,7 @@ describe('shareCatalog.mapper', () => {
           {
             name: 'GRA1',
             availabilityZones: ['GRA1-A'],
+            isActivated: true,
             isActivable: true,
             isInMaintenance: false,
             macroRegionId: 'GRA',
@@ -72,6 +73,7 @@ describe('shareCatalog.mapper', () => {
           {
             name: 'GRA2',
             availabilityZones: ['GRA2-A'],
+            isActivated: true,
             isActivable: true,
             isInMaintenance: false,
             macroRegionId: 'GRA',
@@ -89,7 +91,6 @@ describe('shareCatalog.mapper', () => {
         available: true,
         datacenterDetails: 'GRA',
       });
-      expect(result.microRegions).toHaveLength(2);
     });
 
     it('should return micro-region name as datacenterDetails when there is only one micro-region', () => {
@@ -108,6 +109,7 @@ describe('shareCatalog.mapper', () => {
             name: 'GRA1',
             availabilityZones: ['GRA1-A'],
             isActivable: true,
+            isActivated: true,
             isInMaintenance: false,
             macroRegionId: 'GRA',
           },
@@ -119,13 +121,11 @@ describe('shareCatalog.mapper', () => {
       expect(result).toMatchObject({
         cityKey: 'manager_components_region_GRA',
         macroRegion: 'GRA',
-        microRegion: 'GRA1',
         deploymentMode: 'region',
         countryCode: 'fr',
         available: true,
         datacenterDetails: 'GRA1',
       });
-      expect(result.microRegions).toHaveLength(1);
     });
   });
 });

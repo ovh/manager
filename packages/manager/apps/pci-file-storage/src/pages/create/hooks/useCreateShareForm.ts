@@ -1,22 +1,25 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { TRegionData, TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
+import { TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { generateAutoName } from '@/pages/create/view-model/network.view-model';
 import {
-  selectLocalizations,
+  TFirstAvailableLocation,
+  selectFirstAvailableLocation,
   selectShareSpecs,
 } from '@/pages/create/view-model/shareCatalog.view-model';
 
 import { CreateShareFormValues, createShareSchema } from '../schema/CreateShare.schema';
 
 export const useCreateShareForm = () => {
-  const { data: localizations = [] } = useShareCatalog<TRegionData[]>({
-    select: selectLocalizations({ deploymentModes: ['region', 'region-3-az'], continentId: 'all' }),
+  const { data: firstAvailableLocation } = useShareCatalog<TFirstAvailableLocation | undefined>({
+    select: selectFirstAvailableLocation({
+      deploymentModes: ['region', 'region-3-az'],
+      continentId: 'all',
+    }),
   });
 
-  const firstAvailableLocation = localizations.find((loc) => loc.available);
   const defaultMicroRegion = firstAvailableLocation?.microRegion ?? '';
   const defaultMacroRegion = firstAvailableLocation?.macroRegion ?? '';
 

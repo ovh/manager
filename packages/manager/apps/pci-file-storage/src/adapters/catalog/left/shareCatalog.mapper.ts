@@ -4,7 +4,7 @@ import {
   TSVGImage,
 } from '@/adapters/catalog/left/shareCatalog.data';
 import { TDeploymentMode, TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
-import { getMicroRegions, isMacroRegionAvailable } from '@/domain/services/catalog.service';
+import { isMacroRegionAvailable } from '@/domain/services/catalog.service';
 
 import Region1azImage from '../../../../public/assets/1AZ.svg';
 import Region3azImage from '../../../../public/assets/3AZ.svg';
@@ -50,10 +50,8 @@ export const mapRegionToLocalizationCard =
       cityKey: `manager_components_region_${regionName}`,
       datacenterDetails: getDatacenterDetails(region, microRegionsById),
       macroRegion: region.name,
-      microRegion: getMicroRegionName(region, microRegionsById),
       countryCode: region.country,
       deploymentMode: region.deploymentMode,
-      microRegions: getMicroRegions(region, microRegionsById),
       available: isMacroRegionAvailable(region, microRegionsById),
     };
   };

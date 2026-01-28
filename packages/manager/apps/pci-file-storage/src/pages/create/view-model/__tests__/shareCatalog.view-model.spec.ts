@@ -30,6 +30,8 @@ vi.mock('@/domain/services/catalog.service', () => ({
       .map((id) => microRegionsById.get(id))
       .filter((micro) => !!micro);
   },
+  isMicroRegionAvailable: (microRegion: TMicroRegion) =>
+    microRegion.isActivated && !microRegion.isInMaintenance,
 }));
 
 describe('share catalog selectors', () => {
@@ -213,11 +215,11 @@ describe('share catalog selectors', () => {
   });
 
   describe('selectMicroRegions', () => {
-    const createMicroRegion = (name: string, isActivable: boolean, isInMaintenance: boolean) =>
+    const createMicroRegion = (name: string, isInMaintenance: boolean, isActivated: boolean) =>
       ({
         name,
         availabilityZones: [`${name}-A`],
-        isActivable,
+        isActivated,
         isInMaintenance,
         macroRegionId: 'GRA',
       }) as TMicroRegion;
@@ -231,10 +233,10 @@ describe('share catalog selectors', () => {
     };
 
     const microRegionsById = new Map<string, TMicroRegion>([
-      ['GRA1', createMicroRegion('GRA1', true, false)],
+      ['GRA1', createMicroRegion('GRA1', false, true)],
       ['GRA2', createMicroRegion('GRA2', false, false)],
-      ['GRA3', createMicroRegion('GRA3', true, true)],
-      ['GRA4', createMicroRegion('GRA4', false, true)],
+      ['GRA3', createMicroRegion('GRA3', true, false)],
+      ['GRA4', createMicroRegion('GRA4', true, false)],
     ]);
 
     const catalog = {
@@ -291,7 +293,7 @@ describe('share catalog selectors', () => {
       ({
         name,
         availabilityZones,
-        isActivable: true,
+        isActivated: true,
         isInMaintenance: false,
         macroRegionId: 'GRA',
       }) as TMicroRegion;

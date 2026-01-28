@@ -2,9 +2,40 @@ import { describe, expect, it } from 'vitest';
 
 import { TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
 
-import { getMicroRegions, isMacroRegionAvailable } from '../catalog.service';
+import {
+  getMicroRegions,
+  isMacroRegionAvailable,
+  isMicroRegionAvailable,
+} from '../catalog.service';
 
 describe('catalog.service', () => {
+  describe('isMicroRegionAvailable', () => {
+    it.each([
+      {
+        description: 'should return true when activated and not in maintenance',
+        microRegion: { isActivated: true, isInMaintenance: false } as TMicroRegion,
+        expected: true,
+      },
+      {
+        description: 'should return false when not activated',
+        microRegion: { isActivated: false, isInMaintenance: false } as TMicroRegion,
+        expected: false,
+      },
+      {
+        description: 'should return false when in maintenance',
+        microRegion: { isActivated: true, isInMaintenance: true } as TMicroRegion,
+        expected: false,
+      },
+      {
+        description: 'should return false when not activated and in maintenance',
+        microRegion: { isActivated: false, isInMaintenance: true } as TMicroRegion,
+        expected: false,
+      },
+    ])('$description', ({ microRegion, expected }) => {
+      expect(isMicroRegionAvailable(microRegion)).toBe(expected);
+    });
+  });
+
   describe('getMicroRegions', () => {
     const createMicroRegion = (name: string) =>
       ({
