@@ -78,7 +78,7 @@ export const MacroRegionSelection = () => {
             <div className="flex flex-col">
               <div className={clsx('max-h-[450px] overflow-auto')}>
                 <RadioGroup value={selectedMacroRegion}>
-                  <div className="grid grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {translatedLocalizations.map(
                       ({
                         city,
@@ -101,6 +101,7 @@ export const MacroRegionSelection = () => {
                             deploymentMode={deploymentMode}
                             onSelect={() => updateSelection(macroRegion, microRegion)}
                             disabled={!available}
+                            selected={macroRegion === selectedMacroRegion}
                           />
                         ) : null;
                       },
