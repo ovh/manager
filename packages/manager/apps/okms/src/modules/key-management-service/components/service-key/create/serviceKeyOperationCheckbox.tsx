@@ -3,12 +3,12 @@ import { OkmsServiceKeyReferenceOperations } from '@key-management-service/types
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_TEXT_PRESET,
   OdsCheckboxChangeEventDetail,
   OdsCheckboxCustomEvent,
   OdsCheckbox as OdsCheckboxType,
 } from '@ovhcloud/ods-components';
-import { OdsCheckbox, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsCheckbox } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 type TServiceKeyOperationCheckbox = {
   name: string;
@@ -28,12 +28,12 @@ export const ServiceKeyOperationCheckbox = ({
     <div className="flex items-center gap-3">
       <OdsCheckbox inputId={key} value={key} {...props} />
       <label htmlFor={key}>
-        <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+        <Text className="block" preset="paragraph">
           {translatedOperations.join(' / ')}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
+        </Text>
+        <Text preset="caption">
           {t(`key_management_service_service-keys_create_crypto_field_usage_description_${key}`)}
-        </OdsText>
+        </Text>
       </label>
     </div>
   );

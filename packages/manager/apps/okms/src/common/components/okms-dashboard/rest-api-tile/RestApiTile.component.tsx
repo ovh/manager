@@ -1,6 +1,6 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Tile } from '@ovh-ux/muk';
 
 import { REST_API_LABEL } from '@/constants';
 
@@ -13,12 +13,9 @@ type RestApiTileProps = {
 
 export const RestApiTile = ({ okms }: RestApiTileProps) => {
   return (
-    <ManagerTile>
-      <ManagerTile.Title>{REST_API_LABEL}</ManagerTile.Title>
-      <ManagerTile.Divider />
+    <Tile.Root title={REST_API_LABEL}>
       <RestApiEndpointTileItem okms={okms} />
-      <ManagerTile.Divider />
       <SwaggerTileItem okms={okms} />
-    </ManagerTile>
+    </Tile.Root>
   );
 };

@@ -2,8 +2,7 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { versionActiveMock } from '@secret-manager/mocks/versions/versions.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+import { screen } from '@testing-library/react';
 
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
@@ -22,18 +21,11 @@ describe('Version list page test suite', () => {
 
   it('should have the correct href attribute to open the value drawer', async () => {
     // GIVEN
-    const { container } = await renderTestApp(
-      SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecret1.path),
-    );
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecret1.path));
 
     await assertVersionDatagridVisilibity();
 
-    const versionLink = await getOdsButtonByLabel({
-      container,
-      label: versionActiveMock.id.toString(),
-      isLink: true,
-      disabled: false,
-    });
+    const versionLink = await screen.findByText(versionActiveMock.id.toString());
 
     expect(versionLink).toHaveAttribute(
       'href',

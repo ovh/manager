@@ -1,56 +1,34 @@
+import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 
-import { deleteOkmsCredential, deleteOkmsCredentialQueryKey } from '../api/okmsCredential';
+import { ErrorResponse } from '@/common/types/api.type';
+
+import { DeleteOkmsCredentialParams, deleteOkmsCredential } from '../api/okmsCredential';
 import { getOkmsCredentialsQueryKey } from './useOkmsCredential';
 
-export interface IUseDeleteOkmsCredential {
-  okmsId: string;
-  credentialId: string;
+export type UseDeleteOkmsCredentialParams = {
   onSuccess: () => void;
   onError: () => void;
-}
+};
 
-export const useDeleteOkmsCredential = ({
-  okmsId,
-  credentialId,
-  onSuccess,
-  onError,
-}: IUseDeleteOkmsCredential) => {
+export const useDeleteOkmsCredential = ({ onSuccess, onError }: UseDeleteOkmsCredentialParams) => {
   const queryClient = useQueryClient();
-  const { addError, addSuccess, clearNotifications } = useNotifications();
+  const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/credential');
 
-  const { mutate, isPending } = useMutation({
-    mutationKey: deleteOkmsCredentialQueryKey({ okmsId, credentialId }),
-    mutationFn: async () => {
-      return deleteOkmsCredential({ okmsId, credentialId });
-    },
-    onSuccess: async () => {
+  return useMutation<OkmsCredential, ErrorResponse, DeleteOkmsCredentialParams>({
+    mutationFn: deleteOkmsCredential,
+    onSuccess: async (_, variables) => {
       await queryClient.invalidateQueries({
-        queryKey: getOkmsCredentialsQueryKey(okmsId),
+        queryKey: getOkmsCredentialsQueryKey(variables.okmsId),
       });
       clearNotifications();
       addSuccess(t('key_management_service_credential_delete_success'), true);
       onSuccess();
     },
-    onError: (result: ApiError) => {
-      clearNotifications();
-      addError(
-        t('key_management_service_credential_delete_error', {
-          error: result.message,
-        }),
-        true,
-      );
-      onError();
-    },
+    onError,
   });
-
-  return {
-    mutate,
-    isPending,
-  };
 };

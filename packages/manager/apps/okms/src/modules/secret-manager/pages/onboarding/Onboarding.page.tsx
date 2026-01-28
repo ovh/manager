@@ -6,10 +6,10 @@ import { GuideRestApiCard } from '@secret-manager/components/guides/guide-rest-a
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
-import { OnboardingLayout } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { OnboardingLayout } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
@@ -26,8 +26,8 @@ export default function SecretManagerOnboardingPage() {
       img={{ src: onboardingImage }}
       description={
         <div className="flex flex-col gap-2">
-          <OdsText className="text-center">{t('onboarding_description_1')}</OdsText>
-          <OdsText className="text-center">{t('onboarding_description_2')}</OdsText>
+          <Text className="text-center">{t('onboarding_description_1')}</Text>
+          <Text className="text-center">{t('onboarding_description_2')}</Text>
         </div>
       }
       orderButtonLabel={t('create_a_secret')}

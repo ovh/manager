@@ -3,13 +3,14 @@ import { act, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility, getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { getCatalogKmsErrorMessage } from '@/common/mocks/catalog/catalog.handler';
 import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
 import { locationsMock } from '@/common/mocks/locations/locations.mock';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
 
@@ -56,7 +57,10 @@ describe('KMS creation page test suite', () => {
   it('should display the KMS creation page', async () => {
     await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
-    await assertTextVisibility(labels.create.key_management_service_create_title);
+    await assertTitleVisibility({
+      title: labels.create.key_management_service_create_title,
+      level: 1,
+    });
     await assertTextVisibility(labels.create.region_selection);
     await assertTextVisibility(labels.create.region_selection_description);
 
@@ -68,11 +72,10 @@ describe('KMS creation page test suite', () => {
 
   it(`should navigate back to the list on click on ${labels.create.key_management_service_create_cta_cancel}`, async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
+    await renderTestApp(KMS_ROUTES_URLS.kmsCreate);
 
-    const cancelButton = await getOdsButtonByLabel({
-      container,
-      label: labels.create.key_management_service_create_cta_cancel,
+    const cancelButton = screen.getByRole('button', {
+      name: labels.create.key_management_service_create_cta_cancel,
     });
 
     await act(async () => await user.click(cancelButton));

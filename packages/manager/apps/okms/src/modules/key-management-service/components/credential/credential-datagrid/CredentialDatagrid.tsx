@@ -18,8 +18,9 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { Datagrid, DatagridColumn, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { Error } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 
@@ -55,7 +56,7 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
 
   if (credentialsError)
     return (
-      <ErrorBanner
+      <Error
         error={credentialsError}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={handleReloadPage}

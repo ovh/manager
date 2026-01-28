@@ -2,7 +2,7 @@ import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
 import { clearPendingOrder, registerPendingOrder } from '@/common/store/pendingOkmsOrder';
@@ -22,8 +22,8 @@ vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({ t: vi.fn((key: string) => key) })),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const original = await vi.importActual('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/muk', async () => {
+  const original = await vi.importActual('@ovh-ux/muk');
   return {
     ...original,
     useNotifications: vi.fn(),

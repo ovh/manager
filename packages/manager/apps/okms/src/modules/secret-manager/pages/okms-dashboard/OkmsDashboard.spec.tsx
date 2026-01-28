@@ -4,13 +4,12 @@ import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { OKMS_DOMAIN_DASHBOARD_TILES_TEST_IDS } from '@/common/components/okms-dashboard/okms-domain-dashboard-tiles/OkmsDomainDashboardTiles.constants';
 import { PAGE_SPINNER_TEST_ID } from '@/common/components/page-spinner/PageSpinner.constants';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
 
@@ -31,7 +30,9 @@ describe('OkmsDashboard page test suite', () => {
     await renderTestApp(mockPageUrl);
 
     // THEN
-    await waitFor(() => expect(screen.getByTestId(PAGE_SPINNER_TEST_ID)).toBeVisible());
+    await waitFor(() => expect(screen.getByTestId(PAGE_SPINNER_TEST_ID)).toBeVisible(), {
+      timeout: 3000,
+    });
   });
 
   it('should display an error when there is an API error', async () => {
@@ -56,7 +57,10 @@ describe('OkmsDashboard page test suite', () => {
     await renderTestApp(mockPageUrl, { feature: KMS_FEATURES.LOGS });
 
     // THEN
-    await assertTextVisibility(labels.secretManager.okms_dashboard_title);
+    await assertTitleVisibility({
+      title: labels.secretManager.okms_dashboard_title,
+      level: 1,
+    });
 
     await assertBreadcrumbItems([
       'RootBreadcrumbItem',

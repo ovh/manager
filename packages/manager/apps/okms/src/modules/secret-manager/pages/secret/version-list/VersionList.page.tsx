@@ -10,7 +10,8 @@ import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { Datagrid } from '@ovh-ux/manager-react-components';
+import { Error } from '@ovh-ux/muk';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
@@ -30,16 +31,11 @@ const VersionListPage = () => {
   const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
 
   const { secret } = useOutletContext<SecretPageOutletContext>();
-  const hasVersions = secret?.metadata?.currentVersion !== undefined;
 
-  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
-    useSecretVersionList({
-      okmsId,
-      path: decodeSecretPath(secretPath),
-      // If the secret has no versions, don't fetch them to avoid a 500 error
-      // TODO: Remove this once the API is fixed
-      enabled: hasVersions,
-    });
+  const { data, error, hasNextPage, fetchNextPage, isPending, refetch } = useSecretVersionList({
+    okmsId,
+    path: decodeSecretPath(secretPath),
+  });
 
   const versions = data?.pages.flatMap((page) => page.data);
 
@@ -79,7 +75,7 @@ const VersionListPage = () => {
 
   if (error)
     return (
-      <ErrorBanner
+      <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
         onReloadPage={refetch}
@@ -95,8 +91,6 @@ const VersionListPage = () => {
         isLoading={isPending}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
-        sorting={sorting}
-        onSortChange={setSorting}
         contentAlignLeft
         topbar={<AddVersionButton okmsId={okmsId} secret={secret} />}
       />

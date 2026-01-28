@@ -6,8 +6,6 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-
 import { renderHookWithClient } from '@/common/utils/tests/testUtils';
 
 import { useServiceKeyActionsList } from './useServiceKeyActionsList';
@@ -49,7 +47,7 @@ vi.mock('@key-management-service/data/hooks/useUpdateOkmsServiceKey', () => ({
   })),
 }));
 
-vi.mock('./useServiceKeyDownload.component', () => ({
+vi.mock('./useServiceKeyDownload', () => ({
   useServiceKeyDownload: vi.fn(({ keyType, keyState }) => {
     // Oct keys are not downloadable
     if (keyType === OkmsKeyTypes.oct) {
@@ -59,8 +57,8 @@ vi.mock('./useServiceKeyDownload.component', () => ({
       name: 'download_encryption_key',
       label:
         'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-      isLoading: false,
-      isDisabled: keyState !== OkmsServiceKeyState.active,
+      loading: false,
+      disabled: keyState !== OkmsServiceKeyState.active,
       icon: 'download',
       color: 'primary',
       onClick: vi.fn(),
@@ -95,21 +93,21 @@ describe('useServiceKeyActionsList', () => {
           name: 'download_encryption_key',
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: false,
+          color: 'primary',
+          disabled: false,
           icon: 'download',
         },
         {
           name: 'deactivate_encryption_key',
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: ODS_BUTTON_COLOR.primary,
+          color: 'primary',
           icon: 'lock-close',
         },
         {
           name: 'delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: true,
+          color: 'primary',
+          disabled: true,
           icon: 'trash',
         },
       ],
@@ -126,21 +124,21 @@ describe('useServiceKeyActionsList', () => {
           name: 'download_encryption_key',
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: true,
+          color: 'primary',
+          disabled: true,
           icon: 'download',
         },
         {
           name: 'reactivate_encryption_key',
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: ODS_BUTTON_COLOR.primary,
+          color: 'primary',
           icon: 'refresh',
         },
         {
           name: 'delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: false,
+          color: 'primary',
+          disabled: false,
           icon: 'trash',
         },
       ],
@@ -157,21 +155,21 @@ describe('useServiceKeyActionsList', () => {
           name: 'download_encryption_key',
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: true,
+          color: 'primary',
+          disabled: true,
           icon: 'download',
         },
         {
           name: 'reactivate_encryption_key',
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: ODS_BUTTON_COLOR.primary,
+          color: 'primary',
           icon: 'refresh',
         },
         {
           name: 'delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: false,
+          color: 'primary',
+          disabled: false,
           icon: 'trash',
         },
       ],
@@ -196,14 +194,14 @@ describe('useServiceKeyActionsList', () => {
         {
           name: 'deactivate_encryption_key',
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: ODS_BUTTON_COLOR.primary,
+          color: 'primary',
           icon: 'lock-close',
         },
         {
           name: 'delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: true,
+          color: 'primary',
+          disabled: true,
           icon: 'trash',
         },
       ],

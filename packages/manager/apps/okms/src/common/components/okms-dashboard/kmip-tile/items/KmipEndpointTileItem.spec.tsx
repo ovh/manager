@@ -7,7 +7,7 @@ import {
   DownloadOkmsPublicCaLinkProps,
 } from '@/common/components/download-okms-public-ca-link/DownloadOkmsPublicCaLink';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
-import { getOdsClipboardByValue } from '@/common/utils/tests/uiTestHelpers';
+import { assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { ENPOINT_LABEL } from '@/constants';
 
 import { KmipEndpointTileItem } from './KmipEndpointTileItem.component';
@@ -27,12 +27,12 @@ describe('OKMS Kmip endpoint Tile Item test suite', () => {
     // GIVEN okmsMocked
 
     // WHEN
-    const { container } = await renderWithI18n(<KmipEndpointTileItem okms={okmsMocked} />);
+    await renderWithI18n(<KmipEndpointTileItem okms={okmsMocked} />);
 
     // THEN
     expect(screen.getByText(ENPOINT_LABEL)).toBeVisible();
 
-    expect(getOdsClipboardByValue({ container, value: okmsMocked.kmipEndpoint })).toBeVisible();
+    await assertClipboardVisibility(okmsMocked.kmipEndpoint);
 
     expect(DownloadOkmsPublicCaLink).toHaveBeenCalledTimes(1);
     expect(

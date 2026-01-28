@@ -8,7 +8,7 @@ import { KmsChangelogButton } from '@key-management-service/components/kms-chang
 import { useCreateOkmsServiceKey } from '@key-management-service/data/hooks/useCreateOkmsServiceKey';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useOkmsServiceKeyReference } from '@key-management-service/data/hooks/useOkmsReferenceServiceKey';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import {
   OkmsKeyTypes,
@@ -20,11 +20,8 @@ import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServi
 import { ServiceKeyNameErrors } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
-import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Button, Error, Notifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -120,7 +117,7 @@ export default function CreateKey() {
     }
   };
 
-  const breadcrumbItems: BreadcrumbItem[] = [
+  const breadcrumbItems: KmsBreadcrumbItem[] = [
     {
       id: okmsId,
       label: okms?.iam?.displayName || okmsId,
@@ -144,7 +141,7 @@ export default function CreateKey() {
 
   if (okmsError) {
     return (
-      <ErrorBanner
+      <Error
         error={okmsError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={refetchOkms}
@@ -154,7 +151,7 @@ export default function CreateKey() {
 
   if (serviceKeyReferenceError) {
     return (
-      <ErrorBanner
+      <Error
         error={serviceKeyReferenceError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={refetchServiceKeyReference}
@@ -168,10 +165,10 @@ export default function CreateKey() {
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: t('key_management_service_service-keys_create_title'),
-          description: t('key_management_service_service-keys_create_subtitle'),
-          headerButton: <KmsGuidesHeader />,
+          guideMenu: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
+        description={t('key_management_service_service-keys_create_subtitle')}
         message={<Notifications />}
       >
         <div className="block w-full">
@@ -202,10 +199,9 @@ export default function CreateKey() {
                 keyType={keyType}
               />
               <div className="flex gap-4">
-                <OdsButton
-                  size={ODS_BUTTON_SIZE.md}
-                  variant={ODS_BUTTON_VARIANT.outline}
-                  color={ODS_BUTTON_COLOR.primary}
+                <Button
+                  variant="outline"
+                  color="primary"
                   onClick={() => {
                     trackClick({
                       location: PageLocation.funnel,
@@ -215,19 +211,18 @@ export default function CreateKey() {
                     });
                     navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
                   }}
-                  label={t('key_management_service_service-keys_create_cta_cancel')}
-                />
-                <OdsButton
-                  size={ODS_BUTTON_SIZE.md}
-                  color={ODS_BUTTON_COLOR.primary}
+                >
+                  {t('key_management_service_service-keys_create_cta_cancel')}
+                </Button>
+                <Button
+                  color="primary"
                   data-testid={CREATE_KEY_TEST_IDS.ctaConfirm}
                   onClick={handleSubmit}
-                  isLoading={isPending}
-                  isDisabled={
-                    !keyDisplayName || !!serviceKeyNameError || keyOperations?.length === 0
-                  }
-                  label={t('key_management_service_service-keys_create_cta_submit')}
-                />
+                  loading={isPending}
+                  disabled={!keyDisplayName || !!serviceKeyNameError || keyOperations?.length === 0}
+                >
+                  {t('key_management_service_service-keys_create_cta_submit')}
+                </Button>
               </div>
             </div>
           </div>

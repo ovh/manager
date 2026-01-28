@@ -2,7 +2,7 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Tile } from '@ovh-ux/muk';
 
 import { IdTileItem } from './items/IdTileItem.component';
 import { NameTileItem } from './items/NameTileItem.component';
@@ -17,16 +17,11 @@ export const GeneralInformationsTile = ({ okms }: GeneralInformationsTileProps) 
   const { t } = useTranslation(NAMESPACES.DASHBOARD);
 
   return (
-    <ManagerTile>
-      <ManagerTile.Title>{t('general_information')}</ManagerTile.Title>
-      <ManagerTile.Divider />
+    <Tile.Root title={t('general_information')}>
       <NameTileItem okms={okms} />
-      <ManagerTile.Divider />
       <RegionTileItem okms={okms} />
-      <ManagerTile.Divider />
       <IdTileItem okms={okms} />
-      <ManagerTile.Divider />
       <UrnTileItem okms={okms} />
-    </ManagerTile>
+    </Tile.Root>
   );
 };

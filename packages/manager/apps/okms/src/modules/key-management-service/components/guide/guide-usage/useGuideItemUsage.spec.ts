@@ -31,7 +31,7 @@ describe('useGuideItemUsage test suite', () => {
       expect.objectContaining({
         id: MOCKED_ID,
         href: MOCKED_LINK,
-        label: labels.guide.guides_header_kms_usage,
+        children: labels.guide.guides_header_kms_usage,
         target: '_blank',
       }),
     );

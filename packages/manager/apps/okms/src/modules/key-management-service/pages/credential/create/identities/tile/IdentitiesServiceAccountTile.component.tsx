@@ -3,11 +3,8 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IdentityOauthClient } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-
 import IdentitiesBaseTile from './IdentitiesBaseTile.component';
-import IdentitiesTileText from './IdentitiesTileText.component';
+import { IdentityRow } from './IdentityRow.component';
 
 type IdentitiesServiceAccountTileProps = {
   serviceAccount: IdentityOauthClient;
@@ -56,23 +53,19 @@ const IdentitiesServiceAccountTile = ({
       isChecked={isChecked}
       setIsChecked={setIsChecked}
     >
-      <div>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t(
+      <div className="mb-2 space-y-1">
+        <IdentityRow
+          label={t(
             'key_management_service_credential_create_identities_service-account_tile_description_label',
           )}
-          :
-        </OdsText>
-        <IdentitiesTileText>{serviceAccount.description}</IdentitiesTileText>
-      </div>
-      <div>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t(
+          value={serviceAccount.description}
+        />
+        <IdentityRow
+          label={t(
             'key_management_service_credential_create_identities_service-account_tile_identity_label',
           )}
-          :
-        </OdsText>
-        <IdentitiesTileText>{serviceAccount.identity}</IdentitiesTileText>
+          value={serviceAccount.identity || ''}
+        />
       </div>
     </IdentitiesBaseTile>
   );

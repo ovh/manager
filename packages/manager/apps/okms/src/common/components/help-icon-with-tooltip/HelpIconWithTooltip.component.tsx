@@ -1,7 +1,4 @@
-import { useId } from 'react';
-
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsIcon, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { Icon, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';
 
 type HelpIconWithTooltipProps = {
   label: string;
@@ -12,21 +9,16 @@ export const HelpIconWithTooltip = ({
   label,
   iconColorClass = 'text-[--ods-color-form-element-text-default]',
 }: HelpIconWithTooltipProps) => {
-  const tooltipId = useId();
-
   return (
-    <>
-      <OdsIcon
-        id={`trigger-${tooltipId}`}
-        aria-labelledby={`tooltip-${tooltipId}`}
-        className={iconColorClass}
-        name="circle-question"
-      />
-      <OdsTooltip id={`tooltip-${tooltipId}`} triggerId={`trigger-${tooltipId}`} withArrow>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="w-56">
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Icon aria-labelledby={label} className={iconColorClass} name="circle-question" />
+      </TooltipTrigger>
+      <TooltipContent className="w-56">
+        <Text preset="small">
           <span>{label}</span>
-        </OdsText>
-      </OdsTooltip>
-    </>
+        </Text>
+      </TooltipContent>
+    </Tooltip>
   );
 };

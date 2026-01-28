@@ -5,8 +5,9 @@ import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ActionMenuItem, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
+import { ActionMenuItemProps } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -24,7 +25,7 @@ export const useActivateVersionItem = ({
   okmsId,
   secret,
   version,
-}: UseActivateVersionParams): ActionMenuItem | null => {
+}: UseActivateVersionParams): ActionMenuItemProps | null => {
   const { t } = useTranslation('secret-manager');
   const { trackClick } = useOkmsTracking();
   const { addError } = useNotifications();

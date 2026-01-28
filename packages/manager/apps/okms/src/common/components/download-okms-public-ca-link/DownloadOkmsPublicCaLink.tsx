@@ -4,12 +4,12 @@ import { getOkmsPublicCa } from '@key-management-service/data/api/okms';
 import { OKMS, OkmsPublicCa } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-import { OdsLink, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Icon, Spinner } from '@ovhcloud/ods-react';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
+import { MukLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { initiateTextFileDownload } from '@/common/utils/dom/download';
 import { TrackingTags } from '@/tracking.constant';
@@ -57,7 +57,7 @@ export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLin
     },
   };
 
-  const handleDownloadCa = async (event: React.MouseEvent<HTMLOdsLinkElement, MouseEvent>) => {
+  const handleDownloadCa = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
 
     try {
@@ -84,15 +84,19 @@ export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLin
 
   return (
     <div className="flex items-center gap-2">
-      <OdsLink
+      <MukLink
         href="#"
-        color={ODS_BUTTON_COLOR.primary}
-        onClick={(event) => void handleDownloadCa(event)}
-        label={resources[type].label}
-        isDisabled={loading}
-        icon="download"
-      />
-      {loading && <OdsSpinner size="xs" />}
+        onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
+          void handleDownloadCa(event)
+        }
+        disabled={loading}
+      >
+        <>
+          {resources[type].label}
+          <Icon name="download" />
+        </>
+      </MukLink>
+      {loading && <Spinner size="xs" />}
     </div>
   );
 };

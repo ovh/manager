@@ -1,7 +1,18 @@
+import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
+import { Secret } from '@secret-manager/types/secret.type';
 import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFormField } from '@ovhcloud/ods-components/react';
+import {
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  RadioValueChangeDetail,
+  Skeleton,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -12,17 +23,19 @@ import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 type CasRequiredFormValue = 'active' | 'inactive';
 
 type FormFieldInput = {
-  casRequired: CasRequiredFormValue;
+  casRequired?: CasRequiredFormValue;
 };
 
 type SecretCasRequiredFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
-  isCasRequiredSetOnOkms?: boolean;
+  secret?: Secret;
+  okmsId?: string;
 };
 
 export const SecretCasRequiredFormField = <T extends FormFieldInput>({
   name,
   control,
-  isCasRequiredSetOnOkms,
+  secret,
+  okmsId,
 }: SecretCasRequiredFormFieldProps<T>) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS]);
   const { field, fieldState } = useController({ name, control });
@@ -33,39 +46,25 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
         <span>{t('cas_with_description')}</span>
         <HelpIconWithTooltip label={t('cas_with_description_tooltip')} />
       </label>
-      <div className="flex gap-4">
-        <div className="flex items-center gap-2">
-          <OdsRadio
-            inputId={`${field.name}-active`}
-            name={field.name}
-            value="active"
-            isChecked={field.value === 'active'}
-            onOdsChange={field.onChange}
-            data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE}
-          />
-          <label htmlFor={`${field.name}-active`}>
-            <OdsText preset="paragraph">{t('activated')}</OdsText>
-          </label>
-        </div>
-        <div className="flex items-center gap-2">
-          <OdsRadio
-            inputId={`${field.name}-inactive`}
-            name={field.name}
-            value="inactive"
-            isChecked={field.value === 'inactive'}
-            onOdsChange={field.onChange}
-            data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE}
-          />
-          <label htmlFor={`${field.name}-inactive`}>
-            <OdsText preset="paragraph">{t('disabled', { ns: NAMESPACES.STATUS })}</OdsText>
-          </label>
-        </div>
-      </div>
-      {isCasRequiredSetOnOkms && (
-        <OdsText slot="helper" preset="caption">
-          {t('form_helper_cas_required_okms')}
-        </OdsText>
-      )}
+      <RadioGroup
+        value={field.value}
+        onValueChange={(detail: RadioValueChangeDetail) => field.onChange(detail.value)}
+        className="flex flex-row gap-4"
+      >
+        <Radio value="active" data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE}>
+          <RadioControl />
+          <RadioLabel>
+            <Text preset="paragraph">{t('activated')}</Text>
+          </RadioLabel>
+        </Radio>
+        <Radio value="inactive" data-testid={SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_INACTIVE}>
+          <RadioControl />
+          <RadioLabel>
+            <Text preset="paragraph">{t('disabled', { ns: NAMESPACES.STATUS })}</Text>
+          </RadioLabel>
+        </Radio>
+      </RadioGroup>
+      {okmsId ? <FormHelper secret={secret} okmsId={okmsId} /> : null}
     </OdsFormField>
   );
 };
@@ -76,4 +75,24 @@ export const casRequiredToFormValue = (casRequired: boolean): CasRequiredFormVal
 
 export const formValueToCasRequired = (formValue: CasRequiredFormValue): boolean => {
   return formValue === 'active';
+};
+
+const FormHelper = ({ secret, okmsId }: { secret?: Secret; okmsId: string }) => {
+  const { t } = useTranslation(['secret-manager']);
+
+  const { secretConfig, isPending, error } = useSecretSmartConfig({ secret, okmsId });
+
+  if (isPending) return <Skeleton />;
+
+  if (error) return null;
+
+  if (secretConfig.isCasRequiredSetOnOkms) {
+    return (
+      <Text slot="helper" preset="caption">
+        {t('form_helper_cas_required_okms')}
+      </Text>
+    );
+  }
+
+  return null;
 };

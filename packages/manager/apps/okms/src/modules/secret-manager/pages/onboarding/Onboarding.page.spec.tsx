@@ -1,44 +1,34 @@
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
+import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 describe('Secret Manager onboarding test suite', () => {
   it('should display the onboarding page', async () => {
-    const { container } = await renderTestApp(SECRET_MANAGER_ROUTES_URLS.onboarding);
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.onboarding);
 
     await assertTextVisibility(labels.secretManager.secret_manager);
     await assertTextVisibility(labels.secretManager.onboarding_description_1);
     await assertTextVisibility(labels.secretManager.onboarding_description_2);
 
-    await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.create_a_secret,
-      ...WAIT_FOR_DEFAULT_OPTIONS,
-    });
+    expect(
+      screen.getByRole('button', { name: labels.secretManager.create_a_secret }),
+    ).toBeVisible();
   });
 
   it('should navigate to the secrets creation page', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(SECRET_MANAGER_ROUTES_URLS.onboarding);
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.onboarding);
 
-    const button = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.create_a_secret,
-      ...WAIT_FOR_DEFAULT_OPTIONS,
+    const button = screen.getByRole('button', {
+      name: labels.secretManager.create_a_secret,
     });
 
-    await act(async () => {
-      await user.click(button);
-    });
+    await user.click(button);
 
     await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
