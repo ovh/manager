@@ -32,7 +32,7 @@ import { isValidDomain } from '@/utils/validator';
 import { DomainAdvancedConfiguration } from './DomainAdvancedConfiguration';
 import { PathField } from './fields/Pathfield';
 
-type FormData = z.infer<typeof websiteFormSchema>;
+type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
 
 interface DomainConfigurationProps {
   control: Control<FormData, unknown, FormData>;
