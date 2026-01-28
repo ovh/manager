@@ -89,6 +89,21 @@ function AddNetworkVrackSegmentLoaded() {
   );
 
   const {
+    register,
+    formState,
+    handleSubmit,
+    control,
+    reset,
+    getValues,
+  } = useForm<z.infer<typeof ADD_NETWORK_FORM_SCHEMA>>({
+    mode: 'onChange',
+    resolver: zodResolver(ADD_NETWORK_FORM_SCHEMA),
+    values: {
+      network: '',
+    },
+  });
+
+  const {
     mutate: updateVrackSegment,
     error: updateError,
     isPending: isUpdatePending,
@@ -102,7 +117,12 @@ function AddNetworkVrackSegmentLoaded() {
         pageName: 'add_network_success',
       });
       addSuccess({
-        content: t('managed_vcd_dashboard_vrack_add_network_success'),
+        content: t('managed_vcd_dashboard_vrack_add_network_success', {
+          subnet: getValues('network'),
+          vrack: t('managed_vcd_dashboard_vrack_column_segment_vrack_label', {
+            vlanId: vrackSegmentTargetSpec?.vlanId,
+          }),
+        }),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
@@ -118,16 +138,6 @@ function AddNetworkVrackSegmentLoaded() {
           .replaceAll(' ', '-')
           .toLowerCase()}`,
       });
-    },
-  });
-
-  const { register, formState, handleSubmit, control, reset } = useForm<
-    z.infer<typeof ADD_NETWORK_FORM_SCHEMA>
-  >({
-    mode: 'onChange',
-    resolver: zodResolver(ADD_NETWORK_FORM_SCHEMA),
-    values: {
-      network: '',
     },
   });
 
