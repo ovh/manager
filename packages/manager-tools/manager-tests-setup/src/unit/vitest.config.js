@@ -130,7 +130,7 @@ export const sharedConfig = createConfig({
     testTimeout: 60_000,
     hookTimeout: 60_000,
     teardownTimeout: 60_000,
-    
+
     // main stability knobs
     retry: 10,
     fileParallelism: false,
