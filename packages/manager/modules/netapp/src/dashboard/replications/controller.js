@@ -1,4 +1,9 @@
-import { ACCEPTED_REPLICATION_STATE } from './constants';
+import {
+  ACCEPTED_REPLICATION_STATE,
+  REPLICATION_API_REPLICASTATE,
+  REPLICATION_API_STATUS,
+  REPLICATION_STATUS_DISPLAY,
+} from './constants';
 
 export default class OvhManagerNetAppReplicationsCtrl {
   /* @ngInject */
@@ -11,42 +16,54 @@ export default class OvhManagerNetAppReplicationsCtrl {
     this.hasReplications = !!this.replications.length;
   }
 
-  canApprouve = (replicationStatus, destinationServiceID) =>
-    replicationStatus === 'pending' &&
-    this.serviceName === destinationServiceID;
+  canApprouve(replication) {
+    return (
+      replication.status === REPLICATION_API_STATUS.pending &&
+      this.serviceName === replication.destination.serviceID
+    );
+  }
 
-  status = {
-    pending: {
-      color: 'warning',
-      wording: 'pending',
-    },
-    cutover: {
-      color: 'info',
-      wording: 'cutover',
-    },
-    completed: {
-      color: 'success',
-      wording: 'completed',
-    },
-    error: {
-      color: 'error',
-      wording: 'error',
-    },
-    [ACCEPTED_REPLICATION_STATE.ERROR]: {
-      color: 'error',
-      wording: 'accepted_synch_error',
-    },
-    [ACCEPTED_REPLICATION_STATE.IN_SYNC]: {
-      color: 'success',
-      wording: 'accepted_synchronize',
-    },
-    [ACCEPTED_REPLICATION_STATE.OUT_OF_SYNC]: {
-      color: 'info',
-      wording: 'accepted_synchronizating',
-    },
-    deleting: {
-      color: 'warning',
-      wording: 'deleting',
-    },
-  };
+  canPromote(replication) {
+    return (
+      replication.status === REPLICATION_API_STATUS.accepted &&
+      replication.replicaState === REPLICATION_API_REPLICASTATE.in_sync &&
+      this.serviceName === replication.destination.serviceID
+    );
+  }
+
+  static canDelete(replication) {
+    return [
+      REPLICATION_API_STATUS.accepted,
+      REPLICATION_API_STATUS.pending,
+      REPLICATION_API_STATUS.completed,
+    ].includes(replication.status);
+  }
+
+  deleteOrCancelLabel(replication) {
+    if (
+      [
+        REPLICATION_API_STATUS.accepted,
+        REPLICATION_API_STATUS.pending,
+      ].includes(replication.status)
+    ) {
+      return this.$translate.instant('netapp_replications_button_cancel');
+    }
+    return this.$translate.instant('netapp_replications_button_delete');
+  }
+
+  static getStatus(replication) {
+    if (replication.status === REPLICATION_API_STATUS.accepted) {
+      if (replication.replicaState === REPLICATION_API_REPLICASTATE.error)
+        return REPLICATION_STATUS_DISPLAY[ACCEPTED_REPLICATION_STATE.ERROR];
+      if (replication.replicaState === REPLICATION_API_REPLICASTATE.in_sync)
+        return REPLICATION_STATUS_DISPLAY[ACCEPTED_REPLICATION_STATE.IN_SYNC];
+      if (replication.replicaState === REPLICATION_API_REPLICASTATE.out_of_sync)
+        return REPLICATION_STATUS_DISPLAY[
+          ACCEPTED_REPLICATION_STATE.OUT_OF_SYNC
+        ];
+      // if (replication.replicaState === REPLICATION_API_REPLICASTATE.active) return ACCEPTED_REPLICATION_STATE.ACTIVE;
+    }
+
+    return REPLICATION_STATUS_DISPLAY[replication.status];
+  }
 }

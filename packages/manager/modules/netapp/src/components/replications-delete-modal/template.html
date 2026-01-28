@@ -1,0 +1,19 @@
+<oui-modal
+    data-loading="$ctrl.onLoad"
+    data-type="error"
+    data-on-dismiss="$ctrl.goToReplications()"
+    data-heading="{{:: $ctrl.getTitle() }}"
+    data-primary-label="{{'netapp_replications_modal_delete_primary_label_confirm' | translate}}"
+    data-primary-action="$ctrl.primaryAction()"
+    data-primary-disabled="$ctrl.isPrimaryDisabled"
+    data-secondary-label="{{'netapp_replications_modal_delete_secondary_label' | translate}}"
+    data-secondary-action="$ctrl.goToReplications()"
+>
+    <p
+        data-ng-if="$ctrl.isPrimaryDisabled"
+        data-translate="netapp_replications_modal_description_no_replication_selected"
+    ></p>
+    <div data-ng-if="!$ctrl.isPrimaryDisabled">
+        <p data-translate="{{:: $ctrl.getDescription() }}"></p>
+    </div>
+</oui-modal>

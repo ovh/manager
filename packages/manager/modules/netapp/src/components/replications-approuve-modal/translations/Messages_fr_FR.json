@@ -3,5 +3,7 @@
   "netapp_replications_modal_title_approuve": "Accepter la réplication",
   "netapp_replications_modal_description_approuve": "Attention! Vous allez accepter une réplication.",
   "netapp_replications_modal_primary_label_approuve": "Synchroniser",
-  "netapp_replications_modal_secondary_label": "Fermer"
+  "netapp_replications_modal_secondary_label": "Fermer",
+  "netapp_replications_approuve_error": "L'acceptation de la réplication du volume {{ sourceShareID }} a échoué.",
+  "netapp_replications_approuve_success": "La réplication du volume {{ sourceShareID }} a été acceptée avec succès et la synchronisation a commencé."
 }

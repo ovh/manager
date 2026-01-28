@@ -3,12 +3,9 @@ import template from './template.html';
 
 export default {
   bindings: {
-    replications: '<',
-    sourceEFSNames: '<',
     serviceName: '<',
-    goToApprouveReplication: '<',
-    goToPromoteReplication: '<',
-    goToDeleteReplication: '<',
+    goToReplications: '<',
+    params: '<',
   },
   controller,
   template,
