@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 
 import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -11,6 +12,7 @@ import {
 } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
+import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');
@@ -23,19 +25,24 @@ vi.mock('react-hook-form', async () => {
   };
 });
 
-const mockUseCreateShareForm = vi.fn(
-  () =>
-    ({
-      control: {},
-    }) as ReturnType<typeof import('@/pages/create/hooks/useCreateShareForm').useCreateShareForm>,
-);
+const mockUseCreateShareForm = ({ isValid }: { isValid: boolean }) =>
+  vi.mocked(useCreateShareForm).mockReturnValue({
+    control: {},
+    formState: { isValid },
+    handleSubmit: vi.fn((fn) => fn),
+  } as unknown as ReturnType<
+    typeof import('@/pages/create/hooks/useCreateShareForm').useCreateShareForm
+  >);
 
 vi.mock('@/pages/create/hooks/useCreateShareForm', () => ({
-  useCreateShareForm: () => mockUseCreateShareForm(),
+  useCreateShareForm: vi.fn(),
 }));
+
+const mockNavigate = vi.fn();
 
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: 'test-project-id' }),
+  useNavigate: () => mockNavigate,
 }));
 
 vi.mock('@/pages/create/components/name/NameInput.component', () => ({
@@ -99,6 +106,27 @@ vi.mock('@ovhcloud/ods-react', () => ({
   Text: ({ children, preset }: PropsWithChildren<{ preset: string }>) => (
     <div data-testid={`text-${preset}`}>{children}</div>
   ),
+  Button: ({
+    children,
+    onClick,
+    type,
+    disabled,
+    variant,
+  }: PropsWithChildren<{
+    onClick?: () => void;
+    type?: string;
+    disabled?: boolean;
+    variant?: string;
+  }>) => (
+    <button
+      data-testid={`button-${variant || 'default'}`}
+      type={type as 'button' | 'submit'}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  ),
 }));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
@@ -106,6 +134,8 @@ const mockUseShareCatalog = vi.mocked(useShareCatalog);
 describe('CreateShareForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockNavigate.mockClear();
+    mockUseCreateShareForm({ isValid: true });
   });
 
   it('should render all form sections', () => {
@@ -211,4 +241,47 @@ describe('CreateShareForm', () => {
       }
     },
   );
+
+  it('should disable submit button when form is invalid', () => {
+    mockUseShareCatalog.mockReturnValue({
+      data: [],
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
+
+    mockUseCreateShareForm({ isValid: false });
+
+    renderWithMockedForm(<CreateShareForm />);
+
+    const submitButton = screen.getByTestId('button-default');
+    expect(submitButton).toBeDisabled();
+  });
+
+  it('should enable submit button when form is valid', () => {
+    mockUseShareCatalog.mockReturnValue({
+      data: [],
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
+
+    renderWithMockedForm(<CreateShareForm />);
+
+    const submitButton = screen.getByTestId('button-default');
+    expect(submitButton).not.toBeDisabled();
+  });
+
+  it('should call navigate on cancel button click', async () => {
+    mockUseShareCatalog.mockReturnValue({
+      data: [],
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
+
+    renderWithMockedForm(<CreateShareForm />);
+
+    const cancelButton = screen.getByTestId('button-ghost');
+    await userEvent.click(cancelButton);
+
+    expect(mockNavigate).toHaveBeenCalledWith('../onboarding');
+  });
 });

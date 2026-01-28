@@ -2,7 +2,12 @@
   "name": {
     "title": "Nazwa udostępnienia",
     "label": "Wybierz nazwę dla swojego pliku udostępnienia",
-    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki."
+    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki i nie przekraczać 255 znaków.",
+    "error": {
+      "required": "Nazwa udostępnienia nie może być pusta. Proszę wpisać nazwę.",
+      "max_length": "Nieprawidłowy format nazwy",
+      "invalid_format": "Nieprawidłowy format nazwy"
+    }
   },
   "localisation": {
     "title": "Wybierz lokalizację",
@@ -19,7 +24,7 @@
         },
         "region-3-az": {
           "label": "Region 3-AZ",
-          "description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników w celu zapewnienia niskiej latencji i lokalizacji danych."
+          "description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników dla niskiej latencji i lokalizacji danych."
         }
       }
     },
@@ -47,17 +52,17 @@
     }
   },
   "share": {
-    "title": "Tryb wydajności udostępnienia",
+    "title": "Tryb wydajności udziału",
     "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS i {{bandwidthLevel}} {{bandwidthUnit}}"
   },
   "shareSize": {
-    "title": "Rozmiar udostępnienia",
-    "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawków",
+    "title": "Rozmiar udziału",
+    "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawkek",
     "label": "Przydział wydajności liniowej (GB)"
   },
   "network": {
     "title": "Sieć prywatna",
-    "description": "Wybierz prywatną sieć, do której chcesz, aby twoje instancje połączyły się z twoim plikiem udostępniania",
+    "description": "Wybierz prywatną sieć, z którą chcesz, aby twoje instancje połączyły się z twoim udziałem plików",
     "label": "Wybierz istniejącą prywatną sieć",
     "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie"
   }
