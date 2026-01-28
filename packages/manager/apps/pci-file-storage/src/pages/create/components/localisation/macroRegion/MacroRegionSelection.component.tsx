@@ -55,13 +55,15 @@ export const MacroRegionSelection = () => {
       (localization) => localization.macroRegion === selectedMacroRegion,
     );
 
+    const firstAvailableLocation = localizations.find((loc) => loc.available);
+
     if (
       !availablePreviousSelectedLocalization &&
-      localizations[0]?.macroRegion &&
-      localizations[0].microRegion
+      firstAvailableLocation?.macroRegion &&
+      firstAvailableLocation.microRegion
     ) {
-      setValue('macroRegion', localizations[0].macroRegion);
-      setValue('shareData.microRegion', localizations[0].microRegion);
+      setValue('macroRegion', firstAvailableLocation.macroRegion);
+      setValue('shareData.microRegion', firstAvailableLocation.microRegion);
     }
   }, [localizations, selectedMacroRegion, setValue]);
 

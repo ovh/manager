@@ -16,8 +16,9 @@ export const useCreateShareForm = () => {
     select: selectLocalizations({ deploymentModes: ['region', 'region-3-az'], continentId: 'all' }),
   });
 
-  const defaultMicroRegion = localizations[0]?.microRegion ?? '';
-  const defaultMacroRegion = localizations[0]?.macroRegion ?? '';
+  const firstAvailableLocation = localizations.find((loc) => loc.available);
+  const defaultMicroRegion = firstAvailableLocation?.microRegion ?? '';
+  const defaultMacroRegion = firstAvailableLocation?.macroRegion ?? '';
 
   const { data: shareOptions = [] } = useShareCatalog<TShareSpecData[]>({
     select: selectShareSpecs(defaultMicroRegion),

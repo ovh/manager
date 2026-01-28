@@ -19,9 +19,7 @@ import {
 } from '@/pages/create/view-model/shareCatalog.view-model';
 
 vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
-  mapRegionToLocalizationCard: () => (region: TMacroRegion) => {
-    return region.name;
-  },
+  mapRegionToLocalizationCard: vi.fn(() => (region: TMacroRegion) => region.name),
   mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
 }));
 
