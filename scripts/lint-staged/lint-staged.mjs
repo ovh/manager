@@ -1,71 +1,80 @@
 #!/usr/bin/env node
 /**
- * Lint-staged runner for a multi-package monorepo.
+ * Fast monorepo lint-staged runner:
+ * - reads staged files only
+ * - maps each staged file to a module root
+ * - runs lint per module root (deduped)
  *
- * Goal:
- * - Read *staged* files only (what will actually be committed).
- * - Map each file to its “module root” directory (apps/modules/tools/components...).
- * - Run `yarn lint` (or `yarn lint -- <files>`) once per module root.
- *
- * Why:
- * - Much faster than “affected graph” approaches (Turbo/Nx) for pre-commit.
- * - Keeps the “each module owns its lint script” philosophy.
+ * Supports repo layout:
+ * - packages/manager/apps/<app>/**
+ * - packages/manager/modules/<module>/**
+ * - packages/manager/core/<module>/**
+ * - packages/components/<module>/**
+ * - packages/manager-tools/<tool>/**
+ * - packages/manager-tools/manager-legacy-tools/<tool>/**
+ * - packages/manager-ui-kit/** (fixed root, no submodules)
  */
 
 import { execSync, spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
-/** Extensions we lint through this script. */
+/** File extensions that trigger lint. */
 const LINTED_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx"]);
 
 /**
- * Whether we pass only the staged files to the module lint command.
- * Turn off if your `yarn lint` scripts do not accept file arguments.
+ * Choose what you want in pre-commit.
+ * - true  => try to auto-fix (prefer lint:fix)
+ * - false => prefer lint (no fix), fallback lint:fix
  */
-const SHOULD_PASS_FILES_TO_LINTER = true;
+const PREFER_FIX_SCRIPT = true;
 
 /**
- * Known module root patterns.
- * If a staged file matches one of these, we extract a module root folder.
+ * Pass file arguments to the lint command if possible.
+ * This is faster (eslint runs on few files) but only safe if the script accepts args.
+ * We'll enable it only for scripts that look like ESLint commands.
  */
-const MODULE_ROOT_MATCHERS = [
-  // packages/manager/apps/<appName>/...
-  { pattern: /^packages\/manager\/apps\/([^/]+)\// },
+const ALLOW_FILE_ARGS_WHEN_SAFE = true;
 
-  // packages/manager/modules/<moduleName>/...
-  { pattern: /^packages\/manager\/modules\/([^/]+)\// },
-
-  // packages/manager/core/<moduleName>/...
-  { pattern: /^packages\/manager\/core\/([^/]+)\// },
-
-  // packages/components/<moduleName>/...
-  { pattern: /^packages\/components\/([^/]+)\// },
-
-  // packages/manager-tools/manager-legacy-tools/<toolName>/...
-  { pattern: /^packages\/manager-tools\/manager-legacy-tools\/([^/]+)\// },
-
-  // packages/manager-tools/<toolName>/...
-  { pattern: /^packages\/manager-tools\/([^/]+)\// },
-];
-
-/**
- * Some packages do not follow the “one more segment” rule (no submodules).
- * Example: packages/manager-ui-kit/...
- */
+/** Some packages don’t have submodules: the root is the package itself. */
 const FIXED_ROOT_PACKAGES = new Set(["packages/manager-ui-kit"]);
 
+/** Patterns that identify module roots by “one segment after a base folder”. */
+const MODULE_ROOT_PATTERNS = [
+  /^packages\/manager\/apps\/[^/]+\//,
+  /^packages\/manager\/modules\/[^/]+\//,
+  /^packages\/manager\/core\/[^/]+\//,
+  /^packages\/components\/[^/]+\//,
+  /^packages\/manager-tools\/manager-legacy-tools\/[^/]+\//,
+  /^packages\/manager-tools\/[^/]+\//,
+];
+
 /* -------------------------------------------------------------------------------------------------
- * Shell helpers
+ * Small utilities
  * ------------------------------------------------------------------------------------------------- */
 
-function runCommandToString(command) {
+function toPosixPath(p) {
+  return p.replace(/\\/g, "/");
+}
+
+function readText(command) {
   return execSync(command, { encoding: "utf8" }).trim();
 }
 
-function runCommandInDirectory(directory, command, args) {
-  const result = spawnSync(command, args, {
-    cwd: directory,
+function fileExists(absolutePath) {
+  return fs.existsSync(absolutePath);
+}
+
+function readJson(absolutePath) {
+  return JSON.parse(fs.readFileSync(absolutePath, "utf8"));
+}
+
+function runYarnScript(moduleRootAbsPath, scriptName, scriptArgs) {
+  // Yarn 1 forwards args to scripts without needing "--"
+  const yarnArgs = ["-s", scriptName, ...scriptArgs];
+
+  const result = spawnSync("yarn", yarnArgs, {
+    cwd: moduleRootAbsPath,
     stdio: "inherit",
     shell: process.platform === "win32",
   });
@@ -74,189 +83,166 @@ function runCommandInDirectory(directory, command, args) {
 }
 
 /* -------------------------------------------------------------------------------------------------
- * Path helpers
+ * Git staged files
  * ------------------------------------------------------------------------------------------------- */
 
-function toPosixPath(filePath) {
-  // Git outputs POSIX paths on mac/linux; this normalizes Windows too.
-  return filePath.replace(/\\/g, "/");
-}
-
-function getFileExtension(filePath) {
-  return path.extname(filePath).toLowerCase();
-}
-
-function fileExists(filePath) {
-  return fs.existsSync(filePath);
-}
-
-function hasPackageJson(moduleRootRelativePath) {
-  const packageJsonPath = path.join(process.cwd(), moduleRootRelativePath, "package.json");
-  return fileExists(packageJsonPath);
-}
-
-/**
- * Given a file path and a module root, returns the file path relative to module root.
- * Example:
- * - file: "packages/manager/apps/zimbra/src/App.tsx"
- * - root: "packages/manager/apps/zimbra"
- * - returns: "src/App.tsx"
- */
-function getPathRelativeToModuleRoot(filePath, moduleRoot) {
-  const relative = path.relative(moduleRoot, filePath);
-  return toPosixPath(relative);
-}
-
-/* -------------------------------------------------------------------------------------------------
- * Git helpers
- * ------------------------------------------------------------------------------------------------- */
-
-/**
- * Returns staged files only (index), not working tree changes.
- * - --cached : staged
- * - --diff-filter=ACMR : Added/Copied/Modified/Renamed (skip deletions)
- */
 function getStagedFiles() {
-  const output = runCommandToString("git diff --name-only --cached --diff-filter=ACMR");
+  // Added/Copied/Modified/Renamed; exclude deletions so we don’t lint removed files.
+  const output = readText("git diff --name-only --cached --diff-filter=ACMR");
   if (!output) return [];
+  return output.split("\n").map((s) => toPosixPath(s.trim())).filter(Boolean);
+}
 
-  return output
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map(toPosixPath);
+function isLintableFile(filePath) {
+  return LINTED_EXTENSIONS.has(path.extname(filePath).toLowerCase());
 }
 
 /* -------------------------------------------------------------------------------------------------
  * Module root inference
  * ------------------------------------------------------------------------------------------------- */
 
-/**
- * Returns the module root folder for a given file based on your monorepo layout.
- * Returns null if the file is not inside a known module area.
- */
-function inferModuleRootFromFile(filePath) {
-  // Fixed root packages (no submodule level)
+function inferModuleRoot(filePath) {
+  // Fixed roots (no submodule level)
   for (const fixedRoot of FIXED_ROOT_PACKAGES) {
     if (filePath === fixedRoot || filePath.startsWith(`${fixedRoot}/`)) {
       return fixedRoot;
     }
   }
 
-  // Pattern-based roots (one extra segment after known folder)
-  for (const matcher of MODULE_ROOT_MATCHERS) {
-    const match = filePath.match(matcher.pattern);
+  // Pattern-based roots
+  for (const pattern of MODULE_ROOT_PATTERNS) {
+    const match = filePath.match(pattern);
     if (!match) continue;
 
-    // match[0] is the full prefix like: "packages/manager/apps/zimbra/"
-    const matchedPrefixWithTrailingSlash = match[0];
-    const moduleRoot = matchedPrefixWithTrailingSlash.slice(0, -1); // remove trailing "/"
-    return moduleRoot;
+    // match[0] looks like "packages/manager/apps/zimbra/"
+    return match[0].slice(0, -1); // remove trailing "/"
   }
 
   return null;
 }
 
+function getModulePackageJsonPath(moduleRootRelPath) {
+  return path.join(process.cwd(), moduleRootRelPath, "package.json");
+}
+
+function loadModulePackageJson(moduleRootRelPath) {
+  const packageJsonPath = getModulePackageJsonPath(moduleRootRelPath);
+  if (!fileExists(packageJsonPath)) return null;
+  return readJson(packageJsonPath);
+}
+
 /* -------------------------------------------------------------------------------------------------
- * Grouping logic
+ * Choosing which script to run (lint vs lint:fix)
  * ------------------------------------------------------------------------------------------------- */
 
-/**
- * Filters for lintable file extensions.
- */
-function filterLintableFiles(files) {
-  return files.filter((filePath) => LINTED_EXTENSIONS.has(getFileExtension(filePath)));
+function pickLintScriptName(modulePackageJson) {
+  const scripts = modulePackageJson?.scripts ?? {};
+
+  const hasLint = typeof scripts.lint === "string";
+  const hasLintFix = typeof scripts["lint:fix"] === "string";
+
+  if (PREFER_FIX_SCRIPT) {
+    if (hasLintFix) return "lint:fix";
+    if (hasLint) return "lint";
+  } else {
+    if (hasLint) return "lint";
+    if (hasLintFix) return "lint:fix";
+  }
+
+  return null;
 }
 
 /**
- * Builds a map: moduleRoot -> staged files in that module.
- * Only includes module roots that contain a package.json (workspace boundary).
+ * Heuristic to decide whether it’s safe to pass file args.
+ * We only do it when the chosen script looks like it runs eslint directly.
  */
-function groupFilesByModuleRoot(lintableFiles) {
-  const filesByRoot = new Map();
+function canSafelyPassFiles(modulePackageJson, lintScriptName) {
+  if (!ALLOW_FILE_ARGS_WHEN_SAFE) return false;
 
-  for (const filePath of lintableFiles) {
-    const moduleRoot = inferModuleRootFromFile(filePath);
+  const scriptCommand = modulePackageJson?.scripts?.[lintScriptName];
+  if (typeof scriptCommand !== "string") return false;
+
+  // Common safe cases: eslint / nx eslint / turbo eslint wrappers
+  // If your repo uses a custom wrapper that accepts files, add it here.
+  const looksLikeEslint =
+    scriptCommand.includes("eslint") ||
+    scriptCommand.includes("@nx/eslint") ||
+    scriptCommand.includes("nx lint");
+
+  return looksLikeEslint;
+}
+
+/* -------------------------------------------------------------------------------------------------
+ * Group staged files by module
+ * ------------------------------------------------------------------------------------------------- */
+
+function groupStagedFilesByModuleRoot(stagedFiles) {
+  /** @type {Map<string, string[]>} */
+  const filesByModuleRoot = new Map();
+
+  for (const filePath of stagedFiles) {
+    if (!isLintableFile(filePath)) continue;
+
+    const moduleRoot = inferModuleRoot(filePath);
     if (!moduleRoot) continue;
 
-    if (!hasPackageJson(moduleRoot)) continue;
-
-    const existing = filesByRoot.get(moduleRoot) ?? [];
-    existing.push(filePath);
-    filesByRoot.set(moduleRoot, existing);
+    if (!filesByModuleRoot.has(moduleRoot)) {
+      filesByModuleRoot.set(moduleRoot, []);
+    }
+    filesByModuleRoot.get(moduleRoot).push(filePath);
   }
 
-  return filesByRoot;
+  return filesByModuleRoot;
 }
 
 /* -------------------------------------------------------------------------------------------------
- * Lint runner
+ * Main runner
  * ------------------------------------------------------------------------------------------------- */
 
-function buildLintCommandArgs(moduleRoot, stagedFilesInModule) {
-  // Use -s (silent) to reduce Yarn noise; still prints lint output.
-  // If your command is different (lint:fix etc.), change it here.
-  const baseArgs = ["-s", "lint"];
+function runLintForModule(moduleRootRelPath, stagedFilesInModule) {
+  const moduleRootAbsPath = path.join(process.cwd(), moduleRootRelPath);
+  const modulePackageJson = loadModulePackageJson(moduleRootRelPath);
 
-  if (!SHOULD_PASS_FILES_TO_LINTER) {
-    return baseArgs;
+  if (!modulePackageJson) {
+    console.log(`\n— Skip: ${moduleRootRelPath} (no package.json)`);
+    return 0;
   }
 
-  // Pass only the staged files *relative to the module root*.
-  // Many `eslint` scripts accept file arguments after `--`.
-  const relativeFiles = stagedFilesInModule.map((filePath) =>
-    getPathRelativeToModuleRoot(filePath, moduleRoot),
-  );
-
-  return [...baseArgs, "--", ...relativeFiles];
-}
-
-function lintModuleRoot(moduleRoot, stagedFilesInModule) {
-  const absoluteModuleRoot = path.join(process.cwd(), moduleRoot);
-  const lintArgs = buildLintCommandArgs(moduleRoot, stagedFilesInModule);
-
-  console.log(`\n— Running lint in: ${moduleRoot}`);
-  if (SHOULD_PASS_FILES_TO_LINTER) {
-    console.log(`  Files: ${stagedFilesInModule.length}`);
+  const lintScriptName = pickLintScriptName(modulePackageJson);
+  if (!lintScriptName) {
+    console.log(`\n— Skip: ${moduleRootRelPath} (no lint/lint:fix script)`);
+    return 0;
   }
 
-  const exitCode = runCommandInDirectory(absoluteModuleRoot, "yarn", lintArgs);
-  return exitCode;
-}
+  const shouldPassFiles = canSafelyPassFiles(modulePackageJson, lintScriptName);
 
-/* -------------------------------------------------------------------------------------------------
- * Main
- * ------------------------------------------------------------------------------------------------- */
+  const fileArgs = shouldPassFiles
+    ? stagedFilesInModule.map((filePath) =>
+        toPosixPath(path.relative(moduleRootRelPath, filePath)),
+      )
+    : [];
+
+  console.log(`\n— Running ${lintScriptName} in: ${moduleRootRelPath}`);
+  console.log(`  Staged files in module: ${stagedFilesInModule.length}`);
+  if (shouldPassFiles) console.log(`  Passing files to linter: yes`);
+  else console.log(`  Passing files to linter: no`);
+
+  return runYarnScript(moduleRootAbsPath, lintScriptName, fileArgs);
+}
 
 function main() {
   const stagedFiles = getStagedFiles();
-  const lintableFiles = filterLintableFiles(stagedFiles);
-  console.log({
-    lintableFiles,
-    stagedFiles,
-  })
+  console.log(stagedFiles);
+  if (stagedFiles.length === 0) process.exit(0);
 
-  if (lintableFiles.length === 0) {
-    process.exit(0);
-  }
+  const filesByModuleRoot = groupStagedFilesByModuleRoot(stagedFiles);
+  console.log(filesByModuleRoot);
+  if (filesByModuleRoot.size === 0) process.exit(0);
 
-  const filesByModuleRoot = groupFilesByModuleRoot(lintableFiles);
-console.log({
-    filesByModuleRoot
-  })
-  if (filesByModuleRoot.size === 0) {
-    process.exit(0);
-  }
-
-  // Run sequentially to keep output readable & fail fast.
+  // Sequential execution: readable output + fail-fast.
   for (const [moduleRoot, moduleFiles] of filesByModuleRoot.entries()) {
-    console.log({
-    moduleRoot, moduleFiles
-  })
-    const exitCode = lintModuleRoot(moduleRoot, moduleFiles);
-    if (exitCode !== 0) {
-      process.exit(exitCode);
-    }
+    const exitCode = runLintForModule(moduleRoot, moduleFiles);
+    if (exitCode !== 0) process.exit(exitCode);
   }
 
   process.exit(0);
