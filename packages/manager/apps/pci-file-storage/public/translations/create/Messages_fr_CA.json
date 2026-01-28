@@ -60,7 +60,12 @@
   "shareSize": {
     "title": "Taille du share",
     "description": "5 % de la capacité de stockage est dédiée au stockage des snapshots",
-    "label": "Allocation de performance linéaire (GB)"
+    "label": "Allocation de performance linéaire (GiB)",
+    "error": {
+      "min_value": "La taille du share est inférieure au minimum autorisé pour cette offre.",
+      "max_value": "La taille du share dépasse le maximum autorisé pour cette offre.",
+      "invalid_type": "Ce champs doit être rempli"
+    }
   },
   "network": {
     "title": "Réseau privé",

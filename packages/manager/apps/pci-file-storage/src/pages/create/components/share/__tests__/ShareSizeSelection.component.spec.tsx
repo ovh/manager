@@ -91,18 +91,26 @@ describe('ShareSizeSelection', () => {
     });
   });
 
-  it('should constrain input value to max when above maximum', async () => {
-    const shareOptions: TShareSpecData[] = [
-      {
-        name: 'publiccloud-share-standard1',
-        capacityMin: 150,
-        capacityMax: 2048,
-        iopsLevel: 30,
-        bandwidthLevel: 0.25,
-        bandwidthUnit: 'MB/s/GB',
-      },
-    ];
+  const shareOptions: TShareSpecData[] = [
+    {
+      name: 'publiccloud-share-standard1',
+      capacityMin: 150,
+      capacityMax: 2048,
+      iopsLevel: 30,
+      bandwidthLevel: 0.25,
+      bandwidthUnit: 'MB/s/GB',
+    },
+  ];
 
+  it.each([
+    { case: 'too small', userInput: '100', expectedErrorKey: 'create:shareSize.error.min_value' },
+    { case: 'too big', userInput: '5000', expectedErrorKey: 'create:shareSize.error.max_value' },
+    {
+      case: 'empty',
+      userInput: undefined,
+      expectedErrorKey: 'create:shareSize.error.invalid_type',
+    },
+  ])('should show error when value is $case', async ({ userInput, expectedErrorKey }) => {
     mockUseShareCatalog.mockReturnValue({
       data: shareOptions,
     } as unknown as QueryObserverSuccessResult<TShareSpecData[]>);
@@ -121,11 +129,13 @@ describe('ShareSizeSelection', () => {
 
     await act(async () => {
       await userEvent.clear(input);
-      await userEvent.type(input, '5000');
+      if (userInput) {
+        await userEvent.type(input, userInput);
+      }
     });
 
     await waitFor(() => {
-      expect((input as HTMLInputElement).value).toBe('2048');
+      expect(screen.getByText(expectedErrorKey)).toBeVisible();
     });
   });
 });

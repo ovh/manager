@@ -58,7 +58,12 @@
   "shareSize": {
     "title": "Tamanho do compartilhamento",
     "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento de snapshots",
-    "label": "Alocação de desempenho linear (GB)"
+    "label": "Alocação de desempenho linear (GiB)",
+    "error": {
+      "min_value": "O tamanho do compartilhamento está abaixo do mínimo permitido para esta oferta.",
+      "max_value": "O tamanho do compartilhamento excede o máximo permitido para esta oferta.",
+      "invalid_type": "Este campo deve ser preenchido."
+    }
   },
   "network": {
     "title": "Rede Privada",

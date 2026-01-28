@@ -58,7 +58,12 @@
   "shareSize": {
     "title": "Größe des Shares",
     "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert",
-    "label": "Lineare Leistungszuweisung (GB)"
+    "label": "Lineare Leistungszuweisung (GiB)",
+    "error": {
+      "min_value": "Die Share-Größe liegt unter dem für dieses Angebot zulässigen Minimum.",
+      "max_value": "Die Share-Größe überschreitet das für dieses Angebot zulässige Maximum.",
+      "invalid_type": "Dieses Feld muss ausgefüllt werden."
+    }
   },
   "network": {
     "title": "Privates Netzwerk",
