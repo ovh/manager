@@ -9,13 +9,13 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     controllerAs: '$ctrl',
     redirectTo: 'billing.main.history',
     resolve: {
-      isPayAsYouGoAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability(['billing:payAsYouGo'])
-          .then((commitmentAvailability) =>
-            commitmentAvailability.isFeatureAvailable('billing:payAsYouGo'),
-          )
-          .catch(() => false),
+      checkFeatureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability([
+          'billing:payAsYouGo',
+          'telephony',
+        ]),
+      isPayAsYouGoAvailable: /* @ngInject */ (checkFeatureAvailability) => checkFeatureAvailability.isFeatureAvailable('billing:payAsYouGo'),
+      isTelephonyAvailable: /* @ngInject */ (checkFeatureAvailability) => checkFeatureAvailability.isFeatureAvailable('telephony'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_main_title'),
       isPolandAccount: /* @ngInject */ (currentUser) =>
