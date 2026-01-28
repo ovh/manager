@@ -69,6 +69,13 @@ import {
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
 import { TRACKING_GOAL_TYPE } from './accountDetails.constants';
+import {
+  FormGroupSkeleton,
+  AddressFormGroupSkeleton,
+  ContactFormGroupSkeleton,
+  ButtonSkeleton,
+  CheckboxSkeleton,
+} from '@/components/formSkeleton';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -1042,6 +1049,16 @@ export default function AccountDetailsPage() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
           {t('account_details_info_message')}
         </OdsText>
+        {(!rules || isLoading) && (
+          <div className="flex flex-col gap-8">
+            <FormGroupSkeleton />
+            <FormGroupSkeleton />
+            <AddressFormGroupSkeleton />
+            <ContactFormGroupSkeleton />
+            <CheckboxSkeleton />
+            <ButtonSkeleton />
+          </div>
+        )}
         {rules && (
           <AccountDetailsForm
             rules={rules}
