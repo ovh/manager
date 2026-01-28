@@ -45,6 +45,19 @@ export default (containerEl, environment) => {
       /* @ngInject */ ($urlRouterProvider) =>
         $urlRouterProvider.otherwise('/overTheBox'),
     )
+    .constant('CHANGELOG', {
+      overthebox: {
+        links: {
+          changelog:
+            'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=VoIP',
+          roadmap:
+            'https://github.com/orgs/ovh/projects/18/views/1?pane=info&sliceBy%5Bvalue%5D=VoIP',
+          'feature-request':
+            'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+        },
+        chapters: ['telecom', 'sms', ''],
+      },
+    })
     .constant(
       'DATEFNS_LOCALE',
       dateFnsLocales[getDateFnsLocale(environment.userLocale)],
