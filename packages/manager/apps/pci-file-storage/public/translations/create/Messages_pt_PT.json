@@ -2,7 +2,12 @@
   "name": {
     "title": "Nome do share",
     "label": "Escolha um nome para o seu arquivo de partilha",
-    "info": "Deve conter apenas números, letras, underscores, hífens ou pontos."
+    "info": "Deve conter apenas números, letras, underscores, hífens ou pontos e não exceder 255 caracteres.",
+    "error": {
+      "required": "O nome do share não pode estar vazio. Por favor, insira um nome.",
+      "max_length": "Formato de nome inválido",
+      "invalid_format": "Formato de nome inválido"
+    }
   },
   "localisation": {
     "title": "Selecione uma localização",
@@ -19,7 +24,7 @@
         },
         "region-3-az": {
           "label": "Região 3-AZ",
-          "description": "Implantação das suas aplicações o mais próximo possível dos seus utilizadores para uma baixa latência e a residência dos dados."
+          "description": "Implantação das suas aplicações o mais próximo possível dos seus utilizadores para uma baixa latência e residência dos dados."
         }
       }
     },
@@ -39,7 +44,7 @@
     },
     "availabilityZone": {
       "title": "Escolha a sua zona de disponibilidade",
-      "informations": "Uma zona de disponibilidade por defeito foi selecionada. Tem a possibilidade de personalizar esta escolha.",
+      "informations": "Uma zona de disponibilidade por defeito foi selecionada. Você tem a possibilidade de personalizar esta escolha.",
       "choice": {
         "company": "Escolher por mim",
         "user": "Eu escolho a minha zona de disponibilidade"
@@ -47,12 +52,12 @@
     }
   },
   "share": {
-    "title": "Modo de desempenho do share",
+    "title": "Modo de desempenho do compartilhamento",
     "description": "Mín. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
   },
   "shareSize": {
-    "title": "Tamanho do share",
-    "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento dos snapshots",
+    "title": "Tamanho do compartilhamento",
+    "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento de snapshots",
     "label": "Alocação de desempenho linear (GB)"
   },
   "network": {
