@@ -4,7 +4,12 @@
   "name": {
     "title": "Nom du share",
     "label": "Choisissez un nom pour votre fichier de partage",
-    "info": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points."
+    "info": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points et ne pas dépasser 255 caractères.",
+    "error": {
+      "required": "Le nom du share ne peut pas être vide. Veuillez entrer un nom.",
+      "max_length": "Format de nom invalide",
+      "invalid_format": "Format de nom invalide"
+    }
   },
   "localisation": {
     "title": "Sélectionnez une localisation",

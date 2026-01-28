@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -9,11 +9,16 @@ import { TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
 import { PciCard } from '@/components/new-lib/pciCard/PciCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { generateAutoName } from '@/pages/create/view-model/network.view-model';
 import { selectShareSpecs } from '@/pages/create/view-model/shareCatalog.view-model';
 
 export const ShareSelection = () => {
   const { t } = useTranslation(['create']);
-  const { control, setValue } = useFormContext<CreateShareFormValues>();
+  const {
+    control,
+    setValue,
+    formState: { dirtyFields },
+  } = useFormContext<CreateShareFormValues>();
 
   const [selectedMicroRegion, selectedSpecName] = useWatch({
     control,
@@ -24,15 +29,23 @@ export const ShareSelection = () => {
     select: selectShareSpecs(selectedMicroRegion),
   });
 
+  const handleShareSpecChange = useCallback(
+    (spec: TShareSpecData) => () => {
+      setValue('shareData.specName', spec.name);
+      const isNameClean = !dirtyFields.shareData?.name;
+      if (isNameClean) {
+        const autoName = generateAutoName(spec.name);
+        setValue('shareData.name', autoName, { shouldValidate: true });
+      }
+    },
+    [setValue, dirtyFields],
+  );
+
   useEffect(() => {
     if (shareOptions[0]) {
-      setValue('shareData.specName', shareOptions[0].name);
+      handleShareSpecChange(shareOptions[0])();
     }
-  }, [shareOptions, setValue]);
-
-  const handleShareSpecChange = (spec: TShareSpecData) => () => {
-    setValue('shareData.specName', spec.name);
-  };
+  }, [shareOptions, handleShareSpecChange]);
 
   return (
     <section>

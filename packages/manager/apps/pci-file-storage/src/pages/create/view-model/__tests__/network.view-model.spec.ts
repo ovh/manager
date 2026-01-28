@@ -1,8 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TNetwork } from '@/domain/entities/network.entity';
 
-import { selectPrivateNetworksForRegion } from '../network.view-model';
+import { generateAutoName, selectPrivateNetworksForRegion } from '../network.view-model';
 
 vi.mock('@/adapters/network/left/network.mapper', () => ({
   mapNetworkToPrivateNetworkData: (network: TNetwork) => ({
@@ -85,6 +85,52 @@ describe('network.view-model', () => {
       const result = selectPrivateNetworksForRegion(region)(networks);
 
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('generateAutoName', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it.each([
+      {
+        description: 'should generate name with default specName',
+        specName: undefined,
+        expectedPattern: /^share_\d{2}_\d{2}_\d{4}$/,
+      },
+      {
+        description: 'should generate name with provided specName',
+        specName: 'publiccloud-share-standard1',
+        expectedPattern: /^publiccloud-share-standard1_\d{2}_\d{2}_\d{4}$/,
+      },
+      {
+        description: 'should sanitize special characters in specName',
+        specName: 'share@#$% ^&*()name',
+        expectedPattern: /^share_+name_\d{2}_\d{2}_\d{4}$/,
+      },
+      {
+        description: 'should truncate long specName to 200 characters',
+        specName: 'a'.repeat(250),
+        expectedPattern: new RegExp(`^a{200}_\\d{2}_\\d{2}_\\d{4}$`),
+      },
+      {
+        description: 'should handle empty string specName',
+        specName: '',
+        expectedPattern: /^_\d{2}_\d{2}_\d{4}$/,
+      },
+    ])('$description', ({ specName, expectedPattern }) => {
+      const fixedDate = new Date('2024-01-15T10:30:00Z');
+      vi.setSystemTime(fixedDate);
+
+      const result = generateAutoName(specName);
+
+      expect(result).toMatch(expectedPattern);
+      expect(result).toContain('15_01_2024');
     });
   });
 });
