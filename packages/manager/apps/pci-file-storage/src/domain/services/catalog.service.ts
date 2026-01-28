@@ -17,6 +17,6 @@ export const isMacroRegionAvailable = (
   if (!microRegions.length) return false;
 
   return microRegions.some(
-    (microRegion) => microRegion.isActivable && !microRegion.isInMaintenance,
+    (microRegion) => microRegion.isActivated && !microRegion.isInMaintenance,
   );
 };

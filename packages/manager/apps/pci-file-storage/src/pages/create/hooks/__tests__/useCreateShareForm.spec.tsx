@@ -20,12 +20,11 @@ describe('useCreateShareForm', () => {
   });
 
   it('should initialize form with default values from catalog data', async () => {
-    const localizations: TRegionData[] = [
-      {
-        microRegion: 'GRA1',
-        macroRegion: 'GRA',
-      } as TRegionData,
-    ];
+    const availableLocation = {
+      microRegion: 'GRA1',
+      macroRegion: 'GRA',
+      available: true,
+    } as TRegionData;
 
     const shareOptions: TShareSpecData[] = [
       {
@@ -40,7 +39,7 @@ describe('useCreateShareForm', () => {
 
     mockUseShareCatalog
       .mockReturnValueOnce({
-        data: localizations,
+        data: [availableLocation],
       } as unknown as QueryObserverSuccessResult<TRegionData[]>)
       .mockReturnValueOnce({
         data: shareOptions,
@@ -91,7 +90,7 @@ describe('useCreateShareForm', () => {
     mockUseShareCatalog
       .mockReturnValueOnce({
         data: undefined,
-      } as unknown as QueryObserverSuccessResult<TRegionData[]>)
+      } as unknown as QueryObserverSuccessResult<TRegionData | undefined>)
       .mockReturnValueOnce({
         data: undefined,
       } as unknown as QueryObserverSuccessResult<TShareSpecData[]>);
@@ -110,12 +109,11 @@ describe('useCreateShareForm', () => {
   });
 
   it('should use first share option capacityMin as default size', async () => {
-    const localizations: TRegionData[] = [
-      {
-        microRegion: 'GRA1',
-        macroRegion: 'GRA',
-      } as TRegionData,
-    ];
+    const availableLocation = {
+      microRegion: 'GRA1',
+      macroRegion: 'GRA',
+      available: true,
+    } as TRegionData;
 
     const shareOptions: TShareSpecData[] = [
       {
@@ -130,7 +128,7 @@ describe('useCreateShareForm', () => {
 
     mockUseShareCatalog
       .mockReturnValueOnce({
-        data: localizations,
+        data: [availableLocation],
       } as unknown as QueryObserverSuccessResult<TRegionData[]>)
       .mockReturnValueOnce({
         data: shareOptions,

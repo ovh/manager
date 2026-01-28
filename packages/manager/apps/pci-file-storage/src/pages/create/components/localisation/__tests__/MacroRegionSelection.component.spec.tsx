@@ -69,9 +69,69 @@ vi.mock('@ovhcloud/ods-react', () => ({
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 
+const createLocalization = (
+  overrides: Partial<TRegionData> & { macroRegion: string; microRegion: string },
+): TRegionData =>
+  ({
+    cityKey: 'manager_components_region_GRA',
+    datacenterDetails: overrides.microRegion,
+    deploymentMode: 'region',
+    countryCode: 'fr',
+    microRegions: [],
+    ...overrides,
+  }) as TRegionData;
+
 describe('MacroRegionSelection', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  it.each([
+    {
+      description: 'should reset to first available when selected macro is not in localizations',
+      defaultMacroRegion: 'OTHER',
+      localizations: [
+        createLocalization({ macroRegion: 'GRA', microRegion: 'GRA1', available: true }),
+        createLocalization({ macroRegion: 'SBG', microRegion: 'SBG1', available: false }),
+      ],
+      expectedMacroRegion: 'GRA',
+    },
+    {
+      description: 'should not reset when selected macro is in localizations',
+      defaultMacroRegion: 'GRA',
+      localizations: [
+        createLocalization({ macroRegion: 'GRA', microRegion: 'GRA1', available: true }),
+        createLocalization({ macroRegion: 'SBG', microRegion: 'SBG1', available: true }),
+      ],
+      expectedMacroRegion: 'GRA',
+    },
+    {
+      description:
+        'should not reset when selected macro is not in localizations but no location is available',
+      defaultMacroRegion: 'OTHER',
+      localizations: [
+        createLocalization({ macroRegion: 'GRA', microRegion: 'GRA1', available: false }),
+        createLocalization({ macroRegion: 'SBG', microRegion: 'SBG1', available: false }),
+      ],
+      expectedMacroRegion: 'OTHER',
+    },
+  ])('$description', async ({ defaultMacroRegion, localizations, expectedMacroRegion }) => {
+    mockUseShareCatalog.mockReturnValue({
+      data: localizations,
+    } as unknown as QueryObserverSuccessResult<TRegionData[]>);
+
+    renderWithMockedForm(<MacroRegionSelection />, {
+      defaultValues: {
+        continent: 'all',
+        macroRegion: defaultMacroRegion,
+        shareData: { microRegion: `${defaultMacroRegion}1` },
+      },
+    });
+
+    await waitFor(() => {
+      const radiogroup = screen.getByRole('radiogroup');
+      expect(radiogroup).toHaveAttribute('data-value', expectedMacroRegion);
+    });
   });
 
   it('should handle region card selection', async () => {

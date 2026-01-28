@@ -48,11 +48,11 @@ describe('catalog.service', () => {
   });
 
   describe('isMacroRegionAvailable', () => {
-    const createMicroRegion = (name: string, isActivable: boolean, isInMaintenance: boolean) =>
+    const createMicroRegion = (name: string, isInMaintenance: boolean, isActivated: boolean) =>
       ({
         name,
-        isActivable,
         isInMaintenance,
+        isActivated,
       }) as TMicroRegion;
 
     it.each([
@@ -63,8 +63,8 @@ describe('catalog.service', () => {
           microRegions: ['GRA1', 'GRA2'],
         },
         microRegionsById: new Map<string, TMicroRegion>([
-          ['GRA1', createMicroRegion('GRA1', true, false)],
-          ['GRA2', createMicroRegion('GRA2', false, true)],
+          ['GRA1', createMicroRegion('GRA1', false, true)],
+          ['GRA2', createMicroRegion('GRA2', true, false)],
         ]),
         expected: true,
       },
@@ -82,8 +82,8 @@ describe('catalog.service', () => {
           microRegions: ['GRA1', 'GRA2'],
         },
         microRegionsById: new Map<string, TMicroRegion>([
-          ['GRA1', createMicroRegion('GRA1', true, true)],
-          ['GRA2', createMicroRegion('GRA2', true, true)],
+          ['GRA1', createMicroRegion('GRA1', true, false)],
+          ['GRA2', createMicroRegion('GRA2', true, false)],
         ]),
         expected: false,
       },
@@ -102,7 +102,7 @@ describe('catalog.service', () => {
         description: 'should return false when macro region is undefined',
         macroRegion: undefined,
         microRegionsById: new Map<string, TMicroRegion>([
-          ['GRA1', createMicroRegion('GRA1', true, false)],
+          ['GRA1', createMicroRegion('GRA1', false, true)],
         ]),
         expected: false,
       },

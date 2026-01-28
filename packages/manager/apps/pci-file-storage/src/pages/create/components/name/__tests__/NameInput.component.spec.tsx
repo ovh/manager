@@ -28,7 +28,7 @@ describe('NameInput', () => {
     await userEvent.clear(input);
 
     await waitFor(() => {
-      expect(screen.getByText('create:name.error.required')).toBeVisible();
+      expect(screen.getByText('create:name.error.too_small')).toBeVisible();
       expect(input).toHaveAttribute('aria-invalid', 'true');
     });
   });
@@ -44,7 +44,7 @@ describe('NameInput', () => {
     await userEvent.type(input, longName);
 
     await waitFor(() => {
-      expect(screen.getByText('create:name.error.max_length')).toBeVisible();
+      expect(screen.getByText('create:name.error.too_big')).toBeVisible();
       expect(input).toHaveAttribute('aria-invalid', 'true');
     });
   });
