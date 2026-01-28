@@ -80,6 +80,11 @@ const DatacentreComputeOrderPage = React.lazy(() =>
     '@/pages/dashboard/datacentre/compute-order/DatacentreComputeOrder.page'
   ),
 );
+const DatacentreComputeDeletePage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/compute/delete/DatacentreComputeDelete.page'
+  ),
+);
 
 const DatacenterVrackSegmentPage = React.lazy(() =>
   import('@/pages/dashboard/datacentre/vrack-segment/DatacentreVrack.page'),
@@ -343,7 +348,13 @@ export default (
               pageType: PageType.listing,
             },
           }}
-        />
+        >
+          <Route
+            id={subRoutes.datacentreComputeDelete}
+            path={urls.datacentreComputeDelete}
+            Component={DatacentreComputeDeletePage}
+          />
+        </Route>
         <Route
           id={'vDcCompute-order'}
           path={urls.datacentreComputeOrder}

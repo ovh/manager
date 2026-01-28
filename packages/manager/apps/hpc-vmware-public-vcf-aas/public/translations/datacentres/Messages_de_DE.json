@@ -10,5 +10,8 @@
   "managed_vcd_vdc_usage": "Verwendung",
   "managed_vcd_vdc_contact_support": "Bitte kontaktieren Sie den Support.",
   "managed_vcd_vdc_associate_vrack": "vRack verbinden",
-  "managed_vcd_vdc_associate_vrack_disabled": "Die Zuordnung eines vRack zu einem Public VCF as-a-Service ist noch nicht verfügbar."
+  "managed_vcd_vdc_associate_vrack_disabled": "Die Zuordnung eines vRack zu einem Public VCF as-a-Service ist noch nicht verfügbar.",
+  "managed_vcd_vdc_delete_resource": "Ressource löschen",
+  "managed_vcd_vdc_delete_resource_success": "Die Anfrage zur Kündigung Ihrer Ressource wurde registriert.",
+  "managed_vcd_vdc_delete_resource_error": "Beim Kündigen der Ressource ist ein Fehler aufgetreten: {{error}}"
 }
