@@ -5,7 +5,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './component';
 
-const moduleName = 'ovhManagerReplicationsModalComponent';
+const moduleName = 'ovhManagerReplicationsDeleteModalComponent';
 
 angular
   .module(moduleName, [
