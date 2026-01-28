@@ -26,6 +26,7 @@ import OvhLink from '@/components/links/OvhLink.component';
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { RegionTypeBadgeWithPopover } from '@/components/region-type-badge/RegionTypeBadge.component';
 import RegionWithFlag from '@/components/region-with-flag/RegionWithFlag.component';
+import { Region3AZ } from '@/configuration/region.const';
 
 interface RegionsSelectProps {
   regions: Region[];
@@ -64,7 +65,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
     >(getDefaultDeploymentModes());
     const { t } = useTranslation('regions');
     const { t: tOrder } = useTranslation('pci-object-storage/order-funnel');
-    const RECOMENDED_REGION = 'EU-WEST-PAR';
+    const RECOMENDED_REGION = Region3AZ.PARIS;
     const { data: project } = usePciProject();
     const MAX_DISPLAYED_REGIONS = 12;
 

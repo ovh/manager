@@ -1,9 +1,11 @@
+import { Region3AZ } from '@/configuration/region.const';
+
 export const getRegionFlag = (region: string): string | undefined => {
   switch (region) {
     case 'BHS':
     case 'TOR':
       return 'ca';
-    case 'EU-WEST-PAR':
+    case Region3AZ.PARIS:
     case 'GRA':
     case 'SBG':
     case 'PAR':
