@@ -37,7 +37,6 @@ export default function ServiceActionMenu({
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
   const navigate = useNavigate();
-  const location = useLocation();
 
   const {
     environment: { user },
@@ -131,7 +130,7 @@ export default function ServiceActionMenu({
     <ActionMenu
       id={id}
       isCompact
-      variant={BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.outline}
       items={items}
     />
   );

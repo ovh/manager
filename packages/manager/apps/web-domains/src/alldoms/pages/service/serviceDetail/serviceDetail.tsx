@@ -5,7 +5,7 @@ import {
   useFormatDate,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Outlet,
   useParams,

@@ -52,6 +52,7 @@ export const useGetAllDom = ({
           expirationDate,
           renewalDate: renew?.current?.nextDate,
           serviceId: serviceInfo.serviceId,
+          period: renew?.current.period,
         } as AlldomService,
         isLoading: results.some((r) => r.isLoading),
         isError: results.some((r) => r.isError),
