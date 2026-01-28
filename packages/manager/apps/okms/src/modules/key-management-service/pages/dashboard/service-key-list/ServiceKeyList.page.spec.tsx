@@ -1,3 +1,4 @@
+import { SERVICE_KEY_LIST_CELL_TEST_IDS } from '@key-management-service/components/listing/ListingCells.constants';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { serviceKeyMock1 } from '@key-management-service/mocks/service-keys/serviceKeys.mock';
 import { CREATE_KEY_TEST_IDS } from '@key-management-service/pages/service-key/create/CreateKey.constants';
@@ -124,7 +125,10 @@ describe('Service Key list test suite', () => {
     );
 
     await waitFor(
-      () => userEvent.click(screen.getByTestId(`service-key-link-${serviceKeyMock1.id}`)),
+      () =>
+        userEvent.click(
+          screen.getByTestId(SERVICE_KEY_LIST_CELL_TEST_IDS.name(serviceKeyMock1.id)),
+        ),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
