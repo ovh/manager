@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { BaseLayout } from '@ovh-ux/muk';
 
 export default function OnboardingServiceLayout() {
-  const { t } = useTranslation('tenants');
+  const { t } = useTranslation('services');
   return (
-    <BaseLayout header={{ title: t('listing.title') }}>
+    <BaseLayout header={{ title: t('dashboard.title') }}>
       <Outlet />
     </BaseLayout>
   );
