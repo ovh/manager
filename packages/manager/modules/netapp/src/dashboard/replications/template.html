@@ -10,10 +10,16 @@
             data-property="source"
             data-prevent-customization
         >
-            <p
-                data-ng-if="$row.source.serviceID !== $row.description"
-                data-ng-bind="$ctrl.sourceEFSNames[$row.source.serviceID]"
-            ></p>
+            <p>
+                <strong
+                    data-ng-if="$row.source.serviceID !== $ctrl.serviceName"
+                    data-ng-bind="$ctrl.sourceEFSNames[$row.source.serviceID]"
+                ></strong>
+                <strong
+                    data-ng-if="$row.source.serviceID === $ctrl.serviceName"
+                    data-translate="netapp_replications_efs_current_service"
+                ></strong>
+            </p>
             <a
                 data-translate="netapp_replications_efs_link_volume"
                 data-translate-value-shareid="{{$row.source.shareID}}"
@@ -31,9 +37,16 @@
             data-property="destination"
             data-prevent-customization
         >
-            <p
-                data-ng-bind="$ctrl.sourceEFSNames[$row.destination.serviceID]"
-            ></p>
+            <p>
+                <strong
+                    data-ng-if="$row.destination.serviceID !== $ctrl.serviceName"
+                    data-ng-bind="$ctrl.sourceEFSNames[$row.destination.serviceID]"
+                ></strong>
+                <strong
+                    data-ng-if="$row.destination.serviceID === $ctrl.serviceName"
+                    data-translate="netapp_replications_efs_current_service"
+                ></strong>
+            </p>
             <span data-ng-if="!$row.destination.shareID">-</span>
             <br data-ng-if="!$row.destination.shareID" />
             <a
@@ -56,8 +69,8 @@
         >
             <div>
                 <span
-                    class="{{ 'oui-badge oui-badge_' + $ctrl.status[$row.status].color }}"
-                    data-translate="{{ 'netapp_replications_status_' + $ctrl.status[$row.status].wording }}"
+                    class="{{:: 'oui-badge oui-badge_' + $ctrl.constructor.getStatus($row).color }}"
+                    data-translate="{{:: 'netapp_replications_status_' + $ctrl.constructor.getStatus($row).wording }}"
                 >
                 </span>
                 <span
@@ -79,18 +92,34 @@
             </div>
         </oui-datagrid-column>
         <oui-action-menu
-            data-ng-if="$ctrl.canApprouve($row.status, $row.destination.serviceID)"
+            data-ng-if="$ctrl.canApprouve($row) || $ctrl.canPromote($row) || $ctrl.constructor.canDelete($row)"
             data-compact="true"
         >
             <oui-action-menu-item
-                data-ng-if="$ctrl.canApprouve($row.status, $row.destination.serviceID)"
-                data-ng-click="$ctrl.gotoApprouveReplication({
+                data-ng-if="$ctrl.canApprouve($row)"
+                data-ng-click="$ctrl.goToApprouveReplication({
                     destinationServiceID: $row.destination.serviceID,
                     replicationID: $row.id,
                     sourceShareID: $row.source.shareID})"
             >
                 <span
                     data-translate="netapp_replications_button_approuve"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.canPromote($row)"
+                data-ng-click="$ctrl.goToPromoteReplication({ replication: $row })"
+            >
+                <span
+                    data-translate="netapp_replications_button_promote"
+                ></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.constructor.canDelete($row)"
+                data-ng-click="$ctrl.goToDeleteReplication({ replication: $row })"
+            >
+                <span
+                    data-translate="{{:: $ctrl.deleteOrCancelLabel($row) }}"
                 ></span>
             </oui-action-menu-item>
         </oui-action-menu>

@@ -8,6 +8,10 @@ import component from './component';
 import routing from './routing';
 
 import approuveReplication from './approuve';
+import promoteReplication from './promote';
+import deleteReplication from './delete';
+
+import './style.scss';
 
 const moduleName = 'ovhManagerNetAppReplications';
 
@@ -17,6 +21,8 @@ angular
     'pascalprecht.translate',
     'ui.router',
     approuveReplication,
+    promoteReplication,
+    deleteReplication,
   ])
   .component(moduleName, component)
   .config(routing)
