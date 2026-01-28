@@ -128,4 +128,7 @@ export const GUIDE_HOW_TO_CONFIGURE = 'how-to-configure-guide';
 export const GUIDE_MAIL_CONFIGURE = 'mail-configure';
 export const GUIDE_MAIL_MIGRATE = 'mail-migrate';
 
+// SERVICES
+export const SERVICES = 'services';
+
 export const GO_TO = (link: string) => `go-to-${link}`;
