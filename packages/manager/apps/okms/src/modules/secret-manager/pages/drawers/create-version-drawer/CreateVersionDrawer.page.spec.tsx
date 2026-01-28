@@ -145,9 +145,20 @@ describe('Secret create version drawer page test suite', () => {
       });
     });
 
+    // Wait for loading states to complete
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
     // Wait for the drawer to close
-    await waitFor(() => {
-      expect(screen.queryByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer)).not.toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.queryByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer)).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
   });
 });
