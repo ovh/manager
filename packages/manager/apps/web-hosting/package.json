@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-hosting-app",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "private": true,
   "description": "Manage web hostings in the OVH Control Panel",
   "repository": {

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.2...@ovh-ux/manager-web-hosting-app@0.16.3) (2026-01-28)
+
+
+### Bug Fixes
+
+* **web-hosting:** fix css break word and add refresh for tasks ([39d0ebd](https://github.com/ovh/manager/commit/39d0ebd28ffd8fd69ec4de72cf915aab1415dc5c)), closes [#PUWEBPT-205](https://github.com/ovh/manager/issues/PUWEBPT-205)
+* **web-hosting:** manage ip location and cdn on modify domain modal ([149418c](https://github.com/ovh/manager/commit/149418cd26bc6106c10e3cb1bda53e6e2ea8e51e)), closes [#PUWEBPT-206](https://github.com/ovh/manager/issues/PUWEBPT-206)
+* **web-hosting:** onclose update modal ([e66f00a](https://github.com/ovh/manager/commit/e66f00a16b16bf653bf91020b2e5fa5636c31ccf)), closes [#PUWEBPT-208](https://github.com/ovh/manager/issues/PUWEBPT-208)
+
+
+
+
+
 ## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.1...@ovh-ux/manager-web-hosting-app@0.16.2) (2026-01-23)
 
 

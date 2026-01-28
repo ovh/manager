@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.36.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.6...@ovh-ux/manager-web@19.36.7) (2026-01-28)
+
+
+### Bug Fixes
+
+* **web-hosting:** manage ip location and cdn on modify domain modal ([149418c](https://github.com/ovh/manager/commit/149418cd26bc6106c10e3cb1bda53e6e2ea8e51e)), closes [#PUWEBPT-206](https://github.com/ovh/manager/issues/PUWEBPT-206)
+
+
+
+
+
 ## [19.36.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.5...@ovh-ux/manager-web@19.36.6) (2026-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
