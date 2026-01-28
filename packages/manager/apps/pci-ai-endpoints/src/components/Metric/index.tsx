@@ -10,17 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import {
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_SIZE,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsSpinner,
-  OsdsText,
-  OsdsDivider,
-} from '@ovhcloud/ods-components/react';
+import { Spinner, Text, Divider } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { useGetMetric } from '@/hooks/api/database/metric/useGetMetric.hook';
 import useGenerateMetricData from '@/hooks/metric/useGenerateMetricData.hook';
@@ -96,16 +86,14 @@ const Metric: React.FC<MetricProps> = ({
     return (
       <div className="max-w-full mx-auto my-[9rem]">
         <div className="flex flex-col">
-          <OsdsText
-            className="flex justify-center text-center"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._600}
+          <Text
+            preset="heading-1"
+            className="flex justify-center text-center text-[var(--ods-theme-primary-color)]"
           >
             {t('ai_endpoints_loading')}
-          </OsdsText>
+          </Text>
           <div className="flex justify-center pt-8">
-            <OsdsSpinner className="w-[3rem]" size={ODS_SPINNER_SIZE.sm} />
+            <Spinner className="w-[3rem]" />
           </div>
         </div>
       </div>
@@ -116,14 +104,12 @@ const Metric: React.FC<MetricProps> = ({
     return (
       <div className="max-w-full mx-auto my-[9rem]">
         <div className="flex flex-col">
-          <OsdsText
-            className="flex justify-center text-center"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._600}
+          <Text
+            preset="heading-1"
+            className="flex justify-center text-center text-[var(--ods-theme-primary-color)]"
           >
             {t('ai_endpoints_error')}
-          </OsdsText>
+          </Text>
         </div>
       </div>
     );
@@ -135,39 +121,40 @@ const Metric: React.FC<MetricProps> = ({
 
   return (
     <div className="max-w-full mx-auto my-12 2xl:ml-0 2xl:mr-auto animate-fade-in">
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.primary}
-        level={ODS_TEXT_LEVEL.heading}
-        size={ODS_TEXT_SIZE._600}
+      <Text
+        preset="heading-2"
+        className="text-[var(--ods-theme-primary-color)]"
       >
         {metric}
-      </OsdsText>
-      <OsdsDivider
-        className="flex"
-        color={ODS_THEME_COLOR_INTENT.default}
-        separator={true}
-      />
-      <div>
+      </Text>
+      <Divider />
+      <div className="mt-4">
         {(totalInputTokens > 0 || totalOutputTokens > 0) && (
           <div className="flex flex-col">
-            <OsdsText>
+            <Text
+              preset="small"
+              className="text-[var(--ods-color-neutral-500)]"
+            >
               {`${t('ai_endpoints_total')} ${t(
                 'ai_endpoints_input',
               )}: ${totalInputTokens.toLocaleString()}`}
-            </OsdsText>
-            <OsdsText className="pt-2">
+            </Text>
+            <Text
+              preset="small"
+              className=" pt-1 text-[var(--ods-color-neutral-500)]"
+            >
               {`${t('ai_endpoints_total')} ${t(
                 'ai_endpoints_output',
               )}: ${totalOutputTokens.toLocaleString()}`}
-            </OsdsText>
+            </Text>
           </div>
         )}
         {totalSeconds > 0 && (
-          <OsdsText>
+          <Text preset="paragraph">
             {`${t(
               'ai_endpoints_totalAudio',
             )}: ${totalSeconds.toLocaleString()}`}
-          </OsdsText>
+          </Text>
         )}
       </div>
       <div className="pt-8 w-[90vw] 2xl:w-[45vw]">
