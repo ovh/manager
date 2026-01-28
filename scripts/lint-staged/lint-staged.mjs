@@ -232,11 +232,9 @@ function runLintForModule(moduleRootRelPath, stagedFilesInModule) {
 
 function main() {
   const stagedFiles = getStagedFiles();
-  console.log(stagedFiles);
   if (stagedFiles.length === 0) process.exit(0);
 
   const filesByModuleRoot = groupStagedFilesByModuleRoot(stagedFiles);
-  console.log(filesByModuleRoot);
   if (filesByModuleRoot.size === 0) process.exit(0);
 
   // Sequential execution: readable output + fail-fast.
