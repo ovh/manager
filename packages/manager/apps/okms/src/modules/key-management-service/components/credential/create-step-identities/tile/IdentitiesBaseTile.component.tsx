@@ -9,6 +9,7 @@ type IdentitiesBaseTileProps = PropsWithChildren<{
   title: string;
   onToggle: () => void;
   isSelected: boolean;
+  testId: string;
 }>;
 
 export const IdentitiesBaseTile = ({
@@ -16,6 +17,7 @@ export const IdentitiesBaseTile = ({
   onToggle,
   isSelected,
   children,
+  testId,
 }: IdentitiesBaseTileProps) => (
   <Card
     className={clsx(
@@ -26,6 +28,7 @@ export const IdentitiesBaseTile = ({
     )}
     color={isSelected ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral}
     onClick={onToggle}
+    data-testid={testId}
   >
     <Text preset="heading-5" className="mb-2">
       {title}
