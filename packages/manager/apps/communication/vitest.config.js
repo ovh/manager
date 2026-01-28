@@ -13,12 +13,6 @@ export default mergeConfig(
     plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
     test: {
       setupFiles: './src/setupTests.ts',
-      fileParallelism: false,
-      maxWorkers: 1,
-      pollOptions: {
-        forks: { singleFork: true },
-        threads: { singleThread: true },
-      },
       deps: {
         inline: ['@ovhcloud/ods-react'],
       },

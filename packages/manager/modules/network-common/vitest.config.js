@@ -13,16 +13,6 @@ export default mergeConfig(
       coverage: {
         exclude: [...defaultExcludedFiles],
       },
-      fileParallelism: false,
-      maxWorkers: 1,
-      pollOptions: {
-        forks: {
-          singleFork: true,
-        },
-        threads: {
-          singleThread: true,
-        },
-      },
     },
   }),
 );

@@ -11,12 +11,6 @@ export default mergeConfig(
   createConfig({
     test: {
       setupFiles: './src/setupTests.tsx',
-      fileParallelism: false,
-      maxWorkers: 1,
-      pollOptions: {
-        forks: { singleFork: true },
-        threads: { singleThread: true },
-      },
       coverage: {
         include: ['src'],
         exclude: [

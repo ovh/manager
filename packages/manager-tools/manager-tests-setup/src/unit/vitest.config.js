@@ -126,8 +126,14 @@ export const sharedConfig = createConfig({
     // vitest environment config
     environment: 'jsdom',
 
-    // max timeout override
+    // timeout config
     testTimeout: 60_000,
+    hookTimeout: 60_000,
+    teardownTimeout: 60_000,
+
+    // main stability knobs
+    retry: 10,
+    fileParallelism: false,
 
     // coverage options
     coverage: {

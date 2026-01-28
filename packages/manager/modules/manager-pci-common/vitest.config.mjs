@@ -4,34 +4,25 @@ import {
   createConfig,
   mergeConfig,
   sharedConfig,
-  defaultDedupedDependencies,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: './src/setupTests.tsx',
+      setupFiles: './setupTests.ts',
       coverage: {
         include: ['src'],
         exclude: [
-          'src/interface',
-          'src/__tests__',
+          'src/**/*.type.ts',
+          'src/**/translations/index.ts',
+          'src/**/index.ts',
+          'src/constants/*',
           'src/**/*constants.ts',
-          'src/**/*enum.ts',
-          'src/vite-*.ts',
-          'src/App.tsx',
-          'src/core/ShellRoutingSync.tsx',
-          'src/i18n.ts',
-          'src/main.tsx',
-          'src/pages/Layout.tsx',
-          'src/routes.tsx',
-          'src/queryClient.ts',
         ],
       },
     },
     resolve: {
-      dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
