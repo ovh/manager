@@ -1,5 +1,8 @@
 import { TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
 
+export const isMicroRegionAvailable = (microRegion: TMicroRegion): boolean =>
+  microRegion.isActivated && !microRegion.isInMaintenance;
+
 export const getMicroRegions = (
   macroRegion: TMacroRegion | undefined,
   microRegionsById: Map<string, TMicroRegion>,
@@ -16,7 +19,5 @@ export const isMacroRegionAvailable = (
 
   if (!microRegions.length) return false;
 
-  return microRegions.some(
-    (microRegion) => microRegion.isActivable && !microRegion.isInMaintenance,
-  );
+  return microRegions.some(isMicroRegionAvailable);
 };

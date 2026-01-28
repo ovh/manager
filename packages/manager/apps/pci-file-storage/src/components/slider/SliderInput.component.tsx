@@ -37,8 +37,7 @@ export const SliderInput = ({
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rangedValue = Math.max(min, Math.min(max, e.target.valueAsNumber));
-    onChange(rangedValue);
+    onChange(e.target.valueAsNumber);
   };
 
   const handleInputFocus = () => {

@@ -4,8 +4,8 @@
     "label": "Choose a name for your share file",
     "info": "Must only contain numbers, letters, underscores, dashes or dots and not exceed 255 characters.",
     "error": {
-      "required": "The share name cannot be empty. Please enter a name.",
-      "max_length": "Invalid name format",
+      "too_small": "The share name cannot be empty. Please enter a name.",
+      "too_big": "Invalid name format",
       "invalid_format": "Invalid name format"
     }
   },
@@ -58,7 +58,12 @@
   "shareSize": {
     "title": "Share size",
     "description": "5% of the storage capacity is dedicated to snapshot storage",
-    "label": "Linear performance allocation (GB)"
+    "label": "Linear performance allocation (GiB)",
+    "error": {
+      "min_value": "The share size is below the minimum allowed for this offer.",
+      "max_value": "The share size exceeds the maximum allowed for this offer.",
+      "invalid_type": "This field is required."
+    }
   },
   "network": {
     "title": "Private network",
