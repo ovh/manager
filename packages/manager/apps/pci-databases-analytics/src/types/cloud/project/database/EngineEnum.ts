@@ -13,4 +13,5 @@ export enum EngineEnum {
   'postgresql' = 'postgresql',
   'redis' = 'redis',
   'valkey' = 'valkey',
+  'clickhouse' = 'clickhouse',
 }
