@@ -3,15 +3,15 @@ import { Suspense, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import { CreateCredentialConfirmation } from '@key-management-service/components/credential/create-step-confirmation/CreateCredentialConfirmation.component';
+import { CreateGeneralInformations } from '@key-management-service/components/credential/create-step-general-informations/CreateGeneralInformations.component';
+import { CreateAddIdentities } from '@key-management-service/components/credential/create-step-identities/CreateAddIdentities.component';
 import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { useCreateOkmsCredential } from '@key-management-service/data/hooks/useCreateOkmsCredential';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { IdentityDataProvider } from '@key-management-service/hooks/credential/useIdentityData';
-import CreateAddIdentities from '@key-management-service/pages/credential/create/CreateAddIdentities.component';
-import CreateGeneralInformations from '@key-management-service/pages/credential/create/CreateGeneralInformations.component';
-import CreateCredentialConfirmation from '@key-management-service/pages/credential/create/confirmation/CreateCredentialConfirmation.component';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { CertificateType, OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
