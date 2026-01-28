@@ -35,6 +35,7 @@ export const EngineIcon = ({
     postgresql: 'from-indigo-900 to-blue-400',
     redis: 'from-red-700 to-red-400',
     valkey: 'from-purple-700 to-blue-400',
+    clickhouse: 'from-black to-yellow-200',
   };
 
   return (

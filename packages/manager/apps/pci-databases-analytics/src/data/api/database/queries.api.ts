@@ -36,7 +36,8 @@ export const cancelCurrentQuery = async ({
 
 export type QueryStatistics =
   | database.mysql.querystatistics.Query
-  | database.postgresql.querystatistics.Query;
+  | database.postgresql.querystatistics.Query
+  | database.clickhouse.querystatistics.Query;
 export const getQueryStatistics = async ({
   projectId,
   engine,
