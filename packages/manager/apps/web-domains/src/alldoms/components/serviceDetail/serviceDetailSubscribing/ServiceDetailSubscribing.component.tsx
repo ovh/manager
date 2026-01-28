@@ -63,14 +63,14 @@ export default function ServiceDetailSubscribing({
         />
       </div>
 
-      <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
+      <Divider spacing={DIVIDER_SPACING._24} />
 
       <ServiceDetailSubscribingRenewMode
         renewMode={renewMode}
         pendingActions={pendingActions}
       />
 
-      <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
+      <Divider spacing={DIVIDER_SPACING._24} />
 
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-y-2">
@@ -107,7 +107,7 @@ export default function ServiceDetailSubscribing({
         />
       </div>
 
-      <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
+      <Divider spacing={DIVIDER_SPACING._24} />
 
       <div className="flex flex-col gap-y-2">
         <Text preset={TEXT_PRESET.heading6}>
