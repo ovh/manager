@@ -25,6 +25,12 @@
                 data-translate="billing_payment_corrective_invoices_title"
             ></span
         ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            state="billing.main.voip-consumption"
+            data-ng-if="$ctrl.isTelephonyAvailable"
+        >
+            <span data-translate="billing_voip_consumption_tab"></span>
+        </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'billing_guides_header' | translate }}">
         <oui-guide-menu-item
