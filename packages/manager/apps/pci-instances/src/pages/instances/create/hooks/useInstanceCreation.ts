@@ -56,6 +56,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     name,
     macroRegion,
     microRegion,
+    backup,
     availabilityZone,
     quantity,
     flavorId,
@@ -75,6 +76,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'name',
       'macroRegion',
       'microRegion',
+      'backup',
       'availabilityZone',
       'quantity',
       'flavorId',
@@ -189,10 +191,11 @@ export const useInstanceCreation = (): TInstanceCreation => {
       quantity,
       availabilityZone,
       newSshPublicKey,
-      imageRegion: microRegion,
+      imageRegion: backup?.region ?? microRegion,
       existingSshKeyId: sshKeyId,
       id: flavorDetails.id,
-      imageId: distributionImageVersion.distributionImageVersionId,
+      imageId:
+        backup?.id ?? distributionImageVersion.distributionImageVersionId,
       localBackupRotation,
     });
     createInstance({ regionName: microRegion, instance });
@@ -208,7 +211,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     windowsImageLicensePrice,
     networkName,
     distributionImageVersionName:
-      distributionImageVersion.distributionImageVersionName,
+      backup?.name ?? distributionImageVersion.distributionImageVersionName,
     backupConfigurationPrices,
   };
 

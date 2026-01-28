@@ -36,7 +36,7 @@ type TGetImageTypeAvailabilityArgs = {
   microRegion: string;
 };
 
-export type TBackupsEligibilityContext = {
+export type TFlavorBackupConstraints = {
   flavorMinDisk: number;
   flavorRam: number;
   flavorAcceptedOsTypes: TOsType[];
@@ -48,9 +48,9 @@ const getFlavorMinimumDiskSize = (flavor: TFlavor) =>
     Infinity,
   );
 
-export const selectBackupsEligibilityContext = (
+export const selectFlavorBackupConstraints = (
   regionalizedFlavorId: string | null,
-) => (catalog?: TInstancesCatalog): TBackupsEligibilityContext | null => {
+) => (catalog?: TInstancesCatalog): TFlavorBackupConstraints | null => {
   if (!catalog || !regionalizedFlavorId) return null;
 
   const regionalizedFlavor = catalog.entities.regionalizedFlavors.byId.get(
@@ -70,31 +70,37 @@ export const selectBackupsEligibilityContext = (
 
 export const isBackupEligible = (
   backup: TBackup,
-  eligibilityContext: TBackupsEligibilityContext,
+  flavorBackupConstraints: TFlavorBackupConstraints,
 ): boolean =>
-  eligibilityContext.flavorMinDisk > backup.minDisk &&
-  eligibilityContext.flavorRam > backup.minRam &&
-  eligibilityContext.flavorAcceptedOsTypes.includes(backup.type);
+  flavorBackupConstraints.flavorMinDisk >= backup.minDisk &&
+  flavorBackupConstraints.flavorRam >= backup.minRam &&
+  flavorBackupConstraints.flavorAcceptedOsTypes.includes(backup.type);
 
 export const hasAnyEligibleBackup = (
-  eligibilityContext: TBackupsEligibilityContext | null,
+  flavorBackupConstraints: TFlavorBackupConstraints | null,
 ) => (backups?: TBackup[]): boolean => {
-  if (!eligibilityContext || !backups?.length) return false;
-  return backups.some((backup) => isBackupEligible(backup, eligibilityContext));
+  if (!flavorBackupConstraints || !backups?.length) return false;
+  return backups.some((backup) =>
+    isBackupEligible(backup, flavorBackupConstraints),
+  );
 };
 
 export const selectEligibleBackups = (
-  eligibilityContext: TBackupsEligibilityContext | null,
+  flavorBackupConstraints: TFlavorBackupConstraints | null,
 ) => {
   return (backups?: TBackup[]): TSelectImagesOptions => {
-    if (!eligibilityContext || !backups?.length) return emptyResult;
+    if (!flavorBackupConstraints || !backups?.length) return emptyResult;
 
-    const images = backups.map((backup) => ({
-      label: backup.name,
-      value: backup.id,
-      osType: backup.type,
-      available: isBackupEligible(backup, eligibilityContext),
-    }));
+    const images = backups.map((backup) => {
+      return {
+        label: backup.name,
+        value: backup.id,
+        osType: backup.type,
+        available: isBackupEligible(backup, flavorBackupConstraints),
+        backupRegion: backup.region,
+        backupName: backup.name,
+      };
+    });
 
     const preselectedFirstAvailableVariantId =
       images.find((variant) => variant.available)?.value ?? null;
@@ -222,6 +228,8 @@ export type TImageOption = {
   windowsId?: string;
   windowsHourlyLicensePrice?: number;
   windowsMonthlyLicensePrice?: number;
+  backupRegion?: string;
+  backupName?: string;
 };
 
 export type TCustomData = { available: boolean };

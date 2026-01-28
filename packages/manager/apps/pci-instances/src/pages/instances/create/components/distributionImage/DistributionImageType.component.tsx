@@ -24,23 +24,25 @@ import { useEffect, useMemo } from 'react';
 import {
   hasAnyEligibleBackup,
   selectAvailableImagesTypes,
-  TBackupsEligibilityContext,
+  TFlavorBackupConstraints,
 } from '../../view-models/imagesViewModel';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { DistributionImageOption } from './DistributionImageOption.component';
 import { useBackups } from '@/data/hooks/backups/useBackups';
 
 type TDistributionImageTypeProps = {
-  backupEligibilityContext: TBackupsEligibilityContext | null;
+  flavorBackupConstraints: TFlavorBackupConstraints | null;
 };
 
 const DistributionImageType = ({
-  backupEligibilityContext,
+  flavorBackupConstraints,
 }: TDistributionImageTypeProps) => {
   const projectId = useProjectId();
   const { t } = useTranslation(['common', 'creation']);
   const { trackClick } = useOvhTracking();
-  const { control, resetField } = useFormContext<TInstanceCreationForm>();
+  const { control, resetField, setValue } = useFormContext<
+    TInstanceCreationForm
+  >();
   const [selectedImageType, flavorId, microRegion] = useWatch({
     control,
     name: ['distributionImageType', 'flavorId', 'microRegion'],
@@ -49,8 +51,8 @@ const DistributionImageType = ({
   const { data: hasEligibleBackup } = useBackups(
     microRegion ?? '',
     {
-      select: hasAnyEligibleBackup(backupEligibilityContext),
-      enabled: !!microRegion && !!backupEligibilityContext,
+      select: hasAnyEligibleBackup(flavorBackupConstraints),
+      enabled: !!microRegion && !!flavorBackupConstraints,
     },
     { limit: 10 },
   );
@@ -82,6 +84,14 @@ const DistributionImageType = ({
     if (!imageType) return;
 
     field.onChange(imageType);
+
+    if (imageType === 'backups') {
+      resetField('distributionImageVariantId');
+      resetField('distributionImageVersion');
+      resetField('distributionImageOsType');
+    } else {
+      setValue('backup', null);
+    }
 
     trackClick({
       location: PageLocation.funnel,

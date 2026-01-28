@@ -2,9 +2,9 @@ import { TBackup } from '@/domain/entities/backup';
 import { TBackupDTO } from './dto.type';
 
 export const mapBackupDtoToBackupEntity = (
-  BackupsDTO: TBackupDTO[],
+  backupsDTO: TBackupDTO[],
 ): TBackup[] =>
-  BackupsDTO.map(
+  backupsDTO.map(
     ({ id, name, type, minDisk, minRam, region, size, creationDate }) => ({
       id,
       name,

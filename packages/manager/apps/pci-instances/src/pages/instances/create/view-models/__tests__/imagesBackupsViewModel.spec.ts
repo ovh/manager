@@ -4,9 +4,9 @@ import {
   emptyResult,
   hasAnyEligibleBackup,
   isBackupEligible,
-  selectBackupsEligibilityContext,
+  selectFlavorBackupConstraints,
   selectEligibleBackups,
-  TBackupsEligibilityContext,
+  TFlavorBackupConstraints,
 } from '../imagesViewModel';
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
 import { TOsType } from '@/domain/entities/common.types';
@@ -89,9 +89,9 @@ const createBackup = (overrides: Partial<TBackup>): TBackup =>
   } as TBackup);
 
 describe('imagesViewModel backups selectors', () => {
-  describe('selectBackupsEligibilityContext', () => {
+  describe('selectFlavorBackupConstraints', () => {
     it('returns null when catalog is undefined', () => {
-      expect(selectBackupsEligibilityContext('rf1')(undefined)).toBeNull();
+      expect(selectFlavorBackupConstraints('rf1')(undefined)).toBeNull();
     });
 
     it('returns null when regionalizedFlavorId is null', () => {
@@ -102,7 +102,7 @@ describe('imagesViewModel backups selectors', () => {
         flavorRam: 8,
         flavorAcceptedOsTypes: ['linux'],
       });
-      expect(selectBackupsEligibilityContext(null)(catalog)).toBeNull();
+      expect(selectFlavorBackupConstraints(null)(catalog)).toBeNull();
     });
 
     it('returns null when regionalized flavor is not found', () => {
@@ -114,7 +114,7 @@ describe('imagesViewModel backups selectors', () => {
         flavorAcceptedOsTypes: ['linux'],
         withRegionalizedFlavor: false,
       });
-      expect(selectBackupsEligibilityContext('rf1')(catalog)).toBeNull();
+      expect(selectFlavorBackupConstraints('rf1')(catalog)).toBeNull();
     });
 
     it('returns null when flavor is not found', () => {
@@ -126,7 +126,7 @@ describe('imagesViewModel backups selectors', () => {
         flavorAcceptedOsTypes: ['linux'],
         withFlavor: false,
       });
-      expect(selectBackupsEligibilityContext('rf1')(catalog)).toBeNull();
+      expect(selectFlavorBackupConstraints('rf1')(catalog)).toBeNull();
     });
 
     it('returns expected eligibility context', () => {
@@ -138,7 +138,7 @@ describe('imagesViewModel backups selectors', () => {
         flavorAcceptedOsTypes: ['linux', 'windows'],
       });
 
-      expect(selectBackupsEligibilityContext('rf1')(catalog)).toStrictEqual({
+      expect(selectFlavorBackupConstraints('rf1')(catalog)).toStrictEqual({
         flavorMinDisk: 50,
         flavorRam: 8,
         flavorAcceptedOsTypes: ['linux', 'windows'],
@@ -147,7 +147,7 @@ describe('imagesViewModel backups selectors', () => {
   });
 
   describe('isBackupEligible', () => {
-    const ctx: TBackupsEligibilityContext = {
+    const ctx: TFlavorBackupConstraints = {
       flavorMinDisk: 50,
       flavorRam: 8,
       flavorAcceptedOsTypes: ['linux'],
@@ -171,6 +171,15 @@ describe('imagesViewModel backups selectors', () => {
       ).toBe(false);
     });
 
+    it('returns true when storage is equal', () => {
+      expect(
+        isBackupEligible(
+          createBackup({ minDisk: 50, minRam: 2, type: 'linux' }),
+          ctx,
+        ),
+      ).toBe(true);
+    });
+
     it('returns false when ram is insufficient', () => {
       expect(
         isBackupEligible(
@@ -178,6 +187,24 @@ describe('imagesViewModel backups selectors', () => {
           ctx,
         ),
       ).toBe(false);
+    });
+
+    it('returns true when ram is equal', () => {
+      expect(
+        isBackupEligible(
+          createBackup({ minDisk: 10, minRam: 8, type: 'linux' }),
+          ctx,
+        ),
+      ).toBe(true);
+    });
+
+    it('returns true when both storage and ram are equal', () => {
+      expect(
+        isBackupEligible(
+          createBackup({ minDisk: 50, minRam: 8, type: 'linux' }),
+          ctx,
+        ),
+      ).toBe(true);
     });
 
     it('returns false when osType is not accepted', () => {
@@ -191,7 +218,7 @@ describe('imagesViewModel backups selectors', () => {
   });
 
   describe('hasAnyEligibleBackup', () => {
-    const ctx: TBackupsEligibilityContext = {
+    const ctx: TFlavorBackupConstraints = {
       flavorMinDisk: 50,
       flavorRam: 8,
       flavorAcceptedOsTypes: ['linux'],
@@ -219,7 +246,7 @@ describe('imagesViewModel backups selectors', () => {
   });
 
   describe('selectEligibleBackups', () => {
-    const ctx: TBackupsEligibilityContext = {
+    const ctx: TFlavorBackupConstraints = {
       flavorMinDisk: 50,
       flavorRam: 8,
       flavorAcceptedOsTypes: ['linux'],
@@ -262,12 +289,16 @@ describe('imagesViewModel backups selectors', () => {
           value: 'b1',
           osType: 'linux',
           available: false,
+          backupRegion: 'GRA1',
+          backupName: 'Too big',
         },
         {
           label: 'OK',
           value: 'b2',
           osType: 'linux',
           available: true,
+          backupRegion: 'GRA1',
+          backupName: 'OK',
         },
       ]);
       expect(result.preselected.preselectedFirstAvailableVariantId).toBe('b2');
