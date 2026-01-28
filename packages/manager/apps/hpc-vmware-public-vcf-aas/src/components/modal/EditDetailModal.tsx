@@ -7,6 +7,7 @@ import {
   OdsModal,
   OdsText,
 } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -37,6 +38,8 @@ export const EditDetailModal = ({
   isLoading,
 }: EditModalProps) => {
   const { t } = useTranslation('dashboard');
+  const { t: tError } = useTranslation(NAMESPACES.ERROR);
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const [newDetail, setNewDetail] = useState<string>(detailValue || '');
   const [updateError, setUpdateError] = useState(error);
   const isValid = validateDetail(newDetail);
@@ -62,8 +65,8 @@ export const EditDetailModal = ({
             isDismissible
             onOdsRemove={() => setUpdateError(null)}
           >
-            {t('managed_vcd_dashboard_edit_modal_error', {
-              error:
+            {tError('error_message', {
+              message:
                 updateError.response?.data?.message || updateError?.message,
             })}
           </OdsMessage>
@@ -95,12 +98,12 @@ export const EditDetailModal = ({
       {isLoading && <Loading slot="actions" className="w-9 mr-4" />}
       <div className="flex gap-x-4 w-fit justify-self-center ml-auto mt-6">
         <OdsButton
-          label={t('managed_vcd_dashboard_edit_modal_cta_cancel')}
+          label={tActions('cancel')}
           variant="ghost"
           onClick={onCloseModal}
         />
         <OdsButton
-          label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
+          label={tActions('modify')}
           onClick={handleSubmit}
           isDisabled={!isButtonEnabled || undefined}
           data-testid={TEST_IDS.modalSubmitCta}
