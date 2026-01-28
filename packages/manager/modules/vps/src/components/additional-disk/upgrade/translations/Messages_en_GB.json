@@ -6,5 +6,9 @@
   "vps_additional_disk_upgrade_action_upgrade_payment_info": "Please confirm your order with a payment method by following this link.",
   "vps_additional_disk_upgrade_action_upgrade_error": "An error has occurred increasing the disk size.",
   "vps_additional_disk_upgrade_action_upgrade": "Increase",
-  "vps_additional_disk_upgrade_action_cancel": "Exit"
+  "vps_additional_disk_upgrade_action_cancel": "Exit",
+  "vps_additional_disk_upgrade_prices_3months_period": "{{price}}{{currency}} ex. VAT/3 months",
+  "vps_additional_disk_upgrade_prices_6months_period": "{{price}}{{currency}} ex. VAT/6 months",
+  "vps_additional_disk_upgrade_prices_year_period": "{{price}}{{currency}} ex. VAT/year",
+  "vps_additional_disk_upgrade_prices_2years_period": "{{price}}{{currency}} ex. VAT/2 years"
 }
