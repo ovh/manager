@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.20.5...@ovh-ux/manager-web-ongoing-operations-app@1.21.0) (2026-01-28)
+
+
+### Features
+
+* **web-ongoing-operations:** search input is now based on url params ([91c2049](https://github.com/ovh/manager/commit/91c2049ec2ec03f00d3664eb5f891fbb7513ab8d))
+
+
+
+
+
 ## [1.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.20.4...@ovh-ux/manager-web-ongoing-operations-app@1.20.5) (2026-01-22)
 
 
