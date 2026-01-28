@@ -1,13 +1,17 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
-  useNotifications,
   Modal,
   ModalProps,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -15,13 +19,15 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { useGetIpdetails, useMoveIpService } from '@/data/hooks';
+import { ipParkingOptionValue } from '@/types';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter } from '@/utils';
+
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
-import { useGetIpdetails, useMoveIpService } from '@/data/hooks';
 import { TOTAL_STEP_NUMBER } from './moveIp.constant';
-import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
-import { ipParkingOptionValue } from '@/types';
 
 export default function MoveIpModal() {
   const { id } = useParams<{ id: string }>();
@@ -47,7 +53,7 @@ export default function MoveIpModal() {
       actions: ['move_additional-ip', 'cancel'],
     });
     navigate(`..?${search.toString()}`);
-  }, []);
+  }, [trackClick, search, navigate]);
 
   const {
     isLoading: isIpDetailLoading,

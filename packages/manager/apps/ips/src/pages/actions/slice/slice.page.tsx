@@ -1,14 +1,18 @@
 import React, { useContext } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsText,
   OdsLink,
   OdsMessage,
   OdsSelect,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
@@ -17,16 +21,17 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { getIpDetailsQueryKey } from '@/data/api';
+import { useByoipSlice, useGetIpdetails } from '@/data/hooks/ip';
+import { ListingContext } from '@/pages/listing/listingContext';
 import {
+  TRANSLATION_NAMESPACES,
   fromIdToIp,
   ipFormatter,
-  TRANSLATION_NAMESPACES,
   useGuideUtils,
 } from '@/utils';
-import { useByoipSlice, useGetIpdetails } from '@/data/hooks/ip';
-import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
-import { ListingContext } from '@/pages/listing/listingContext';
-import { getIpDetailsQueryKey } from '@/data/api';
 
 export default function SliceModal() {
   const queryClient = useQueryClient();
@@ -46,9 +51,9 @@ export default function SliceModal() {
   );
   const { trackClick, trackPage } = useOvhTracking();
 
-  const closeModal = () => {
+  const closeModal = React.useCallback(() => {
     navigate(`..?${search.toString()}`);
-  };
+  }, [navigate, search]);
 
   const {
     slice,
@@ -69,10 +74,12 @@ export default function SliceModal() {
       const childrenIps =
         slice.find((a) => a.slicingSize === slicingSize)?.childrenIps || [];
 
-      childrenIps?.map((ip) =>
-        queryClient.invalidateQueries({
-          queryKey: getIpDetailsQueryKey({ ip }),
-        }),
+      Promise.all(
+        childrenIps?.map((ip) =>
+          queryClient.invalidateQueries({
+            queryKey: getIpDetailsQueryKey({ ip }),
+          }),
+        ),
       );
 
       setOnGoingCreatedIps((prev) => [...prev, ...childrenIps]);
@@ -93,7 +100,7 @@ export default function SliceModal() {
       actions: ['slice', 'cancel'],
     });
     closeModal();
-  }, []);
+  }, [closeModal, trackClick]);
 
   React.useEffect(() => {
     if (!slicingSize && slice && slice.length > 0) {
@@ -133,7 +140,7 @@ export default function SliceModal() {
           <div className="inline">
             {t('noAggregateSliceAvailable')}
             <OdsLink
-              href={links.aggreateSliceLink.link}
+              href={links.aggreateSliceLink?.link}
               target="_blank"
               rel="noopener"
               label={t('noAggregateLinkLabel')}
@@ -142,7 +149,7 @@ export default function SliceModal() {
                   location: PageLocation.popup,
                   buttonType: ButtonType.link,
                   actionType: 'action',
-                  actions: [`go-to_${links.aggreateSliceLink.trackingLabel}`],
+                  actions: [`go-to_${links.aggreateSliceLink?.trackingLabel}`],
                 });
               }}
             />
@@ -151,7 +158,7 @@ export default function SliceModal() {
       )}
       {slice.length > 0 && (
         <>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+          <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
             {t('sliceModalDescription')}
           </OdsText>
           <OdsSelect
@@ -171,7 +178,7 @@ export default function SliceModal() {
               </option>
             ))}
           </OdsSelect>
-          <section className="bg-neutral-100 p-4 mb-4">
+          <section className="mb-4 bg-neutral-100 p-4">
             <OdsText>{t('sliceModalChildrenIpsDescription')}</OdsText>
             <ul>
               {slice

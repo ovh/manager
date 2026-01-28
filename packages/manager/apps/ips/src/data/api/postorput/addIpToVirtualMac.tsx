@@ -1,7 +1,7 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 
 export type AddIpToVirtualMacParams = {
-  serviceName: string;
+  serviceName?: string | null;
   macAddress: string;
   ip: string;
   virtualMachineName: string;

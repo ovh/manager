@@ -1,5 +1,12 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsIcon,
@@ -7,21 +14,19 @@ import {
   OdsToggle,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import { IpEdgeFirewallStateEnum } from '@/data/api';
-import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 import { useGetIpMitigation } from '@/data/hooks';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 function getToggleLabelFromFirewallState({
   state,
@@ -60,25 +65,21 @@ export const TopBar: React.FC = () => {
     TRANSLATION_NAMESPACES.listing,
     TRANSLATION_NAMESPACES.error,
   ]);
-  const {
-    ipMitigation,
-    isLoading: isIpMitigationLoading,
-  } = useGetIpMitigation({ ip: ipOnFirewall });
+  const { ipMitigation, isLoading: isIpMitigationLoading } = useGetIpMitigation(
+    {
+      ip: ipOnFirewall,
+      enabled: !!ipOnFirewall,
+    },
+  );
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="flex w-full flex-col sm:flex-row justify-between mb-2 gap-2">
-      <div className="flex items-center gap-2">
+    <div className="my-5 flex w-full flex-col justify-between gap-4 sm:flex-row">
+      <div className="flex items-center gap-4">
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
           label={`${t('add', { ns: NAMESPACES.ACTIONS })} ${t('oneRule')}`}
-          isDisabled={
-            isLoading ||
-            isRulesLoading ||
-            maxRulesReached ||
-            isIpMitigationLoading ||
-            ipMitigation?.length > 0
-          }
+          isDisabled={isLoading || isRulesLoading || maxRulesReached}
           onClick={() => {
             trackClick({
               location: PageLocation.page,
@@ -97,15 +98,17 @@ export const TopBar: React.FC = () => {
               id="tooltip-add-rule"
               name={ODS_ICON_NAME.circleQuestion}
               tabIndex={0}
-              className="text-[var(--ods-color-text)] cursor-pointer"
+              className="cursor-pointer text-[var(--ods-color-text)]"
             />
             <OdsTooltip triggerId="tooltip-add-rule" withArrow>
-              <OdsText>{t('max_rules_reached_tooltip')}</OdsText>
+              <OdsText className="p-2">
+                {t('max_rules_reached_tooltip')}
+              </OdsText>
             </OdsTooltip>
           </>
         )}
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-4">
         <OdsText>
           {t(
             getToggleLabelFromFirewallState({
@@ -121,10 +124,10 @@ export const TopBar: React.FC = () => {
           id="tooltip"
           name={ODS_ICON_NAME.circleQuestion}
           tabIndex={0}
-          className="text-[var(--ods-color-text)] cursor-pointer"
+          className="cursor-pointer text-[var(--ods-color-text)]"
         />
         <OdsTooltip triggerId="tooltip" withArrow>
-          <OdsText>
+          <OdsText className="p-2">
             {hasNoFirewall
               ? t('firewall_not_created_tooltip')
               : t(
@@ -140,7 +143,10 @@ export const TopBar: React.FC = () => {
           isDisabled={
             isLoading ||
             isRulesLoading ||
-            firewallState !== IpEdgeFirewallStateEnum.OK
+            firewallState !== IpEdgeFirewallStateEnum.OK ||
+            hasNoFirewall ||
+            isIpMitigationLoading ||
+            ipMitigation?.length > 0
           }
           onClick={(event) => {
             event.preventDefault();

@@ -1,5 +1,6 @@
 export function displayDuration(duration: string) {
-  const regex = /([0-9]+[mdjya]?|uptoFirstDayNextMonth|upto-[0-9]{4}-[0-9]{2}-[0-9]{2})/;
+  const regex =
+    /([0-9]+[mdjya]?|uptoFirstDayNextMonth|upto-[0-9]{4}-[0-9]{2}-[0-9]{2})/;
 
   const durationObj = {
     duration,
@@ -12,13 +13,13 @@ export function displayDuration(duration: string) {
 
   const durationMatch = regex.exec(duration);
 
-  if (durationMatch[1] && durationMatch[1]?.startsWith('up-to')) {
+  if (durationMatch?.[1] && durationMatch[1]?.startsWith('up-to')) {
     durationObj.date = new Date(durationMatch[1].substring(5));
   }
 
-  const dateMatch = /([0-9]+)([mdjya]{0,1})/g.exec(durationMatch[1]);
-  const dateValue = parseInt(dateMatch[1], 10);
-  const dateUnit = dateMatch[2];
+  const dateMatch = /([0-9]+)([mdjya]{0,1})/g.exec(durationMatch?.[1] || '');
+  const dateValue = parseInt(dateMatch?.[1] || '', 10);
+  const dateUnit = dateMatch?.[2];
 
   durationObj.date = new Date();
 

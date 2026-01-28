@@ -1,8 +1,7 @@
-import { vi } from 'vitest';
-import React from 'react';
-import '@testing-library/jest-dom';
 import { NavLinkProps } from 'react-router-dom';
-import { ListingContextType } from '@/pages/listing/listingContext';
+
+import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -12,7 +11,8 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  const original: typeof import('@ovh-ux/manager-react-shell-client') =
+    await importOriginal();
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),

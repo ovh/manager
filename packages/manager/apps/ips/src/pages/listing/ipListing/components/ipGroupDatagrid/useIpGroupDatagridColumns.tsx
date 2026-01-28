@@ -1,6 +1,14 @@
 import React from 'react';
-import { DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
+
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
+
+import {
+  useGetIpMitigationWithoutIceberg,
+  useGetIpVmacWithIp,
+} from '@/data/hooks';
+
 import {
   IpActionsCell,
   IpAlerts,
@@ -15,10 +23,6 @@ import {
   IpType,
   IpVmacFilterByIp,
 } from '../DatagridCells';
-import {
-  useGetIpMitigationWithoutIceberg,
-  useGetIpVmacWithIp,
-} from '@/data/hooks';
 
 export const useIpGroupDatagridColumns = ({
   parentIp,
@@ -29,10 +33,10 @@ export const useIpGroupDatagridColumns = ({
   isByoipSlice,
 }: {
   parentIp: string;
-  parentHeaders: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
+  parentHeaders?: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
   isGameFirewallAvailable?: boolean;
   isAntiDdosAvailable?: boolean;
-  serviceName?: string;
+  serviceName?: string | null;
   isByoipSlice?: boolean;
 }) => {
   const { t } = useTranslation('listing');
@@ -55,13 +59,13 @@ export const useIpGroupDatagridColumns = ({
       cell: (ip: string) => {
         return <IpCell ip={ip} parentIpGroup={parentIp}></IpCell>;
       },
-      size: parentHeaders.current.ip.clientWidth,
+      size: parentHeaders?.current.ip?.clientWidth,
     },
     {
       id: 'ip-type',
       label: t('listingColumnsIpType'),
       cell: () => <IpType ip={parentIp} />,
-      size: parentHeaders.current['ip-type'].clientWidth,
+      size: parentHeaders?.current['ip-type']?.clientWidth,
     },
     {
       id: 'ip-alerts',
@@ -69,31 +73,31 @@ export const useIpGroupDatagridColumns = ({
       cell: (ip) => (
         <IpAlerts subIp={ip} ip={parentIp} isByoipSlice={isByoipSlice} />
       ),
-      size: parentHeaders.current['ip-alerts'].clientWidth,
+      size: parentHeaders?.current['ip-alerts']?.clientWidth,
     },
     {
       id: 'ip-region',
       label: t('listingColumnsIpRegion'),
       cell: () => <IpRegion ip={parentIp} />,
-      size: parentHeaders.current['ip-region'].clientWidth,
+      size: parentHeaders?.current['ip-region']?.clientWidth,
     },
     {
       id: 'ip-country',
       label: t('listingColumnsIpCountry'),
       cell: () => <IpCountry ip={parentIp} />,
-      size: parentHeaders.current['ip-country'].clientWidth,
+      size: parentHeaders?.current['ip-country']?.clientWidth,
     },
     {
       id: 'ip-attached-service',
       label: t('listingColumnsIpAttachedService'),
       cell: () => <IpAttachedService ip={parentIp} />,
-      size: parentHeaders.current['ip-attached-service'].clientWidth,
+      size: parentHeaders?.current['ip-attached-service']?.clientWidth,
     },
     {
       id: 'ip-reverse',
       label: t('listingColumnsIpReverseDNS'),
       cell: (ip: string) => <IpReverse ip={ip} parentIpGroup={parentIp} />,
-      size: parentHeaders.current['ip-reverse'].clientWidth,
+      size: parentHeaders?.current['ip-reverse']?.clientWidth,
     },
     {
       id: 'ip-vmac',
@@ -105,7 +109,7 @@ export const useIpGroupDatagridColumns = ({
           isLoading={isVmacsLoading}
         />
       ),
-      size: parentHeaders.current['ip-vmac'].clientWidth,
+      size: parentHeaders?.current['ip-vmac']?.clientWidth,
     },
     {
       id: 'ip-ddos',
@@ -113,23 +117,17 @@ export const useIpGroupDatagridColumns = ({
       cell: (ip: string) => (
         <IpAntiDdosDisplay
           ipMitigation={ipMitigation}
-          enabled={isAntiDdosAvailable}
+          enabled={!!isAntiDdosAvailable}
           ip={ip}
         />
       ),
-      size: parentHeaders.current['ip-ddos'].clientWidth,
+      size: parentHeaders?.current['ip-ddos']?.clientWidth,
     },
     {
       id: 'ip-edge-firewall',
       label: t('listingColumnsIpEdgeFirewall'),
-      cell: (ip: string) => (
-        <IpEdgeFirewall
-          ip={parentIp}
-          ipOnFirewall={ip}
-          isByoipSlice={isByoipSlice}
-        />
-      ),
-      size: parentHeaders.current['ip-edge-firewall'].clientWidth,
+      cell: (ip: string) => <IpEdgeFirewall ip={parentIp} ipOnFirewall={ip} />,
+      size: parentHeaders?.current['ip-edge-firewall']?.clientWidth,
     },
     {
       id: 'ip-game-firewall',
@@ -138,10 +136,10 @@ export const useIpGroupDatagridColumns = ({
         <IpGameFirewallDisplay
           ip={parentIp}
           ipOnGame={ip}
-          enabled={isGameFirewallAvailable && !isByoipSlice}
+          enabled={!!isGameFirewallAvailable}
         />
       ),
-      size: parentHeaders.current['ip-game-firewall'].clientWidth,
+      size: parentHeaders?.current['ip-game-firewall']?.clientWidth,
     },
     {
       id: 'action',
@@ -153,7 +151,7 @@ export const useIpGroupDatagridColumns = ({
           isByoipSlice={isByoipSlice}
         />
       ),
-      size: parentHeaders.current.action.clientWidth,
+      size: parentHeaders?.current.action?.clientWidth,
     },
   ];
 

@@ -1,16 +1,18 @@
 import {
-  useQuery,
-  useQueries,
   UseQueryOptions,
   UseQueryResult,
+  useQueries,
+  useQuery,
 } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   OrgDetails,
-  getOrganisationsDetailsQueryKey,
-  getOrganisationsDetails,
-  getOrganisationListQueryKey,
   getOrganisationList,
+  getOrganisationListQueryKey,
+  getOrganisationsDetails,
+  getOrganisationsDetailsQueryKey,
 } from '@/data/api';
 
 export type UseGetOrganisationsDetailsParams = {
@@ -67,7 +69,11 @@ export const useGetSingleOrganisationDetail = ({
   organisationId,
   enabled = true,
 }: UseGetOrganisationDetailsParams) => {
-  const { data: organisationDetail, isLoading, isError } = useQuery({
+  const {
+    data: organisationDetail,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: getOrganisationsDetailsQueryKey({
       organisationId,
     }),

@@ -1,7 +1,9 @@
 import JSURL from 'jsurl';
-import { DEFAULT_PRICING_MODE, IpOffer } from './order.constant';
+
 import { getDatacenterFromRegion } from '@/data/hooks/catalog/catalog.utils';
-import { ServiceType, IpVersion } from '@/types';
+import { IpVersion, ServiceType } from '@/types';
+
+import { DEFAULT_PRICING_MODE, IpOffer } from './order.constant';
 
 export type OrderParams = {
   serviceName: string;
@@ -99,10 +101,9 @@ export const hasAdditionalIpBlockOffer = (serviceType: ServiceType) =>
 /**
  * Returns a function that returns true if the current organisation is available for the provided region
  */
-export const isAvailableOrganisation = (selectedPlanCode: string) => (
-  organisation: string,
-) => {
-  if (selectedPlanCode.includes('ripe')) return organisation.includes('RIPE');
-  if (selectedPlanCode.includes('arin')) return organisation.includes('ARIN');
-  return true;
-};
+export const isAvailableOrganisation =
+  (selectedPlanCode: string) => (organisation: string) => {
+    if (selectedPlanCode.includes('ripe')) return organisation.includes('RIPE');
+    if (selectedPlanCode.includes('arin')) return organisation.includes('ARIN');
+    return true;
+  };

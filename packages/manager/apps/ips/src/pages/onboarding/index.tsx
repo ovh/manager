@@ -1,23 +1,29 @@
 import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   Card,
-  OnboardingLayout,
   Links,
+  OnboardingLayout,
 } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useGuideUtils } from '@/utils';
-import onboardingImgSrc from './onboarding-img.png';
+
 import { urls } from '@/routes/routes.constant';
-import { OnboardingIpOptionsAdvantages } from './onboardingIpOptionsAdvantages';
+import { useGuideUtils } from '@/utils';
+
+import onboardingImgSrc from './onboarding-img.png';
 import { IpOptionTable } from './onboardingIpOptionTable';
+import { OnboardingIpOptionsAdvantages } from './onboardingIpOptionsAdvantages';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -32,7 +38,7 @@ export default function Onboarding() {
       description={
         <Suspense>
           <div className="text-center">
-            <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading2}>
+            <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.heading2}>
               {t('titleBis')}
             </OdsText>
             <OdsText className="block">{t('description')}</OdsText>
@@ -54,7 +60,7 @@ export default function Onboarding() {
               <OdsText className="mt-4 text-left">
                 {t('moreInfoText')}{' '}
                 <Links
-                  href={links?.presentationLink.link}
+                  href={links?.presentationLink?.link}
                   label={t('moreInfoProductPage')}
                   onClickReturn={() => {
                     trackClick({
@@ -62,14 +68,14 @@ export default function Onboarding() {
                       buttonType: ButtonType.link,
                       actionType: 'action',
                       actions: [
-                        `go-to_${links?.presentationLink.trackingLabel}`,
+                        `go-to_${links?.presentationLink?.trackingLabel}`,
                       ],
                     });
                   }}
                 />{' '}
                 {t('moreInfoOr')}{' '}
                 <Links
-                  href={links?.documentationLink.link}
+                  href={links?.documentationLink?.link}
                   label={t('moreInfoDocPages')}
                   onClickReturn={() => {
                     trackClick({
@@ -77,7 +83,7 @@ export default function Onboarding() {
                       buttonType: ButtonType.link,
                       actionType: 'action',
                       actions: [
-                        `go-to_${links?.documentationLink.trackingLabel}`,
+                        `go-to_${links?.documentationLink?.trackingLabel}`,
                       ],
                     });
                   }}
@@ -108,7 +114,7 @@ export default function Onboarding() {
         });
         navigate(urls.byoip);
       }}
-      moreInfoButtonIcon={null}
+      moreInfoButtonIcon={(null as unknown) as ODS_ICON_NAME}
     >
       {guides?.map((tile) => (
         <Card

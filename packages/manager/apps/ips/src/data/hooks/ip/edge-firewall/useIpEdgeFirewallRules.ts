@@ -1,17 +1,19 @@
 import {
+  UseQueryOptions,
+  useQueries,
   useQuery,
   useQueryClient,
-  useQueries,
-  UseQueryOptions,
 } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
 import {
   IpEdgeFirewallRule,
-  getIpEdgeNetworkFirewallRuleDetailsQueryKey,
+  IpEdgeFirewallRuleState,
   getIpEdgeNetworkFirewallRuleDetails,
+  getIpEdgeNetworkFirewallRuleDetailsQueryKey,
   getIpEdgeNetworkFirewallRuleList,
   getIpEdgeNetworkFirewallRuleListQueryKey,
-  IpEdgeFirewallRuleState,
 } from '@/data/api';
 import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
 
@@ -37,7 +39,7 @@ export const useIpEdgeNetworkFirewallRules = ({
       } catch (err) {
         if ((err as ApiError).status === 404) {
           return {
-            data: [],
+            data: [] as number[],
           } as ApiResponse<number[]>;
         }
         throw err;
@@ -87,10 +89,14 @@ export const useIpEdgeNetworkFirewallRules = ({
         ruleListQuery.error || results?.find((query) => query.error)?.error,
       isLoading:
         ruleListQuery.isLoading || results?.some((query) => query.isLoading),
-      data: results
-        ?.filter(Boolean)
-        ?.map((query) => query?.data?.data)
-        .sort((a, b) => a.sequence - b.sequence),
+      data:
+        results
+          ?.filter(Boolean)
+          ?.map((query) => query?.data?.data)
+          .sort((a, b) => {
+            if (!a || !b) return 0;
+            return a.sequence - b.sequence;
+          }) || [],
     }),
   });
 };

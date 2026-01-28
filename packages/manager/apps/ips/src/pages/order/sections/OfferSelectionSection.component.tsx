@@ -1,34 +1,39 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
+  OdsQuantity,
   OdsSelect,
   OdsText,
-  OdsQuantity,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { OptionCard } from '@/components/OptionCard/OptionCard.component';
+import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
+import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
 import { getPrice, getPriceTextFormatted } from '@/components/price';
+import {
+  useAdditionalIpPricings,
+  useCatalogLowestPrice,
+} from '@/data/hooks/catalog';
+import { useServiceRegion } from '@/data/hooks/useServiceRegion';
+
 import {
   DEFAULT_PRICING_MODE,
   IpOffer,
   MAX_IP_QUANTITY,
   MIN_IP_QUANTITY,
 } from '../order.constant';
-import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
-import { OrderSection } from '@/components/OrderSection/OrderSection.component';
-import { OptionCard } from '@/components/OptionCard/OptionCard.component';
-import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
-import {
-  useAdditionalIpPricings,
-  useCatalogLowestPrice,
-} from '@/data/hooks/catalog';
-import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 import { OrderContext } from '../order.context';
 import {
   hasAdditionalIpBlockOffer,
@@ -70,7 +75,7 @@ export const OfferSelectionSection: React.FC = () => {
 
   return (
     <OrderSection title={t('offer_selection_title')}>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         {hasAdditionalIpOffer(selectedServiceType) && (
           <OptionCard
             title={t('additional_ip_card_title')}
@@ -100,7 +105,7 @@ export const OfferSelectionSection: React.FC = () => {
               });
             }}
           >
-            <div className="flex flex-col justify-center min-h-14">
+            <div className="flex min-h-14 flex-col justify-center">
               <OdsQuantity
                 name="additional_ip_quantity"
                 min={MIN_IP_QUANTITY}
@@ -109,7 +114,13 @@ export const OfferSelectionSection: React.FC = () => {
                 value={ipQuantity}
               />
               <OdsText preset={ODS_TEXT_PRESET.heading4}>
-                <PriceDescription price={ipv4LowestPrice * ipQuantity} />
+                <PriceDescription
+                  price={
+                    ipv4LowestPrice && ipQuantity
+                      ? ipv4LowestPrice * ipQuantity
+                      : 0
+                  }
+                />
               </OdsText>
             </div>
           </OptionCard>
@@ -135,8 +146,9 @@ export const OfferSelectionSection: React.FC = () => {
                   (pricing) => pricing.value !== selectedPlanCode,
                 )
               ) {
-                setSelectedPlanCode(ipBlockPricingList[0].value);
-                setPricingMode(ipBlockPricingList[0].pricingMode);
+                const firstPricing = ipBlockPricingList[0];
+                setSelectedPlanCode(firstPricing?.value);
+                setPricingMode(firstPricing?.pricingMode);
               }
               trackClick({
                 actionType: 'action',
@@ -147,7 +159,7 @@ export const OfferSelectionSection: React.FC = () => {
             }}
             isLoading={isLoading}
           >
-            <div className="flex flex-col justify-center min-h-14">
+            <div className="flex min-h-14 flex-col justify-center">
               <OdsSelect
                 key={ipBlockPricingList.reduce(
                   (result, { value }) => result + value,

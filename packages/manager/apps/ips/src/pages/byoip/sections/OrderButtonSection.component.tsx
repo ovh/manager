@@ -1,19 +1,25 @@
 import React from 'react';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+
 import { urls } from '@/routes/routes.constant';
+
 import { ByoipContext } from '../Byoip.context';
 
 export const OrderButtonSection: React.FC = () => {
@@ -23,7 +29,7 @@ export const OrderButtonSection: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-4">
       <OdsButton
         color={ODS_BUTTON_COLOR.primary}
         size={ODS_BUTTON_SIZE.md}

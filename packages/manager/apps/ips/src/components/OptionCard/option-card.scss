@@ -1,5 +1,6 @@
 .option_card {
-  border-color: var(--ods-color-primary-100);
+  border: 1px solid var(--ods-color-primary-100);
+
   .card-children {
     background-color: var(--ods-color-neutral-050);
   }

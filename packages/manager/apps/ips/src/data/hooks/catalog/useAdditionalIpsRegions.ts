@@ -1,15 +1,18 @@
 import React from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { IpVersion, ServiceType } from '@/types';
+
 import { DATACENTER_TO_REGION } from './catalog.utils';
 import { useCatalogIps } from './useCatalogIps';
-import { IpVersion, ServiceType } from '@/types';
 
 export const useAdditionalIpsRegions = ({
   ipVersion,
   serviceType,
 }: {
-  ipVersion: IpVersion;
-  serviceType: ServiceType;
+  ipVersion?: IpVersion;
+  serviceType?: ServiceType;
 }) => {
   const { environment } = React.useContext(ShellContext);
   const { data, ...query } = useCatalogIps({
@@ -43,11 +46,11 @@ export const useAdditionalIpsRegions = ({
               })
               .map((plan) =>
                 plan.details.product.configurations
-                  .flatMap((config) =>
-                    config.name === configurationName ? config : undefined,
+                  ?.flatMap((config) =>
+                    config?.name === configurationName ? config : undefined,
                   )
                   .filter(Boolean)
-                  .flatMap((config) => config.values),
+                  .flatMap((config) => config?.values),
               )
               .flat(),
           ),

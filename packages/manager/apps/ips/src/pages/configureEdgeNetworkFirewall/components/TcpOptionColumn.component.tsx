@@ -1,18 +1,26 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  OdsText,
-  OdsSelect,
   OdsCheckbox,
   OdsIcon,
+  OdsSelect,
+  OdsText,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import { IpEdgeFirewallProtocol, IpEdgeFirewallRule } from '@/data/api';
-import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
-const validOptions = ['none', 'established', 'syn'];
+import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
+
+enum TcpOptions {
+  none = 'none',
+  established = 'established',
+  syn = 'syn',
+}
 
 export const TcpOptionColumn = (
   rule: IpEdgeFirewallRule & { isNew?: boolean },
@@ -27,21 +35,23 @@ export const TcpOptionColumn = (
   const { t } = useTranslation(TRANSLATION_NAMESPACES.edgeNetworkFirewall);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       {rule?.isNew && newProtocol === IpEdgeFirewallProtocol.TCP ? (
         <>
           <OdsSelect
             className="block min-w-[130px]"
             name="action-select"
-            value={newTcpOption || 'none'}
+            value={newTcpOption || TcpOptions.none}
             onOdsChange={(e) => {
-              const newValue = e.detail.value as 'established' | 'syn' | 'none';
-              setNewTcpOption(newValue === 'none' ? null : newValue);
+              const newValue = e.detail.value as TcpOptions;
+              setNewTcpOption(
+                newValue === TcpOptions.none ? undefined : newValue,
+              );
             }}
           >
-            {validOptions.map((option) => (
+            {Object.values(TcpOptions).map((option) => (
               <option key={option} value={option}>
-                {option === 'none'
+                {option === TcpOptions.none
                   ? t(`${option}_label`)
                   : option?.toUpperCase()}
               </option>
@@ -62,10 +72,10 @@ export const TcpOptionColumn = (
               id="fragments-tooltip"
               name={ODS_ICON_NAME.circleQuestion}
               tabIndex={0}
-              className="text-[var(--ods-color-text)] cursor-pointer ml-2"
+              className="ml-2 cursor-pointer text-[var(--ods-color-text)]"
             />
             <OdsTooltip triggerId="fragments-tooltip" withArrow>
-              <OdsText>{t('fragments_tooltip')}</OdsText>
+              <OdsText className="p-2">{t('fragments_tooltip')}</OdsText>
             </OdsTooltip>
           </div>
         </>
