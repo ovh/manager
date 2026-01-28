@@ -20,6 +20,7 @@ export const webFeatures = [
   'web:domains:domains',
   'web-domains:alldoms',
   'web-domains:domains',
+  'web-domains:domain-reseller',
   'web-domains',
   'web-ongoing-operations',
   'web-hosting:websites',
@@ -62,7 +63,7 @@ export default function WebSidebar() {
         label: t('sidebar_domain'),
         icon: getIcon('ovh-font ovh-font-domain'),
         routeMatcher: new RegExp(
-          `^((/configuration)?/(domain|all_dom|zone|dns|upload|tracking))|((/web-domains)?/(domain|alldoms))|((/web-ongoing-operations)?/)`,
+          `^((/configuration)?/(domain|all_dom|zone|dns|upload|tracking))|((/web-domains)?/(domain|alldoms|domain-reseller))|((/web-ongoing-operations)?/)`,
         ),
         async loader() {
           const allDom =
@@ -73,11 +74,13 @@ export default function WebSidebar() {
           const domainZones = features['web:domains:zone']
             ? await loadServices('/domain/zone')
             : [];
+          const domainReseller = features['web:domains:domain-reseller'] || features['web-domains:domain-reseller'] ? await loadServices('/domain/reseller') : []
 
           let webDomainsUrl = '';
-          if(features['web-domains'] && (features['web-domains:domains'] || features['web-domains:alldoms'])){
+          if(features['web-domains'] && (features['web-domains:domains'] || features['web-domains:alldoms'] || features['web-domains:domain-reseller'])){
             webDomainsUrl = navigation.getURL('web-domains', '#/domain');
           }
+          console.log('features', features)
 
           return [
             features['web:domains:domains'] && {
@@ -112,6 +115,15 @@ export default function WebSidebar() {
                 icon: getIcon('ovh-font ovh-font-domain'),
                 ignoreSearch: true,
               },
+              features['web-domains:domain-reseller'] &&
+                {
+                  id: 'domain-reseller',
+                  label: t('sidebar_domain_reseller'),
+                  href: navigation.getURL('web-domains', '#/domain-reseller'),
+                  routeMatcher: new RegExp('^/web-domains/domain-reseller'),
+                  icon: getIcon('ovh-font ovh-font-domain'),
+                  ignoreSearch: true,
+                },
             ...allDom.map((item) => (features['web:domains:domains'] && {
               ...item,
               id: `legacy-${item.id}`,
