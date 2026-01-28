@@ -28,6 +28,7 @@ webCloudUniverse.children = [
       'web:domains:domains',
       'web-ongoing-operations',
       'web-domains:alldoms',
+      'web-domains:domain-reseller',
       'web-domain:domains',
     ],
     children: [
@@ -77,6 +78,19 @@ webCloudUniverse.children = [
         },
         serviceType: 'ALLDOM',
         features: ['web-domains:alldoms'],
+        hideIfEmpty: true,
+      },
+      {
+        id: 'domain-reseller',
+        idAttr: 'domain-reseller-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_domain_reseller',
+        routing: {
+          application: 'web-domains',
+          hash: '#/domain-reseller',
+        },
+        serviceType: 'RESELLER',
+        features: ['web-domains:domain-reseller'],
         hideIfEmpty: true,
       },
       {
