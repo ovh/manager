@@ -5,41 +5,40 @@ import { describe, it, vi } from 'vitest';
 
 import { mockAgents } from '@/mocks/agents/agents';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
+import { DataGridTextCellMock, ActionMenuMock } from '@/test-utils/mocks/manager-react-components';
+import { OdsButtonMock } from '@/test-utils/mocks/ods-components';
+import { useTranslationMock } from '@/test-utils/mocks/react-i18next';
+import { useHrefMock } from '@/test-utils/mocks/react-router-dom';
 import { AgentActionsCell } from '@/pages/services/dashboard/agent/_components/AgentActionsCell.component';
 
 vi.mock('react-router-dom', () => ({
-  useHref: vi.fn().mockImplementation((url: string) => url),
+  useHref: useHrefMock,
 }));
 
-// --- Mock translation ---
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const actual = await vi.importActual('@ovhcloud/ods-components/react');
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
+  const actual = await importOriginal<
+    typeof import('@ovhcloud/ods-components/react')
+  >();
   return {
     ...actual,
-    OdsButton: vi
-      .fn()
-      .mockImplementation(({ label }: { children: React.ReactNode; label: string }) => (
-        <button>{label}</button>
-      )),
+    OdsButton: OdsButtonMock,
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
 
   return {
     ...actual,
-    DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-      <div data-testid="cell">{children}</div>
-    ),
+    DataGridTextCell: DataGridTextCellMock,
+    ActionMenu: ActionMenuMock,
   };
 });
 
-// --- Mock translation ---
 vi.mock('react-i18next', () => ({
-  useTranslation: vi
-    .fn()
-    .mockImplementation(() => ({ t: (key: string) => `translated_${key.split(':')[1]}` })),
+  useTranslation: useTranslationMock,
 }));
 
 describe('AgentActionCell', () => {
