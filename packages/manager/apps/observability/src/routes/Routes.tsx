@@ -21,12 +21,14 @@ const ServicesBaseLayout = React.lazy(
   () => import('@/pages/settings/services/ServicesBase.layout'),
 );
 const OnboardingServiceLayout = React.lazy(
-  () => import('@/pages/metrics/OnboardingService.layout'),
+  () => import('@/pages/settings/services/onboarding/OnboardingService.layout'),
 );
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
 const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantCreation.page'));
 const EditTenantPage = React.lazy(() => import('@/pages/tenants/edit/EditTenant.page'));
-const OnboardingServicePage = React.lazy(() => import('@/pages/metrics/OnboardingService.page'));
+const OnboardingServicePage = React.lazy(
+  () => import('@/pages/settings/services/onboarding/OnboardingService.page'),
+);
 const ServicesPage = React.lazy(() => import('@/pages/settings/services/Services.page'));
 const ServiceDeletePage = React.lazy(
   () => import('@/pages/settings/services/delete/ServiceDelete.page'),
@@ -68,16 +70,18 @@ export default (
       <Route index element={<Navigate to={urls.metrics} replace />} />
 
       {/* Onboarding observability service */}
-      <Route path={subroutes.metrics} Component={OnboardingServiceLayout}>
-        <Route
-          path={subroutes.onboarding}
-          Component={OnboardingServicePage}
-          handle={{
-            tracking: {
-              pageName: 'onboarding',
-            },
-          }}
-        />
+      <Route path={subroutes.settings} Component={OnboardingServiceLayout}>
+        <Route path={subroutes.services}>
+          <Route
+            path={subroutes.onboarding}
+            Component={OnboardingServicePage}
+            handle={{
+              tracking: {
+                pageName: 'onboarding',
+              },
+            }}
+          />
+        </Route>
       </Route>
 
       <Route Component={ObservabilityServiceLayout}>
