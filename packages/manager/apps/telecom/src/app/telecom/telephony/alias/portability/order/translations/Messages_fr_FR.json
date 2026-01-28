@@ -2,6 +2,7 @@
   "telephony_alias_portability_order_back_link": "Retour au groupe",
   "telephony_alias_portability_order_title": "Demander une portabilité",
   "telephony_alias_portability_order_order": "Commander",
+  "telephony_alias_portability_order_validate": "Valider",
   "telephony_alias_portability_order_infos_title": "Informations",
   "telephony_alias_portability_order_infos": "Durant toute la durée de votre contrat, la portabilité de vos numéros géographiques et non-géographiques vers OVHcloud est totalement gratuite.",
   "telephony_alias_portability_order_infos_country": "La portabilité est pour le moment restreinte aux pays suivants : <strong>France</strong>, <strong>Belgique</strong> et <strong>Suisse</strong>.",
@@ -74,10 +75,11 @@
   "telephony_alias_portability_order_success_warning": "<strong>Attention !</strong> Afin que la portabilité soit lancée, il vous faut valider votre bon de commande en suivant les instructions que vous trouverez en cliquant sur le lien ci-dessous.",
   "telephony_alias_portability_order_url": "Bon de commande",
   "telephony_alias_portability_order_step": "Étape {{ current }}/{{ total }}",
-  "telephony_alias_portability_order_step_1": "Numéro à porter",
-  "telephony_alias_portability_order_step_2": "Informations",
-  "telephony_alias_portability_order_step_3": "Configuration du numéro",
-  "telephony_alias_portability_order_step_4": "Finalisation",
+  "telephony_alias_portability_order_step_1": "1 - Informations du numéro",
+  "telephony_alias_portability_order_step_2": "2 - Informations du contact",
+  "telephony_alias_portability_order_step_3": "3 - Adresse d'installation",
+  "telephony_alias_portability_order_step_4": "4 - Facturation",
+  "telephony_alias_portability_order_step_5": "5 - Finalisation",
   "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial",
   "telephony_order_specific_typology_error": "Une erreur est survenue lors de la récupération des informations",
   "telephony_order_specific_typology_access_label": "Services délivrant des codes d’accès",
@@ -94,5 +96,6 @@
   "telephony_order_specific_typology_general_label": "Général",
   "telephony_order_specific_typology_relaxing_label": "Services de détente",
   "telephony_alias_portability_order_sda_sva_warning": "Pour toute portabilité de numéro spécial, vous devez remplir le formulaire de validation d’identité.",
-  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Vérifier l'identité"
+  "telephony_alias_portability_order_sda_sva_go_to_kyc": "Vérifier l'identité",
+  "telephony_alias_portability_order_sda_numbers_required": "Veuillez ajouter au moins un numéro"
 }
