@@ -1,13 +1,14 @@
 {
-  "home": "Startseite",
-  "order": "Einen Dienst bestellen",
+  "home": "Start",
+  "order": "Dienst bestellen",
   "open": "Dashboard öffnen",
   "title": "Dienste",
   "delete_tenant_modal_title": "Tenant löschen",
   "delete_tenant_modal_content": "Möchten Sie den Tenant {{tenantName}} wirklich löschen?",
-  "delete_tenant_banner_success": "Ihr Tenant {{tenantName}} wurde erfolgreich gelöscht",
-  "delete_tenant_banner_error": "Es ist ein Fehler aufgetreten. Bitte warten Sie einige Minuten, bevor Sie es erneut versuchen.",
+  "delete_tenant_banner_success": "Ihr Tenant {{tenantName}} wurde erfolgreich entfernt.",
+  "delete_tenant_banner_error": "Ein Fehler ist aufgetreten. Bitte warten Sie einige Minuten, bevor Sie es erneut versuchen.",
   "unable_to_delete_tenant_feature_unavailable": "Die Löschung eines Tenants ist aus Sicherheitsgründen nicht über die Benutzeroberfläche verfügbar. Wenn Sie einen Tenant löschen möchten, kontaktieren Sie bitte den Support.",
+  "delete_tenant_feature_unavailable": "Aus Sicherheitsgründen ist das Löschen eines Tenants über das Interface nicht verfügbar. Wenn Sie einen Tenant löschen möchten, wenden Sie sich bitte an den Support.",
   "data_location": "Datenstandort",
   "services_tab_description": "Ihr Tenant basiert auf der Veeam Service Provider Console und verbindet Ihre Agenten mit Ihren Vaults. Sie können alle Ihre Agenten hier finden, sie konfigurieren und Ihren Agenten herunterladen. Um mehr darüber zu erfahren, konsultieren Sie die <Link>OVHcloud Backup Agent-Dokumentation</Link>"
 }

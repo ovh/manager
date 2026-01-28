@@ -1,5 +1,5 @@
 {
   "pci_project_file_storage_alpha_banner_message_title": "File Storage",
-  "pci_project_file_storage_alpha_banner_message": "Está a ter dificuldades em partilhar volumes de armazenamento entre instâncias ou contentores? O File Storage está agora disponível em versão Beta pública até março de 2026, sem custos!",
-  "pci_project_file_storage_alpha_banner_button": "Descobrir a Beta"
+  "pci_project_file_storage_alpha_banner_message": "Tem dificuldades em partilhar volumes de armazenamento entre instâncias ou containers? O File Storage passa a estar disponível em versão beta pública até março de 2026, sem o menor custo!",
+  "pci_project_file_storage_alpha_banner_button": "Descobrir a fase beta"
 }

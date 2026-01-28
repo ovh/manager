@@ -1,9 +1,9 @@
 {
   "delete_vault_modal_title": "Eliminar el Vault",
-  "delete_vault_modal_content": "¿Realmente desea eliminar el Vault {{vaultName}}?",
-  "delete_vault_modal_warning": "Atención, esta acción resultará en la eliminación de todos los servicios asociados.",
-  "delete_vault_banner_success": "Su Vault {{vaultName}} ha sido eliminado correctamente.",
+  "delete_vault_modal_content": "¿Seguro que quiere eliminar el Vault {{vaultName}}?",
+  "delete_vault_modal_warning": "Atención: esta acción eliminará todos los servicios asociados.",
+  "delete_vault_banner_success": "El Vault {{vaultName}} se ha eliminado correctamente.",
   "delete_vault_banner_error": "Se ha producido un error. Por favor, espere unos minutos antes de volver a intentarlo.",
-  "delete_vault_disabled_tooltip": "No puede eliminar un Vault vinculado a Tenants VSPC.",
-  "unable_to_delete_vault_feature_unavailable": "La eliminación de un Vault no está disponible desde la interfaz por razones de seguridad. Si desea eliminar un Vault, por favor contacte con el soporte."
+  "delete_vault_disabled_tooltip": "No es posible eliminar un Vault vinculado a Tenants VSPC.",
+  "unable_to_delete_vault_feature_unavailable": "Por motivos de seguridad, la eliminación de un Vault no está disponible desde la interfaz. Si desea eliminar un Vault, póngase en contacto con el equipo de soporte."
 }

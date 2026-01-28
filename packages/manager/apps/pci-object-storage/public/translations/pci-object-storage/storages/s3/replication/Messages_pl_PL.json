@@ -77,6 +77,6 @@
   "disabledClassDestinationHelper": "Wybierz kontener docelowy, aby włączyć tę opcję",
   "warning1AZTo3AZ": "Klasa storage High Performance nie jest dostępna w trybie wdrożenia 3-AZ. Twoje obiekty źródłowe przechowywane w High Performance będą domyślnie replikowane do standardowej klasy storage, czyli klasy najbliższej pod względem użytkowania.",
   "warning3AZTo1AZ": "Klasa storage Cold Archive jest dostępna wyłącznie w trybie wdrażania 3-AZ i w regionie Paryża. Twoje obiekty źródłowe przechowywane w Cold Archive będą domyślnie replikowane do Infrequent Access, czyli klasy najbliższej pod względem użytkowania.",
-  "inconsistentReplicationRulesAlert": "Niektóre zasady replikacji mają miejsce docelowe, które zostało usunięte. Proszę usunąć te zasady przed utworzeniem nowych replikacji.",
+  "inconsistentReplicationRulesAlert": "Niektóre reguły replikacji wskazują miejsce docelowe, które zostało usunięte. Usuń te reguły przed utworzeniem nowych replikacji.",
   "deletedDestinationTooltip": "Kontener docelowy został usunięty"
 }

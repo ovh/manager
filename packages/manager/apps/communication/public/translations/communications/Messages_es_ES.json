@@ -5,6 +5,6 @@
   "table_column_date": "Fecha",
   "table_column_categories": "Categorías",
   "contact_status_warning": "Parece que hay un problema con el método de recepción {{ contactType }}. Puede <anchor>gestionar los parámetros de recepción</anchor> para solucionar este problema.",
-  "sender_email_banner_text": "Nuestras direcciones de envío de correos electrónicos están cambiando. Para verificar la autenticidad de nuestras comunicaciones, ",
-  "sender_email_banner_link": "consulte nuestras recomendaciones contra el phishing."
+  "sender_email_banner_text": "Nuestras direcciones de envío de emails están cambiando. Para verificar la autenticidad de nuestras comunicaciones, ",
+  "sender_email_banner_link": "consulte nuestras recomendaciones antiphishing."
 }

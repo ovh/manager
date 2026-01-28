@@ -66,5 +66,5 @@
   "errorDurationMin": "Minimalny czas trwania wynosi 1 dzień.",
   "errorDurationMax": "Maksymalny czas trwania wynosi 100 lat lub 36500 dni.",
   "errorRuleRequired": "Aby można było domyślnie włączyć Object Lock, należy zdefiniować regułę retencji.",
-  "deleteBucketButton": "Usuń kubeł"
+  "deleteBucketButton": "Usuń bucket"
 }

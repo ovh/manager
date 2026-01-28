@@ -31,7 +31,7 @@ export const useOvhPaymentMethod = () => {
         );
       })
       .catch((error) =>
-        error.response.status === 404 ? [] : Promise.reject(error),
+        error.response?.status === 404 ? [] : Promise.reject(error),
       );
   };
 
@@ -201,7 +201,7 @@ export const useOvhPaymentMethod = () => {
         ),
       )
       .catch((error) =>
-        error.response.status === 404 ? [] : Promise.reject(error),
+        error.response?.status === 404 ? [] : Promise.reject(error),
       );
   };
 

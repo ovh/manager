@@ -1,7 +1,5 @@
 {
   "telephony_line_assist_support_title": "Guides and support",
-  "telephony_line_assist_support_guides_title": "Guides",
-  "telephony_line_assist_support_guides_explain": "To help you configure and use your telephony system, <a href=\"{{ url }}\" target=\"_blank\" title=\"consult our guides\"><i class=\"ovh-font ovh-font-newtab ml-4\" /></a>.",
   "telephony_line_assist_support_support_title": "Support",
   "telephony_line_assist_support_header": "If you have any questions, contact us:",
   "telephony_line_assist_support_contact_by_phone": "By phone <b>+44 (0) 333 370 0425</b> (Local call rate from a UK landline). Monday - Friday 8:00am to 8:00pm, Saturday 9:00am to 5:00pm.",

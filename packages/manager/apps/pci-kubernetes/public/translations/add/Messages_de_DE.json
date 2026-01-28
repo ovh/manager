@@ -71,7 +71,7 @@
   "kube_add_plan_title_standard": "Standard",
   "kube_add_plan_description_standard": "Profitieren Sie von einem festen Service Level Agreement und regionalem Deployment (über drei Availability Zones hinweg); ideal für Workloads, die eine hohe Verfügbarkeit und Resilienz erfordern.",
   "kube_add_plan_content_standard_3AZ_SLA": "SLA von 99,99 %",
-  "kube_add_plan_content_standard_ETCD": "Dedizierter ETCD mit 8 GB",
+  "kube_add_plan_content_standard_ETCD": "Dedizierte ETCD mit 8 GB",
   "kube_add_plan_content_standard_3AZ_control_plane": "Verwaltete, hochverfügbare und gegen Ausfall einer Availability Zone resiliente Control Plane",
   "kube_add_plan_content_standard_scaling": "Skalierfunktion für Nodes",
   "kube_add_plan_content_standard_version": "Unterstützung der letzten drei Kubernetes-Versionen",
@@ -81,12 +81,12 @@
   "kube_add_plan_subtitle": "Wählen Sie das passende Angebot für Ihre Anforderungen aus. Profitieren Sie von einer breiten Auswahl an Instanzen für Ihre Kubernetes-Nodes, die nutzungsbasiert oder im Abo mit Vertragsbindung abgerechnet werden.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Node-Pool benennen",
-  "kube_add_plan_content_unavailable_1AZ_banner": "Der Plan {{ plan }} ist in den 1-AZ-Regionen nicht verfügbar. Wenn Sie den Plan {{ plan }} nutzen möchten, wählen Sie bitte das Deployment in 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "Der Plan {{ plan }} ist in den 3-AZ-Regionen nicht verfügbar. Wenn Sie den Plan {{ plan }} nutzen möchten, wählen Sie bitte ein Deployment in 1-AZ.",
+  "kube_add_plan_content_unavailable_1AZ_banner": "Der Plan {{ plan }} ist in den 1-AZ-Regionen nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte die 3-AZ-Bereitstellung aus.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "Der Plan {{ plan }} ist in den 3-AZ-Regionen nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte eine 1-AZ-Bereitstellung aus.",
   "kube_add_name_title": "Node-Pool benennen",
   "kube_add_node_pool_name_already_exist_validation_error": "Der Node-Pool-Name wird bereits verwendet. Bitte wählen Sie einen anderen aus.",
-  "kube_add_plan_content_standard_1AZ_control_plane": "Verwalteter, hochverfügbarer (1-AZ) und dedizierter Kontrollplan mit garantierten Ressourcen",
-  "kube_add_plan_content_not_available": "nicht verfügbar in der Region",
+  "kube_add_plan_content_standard_1AZ_control_plane": "Verwalteter Kontrollplan, hochverfügbar (1-AZ) und dediziert, mit garantierten Ressourcen",
+  "kube_add_plan_content_not_available": "in der Region nicht verfügbar",
   "kubernetes_add_region_plan_select": "Nach Plänen filtern",
-  "kube_add_plan_content_standard_1AZ_SLA": "SLA VON 99,9 %"
+  "kube_add_plan_content_standard_1AZ_SLA": "SLA von 99,9 %"
 }

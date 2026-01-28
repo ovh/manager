@@ -9,13 +9,14 @@ export default class ChangelogButtonCtrl {
 
   $onInit() {
     const chapterKeys = ['chapter1', 'chapter2', 'chapter3'];
-    this.computedTrackingContext = this.chapters.reduce((acc, value, index) => {
-      acc[chapterKeys[index]] = value;
-      return acc;
-    }, {});
+    this.computedTrackingContext =
+      this.chapters?.reduce((acc, value, index) => {
+        acc[chapterKeys[index]] = value;
+        return acc;
+      }, {}) || {};
     this.formatedTrackingContext = `${this.chapters
       ?.filter((chapter) => chapter !== '')
-      ?.join('::')}::tile-changelog-roadmap::external-link::go-to-`;
+      ?.join('::') || ''}::tile-changelog-roadmap::external-link::go-to-`;
   }
 
   trackClick(key) {

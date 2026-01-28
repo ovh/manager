@@ -61,17 +61,17 @@
   "seeVersionsSwitchLabel": "Versionen anzeigen",
   "searchPlaceholder": "Suchen...",
   "changeStorageClassWarningInfrequentAccess": "Achtung: Die Klassen Infrequent Access und Cold Archive erfordern eine Mindestaufbewahrungsdauer. <0>Mehr erfahren</0>",
-  "selectObject": "Wählen Sie das Objekt {{name}} aus",
+  "selectObject": "Objekt {{name}} auswählen",
   "selectAll": "Alles auswählen",
   "bulkDeleteTitle": "Mehrere Objekte löschen",
-  "bulkDeleteDescription_one": "Sie werden {{count}} Objekt löschen.",
-  "bulkDeleteDescription_other": "Sie werden {{count}} Objekte löschen.",
-  "bulkDeleteButtonConfirm_one": "Löschen Sie {{count}} Objekt",
-  "bulkDeleteButtonConfirm_other": "Löschen Sie {{count}} Objekte",
+  "bulkDeleteDescription_one": "Sie sind im Begriff, {{count}} Objekt zu löschen.",
+  "bulkDeleteDescription_other": "Sie sind im Begriff, {{count}} Objekte zu löschen.",
+  "bulkDeleteButtonConfirm_one": "{{count}} Objekt löschen",
+  "bulkDeleteButtonConfirm_other": "{{count}} Objekte löschen",
   "bulkDeleteToastSuccessDescription_one": "{{count}} Objekt erfolgreich gelöscht.",
   "bulkDeleteToastSuccessDescription_other": "{{count}} Objekte erfolgreich gelöscht.",
   "bulkDeleteVersionsTitle": "Mehrere Versionen löschen",
   "bulkDeleteVersionsDescription_one": "Möchten Sie {{count}} Version endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
   "bulkDeleteVersionsDescription_other": "Möchten Sie {{count}} Versionen endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
-  "bulkDeleteVersionsConfirmation": "Geben Sie {{confirmation}} ein, um zu bestätigen"
+  "bulkDeleteVersionsConfirmation": "Geben Sie zum Bestätigen {{confirmation}} ein."
 }

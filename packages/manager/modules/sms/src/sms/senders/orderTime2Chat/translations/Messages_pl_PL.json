@@ -3,7 +3,7 @@
   "sms_order_time2chat_description": "Wypełnij poniższe dane, abyśmy mogli przetworzyć Twoje zamówienie.",
   "sms_order_time2chat_action_order": "Kontynuuj",
   "sms_order_time2chat_action_cancel": "Anuluj",
-  "sms_order_time2chat_label_phonenumber": "Numer firmy",
+  "sms_order_time2chat_label_phonenumber": "Numer telefonu do firmy",
   "sms_order_time2chat_label_website": "Strona internetowa firmy",
   "sms_order_time2chat_label_name": "Nazwa firmy",
   "sms_order_time2chat_label_company_name": "Nazwa handlowa",
@@ -12,5 +12,5 @@
   "sms_order_time2chat_label_operational_contact_name": "Imię i nazwisko kontaktu",
   "sms_order_time2chat_label_operational_contact_email": "E-mail kontaktu",
   "sms_order_time2chat_message_error": "Wystąpił błąd: {{error}}",
-  "sms_order_time2chat_helper_phonenumber": "Wprowadź numer w formacie międzynarodowym (0033123456789 lub +33123456789)"
+  "sms_order_time2chat_helper_phonenumber": "Wprowadź numer w formacie międzynarodowym (0048123456789 lub +48123456789)"
 }
