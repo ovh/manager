@@ -1,3 +1,5 @@
+import { FEATURES } from './overTheBox.constant';
+
 export default class OverTheBoxCtrl {
   /* @ngInject */
   constructor($scope, $translate, $q, OvhApiOverTheBox, TucToast, CORE_URLS) {
@@ -13,6 +15,7 @@ export default class OverTheBoxCtrl {
     this.dice = Math.round(Math.random() * 100);
     this.expressLiteOrder = this.CORE_URLS.orderExpressLite;
     this.orderBoost = this.CORE_URLS.orderBoost;
+    this.isLogsAvailable = this.features.isFeatureAvailable(FEATURES.LOGS);
 
     this.disabledRemote = true;
 

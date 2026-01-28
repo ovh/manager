@@ -1,3 +1,5 @@
+import { FEATURES } from './overTheBox.constant';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('overTheBoxes.overTheBox', {
     url: '/:serviceName',
@@ -36,6 +38,8 @@ export default /* @ngInject */ ($stateProvider) => {
           );
       },
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      features: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability(Object.values(FEATURES)),
     },
     translations: {
       value: ['.', './details', './warning', './remote'],
