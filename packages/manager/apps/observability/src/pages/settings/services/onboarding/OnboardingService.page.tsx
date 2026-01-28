@@ -6,7 +6,6 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OnboardingLayout, Text } from '@ovh-ux/muk';
 
 import { useObservabilityServiceOrderLink } from '@/hooks/useObservabilityServiceOrderLink.hook';
-import { LABELS } from '@/utils/labels.constants';
 import { ONBOARDING_IMG_SRC } from '@/utils/onboarding.constants';
 
 const OnboardingService: React.FC = () => {
@@ -15,7 +14,7 @@ const OnboardingService: React.FC = () => {
 
   return (
     <OnboardingLayout
-      title={LABELS.TENANT}
+      title={t('metrics:listing.service')}
       description={
         <Text preset="paragraph" className="text-center">
           {t('metrics:onboarding.description')}
