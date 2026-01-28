@@ -24,6 +24,7 @@
   "kubernetes_select_version_title": "Sélectionnez une version",
   "kubernetes_add_name_title": "Nommez votre cluster",
   "kubernetes_add_name_placeholder": "Nom du cluster",
+  "kubernetes_add_name_input_label": "Nom du projet",
   "kubernetes_add_name": "Nom",
   "kubernetes_add_location": "Localisation",
   "kubernetes_add_location_subtitle": "Choisir un mode de déploiement",
