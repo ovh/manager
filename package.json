@@ -106,7 +106,7 @@
     "rimraf": "^3.0.2",
     "simple-git": "^3.19.0",
     "stylelint-prettier": "^1.1.2",
-    "turbo": "2.7.1",
+    "turbo": "2.7.6",
     "vite": "^5.4.21",
     "whatwg-fetch": "^3.6.2"
   },
