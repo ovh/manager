@@ -17,7 +17,9 @@ type IdentitySelectionBaseProps<T extends IdentityType> = {
   identityURNs: string[];
   addCallback: () => void;
   addButtonLabel: string;
+  addButtonTestId: string;
   deleteCallback: () => void;
+  deleteButtonTestId: string;
   datagridColumns: DatagridColumn<T>[];
   items: T[];
 };
@@ -27,7 +29,9 @@ export function IdentitySelectionBase<T extends IdentityType>({
   identityURNs,
   addCallback,
   addButtonLabel,
+  addButtonTestId,
   deleteCallback,
+  deleteButtonTestId,
   datagridColumns,
   items = [],
 }: IdentitySelectionBaseProps<T>) {
@@ -42,10 +46,17 @@ export function IdentitySelectionBase<T extends IdentityType>({
           color="primary"
           disabled={identityURNs.length > 25}
           onClick={addCallback}
+          data-testid={addButtonTestId}
         >
           {addButtonLabel}
         </Button>
-        <Button size="sm" color="critical" disabled={items.length === 0} onClick={deleteCallback}>
+        <Button
+          size="sm"
+          color="critical"
+          disabled={items.length === 0}
+          onClick={deleteCallback}
+          data-testid={deleteButtonTestId}
+        >
           {t(
             'key_management_service_credential_create_identities_users_list_button_delete_all_label',
           )}

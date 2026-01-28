@@ -9,6 +9,7 @@ import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-componen
 
 import { IdentitySelectionBase } from '../base/IdentitySelectionBase.component';
 import { RemoveIdentityButton } from '../base/RemoveIdentityButton.component';
+import { IDENTITY_SELECTION_GROUP_TEST_IDS } from './IdentitySelectionGroups.constants';
 
 type IdentitySelectionProps = {
   identityURNs: string[];
@@ -28,17 +29,29 @@ export const IdentitySelectionGroups = ({ identityURNs }: IdentitySelectionProps
   const columns: DatagridColumn<IdentityGroup>[] = [
     {
       id: 'name',
-      cell: (group: IdentityGroup) => <DataGridTextCell>{group.name}</DataGridTextCell>,
+      cell: (group: IdentityGroup) => (
+        <DataGridTextCell data-testid={IDENTITY_SELECTION_GROUP_TEST_IDS.name(group.urn)}>
+          {group.name}
+        </DataGridTextCell>
+      ),
       label: t('key_management_service_credential_user_list_column_name'),
     },
     {
       id: 'description',
-      cell: (group: IdentityGroup) => <DataGridTextCell>{group.description}</DataGridTextCell>,
+      cell: (group: IdentityGroup) => (
+        <DataGridTextCell data-testid={IDENTITY_SELECTION_GROUP_TEST_IDS.description(group.urn)}>
+          {group.description}
+        </DataGridTextCell>
+      ),
       label: t('key_management_service_credential_user_list_column_description'),
     },
     {
       id: 'identity',
-      cell: (group: IdentityGroup) => <DataGridTextCell>{group.urn}</DataGridTextCell>,
+      cell: (group: IdentityGroup) => (
+        <DataGridTextCell data-testid={IDENTITY_SELECTION_GROUP_TEST_IDS.identity(group.urn)}>
+          {group.urn}
+        </DataGridTextCell>
+      ),
       label: t('key_management_service_credential_create_identities_group_tile_identity_label'),
     },
     {
@@ -46,7 +59,7 @@ export const IdentitySelectionGroups = ({ identityURNs }: IdentitySelectionProps
       cell: (group: IdentityGroup) => (
         <RemoveIdentityButton
           onClick={() => handleRemoveGroup(group)}
-          testId={`remove-group-button-${group.urn}`}
+          testId={IDENTITY_SELECTION_GROUP_TEST_IDS.removeButton(group.urn)}
         />
       ),
       label: '',
@@ -60,7 +73,9 @@ export const IdentitySelectionGroups = ({ identityURNs }: IdentitySelectionProps
       addButtonLabel={t(
         'key_management_service_credential_create_identities_users_groups_button_add_label',
       )}
+      addButtonTestId={IDENTITY_SELECTION_GROUP_TEST_IDS.addButton}
       deleteCallback={() => setGroupList([])}
+      deleteButtonTestId={IDENTITY_SELECTION_GROUP_TEST_IDS.deleteButton}
       datagridColumns={columns}
       items={groupList}
       identityURNs={identityURNs}
