@@ -11,8 +11,8 @@ import { deps } from '@/deps/deps';
 import {
   selectImages,
   emptyResult,
-  selectBackupsEligibilityContext,
   selectEligibleBackups,
+  selectFlavorBackupConstraints,
 } from '../view-models/imagesViewModel';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
 import { useBackups } from '@/data/hooks/backups/useBackups';
@@ -35,28 +35,27 @@ const DistributionImage = ({ microRegion }: TDistributionImageProps) => {
     name: ['distributionImageType', 'distributionImageVariantId', 'flavorId'],
   });
 
-  const backupsEligibilityContextSelect = useMemo(
-    () => selectBackupsEligibilityContext(flavorId),
+  const flavorBackupConstraintsSelect = useMemo(
+    () => selectFlavorBackupConstraints(flavorId),
     [flavorId],
   );
 
   const {
-    data: backupsEligibilityContext = null,
+    data: flavorBackupConstraints = null,
   } = useInstancesCatalogWithSelect({
-    select: backupsEligibilityContextSelect,
+    select: flavorBackupConstraintsSelect,
   });
 
-  const backupsSelect = useMemo(
-    () => selectEligibleBackups(backupsEligibilityContext),
-    [backupsEligibilityContext],
+  const selectBackups = useMemo(
+    () => selectEligibleBackups(flavorBackupConstraints),
+    [flavorBackupConstraints],
   );
 
   const { data: eligibleBackups } = useBackups(
     microRegion,
     {
-      select: backupsSelect,
-      enabled:
-        distributionImageType === 'backups' && !!backupsEligibilityContext,
+      select: selectBackups,
+      enabled: distributionImageType === 'backups' && !!flavorBackupConstraints,
     },
     { limit: 100 },
   );
@@ -92,7 +91,7 @@ const DistributionImage = ({ microRegion }: TDistributionImageProps) => {
         <ImageHelper />
       </div>
       <DistributionImageType
-        backupEligibilityContext={backupsEligibilityContext}
+        flavorBackupConstraints={flavorBackupConstraints}
       />
       {!!imageVariants.length && (
         <DistributionImageVariants variants={imageVariants} />

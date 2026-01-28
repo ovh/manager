@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 import {
   Radio,
@@ -40,6 +41,8 @@ type TSelectImageArgs = {
   osType: TImageOsType;
   value?: string;
   windowsId?: string;
+  backupRegion?: string;
+  backupName?: string;
 };
 
 type TWindowsPriceProps = {
@@ -50,12 +53,41 @@ type TWindowsPriceProps = {
 const Distributionvariants = ({ variants }: TDistributionvariants) => {
   const { t } = useTranslation('creation');
   const { getTextPrice } = useCatalogPrice(4);
-  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const { control, setValue, resetField } = useFormContext<
+    TInstanceCreationForm
+  >();
   const [selectedImageVariantId, distributionImageType] = useWatch({
     control,
     name: ['distributionImageVariantId', 'distributionImageType'],
   });
+
   const { trackClick } = useOvhTracking();
+
+  const isBackups = distributionImageType === 'backups';
+
+  const handleBackupSelection = useCallback(
+    (
+      backupId?: string,
+      backupRegion?: string,
+      backupName?: string,
+      backupOsType?: TImageOsType,
+    ) => {
+      if (backupId && backupRegion && backupName) {
+        setValue('backup', {
+          id: backupId,
+          region: backupRegion,
+          name: backupName,
+        });
+
+        if (backupOsType === 'windows') setValue('sshKeyId', null);
+
+        resetField('distributionImageVersion');
+      } else {
+        setValue('backup', null);
+      }
+    },
+    [setValue, resetField],
+  );
 
   // eslint-disable-next-line react/no-multi-comp
   const WindowsPrice = ({ price, billingType }: TWindowsPriceProps) => (
@@ -74,17 +106,22 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
     osType,
     value,
     windowsId,
+    backupRegion,
+    backupName,
   }: TSelectImageArgs) => () => {
     if (!value) return;
 
     field.onChange(value);
     setValue('distributionImageOsType', osType);
 
-    if (windowsId)
+    if (windowsId) {
       setValue('distributionImageVersion', {
         distributionImageVersionId: windowsId,
         distributionImageVersionName: value,
       });
+    }
+
+    handleBackupSelection(value, backupRegion, backupName, osType);
 
     trackClick({
       location: PageLocation.funnel,
@@ -115,8 +152,14 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
         'distributionImageOsType',
         firstAvailableVariant?.osType ?? null,
       );
+      handleBackupSelection(
+        firstAvailableVariant?.value,
+        firstAvailableVariant?.backupRegion,
+        firstAvailableVariant?.backupName,
+        firstAvailableVariant?.osType,
+      );
     },
-    [setValue],
+    [setValue, handleBackupSelection],
   );
 
   useEffect(() => {
@@ -135,6 +178,9 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
       distributionImageType === 'windows'
     )
       updateVersionAndSshKey(firstAvailableVariant);
+
+    if (isBackups && firstAvailableVariant?.osType === 'windows')
+      setValue('sshKeyId', null);
   }, [
     distributionImageType,
     updateVersionAndSshKey,
@@ -142,6 +188,7 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
     selectedImageVariantId,
     setValue,
     variants,
+    isBackups,
   ]);
 
   const getImageLabelForIcon = (value: string) =>
@@ -160,93 +207,99 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
       control={control}
       name="distributionImageVariantId"
       render={({ field }) => (
-        <RadioGroup
-          className={cardsContainerClassname}
-          {...(selectedImageVariantId && { value: selectedImageVariantId })}
-        >
-          {variants.map(
-            ({
-              label,
-              available,
-              value,
-              osType,
-              windowsHourlyLicensePrice,
-              windowsMonthlyLicensePrice,
-              windowsId,
-            }) => {
-              // eslint-disable-next-line react/no-multi-comp
-              const Card = React.forwardRef<
-                HTMLDivElement,
-                React.ComponentProps<typeof PciCard>
-              >((props, ref) => (
-                <PciCard
-                  ref={ref}
-                  selectable
-                  disabled={!available}
-                  className="justify-center p-5"
-                  selected={selectedImageVariantId === value}
-                  onClick={handleSelectImage({
-                    field,
-                    osType,
-                    value,
-                    windowsId,
-                  })}
-                  {...props}
-                >
-                  <PciCard.Header>
-                    <Radio disabled={!available} value={value}>
-                      <RadioControl />
-                      <RadioLabel className={imageLabelClassname}>
-                        <DistributionImageLabel
-                          name={getImageLabelForIcon(value)}
-                        >
-                          <span className="max-w-full flex-1 pr-8">
-                            {label}
-
-                            {windowsHourlyLicensePrice && (
-                              <WindowsPrice
-                                price={windowsHourlyLicensePrice}
-                                billingType={BILLING_TYPE.Hourly}
-                              />
-                            )}
-                            {windowsMonthlyLicensePrice && (
-                              <WindowsPrice
-                                price={windowsMonthlyLicensePrice}
-                                billingType={BILLING_TYPE.Monthly}
-                              />
-                            )}
-                          </span>
-                        </DistributionImageLabel>
-                      </RadioLabel>
-                    </Radio>
-                  </PciCard.Header>
-                </PciCard>
-              ));
-
-              Card.displayName = `DistributionVariantCard_${value}`;
-
-              if (available) return <Card key={value} />;
-
-              return (
-                <Tooltip key={value}>
-                  <TooltipTrigger asChild>
-                    <Card />
-                  </TooltipTrigger>
-                  <TooltipContent
-                    withArrow
-                    className="max-w-[220px] px-6 text-center"
+        <div className={clsx(isBackups && 'max-h-[280px] overflow-auto')}>
+          <RadioGroup
+            className={cardsContainerClassname}
+            {...(selectedImageVariantId && { value: selectedImageVariantId })}
+          >
+            {variants.map(
+              ({
+                label,
+                available,
+                value,
+                osType,
+                windowsHourlyLicensePrice,
+                windowsMonthlyLicensePrice,
+                windowsId,
+                backupRegion,
+                backupName,
+              }) => {
+                // eslint-disable-next-line react/no-multi-comp
+                const Card = React.forwardRef<
+                  HTMLDivElement,
+                  React.ComponentProps<typeof PciCard>
+                >((props, ref) => (
+                  <PciCard
+                    ref={ref}
+                    selectable
+                    disabled={!available}
+                    className="justify-center p-5"
+                    selected={selectedImageVariantId === value}
+                    onClick={handleSelectImage({
+                      field,
+                      osType,
+                      value,
+                      windowsId,
+                      backupRegion,
+                      backupName,
+                    })}
+                    {...props}
                   >
-                    <Text>
-                      {t(
-                        'creation:pci_instance_creation_image_available_on_other_models',
-                      )}
-                    </Text>
-                  </TooltipContent>
-                </Tooltip>
-              );
-            },
-          )}
-        </RadioGroup>
+                    <PciCard.Header>
+                      <Radio disabled={!available} value={value}>
+                        <RadioControl />
+                        <RadioLabel className={imageLabelClassname}>
+                          <DistributionImageLabel
+                            name={getImageLabelForIcon(value)}
+                          >
+                            <span className="max-w-full flex-1 pr-8">
+                              {label}
+
+                              {windowsHourlyLicensePrice && (
+                                <WindowsPrice
+                                  price={windowsHourlyLicensePrice}
+                                  billingType={BILLING_TYPE.Hourly}
+                                />
+                              )}
+                              {windowsMonthlyLicensePrice && (
+                                <WindowsPrice
+                                  price={windowsMonthlyLicensePrice}
+                                  billingType={BILLING_TYPE.Monthly}
+                                />
+                              )}
+                            </span>
+                          </DistributionImageLabel>
+                        </RadioLabel>
+                      </Radio>
+                    </PciCard.Header>
+                  </PciCard>
+                ));
+
+                Card.displayName = `DistributionVariantCard_${value}`;
+
+                if (available) return <Card key={value} />;
+
+                return (
+                  <Tooltip key={value}>
+                    <TooltipTrigger asChild>
+                      <Card />
+                    </TooltipTrigger>
+                    <TooltipContent
+                      withArrow
+                      className="max-w-[220px] px-6 text-center"
+                    >
+                      <Text>
+                        {t(
+                          'creation:pci_instance_creation_image_available_on_other_models',
+                        )}
+                      </Text>
+                    </TooltipContent>
+                  </Tooltip>
+                );
+              },
+            )}
+          </RadioGroup>
+        </div>
       )}
     />
   );

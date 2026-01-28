@@ -19,6 +19,14 @@ export const flavorIdSchema = z.string().nullable();
 
 export const microRegionSelectionSchema = z.string().nullable();
 
+export const backupImageSchema = z
+  .object({
+    id: z.string(),
+    region: z.string(),
+    name: z.string(),
+  })
+  .nullable();
+
 export const billingTypeSelectionSchema = z.nativeEnum(BILLING_TYPE);
 
 export const availabilityZoneSelectionSchema = z.string().nullable();
@@ -165,6 +173,7 @@ export const instanceCreationSchema = z.object({
   distributionImageVariantId: distributionImageVariantIdSchema,
   distributionImageVersion: distributionImageVersionSchema,
   distributionImageOsType: distributionImageOsTypeSchema,
+  backup: backupImageSchema,
   sshKeyId: sshKeyIdSchema,
   newSshPublicKey: sshPublicKeySchema.nullable(),
   networkId: networkIdSchema,
