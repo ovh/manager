@@ -13,6 +13,13 @@ export default mergeConfig(
   createConfig({
     test: {
       setupFiles: ['./src/test-utils/setup-test.ts'],
+      server: {
+        deps: {
+          // Inline @ovh-ux packages to fix ESM resolution issues
+          // (missing .js extensions in compiled output)
+          inline: [/@ovhcloud\/ods-react.*/, /@ovh-ux\/.*/],
+        },
+      },
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
@@ -29,7 +36,12 @@ export default mergeConfig(
       },
     },
     resolve: {
-      dedupe: [...defaultDedupedDependencies, 'msw'],
+      dedupe: [
+        ...defaultDedupedDependencies,
+        'msw',
+        '@tanstack/react-table',
+        '@ovh-ux/muk',
+      ],
       alias: {
         '@/public': path.resolve(__dirname, 'public'),
         '@': path.resolve(__dirname, 'src'),

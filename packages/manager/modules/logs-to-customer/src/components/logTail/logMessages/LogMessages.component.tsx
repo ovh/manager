@@ -9,7 +9,7 @@ import React, {
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsInput } from '@ovhcloud/ods-components/react';
+import { Button, BUTTON_VARIANT, Icon, Input, INPUT_TYPE } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -122,47 +122,48 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
 
   return (
     <>
-      <div className="h-[--toolbox-height] flex items-center justify-between px-4 box-border border-solid border-0 border-b border-slate-600">
-        <div className="flex gap-2 items-center w-full">
-          <OdsInput
+      <div className="h-[var(--toolbox-height)] flex items-center justify-between px-4 box-border border-solid border-0 border-b border-slate-600">
+        <div className="flex gap-4 items-center w-full">
+          <Input
             name="log-tail-search"
-            type="search"
+            type={INPUT_TYPE.search}
             placeholder={t('log_tail_search_placeholder')}
-            className="flex-grow max-w-80"
-            onOdsChange={(e) => setSearchQuery(e.detail.value as string)}
+            className="flex-grow max-w-80 bg-white"
+            onChange={(e) => setSearchQuery(e.target.value)}
             data-testid="logTail-searchInput"
           />
-          <OdsButton
-            className="bg-white [&::part(button)]:h-8 "
-            variant="ghost"
+          <Button
+            className="bg-white h-8"
+            variant={BUTTON_VARIANT.ghost}
             size="sm"
             onClick={togglePolling}
             data-testid="logTail-togglePolling"
-            label={isPolling ? '⏸︎' : '▶'}
-          />
-          <OdsButton
+          >
+            {isPolling ? '⏸︎' : '▶'}
+          </Button>
+          <Button
             className="bg-white"
-            variant="ghost"
+            variant={BUTTON_VARIANT.ghost}
             size="sm"
             onClick={resetSession}
-            icon="refresh"
             data-testid="logTail-clearSession"
-            label=""
-          />
-          <OdsButton
+          >
+            <Icon name="refresh" />
+          </Button>
+          <Button
             className="bg-white h-auto ml-auto"
-            variant="ghost"
+            variant={BUTTON_VARIANT.ghost}
             size="sm"
             onClick={() => toggleZoom()}
             data-testid="logTail-zoom"
-            icon={isZoomedIn ? 'shrink' : 'resize'}
-            label=""
-          />
+          >
+            <Icon name={isZoomedIn ? 'shrink' : 'resize'} />
+          </Button>
         </div>
       </div>
       <div className="relative font-mono text-xs ">
         <div
-          className="px-4 overflow-y-auto contain-strict h-[--messages-height]"
+          className="px-4 overflow-y-auto contain-strict h-[var(--messages-height)]"
           ref={parentRef}
           data-testid="logTail-listContainer"
         >
@@ -209,14 +210,14 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
           </div>
         </div>
         {!autoScroll && (
-          <OdsButton
+          <Button
             className="absolute right-10 bottom-8 bg-white"
-            variant="ghost"
+            variant={BUTTON_VARIANT.ghost}
             size="sm"
             onClick={scrollToBottom}
-            icon="arrow-down"
-            label=""
-          />
+          >
+            <Icon name="arrow-down" />
+          </Button>
         )}
       </div>
     </>
