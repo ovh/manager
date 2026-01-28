@@ -25,13 +25,13 @@ export const availabilityZoneSelectionSchema = z.string().nullable();
 
 export const quantityRules = {
   min: 1,
-  max: 5,
 };
+
+export const quantityDefaultValue = 1;
 
 export const quantitySchema = z
   .number()
-  .min(quantityRules.min)
-  .max(quantityRules.max);
+  .refine((val) => val >= quantityRules.min);
 
 export const distributionImageTypeSchema = z.enum([
   'linux',

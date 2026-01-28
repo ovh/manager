@@ -1,4 +1,3 @@
-import { QuantitySelector } from '@/pages/instances/create/components/QuantitySelector.component';
 import { Divider, Text } from '@ovhcloud/ods-react';
 import { FormProvider } from 'react-hook-form';
 import { AdvancedParameters } from '../AdvancedParameters.component';
@@ -23,12 +22,6 @@ import BillingChoice from '../BillingChoice.component';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
 import { useMemo } from 'react';
 import Backup from '../Backup.component';
-
-const quantityHintParams = {
-  quota: 1,
-  type: 'type',
-  region: 'region',
-};
 
 export const CreateInstanceForm = () => {
   const { t } = useTranslation(['common', 'creation']);
@@ -68,12 +61,6 @@ export const CreateInstanceForm = () => {
             </Text>
           </article>
           <Name />
-          <Divider spacing="64" />
-          <QuantitySelector
-            quota={quantityHintParams.quota}
-            type={quantityHintParams.type}
-            region={quantityHintParams.region}
-          />
           <Divider spacing="64" />
           <Localization />
           <DeploymentModeSection />

@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as useReactHookForm } from 'react-hook-form';
 import { deps } from '@/deps/deps';
 import { nameDefaultValue } from '../components/Name.component';
-import { quantityDefaultValue } from '../components/QuantitySelector.component';
+import { quantityDefaultValue } from '../CreateInstance.schema';
 import { selectContinent } from '../view-models/continentsViewModel';
 import { selectLocalizations } from '../view-models/localizationsViewModel';
 import { BILLING_TYPE, TDeploymentMode } from '@/types/instance/common.type';
