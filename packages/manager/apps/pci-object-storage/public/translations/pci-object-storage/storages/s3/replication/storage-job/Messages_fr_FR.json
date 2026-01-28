@@ -1,0 +1,11 @@
+{
+  "storageJobTitle": "Créer une règle de synchronisation",
+  "storageJobDescription": "Appliquez rétroactivement votre configuration de réplication afin de répliquer les objets téléversés avant la création des règles de réplication. Cette action déclenche un job exécuté en arrière-plan, chargé de synchroniser vos buckets. Pour en apprendre plus sur la réplication asynchrone, consultez la documentation",
+  "storageJobDescriptionLink": "ici",
+  "storageJobButtonConfirm": "Répliquer les objets existants",
+  "storageJobButtonCancel": "Annuler",
+  "storageJobToastSuccessTitle": "Règle de synchronisation créée",
+  "storageJobToastSuccessMessage": "La règle de synchronisation a été créée avec succès.",
+  "storageJobToastErrorTitle": "Erreur lors de la création",
+  "storageJobToastErrorMessage": "Une erreur est survenue lors de la création de la règle de synchronisation : {{message}}."
+}

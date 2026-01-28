@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { AlertTriangle, Plus } from 'lucide-react';
+import { AlertTriangle, Plus, RefreshCw } from 'lucide-react';
 import { Skeleton, Button, Alert, AlertDescription } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
 import { getColumns } from './ReplicationListColumns.component';
@@ -84,6 +84,17 @@ export default function ReplicationList({
           >
             <Plus className="size-6" />
             {t('createReplication')}
+          </Button>
+          <Button
+            variant="neutral"
+            mode="outline"
+            onClick={() => {
+              navigate('./storage-job');
+            }}
+            disabled={replicationRules.length === 0}
+          >
+            <RefreshCw className="size-4 mr-2" />
+            {t('createSyncRule')}
           </Button>
         </DataTable.Action>
         <DataTable.SearchBar />
