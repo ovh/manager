@@ -51,7 +51,10 @@ export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
   const ipList = React.useMemo(() => {
     if (ipDetails?.bringYourOwnIp) {
       return (
-        slice?.find(({ slicingSize }) => slicingSize === 32)?.childrenIps || []
+        // get the /32 ips from the byoip slice and remove the mask
+        slice
+          ?.find(({ slicingSize }) => slicingSize === 32)
+          ?.childrenIps.map((ip) => ip.replace('/32', '')) || []
       );
     }
 
