@@ -4,8 +4,8 @@
     "label": "Elija un nombre para su archivo compartido",
     "info": "Solo debe contener números, letras, guiones bajos, guiones o puntos y no exceder los 255 caracteres.",
     "error": {
-      "required": "El nombre del recurso compartido no puede estar vacío. Por favor, introduzca un nombre.",
-      "max_length": "Formato de nombre no válido",
+      "too_small": "El nombre del recurso compartido no puede estar vacío. Por favor, introduzca un nombre.",
+      "too_big": "Formato de nombre no válido",
       "invalid_format": "Formato de nombre no válido"
     }
   },
