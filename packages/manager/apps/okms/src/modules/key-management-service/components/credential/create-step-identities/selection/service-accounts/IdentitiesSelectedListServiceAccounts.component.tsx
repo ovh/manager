@@ -9,6 +9,7 @@ import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-componen
 
 import { IdentitySelectionBase } from '../base/IdentitySelectionBase.component';
 import { RemoveIdentityButton } from '../base/RemoveIdentityButton.component';
+import { IDENTITY_SELECTION_SERVICE_ACCOUNTS_TEST_IDS } from './IdentitiesSelectedListServiceAccounts.constants';
 
 type IdentitySelectionServiceAccountsProps = {
   identityURNs: string[];
@@ -24,7 +25,7 @@ export const IdentitySelectionServiceAccounts = ({
   const handleRemoveServiceAccount = (serviceAccount: IdentityOauthClient) => {
     setServiceAccountList((prevServiceAccountList) =>
       prevServiceAccountList.filter(
-        (serviceAccountInList) => serviceAccountInList.clientId !== serviceAccount.clientId,
+        (serviceAccountInList) => serviceAccountInList.clientId !== serviceAccount.identity,
       ),
     );
   };
@@ -33,14 +34,24 @@ export const IdentitySelectionServiceAccounts = ({
     {
       id: 'name',
       cell: (serviceAccount: IdentityOauthClient) => (
-        <DataGridTextCell>{serviceAccount.name}</DataGridTextCell>
+        <DataGridTextCell
+          data-testid={IDENTITY_SELECTION_SERVICE_ACCOUNTS_TEST_IDS.name(serviceAccount.identity)}
+        >
+          {serviceAccount.name}
+        </DataGridTextCell>
       ),
       label: t('key_management_service_credential_user_list_column_name'),
     },
     {
       id: 'identity',
       cell: (serviceAccount: IdentityOauthClient) => (
-        <DataGridTextCell>{serviceAccount.identity || ''}</DataGridTextCell>
+        <DataGridTextCell
+          data-testid={IDENTITY_SELECTION_SERVICE_ACCOUNTS_TEST_IDS.identity(
+            serviceAccount.identity,
+          )}
+        >
+          {serviceAccount.identity}
+        </DataGridTextCell>
       ),
       label: t(
         'key_management_service_credential_create_identities_service-account_tile_identity_label',
@@ -51,12 +62,15 @@ export const IdentitySelectionServiceAccounts = ({
       cell: (serviceAccount: IdentityOauthClient) => (
         <RemoveIdentityButton
           onClick={() => handleRemoveServiceAccount(serviceAccount)}
-          testId={`remove-service-account-button-${serviceAccount.clientId}`}
+          testId={IDENTITY_SELECTION_SERVICE_ACCOUNTS_TEST_IDS.removeButton(
+            serviceAccount.identity,
+          )}
         />
       ),
       label: '',
     },
   ];
+
   return (
     <IdentitySelectionBase
       title={t('key_management_service_credential_create_identities_service_accounts_title')}
@@ -64,7 +78,9 @@ export const IdentitySelectionServiceAccounts = ({
       addButtonLabel={t(
         'key_management_service_credential_create_identities_service_accounts_button_add_label',
       )}
+      addButtonTestId={IDENTITY_SELECTION_SERVICE_ACCOUNTS_TEST_IDS.addButton}
       deleteCallback={() => setServiceAccountList([])}
+      deleteButtonTestId={IDENTITY_SELECTION_SERVICE_ACCOUNTS_TEST_IDS.deleteButton}
       datagridColumns={columns}
       items={serviceAccountList}
       identityURNs={identityURNs}
