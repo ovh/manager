@@ -121,7 +121,7 @@ describe('ServicesNavigation', () => {
       const guard = screen.getByTestId('redirection-guard');
       expect(guard).toHaveAttribute('data-condition', 'false');
       expect(guard).toHaveAttribute('data-is-loading', 'false');
-      expect(guard).toHaveAttribute('data-route', urls.onboarding);
+      expect(guard).toHaveAttribute('data-route', urls.servicesOnboarding);
     });
 
     it('should set condition to true when services is undefined', () => {
