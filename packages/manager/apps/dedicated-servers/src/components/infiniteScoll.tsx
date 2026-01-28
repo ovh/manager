@@ -19,7 +19,7 @@ const InfiniteScroll: FC<InfiniteScrollType> = ({
     if (
       hasNextPage &&
       !isLoading &&
-      Math.round(window.innerHeight + document.documentElement.scrollTop) ===
+      Math.round(window.innerHeight + document.documentElement.scrollTop) >=
         document.documentElement.offsetHeight
     ) {
       (async () => {
