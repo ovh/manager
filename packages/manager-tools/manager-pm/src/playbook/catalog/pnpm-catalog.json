@@ -17,6 +17,7 @@
   "packages/manager/apps/hpc-vmware-vsphere",
   "packages/manager/apps/hycu",
   "packages/manager/apps/okms",
+  "packages/manager/apps/nasha",
   "packages/manager/apps/pci-ai-endpoints",
   "packages/manager/apps/pci-ai-tools",
   "packages/manager/apps/pci-billing",
