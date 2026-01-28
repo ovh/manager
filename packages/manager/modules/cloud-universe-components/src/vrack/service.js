@@ -32,6 +32,7 @@ export default class CucVrackService {
       'managedBareMetal',
       'dedicatedServerInterface',
       'ovhCloudConnect',
+      'vmwareCloudDirectorVirtualDataCenter',
     ];
   }
 

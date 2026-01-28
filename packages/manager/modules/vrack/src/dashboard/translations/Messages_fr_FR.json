@@ -37,6 +37,7 @@
   "vrack_menu_project_num": "Vrack {{num}}",
   "vrack_service_type_dedicatedserver": "Serveur dédié",
   "vrack_service_type_ovhcloudconnect": "OVHcloud Connect",
+  "vrack_service_type_vmwareclouddirectorvirtualdatacenter": "Public VCF as-a-Service",
   "vrack_service_type_dedicatedcloud": "Hosted Private Cloud",
   "vrack_service_type_managedbaremetal": "Managed Bare Metal",
   "vrack_service_type_dedicatedconnect": "Dedicated connect",
