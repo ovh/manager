@@ -17,7 +17,7 @@ type TLocalizationCardProps = {
   deploymentMode: TDeploymentMode;
   disabled: boolean;
   onSelect: () => void;
-  selected: boolean
+  selected: boolean;
 };
 
 export const LocalizationCard = React.memo(

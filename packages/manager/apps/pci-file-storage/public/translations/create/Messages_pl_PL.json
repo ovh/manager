@@ -58,7 +58,12 @@
   "shareSize": {
     "title": "Rozmiar udziału",
     "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawkek",
-    "label": "Przydział wydajności liniowej (GB)"
+    "label": "Przydział wydajności liniowej (GiB)",
+    "error": {
+      "min_value": "Rozmiar udziału jest mniejszy niż minimalna dozwolona wartość dla tej oferty.",
+      "max_value": "Rozmiar udziału przekracza maksymalną dozwoloną wartość dla tej oferty.",
+      "invalid_type": "To pole musi być wypełnione."
+    }
   },
   "network": {
     "title": "Sieć prywatna",

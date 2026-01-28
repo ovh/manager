@@ -58,7 +58,12 @@
   "shareSize": {
     "title": "Tamaño del recurso compartido",
     "description": "El 5 % de la capacidad de almacenamiento está dedicado al almacenamiento de instantáneas",
-    "label": "Asignación de rendimiento lineal (GB)"
+    "label": "Asignación de rendimiento lineal (GiB)",
+    "error": {
+      "min_value": "El tamaño del recurso compartido es inferior al mínimo permitido para esta oferta.",
+      "max_value": "El tamaño del recurso compartido supera el máximo permitido para esta oferta.",
+      "invalid_type": "Este campo debe rellenarse."
+    }
   },
   "network": {
     "title": "Red privada",

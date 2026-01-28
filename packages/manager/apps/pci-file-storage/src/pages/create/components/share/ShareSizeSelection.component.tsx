@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { FormField, FormFieldLabel, Text } from '@ovhcloud/ods-react';
+import { FormField, FormFieldError, FormFieldLabel, Text } from '@ovhcloud/ods-react';
 
 import { SliderInput } from '@/components/slider/SliderInput.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
@@ -15,9 +15,17 @@ const DEFAULT_MAX = 10240;
 
 export const ShareSizeSelection = () => {
   const { t } = useTranslation(['create']);
-  const { control, setValue } = useFormContext<CreateShareFormValues>();
+  const {
+    control,
+    setValue,
+    setError,
+    formState: {
+      errors: { shareData: { size: sizeError } = {} },
+    },
+    clearErrors,
+  } = useFormContext<CreateShareFormValues>();
 
-  const [selectedMicroRegion, selectedSpecName, currentSize] = useWatch({
+  const [selectedMicroRegion, selectedSpecName, selectedSize] = useWatch({
     control,
     name: ['shareData.microRegion', 'shareData.specName', 'shareData.size'],
   });
@@ -32,32 +40,37 @@ export const ShareSizeSelection = () => {
   const max = selectedSpec?.capacityMax ?? DEFAULT_MAX;
 
   const handleChange = (value: number) => {
-    setValue('shareData.size', value, { shouldValidate: true });
+    if (value < min) {
+      setError('shareData.size', { type: 'min_value' });
+      setValue('shareData.size', value, { shouldValidate: false });
+    } else if (value > max) {
+      setError('shareData.size', { type: 'max_value' });
+      setValue('shareData.size', value, { shouldValidate: false });
+    } else {
+      clearErrors('shareData.size');
+      setValue('shareData.size', value, { shouldValidate: true });
+    }
   };
 
   useEffect(() => {
     setValue('shareData.size', min);
-  }, [min, setValue]);
+  }, [min, max, setValue]);
 
   return (
-    <section>
-      <div className="flex flex-col gap-4">
-        <Text preset="heading-4">{t('create:shareSize.title')}</Text>
-        <Text preset="paragraph">{t('create:shareSize.description')}</Text>
-      </div>
-      <div className="pt-6">
-        <FormField className="w-full">
-          <FormFieldLabel>{t('create:shareSize.label')}</FormFieldLabel>
-          <SliderInput
-            value={currentSize}
-            onChange={handleChange}
-            min={min}
-            max={max}
-            inputName="shareSize"
-          />
-        </FormField>
-      </div>
-      <span>{currentSize}</span>
+    <section className="flex flex-col gap-4">
+      <Text preset="heading-4">{t('create:shareSize.title')}</Text>
+      <Text preset="paragraph">{t('create:shareSize.description')}</Text>
+      <FormField className="w-full" invalid={!!sizeError}>
+        <FormFieldLabel>{t('create:shareSize.label')}</FormFieldLabel>
+        <SliderInput
+          value={selectedSize}
+          onChange={handleChange}
+          min={min}
+          max={max}
+          inputName="shareSize"
+        />
+        <FormFieldError>{t(`create:shareSize.error.${sizeError?.type}`)}</FormFieldError>
+      </FormField>
     </section>
   );
 };
