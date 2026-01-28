@@ -2,6 +2,7 @@ import { IdentityGroup } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
 import { IdentitiesBaseTile } from './IdentitiesBaseTile.component';
+import { IDENTITIES_BASE_TILE_TEST_IDS } from './IdentitiesBaseTile.constants';
 import { IdentityRow } from './IdentityRow.component';
 
 type IdentitiesGroupTileProps = {
@@ -14,7 +15,12 @@ export const IdentitiesGroupTile = ({ item, isSelected, onToggle }: IdentitiesGr
   const { t } = useTranslation('key-management-service/credential');
 
   return (
-    <IdentitiesBaseTile title={item.name} onToggle={onToggle} isSelected={isSelected}>
+    <IdentitiesBaseTile
+      title={item.name}
+      onToggle={onToggle}
+      isSelected={isSelected}
+      testId={IDENTITIES_BASE_TILE_TEST_IDS.group(item.urn)}
+    >
       <div className="mb-2 space-y-1">
         <IdentityRow
           label={t(
@@ -24,7 +30,7 @@ export const IdentitiesGroupTile = ({ item, isSelected, onToggle }: IdentitiesGr
         />
         <IdentityRow
           label={t('key_management_service_credential_create_identities_group_tile_identity_label')}
-          value={item.urn || ''}
+          value={item.urn}
         />
       </div>
     </IdentitiesBaseTile>
