@@ -14,6 +14,7 @@ import { useMe } from '@/data/hooks/useMe';
 import { urls } from '@/routes/routes.constant';
 import { Company } from '@/types/company';
 import { useLegacySignupRedirection } from '@/hooks/legacySignupRedirection/useLegacySignupRedirection';
+import { isUserLoggedIn } from '@/helpers/flowHelper';
 
 const NEW_ACCOUNT_CREATION_ACCESS_FEATURE = 'account-creation';
 const SMS_CONSENT_FEATURE = 'account:sms-consent';
@@ -27,7 +28,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const { setUser } = useTrackingContext();
-  const { data: me, isFetched, isError, isEnabled } = useMe();
+  const { data: me, isFetched, isError } = useMe();
   const { data: availability } = useFeatureAvailability(
     [NEW_ACCOUNT_CREATION_ACCESS_FEATURE, SMS_CONSENT_FEATURE],
     { enabled: Boolean(isFetched && me) },
@@ -50,10 +51,10 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
 
   useEffect(() => {
-    if (!isEnabled) {
+    if (!isUserLoggedIn() && location.pathname !== urls.settings) {
       navigate(`${urls.settings}?${searchParams.toString()}`);
     }
-  }, [isEnabled]);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!isFetched || isError) {
