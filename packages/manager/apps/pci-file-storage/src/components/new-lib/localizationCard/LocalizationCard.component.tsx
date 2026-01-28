@@ -17,6 +17,7 @@ type TLocalizationCardProps = {
   deploymentMode: TDeploymentMode;
   disabled: boolean;
   onSelect: () => void;
+  selected: boolean
 };
 
 export const LocalizationCard = React.memo(
@@ -28,8 +29,9 @@ export const LocalizationCard = React.memo(
     deploymentMode,
     disabled,
     onSelect,
+    selected,
   }: TLocalizationCardProps) => (
-    <PciCard selectable compact onClick={onSelect} disabled={disabled}>
+    <PciCard selectable compact onClick={onSelect} disabled={disabled} selected={selected}>
       <PciCard.Header>
         <Radio value={macroRegion} disabled={disabled}>
           <RadioControl />
