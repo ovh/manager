@@ -73,5 +73,8 @@
   "bulkDeleteVersionsTitle": "Mehrere Versionen löschen",
   "bulkDeleteVersionsDescription_one": "Möchten Sie {{count}} Version endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
   "bulkDeleteVersionsDescription_other": "Möchten Sie {{count}} Versionen endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
-  "bulkDeleteVersionsConfirmation": "Geben Sie {{confirmation}} ein, um zu bestätigen"
+  "bulkDeleteVersionsConfirmation": "Geben Sie {{confirmation}} ein, um zu bestätigen",
+  "downloadErrorDescription": "Fehler beim Hochladen der Datei",
+  "downloadErrorStatus": "Fehler beim Hochladen: {{status}}",
+  "downloadErrorUnknownType": "Unbekannter Upload-Typ"
 }
