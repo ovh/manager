@@ -1,5 +1,7 @@
 {
   "title": "Réplication",
+  "addReplicationBreadcrumb": "Ajouter",
+  "editReplicationBreadcrumb": "Modifier",
   "createReplication": "Ajouter une règle de réplication",
   "columnName": "Nom",
   "columnDestinationName": "Nom de destination",
@@ -56,7 +58,6 @@
   "replicationRuleNotFound": "La règle de réplication n'a pas été trouvée.",
   "close": "Fermer",
   "backLink": "Retour aux réplications",
-  "replicationConfigurationTitle": "Configuration de la réplication",
   "additionalOptionsTitle": "Options de réplication supplémentaires",
   "storageClass_STANDARD": "Standard",
   "storageClass_HIGH_PERF": "High Performance",
