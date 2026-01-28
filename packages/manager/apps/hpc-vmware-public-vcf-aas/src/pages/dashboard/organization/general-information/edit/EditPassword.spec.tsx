@@ -1,14 +1,13 @@
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import { labels, renderTest } from '../../../../../test-utils';
-import { urls, subRoutes } from '../../../../../routes/routes.constant';
 
-const initialRoute = urls.resetPassword.replace(
-  subRoutes.dashboard,
-  organizationList[0].id,
-);
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
+
+import { subRoutes, urls } from '../../../../../routes/routes.constant';
+import { labels, renderTest } from '../../../../../test-utils';
+
+const initialRoute = urls.resetPassword.replace(subRoutes.dashboard, SAFE_MOCK_DATA.orgStandard.id);
 
 const {
   managed_vcd_dashboard_password_modal_title: title,
@@ -22,8 +21,8 @@ const checkModalContent = () => {
   expect(screen.getByText(content)).toBeVisible();
 };
 
-describe('Delete Vrack Network Page', () => {
-  it('should delete the network and display a success banner', async () => {
+describe('Edit Password Page', () => {
+  it('should edit the password and display a success banner', async () => {
     await renderTest({ initialRoute });
 
     // check modal content
@@ -44,7 +43,7 @@ describe('Delete Vrack Network Page', () => {
     expect(screen.getByText(success)).toBeVisible();
   });
 
-  it('should display an error if updateService is KO', async () => {
+  it('should display an error if resetPassword is KO', async () => {
     await renderTest({
       initialRoute,
       isOrganizationResetPasswordKo: true,
@@ -56,13 +55,8 @@ describe('Delete Vrack Network Page', () => {
 
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
-    await waitFor(
-      async () => {
-        expect(submitCta).toBeEnabled();
-        await act(() => userEvent.click(submitCta));
-      },
-      { timeout: 10_000 },
-    );
+    expect(submitCta).toBeEnabled();
+    await act(() => userEvent.click(submitCta));
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), {

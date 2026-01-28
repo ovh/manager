@@ -1,7 +1,4 @@
-import {
-  normalizeToCIDR,
-  hasExistingIpOrCidrConflict,
-} from './Ipv4CIDRUtilities';
+import { hasExistingIpOrCidrConflict, normalizeToCIDR } from './Ipv4CIDRUtilities';
 
 describe('normalizeToCIDR', () => {
   it.each([
@@ -37,9 +34,7 @@ describe('hasExistingIpOrCidrConflict', () => {
   ])(
     'hasExistingIpOrCidrConflict(%s, %s) should return %s',
     (newNetwork, existingNetworks, expected) => {
-      expect(hasExistingIpOrCidrConflict(newNetwork, existingNetworks)).toBe(
-        expected,
-      );
+      expect(hasExistingIpOrCidrConflict(newNetwork, existingNetworks)).toBe(expected);
     },
   );
 });
