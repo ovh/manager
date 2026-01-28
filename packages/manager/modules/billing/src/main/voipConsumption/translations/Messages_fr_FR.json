@@ -1,0 +1,11 @@
+{
+  "voip_consumption_page_title": "Suivi de consommation téléphonie",
+  "voip_consumption_header_billing_account": "Groupe de facturation",
+  "voip_consumption_header_description": "Description",
+  "voip_consumption_header_total_amount": "Montant total (HT)",
+  "voip_consumption_header_total_outplan": "Montant hors forfait (HT)",
+  "voip_consumption_action_download_csv": "Télécharger le fichier CSV",
+  "voip_consumption_action_download_received_csv": "Télécharger le fichier CSV des appels reçus",
+  "voip_consumption_action_download_pdf": "Télécharger le fichier PDF",
+  "voip_consumption_no_data_available": "Non disponible"
+}
