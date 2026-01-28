@@ -1,4 +1,6 @@
 {
   "ZOD_ERROR_IPV4_OR_IPV4CIDR_INVALID": "Doit être une adresse IPv4 valide ou un CIDR IPv4 (ex. 192.168.0.1 ou 192.168.0.0/24)",
-  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Chevauchement détecté avec une autre plage réseau, veuillez choisir une autre valeur"
+  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Chevauchement détecté avec une autre plage réseau, veuillez choisir une autre valeur",
+  "ZOD_ERROR_VLAN_ID_HELPER": "L'ID VLAN doit être compris entre {{minId}} et {{maxId}}",
+  "ZOD_ERROR_VLAN_ID_ALREADY_IN_USE": "L'ID VLAN est déjà utilisé"
 }
