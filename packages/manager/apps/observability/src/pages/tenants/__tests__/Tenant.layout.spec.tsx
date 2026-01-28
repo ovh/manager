@@ -76,6 +76,11 @@ vi.mock('@ovh-ux/muk', () => ({
   },
 }));
 
+// Mock ObsBreadcrumb component
+vi.mock('@/components/breadcrumb/ObsBreadcrumb.component', () => ({
+  ObsBreadcrumb: () => <nav data-testid="breadcrumb">Breadcrumb</nav>,
+}));
+
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({
