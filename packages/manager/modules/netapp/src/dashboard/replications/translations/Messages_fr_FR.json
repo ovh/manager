@@ -18,5 +18,8 @@
   "netapp_replications_status_deleting": "Suppression en cours",
   "netapp_replications_pending_help": "Ce volume est en attente d'une confirmation de la réplication. Pour approuver, vous devez accepter la réplication à partir du service de destination. Une fois confirmée la réplication commencera.",
   "netapp_replications_button_approuve": "Accepter réplication",
-  "netapp_replications_approuve_error": "La réplication du volume {{ sourceShareID }} a échoué."
+  "netapp_replications_button_promote": "Promouvoir",
+  "netapp_replications_button_delete": "Supprimer",
+  "netapp_replications_button_cancel": "Annuler",
+  "netapp_replications_efs_current_service": "Ce service"
 }

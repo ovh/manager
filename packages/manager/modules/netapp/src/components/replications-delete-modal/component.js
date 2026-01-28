@@ -3,9 +3,9 @@ import template from './template.html';
 
 export default {
   bindings: {
-    modalType: '<',
-    onPrimaryClick: '<',
-    isPrimaryDisabled: '<',
+    serviceName: '<',
+    goToReplications: '<',
+    params: '<',
   },
   controller,
   template,

@@ -1,4 +1,4 @@
-import { ACCEPTED_REPLICATION_STATE } from './constants';
+import { REPLICATION_API_STATUS } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.replications', {
@@ -24,51 +24,47 @@ export default /* @ngInject */ ($stateProvider) => {
               .all(
                 data.reduce((prev, { id, status }) => {
                   const promise =
-                    status === 'accepted' &&
-                    $http
-                      .get(
-                        `/storage/netapp/${serviceName}/shareReplication/${id}`,
-                      )
-                      .then(({ data: { replicaState } }) => ({
-                        replicaState,
-                        id,
-                      }));
+                    status === REPLICATION_API_STATUS.accepted &&
+                    $http.get(
+                      `/storage/netapp/${serviceName}/shareReplication/${id}`,
+                    );
 
                   return promise ? [...prev, promise] : prev;
                 }, []),
               )
               .then((acceptedShareReplications) => {
-                const getAcceptedStatus = (replicationId) => {
-                  const replicaState = acceptedShareReplications.find(
-                    ({ id }) => replicationId === id,
-                  )?.replicaState;
-
-                  if (replicaState === 'error')
-                    return ACCEPTED_REPLICATION_STATE.ERROR;
-                  if (replicaState === 'in_sync')
-                    return ACCEPTED_REPLICATION_STATE.IN_SYNC;
-                  if (replicaState === 'out_of_sync')
-                    return ACCEPTED_REPLICATION_STATE.OUT_OF_SYNC;
-                  return '';
-                };
-                return data.map((replication) => ({
-                  ...replication,
-                  ...(replication.status === 'accepted' && {
-                    status: getAcceptedStatus(replication.id),
-                  }),
-                }));
+                return data.map(
+                  (replication) =>
+                    acceptedShareReplications.find(
+                      ({ data: { id } }) => id === replication.id,
+                    )?.data || replication,
+                );
               }),
           ),
-      gotoApprouveReplication: /* @ngInject */ ($state) => ({
+      goToApprouveReplication: /* @ngInject */ ($state) => ({
         destinationServiceID,
         replicationID,
         sourceShareID,
-      }) =>
+      }) => {
         $state.go('netapp.dashboard.replications.approuve', {
           destinationServiceID,
           replicationID,
           sourceShareID,
-        }),
+        });
+      },
+      goToPromoteReplication: /* @ngInject */ ($state) => ({ replication }) => {
+        $state.go('netapp.dashboard.replications.promote', {
+          replicationID: replication.id,
+          sourceShareID: replication.source.shareID,
+        });
+      },
+      goToDeleteReplication: /* @ngInject */ ($state) => ({ replication }) => {
+        $state.go('netapp.dashboard.replications.delete', {
+          replicationID: replication.id,
+          status: replication.status,
+          sourceShareID: replication.source.shareID,
+        });
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_replications_breadcrumb'),
     },

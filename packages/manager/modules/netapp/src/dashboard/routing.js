@@ -67,6 +67,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('netapp.dashboard.volumes', $transition$.params()),
       replicationsLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('netapp.dashboard.replications', $transition$.params()),
+      goToReplications: /* @ngInject */ ($state) => (reload = false) =>
+        $state.go(
+          'netapp.dashboard.replications',
+          {},
+          {
+            reload,
+          },
+        ),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       storage: /* @ngInject */ ($http, serviceName) =>
