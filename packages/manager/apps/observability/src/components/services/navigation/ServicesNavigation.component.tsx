@@ -15,7 +15,7 @@ const ServicesNavigation = ({ button, rootUrl }: ServicesNavigationProps) => {
     <RedirectionGuard
       condition={!services || services.length === 0}
       isLoading={isLoading}
-      route={urls.onboarding}
+      route={urls.servicesOnboarding}
     >
       <div className="mb-6 flex items-center justify-end">
         <ServicesDropDown onChange={() => navigate(rootUrl)} />
