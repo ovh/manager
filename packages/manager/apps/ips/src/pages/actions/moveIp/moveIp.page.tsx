@@ -30,6 +30,7 @@ export default function MoveIpModal() {
   const [search] = useSearchParams();
   const { addSuccess } = useNotifications();
   const [destinationService, setDestinationService] = React.useState<string>();
+  const [destinationError, setDestinationError] = React.useState<string>('');
   const [nextHop, setNextHop] = React.useState<string>();
   const [currentStep, setCurrentStep] = React.useState(1);
   const { trackClick, trackPage } = useOvhTracking();
@@ -110,6 +111,7 @@ export default function MoveIpModal() {
     isPrimaryButtonLoading: isMoveIpPending,
     isPrimaryButtonDisabled:
       !!error ||
+      !!destinationError ||
       hasOnGoingMoveIpTask ||
       !destinationService ||
       (isDedicatedCloudService(destinationService) && !nextHop),
@@ -174,6 +176,7 @@ export default function MoveIpModal() {
             availableDestinations={availableDestinations?.data}
             destinationService={destinationService}
             setDestinationService={setDestinationService}
+            setDestinationError={setDestinationError}
             nextHopList={nextHopList}
             nextHop={nextHop}
             setNextHop={setNextHop}

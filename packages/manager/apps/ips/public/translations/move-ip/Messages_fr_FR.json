@@ -3,6 +3,7 @@
   "step1CurrentServiceLabel": "De",
   "step1EmptyCurrentServiceValue": "Parking des IP",
   "step1DestinationServiceLabel": "Vers",
+  "step1DestinationError": "La destination ne supporte pas cette opération ou le quota déjà atteint",
   "step1NextHopLabel": "Sur",
   "step2DescriptionWithNextHop": "Voulez vous vraiment déplacer l'IP <b>{{ip}}</b> vers <b>{{destinationService}}</b> sur <b>{{nextHop}}</b> ?",
   "step2DescriptionWithoutNextHop": "Voulez vous vraiment déplacer l'IP <b>{{ip}}</b> vers <b>{{destinationService}}</b> ?",
