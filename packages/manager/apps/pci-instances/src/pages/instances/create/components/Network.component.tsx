@@ -26,6 +26,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import Banner from '@/components/banner/Banner.component';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
 import AddPublicNetworkConfiguration from './network/AddPublicNetworkConfiguration.component';
+import PostInstallScript from './postInstallScript/PostInstallScript.component';
 
 type TUpdateNetworkFieldsArgs = {
   networkId: string | null;
@@ -177,6 +178,7 @@ const Network: FC = () => {
       )}
       <GatewayConfiguration />
       <AddPublicNetworkConfiguration />
+      <PostInstallScript />
     </section>
   );
 };
