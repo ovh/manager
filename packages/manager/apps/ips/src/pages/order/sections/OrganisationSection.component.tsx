@@ -1,21 +1,19 @@
 import React, { useMemo } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_MESSAGE_COLOR,
-  OdsSelectChangeEventDetail,
-  OdsSelectCustomEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OdsMessage,
-  OdsSelect,
-  OdsSkeleton,
-} from '@ovhcloud/ods-components/react';
+  MESSAGE_COLOR,
+  MessageBody,
+  SelectContent,
+  SelectControl,
+  Link,
+  Message,
+  Select,
+  Skeleton,
+} from '@ovhcloud/ods-react';
+import { Link as RouterLink } from 'react-router-dom';
 
-import { Links } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -31,6 +29,7 @@ import { urls } from '@/routes/routes.constant';
 
 import { OrderContext } from '../order.context';
 import { isAvailableOrganisation } from '../order.utils';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 const NO_ORGANISATION = 'no_organisation';
 
@@ -44,10 +43,9 @@ export const OrganisationSection: React.FC = () => {
     selectedServiceType,
     addDisabledService,
   } = React.useContext(OrderContext);
-  const navigate = useNavigate();
-  const { t } = useTranslation('order');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { trackClick } = useOvhTracking();
-  const { organisations, isLoading } = useGetOrganisationsList();
+  const { organisations, loading } = useGetOrganisationsList();
   const { serviceStatus } = useCheckServiceAvailability({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -70,64 +68,59 @@ export const OrganisationSection: React.FC = () => {
     return t('organisation_selection_description_no_organisation_ARIN');
   }, [t, selectedOrganisation, selectedRegion, selectedServiceRegion]);
 
-  const handleOrganisationChange = (
-    event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
-  ) => {
-    const updatedOrganisation =
-      event.detail.value !== NO_ORGANISATION ? event.detail.value : undefined;
-    setSelectedOrganisation(updatedOrganisation);
-
-    if (updatedOrganisation) {
-      trackClick({
-        actionType: 'action',
-        buttonType: ButtonType.button,
-        location: PageLocation.funnel,
-        actions: [`select_${updatedOrganisation}`],
-      });
-    }
-  };
-
   return (
     <OrderSection
       title={t('organisation_selection_title')}
       description={t('organisation_selection_description')}
     >
-      <OdsMessage
-        isDismissible={false}
+      <Message
+        dismissible={false}
         className="mb-3 block"
-        color={ODS_MESSAGE_COLOR.information}
+        color={MESSAGE_COLOR.information}
       >
-        {organisationInfoLabel}
-      </OdsMessage>
-      {isLoading ? (
-        <OdsSkeleton />
+        <MessageBody>{organisationInfoLabel}</MessageBody>
+      </Message>
+      {loading ? (
+        <Skeleton />
       ) : (
-        <OdsSelect
+        <Select
           key={organisations?.join('-') || 'org-select'}
           className="mb-1 block w-full max-w-[384px]"
           name="ip-organisation"
-          onOdsChange={handleOrganisationChange}
-          value={selectedOrganisation}
-          placeholder={t('organisation_select_placeholder')}
+          onValueChange={(event) => {
+            const updatedOrganisation =
+              event.value?.[0] !== NO_ORGANISATION
+                ? event.value?.[0]
+                : undefined;
+            setSelectedOrganisation(updatedOrganisation);
+
+            if (updatedOrganisation) {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actions: [`select_${updatedOrganisation}`],
+              });
+            }
+          }}
+          value={[selectedOrganisation]}
+          items={[
+            { label: t('organisation_select_none'), value: NO_ORGANISATION },
+            ...(organisations
+              ?.filter(isAvailableOrganisation(selectedPlanCode))
+              .map((orgId) => ({
+                label: orgId,
+                value: orgId,
+              })) || []),
+          ]}
         >
-          <option value={NO_ORGANISATION}>
-            {t('organisation_select_none')}
-          </option>
-          {organisations
-            ?.filter(isAvailableOrganisation(selectedPlanCode))
-            .map((orgId) => (
-              <option key={orgId} value={orgId}>
-                {orgId}
-              </option>
-            ))}
-        </OdsSelect>
+          <SelectContent />
+          <SelectControl placeholder={t('organisation_select_placeholder')} />
+        </Select>
       )}
-      <Links
-        label={t('go_to_organisation_list_link_label')}
-        onClickReturn={() => {
-          navigate(urls.manageOrganisations);
-        }}
-      />
+      <Link as={RouterLink} to={urls.manageOrganisations}>
+        {t('go_to_organisation_list_link_label')}
+      </Link>
     </OrderSection>
   );
 };

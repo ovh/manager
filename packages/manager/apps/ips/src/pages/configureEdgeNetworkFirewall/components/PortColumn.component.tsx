@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { FormField, FormFieldError, Input, Text } from '@ovhcloud/ods-react';
 
 import { IpEdgeFirewallProtocol, IpEdgeFirewallRule } from '@/data/api';
 import { IP_EDGE_FIREWALL_PORT_MAX } from '@/data/hooks';
@@ -37,28 +33,29 @@ export const SourcePortColumn = (
       newProtocol,
     )
   ) {
-    return <OdsText>{formatRulePort(rule?.sourcePort)}</OdsText>;
+    return <Text>{formatRulePort(rule?.sourcePort)}</Text>;
   }
 
   return (
-    <OdsFormField error={sourcePortError}>
-      <OdsInput
+    <FormField invalid={!!sourcePortError}>
+      <Input
         className="w-full"
         name="source-port-input"
         value={newSourcePort}
-        isDisabled={newFragments}
-        hasError={!!sourcePortError}
-        onOdsChange={(e) => {
-          setNewSourcePort(e.detail.value as string);
+        disabled={newFragments}
+        invalid={!!sourcePortError}
+        onChange={(e) => {
+          setNewSourcePort(e.target.value);
           setSourcePortError(undefined);
         }}
-        maxlength={IP_EDGE_FIREWALL_PORT_MAX.toString().length}
+        maxLength={IP_EDGE_FIREWALL_PORT_MAX.toString().length}
         onKeyDown={handleEnterAndEscapeKeyDown({
           onEnter: createNewRule,
           onEscape: hideNewRuleRow,
         })}
       />
-    </OdsFormField>
+      <FormFieldError>{sourcePortError}</FormFieldError>
+    </FormField>
   );
 };
 
@@ -83,27 +80,28 @@ export const DestinationPortColumn = (
       newProtocol,
     )
   ) {
-    return <OdsText>{formatRulePort(rule?.destinationPort)}</OdsText>;
+    return <Text>{formatRulePort(rule?.destinationPort)}</Text>;
   }
 
   return (
-    <OdsFormField error={destinationPortError}>
-      <OdsInput
+    <FormField invalid={!!destinationPortError}>
+      <Input
         className="w-full"
         name="destination-port-input"
         value={newDestinationPort}
-        isDisabled={newFragments}
-        hasError={!!destinationPortError}
-        onOdsChange={(e) => {
-          setNewDestinationPort(e.detail.value as string);
+        disabled={newFragments}
+        invalid={!!destinationPortError}
+        onChange={(e) => {
+          setNewDestinationPort(e.target.value);
           setDestinationPortError(undefined);
         }}
-        maxlength={IP_EDGE_FIREWALL_PORT_MAX.toString().length}
+        maxLength={IP_EDGE_FIREWALL_PORT_MAX.toString().length}
         onKeyDown={handleEnterAndEscapeKeyDown({
           onEnter: createNewRule,
           onEscape: hideNewRuleRow,
         })}
       />
-    </OdsFormField>
+      <FormFieldError>{destinationPortError}</FormFieldError>
+    </FormField>
   );
 };

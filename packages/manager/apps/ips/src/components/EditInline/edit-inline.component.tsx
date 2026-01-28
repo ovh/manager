@@ -1,7 +1,12 @@
 import React, { PropsWithChildren, useState } from 'react';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton, OdsInput } from '@ovhcloud/ods-components/react';
+import {
+  BUTTON_VARIANT,
+  Icon,
+  ICON_NAME,
+  Button,
+  Input,
+} from '@ovhcloud/ods-react';
 
 export type EditInlineProps = {
   name: string;
@@ -28,37 +33,34 @@ export const EditInline: React.FC<PropsWithChildren<EditInlineProps>> = ({
       {!showInput && (
         <div className="flex items-center justify-between">
           <span>{children}</span>
-          <OdsButton
-            icon={ODS_ICON_NAME.pen}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            label=""
+          <Button
+            variant={BUTTON_VARIANT.ghost}
             onClick={() => setShowInput(true)}
-          />
+          >
+            <Icon name={ICON_NAME.pen} />
+          </Button>
         </div>
       )}
       {showInput && (
         <div className="flex items-center">
-          <OdsInput
+          <Input
             name={name}
             defaultValue={defaultValue}
-            onOdsChange={(event) => {
-              setInputValue(event?.detail?.value as string);
+            onChange={(event) => {
+              setInputValue(event.target.value);
             }}
             data-testid="edit-inline-input"
             className="min-w-full"
           />
-          <OdsButton
-            icon={ODS_ICON_NAME.check}
-            label=""
-            className="mx-2"
-            onClick={onConfirmClick}
-          />
-          <OdsButton
-            icon={ODS_ICON_NAME.xmark}
-            label=""
+          <Button className="mx-2" onClick={onConfirmClick}>
+            <Icon name={ICON_NAME.check} />
+          </Button>
+          <Button
             onClick={() => setShowInput(false)}
-            variant={ODS_BUTTON_VARIANT.outline}
-          />
+            variant={BUTTON_VARIANT.outline}
+          >
+            <Icon name={ICON_NAME.xmark} />
+          </Button>
         </div>
       )}
     </>

@@ -5,7 +5,7 @@ import { Row } from '@tanstack/react-table';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
 import ipList from '@/__mocks__/ip/get-ips.json';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -17,7 +17,7 @@ import { IpDatagrid } from './IpDatagrid';
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpListMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipList, isLoading: true, error: undefined })),
+  vi.fn(() => ({ ipList, loading: true, error: undefined })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
@@ -60,7 +60,7 @@ describe('IpDatagrid Component', () => {
   it('Should display columns', async () => {
     useGetIpListMock.mockReturnValue({
       ipList,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText } = renderComponent();
@@ -82,13 +82,13 @@ describe('IpDatagrid Component', () => {
   it('should display expandable rows for ip group', async () => {
     useGetIpListMock.mockReturnValue({
       ipList,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { container, getByText } = renderComponent();
     const expandButton = await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.chevronRight,
+      iconName: ICON_NAME.chevronRight,
     });
 
     await waitFor(() => {

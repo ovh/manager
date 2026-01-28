@@ -29,7 +29,7 @@ describe('IpVmacFilterByIp Component', () => {
           type: MacAddressTypeEnum.OVH,
         },
       ],
-      isLoading: false,
+      loading: false,
     });
     await waitFor(() => {
       expect(getByText('mac')).toBeDefined();
@@ -46,7 +46,7 @@ describe('IpVmacFilterByIp Component', () => {
           type: MacAddressTypeEnum.OVH,
         },
       ],
-      isLoading: false,
+      loading: false,
     });
     await waitFor(() => {
       expect(getByText('-')).toBeDefined();
@@ -64,7 +64,7 @@ describe('IpVmacFilterByIp Component', () => {
         },
       ],
       enabled: false,
-      isLoading: false,
+      loading: false,
     });
     await waitFor(() => {
       expect(queryByText('-')).toBeNull();

@@ -5,10 +5,10 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import ipaddr from 'ipaddr.js';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_VARIANT, ICON_NAME } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -106,7 +106,7 @@ export const IpActionsCell = ({
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
   const parentId = fromIpToId(parentIpGroup || ipGroup);
   const id = fromIpToId(ipAddress);
-  const { ipDetails, isLoading } = useGetIpdetails({
+  const { ipDetails, loading } = useGetIpdetails({
     ip: parentIpGroup || ip,
   });
   const navigate = useNavigate();
@@ -128,7 +128,7 @@ export const IpActionsCell = ({
     serviceName,
   });
 
-  const { isVmacAlreadyExist, isLoading: isVmacLoading } = useIpHasVmac({
+  const { isVmacAlreadyExist, loading: isVmacLoading } = useIpHasVmac({
     serviceName,
     ip,
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
@@ -154,7 +154,7 @@ export const IpActionsCell = ({
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
   const availableGetGameFirewall =
-    !isIpExpired && !isLoading && isGameFirewallAvailable(ipDetails);
+    !isIpExpired && !loading && isGameFirewallAvailable(ipDetails);
 
   // Get game firewall info
   const { ipGameFirewall } = useGetIpGameFirewall({
@@ -387,7 +387,7 @@ export const IpActionsCell = ({
           ns: NAMESPACES.ACTIONS,
         })} Additional IP`,
         trackingLabel: 'terminate_additional-ip',
-        isLoading,
+        loading,
         onClick: () =>
           navigate(
             `${urls.listingIpTerminate.replace(
@@ -404,7 +404,7 @@ export const IpActionsCell = ({
       id: 14,
       label: t('listingActionByoipTerminate'),
       trackingLabel: 'terminate_bring-your-own-ip',
-      isLoading,
+      loading,
       onClick: () =>
         navigate(
           `${urls.listingByoipTerminate.replace(
@@ -436,28 +436,26 @@ export const IpActionsCell = ({
       },
   ]
     .filter(Boolean)
-    .map((item) => ({
+    .map(({ trackingLabel, loading: isLoading, onClick, ...item }) => ({
       ...item,
+      isLoading,
       onClick: () => {
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.button,
           actionType: 'action',
-          actions: [
-            (item as { trackingLabel: string }).trackingLabel ||
-              (item as ActionMenuItem)?.label,
-          ],
+          actions: [trackingLabel || (item as ActionMenuItemProps)?.label],
         });
-        (item as ActionMenuItem).onClick?.();
+        onClick?.();
       },
-    })) as ActionMenuItem[];
+    })) as ActionMenuItemProps[];
 
   return (
     <ActionMenu
       items={items}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
-      icon={ODS_ICON_NAME.ellipsisVertical}
+      variant={BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
       id={`actions-${parentId}-${isGroup ? 'block' : id}`}
       isDisabled={
         isIpExpired ||

@@ -13,12 +13,10 @@ export const useGetIpdetails = ({
   ip,
   enabled = true,
 }: UseGetIpDetailsParams) => {
-  const {
-    data: ipDetailsResponse,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<ApiResponse<IpDetails>, ApiError>({
+  const { data: ipDetailsResponse, isLoading, isError, error } = useQuery<
+    ApiResponse<IpDetails>,
+    ApiError
+  >({
     queryKey: getIpDetailsQueryKey({ ip }),
     queryFn: () => getIpDetails({ ip }),
     enabled,
@@ -26,5 +24,10 @@ export const useGetIpdetails = ({
     retry: false,
   });
 
-  return { ipDetails: ipDetailsResponse?.data, isLoading, isError, error };
+  return {
+    ipDetails: ipDetailsResponse?.data,
+    loading: isLoading,
+    isError,
+    error,
+  };
 };

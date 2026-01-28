@@ -4,15 +4,10 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  BaseLayout,
-  ErrorBanner,
-  GuideButton,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
+import { BaseLayout, Error, GuideMenu, Notifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -28,7 +23,6 @@ import { GameFirewallContext } from '../gamefirewall.context';
 import { DeleteRuleModal } from './DeleteRuleModal.component';
 import { RuleDatagrid } from './RuleDatagrid.component';
 import { StrategyModal } from './StrategyModal.component';
-import { TopBar } from './TopBar.component';
 
 export default function GameFirewallPage() {
   const {
@@ -55,22 +49,22 @@ export default function GameFirewallPage() {
     if (index === 0) {
       return {
         label: ip,
-        onClick: () => navigate(`${urls.listing}?ip=${ip}`),
+        href: `${urls.listing}?ip=${ip}`,
       };
     }
     return index === 1
       ? {
           label: ipOnGame,
-          onClick: () => navigate(`${urls.listing}?ip=${ipOnGame}`),
+          href: `${urls.listing}?ip=${ipOnGame}`,
         }
       : { label: t('title') };
   };
 
   if (isError || isRulesError) {
     return (
-      <ErrorBanner
+      <Error
         error={{
-          ...(error || rulesError)?.response,
+          ...(error || rulesError),
           data: error || rulesError,
         }}
       />
@@ -80,24 +74,26 @@ export default function GameFirewallPage() {
   return (
     <>
       <BaseLayout
-        backLinkLabel={t('back_to', {
-          ns: NAMESPACES.ACTIONS,
-          value: `“${t('title', { ns: TRANSLATION_NAMESPACES.listing })}”`,
-        })}
-        onClickReturn={() => {
-          navigate(`${urls.listing}?${search.toString()}`);
+        backLink={{
+          label: t('back_to', {
+            ns: NAMESPACES.ACTIONS,
+            value: `“${t('title', { ns: TRANSLATION_NAMESPACES.listing })}”`,
+          }),
+          onClick: () => {
+            navigate(`${urls.listing}?${search.toString()}`);
+          },
         }}
         breadcrumb={<Breadcrumb mapper={breadcrumbMapper} />}
         header={{
           ...header,
-          headerButton: (
-            <GuideButton
+          guideMenu: (
+            <GuideMenu
               items={[
                 {
                   id: 0,
                   href: links.configureGameFirewall?.link,
                   target: '_blank',
-                  label: t('title'),
+                  children: t('title'),
                   onClick: () => {
                     trackClick({
                       actionType: 'action',
@@ -115,9 +111,8 @@ export default function GameFirewallPage() {
         }}
         message={<Notifications />}
       >
-        <OdsText className="mb-3 block">{t('description')}</OdsText>
-        <OdsText className="mb-3 block">{t('subDescription')}</OdsText>
-        <TopBar />
+        <Text className="mb-3 block">{t('description')}</Text>
+        <Text className="mb-6 block">{t('subDescription')}</Text>
         <RuleDatagrid />
       </BaseLayout>
       <StrategyModal />

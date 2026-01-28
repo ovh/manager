@@ -3,11 +3,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_ICON_NAME,
-  ODS_LINK_COLOR,
-  ODS_LINK_ICON_ALIGNMENT,
-} from '@ovhcloud/ods-components';
-import { OdsLink, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+  Icon,
+  Link,
+  Tooltip,
+  ICON_NAME,
+  TooltipTrigger,
+  TooltipContent,
+} from '@ovhcloud/ods-react';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -31,20 +33,19 @@ export const SurveyLink: React.FC = () => {
   const targetSurveyUrl = `${SURVEY_BASE_URL}?lang=${targetLanguage}&nic=${nic}`;
 
   return (
-    <>
-      <OdsLink
-        id="survey-link-tooltip-trigger"
-        href={targetSurveyUrl}
-        referrerpolicy="strict-origin-when-cross-origin"
-        target="_blank"
-        color={ODS_LINK_COLOR.primary}
-        label={t('survey_link')}
-        icon={ODS_ICON_NAME.emoticonSmile}
-        iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
-      />
-      <OdsTooltip triggerId="survey-link-tooltip-trigger" withArrow>
-        <OdsText className="p-2">{t('survey_link_tooltip')}</OdsText>
-      </OdsTooltip>
-    </>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Link
+          id="survey-link-tooltip-trigger"
+          href={targetSurveyUrl}
+          referrer-policy="strict-origin-when-cross-origin"
+          target="_blank"
+        >
+          <Icon name={ICON_NAME.emoticonSmile} className="mr-2" />
+          {t('survey_link')}
+        </Link>
+      </TooltipTrigger>
+      <TooltipContent withArrow>{t('survey_link_tooltip')}</TooltipContent>
+    </Tooltip>
   );
 };

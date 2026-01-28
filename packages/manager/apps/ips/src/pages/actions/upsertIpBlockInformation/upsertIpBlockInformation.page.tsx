@@ -5,19 +5,22 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
-  OdsInput,
-  OdsMessage,
-  OdsSelect,
-  OdsText,
-  OdsTextarea,
-} from '@ovhcloud/ods-components/react';
+  FormFieldLabel,
+  MESSAGE_COLOR,
+  MessageBody,
+  SelectControl,
+  FormField,
+  Input,
+  Message,
+  Select,
+  Text,
+  Textarea,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, SelectContent, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -45,15 +48,15 @@ export default function UpsertIpBlockInformation() {
   const { id } = useParams();
   const { trackClick, trackPage } = useOvhTracking();
   const { ipGroup: ip } = ipFormatter(fromIdToIp(id));
-  const { ipRipeInfo, isLoading: isRipeLoading } = useGetIpRipeInformation({
+  const { ipRipeInfo, loading: isRipeLoading } = useGetIpRipeInformation({
     ip,
   });
-  const { organisations, isLoading: isOrgLoading } = useGetOrganisationsList();
+  const { organisations, loading: isOrgLoading } = useGetOrganisationsList();
   const {
     organisationId,
     rirForOrganisation,
     hasOnGoingChangeRipeOrgTask,
-    isLoading: isOrganisationIdLoading,
+    loading: isOrganisationIdLoading,
   } = useGetIpOrganisation({ ip });
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { t } = useTranslation([TRANSLATION_NAMESPACES.ipBlockInformation]);
@@ -174,79 +177,84 @@ export default function UpsertIpBlockInformation() {
 
   return (
     <Modal
-      isOpen
-      isLoading={isRipeLoading || isOrgLoading || isOrganisationIdLoading}
-      onDismiss={closeModal}
+      loading={isRipeLoading || isOrgLoading || isOrganisationIdLoading}
+      onOpenChange={closeModal}
       heading={t('ipBlockInformationTitle')}
-      isPrimaryButtonLoading={isRipePending || isOrgPending}
-      primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={handleSubmit}
-      primaryButtonTestId="confirm-button"
-      onSecondaryButtonClick={closeModal}
-      secondaryButtonTestId="cancel-button"
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
+      primaryButton={{
+        label: t('validate', { ns: NAMESPACES.ACTIONS }),
+        onClick: handleSubmit,
+        loading: isRipePending || isOrgPending,
+        testId: 'confirm-button',
+      }}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: closeModal,
+        testId: 'cancel-button',
+      }}
     >
       <div className="space-y-3">
         <div>
-          <OdsText preset="caption" className="mb-2">
+          <Text preset="caption" className="mb-2">
             {t('ipBlockInformationSubtitle')}
-          </OdsText>
+          </Text>
         </div>
 
         <div>
-          <OdsFormField className="w-full">
-            <label slot="label">{t('ipBlockInformationNetNameLabel')}</label>
-            <OdsInput
+          <FormField className="w-full">
+            <FormFieldLabel>
+              {t('ipBlockInformationNetNameLabel')}
+            </FormFieldLabel>
+            <Input
               name="netname"
               value={netname}
-              onOdsChange={(e) => setNetname(e.detail.value as string)}
-              isDisabled={isRipePending}
+              onChange={(e) => setNetname(e.target.value)}
+              disabled={isRipePending}
             />
-          </OdsFormField>
+          </FormField>
         </div>
 
         <div>
-          <OdsFormField className="w-full">
-            <label slot="label">
+          <FormField className="w-full">
+            <FormFieldLabel>
               {t('ipBlockInformationDescriptionLabel')}
-            </label>
-            <OdsTextarea
+            </FormFieldLabel>
+            <Textarea
               name="description"
               value={description}
               rows={4}
-              onOdsChange={(e) => setDescription(e.detail.value)}
-              isDisabled={isRipePending}
+              onChange={(e) => setDescription(e.target.value)}
+              disabled={isRipePending}
             />
-          </OdsFormField>
+          </FormField>
         </div>
 
         <div>
-          <OdsFormField className="w-full">
-            <label slot="label">
+          <FormField className="w-full">
+            <FormFieldLabel>
               {t('ipBlockInformationOrganisationLabel')}
-            </label>
+            </FormFieldLabel>
             {hasOnGoingChangeRipeOrgTask ? (
-              <OdsMessage
-                isDismissible={false}
-                color={ODS_MESSAGE_COLOR.information}
-              >
-                {t('ipBlockInformationOrganisationOnGoingChange')}
-              </OdsMessage>
+              <Message dismissible={false} color={MESSAGE_COLOR.information}>
+                <MessageBody>
+                  {t('ipBlockInformationOrganisationOnGoingChange')}
+                </MessageBody>
+              </Message>
             ) : (
-              <OdsSelect
+              <Select
                 name="organisation"
-                value={organisation}
-                onOdsChange={(e) => setOrganisation(e.detail.value || '')}
-                isDisabled={isOrgPending}
+                value={[organisation]}
+                onValueChange={(e) => setOrganisation(e.value?.[0] || '')}
+                disabled={isOrgPending}
+                items={availableOrganisations?.map((org) => ({
+                  label: org,
+                  value: org,
+                }))}
               >
-                {availableOrganisations?.map((org) => (
-                  <option key={org} value={org}>
-                    {org}
-                  </option>
-                ))}
-              </OdsSelect>
+                <SelectContent />
+                <SelectControl />
+              </Select>
             )}
-          </OdsFormField>
+          </FormField>
         </div>
       </div>
     </Modal>

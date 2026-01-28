@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { isRegionInUs } from '@/components/RegionSelector/region-selector.utils';

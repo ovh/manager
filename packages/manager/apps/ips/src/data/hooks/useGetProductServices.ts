@@ -71,7 +71,7 @@ export const useGetProductServices = (
         }, {} as Record<string, ServiceInfoWithId[]>);
       return {
         data,
-        isLoading: results.some((result) => result.isLoading),
+        loading: results.some((result) => result.isLoading),
         isError: results.some((result) => result.error),
         error: results.find((result) => result.error)?.error,
       };
@@ -83,7 +83,7 @@ export const useGetProductServices = (
       ? Object.values(queriesResults.data).flatMap((service) => service)
       : [],
     serviceByCategory: queriesResults.data,
-    isLoading: queriesResults.isLoading,
+    loading: queriesResults.loading,
     isError: queriesResults.isError,
     error: queriesResults.error,
   };

@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
@@ -40,7 +40,7 @@ describe('IpRegion Component', () => {
   it('Should display all ip regions', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[3] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { getByText } = renderComponent({
       ip: ipDetailsList?.[3]?.ip,

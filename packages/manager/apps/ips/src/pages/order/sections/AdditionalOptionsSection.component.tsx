@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -47,9 +46,9 @@ export const AdditionalOptionsSection: React.FC = () => {
             );
           }}
         >
-          <OdsText preset={ODS_TEXT_PRESET.heading4}>
+          <Text preset={TEXT_PRESET.heading4}>
             <PriceDescription price={0} />
-          </OdsText>
+          </Text>
         </OptionCard>
       </div>
     </OrderSection>

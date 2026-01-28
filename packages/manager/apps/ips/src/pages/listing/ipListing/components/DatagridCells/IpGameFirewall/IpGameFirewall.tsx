@@ -32,7 +32,7 @@ export const IpGameFirewall = ({ ip, ipOnGame }: IpGameFirewallProps) => {
   const { isGroup, ipAddress } = ipFormatter(ip);
 
   // Check if ip is not cloud
-  const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
+  const { ipDetails, loading: isIpDetailsLoading } = useGetIpdetails({
     ip: isGroup && ipOnGame ? ipOnGame : ip,
   });
 
@@ -43,7 +43,7 @@ export const IpGameFirewall = ({ ip, ipOnGame }: IpGameFirewallProps) => {
     isGameFirewallAvailable(ipDetails);
 
   // Get game firewall info
-  const { isLoading, error } = useGetIpGameFirewall({
+  const { isLoading: loading, error } = useGetIpGameFirewall({
     ip,
     ipOnGame: ipOnGame || ipAddress,
     enabled,
@@ -51,7 +51,7 @@ export const IpGameFirewall = ({ ip, ipOnGame }: IpGameFirewallProps) => {
 
   return (
     <SkeletonCell
-      isLoading={isIpDetailsLoading || isLoading}
+      loading={isIpDetailsLoading || loading}
       enabled={(!isGroup || !!ipOnGame) && enabled}
       error={error}
       ip={ip}

@@ -4,18 +4,10 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  OdsTextareaChangeEventDetail,
-  OdsTextareaCustomEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsText,
-  OdsTextarea,
-} from '@ovhcloud/ods-components/react';
+import { FormField, FormFieldLabel, Text, Textarea } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { FormFieldHelper, Modal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -45,7 +37,7 @@ export default function UpsertDescriptionModal() {
   const [characterCount, setCharacterCount] = React.useState(0);
   const [description, setDescription] = React.useState<string>('');
 
-  const { ipDetails, isLoading } = useGetIpdetails({
+  const { ipDetails, loading } = useGetIpdetails({
     ip: ipGroup,
   });
 
@@ -79,58 +71,58 @@ export default function UpsertDescriptionModal() {
     setDescription(ipDetails?.description || '');
   }, [ipDetails?.description]);
 
-  const handleDescriptionChange = (
-    event: OdsTextareaCustomEvent<OdsTextareaChangeEventDetail>,
-  ) => {
-    const newValue = event.detail.value || '';
-    setDescription(newValue);
-    setCharacterCount(newValue.length);
-  };
-
   return (
     <Modal
-      isOpen
-      isLoading={isLoading}
-      onDismiss={closeModal}
+      loading={loading}
+      onOpenChange={closeModal}
       heading={
         ipDetails?.description
           ? t('listingActionEditDescription')
           : t('listingActionAddDescription')
       }
-      isPrimaryButtonLoading={upsertIpDescriptionPending}
-      primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['edit_description', 'confirm'],
-        });
-        upsertIpDescription();
+      primaryButton={{
+        label: t('validate', { ns: NAMESPACES.ACTIONS }),
+        testId: 'confirm-button',
+        loading: upsertIpDescriptionPending,
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['edit_description', 'confirm'],
+          });
+          upsertIpDescription();
+        },
       }}
-      primaryButtonTestId="confirm-button"
-      onSecondaryButtonClick={closeModal}
-      secondaryButtonTestId="cancel-button"
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        testId: 'cancel-button',
+        onClick: closeModal,
+      }}
     >
-      <OdsFormField className="mb-4 block" id="textarea-form-field">
-        <label slot="label">{t('listingUpsertDescription')}:</label>
-        <OdsText slot="visual-hint" preset="caption">
-          {characterCount}/{MAX_CHARACTERS}
-        </OdsText>
-        <OdsTextarea
+      <FormField className="mb-4 block" id="textarea-form-field">
+        <FormFieldLabel>{`${t('listingUpsertDescription')}:`}</FormFieldLabel>
+        <Textarea
           id="form-field-textarea"
           className="block pt-1"
           name="parent-ip"
-          isResizable
           rows={4}
-          maxlength={MAX_CHARACTERS}
+          maxLength={MAX_CHARACTERS}
           value={description}
-          onOdsChange={handleDescriptionChange}
+          onChange={(e) => {
+            const newValue = e.target.value || '';
+            setDescription(newValue);
+            setCharacterCount(newValue.length);
+          }}
           data-testid="textarea-form-field"
-          isReadonly={upsertIpDescriptionPending}
+          readOnly={upsertIpDescriptionPending}
         />
-      </OdsFormField>
+        <FormFieldHelper>
+          <Text preset="caption">
+            {characterCount}/{MAX_CHARACTERS}
+          </Text>
+        </FormFieldHelper>
+      </FormField>
     </Modal>
   );
 }

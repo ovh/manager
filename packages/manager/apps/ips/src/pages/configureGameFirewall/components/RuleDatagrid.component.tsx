@@ -2,10 +2,10 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+import { TABLE_SIZE } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { IpGameFirewallRule } from '@/data/api';
 import { TRANSLATION_NAMESPACES } from '@/utils';
@@ -15,10 +15,15 @@ import { ActionColumn } from './ActionColumn.component';
 import { GameProtocolColumn } from './GameProtocolColumn.component';
 import { EndPortColumn, StartPortColumn } from './PortColumn.component';
 import { StatusColumn } from './StatusColumn.component';
+import { TopBar } from './TopBar.component';
 
 export const RuleDatagrid: React.FC = () => {
-  const { isNewRuleRowDisplayed, isLoading, isRulesLoading, rules } =
-    React.useContext(GameFirewallContext);
+  const {
+    isNewRuleRowDisplayed,
+    loading,
+    isRulesLoading,
+    rules,
+  } = React.useContext(GameFirewallContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.gameFirewall,
     NAMESPACES.STATUS,
@@ -28,37 +33,49 @@ export const RuleDatagrid: React.FC = () => {
   const columns: DatagridColumn<IpGameFirewallRule & { isNew?: boolean }>[] = [
     {
       id: 'game-protocol',
+      accessorKey: 'protocol',
+      header: t('gameProtocolColumnLabel'),
       label: t('gameProtocolColumnLabel'),
-      cell: GameProtocolColumn,
+      cell: ({ row }) => <GameProtocolColumn {...row.original} />,
     },
     {
       id: 'start-port',
+      accessorKey: 'ports',
+      header: t('startPortColumnLabel'),
       label: t('startPortColumnLabel'),
-      cell: StartPortColumn,
+      cell: ({ row }) => <StartPortColumn {...row.original} />,
     },
     {
       id: 'end-port',
+      accessorKey: 'ports',
+      header: t('endPortColumnLabel'),
       label: t('endPortColumnLabel'),
-      cell: EndPortColumn,
+      cell: ({ row }) => <EndPortColumn {...row.original} />,
     },
     {
       id: 'status',
+      accessorKey: 'state',
+      header: t('status', { ns: NAMESPACES.STATUS }),
       label: t('status', { ns: NAMESPACES.STATUS }),
-      cell: StatusColumn,
+      cell: ({ row }) => <StatusColumn {...row.original} />,
     },
     {
       id: 'action',
+      accessorKey: 'id',
+      header: '',
       label: '',
-      cell: ActionColumn,
+      cell: ({ row }) => <ActionColumn {...row.original} />,
     },
   ];
 
   const datagrid = React.useMemo(() => {
     return (
       <Datagrid
-        size={ODS_TABLE_SIZE.sm}
+        size={TABLE_SIZE.sm}
+        topbar={<TopBar />}
+        containerHeight={(rules?.length + 2) * 50}
         columns={columns}
-        items={
+        data={
           (isNewRuleRowDisplayed
             ? [
                 { isNew: true } as IpGameFirewallRule & { isNew: boolean },
@@ -66,12 +83,11 @@ export const RuleDatagrid: React.FC = () => {
               ]
             : rules) || []
         }
-        totalItems={rules?.length + (isNewRuleRowDisplayed ? 1 : 0)}
-        isLoading={isLoading || isRulesLoading}
-        numberOfLoadingRows={5}
+        totalCount={rules?.length + (isNewRuleRowDisplayed ? 1 : 0)}
+        isLoading={loading || isRulesLoading}
       />
     );
-  }, [isNewRuleRowDisplayed, isLoading, isRulesLoading, JSON.stringify(rules)]);
+  }, [isNewRuleRowDisplayed, loading, isRulesLoading, JSON.stringify(rules)]);
 
   return datagrid;
 };

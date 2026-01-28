@@ -87,7 +87,7 @@ export const useIpEdgeNetworkFirewallRules = ({
       isError: ruleListQuery.isError || results?.some((query) => query.isError),
       error:
         ruleListQuery.error || results?.find((query) => query.error)?.error,
-      isLoading:
+      loading:
         ruleListQuery.isLoading || results?.some((query) => query.isLoading),
       data:
         results

@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { DatagridColumn } from '@ovh-ux/muk';
 
 import {
   IpActionsCell,
@@ -14,70 +15,98 @@ import {
   IpType,
   IpVmac,
 } from '../DatagridCells';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
-export const useIpDatagridColumns = () => {
-  const { t } = useTranslation('listing');
+export const useIpDatagridColumns = (): DatagridColumn<{ ip: string }>[] => {
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
 
   return [
     {
       id: 'ip',
-      label: t('listingColumnsIp'),
-      cell: IpCell,
+      accessorKey: 'ip',
+      header: t('listingColumnsIp'),
+      enableHiding: false,
+      cell: ({ row }) => <IpCell ip={row.original.ip} />,
     },
     {
       id: 'ip-type',
-      label: t('listingColumnsIpType'),
-      cell: IpType,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpType'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpType ip={getValue() as string} />,
     },
     {
       id: 'ip-alerts',
-      label: t('listingColumnsIpAlerts'),
-      cell: IpAlerts,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpAlerts'),
+      enableHiding: false,
+      cell: ({ getValue }) => (
+        <IpAlerts subIp={getValue() as string} ip={getValue() as string} />
+      ),
     },
     {
       id: 'ip-region',
-      label: t('listingColumnsIpRegion'),
-      cell: IpRegion,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpRegion'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpRegion ip={getValue() as string} />,
     },
     {
       id: 'ip-country',
-      label: t('listingColumnsIpCountry'),
-      cell: IpCountry,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpCountry'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpCountry ip={getValue() as string} />,
     },
     {
       id: 'ip-attached-service',
-      label: t('listingColumnsIpAttachedService'),
-      cell: IpAttachedService,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpAttachedService'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpAttachedService ip={getValue() as string} />,
     },
     {
       id: 'ip-reverse',
-      label: t('listingColumnsIpReverseDNS'),
-      cell: IpReverse,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpReverseDNS'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpReverse ip={getValue() as string} />,
     },
     {
       id: 'ip-vmac',
-      label: t('listingColumnsIpVMac'),
-      cell: IpVmac,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpVMac'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpVmac ip={getValue() as string} />,
     },
     {
       id: 'ip-ddos',
-      label: t('listingColumnsIpAntiDDos'),
-      cell: IpAntiDdos,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpAntiDDos'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpAntiDdos ip={getValue() as string} />,
     },
     {
       id: 'ip-edge-firewall',
-      label: t('listingColumnsIpEdgeFirewall'),
-      cell: IpEdgeFirewall,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpEdgeFirewall'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpEdgeFirewall ip={getValue() as string} />,
     },
     {
       id: 'ip-game-firewall',
-      label: t('listingColumnsIpGameFirewall'),
-      cell: IpGameFirewall,
+      accessorKey: 'ip',
+      header: t('listingColumnsIpGameFirewall'),
+      enableHiding: true,
+      cell: ({ getValue }) => <IpGameFirewall ip={getValue() as string} />,
     },
     {
       id: 'action',
-      label: '',
-      cell: IpActionsCell,
+      accessorKey: 'ip',
+      header: 'Actions',
+      enableHiding: false,
+      size: 40,
+      cell: ({ row }) => <IpActionsCell ip={row.original.ip} />,
     },
   ];
 };

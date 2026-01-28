@@ -33,7 +33,7 @@ export const IpEdgeFirewall = ({ ip, ipOnFirewall }: IpEdgeFirewallProps) => {
   );
 
   // Get edge firewall details
-  const { ipEdgeFirewall, isLoading, error } = useGetIpEdgeFirewall({
+  const { ipEdgeFirewall, loading, error } = useGetIpEdgeFirewall({
     ip,
     ipOnFirewall: ipOnFirewall ?? ipAddress,
     enabled,
@@ -41,7 +41,7 @@ export const IpEdgeFirewall = ({ ip, ipOnFirewall }: IpEdgeFirewallProps) => {
 
   return (
     <SkeletonCell
-      isLoading={isLoading}
+      loading={loading}
       enabled={enabled}
       error={error}
       ip={ipOnFirewall ?? ip}

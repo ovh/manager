@@ -35,11 +35,11 @@ export function useByoipAggregate({
     retry: false,
   });
 
-  const {
-    mutate,
-    isPending,
-    error: aggregateError,
-  } = useMutation<ApiResponse<IpTask>, ApiError, { aggregationIp: string }>({
+  const { mutate, isPending, error: aggregateError } = useMutation<
+    ApiResponse<IpTask>,
+    ApiError,
+    { aggregationIp: string }
+  >({
     mutationFn: ({ aggregationIp }) => postAggregate({ ip, aggregationIp }),
     onSuccess,
     onError,
@@ -47,7 +47,7 @@ export function useByoipAggregate({
 
   return {
     aggregate: data?.data ?? [],
-    isLoading,
+    loading: isLoading,
     error,
     postAggregate: mutate,
     isAggregatePending: isPending,
@@ -80,11 +80,11 @@ export function useByoipSlice({
     retry: false,
   });
 
-  const {
-    mutate,
-    isPending,
-    error: slicingError,
-  } = useMutation<ApiResponse<IpTask>, ApiError, { slicingSize: number }>({
+  const { mutate, isPending, error: slicingError } = useMutation<
+    ApiResponse<IpTask>,
+    ApiError,
+    { slicingSize: number }
+  >({
     mutationFn: ({ slicingSize }) => postSlice({ ip, slicingSize }),
     onSuccess,
     onError,
@@ -92,7 +92,7 @@ export function useByoipSlice({
 
   return {
     slice: data?.data ?? [],
-    isLoading,
+    loading: isLoading,
     error,
     postSlice: mutate,
     isSlicePending: isPending,

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { Link } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -36,7 +35,7 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
   const [serviceUrl, setServiceUrl] = useState<string>();
   const { trackClick } = useOvhTracking();
 
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const { ipDetails, loading } = useGetIpdetails({ ip });
   const { isVrackTasksLoading, hasOnGoingVrackMoveTasks } = useVrackMoveTasks({
     ip,
     serviceName: ipDetails?.routedTo?.serviceName,
@@ -59,8 +58,8 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
 
   return (
     <SkeletonCell
-      isLoading={
-        isLoading ||
+      loading={
+        loading ||
         isTasksLoading ||
         isVrackTasksLoading ||
         hasOnGoingMoveIpTask ||
@@ -70,11 +69,9 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
       {ipDetails?.routedTo?.serviceName ? (
         <>
           {serviceUrl ? (
-            <OdsLink
+            <Link
               target="_blank"
               href={serviceUrl}
-              color={ODS_LINK_COLOR.primary}
-              label={ipDetails.routedTo.serviceName}
               onClick={() => {
                 trackClick({
                   location: PageLocation.datagrid,
@@ -83,7 +80,9 @@ export const IpAttachedService = ({ ip }: IpAttachedServiceProps) => {
                   actions: ['details_attached-service'],
                 });
               }}
-            />
+            >
+              {ipDetails.routedTo.serviceName}
+            </Link>
           ) : (
             ipDetails.routedTo.serviceName
           )}

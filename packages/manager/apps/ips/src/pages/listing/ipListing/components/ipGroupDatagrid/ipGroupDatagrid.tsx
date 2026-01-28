@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Row } from '@tanstack/react-table';
+import { Row, VisibilityState } from '@tanstack/react-table';
 
-import { Datagrid } from '@ovh-ux/manager-react-components';
+import { Datagrid } from '@ovh-ux/muk';
 
 import {
   useByoipSlice,
@@ -20,22 +20,24 @@ import { useIpGroupDatagridColumns } from './useIpGroupDatagridColumns';
 type IpGroupDatagridProps = {
   row: Row<{ ip: string }>;
   parentHeaders?: React.MutableRefObject<Record<string, HTMLTableCellElement>>;
+  columnVisibility?: VisibilityState;
 };
 
 export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
   row,
   parentHeaders,
+  columnVisibility,
 }) => {
-  const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
+  const { ipDetails, loading: isIpDetailsLoading } = useGetIpdetails({
     ip: row.original.ip,
   });
 
-  const { slice, isLoading: isByoipSliceLoading } = useByoipSlice({
+  const { slice, loading: isByoipSliceLoading } = useByoipSlice({
     ip: row.original.ip,
     enabled: !!ipDetails?.bringYourOwnIp,
   });
 
-  const { columns, isLoading } = useIpGroupDatagridColumns({
+  const { columns, loading } = useIpGroupDatagridColumns({
     parentIp: row.original.ip,
     parentHeaders,
     serviceName: ipDetails?.routedTo?.serviceName,
@@ -69,17 +71,16 @@ export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
   return (
     <Datagrid
       columns={columns}
-      items={ipList}
-      totalItems={ipList?.length}
+      data={ipList?.map((ip) => ({ ip })) || []}
+      totalCount={ipList?.length}
       hideHeader
-      tableLayoutFixed
+      columnVisibility={{ columnVisibility, setColumnVisibility: () => {} }}
       isLoading={
-        isLoading ||
+        loading ||
         isIpDetailsLoading ||
         isByoipSliceLoading ||
         isIpReverseLoading
       }
-      numberOfLoadingRows={1}
     />
   );
 };

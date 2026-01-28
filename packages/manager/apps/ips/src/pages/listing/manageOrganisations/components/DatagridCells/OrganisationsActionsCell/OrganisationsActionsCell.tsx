@@ -1,12 +1,10 @@
-import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_VARIANT, ICON_NAME } from '@ovhcloud/ods-react';
 
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -21,7 +19,7 @@ export const OrganisationsActionsCell = (organisation: OrgDetails) => {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     {
       id: 1,
       label: t('manageOrganisationsTabEditOrgAction'),
@@ -65,8 +63,8 @@ export const OrganisationsActionsCell = (organisation: OrgDetails) => {
       id={`manageOrgActionMenu-${organisation?.registry}-${organisation?.organisationId}`}
       items={items}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
-      icon={ODS_ICON_NAME.ellipsisVertical}
+      variant={BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
     />
   );
 };

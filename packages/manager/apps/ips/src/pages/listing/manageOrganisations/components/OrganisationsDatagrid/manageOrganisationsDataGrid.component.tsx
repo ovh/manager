@@ -4,14 +4,9 @@ import { Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_SPINNER_SIZE, ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { SPINNER_SIZE, TABLE_SIZE, Spinner } from '@ovhcloud/ods-react';
 
-import {
-  DataGridTextCell,
-  Datagrid,
-  DatagridColumn,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { OrgDetails } from '@/data/api';
 import { useGetOrganisationsDetails } from '@/data/hooks/organisation';
@@ -23,60 +18,59 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
   const { t } = useTranslation('manage-organisations');
   const pageSize = 10;
   const [numberOfPageDisplayed, setNumberOfPageDisplayed] = useState(1);
-  const { data: orgDetails, isLoading } = useGetOrganisationsDetails({
+  const { data: orgDetails, loading } = useGetOrganisationsDetails({
     enabled: true,
   });
   const paginatedOrgList = useMemo(() => {
-    if (!orgDetails || isLoading) return [];
+    if (!orgDetails || loading) return [];
 
     return orgDetails.slice(0, pageSize * numberOfPageDisplayed) || [];
-  }, [numberOfPageDisplayed, isLoading, orgDetails]);
+  }, [numberOfPageDisplayed, loading, orgDetails]);
 
   const columns: DatagridColumn<OrgDetails>[] = [
     {
       id: 'organisationId',
+      accessorKey: 'organisationId',
       label: t('manageOrganisationsTabOrganisaton'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{org?.organisationId}</DataGridTextCell>
-      ),
+      cell: ({ getValue }) => <>{getValue() as string}</>,
     },
     {
       id: 'type',
+      accessorKey: 'registry',
       label: t('manageOrganisationsTabType'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{org?.registry}</DataGridTextCell>
-      ),
+      cell: ({ getValue }) => <>{getValue() as string}</>,
     },
     {
       id: 'name',
+      accessorKey: 'firstname',
       label: t('manageOrganisationsTabSurname'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{`${org?.firstname} ${org?.lastname}`}</DataGridTextCell>
+      cell: ({ row }) => (
+        <>{`${row.original?.firstname} ${row.original?.lastname}`}</>
       ),
     },
     {
       id: 'email',
+      accessorKey: 'abuse_mailbox',
       label: t('manageOrganisationsTabEmail'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{org?.abuse_mailbox}</DataGridTextCell>
-      ),
+      cell: ({ getValue }) => <>{getValue() as string}</>,
     },
     {
       id: 'phone',
+      accessorKey: 'phone',
       label: t('manageOrganisationsTabPhone'),
-      cell: (org: OrgDetails) => (
-        <DataGridTextCell>{org?.phone}</DataGridTextCell>
-      ),
+      cell: ({ getValue }) => <>{getValue() as string}</>,
     },
     {
       id: 'address',
+      accessorKey: 'address',
       label: t('manageOrganisationsTabAddress'),
-      cell: DatagridAddressCell,
+      cell: ({ row }) => <DatagridAddressCell {...row.original} />,
     },
     {
       id: 'action',
+      accessorKey: 'organisationId',
       label: '',
-      cell: DatagridActionCell,
+      cell: ({ row }) => <DatagridActionCell {...row.original} />,
     },
   ];
 
@@ -86,23 +80,19 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
 
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <div>
-          <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
+          <Spinner size={SPINNER_SIZE.lg} />
         </div>
       ) : (
         <>
           <Datagrid
-            className="-mx-6 pb-[200px]"
-            size={ODS_TABLE_SIZE.sm}
+            size={TABLE_SIZE.sm}
             columns={columns}
-            items={paginatedOrgList}
-            totalItems={orgDetails?.length}
-            numberOfLoadingRows={10}
+            data={paginatedOrgList}
+            totalCount={orgDetails?.length}
             onFetchNextPage={loadMoreOrgs}
             hasNextPage={numberOfPageDisplayed * pageSize < orgDetails?.length}
-            resetExpandedRowsOnItemsChange={true}
-            noResultLabel={t('manageOrganisationsTabNodata')}
           />
           <Outlet />
         </>

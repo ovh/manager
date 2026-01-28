@@ -7,7 +7,7 @@ import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 export type IpVmacFilterByIpProps = {
   ip: string;
   vmacsWithIp: VmacWithIpType[];
-  isLoading?: boolean;
+  loading?: boolean;
   enabled?: boolean;
 };
 
@@ -26,7 +26,7 @@ export type IpVmacFilterByIpProps = {
 export const IpVmacFilterByIp = ({
   ip,
   vmacsWithIp,
-  isLoading,
+  loading,
   enabled = true,
 }: IpVmacFilterByIpProps) => {
   const vmac = vmacsWithIp.find((vmacs) =>
@@ -34,7 +34,7 @@ export const IpVmacFilterByIp = ({
   );
 
   return (
-    <SkeletonCell isLoading={isLoading} enabled={enabled} ip={ip}>
+    <SkeletonCell loading={loading} enabled={enabled} ip={ip}>
       {!enabled && null}
       {enabled && !vmac && <>-</>}
       {enabled && !!vmac && <div>{vmac.macAddress}</div>}

@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { OdsInput } from '@ovhcloud/ods-components/react';
+import { INPUT_TYPE, Input } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -59,20 +58,20 @@ export const IpFilter = ({ className }: { className?: string }) => {
 
   return (
     <form className={className} onSubmit={onSubmit}>
-      <OdsInput
+      <Input
         className="w-full"
         data-testid="search-ip"
         name="search-ip"
-        type={ODS_INPUT_TYPE.search}
-        onOdsChange={(e) => setInputValue(e.detail.value as string)}
+        type={INPUT_TYPE.search}
+        onChange={(e) => setInputValue(e.target.value)}
         value={inputValue}
-        isClearable
+        clearable
         placeholder={t('listingFilterIp')}
         onKeyDown={handleEnterAndEscapeKeyDown({
           onEnter: onSubmit,
           onEscape: onClear,
         })}
-        onOdsClear={onClear}
+        onClear={onClear}
       />
     </form>
   );

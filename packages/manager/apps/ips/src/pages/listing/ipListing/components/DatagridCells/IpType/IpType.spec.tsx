@@ -5,7 +5,7 @@ import { render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { getOdsBadgeByLabel } from '@/test-utils';
+import { getBadgeByLabel } from '@/test-utils';
 import '@/test-utils/setupUnitTests';
 
 import { IpType, IpTypeProps } from './IpType';
@@ -16,7 +16,7 @@ const queryClient = new QueryClient();
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
@@ -41,7 +41,7 @@ describe('IpType Component', () => {
   it('Should display ip type', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { getByText } = renderComponent({
       ip: ipDetailsList?.[0]?.ip,
@@ -56,7 +56,7 @@ describe('IpType Component', () => {
   it('Should display parking badge', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[1] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { getByText, container } = renderComponent({
       ip: ipDetailsList?.[1]?.ip,
@@ -66,7 +66,7 @@ describe('IpType Component', () => {
         getByText(`listingColumnsType_${ipDetailsList?.[1]?.type}`),
       ).toBeDefined();
     });
-    await getOdsBadgeByLabel({
+    await getBadgeByLabel({
       container,
       label: 'listingColumnsTypeBadgeParked',
     });
@@ -75,7 +75,7 @@ describe('IpType Component', () => {
   it('Should display assigned badge', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[2] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { getByText, container } = renderComponent({
       ip: ipDetailsList?.[2]?.ip,
@@ -85,7 +85,7 @@ describe('IpType Component', () => {
         getByText(`listingColumnsType_${ipDetailsList?.[2]?.type}`),
       ).toBeDefined();
     });
-    await getOdsBadgeByLabel({
+    await getBadgeByLabel({
       container,
       label: 'listingColumnsTypeBadgeAssigned',
     });

@@ -1,9 +1,6 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { Button, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -43,11 +40,10 @@ export function ModalButtonGroup({
   const { trackClick } = useOvhTracking();
 
   return (
-    <div className="z-[2] mt-4 flex gap-4" slot="actions">
+    <div className="z-[2] mt-4 flex gap-4">
       {onCancel && (
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.outline}
-          label={t('cancel')}
+        <Button
+          variant={BUTTON_VARIANT.outline}
           onClick={() => {
             trackClick({
               location: PageLocation.popup,
@@ -61,12 +57,13 @@ export function ModalButtonGroup({
             });
             onCancel?.();
           }}
-        />
+        >
+          {t('cancel')}
+        </Button>
       )}
       {onPrevious && (
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.ghost}
-          label={t('previous')}
+        <Button
+          variant={BUTTON_VARIANT.ghost}
           onClick={() => {
             trackClick({
               location: PageLocation.popup,
@@ -80,13 +77,14 @@ export function ModalButtonGroup({
             });
             onPrevious?.();
           }}
-        />
+        >
+          {t('previous')}
+        </Button>
       )}
       {onNext && (
-        <OdsButton
-          label={t('next')}
-          isDisabled={isNextButtonDisabled}
-          isLoading={isNextButtonLoading}
+        <Button
+          disabled={isNextButtonDisabled}
+          loading={isNextButtonLoading}
           onClick={() => {
             trackClick({
               location: PageLocation.popup,
@@ -96,11 +94,12 @@ export function ModalButtonGroup({
             });
             onNext?.();
           }}
-        />
+        >
+          {t('next')}
+        </Button>
       )}
       {onConfirm && (
-        <OdsButton
-          label={t('confirm')}
+        <Button
           onClick={() => {
             trackClick({
               location: PageLocation.popup,
@@ -114,7 +113,9 @@ export function ModalButtonGroup({
             });
             onConfirm?.();
           }}
-        />
+        >
+          {t('confirm')}
+        </Button>
       )}
     </div>
   );
