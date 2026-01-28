@@ -4,8 +4,8 @@
     "label": "Scegli un nome per il tuo file di condivisione",
     "info": "Deve contenere solo numeri, lettere, underscore, trattini o punti e non superare i 255 caratteri.",
     "error": {
-      "required": "Il nome della condivisione non può essere vuoto. Si prega di inserire un nome.",
-      "max_length": "Formato del nome non valido",
+      "too_small": "Il nome della condivisione non può essere vuoto. Si prega di inserire un nome.",
+      "too_big": "Formato del nome non valido",
       "invalid_format": "Formato del nome non valido"
     }
   },

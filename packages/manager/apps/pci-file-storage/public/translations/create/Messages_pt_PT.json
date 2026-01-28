@@ -4,8 +4,8 @@
     "label": "Escolha um nome para o seu arquivo de partilha",
     "info": "Deve conter apenas números, letras, underscores, hífens ou pontos e não exceder 255 caracteres.",
     "error": {
-      "required": "O nome do share não pode estar vazio. Por favor, insira um nome.",
-      "max_length": "Formato de nome inválido",
+      "too_small": "O nome do share não pode estar vazio. Por favor, insira um nome.",
+      "too_big": "Formato de nome inválido",
       "invalid_format": "Formato de nome inválido"
     }
   },

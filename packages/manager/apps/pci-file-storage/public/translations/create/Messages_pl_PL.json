@@ -4,8 +4,8 @@
     "label": "Wybierz nazwę dla swojego pliku udostępnienia",
     "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki i nie przekraczać 255 znaków.",
     "error": {
-      "required": "Nazwa udostępnienia nie może być pusta. Proszę wpisać nazwę.",
-      "max_length": "Nieprawidłowy format nazwy",
+      "too_small": "Nazwa udostępnienia nie może być pusta. Proszę wpisać nazwę.",
+      "too_big": "Nieprawidłowy format nazwy",
       "invalid_format": "Nieprawidłowy format nazwy"
     }
   },
