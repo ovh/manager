@@ -1,19 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet, Route, useParams } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { DeleteModal, ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/domain/routes/routes.constant';
+import { urls as zoneUrls } from '@/zone/routes/routes.constant';
 import WebHostingOrderPage from '../pages/domainTabs/generalInformations/webhostingOrder';
-import ZoneLayout from '@/zone/pages/Layout';
-import ZonePage from '@/zone/pages/zone/Zone.page';
-import HistoryPage from '@/zone/pages/zone/history/History.page';
-import ResetModal from '@/zone/pages/zone/reset/Reset.modal';
-import DeleteModal from '@/zone/pages/zone/delete/Delete.modal';
-import AddEntryModal from '@/zone/pages/zone/add/AddEntry.modal';
-import ModifyEntryModal from '@/zone/pages/zone/modify/ModifyEntry.modal';
-import ModifyTtlModal from '@/zone/pages/zone/modify/ModifyTtl.modal';
-import DeleteEntryModal from '@/zone/pages/zone/delete/DeleteEntry.modal';
-import ModifyTextualRecordModal from '@/zone/pages/zone/modify/ModifyTextualRecord.modal';
+
 
 const LayoutPage = React.lazy(() => import('@/domain/pages/layout'));
 const DomainListingPage = React.lazy(() =>
@@ -55,7 +47,39 @@ const ContactManagementPage = React.lazy(() =>
 const DsRecordListingPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dsRecords/dsRecordsListing'),
 );
+// zone routes and pages
+const ZoneLayout = React.lazy(() =>
+  import('@/zone/pages/Layout'),
+);
+const ZonePage = React.lazy(() =>
+  import('@/zone/pages/zone/Zone.page'),
+);
+const HistoryPage = React.lazy(() =>
+  import('@/zone/pages/zone/history/History.page'),
+);
+const ResetModal = React.lazy(() =>
+  import('@/zone/pages/zone/reset/Reset.modal'),
+);
+ZoneLayout 
 
+const AddEntryModal = React.lazy(() =>
+  import('@/zone/pages/zone/add/AddEntry.modal'),
+);
+const ModifyEntryModal = React.lazy(() =>
+  import('@/zone/pages/zone/modify/ModifyEntry.modal'),
+);
+const DeleteEntryModal = React.lazy(() =>
+  import('@/zone/pages/zone/delete/DeleteEntry.modal'),
+);
+const ModifyTextualRecordModal = React.lazy(() =>
+  import('@/zone/pages/zone/modify/ModifyTextualRecord.modal'),
+);
+const ActivateZonePage = React.lazy(() =>
+  import('@/zone/pages/zone/activate/ActivateZone.page'),
+);
+const ModifyTtlModal = React.lazy(() =>
+  import('@/zone/pages/zone/modify/ModifyTtl.modal'),
+);
 function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
@@ -110,14 +134,16 @@ export default (
           Component={GeneralInformationsPage}
         />
         <Route path={urls.domainTabZone} Component={ZoneLayout}>
-          <Route path="history" Component={HistoryPage} id="zoneHistory" handle={{ isOverridePage: true}}/>
-            <Route path="add-entry" Component={AddEntryModal} id="zoneAddEntry" handle={{ isOverridePage: true}}/>
-            <Route path="delete" Component={DeleteModal} id="zoneDelete" handle={{ isOverridePage: true}}/>
-            <Route path="delete-entry" Component={DeleteEntryModal} id="zoneDeleteEntry" handle={{ isOverridePage: true}}/>
-            <Route path="modify-entry" Component={ModifyEntryModal} id="zoneModifyEntry" handle={{ isOverridePage: true}}/>
-            <Route path="modify-textual-record" Component={ModifyTextualRecordModal} id="zoneModifyTextualRecord" handle={{ isOverridePage: true}}/>
-            <Route path="modify-ttl" Component={ModifyTtlModal} id="zoneModifyTtlRecord" handle={{ isOverridePage: true}} />
-            <Route path="reset" Component={ResetModal} id="zoneReset" handle={{ isOverridePage: true}}/>
+          <Route path={zoneUrls.zoneRoot} Component={ZonePage}/>
+          <Route path={zoneUrls.zoneActivate} Component={ActivateZonePage}/>
+          <Route path={zoneUrls.zoneHistory} Component={HistoryPage}/>
+            <Route path={zoneUrls.zoneAddEntry} Component={AddEntryModal} />
+            <Route path={zoneUrls.zoneDelete} Component={DeleteModal} />
+            <Route path={zoneUrls.zoneDeleteEntry} Component={DeleteEntryModal} />
+            <Route path={zoneUrls.zoneModifyEntry} Component={ModifyEntryModal} />
+            <Route path={zoneUrls.zoneModifyTextualRecord} Component={ModifyTextualRecordModal} />
+            <Route path={zoneUrls.zoneModifyTtlRecord} Component={ModifyTtlModal} />
+            <Route path={zoneUrls.zoneReset} Component={ResetModal} />
         </Route>
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />

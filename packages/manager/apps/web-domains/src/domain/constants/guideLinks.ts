@@ -9,9 +9,11 @@ export enum GuideNameEnum {
   TRANSFER_LINK = 'TRANSFER_LINK',
   ORDER_API_LINK = 'ORDER_API_LINK',
   FAQ_LINK = 'FAQ_LINK',
+  DNS_ZONE = 'DNS_ZONE',
+  DNS_HISTORY = 'DNS_HISTORY',
 }
 
-export const helpRoot = 'https://help.ovhcloud.com/csm/';
+const helpRoot = 'https://help.ovhcloud.com/csm/';
 
 export interface Links {
   [key: string]: string;
@@ -32,6 +34,7 @@ export interface Links {
   PT?: string;
   QC?: string;
   SG?: string;
+  AU?: string;
   SN?: string;
   TN?: string;
 }
@@ -39,12 +42,14 @@ export interface Links {
 export const Languages = {
   DEFAULT: 'en-ie',
   ASIA: 'asia',
+  AU: 'en-au',
   CA: 'en-ca',
   DE: 'de',
   ES: 'es-es',
   FR: 'fr',
   GB: 'en-gb',
   IN: 'en-in',
+  IE: 'en-ie',
   IT: 'it',
   LT: 'es',
   MA: 'fr',
@@ -58,16 +63,16 @@ export const Languages = {
 } as const;
 
 export type LanguageKey = keyof typeof Languages;
-export type ArticleGuide = {
+type ArticleGuide = {
   type: 'article';
   target: string;
   articles: Record<LanguageKey, string>;
 };
-export type CategoryGuide = {
+type CategoryGuide = {
   type: 'category';
   suffix: string;
 };
-export type GuideConfig = ArticleGuide | CategoryGuide;
+type GuideConfig = ArticleGuide | CategoryGuide;
 
 const guides: Record<GuideNameEnum, GuideConfig> = {
   [GuideNameEnum.DOMAINS_LINK]: {
@@ -81,11 +86,13 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
     articles: {
       DEFAULT: 'KB0051745',
       ASIA: 'KB0039681',
+      AU: '',
       CA: 'KB0051746',
       DE: 'KB0051751',
       ES: 'KB0051755',
       FR: 'KB0051754',
       GB: 'KB0051749',
+      IE: '',
       IN: 'KB0069751',
       IT: 'KB0051762',
       LT: 'KB0051758',
@@ -103,13 +110,15 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
     type: 'article',
     target: '-dns-servers-edit',
     articles: {
-      DEFAULT: 'KB0063603',
+      DEFAULT: 'KB0063603', 
       ASIA: 'KB0063601',
+      AU: '',
       CA: 'KB0063613',
       DE: 'KB0063611',
       ES: 'KB0063604',
       FR: 'KB0063455',
       GB: 'KB0063607',
+      IE: '',
       IN: 'KB0069726',
       IT: 'KB0063610',
       LT: 'KB0063599',
@@ -129,11 +138,13 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
     articles: {
       DEFAULT: 'KB0029780',
       ASIA: 'KB0042824',
+      AU: '',
       CA: 'KB0042827',
       DE: 'KB0042837',
       ES: 'KB0042847',
       FR: 'KB0042839',
       GB: 'KB0042838',
+      IE: '',
       IN: 'KB0067855',
       IT: 'KB0042846',
       LT: 'KB0042849',
@@ -153,11 +164,13 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
     articles: {
       DEFAULT: 'KB0039746',
       ASIA: 'KB0051804',
+      AU: '',
       CA: 'KB0051807',
       DE: 'KB0051806',
       ES: 'KB0051816',
       FR: 'KB0051808',
       GB: 'KB0051799',
+      IE: '',
       IN: 'KB0069758',
       IT: 'KB0051809',
       LT: 'KB0051800',
@@ -177,11 +190,13 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
     articles: {
       DEFAULT: 'KB0051562',
       ASIA: 'KB0039482',
+      AU: '',
       CA: 'KB0051558',
       DE: 'KB0051556',
       ES: 'KB0051564',
       FR: 'KB0051566',
       GB: 'KB0051560',
+      IE: '',
       IN: 'KB0069711',
       IT: 'KB0051570',
       LT: 'KB0051569',
@@ -201,11 +216,13 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
     articles: {
       DEFAULT: 'KB0072951',
       ASIA: 'KB0072954',
+      AU: '',
       CA: 'KB0072950',
       DE: 'KB0072949',
       ES: 'KB0072952',
       FR: 'KB0072959',
       GB: 'KB0072955',
+      IE: '',
       IN: 'KB0072956',
       IT: 'KB0072960',
       LT: 'KB0072947',
@@ -219,34 +236,85 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
       TN: 'KB0072959',
     },
   },
-};
+    [GuideNameEnum.DNS_ZONE]: {
+      type: 'article',
+      target: '-dns-edit-dns-zone',
+      articles: {
+        DEFAULT: 'KB0051682',
+        ASIA: 'KB0039681',
+        AU: 'KB0051673',
+        CA: 'KB0051675',
+        DE: 'KB0051668',
+        ES: 'KB0051692',
+        FR: 'KB0051684',
+        GB: 'KB0039608',
+        IE: 'KB0051685',
+        IN: 'KB0069751',
+        IT: 'KB0051687',
+        LT: 'KB0051685',
+        MA: 'KB0051684',
+        NL: 'KB0051682',
+        PL: 'KB0051689',
+        PT: 'KB0051694',
+        QC: 'KB0051686',
+        SG: 'KB0051681',
+        SN: 'KB0051684',
+        TN: 'KB0051684',
+      },
+    },
+    [GuideNameEnum.DNS_HISTORY]: {
+      type: 'article',
+      target: 'fr-dns-zone-history',
+      articles: {
+        DEFAULT: 'KB0051682',
+        ASIA: 'KB0061053',
+        AU: 'KB0061043',
+        CA: 'KB0061050',
+        DE: 'KB0061048',
+        ES: 'KB0061051',
+        FR: 'KB0061056',
+        GB: 'KB0061045',
+        IE: 'KB0061055',
+        IN: 'KB0069739',
+        IT: 'KB0061049',
+        LT: 'KB0061044',
+        MA: 'KB0061056',
+        NL: 'KB0051682',
+        PL: 'KB0061052',
+        PT: 'KB0061047',
+        QC: 'KB0061057',
+        SG: 'KB0061054',
+        SN: 'KB0061056',
+        TN: 'KB0061056',
+      } as Record<LanguageKey, string>,
+    },
+  };
 
-export const buildLinksByLanguage = <T extends string>(
-  guides: Record<T, GuideConfig>,
-  languages: Record<string, string>,
-): Record<string, Record<T, string>> =>
+
+const buildLinksByLanguage = (
+  guides: Record<GuideNameEnum, GuideConfig>,
+): Record<string, Record<GuideNameEnum, string>> =>
   Object.fromEntries(
-    (Object.keys(languages) as string[]).map((lang) => {
-      const urls: Record<T, string> = {} as Record<T, string>;
-      for (const [guideKey, config] of Object.entries(guides) as [
-        string,
-        GuideConfig,
-      ][]) {
+    (Object.keys(Languages) as LanguageKey[]).map((lang) => {
+      const urls: Record<GuideNameEnum, string> = {} as Record<
+        GuideNameEnum,
+        string
+      >;
+      for (const [guideKey, config] of Object.entries(guides)) {
         if (config.type === 'category') {
-          urls[guideKey as T] = `${helpRoot}${languages[lang]}${config.suffix}`;
+          urls[
+            guideKey as GuideNameEnum
+          ] = `${helpRoot}${Languages[lang]}${config.suffix}`;
         } else {
-          const articleKey =
-            (config.articles as Record<string, string>)[lang] ??
-            config.articles.DEFAULT;
-          urls[guideKey as T] =
-            `${helpRoot}${languages[lang]}${config.target}?id=kb_article_view&sysparm_article=` +
-            articleKey;
+          urls[guideKey as GuideNameEnum] =
+            `${helpRoot}${Languages[lang]}${config.target}?id=kb_article_view&sysparm_article=` +
+            (config.articles[lang] || config.articles.DEFAULT);
         }
       }
       return [lang, urls];
     }),
-  ) as Record<string, Record<T, string>>;
-export const LINKS_BY_LANGUAGE = buildLinksByLanguage(guides, Languages);
+  ) as Record<LanguageKey, Record<GuideNameEnum, string>>;
+export const LINKS_BY_LANGUAGE = buildLinksByLanguage(guides);
 
 export const useLinks = (language: Subsidiary): Record<GuideNameEnum, string> =>
   useMemo(() => LINKS_BY_LANGUAGE[language] || LINKS_BY_LANGUAGE.DEFAULT, [

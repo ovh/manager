@@ -1,19 +1,20 @@
-import { z } from "zod/v4";
 
 export const urls = {
-  zoneRoot: "/zone",
+  zoneRoot: "/domain/:serviceName/zone",
+  //activate zone
+  zoneActivate: "/domain/:serviceName/zone/activate",
   //entry
-  zoneAddEntry: "/zone/add-entry",
-  zoneModifyEntry: "/zone/modify-entry",
-  zoneDeleteEntry: "/zone/delete-entry",
+  zoneAddEntry: "/domain/:serviceName/zone/add-entry",
+  zoneModifyEntry: "/domain/:serviceName/zone/modify-entry",
+  zoneDeleteEntry: "/domain/:serviceName/zone/delete-entry",
   // modify 
-  zoneModifyTextualRecord: "/zone/modify-textual-record",
-  zoneModifyTtlRecord: "/zone/modify-ttl",
+  zoneModifyTextualRecord: "/domain/:serviceName/zone/modify-textual-record",
+  zoneModifyTtlRecord: "/domain/:serviceName/zone/modify-ttl",
   // history 
-  zoneHistory: "/zone/history",
+  zoneHistory: "/domain/:serviceName/zone/history",
   // reset 
-  zoneReset: "/zone/reset",
+  zoneReset: "/domain/:serviceName/zone/reset",
   // delete 
-  zoneDelete: "/zone/delete",
+  zoneDelete: "/domain/:serviceName/zone/delete",
 
 };

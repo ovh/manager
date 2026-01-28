@@ -52,33 +52,14 @@ export default function ServiceDetailsTabs({
   };
 
   useEffect(() => {
-    const pathSegments = location.pathname.split('/').filter(Boolean);
-    const domainIndex = pathSegments.indexOf('domain');
-    
-    let tab = 'information';
-    
-    if (domainIndex !== -1 && pathSegments.length > domainIndex + 2) {
-      // Get the tab value (should be after /domain/:serviceName)
-      const tabValue = pathSegments[domainIndex + 2];
-      
-      // Check if this tab value exists in our tabs
-      const foundTab = ServiceDetailTabsProps.find(
-        (tabName) => tabName.value === tabValue,
-      );
-      
-      if (foundTab) {
-        tab = foundTab.value;
-      }
-    } else if (domainIndex !== -1 && pathSegments.length === domainIndex + 2) {
-      // We're on /domain/:serviceName, default to information
-      tab = 'information';
-    }
+    const tab =ServiceDetailTabsProps.find((tabName) =>
+      location.pathname.endsWith(tabName.value),
+    )?.value || 'information';
     
     if (location.pathname) {
       setValue(tab);
     }
 
-    // Clear notifications on location change
     clearNotifications();
   }, [location.pathname]);
 

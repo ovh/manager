@@ -10,55 +10,20 @@ vi.mock('@/domain/hooks/data/query', () => ({
   useGetSubDomainsAndMultiSites: vi.fn(),
 }));
 
-interface MockLinkProps {
-  href?: string;
-  children?: ReactNode;
-}
-
-interface MockTextProps {
-  children?: ReactNode;
-}
-
-vi.mock('@ovhcloud/ods-react', () => ({
-  Link: ({ href, children }: MockLinkProps) => (
-    <a href={href} data-testid="subdomain-link">
-      {children}
-    </a>
-  ),
-  Text: ({ children }: MockTextProps) => (
-    <span data-testid="text">{children}</span>
-  ),
-  Icon: ({ name }: { name?: string }) => <span data-testid="icon">{name}</span>,
-  ICON_NAME: {
-    externalLink: 'external-link',
-  },
-}));
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
-
-  type ManagerTileItemComponent = React.FC<{ children?: ReactNode }> & {
-    Label: React.FC<{ children?: ReactNode }>;
-  };
-
-  const ManagerTileItem: ManagerTileItemComponent = Object.assign(
-    ({ children }: { children?: ReactNode }) => (
-      <div data-testid="manager-tile-item">{children}</div>
-    ),
-    {
-      Label: ({ children }: { children?: ReactNode }) => (
-        <div data-testid="tile-label">{children}</div>
-      ),
-    },
-  );
-
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
   return {
     ...actual,
-    ManagerTile: {
-      Item: ManagerTileItem,
-    },
+    Link: ({ href, children, ...props }: { href?: string; children?: ReactNode; [key: string]: unknown }) => (
+      <a href={href} data-testid="subdomain-link" {...props}>
+        {children}
+      </a>
+    ),
+    Text: ({ children, ...props }: { children?: ReactNode; [key: string]: unknown }) => (
+      <span data-testid="text" {...props}>
+        {children}
+      </span>
+    ),
   };
 });
 

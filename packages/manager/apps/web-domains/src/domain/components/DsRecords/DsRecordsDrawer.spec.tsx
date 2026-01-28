@@ -1,6 +1,7 @@
 import '@/common/setupTests';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi, describe, it, beforeEach, expect } from 'vitest';
+import { mockAddSuccess, mockClearNotifications } from '@/common/setupTests';
 
 import DsRecordsDrawer from '@/domain/components/DsRecords/DsRecordsDrawer';
 import { useUpdateDomainResource } from '@/domain/hooks/data/query';
@@ -15,52 +16,6 @@ vi.mock('@/domain/utils/utils', () => ({
 vi.mock('@/domain/hooks/data/query', () => ({
   useUpdateDomainResource: vi.fn(),
 }));
-
-const addSuccess = vi.fn();
-const addError = vi.fn();
-const clearNotifications = vi.fn();
-
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
-
-  type DrawerProps = {
-    isOpen: boolean;
-    heading: string;
-    primaryButtonLabel: string;
-    secondaryButtonLabel: string;
-    onPrimaryButtonClick: () => void;
-    onSecondaryButtonClick: () => void;
-    children?: React.ReactNode;
-  };
-
-  return {
-    ...actual,
-    Drawer: ({
-      isOpen,
-      heading,
-      primaryButtonLabel,
-      secondaryButtonLabel,
-      onPrimaryButtonClick,
-      onSecondaryButtonClick,
-      children,
-    }: DrawerProps) =>
-      isOpen ? (
-        <div data-testid="drawer">
-          <h1>{heading}</h1>
-          <button onClick={onSecondaryButtonClick}>
-            {secondaryButtonLabel}
-          </button>
-          <button onClick={onPrimaryButtonClick}>{primaryButtonLabel}</button>
-          {children}
-        </div>
-      ) : null,
-    useNotifications: () => ({
-      addSuccess,
-      addError,
-      clearNotifications,
-    }),
-  };
-});
 
 describe('DsRecordsDrawer', () => {
   const updateDomain = vi.fn();
@@ -127,6 +82,13 @@ describe('DsRecordsDrawer', () => {
       target: { value: 'validPublicKey' },
     });
 
+    await waitFor(() => {
+      const primaryButton = screen.getByRole('button', {
+        name: /actions:validate/i,
+      });
+      expect(primaryButton).not.toBeDisabled();
+    });
+
     const primaryButton = screen.getByRole('button', {
       name: /actions:validate/i,
     });
@@ -169,7 +131,7 @@ describe('DsRecordsDrawer', () => {
     );
 
     callbacks.onSuccess();
-    expect(addSuccess).toHaveBeenCalledWith(
+    expect(mockAddSuccess).toHaveBeenCalledWith(
       'domain_tab_dsrecords_drawer_add_success',
     );
     expect(setDrawer).toHaveBeenCalledWith({
@@ -179,7 +141,7 @@ describe('DsRecordsDrawer', () => {
     expect(resetError).toHaveBeenCalled();
 
     callbacks.onSettled();
-    expect(clearNotifications).toHaveBeenCalled();
+    expect(mockClearNotifications).toHaveBeenCalled();
   });
 
   it('display an error message when errorMessage is defined', () => {
@@ -206,17 +168,35 @@ describe('DsRecordsDrawer', () => {
       screen.getByText('domain_tab_dsrecords_drawer_modify_title'),
     ).toBeInTheDocument();
 
-    const keyTagInput = screen.getByPlaceholderText('32456');
-    const publicKeyTextarea = screen.getByPlaceholderText(
-      'SreztregdhtfjghkvjbhlNcqityzfEZFjyfchgvkliYHELVBQSFHCJVD',
-    );
+    const keyTagInput = document.querySelector('input[name="keyTag"]') as HTMLInputElement;
+    const publicKeyTextarea = document.querySelector('textarea[name="publicKey"]') as HTMLTextAreaElement;
 
-    expect(keyTagInput).toHaveValue(dsRecordsData.keyTag);
-    expect(publicKeyTextarea).toHaveValue(dsRecordsData.publicKey);
+    expect(keyTagInput).toBeInTheDocument();
+    expect(publicKeyTextarea).toBeInTheDocument();
+
+    await waitFor(
+      () => {
+        expect(keyTagInput.value).toBe(String(dsRecordsData.keyTag));
+      },
+      { timeout: 3000 },
+    );
+    await waitFor(
+      () => {
+        expect(publicKeyTextarea.value).toBe(dsRecordsData.publicKey);
+      },
+      { timeout: 3000 },
+    );
 
     fireEvent.change(keyTagInput, { target: { value: '60000' } });
     fireEvent.change(publicKeyTextarea, {
       target: { value: 'updatedPublicKey' },
+    });
+
+    await waitFor(() => {
+      const primaryButton = screen.getByRole('button', {
+        name: /actions:validate/i,
+      });
+      expect(primaryButton).not.toBeDisabled();
     });
 
     const primaryButton = screen.getByRole('button', {
@@ -259,7 +239,7 @@ describe('DsRecordsDrawer', () => {
     );
 
     callbacks.onSuccess();
-    expect(addSuccess).toHaveBeenCalledWith(
+    expect(mockAddSuccess).toHaveBeenCalledWith(
       'domain_tab_dsrecords_drawer_modify_success',
     );
     expect(setDrawer).toHaveBeenCalledWith({
@@ -269,6 +249,6 @@ describe('DsRecordsDrawer', () => {
     expect(resetError).toHaveBeenCalled();
 
     callbacks.onSettled();
-    expect(clearNotifications).toHaveBeenCalled();
+    expect(mockClearNotifications).toHaveBeenCalled();
   });
 });
