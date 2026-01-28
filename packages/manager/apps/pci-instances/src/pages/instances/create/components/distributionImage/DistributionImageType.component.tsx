@@ -21,31 +21,56 @@ import {
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useEffect, useMemo } from 'react';
-import { selectAvailableImagesTypes } from '../../view-models/imagesViewModel';
+import {
+  hasAnyEligibleBackup,
+  selectAvailableImagesTypes,
+  TBackupsEligibilityContext,
+} from '../../view-models/imagesViewModel';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { DistributionImageOption } from './DistributionImageOption.component';
+import { useBackups } from '@/data/hooks/backups/useBackups';
 
-const DistributionImageType = () => {
+type TDistributionImageTypeProps = {
+  backupEligibilityContext: TBackupsEligibilityContext | null;
+};
+
+const DistributionImageType = ({
+  backupEligibilityContext,
+}: TDistributionImageTypeProps) => {
   const projectId = useProjectId();
   const { t } = useTranslation(['common', 'creation']);
   const { trackClick } = useOvhTracking();
-  const { control, resetField } = useFormContext<TInstanceCreationForm>();
+  const { control, resetField, setValue } = useFormContext<
+    TInstanceCreationForm
+  >();
   const [selectedImageType, flavorId, microRegion] = useWatch({
     control,
     name: ['distributionImageType', 'flavorId', 'microRegion'],
   });
 
+  const { data: hasEligibleBackup } = useBackups(
+    microRegion ?? '',
+    {
+      select: hasAnyEligibleBackup(backupEligibilityContext),
+      enabled: !!microRegion && !!backupEligibilityContext,
+    },
+    { limit: 10 },
+  );
+
   const imageTypes = useMemo(
     () =>
-      selectAvailableImagesTypes(deps)(projectId, flavorId, microRegion).map(
-        ({ labelKey, value, disabled }) => ({
-          label: t(`common:${labelKey}`),
-          value,
-          disabled,
-          customRendererData: { available: !disabled },
-        }),
-      ),
-    [projectId, flavorId, microRegion, t],
+      selectAvailableImagesTypes(deps)(
+        projectId,
+        flavorId,
+        microRegion,
+        hasEligibleBackup ?? false,
+      ).map(({ labelKey, value, disabled }) => ({
+        label: t(`common:${labelKey}`),
+        value,
+        disabled,
+        customRendererData: { available: !disabled },
+      })),
+    [projectId, flavorId, microRegion, hasEligibleBackup, t],
   );
 
   const handleImageTypeChange = (
@@ -59,6 +84,14 @@ const DistributionImageType = () => {
     if (!imageType) return;
 
     field.onChange(imageType);
+
+    if (imageType === 'backups') {
+      resetField('distributionImageVariantId');
+      resetField('distributionImageVersion');
+      resetField('distributionImageOsType');
+    } else {
+      setValue('backup', null);
+    }
 
     trackClick({
       location: PageLocation.funnel,

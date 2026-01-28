@@ -1,5 +1,6 @@
 import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { TDeploymentMode } from '../../types/instance/common.type';
+import { TOsType } from './common.types';
 
 type TTags = string[] | null;
 
@@ -18,7 +19,6 @@ export type TFlavorCategoryID = TFlavorCategoryName;
 type TFlavorTypeName = string;
 export type TFlavorTypeID = TFlavorTypeName;
 
-export type TOsType = 'baremetal-linux' | 'bsd' | 'linux' | 'windows';
 export const IMAGE_TYPES = ['linux', 'apps', 'windows'] as const;
 export type TImageTypeName = typeof IMAGE_TYPES[number];
 

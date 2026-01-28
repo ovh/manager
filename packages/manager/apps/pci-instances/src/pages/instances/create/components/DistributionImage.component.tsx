@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Divider, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { ImageHelper } from './distributionImage/ImageHelper.component';
@@ -8,53 +8,79 @@ import DistributionVersionList from './distributionImage/DistributionVersionList
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { deps } from '@/deps/deps';
-import { selectImages } from '../view-models/imagesViewModel';
+import {
+  selectImages,
+  emptyResult,
+  selectBackupsEligibilityContext,
+  selectEligibleBackups,
+} from '../view-models/imagesViewModel';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
-import { TImageTypeName } from '@/domain/entities/instancesCatalog';
+import { useBackups } from '@/data/hooks/backups/useBackups';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 
-const DistributionImage: FC = () => {
+type TDistributionImageProps = {
+  microRegion: string;
+};
+
+const DistributionImage = ({ microRegion }: TDistributionImageProps) => {
   const projectId = useProjectId();
   const { control } = useFormContext<TInstanceCreationForm>();
   const { t } = useTranslation('creation');
   const [
     distributionImageType,
     distributionImageVariantId,
-    microRegion,
     flavorId,
   ] = useWatch({
     control,
-    name: [
-      'distributionImageType',
-      'distributionImageVariantId',
-      'microRegion',
-      'flavorId',
-    ],
+    name: ['distributionImageType', 'distributionImageVariantId', 'flavorId'],
   });
 
-  const { images: imageVariants, versions } = useMemo(
-    () =>
-      /**
-       * TODO: remove this cast when image backups implementation will be done:
-       * we have 4 image type options in select: linux, apps, windows, backups
-       * but we will have 2 different selectors: 1 for the selected images type (linux, apps, windows)
-       * and another one for backups images.
-       *  */
-
-      selectImages(deps)({
-        projectId,
-        selectedImageType: distributionImageType as TImageTypeName,
-        microRegion,
-        regionalizedFlavorId: flavorId,
-        distributionImageVariantId,
-      }),
-    [
-      distributionImageType,
-      flavorId,
-      microRegion,
-      projectId,
-      distributionImageVariantId,
-    ],
+  const backupsEligibilityContextSelect = useMemo(
+    () => selectBackupsEligibilityContext(flavorId),
+    [flavorId],
   );
+
+  const {
+    data: backupsEligibilityContext = null,
+  } = useInstancesCatalogWithSelect({
+    select: backupsEligibilityContextSelect,
+  });
+
+  const backupsSelect = useMemo(
+    () => selectEligibleBackups(backupsEligibilityContext),
+    [backupsEligibilityContext],
+  );
+
+  const { data: eligibleBackups } = useBackups(
+    microRegion,
+    {
+      select: backupsSelect,
+      enabled:
+        distributionImageType === 'backups' && !!backupsEligibilityContext,
+    },
+    { limit: 100 },
+  );
+
+  const { images: imageVariants, versions } = useMemo(() => {
+    if (distributionImageType === 'backups') {
+      return eligibleBackups ?? emptyResult;
+    }
+
+    return selectImages(deps)({
+      projectId,
+      selectedImageType: distributionImageType,
+      microRegion,
+      regionalizedFlavorId: flavorId,
+      distributionImageVariantId,
+    });
+  }, [
+    distributionImageType,
+    flavorId,
+    microRegion,
+    projectId,
+    distributionImageVariantId,
+    eligibleBackups,
+  ]);
 
   return (
     <section>
@@ -65,7 +91,9 @@ const DistributionImage: FC = () => {
         </Text>
         <ImageHelper />
       </div>
-      <DistributionImageType />
+      <DistributionImageType
+        backupEligibilityContext={backupsEligibilityContext}
+      />
       {!!imageVariants.length && (
         <DistributionImageVariants variants={imageVariants} />
       )}
