@@ -1,6 +1,7 @@
-import { BaseLayout, Breadcrumb, ChangelogMenu, Notifications } from '@ovh-ux/muk';
+import { BaseLayout, ChangelogMenu, Notifications } from '@ovh-ux/muk';
 
-import { AppConfig, CHANGELOG_LINKS, appName } from '@/App.constants';
+import { CHANGELOG_LINKS } from '@/App.constants';
+import { ObsBreadcrumb } from '@/components/breadcrumb/ObsBreadcrumb.component';
 
 export type ObsBaseLayoutProps = {
   title: React.ReactNode;
@@ -10,9 +11,7 @@ export type ObsBaseLayoutProps = {
 export default function ObsBaseLayout({ children, title, guideMenu }: ObsBaseLayoutProps) {
   return (
     <BaseLayout
-      breadcrumb={
-        <Breadcrumb appName={appName} rootLabel={AppConfig.rootLabel} hideRootLabel={true} />
-      }
+      breadcrumb={<ObsBreadcrumb />}
       header={{
         title,
         guideMenu,
