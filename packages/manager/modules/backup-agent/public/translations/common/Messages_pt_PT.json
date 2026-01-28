@@ -7,9 +7,10 @@
   "policy": "Policy",
   "actions": "Ações",
   "without_engagement": "sem compromisso",
-  "backup_agent_guide": "Manuais do Backup Agent",
-  "baremetal_label_order_in_progress": "Acusamos a receção da encomenda; o seu produto será entregue em breve; pode acompanhar o avanço <OrderLink>aqui</OrderLink>.",
-  "server": "Servidor",
   "primary": "Primário",
-  "secondary": "Secundário"
+  "secondary": "Secundário",
+  "backup_agent_guide": "Guias do Agente de Backup",
+  "baremetal_label_order_in_progress": "O pedido foi recebido com sucesso, o seu produto está a ser entregue e pode acompanhar o seu progresso <OrderLink>aqui</OrderLink>.",
+  "server": "Servidor",
+  "billings_tab_description": "Você encontrará aqui a sua fatura atualizada do seu Tenant. Este será cobrado no início do próximo mês. Para saber mais, consulte a <Link>documentação do OVHcloud Backup Agent</Link>"
 }

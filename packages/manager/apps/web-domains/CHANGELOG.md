@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.6...@ovh-ux/manager-web-domains-app@1.10.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1054] ([d354a06](https://github.com/ovh/manager/commit/d354a06e4c741fc6c034f6a936f10ee0cba53c7b))
+* **web-domains:** datagrid filters, accept only IsEqual and IsDifferent ([2668a14](https://github.com/ovh/manager/commit/2668a14692ce4a7cb55990e02ecfa498937fa274))
+* **web-domains:** improve nichandle check for CA environment ([11502ec](https://github.com/ovh/manager/commit/11502ec15620755f82b90855ae54736f1e81c160))
+
+
+### Features
+
+* **web-domains:** add information message about renew mode ([eca9203](https://github.com/ovh/manager/commit/eca9203a754effa9ef7f4f5ae448ecb15095efc6)), closes [#DCE-147](https://github.com/ovh/manager/issues/DCE-147)
+
+
+
+
+
 ## [1.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.5...@ovh-ux/manager-web-domains-app@1.9.6) (2026-01-26)
 
 

@@ -34,7 +34,8 @@ import { Step1Props } from './types';
 export default function Step1({
   control,
   isGitDisabled,
-  isCdnAvailable,
+  watch,
+  domainDetails,
   hosting,
   zones,
 }: Step1Props) {
@@ -92,48 +93,46 @@ export default function Step1({
         <label slot="label">
           {t('multisite:multisite_modal_domain_configuration_modify_options_choose')}
         </label>
-        {isCdnAvailable && (
-          <Controller
-            name="cdn"
-            control={control}
-            render={({ field }) => (
-              <div className="mt-2 flex items-center">
-                <Checkbox
-                  id="cdn-checkbox"
-                  name="cdn"
-                  checked={field.value === ServiceStatus.ACTIVE}
-                  disabled={!isGitDisabled}
-                  onCheckedChange={(detail) =>
-                    field.onChange(detail.checked ? ServiceStatus.ACTIVE : ServiceStatus.INACTIVE)
-                  }
-                  onBlur={field.onBlur}
-                >
-                  <CheckboxControl />
-                </Checkbox>
-                <Text className="ml-2">
-                  {t('multisite:multisite_modal_domain_configuration_modify_step1_cdn')}
-                </Text>
-                <Text id="cdn-tooltip">
-                  <Icon
-                    name={ICON_NAME.circleQuestion}
-                    className="color-disabled ml-4 cursor-pointer"
-                  />
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Icon
-                        name={ICON_NAME.circleQuestion}
-                        className="color-disabled ml-4 cursor-pointer"
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      {t('multisite:multisite_modal_domain_configuration_cdn_help')}
-                    </TooltipContent>
-                  </Tooltip>
-                </Text>
-              </div>
-            )}
-          />
-        )}
+        <Controller
+          name="cdn"
+          control={control}
+          render={({ field }) => (
+            <div className="mt-2 flex items-center">
+              <Checkbox
+                id="cdn-checkbox"
+                name="cdn"
+                checked={field.value === ServiceStatus.ACTIVE}
+                disabled={!isGitDisabled || watch('countriesIpEnabled')}
+                onCheckedChange={(detail) =>
+                  field.onChange(detail.checked ? ServiceStatus.ACTIVE : ServiceStatus.INACTIVE)
+                }
+                onBlur={field.onBlur}
+              >
+                <CheckboxControl />
+              </Checkbox>
+              <Text className="ml-2">
+                {t('multisite:multisite_modal_domain_configuration_modify_step1_cdn')}
+              </Text>
+              <Text id="cdn-tooltip">
+                <Icon
+                  name={ICON_NAME.circleQuestion}
+                  className="color-disabled ml-4 cursor-pointer"
+                />
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Icon
+                      name={ICON_NAME.circleQuestion}
+                      className="color-disabled ml-4 cursor-pointer"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {t('multisite:multisite_modal_domain_configuration_cdn_help')}
+                  </TooltipContent>
+                </Tooltip>
+              </Text>
+            </div>
+          )}
+        />
         <Controller
           name="firewall"
           control={control}
@@ -180,7 +179,7 @@ export default function Step1({
                   id="countries-ip-checkbox"
                   name="countriesIpEnabled"
                   checked={field.value}
-                  disabled={!isGitDisabled}
+                  disabled={!isGitDisabled || watch('cdn') === ServiceStatus.ACTIVE}
                   onCheckedChange={(detail) => field.onChange(detail.checked)}
                   onBlur={field.onBlur}
                 >
@@ -197,11 +196,7 @@ export default function Step1({
                   name="ipLocation"
                   control={control}
                   render={({ field: ipField }) => {
-                    const defaultIp = hosting?.hostingIp;
-                    const defaultCountryIp = hosting?.countriesIp?.find((c) => c.ip === defaultIp);
-                    const defaultCountry = defaultCountryIp?.country;
-
-                    const currentValue = ipField.value || defaultCountry;
+                    const currentValue = ipField.value || domainDetails?.ipLocation;
 
                     const selectedCountryIp = hosting?.countriesIp?.find(
                       (c) => c.country === currentValue,

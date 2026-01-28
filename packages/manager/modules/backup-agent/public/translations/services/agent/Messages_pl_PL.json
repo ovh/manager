@@ -19,5 +19,6 @@
   "add_agent_banner_api_error": "Wystąpił błąd Proszę poczekać kilka minut przed ponownym spróbowaniem. {{errorMessage}}",
   "add_agent_error_resource_not_found": "Wystąpił błąd Proszę sprawdzić, czy serwer jest ważny.",
   "update_agent_banner_success": "Zmiana polityki jest w toku, proszę czekać kilka sekund.",
-  "unable_edit_agent_not_enabled": "Konfiguracja będzie dostępna po włączeniu agenta."
+  "unable_edit_agent_not_enabled": "Konfiguracja będzie dostępna po aktywacji Agenta.",
+  "agents_tab_description": "Znajdź tutaj wszystkich swoich chronionych agentów. Ważne jest, aby zakończyć konfigurację, aby twój serwer był zabezpieczony. Aby uzyskać więcej informacji, zapoznaj się z <Link>dokumentacją OVHcloud Backup Agent</Link>"
 }

@@ -24,25 +24,7 @@ export default class MultisiteDomainConfigurationCtrl {
       })),
       ['translatedCountry'],
     );
-
-    if (this.hosting && this.hosting.hostingIp) {
-      this.ipLocation = true;
-      this.countryIp = this.hosting.hostingIp;
-    } else {
-      this.ipLocation = false;
-      this.countryIp = null;
-    }
   }
-
-  onIpLocationChange(isIpLocationActive) {
-    this.ipLocation = isIpLocationActive;
-    if (!isIpLocationActive) {
-      this.countryIp = null;
-    } else if (this.hosting && this.hosting.hostingIp) {
-      this.countryIp = this.hosting.hostingIp;
-    }
-  }
-
 
   onCDNChange(isCDNActive) {
     this.cdn = isCDNActive ? CDN_VALUES.ACTIVE : CDN_VALUES.NONE;

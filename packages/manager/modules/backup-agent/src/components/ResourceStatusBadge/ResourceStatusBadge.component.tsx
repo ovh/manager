@@ -4,12 +4,12 @@ import { OdsBadge } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { ResourceStatus } from '@/types/Resource.type';
+import { AgentStatus, ResourceStatus } from '@/types/Resource.type';
 
 import { getColorResourceStatus } from './_utils/getResourceStatusColor.utils';
 
 export type ResourceStatusBadgeProps = {
-  resourceStatus: ResourceStatus;
+  resourceStatus: ResourceStatus | AgentStatus;
 };
 
 export const ResourceStatusBadge = ({ resourceStatus }: ResourceStatusBadgeProps) => {

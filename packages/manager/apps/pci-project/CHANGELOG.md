@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.1.5...@ovh-ux/manager-pci-project-app@0.1.6) (2026-01-28)
+
+
+### Bug Fixes
+
+* **pci-project:** redirect when SEPA payment on activation page ([6803b9e](https://github.com/ovh/manager/commit/6803b9e02be8942aba2edfad5f594adb2404cbde)), closes [#MANAGER-20778](https://github.com/ovh/manager/issues/MANAGER-20778)
+
+
+
+
+
 ## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.1.4...@ovh-ux/manager-pci-project-app@0.1.5) (2026-01-20)
 
 

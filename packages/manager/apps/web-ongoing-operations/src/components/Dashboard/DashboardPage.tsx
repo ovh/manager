@@ -1,14 +1,16 @@
 import {
   Datagrid,
   ErrorBanner,
+  SearchProps,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { toASCII } from 'punycode';
 import { TOngoingOperations } from '@/types';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { ParentEnum } from '@/enum/parent.enum';
+import { useSearchParams } from 'react-router-dom';
+import { toASCII } from 'punycode';
 
 interface DashboardPageProps {
   readonly parent: ParentEnum;
@@ -23,7 +25,10 @@ export default function DashboardPage({
   queryKey,
   searchableColumnID,
 }: DashboardPageProps) {
-  const [searchInput, setSearchInput] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchInput, setSearchInput] = useState<string>(
+    searchParams.get('search') || '',
+  );
   const { t: tError } = useTranslation('web-ongoing-operations/error');
   const columns = useOngoingOperationDatagridColumns(
     searchableColumnID,
@@ -49,9 +54,43 @@ export default function DashboardPage({
     columns,
   });
 
+  const updateUrlParams = useCallback(
+    (updater: (params: URLSearchParams) => void): void => {
+      const next = new URLSearchParams(searchParams);
+      updater(next);
+      setSearchParams(next, { replace: true });
+    },
+    [searchParams, setSearchParams],
+  );
+
+  const onSearch = useCallback(
+    (value?: string) => {
+      updateUrlParams((params) => {
+        if (value && value.length > 0) {
+          params.set('search', value);
+        } else {
+          params.delete('search');
+        }
+      });
+      setSearchInput(value ?? '');
+    },
+    [updateUrlParams],
+  );
+
+  const searchProps: SearchProps = useMemo(
+    () => ({
+      onSearch,
+      searchInput,
+      setSearchInput,
+    }),
+    [onSearch, searchInput],
+  );
+
   useEffect(() => {
     const debounce = setTimeout(() => {
-      search.setSearchInput(toASCII(searchInput.toLowerCase()));
+      const value = toASCII(searchInput.toLowerCase());
+      search.setSearchInput(value);
+      onSearch(value);
     }, 300);
 
     return () => clearTimeout(debounce);
@@ -85,11 +124,7 @@ export default function DashboardPage({
           sorting={sorting}
           onSortChange={setSorting}
           filters={filters}
-          search={{
-            searchInput,
-            setSearchInput,
-            onSearch: () => null,
-          }}
+          search={searchProps}
         />
       </div>
     </React.Suspense>

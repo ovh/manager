@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
-import { useForm } from 'react-hook-form';
+import { UseFormWatch, useForm } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ServiceStatus } from '@/data/types/status';
@@ -31,6 +31,19 @@ const TestWrapper = ({
   return <>{children(control)}</>;
 };
 
+const mockWatch = vi.fn((field: string) => {
+  const values: Record<string, string | boolean | undefined> = {
+    domain: 'test-domain.com',
+    path: '/public_html',
+    cdn: ServiceStatus.ACTIVE,
+    firewall: ServiceStatus.ACTIVE,
+    countriesIpEnabled: false,
+    ipLocation: undefined,
+    ownLog: '',
+  };
+  return values[field];
+});
+
 describe('Step1', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -43,7 +56,7 @@ describe('Step1', () => {
           <Step1
             control={control}
             isGitDisabled={true}
-            isCdnAvailable={true}
+            watch={mockWatch as unknown as UseFormWatch<FormValues>}
             hosting={{
               hostingIp: '1.2.3.4',
               countriesIp: [],
@@ -65,7 +78,7 @@ describe('Step1', () => {
           <Step1
             control={control}
             isGitDisabled={true}
-            isCdnAvailable={true}
+            watch={mockWatch as unknown as UseFormWatch<FormValues>}
             hosting={{
               hostingIp: '1.2.3.4',
               countriesIp: [],
@@ -88,7 +101,7 @@ describe('Step1', () => {
           <Step1
             control={control}
             isGitDisabled={false}
-            isCdnAvailable={true}
+            watch={mockWatch as unknown as UseFormWatch<FormValues>}
             hosting={{
               hostingIp: '1.2.3.4',
               countriesIp: [],
