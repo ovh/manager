@@ -268,6 +268,121 @@ export const TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS = {
     },
     icon: 'ovh-font-phoneAlt',
   },
+  'phone.yealink.t73w': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t73w-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 9,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.t85w': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t85w-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 9,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.t88wpro': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-t88wpro-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 9,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.w70p.packed.w73h.v3': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-w70p-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 5,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.w70p.packed.w59r.v5': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-w70p-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 5,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.ax83h': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-ax83h-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 9,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.yealink.ax86r': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/yealink/phone-yealink-ax86r-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 9,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.fanvil.w620w': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/fanvil/phone-fanvil-w620w-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 7,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.fanvil.v65': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/fanvil/phone-fanvil-v65-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 7,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.fanvil.v66pro': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/fanvil/phone-fanvil-v66pro-90-90.png',
+    additionalConfiguration: {
+      UserInterface: {
+        screens: 3,
+        keysPerScreen: 7,
+      },
+    },
+    icon: 'ovh-font-phoneAlt',
+  },
+  'phone.grandstream.ht802': {
+    img:
+      'https://www.ovhtelecom.fr/images/telephonie/2020/grandstream/phone-grandstream-ht802-90-90.png',
+    icon: 'ovh-font-phoneAlt',
+  },
 };
 
 export default {
