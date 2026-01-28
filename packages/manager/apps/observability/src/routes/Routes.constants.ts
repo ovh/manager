@@ -40,9 +40,9 @@ export const urls = {
   tenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.subscription}`,
   deleteTenantSubscription: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.subscription}/${subroutes.deleteTenantSubscription}`,
   tenantTags: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.resource}/${subroutes.tenant}/${subroutes.tags}`,
-  onboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.onboarding}`,
   settings: `${getRoot()}/${subroutes.settings}`,
   services: `${getRoot()}/${subroutes.settings}/${subroutes.services}`,
+  servicesOnboarding: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.onboarding}`,
   deleteService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.delete}`,
   editService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.edit}`,
 } as const;
