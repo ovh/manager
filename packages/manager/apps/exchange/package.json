@@ -72,6 +72,7 @@
     "punycode": "^1.4.1",
     "regenerator-runtime": "^0.13.5",
     "urijs": "^1.19.1",
+    "URIjs": "^1.14.0",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
