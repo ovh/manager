@@ -11,5 +11,6 @@
   "baremetal_label_order_in_progress": "Die Bestellung ist eingegangen. Ihr Produkt wird gerade bereitgestellt und Sie können den Fortschritt <OrderLink>hier</OrderLink> nachverfolgen.",
   "server": "Server",
   "primary": "Primär",
-  "secondary": "Sekundär"
+  "secondary": "Sekundär",
+  "go_to_general_informations": "Gehe zu den allgemeinen Informationen"
 }
