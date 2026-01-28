@@ -4,8 +4,14 @@ import { DEPLOYMENT_MODES } from '@/domain/entities/catalog.entity';
 
 const stringSchema = z.string();
 
+const nameSchema = z
+  .string()
+  .min(1, { message: 'name_required' })
+  .max(255, { message: 'name_max_length' })
+  .regex(/^[a-zA-Z0-9_.-]+$/, { message: 'name_invalid_format' });
+
 export const shareDataSchema = z.object({
-  name: stringSchema,
+  name: nameSchema,
   microRegion: stringSchema,
   specName: stringSchema,
   size: z.number(),
