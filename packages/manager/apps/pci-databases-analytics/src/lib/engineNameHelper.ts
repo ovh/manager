@@ -28,6 +28,8 @@ export function humanizeEngine(engine: database.EngineEnum) {
       return 'Caching';
     case database.EngineEnum.valkey:
       return 'Valkey';
+    case database.EngineEnum.clickhouse:
+      return 'ClickHouse';
     default:
       return engine;
   }
