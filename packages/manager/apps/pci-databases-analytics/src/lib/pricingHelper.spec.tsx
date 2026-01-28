@@ -1,4 +1,4 @@
-import { describe, vi } from 'vitest';
+import { describe, vi, it, expect } from 'vitest';
 import { computeServicePrice } from '@/lib/pricingHelper';
 import * as database from '@/types/cloud/project/database';
 import { mockedPricing } from '../__tests__/helpers/mocks/order-funnel';

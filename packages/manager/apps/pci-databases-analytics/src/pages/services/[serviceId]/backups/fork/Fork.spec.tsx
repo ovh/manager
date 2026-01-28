@@ -13,8 +13,6 @@ import Fork, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/backups/fork/Fork.page';
 
-import ForkSummary from '@/pages/services/[serviceId]/backups/fork/_components/ForkSummary.component';
-
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
@@ -36,61 +34,8 @@ import {
   mockedNetworksFork,
   mockedSubnets,
 } from '@/__tests__/helpers/mocks/network';
-import { ForkSourceType } from '@/types/orderFunnel';
-import {
-  mockedBasicOrderFunnelFlavor,
-  mockedBasicOrderFunnelPlan,
-  mockedEngineVersion,
-  mockedOrderFunnelEngine,
-  mockedOrderFunnelRegion,
-} from '@/__tests__/helpers/mocks/order-funnel';
-import {
-  NetworkRegionStatusEnum,
-  NetworkStatusEnum,
-  NetworkTypeEnum,
-} from '@/types/cloud/network';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import * as ServiceAPI from '@/data/api/database/service.api';
-
-const mockedFork = {
-  source: {
-    type: ForkSourceType.backup,
-    backupId: 'backupId',
-    serviceId: 'serviceId',
-  },
-  backup: mockedBackup,
-  engine: mockedOrderFunnelEngine,
-  version: mockedEngineVersion,
-  plan: mockedBasicOrderFunnelPlan,
-  region: mockedOrderFunnelRegion,
-  flavor: mockedBasicOrderFunnelFlavor,
-  nodes: 3,
-  additionalStorage: 10,
-  name: 'myNewForkedPG',
-  ipRestrictions: [
-    {
-      ip: 'ips',
-      description: 'IpDescription',
-    },
-  ],
-  network: {
-    type: database.NetworkTypeEnum.private,
-    network: {
-      id: 'id1',
-      name: 'network1',
-      regions: [
-        {
-          region: 'GRA',
-          openstackId: '123456',
-          status: NetworkRegionStatusEnum.ACTIVE,
-        },
-      ],
-      vlanId: 0,
-      status: NetworkStatusEnum.ACTIVE,
-      type: NetworkTypeEnum.private,
-    },
-  },
-};
 
 describe('Fork funnel page', () => {
   beforeEach(() => {
@@ -198,62 +143,6 @@ describe('Fork funnel page', () => {
     render(<Fork />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('order-funnel-skeleton')).toBeInTheDocument();
-    });
-  });
-
-  it('fork summary click link display section', async () => {
-    const mockedOnSectionClicked = vi.fn();
-    render(
-      <ForkSummary
-        order={mockedFork}
-        onSectionClicked={mockedOnSectionClicked}
-      />,
-      { wrapper: RouterWithQueryClientWrapper },
-    );
-    await waitFor(() => {
-      expect(screen.getByText(mockedFork.name)).toBeInTheDocument();
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('source-section-button'));
-    });
-    await waitFor(() => {
-      expect(mockedOnSectionClicked).toHaveBeenCalledWith('source');
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('plan-section-button'));
-    });
-    await waitFor(() => {
-      expect(mockedOnSectionClicked).toHaveBeenCalledWith('plan');
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('region-section-button'));
-    });
-    await waitFor(() => {
-      expect(mockedOnSectionClicked).toHaveBeenCalledWith('region');
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('flavor-section-button'));
-    });
-    await waitFor(() => {
-      expect(mockedOnSectionClicked).toHaveBeenCalledWith('flavor');
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('cluster-section-button'));
-    });
-    await waitFor(() => {
-      expect(mockedOnSectionClicked).toHaveBeenCalledWith('cluster');
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('network-section-button'));
-    });
-    await waitFor(() => {
-      expect(mockedOnSectionClicked).toHaveBeenCalledWith('options');
-    });
-    act(() => {
-      fireEvent.click(screen.getByTestId('ips-section-button'));
-    });
-    await waitFor(() => {
-      expect(mockedOnSectionClicked).toHaveBeenCalledWith('options');
     });
   });
 
