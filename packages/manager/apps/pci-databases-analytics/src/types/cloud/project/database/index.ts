@@ -9,6 +9,7 @@ import * as mongodb from './mongodb/index';
 import * as mysql from './mysql/index';
 import * as opensearch from './opensearch/index';
 import * as postgresql from './postgresql/index';
+import * as clickhouse from './clickhouse/index';
 import * as redis from './redis/index';
 import * as service from './service/index';
 
@@ -38,5 +39,6 @@ export { mongodb };
 export { mysql };
 export { opensearch };
 export { postgresql };
+export { clickhouse };
 export { redis };
 export { service };
