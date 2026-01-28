@@ -8,6 +8,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
 
   $stateProvider.state(name, {
     url: '/add',
+    reloadOnSearch: false,
     views: {
       '@billing.payment': {
         component: component.name,
