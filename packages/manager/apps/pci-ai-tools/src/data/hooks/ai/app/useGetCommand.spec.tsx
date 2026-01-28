@@ -31,12 +31,11 @@ describe('useGetCommand', () => {
 
     await waitFor(() => {
       expect(appApi.getCommand).toHaveBeenCalledWith(addAppProps);
-      expect(onSuccess).toHaveBeenCalledWith(
-        mockedCommand,
-        addAppProps,
-        undefined,
-        expect.anything(),
-      );
+      expect(onSuccess).toHaveBeenCalled();
+      const [data, variables, context] = onSuccess.mock.calls[0];
+      expect(data).toEqual(mockedCommand);
+      expect(variables).toEqual(addAppProps);
+      expect(context).toBeUndefined();
     });
   });
 });

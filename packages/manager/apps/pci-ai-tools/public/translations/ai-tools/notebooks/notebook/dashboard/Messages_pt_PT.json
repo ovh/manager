@@ -31,5 +31,6 @@
   "autoRestartToastSuccessTitle": "Reinício automático atualizado",
   "autoRestartToastSuccessDescription": "A configuração de reinício automático foi atualizada para {{name}}",
   "disabledRestartButtonTooltip": "O reinício automático não pode ser alterado quando o notebook está desligado.",
-  "modifyLabel": "Modificar"
+  "modifyLabel": "Modificar",
+  "qpuAutoRestartNote": "Os notebooks QPU não podem ser desligados sem reinício automático. Esta funcionalidade está ativada por padrão para garantir a continuidade dos seus cálculos QPU."
 }

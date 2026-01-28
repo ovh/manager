@@ -56,7 +56,7 @@
   "notePriceDesc": "El tiempo QPU se factura por segundos. El tiempo de QPU solo se facturará por el tiempo de uso de la QPU",
   "pricingLabel": "Precio",
   "notebookPrice": "Recursos del Notebook",
-  "defaultAutoRestartInfo": "El cuaderno se detendrá automáticamente después de 7 días. Su configuración y sus datos serán guardados.",
+  "defaultAutoRestartInfo": "Los notebooks QPU no se pueden apagar sin reinicio automático. Esta función está habilitada por defecto para asegurar la continuidad de sus cálculos QPU.",
   "fieldTimeOutLabel": "Expiración",
   "fieldAutoRestartLabel": "Reinicio automático",
   "fieldAutoRestartDescription": "Si está activado, el cuaderno se reiniciará automáticamente cada 7 días. Si está desactivado, el cuaderno se detendrá automáticamente después de 7 días. En ambos casos, su configuración y sus datos serán guardados."
