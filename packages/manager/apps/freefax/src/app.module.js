@@ -11,6 +11,7 @@ import uiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerFreeFax from '@ovh-ux/manager-freefax';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 // import controller from './controller';
 
@@ -27,6 +28,7 @@ export default (containerEl, environment) => {
       uiRouterBreadcrumb,
       ngOvhFeatureFlipping,
       ngOvhPaymentMethod,
+      ngAtInternet,
       ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
     ])
     // .controller('FreefaxAppController', controller)
