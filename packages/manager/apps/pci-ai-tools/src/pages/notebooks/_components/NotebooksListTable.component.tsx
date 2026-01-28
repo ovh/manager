@@ -9,6 +9,7 @@ import { getFilters } from './NotebookListFilters.component';
 import DataTable from '@/components/data-table';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 interface NotebooksListProps {
   notebooks: ai.notebook.Notebook[];
@@ -18,6 +19,13 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
   const { t } = useTranslation('ai-tools/notebooks');
   const track = useTrackAction();
   const navigate = useNavigate();
+  const { isQuantum } = useQuantum('ai-tools/notebooks');
+  const getCreateTrackingName = () => {
+    if (isQuantum) {
+      return TRACKING.emulators.listing.createNotebooksClick();
+    }
+    return TRACKING.notebooks.listing.manageNotebooksDataGridClick('create');
+  };
 
   const columns: ColumnDef<ai.notebook.Notebook>[] = getColumns({
     onStartClicked: (notebook: ai.notebook.Notebook) => {
@@ -48,10 +56,7 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
           <Button
             data-testid="create-notebook-button"
             onClick={() => {
-              track(
-                TRACKING.notebooks.listing.createNotebooksClick(),
-                'listing',
-              );
+              track(getCreateTrackingName(), 'listing');
               navigate('./new');
             }}
           >
