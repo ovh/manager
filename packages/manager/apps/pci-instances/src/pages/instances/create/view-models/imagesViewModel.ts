@@ -72,8 +72,8 @@ export const isBackupEligible = (
   backup: TBackup,
   eligibilityContext: TBackupsEligibilityContext,
 ): boolean =>
-  eligibilityContext.flavorMinDisk > backup.minDisk &&
-  eligibilityContext.flavorRam > backup.minRam &&
+  eligibilityContext.flavorMinDisk >= backup.minDisk &&
+  eligibilityContext.flavorRam >= backup.minRam &&
   eligibilityContext.flavorAcceptedOsTypes.includes(backup.type);
 
 export const hasAnyEligibleBackup = (
@@ -89,12 +89,16 @@ export const selectEligibleBackups = (
   return (backups?: TBackup[]): TSelectImagesOptions => {
     if (!eligibilityContext || !backups?.length) return emptyResult;
 
-    const images = backups.map((backup) => ({
-      label: backup.name,
-      value: backup.id,
-      osType: backup.type,
-      available: isBackupEligible(backup, eligibilityContext),
-    }));
+    const images = backups.map((backup) => {
+      return {
+        label: backup.name,
+        value: backup.id,
+        osType: backup.type,
+        available: isBackupEligible(backup, eligibilityContext),
+        backupRegion: backup.region,
+        backupName: backup.name,
+      };
+    });
 
     const preselectedFirstAvailableVariantId =
       images.find((variant) => variant.available)?.value ?? null;
@@ -222,6 +226,8 @@ export type TImageOption = {
   windowsId?: string;
   windowsHourlyLicensePrice?: number;
   windowsMonthlyLicensePrice?: number;
+  backupRegion?: string;
+  backupName?: string;
 };
 
 export type TCustomData = { available: boolean };

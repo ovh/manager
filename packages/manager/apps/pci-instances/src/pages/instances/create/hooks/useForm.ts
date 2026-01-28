@@ -101,6 +101,7 @@ export const useForm = (projectId: string) => {
         distributionImageVersionName:
           preselected.preselectedFirstAvailableVersion?.label ?? null,
       },
+      backup: null,
       distributionImageOsType: preselectedOs,
       sshKeyId: sshKeyIdDefaultValue,
       newSshPublicKey: newSshPublicKeyDefaultValue,

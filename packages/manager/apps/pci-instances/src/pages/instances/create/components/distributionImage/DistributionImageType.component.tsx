@@ -40,7 +40,9 @@ const DistributionImageType = ({
   const projectId = useProjectId();
   const { t } = useTranslation(['common', 'creation']);
   const { trackClick } = useOvhTracking();
-  const { control, resetField } = useFormContext<TInstanceCreationForm>();
+  const { control, resetField, setValue } = useFormContext<
+    TInstanceCreationForm
+  >();
   const [selectedImageType, flavorId, microRegion] = useWatch({
     control,
     name: ['distributionImageType', 'flavorId', 'microRegion'],
@@ -82,6 +84,14 @@ const DistributionImageType = ({
     if (!imageType) return;
 
     field.onChange(imageType);
+
+    if (imageType === 'backups') {
+      resetField('distributionImageVariantId');
+      resetField('distributionImageVersion');
+      resetField('distributionImageOsType');
+    } else {
+      setValue('backup', null);
+    }
 
     trackClick({
       location: PageLocation.funnel,

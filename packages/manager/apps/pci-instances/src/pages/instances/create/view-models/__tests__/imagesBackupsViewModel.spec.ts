@@ -171,6 +171,15 @@ describe('imagesViewModel backups selectors', () => {
       ).toBe(false);
     });
 
+    it('returns true when storage is equal', () => {
+      expect(
+        isBackupEligible(
+          createBackup({ minDisk: 50, minRam: 2, type: 'linux' }),
+          ctx,
+        ),
+      ).toBe(true);
+    });
+
     it('returns false when ram is insufficient', () => {
       expect(
         isBackupEligible(
@@ -178,6 +187,24 @@ describe('imagesViewModel backups selectors', () => {
           ctx,
         ),
       ).toBe(false);
+    });
+
+    it('returns true when ram is equal', () => {
+      expect(
+        isBackupEligible(
+          createBackup({ minDisk: 10, minRam: 8, type: 'linux' }),
+          ctx,
+        ),
+      ).toBe(true);
+    });
+
+    it('returns true when both storage and ram are equal', () => {
+      expect(
+        isBackupEligible(
+          createBackup({ minDisk: 50, minRam: 8, type: 'linux' }),
+          ctx,
+        ),
+      ).toBe(true);
     });
 
     it('returns false when osType is not accepted', () => {
@@ -262,12 +289,16 @@ describe('imagesViewModel backups selectors', () => {
           value: 'b1',
           osType: 'linux',
           available: false,
+          backupRegion: 'GRA1',
+          backupName: 'Too big',
         },
         {
           label: 'OK',
           value: 'b2',
           osType: 'linux',
           available: true,
+          backupRegion: 'GRA1',
+          backupName: 'OK',
         },
       ]);
       expect(result.preselected.preselectedFirstAvailableVariantId).toBe('b2');
