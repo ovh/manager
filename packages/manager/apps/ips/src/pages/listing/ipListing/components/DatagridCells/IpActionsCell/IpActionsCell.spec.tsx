@@ -114,6 +114,10 @@ const useIpHasVmacMock = vi.hoisted(() =>
   vi.fn(() => ({ isVmacAlreadyExist: false, isLoading: false })),
 );
 
+const useCheckVmacAvailabilityMock = vi.hoisted(() =>
+  vi.fn(() => ({ data: { canAddVmac: true, supported: true } })),
+);
+
 const useIpHasAlertsMock = vi.hoisted(() =>
   vi.fn(() => ({ hasAlerts: undefined, isLoading: false })),
 );
@@ -142,12 +146,13 @@ const canSliceByoipIpMock = vi.hoisted(() => vi.fn(() => false));
 const canAggregateByoipIpMock = vi.hoisted(() => vi.fn(() => false));
 const canTerminateByoipIpMock = vi.hoisted(() => vi.fn(() => false));
 
-vi.mock('@/data/hooks/ip', () => ({
+vi.mock('@/data/hooks', () => ({
   useGetIpdetails: useGetIpdetailsMock,
   useGetIpGameFirewall: useGetIpGameFirewallMock,
   useIpHasForcedMitigation: useIpHasForcedMitigationMock,
   useGetAttachedServices: useGetAttachedServicesMock,
   useIpHasVmac: useIpHasVmacMock,
+  useCheckVmacAvailability: useCheckVmacAvailabilityMock,
   useIpHasAlerts: useIpHasAlertsMock,
 }));
 
@@ -275,9 +280,27 @@ const setupDefaultMocks = () => {
     isVmacAlreadyExist: false,
     isLoading: false,
   });
+  useCheckVmacAvailabilityMock.mockReturnValue({
+    data: {
+      canAddVmac: true,
+      supported: true,
+    },
+  });
   useIpHasAlertsMock.mockReturnValue({
     hasAlerts: undefined,
     isLoading: false,
+  });
+};
+
+const setupVmacAvailabilityMock = (overrides?: {
+  canAddVmac?: boolean;
+  supported?: boolean;
+}) => {
+  useCheckVmacAvailabilityMock.mockReturnValue({
+    data: {
+      canAddVmac: overrides?.canAddVmac ?? true,
+      supported: overrides?.supported ?? true,
+    },
   });
 };
 
@@ -514,14 +537,14 @@ describe('IpActionsCell Component', () => {
       expectMenuItemVisible(container, MENU_ITEM_IDS.REVERSE_DNS);
     });
 
-    it.skip('should show Manage Game Firewall when conditions are met', () => {
+    it('should show Manage Game Firewall when conditions are met', () => {
       setupIpDetailsMock({
         type: IpTypeEnum.ADDITIONAL,
         routedTo: { serviceName: SERVICE_NAMES.DEDICATED_SERVER },
       });
       setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: true });
       useGetIpGameFirewallMock.mockReturnValue({
-        ipGameFirewall: [{ id: '1' }],
+        ipGameFirewall: { ipOnGame: '10.0.0.1' },
         isLoading: false,
       });
 
@@ -534,7 +557,7 @@ describe('IpActionsCell Component', () => {
       setupDefaultMocks();
       setupAttachedServicesMock({ hasCloudServiceAttachedToIP: true });
       useGetIpGameFirewallMock.mockReturnValue({
-        ipGameFirewall: [{ id: '1' }],
+        ipGameFirewall: { ipOnGame: '10.0.0.1' },
         isLoading: false,
       });
 
@@ -573,6 +596,7 @@ describe('IpActionsCell Component', () => {
         isVmacAlreadyExist: false,
         isLoading: false,
       });
+      setupVmacAvailabilityMock({ canAddVmac: true, supported: true });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
@@ -591,9 +615,7 @@ describe('IpActionsCell Component', () => {
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
-      const menuItem = getMenuItem(container, MENU_ITEM_IDS.ADD_VMAC);
-      expect(menuItem).toBeInTheDocument();
-      expect(menuItem).toHaveAttribute('data-disabled', 'true');
+      expectMenuItemDisabled(container, MENU_ITEM_IDS.ADD_VMAC);
     });
 
     it('should disable Add Virtual Mac when vmac already exists', () => {
@@ -606,6 +628,7 @@ describe('IpActionsCell Component', () => {
         isVmacAlreadyExist: true,
         isLoading: false,
       });
+      setupVmacAvailabilityMock({ canAddVmac: true, supported: true });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
@@ -622,6 +645,7 @@ describe('IpActionsCell Component', () => {
         isVmacAlreadyExist: true,
         isLoading: false,
       });
+      setupVmacAvailabilityMock({ canAddVmac: true, supported: true });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
@@ -634,10 +658,49 @@ describe('IpActionsCell Component', () => {
         isVmacAlreadyExist: true,
         isLoading: false,
       });
+      setupVmacAvailabilityMock({ canAddVmac: true, supported: true });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
 
       expectMenuItemVisible(container, MENU_ITEM_IDS.DELETE_VMAC);
+    });
+
+    it('should disable Add Virtual Mac when vmac not available or unsupported', () => {
+      setupIpDetailsMock({
+        type: IpTypeEnum.ADDITIONAL,
+        routedTo: { serviceName: SERVICE_NAMES.DEDICATED_SERVER },
+      });
+      setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: true });
+      useIpHasVmacMock.mockReturnValue({
+        isVmacAlreadyExist: false,
+        isLoading: false,
+      });
+
+      // simulate quota/full or unsupported feature
+      setupVmacAvailabilityMock({ canAddVmac: false, supported: true });
+
+      const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
+
+      expectMenuItemDisabled(container, MENU_ITEM_IDS.ADD_VMAC);
+    });
+
+    it('should disable Add Virtual Mac when vmac not supported', () => {
+      setupIpDetailsMock({
+        type: IpTypeEnum.ADDITIONAL,
+        routedTo: { serviceName: SERVICE_NAMES.DEDICATED_SERVER },
+      });
+      setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: true });
+      useIpHasVmacMock.mockReturnValue({
+        isVmacAlreadyExist: false,
+        isLoading: false,
+      });
+
+      // also when not supported at all
+      setupVmacAvailabilityMock({ canAddVmac: true, supported: false });
+      const { container } = renderComponent({
+        ip: TEST_IPS.IPV4_SINGLE,
+      });
+      expectMenuItemDisabled(container, MENU_ITEM_IDS.ADD_VMAC);
     });
 
     it('should show Move Additional IP when conditions are met', () => {
