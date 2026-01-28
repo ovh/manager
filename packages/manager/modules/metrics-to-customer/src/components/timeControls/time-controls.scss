@@ -1,0 +1,27 @@
+/* stylelint-disable css/no-important */
+[data-scope="date-picker"][data-part="positioner"][style] {
+  --z-index: 110 !important;
+}
+
+[data-scope="select"] {
+  [data-part="trigger"] {
+    height: 40px;
+    border: 1px solid var(--ods-color-primary-500);
+    border-left: 0;
+
+    &:hover {
+      border-color: var(--ods-color-primary-700);
+    }
+
+    border-radius: 0 0.375rem 0.375rem 0;
+    outline: none;
+    box-shadow: none;
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+/* stylelint-enable css/no-important */
