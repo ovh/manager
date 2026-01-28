@@ -21,7 +21,8 @@ import { Link } from '@ovh-ux/muk';
 
 import { BadgeStatus, getStatusColor } from '@/components/badgeStatus/BadgeStatus.component';
 import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
-import { WebHostingWebsiteDomainType } from '@/data/types/product/webHosting';
+import { useGetHostingService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
+import { WebHostingType, WebHostingWebsiteDomainType } from '@/data/types/product/webHosting';
 import { WebSiteAttachedDomainDigStatusType, WebsiteType } from '@/data/types/product/website';
 import { DnsStatus, GitStatus, ServiceStatus } from '@/data/types/status';
 import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
@@ -48,21 +49,29 @@ const useHostingUrlWithOptions = (
   return hostingUrl;
 };
 
-const getDnsStatusAndTooltip = (type: 'A' | 'AAAA', data: WebSiteAttachedDomainDigStatusType) => {
+const getDnsStatusAndTooltip = (
+  type: 'A' | 'AAAA',
+  data: WebSiteAttachedDomainDigStatusType,
+  hostingData: WebHostingType,
+) => {
   const records = Object.values(data.records).filter((r) => r.type === type);
   const recommendedIps =
     type === 'A' ? data.recommendedIps.recommendedIpV4 : data.recommendedIps.recommendedIpV6;
 
+  const clusterIp = hostingData?.hasCdn ? hostingData?.hostingIp : hostingData?.clusterIp;
+  const clusterIpv6 = hostingData?.hasCdn ? hostingData?.hostingIpv6 : hostingData?.clusterIpv6;
+  const hostingIp = type === 'A' ? clusterIp : clusterIpv6;
   if (!records.length) {
     return {
       status: DnsStatus.NOT_CONFIGURED,
       tooltipKey: 'multisite:multisite_tooltip_diagnostic_unconfigured',
-      ip: '',
+      ip: hostingIp,
     };
   }
 
   let hasValidRecord = false;
   let ipFound = '';
+  let externalIp = '';
 
   hasValidRecord = records.some((record) => {
     if (record.dnsConfigured && record.isOvhIp) {
@@ -82,11 +91,11 @@ const getDnsStatusAndTooltip = (type: 'A' | 'AAAA', data: WebSiteAttachedDomainD
     status = DnsStatus.CONFIGURED;
     tooltipKey = 'multisite:multisite_tooltip_diagnostic_good_configuration';
   } else {
+    ipFound = hostingIp;
     const hasExternalRecord = records.some((r) => !r.isOvhIp);
     if (hasExternalRecord) {
       status = DnsStatus.EXTERNAL;
-      const externalIp = Object.keys(data.records).find((ip) => data.records[ip].type === type);
-      ipFound = externalIp || '';
+      externalIp = Object.keys(data.records).find((ip) => data.records[ip].type === type);
       tooltipKey = 'multisite:multisite_tooltip_diagnostic_not_good_configuration';
     } else {
       status = DnsStatus.NOT_CONFIGURED;
@@ -94,7 +103,7 @@ const getDnsStatusAndTooltip = (type: 'A' | 'AAAA', data: WebSiteAttachedDomainD
     }
   }
 
-  return { status, tooltipKey, ip: ipFound };
+  return { status, tooltipKey, ip: ipFound, externalIp };
 };
 
 interface DiagnosticCellProps {
@@ -106,7 +115,7 @@ interface DiagnosticCellProps {
 export const DiagnosticCell = ({ serviceName, fqdn, isWebsiteView }: DiagnosticCellProps) => {
   const { t } = useTranslation('common');
   const hostingUrl = useHostingUrlWithOptions(serviceName, true, false);
-
+  const { data: hostingData } = useGetHostingService(serviceName);
   const { data, isLoading, isError, refetch } = useWebHostingAttachedDomaindigStatus(
     serviceName,
     fqdn,
@@ -130,10 +139,10 @@ export const DiagnosticCell = ({ serviceName, fqdn, isWebsiteView }: DiagnosticC
   }
 
   return ['A', 'AAAA'].map((type) => {
-    const { status, tooltipKey, ip } =
+    const { status, tooltipKey, ip, externalIp } =
       !isLoading && data
-        ? getDnsStatusAndTooltip(type as 'A' | 'AAAA', data)
-        : { status: DnsStatus.NOT_CONFIGURED, tooltipKey: '', ip: '' };
+        ? getDnsStatusAndTooltip(type as 'A' | 'AAAA', data, hostingData)
+        : { status: DnsStatus.NOT_CONFIGURED, tooltipKey: '', ip: '', externalIp: '' };
 
     if (isWebsiteView) {
       return (
@@ -160,7 +169,9 @@ export const DiagnosticCell = ({ serviceName, fqdn, isWebsiteView }: DiagnosticC
               {type}
             </Badge>
           </TooltipTrigger>
-          <TooltipContent>{t(tooltipKey, { domainName: fqdn, ip })}</TooltipContent>
+          <TooltipContent>
+            {t(tooltipKey, { domainName: fqdn, ip, type, externalIp })}
+          </TooltipContent>
         </Tooltip>
       </React.Fragment>
     );
