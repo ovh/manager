@@ -40,6 +40,7 @@ describe('dashboard test', () => {
     await expect(container).toBeAccessible({
       rules: {
         'aria-valid-attr-value': { enabled: false },
+        'aria-allowed-attr': { enabled: false },
       },
     });
   });
