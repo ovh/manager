@@ -4,9 +4,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { BADGE_COLOR } from '@ovh-ux/muk';
 
 import { DnsStatus, GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
 
-import { BadgeStatus } from '../BadgeStatus.component';
+import { BadgeStatus, getStatusColor } from '../BadgeStatus.component';
 
 const hoistedMock = vi.hoisted(() => ({
   useOvhTracking: vi.fn(),
@@ -130,7 +130,7 @@ describe('BadgeStatus component', () => {
     expect(screen.queryByTestId('custom-test-id')).not.toBeInTheDocument();
   });
 
-  it('should render with all possible colors', () => {
+  it('should map known statuses to their badge colors', () => {
     const testCases = [
       { status: DnsStatus.CONFIGURED, color: BADGE_COLOR.success },
       { status: DnsStatus.EXTERNAL, color: BADGE_COLOR.warning },
@@ -150,20 +150,17 @@ describe('BadgeStatus component', () => {
     ];
 
     testCases.forEach(({ status, color }) => {
-      const { unmount } = render(<BadgeStatus itemStatus={status} />, {
-        wrapper,
-      });
-      const badge = screen.getByTestId(`badge-status-${status}`);
-      expect(badge).toHaveAttribute('color', color);
-      unmount();
+      expect(getStatusColor(status)).toBe(color);
     });
   });
 
-  it('should render with information color for unknown status', () => {
-    render(<BadgeStatus itemStatus={ServiceStatus.INACTIVE} />, {
-      wrapper,
-    });
-    const badge = screen.getByTestId(`badge-status-${ServiceStatus.INACTIVE}`);
-    expect(badge).toHaveAttribute('color', BADGE_COLOR.information);
+  it('should map unknown statuses to the information color', () => {
+    expect(getStatusColor(ServiceStatus.INACTIVE)).toBe(BADGE_COLOR.information);
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = renderWithRouter(<BadgeStatus itemStatus={DnsStatus.CONFIGURED} />);
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

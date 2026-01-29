@@ -123,7 +123,9 @@ export const DomainAdvancedConfiguration: React.FC<DomainAdvancedConfigurationPr
                   field.onChange(Array.isArray(detail.value) ? (detail.value[0] ?? '') : '')
                 }
               >
-                <SelectControl />
+                <SelectControl
+                  aria-label={t('multisite:multisite_add_website_advanced_options_ip')}
+                />
                 <SelectContent />
               </Select>
             )}

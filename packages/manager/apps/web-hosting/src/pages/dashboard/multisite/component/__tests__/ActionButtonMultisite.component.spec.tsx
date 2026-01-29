@@ -5,7 +5,7 @@ import { WebHostingWebsiteDomainMocks, WebHostingWebsiteMocks } from '@/data/__m
 import { webHostingMock } from '@/data/__mocks__/webHostingDashboard';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import ActionButtonMultisite from '../ActionButtonMultisite.component';
 
@@ -31,21 +31,23 @@ vi.mock('@/hooks/useHostingUrl', () => ({
 
 describe('ActionButtonMultisite component', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render site actions correctly', () => {
-    const { container } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />, {
+    const { getByRole } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />, {
       wrapper,
     });
 
-    expect(container).toBeInTheDocument();
-
-    const menuItems = container.querySelectorAll('button[data-testid^="action-item-"]');
-    expect(menuItems.length).toBeGreaterThan(1);
-
-    const labels = Array.from(menuItems).map((el) => el.textContent);
-    expect(labels).toContain(commonTranslation.add_domain);
+    const menuItem = getByRole('button', {
+      name: commonTranslation.add_domain,
+      hidden: true,
+    });
+    expect(menuItem).toBeInTheDocument();
+    expect(menuItem).toHaveTextContent(commonTranslation.add_domain);
   });
 
   it('should navigate correctly when clicking a site action', () => {
@@ -60,7 +62,7 @@ describe('ActionButtonMultisite component', () => {
   });
 
   it('should render domain actions correctly', () => {
-    const { container } = render(
+    const { container, getByRole } = render(
       <ActionButtonMultisite
         context="domain"
         domainId={'1'}
@@ -71,11 +73,11 @@ describe('ActionButtonMultisite component', () => {
     );
 
     expect(container).toBeInTheDocument();
-
-    const menuItems = container.querySelectorAll('button[data-testid^="action-item-"]');
-    expect(menuItems.length).toBeGreaterThan(1);
-
-    const labels = Array.from(menuItems).map((el) => el.textContent);
-    expect(labels).toContain(commonTranslation.modify_domain);
+    const menuItem = getByRole('button', {
+      name: commonTranslation.modify_domain,
+      hidden: true,
+    });
+    expect(menuItem).toBeInTheDocument();
+    expect(menuItem).toHaveTextContent(commonTranslation.modify_domain);
   });
 });

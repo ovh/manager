@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/await-thenable */
+import React from 'react';
+
 import '@testing-library/jest-dom';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import 'element-internals-polyfill';
@@ -10,13 +11,14 @@ import { managedWordpressResourceDetailsMock } from '@/data/__mocks__';
 import { managedWordpressRerefenceAvailableLanguageMock } from '@/data/__mocks__/managedWordpress/language';
 import { managedWordpressRerefenceSupportedVersionMock } from '@/data/__mocks__/managedWordpress/supportedPhpVersion';
 import { postManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
-import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import CreatePage from '../ManagedWordpressResource/create/Create.page';
 
 describe('CreatePage Component', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
     vi.mock(
       '@/data/hooks/managedWordpress/managedWordpressResourceDetails/useManagedWordpressResourceDetails',
@@ -46,6 +48,9 @@ describe('CreatePage Component', () => {
 
     vi.spyOn(queryClient, 'invalidateQueries').mockResolvedValue(undefined);
   });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
 
   it('should render the form inputs and submit button', () => {
     const { getByTestId } = render(<CreatePage />, { wrapper });
@@ -65,19 +70,21 @@ describe('CreatePage Component', () => {
     const adminPasswordInput = getByTestId('input-admin-password') as HTMLInputElement;
     const submitButton = getByTestId('create');
 
-    await act(() => {
+    vi.mocked(postManagedCmsResourceWebsite).mockResolvedValue(undefined);
+
+    act(() => {
       fireEvent.change(languageSelect, { target: { value: 'fr_FR' } });
       fireEvent.blur(languageSelect);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(phpVersionSelect, { target: { value: '8.1' } });
       fireEvent.blur(phpVersionSelect);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(adminLoginInput, { target: { value: 'admin@example.com' } });
       fireEvent.blur(adminLoginInput);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(adminPasswordInput, { target: { value: 'Password12345' } });
       fireEvent.blur(adminPasswordInput);
     });
@@ -86,7 +93,7 @@ describe('CreatePage Component', () => {
       expect(submitButton).not.toBeDisabled();
     });
 
-    await act(() => {
+    act(() => {
       fireEvent.click(submitButton);
     });
 
@@ -116,19 +123,19 @@ describe('CreatePage Component', () => {
     const adminPasswordInput = getByTestId('input-admin-password') as HTMLInputElement;
     const submitButton = getByTestId('create');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(languageSelect, { target: { value: 'fr_FR' } });
       fireEvent.blur(languageSelect);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(phpVersionSelect, { target: { value: '8.1' } });
       fireEvent.blur(phpVersionSelect);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(adminLoginInput, { target: { value: 'admin@example.com' } });
       fireEvent.blur(adminLoginInput);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(adminPasswordInput, { target: { value: 'Password12345' } });
       fireEvent.blur(adminPasswordInput);
     });
@@ -137,7 +144,7 @@ describe('CreatePage Component', () => {
       expect(submitButton).not.toBeDisabled();
     });
 
-    await act(() => {
+    act(() => {
       fireEvent.click(submitButton);
     });
 
@@ -147,6 +154,8 @@ describe('CreatePage Component', () => {
   });
 
   it('should navigate back after successful submission', async () => {
+    vi.mocked(postManagedCmsResourceWebsite).mockResolvedValue(undefined);
+
     const { getByTestId } = render(<CreatePage />, { wrapper });
 
     const languageSelect = getByTestId('input-language') as HTMLSelectElement;
@@ -155,19 +164,19 @@ describe('CreatePage Component', () => {
     const adminPasswordInput = getByTestId('input-admin-password') as HTMLInputElement;
     const submitButton = getByTestId('create');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(languageSelect, { target: { value: 'fr_FR' } });
       fireEvent.blur(languageSelect);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(phpVersionSelect, { target: { value: '8.1' } });
       fireEvent.blur(phpVersionSelect);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(adminLoginInput, { target: { value: 'admin@example.com' } });
       fireEvent.blur(adminLoginInput);
     });
-    await act(() => {
+    act(() => {
       fireEvent.change(adminPasswordInput, { target: { value: 'Password12345' } });
       fireEvent.blur(adminPasswordInput);
     });
@@ -176,12 +185,21 @@ describe('CreatePage Component', () => {
       expect(submitButton).not.toBeDisabled();
     });
 
-    await act(() => {
+    act(() => {
       fireEvent.click(submitButton);
     });
 
     await waitFor(() => {
       expect(navigate).toHaveBeenCalled();
     });
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = renderWithRouter(<CreatePage />);
+
+    // Strip empty aria-describedby from ODS FormField (invalid IDREFS) before validation
+    const html = container.innerHTML.replace(/\s*aria-describedby=""\s*/g, ' ');
+    await expect(html).toBeValidHtml();
+
+    await expect(container).toBeAccessible();
   });
 });

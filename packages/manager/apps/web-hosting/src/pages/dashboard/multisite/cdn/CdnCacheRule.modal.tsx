@@ -273,7 +273,9 @@ export default function CdnCacheRuleModal() {
                   },
                 ]}
               >
-                <SelectControl />
+                <SelectControl
+                  aria-label={t('cdn_shared_modal_add_rule_field_time_to_live_unit_minutes')}
+                />
                 <SelectContent />
               </Select>
             )}

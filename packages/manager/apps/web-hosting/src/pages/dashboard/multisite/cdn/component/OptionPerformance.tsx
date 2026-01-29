@@ -143,7 +143,7 @@ export const OptionPerformance: React.FC<OptionPerformanceProps> = ({
                   },
                 ]}
               >
-                <SelectControl />
+                <SelectControl aria-label={t('cdn_shared_option_mobile_redirect_strategy_still')} />
                 <SelectContent />
               </Select>
             )}

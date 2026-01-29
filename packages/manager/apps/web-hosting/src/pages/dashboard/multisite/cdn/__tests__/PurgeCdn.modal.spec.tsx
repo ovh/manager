@@ -8,7 +8,7 @@ import { flushCDNDomainCache, flushCdn } from '@/data/api/cdn';
 import { useGetCDNProperties } from '@/data/hooks/cdn/useCdn';
 import { CDN_TYPE, CDN_VERSION } from '@/data/types/product/cdn';
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import PurgeCdnModal from '../PurgeCdn.modal';
 
@@ -23,6 +23,7 @@ vi.mock('@/data/hooks/cdn/useCdn', () => ({
 
 describe('PurgeCdnModal', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
     vi.mocked(flushCDNDomainCache).mockResolvedValue({} as never);
     vi.mocked(flushCdn).mockResolvedValue(undefined);
@@ -48,7 +49,9 @@ describe('PurgeCdnModal', () => {
       isError: false,
     } as ReturnType<typeof useGetCDNProperties>);
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(<PurgeCdnModal />, { wrapper });
     expect(container).toBeInTheDocument();
