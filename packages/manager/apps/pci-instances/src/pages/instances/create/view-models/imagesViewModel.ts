@@ -369,6 +369,10 @@ const createWindowsImageVariant = (
     const windowsPrices =
       entities.flavorPrices.byId.get(`${regionalizedFlavorWindowsId}_price`)
         ?.prices ?? [];
+    console.log(
+      '🚀🚀 ~ createWindowsImageVariant ~ windowsPrices:',
+      windowsPrices,
+    );
 
     const windowsHourlyLicensePrice = windowsPrices.find(
       (price) => price.type === 'licence',
@@ -378,6 +382,10 @@ const createWindowsImageVariant = (
       (price) => price.type === 'licenceMonth',
     )?.price.priceInUcents;
 
+    console.log(
+      '🚀 ~ createWindowsImageVariant ~ windowsHourlyLicensePrice:',
+      windowsHourlyLicensePrice,
+    );
     if (!windowsVersionId || !windowsHourlyLicensePrice) return acc;
 
     acc.set(imageId, {
@@ -390,82 +398,93 @@ const createWindowsImageVariant = (
       osType: image.osType,
     });
   });
+  console.log('🚀 ~ createWindowsImageVariant ~ acc:', acc);
   return acc;
 };
 
-export const selectImages: TSelectImages = (deps) => ({
-  projectId,
-  selectedImageType,
-  microRegion,
-  regionalizedFlavorId,
-  distributionImageVariantId,
-}) => {
-  const { instancesCatalogPort } = deps;
-  const entities = instancesCatalogPort.selectInstancesCatalog(projectId)
-    ?.entities;
+export const selectImages: TSelectImages = (deps) => {
+  return ({
+    projectId,
+    selectedImageType,
+    microRegion,
+    regionalizedFlavorId,
+    distributionImageVariantId,
+  }) => {
+    const { instancesCatalogPort } = deps;
+    const entities = instancesCatalogPort.selectInstancesCatalog(projectId)
+      ?.entities;
 
-  if (!entities || !microRegion || !regionalizedFlavorId) return emptyResult;
+    if (!entities || !microRegion || !regionalizedFlavorId) return emptyResult;
 
-  const imagesVersionIds =
-    entities.imageTypes.byId.get(selectedImageType)?.imageIds ?? [];
+    const imagesVersionIds =
+      entities.imageTypes.byId.get(selectedImageType)?.imageIds ?? [];
 
-  const imagesVersionsMap = new Map<string, TAvailableOption[]>();
+    const imagesVersionsMap = new Map<string, TAvailableOption[]>();
+    // console.log('🚀 ~ selectImages ~ imagesVersionsMap:', imagesVersionsMap);
 
-  const variantOptionsMap = imagesVersionIds.reduce((acc, imageId) => {
-    const image = entities.images.byId.get(imageId);
-    if (!image) return acc;
+    const variantOptionsMap = imagesVersionIds.reduce((acc, imageId) => {
+      const image = entities.images.byId.get(imageId);
+      if (!image) return acc;
+      // ya des images windows
+      const selectedFlavorAcceptsOsImage = hasAvailableImageOsInSelectedFlavor(
+        entities.regionalizedFlavors.byId,
+        regionalizedFlavorId,
+        image.osType,
+      );
 
-    const selectedFlavorAcceptsOsImage = hasAvailableImageOsInSelectedFlavor(
-      entities.regionalizedFlavors.byId,
-      regionalizedFlavorId,
-      image.osType,
-    );
+      // console.log('🚀 ~ selectImages ~ image:', image);
+      const variantInMap = acc.get(image.variant);
+      // console.log('🚀 ~ selectImages ~ variantInMap:', variantInMap);
 
-    const variantInMap = acc.get(image.variant);
+      if (!variantInMap) {
+        if (image.osType === 'windows') {
+          if (!selectedFlavorAcceptsOsImage) {
+            acc.set(imageId, {
+              label: imageId,
+              value: imageId,
+              // `available` will be updated according to image versions availability
+              available: false,
+              osType: image.osType,
+            });
+            return acc;
+          }
+          console.log(
+            '🚀 ~ selectImages ~ regionalizedFlavorId:',
+            regionalizedFlavorId,
+          );
 
-    if (!variantInMap) {
-      if (image.osType === 'windows') {
-        if (!selectedFlavorAcceptsOsImage) {
-          acc.set(imageId, {
-            label: imageId,
-            value: imageId,
-            // `available` will be updated according to image versions availability
+          return createWindowsImageVariant(acc, {
+            regionalizedFlavorId,
+            image,
+            entities,
+            imagesVersionIds,
+            microRegion,
+          });
+        } else {
+          acc.set(image.variant, {
+            label: image.variant,
+            value: image.variant,
             available: false,
             osType: image.osType,
           });
-          return acc;
+          if (!selectedFlavorAcceptsOsImage) return acc;
         }
-
-        return createWindowsImageVariant(acc, {
-          regionalizedFlavorId,
-          image,
-          entities,
-          imagesVersionIds,
-          microRegion,
-        });
-      } else {
-        acc.set(image.variant, {
-          label: image.variant,
-          value: image.variant,
-          available: false,
-          osType: image.osType,
-        });
-        if (!selectedFlavorAcceptsOsImage) return acc;
       }
-    }
 
-    return handleImageVersions(acc, {
-      regionalizedFlavorId,
-      image,
-      entities,
-      microRegion,
+      return handleImageVersions(acc, {
+        regionalizedFlavorId,
+        image,
+        entities,
+        microRegion,
+        imagesVersionsMap,
+      });
+    }, new Map<string, TImageOption>());
+    console.log('🚀 ~ selectImages ~ variantOptionsMap:', variantOptionsMap);
+
+    return getOptions(
+      variantOptionsMap,
       imagesVersionsMap,
-    });
-  }, new Map<string, TImageOption>());
-
-  return getOptions(
-    variantOptionsMap,
-    imagesVersionsMap,
-    distributionImageVariantId,
-  );
+      distributionImageVariantId,
+    );
+  };
 };

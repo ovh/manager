@@ -28,7 +28,7 @@ import { useCatalogPrice } from '@ovh-ux/muk';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { BILLING_TYPE } from '@/types/instance/common.type';
 
-type TDistributionvariants = {
+type DistributionImageVariants = {
   variants: TImageOption[];
 };
 
@@ -47,7 +47,8 @@ type TWindowsPriceProps = {
   billingType: BILLING_TYPE;
 };
 
-const Distributionvariants = ({ variants }: TDistributionvariants) => {
+const DistributionImageVariants = ({ variants }: DistributionImageVariants) => {
+  console.log('🚀 ~ Distributionvariants ~ variants:', variants);
   const { t } = useTranslation('creation');
   const { getTextPrice } = useCatalogPrice(4);
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
@@ -252,4 +253,4 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
   );
 };
 
-export default Distributionvariants;
+export default DistributionImageVariants;
