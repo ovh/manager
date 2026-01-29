@@ -24,7 +24,7 @@ import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 import { Card, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
 import { Button } from '@ovh-ux/muk';
 
@@ -47,7 +47,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   const navigate = useNavigate();
   const { addError } = useNotifications();
   const queryClient = useQueryClient();
-  const { trackClick } = useOkmsTracking();
+  const { trackClick, trackPage } = useOkmsTracking();
 
   /* Form */
   const pathSchema = useSecretPathSchema();
@@ -112,9 +112,18 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
         queryKey: secretQueryKeys.list(okmsId),
       });
 
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageTags: ['create', 'secret'],
+      });
+
       navigate(SECRET_MANAGER_ROUTES_URLS.secret(okmsId, data.path));
     },
     onError: (error) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageTags: ['create', 'secret'],
+      });
       addError(
         t(`${NAMESPACES.ERROR}:error_message`, {
           message: error.response?.data.message,

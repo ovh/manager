@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { okmsQueryKeys } from '../api/okms';
 import {
@@ -31,7 +34,7 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
   const queryClient = useQueryClient();
   const { t } = useTranslation([NAMESPACES.ACTIONS, NAMESPACES.ERROR]);
   const { addSuccess, clearNotifications } = useNotifications();
-
+  const { trackPage } = useOkmsTracking();
   const {
     mutate,
     isPending,
@@ -88,9 +91,17 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
 
       clearNotifications();
       addSuccess(t('modify_name_success', { ns: NAMESPACES.ACTIONS }), true);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageTags: ['edit', 'okms'],
+      });
       onSuccess?.();
     },
     onError: (result: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageTags: ['edit', 'okms'],
+      });
       onError?.(result);
     },
   });
