@@ -29,9 +29,9 @@ export const RegionCard = ({
 }: TRegionCardProps) => (
   <PciCard selectable compact onClick={onSelect} disabled={disabled} selected={selected}>
     <PciCard.Header>
-      <Radio value={regionId} disabled={disabled}>
+      <Radio value={regionId} disabled={disabled} className="max-w-full">
         <RadioControl />
-        <RadioLabel className="flex items-center gap-x-4 text-lg font-bold text-[--ods-color-heading]">
+        <RadioLabel className="flex  items-center gap-x-4 break-words text-lg font-bold text-[--ods-color-heading]">
           {countryCode && <Flag isoCode={countryCode} />}
           {city}
         </RadioLabel>
