@@ -23,7 +23,7 @@ const CreateSharePage: FC = () => {
       <Breadcrumb items={[{ label: t('title') }]} />
       <section className="mt-8">
         <article>
-          <Text preset="heading-1">{t('create:title')}</Text>
+          <Text preset="heading-2">{t('create:title')}</Text>
           <Text className="w-2/3">
             <Trans
               i18nKey="description"

@@ -21,6 +21,7 @@ export type TMicroRegion = {
   name: TMicroRegionName;
   availabilityZones: string[];
   isActivable: boolean;
+  isActivated: boolean;
   isInMaintenance: boolean;
   macroRegionId: TMacroRegionId;
 };
