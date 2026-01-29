@@ -5,6 +5,7 @@ import {
   createConfig,
   defaultDedupedDependencies,
   defaultExcludedFiles,
+  INLINE_DEPS,
   mergeConfig,
   sharedConfig,
   sharedCssConfig,
@@ -14,8 +15,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: ['@ovh-ux/manager-core-test-utils/src/utils/setup-test.ts'],
-      ...sharedCssConfig,
+      setupFiles: ['./src/__tests__/SetupTests.ts'],
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
@@ -23,13 +23,21 @@ export default mergeConfig(
           'vite-*.ts',
           'App.tsx',
           '__mocks__',
+          '**/__tests__/**',
           '**/Routes.tsx',
           '**/QueryClient.ts',
           '**/*.type.ts',
-          '**/404.page.tsx',
-          '**/utils/tests/**',
+          '**/Error404.page.tsx',
           '**/Test.utils.tsx',
         ],
+      },
+      deps: {
+        inline: [...INLINE_DEPS, ...sharedCssConfig.deps.inline],
+      },
+      server: {
+        deps: {
+          inline: [...INLINE_DEPS, ...sharedCssConfig.deps.inline],
+        },
       },
     },
     resolve: {
