@@ -65,6 +65,7 @@ packages/manager-wiki
 lint-runner.js
 lint-html-runner.js
 lint-cli.js
+lint-staged.mjs
 packages/manager/apps/web-ongoing-operations
 packages/manager/apps/communication
 packages/manager/apps/pci-project
