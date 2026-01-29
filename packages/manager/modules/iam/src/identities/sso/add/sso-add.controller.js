@@ -16,6 +16,7 @@ export default class IamUsersSsoAddCtrl {
       userAttributeName: null,
       groupAttributeName: null,
       disableUsers: false,
+      signRequests: false,
     };
   }
 
