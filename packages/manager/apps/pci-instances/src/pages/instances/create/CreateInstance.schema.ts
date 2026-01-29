@@ -96,7 +96,7 @@ export type TAddSshKeyForm = z.infer<
   ReturnType<typeof buildAddSshKeyFormSchema>
 >;
 
-export const privateNetworkIdSchema = z.string().nullable();
+export const subnetIdSchema = z.string().nullable();
 
 const VLAN_ID_MIN = 0;
 const VLAN_ID_MAX = 4000;
@@ -150,7 +150,7 @@ export const floatingIpAssignmentSchema = z
   .enum(['createNew', 'reuseExisting'])
   .nullable();
 
-export const existingFloatingIpSchema = z.string().nullable();
+export const existingFloatingIpIdSchema = z.string().nullable();
 
 export const postInstallScriptSchema = z.string().nullable();
 
@@ -174,12 +174,12 @@ export const instanceCreationSchema = z.object({
   backup: backupImageSchema,
   sshKeyId: sshKeyIdSchema,
   newSshPublicKey: sshPublicKeySchema.nullable(),
-  privateNetworkId: privateNetworkIdSchema,
+  subnetId: subnetIdSchema,
   newPrivateNetwork: networkSchema,
   assignNewGateway: assignNewGatewaySchema,
   ipPublicType: ipPublicTypeSchema,
   floatingIpAssignment: floatingIpAssignmentSchema,
-  existingFloatingIp: existingFloatingIpSchema,
+  existingFloatingIpId: existingFloatingIpIdSchema,
   billingType: billingTypeSelectionSchema,
   localBackupRotation: localBackupRotationSchema,
   distantBackupLocalization: distantBackupLocalizationSchema,

@@ -171,5 +171,9 @@
   "pci_instance_creation_select_localization_apac_warning": "O tráfego de rede público de saída para as instâncias está incluído para todas as regiões, exceto para a região Ásia-Pacífico. Nessas duas regiões, 1 To/mês de tráfego público de saída está incluído em cada projeto de Nuvem Pública. <strong>Além deste limite, cada Go adicional de tráfego é cobrado a 0,01 €. O tráfego de rede público de entrada está incluído em todos os casos, para todas as regiões.</strong>",
   "pci_instance_creation_post_install_script_title": "Script de pós-instalação",
   "pci_instance_creation_post_install_script_description": "Insira seu script pós-instalação.",
-  "pci_instance_creation_post_install_script_toggle_label": "Adicionar um script pós-instalação"
+  "pci_instance_creation_post_install_script_toggle_label": "Adicionar um script pós-instalação",
+  "pci_instance_creation_cart_public_network_title": "Rede pública",
+  "pci_instance_creation_cart_public_ip_floating": "Floating IP",
+  "pci_instance_creation_cart_public_ip_basic": "IP Público",
+  "pci_instance_creation_network_full_private_warning": "<p>Esta instância não terá acesso público à Internet. Você não poderá se conectar a ela nem acessar serviços externos, a menos que use um bastião ou adicione um gateway.</p><p>Isso melhora a segurança, mas limita a conectividade. Em suas instâncias do Windows, <semibold>você deve ativar a licença manualmente para ter acesso a todos os serviços</semibold>.</p><Link>Consultar o guia</Link>"
 }

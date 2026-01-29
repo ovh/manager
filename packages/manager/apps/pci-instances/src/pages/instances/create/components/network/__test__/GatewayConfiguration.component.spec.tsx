@@ -24,7 +24,7 @@ vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
 );
 
 type TSetupTestProps = {
-  networkId?: string | null;
+  subnetId?: string | null;
   microRegion?: string | null;
   assignNewGateway?: boolean;
   privateNetworks?: TPrivateNetworkData[];
@@ -32,7 +32,7 @@ type TSetupTestProps = {
 };
 
 const setupTest = ({
-  networkId = null,
+  subnetId = null,
   microRegion = 'fake-region',
   assignNewGateway = false,
   privateNetworks = [],
@@ -46,12 +46,12 @@ const setupTest = ({
   const wrapper = renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper
       defaultValues={{
-        privateNetworkId: networkId,
+        subnetId,
         microRegion,
         assignNewGateway,
         ipPublicType: null,
         floatingIpAssignment: null,
-        existingFloatingIp: null,
+        existingFloatingIpId: null,
       }}
     >
       <GatewayConfiguration privateNetworks={privateNetworks} />
@@ -100,7 +100,7 @@ describe('Considering GatewayConfiguration component', () => {
 
   it('should be disabled when selected network has gateway', async () => {
     setupTest({
-      networkId: mockedPrivateNetworks[1]?.value,
+      subnetId: mockedPrivateNetworks[1]?.value,
       privateNetworks: mockedPrivateNetworks,
     });
 

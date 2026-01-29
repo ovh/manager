@@ -22,10 +22,30 @@ import { useBackupConfigurations } from '@/data/hooks/configuration/useBackupCon
 import { isDiscoveryProject } from '@/data/utils/project.utils';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { BILLING_TYPE } from '@/types/instance/common.type';
+import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
+import {
+  getGatewayAvailability,
+  selectSmallGatewayConfig,
+  selectPrivateNetworks,
+  selectPublicIpPrices,
+} from '../view-models/networksViewModel';
+import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
+import { selectMicroRegionDeploymentMode } from '../view-models/microRegionsViewModel';
 
 type TBackupConfigurationPrices = {
   localBackupPrice: number;
   distantBackupPrice: number | null;
+};
+
+type TPrivateNetwork = {
+  name: string;
+  willGatewayBeAttached: boolean;
+  gatewayPrice: number | null;
+};
+
+type TPublicNetwork = {
+  labelKey: string;
+  price: number | null;
 };
 
 type TInstanceData = {
@@ -38,8 +58,9 @@ type TInstanceData = {
   flavorDetails: TSelectFlavorDetails | null;
   windowsImageLicensePrice: number | null;
   backupConfigurationPrices: TBackupConfigurationPrices | null;
-  networkName?: string;
   billingType: BILLING_TYPE;
+  privateNetwork: TPrivateNetwork | null;
+  publicNetwork: TPublicNetwork | null;
 };
 
 type TInstanceCreation = {
@@ -48,6 +69,34 @@ type TInstanceCreation = {
   handleCreateInstance: () => void;
   isCreatingInstance: boolean;
   errorMessage: string | null;
+};
+
+type TPublicIpPrices = {
+  basicPublicIp: number;
+  floatingIp: number;
+};
+
+export const getPublicNetworkCartItem = ({
+  ipPublicType,
+  publicIpPrices,
+}: {
+  ipPublicType: 'basicIp' | 'floatingIp' | null;
+  publicIpPrices?: TPublicIpPrices | null;
+}) => {
+  switch (ipPublicType) {
+    case 'basicIp':
+      return {
+        labelKey: 'creation:pci_instance_creation_cart_public_ip_basic',
+        price: publicIpPrices?.basicPublicIp ?? null,
+      };
+    case 'floatingIp':
+      return {
+        labelKey: 'creation:pci_instance_creation_cart_public_ip_floating',
+        price: publicIpPrices?.floatingIp ?? null,
+      };
+    default:
+      return null;
+  }
 };
 
 // eslint-disable-next-line max-lines-per-function
@@ -67,10 +116,16 @@ export const useInstanceCreation = (): TInstanceCreation => {
     distributionImageVersion,
     distributionImageOsType,
     sshKeyId,
+    subnetId,
     newSshPublicKey,
+    newPrivateNetwork,
     billingType,
     localBackupRotation,
     distantBackupLocalization,
+    assignNewGateway,
+    ipPublicType,
+    floatingIpAssignment,
+    existingFloatingIpId,
   ] = useWatch({
     control,
     name: [
@@ -85,10 +140,16 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'distributionImageVersion',
       'distributionImageOsType',
       'sshKeyId',
+      'subnetId',
       'newSshPublicKey',
+      'newPrivateNetwork',
       'billingType',
       'localBackupRotation',
       'distantBackupLocalization',
+      'assignNewGateway',
+      'ipPublicType',
+      'floatingIpAssignment',
+      'existingFloatingIpId',
     ],
   });
   const { data: project } = useProject();
@@ -156,7 +217,63 @@ export const useInstanceCreation = (): TInstanceCreation => {
     };
   }, [localBackupRotation, backupConfiguration, distantBackupLocalization]);
 
-  const networkName = 'todo';
+  const { data: privateNetworks } = usePrivateNetworks({
+    select: selectPrivateNetworks(microRegion),
+  });
+
+  const { data: gatewayConfigurations } = useNetworkCatalog({
+    select: selectSmallGatewayConfig(microRegion),
+  });
+
+  const { data: publicIpPrices } = useNetworkCatalog({
+    select: selectPublicIpPrices(microRegion),
+  });
+
+  const { data: deploymentMode } = useInstancesCatalogWithSelect({
+    select: selectMicroRegionDeploymentMode(microRegion),
+  });
+
+  const gatewayAvailability = useMemo(
+    () =>
+      getGatewayAvailability({
+        deploymentMode,
+        privateNetworks,
+        subnetId,
+      }),
+    [deploymentMode, subnetId, privateNetworks],
+  );
+
+  const privateNetwork = useMemo(() => {
+    const network = privateNetworks?.find(({ value }) => subnetId === value);
+    const willGatewayBeAttached = assignNewGateway || !!network?.hasGatewayIp;
+
+    const gatewayPrice =
+      !gatewayAvailability?.isDisabled && gatewayConfigurations
+        ? gatewayConfigurations.price
+        : null;
+
+    const name = newPrivateNetwork?.name ?? network?.label ?? null;
+
+    if (!name) return null;
+
+    return { name, willGatewayBeAttached, gatewayPrice };
+  }, [
+    assignNewGateway,
+    gatewayAvailability?.isDisabled,
+    gatewayConfigurations,
+    newPrivateNetwork?.name,
+    subnetId,
+    privateNetworks,
+  ]);
+
+  const publicNetwork = useMemo(
+    () =>
+      getPublicNetworkCartItem({
+        ipPublicType,
+        publicIpPrices,
+      }),
+    [ipPublicType, publicIpPrices],
+  );
 
   const handleSuccess = () => {
     // TODO: update with new success specs to come
@@ -186,6 +303,9 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const isCreationEnabled =
     hasBaseRequirements && hasSshRequirements && !isDiscoveryProject(project);
 
+  const networkId =
+    privateNetworks?.find(({ value }) => subnetId === value)?.networkId ?? null;
+
   const handleCreateInstance = () => {
     if (!isCreationEnabled || isCreatingInstance) return;
 
@@ -200,6 +320,12 @@ export const useInstanceCreation = (): TInstanceCreation => {
       imageId:
         backup?.id ?? distributionImageVersion.distributionImageVersionId,
       localBackupRotation,
+      existingFloatingIpId,
+      floatingIpAssignment,
+      assignNewGateway,
+      networkId,
+      subnetId,
+      newPrivateNetwork,
     });
     createInstance({ regionName: microRegion, instance });
   };
@@ -212,7 +338,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
     localizationDetails,
     flavorDetails,
     windowsImageLicensePrice,
-    networkName,
+    privateNetwork,
+    publicNetwork,
     distributionImageVersionName:
       backup?.name ?? distributionImageVersion.distributionImageVersionName,
     backupConfigurationPrices,

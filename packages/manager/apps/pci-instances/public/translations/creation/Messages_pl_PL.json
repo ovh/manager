@@ -171,5 +171,9 @@
   "pci_instance_creation_select_localization_apac_warning": "Publiczny ruch sieciowy wychodzący dla instancji jest wliczany dla wszystkich regionów, z wyjątkiem regionu Azji-Pacyfiku. W tych dwóch regionach, 1 TB/miesiąc publicznego ruchu wychodzącego jest wliczane w każdy projekt Public Cloud. <strong>Powyżej tego limitu, każdy dodatkowy GB ruchu jest obciążany kwotą 0,01 €. Publiczny ruch sieciowy przychodzący jest wliczany we wszystkich przypadkach, dla wszystkich regionów.</strong>",
   "pci_instance_creation_post_install_script_title": "Skrypt po-instalacyjny",
   "pci_instance_creation_post_install_script_description": "Wprowadź swój skrypt po instalacji.",
-  "pci_instance_creation_post_install_script_toggle_label": "Dodaj skrypt po instalacji"
+  "pci_instance_creation_post_install_script_toggle_label": "Dodaj skrypt po instalacji",
+  "pci_instance_creation_cart_public_network_title": "Sieć publiczna",
+  "pci_instance_creation_cart_public_ip_floating": "Floating IP",
+  "pci_instance_creation_cart_public_ip_basic": "Publiczne IP",
+  "pci_instance_creation_network_full_private_warning": "<p>Ta instancja nie będzie miała dostępu publicznego do Internetu. Nie będziesz mógł się z nią połączyć ani uzyskać dostępu do usług zewnętrznych, chyba że użyjesz bastionu lub dodasz bramę.</p><p>To poprawia bezpieczeństwo, ale ogranicza łączność. Na twoich instancjach Windows, <semibold>musisz ręcznie aktywować licencję, aby uzyskać dostęp do wszystkich usług</semibold>.</p><Link>Sprawdź przewodnik</Link>"
 }

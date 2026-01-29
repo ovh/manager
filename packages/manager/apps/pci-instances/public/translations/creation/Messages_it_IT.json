@@ -150,13 +150,13 @@
   "pci_instance_creation_network_gateway_toggle_label": "Assegna un gateway",
   "pci_instance_creation_network_gateway_price_label": "Dimensione {{ size }} - {{ price }}",
   "pci_instance_creation_network_add_public_connectivity": {
-    "title": "Assegnare una connettività pubblica",
+    "title": "Assegna una connettività pubblica",
     "description": "<p>L'assegnazione di un indirizzo IP pubblico consente l'accesso alla tua istanza dall'esterno della rete OVHcloud. <span>La creazione dell'IP flottante avverrà al termine della configurazione.</span></p>",
-    "toggle_label": "Assegnare un'IP pubblica",
+    "toggle_label": "Assegna un'IP pubblica",
     "basic_ip_label": "IP Pubblica di Base (Collegata all'istanza) - {{ price }}",
     "basic_ip_description": "Un'IP pubblica di base è un indirizzo IP che non persiste oltre la durata della risorsa. ",
     "basic_ip_warning": "L'attivazione dell'IP pubblico di base non è compatibile con una gateway.",
-    "floating_ip_label": "Creare un IP Flottante (Riutilizzabile) - {{ price }}",
+    "floating_ip_label": "Crea un'IP Flottante (Riutilizzabile) - {{ price }}",
     "floating_ip_description": "La prenotazione di un indirizzo IP flottante assegna l'indirizzo al tuo progetto fino a quando non lo rilasci esplicitamente. ",
     "floating_ip_warning": "Selezionando questa opzione ti assegneremo una gateway di dimensione {{ size }}.",
     "floating_ip_create_new_label": "Creare un nuovo - {{ price }}",
@@ -171,5 +171,9 @@
   "pci_instance_creation_select_localization_apac_warning": "Il traffico di rete pubblico in uscita per le istanze è incluso per tutte le regioni, ad eccezione della regione Asia-Pacifico. In queste due regioni, 1 TB/mese di traffico pubblico in uscita è incluso in ogni progetto Public Cloud. <strong>Oltre a questa quota, ogni GB aggiuntivo di traffico è addebitato 0,01 €. Il traffico di rete pubblico in entrata è incluso in tutti i casi, per tutte le regioni.</strong>",
   "pci_instance_creation_post_install_script_title": "Script di post-installazione",
   "pci_instance_creation_post_install_script_description": "Inserisci il tuo script di post-installazione.",
-  "pci_instance_creation_post_install_script_toggle_label": "Aggiungi uno script di post-installazione"
+  "pci_instance_creation_post_install_script_toggle_label": "Aggiungi uno script di post-installazione",
+  "pci_instance_creation_cart_public_network_title": "Rete pubblica",
+  "pci_instance_creation_cart_public_ip_floating": "Floating IP",
+  "pci_instance_creation_cart_public_ip_basic": "IP Pubblica",
+  "pci_instance_creation_network_full_private_warning": "<p>Questa istanza non avrà accesso pubblico a Internet. Non potrai connetterti né raggiungere servizi esterni, a meno che non utilizzi un bastione o aggiunga una gateway.</p><p>Questo migliora la sicurezza ma limita la connettività. Su istanze Windows, <semibold>devi attivare manualmente la licenza per avere accesso a tutti i servizi</semibold>.</p><Link>Consulta la guida</Link>"
 }

@@ -96,7 +96,8 @@ export const useCartItems = (): TCartItems => {
     distributionImageVersionName,
     windowsImageLicensePrice,
     sshKeyId,
-    networkName,
+    privateNetwork,
+    publicNetwork,
     name,
     backupConfigurationPrices,
     billingType,
@@ -215,7 +216,7 @@ export const useCartItems = (): TCartItems => {
       ]
     : [];
 
-  const network = networkName
+  const network = privateNetwork
     ? [
         {
           id: 'network',
@@ -223,12 +224,48 @@ export const useCartItems = (): TCartItems => {
             'creation:pci_instance_creation_network_private_network_setting_title',
           ),
           description: (
-            <Text preset="heading-6" className="text-[--ods-color-heading]">
-              {networkName}
-            </Text>
+            <div className="w-full">
+              <CartOptionDetailItem label={privateNetwork.name} />
+              {privateNetwork.willGatewayBeAttached && (
+                <CartOptionDetailItem
+                  className="mt-2"
+                  label={t(
+                    'creation:pci_instance_creation_network_gateway_title',
+                  )}
+                  {...(privateNetwork.gatewayPrice && {
+                    price: getTextPrice(privateNetwork.gatewayPrice),
+                  })}
+                />
+              )}
+            </div>
           ),
           //TODO: Add condition on public/private/gateway etc
-          displayPrice: false,
+          displayPrice: true,
+        },
+      ]
+    : [];
+
+  const publicNetworkDetails = publicNetwork
+    ? [
+        {
+          id: 'publicNetwork',
+          name: t('creation:pci_instance_creation_cart_public_network_title'),
+          description: (
+            <div className="w-full">
+              <CartOptionDetailItem
+                label={
+                  quantity > 1
+                    ? `${quantity} x ${t(publicNetwork.labelKey)}`
+                    : t(publicNetwork.labelKey)
+                }
+                {...(publicNetwork.price !== null && {
+                  price: getTextPrice(publicNetwork.price * quantity),
+                })}
+              />
+            </div>
+          ),
+          //TODO: Add condition on public/private/gateway etc
+          displayPrice: true,
         },
       ]
     : [];
@@ -240,6 +277,7 @@ export const useCartItems = (): TCartItems => {
     ...sshKey,
     ...backup,
     ...network,
+    ...publicNetworkDetails,
   ];
 
   const cartItems: TCartItem[] = [
