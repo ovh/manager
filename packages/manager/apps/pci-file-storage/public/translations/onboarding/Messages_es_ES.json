@@ -3,23 +3,23 @@
     "learn-more": {
       "category": "Plan",
       "title": "Más información",
-      "description": "Página de Labs explicando la funcionalidad y la tarificación de Almacenamiento de Archivos.",
+      "description": "Página Labs que explica la funcionalidad y la tarificación de File Storage.",
       "link-text": "Más información"
     },
     "get-started": {
       "category": "Guía",
-      "title": "Primeros Pasos",
-      "description": "Una documentación paso a paso para ayudarte a crear tu primer share.",
+      "title": "Primeros pasos",
+      "description": "Documentación paso a paso para ayudarle a crear su primer «share».",
       "link-text": "Más información"
     },
     "discord": {
       "category": "Discord",
-      "title": "Mantente informado/a de las últimas noticias",
-      "description": "Únete a nosotros directamente en #beta-file-storage: haz tus preguntas y comparte tus comentarios.",
+      "title": "Manténgase informado de las últimas novedades",
+      "description": "Únase a nosotros directamente en #beta-file-storage: haga preguntas y comparta sus comentarios.",
       "link-text": "Más información"
     }
   },
-  "title": "¡Prueba Almacenamiento de Archivos gratis!",
-  "description": "¿Necesitas un almacenamiento compartido para tus clústeres o tus instancias? Nuestra solución de Almacenamiento de Archivos para Public Cloud completamente gestionada ofrece volúmenes NFS que van de <strong>150 GiB a 10 TiB</strong>, hasta <strong>16,000 IOPS</strong> y <strong>128 MB/s</strong>. Compatible con <strong>Managed Kubernetes</strong> (PVCs RWX) y <strong>las instancias de Public Cloud</strong> (montajes NFS), comparte archivos de manera transparente entre nodos, zonas y aplicaciones, con una tarificación transparente.",
+  "title": "¡Pruebe File Storage gratis!",
+  "description": "¿Necesita un almacenamiento compartido para sus clústeres o instancias? Nuestra solución File Storage para Public Cloud totalmente administrada ofrece volúmenes NFS de <strong>150 GiB a 10 TiB</strong>, hasta <strong>16 000 IOPS</strong> y <strong>128 MB/s</strong>. Compatible con <strong>Managed Kubernetes</strong> (PVCs RWX) y <strong>las instancias Public Cloud</strong> (montajes NFS), comparta archivos de forma transparente entre nodos, zonas y aplicaciones, con una tarificación transparente.",
   "action-button": "Descubrir la Beta"
 }

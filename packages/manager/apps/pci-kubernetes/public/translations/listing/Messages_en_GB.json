@@ -24,7 +24,7 @@
   "kubernetes_add_private_network_add": "Create a private network",
   "kube_common_node_pool_autoscaling_title": "Configure node pool size",
   "kubernetes_containers_deployment_mode_label": "Deployment mode",
-  "kube_list_node_pools": "Need persistent volumes for multiple pods across different nodes and availability zones? Try our fully managed <strong>File Storage</strong>, compatible with Managed Kubernetes Service. Enjoy 'Read Write Many' volumes <strong>starting from 150 GiB</strong>, seamlessly scaling with your clusters.",
+  "kube_list_node_pools": "Need persistent volumes for multiple pods across different nodes and availability zones? Try our fully managed <strong>File Storage</strong> service, compatible with Managed Kubernetes Service. Get ‘Read Write Many’ volumes that seamlessly scale with your clusters, <strong>starting from 150 GiB</strong>.",
   "kube_list_node_pools_discover": "Discover the beta",
   "READY": "Ready",
   "DISABLED": "Disabled",

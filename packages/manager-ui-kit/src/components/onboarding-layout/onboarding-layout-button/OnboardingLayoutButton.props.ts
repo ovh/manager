@@ -13,5 +13,6 @@ export type OnboardingLayoutButtonProps = {
   moreInfoHref?: string;
   moreInfoButtonIcon?: ICON_NAME;
   moreInfoButtonLabel?: string;
+  onMoreInfoButtonClick?: () => void;
   isMoreInfoButtonDisabled?: boolean;
 };

@@ -33,11 +33,11 @@
   "ok": "OK",
   "optional": "facoltativo",
   "step_number": "Step {{step}}",
-  "required": "obbligatorio",
+  "required": "Obbligatorio",
   "all_fields_are_required": "Tutti i campi sono obbligatori.",
-  "companyName": "Nome organizzazione",
+  "companyName": "Nome dell'organizzazione:",
   "language": "Lingua",
   "country": "Paese",
-  "phone": "Numero di telefono",
-  "email": "La tua email"
+  "phone": "Telefono",
+  "email": "Email"
 }

@@ -15,7 +15,7 @@
   "sms_senders_add_sender_label": "Nadawca: ",
   "sms_senders_add_sender_placeholder": "Nadawca",
   "sms_senders_add_sender_error_required": "Wypełnienie pola \"Nadawca\" jest obowiązkowe.",
-  "sms_senders_add_sender_error_pattern": "Pole \"Nadawca\" może zawierać tylko litery i cyfry oraz przynajmniej jeden znak alfabetyczny.",
+  "sms_senders_add_sender_error_pattern": "Pole „nadawca” może zawierać wyłącznie znaki alfanumeryczne, przy czym musi zawierać co najmniej jedną literę.",
   "sms_senders_add_sender_error_maxlength": "Liczba znaków w polu „Nadawca” nie może przekroczyć 11.",
   "sms_senders_add_sender_description_label": "Opis: ",
   "sms_senders_add_sender_description_placeholder": "Opis (opcjonalnie)",
@@ -35,5 +35,5 @@
   "sms_senders_add_sender_supporting_document": "Dokumenty potwierdzające",
   "sms_senders_add_sender_supporting_document_help": "W związku z prowadzoną przez nas polityką bezpieczeństwa prosimy o dostarczenie dowodu potwierdzającego tożsamość firmy. Może to być oświadczenie wystawione na papierze firmowym przez pracownika kadry zarządzającej, opatrzone jego podpisem i pieczęcią firmową lub inny dowód umożliwiający identyfikację podmiotu gospodarczego, np. odpis z KRS.",
   "sms_senders_add_sender_supporting_document_info": "Maksymalnie 10 plików o maksymalnym rozmiarze 10 MB. Wymagany format to pdf, jpg, jpeg lub png.",
-  "sms_senders_add_sender_info": "Użyj tylko znaków alfabetycznych i cyfr, maksymalnie 11 znaków i co najmniej jednego znaku alfabetycznego."
+  "sms_senders_add_sender_info": "Użyj tylko znaków alfanumerycznych (maksymalnie 11), w tym co najmniej jednej litery."
 }

@@ -66,5 +66,5 @@
   "errorDurationMin": "The minimum period is 1 day.",
   "errorDurationMax": "The maximum period is 100 years or 36,500 days.",
   "errorRuleRequired": "A retention policy is required to enable the default Object Lock.",
-  "deleteBucketButton": "Delete the bucket"
+  "deleteBucketButton": "Delete bucket"
 }

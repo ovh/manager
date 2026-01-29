@@ -4,7 +4,7 @@
   "sms_senders_configure_contact_info_title": "1. Jeśli odbiorca odpisze „kontakt” na wiadomość",
   "sms_senders_configure_contact_info_subtitle": "Natychmiast otrzyma następujące informacje.",
   "sms_senders_configure_contact_info_label_commercial_name": "Nazwa firmy",
-  "sms_senders_configure_contact_info_label_phonenumber": "Numer firmy",
+  "sms_senders_configure_contact_info_label_phonenumber": "Numer telefonu do firmy",
   "sms_senders_configure_contact_info_label_website": "Strona internetowa firmy",
   "sms_senders_configure_kyc_label_company_name": "Nazwa handlowa",
   "sms_senders_configure_kyc_label_brand_name": "Marka korzystająca z usługi",
@@ -21,5 +21,5 @@
   "sms_senders_configure_auto_response_update_success": "Aktualizacja treści odpowiedzi automatycznych została zapisana.",
   "sms_senders_configure_kyc_update_success": "Aktualizacja KYC została zapisana.",
   "sms_senders_configure_loading_error": "Wystąpił błąd podczas pobierania informacji. {{error}}",
-  "sms_senders_configure_contact_info_helper_phonenumber": "Wprowadź numer w formacie międzynarodowym (0033123456789 lub +33123456789)"
+  "sms_senders_configure_contact_info_helper_phonenumber": "Wprowadź numer w formacie międzynarodowym (0048123456789 lub +48123456789)"
 }

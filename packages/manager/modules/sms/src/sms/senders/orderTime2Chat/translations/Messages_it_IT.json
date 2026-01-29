@@ -12,5 +12,5 @@
   "sms_order_time2chat_label_operational_contact_name": "Nome del contatto",
   "sms_order_time2chat_label_operational_contact_email": "Email del contatto",
   "sms_order_time2chat_message_error": "Si è verificato un errore: {{error}}",
-  "sms_order_time2chat_helper_phonenumber": "Inserisci il numero nel formato internazionale (0033123456789 o +33123456789)"
+  "sms_order_time2chat_helper_phonenumber": "Inserisci il numero in formato internazionale (0039123456789 o +39123456789)"
 }

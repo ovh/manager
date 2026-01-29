@@ -21,6 +21,6 @@
   "pci_projects_project_regions_add_region_success": "Der Standort {{ code }} wurde zu Ihrem Projekt hinzugefügt.",
   "pci_projects_project_filter_by_region": "Nach Standort filtern",
   "pci_projects_project_filter_by_plan_all": "Alle",
-  "pci_projects_project_regions_filter_plan_message": "Der Free-Plan ist nur in den Regionen 1-AZ verfügbar, der Standard-Plan ist in allen Regionen 3-AZ und in einigen Regionen 1-AZ verfügbar.",
-  "pci_projects_project_regions_filter_plan_compare": "Pläne vergleichen"
+  "pci_projects_project_regions_filter_plan_message": "Der Free Plan ist nur in den 1-AZ-Regionen verfügbar, der Standard Plan ist in allen 3-AZ-Regionen und in einigen 1-AZ-Regionen verfügbar.",
+  "pci_projects_project_regions_filter_plan_compare": "Die Pläne vergleichen"
 }

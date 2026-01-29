@@ -1,32 +1,32 @@
 {
-  "title_fallback": "La Copia de Seguridad, En Toda Simplicidad",
-  "description_part1": "Obtenga una solución de respaldo con copias de seguridad automáticas diarias remotas, alertas proactivas y monitoreo centralizado, todo almacenado de manera segura en un Vault en el OVHcloud Object Storage. Instale el agente de respaldo en menos de 15 minutos, sin costo. Solo paga por el almacenamiento de Object Storage que utiliza.",
-  "description_part2": "Sigue nuestras guías para comenzar rápidamente.",
+  "title_fallback": "Sus copias de seguridad, ahora más fácil",
+  "description_part1": "Obtenga una solución de backup con copias de seguridad remotas automáticas diarias, alertas proactivas y supervisión centralizada, todo ello almacenado de forma segura en un Vault del Object Storage de OVHcloud. Instale el backup agent en menos de 15 minutos, sin costes Solo tendrá que pagar por el almacenamiento en Object Storage que utilice.",
+  "description_part2": "Siga nuestras guías para empezar rápidamente.",
   "guides": {
     "guide1": {
       "category": "Coste",
-      "title": "Costo y Facturación",
-      "description": "Documentación que explica el costo y la facturación de Backup Agent.",
+      "title": "Coste y facturación",
+      "description": "Documentación que explica el coste y la facturación de Backup Agent.",
       "cta": "Descubrir"
     },
     "guide2": {
-      "category": "Tutorial",
+      "category": "Guía",
       "title": "Primera configuración",
-      "description": "Una guía paso a paso para ayudarle a configurar y ejecutar su primera copia de seguridad.",
+      "description": "Una guía paso a paso para ayudarle a instalar y ejecutar su primer backup.",
       "cta": "Ver el tutorial"
     },
     "guide3": {
-      "category": "Preguntas frecuentes",
+      "category": "FAQ",
       "title": "Preguntas frecuentes",
-      "description": "Una guía con preguntas frecuentes que abordan los problemas más comunes.",
-      "cta": "Leer la FAQ"
+      "description": "Una guía con preguntas frecuentes sobre los problemas más comunes.",
+      "cta": "Leer las FAQ"
     }
   },
-  "no_baremetal_available": "Solicitar un servidor Bare Metal y protegerlo con el Agente de Copia de Seguridad",
-  "select_baremetal": "Selecciona tu servidor BareMetal",
-  "save_a_baremetal_server": "Hacer una copia de seguridad de un servidor Bare Metal",
-  "baremetal_label_delay_order": "Después de la validación de su pedido, esta pantalla se actualizará y recibirá un correo electrónico tan pronto como su producto Backup Agent sea entregado. Podrá consultar el progreso de su pedido <OrderLink>aquí</OrderLink>.",
-  "baremetal_label_order_in_progress": "El pedido ha sido recibido correctamente, su producto está en proceso de entrega y puede seguir su progreso <OrderLink>aquí</OrderLink>.",
+  "no_baremetal_available": "Contratar un servidor Bare Metal y protegerlo con Backup Agent",
+  "select_baremetal": "Seleccione su servidor Bare Metal",
+  "save_a_baremetal_server": "Realizar una copia de seguridad de un servidor Bare Metal",
+  "baremetal_label_delay_order": "Una vez validado el pedido, esta pantalla se actualizará y recibirá un mensaje de correo electrónico cuando se entregue el servicio Backup Agent. Puede consultar el progreso del pedido <OrderLink>aquí</OrderLink> .",
+  "baremetal_label_order_in_progress": "El pedido se ha recibido correctamente, el servicio se está entregando y puede consultar el progreso del pedido <OrderLink>aquí</OrderLink> .",
   "first_order_terms_and_conditions_title": "Activación del Backup Tenant",
   "first_order_terms_and_conditions_description": "Para activar su servicio es necesario crear un Backup Tenant. ¿Desea continuar con la activación de su servicio?",
   "first_order_terms_and_conditions_confirm_label": "He leído y acepto las Condiciones Generales, el Anexo relativo al tratamiento de datos personales y las Condiciones Particulares del Servicio de OVH.",

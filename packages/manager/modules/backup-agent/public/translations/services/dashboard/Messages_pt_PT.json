@@ -4,9 +4,9 @@
   "billing_more_info": "Mais informações sobre a faturação",
   "number_of_connected_vaults": "{{connectedVaultCount}} conectado(s)",
   "number_of_installed_agents": "{{installedAgentsCount}} instalado(s)",
-  "linked_server": "Servidores Ligados",
-  "linked_vaults": "Cofres Ligados",
-  "number_of_linked_vaults": "{{connectedVaultCount}} cofre(s)",
+  "linked_server": "Servidores associados",
+  "linked_vaults": "Vaults associados",
+  "number_of_linked_vaults": "{{connectedVaultCount}} vault(s)",
   "number_of_linked_server": "{{installedAgentsCount}} servidor(es)",
   "access_to_vspc": "Aceder ao VSPC"
 }

@@ -1,25 +1,25 @@
 {
   "guides": {
     "learn-more": {
-      "category": "Oferta",
+      "category": "Plano",
       "title": "Saber mais",
-      "description": "Página Labs explicando a funcionalidade e a tarifação do Armazenamento de Arquivos.",
+      "description": "Página Labs, com explicações sobre as funcionalidades e a faturação do File Storage.",
       "link-text": "Saber mais"
     },
     "get-started": {
-      "category": "Guia",
-      "title": "Primeiros Passos",
-      "description": "Uma documentação passo a passo para ajudá-lo a criar o seu primeiro compartilhamento.",
+      "category": "Manual",
+      "title": "Introdução",
+      "description": "Uma documentação etapa a etapa para criar o seu primeiro share.",
       "link-text": "Saber mais"
     },
     "discord": {
       "category": "Discord",
-      "title": "Mantenha-se informado(a) sobre as últimas notícias",
-      "description": "Junte-se a nós diretamente no #beta-file-storage: faça suas perguntas e compartilhe seus comentários.",
+      "title": "Mantenha-se informado sobre as mais recentes novidades",
+      "description": "Contacte-nos diretamente em #beta-file-storage: faça perguntas e partilhe feedback.",
       "link-text": "Saber mais"
     }
   },
-  "title": "Teste o Armazenamento de Arquivos gratuitamente!",
-  "description": "Precisa de armazenamento compartilhado para seus clusters ou suas instâncias? A nossa solução de Armazenamento de Arquivos para Cloud Pública totalmente gerida oferece volumes NFS que vão de <strong>150 GiB a 10 TiB</strong>, até <strong>16 000 IOPS</strong> e <strong>128 MB/s</strong>. Compatível com <strong>Managed Kubernetes</strong> (PVCs RWX) e <strong>as instâncias de Cloud Pública</strong> (montagens NFS), compartilhe arquivos de forma transparente entre nós, zonas e aplicações, com uma tarifação transparente.",
-  "action-button": "Descobrir a Beta"
+  "title": "Teste o File Storage gratuitamente!",
+  "description": "Precisa de um armazenamento partilhado para clusters ou instâncias? A nossa solução File Storage para Public Cloud, totalmente gerida, oferece volumes NFS que vão de <strong>150 GiB a 10 TiB</strong>, até <strong>16 000 IOPS</strong> e <strong>128 MB/s</strong>. Compatível com o <strong>Managed Kubernetes</strong> (PVCs RWX) e as <strong>instâncias Public Cloud</strong> (montagem NFS), permite partilhar ficheiros de forma transparente entre os nós, as zonas e as aplicações, por meio de uma faturação transparente.",
+  "action-button": "Descobrir a fase beta"
 }

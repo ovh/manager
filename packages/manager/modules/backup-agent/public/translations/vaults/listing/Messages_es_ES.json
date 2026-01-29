@@ -4,7 +4,7 @@
   "open": "Abrir el panel de control",
   "title": "Lista",
   "resource_name_label": "Nombre",
-  "location_label": "Alquiler",
+  "location_label": "Localización",
   "region_label": "Región",
   "buckets_label": "Número de buckets",
   "status_label": "Estado",
