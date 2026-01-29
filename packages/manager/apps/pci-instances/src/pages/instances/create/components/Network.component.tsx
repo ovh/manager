@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   Button,
   FormField,
@@ -25,14 +25,19 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
 import AddPublicNetworkConfiguration from './network/AddPublicNetworkConfiguration.component';
 import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
+import Banner from '@/components/banner/Banner.component';
+import GuideLink from '@/components/guideLink/GuideLink.component';
+import { useGuideLink } from '@/hooks/url/useGuideLink';
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [networkId, microRegion] = useWatch({
+  const [networkId, microRegion, ipPublicType, assignNewGateway] = useWatch({
     control,
-    name: ['networkId', 'microRegion'],
+    name: ['networkId', 'microRegion', 'ipPublicType', 'assignNewGateway'],
   });
+
+  const guide = useGuideLink('NETWORK_PRIVATE_MODE');
 
   const { data: networks, isPending } = usePrivateNetworks({
     select: selectPrivateNetworks(microRegion),
@@ -137,6 +142,18 @@ const Network: FC = () => {
       )}
       <GatewayConfiguration subnets={networks} />
       <AddPublicNetworkConfiguration subnets={networks} />
+      {ipPublicType === null && !assignNewGateway && (
+        <Banner className="mt-6">
+          <Trans
+            i18nKey="creation:pci_instance_creation_network_full_private_warning"
+            components={{
+              p: <Text preset="paragraph" />,
+              semibold: <span className="font-semibold" />,
+              Link: <GuideLink className="mt-4" href={guide} />,
+            }}
+          />
+        </Banner>
+      )}
     </section>
   );
 };

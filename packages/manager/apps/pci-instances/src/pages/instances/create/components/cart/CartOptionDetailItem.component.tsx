@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 type TCartOptionDetailItemProps = {
   label: string;
-  price: string;
+  price?: string;
   className?: string;
 };
 
@@ -19,9 +19,11 @@ const CartOptionDetailItem: FC<TCartOptionDetailItemProps> = ({
     <Text preset="heading-6" className={headingClassname}>
       {label}
     </Text>
-    <Text preset="heading-6" className={headingClassname}>
-      {price}
-    </Text>
+    {price && (
+      <Text preset="heading-6" className={headingClassname}>
+        {price}
+      </Text>
+    )}
   </div>
 );
 

@@ -9,8 +9,46 @@ type TExistingSshKeyDTO = {
   name: string;
 };
 
+type TSubnetCreateDTO = {
+  cidr: string;
+  enableDhcp: boolean;
+  ipVersion: number;
+};
+
+type TNetworkCreateDTO = {
+  name: string;
+  subnet: TSubnetCreateDTO;
+  vlanId: number;
+};
+
+type TExistingNetworkDTO = {
+  id: string;
+  subnetId: string;
+};
+
+type TGatewayCreateDTO = {
+  model: 'l' | 'm' | 's';
+  name: string;
+};
+
+type TFloatingIpCreateDTO = {
+  description: string;
+};
+
+type TExistingFloatingIpDTO = {
+  id: string;
+};
+
+type TNetworkPrivateDTO = {
+  floatingIp: TExistingFloatingIpDTO | null;
+  floatingIpCreate: TFloatingIpCreateDTO | null;
+  gatewayCreate: TGatewayCreateDTO | null;
+  network: TExistingNetworkDTO | null;
+  networkCreate: TNetworkCreateDTO | null;
+};
+
 type TNetworkDTO = {
-  public: boolean;
+  private: TNetworkPrivateDTO;
 };
 
 type TFlavorDTO = {
