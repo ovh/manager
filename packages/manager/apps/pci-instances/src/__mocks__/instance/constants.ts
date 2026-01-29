@@ -3,16 +3,25 @@ import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right
 import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/deploymentModeViewModel';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
-import { TBackupConfigurationDTO } from '@/adapters/tanstack/configuration/right/dto.type';
-import { TBackupConfiguration } from '@/domain/entities/configuration';
+import { TNetworkCatalog } from '@/domain/entities/networkCatalog';
+import {
+  TBackupConfigurationDTO,
+  TNetworkDTO,
+  TFloatingIpDTO,
+} from '@/adapters/tanstack/configuration/right/dto.type';
+import {
+  TBackupConfiguration,
+  TPrivateNetwork,
+  TFloatingIp,
+} from '@/domain/entities/configuration';
 import Region1azImage from '../../../public/assets/1AZ.svg';
 import Region3azImage from '../../../public/assets/3AZ.svg';
 import LZImage from '../../../public/assets/LZ.svg';
-import { BILLING_TYPE, TDeploymentMode } from '@/types/instance/common.type';
 import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
 import { ComponentType, SVGProps } from 'react';
+import { TPrivateNetworkSubnetData } from '@/pages/instances/create/view-models/networksViewModel';
 
 export const mockedInstance: TAggregatedInstance = {
   id: '12345',
@@ -33,17 +42,6 @@ export const mockedInstance: TAggregatedInstance = {
   availabilityZone: null,
   taskState: null,
   isImageDeprecated: false,
-};
-
-export const mockedInstanceWithEmptyRegion: TAggregatedInstance = {
-  ...mockedInstance,
-  region: '',
-};
-
-export type TDeploymentModeCard = {
-  id: TDeploymentMode;
-  titleKey: string;
-  descriptionKey: string;
 };
 
 export const mockedProjectId = '8c8c4fd6d4414aa29fc777752b00005198664';
@@ -1093,201 +1091,32 @@ export const mockedFlavorTypesSelectorData: TOptionsData[] = [
   },
 ];
 
-export const mockedBillingTypesSelectorData: BILLING_TYPE[] = [
-  BILLING_TYPE.Hourly,
-  BILLING_TYPE.Monthly,
-];
-
-export const mockedFlavorCategories = [
-  {
-    name: 'Best Sellers!',
-    type: [
-      {
-        name: 'ModelTests',
-        flavors: ['d2-2', 'd2-4', 'b3-8'],
-        tags: ['new'],
-      },
-    ],
-    tags: ['New!'],
-  },
-  {
-    name: 'General Purpose',
-    type: [
-      {
-        name: 'B2',
-        flavors: ['b2-7', 'b2-15', 'b2-30', 'b2-60', 'b2-120'],
-        tags: [],
-      },
-      {
-        name: 'B3',
-        flavors: [
-          'b3-8',
-          'b3-16',
-          'b3-32',
-          'b3-64',
-          'b3-128',
-          'b3-256',
-          'b3-512',
-          'b3-640',
-        ],
-        tags: ['new'],
-      },
-    ],
-    tags: null,
-  },
-  {
-    name: 'Compute Optimized',
-    type: [
-      {
-        name: 'C2',
-        flavors: ['c2-7', 'c2-15', 'c2-30', 'c2-60', 'c2-120'],
-        tags: [],
-      },
-      {
-        name: 'C3',
-        flavors: [
-          'c3-4',
-          'c3-8',
-          'c3-16',
-          'c3-32',
-          'c3-64',
-          'c3-128',
-          'c3-256',
-          'c3-320',
-        ],
-        tags: [],
-      },
-    ],
-    tags: null,
-  },
-  {
-    name: 'Memory Optimized',
-    type: [
-      {
-        name: 'R2',
-        flavors: ['r2-15', 'r2-30', 'r2-60', 'r2-120', 'r2-240'],
-        tags: [],
-      },
-      {
-        name: 'R3',
-        flavors: [
-          'r3-16',
-          'r3-32',
-          'r3-64',
-          'r3-128',
-          'r3-256',
-          'r3-512',
-          'r3-1024',
-        ],
-        tags: [],
-      },
-    ],
-    tags: null,
-  },
-  {
-    name: 'Storage Optimized',
-    type: [
-      {
-        name: 'I1',
-        flavors: ['i1-45', 'i1-90', 'i1-180'],
-        tags: [],
-      },
-    ],
-    tags: null,
-  },
-  {
-    name: 'Discovery',
-    type: [
-      {
-        name: 'D2',
-        flavors: ['d2-2', 'd2-4', 'd2-8'],
-        tags: [],
-      },
-    ],
-    tags: null,
-  },
-  {
-    name: 'Cloud GPU',
-    type: [
-      {
-        name: 'L40s',
-        flavors: ['l40s-90', 'l40s-180', 'l40s-360'],
-        tags: [],
-      },
-      {
-        name: 'A10',
-        flavors: ['a10-45', 'a10-90', 'a10-180'],
-        tags: [],
-      },
-      {
-        name: 'A100',
-        flavors: ['a100-180', 'a100-360', 'a100-720'],
-        tags: [],
-      },
-      {
-        name: 'H100',
-        flavors: ['h100-380', 'h100-720', 'h100-1520'],
-        tags: [],
-      },
-      {
-        name: 'L4',
-        flavors: ['l4-90', 'l4-180', 'l4-360'],
-        tags: [],
-      },
-      {
-        name: 'RTX5000',
-        flavors: ['rtx5000-28', 'rtx5000-56', 'rtx5000-84'],
-        tags: [],
-      },
-      {
-        name: 'T1',
-        flavors: ['t1-45', 't1-90', 't1-180'],
-        tags: [],
-      },
-      {
-        name: 'T1-le',
-        flavors: ['t1-le-45', 't1-le-90', 't1-le-180'],
-        tags: [],
-      },
-      {
-        name: 'T2',
-        flavors: ['t2-45', 't2-90', 't2-180'],
-        tags: [],
-      },
-      {
-        name: 'T2-le',
-        flavors: ['t2-le-45', 't2-le-90', 't2-le-180'],
-        tags: [],
-      },
-    ],
-    tags: null,
-  },
-  {
-    name: 'Metal Instances',
-    type: [
-      {
-        name: 'BM',
-        flavors: ['bm-s1', 'bm-m1', 'bm-l1'],
-        tags: [],
-      },
-    ],
-    tags: null,
-  },
-];
-
 export const mockedPrivateNetworks = [
-  { label: 'Priv_roubaix_ovh', value: 'networkId-1', hasGateway: false },
-  { label: 'test-waw1_2', value: 'networkId-2', hasGateway: true },
-  { label: 'SGB1NET', value: 'networkId-3', hasGateway: false },
-  { label: 'test-sbg7-gateway', value: 'networkId-4', hasGateway: false },
-];
-
-export const mockedOvhPrivateNetwork = {
-  name: 'ovhPrivateNetwork',
-  vlanId: 1,
-  cidr: '10.1.0.0/16',
-  enableDhcp: true,
-};
+  {
+    label: 'Priv_roubaix_ovh',
+    value: 'networkId-1',
+    hasGatewayIp: false,
+    capabilities: ['PublicIP', 'FloatingIP'],
+  },
+  {
+    label: 'test-waw1_2',
+    value: 'networkId-2',
+    hasGatewayIp: true,
+    capabilities: ['FloatingIP'],
+  },
+  {
+    label: 'SGB1NET',
+    value: 'networkId-3',
+    hasGatewayIp: false,
+    capabilities: ['PublicIP'],
+  },
+  {
+    label: 'test-sbg7-gateway',
+    value: 'networkId-4',
+    hasGatewayIp: false,
+    capabilities: [],
+  },
+] as TPrivateNetworkSubnetData[];
 
 export const mockedDistantBackupLocalizations = [
   {
@@ -1516,22 +1345,248 @@ export const mockedBackupConfigurationEntity: TBackupConfiguration[] = [
   },
 ];
 
-export const mockedGatewayConfiguration = {
-  price: 10000,
-  size: 'S',
-};
-
-export const mockedBasicPublicIpConfiguration = {
-  price: 0,
-};
-
-export const mockedFloatingIpConfiguration = {
-  price: 10000,
-  size: 'S',
-};
-
 export const mockedExistingFloatingIps = [
-  { value: '1', label: '51.38.xxx.xxx' },
-  { value: '2', label: '51.39.xxx.xxx' },
-  { value: '3', label: '51.40.xxx.xxx' },
+  { value: '51efc945-650e-49cf-ae8b-d3140cecaf72', label: '57.129.111.123' },
 ];
+
+export const mockedFloatingIpDTO: TFloatingIpDTO[] = [
+  {
+    id: '51efc945-650e-49cf-ae8b-d3140cecaf72',
+    ip: '57.129.111.123',
+  },
+];
+
+export const mockedFloatingIpEntity: TFloatingIp[] = [
+  {
+    id: '51efc945-650e-49cf-ae8b-d3140cecaf72',
+    ip: '57.129.111.123',
+  },
+];
+
+export const mockedPrivateNetworkDTO: TNetworkDTO = {
+  resources: [
+    {
+      id: '46d3947f-1098-40a2-be0c-36603b2ab4c3',
+      name: 'test-network-1',
+      visibility: 'private',
+      vlanId: 2100,
+      region: 'BHS5',
+      subnets: [
+        {
+          id: '22defd89-ab74-4353-8676-6a0ad7a239d3',
+          cidr: '10.1.0.0/16',
+          gatewayIp: '10.1.0.1',
+          capabilities: [
+            {
+              type: 'PublicIP',
+              enabled: false,
+            },
+            {
+              type: 'FloatingIP',
+              enabled: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: '104ee4f0-faba-4338-a20f-839d137b9c6a',
+      name: 'test-network-2',
+      visibility: 'private',
+      vlanId: 2800,
+      region: 'DE1',
+      subnets: [
+        {
+          id: 'a1eb85cb-e30d-4523-987e-8ac320c3f9ac',
+          cidr: '10.2.0.0/16',
+          gatewayIp: '10.2.0.1',
+          capabilities: [
+            {
+              type: 'PublicIP',
+              enabled: true,
+            },
+            {
+              type: 'FloatingIP',
+              enabled: false,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: '2992a5d7-1613-4b0d-b0da-ad4acdb75878',
+      name: 'Ext-Net',
+      visibility: 'public',
+      vlanId: null,
+      region: 'EU-WEST-LZ-VIE-VPS-1',
+      subnets: null,
+    },
+  ],
+};
+
+export const mockedPrivateNetworkEntity: TPrivateNetwork = {
+  networks: {
+    byId: new Map([
+      [
+        '46d3947f-1098-40a2-be0c-36603b2ab4c3',
+        {
+          id: '46d3947f-1098-40a2-be0c-36603b2ab4c3',
+          name: 'test-network-1',
+          region: 'BHS5',
+          vlanId: 2100,
+          subnets: ['22defd89-ab74-4353-8676-6a0ad7a239d3'],
+        },
+      ],
+      [
+        '104ee4f0-faba-4338-a20f-839d137b9c6a',
+        {
+          id: '104ee4f0-faba-4338-a20f-839d137b9c6a',
+          name: 'test-network-2',
+          region: 'DE1',
+          vlanId: 2800,
+          subnets: ['a1eb85cb-e30d-4523-987e-8ac320c3f9ac'],
+        },
+      ],
+    ]),
+    allIds: [
+      '46d3947f-1098-40a2-be0c-36603b2ab4c3',
+      '104ee4f0-faba-4338-a20f-839d137b9c6a',
+    ],
+  },
+  subnets: {
+    byId: new Map([
+      [
+        '22defd89-ab74-4353-8676-6a0ad7a239d3',
+        {
+          id: '22defd89-ab74-4353-8676-6a0ad7a239d3',
+          cidr: '10.1.0.0/16',
+          gatewayIp: '10.1.0.1',
+          capabilities: ['FloatingIP'],
+        },
+      ],
+      [
+        'a1eb85cb-e30d-4523-987e-8ac320c3f9ac',
+        {
+          id: 'a1eb85cb-e30d-4523-987e-8ac320c3f9ac',
+          cidr: '10.2.0.0/16',
+          gatewayIp: '10.2.0.1',
+          capabilities: ['PublicIP'],
+        },
+      ],
+    ]),
+    allIds: [
+      '22defd89-ab74-4353-8676-6a0ad7a239d3',
+      'a1eb85cb-e30d-4523-987e-8ac320c3f9ac',
+    ],
+  },
+};
+
+const mockedNetworkCatalogPrice = {
+  currencyCode: 'EUR',
+  priceInUcents: 100,
+  text: '0.001 €',
+  value: 0.001,
+};
+
+export const mockedNetworkCatalog: TNetworkCatalog = {
+  gateway: {
+    byId: new Map([
+      [
+        'gateway_s_GRA11',
+        {
+          id: 'gateway_s_GRA11',
+          size: 's',
+          region: 'GRA11',
+          price: mockedNetworkCatalogPrice,
+        },
+      ],
+      [
+        'gateway_s_GRA7',
+        {
+          id: 'gateway_s_GRA7',
+          size: 's',
+          region: 'GRA7',
+          price: mockedNetworkCatalogPrice,
+        },
+      ],
+      [
+        'gateway_s_BHS5',
+        {
+          id: 'gateway_s_BHS5',
+          size: 's',
+          region: 'BHS5',
+          price: mockedNetworkCatalogPrice,
+        },
+      ],
+      [
+        'gateway_m_GRA11',
+        {
+          id: 'gateway_m_GRA11',
+          size: 'm',
+          region: 'GRA11',
+          price: {
+            ...mockedNetworkCatalogPrice,
+            priceInUcents: 200,
+            value: 0.002,
+          },
+        },
+      ],
+    ]),
+    allIds: [
+      'gateway_s_GRA11',
+      'gateway_s_GRA7',
+      'gateway_s_BHS5',
+      'gateway_m_GRA11',
+    ],
+  },
+  publicIp: {
+    byId: new Map([
+      [
+        'PublicIP_GRA11',
+        {
+          id: 'PublicIP_GRA11',
+          type: 'PublicIP',
+          region: 'GRA11',
+          price: mockedNetworkCatalogPrice,
+        },
+      ],
+      [
+        'PublicIP_GRA7',
+        {
+          id: 'PublicIP_GRA7',
+          type: 'PublicIP',
+          region: 'GRA7',
+          price: mockedNetworkCatalogPrice,
+        },
+      ],
+      [
+        'FloatingIP_GRA11',
+        {
+          id: 'FloatingIP_GRA11',
+          type: 'FloatingIP',
+          region: 'GRA11',
+          price: {
+            ...mockedNetworkCatalogPrice,
+            priceInUcents: 500,
+            value: 0.005,
+          },
+        },
+      ],
+      [
+        'FloatingIP_BHS5',
+        {
+          id: 'FloatingIP_BHS5',
+          type: 'FloatingIP',
+          region: 'BHS5',
+          price: mockedNetworkCatalogPrice,
+        },
+      ],
+    ]),
+    allIds: [
+      'PublicIP_GRA11',
+      'PublicIP_GRA7',
+      'FloatingIP_GRA11',
+      'FloatingIP_BHS5',
+    ],
+  },
+};

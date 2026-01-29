@@ -122,7 +122,6 @@
   "pci_instance_creation_network_add_new_vlanID_warning": "Le VLAN id 0 est utilisé par défaut sur d'autres produits y compris en dehors de l'univers Public Cloud. Les IP privées doivent être gérées avec attention",
   "pci_instance_creation_network_add_new_cidr_error": "Veuillez saisir une adresse IP valide",
   "pci_instance_creation_network_add_new_vlanId_error": "Le vLAN ID doit être compris entre 0 et 4000. Veuillez vérifier la valeur saisie avant de continuer.",
-  "pci_instance_creation_network_setting_beta_warning": "Les instances créées dans cette version de développement sont toutes créées avec un réseau public (Ext-Net)",
   "pci_instance_creation_select_billing_hourly": "Horaire",
   "pci_instance_creation_select_billing_monthly": "Mensuel",
   "pci_instance_creation_select_billing_choice_subtext_hourly": "Payez à l'usage, selon le temps réel d'utilisation.",
