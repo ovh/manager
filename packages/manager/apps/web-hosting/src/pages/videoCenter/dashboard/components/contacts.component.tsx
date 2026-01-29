@@ -13,13 +13,13 @@ import { ActionMenu } from '@ovh-ux/muk';
 import { CHANGE_OWNER_LINK } from '@/constants';
 import {
   useGetServiceDetails,
-  useGetServiceInfos,
+  useGetServicesId,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 
 export default function Contacts() {
   const { serviceId } = useParams();
-  const { data } = useGetServiceInfos(serviceId);
-  const { data: serviceDetails } = useGetServiceDetails(data?.serviceId);
+  const { data } = useGetServicesId(serviceId);
+  const { data: serviceDetails } = useGetServiceDetails(data?.[0] ?? 0);
 
   const { t } = useTranslation(['videoManagerCenter', NAMESPACES.DASHBOARD]);
   const context = useContext(ShellContext);
@@ -54,7 +54,6 @@ export default function Contacts() {
     <div className="flex flex-row pt-4">
       <div>
         <Text preset={TEXT_PRESET.heading6}>{t(`${NAMESPACES.DASHBOARD}:contacts`)}</Text>
-        <Text>{t('video_manager_ga')}</Text>
         {serviceDetails?.customer?.contacts?.map((contact) => (
           <Text key={contact?.customerCode}>
             {t('video_manager_service_contact', {
@@ -68,7 +67,6 @@ export default function Contacts() {
         <ActionMenu
           id={'video-manager-subscription-actions'}
           items={items}
-          isDisabled
           isCompact
           variant={BUTTON_VARIANT.outline}
           icon={ICON_NAME.ellipsisVertical}

@@ -168,11 +168,12 @@ webCloudUniverse.children = [
         universe: webCloudUniverse.id,
         translation: 'sidebar_web_hosting_video_center',
         serviceType: 'WEB_HOSTING',
-        tag: NodeTag.NEW,
+        tag: NodeTag.BETA,
         routing: {
           application: 'web-hosting',
           hash: '#/video-center',
         },
+        features: ['web-hosting:video-center'],
       },
     ],
   },
