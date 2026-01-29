@@ -16,7 +16,6 @@ import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 import { THost } from '@/domain/types/host';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { algorithm_RSASHZA3457 } from '@/domain/constants/dsRecords';
-import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export function computeDnsDetails(
   domainResource: TDomainResource,
