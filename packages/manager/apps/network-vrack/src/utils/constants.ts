@@ -1,5 +1,7 @@
 import { ChangelogMenuLinks } from '@ovh-ux/muk';
 
+export const APP_NAME = 'network-vrack';
+
 export const CHANGELOG_LINKS: ChangelogMenuLinks = {
   changelog:
     'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Private+Network',
@@ -200,6 +202,13 @@ export const GUIDE_LINKS = {
     link4:
       'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-vrack-pci-ds?id=kb_article_view&sysparm_article=KB0043353',
   },
+};
+
+export const TRANSLATION_NAMESPACES = {
+  common: 'common',
+  dashboard: 'dashboard',
+  onboarding: 'onboarding',
+  publicIpRouting: 'publicIpRouting',
 };
 
 export const SURVEY_LANGUAGES = {
