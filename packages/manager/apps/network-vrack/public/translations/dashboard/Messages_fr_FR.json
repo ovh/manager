@@ -1,4 +1,5 @@
 {
+  "dashboard_allAttachedServicesTab": "Tous les services attachés",
   "dashboard_publicIpConnectivityTab": "Connectivité IP publique",
   "dashboard_vrackBreadcrumbLabel": "Réseau privé vRack",
   "dashboard_guidesTitle": "Guides",
