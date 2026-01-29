@@ -6,11 +6,11 @@ const VLAN_ID_MAX = 4000;
 const getNextAvailableVlanId = (allocatedIds: number[]): number => {
   const set = new Set(allocatedIds);
 
-  return (
-    Array.from({ length: VLAN_ID_MAX }, (_, idx) => idx + 1).find(
-      (id) => !set.has(id),
-    ) || 1
-  );
+  for (let id = 1; id <= VLAN_ID_MAX; id++) {
+    if (!set.has(id)) return id;
+  }
+
+  return 1;
 };
 
 export const getOvhPrivateNetwork = (
@@ -21,7 +21,7 @@ export const getOvhPrivateNetwork = (
 
   const allocatedVlanIds = networks.allIds
     .map((networkId) => networks.byId.get(networkId)?.vlanId ?? null)
-    .filter((vlanId) => vlanId !== null);
+    .filter((vlanId): vlanId is number => vlanId !== null);
 
   const vlanId = getNextAvailableVlanId(allocatedVlanIds);
 

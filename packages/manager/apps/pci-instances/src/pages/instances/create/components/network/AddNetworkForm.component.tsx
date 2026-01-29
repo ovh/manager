@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import {
   Checkbox,
   CheckboxCheckedChangeDetail,
@@ -15,22 +15,24 @@ import {
 import Banner from '@/components/banner/Banner.component';
 import { InputField } from '@/components/form';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import { selectOvhPrivateNetwork } from '../../view-models/networksViewModel';
+import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
 
-type TAddNetworkFormProps = {
-  takenVlanIds?: number[];
-};
-
-const AddNetworkForm: FC<TAddNetworkFormProps> = ({ takenVlanIds = [] }) => {
+const AddNetworkForm: FC = () => {
   const { t } = useTranslation('creation');
   const {
     control,
     register,
     formState: { errors },
+    setValue,
   } = useFormContext<TInstanceCreationForm>();
-
-  const vlanId = useWatch({
+  const [microRegion, vlanId] = useWatch({
     control,
-    name: 'newPrivateNetwork.vlanId',
+    name: ['microRegion', 'newPrivateNetwork.vlanId'],
+  });
+
+  const { data: networks } = usePrivateNetworks({
+    select: selectOvhPrivateNetwork(microRegion),
   });
 
   const handleEnableDhcp = (
@@ -41,6 +43,17 @@ const AddNetworkForm: FC<TAddNetworkFormProps> = ({ takenVlanIds = [] }) => {
   ) => (detail: CheckboxCheckedChangeDetail) => {
     field.onChange(detail.checked);
   };
+
+  useEffect(() => {
+    if (networks)
+      setValue('newPrivateNetwork', networks.ovhPrivateNetwork, {
+        shouldValidate: true,
+      });
+
+    return () => {
+      setValue('newPrivateNetwork', null);
+    };
+  }, [networks, setValue]);
 
   return (
     <form
@@ -94,7 +107,7 @@ const AddNetworkForm: FC<TAddNetworkFormProps> = ({ takenVlanIds = [] }) => {
           </Checkbox>
         )}
       />
-      {takenVlanIds.includes(vlanId) && (
+      {networks?.allocatedVlanIds.includes(vlanId) && (
         <Banner color="warning" className="mt-6">
           {t(
             'creation:pci_instance_creation_network_add_new_used_vlanID_warning',

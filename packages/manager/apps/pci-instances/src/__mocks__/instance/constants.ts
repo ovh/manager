@@ -21,7 +21,7 @@ import { TRegionData } from '@/pages/instances/create/view-models/localizationsV
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
 import { ComponentType, SVGProps } from 'react';
-import { TPrivateNetworkSubnetData } from '@/pages/instances/create/view-models/networksViewModel';
+import { TPrivateNetworkData } from '@/pages/instances/create/view-models/networksViewModel';
 
 export const mockedInstance: TAggregatedInstance = {
   id: '12345',
@@ -1116,7 +1116,7 @@ export const mockedPrivateNetworks = [
     hasGatewayIp: false,
     capabilities: [],
   },
-] as TPrivateNetworkSubnetData[];
+] as TPrivateNetworkData[];
 
 export const mockedDistantBackupLocalizations = [
   {
