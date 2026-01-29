@@ -29,6 +29,11 @@
                     data-term="{{:: 'telephony_alias_information_number' | translate }}"
                     data-description="{{:: $ctrl.alias.serviceName }}"
                 ></oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'telephony_rio_label' | translate }}"
+                    data-description="{{ $ctrl.alias.rio }}"
+                    data-ng-if="$ctrl.alias.rio"
+                ></oui-tile-definition>
                 <oui-tile-button
                     data-ng-if="!$ctrl.alias.isAPortabilityAlias()"
                     data-on-click="$ctrl.$state.go('telecom.telephony.billingAccount.alias.details.convertToLine')"

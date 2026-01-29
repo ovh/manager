@@ -6,6 +6,7 @@ export default /* @ngInject */ function TelecomTelephonyFaxManagementInformation
   $translate,
   TelephonyMediator,
   TucToast,
+  tucVoipService,
   TucNumberPlans,
 ) {
   const self = this;
@@ -30,6 +31,14 @@ export default /* @ngInject */ function TelecomTelephonyFaxManagementInformation
         self.group = group;
         self.fax = self.group.getFax($stateParams.serviceName);
         self.plan = TucNumberPlans.getPlanByNumber(self.fax);
+        tucVoipService
+          .fetchSingleService($stateParams.billingAccount, $stateParams.serviceName)
+          .then((service) => {
+            if (service) {
+              self.fax.rio = service.rio;
+            }
+          })
+          .catch(() => null);
       })
       .catch((error) => {
         TucToast.error(
