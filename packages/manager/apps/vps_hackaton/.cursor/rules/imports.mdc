@@ -6,6 +6,8 @@ alwaysApply: false
 
 # Import Organization
 
+**When importing ODS components, use @ods skill to identify the correct import path and component name.**
+
 ## Import Order
 
 ```typescript
@@ -70,6 +72,8 @@ import { Component } from '../../../components/Component.component';
 ```
 
 ### Library-Specific Patterns
+
+**Use @ods skill to determine which ODS package to import from and which component names are available.**
 
 ```typescript
 // ✅ GOOD: ODS React components

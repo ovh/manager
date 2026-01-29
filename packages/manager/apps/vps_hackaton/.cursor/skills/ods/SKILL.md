@@ -26,7 +26,7 @@ import { Button, Text, Input, FormField, FormFieldLabel } from '@ovhcloud/ods-re
 ```
 
 ### @ovhcloud/ods-components/react
-Web components (Osds* prefix) - **Use when ods-react doesn't have the component**
+Web components (Osds* prefix) - **Use only when ods-react doesn't have the component**
 
 ```typescript
 // ✅ GOOD: Import web components when needed

@@ -6,6 +6,8 @@ alwaysApply: false
 
 # React Components, Forms, and View-Models
 
+**Before creating any React component, always check if an existing component from ODS or other libraries can be used. Use @ods skill to guide component selection and avoid reinventing components.**
+
 ## Component Structure
 
 ### File Naming
@@ -16,11 +18,13 @@ alwaysApply: false
 
 ### Component Patterns
 
+**When implementing React components, use @react skill for best practices on hooks, patterns, and component structure.**
+
 ```typescript
 // ✅ GOOD: Functional component with TypeScript
 export const ComponentName = ({ prop1, prop2 }: ComponentProps) => {
   const { t } = useTranslation(['common']);
-  
+
   return (
     <article className="flex w-full flex-col">
       <Text preset="heading-2">{t('translation_key')}</Text>
@@ -38,11 +42,13 @@ export default function PageName() {
 - **Custom hooks**: `/hooks/` - Application-wide logic
 - **Data hooks**: `/data/hooks/` - Data fetching with TanStack Query
 - **Component hooks**: Co-located with components when component-specific
+- **Use @react skill for React hooks best practices and patterns**
 
 ### Component Composition
+- **Before creating a new component, use @ods skill to check if an ODS component exists that meets the requirements**
 - Prefer composition over complex props
 - Extract reusable logic into custom hooks
-- Use ODS components from `@ovhcloud/ods-react` or `@ovhcloud/ods-components/react`
+- Use ODS components from `@ovhcloud/ods-react` or `@ovhcloud/ods-components/react` - consult @ods skill for component selection guidance
 
 ## Forms with react-hook-form
 
@@ -84,6 +90,8 @@ export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 
 ### Form Components
 
+**When creating form components, use @ods skill to select the appropriate ODS form components (FormField, FormFieldLabel, Input, Select, etc.)**
+
 ```typescript
 // ✅ GOOD: Use FormProvider and useFormContext
 import { FormProvider } from 'react-hook-form';
@@ -92,7 +100,7 @@ import { FormField, FormFieldLabel, Input } from '@ovhcloud/ods-react';
 
 export const FormComponent = () => {
   const formMethods = useForm(projectId);
-  
+
   return (
     <FormProvider {...formMethods}>
       <Name />
@@ -102,7 +110,7 @@ export const FormComponent = () => {
 
 export const Name = () => {
   const { register, formState: { errors } } = useFormContext<{ name: string }>();
-  
+
   return (
     <FormField>
       <FormFieldLabel>Name</FormFieldLabel>
@@ -127,13 +135,13 @@ import { Reader } from '@/types/utils.type';
 
 type TSelectData = (projectId: string, arg: string | null) => TViewModel | null;
 
-export const selectData: Reader<Deps, TSelectData> = (deps) => 
+export const selectData: Reader<Deps, TSelectData> = (deps) =>
   (projectId, arg) => {
     if (!arg) return null;
-    
+
     const data = deps.instancesCatalogPort.selectInstancesCatalog(projectId);
     if (!data) return null;
-    
+
     // Transform domain entities to view data
     return transformedData;
   };
@@ -149,7 +157,7 @@ import { selectData } from '@/view-models/dataViewModel';
 const Component = () => {
   const projectId = useProjectId();
   const viewData = selectData(deps)(projectId, someArg);
-  
+
   return <div>{viewData?.label}</div>;
 };
 ```

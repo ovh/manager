@@ -33,6 +33,7 @@ Ce document décrit la stack technique complète du projet `pci-file-storage` po
 
 - `@ovhcloud/ods-react` ~19.3.0 - Composants ODS (Text, Spinner, Divider, etc.)
 - `@ovhcloud/ods-themes` ~19.3.0 - Thèmes ODS
+- **Always use @ods skill when selecting or using ODS components to ensure correct usage and avoid creating custom components unnecessarily**
 
 ### State Management
 
@@ -50,6 +51,7 @@ Ce document décrit la stack technique complète du projet `pci-file-storage` po
 - Tailwind CSS 3.4.4 avec `@tailwindcss/postcss` ^4.1.17
 - Import des styles ODS: `@ovhcloud/ods-themes/default`
 - Import des styles MUK: `@ovh-ux/muk/dist/style.css`
+- **Use @tailwind skill for Tailwind CSS patterns, utility classes, and responsive design best practices**
 
 ### HTTP Client
 
@@ -260,8 +262,9 @@ t('key', { count: 5 })
 
 ### Design System ODS
 
+- **Toujours consulter @ods skill avant de créer un nouveau composant UI pour vérifier si un composant ODS existe**
 - Toujours utiliser les composants de `@ovhcloud/ods-react` pour l'UI
-- Composants disponibles: `Text`, `Spinner`, `Divider`, etc.
+- Composants disponibles: `Text`, `Spinner`, `Divider`, etc. - utiliser @ods skill pour la liste complète
 - Utiliser les presets: `preset="heading-1"`, `preset="heading-2"`
 - Importer les styles ODS dans `index.scss`
 

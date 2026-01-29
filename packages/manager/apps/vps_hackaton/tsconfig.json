@@ -1,0 +1,12 @@
+{
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/public/*": ["public/*"]
+    }
+  },
+  "include": ["src", "setupTests.ts"],
+  "exclude": ["node_modules", "dist"]
+}

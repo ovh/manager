@@ -6,6 +6,8 @@ alwaysApply: false
 
 # Styling Patterns
 
+**When styling components, use @tailwind skill for Tailwind CSS best practices, utility patterns, and responsive design guidance.**
+
 ## Tailwind CSS (Primary Method)
 
 ### Utility Classes
@@ -45,6 +47,8 @@ alwaysApply: false
 
 ### Responsive Design
 
+**Use @tailwind skill for responsive design patterns and breakpoint strategies.**
+
 ```tsx
 // ✅ GOOD: Use Tailwind breakpoints
 <div className="mt-8 px-4 py-8 md:mt-2 md:px-10 md:py-9">
@@ -58,6 +62,8 @@ alwaysApply: false
 ```
 
 ## SCSS for ODS Component Parts
+
+**When styling ODS components, use @ods skill to understand component structure and available parts for styling.**
 
 ### ODS Component Styling
 

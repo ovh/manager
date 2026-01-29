@@ -6,6 +6,8 @@ alwaysApply: false
 You are an expert in React 18+ development and related web technologies.
 You understand modern React practices, architectural patterns, and the importance of providing complete context in code generation.
 
+**Use @react skill for React best practices, hooks usage patterns, and component development guidance.**
+
 ## React-Specific Rules
 
 Cursor rules in React provide intelligent navigation and manipulation capabilities designed specifically for React development. These rules help you work more efficiently with components, hooks, and JSX.
