@@ -154,7 +154,7 @@ export const floatingIpAssignmentSchema = z
   .enum(['createNew', 'reuseExisting'])
   .nullable();
 
-export const existingFloatingIpSchema = z.string().nullable();
+export const existingFloatingIpIdSchema = z.string().nullable();
 
 export type TAddNetworkForm = z.infer<typeof networkSchema>;
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
@@ -176,12 +176,12 @@ export const instanceCreationSchema = z.object({
   backup: backupImageSchema,
   sshKeyId: sshKeyIdSchema,
   newSshPublicKey: sshPublicKeySchema.nullable(),
-  privateNetworkId: privateNetworkIdSchema,
+  subnetId: privateNetworkIdSchema,
   newPrivateNetwork: networkSchema,
   assignNewGateway: assignNewGatewaySchema,
   ipPublicType: ipPublicTypeSchema,
   floatingIpAssignment: floatingIpAssignmentSchema,
-  existingFloatingIp: existingFloatingIpSchema,
+  existingFloatingIpId: existingFloatingIpIdSchema,
   billingType: billingTypeSelectionSchema,
   localBackupRotation: localBackupRotationSchema,
   distantBackupLocalization: distantBackupLocalizationSchema,

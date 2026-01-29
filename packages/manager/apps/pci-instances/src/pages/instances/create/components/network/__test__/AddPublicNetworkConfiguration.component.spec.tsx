@@ -30,12 +30,12 @@ vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
 );
 
 const setupTest = ({
-  networkId = null,
+  subnetId = null,
   microRegion = 'fake-region',
   deploymentMode = 'region',
 }: {
   microRegion?: string | null;
-  networkId?: string | null;
+  subnetId?: string | null;
   deploymentMode?: TDeploymentModeID;
 } = {}) => {
   getNetworkCatalogMock.mockReturnValue(mockedNetworkCatalog);
@@ -48,7 +48,7 @@ const setupTest = ({
     <TestCreateInstanceFormWrapper
       defaultValues={{
         microRegion,
-        privateNetworkId: networkId,
+        subnetId,
       }}
     >
       <AddPublicNetworkConfiguration privateNetworks={mockedPrivateNetworks} />
@@ -103,7 +103,7 @@ describe('Considering AddPublicNetworkConfiguration component', () => {
 
   it('should checked floating ip when basic ip is disabled', async () => {
     setupTest({
-      networkId: mockedPrivateNetworks[1]?.value,
+      subnetId: mockedPrivateNetworks[1]?.value,
     });
 
     await waitFor(() => {

@@ -47,6 +47,8 @@ const setupTest = (
           vlanId: DEFAULT_VLAN_ID,
           enableDhcp: true,
         },
+        ipPublicType: null,
+        assignNewGateway: false,
       }}
     >
       <Network />
@@ -201,6 +203,18 @@ describe('Considering Network component', () => {
           name: 'creation:pci_instance_creation_network_add_new',
         }),
       ).not.toBeInTheDocument();
+    });
+  });
+
+  it('should display warning message when full private network mode', async () => {
+    setupTest();
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          'creation:pci_instance_creation_network_full_private_warning',
+        ),
+      ).toBeVisible();
     });
   });
 });

@@ -22,7 +22,8 @@ export type TGuideKey =
   | 'DISTRIBUTION_IMAGE_LIFE_CYCLE'
   | 'SSH_KEY'
   | 'NETWORK'
-  | 'BACKUP';
+  | 'BACKUP'
+  | 'NETWORK_PRIVATE_MODE';
 
 export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   LOCATION: {
@@ -136,5 +137,9 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
     US: `${US_HELP_URL}/4460743125395-Backing-up-an-instance`,
     WE: `${HELP_URL}/en-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0069268`,
     WS: `${HELP_URL}/es-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0051152`,
+  },
+  NETWORK_PRIVATE_MODE: {
+    DEFAULT: `${HELP_URL}/fr-public-cloud-compute-activate-windows-licence-private-mode-instance?id=kb_article_view&sysparm_article=KB0056165`,
+    FR: `${HELP_URL}/fr-public-cloud-compute-activate-windows-licence-private-mode-instance?id=kb_article_view&sysparm_article=KB0056165`,
   },
 };
