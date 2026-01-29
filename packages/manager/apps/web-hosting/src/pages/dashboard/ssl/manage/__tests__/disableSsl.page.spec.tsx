@@ -2,7 +2,7 @@ import { fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import DisableSslModal from '../disableSsl.page';
 
@@ -31,6 +31,12 @@ vi.mock('@/data/hooks/ssl/useSsl', () => ({
 }));
 
 describe('DisableSslModal', () => {
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('call deleteDomainCertificate and close modal', async () => {
     const { getByTestId } = render(<DisableSslModal />, { wrapper });
 
@@ -49,5 +55,11 @@ describe('DisableSslModal', () => {
 
     fireEvent.click(getByTestId('secondary-button'));
     expect(navigate).toHaveBeenCalled();
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = render(<DisableSslModal />, { wrapper });
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

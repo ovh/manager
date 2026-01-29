@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from 'react';
 
 import * as reactRouterDom from 'react-router-dom';
@@ -9,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { CertificateType, SslCertificate, State } from '@/data/types/product/ssl';
 import useDatagridColumn, { DatagridActionCell } from '@/hooks/ssl/useDatagridColumn';
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
 
 vi.mock('@ovh-ux/muk', async () => {
   const actual = await vi.importActual<typeof import('@ovh-ux/muk')>('@ovh-ux/muk');
@@ -423,5 +424,29 @@ describe('DatagridActionCell', () => {
     const { container } = render(<DatagridActionCell {...mockProps} />, { wrapper });
 
     expect(container).toBeInTheDocument();
+  });
+  it.skip('should have a valid html', async () => {
+    /*
+    issue with ods popover
+    error: Attribute “variant” not allowed on element “div” at this point.
+    error: Attribute “icon” not allowed on element “div” at this point.
+   */
+    const mockProps = {
+      row: {
+        original: {
+          currentState: {
+            mainDomain: 'example.com',
+            additionalDomains: [],
+            certificateType: CertificateType.LETSENCRYPT,
+            state: State.ACTIVE,
+            createdAt: '2025-01-01',
+            expiredAt: '2026-01-01',
+          },
+        } as SslCertificate,
+      },
+    };
+    const { container } = renderWithRouter(<DatagridActionCell {...mockProps} />);
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
   });
 });

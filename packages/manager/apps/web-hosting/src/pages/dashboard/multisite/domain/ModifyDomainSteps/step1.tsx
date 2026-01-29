@@ -231,7 +231,11 @@ export default function Step1({
                           ],
                         }))}
                       >
-                        <SelectControl />
+                        <SelectControl
+                          aria-label={t(
+                            'multisite:multisite_modal_domain_configuration_modify_countriesIp',
+                          )}
+                        />
                         <SelectContent createPortal={false} />
                       </Select>
                     );
@@ -283,7 +287,11 @@ export default function Step1({
                       disabled={!isGitDisabled}
                       className="mt-2"
                     >
-                      <SelectControl />
+                      <SelectControl
+                        aria-label={t(
+                          'multisite:multisite_modal_domain_configuration_modify_ownlog',
+                        )}
+                      />
                       <SelectContent createPortal={false} />
                     </Select>
                   )}

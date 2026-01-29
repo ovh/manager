@@ -61,6 +61,9 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col">
+        <h2 className="sr-only">
+          {t('managedWordpress:web_hosting_managed_wordpress_import_select_element')}
+        </h2>
         <Text preset={TEXT_PRESET.heading3} className="mb-4">
           {t('managedWordpress:web_hosting_managed_wordpress_import_select_element')}
         </Text>

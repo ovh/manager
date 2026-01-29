@@ -2,6 +2,7 @@ import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
+import { getDomRect } from '@/utils/test.setup';
 
 import EditNameModal from '../EditName.modal';
 
@@ -25,6 +26,12 @@ vi.mock('@ovh-ux/muk', () => ({
 }));
 
 describe('EditName page', () => {
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('Page for update', () => {
     const { getByTestId } = render(<EditNameModal />, { wrapper });
     expect(getByTestId('update-name-modal')).not.toBeNull();

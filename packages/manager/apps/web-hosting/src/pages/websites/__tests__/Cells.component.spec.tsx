@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, vi } from 'vitest';
 import { attachedDomainDigStatusMock } from '@/data/__mocks__';
 import { GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
 
 import { BadgeStatusCell, DiagnosticCell, LinkCell } from '../Cells.component';
 
@@ -166,5 +166,49 @@ describe('LinkCell', () => {
       wrapper,
     });
     expect(screen.getByText('Test Link')).toBeInTheDocument();
+  });
+
+  it('should have a valid html', async () => {
+    const { container } = renderWithRouter(
+      <LinkCell
+        webSiteItem={{
+          id: '',
+          checksum: '',
+          currentState: {
+            isDefault: false,
+            resourceStatus: ResourceStatus.CREATING,
+            fqdn: '',
+            path: '',
+            cdn: {
+              status: ServiceStatus.ACTIVE,
+            },
+            firewall: {
+              status: ServiceStatus.ACTIVE,
+            },
+            git: {
+              status: GitStatus.CREATED,
+              vcsBranch: '',
+              vcsUrl: '',
+            },
+            ssl: {
+              status: ServiceStatus.ACTIVE,
+            },
+            hosting: {
+              serviceName: '',
+              displayName: '',
+              offer: '',
+              boostOffer: '',
+            },
+            ownLog: '',
+          },
+          currentTasks: [],
+        }}
+        label={''}
+      />,
+    );
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

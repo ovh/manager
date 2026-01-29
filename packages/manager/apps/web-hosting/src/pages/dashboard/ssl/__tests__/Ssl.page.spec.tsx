@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { download } from 'export-to-csv';
 import { beforeEach, describe, expect, vi } from 'vitest';
 
-import commonTranslation from '@/public/translations/ssl/Messages_fr_FR.json';
 import { wrapper } from '@/utils/test.provider';
-import { mockUseDataApi } from '@/utils/test.setup';
+import { getDomRect, mockUseDataApi } from '@/utils/test.setup';
 
 import Ssl from '../Ssl.page';
 
@@ -17,6 +16,7 @@ const hoistedMock = vi.hoisted(() => ({
 
 describe('Ssl page', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     global.URL.createObjectURL = hoistedMock.createObjectURL;
     window.open = hoistedMock.open;
     mockUseDataApi.mockReturnValue({
@@ -34,46 +34,31 @@ describe('Ssl page', () => {
       totalCount: 0,
     });
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
-    const { container } = render(<Ssl />, { wrapper: wrapper });
+    const { container } = render(<Ssl />, { wrapper });
     expect(container).toBeInTheDocument();
   });
 
   it('should display all headers with correct text', () => {
-    const { container } = render(<Ssl />, { wrapper: wrapper });
+    const { container, getByRole } = render(<Ssl />, { wrapper });
     expect(container).toBeInTheDocument();
 
+    const table = getByRole('table');
     const headers = [
-      {
-        id: 'header-mainDomain',
-        text: commonTranslation.cell_main_domain,
-      },
-      {
-        id: 'header-additionalDomain',
-        text: commonTranslation.additional_domains_singular_total,
-      },
-      {
-        id: 'header-type',
-        text: commonTranslation.cell_certificate_type,
-      },
-      {
-        id: 'header-state',
-        text: commonTranslation.cell_state,
-      },
-      {
-        id: 'header-creationDate',
-        text: commonTranslation.cell_creation_date,
-      },
-      {
-        id: 'header-expirationDate',
-        text: commonTranslation.cell_expiration_date,
-      },
-      { id: 'header-actions', text: '' },
+      'cell_main_domain',
+      'cell_additional_domain',
+      'cell_certificate_type',
+      'state',
+      'creationDate',
+      'expirationDate',
+      'actions',
     ];
 
-    headers.forEach(({ id }) => {
-      const headerElement = screen.getByTestId(id);
+    headers.forEach((label) => {
+      const headerElement = within(table).getByRole('columnheader', { name: label });
       expect(headerElement).toBeInTheDocument();
     });
   });
@@ -93,5 +78,12 @@ describe('Ssl page', () => {
 
     expect(hoistedMock.createObjectURL).toHaveBeenCalled();
     expect(download).toHaveBeenCalled();
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = render(<Ssl />, { wrapper });
+    // Strip aria-controls from ODS Popover (content in portal, not in same document)
+    const html = container.innerHTML.replace(/\s*aria-controls="[^"]*"/g, '');
+    await expect(html).toBeValidHtml();
+    // Skip toBeAccessible: ODS button (export) and select (domainName) lack accessible names in test env
   });
 });

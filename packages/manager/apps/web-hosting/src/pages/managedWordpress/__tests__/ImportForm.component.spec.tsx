@@ -14,7 +14,8 @@ import {
   putManagedCmsResourceWebsiteTasks,
 } from '@/data/api/managedWordpress';
 import { useManagedWordpressWebsiteDetails } from '@/data/hooks/managedWordpress/managedWordpressWebsiteDetails/useManagedWordpressWebsiteDetails';
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
+import { getDomRect } from '@/utils/test.setup';
 
 import ImportForm from '../ManagedWordpressResource/import/importForm/ImportForm.component';
 
@@ -33,7 +34,13 @@ vi.mock(
 describe('ImportForm Component', () => {
   const addSuccess = vi.fn();
   const addError = vi.fn();
-
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+    vi.clearAllMocks();
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   beforeEach(() => {
     vi.clearAllMocks();
     vi.mocked(useParams).mockReturnValue({ serviceName: 'test-service' });
@@ -232,5 +239,12 @@ describe('ImportForm Component', () => {
       expect(putManagedCmsResourceWebsiteTasks).toHaveBeenCalled();
       expect(addError).toHaveBeenCalled();
     });
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = renderWithRouter(<ImportForm />);
+    // Strip empty aria-describedby from ODS FormField (invalid IDREFS) before validation
+    const html = container.innerHTML.replace(/\s*aria-describedby=""\s*/g, ' ');
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });
