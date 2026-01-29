@@ -2,7 +2,9 @@ import { createContext } from 'react';
 
 import { RenderResult, act, render } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
+import { Mock, beforeEach, vi } from 'vitest';
 
+import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import { TMacroRegion } from '@/domain/entities/regions';
 
 import { CreateClusterForm } from './CreateClusterForm.component';

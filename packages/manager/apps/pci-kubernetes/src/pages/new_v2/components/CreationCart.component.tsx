@@ -19,9 +19,23 @@ export const CreationCart = () => {
   const { t } = useTranslation(['listing', 'add', NAMESPACES.REGION]);
 
   const form = useFormContext<TCreateClusterSchema>();
-  const [nameField, macroRegionField, microRegionField, planField] = useWatch({
+  const [
+    nameField,
+    macroRegionField,
+    microRegionField,
+    versionField,
+    updatePolicyField,
+    planField,
+  ] = useWatch({
     control: form.control,
-    name: ['name', 'location.macroRegion', 'location.microRegion', 'location.plan'],
+    name: [
+      'name',
+      'location.macroRegion',
+      'location.microRegion',
+      'version',
+      'updatePolicy',
+      'location.plan',
+    ],
   });
 
   const { data: regions } = useAvailabilityRegions({
@@ -50,11 +64,59 @@ export const CreationCart = () => {
               </Text>
             ),
           },
+          ...(versionField && updatePolicyField
+            ? [
+                {
+                  name: t('add:kubernetes_add_version_and_security_cart_title'),
+                  description: (
+                    <div className="flex flex-col gap-1">
+                      <Text preset="heading-6">
+                        {t('versions:pci_project_versions_list_version', { version: versionField })}
+                      </Text>
+                      <Text preset="heading-6">
+                        {t(`service:kube_service_upgrade_policy_${updatePolicyField}`)}
+                      </Text>
+                    </div>
+                  ),
+                },
+              ]
+            : versionField
+              ? [
+                  {
+                    name: t('add:kubernetes_add_version_title'),
+                    description: (
+                      <Text preset="heading-6">
+                        {t('versions:pci_project_versions_list_version', { version: versionField })}
+                      </Text>
+                    ),
+                  },
+                ]
+              : updatePolicyField
+                ? [
+                    {
+                      name: t('service:kube_service_upgrade_policy'),
+                      description: (
+                        <Text preset="heading-6">
+                          {t(`service:kube_service_upgrade_policy_${updatePolicyField}`)}
+                        </Text>
+                      ),
+                    },
+                  ]
+                : []),
         ],
         expanded: true,
       },
     ];
-  }, [macroRegionField, microRegionField, nameField, planField, regions, t]);
+  }, [
+    macroRegionField,
+    microRegionField,
+    nameField,
+    regions,
+    t,
+    planField,
+    versionField,
+    updatePolicyField,
+  ]);
 
   return <Cart items={cartItems} isSubmitDisabled={!form.formState.isValid} />;
 };

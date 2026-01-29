@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { generateName } from '@/helpers/form/nameGenerator';
-import { TClusterPlanEnum } from '@/types';
+import { TClusterPlanEnum, UpdatePolicy } from '@/types';
 
 import { TCreateClusterSchema, createClusterSchema } from '../../CreateClusterForm.schema';
 
@@ -24,6 +24,7 @@ export const useCreateClusterForm = (is3azAvailable: boolean) => {
         microRegion: null,
       },
       plan: TClusterPlanEnum.FREE,
+      updatePolicy: UpdatePolicy.AlwaysUpdate,
     },
   });
 };
