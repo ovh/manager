@@ -30,6 +30,12 @@ export default function CreateKmsPage() {
 
   const handleGenerateOrderLink = () => {
     if (selectedRegion) {
+      trackClick({
+        location: PageLocation.funnel,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: ['order', 'okms'],
+      });
       navigate(KMS_ROUTES_URLS.kmsCreateOrderModal(selectedRegion));
     }
   };

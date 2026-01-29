@@ -86,7 +86,7 @@ export default (
       <Route
         path={`${SECRET_MANAGER_ROUTES_URIS.order}/${SECRET_MANAGER_URL_PARAMS.region}`}
         Component={OrderOkmsModal}
-        handle={getRouteTracking(['order', 'okms'], PageType.popup)}
+        handle={getRouteTracking(['enable', 'region'], PageType.popup)}
       />
     </Route>
     <Route
