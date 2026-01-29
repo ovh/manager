@@ -288,124 +288,15 @@
             >
                 <oui-tile-definition>
                     <oui-tile-description>
-                        <div class="progress-container">
-                            <div
-                                class="segment used"
-                                ng-style="{ width: {{$ctrl.volume.usedPercent}} + '%' }"
-                            ></div>
-                            <div
-                                class="segment available"
-                                ng-style="{ width: {{$ctrl.volume.availablePercent}} + '%' }"
-                            ></div>
-                            <div
-                                class="segment snapshot-overflow"
-                                ng-style="{ width: {{$ctrl.volume.overflowPercent}} + '%' }"
-                            ></div>
-                            <div class="segment separator"></div>
-                            <div
-                                class="segment available"
-                                ng-style="{ width: {{$ctrl.snapshot.availablePercent}} + '%' }"
-                            ></div>
-                            <div
-                                class="segment used"
-                                ng-style="{ width: {{$ctrl.snapshot.usedPercent}} + '%' }"
-                            ></div>
-                        </div>
-
-                        <div class="info-section">
-                            <div class="info-block">
-                                <div class="info-item">
-                                    <div class="capacity-label">
-                                        <span
-                                            data-translate="netapp_volumes_dashboard_volume_data_space"
-                                        ></span>
-                                    </div>
-                                    <div class="value">
-                                        {{$ctrl.volume.size}} Go
-                                    </div>
-                                </div>
-
-                                <div class="info-item">
-                                    <div class="capacity-label">
-                                        <div
-                                            class="color-dot dot-used-color"
-                                        ></div>
-                                        <span
-                                            data-translate="netapp_volumes_dashboard_volume_used"
-                                        ></span>
-                                    </div>
-                                    <div class="capacity-value">
-                                        {{$ctrl.volume.used}} Go
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <div class="capacity-label">
-                                        <div
-                                            class="color-dot dot-overflow-color"
-                                        ></div>
-                                        <span
-                                            data-translate="netapp_volumes_dashboard_volume_overflow"
-                                        ></span>
-                                    </div>
-                                    <div class="capacity-value">
-                                        {{$ctrl.volume.overflow}} Go
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <div class="capacity-label">
-                                        <div
-                                            class="color-dot dot-available-color"
-                                        ></div>
-                                        <span
-                                            data-translate="netapp_volumes_dashboard_volume_available"
-                                        ></span>
-                                    </div>
-                                    <div class="capacity-value">
-                                        {{$ctrl.volume.available}} Go
-                                    </div>
-                                </div>
-
-                                <div class="info-item">
-                                    <div class="capacity-label">
-                                        <span
-                                            data-translate="netapp_volumes_dashboard_snapshot_space"
-                                        ></span>
-                                    </div>
-                                    <div class="capacity-value">
-                                        {{$ctrl.snapshot.size}} Go
-                                    </div>
-                                </div>
-
-                                <div class="info-item">
-                                    <div class="capacity-label">
-                                        <div
-                                            class="color-dot dot-used-color"
-                                        ></div>
-                                        <span
-                                            data-translate="netapp_volumes_dashboard_volume_used"
-                                        ></span>
-                                    </div>
-                                    <div class="capacity-value">
-                                        {{$ctrl.snapshot.used}} Go
-                                    </div>
-                                </div>
-
-                                <div class="info-item">
-                                    <div class="capacity-label">
-                                        <div
-                                            class="color-dot dot-available-color"
-                                        ></div>
-                                        <span
-                                            data-translate="netapp_volumes_dashboard_volume_available"
-                                            >Available</span
-                                        >
-                                    </div>
-                                    <div class="capacity-value">
-                                        {{$ctrl.snapshot.available}} Go
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <ovh-manager-capacity-bar-component
+                            data-space="$ctrl.volume.size"
+                            data-used-data="$ctrl.volume.used"
+                            data-available-data="$ctrl.volume.available"
+                            data-overflow="$ctrl.volume.overflow"
+                            data-reserve-space="$ctrl.snapshot.size"
+                            data-used-reserve="$ctrl.snapshot.used"
+                            data-available-reserve="$ctrl.snapshot.available"
+                        ></ovh-manager-capacity-bar-component>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>

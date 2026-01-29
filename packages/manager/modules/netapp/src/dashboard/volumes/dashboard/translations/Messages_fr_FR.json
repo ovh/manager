@@ -41,10 +41,5 @@
   "netapp_volumes_dashboard_usage_no_nfs_client": "Pas de connections actives",
   "netapp_volumes_dashboard_usage_view_all": "Voir tous",
   "netapp_volumes_dashboard_actives_nfs_title": "Connexions NFS",
-  "netapp_volumes_dashboard_capacity": "Capacité du volume",
-  "netapp_volumes_dashboard_volume_data_space": "Espace de données",
-  "netapp_volumes_dashboard_volume_used": "Utilisé",
-  "netapp_volumes_dashboard_volume_overflow": "Débordement",
-  "netapp_volumes_dashboard_volume_available": "Disponible",
-  "netapp_volumes_dashboard_snapshot_space": "Reserve de Snapshot"
+  "netapp_volumes_dashboard_capacity": "Capacité du volume"
 }

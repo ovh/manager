@@ -6,10 +6,6 @@ import {
 } from './constants';
 import { getFileSystemMountPath, saveMountPath } from './utils';
 
-function getPercentage(value, total) {
-  if (total === 0) return 0;
-  return Number(((value / total) * 100).toFixed(2));
-}
 export default class {
   /* @ngInject */
   constructor($translate) {
@@ -29,41 +25,22 @@ export default class {
       description: false,
     };
 
-    this.volume = {
-      ...this.volume,
-      used: (
-        this.volumeCapacityInfos.volume_size_used -
-        this.volumeCapacityInfos.volume_snapshot_reserve_overflow
-      ).toFixed(2),
-      available: this.volumeCapacityInfos.volume_size_available,
-      overflow: this.volumeCapacityInfos.volume_snapshot_reserve_overflow,
-      usedPercent: getPercentage(
-        this.volumeCapacityInfos.volume_size_used,
-        this.volumeCapacityInfos.volume_size,
-      ),
-      availablePercent: getPercentage(
-        this.volumeCapacityInfos.volume_size_available,
-        this.volumeCapacityInfos.volume_size,
-      ),
-      overflowPercent: getPercentage(
-        this.volumeCapacityInfos.volume_snapshot_reserve_overflow,
-        this.volumeCapacityInfos.volume_size,
-      ),
-    };
-
-    this.snapshot = {
-      size: this.volumeCapacityInfos.volume_snapshot_reserve_size,
-      used: this.volumeCapacityInfos.volume_snapshot_reserve_used,
-      available: this.volumeCapacityInfos.volume_snapshot_reserve_available,
-      usedPercent: getPercentage(
-        this.volumeCapacityInfos.volume_snapshot_reserve_used,
-        this.volumeCapacityInfos.volume_size,
-      ),
-      availablePercent: getPercentage(
-        this.volumeCapacityInfos.volume_snapshot_reserve_available,
-        this.volumeCapacityInfos.volume_size,
-      ),
-    };
+    if (this.volumeCapacityInfos) {
+      this.volume = {
+        ...this.volume,
+        used: (
+          this.volumeCapacityInfos.volume_size_used -
+          this.volumeCapacityInfos.volume_snapshot_reserve_overflow
+        )?.toFixed(2),
+        available: this.volumeCapacityInfos.volume_size_available,
+        overflow: this.volumeCapacityInfos.volume_snapshot_reserve_overflow,
+      };
+      this.snapshot = {
+        size: this.volumeCapacityInfos.volume_snapshot_reserve_size,
+        used: this.volumeCapacityInfos.volume_snapshot_reserve_used,
+        available: this.volumeCapacityInfos.volume_snapshot_reserve_available
+      };
+    }
   }
 
   onEditNameClick() {
