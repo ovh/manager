@@ -77,7 +77,7 @@ export const PrivateNetworkSelection = () => {
   return (
     <section className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <Text preset="heading-4">{t('create:network.title')}</Text>
+        <Text preset="heading-3">{t('create:network.title')}</Text>
         <Text preset="paragraph">{t('create:network.description')}</Text>
       </div>
 

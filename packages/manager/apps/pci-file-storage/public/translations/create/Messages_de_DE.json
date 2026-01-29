@@ -4,8 +4,8 @@
     "label": "Wählen Sie einen Namen für Ihre Freigabedatei",
     "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten und darf 255 Zeichen nicht überschreiten.",
     "error": {
-      "required": "Der Name des Shares darf nicht leer sein. Bitte geben Sie einen Namen ein.",
-      "max_length": "Ungültiges Namensformat",
+      "too_small": "Der Name des Shares darf nicht leer sein. Bitte geben Sie einen Namen ein.",
+      "too_big": "Ungültiges Namensformat",
       "invalid_format": "Ungültiges Namensformat"
     }
   },
@@ -58,7 +58,12 @@
   "shareSize": {
     "title": "Größe des Shares",
     "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert",
-    "label": "Lineare Leistungszuweisung (GB)"
+    "label": "Lineare Leistungszuweisung (GiB)",
+    "error": {
+      "min_value": "Die Share-Größe liegt unter dem für dieses Angebot zulässigen Minimum.",
+      "max_value": "Die Share-Größe überschreitet das für dieses Angebot zulässige Maximum.",
+      "invalid_type": "Dieses Feld muss ausgefüllt werden."
+    }
   },
   "network": {
     "title": "Privates Netzwerk",

@@ -20,13 +20,13 @@ import { selectMicroRegions } from '@/pages/create/view-model/shareCatalog.view-
 export const MicroRegionSelection = () => {
   const { t } = useTranslation(['create']);
   const { control, setValue } = useFormContext<CreateShareFormValues>();
-  const [macroRegion, selectedMicroRegion] = useWatch({
+  const [selectedMacroRegion, selectedMicroRegion] = useWatch({
     control,
     name: ['macroRegion', 'shareData.microRegion'],
   });
 
   const { data: microRegionOptions } = useShareCatalog({
-    select: selectMicroRegions(macroRegion),
+    select: selectMicroRegions(selectedMacroRegion),
   });
 
   useEffect(() => {

@@ -50,7 +50,7 @@ export const ShareSelection = () => {
   return (
     <section>
       <div className="flex flex-col gap-4">
-        <Text preset="heading-4">{t('create:share.title')}</Text>
+        <Text preset="heading-3">{t('create:share.title')}</Text>
       </div>
       <Controller
         name="shareData.specName"

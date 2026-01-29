@@ -60,12 +60,12 @@ export const CreateShareForm = () => {
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={formMethods.handleSubmit(onSubmit)} className="flex w-2/3 flex-col gap-6">
         <section>
-          <Text preset="heading-2">{t('create:name.title')}</Text>
+          <Text preset="heading-4">{t('create:name.title')}</Text>
           <NameInput />
         </section>
         <Divider className="w-full" />
         <section className="flex flex-col gap-6">
-          <Text preset="heading-2">{t('create:localisation.title')}</Text>
+          <Text preset="heading-3">{t('create:localisation.title')}</Text>
           <DeploymentModeSection />
           <MacroRegionSelection />
           {shouldShowMicroRegionSelection && <MicroRegionSelection />}

@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next';
 
 import { RadioGroup } from '@ovhcloud/ods-react';
 
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-
 import { TRegionData } from '@/adapters/catalog/left/shareCatalog.data';
 import { LocalizationCard } from '@/components/new-lib/localizationCard/LocalizationCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
@@ -16,7 +14,6 @@ import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema'
 import { selectLocalizations } from '@/pages/create/view-model/shareCatalog.view-model';
 
 export const MacroRegionSelection = () => {
-  const { trackClick } = useOvhTracking();
   const { t } = useTranslation(['regions']);
 
   const { control, setValue } = useFormContext<CreateShareFormValues>();
@@ -38,16 +35,9 @@ export const MacroRegionSelection = () => {
     [localizations, t],
   );
 
-  const updateSelection = (macroRegion: string, microRegion: string) => {
+  const updateSelection = (macroRegion: string, firstAvailableMicroRegion: string | undefined) => {
     setValue('macroRegion', macroRegion);
-    setValue('shareData.microRegion', microRegion);
-
-    trackClick({
-      location: PageLocation.funnel,
-      buttonType: ButtonType.tile,
-      actionType: 'action',
-      actions: ['add_instance', 'select_localisation', microRegion],
-    });
+    if (firstAvailableMicroRegion) setValue('shareData.microRegion', firstAvailableMicroRegion);
   };
 
   useEffect(() => {
@@ -55,15 +45,15 @@ export const MacroRegionSelection = () => {
       (localization) => localization.macroRegion === selectedMacroRegion,
     );
 
-    if (
-      !availablePreviousSelectedLocalization &&
-      localizations[0]?.macroRegion &&
-      localizations[0].microRegion
-    ) {
-      setValue('macroRegion', localizations[0].macroRegion);
-      setValue('shareData.microRegion', localizations[0].microRegion);
+    const firstAvailableLocation = localizations.find((loc) => loc.available);
+
+    if (!availablePreviousSelectedLocalization && firstAvailableLocation?.macroRegion) {
+      updateSelection(
+        firstAvailableLocation.macroRegion,
+        firstAvailableLocation.firstAvailableMicroRegion,
+      );
     }
-  }, [localizations, selectedMacroRegion, setValue]);
+  }, [localizations, selectedMacroRegion, updateSelection]);
 
   return (
     <section>
@@ -78,29 +68,30 @@ export const MacroRegionSelection = () => {
             <div className="flex flex-col">
               <div className={clsx('max-h-[450px] overflow-auto')}>
                 <RadioGroup value={selectedMacroRegion}>
-                  <div className="grid grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {translatedLocalizations.map(
                       ({
                         city,
                         datacenterDetails,
                         macroRegion,
-                        microRegion,
                         countryCode,
                         deploymentMode,
                         available,
+                        firstAvailableMicroRegion,
                       }) => {
-                        const displayCard = macroRegion && microRegion && datacenterDetails;
+                        const displayCard = macroRegion && datacenterDetails;
 
                         return displayCard ? (
                           <LocalizationCard
-                            key={`${city}_${macroRegion}_${microRegion}`}
+                            key={`${city}_${macroRegion}`}
                             city={city}
                             datacenterDetails={datacenterDetails}
                             macroRegion={macroRegion}
                             countryCode={countryCode}
                             deploymentMode={deploymentMode}
-                            onSelect={() => updateSelection(macroRegion, microRegion)}
+                            onSelect={() => updateSelection(macroRegion, firstAvailableMicroRegion)}
                             disabled={!available}
+                            selected={macroRegion === selectedMacroRegion}
                           />
                         ) : null;
                       },

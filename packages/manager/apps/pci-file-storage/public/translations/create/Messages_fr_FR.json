@@ -6,8 +6,8 @@
     "label": "Choisissez un nom pour votre fichier de partage",
     "info": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points et ne pas dépasser 255 caractères.",
     "error": {
-      "required": "Le nom du share ne peut pas être vide. Veuillez entrer un nom.",
-      "max_length": "Format de nom invalide",
+      "too_small": "Le nom du share ne peut pas être vide. Veuillez entrer un nom.",
+      "too_big": "Format de nom invalide",
       "invalid_format": "Format de nom invalide"
     }
   },
@@ -60,7 +60,12 @@
   "shareSize": {
     "title": "Taille du share",
     "description": "5 % de la capacité de stockage est dédiée au stockage des snapshots",
-    "label": "Allocation de performance linéaire (GB)"
+    "label": "Allocation de performance linéaire (GiB)",
+    "error": {
+      "min_value": "La taille du share est inférieure au minimum autorisé pour cette offre.",
+      "max_value": "La taille du share dépasse le maximum autorisé pour cette offre.",
+      "invalid_type": "Ce champ doit être rempli"
+    }
   },
   "network": {
     "title": "Réseau privé",
