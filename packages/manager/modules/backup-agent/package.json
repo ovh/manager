@@ -147,6 +147,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "7.66.1",
     "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "zustand": "^5.0.11"
   }
 }

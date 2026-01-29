@@ -18,7 +18,9 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
+import { NoAgentEnabledMessage } from '@/components/NoAgentEnabledMessage/NoAgentEnabledMessage.component';
 import { vaultsQueries } from '@/data/queries/vaults.queries';
+import { selectHasVaultReady } from '@/data/selectors/vaults.selectors';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { LABELS } from '@/module.constants';
 import { urls } from '@/routes/routes.constants';
@@ -43,11 +45,11 @@ export default function MainLayout() {
   const {
     isPending,
     data: isBackupAgentReady,
-    isError: isVautError,
+    isError: isVaultError,
   } = useQuery({
     ...vaultsQueries.withClient(queryClient).list(),
     retry: false,
-    select: (vaults) => vaults.filter((vault) => vault.currentState.status === 'READY').length >= 1,
+    select: selectHasVaultReady,
   });
 
   const guideItems = useMainGuideItem();
@@ -56,11 +58,16 @@ export default function MainLayout() {
     <RedirectionGuard
       route={urls.onboarding}
       isLoading={isPending}
-      condition={!isBackupAgentReady || isVautError}
+      condition={!isBackupAgentReady || isVaultError}
     >
       <BaseLayout
         header={{ title: LABELS.BACKUP_AGENT, headerButton: <GuideButton items={guideItems} /> }}
-        message={<Notifications />}
+        message={
+          <div className="flex flex-col gap-4">
+            <NoAgentEnabledMessage />
+            <Notifications />
+          </div>
+        }
         breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
         tabs={
           <OdsTabs>
