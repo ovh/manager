@@ -18,11 +18,11 @@ export const useCreateClusterForm = (is3azAvailable: boolean) => {
       location: {
         deploymentMode: is3azAvailable ? 'region-3-az' : 'region',
         continent: 'ALL',
-
+        plan: 'all',
         macroRegion: null,
         microRegion: null,
       },
-      planType: 'free',
+      planType: is3azAvailable ? 'standard' : 'free',
     },
   });
 };

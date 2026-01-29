@@ -1,18 +1,14 @@
-import { useFormContext, useWatch } from 'react-hook-form';
+import { useEffect } from 'react';
+
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { Divider, RadioGroup, Text } from '@ovhcloud/ods-react';
 
-import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
-import { useCloudCatalog } from '@/api/hooks/useCloudCatalog';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import {
-  TPlanTile,
-  selectPlansFromCatalog,
-  selectRegionPlanType,
-} from '../view-models/selectPlansFromCatalog';
+import { usePlanTiles } from '../view-models/selectPlansFromCatalog';
 import { PlanTileContent } from './plan/PlanContent.component';
 import { PlanTileFooter } from './plan/PlanFooter.component';
 import { PlanTileHeader } from './plan/PlanHeader.component';
@@ -28,26 +24,41 @@ export const ClusterPlanSection = () => {
 
   const { t } = useTranslation(['add', 'kube']);
 
-  const { data: plans } = useCloudCatalog({ select: selectPlansFromCatalog(isMultiZone) });
-  const { data: regionPlanTypes } = useAvailabilityRegions({
-    select: selectRegionPlanType(macroRegion ?? ''),
-  });
+  const { plans } = usePlanTiles(macroRegion ?? '', isMultiZone);
 
-  const handleSelect = (value: TPlanTile['planType']) => {
-    if (value === selectedPlanType) return;
+  const handleSelect = (value: string | null) => {
+    if (!value || value === selectedPlanType) return;
 
-    return setValue('planType', value);
+    const selectedPlanTile = plans?.find((plan) => plan.planType === value);
+    if (selectedPlanTile?.disabled) return;
+
+    const planType = value as TCreateClusterSchema['planType'];
+
+    return setValue('planType', planType);
   };
 
   /* 
     TODO : 
-    - Mettre 'isDisabled' dans le view model -> one data hook ?
     - Extraire dans un composant PlanTile ?
-    - Ajouter un Controller pour fixer la sélection
-    - Mettre à jour le prix dans le cart
     - Refacto ou commentaire pour la magie noire dans le PlanTileFooter
     - Ajouter des tests dans les mappers
   */
+
+  useEffect(() => {
+    if (!plans) return;
+
+    const availablePlans = plans.filter((plan) => plan.disabled === false);
+    const sortedPlans = availablePlans.sort((a, b) => {
+      if (a.planType === 'standard' && b.planType !== 'standard') return -1;
+      if (a.planType !== 'standard' && b.planType === 'standard') return 1;
+      return 0;
+    });
+
+    const firstPlan = sortedPlans[0];
+    if (!firstPlan) return;
+
+    setValue('planType', firstPlan.planType);
+  }, [plans, setValue]);
 
   return (
     <article>
@@ -61,44 +72,48 @@ export const ClusterPlanSection = () => {
           {t('kube_add_plan_subtitle')}
         </Text>
 
-        <RadioGroup value={selectedPlanType}>
-          <div className="my-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {plans?.map((plan) => {
-              // A mettre dans le view model
-              const isDisabled = !regionPlanTypes?.includes(plan.planType);
-
-              return (
-                <PciCard
-                  selectable={!isDisabled}
-                  disabled={isDisabled}
-                  selected={selectedPlanType === plan.planType}
-                  key={plan.title}
-                  onClick={() => handleSelect(plan.planType)}
-                >
-                  {plan.title && (
-                    <PlanTileHeader
-                      value={plan.code}
-                      selected={selectedPlanType === plan.planType}
-                      title={plan.title}
-                      description={plan.description}
-                      disabled={isDisabled}
-                      isMultiZone={isMultiZone}
+        <Controller
+          name="planType"
+          control={control}
+          render={() => (
+            <RadioGroup
+              name="planType"
+              value={selectedPlanType}
+              onValueChange={({ value }) => handleSelect(value)}
+            >
+              <div className="my-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                {plans?.map((plan) => (
+                  <PciCard
+                    selectable={!plan.disabled}
+                    disabled={plan.disabled}
+                    selected={selectedPlanType === plan.planType}
+                    key={plan.title}
+                    onClick={() => handleSelect(plan.planType)}
+                  >
+                    {plan.title && (
+                      <PlanTileHeader
+                        value={plan.planType}
+                        title={plan.title}
+                        description={plan.description}
+                        disabled={plan.disabled}
+                        isMultiZone={isMultiZone}
+                      />
+                    )}
+                    <Divider className="w-full" />
+                    <PlanTileContent disabled={plan.disabled} contents={plan.content} />
+                    <PlanTileFooter
+                      isFreePlan={plan.planType === 'free'}
+                      disabled={plan.disabled}
+                      priceExclVat={plan.price?.priceExclVat ?? null}
+                      priceInclVat={plan.price?.priceInclVat ?? null}
+                      content={`kube_add_plan_footer_${plan.planType}`}
                     />
-                  )}
-                  <Divider className="w-full" />
-                  <PlanTileContent disabled={isDisabled} contents={plan.content} />
-                  <PlanTileFooter
-                    isFreePlan={plan.planType === 'free'}
-                    disabled={isDisabled}
-                    priceExclVat={plan.price?.priceExclVat ?? null}
-                    priceInclVat={plan.price?.priceInclVat ?? null}
-                    content={`kube_add_plan_footer_${plan.planType}`}
-                  />
-                </PciCard>
-              );
-            })}
-          </div>
-        </RadioGroup>
+                  </PciCard>
+                ))}
+              </div>
+            </RadioGroup>
+          )}
+        />
       </div>
     </article>
   );

@@ -1,5 +1,7 @@
 import { convertHourlyPriceToMonthly } from '@ovh-ux/muk';
 
+import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
+import { useCloudCatalog } from '@/api/hooks/useCloudCatalog';
 import { TCloudCatalog, TPlanCode } from '@/domain/entities/cloudCatalog';
 import { TRegions } from '@/domain/entities/regions';
 
@@ -20,6 +22,7 @@ type TPlanTilePrice = {
 
 export type TPlanTile = TPlanContent & {
   price: TPlanTilePrice | null;
+  disabled: boolean;
 };
 
 const getPlanDefinition = (plan: TPlanCode): TPlanContent => {
@@ -93,16 +96,21 @@ const getPlanPrice = (planType: TPlanCode, catalog: TCloudCatalog): TPlanTilePri
 };
 
 export const selectPlansFromCatalog =
-  (isMultiZone: boolean = false) =>
+  (isMultiZone: boolean = false, regionPlanTypes: Array<TPlanTile['planType']>) =>
   (catalog: TCloudCatalog | undefined): Array<TPlanTile> => {
     if (!catalog) return [];
 
     const planTypes: Array<TPlanCode> = getPlanList(isMultiZone);
 
-    return planTypes.map((planType) => ({
-      ...getPlanDefinition(planType),
-      price: getPlanPrice(planType, catalog),
-    }));
+    return planTypes.map((planType) => {
+      const planDef = getPlanDefinition(planType);
+
+      return {
+        ...planDef,
+        price: getPlanPrice(planType, catalog),
+        disabled: !regionPlanTypes?.includes(planDef.planType),
+      };
+    });
   };
 
 export const selectRegionPlanType =
@@ -121,3 +129,18 @@ export const selectRegionPlanType =
       }
     });
   };
+
+export const usePlanTiles = (macroRegion: string, isMultiZone: boolean) => {
+  const { data: regionPlanTypes } = useAvailabilityRegions({
+    select: selectRegionPlanType(macroRegion ?? ''),
+  });
+
+  const { data: plans } = useCloudCatalog({
+    select: selectPlansFromCatalog(isMultiZone, regionPlanTypes ?? []),
+  });
+
+  return {
+    plans,
+    // regionPlanTypes,
+  };
+};

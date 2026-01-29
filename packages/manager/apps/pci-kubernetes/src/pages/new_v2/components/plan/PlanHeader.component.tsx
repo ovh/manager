@@ -7,11 +7,10 @@ import { PciCard } from '@/components/pciCard/PciCard.component';
 import { TPlanTile } from '../../view-models/selectPlansFromCatalog';
 
 type TPlanTileHeaderProps = {
-  selected: boolean;
   title: string;
   description: string;
   disabled: boolean;
-  value: TPlanTile['code'];
+  value: TPlanTile['planType'];
   isMultiZone: boolean;
 };
 
