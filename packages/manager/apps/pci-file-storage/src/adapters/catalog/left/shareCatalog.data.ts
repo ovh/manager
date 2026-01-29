@@ -20,6 +20,7 @@ export type TRegionData = {
   deploymentMode: TDeploymentModeData;
   countryCode: TCountryIsoCode | null;
   available: boolean;
+  firstAvailableMicroRegion: string | undefined;
 };
 
 export type TContinentData = { labelKey: string; value: string };

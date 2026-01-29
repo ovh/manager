@@ -35,8 +35,9 @@ export const MacroRegionSelection = () => {
     [localizations, t],
   );
 
-  const updateSelection = (macroRegion: string) => {
+  const updateSelection = (macroRegion: string, firstAvailableMicroRegion: string | undefined) => {
     setValue('macroRegion', macroRegion);
+    if (firstAvailableMicroRegion) setValue('shareData.microRegion', firstAvailableMicroRegion);
   };
 
   useEffect(() => {
@@ -47,9 +48,12 @@ export const MacroRegionSelection = () => {
     const firstAvailableLocation = localizations.find((loc) => loc.available);
 
     if (!availablePreviousSelectedLocalization && firstAvailableLocation?.macroRegion) {
-      setValue('macroRegion', firstAvailableLocation.macroRegion);
+      updateSelection(
+        firstAvailableLocation.macroRegion,
+        firstAvailableLocation.firstAvailableMicroRegion,
+      );
     }
-  }, [localizations, selectedMacroRegion, setValue]);
+  }, [localizations, selectedMacroRegion, updateSelection]);
 
   return (
     <section>
@@ -73,6 +77,7 @@ export const MacroRegionSelection = () => {
                         countryCode,
                         deploymentMode,
                         available,
+                        firstAvailableMicroRegion,
                       }) => {
                         const displayCard = macroRegion && datacenterDetails;
 
@@ -84,7 +89,7 @@ export const MacroRegionSelection = () => {
                             macroRegion={macroRegion}
                             countryCode={countryCode}
                             deploymentMode={deploymentMode}
-                            onSelect={() => updateSelection(macroRegion)}
+                            onSelect={() => updateSelection(macroRegion, firstAvailableMicroRegion)}
                             disabled={!available}
                             selected={macroRegion === selectedMacroRegion}
                           />

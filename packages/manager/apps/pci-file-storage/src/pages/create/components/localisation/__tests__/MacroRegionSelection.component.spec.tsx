@@ -77,6 +77,7 @@ const createLocalization = (
     datacenterDetails: overrides.macroRegion,
     deploymentMode: 'region',
     countryCode: 'fr',
+    firstAvailableMicroRegion: undefined,
     ...overrides,
   }) as TRegionData;
 
@@ -142,6 +143,7 @@ describe('MacroRegionSelection', () => {
         deploymentMode: 'region',
         countryCode: 'fr',
         available: true,
+        firstAvailableMicroRegion: 'GRA1',
       },
       {
         cityKey: 'manager_components_region_SBG',
@@ -150,6 +152,7 @@ describe('MacroRegionSelection', () => {
         deploymentMode: 'region',
         countryCode: 'fr',
         available: true,
+        firstAvailableMicroRegion: 'SBG1',
       },
     ];
 
@@ -180,8 +183,7 @@ describe('MacroRegionSelection', () => {
 
     await waitFor(() => {
       expect(formValues?.macroRegion).toEqual('SBG');
+      expect(formValues?.shareData?.microRegion).toEqual('SBG1');
     });
-    // shareData.microRegion is set by MicroRegionSelection when macro region changes;
-    // this test only renders MacroRegionSelection, so micro region is not updated here.
   });
 });

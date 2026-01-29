@@ -19,16 +19,20 @@ vi.mock('../../../../public/assets/LZ.svg', () => ({
 
 // Mock service functions
 vi.mock('@/domain/services/catalog.service', () => ({
-  getMicroRegions: (macroRegion: TMacroRegion) => {
-    return macroRegion.microRegions.map((id) => ({
-      name: `micro-${id}`,
-      availabilityZones: ['zone1'],
-      isActivable: true,
-      isInMaintenance: false,
-    }));
-  },
-  isMacroRegionAvailable: (macroRegion: TMacroRegion) => {
-    return macroRegion.microRegions.length > 0;
+  getMicroRegions: (macroRegion: TMacroRegion, microRegionsById: Map<string, TMicroRegion>) =>
+    macroRegion.microRegions
+      .map((id) => microRegionsById.get(id))
+      .filter((micro): micro is TMicroRegion => !!micro),
+  isMicroRegionAvailable: (microRegion: TMicroRegion) =>
+    microRegion.isActivated && !microRegion.isInMaintenance,
+  isMacroRegionAvailable: (
+    macroRegion: TMacroRegion,
+    microRegionsById: Map<string, TMicroRegion>,
+  ) => {
+    const microRegions = macroRegion.microRegions
+      .map((id) => microRegionsById.get(id))
+      .filter((micro): micro is TMicroRegion => !!micro);
+    return microRegions.some((m) => m.isActivated && !m.isInMaintenance);
   },
 }));
 
@@ -90,6 +94,7 @@ describe('shareCatalog.mapper', () => {
         countryCode: 'fr',
         available: true,
         datacenterDetails: 'GRA',
+        firstAvailableMicroRegion: 'GRA1',
       });
     });
 
@@ -125,7 +130,91 @@ describe('shareCatalog.mapper', () => {
         countryCode: 'fr',
         available: true,
         datacenterDetails: 'GRA1',
+        firstAvailableMicroRegion: 'GRA1',
       });
+    });
+
+    it('should set firstAvailableMicroRegion to undefined when macro has no micro-regions', () => {
+      const macroRegion: TMacroRegion = {
+        name: 'GRA',
+        deploymentMode: 'region',
+        continentIds: ['Europe'],
+        country: 'fr',
+        microRegions: [],
+      };
+
+      const microRegionsById = new Map<string, TMicroRegion>();
+
+      const result = mapRegionToLocalizationCard(microRegionsById)(macroRegion);
+
+      expect(result.firstAvailableMicroRegion).toBeUndefined();
+    });
+
+    it('should return first available micro region when first in list is unavailable', () => {
+      const macroRegion: TMacroRegion = {
+        name: 'GRA',
+        deploymentMode: 'region',
+        continentIds: ['Europe'],
+        country: 'fr',
+        microRegions: ['GRA1', 'GRA2'],
+      };
+
+      const microRegionsById = new Map<string, TMicroRegion>([
+        [
+          'GRA1',
+          {
+            name: 'GRA1',
+            availabilityZones: ['GRA1-A'],
+            isActivated: false,
+            isActivable: true,
+            isInMaintenance: false,
+            macroRegionId: 'GRA',
+          },
+        ],
+        [
+          'GRA2',
+          {
+            name: 'GRA2',
+            availabilityZones: ['GRA2-A'],
+            isActivated: true,
+            isActivable: true,
+            isInMaintenance: false,
+            macroRegionId: 'GRA',
+          },
+        ],
+      ]);
+
+      const result = mapRegionToLocalizationCard(microRegionsById)(macroRegion);
+
+      expect(result.firstAvailableMicroRegion).toBe('GRA2');
+    });
+
+    it('should set firstAvailableMicroRegion to undefined when no micro region is available', () => {
+      const macroRegion: TMacroRegion = {
+        name: 'GRA',
+        deploymentMode: 'region',
+        continentIds: ['Europe'],
+        country: 'fr',
+        microRegions: ['GRA1'],
+      };
+
+      const microRegionsById = new Map<string, TMicroRegion>([
+        [
+          'GRA1',
+          {
+            name: 'GRA1',
+            availabilityZones: ['GRA1-A'],
+            isActivated: false,
+            isActivable: true,
+            isInMaintenance: true,
+            macroRegionId: 'GRA',
+          },
+        ],
+      ]);
+
+      const result = mapRegionToLocalizationCard(microRegionsById)(macroRegion);
+
+      expect(result.firstAvailableMicroRegion).toBeUndefined();
     });
   });
 });

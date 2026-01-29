@@ -4,7 +4,11 @@ import {
   TSVGImage,
 } from '@/adapters/catalog/left/shareCatalog.data';
 import { TDeploymentMode, TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
-import { isMacroRegionAvailable } from '@/domain/services/catalog.service';
+import {
+  getMicroRegions,
+  isMacroRegionAvailable,
+  isMicroRegionAvailable,
+} from '@/domain/services/catalog.service';
 
 import Region1azImage from '../../../../public/assets/1AZ.svg';
 import Region3azImage from '../../../../public/assets/3AZ.svg';
@@ -38,6 +42,15 @@ const getMicroRegionName = (region: TMacroRegion, microRegionsById: Map<string, 
   return microRegionsById.get(region.microRegions[0])?.name ?? null;
 };
 
+const getFirstAvailableMicroRegion = (
+  region: TMacroRegion,
+  microRegionsById: Map<string, TMicroRegion>,
+): string | undefined => {
+  const microRegions = getMicroRegions(region, microRegionsById);
+  const firstAvailable = microRegions.find(isMicroRegionAvailable);
+  return firstAvailable?.name;
+};
+
 const getDatacenterDetails = (region: TMacroRegion, microRegionsById: Map<string, TMicroRegion>) =>
   region.microRegions.length > 1 ? region.name : getMicroRegionName(region, microRegionsById);
 
@@ -53,5 +66,6 @@ export const mapRegionToLocalizationCard =
       countryCode: region.country,
       deploymentMode: region.deploymentMode,
       available: isMacroRegionAvailable(region, microRegionsById),
+      firstAvailableMicroRegion: getFirstAvailableMicroRegion(region, microRegionsById),
     };
   };
