@@ -4631,6 +4631,13 @@
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.10.0.tgz#7bfd18113daca4e57e27e1205b7d5a2d371aa59a"
   integrity sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==
 
+"@hookform/resolvers@^5.1.1":
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-5.2.2.tgz#5ac16cd89501ca31671e6e9f0f5c5d762a99aa12"
+  integrity sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==
+  dependencies:
+    "@standard-schema/utils" "^0.3.0"
+
 "@html-eslint/eslint-plugin@^0.48.0":
   version "0.48.0"
   resolved "https://registry.yarnpkg.com/@html-eslint/eslint-plugin/-/eslint-plugin-0.48.0.tgz#29e888beaff5b41f1ea64c74881028b8902bdc8c"
@@ -6684,6 +6691,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.23.2.tgz#71f4812de2400a5897159a18bb9d7f5f3a05fd30"
   integrity sha512-+kWwTgA51z8rDTXbMiZiCH85L2nSewD9H/HVrqFivo1/1uZLrNHkOLKouGVmP7isnqFRAMyOa0FTbDtk2Dm6LQ==
 
+"@ovh-ux/manager-common-translations@^0.27.0":
+  version "0.27.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.27.1.tgz#d777631d16bcf30899268ab07925815c05c55c74"
+  integrity sha512-YvGoxuNjXGwhwNMftw3l1+1Fd8F8rXaOPiYzWWZWNDTYPgoiV9SyK7m6VO1Wb1q86lk8tkASIq+ScTzEMWTwwg==
+
 "@ovh-ux/manager-config@8.8.0":
   version "8.8.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-8.8.0.tgz#a10d67f5cc4cc18d8bebd3eab86150f12471efd9"
@@ -6691,6 +6703,14 @@
   dependencies:
     "@ovh-ux/manager-core-api" "^0.10.1"
     "@ovh-ux/manager-core-sso" "^0.5.0"
+
+"@ovh-ux/manager-config@^8.9.0":
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-8.9.0.tgz#c1adbdc34297eb708476f6a358ecfd3865580d25"
+  integrity sha512-3mByQoBTeNFbewmuar7ETeXIaRAYmCy4xIjLQ1llGSLHXQt92DGlqsOkQMGST/Cp5o0mHF8inj0ewCQLmcTW5w==
+  dependencies:
+    "@ovh-ux/manager-core-api" "^0.10.1"
+    "@ovh-ux/manager-core-sso" "^0.8.0"
 
 "@ovh-ux/manager-core-api@0.19.4":
   version "0.19.4"
@@ -6719,6 +6739,15 @@
     "@ovh-ux/request-tagger" "^0.5.10"
     axios "^1.1.2"
 
+"@ovh-ux/manager-core-api@^0.22.0":
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.22.0.tgz#2ccd04f60191d78baf404a1651dd3362bc4b7b73"
+  integrity sha512-CnMYtERFrKGgA2IXBJRcSxgFftK3qYdoxGZiqbsOqEdV1tYQEkPTvdQsFsVlq4JU7B0Kw8AmatUWHGVbDOvUCw==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.8.0"
+    "@ovh-ux/request-tagger" "^0.7.0"
+    axios "^1.1.2"
+
 "@ovh-ux/manager-core-sso@^0.3.0":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
@@ -6733,6 +6762,11 @@
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.6.2.tgz#731c6778d395c741f07828a400dec80dd1c45f79"
   integrity sha512-ZtaMUgH5OeKD/cESCgSdu4kgFi+XL1kysN0TW+RVxKkwc1tzlA2IrJQCFpF36azfpeC+Ur3GyTdTpjyWIBNH2g==
+
+"@ovh-ux/manager-core-sso@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.8.0.tgz#eac7ce3081638eada16fefaf91a8b8f07bcc4908"
+  integrity sha512-HuLYl5l/f7JdlIILBhhGREENv1rDbIV6ta4GGFSpxQrqQ6RLlu+baXc2pVUyPG6/4tWRmnxPMHY1jzIqhP2T3A==
 
 "@ovh-ux/manager-log-to-customer@^2.8.1":
   version "2.8.1"
@@ -6811,6 +6845,19 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
+"@ovh-ux/manager-react-shell-client@^1.0.1":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.3.0.tgz#0bd03a036b78c14c7ac5cdb76f2096462b73dbf6"
+  integrity sha512-L/KO5SWE55aEdQCF+YF2RCBMblPiqQzvBi3nvnvGPx5nulj1VcmnwWIhEEnxrm0had6Ewe7eUKROcgFFw23JkA==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.9.0"
+    "@ovh-ux/ovh-at-internet" "^0.28.2"
+    "@ovh-ux/request-tagger" "^0.4.1"
+    "@ovh-ux/shell" "^4.11.0"
+    "@ovh-ux/url-builder" "^2.5.0"
+    i18next "^23.8.2"
+    i18next-http-backend "^2.4.2"
+
 "@ovh-ux/manager-react-shell-client@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.1.0.tgz#9c17ffa88672de48f51260ef565fe284b4c65666"
@@ -6823,6 +6870,19 @@
     "@ovh-ux/url-builder" "^2.0.4"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
+
+"@ovh-ux/muk@^0.10.4":
+  version "0.10.8"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/muk/-/muk-0.10.8.tgz#1c46509824a3f8abe5ec57cc8355cf6ea4baf4f0"
+  integrity sha512-iPBEfJ7/Emch39uF7D9XVGdPfARB7OjlIoR74xTtssEW/HmFGSbGW6aHO+HDlBM6mjctjaX9ZSpGH5HRvh7R2w==
+  dependencies:
+    clsx "^2.1.1"
+    dompurify "^3.2.6"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    sass "1.93.0"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
 
 "@ovh-ux/muk@^0.12.0":
   version "0.12.0"
@@ -6866,6 +6926,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.28.3.tgz#8d09ee974cb62c492f5a792ba0cd4a93e565db13"
   integrity sha512-6Af3L+zdsCxBNmk1DXQZb3GS4oAqeL/grwAkbgVbxEw9BCzaRdrjbzFHS7GBGtNMfARsLIIHJxQIO4O5hcoaeQ==
 
+"@ovh-ux/ovh-at-internet@^0.30.0":
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.30.0.tgz#e14dc72c5500c294632ce96ee7ba4aec33ec843c"
+  integrity sha512-0yti33KAuevmfJu99w54BZ8NEmH77SK96H+PE/y0XWVt2dFVywJsWE9v9C7PMM7TX2u/azWyhMCjsJ8H2Q+ebw==
+
 "@ovh-ux/request-tagger@^0.4.0", "@ovh-ux/request-tagger@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.4.1.tgz#ae77381d54f345e657a5c6c3195ece119fe375a8"
@@ -6875,6 +6940,11 @@
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.5.10.tgz#3ef239b3cc2842396a40540b5591264d1dc43116"
   integrity sha512-xj49NuUfCu4leclQb6B1DOnZoMQgLW5aXmNgtMAHljYS9ump2s5jgPgc4+K0nqvLg3fYf/YInwkVk/JEoX4qdQ==
+
+"@ovh-ux/request-tagger@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.7.0.tgz#582697e4fda56159292ae22641e87e33ba50bb8d"
+  integrity sha512-8rbyoy1p5Q8ZptEWg2N2zq+JcnUAOXmw0ieiN2GUJPyPKRRrhEqMfE7qThjuqrjveCW87jf2juxFxV2/mVLe1g==
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
@@ -6886,6 +6956,20 @@
     lodash "^4.17.20"
     rollup-pluginutils "^2.8.2"
 
+"@ovh-ux/shell@^4.11.0":
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/shell/-/shell-4.11.0.tgz#45c8de126d239a2aaa3ec0506e9766ef0137f72b"
+  integrity sha512-owGkQ7kAEHUzNV64A87pQjfCHlw+l7SqI9ln84L2xfsWwKnBHgiXf+E4l9DQx0dde/7KQAhOIySxQ2NYuzJmag==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.9.0"
+    "@ovh-ux/manager-core-api" "^0.22.0"
+    "@ovh-ux/manager-core-sso" "^0.8.0"
+    "@ovh-ux/ovh-at-internet" "^0.30.0"
+    "@ovh-ux/request-tagger" "^0.7.0"
+    "@ovh-ux/url-builder" "^2.5.0"
+    dompurify "^3.2.4"
+    nanoid "^3.1.25"
+
 "@ovh-ux/translate-async-loader@^1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
@@ -6895,6 +6979,11 @@
   version "6.10.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.10.5.tgz#cdde47452edb326aa1224eb447ed40ae2b169b81"
   integrity sha512-0PrFAOM0/ylPlVeC6hsJMHGe+pWB/ooMrjQySH5ytqsPYZrvzuiLoecEZHmX8VbnAJ6nF63sFLGp/DuicaSiCQ==
+
+"@ovh-ux/url-builder@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/url-builder/-/url-builder-2.5.0.tgz#b1b15e142b16dcee765630d3f269a0c22325d6b0"
+  integrity sha512-gMNJSXJYiL7Vu4M5EAlU9w+q8YWInXNnzo9oOgzFaAso/M1jEIX0TuWopHMUPB02Uk7fcFypPTvIlQ8Ojntupw==
 
 "@ovhcloud/ods-common-core@17.2.1":
   version "17.2.1"
@@ -6978,7 +7067,7 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-react@19.2.1", "@ovhcloud/ods-react@^19.2.0":
+"@ovhcloud/ods-react@19.2.1", "@ovhcloud/ods-react@^19.2.0", "@ovhcloud/ods-react@~19.2.1":
   version "19.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.2.1.tgz#babc8f579f4109b091f7fb208b49858ca49563b8"
   integrity sha512-xk7u7B/EsxyMrnW1n13PcNNj93SBxKcOzQH8/RNJ3gQYJO+TYcG7w858xlry+KUi+hO2q8aYDcBjS5iD/4x4Eg==
@@ -7006,7 +7095,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
 
-"@ovhcloud/ods-themes@19.2.1", "@ovhcloud/ods-themes@^19.2.0":
+"@ovhcloud/ods-themes@19.2.1", "@ovhcloud/ods-themes@^19.2.0", "@ovhcloud/ods-themes@~19.2.1":
   version "19.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.1.tgz#c30976d911207f5309f2a3daaab04aed50d7a7ff"
   integrity sha512-zjtSoX2gaVMtpBVIGmg3HBNfjWeHRAHzTyTOxjeR47L+qo4iAj2pghL4riZpNvn9/YlVaIJT8GpO+Lw/IVAAnQ==
@@ -9304,7 +9393,7 @@
   dependencies:
     "@tanstack/query-devtools" "5.51.16"
 
-"@tanstack/react-query@^5.51.21":
+"@tanstack/react-query@5.51.21", "@tanstack/react-query@^5.51.21":
   version "5.51.21"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.51.21.tgz#cdd14677bcc809a83e01b6c38842c841ce7420af"
   integrity sha512-Q/V81x3sAYgCsxjwOkfLXfrmoG+FmDhLeHH5okC/Bp8Aaw2c33lbEo/mMcMnkxUPVtB2FLpzHT0tq3c+OlZEbw==
@@ -9473,6 +9562,13 @@
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.0.1.tgz#29c0ee878d672703f5e7579f239005e4e0faa875"
   integrity sha512-dSmwJVtJXmku+iocRhWOUFbrERC76TX2Mnf0ATODz8brzAZrMBbzLwQixlBSanZxR6LddK3eiwpSFZgDET1URg==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
+"@testing-library/react@^16.1.0":
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.3.2.tgz#672883b7acb8e775fc0492d9e9d25e06e89786d0"
+  integrity sha512-XU5/SytQM+ykqMnAnvB2umaJNIOsLF3PVv//1Ew4CTcpz0/BRyy/af40qqrt7SjKpDdT1saBMc42CUok5gaw+g==
   dependencies:
     "@babel/runtime" "^7.12.5"
 
@@ -10058,6 +10154,14 @@
     "@types/prop-types" "*"
     "@types/scheduler" "*"
     csstype "^3.0.2"
+
+"@types/react@^18.2.79":
+  version "18.3.27"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.27.tgz#74a3b590ea183983dc65a474dc17553ae1415c34"
+  integrity sha512-cisd7gxkzjBKU2GgdYrTdtQx1SORymWyaAFhaxQPK9bYO9ot3Y5OikQRvY0VYQtvwjeQnizCINJAenh/V7MK2w==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^3.2.2"
 
 "@types/resolve@0.0.8":
   version "0.0.8"
@@ -13283,6 +13387,17 @@ autoprefixer@^10.4.17:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
+autoprefixer@^10.4.19:
+  version "10.4.23"
+  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.23.tgz#c6aa6db8e7376fcd900f9fd79d143ceebad8c4e6"
+  integrity sha512-YYTXSFulfwytnjAPlw8QHncHJmlvFKtczb8InXaAx9Q0LbfDnfEYDE55omerIJKihhmU61Ft+cAOSzQVaBUmeA==
+  dependencies:
+    browserslist "^4.28.1"
+    caniuse-lite "^1.0.30001760"
+    fraction.js "^5.3.4"
+    picocolors "^1.1.1"
+    postcss-value-parser "^4.2.0"
+
 autoprefixer@^9.8.6:
   version "9.8.8"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.8.8.tgz#fd4bd4595385fa6f06599de749a4d5f7a474957a"
@@ -13605,6 +13720,11 @@ base64url@^3.0.0:
   resolved "https://registry.yarnpkg.com/base64url/-/base64url-3.0.1.tgz#6399d572e2bc3f90a9a8b22d5dbb0a32d33f788d"
   integrity sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==
 
+baseline-browser-mapping@^2.9.0:
+  version "2.9.18"
+  resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.9.18.tgz#c8281693035a9261b10d662a5379650a6c2d1ff7"
+  integrity sha512-e23vBV1ZLfjb9apvfPk4rHVu2ry6RIr2Wfs+O324okSidrX7pTAnEJPCh/O5BtRlr7QtZI7ktOP3vsqr7Z5XoA==
+
 basic-ftp@^5.0.2:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-5.0.5.tgz#14a474f5fffecca1f4f406f1c26b18f800225ac0"
@@ -13830,6 +13950,17 @@ browserslist@^4.24.4:
     node-releases "^2.0.19"
     update-browserslist-db "^1.1.1"
 
+browserslist@^4.28.1:
+  version "4.28.1"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.28.1.tgz#7f534594628c53c63101079e27e40de490456a95"
+  integrity sha512-ZC5Bd0LgJXgwGqUknZY/vkUQ04r8NXnJZ3yYi4vDmSiZmC/pdSN0NbNRPxZpbtO4uAfDUAFffO8IZoM3Gj8IkA==
+  dependencies:
+    baseline-browser-mapping "^2.9.0"
+    caniuse-lite "^1.0.30001759"
+    electron-to-chromium "^1.5.263"
+    node-releases "^2.0.27"
+    update-browserslist-db "^1.2.0"
+
 bser@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/bser/-/bser-2.1.1.tgz#e6787da20ece9d07998533cfd9de6f5c38f4bc05"
@@ -14045,6 +14176,11 @@ caniuse-lite@^1.0.30001702:
   version "1.0.30001709"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001709.tgz#61b34187b52851ef34c44d90f39a94dc5b0acb43"
   integrity sha512-NgL3vUTnDrPCZ3zTahp4fsugQ4dc7EKTSzwQDPEel6DMoMnfH2jhry9n2Zm8onbSR+f/QtKHFOA+iAQu4kbtWA==
+
+caniuse-lite@^1.0.30001759, caniuse-lite@^1.0.30001760:
+  version "1.0.30001766"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001766.tgz#b6f6b55cb25a2d888d9393104d14751c6a7d6f7a"
+  integrity sha512-4C0lfJ0/YPjJQHagaE9x2Elb69CIqEPZeG0anQt9SIvIoOH4a4uaRl73IavyO+0qZh6MDLH//DrXThEYKHkmYA==
 
 capital-case@^1.0.4:
   version "1.0.4"
@@ -15447,6 +15583,11 @@ csstype@3.1.3, csstype@^3.0.2, csstype@^3.1.2, csstype@^3.1.3:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
+csstype@^3.2.2:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.2.3.tgz#ec48c0f3e993e50648c86da559e2610995cf989a"
+  integrity sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==
+
 custom-elements-manifest@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/custom-elements-manifest/-/custom-elements-manifest-1.0.0.tgz#b35c2129076a1dc9f95d720c6f7b5b71a857274b"
@@ -16206,6 +16347,11 @@ electron-to-chromium@^1.4.820:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.1.tgz#24640bd4dcfaccb6d82bb4c3f4c7311503241581"
   integrity sha512-FKbOCOQ5QRB3VlIbl1LZQefWIYwszlBloaXcY2rbfpu9ioJnNh3TK03YtIDKDo3WKBi8u+YV4+Fn2CkEozgf4w==
+
+electron-to-chromium@^1.5.263:
+  version "1.5.279"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.279.tgz#67dfdeb22fd81412d0d18d1d9b2c749e9b8945cb"
+  integrity sha512-0bblUU5UNdOt5G7XqGiJtpZMONma6WAfq9vsFmtn9x1+joAObr6x1chfqyxFSDCAFwFhCQDrqeAr6MYdpwJ9Hg==
 
 electron-to-chromium@^1.5.41:
   version "1.5.57"
@@ -18348,6 +18494,11 @@ fraction.js@^4.2.0, fraction.js@^4.3.7:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
+fraction.js@^5.3.4:
+  version "5.3.4"
+  resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-5.3.4.tgz#8c0fcc6a9908262df4ed197427bdeef563e0699a"
+  integrity sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -19590,6 +19741,20 @@ i18next-http-backend@^2.4.2, i18next-http-backend@^2.4.3:
   integrity sha512-jo2M03O6n1/DNb51WSQ8PsQ0xEELzLZRdYUTbf17mLw3rVwnJF9hwNgMXvEFSxxb+N8dT+o0vtigA6s5mGWyPA==
   dependencies:
     cross-fetch "4.0.0"
+
+i18next-http-backend@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-3.0.2.tgz#7c8daa31aa69679e155ec1f96a37846225bdf907"
+  integrity sha512-PdlvPnvIp4E1sYi46Ik4tBYh/v/NbYfFFgTjkwFl0is8A18s7/bx9aXqsrOax9WUbeNS6mD2oix7Z0yGGf6m5g==
+  dependencies:
+    cross-fetch "4.0.0"
+
+i18next@23.11.5:
+  version "23.11.5"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.11.5.tgz#d71eb717a7e65498d87d0594f2664237f9e361ef"
+  integrity sha512-41pvpVbW9rhZPk5xjCX2TPJi2861LEig/YRhUkY+1FQ2IQPS0bKUDYnEqY8XPPbB48h1uIwLnP9iiEfuSl20CA==
+  dependencies:
+    "@babel/runtime" "^7.23.2"
 
 i18next@^23.8.2:
   version "23.8.2"
@@ -23152,6 +23317,11 @@ node-releases@^2.0.19:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.19.tgz#9e445a52950951ec4d177d843af370b411caf314"
   integrity sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==
 
+node-releases@^2.0.27:
+  version "2.0.27"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.27.tgz#eedca519205cf20f650f61d56b070db111231e4e"
+  integrity sha512-nmh3lCkYZ3grZvqcCH+fjmQ7X+H0OeZgP40OierEaAptX4XofMh5kwNbWh7lBduUzCcV/8kZ+NDLCwm2iorIlA==
+
 node-sarif-builder@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/node-sarif-builder/-/node-sarif-builder-2.0.3.tgz#179ae590ce020f97f9e45037dc1cde85aa4398ec"
@@ -24749,7 +24919,7 @@ postcss@^8.2.14:
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
 
-postcss@^8.4.31, postcss@^8.4.4, postcss@^8.5.3, postcss@^8.5.6:
+postcss@^8.4.31, postcss@^8.4.38, postcss@^8.4.4, postcss@^8.5.3, postcss@^8.5.6:
   version "8.5.6"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.5.6.tgz#2825006615a619b4f62a9e7426cc120b349a8f3c"
   integrity sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==
@@ -25366,20 +25536,20 @@ react-docgen@^8.0.2:
     resolve "^1.22.1"
     strip-indent "^4.0.0"
 
-"react-dom@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0":
-  version "19.1.0"
-  resolved "https://registry.npmjs.org/react-dom/-/react-dom-19.1.0.tgz#133558deca37fa1d682708df8904b25186793623"
-  integrity sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==
-  dependencies:
-    scheduler "^0.26.0"
-
-react-dom@^18.2.0:
+react-dom@18.2.0, react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+"react-dom@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0":
+  version "19.1.0"
+  resolved "https://registry.npmjs.org/react-dom/-/react-dom-19.1.0.tgz#133558deca37fa1d682708df8904b25186793623"
+  integrity sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==
+  dependencies:
+    scheduler "^0.26.0"
 
 react-dom@^19.0.0:
   version "19.2.0"
@@ -25417,6 +25587,19 @@ react-hook-form@^7.56.1:
   version "7.56.1"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.56.1.tgz#45b2040fef997b873d656959d2e7f864f35bf95d"
   integrity sha512-qWAVokhSpshhcEuQDSANHx3jiAEFzu2HAaaQIzi/r9FNPm1ioAvuJSD4EuZzWd7Al7nTRKcKPnBKO7sRn+zavQ==
+
+react-hook-form@^7.59.0:
+  version "7.71.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.71.1.tgz#6a758958861682cf0eb22131eead684ba3618f66"
+  integrity sha512-9SUJKCGKo8HUSsCO+y0CtqkqI5nNuaDqTxyqPsZPqIwudpj4rCrAz/jZV+jn57bx5gtZKOh3neQu94DXMc+w5w==
+
+react-i18next@14.1.3:
+  version "14.1.3"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-14.1.3.tgz#85525c4294ef870ddd3f5d184e793cae362f47cb"
+  integrity sha512-wZnpfunU6UIAiJ+bxwOiTmBOAaB14ha97MjOEnLGac2RJ+h/maIYXZuTHlmyqQVX1UVHmU1YDTQ5vxLmwfXTjw==
+  dependencies:
+    "@babel/runtime" "^7.23.9"
+    html-parse-stringify "^3.0.1"
 
 react-i18next@^14.0.5:
   version "14.1.0"
@@ -25498,7 +25681,7 @@ react-responsive@^9.0.0-beta.6:
     prop-types "^15.6.1"
     shallow-equal "^1.2.1"
 
-react-router-dom@^6.3.0:
+react-router-dom@6.16.0, react-router-dom@^6.3.0:
   version "6.16.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.16.0.tgz#86f24658da35eb66727e75ecbb1a029e33ee39d9"
   integrity sha512-aTfBLv3mk/gaKLxgRDUPbPw+s4Y/O+ma3rEN1u8EgEpLpPe6gNjIsWt9rxushMHHMb7mSwxRGdGlGdvmFsyPIg==
@@ -25568,17 +25751,17 @@ react-use@^17.4.0, react-use@^17.5.0:
     ts-easing "^0.2.0"
     tslib "^2.1.0"
 
-"react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0":
-  version "19.1.0"
-  resolved "https://registry.npmjs.org/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
-  integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==
-
-react@^18.2.0:
+react@18.2.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
+
+"react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0":
+  version "19.1.0"
+  resolved "https://registry.npmjs.org/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
+  integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==
 
 react@^19.0.0:
   version "19.2.0"
@@ -29904,6 +30087,14 @@ update-browserslist-db@^1.1.1:
     escalade "^3.2.0"
     picocolors "^1.1.0"
 
+update-browserslist-db@^1.2.0:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.2.3.tgz#64d76db58713136acbeb4c49114366cc6cc2e80d"
+  integrity sha512-Js0m9cx+qOgDxo0eMiFGEueWztz+d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w==
+  dependencies:
+    escalade "^3.2.0"
+    picocolors "^1.1.1"
+
 upper-case-first@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/upper-case-first/-/upper-case-first-2.0.2.tgz#992c3273f882abd19d1e02894cc147117f844324"
@@ -31383,7 +31574,7 @@ zod@3.22.4:
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
   integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
 
-zod@3.25.76:
+zod@3.25.76, zod@^3.25.73:
   version "3.25.76"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.76.tgz#26841c3f6fd22a6a2760e7ccb719179768471e34"
   integrity sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==
