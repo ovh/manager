@@ -30,7 +30,7 @@ export const DatagridCellPath = (secret: Secret) => {
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'navigation',
-          actions: ['secret'],
+          actions: ['secret', 'dashboard'],
         });
       }}
     >

@@ -9,9 +9,11 @@ import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
 
 import { ExternalLink } from '@/common/components/link/Link.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import {
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
@@ -31,6 +33,7 @@ export const OrderOkmsModalTermsAndConditions = ({
   onCancel,
 }: OrderOkmsModalTermsAndConditionsProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR, NAMESPACES.ACTIONS]);
+  const { trackClick } = useOkmsTracking();
 
   const [isContractAccepted, setIsContractAccepted] = useState(false);
 
@@ -80,7 +83,15 @@ export const OrderOkmsModalTermsAndConditions = ({
         data-testid={ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID}
         slot="actions"
         disabled={!isContractAccepted}
-        onClick={() => requestOrder({ cartId: cart.cartId })}
+        onClick={() => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['order', 'okms', 'confirm'],
+          });
+          requestOrder({ cartId: cart.cartId });
+        }}
         loading={isPending}
       >
         {t('confirm', { ns: NAMESPACES.ACTIONS })}

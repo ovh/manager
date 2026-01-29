@@ -32,7 +32,7 @@ export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => 
   const links: Record<OkmsDatagridType, { href: string; tracking: TrackingTags[] }> = {
     kms: {
       href: KMS_ROUTES_URLS.kmsDashboard(okms.id),
-      tracking: ['okms'],
+      tracking: ['okms', 'dashboard'],
     },
     'secret-manager': {
       href: SECRET_MANAGER_ROUTES_URLS.secretList(okms.id),
