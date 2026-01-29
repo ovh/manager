@@ -33,7 +33,7 @@ const FILTER_KEYS = {
 
 const TenantsSubscriptionsDrawer = ({
   regions,
-  defaultRetention,  
+  defaultRetention,
   subscriptionUrls,
 }: TenantsSubscriptionsDrawerProps) => {
   const { t } = useTranslation(NAMESPACES.SUBSCRIPTIONS);
@@ -53,28 +53,40 @@ const TenantsSubscriptionsDrawer = ({
 
   const [filterValues, setFilterValues] = useState<FilterValues>({
     [FILTER_KEYS.SERVICE_ID]: null,
-    [FILTER_KEYS.REGION]: regions,
+    [FILTER_KEYS.REGION]: regions.map(r => r.code),
   });
 
   useEffect(() => {
-    if (resourceName && isSuccessServices && services) {
-      const serviceFromRoute = services.find((service) => service.id === resourceName);
-      if (serviceFromRoute && filterValues[FILTER_KEYS.SERVICE_ID] !== resourceName) {
-        setFilterValues(prev => ({
-          ...prev,
-          [FILTER_KEYS.SERVICE_ID]: resourceName,
-        }));
-      }
+    if (!isSuccessServices || !services) {
+      return;
     }
-  }, [resourceName, isSuccessServices, services, filterValues]);
 
-  // Sync filter state to route
-  useEffect(() => {
-    const serviceId = filterValues[FILTER_KEYS.SERVICE_ID] as string;
-    if (serviceId && isSuccessServices && serviceId !== resourceName) {
-      navigate(getSubscriptionsConfigUrl({ resourceName: serviceId }), { replace: true });
+    if (resourceName) {
+      const serviceExists = services.some((service) => service.id === resourceName);
+      if (serviceExists) {
+        setFilterValues((prev) => {
+          if (prev[FILTER_KEYS.SERVICE_ID] !== resourceName) {
+            return {
+              ...prev,
+              [FILTER_KEYS.SERVICE_ID]: resourceName,
+            };
+          }
+          return prev;
+        });
+      }
+    } else {
+      setFilterValues((prev) => {
+        if (prev[FILTER_KEYS.SERVICE_ID] !== null) {
+          return {
+            ...prev,
+            [FILTER_KEYS.SERVICE_ID]: null,
+          };
+        }
+        return prev;
+      });
     }
-  }, [filterValues[FILTER_KEYS.SERVICE_ID], isSuccessServices, resourceName, navigate]);
+  }, [resourceName, isSuccessServices, services]);
+
   const {
     data: tenantsData,
     isLoading: isLoadingTenants,
@@ -87,19 +99,33 @@ const TenantsSubscriptionsDrawer = ({
   const isLoadingData = isLoadingServices || isLoadingTenants;
 
   const onDismiss = useCallback(() => {
-    navigate(getRootUrl({}));
+    navigate('..');
   }, [navigate]);
 
   const handleFilterChange = useCallback((filterKey: string, value: string | null) => {
-    setFilterValues(prev => ({
-      ...prev,
-      [filterKey]: value,
-    }));
+    setFilterValues((prev) => {
+      const newValues = {
+        ...prev,
+        [filterKey]: value,
+      };
 
-    if (filterKey === FILTER_KEYS.SERVICE_ID) {
-      navigate(getSubscriptionsConfigUrl({ resourceName: value ?? '' }));
-    }
-  }, [navigate]);
+      // When service changes, update route immediately
+      if (filterKey === FILTER_KEYS.SERVICE_ID) {
+        const serviceId = value as string | null;
+
+        if (serviceId) {
+          if (serviceId !== resourceName) {
+            navigate(serviceId, { relative: 'path' });
+          }
+        } else {
+          if (resourceName) {
+            navigate('../', { relative: 'path' });
+          }
+        }
+      }
+      return newValues;
+    });
+  }, [resourceName, navigate]);
 
 
   const handleCreateSubscription = useCallback((params: { subscribeUrl: string; itemId: string; resourceName: string }) => {
@@ -145,7 +171,9 @@ const TenantsSubscriptionsDrawer = ({
           {({ filterValues, onFilterChange }) => (
             <div className="flex flex-col gap-4">
               <Text preset={TEXT_PRESET.label}>
-                {t('tenants_regions.region', { count: regions?.length, region: regions?.join(', ') })}
+                {t('tenants_regions.region', { count: regions?.length, })} : <Text preset={TEXT_PRESET.span}>
+                  {regions?.map(r => r.label).join(', ')}
+                </Text>
               </Text>
               <ServicesDropDown
                 services={services}
@@ -162,10 +190,10 @@ const TenantsSubscriptionsDrawer = ({
         {
           tenantsData?.length ? (
             <TenantsSubscriptionsDisclaimer
-              text={t('tenants_drawer.disclaimer')}
+              text={t('tenants_drawer.disclaimer', { region: regions.map(r => r.label) })}
             />
           )
-            : <NoTenantsMessage regions={regions} defaultRetention={defaultRetention} />
+            : resourceName && <NoTenantsMessage regions={regions} defaultRetention={defaultRetention} />
         }
 
         <SubscriptionManager.List<TenantWithSubscriptions, TenantSubscription>

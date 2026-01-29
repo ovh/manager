@@ -11,6 +11,8 @@ const importMetricsDashboardWidgetModal = () =>
 const importMetricsSubscriptionsManageConfigurationPage = () =>
   import('@/pages/metrics/tenants/subscriptions/ConfigSubscriptions.page');
 
+const importLogsPage = () => import('@/pages/logs/Logs.page');
+
 const metricsDashboardPage = lazy(importMetricsDashboardPage);
 const metricsDashboardWidgetModal = lazy(importMetricsDashboardWidgetModal);
 
@@ -18,13 +20,24 @@ const metricsSubscriptionsManageConfigurationPage = lazy(
   importMetricsSubscriptionsManageConfigurationPage,
 );
 
+const logsPage = lazy(importLogsPage);
+
 export const getMetricsToCustomerRoutes = () => (
-  <Route path={urls.root} Component={metricsDashboardPage}>
-    <Route path={subroutes.dashboardWidget} Component={metricsDashboardWidgetModal} />
-    <Route
-      path={urls.subscriptionsConfig}
-      Component={metricsSubscriptionsManageConfigurationPage}
-    />
+  <Route path={urls.root}>
+    {/* Metrics */}
+    <Route path={subroutes.metrics} Component={metricsDashboardPage}>
+      <Route
+        path={subroutes.dashboardWidget}
+        Component={metricsDashboardWidgetModal}
+        index={true}
+      />
+      <Route
+        path={urls.subscriptionsConfig}
+        Component={metricsSubscriptionsManageConfigurationPage}
+      />
+    </Route>
+    {/* Logs */}
+    <Route path={subroutes.logs} Component={logsPage} />
   </Route>
 );
 

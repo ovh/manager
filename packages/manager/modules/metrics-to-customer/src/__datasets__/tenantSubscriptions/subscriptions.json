@@ -58,7 +58,7 @@
       "kind": "Subscription",
       "link": "https://api.ovh.com/v2/observability/resource/ldp-gr-55078/metric/tenant/019ad9a2-7438-735e-bb05-e397e1d9be7e/subscription",
       "resource": {
-        "name": "9042f190-6431-495e-b870-35fc7c6f3222",
+        "name": "d2b719f2-e443-4258-8edb-f4ce4dc82961",
         "type": "PCI/Instance"
       }
     }
@@ -79,7 +79,7 @@
       "kind": "Subscription",
       "link": "https://api.ovh.com/v2/observability/resource/ldp-gr-55078/metric/tenant/019ada67-6f23-779b-aa16-de2068bc9d2f/subscription",
       "resource": {
-        "name": "9042f190-6431-495e-b870-35fc7c6f3222",
+        "name": "d2b719f2-e443-4258-8edb-f4ce4dc82961",
         "type": "PCI/Instance"
       }
     }

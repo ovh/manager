@@ -8,9 +8,9 @@ import {
   FormFieldError,
   FormFieldLabel,
   Skeleton,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { SelectFieldProps } from '@/components/form/select-field/SelectField.props';
 

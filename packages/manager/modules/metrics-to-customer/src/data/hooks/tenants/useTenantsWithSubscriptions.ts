@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { UseQueryOptions, UseQueryResult, useQueries } from '@tanstack/react-query';
 
 import { IamTagsFilter, IamTagsOperator } from '@/types/iam.type';
+import { Region } from '@/types/region.type';
 import { TenantWithSubscriptions } from '@/types/tenants.type';
 
 import { getTenantSubscriptions } from '@/__mocks__/tenants/tenant.adapter';
@@ -13,7 +14,7 @@ import { useTenants } from '@/data/hooks/tenants/useTenants.hook';
 
 export const useTenantsWithSubscriptions = (
   resourceName: string,
-  regions: string[],
+  regions: Region[],
   options?: {
     iamTags?: IamTagsFilter;
     queryOptions?: Omit<UseQueryOptions<TenantWithSubscriptions[], Error>, 'queryKey' | 'queryFn'>;
@@ -22,7 +23,7 @@ export const useTenantsWithSubscriptions = (
   const { iamTags: additionalIamTags, queryOptions } = options || {};
 
   const iamTags = useMemo<IamTagsFilter | undefined>(() => {
-    const validRegions = regions.filter((region) => region && region.trim() !== '');
+    const validRegions = regions.map(r => r.code).filter((region) => region && region.trim() !== '');
 
     if (
       validRegions.length === 0 &&

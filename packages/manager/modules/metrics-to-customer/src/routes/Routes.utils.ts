@@ -8,6 +8,10 @@ export function getSubscriptionsConfigUrl(params?: LocationPathParams) {
   return getURL(urls.subscriptionsConfig, params);
 }
 
+export function getSubscriptionsConfigCreateTenantUrl(params?: LocationPathParams) {
+  return getURL(urls.tenantCreation, params);
+}
+
 function getURL(url: UrlValue, params?: LocationPathParams) {
   return url
     .replace(URL_PARAMS.resourceName, params?.resourceName ?? '')

@@ -94,12 +94,11 @@ const DashboardWidgetModal = <TData,>() => {
   const { id, title, chart } = config;
 
   return (
-    <Modal onOpenChange={onOpenChange} open={true}>
+    <Modal onOpenChange={onOpenChange} open={true} data-modal-type="dashboard-widget">
       <ModalContent
-        id="dashboard-widget-modal-content"
         dismissible={false}
         color={MODAL_COLOR.neutral}
-        className="pt-5 px-5 text-left"
+        className="dashboard-widget-modal-content pt-5 px-5 text-left"
       >
         <div className="flex items-center gap-4">
           <div>

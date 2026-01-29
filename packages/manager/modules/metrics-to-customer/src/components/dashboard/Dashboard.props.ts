@@ -1,8 +1,7 @@
 import { ChartWidgetWithData } from '@/types/widget/ChartWidgetWithData.type';
 
 export interface DashboardProps<TData> {
-  charts: ChartWidgetWithData<TData>[];
-  configUrl: string;
+  charts: ChartWidgetWithData<TData>[];  
   onRefresh: () => void;
   onCancel: () => void;
 }

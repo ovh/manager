@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { NAMESPACES as MODULE_NAMESPACES } from '@/MetricsToCustomer.translations';
-import { BUTTON_SIZE, BUTTON_VARIANT, Button } from '@ovh-ux/muk';
+import { BUTTON_SIZE, BUTTON_VARIANT, Button } from '@ovhcloud/ods-react';
 
 import { SubscriptionToggleProps } from '@/components/cta/SubscriptionToggle.props';
 
@@ -50,7 +50,7 @@ export function SubscriptionToggle<TSubscription = unknown>({
       loading={isLoading}
       disabled={isLoading}
     >
-      {t(`${MODULE_NAMESPACES.SUBSCRIPTIONS}:subscription.${hasSubscription ? "unsubscribe" : "subscribe"}-cta`)}
+      {t(`${MODULE_NAMESPACES.SUBSCRIPTIONS}:subscription.${hasSubscription ? "unsubscribe" : "subscribe"}.cta`)}
     </Button>
   );
 }

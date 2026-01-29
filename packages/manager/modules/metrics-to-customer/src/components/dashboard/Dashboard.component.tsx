@@ -9,10 +9,10 @@ import { TimeControls } from '@/components/timeControls/TimeControls.component';
 import { ChartWidgetComponent } from '@/components/widget/ChartWidget.component';
 import { DashboardProps } from '@/components/dashboard/Dashboard.props';
 import ManageConfigurationButton from '@/components/cta/ManageConfigurationButton.component';
+import { getSubscriptionsConfigUrl } from '@/routes/Routes.utils';
 
 export const Dashboard = <TData,>({
   charts: widgets,
-  configUrl,
   onRefresh,
   onCancel,
 }: Readonly<DashboardProps<TData>>): JSX.Element => {
@@ -48,7 +48,7 @@ export const Dashboard = <TData,>({
       <div className="w-full my-6 flex flex-col gap-4">
         <div className="flex justify-end items-center">
           {enableConfigurationManagement && (
-            <ManageConfigurationButton configUrl={configUrl} />
+            <ManageConfigurationButton configUrl={getSubscriptionsConfigUrl()} />
           )}
         </div>
         <div className="flex justify-end items-center">

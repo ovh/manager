@@ -5,16 +5,19 @@ export const URL_PARAMS = {
 };
 
 export const subroutes = {
-  resource: URL_PARAMS.resourceName,
-  dashboardWidget: URL_PARAMS.dashboardWidget,
   metrics: 'metrics',
+  logs: 'logs',
+  dashboardWidget: URL_PARAMS.dashboardWidget,
   subscriptionsConfig: `subscriptions/config`,
   subscription: 'subscription',
+  create: 'create',
 } as const;
 
 export const urls = {
-  root: '/',
-  subscriptionsConfig: `/${subroutes.metrics}/${subroutes.subscriptionsConfig}/${URL_PARAMS.resourceName}`,
+  root: '',
+  subscriptionsConfig: `${subroutes.subscriptionsConfig}/${URL_PARAMS.resourceName}`,
+  tenantCreation: `${subroutes.subscriptionsConfig}/${URL_PARAMS.resourceName}/create`,
+  logs: `${subroutes.logs}`,
 } as const;
 
 export type LocationPathParams = {

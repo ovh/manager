@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
-import { getSubscriptionsConfigUrl } from '@/routes/Routes.utils';
-
 import { useMetricsToCustomerContext } from '@/contexts/MetricsToCustomer.context';
 
 import { useDashboardData } from '@/hooks';
@@ -56,7 +54,6 @@ const DashboardPage = () => {
     <>
       <Dashboard
         charts={charts}
-        configUrl={getSubscriptionsConfigUrl()}
         onRefresh={refetchAll}
         onCancel={cancelAll} />
       <Outlet />
