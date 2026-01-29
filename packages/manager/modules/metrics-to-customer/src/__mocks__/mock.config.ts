@@ -14,6 +14,6 @@ export const apiConfig: Record<ApiEndpoint, ApiConfigMode> = {
   grafana: 'mock',
   dashboards: 'mock',
   metric: 'mock',
-  'metric-token': 'mock',
+  'metric-token': 'api',
   'metrics-for-manager': 'api',
 };

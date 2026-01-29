@@ -12,6 +12,7 @@ const pathPublic = path.resolve(__dirname, 'public');
 const externalDeps = [
   ...Object.keys(packageJson.default.peerDependencies || {}),
   '@ovhcloud/ods-components/react',
+  '@ovh-ux/muk',
   'recharts',
 ];
 
@@ -39,7 +40,7 @@ export default defineConfig({
             const relativePath = path.relative(pathSrc, fullPath);
             return relativePath;
           },
-        },        
+        },
         {
           src: `${pathPublic}/translations`,
           dest: 'metrics-to-customer',

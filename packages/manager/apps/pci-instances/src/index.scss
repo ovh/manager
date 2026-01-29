@@ -2,7 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '@ovh-ux/metrics-to-customer/dist/style.css';
 @import '@ovhcloud/ods-themes/default';
+@import './styles/muk-drawer.css';
 
 html {
   font-family: var(--ods-font-family-default);
@@ -11,4 +13,52 @@ html {
     border-width: var(--ods-size-input-md-border-width);
     border-color: var(--ods-color-primary-200);
   }
+}
+
+/* Fix for ODS Combobox popover display and interaction */
+
+/* Ensure FormField container doesn't clip dropdown */
+[data-ods="form-field"] {
+  overflow: visible !important;
+}
+
+[data-ods="combobox-content"][data-state="open"] {
+  display: block !important;
+}
+
+[data-scope="popover"][data-part="content"][data-state="open"] {
+  display: block !important;
+}
+
+/* Ensure combobox root and trigger have high enough z-index to be clickable */
+[data-ods="combobox-root"],
+[data-scope="combobox"][data-part="root"] {
+  position: relative;
+  z-index: 10 !important;
+}
+
+[data-scope="popover"][data-part="trigger"],
+[data-ods="combobox-control"] {
+  position: relative;
+  z-index: 10 !important;
+}
+
+/* Ensure combobox trigger button works correctly */
+[data-ods="combobox-control"] button {
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto !important;
+}
+
+/* High z-index for popover positioner to appear above all content */
+[data-scope="popover"][data-part="positioner"] {
+  z-index: 9999 !important;
+  pointer-events: none;
+  position: fixed !important;
+}
+
+[data-scope="popover"][data-part="content"] {
+  pointer-events: auto;
+  z-index: 9999 !important;
+  position: relative;
 }

@@ -38,6 +38,10 @@
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
+  "dependencies": {
+    "@ovh-ux/muk": "0.13.2",
+    "recharts": "^2.13.3"
+  },
   "devDependencies": {
     "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-static-analysis-kit": "*",
@@ -55,7 +59,6 @@
     "@ovh-ux/manager-core-test-utils": "^0.10.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-react-shell-client": "^0.9.1",
-    "@ovh-ux/muk": "0.13.2",
     "@ovhcloud/ods-react": "^19.4.0",
     "@ovhcloud/ods-themes": "^19.4.0",
     "@tanstack/react-query": "^5.51.21",
@@ -67,7 +70,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.3.0",
-    "recharts": "^2.13.3"
+    "react-router-dom": "^6.3.0"
   }
 }

@@ -1,0 +1,81 @@
+/* Extracted drawer-specific styles from @ovh-ux/muk to avoid Tailwind conflicts */
+
+/* Drawer CSS Variables */
+[class*="mrc-drawer"] {
+  --mrc-drawer-width: 28.5em;
+  --mrc-drawer-header-height: 6em;
+  --mrc-drawer-handle-size: 3.5em;
+  --mrc-drawer-collapse-duration: 0.3s;
+}
+
+/* Drawer Keyframe Animations */
+@keyframes mrcDrawerHandlefadeIn {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mrcDrawerBackdropfadeIn {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.75;
+  }
+}
+
+/* Drawer-specific utility classes */
+.mrc-drawer-handle-shadow {
+  box-shadow: #000e9c33 0 2px 8px;
+  clip-path: inset(-15px 0px -15px -15px);
+}
+
+.mrc-drawer-handle-fade-in {
+  opacity: 0;
+  animation: mrcDrawerHandlefadeIn 0.3s ease-in-out 0.3s forwards;
+}
+
+.mrc-drawer-backdrop-fade-in {
+  opacity: 0.75;
+  animation: mrcDrawerBackdropfadeIn 0.3s ease-in-out;
+}
+
+/* Drawer width utilities */
+.right-\[var\(--mrc-drawer-width\)\] {
+  right: var(--mrc-drawer-width);
+}
+
+.top-\[var\(--mrc-drawer-header-height\)\] {
+  top: var(--mrc-drawer-header-height);
+}
+
+.h-\[var\(--mrc-drawer-handle-size\)\] {
+  height: var(--mrc-drawer-handle-size);
+}
+
+.min-h-\[var\(--mrc-drawer-header-height\)\] {
+  min-height: var(--mrc-drawer-header-height);
+}
+
+.w-\[var\(--mrc-drawer-handle-size\)\] {
+  width: var(--mrc-drawer-handle-size);
+}
+
+.translate-x-\[var\(--mrc-drawer-width\)\] {
+  --tw-translate-x: var(--mrc-drawer-width);
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.duration-\[var\(--mrc-drawer-collapse-duration\)\] {
+  transition-duration: var(--mrc-drawer-collapse-duration);
+}
+
+/* Responsive drawer width */
+@media (min-width: 36em) {
+  .sm\:w-\[var\(--mrc-drawer-width\)\] {
+    width: var(--mrc-drawer-width);
+  }
+}

@@ -12,7 +12,6 @@ import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
 import { DashboardProvider, MetricsToCustomerProvider } from '@/contexts';
 
-
 export function MetricsToCustomerModule(
   moduleProps: Readonly<IMetricsToCustomerModule>,
 ) {
