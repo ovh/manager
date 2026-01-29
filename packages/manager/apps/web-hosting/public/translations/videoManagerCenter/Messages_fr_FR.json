@@ -2,6 +2,7 @@
   "video_manager_page_title": "Video Center",
   "video_manager_ga": "GA",
   "video_manager_service_current_offer": "Votre offre actuelle",
+  "video_manager_service_offer": "Offre",
   "video_manager_service_video_count": "Nombre de vidéos",
   "video_manager_service_video_count_label": "{{allocated}}/{{max}} vidéos",
   "video_manager_service_video_duration": "Nombre de minutes",
@@ -21,5 +22,10 @@
   "video_manager_service_duration_value": "12 mois inclus",
   "video_manager_service_terms": "Conditions particulières",
   "video_manager_service_change_owner": "Changer de titulaire",
-  "video_manager_service_manage_contacts": "Gérer les contacts"
+  "video_manager_service_manage_contacts": "Gérer les contacts",
+  "video_manager_service_activate": "Activer votre service Video Center",
+  "video_manager_service_free": "Video Center Free",
+  "video_manager_service_video_free_count": "1 video",
+  "video_manager_service_video_free_duration": "10 min",
+  "video_manager_service_video_free_included": "Inclus"
 }

@@ -23,3 +23,11 @@ export interface PublicService {
     };
   };
 }
+
+export interface AuthToken {
+  token: string;
+}
+
+export type tokenPayload = {
+  language: string;
+};
