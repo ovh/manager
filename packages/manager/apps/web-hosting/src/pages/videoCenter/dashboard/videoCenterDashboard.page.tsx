@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
@@ -16,9 +18,14 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu, BaseLayout, ChangelogMenu, useFormatDate } from '@ovh-ux/muk';
 
-import { useVideoCenter } from '@/data/hooks/videoCenter/useVideoCenter';
+import { VIDEO_MANAGER_URL } from '@/constants';
+import {
+  useGenerateVideoCenterToken,
+  useVideoCenter,
+} from '@/data/hooks/videoCenter/useVideoCenter';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { computeThresholdsFromMax } from '@/utils/videoCenter';
 
@@ -30,11 +37,26 @@ export default function VideoCenterDashboardPage() {
   const { t } = useTranslation(['videoManagerCenter', NAMESPACES.DASHBOARD, NAMESPACES.BILLING]);
   const { data } = useVideoCenter(serviceId);
   const formatDate = useFormatDate();
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
 
   const vodCountThresholds = computeThresholdsFromMax(data?.currentState?.vodCount?.hostable || 0);
   const vodDurationThresholds = computeThresholdsFromMax(
     data?.currentState?.vodDurationMinutes?.hostable || 0,
   );
+  const { generateVideoCenterTokenAsync } = useGenerateVideoCenterToken(serviceId);
+  const onAccessVideoCenter = async () => {
+    const popup = window.open('', '_blank');
+    try {
+      const token = await generateVideoCenterTokenAsync({ language: ovhSubsidiary });
+      if (popup) {
+        popup.location.href = `${VIDEO_MANAGER_URL}?token=${token}`;
+      }
+    } catch {
+      popup?.close();
+    }
+  };
+
   return (
     <BaseLayout
       header={{
@@ -43,7 +65,7 @@ export default function VideoCenterDashboardPage() {
       }}
     >
       <div className="mb-6 flex flex-wrap justify-end">
-        <Button color={BUTTON_COLOR.primary}>
+        <Button color={BUTTON_COLOR.primary} onClick={() => void onAccessVideoCenter()}>
           {t('video_manager_service_access_video_center')}
           <Icon name={ICON_NAME.externalLink}></Icon>
         </Button>
