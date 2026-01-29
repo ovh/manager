@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next';
 
 import { useNotifications } from '@ovh-ux/muk';
 
-import { getVrackDetailQueryKey } from '@/data/api/get/vrack-details';
+import { getVrackDetailQueryKey } from '@/data/api/get/vrackDetails';
 import { VrackUpdate, putVrackDetail } from '@/data/api/put/vrack-details';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export const useUpdateVrackDetails = (serviceName: string) => {
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.common]);
 
   const queryClient = useQueryClient();
   const { addError } = useNotifications();

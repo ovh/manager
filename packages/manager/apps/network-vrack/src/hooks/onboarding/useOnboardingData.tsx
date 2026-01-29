@@ -10,6 +10,7 @@ import type {
   OnboardingImage,
   OnboardingLinksType,
 } from '@/types/Onboarding.type';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const QUERY_KEY = ['onboarding-config'] as const;
 
@@ -20,7 +21,7 @@ async function getOnboardingConfig(): Promise<OnboardingConfigType> {
 }
 
 export function useOnboardingContent(): OnboardingContentType {
-  const { t } = useTranslation(['onboarding', 'common']);
+  const { t } = useTranslation([TRANSLATION_NAMESPACES.onboarding, TRANSLATION_NAMESPACES.common]);
   const { data } = useQuery<OnboardingConfigType>({
     queryKey: QUERY_KEY,
     queryFn: () => getOnboardingConfig(),

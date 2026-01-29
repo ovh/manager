@@ -7,9 +7,14 @@ import { LinkCard, OnboardingLayout, Text } from '@ovh-ux/muk';
 
 import { useGuideLinks, useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
 import { OnboardingLinksType } from '@/types/Onboarding.type';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function OnboardingPage() {
-  const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.onboarding,
+    NAMESPACES.ACTIONS,
+    NAMESPACES.ONBOARDING,
+  ]);
   const { productName, productCategory, brand, title, heroImage, tiles } = useOnboardingContent();
   const links: OnboardingLinksType = useGuideLinks();
 

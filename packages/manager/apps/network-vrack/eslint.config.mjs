@@ -9,8 +9,10 @@ import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
+import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
 import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
+import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css';
 
 export default [
   javascriptEslintConfig,
@@ -20,10 +22,15 @@ export default [
   htmlEslintConfig,
   tailwindJsxConfig,
   tanStackQueryEslintConfig,
+  ...checkFileEslintConfig,
   vitestEslintConfig,
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
+  {
+    ...cssEslintConfig,
+    files: ['**\/*.css', '**\/*.scss'],
+  },
   {
     files: ['**/__tests__/**/*.{js,jsx,ts,tsx}'],
     rules: {
