@@ -1,7 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
 import { CATALOG_SHARE } from '@/__mocks__/dto/catalog.dto.mocks';
-import { CATALOG_INSTANCE } from '@/__mocks__/dto/catalog_instance';
 import { TShareCatalogDTO } from '@/adapters/catalog/right/dto.type';
 import { mapCatalogDTOToCatalog } from '@/adapters/catalog/right/mapper';
 import type { TShareCatalog } from '@/domain/entities/catalog.entity';

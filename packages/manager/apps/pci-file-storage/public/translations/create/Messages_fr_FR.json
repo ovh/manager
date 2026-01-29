@@ -64,7 +64,7 @@
     "error": {
       "min_value": "La taille du share est inférieure au minimum autorisé pour cette offre.",
       "max_value": "La taille du share dépasse le maximum autorisé pour cette offre.",
-      "invalid_type": "Ce champs doit être rempli"
+      "invalid_type": "Ce champ doit être rempli"
     }
   },
   "network": {

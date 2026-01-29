@@ -54,7 +54,7 @@ export const ShareSizeSelection = () => {
 
   useEffect(() => {
     setValue('shareData.size', min);
-  }, [min, max, setValue]);
+  }, [min, setValue]);
 
   return (
     <section className="flex flex-col gap-4">
