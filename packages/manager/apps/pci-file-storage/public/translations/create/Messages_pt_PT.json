@@ -4,8 +4,8 @@
     "label": "Escolha um nome para o seu arquivo de partilha",
     "info": "Deve conter apenas números, letras, underscores, hífens ou pontos e não exceder 255 caracteres.",
     "error": {
-      "required": "O nome do share não pode estar vazio. Por favor, insira um nome.",
-      "max_length": "Formato de nome inválido",
+      "too_small": "O nome do share não pode estar vazio. Por favor, insira um nome.",
+      "too_big": "Formato de nome inválido",
       "invalid_format": "Formato de nome inválido"
     }
   },
@@ -58,7 +58,12 @@
   "shareSize": {
     "title": "Tamanho do compartilhamento",
     "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento de snapshots",
-    "label": "Alocação de desempenho linear (GB)"
+    "label": "Alocação de desempenho linear (GiB)",
+    "error": {
+      "min_value": "O tamanho do compartilhamento está abaixo do mínimo permitido para esta oferta.",
+      "max_value": "O tamanho do compartilhamento excede o máximo permitido para esta oferta.",
+      "invalid_type": "Este campo deve ser preenchido."
+    }
   },
   "network": {
     "title": "Rede Privada",
