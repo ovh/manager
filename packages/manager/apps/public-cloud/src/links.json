@@ -459,5 +459,15 @@
       "application": "public-cloud",
       "path": "/pci/projects/{project}/ai-ml/deploy"
     }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
+      "path": "/create-share"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/storages/files/onboarding"
+    }
   }
 ]
