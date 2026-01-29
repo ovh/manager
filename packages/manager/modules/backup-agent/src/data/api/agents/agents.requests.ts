@@ -1,4 +1,4 @@
-import { ApiResponse, fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
+import { ApiResponse, v2 } from '@ovh-ux/manager-core-api';
 
 import { Agent } from '@/types/Agent.type';
 import { AgentDownloadLinks } from '@/types/AgentDownloadLinks';
@@ -24,10 +24,9 @@ export type EditBackupAgentConfigParams = GetBackupAgentParams & {
 };
 
 export const getBackupAgents = async (backupServicesId: string, vspcTenantId: string) => {
-  const { data } = await fetchIcebergV2<AgentResource<Agent>>({
-    route: getBackupAgentsRoute(backupServicesId, vspcTenantId),
-    pageSize: 9999,
-  });
+  const { data } = await v2.get<AgentResource<Agent>[]>(
+    getBackupAgentsRoute(backupServicesId, vspcTenantId),
+  );
   return data;
 };
 
