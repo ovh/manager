@@ -40,15 +40,12 @@ export default class serviceAccountIdentitiesController {
     this.isSelectingServiceAccounts = false;
   }
 
-  onRemoveServiceAccount(urn) {
-    this.onRemoveIdentity({ urn });
-  }
-
   getServiceAccountList() {
     return this.IAMService.getServiceAccountList()
       .then((allServiceAccounts) => {
-        const filteredServiceAccounts = allServiceAccounts
-          .filter(({ identity }) => !!identity);
+        const filteredServiceAccounts = allServiceAccounts.filter(
+          ({ identity }) => !!identity,
+        );
         return { data: filteredServiceAccounts };
       })
       .catch((error) => {
@@ -67,8 +64,8 @@ export default class serviceAccountIdentitiesController {
     const { name, description, clientId } = option;
     return query.length > 0
       ? name.toLowerCase().includes(query.toLowerCase()) ||
-      description.toLowerCase().includes(query.toLowerCase()) ||
-      clientId.toLowerCase().includes(query.toLowerCase())
+          description.toLowerCase().includes(query.toLowerCase()) ||
+          clientId.toLowerCase().includes(query.toLowerCase())
       : true;
   }
 
