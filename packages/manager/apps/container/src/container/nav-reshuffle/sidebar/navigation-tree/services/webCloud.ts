@@ -173,6 +173,7 @@ webCloudUniverse.children = [
           application: 'web-hosting',
           hash: '#/video-center',
         },
+        features: ['web-hosting:video-center'],
       },
     ],
   },
