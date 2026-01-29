@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -21,16 +21,10 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { selectPrivateNetworks } from '../view-models/networksViewModel';
 import AddNetworkForm from './network/AddNetworkForm.component';
 import GatewayConfiguration from './network/GatewayConfiguration.component';
-import { TAddNetworkForm } from '../CreateInstance.schema';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import Banner from '@/components/banner/Banner.component';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
 import AddPublicNetworkConfiguration from './network/AddPublicNetworkConfiguration.component';
-
-type TUpdateNetworkFieldsArgs = {
-  networkId: string | null;
-  newPrivateNetwork: TAddNetworkForm | null;
-};
+import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');
@@ -40,15 +34,9 @@ const Network: FC = () => {
     name: ['networkId', 'microRegion'],
   });
 
-  const [
-    isCreationNetworkFormOpened,
-    setIsCreationNetworkFormOpened,
-  ] = useState(false);
-
-  const { networks, ovhPrivateNetwork } = useMemo(
-    () => selectPrivateNetworks(microRegion),
-    [microRegion],
-  );
+  const { data: networks, isPending } = usePrivateNetworks({
+    select: selectPrivateNetworks(microRegion),
+  });
 
   const { trackClick } = useOvhTracking();
 
@@ -57,10 +45,7 @@ const Network: FC = () => {
 
     if (!id) return;
 
-    updatePrivateNetworkFields({
-      networkId: id,
-      newPrivateNetwork: null,
-    });
+    setValue('networkId', id);
 
     trackClick({
       location: PageLocation.funnel,
@@ -71,12 +56,7 @@ const Network: FC = () => {
   };
 
   const handleOpenCreateNetwork = () => {
-    setIsCreationNetworkFormOpened(true);
-
-    updatePrivateNetworkFields({
-      networkId: null,
-      newPrivateNetwork: ovhPrivateNetwork,
-    });
+    setValue('networkId', null);
 
     trackClick({
       location: PageLocation.funnel,
@@ -86,33 +66,16 @@ const Network: FC = () => {
     });
   };
 
-  const handleCloseCreateNetwork = () => {
-    setIsCreationNetworkFormOpened(false);
-
-    updatePrivateNetworkFields({
-      networkId: networks[0]?.value ?? null,
-      newPrivateNetwork: null,
-    });
-  };
-
-  const updatePrivateNetworkFields = useCallback(
-    ({ networkId, newPrivateNetwork }: TUpdateNetworkFieldsArgs) => {
-      setValue('networkId', networkId);
-      setValue('newPrivateNetwork', newPrivateNetwork);
-    },
-    [setValue],
-  );
+  const initializePrivateNetworkFields = useCallback(() => {
+    setValue('networkId', networks?.[0]?.value ?? null);
+    setValue('newPrivateNetwork', null);
+  }, [networks, setValue]);
 
   useEffect(() => {
-    if (networks.length === 0) {
-      setIsCreationNetworkFormOpened(true);
+    initializePrivateNetworkFields();
+  }, [networks, initializePrivateNetworkFields]);
 
-      updatePrivateNetworkFields({
-        networkId: null,
-        newPrivateNetwork: ovhPrivateNetwork,
-      });
-    }
-  }, [networks.length, ovhPrivateNetwork, updatePrivateNetworkFields]);
+  if (isPending || !networks) return null;
 
   return (
     <section>
@@ -127,15 +90,12 @@ const Network: FC = () => {
           'creation:pci_instance_creation_network_private_network_setting_title',
         )}
       </Text>
-      <Banner className="my-4">
-        {t('creation:pci_instance_creation_network_setting_beta_warning')}
-      </Banner>
       <Text className="mt-4" preset="paragraph">
         {t(
           'creation:pci_instance_creation_network_private_network_setting_description',
         )}
       </Text>
-      {isCreationNetworkFormOpened ? (
+      {!networkId ? (
         <>
           <Text className="font-semibold" preset="paragraph">
             {t('creation:pci_instance_creation_network_add_new_warning')}
@@ -146,7 +106,7 @@ const Network: FC = () => {
               variant="outline"
               size="sm"
               className="mt-6"
-              onClick={handleCloseCreateNetwork}
+              onClick={initializePrivateNetworkFields}
             >
               {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </Button>
@@ -162,7 +122,7 @@ const Network: FC = () => {
             </FormFieldLabel>
             <Select
               items={networks}
-              value={networkId ? [networkId] : []}
+              value={[networkId]}
               onValueChange={handleSelectNetwork}
             >
               <SelectControl />
@@ -175,8 +135,8 @@ const Network: FC = () => {
           </Button>
         </>
       )}
-      <GatewayConfiguration />
-      <AddPublicNetworkConfiguration />
+      <GatewayConfiguration subnets={networks} />
+      <AddPublicNetworkConfiguration subnets={networks} />
     </section>
   );
 };

@@ -21,7 +21,7 @@ export const getOvhPrivateNetwork = (
 
   const allocatedVlanIds = networks.allIds
     .map((networkId) => networks.byId.get(networkId)?.vlanId ?? null)
-    .filter((vlanId) => vlanId !== null);
+    .filter((vlanId): vlanId is number => vlanId !== null);
 
   const vlanId = getNextAvailableVlanId(allocatedVlanIds);
 
