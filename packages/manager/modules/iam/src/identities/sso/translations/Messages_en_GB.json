@@ -38,5 +38,6 @@
   "sso_detail_idp_signing_certificates": "Signing certificates",
   "sso_detail_idp_signing_certificates_subject": "Subject",
   "sso_detail_idp_signing_certificates_expiration": "Expiry",
-  "sso_table_description": "SSO service"
+  "sso_table_description": "SSO service",
+  "sso_modal_activate_request_signature": "Enable signing of SAMLv2 requests"
 }

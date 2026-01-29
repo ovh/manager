@@ -38,5 +38,6 @@
   "sso_detail_idp_signing_certificates": "Certyfikaty podpisu",
   "sso_detail_idp_signing_certificates_subject": "Temat",
   "sso_detail_idp_signing_certificates_expiration": "Data ważności",
-  "sso_table_description": "Usługa SSO"
+  "sso_table_description": "Usługa SSO",
+  "sso_modal_activate_request_signature": "Włącz podpisywanie żądań SAMLv2"
 }
