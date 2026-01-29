@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 
 import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   BADGE_SIZE,
@@ -28,16 +27,14 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Badge } from '@ovh-ux/muk';
 
 import { useGetHostingService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
+import { WebsiteFormData } from '@/utils/formSchemas.utils';
 
 import { DomainManagement } from './DomainManagement';
 import { PathField } from './fields/Pathfield';
 
-type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
-
 interface DomainAdvancedConfigurationProps {
-  control: Control<FormData, unknown, FormData>;
-  controlValues: FormData;
+  control: Control<WebsiteFormData, unknown, WebsiteFormData>;
+  controlValues: WebsiteFormData;
   isAddingDomain?: boolean;
 }
 

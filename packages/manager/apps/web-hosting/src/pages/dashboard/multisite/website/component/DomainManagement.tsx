@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   Button,
@@ -20,12 +19,10 @@ import {
   useGetHostingService,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { AssociationType } from '@/data/types/product/website';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
-
-type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
+import { WebsiteFormData } from '@/utils/formSchemas.utils';
 
 interface DomainManagementProps {
-  controlValues: FormData;
+  controlValues: WebsiteFormData;
   setStep?: React.Dispatch<React.SetStateAction<number>>;
   isNextButtonVisible?: boolean;
 }

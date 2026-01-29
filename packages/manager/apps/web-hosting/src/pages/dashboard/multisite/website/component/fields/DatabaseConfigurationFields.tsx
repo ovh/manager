@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 import { Control, Controller, FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   FormField,
@@ -25,17 +24,15 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useGetHostingDatabase } from '@/data/hooks/webHostingDatabase/useWebHostingDatabase';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
-
-type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
+import { WebsiteFormData } from '@/utils/formSchemas.utils';
 
 interface DatabaseConfigurationFieldsProps {
-  control: Control<FormData, unknown, FormData>;
-  controlValues: FormData;
-  setValue: UseFormSetValue<FormData>;
+  control: Control<WebsiteFormData, unknown, WebsiteFormData>;
+  controlValues: WebsiteFormData;
+  setValue: UseFormSetValue<WebsiteFormData>;
   serviceName: string;
   databaseOptions: Array<{ value: string; label: string }>;
-  errors: FieldErrors<FormData>;
+  errors: FieldErrors<WebsiteFormData>;
 }
 
 export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsProps> = ({

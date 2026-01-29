@@ -37,7 +37,7 @@ export const useGetHostingService = (serviceName: string) =>
   });
 
 export const useGetAttachedDomains = (serviceName: string) =>
-  useQuery({
+  useQuery<string[]>({
     queryKey: ['hosting', 'web', serviceName, 'attachedDomain'],
     queryFn: () => getAttachedDomains(serviceName),
     enabled: Boolean(serviceName),

@@ -1,6 +1,5 @@
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   FormField,
@@ -23,17 +22,15 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
-
-type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
+import { WebsiteFormData } from '@/utils/formSchemas.utils';
 
 interface AdditionalConfigurationFieldsProps {
-  control: Control<FormData, unknown, FormData>;
-  controlValues: FormData;
+  control: Control<WebsiteFormData, unknown, WebsiteFormData>;
+  controlValues: WebsiteFormData;
   domainOptions: Array<{ value: string; label: string }>;
   languageOptions: Array<{ value: string; label: string }>;
   isLoadingLanguages: boolean;
-  errors: FieldErrors<FormData>;
+  errors: FieldErrors<WebsiteFormData>;
 }
 
 export const AdditionalConfigurationFields: React.FC<AdditionalConfigurationFieldsProps> = ({

@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getHostingDatabase, getHostingDatabases } from '@/data/api/webHostingDatabase';
 
 export const useGetHostingDatabases = (serviceName?: string, type: string = 'mysql') =>
-  useQuery({
+  useQuery<string[]>({
     queryKey: ['hosting', 'web', serviceName, 'databases', type],
     queryFn: () => getHostingDatabases(serviceName, type),
     enabled: Boolean(serviceName),

@@ -61,21 +61,15 @@ export const zForm = (t: (key: string, params?: Record<string, unknown>) => stri
       .regex(REGEX_GIT_REPO, t('multisite:multisite_git_association_incorrect_url_format')),
     branch: z.string().min(1, t(`${NAMESPACES.FORM}:min_chars`, { value: 1 })),
   });
-  return {
-    ADD_SITE_FORM_SCHEMA,
-    CREATE_SITE_FORM_SCHEMA,
-    GIT_ASSOCIATION_FORM_SCHEMA,
-  };
-};
-
-export const websiteFormSchema = (t: (key: string, params?: Record<string, unknown>) => string) =>
-  z
-    .object({
+  const WEBSITE_FORM_SCHEMA = z.discriminatedUnion('advancedInstallation', [
+    z.object({
       associationType: z.enum([
         AssociationType.EXISTING,
         AssociationType.EXTERNAL,
         AssociationType.ORDER,
       ]),
+      advancedInstallation: z.literal(false).optional(),
+
       cdn: z.boolean().optional(),
       firewall: z.boolean().optional(),
       name: z.string(),
@@ -84,125 +78,77 @@ export const websiteFormSchema = (t: (key: string, params?: Record<string, unkno
       fqdn: z.string(),
       ip: z.boolean().optional(),
       selectedIp: z.string().optional(),
-      advancedInstallation: z.boolean().optional(),
+
       selectedDatabase: z.string().optional(),
       databaseServer: z.string().optional(),
       databaseName: z.string().optional(),
       databasePort: z.string().optional(),
       databaseUser: z.string().optional(),
       databasePassword: z.string().optional(),
+
       adminName: z.string().optional(),
       adminPassword: z.string().optional(),
+
       moduleDomain: z.string().optional(),
       moduleLanguage: z.string().optional(),
       moduleInstallPath: z.string().optional(),
+
       module: z
         .enum([CmsType.PRESTASHOP, CmsType.WORDPRESS, CmsType.DRUPAL, CmsType.JOOMLA, CmsType.NONE])
         .optional(),
+
       advancedConfiguration: z.boolean().optional(),
       wwwNeeded: z.boolean().optional(),
       hasSubdomain: z.boolean().optional(),
       subdomain: z.string().optional(),
-    })
-    .superRefine((values, ctx) => {
-      const isAdvancedMode =
-        values.advancedInstallation &&
-        (values.associationType === AssociationType.EXISTING ||
-          values.associationType === AssociationType.EXTERNAL) &&
-        values.module &&
-        values.module !== CmsType.NONE;
+    }),
 
-      if (!isAdvancedMode) {
-        return;
-      }
+    z.object({
+      associationType: z.enum([AssociationType.EXISTING, AssociationType.EXTERNAL]),
+      advancedInstallation: z.literal(true),
 
-      if (!values.selectedDatabase) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['selectedDatabase'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-      if (!values.databaseServer) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['databaseServer'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-      if (!values.databaseName) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['databaseName'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-      if (!values.databasePort) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['databasePort'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-      if (!values.databaseUser) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['databaseUser'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-      if (!values.databasePassword) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['databasePassword'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      } else if (!ADVANCED_INSTALL_PASSWORD_REGEX.test(values.databasePassword)) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['databasePassword'],
-          message: t(`${NAMESPACES.FORM}:error_pattern`),
-        });
-      }
-      if (!values.adminName) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['adminName'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-      if (!values.adminPassword) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['adminPassword'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      } else if (!ADVANCED_INSTALL_PASSWORD_REGEX.test(values.adminPassword)) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['adminPassword'],
-          message: t(`${NAMESPACES.FORM}:error_pattern`),
-        });
-      }
-      if (!values.moduleDomain) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['moduleDomain'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-      if (!values.moduleLanguage) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['moduleLanguage'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-      if (!values.moduleInstallPath) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['moduleInstallPath'],
-          message: t(`${NAMESPACES.FORM}:error_required_field`),
-        });
-      }
-    });
+      cdn: z.boolean().optional(),
+      firewall: z.boolean().optional(),
+      name: z.string(),
+      path: z.string().optional(),
+      autoConfigureDns: z.boolean().optional(),
+      fqdn: z.string(),
+      ip: z.boolean().optional(),
+      selectedIp: z.string().optional(),
+
+      module: z.enum([CmsType.PRESTASHOP, CmsType.WORDPRESS, CmsType.DRUPAL, CmsType.JOOMLA]),
+
+      selectedDatabase: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      databaseServer: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      databaseName: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      databasePort: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      databaseUser: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      databasePassword: z
+        .string()
+        .min(1, t(`${NAMESPACES.FORM}:error_required_field`))
+        .regex(ADVANCED_INSTALL_PASSWORD_REGEX, t(`${NAMESPACES.FORM}:error_pattern`)),
+
+      adminName: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      adminPassword: z
+        .string()
+        .min(1, t(`${NAMESPACES.FORM}:error_required_field`))
+        .regex(ADVANCED_INSTALL_PASSWORD_REGEX, t(`${NAMESPACES.FORM}:error_pattern`)),
+
+      moduleDomain: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      moduleLanguage: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      moduleInstallPath: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+
+      advancedConfiguration: z.boolean().optional(),
+      wwwNeeded: z.boolean().optional(),
+      hasSubdomain: z.boolean().optional(),
+      subdomain: z.string().optional(),
+    }),
+  ]);
+  return {
+    ADD_SITE_FORM_SCHEMA,
+    CREATE_SITE_FORM_SCHEMA,
+    GIT_ASSOCIATION_FORM_SCHEMA,
+    WEBSITE_FORM_SCHEMA,
+  };
+};
+export type WebsiteFormData = z.infer<ReturnType<typeof zForm>['WEBSITE_FORM_SCHEMA']>;

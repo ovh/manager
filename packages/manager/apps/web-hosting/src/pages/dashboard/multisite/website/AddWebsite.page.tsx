@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   Button,
@@ -26,7 +25,7 @@ import { CmsType } from '@/data/types/product/managedWordpress/cms';
 import { PostWebHostingWebsitePayload } from '@/data/types/product/webHosting';
 import { AssociationType } from '@/data/types/product/website';
 import { ServiceStatus } from '@/data/types/status';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
+import { WebsiteFormData, zForm } from '@/utils/formSchemas.utils';
 
 import { DomainAssociation } from './component/DomainAssociation';
 import { DomainCmsModule } from './component/DomainCmsModule';
@@ -40,16 +39,14 @@ export default function AddWebsitePage() {
   const { t } = useTranslation(['common', 'multisite']);
   const [step, setStep] = useState<number>(1);
 
-  type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
-
-  const { control, handleSubmit, watch, reset, setValue, formState } = useForm<FormData>({
+  const { control, handleSubmit, watch, reset, setValue, formState } = useForm<WebsiteFormData>({
     defaultValues: {
       path: 'public_html',
       autoConfigureDns: true,
       module: CmsType.NONE,
       advancedInstallation: false,
     },
-    resolver: zodResolver(websiteFormSchema(t)),
+    resolver: zodResolver(zForm(t).WEBSITE_FORM_SCHEMA),
     mode: 'onTouched',
   });
 
@@ -78,7 +75,7 @@ export default function AddWebsitePage() {
     },
   );
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: WebsiteFormData) => {
     clearNotifications();
 
     const isAdvancedInstallation =

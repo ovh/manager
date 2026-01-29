@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
 import { Control, Controller, FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   Checkbox,
@@ -26,19 +28,17 @@ import { useGetAttachedDomains } from '@/data/hooks/webHostingDashboard/useWebHo
 import { useGetHostingDatabases } from '@/data/hooks/webHostingDatabase/useWebHostingDatabase';
 import { useGetModuleLanguages } from '@/data/hooks/webHostingModule/useWebHostingModule';
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
+import { WebsiteFormData } from '@/utils/formSchemas.utils';
 import { getLanguageName } from '@/utils/languageMapping';
 
 import { AdditionalConfigurationFields } from './fields/AdditionalConfigurationFields';
 import { DatabaseConfigurationFields } from './fields/DatabaseConfigurationFields';
 
-type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
-
 interface DomainCmsAdvancedOptionsProps {
-  control: Control<FormData, unknown, FormData>;
-  controlValues: FormData;
-  setValue: UseFormSetValue<FormData>;
-  errors: FieldErrors<FormData>;
+  control: Control<WebsiteFormData, unknown, WebsiteFormData>;
+  controlValues: WebsiteFormData;
+  setValue: UseFormSetValue<WebsiteFormData>;
+  errors: FieldErrors<WebsiteFormData>;
 }
 
 export const DomainCmsAdvancedOptions: React.FC<DomainCmsAdvancedOptionsProps> = ({
