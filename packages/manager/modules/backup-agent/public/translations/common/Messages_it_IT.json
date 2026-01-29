@@ -17,7 +17,8 @@
   "agent_status_disabled_legend": "Il tuo Agent è stato disattivato e verrà eliminato a breve.",
   "agent_status_not_installed_legend": "Il tuo Agent non è ancora installato sul server, devi scaricarlo e installarlo.",
   "agent_status_not_configured_legend": "Il tuo Agent è stato rilevato come installato ma la sua politica non è ancora stata applicata; ce ne occuperemo il prima possibile.",
-  "agent_status_creating_legend": "Creazione dell’Agent in corso...",
+  "agent_status_creating_legend": "Creazione dell'Agent in corso...",
   "agent_status_updating_legend": "Modifica dell'Agent in corso...",
-  "agent_status_enabled_legend": "Il tuo Agent è attivo e pronto a effettuare backup del tuo server."
+  "agent_status_enabled_legend": "Il tuo Agent è attivo e pronto a effettuare backup del tuo server.",
+  "no_agent_enabled_banner": "Hai bisogno di aiuto per installare il tuo agente? Puoi seguire <Link>Questa guida</Link>"
 }
