@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.10.4](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.10.3...@ovh-ux/shell@4.10.4) (2026-01-29)
+
+
+### Bug Fixes
+
+* fix sentry issues on common parts ([c87b11a](https://github.com/ovh/manager/commit/c87b11a80f1ee24cc59799398e0618abdf36aa1c)), closes [#MANAGER-EU-188](https://github.com/ovh/manager/issues/MANAGER-EU-188)
+
+
+
+
+
 ## [4.10.3](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.10.2...@ovh-ux/shell@4.10.3) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/shell
