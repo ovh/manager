@@ -253,6 +253,21 @@ const ROOT_REMARK_IGNORE = pickFirstExisting(repoRoot, ['.remarkignore']);
 
 const ROOT_HTMLHINT_CONFIG = pickFirstExisting(repoRoot, ['.htmlhintrc', '.htmlhintrc.json']);
 
+const PRETTIER_CLI = resolveBinFromPackageJson('prettier/package.json', 'prettier');
+
+const ROOT_PRETTIER_CONFIG = pickFirstExisting(repoRoot, [
+  '.prettierrc',
+  '.prettierrc.json',
+  '.prettierrc.yaml',
+  '.prettierrc.yml',
+  '.prettierrc.js',
+  '.prettierrc.cjs',
+  'prettier.config.js',
+  'prettier.config.cjs',
+]);
+
+const ROOT_PRETTIER_IGNORE = pickFirstExisting(repoRoot, ['.prettierignore']);
+
 /* ────────────────────────────────────────────────────────────── */
 /* Local ESLint deltas (globals only)                               */
 /* ────────────────────────────────────────────────────────────── */
@@ -363,6 +378,46 @@ function runNodeCli(cliPath, cliArgs, { cwd = repoRoot } = {}) {
 }
 
 /* ────────────────────────────────────────────────────────────── */
+/* Prettier                                                          */
+/* ────────────────────────────────────────────────────────────── */
+
+async function runPrettier(kind) {
+  if (!args.fix) return 0;
+
+  // Only run where it matters (tsx/js);
+  if (kind !== 'tsx' && kind !== 'js') return 0;
+
+  const patterns = patternsForKind(kind);
+  const files = listFiles(patterns); // uses IGNORE_DIRS already
+  if (files.length === 0) return 0;
+
+  logConfig(`Prettier (${kind})`, {
+    projectRoot,
+    repoRoot,
+    'config (--config)': ROOT_PRETTIER_CONFIG,
+    'ignore (--ignore-path)': ROOT_PRETTIER_IGNORE,
+    'cwd (tool runs from)': repoRoot,
+  });
+
+  const BATCH_SIZE = 200;
+  let ok = true;
+
+  for (let i = 0; i < files.length; i += BATCH_SIZE) {
+    const batch = files.slice(i, i + BATCH_SIZE);
+    const cliArgs = [
+      '--write',
+      ...(ROOT_PRETTIER_CONFIG ? ['--config', ROOT_PRETTIER_CONFIG] : []),
+      ...(ROOT_PRETTIER_IGNORE ? ['--ignore-path', ROOT_PRETTIER_IGNORE] : []),
+      ...batch,
+    ];
+    const code = await runNodeCli(PRETTIER_CLI, cliArgs);
+    if (code !== 0) ok = false;
+  }
+
+  return ok ? 0 : 1;
+}
+
+/* ────────────────────────────────────────────────────────────── */
 /* ESLint                                                          */
 /* ────────────────────────────────────────────────────────────── */
 
@@ -411,6 +466,10 @@ async function runEslint(kind) {
       ? `${LOCAL_GLOBAL_FLAGS.length / 2} globals`
       : '(none)',
   });
+
+  // Format first (when --fix), then ESLint fix everything else.
+  const prettierCode = await runPrettier(kind);
+  if (prettierCode !== 0) return prettierCode;
 
   // ESLint accepts globs; ignore-patterns handle node_modules/dist/etc.
   return runNodeCli(ESLINT_CLI, buildEslintArgs(patterns));
