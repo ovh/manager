@@ -79,8 +79,8 @@ describe('PrivateNetworkSelection', () => {
       defaultValues: { shareData: { microRegion: 'GRA7' } },
     });
 
-    expect(screen.getByTestId('text-heading-4')).toHaveTextContent('create:network.title');
-    expect(screen.getByTestId('text-paragraph')).toHaveTextContent('create:network.description');
+    expect(screen.getByText('create:network.title')).toBeVisible();
+    expect(screen.getByText('create:network.description')).toBeVisible();
   });
 
   it('should render empty message when no private networks are available', () => {

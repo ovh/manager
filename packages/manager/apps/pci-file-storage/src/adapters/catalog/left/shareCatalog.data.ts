@@ -13,22 +13,14 @@ export type TDeploymentModeDataForCard = {
   Image: TSVGImage;
 };
 
-type TMicroRegionDataForCard = {
-  name: string;
-  availabilityZones: string[];
-  isActivable: boolean;
-  isInMaintenance: boolean;
-};
-
 export type TRegionData = {
   cityKey: string;
   datacenterDetails: string | null;
   macroRegion: string | null;
-  microRegion: string | null;
   deploymentMode: TDeploymentModeData;
   countryCode: TCountryIsoCode | null;
-  microRegions: TMicroRegionDataForCard[];
   available: boolean;
+  firstAvailableMicroRegion: string | undefined;
 };
 
 export type TContinentData = { labelKey: string; value: string };

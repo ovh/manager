@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -19,32 +17,17 @@ export const NameInput = () => {
 
   const {
     register,
-    formState: { errors },
+    formState: {
+      errors: { shareData: { name: nameError } = {} },
+    },
   } = useFormContext<CreateShareFormValues>();
-
-  const nameError = errors.shareData?.name;
-
-  const errorMessage = useMemo(() => {
-    if (!nameError?.message) return undefined;
-    const message = String(nameError.message);
-    switch (message) {
-      case 'name_required':
-        return t('create:name.error.required');
-      case 'name_max_length':
-        return t('create:name.error.max_length');
-      case 'name_invalid_format':
-        return t('create:name.error.invalid_format');
-      default:
-        return message;
-    }
-  }, [nameError, t]);
 
   return (
     <article className="flex w-full flex-col">
-      <FormField invalid={!!errorMessage}>
+      <FormField invalid={!!nameError}>
         <FormFieldLabel>{t('create:name.label')}</FormFieldLabel>
         <Input {...register('shareData.name')} className="max-w-[50%]" />
-        <FormFieldError>{errorMessage}</FormFieldError>
+        <FormFieldError>{t(`create:name.error.${nameError?.type}`)}</FormFieldError>
         <FormFieldHelper>
           <Text>{t('create:name.info')}</Text>
         </FormFieldHelper>
