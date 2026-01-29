@@ -114,10 +114,6 @@ export default function Step1({
                 {t('multisite:multisite_modal_domain_configuration_modify_step1_cdn')}
               </Text>
               <Text id="cdn-tooltip">
-                <Icon
-                  name={ICON_NAME.circleQuestion}
-                  className="color-disabled ml-4 cursor-pointer"
-                />
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Icon

@@ -83,6 +83,10 @@ export default function Layout() {
   const boostUrl = useHostingUrl(serviceName, 'boost');
   const mailsUrl = useEmailsUrl(flattenData?.[0]?.domain, 'mailing-list');
 
+  if (pathname === `/${serviceName}`) {
+    window.location.replace(generalUrl);
+  }
+
   const tabs: DashboardTab[] = useMemo(
     () => [
       {
