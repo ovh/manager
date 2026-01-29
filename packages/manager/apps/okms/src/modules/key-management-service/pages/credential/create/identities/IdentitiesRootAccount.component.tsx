@@ -26,12 +26,14 @@ const IdentitiesRootAccount = ({ isRootAccount, setIsRootAccount }: IdentitiesRo
           id="rootAccount"
           defaultChecked={isRootAccount}
           onOdsChange={(event) => {
-            trackClick({
-              location: PageLocation.funnel,
-              buttonType: ButtonType.button,
-              actionType: 'action',
-              actions: ['toggle', 'root-identity', !isRootAccount ? 'on' : 'off'],
-            });
+            if (event.detail.value !== isRootAccount) {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['toggle', 'root-identity', !isRootAccount ? 'on' : 'off'],
+              });
+            }
             setIsRootAccount(event.detail.value);
           }}
         />

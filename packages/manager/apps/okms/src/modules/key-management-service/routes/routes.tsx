@@ -123,7 +123,11 @@ export default (
       Component={KmsCreate}
       handle={getRouteTracking(['create', 'okms'], PageType.funnel)}
     >
-      <Route path={KMS_URL_PARAMS.region} Component={KmsCreateOrderOkmsModal} />
+      <Route
+        path={KMS_URL_PARAMS.region}
+        Component={KmsCreateOrderOkmsModal}
+        handle={getRouteTracking(['enable', 'region'], PageType.popup)}
+      />
     </Route>
     <Route
       path={KMS_ROUTES_URIS.kmsOnboarding}
@@ -155,7 +159,7 @@ export default (
         <Route
           path={`${KMS_ROUTES_URIS.serviceKeyDeactivate}/${KMS_URL_PARAMS.keyId}`}
           Component={ServiceKeyDeactivateModal}
-          handle={getRouteTracking(['deactivate', 'service-key'], PageType.listing)}
+          handle={getRouteTracking(['deactivate', 'service-key'], PageType.popup)}
         />
       </Route>
       <Route

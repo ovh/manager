@@ -44,6 +44,7 @@ export type TrackingTags =
   | 'secret'
   | 'service-key'
   | 'swagger-ui'
+  | 'region'
   | 'value'
   | 'version'
   // guides
@@ -59,6 +60,7 @@ export type TrackingTags =
   | 'delete'
   | 'download'
   | 'edit'
+  | 'enable'
   | 'next'
   | 'order'
   | 'previous'
@@ -67,9 +69,11 @@ export type TrackingTags =
   | 'select'
   | 'terminate'
   | 'toggle'
+  //  pages
+  | 'dashboard'
+  | 'list'
   // others
   | 'general-informations'
-  | 'list'
   | 'logs'
   | 'off'
   | 'on'
