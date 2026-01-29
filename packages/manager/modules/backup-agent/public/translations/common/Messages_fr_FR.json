@@ -13,5 +13,11 @@
   "baremetal_label_order_in_progress": "La commande a bien été reçue, votre produit est en cours de livraison et vous pouvez suivre sa progression <OrderLink>ici</OrderLink> .",
   "server": "Serveur",
   "billings_tab_description": "Vous retrouverez ici votre facturation à jour de votre Tenant. Celui-ci vous sera facturé au début du mois prochain. Pour en savoir plus, consultez la <Link>documentation OVHcloud Backup Agent</Link>",
-  "go_to_general_informations": "Aller aux informations générales"
+  "go_to_general_informations": "Aller aux informations générales",
+  "agent_status_disabled_legend": "Votre Agent a été désactivé et sera supprimé sous peu.",
+  "agent_status_not_installed_legend": "Votre Agent n'est pas encore installé sur votre serveur, vous devez le télécharger et l'installer dessus.",
+  "agent_status_not_configured_legend": "Votre Agent est détecté comme installé mais n'a pas encore sa politique appliquée, nous nous occupons de cela dans les plus brefs délais.",
+  "agent_status_creating_legend": "Votre Agent est en cours de création.",
+  "agent_status_updating_legend": "Votre Agent est en cours de modification.",
+  "agent_status_enabled_legend": "Votre Agent est actif, des sauvegardes se feront à partir de votre serveur."
 }
