@@ -3,16 +3,12 @@ import { useEffect } from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Divider, RadioGroup, Text } from '@ovhcloud/ods-react';
-
-import { PciCard } from '@/components/pciCard/PciCard.component';
+import { RadioGroup, Text } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { usePlanTiles } from '../view-models/selectPlansFromCatalog';
-import { PlanTileContent } from './plan/PlanContent.component';
-import { PlanTileFooter } from './plan/PlanFooter.component';
-import { PlanTileHeader } from './plan/PlanHeader.component';
 import { PlanHelper } from './plan/PlanHelper.component';
+import { PlanTypeCard } from './plan/PlanTypeCard.component';
 
 export const ClusterPlanSection = () => {
   const { setValue, control } = useFormContext<TCreateClusterSchema>();
@@ -39,8 +35,7 @@ export const ClusterPlanSection = () => {
 
   /* 
     TODO : 
-    - Extraire dans un composant PlanTile ?
-    - Refacto ou commentaire pour la magie noire dans le PlanTileFooter
+    - Prix cart
     - Ajouter des tests dans les mappers
   */
 
@@ -83,32 +78,13 @@ export const ClusterPlanSection = () => {
             >
               <div className="my-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
                 {plans?.map((plan) => (
-                  <PciCard
-                    selectable={!plan.disabled}
-                    disabled={plan.disabled}
-                    selected={selectedPlanType === plan.planType}
+                  <PlanTypeCard
                     key={plan.title}
-                    onClick={() => handleSelect(plan.planType)}
-                  >
-                    {plan.title && (
-                      <PlanTileHeader
-                        value={plan.planType}
-                        title={plan.title}
-                        description={plan.description}
-                        disabled={plan.disabled}
-                        isMultiZone={isMultiZone}
-                      />
-                    )}
-                    <Divider className="w-full" />
-                    <PlanTileContent disabled={plan.disabled} contents={plan.content} />
-                    <PlanTileFooter
-                      isFreePlan={plan.planType === 'free'}
-                      disabled={plan.disabled}
-                      priceExclVat={plan.price?.priceExclVat ?? null}
-                      priceInclVat={plan.price?.priceInclVat ?? null}
-                      content={`kube_add_plan_footer_${plan.planType}`}
-                    />
-                  </PciCard>
+                    plan={plan}
+                    selectedPlanType={selectedPlanType}
+                    isMultiZone={isMultiZone}
+                    onSelect={handleSelect}
+                  />
                 ))}
               </div>
             </RadioGroup>

@@ -21,14 +21,13 @@ export function PlanTileFooter({
   isFreePlan,
   disabled,
 }: TPlanFooterProps) {
-  const { t } = useTranslation(['add', 'stepper', 'flavor-billing']);
+  const { t } = useTranslation(['add', 'order-price']);
   const { getTextPrice, getFormattedMonthlyCatalogPrice } = useCatalogPrice(4);
 
   const formattedPriceExclVat = priceExclVat ? getTextPrice(priceExclVat) : null;
   const formattedPriceInclVat = priceInclVat ? getFormattedMonthlyCatalogPrice(priceInclVat) : null;
 
-  // Dark magic, explain later of change
-  const exclVatLabel = getFormattedMonthlyCatalogPrice(0).replace(getTextPrice(0), '');
+  const exclVatLabel = `${t('order-price:order_catalog_price_tax_excl_label', { price: '' })} / ${t('order-price:order_catalog_price_interval_month')}`;
 
   if (disabled)
     return (
