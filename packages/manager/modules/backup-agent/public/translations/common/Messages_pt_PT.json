@@ -19,5 +19,6 @@
   "agent_status_not_configured_legend": "O seu Agent foi detetado como instalado mas ainda não tem a sua política aplicada. Iremos tratar disso o mais rápido possível.",
   "agent_status_creating_legend": "O seu Agent está a ser criado.",
   "agent_status_updating_legend": "O seu Agent está a ser modificado.",
-  "agent_status_enabled_legend": "O seu Agent está ativo, serão efetuados backups a partir do seu servidor."
+  "agent_status_enabled_legend": "O seu Agent está ativo, serão efetuados backups a partir do seu servidor.",
+  "no_agent_enabled_banner": "Precisa de ajuda para instalar o seu Agente? Você pode seguir <Link>este guia</Link>"
 }
