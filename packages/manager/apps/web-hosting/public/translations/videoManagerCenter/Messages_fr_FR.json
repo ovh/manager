@@ -21,5 +21,10 @@
   "video_manager_service_duration_value": "12 mois inclus",
   "video_manager_service_terms": "Conditions particulières",
   "video_manager_service_change_owner": "Changer de titulaire",
-  "video_manager_service_manage_contacts": "Gérer les contacts"
+  "video_manager_service_manage_contacts": "Gérer les contacts",
+  "video_manager_service_activate": "Activer votre service Video Center",
+  "video_manager_service_free": "Video Center Free",
+  "video_manager_service_video_free_count": "1 video",
+  "video_manager_service_video_free_duration": "10 min",
+  "video_manager_service_video_free_included": "Inclus"
 }
