@@ -12,7 +12,9 @@ import {
   mapRegionToLocalizationCard,
 } from '@/adapters/catalog/left/shareCatalog.mapper';
 import { TMacroRegion, TShareCatalog } from '@/domain/entities/catalog.entity';
-import { getMicroRegions } from '@/domain/services/catalog.service';
+import { getMicroRegions, isMicroRegionAvailable } from '@/domain/services/catalog.service';
+
+export type TFirstAvailableLocation = { macroRegion: string; microRegion: string };
 
 export const selectDeploymentModes = (data?: TShareCatalog): TDeploymentModeDataForCard[] =>
   (data?.entities?.deploymentModes?.allIds ?? []).map(mapDeploymentModeForCard);
@@ -50,6 +52,25 @@ export const selectLocalizations =
     );
   };
 
+export const selectFirstAvailableLocation =
+  ({ deploymentModes, continentId }: SelectLocalizationsParams) =>
+  (data?: TShareCatalog): TFirstAvailableLocation | undefined => {
+    const localizations = selectLocalizations({ deploymentModes, continentId })(data);
+    const firstAvailable = localizations.find((loc) => loc.available);
+    if (!firstAvailable?.macroRegion) return undefined;
+
+    const macroRegion = data?.entities.macroRegions.byId.get(firstAvailable.macroRegion);
+    if (!macroRegion) return { macroRegion: firstAvailable.macroRegion, microRegion: '' };
+
+    const microRegions = getMicroRegions(macroRegion, data!.entities.microRegions.byId);
+    const firstMicro = microRegions.find(isMicroRegionAvailable) ?? microRegions[0];
+
+    return {
+      macroRegion: firstAvailable.macroRegion,
+      microRegion: firstMicro?.name ?? '',
+    };
+  };
+
 export const selectContinent =
   (deploymentModes: TDeploymentModeData[]) =>
   (data?: TShareCatalog): TContinentData[] => {
@@ -73,7 +94,7 @@ export const selectContinent =
   };
 
 export const selectMicroRegions =
-  (macroRegionId: string) =>
+  (macroRegionId?: string) =>
   (data?: TShareCatalog): TMicroRegionData[] => {
     if (!data || !macroRegionId) return [];
 
@@ -85,7 +106,7 @@ export const selectMicroRegions =
     return microRegions.map((microRegion) => ({
       label: microRegion.name,
       value: microRegion.name,
-      disabled: !microRegion.isActivable || microRegion.isInMaintenance,
+      disabled: !isMicroRegionAvailable(microRegion),
     }));
   };
 
