@@ -1,4 +1,4 @@
 {
-  "e_invoicing_warning_introduction": "Nie możesz teraz pobrać faktury. Do generowania i pobierania faktur potrzebujemy ważnego numeru SIRET przypisanego do Twojego konta. Po zaktualizowaniu numeru SIRET będziesz mógł pobrać faktury.",
-  "e_invoicing_warning_action": "Numer SIRET możesz zaktualizować <a href={{href}}>tutaj.</a>"
+  "e_invoicing_warning_introduction": "Nie możesz teraz pobrać faktury. Do generowania i pobierania faktur potrzebny jest prawidłowy numer SIRET przypisany do Twojego konta. Po zaktualizowaniu numeru SIRET będziesz mógł pobrać faktury.",
+  "e_invoicing_warning_action": "Numer SIRET zaktualizujesz<a href={{href}}>tutaj.</a>"
 }

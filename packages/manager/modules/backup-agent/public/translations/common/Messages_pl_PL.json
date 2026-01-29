@@ -1,13 +1,15 @@
 {
-  "vaults": "Skrytki",
+  "vaults": "Vaults",
   "services": "Usługi",
-  "billing": "System fakturowania",
+  "billing": "Płatności",
   "agents": "Agenci",
-  "buckets": "Wiad",
-  "policy": "Polity",
+  "buckets": "Buckets",
+  "policy": "Polityka",
   "actions": "Operacje",
   "without_engagement": "bez umowy terminowej",
   "backup_agent_guide": "Przewodniki Backup Agent",
-  "baremetal_label_order_in_progress": "Zamówienie zostało pomyślnie przyjęte, twój produkt jest w trakcie dostawy i możesz śledzić jego postęp <OrderLink>tutaj</OrderLink>.",
-  "server": "Serwer"
+  "baremetal_label_order_in_progress": "Zamówienie zostało przyjęte. Produkt jest w trakcie przygotowania. Sprawdź status <OrderLink>tutaj</OrderLink>.",
+  "server": "Serwer",
+  "primary": "Główny",
+  "secondary": "Drugorzędny"
 }

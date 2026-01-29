@@ -2,21 +2,21 @@
   "home": "Strona główna",
   "order": "Zamów",
   "back": "Powrót",
-  "title": "Panel sterowania",
-  "email": "E-mail",
-  "subject": "Przedmiot",
+  "title": "Dashboard",
+  "email": "Adres e-mail",
+  "subject": "Temat",
   "message": "Wiadomość",
   "submitButton": "Wyślij",
-  "successMessage": "Twoje zapytanie zostało pomyślnie wysłane.",
+  "successMessage": "Twoja wiadomość została wysłana.",
   "errors": {
-    "emailRequired": "E-mail jest obowiązkowy.",
-    "emailInvalid": "Prosimy o wprowadzenie poprawnego adresu e-mail.",
-    "subjectRequired": "Temat jest obowiązkowy.",
-    "messageRequired": "Wiadomość jest obowiązkowa."
+    "emailRequired": "Wpisz adres e-mail.",
+    "emailInvalid": "Wpisz poprawny adres e-mail.",
+    "subjectRequired": "Wpisz tytuł wiadomości.",
+    "messageRequired": "Wpisz wiadomość."
   },
   "general-information": "Informacje ogólne",
   "help": "Pomoc",
   "type_billing": "Sposób rozliczania usługi",
-  "consumption_tooltip": "Dodatkowe przechowywanie nie jest dostępne w trybie samoobsługowym. Aby zwiększyć swoją pojemność przechowywania, skontaktuj się z pomocą techniczną.",
-  "vault_price": "Kwota {{vaultPrice}} bez VAT/miesiąc"
+  "consumption_tooltip": "Nie możesz samodzielnie dodać przestrzeni dyskowej. Aby zwiększyć przestrzeń dyskową, skontaktuj się z pomocą techniczną.",
+  "vault_price": "Czyli {{vaultPrice}} netto/m-c"
 }

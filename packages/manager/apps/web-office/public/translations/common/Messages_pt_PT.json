@@ -53,5 +53,5 @@
   "error_message": "O seu pedido não foi bem-sucedido. {{ error }}",
   "agreement": "Assinatura do contrato",
   "contract_signature": "Assinatura do contrato",
-  "contract_signature_tooltip": "Para aceder ao serviço, tem de aceitar o contrato de utilizador Microsoft."
+  "contract_signature_tooltip": "Para aceder ao serviço, tem de aceitar o contrato de utilizador Microsoft"
 }

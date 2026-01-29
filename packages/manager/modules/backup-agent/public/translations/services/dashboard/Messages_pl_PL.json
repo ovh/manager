@@ -4,9 +4,9 @@
   "billing_more_info": "Więcej informacji o fakturowaniu",
   "number_of_connected_vaults": "{{connectedVaultCount}} podłączony(e)",
   "number_of_installed_agents": "{{installedAgentsCount}} zainstalowany(e)",
-  "linked_server": "Powiązane Serwery",
-  "linked_vaults": "Powiązane Skarbce",
-  "number_of_linked_vaults": "{{connectedVaultCount}} skarbiec(e)",
-  "number_of_linked_server": "{{installedAgentsCount}} serwer(y)",
-  "access_to_vspc": "Uzyskaj dostęp do VSPC"
+  "linked_server": "Powiązane serwery",
+  "linked_vaults": "Powiązane Vaults",
+  "number_of_linked_vaults": "{{connectedVaultCount}} vault(s)",
+  "number_of_linked_server": "{{installedAgentsCount}} serwery/ów",
+  "access_to_vspc": "Dostęp do VSPC"
 }

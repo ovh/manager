@@ -1,10 +1,10 @@
 {
   "home": "Home",
-  "order": "Order now",
-  "open": "Open the dashboard",
+  "order": "Order",
+  "open": "Open dashboard",
   "title": "List",
   "resource_name_label": "Name",
-  "location_label": "Price per month",
+  "location_label": "Location",
   "region_label": "Region",
   "buckets_label": "Number of buckets",
   "status_label": "Status",

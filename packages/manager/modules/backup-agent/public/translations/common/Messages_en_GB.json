@@ -1,13 +1,15 @@
 {
   "vaults": "Vaults",
   "services": "Services",
-  "billing": "Invoicing",
+  "billing": "Billing",
   "agents": "Agents",
   "buckets": "Buckets",
   "policy": "Policy",
   "actions": "Actions",
-  "without_engagement": "No commitment",
+  "without_engagement": "without commitment",
   "backup_agent_guide": "Backup Agent Guides",
-  "baremetal_label_order_in_progress": "The order has been received, your product is on its way and you can track its progress <OrderLink>here</OrderLink>.",
-  "server": "Server"
+  "baremetal_label_order_in_progress": "Your order has been processed and is on its way. You can track its status <OrderLink>here</OrderLink>.",
+  "server": "Server",
+  "primary": "Primary",
+  "secondary": "Secondary"
 }
