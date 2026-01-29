@@ -8,7 +8,6 @@ import {
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useMemo } from 'react';
 import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
-import { selectPrivateNetworks } from '../view-models/networksViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { mapFlavorToDTO } from '@/adapters/tanstack/instances/right/mapper';
 import { useCreateInstance } from '@/data/hooks/useCreateInstance';
@@ -68,9 +67,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     distributionImageVersion,
     distributionImageOsType,
     sshKeyId,
-    networkId,
     newSshPublicKey,
-    newPrivateNetwork,
     billingType,
     localBackupRotation,
     distantBackupLocalization,
@@ -88,9 +85,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'distributionImageVersion',
       'distributionImageOsType',
       'sshKeyId',
-      'networkId',
       'newSshPublicKey',
-      'newPrivateNetwork',
       'billingType',
       'localBackupRotation',
       'distantBackupLocalization',
@@ -161,13 +156,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     };
   }, [localBackupRotation, backupConfiguration, distantBackupLocalization]);
 
-  const { networks } = useMemo(() => selectPrivateNetworks(microRegion), [
-    microRegion,
-  ]);
-
-  const networkName =
-    newPrivateNetwork?.name ??
-    networks.find(({ value }) => networkId === value)?.label;
+  const networkName = 'todo';
 
   const handleSuccess = () => {
     // TODO: update with new success specs to come

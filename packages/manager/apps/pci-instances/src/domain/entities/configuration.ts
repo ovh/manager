@@ -18,3 +18,38 @@ export type TBackupConfiguration = {
   autoBackupEnabled: boolean;
   prices: TBackupPrice[];
 };
+
+type TNetworkID = string;
+type TSubnetID = string;
+type TCapability = 'PublicIP' | 'FloatingIP';
+
+export type TNetwork = {
+  id: TNetworkID;
+  name: string;
+  region: TMicroRegionID;
+  vlanId: number;
+  subnets: TSubnetID[];
+};
+
+export type TSubnet = {
+  id: TSubnetID;
+  cidr: string;
+  gatewayIp: string | null;
+  capabilities: TCapability[];
+};
+
+export type TPrivateNetwork = {
+  networks: {
+    byId: Map<TNetworkID, TNetwork>;
+    allIds: TNetworkID[];
+  };
+  subnets: {
+    byId: Map<TSubnetID, TSubnet>;
+    allIds: TSubnetID[];
+  };
+};
+
+export type TFloatingIp = {
+  id: string;
+  ip: string;
+};

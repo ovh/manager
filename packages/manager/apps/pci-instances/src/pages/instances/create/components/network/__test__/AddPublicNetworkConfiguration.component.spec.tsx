@@ -3,45 +3,55 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddPublicNetworkConfiguration from '../AddPublicNetworkConfiguration.component';
 import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
-import {
-  mockedGatewayConfiguration,
-  mockedBasicPublicIpConfiguration,
-  mockedFloatingIpConfiguration,
-  mockedExistingFloatingIps,
-} from '@/__mocks__/instance/constants';
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
-import { selectPublicNetworkConfig } from '../../../view-models/networksViewModel';
+import {
+  mockedFloatingIpEntity,
+  mockedNetworkCatalog,
+  mockedPrivateNetworks,
+} from '@/__mocks__/instance/constants';
+import { getFloatingIps } from '@/data/api/floatingIps';
+import { getNetworkCatalog } from '@/data/api/networkCatalog';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
 
-vi.mock('../../../view-models/networksViewModel');
+const getNetworkCatalogMock = vi.fn();
+const getFloatingIpsMock = vi.fn();
+const useInstancesCatalogWithSelectMock = vi.fn();
+
+vi.mock('@/data/api/networkCatalog');
+vi.mocked(getNetworkCatalog).mockImplementation(getNetworkCatalogMock);
+
+vi.mock('@/data/api/floatingIps');
+vi.mocked(getFloatingIps).mockImplementation(getFloatingIpsMock);
+
+vi.mock('@/data/hooks/catalog/useInstancesCatalogWithSelect');
+vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
+  useInstancesCatalogWithSelectMock,
+);
 
 const setupTest = ({
-  basicPublicIpDisabled = false,
+  networkId = null,
+  microRegion = 'fake-region',
+  deploymentMode = 'region',
 }: {
-  basicPublicIpDisabled?: boolean;
+  microRegion?: string | null;
+  networkId?: string | null;
+  deploymentMode?: TDeploymentModeID;
 } = {}) => {
-  vi.mocked(selectPublicNetworkConfig).mockReturnValue({
-    gateway: {
-      ...mockedGatewayConfiguration,
-      isDisabled: false,
-    },
-    basicPublicIp: {
-      ...mockedBasicPublicIpConfiguration,
-      isDisabled: basicPublicIpDisabled,
-    },
-    floatingIp: {
-      ...mockedFloatingIpConfiguration,
-      isDisabled: false,
-      existingFloatingIps: mockedExistingFloatingIps,
-    },
+  getNetworkCatalogMock.mockReturnValue(mockedNetworkCatalog);
+  getFloatingIpsMock.mockReturnValue(mockedFloatingIpEntity);
+  useInstancesCatalogWithSelectMock.mockReturnValue({
+    data: deploymentMode,
   });
 
   renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper
       defaultValues={{
-        microRegion: 'fake-region',
+        microRegion,
+        privateNetworkId: networkId,
       }}
     >
-      <AddPublicNetworkConfiguration />
+      <AddPublicNetworkConfiguration privateNetworks={mockedPrivateNetworks} />
     </TestCreateInstanceFormWrapper>,
   );
 };
@@ -51,7 +61,7 @@ describe('Considering AddPublicNetworkConfiguration component', () => {
     vi.clearAllMocks();
   });
 
-  it('should checked by default assign public IP toggle', async () => {
+  it('should have connectivity public checked by default', async () => {
     setupTest();
 
     await waitFor(() => {
@@ -60,18 +70,6 @@ describe('Considering AddPublicNetworkConfiguration component', () => {
           /creation:pci_instance_creation_network_add_public_connectivity.toggle_label/i,
         ),
       ).toBeChecked();
-
-      expect(
-        screen.queryByText(
-          /creation:pci_instance_creation_network_add_public_connectivity.basic_ip_label/i,
-        ),
-      ).toBeVisible();
-
-      expect(
-        screen.queryByText(
-          /creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label/i,
-        ),
-      ).toBeVisible();
     });
   });
 
@@ -105,7 +103,7 @@ describe('Considering AddPublicNetworkConfiguration component', () => {
 
   it('should checked floating ip when basic ip is disabled', async () => {
     setupTest({
-      basicPublicIpDisabled: true,
+      networkId: mockedPrivateNetworks[1]?.value,
     });
 
     await waitFor(() => {
@@ -114,6 +112,27 @@ describe('Considering AddPublicNetworkConfiguration component', () => {
           /creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label/i,
         ),
       ).toBeChecked();
+
+      expect(
+        screen.getByText(
+          /creation:pci_instance_creation_network_add_public_connectivity.basic_ip_warning/i,
+        ),
+      ).toBeVisible();
+    });
+  });
+
+  it('should disable floating IP when selected region is localZone', async () => {
+    setupTest({
+      microRegion: 'fake-LZ',
+      deploymentMode: 'localzone',
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          /creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label/i,
+        ),
+      ).toBeDisabled();
     });
   });
 });
