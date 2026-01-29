@@ -2,24 +2,24 @@
   "guides": {
     "learn-more": {
       "category": "Oferta",
-      "title": "Dowiedz się więcej",
+      "title": "Sprawdź",
       "description": "Strona Labs wyjaśniająca funkcjonalność i ceny przechowywania plików.",
-      "link-text": "Dowiedz się więcej"
+      "link-text": "Sprawdź"
     },
     "get-started": {
       "category": "Przewodnik",
       "title": "Pierwsze kroki",
-      "description": "Dokumentacja krok po kroku, aby pomóc Ci stworzyć swój pierwszy udostępniony zasób.",
-      "link-text": "Dowiedz się więcej"
+      "description": "Dokumentacja krok po kroku, aby pomóc Ci stworzyć swoje pierwsze udostępnienie.",
+      "link-text": "Sprawdź"
     },
     "discord": {
       "category": "Discord",
       "title": "Bądź na bieżąco z najnowszymi wiadomościami",
       "description": "Dołącz do nas bezpośrednio na #beta-file-storage: zadawaj pytania i dziel się swoimi uwagami.",
-      "link-text": "Dowiedz się więcej"
+      "link-text": "Sprawdź"
     }
   },
   "title": "Wypróbuj przechowywanie plików za darmo!",
   "description": "Potrzebujesz współdzielonego przechowywania dla swoich klastrów lub instancji? Nasze rozwiązanie przechowywania plików dla Public Cloud w pełni zarządzane oferuje wolumeny NFS od <strong>150 GiB do 10 TiB</strong>, do <strong>16 000 IOPS</strong> i <strong>128 MB/s</strong>. Kompatybilne z <strong>Managed Kubernetes</strong> (PVCs RWX) i <strong>instancjami Public Cloud</strong> (montaże NFS), udostępniaj pliki w sposób przejrzysty między węzłami, strefami i aplikacjami, z przejrzystą taryfikacją.",
-  "action-button": "Odkryj Betę"
+  "action-button": "Utwórz udostępnienie"
 }
