@@ -13,6 +13,8 @@ import {
   Divider,
   ICON_NAME,
   Icon,
+  MESSAGE_COLOR,
+  Message,
   Radio,
   RadioControl,
   RadioGroup,
@@ -30,25 +32,37 @@ export default function ActivatePage() {
   return (
     <BaseLayout>
       <div className="flex flex-row">
-        <div className="w-2/3 space-y-4">
-          <Text preset={TEXT_PRESET.heading2}>{t('video_manager_page_title')}</Text>
-          <RadioGroup>
+        <div className="w-2/3 space-y-8">
+          <Text preset={TEXT_PRESET.heading2}>{t('video_manager_service_activate')}</Text>
+          <RadioGroup value="plus">
             <div className="flex flex-row space-x-4">
-              <Card onClick={() => {}} className="w-full p-4">
-                <div className="flex items-center gap-4">
+              <Card onClick={() => {}} className="w-full">
+                <div className="flex items-center gap-4 p-4">
                   <Radio value="plus">
                     <RadioControl />
                     <RadioLabel>
-                      <Text preset={TEXT_PRESET.heading6}>Video Center Free</Text>
+                      <Text preset={TEXT_PRESET.heading6}>{t('video_manager_service_free')}</Text>
                     </RadioLabel>
                   </Radio>
                 </div>
-                <div className="ml-8 mt-4">
+                <div className="ml-8 mt-4 p-4">
                   <Divider />
-                  <Text preset={TEXT_PRESET.caption}>
-                    {t('multisite:multisite_add_website_existing_domain_card_text')}
-                  </Text>
+                  <div className="flex items-center">
+                    <Icon name={ICON_NAME.check} color="success"></Icon>
+                    <Text preset={TEXT_PRESET.caption}>
+                      {t('video_manager_service_video_free_count')}
+                    </Text>
+                  </div>
+                  <div className="flex items-center">
+                    <Icon name={ICON_NAME.check} color="success"></Icon>
+                    <Text preset={TEXT_PRESET.caption}>
+                      {t('video_manager_service_video_free_duration')}
+                    </Text>
+                  </div>
                 </div>
+                <Message color={MESSAGE_COLOR.information} dismissible={false} className="w-full">
+                  {t('video_manager_service_video_free_included')}
+                </Message>
               </Card>
             </div>
           </RadioGroup>

@@ -18,6 +18,7 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, BaseLayout, ChangelogMenu, useFormatDate } from '@ovh-ux/muk';
 
+import { VIDEO_MANAGER_URL } from '@/constants';
 import { useVideoCenter } from '@/data/hooks/videoCenter/useVideoCenter';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { computeThresholdsFromMax } from '@/utils/videoCenter';
@@ -43,7 +44,13 @@ export default function VideoCenterDashboardPage() {
       }}
     >
       <div className="mb-6 flex flex-wrap justify-end">
-        <Button color={BUTTON_COLOR.primary}>
+        <Button
+          color={BUTTON_COLOR.primary}
+          onClick={(event) => {
+            window.open(VIDEO_MANAGER_URL, '_blank');
+            event.preventDefault();
+          }}
+        >
           {t('video_manager_service_access_video_center')}
           <Icon name={ICON_NAME.externalLink}></Icon>
         </Button>
