@@ -17,5 +17,6 @@
   "agent_status_not_configured_legend": "Agent jest wykryty jako zainstalowany, ale nie ma jeszcze przypisanej polityki. Zajmiemy się tym jak najszybciej.",
   "agent_status_creating_legend": "Trwa tworzenie agenta.",
   "agent_status_updating_legend": "Trwa modyfikacja agenta.",
-  "agent_status_enabled_legend": "Agent jest aktywny. Będą tworzone kopie zapasowe Twojego serwera."
+  "agent_status_enabled_legend": "Agent jest aktywny. Będą tworzone kopie zapasowe Twojego serwera.",
+  "no_agent_enabled_banner": "Potrzebujesz pomocy przy instalacji swojego agenta? Możesz śledzić <Link>przewodnikiem</Link>"
 }
