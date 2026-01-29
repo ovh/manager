@@ -86,3 +86,8 @@ export const getRegionalizedImageId = (
 
 export const convertHourlyPriceToMonthly = (hourlyPrice: number): number =>
   hourlyPrice * HOUR_AVERAGE_IN_MONTH;
+export const getRegionalizedGatewayId = (size: string, regionName: string) =>
+  `gateway_${size}_${regionName}`;
+
+export const getRegionalizedPublicIpId = (type: string, regionName: string) =>
+  `${type}_${regionName}`;

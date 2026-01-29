@@ -1,87 +1,199 @@
-import {
-  mockedOvhPrivateNetwork,
-  mockedPrivateNetworks,
-  mockedGatewayConfiguration,
-  mockedBasicPublicIpConfiguration,
-  mockedFloatingIpConfiguration,
-  mockedExistingFloatingIps,
-} from '@/__mocks__/instance/constants';
-import { format } from 'date-fns';
-import { isLocalZone } from '@ovh-ux/muk';
+import { TPrivateNetwork } from '@/domain/entities/configuration';
+import { getOvhPrivateNetwork } from '@/domain/services/network.service';
+import { TNetworkCatalog } from '@/domain/entities/networkCatalog';
+import { getRegionalizedGatewayId, getRegionalizedPublicIpId } from '@/utils';
+import { TFloatingIp } from '@/domain/entities/configuration';
+import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
 
-// TODO: does not use isLocalzone muk
-// TODO: extract ovhPrivateNetwork
-export const selectPrivateNetworks = (region: string | null) => {
-  const name = ['pn', region, format(new Date(), 'ddMMyyyy')]
-    .filter(Boolean)
-    .join('-');
+type TCapability = 'PublicIP' | 'FloatingIP';
+
+export type TPrivateNetworkData = {
+  label: string;
+  value: string;
+  hasGatewayIp: boolean;
+  capabilities: TCapability[];
+};
+
+export const selectPrivateNetworks = (region: string | null) => (
+  privateNetworks?: TPrivateNetwork,
+): TPrivateNetworkData[] => {
+  if (!region || !privateNetworks) return [];
+
+  const { networks } = privateNetworks;
+
+  return networks.allIds.flatMap((networkId) => {
+    const network = networks.byId.get(networkId);
+
+    if (!network || network.region !== region) return [];
+
+    return network.subnets.map((privateNetworkId) => {
+      const subnet = privateNetworks.subnets.byId.get(privateNetworkId);
+
+      return {
+        label: network.name,
+        value: privateNetworkId,
+        hasGatewayIp: !!subnet?.gatewayIp,
+        capabilities: subnet?.capabilities ?? [],
+      };
+    });
+  });
+};
+
+type TOvhPrivateNetwork = {
+  ovhPrivateNetwork: ReturnType<typeof getOvhPrivateNetwork>;
+  allocatedVlanIds: number[];
+};
+
+export const selectOvhPrivateNetwork = (region: string | null) => (
+  privateNetworks?: TPrivateNetwork,
+): TOvhPrivateNetwork | null => {
+  if (!region || !privateNetworks) return null;
+
+  const { networks } = privateNetworks;
+
+  const allocatedVlanIds = networks.allIds
+    .map((networkId) => networks.byId.get(networkId)?.vlanId ?? null)
+    .filter((vlanId): vlanId is number => vlanId !== null);
+
+  const ovhPrivateNetwork = getOvhPrivateNetwork(region, privateNetworks);
 
   return {
-    networks: mockedPrivateNetworks,
-    ovhPrivateNetwork: {
-      ...mockedOvhPrivateNetwork,
-      name,
-    },
+    ovhPrivateNetwork,
+    allocatedVlanIds,
   };
 };
 
-const getGatewayWarningMessage = (
-  hasGateway: boolean,
-  isLocalZoneRegion: boolean,
+const hasPublicNetworkCapability = (
+  privateNetworkId: string,
+  privateNetworks: TPrivateNetworkData[],
+  capability: 'PublicIP' | 'FloatingIP',
+) =>
+  !!privateNetworks
+    .find((subnet) => subnet.value === privateNetworkId)
+    ?.capabilities.includes(capability);
+
+const getPublicIpPrice = (
+  networkCatalog: TNetworkCatalog,
+  type: 'PublicIP' | 'FloatingIP',
+  microRegion: string,
 ) => {
-  if (hasGateway)
-    return 'creation:pci_instance_creation_network_gateway_already_assigned_tooltip';
+  const id = getRegionalizedPublicIpId(type, microRegion);
+  const publicIp = networkCatalog.publicIp.byId.get(id);
 
-  if (isLocalZoneRegion)
-    return 'creation:pci_instance_creation_network_gateway_unavailable_LZ_tooltip';
+  return publicIp?.price.priceInUcents ?? 0;
 };
 
-type TNetworkProductConfigView = {
-  price: number;
-  size: string;
-  isDisabled: boolean;
-  warningMessage?: string;
-};
+export const selectSmallGatewayConfig = (microRegion: string | null) => (
+  networkCatalog?: TNetworkCatalog,
+) => {
+  if (!networkCatalog || !microRegion) return null;
 
-type TPublicNetworkConfig = {
-  gateway: TNetworkProductConfigView;
-  basicPublicIp: Omit<TNetworkProductConfigView, 'size'>;
-  floatingIp: TNetworkProductConfigView & {
-    existingFloatingIps: Array<{ value: string; label: string }>;
+  return {
+    size: 'S',
+    price:
+      networkCatalog.gateway.byId.get(
+        getRegionalizedGatewayId('s', microRegion),
+      )?.price.priceInUcents ?? 0,
   };
 };
 
-export const selectPublicNetworkConfig = (
-  networkId: string | null,
-  microRegion: string | null,
-): TPublicNetworkConfig | null => {
-  if (!microRegion) return null;
+type TNetworkAvailabilityArgs = {
+  privateNetworkId: string | null;
+  privateNetworks?: TPrivateNetworkData[];
+  deploymentMode?: TDeploymentModeID | null;
+};
 
-  const network = mockedPrivateNetworks.find(
-    (network) => network.value === networkId,
+const isLocalZone = (deploymentMode: TDeploymentModeID) =>
+  deploymentMode === 'localzone';
+
+export const getGatewayAvailability = ({
+  deploymentMode,
+  privateNetworks = [],
+  privateNetworkId,
+}: TNetworkAvailabilityArgs) => {
+  if (!deploymentMode) return null;
+
+  if (
+    privateNetworks.find(
+      (privateNetwork) => privateNetwork.value === privateNetworkId,
+    )?.hasGatewayIp
+  )
+    return {
+      isDisabled: true,
+      unavailableReason:
+        'creation:pci_instance_creation_network_gateway_already_assigned_tooltip',
+    };
+
+  if (isLocalZone(deploymentMode))
+    return {
+      isDisabled: true,
+      unavailableReason:
+        'creation:pci_instance_creation_network_gateway_unavailable_LZ_tooltip',
+    };
+
+  return {
+    isDisabled: false,
+    unavailableReason: null,
+  };
+};
+
+export const selectPublicIpPrices = (microRegion: string | null) => (
+  networkCatalog?: TNetworkCatalog,
+) => {
+  if (!networkCatalog || !microRegion) return null;
+
+  const basicPublicIpPrice = getPublicIpPrice(
+    networkCatalog,
+    'PublicIP',
+    microRegion,
   );
 
-  const hasGateway = !!network?.hasGateway;
-  const isLocalZoneRegion = isLocalZone(microRegion);
+  const floatingIpPrice = getPublicIpPrice(
+    networkCatalog,
+    'FloatingIP',
+    microRegion,
+  );
 
   return {
-    gateway: {
-      ...mockedGatewayConfiguration,
-      isDisabled: hasGateway || isLocalZoneRegion,
-      warningMessage: getGatewayWarningMessage(hasGateway, isLocalZoneRegion),
-    },
+    basicPublicIp: basicPublicIpPrice,
+    floatingIp: floatingIpPrice,
+  };
+};
+
+export const getPublicIpAvailability = ({
+  deploymentMode,
+  privateNetworks = [],
+  privateNetworkId,
+}: TNetworkAvailabilityArgs) => {
+  if (!deploymentMode) return null;
+
+  const basicPublicIpIsDisabled = privateNetworkId
+    ? !hasPublicNetworkCapability(privateNetworkId, privateNetworks, 'PublicIP')
+    : false;
+
+  const isLocalZoneRegion = isLocalZone(deploymentMode);
+
+  const floatingIpIsDisabled = privateNetworkId
+    ? !hasPublicNetworkCapability(
+        privateNetworkId,
+        privateNetworks,
+        'FloatingIP',
+      )
+    : isLocalZoneRegion;
+
+  return {
     basicPublicIp: {
-      ...mockedBasicPublicIpConfiguration,
-      isDisabled: hasGateway,
+      isDisabled: basicPublicIpIsDisabled,
+      unavailableReason: null,
     },
     floatingIp: {
-      ...mockedFloatingIpConfiguration,
-      isDisabled: isLocalZoneRegion,
-      existingFloatingIps: mockedExistingFloatingIps,
-      ...(isLocalZoneRegion && {
-        warningMessage:
-          'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_unavailable_LZ_tooltip',
-      }),
+      isDisabled: floatingIpIsDisabled,
+      unavailableReason: isLocalZoneRegion
+        ? 'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_unavailable_LZ_tooltip'
+        : null,
     },
   };
 };
+
+export const selectFloatingIps = (floatingIps?: TFloatingIp[]) =>
+  floatingIps?.map(({ ip, id }) => ({ label: ip, value: id })) ?? [];

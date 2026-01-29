@@ -14,11 +14,22 @@ import {
   FormField,
 } from '@ovhcloud/ods-react';
 import { useCatalogPrice } from '@ovh-ux/muk';
-import { selectPublicNetworkConfig } from '../../view-models/networksViewModel';
+import {
+  selectSmallGatewayConfig,
+  selectFloatingIps,
+  selectPublicIpPrices,
+  getPublicIpAvailability,
+  getGatewayAvailability,
+  TPrivateNetworkData,
+} from '../../view-models/networksViewModel';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import clsx from 'clsx';
 import { TooltipWrapper } from '@/components/form/TooltipWrapper.component';
+import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
+import { useFloatingIps } from '@/data/hooks/configuration/useFloatingIps';
+import { selectMicroRegionDeploymentMode } from '../../view-models/microRegionsViewModel';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 
 type TPublicIpTypeConfig = Record<
   'basicIp' | 'floatingIp',
@@ -36,11 +47,13 @@ const getDisabledTextClassName = (isDisabled: boolean): string =>
     [disabledTextClassName]: isDisabled,
   });
 
-const PublicIpConfiguration: FC = () => {
+const PublicIpConfiguration: FC<{
+  privateNetworks: TPrivateNetworkData[];
+}> = ({ privateNetworks }) => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const [
-    networkId,
+    privateNetworkId,
     microRegion,
     ipPublicType,
     floatingIpAssignment,
@@ -48,17 +61,51 @@ const PublicIpConfiguration: FC = () => {
   ] = useWatch({
     control,
     name: [
-      'networkId',
+      'privateNetworkId',
       'microRegion',
       'ipPublicType',
       'floatingIpAssignment',
       'existingFloatingIp',
     ],
   });
-  const configurations = useMemo(
-    () => selectPublicNetworkConfig(networkId, microRegion),
-    [networkId, microRegion],
+
+  const { data: prices } = useNetworkCatalog({
+    select: selectPublicIpPrices(microRegion),
+  });
+
+  const { data: gatewayConfigurations } = useNetworkCatalog({
+    select: selectSmallGatewayConfig(microRegion),
+  });
+
+  const { data: deploymentMode } = useInstancesCatalogWithSelect({
+    select: selectMicroRegionDeploymentMode(microRegion),
+  });
+
+  const publicIpAvailability = useMemo(
+    () =>
+      getPublicIpAvailability({
+        deploymentMode,
+        privateNetworks,
+        privateNetworkId,
+      }),
+    [deploymentMode, privateNetworkId, privateNetworks],
   );
+
+  const gatewayAvailability = useMemo(
+    () =>
+      getGatewayAvailability({
+        deploymentMode,
+        privateNetworks,
+        privateNetworkId,
+      }),
+    [deploymentMode, privateNetworkId, privateNetworks],
+  );
+
+  const { data: floatingIps = [] } = useFloatingIps({
+    regionName: microRegion,
+    select: selectFloatingIps,
+  });
+
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
 
   const handleSelectIpType = ({ value }: RadioValueChangeDetail) => {
@@ -77,7 +124,7 @@ const PublicIpConfiguration: FC = () => {
       floatingIp: {
         floatingIpAssignment: 'createNew',
         existingFloatingIp: null,
-        assignNewGateway: !configurations?.gateway.isDisabled,
+        assignNewGateway: !gatewayAvailability?.isDisabled,
       },
     };
 
@@ -95,10 +142,7 @@ const PublicIpConfiguration: FC = () => {
 
     if (newValue === 'createNew') setValue('existingFloatingIp', null);
     else if (newValue === 'reuseExisting')
-      setValue(
-        'existingFloatingIp',
-        configurations?.floatingIp.existingFloatingIps[0]?.value ?? null,
-      );
+      setValue('existingFloatingIp', floatingIps[0]?.value ?? null);
   };
 
   const handleSelectExistingFloatingIp = ({
@@ -107,7 +151,7 @@ const PublicIpConfiguration: FC = () => {
     setValue('existingFloatingIp', value[0] ?? null);
   };
 
-  if (!configurations) return null;
+  if (!publicIpAvailability || !prices) return null;
 
   return (
     <>
@@ -119,37 +163,35 @@ const PublicIpConfiguration: FC = () => {
         <Radio
           className="w-auto items-baseline"
           value="basicIp"
-          disabled={configurations.basicPublicIp.isDisabled}
+          disabled={publicIpAvailability.basicPublicIp.isDisabled}
         >
           <RadioControl />
           <RadioLabel className="flex flex-col">
             <Text
               className={getDisabledTextClassName(
-                configurations.basicPublicIp.isDisabled,
+                publicIpAvailability.basicPublicIp.isDisabled,
               )}
             >
               {t(
                 'creation:pci_instance_creation_network_add_public_connectivity.basic_ip_label',
                 {
-                  price: getFormattedHourlyCatalogPrice(
-                    configurations.basicPublicIp.price,
-                  ),
+                  price: getFormattedHourlyCatalogPrice(prices.basicPublicIp),
                 },
               )}
             </Text>
             <Text
               className={getDisabledTextClassName(
-                configurations.basicPublicIp.isDisabled,
+                publicIpAvailability.basicPublicIp.isDisabled,
               )}
             >
               {t(
                 'creation:pci_instance_creation_network_add_public_connectivity.basic_ip_description',
               )}
             </Text>
-            {configurations.gateway.isDisabled && (
+            {gatewayAvailability?.isDisabled && (
               <Text
                 className={`font-semibold ${getDisabledTextClassName(
-                  configurations.basicPublicIp.isDisabled,
+                  publicIpAvailability.basicPublicIp.isDisabled,
                 )}`}
               >
                 {t(
@@ -160,46 +202,44 @@ const PublicIpConfiguration: FC = () => {
           </RadioLabel>
         </Radio>
         <TooltipWrapper
-          {...(configurations.floatingIp.warningMessage && {
-            content: t(configurations.floatingIp.warningMessage),
+          {...(publicIpAvailability.floatingIp.unavailableReason && {
+            content: t(publicIpAvailability.floatingIp.unavailableReason),
           })}
         >
           <Radio
             className="mt-4 w-auto items-baseline"
             value="floatingIp"
-            disabled={configurations.floatingIp.isDisabled}
+            disabled={publicIpAvailability.floatingIp.isDisabled}
           >
             <RadioControl />
             <RadioLabel className="flex flex-col">
               <Text
                 className={getDisabledTextClassName(
-                  configurations.floatingIp.isDisabled,
+                  publicIpAvailability.floatingIp.isDisabled,
                 )}
               >
                 {t(
                   'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label',
                   {
-                    price: getFormattedHourlyCatalogPrice(
-                      configurations.floatingIp.price,
-                    ),
+                    price: getFormattedHourlyCatalogPrice(prices.floatingIp),
                   },
                 )}
               </Text>
               <Text
                 className={getDisabledTextClassName(
-                  configurations.floatingIp.isDisabled,
+                  publicIpAvailability.floatingIp.isDisabled,
                 )}
               >
                 {t(
                   'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_description',
                 )}
               </Text>
-              {!configurations.gateway.isDisabled && (
+              {gatewayAvailability && !gatewayAvailability.isDisabled && (
                 <Text className="font-semibold">
                   {t(
                     'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_warning',
                     {
-                      size: configurations.gateway.size,
+                      size: gatewayConfigurations?.size,
                     },
                   )}
                 </Text>
@@ -222,15 +262,13 @@ const PublicIpConfiguration: FC = () => {
                   {t(
                     'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_create_new_label',
                     {
-                      price: getFormattedHourlyCatalogPrice(
-                        configurations.floatingIp.price,
-                      ),
+                      price: getFormattedHourlyCatalogPrice(prices.floatingIp),
                     },
                   )}
                 </Text>
               </RadioLabel>
             </Radio>
-            {configurations.floatingIp.existingFloatingIps.length > 0 && (
+            {floatingIps.length > 0 && (
               <Radio className="mt-4" value="reuseExisting">
                 <RadioControl />
                 <RadioLabel>
@@ -249,7 +287,7 @@ const PublicIpConfiguration: FC = () => {
         <div className="ml-12 mt-4">
           <FormField className="ml-12 max-w-[32%]">
             <Select
-              items={configurations.floatingIp.existingFloatingIps}
+              items={floatingIps}
               value={!!existingFloatingIp ? [existingFloatingIp] : []}
               onValueChange={handleSelectExistingFloatingIp}
             >
