@@ -159,7 +159,7 @@
     "floating_ip_label": "Create a Floating IP (Reusable) - {{ price }}",
     "floating_ip_description": "Reserving a floating IP address assigns the address to your project until you explicitly release it. ",
     "floating_ip_warning": "By selecting this option, we will assign you a gateway size {{ size }}.",
-    "floating_ip_create_new_label": "Create a new - {{ price }}",
+    "floating_ip_create_new_label": "Create a new one - {{ price }}",
     "floating_ip_reuse_existing_label": "Reuse an existing floating IP",
     "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in local zones."
   },
@@ -171,5 +171,9 @@
   "pci_instance_creation_select_localization_apac_warning": "Public outgoing network traffic for instances is included for all regions, except for the Asia-Pacific region. In these two regions, 1 TB/month of public outgoing traffic is included in each Public Cloud project. <strong>Beyond this quota, each additional GB of traffic is charged at €0.01. Public incoming network traffic is included in all cases, for all regions.</strong>",
   "pci_instance_creation_post_install_script_title": "Post-installation script",
   "pci_instance_creation_post_install_script_description": "Enter your post-installation script.",
-  "pci_instance_creation_post_install_script_toggle_label": "Add a post-installation script"
+  "pci_instance_creation_post_install_script_toggle_label": "Add a post-installation script",
+  "pci_instance_creation_cart_public_network_title": "Public network",
+  "pci_instance_creation_cart_public_ip_floating": "Floating IP",
+  "pci_instance_creation_cart_public_ip_basic": "Public IP",
+  "pci_instance_creation_network_full_private_warning": "<p>This instance will not have public access to the Internet. You will not be able to connect to it or reach external services unless you use a bastion or add a gateway.</p><p>This improves security but limits connectivity. On your Windows instances, <semibold>you need to manually activate the license to access all services</semibold>.</p><Link>View the guide</Link>"
 }

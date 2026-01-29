@@ -29,6 +29,7 @@ describe('selectPrivateNetworks ViewModel', () => {
       {
         label: 'test-network-1',
         value: '22defd89-ab74-4353-8676-6a0ad7a239d3',
+        networkId: '46d3947f-1098-40a2-be0c-36603b2ab4c3',
         hasGatewayIp: true,
         capabilities: ['FloatingIP'],
       },

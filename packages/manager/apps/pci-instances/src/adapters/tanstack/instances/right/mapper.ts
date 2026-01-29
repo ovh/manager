@@ -2,6 +2,22 @@ import { TInstanceCreationData } from '@/domain/entities/instance';
 import { TCreateInstanceDTO, TCreateInstanceResponseDTO } from './dto.type';
 import { mapDtoStatusToStatus } from '../../operations/right/mapper';
 
+type TNewPrivateNetwork = {
+  name: string;
+  vlanId: number;
+  cidr: string;
+  enableDhcp: boolean;
+};
+
+type TInstancePrivateNetworkData = {
+  existingFloatingIpId: string | null;
+  floatingIpAssignment: 'createNew' | 'reuseExisting' | null;
+  assignNewGateway: boolean;
+  networkId: string | null;
+  subnetId: string | null;
+  newPrivateNetwork: TNewPrivateNetwork | null;
+};
+
 type TCreateInstanceEntity = {
   id: string;
   name: string;
@@ -12,6 +28,49 @@ type TCreateInstanceEntity = {
   existingSshKeyId: string | null;
   newSshPublicKey: string | null;
   localBackupRotation: string | null;
+} & TInstancePrivateNetworkData;
+
+export const mapPrivateNetworkToDTO = ({
+  existingFloatingIpId,
+  floatingIpAssignment,
+  assignNewGateway,
+  networkId,
+  subnetId,
+  newPrivateNetwork,
+}: TInstancePrivateNetworkData) => {
+  const floatingIp =
+    floatingIpAssignment === 'reuseExisting' && existingFloatingIpId
+      ? { id: existingFloatingIpId }
+      : null;
+
+  const floatingIpCreate =
+    floatingIpAssignment === 'createNew' ? { description: '' } : null;
+
+  const gatewayCreate = assignNewGateway ? { model: 's', name: '' } : null;
+
+  const network =
+    !!networkId && !!subnetId ? { id: networkId, subnetId } : null;
+
+  const networkCreate =
+    !network && !!newPrivateNetwork
+      ? {
+          name: newPrivateNetwork.name,
+          vlanId: newPrivateNetwork.vlanId,
+          subnet: {
+            cidr: newPrivateNetwork.cidr,
+            enableDhcp: newPrivateNetwork.enableDhcp,
+            ipVersion: 4,
+          },
+        }
+      : null;
+
+  return {
+    floatingIp,
+    floatingIpCreate,
+    gatewayCreate,
+    network,
+    networkCreate,
+  };
 };
 
 export const mapFlavorToDTO = (
@@ -27,7 +86,14 @@ export const mapFlavorToDTO = (
   flavor: { id: entity.id },
   name: entity.name,
   network: {
-    public: true,
+    private: mapPrivateNetworkToDTO({
+      existingFloatingIpId: entity.existingFloatingIpId,
+      floatingIpAssignment: entity.floatingIpAssignment,
+      assignNewGateway: entity.assignNewGateway,
+      networkId: entity.networkId,
+      subnetId: entity.subnetId,
+      newPrivateNetwork: entity.newPrivateNetwork,
+    }),
   },
   sshKey:
     entity.existingSshKeyId && !entity.newSshPublicKey

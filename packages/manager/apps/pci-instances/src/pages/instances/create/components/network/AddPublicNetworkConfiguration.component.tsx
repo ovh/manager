@@ -22,9 +22,9 @@ const AddPublicNetworkConfiguration: FC<{
 }> = ({ privateNetworks }) => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [privateNetworkId, microRegion, ipPublicType] = useWatch({
+  const [subnetId, microRegion, ipPublicType] = useWatch({
     control,
-    name: ['privateNetworkId', 'microRegion', 'ipPublicType'],
+    name: ['subnetId', 'microRegion', 'ipPublicType'],
   });
 
   const { data: deploymentMode } = useInstancesCatalogWithSelect({
@@ -36,15 +36,15 @@ const AddPublicNetworkConfiguration: FC<{
       getPublicIpAvailability({
         deploymentMode,
         privateNetworks,
-        privateNetworkId,
+        subnetId,
       }),
-    [deploymentMode, privateNetworkId, privateNetworks],
+    [deploymentMode, subnetId, privateNetworks],
   );
 
   const resetPublicIpFields = useCallback(() => {
     setValue('ipPublicType', null);
     setValue('floatingIpAssignment', null);
-    setValue('existingFloatingIp', null);
+    setValue('existingFloatingIpId', null);
   }, [setValue]);
 
   const initializePublicIpFields = useCallback(() => {
@@ -55,7 +55,7 @@ const AddPublicNetworkConfiguration: FC<{
     } else if (!publicIpAvailability.floatingIp.isDisabled) {
       setValue('ipPublicType', 'floatingIp');
       setValue('floatingIpAssignment', 'createNew');
-      setValue('existingFloatingIp', null);
+      setValue('existingFloatingIpId', null);
     }
   }, [publicIpAvailability, setValue]);
 

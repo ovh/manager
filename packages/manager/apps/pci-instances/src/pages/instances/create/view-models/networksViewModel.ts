@@ -10,6 +10,7 @@ type TCapability = 'PublicIP' | 'FloatingIP';
 export type TPrivateNetworkData = {
   label: string;
   value: string;
+  networkId: string;
   hasGatewayIp: boolean;
   capabilities: TCapability[];
 };
@@ -26,12 +27,13 @@ export const selectPrivateNetworks = (region: string | null) => (
 
     if (!network || network.region !== region) return [];
 
-    return network.subnets.map((privateNetworkId) => {
-      const subnet = privateNetworks.subnets.byId.get(privateNetworkId);
+    return network.subnets.map((subnetId) => {
+      const subnet = privateNetworks.subnets.byId.get(subnetId);
 
       return {
         label: network.name,
-        value: privateNetworkId,
+        value: subnetId,
+        networkId,
         hasGatewayIp: !!subnet?.gatewayIp,
         capabilities: subnet?.capabilities ?? [],
       };
@@ -64,12 +66,12 @@ export const selectOvhPrivateNetwork = (region: string | null) => (
 };
 
 const hasPublicNetworkCapability = (
-  privateNetworkId: string,
+  subnetId: string,
   privateNetworks: TPrivateNetworkData[],
   capability: 'PublicIP' | 'FloatingIP',
 ) =>
   !!privateNetworks
-    .find((subnet) => subnet.value === privateNetworkId)
+    .find((subnet) => subnet.value === subnetId)
     ?.capabilities.includes(capability);
 
 const getPublicIpPrice = (
@@ -98,7 +100,7 @@ export const selectSmallGatewayConfig = (microRegion: string | null) => (
 };
 
 type TNetworkAvailabilityArgs = {
-  privateNetworkId: string | null;
+  subnetId: string | null;
   privateNetworks?: TPrivateNetworkData[];
   deploymentMode?: TDeploymentModeID | null;
 };
@@ -109,14 +111,13 @@ const isLocalZone = (deploymentMode: TDeploymentModeID) =>
 export const getGatewayAvailability = ({
   deploymentMode,
   privateNetworks = [],
-  privateNetworkId,
+  subnetId,
 }: TNetworkAvailabilityArgs) => {
   if (!deploymentMode) return null;
 
   if (
-    privateNetworks.find(
-      (privateNetwork) => privateNetwork.value === privateNetworkId,
-    )?.hasGatewayIp
+    privateNetworks.find((privateNetwork) => privateNetwork.value === subnetId)
+      ?.hasGatewayIp
   )
     return {
       isDisabled: true,
@@ -163,22 +164,18 @@ export const selectPublicIpPrices = (microRegion: string | null) => (
 export const getPublicIpAvailability = ({
   deploymentMode,
   privateNetworks = [],
-  privateNetworkId,
+  subnetId,
 }: TNetworkAvailabilityArgs) => {
   if (!deploymentMode) return null;
 
-  const basicPublicIpIsDisabled = privateNetworkId
-    ? !hasPublicNetworkCapability(privateNetworkId, privateNetworks, 'PublicIP')
+  const basicPublicIpIsDisabled = subnetId
+    ? !hasPublicNetworkCapability(subnetId, privateNetworks, 'PublicIP')
     : false;
 
   const isLocalZoneRegion = isLocalZone(deploymentMode);
 
-  const floatingIpIsDisabled = privateNetworkId
-    ? !hasPublicNetworkCapability(
-        privateNetworkId,
-        privateNetworks,
-        'FloatingIP',
-      )
+  const floatingIpIsDisabled = subnetId
+    ? !hasPublicNetworkCapability(subnetId, privateNetworks, 'FloatingIP')
     : isLocalZoneRegion;
 
   return {
