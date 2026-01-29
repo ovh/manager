@@ -3,7 +3,7 @@
   "intro": "The vRack Services product allows you to benefit from network services on the vRack. By creating a Service Endpoint, you can expose a service managed by OVHcloud on your vRack using a private IP address.",
   "title": "You have not yet activated vRack Services",
   "description": "To benefit from the services, you must activate and configure vRack Services.",
-  "orderButtonLabel": "Activate vRack Services",
+  "orderButtonLabel": "Create a vRack Service",
   "moreInfoButtonLabel": "Discover vRack services",
   "moreInfoButtonLink": "/#/dedicated/vrack-services/info",
   "guideCategory": "Tutorial",
@@ -14,6 +14,6 @@
   "guide2Description": "Discover the vRack Services product and associated services",
   "guide2Link": "https://help.ovhcloud.com/csm/en-gb-public-cloud-storage-nas-nfs?id=kb_article_view&amp;sysparm_article=KB0046735",
   "newBadgeText": "New features",
-  "onboardingPageTitle": "You have not yet activated vRack Services",
-  "onboardingPageDescription": "To benefit from the services, you must activate and configure vRack Services."
+  "onboardingPageTitle": "You have not yet created vRack Services",
+  "onboardingPageDescription": "To benefit from the services, you need to first create and configure vRack Services."
 }
