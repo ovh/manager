@@ -120,7 +120,7 @@ export const OptionSecurity: React.FC<OptionSecurityProps> = ({
                 },
               ]}
             >
-              <SelectControl />
+              <SelectControl aria-label={t('cdn_shared_option_https_redirect_301')} />
               <SelectContent />
             </Select>
           )}
@@ -186,7 +186,7 @@ export const OptionSecurity: React.FC<OptionSecurityProps> = ({
                     },
                   ]}
                 >
-                  <SelectControl />
+                  <SelectControl aria-label={t('cdn_shared_option_hsts_max_age_seconds')} />
                   <SelectContent />
                 </Select>
               )}

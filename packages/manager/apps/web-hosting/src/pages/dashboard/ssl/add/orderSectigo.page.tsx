@@ -71,7 +71,7 @@ export default function SectigoModal() {
           items={selectItems}
           onChange={(e) => setSelectedDomain((e.target as HTMLSelectElement).value)}
         >
-          <SelectControl placeholder={t('select_domain')} />
+          <SelectControl aria-label={t('select_domain')} placeholder={t('select_domain')} />
           <SelectContent />
         </Select>
         <Message color={MESSAGE_COLOR.warning} dismissible={false}>

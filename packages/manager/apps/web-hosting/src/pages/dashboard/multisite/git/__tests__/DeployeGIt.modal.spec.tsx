@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import DeployeGitModal from '../DeployeGIt.modal';
 
@@ -20,6 +20,7 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
 
 describe('DeployeGitModal', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
     hoistedMocks.mockUseGetHostingWebsiteIds.mockReturnValue({
       data: [1],
@@ -33,11 +34,15 @@ describe('DeployeGitModal', () => {
       error: null,
     });
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render the modal with the correct title', () => {
-    const { getByTestId, getByText } = render(<DeployeGitModal />, { wrapper });
-    expect(getByTestId('modal')).toBeInTheDocument();
-    expect(getByText(/Vous êtes sur le point de déployer/i)).toBeInTheDocument();
+    render(<DeployeGitModal />, { wrapper });
+    const modal = screen.getByRole('dialog');
+    expect(modal).toBeInTheDocument();
+    expect(within(modal).getByRole('heading', { name: /Déployer GIT/i })).toBeInTheDocument();
+    expect(within(modal).getByText(/Vous êtes sur le point de déployer/i)).toBeInTheDocument();
   });
 
   it('should display a spinner while fetching website IDs', () => {

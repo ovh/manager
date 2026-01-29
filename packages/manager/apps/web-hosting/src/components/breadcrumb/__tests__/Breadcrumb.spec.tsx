@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import * as reactRouterDom from 'react-router-dom';
 
 import { render, screen, waitFor } from '@testing-library/react';
@@ -7,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ICON_NAME } from '@ovhcloud/ods-react';
 
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
 
 import Breadcrumb from '../Breadcrumb.component';
 
@@ -177,5 +175,15 @@ describe('Breadcrumb component', () => {
     await waitFor(() => {
       expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
     });
+  });
+  it.skip('should have a valid html with a11y and w3c', async () => {
+    /*
+    issue with ods breadcrumb
+    error: The “href” attribute must point to an element on same page in the same document.
+   */
+    const { container } = renderWithRouter(<Breadcrumb namespace={['common', 'dashboard']} />);
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

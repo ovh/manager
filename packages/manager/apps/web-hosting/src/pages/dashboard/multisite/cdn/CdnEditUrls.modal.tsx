@@ -87,7 +87,7 @@ export default function CdnEditUrlsModal() {
               },
             ]}
           >
-            <SelectControl />
+            <SelectControl aria-label={t('cdn_shared_change_edit_urls_modal_protocol_label')} />
             <SelectContent />
           </Select>
           <Input name="ruleName" type="text" className="w-4/12" disabled={true} value={domain} />
@@ -133,7 +133,7 @@ export default function CdnEditUrlsModal() {
             setSelectedUrl(Array.isArray(detail.value) ? (detail.value[0] ?? '') : '')
           }
         >
-          <SelectControl />
+          <SelectControl aria-label={t('cdn_shared_change_edit_urls_modal_url_to_preload_label')} />
           <SelectContent />
         </Select>
         <Button
