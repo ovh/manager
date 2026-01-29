@@ -61,5 +61,6 @@
   "reset": "Wyczyść wszystko",
   "filters_apply": "Zastosuj filtry",
   "show_hide_filters": "Pokaż / Ukryj filtry",
-  "discover": "Sprawdź"
+  "discover": "Sprawdź",
+  "migrate": "Migracja"
 }
