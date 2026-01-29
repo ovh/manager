@@ -1,3 +1,5 @@
+import { Query } from '@tanstack/react-query';
+
 import {
   ApiResponse,
   IcebergFetchResultV6,
@@ -5,7 +7,7 @@ import {
   fetchIcebergV6,
 } from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
-import { Query } from '@tanstack/react-query';
+
 import { ServiceStatus } from '@/types';
 
 export type DedicatedServer = {
@@ -72,7 +74,7 @@ export type DedicatedServerServiceInfos = {
 };
 
 export const getDedicatedServerServiceInfos = (
-  serviceName: string,
+  serviceName?: string | null,
 ): Promise<ApiResponse<DedicatedServerServiceInfos>> =>
   apiClient.v6.get(`/dedicated/server/${serviceName}/serviceInfos`);
 
@@ -91,12 +93,12 @@ export type OrderableIpResponse = {
 };
 
 export const getDedicatedServerOrderableIp = (
-  serverName: string,
+  serverName?: string | null,
 ): Promise<ApiResponse<OrderableIpResponse>> =>
   apiClient.v6.get(`/dedicated/server/${serverName}/orderable/ip`);
 
 export const getDedicatedServerAvailableCountries = (
-  serviceName: string,
+  serviceName?: string | null,
 ): Promise<ApiResponse<string[]>> =>
   apiClient.v6.get(`/dedicated/server/${serviceName}/ipCountryAvailable`);
 
@@ -128,8 +130,12 @@ export type DedicatedServerTaskResponse = {
   ticketReference: string | null;
 };
 
-const getDedicatedServerTasksBaseQueryKey = (serviceName: string): string =>
-  `get/dedicated/server/${encodeURIComponent(serviceName)}/task`;
+const getDedicatedServerTasksBaseQueryKey = (
+  serviceName?: string | null,
+): string =>
+  `get/dedicated/server/${
+    serviceName ? encodeURIComponent(serviceName) : ''
+  }/task`;
 
 export const getDedicatedServerTasksQueryKey = ({
   serviceName,
@@ -141,18 +147,22 @@ export const getDedicatedServerTasksQueryKey = ({
 ];
 
 export const getDedicatedServerTaskQueryKey = (
-  serviceName: string,
-  taskId: number,
-) => [`get/dedicated/server/${encodeURIComponent(serviceName)}/task/${taskId}`];
+  serviceName?: string | null,
+  taskId?: number,
+) => [
+  `get/dedicated/server/${encodeURIComponent(
+    serviceName || '',
+  )}/task/${taskId}`,
+];
 
-export const createDedicatedServerTasksQueryKeyPredicate = (
-  serviceName: string,
-  functionList: string[],
-) => ({ queryKey }: Query) =>
-  queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
-  functionList.includes(
-    (queryKey[1] as { taskFunction: string })?.taskFunction,
-  );
+export const createDedicatedServerTasksQueryKeyPredicate =
+  (serviceName?: string | null, functionList?: string[]) =>
+  ({ queryKey }: Query) =>
+    queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
+    !!functionList &&
+    functionList?.includes(
+      (queryKey[1] as { taskFunction: string })?.taskFunction,
+    );
 
 export const getDedicatedServerTasks = async ({
   serviceName,
@@ -166,23 +176,22 @@ export const getDedicatedServerTasks = async ({
   );
 
 export const getDedicatedServerTask = async (
-  serviceName: string,
-  taskId: number,
+  serviceName?: string | null,
+  taskId?: number,
 ): Promise<ApiResponse<DedicatedServerTaskResponse>> =>
   apiClient.v6.get<DedicatedServerTaskResponse>(
-    `/dedicated/server/${encodeURIComponent(serviceName)}/task/${taskId}`,
+    `/dedicated/server/${encodeURIComponent(serviceName || '')}/task/${taskId}`,
   );
 
-export const getIcebergDedicatedServerTasksQueryKey = (serviceName: string) => [
-  getDedicatedServerTasksBaseQueryKey(serviceName),
-  'iceberg',
-];
+export const getIcebergDedicatedServerTasksQueryKey = (
+  serviceName?: string | null,
+) => [getDedicatedServerTasksBaseQueryKey(serviceName), 'iceberg'];
 
 export const getIcebergDedicatedServerTask = async (
-  serviceName: string,
+  serviceName?: string | null,
 ): Promise<IcebergFetchResultV6<DedicatedServerTaskResponse>> =>
   fetchIcebergV6({
-    route: `/dedicated/server/${encodeURIComponent(serviceName)}/task`,
+    route: `/dedicated/server/${encodeURIComponent(serviceName || '')}/task`,
     pageSize: 10000,
     page: 1,
     disableCache: true,

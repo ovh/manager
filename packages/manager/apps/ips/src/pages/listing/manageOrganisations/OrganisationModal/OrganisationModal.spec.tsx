@@ -1,13 +1,17 @@
 import React from 'react';
-import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/react';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import {
-  initShellContext,
   ShellContext,
   ShellContextType,
+  initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+
 import OpenOrganisationsModal from './OrganisationModal.page';
 
 const queryClient = new QueryClient();

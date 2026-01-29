@@ -1,15 +1,18 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { IpMigrationOrder } from '@/types/ipMigrationOrder';
+
 import {
+  OrderDedicatedServerIpMigrationParams,
   getOrderDedicatedServerInfo,
   getOrderDedicatedServerIpMigrationAvailableDurations,
   getOrderDedicatedServerIpMigrationDetails,
-  OrderDedicatedServerIpMigrationParams,
   postOrderDedicatedServerIpMigration,
 } from '../api/orderIpMigration';
-import { IpMigrationOrder } from '@/types/ipMigrationOrder';
 
-const getOrderDedicatedServerInfoQueryKey = (serviceName: string) => [
+const getOrderDedicatedServerInfoQueryKey = (serviceName?: string | null) => [
   `/order/dedicated/server/${serviceName}`,
 ];
 
@@ -17,7 +20,7 @@ export const getOrderDedicatedServerIpMigrationQueryKey = (
   params: Omit<OrderDedicatedServerIpMigrationParams, 'duration'>,
 ) => [
   `/order/dedicated/server/${params.serviceName}`,
-  encodeURIComponent(params.ip),
+  encodeURIComponent(params.ip || ''),
   params.token,
 ];
 
@@ -25,7 +28,7 @@ export const getOrderDedicatedServerIpMigrationDetailsQueryKey = (
   params: OrderDedicatedServerIpMigrationParams,
 ) => [
   `/order/dedicated/server/${params.serviceName}`,
-  encodeURIComponent(params.ip),
+  encodeURIComponent(params.ip || ''),
   params.token,
   params.duration,
 ];

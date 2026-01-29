@@ -1,36 +1,42 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+
 import { getIcebergIpList } from '@/data/api';
-import { useAdditionalIpsRegions } from './catalog/useAdditionalIpsRegions';
-import { ServiceType, IpVersion } from '@/types';
+import { IpVersion, ServiceType } from '@/types';
 import { IpObject } from '@/types/ipObject';
+
+import { useAdditionalIpsRegions } from './catalog/useAdditionalIpsRegions';
 
 /**
  * Return the list of unavailable region to order an additional IPs for a given service
  */
 export const getUnavailableRegionList = (
   additionalIps: IpObject[] = [],
-  serviceName: string,
+  serviceName?: string | null,
 ) => {
   const serviceListByRegion =
     additionalIps
       ?.filter((ip) => ip.isAdditionalIp && ip.version === 6)
       .flatMap((ip) =>
-        ip.regions.map((region) => [region, ip.routedTo.serviceName]),
+        ip.regions.map((region) => ({
+          region,
+          service: ip.routedTo.serviceName,
+        })),
       )
       .reduce(
-        (result, [region, service]) => ({
+        (result, { region, service }) => ({
           ...result,
           [region]: result[region] ? result[region].concat(service) : [service],
         }),
-        {} as { [region: string]: string[] },
+        {} as { [region: string]: (string | null)[] },
       ) || {};
 
   return Object.entries(serviceListByRegion)
     .map(([region, serviceList]) => ({
       region,
       has3blocks: serviceList.length >= 3,
-      alreadyInCurrentVrack: serviceList.includes(serviceName),
+      alreadyInCurrentVrack: !serviceName || serviceList.includes(serviceName),
     }))
     .filter(
       ({ has3blocks, alreadyInCurrentVrack }) =>
@@ -43,9 +49,9 @@ export const useIpv6Availability = ({
   serviceName,
   serviceType,
 }: {
-  serviceName: string;
-  serviceType: ServiceType;
-  ipVersion: IpVersion;
+  serviceName?: string | null;
+  serviceType?: ServiceType;
+  ipVersion?: IpVersion;
 }) => {
   const {
     regionList,
@@ -67,7 +73,8 @@ export const useIpv6Availability = ({
   });
 
   return {
-    hasReachedIpv6Limit: data?.data?.length >= regionList?.length * 3,
+    hasReachedIpv6Limit:
+      data?.data && data?.data?.length >= regionList?.length * 3,
     disabledRegionList: getUnavailableRegionList(data?.data, serviceName),
     isLoading: isLoading || isRegionListLoading,
     isError: isError || isRegionListError,

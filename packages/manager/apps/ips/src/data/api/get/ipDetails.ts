@@ -1,5 +1,6 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
+
 import { IpTypeEnum } from '@/data/constants';
 
 export type GetIpDetailsParams = {
@@ -10,14 +11,14 @@ export type IpDetails = {
   type: IpTypeEnum;
   regions: string[];
   campus: string;
-  routedTo?: { serviceName: string };
+  routedTo?: { serviceName: string | null };
   version: number;
   description: string | null;
-  country: string;
+  country: string | null;
   canBeTerminated: boolean;
   bringYourOwnIp?: boolean;
   iam: IamObject;
-  organisationId?: string;
+  organisationId?: string | null;
   rir?: string;
   isAdditionalIp?: boolean;
 };

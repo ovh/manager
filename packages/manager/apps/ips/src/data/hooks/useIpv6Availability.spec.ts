@@ -1,5 +1,6 @@
-import { IpObject } from '@/types/ipObject';
 import { IpTypeEnum } from '@/data/constants';
+import { IpObject } from '@/types/ipObject';
+
 import { getUnavailableRegionList } from './useIpv6Availability';
 
 const failoverIp: IpObject = {

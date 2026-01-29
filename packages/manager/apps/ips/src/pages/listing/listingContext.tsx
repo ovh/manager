@@ -1,17 +1,24 @@
-import React, {
-  useMemo,
-  useState,
+import {
   PropsWithChildren,
   createContext,
+  useMemo,
+  useState,
+  useCallback,
+  SetStateAction,
+  useEffect,
 } from 'react';
+
 import { useSearchParams } from 'react-router-dom';
+
 import { useQueries, useQueryClient } from '@tanstack/react-query';
+
 import {
+  GetIpListParams,
   getIpDetails,
   getIpDetailsQueryKey,
-  GetIpListParams,
   getIpListQueryKey,
 } from '@/data/api';
+
 import { cleanApiFilter, searchToApiFilter } from './listing.utils';
 
 export type ListingContextType = {
@@ -24,8 +31,8 @@ export type ListingContextType = {
   setOnGoingSlicedIps: React.Dispatch<React.SetStateAction<string[]>>;
   onGoingAggregatedIps: string[];
   setOnGoingAggregatedIps: React.Dispatch<React.SetStateAction<string[]>>;
-  onGoingCreatedIps?: string[];
-  setOnGoingCreatedIps?: React.Dispatch<React.SetStateAction<string[]>>;
+  onGoingCreatedIps: string[];
+  setOnGoingCreatedIps: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const ListingContext = createContext<ListingContextType>({
@@ -79,12 +86,12 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
     })),
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setApiFilter((prev) => ({ ...prev, ...searchToApiFilter(search) }));
   }, [search]);
 
-  const setApiFilterWithUrlUpdate = React.useCallback(
-    (updater: React.SetStateAction<GetIpListParams>) => {
+  const setApiFilterWithUrlUpdate = useCallback(
+    (updater: SetStateAction<GetIpListParams>) => {
       setApiFilter((prev) => {
         const newFilter =
           typeof updater === 'function' ? updater(prev) : updater;
@@ -95,10 +102,10 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
         return newFilter;
       });
     },
-    [],
+    [setSearch],
   );
 
-  const addExpiredIp = React.useCallback((expiredIp: string) => {
+  const addExpiredIp = useCallback((expiredIp: string) => {
     setExpiredIps((ips) =>
       ips.indexOf(expiredIp) === -1 ? ips.concat(expiredIp) : ips,
     );
@@ -120,7 +127,10 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
     }),
     [
       apiFilter,
+      setApiFilterWithUrlUpdate,
+      search,
       expiredIps,
+      addExpiredIp,
       onGoingAggregatedIps,
       onGoingSlicedIps,
       onGoingCreatedIps,

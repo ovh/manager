@@ -1,10 +1,12 @@
 import React from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useCatalogIps } from '@/data/hooks/catalog/useCatalogIps';
+
 import {
   isRegionInEu,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
+import { useCatalogIps } from '@/data/hooks/catalog/useCatalogIps';
 import { IpVersion } from '@/types';
 
 export const useIpv6PlanCode = ({

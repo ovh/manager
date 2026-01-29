@@ -6,7 +6,7 @@ export const getIpGameFirewallResponse = ({
   firewallModeEnabled = false,
 }: Partial<IpGameFirewallType>): IpGameFirewallType => ({
   state,
-  ipOnGame,
+  ipOnGame: ipOnGame || '10.0.0.0',
   maxRules: 30,
   supportedProtocols: [
     'arkSurvivalEvolved',

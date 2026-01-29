@@ -1,20 +1,23 @@
-import '@/test-utils/setupUnitTests';
-import React, { MutableRefObject } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { MutableRefObject } from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Row } from '@tanstack/react-table';
-import ipReverseList from '@/__mocks__/ip/get-ip-reverse-for-block.json';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpGroupDatagrid } from './ipGroupDatagrid';
-import { VmacWithIpType } from '@/data/hooks/ip';
 import {
+  IpDetails,
   IpGameFirewallStateEnum,
   IpGameFirewallType,
   IpMitigationStateEnum,
   IpMitigationType,
   MacAddressTypeEnum,
 } from '@/data/api';
+import { VmacWithIpType } from '@/data/hooks/ip';
+import '@/test-utils/setupUnitTests';
+
+import { IpGroupDatagrid } from './ipGroupDatagrid';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -27,7 +30,10 @@ const useGetIcebergIpReverseMock = vi.hoisted(() =>
 );
 
 const useGetIpDetailsMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
+  vi.fn(() => ({
+    ipDetails: undefined as IpDetails | undefined,
+    isLoading: true,
+  })),
 );
 
 const useGetIpMitigationWithoutIcebergMock = vi.hoisted(() =>
@@ -36,7 +42,7 @@ const useGetIpMitigationWithoutIcebergMock = vi.hoisted(() =>
 
 const useGetIpGameFirewallMock = vi.hoisted(() =>
   vi.fn(() => ({
-    ipGameFirewall: undefined,
+    ipGameFirewall: undefined as IpGameFirewallType | undefined,
     isLoading: true,
     error: undefined,
   })),
@@ -44,7 +50,7 @@ const useGetIpGameFirewallMock = vi.hoisted(() =>
 
 const useGetIpVmacWithIpMock = vi.hoisted(() =>
   vi.fn(() => ({
-    vmacsWithIp: undefined,
+    vmacsWithIp: undefined as VmacWithIpType[] | undefined,
     isLoading: true,
     error: undefined,
   })),
@@ -107,49 +113,47 @@ vi.mock('../DatagridCells', () => ({
 /** RENDER */
 const renderComponent = () => {
   const row = { original: { ip: '123.123.123.160/30' } } as Row<{ ip: string }>;
-  const parentHeaders: MutableRefObject<Record<
-    string,
-    HTMLTableCellElement
-  >> = {
-    current: {
-      ip: {
-        clientWidth: 101,
-      } as HTMLTableCellElement,
-      'ip-type': {
-        clientWidth: 102,
-      } as HTMLTableCellElement,
-      'ip-alerts': {
-        clientWidth: 103,
-      } as HTMLTableCellElement,
-      'ip-region': {
-        clientWidth: 104,
-      } as HTMLTableCellElement,
-      'ip-country': {
-        clientWidth: 105,
-      } as HTMLTableCellElement,
-      'ip-attached-service': {
-        clientWidth: 106,
-      } as HTMLTableCellElement,
-      'ip-reverse': {
-        clientWidth: 107,
-      } as HTMLTableCellElement,
-      'ip-vmac': {
-        clientWidth: 108,
-      } as HTMLTableCellElement,
-      'ip-ddos': {
-        clientWidth: 109,
-      } as HTMLTableCellElement,
-      'ip-edge-firewall': {
-        clientWidth: 110,
-      } as HTMLTableCellElement,
-      'ip-game-firewall': {
-        clientWidth: 111,
-      } as HTMLTableCellElement,
-      action: {
-        clientWidth: 112,
-      } as HTMLTableCellElement,
-    },
-  } as MutableRefObject<Record<string, HTMLTableCellElement>>;
+  const parentHeaders: MutableRefObject<Record<string, HTMLTableCellElement>> =
+    {
+      current: {
+        ip: {
+          clientWidth: 101,
+        } as HTMLTableCellElement,
+        'ip-type': {
+          clientWidth: 102,
+        } as HTMLTableCellElement,
+        'ip-alerts': {
+          clientWidth: 103,
+        } as HTMLTableCellElement,
+        'ip-region': {
+          clientWidth: 104,
+        } as HTMLTableCellElement,
+        'ip-country': {
+          clientWidth: 105,
+        } as HTMLTableCellElement,
+        'ip-attached-service': {
+          clientWidth: 106,
+        } as HTMLTableCellElement,
+        'ip-reverse': {
+          clientWidth: 107,
+        } as HTMLTableCellElement,
+        'ip-vmac': {
+          clientWidth: 108,
+        } as HTMLTableCellElement,
+        'ip-ddos': {
+          clientWidth: 109,
+        } as HTMLTableCellElement,
+        'ip-edge-firewall': {
+          clientWidth: 110,
+        } as HTMLTableCellElement,
+        'ip-game-firewall': {
+          clientWidth: 111,
+        } as HTMLTableCellElement,
+        action: {
+          clientWidth: 112,
+        } as HTMLTableCellElement,
+      },
+    } as MutableRefObject<Record<string, HTMLTableCellElement>>;
 
   return render(
     <QueryClientProvider client={queryClient}>
@@ -158,27 +162,25 @@ const renderComponent = () => {
   );
 };
 
-describe('IpDatagrid Component', async () => {
+describe('IpDatagrid Component', () => {
   beforeAll(() => {
     useGetIcebergIpReverseMock.mockReturnValue({
-      ipsReverse: ipReverseList,
+      ipsReverse: undefined,
       isLoading: false,
       error: undefined,
     });
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[3],
+      ipDetails: ipDetailsList[3] as IpDetails,
       isLoading: false,
     });
     useGetIpGameFirewallMock.mockReturnValue({
-      ipGameFirewall: [
-        {
-          ipOnGame: '1.1.1.1',
-          firewallModeEnabled: true,
-          maxRules: 1,
-          state: IpGameFirewallStateEnum.OK,
-        },
-      ] as IpGameFirewallType[],
-      error: false,
+      ipGameFirewall: {
+        ipOnGame: '1.1.1.1',
+        firewallModeEnabled: true,
+        maxRules: 1,
+        state: IpGameFirewallStateEnum.OK,
+      },
+      error: undefined,
       isLoading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
@@ -188,15 +190,15 @@ describe('IpDatagrid Component', async () => {
         permanent: false,
         state: IpMitigationStateEnum.OK,
       } as IpMitigationType,
-      error: false,
+      error: undefined,
       isLoading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
       vmacsWithIp: [
         { ip: ['1.1.1.1'], macAddress: 'mac', type: MacAddressTypeEnum.OVH },
-      ] as VmacWithIpType[],
+      ],
       isLoading: false,
-      error: false,
+      error: undefined,
     });
   });
   it('Should display block ip reverse child', async () => {
@@ -210,8 +212,8 @@ describe('IpDatagrid Component', async () => {
       const ipTypeColumn = getAllByText('ip-type')?.[0]?.closest('td');
       const actionColumn = getAllByText('actions')?.[0]?.closest('td');
 
-      expect(ipTypeColumn.style.width).toBe('102px');
-      expect(actionColumn.style.width).toBe('112px');
+      expect(ipTypeColumn?.style.width).toBe('102px');
+      expect(actionColumn?.style.width).toBe('112px');
     });
   });
 });

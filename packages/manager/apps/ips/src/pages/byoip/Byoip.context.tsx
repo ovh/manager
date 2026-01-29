@@ -41,7 +41,7 @@ export const ByoipContextProvider: React.FC<React.PropsWithChildren> = ({
   const [ipRange, setIpRange] = React.useState<string>('');
   const [asType, setAsType] = React.useState<string>('');
   const [asOwnRirType, setAsOwnRirType] = React.useState<string>('');
-  const [asOwnNumberType, setAsOwnNumberType] = React.useState<number>();
+  const [asOwnNumberType, setAsOwnNumberType] = React.useState<number>(0);
   const value = React.useMemo(
     () => ({
       ipRir,

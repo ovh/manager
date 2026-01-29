@@ -1,20 +1,29 @@
-import React from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { urlDynamicParts, urls } from '@/routes/routes.constant';
+
 import { IpEdgeFirewallStateEnum, IpEdgeFirewallType } from '@/data/api';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import {
+  TRANSLATION_NAMESPACES,
+  fromIpToId,
+  handleEnterAndEscapeKeyDown,
+} from '@/utils';
+
 import { BadgeCell } from '../BadgeCell/BadgeCell';
-import { fromIpToId } from '@/utils';
 
 export type IpEdgeFirewallDetailsProps = {
-  ipEdgeFirewall: IpEdgeFirewallType;
+  parentIp: string;
   ip: string;
+  ipEdgeFirewall?: IpEdgeFirewallType;
 };
 
 /**
@@ -26,32 +35,40 @@ export type IpEdgeFirewallDetailsProps = {
  * @returns React component
  */
 export const IpEdgeFirewallDisplay = ({
+  parentIp,
   ip,
   ipEdgeFirewall,
 }: IpEdgeFirewallDetailsProps) => {
   const id = `edgefirewall-${ip.replace(/\/|\./g, '-')}`;
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { trackClick } = useOvhTracking();
 
+  const navigateToConfigureEdgeNetworkFirewall = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['configure_edge-network-firewall'],
+    });
+    navigate(
+      `${urls.configureEdgeNetworkFirewall
+        .replace(urlDynamicParts.parentId, fromIpToId(parentIp))
+        .replace(urlDynamicParts.id, fromIpToId(ip))}?${search.toString()}`,
+    );
+  };
+
   return (
     <div
+      role="button"
+      tabIndex={0}
       className="cursor-pointer"
-      onClick={() => {
-        trackClick({
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['configure_edge-network-firewall'],
-        });
-        navigate(
-          `${urls.configureEdgeNetworkFirewall.replace(
-            urlDynamicParts.id,
-            fromIpToId(ip),
-          )}?${search.toString()}`,
-        );
-      }}
+      aria-label={t('listingActionConfigureEdgeNetworkFirewall')}
+      onClick={navigateToConfigureEdgeNetworkFirewall}
+      onKeyDown={handleEnterAndEscapeKeyDown({
+        onEnter: navigateToConfigureEdgeNetworkFirewall,
+      })}
     >
       {!ipEdgeFirewall && (
         <BadgeCell

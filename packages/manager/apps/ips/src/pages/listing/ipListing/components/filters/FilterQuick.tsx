@@ -1,4 +1,7 @@
 import React, { useContext } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -6,17 +9,18 @@ import {
 } from '@ovhcloud/ods-components';
 import {
   OdsButton,
-  OdsText,
-  OdsPopover,
   OdsCheckbox,
   OdsDivider,
+  OdsPopover,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
+
 import { ListingContext } from '@/pages/listing/listingContext';
 
 export const QuickFilter = ({ className }: { className?: string }) => {
@@ -38,10 +42,10 @@ export const QuickFilter = ({ className }: { className?: string }) => {
         data-testid="quick-filter"
       />
       <OdsPopover triggerId="quick-filters" withArrow>
-        <div className="gap-2">
+        <div className="gap-4">
           <label
             htmlFor="show-ipv4"
-            className="p-2 flex items-center hover:bg-gray-100 cursor-pointer"
+            className="flex cursor-pointer items-center p-2 hover:bg-gray-100"
           >
             <OdsCheckbox
               name="show-ipv4"
@@ -68,7 +72,7 @@ export const QuickFilter = ({ className }: { className?: string }) => {
 
           <label
             htmlFor="show-ipv6"
-            className="p-2 flex items-center hover:bg-gray-100 cursor-pointer"
+            className="flex cursor-pointer items-center p-2 hover:bg-gray-100"
           >
             <OdsCheckbox
               name="show-ipv6"
@@ -96,7 +100,7 @@ export const QuickFilter = ({ className }: { className?: string }) => {
 
           <label
             htmlFor="show-parked-ips"
-            className="p-2 flex items-center hover:bg-gray-100 cursor-pointer"
+            className="flex cursor-pointer items-center p-2 hover:bg-gray-100"
           >
             <OdsCheckbox
               name="show-parked-ips"

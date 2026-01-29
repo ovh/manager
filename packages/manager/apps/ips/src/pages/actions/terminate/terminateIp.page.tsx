@@ -1,4 +1,9 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 import {
   DeleteModal,
@@ -11,8 +16,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import { fromIdToIp, ipFormatter } from '@/utils';
 
 export default function TerminateIp() {
@@ -79,7 +83,7 @@ export default function TerminateIp() {
       isOpen
       closeModal={closeHandler}
       isLoading={isPending}
-      error={isError ? error?.message : null}
+      error={isError ? error?.message : undefined}
       onConfirmDelete={confirmHandler}
     />
   );

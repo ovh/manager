@@ -1,16 +1,16 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { RegionTabs } from './region-tabs.component';
+
+import { RegionCard } from '../RegionCard/RegionCard.component';
+import './region-selector.scss';
 import {
   RegionFilter,
   hasOnlyOneRegion,
+  isRegionInAp,
   isRegionInCa,
   isRegionInEu,
   isRegionInUs,
-  isRegionInAp,
 } from './region-selector.utils';
-import './region-selector.scss';
-import { RegionCard } from '../RegionCard/RegionCard.component';
+import { RegionTabs } from './region-tabs.component';
 
 export type DisabledRegion = {
   region: string;
@@ -21,7 +21,7 @@ export type RegionSelectorProps = {
   regionList: string[];
   disabledRegions?: DisabledRegion[];
   selectedRegion?: string;
-  setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedRegion: (region?: string) => void;
 };
 
 export const RegionSelector: React.FC<RegionSelectorProps> = ({
@@ -31,7 +31,6 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
   setSelectedRegion,
 }) => {
   const [currentFilter, setCurrentFilter] = React.useState(RegionFilter.all);
-  const { t } = useTranslation('region-selector');
   return (
     <div>
       {!hasOnlyOneRegion(regionList) && (

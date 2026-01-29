@@ -1,8 +1,10 @@
-import { screen, fireEvent, waitFor, within } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-import { getButtonByLabel, labels, renderTest, getModal } from '@/test-utils';
+
 import { urls } from '@/routes/routes.constant';
+import { getButtonByLabel, getModal, labels, renderTest } from '@/test-utils';
 import { fromIpToId } from '@/utils';
 
 describe('SliceModal', () => {
@@ -37,7 +39,7 @@ describe('SliceModal', () => {
         expect(
           within(modal).getByText(
             (content) =>
-              content.length &&
+              !!content.length &&
               labels.aggregateSlice.noAggregateSliceAvailable.includes(content),
           ),
         ).toBeInTheDocument(),
@@ -90,9 +92,7 @@ describe('SliceModal', () => {
 
     await waitFor(
       () =>
-        within(
-          modal,
-        ).getByText(
+        within(modal).getByText(
           labels.error.managerApiErrorWithoutRequestId.replace(/<br>.*/g, ''),
           { exact: false },
         ),

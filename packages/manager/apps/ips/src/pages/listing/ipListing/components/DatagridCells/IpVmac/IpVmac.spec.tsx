@@ -1,22 +1,28 @@
 import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ListingContext } from '@/pages/listing/listingContext';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpVmac, IpVmacProps } from './IpVmac';
-import { DedicatedServerVmacWithIpType } from '@/data/api';
+import { DedicatedServerVmacWithIpType, IpDetails } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpVmac, IpVmacProps } from './IpVmac';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
+  vi.fn(() => ({
+    ipDetails: undefined as IpDetails | undefined,
+    isLoading: true,
+  })),
 );
 
 const useGetIpVmacWithIpMock = vi.hoisted(() =>
   vi.fn(() => ({
-    vmacsWithIp: undefined,
+    vmacsWithIp: undefined as DedicatedServerVmacWithIpType[] | undefined,
     isLoading: true,
     error: undefined,
   })),
@@ -42,10 +48,10 @@ const renderComponent = (params: IpVmacProps) => {
   );
 };
 
-describe('IpVmac Component', async () => {
+describe('IpVmac Component', () => {
   it('Should display if vmac exist for a given ip', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
@@ -55,7 +61,9 @@ describe('IpVmac Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { getByText } = renderComponent({
+      ip: ipDetailsList[0]?.ip,
+    });
     await waitFor(() => {
       expect(getByText(`10.0.0.1`)).toBeDefined();
     });
@@ -63,7 +71,7 @@ describe('IpVmac Component', async () => {
 
   it('Should not display if vmac exist for not a given ip', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
@@ -73,7 +81,9 @@ describe('IpVmac Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { queryByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { queryByText } = renderComponent({
+      ip: ipDetailsList[0]?.ip,
+    });
     await waitFor(() => {
       expect(queryByText(`10.0.0.1`)).toBeNull();
     });
@@ -81,7 +91,7 @@ describe('IpVmac Component', async () => {
 
   it('Should display nothing if not linked to a dedicated server', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[1],
+      ipDetails: ipDetailsList[1] as IpDetails,
       isLoading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
@@ -91,7 +101,9 @@ describe('IpVmac Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { queryByText } = renderComponent({ ip: ipDetailsList[1].ip });
+    const { queryByText } = renderComponent({
+      ip: ipDetailsList[1]?.ip,
+    });
     await waitFor(() => {
       expect(queryByText(`10.0.0.1`)).toBeNull();
     });
@@ -99,7 +111,7 @@ describe('IpVmac Component', async () => {
 
   it('Should display "-" if linked tp dedicated server but have no vmac', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpVmacWithIpMock.mockReturnValue({
@@ -107,7 +119,9 @@ describe('IpVmac Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[0].ip });
+    const { getByText } = renderComponent({
+      ip: ipDetailsList[0]?.ip,
+    });
     await waitFor(() => {
       expect(getByText(`-`)).toBeDefined();
     });

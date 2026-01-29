@@ -1,14 +1,18 @@
 import React, { startTransition } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
-import { AS_OPTIONS } from '../Byoip.utils';
+import { OrderSection } from '@/components/OrderSection/OrderSection.component';
+
 import { ByoipContext } from '../Byoip.context';
+import { AS_OPTIONS } from '../Byoip.utils';
 import { AsOwnTypeSelectionSubSection } from './AsOwnTypeSelectionSubSection.component';
 
 export const AsTypeSelectionSection: React.FC = () => {
@@ -22,7 +26,7 @@ export const AsTypeSelectionSection: React.FC = () => {
         title={t('ip_byoip_as_system_title')}
         description={t('ip_byoip_as_system_description')}
       >
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           {AS_OPTIONS.map((value) => (
             <OptionCard
               key={value}

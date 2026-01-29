@@ -1,28 +1,40 @@
-import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { PropsWithChildren } from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import {
-  initShellContext,
   ShellContext,
   ShellContextType,
+  initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ListingContext } from '@/pages/listing/listingContext';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpGameFirewall, IpGameFirewallProps } from './IpGameFirewall';
-import { IpGameFirewallStateEnum, IpGameFirewallType } from '@/data/api';
+import {
+  IpDetails,
+  IpGameFirewallStateEnum,
+  IpGameFirewallType,
+} from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { getOdsBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpGameFirewall, IpGameFirewallProps } from './IpGameFirewall';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
+  vi.fn(() => ({
+    ipDetails: undefined as IpDetails | undefined,
+    isLoading: true,
+  })),
 );
 const useGetIpGameFirewall = vi.hoisted(() =>
   vi.fn(() => ({
-    ipGameFirewall: undefined,
+    ipGameFirewall: undefined as IpGameFirewallType | undefined,
     isLoading: true,
     error: undefined,
   })),
@@ -30,7 +42,7 @@ const useGetIpGameFirewall = vi.hoisted(() =>
 
 const useIpGameFirewallRuleList = vi.hoisted(() =>
   vi.fn(() => ({
-    data: { data: [] },
+    data: { data: [] as number[] },
   })),
 );
 
@@ -40,11 +52,15 @@ vi.mock('@/data/hooks/ip', () => ({
   useIpGameFirewallRuleList,
 }));
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(),
-  useSearchParams: () => ['', vi.fn()],
-  useMatches: () => [] as any[],
-}));
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useNavigate: () => vi.fn(),
+    useSearchParams: () => ['', vi.fn()],
+    useMatches: () => [] as string[],
+  };
+});
 
 vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,
@@ -64,13 +80,13 @@ const renderComponent = async (params: IpGameFirewallProps) => {
   );
 };
 
-describe('IpGameFirewall Component', async () => {
+describe('IpGameFirewall Component', () => {
   it('Should display available state if firewall exist', async () => {
-    const ip = ipDetailsList[0].ip;
+    const ip = ipDetailsList[0]?.ip;
     const ipOnGame = ip.split('/')[0];
 
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
@@ -96,7 +112,7 @@ describe('IpGameFirewall Component', async () => {
 
   it('Should display Pending state if firewall exist and state not OK', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
@@ -107,8 +123,8 @@ describe('IpGameFirewall Component', async () => {
       error: undefined,
     });
     const { getByText, container } = await renderComponent({
-      ip: ipDetailsList[0].ip,
-      ipOnGame: ipDetailsList[0].ip.split('/')[0],
+      ip: ipDetailsList?.[0]?.ip,
+      ipOnGame: ipDetailsList?.[0]?.ip.split('/')[0],
     });
     const badge = await getOdsBadgeByLabel({
       container,
@@ -123,11 +139,11 @@ describe('IpGameFirewall Component', async () => {
   });
 
   it('Should display configured state if firewall exist and contains rules', async () => {
-    const ip = ipDetailsList[0].ip;
-    const ipOnGame = ip.split('/')[0];
+    const ip = ipDetailsList?.[0]?.ip;
+    const ipOnGame = ip?.split('/')[0];
 
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
@@ -142,7 +158,7 @@ describe('IpGameFirewall Component', async () => {
       error: undefined,
     });
     useIpGameFirewallRuleList.mockReturnValue({
-      data: { data: [{ id: 'rule1' }] },
+      data: { data: [1, 2, 3] },
     });
     const { container } = await renderComponent({ ip, ipOnGame });
     const badge = await getOdsBadgeByLabel({
@@ -156,7 +172,7 @@ describe('IpGameFirewall Component', async () => {
 
   it('Should display nothing if ip not linked to dedicated server', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[1],
+      ipDetails: ipDetailsList[1] as IpDetails,
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
@@ -167,8 +183,8 @@ describe('IpGameFirewall Component', async () => {
       error: undefined,
     });
     const { queryByText, container } = await renderComponent({
-      ip: ipDetailsList[1].ip,
-      ipOnGame: ipDetailsList[1].ip.split('/')[0],
+      ip: ipDetailsList?.[1]?.ip,
+      ipOnGame: ipDetailsList?.[1]?.ip.split('/')[0],
     });
 
     await getOdsBadgeByLabel({
@@ -190,17 +206,17 @@ describe('IpGameFirewall Component', async () => {
 
   it('Should display nothing if ip has no game firewall', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpGameFirewall.mockReturnValue({
-      ipGameFirewall: null,
+      ipGameFirewall: undefined,
       isLoading: false,
       error: undefined,
     });
     const { queryByText, container } = await renderComponent({
-      ip: ipDetailsList[0].ip,
-      ipOnGame: ipDetailsList[0].ip.split('/')[0],
+      ip: ipDetailsList?.[0]?.ip,
+      ipOnGame: ipDetailsList?.[0]?.ip.split('/')[0],
     });
     await getOdsBadgeByLabel({
       container,

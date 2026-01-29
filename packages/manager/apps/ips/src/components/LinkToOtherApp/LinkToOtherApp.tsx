@@ -1,7 +1,9 @@
 import React from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 type LinkToOtherAppProps = {
   className?: string;
@@ -26,15 +28,9 @@ export const LinkToOtherApp: React.FC<LinkToOtherAppProps> = ({
   const [href, setHref] = React.useState('#');
 
   React.useEffect(() => {
-    const fetchUrl = async () => {
-      try {
-        const response = await shell.navigation.getURL(appName, path, params);
-        setHref(response as string);
-      } catch (error) {
-        setHref('#');
-      }
-    };
-    fetchUrl();
+    shell.navigation.getURL(appName, path, params).then((response) => {
+      setHref(response as string);
+    });
   }, []);
 
   return (
