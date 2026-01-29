@@ -38,6 +38,8 @@ export default function AccountType() {
   });
   const [legalFormError, setLegalFormError] = useState<boolean>(false);
 
+  const testVar = 'test';
+
   const validateStep = useCallback(() => {
     // Account are created with the "other" legal form which is not available anymore
     if (!legalForm || legalForm === 'other') {
@@ -160,6 +162,8 @@ export default function AccountType() {
           className={'w-full'}
           label={tAction('validate')}
           onClick={validateStep}
+              isDisabled={isLoading || legalFormError}
+          isLoading={isLoading}
         />
       </div>
     </>
