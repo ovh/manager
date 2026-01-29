@@ -1,0 +1,14 @@
+/* eslint-disable css/no-invalid-at-rules */
+/* eslint-disable css/no-invalid-properties */
+/* eslint-disable css/no-invalid-at-rule-placement */
+@import '@ovhcloud/ods-themes/default';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@ovh-ux/muk/dist/style.css';
+
+html {
+  font-family: var(--ods-font-family-default);
+}

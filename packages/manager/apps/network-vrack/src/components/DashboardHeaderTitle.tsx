@@ -1,7 +1,7 @@
-import { Vrack } from '@/data/api/get/vrack-details';
+import { Vrack } from '@/data/api/get/vrackDetails';
 import { useUpdateVrackDetails } from '@/hooks/vrack/useUpdateVrackDetails';
 
-import { EditableText } from './editableText/EditableText';
+import { EditableText } from './editable-text/EditableText';
 
 interface DashboardHeaderTitleProps {
   vrack: Vrack;

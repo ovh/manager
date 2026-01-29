@@ -14,13 +14,13 @@ import { useGuideLinks } from '@/hooks/useGuideLinks';
 import { useGetVrackDetails } from '@/hooks/vrack/useGetVrackDetails';
 import { CHANGELOG_CHAPTERS, CHANGELOG_LINKS } from '@/utils/constants';
 
-import NotFound from '../not-found/404.page';
+import NotFound from '../not-found/Error404.page';
 
 export default function DashboardPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
   const { t } = useTranslation('dashboard');
   const guideItems = useGuideLinks();
-  const { data: vrack, isLoading } = useGetVrackDetails(serviceName || '');
+  const { data: vrack, isLoading } = useGetVrackDetails(serviceName);
 
   if (isLoading) {
     return <Spinner />;

@@ -9,7 +9,6 @@ export const subRoutes = {
 
 export const urls = {
   root: ROOT_URL,
-  listing: ROOT_URL,
   onboarding: `${ROOT_URL}/${subRoutes.onboarding}`,
   dashboard: `${ROOT_URL}/${subRoutes.dashboard}`,
 } as const;
