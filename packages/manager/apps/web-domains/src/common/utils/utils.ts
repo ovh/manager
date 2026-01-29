@@ -1,5 +1,7 @@
 import { TServiceInfo } from '@/common/types/common.types';
 import { ServiceInfoContactEnum } from '@/common/enum/common.enum';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 
 export const findContact = (
@@ -8,4 +10,16 @@ export const findContact = (
 ) => {
   const contact = contacts.find((c) => c.type === contactType);
   return contact ? contact.customerCode : null;
+};
+
+export const handleOrderClick = (orderUrl: string) => {
+  window.open(orderUrl, '_blank', 'noopener,noreferrer');
+};
+
+export const getDataFromEnvironment = () => {
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const region = context.environment.getRegion();
+
+  return { region, ovhSubsidiary };
 };

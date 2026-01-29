@@ -9,9 +9,9 @@ import {
   PopoverTrigger,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useRef, useState } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useEffect, useRef, useState } from 'react';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
+import { getDataFromEnvironment, handleOrderClick } from '@/common/utils/utils';
 
 interface TopBarCTAProps {
   readonly serviceNames: string[];
@@ -25,15 +25,9 @@ export default function TopBarCTA({
   openDrawer,
 }: TopBarCTAProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
-  const context = useContext(ShellContext);
-  const { ovhSubsidiary } = context.environment.getUser();
-  const region = context.environment.getRegion();
+  const { region, ovhSubsidiary } = getDataFromEnvironment();
   const orderUrl = getOrderURL('orderDomain', region, ovhSubsidiary);
   const [openPopover, setOpenPopover] = useState<boolean>(false);
-
-  const handleOrderClick = () => {
-    window.open(orderUrl, '_blank', 'noopener,noreferrer');
-  };
 
   // Cancel the menu when the customer clicks outside
   const popoverRef = useRef(null);
@@ -53,7 +47,7 @@ export default function TopBarCTA({
 
   return (
     <div className="flex items-center gap-4">
-      <Button size={BUTTON_SIZE.sm} onClick={handleOrderClick}>
+      <Button size={BUTTON_SIZE.sm} onClick={() => handleOrderClick(orderUrl)}>
         {t(`${NAMESPACES.ACTIONS}:order`)}
       </Button>
       <div ref={popoverRef}>
