@@ -12,9 +12,11 @@ import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWra
 import PublicIpConfiguration from '../PublicIpConfiguration.component';
 import { getNetworkCatalog } from '@/data/api/networkCatalog';
 import { getFloatingIps } from '@/data/api/floatingIps';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 
 const getNetworkCatalogMock = vi.fn();
 const getFloatingIpsMock = vi.fn();
+const useInstancesCatalogWithSelectMock = vi.fn();
 
 vi.mock('@/data/api/networkCatalog');
 vi.mocked(getNetworkCatalog).mockImplementation(getNetworkCatalogMock);
@@ -22,9 +24,17 @@ vi.mocked(getNetworkCatalog).mockImplementation(getNetworkCatalogMock);
 vi.mock('@/data/api/floatingIps');
 vi.mocked(getFloatingIps).mockImplementation(getFloatingIpsMock);
 
+vi.mock('@/data/hooks/catalog/useInstancesCatalogWithSelect');
+vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
+  useInstancesCatalogWithSelectMock,
+);
+
 const setupTest = () => {
   getNetworkCatalogMock.mockReturnValue(mockedNetworkCatalog);
   getFloatingIpsMock.mockReturnValue(mockedFloatingIpEntity);
+  useInstancesCatalogWithSelectMock.mockReturnValue({
+    data: 'region',
+  });
 
   renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper

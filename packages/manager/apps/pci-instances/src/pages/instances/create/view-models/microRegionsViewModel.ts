@@ -1,5 +1,10 @@
 import { Deps } from '@/deps/deps';
-import { TMicroRegion } from '@/domain/entities/instancesCatalog';
+import {
+  TDeploymentModeID,
+  TInstancesCatalog,
+  TMicroRegion,
+  TMicroRegionID,
+} from '@/domain/entities/instancesCatalog';
 import { Reader } from '@/types/utils.type';
 
 export type TMicroRegionData = {
@@ -55,4 +60,19 @@ export const isMicroRegionAvailable: Reader<
   const hasOneMicroRegion = microRegions.length === 1;
 
   return hasOneMicroRegion ? !microRegions[0]?.disabled : true;
+};
+
+export const selectMicroRegionDeploymentMode = (
+  microRegionId: TMicroRegionID | null,
+) => (catalog?: TInstancesCatalog): TDeploymentModeID | null => {
+  if (microRegionId === null || !catalog) return null;
+
+  const microRegion = catalog.entities.microRegions.byId.get(microRegionId);
+  if (!microRegion) return null;
+
+  const macroRegion = catalog.entities.macroRegions.byId.get(
+    microRegion.macroRegionId,
+  );
+
+  return macroRegion?.deploymentMode ?? null;
 };
