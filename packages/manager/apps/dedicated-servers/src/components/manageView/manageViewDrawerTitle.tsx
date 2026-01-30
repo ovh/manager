@@ -29,7 +29,7 @@ export const ManageViewDrawerTitle = ({
   };
 
   return (
-    <div className="w-full flex justify-between">
+    <div className="w-full flex justify-between items-baseline gap-2">
       {isEditMode && (
         <>
           <Input
@@ -69,6 +69,7 @@ export const ManageViewDrawerTitle = ({
           </Text>
           <Button
             role="button"
+            className="max-w-fit max-h-fit"
             variant={BUTTON_VARIANT.ghost}
             aria-label={t('edit_view_name')}
             onClick={() => {
