@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
 import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
 import {
   ShellContext,

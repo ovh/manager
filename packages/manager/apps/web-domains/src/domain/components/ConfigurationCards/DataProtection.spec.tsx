@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import { render, screen } from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { wrapper } from '@/common/utils/test.provider';
 import DataProtection from './DataProtection';
 import {
@@ -9,86 +9,17 @@ import {
   DisclosureConfigurationEnum,
   TContactsConfiguration,
 } from '@/domain/types/domainResource';
-import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
-import { DomainStateEnum } from '@/domain/enum/domainState.enum';
-import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
-import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
-import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
-import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 import { serviceInfoAuto, serviceInfoInCreation } from '@/domain/__mocks__/serviceInfo';
-
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...actual,
-    ActionMenu: ({ items }: any) => (
-      <div>
-        {items.map((item: any) => (
-          <button
-            key={item.id}
-            onClick={item.onClick}
-            disabled={item.isDisabled}
-            data-testid="action-menu-button"
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
-    ),
-  };
-});
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import { domainResourceOK } from '@/domain/__mocks__/serviceInfoDetail';
 
 const createMockDomainResource = (
-  contactsConfig: TDomainResource['currentState']['contactsConfiguration'],
+  contactsConfig: TContactsConfiguration,
 ): TDomainResource => ({
-  checksum: 'checksum-value',
+  ...domainResourceOK,
   currentState: {
-    additionalStates: [],
-    dnsConfiguration: {
-      configurationType: DnsConfigurationTypeEnum.HOSTING,
-      glueRecordIPv6Supported: true,
-      hostSupported: true,
-      maxDNS: 10,
-      minDNS: 2,
-      nameServers: [],
-      dnssecSupported: true,
-    },
-    hostsConfiguration: {
-      ipv4Supported: true,
-      ipv6Supported: true,
-      multipleIPsSupported: true,
-      hostSupported: true,
-      hosts: [],
-    },
-    dnssecConfiguration: {
-      dnssecSupported: true,
-      supportedAlgorithms,
-      dsData: [
-        {
-          algorithm: 8,
-          keyTag: 0,
-          flags: 0,
-          publicKey:
-            'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
-        },
-      ],
-    },
-    extension: '.com',
-    mainState: DomainStateEnum.OK,
-    name: 'example.com',
-    protectionState: ProtectionStateEnum.PROTECTED,
-    suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
-    authInfoManagedByOVHcloud: true,
-    authInfoSupported: true,
+    ...domainResourceOK.currentState,
     contactsConfiguration: contactsConfig,
-    createdAt: '2024-01-01T00:00:00Z',
-  },
-  currentTasks: [],
-  iam: null,
-  id: 'domain-id',
-  resourceStatus: ResourceStatusEnum.READY,
-  targetSpec: {
-    protectionState: ProtectionStateEnum.PROTECTED,
   },
 });
 
@@ -97,6 +28,10 @@ describe('DataProtection component', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    (useAuthorizationIam as Mock).mockReturnValue({
+      isPending: false,
+      isAuthorized: true,
+    });
   });
 
   describe('when data protection is ACTIVE', () => {
@@ -157,7 +92,7 @@ describe('DataProtection component', () => {
         contactBilling: { id: 'billing-id' },
       });
 
-      render(
+      const { container } = render(
         <DataProtection
           domainResource={domainResource}
           serviceInfo={serviceInfoAuto}
@@ -168,11 +103,13 @@ describe('DataProtection component', () => {
         },
       );
 
-      const manageButton = screen.getByTestId('action-menu-button');
-      expect(manageButton).not.toBeDisabled();
-
+      // Verify that the action menu is enabled and open it
+      const actionMenu = container.querySelector('#data-protection-action-menu');
+      expect(actionMenu).toHaveAttribute('is-disabled', 'false');
+      await user.click(actionMenu);
+      // Find and click the button to open the data protection drawer
+      const manageButton = container.querySelector('ods-button[label="domain_tab_general_information_data_protection_manage_button"]');
       await user.click(manageButton);
-
       expect(mockSetDataProtectionDrawerOpened).toHaveBeenCalledWith(true);
     });
   });
@@ -282,22 +219,18 @@ describe('DataProtection component', () => {
       );
 
       expect(
-        screen.getByText('domain_tab_general_information_data_protection'),
-      ).toBeInTheDocument();
-
-      expect(
         screen.getByText(
-          'domain_tab_general_information_data_protection_disabled',
+          'domain_tab_general_information_data_protection_deactivated',
         ),
       ).toBeInTheDocument();
     });
   });
 
   describe('when service is in creation', () => {
-    it('should display only generic information when forceDisclosure is true', () => {
+    it('the action button shoud be disabled', () => {
       const domainResource = createMockDomainResource({} as TContactsConfiguration);
 
-      render(
+      const { container } = render(
         <DataProtection
           domainResource={domainResource}
           serviceInfo={serviceInfoInCreation}
@@ -308,14 +241,41 @@ describe('DataProtection component', () => {
         },
       );
 
-      const actionButton = screen.getByTestId('data-protection-action-menu');
+      const actionMenu = container.querySelector('#data-protection-action-menu');
       expect(
-        actionButton
+        actionMenu
       ).toBeInTheDocument();
-
       expect(
-        actionButton,
-      ).toBeDisabled();
+        actionMenu,
+      ).toHaveAttribute('is-disabled', 'true');
+    });
+  });
+
+  describe('when customer is not allowed to modify the disclosure policy', () => {
+    it('the action button shoud be disabled', () => {
+      (useAuthorizationIam as Mock).mockReturnValue({
+        isPending: false,
+        isAuthorized: false,
+      });
+
+      const { container } = render(
+        <DataProtection
+          domainResource={domainResourceOK}
+          serviceInfo={serviceInfoInCreation}
+          setDataProtectionDrawerOpened={mockSetDataProtectionDrawerOpened}
+        />,
+        {
+          wrapper,
+        },
+      );
+
+      const actionMenu = container.querySelector('#data-protection-action-menu');
+      expect(
+        actionMenu
+      ).toBeInTheDocument();
+      expect(
+        actionMenu,
+      ).toHaveAttribute('is-disabled', 'true');
     });
   });
 });

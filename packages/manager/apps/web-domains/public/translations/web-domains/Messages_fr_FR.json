@@ -1,3 +1,13 @@
 {
-  "title": "web-domains"
+  "title": "web-domains",
+  "web_domains_renew_frequency": "Fréquence de renouvellement",
+  "web_domains_renew_frequency_tooltip": "Fixez une fréquence de renouvellement et gardez l’esprit tranquille.",
+  "web_domains_renew_frequency_none": "Aucune",
+  "web_domains_renew_frequency_modify": "Gérer la fréquence de renouvellement",
+  "web_domains_renew_mode": "Mode de renouvellement",
+  "web_domains_renew_mode_automatic": "Automatique",
+  "web_domains_renew_mode_manual": "Manuel",
+  "web_domains_renew_mode_modify": "Modifier le mode de renouvellement",
+  "web_domains_status_terminate": "Résiliation programmée",
+  "web_domains_renew_mode_tooltip": "Optez pour le renouvellement automatique et gardez l’esprit tranquille."
 }

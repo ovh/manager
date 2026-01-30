@@ -28,8 +28,8 @@ export default function DomainDatagridColumnRenewMode({
     return <Spinner size={SPINNER_SIZE.xs} />;
   }
 
-  const mode = serviceInfo.billing.renew?.current.mode;
-  const { lifecycle } = serviceInfo.billing;
+  const { lifecycle, renew } = serviceInfo.billing;
+  const mode = renew?.current.mode;
 
   let label = t(`allDom_table_status_${mode}`);
   let badgeColor;

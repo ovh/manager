@@ -20,26 +20,16 @@ interface SubscriptionCardsProps {
   readonly serviceName: string;
 }
 
+const LoadingItem = ({ label }: { label: React.ReactNode }) => (
+  <ManagerTile.Item>
+    <ManagerTile.Item.Label>{label}</ManagerTile.Item.Label>
+    <Skeleton />
+  </ManagerTile.Item>
+);
+
 export default function SubscriptionCards({
   serviceName,
 }: SubscriptionCardsProps) {
-  const { domainResource, isFetchingDomainResource } = useGetDomainResource(
-    serviceName,
-  );
-  const { isServiceInfoLoading, serviceInfo } = useGetServiceInformation(
-    'domain',
-    serviceName,
-    ServiceRoutes.Domain,
-  );
-
-  const {
-    domainContact,
-    isFetchingDomainContact,
-  } = useGetDomainContact(
-    domainResource.currentState?.contactsConfiguration?.contactOwner?.id,
-    { enabled: true },
-  );
-
   const { t } = useTranslation([
     'domain',
     NAMESPACES.DASHBOARD,
@@ -47,45 +37,55 @@ export default function SubscriptionCards({
     NAMESPACES.CONTACT,
   ]);
 
-  if (isFetchingDomainResource || isServiceInfoLoading) {
+  const { domainResource, isFetchingDomainResource } =
+    useGetDomainResource(serviceName);
+
+  const { isServiceInfoLoading, serviceInfo } = useGetServiceInformation(
+    'domain',
+    serviceName,
+    ServiceRoutes.Domain,
+  );
+
+  const { domainContact, isFetchingDomainContact } = useGetDomainContact(
+    domainResource?.currentState?.contactsConfiguration?.contactOwner?.id,
+    { enabled: true },
+  );
+
+  const isLoading = isFetchingDomainResource || isServiceInfoLoading;
+
+  if (isLoading) {
     return (
       <ManagerTile>
         <ManagerTile.Title>
           {t(`${NAMESPACES.BILLING}:subscription`)}
         </ManagerTile.Title>
         <ManagerTile.Divider />
-        <ManagerTile.Item>
-          <ManagerTile.Item.Label>
-            {t(`${NAMESPACES.DASHBOARD}:creation_date`)}
-          </ManagerTile.Item.Label>
-          <Skeleton />
-        </ManagerTile.Item>
+        <LoadingItem
+          label={t(`${NAMESPACES.DASHBOARD}:creation_date`)}
+        />
         <ManagerTile.Divider />
-        <ManagerTile.Item>
-          <ManagerTile.Item.Label>
-            {t('domain_tab_general_information_subscription_expiration_date')}
-          </ManagerTile.Item.Label>
-          <Skeleton />
-        </ManagerTile.Item>
+        <LoadingItem
+          label={t(
+            'domain_tab_general_information_subscription_expiration_date',
+          )}
+        />
         <ManagerTile.Divider />
-        <ManagerTile.Item>
-          <ManagerTile.Item.Label>
-            {t('domain_tab_general_information_subscription_renew_frequency')}
-            <CircleQuestionTooltip
-              translatedMessage={t(
-                'domain_tab_general_information_tooltip_domain_state',
+        <LoadingItem
+          label={
+            <>
+              {t(
+                'domain_tab_general_information_subscription_renew_frequency',
               )}
-            />
-          </ManagerTile.Item.Label>
-          <Skeleton />
-        </ManagerTile.Item>
+              <CircleQuestionTooltip
+                translatedMessage={t(
+                  'domain_tab_general_information_tooltip_domain_state',
+                )}
+              />
+            </>
+          }
+        />
         <ManagerTile.Divider />
-        <ManagerTile.Item>
-          <ManagerTile.Item.Label>
-            {t(`${NAMESPACES.CONTACT}:contacts`)}
-          </ManagerTile.Item.Label>
-          <Skeleton />
-        </ManagerTile.Item>
+        <LoadingItem label={t(`${NAMESPACES.CONTACT}:contacts`)} />
       </ManagerTile>
     );
   }
@@ -99,24 +99,18 @@ export default function SubscriptionCards({
       <CreationDate domainResource={domainResource} />
       <ManagerTile.Divider />
       <ExpirationDate
-        date={serviceInfo.billing?.expirationDate}
         serviceName={serviceName}
-        isFetchingDomainResources={isFetchingDomainResource}
+        serviceInfo={serviceInfo}
+        isFetchingServiceInfo={isFetchingDomainResource}
       />
       <ManagerTile.Divider />
       <RenewModeItemTile
-        renewMode={serviceInfo.billing.renew.current.mode}
-        pendingActions={serviceInfo.billing.lifecycle.current.pendingActions}
         serviceName={serviceName}
-        isDomainPage={true}
         universe={Universe.DOMAIN}
       />
       <ManagerTile.Divider />
       <RenewFrequencyTileItem
-        mode={serviceInfo.billing.renew.current.mode}
-        serviceInfo={serviceInfo}
         serviceName={serviceName}
-        isDomainPage={true}
         universe={Universe.DOMAIN}
       />
       <ManagerTile.Divider />

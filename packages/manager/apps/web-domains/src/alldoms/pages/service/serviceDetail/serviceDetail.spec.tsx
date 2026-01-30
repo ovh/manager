@@ -5,9 +5,15 @@ import { wrapper } from '@/common/utils/test.provider';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import ServiceDetail from '@/alldoms/pages/service/serviceDetail/serviceDetail';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
+import { serviceInfoManual } from '@/domain/__mocks__/serviceInfo';
 
 vi.mock('@/alldoms/hooks/data/useGetAllDom', () => ({
   useGetAllDom: vi.fn(),
+}));
+
+vi.mock('@/common/hooks/data/query', () => ({
+  useGetServiceInformation: vi.fn(),
 }));
 
 describe('AllDom datagrid', () => {
@@ -24,10 +30,15 @@ describe('AllDom datagrid', () => {
     });
   });
 
-  it('display the information general pack', async () => {
+  it('display the general information of a pack', async () => {
     (useGetAllDom as Mock).mockReturnValue({
       data: alldomService,
       isLoading: false,
+    });
+
+    (useGetServiceInformation as Mock).mockReturnValue({
+      serviceInfo: serviceInfoManual,
+      isServiceInfoLoading: false,
     });
 
     const { getByTestId } = render(<ServiceDetail />, { wrapper });

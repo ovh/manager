@@ -1,32 +1,35 @@
 import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
+import { Badge, BADGE_COLOR, Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
-import { goToUpdateRenewFrequencyParams } from '@/domain/utils/helpers';
+import { goToUpdateRenewFrequencyParams, isServiceInCreation } from '@/domain/utils/helpers';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
   LifecycleCapacitiesEnum,
   ServiceInfoRenewModeEnum,
+  ServiceRoutes,
   Universe,
 } from '@/common/enum/common.enum';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface RenewModeProps {
-  readonly renewMode: ServiceInfoRenewModeEnum;
-  readonly pendingActions: LifecycleCapacitiesEnum[];
   readonly serviceName: string;
-  readonly isDomainPage: boolean;
   readonly universe: Universe;
 }
 
 export default function RenewModeItemTile({
-  renewMode,
-  pendingActions,
   serviceName,
-  isDomainPage,
   universe,
 }: RenewModeProps) {
-  const { t } = useTranslation(['allDom', 'domain']);
+  const { t } = useTranslation(['allDom', 'domain', 'web-domains']);
+
+  const key = universe === Universe.DOMAIN ? 'domain' : 'allDom';
+  const serviceRoute = universe === Universe.DOMAIN ? ServiceRoutes.Domain : ServiceRoutes.AllDom;
+  const { serviceInfo } = useGetServiceInformation(
+    key,
+    serviceName,
+    serviceRoute
+  );
 
   const billingUrl = goToUpdateRenewFrequencyParams(serviceName, universe);
   const { data: renewFrequencyURL } = useNavigationGetUrl([
@@ -35,26 +38,23 @@ export default function RenewModeItemTile({
     billingUrl.params,
   ]);
 
+  const tooltipGenericMessage = t('web-domains:web_domains_renew_mode_tooltip')
+  const tooltipDomainMessage = universe === Universe.DOMAIN ? ` ${t('domain:domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain')}` : ""
+  const renewMode = serviceInfo.billing?.renew?.current?.mode || ServiceInfoRenewModeEnum.Manual;
+  const isManualRenew = renewMode === ServiceInfoRenewModeEnum.Manual;
+
   return (
     <ManagerTile.Item>
       <ManagerTile.Item.Label>
-        {t('allDom_table_header_renewMode')}
-        {renewMode === ServiceInfoRenewModeEnum.Manual && (
+        {t('web-domains:web_domains_renew_mode')}
+        {isManualRenew && (
           <CircleQuestionTooltip
-            translatedMessage={`${t(
-              'domain:domain_tab_general_information_subscription_manual_renew_mode_tooltip',
-            )}${
-              isDomainPage
-                ? ` ${t(
-                    'domain:domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain',
-                  )}`
-                : ''
-            }`}
+            translatedMessage={`${tooltipGenericMessage}${tooltipDomainMessage}`}
           />
         )}
       </ManagerTile.Item.Label>
       <div className="flex items-center justify-between">
-        {pendingActions.includes(
+        {serviceInfo.billing?.lifecycle?.current?.pendingActions.includes(
           LifecycleCapacitiesEnum.TerminateAtExpirationDate,
         ) ? (
           <Badge color={BADGE_COLOR.critical}>
@@ -63,28 +63,39 @@ export default function RenewModeItemTile({
         ) : (
           <Badge
             color={
-              renewMode === ServiceInfoRenewModeEnum.Automatic
-                ? BADGE_COLOR.success
-                : BADGE_COLOR.warning
+              isManualRenew
+                ? BADGE_COLOR.warning
+                : BADGE_COLOR.success
             }
           >
-            {t(`allDom_status_${renewMode}`)}
+            {t(`web-domains:web_domains_renew_mode_${serviceInfo.billing?.renew?.current?.mode ?? ServiceInfoRenewModeEnum.Manual}`)}
           </Badge>
         )}
-
-        <ActionMenu
-          id="renew-mode"
-          isCompact
-          items={[
-            {
-              id: 1,
-              label: t(
-                'domain:domain_tab_general_information_subscription_handle_renew_modify',
-              ),
-              href: renewFrequencyURL as string,
-            },
-          ]}
-        />
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div>
+              <ActionMenu
+                id="renew-mode"
+                isCompact
+                isDisabled={isServiceInCreation(serviceInfo)}
+                items={[
+                  {
+                    id: 1,
+                    label: t(
+                      'web-domains:web_domains_renew_mode_modify',
+                    ),
+                    href: renewFrequencyURL as string,
+                  },
+                ]}
+              />
+            </div>
+          </TooltipTrigger>
+          {isServiceInCreation(serviceInfo) && (
+            <TooltipContent>
+              {t('domain:domain_tab_name_service_in_creation')}
+            </TooltipContent>
+          )}
+        </Tooltip>
       </div>
     </ManagerTile.Item>
   );

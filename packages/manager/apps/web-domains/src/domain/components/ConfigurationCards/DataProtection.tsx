@@ -64,7 +64,6 @@ export default function DataProtection({
               <div>
                 <ActionMenu
                   id={'data-protection-action-menu'}
-                  data-testid={'data-protection-action-menu'}
                   isCompact
                   isLoading={isPending}
                   isDisabled={

@@ -7,27 +7,30 @@ import {
 } from '@ovhcloud/ods-react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import { ServiceInfoRenewModeEnum, Universe } from '@/common/enum/common.enum';
+import { ServiceInfoRenewModeEnum, ServiceRoutes, Universe } from '@/common/enum/common.enum';
 import { translateRenewPeriod } from '@/domain/utils/utils';
 import { goToUpdateRenewFrequencyParams, isServiceInCreation } from '@/domain/utils/helpers';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
-import { TServiceInfo } from '@/common/types/common.types';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface RenewFrequencyProps {
-  readonly serviceInfo: TServiceInfo;
-  readonly mode: ServiceInfoRenewModeEnum;
   readonly serviceName: string;
-  readonly isDomainPage: boolean;
   readonly universe: Universe;
 }
 export default function RenewFrequencyTileItem({
-  mode,
-  serviceInfo,
   serviceName,
-  isDomainPage,
   universe,
 }: RenewFrequencyProps) {
-  const { t } = useTranslation(['domain']);
+  const { t } = useTranslation(['domain', 'web-domains']);
+
+  const key = universe === Universe.DOMAIN ? 'domain' : 'allDom';
+  const serviceRoute = universe === Universe.DOMAIN ? ServiceRoutes.Domain : ServiceRoutes.AllDom;
+
+  const { serviceInfo } = useGetServiceInformation(
+    key,
+    serviceName,
+    serviceRoute
+  );
 
   const billingUrl = goToUpdateRenewFrequencyParams(serviceName, universe);
   const { data: renewFrequencyURL } = useNavigationGetUrl([
@@ -36,21 +39,16 @@ export default function RenewFrequencyTileItem({
     billingUrl.params,
   ]);
 
+  const tooltipGenericMessage = t('domain_tab_general_information_subscription_manual_renew_tooltip');
+  const tooltipDomainMessage = universe === Universe.DOMAIN ? ` ${t('domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain')}` : ""
+
   return (
     <ManagerTile.Item>
       <ManagerTile.Item.Label>
-        {t('domain_tab_general_information_subscription_renew_frequency')}
-
-        {mode === ServiceInfoRenewModeEnum.Manual && (
+        {t('web-domains:web_domains_renew_frequency')}
+        {serviceInfo.billing?.renew?.current?.mode === ServiceInfoRenewModeEnum.Manual && (
           <CircleQuestionTooltip
-            translatedMessage={`${t(
-              'domain_tab_general_information_subscription_manual_renew_tooltip',
-            )}${isDomainPage
-              ? ` ${t(
-                'domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain',
-              )}`
-              : ''
-              }`}
+            translatedMessage={`${tooltipGenericMessage}${tooltipDomainMessage}`}
           />
         )}
       </ManagerTile.Item.Label>
@@ -69,7 +67,7 @@ export default function RenewFrequencyTileItem({
                   {
                     id: 3,
                     label: t(
-                      'domain_tab_general_information_subscription_handle_renew_frequency',
+                      'web-domains:web_domains_renew_frequency_modify',
                     ),
                     href: renewFrequencyURL as string,
                   },
@@ -78,8 +76,8 @@ export default function RenewFrequencyTileItem({
             </div>
           </TooltipTrigger>
           {isServiceInCreation(serviceInfo) && (
-            <TooltipContent>
-              {t('domain_tab_name_service_in_creation')}
+            <TooltipContent data-testid="service-in-creation-tooltip-content">
+              {t('domain:domain_tab_name_service_in_creation')}
             </TooltipContent>
           )}
         </Tooltip>

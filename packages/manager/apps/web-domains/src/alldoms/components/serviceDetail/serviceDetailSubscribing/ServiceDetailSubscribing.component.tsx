@@ -28,7 +28,6 @@ export default function ServiceDetailSubscribing({
     nicBilling,
     nicTechnical,
     renewalDate,
-    period,
   } = alldomService;
   const formatDate = useFormatDate();
   return (
@@ -71,18 +70,12 @@ export default function ServiceDetailSubscribing({
         </ManagerTile.Item>
         <ManagerTile.Divider />
         <RenewModeItemTile
-          renewMode={renewMode}
-          pendingActions={pendingActions}
           serviceName={currentState.name}
-          isDomainPage={false}
           universe={Universe.ALL_DOM}
         />
         <ManagerTile.Divider />
         <RenewFrequencyTileItem
-          mode={renewMode}
-          period={period}
           serviceName={currentState.name}
-          isDomainPage={false}
           universe={Universe.ALL_DOM}
         />
         <ManagerTile.Divider />

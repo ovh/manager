@@ -108,6 +108,15 @@ vi.mock('@ovhcloud/ods-react', () => ({
   Text: ({ children }: { children?: ReactNode }) => (
     <span data-testid="text">{children}</span>
   ),
+  Tooltip: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="tooltip">{children}</div>
+  ),
+  TooltipTrigger: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="tooltip-trigger">{children}</div>
+  ),
+  TooltipContent: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="tooltip-content">{children}</div>
+  ),
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => {

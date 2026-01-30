@@ -7,6 +7,8 @@ import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { AdditionalDomainStateEnum } from '@/domain/enum/domainState.enum';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
+import { TaskTypesEnum } from '../constants/meTasks';
+import { TaskStatusEnum } from '../enum/taskStatus.enum';
 
 export const domainResourceOK: TDomainResource = {
   checksum: 'example-checksum',
@@ -140,11 +142,30 @@ export const domainResourceInTransfer: TDomainResource = {
     createdAt: '2023-01-01T00:00:00Z',
     name: 'example.com',
   },
-  currentTasks: [],
+  currentTasks: [
+    {
+      type: TaskTypesEnum.DomainIncomingTransfer,
+      id: '123',
+      link: 'link-123',
+      status: TaskStatusEnum.PENDING,
+    },
+  ],
   iam: null,
   id: 'example-domain-id',
   resourceStatus: ResourceStatusEnum.READY,
 };
+
+export const domainResourceInCreation: TDomainResource = {
+  ...domainResourceInTransfer,
+  currentTasks: [
+    {
+      type: TaskTypesEnum.DomainCreate,
+      id: '123',
+      link: 'link-123',
+      status: TaskStatusEnum.PENDING,
+    },
+  ],
+}
 
 export const serviceInfoDetail: TDomainResource = {
   id: 'example.com',
