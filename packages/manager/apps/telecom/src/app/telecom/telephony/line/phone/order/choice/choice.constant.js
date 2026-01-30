@@ -79,6 +79,46 @@ export const TELEPHONY_LINE_PHONE_CHOICE = {
     url: `${PATH_URL_INFO}yealink_W79P`,
     img: `${PATH_URL_IMG}yealink/phone-yealink-w70p-packed-w59r-90-90.png`,
   },
+  'yealink.t73w': {
+    url: `${PATH_URL_INFO}yealink_T73W`,
+    img: `${PATH_URL_IMG}yealink/phone-yealink-t73w-90-90.png`,
+  },
+  'yealink.t85w': {
+    url: `${PATH_URL_INFO}yealink_T85W`,
+    img: `${PATH_URL_IMG}yealink/phone-yealink-t85w-90-90.png`,
+  },
+  'yealink.t88wpro': {
+    url: `${PATH_URL_INFO}yealink_T88Wpro`,
+    img: `${PATH_URL_IMG}yealink/phone-yealink-t88wpro-90-90.png`,
+  },
+  'yealink.w70p.packed.w73h.v3': {
+    url: `${PATH_URL_INFO}yealink_W73P`,
+    img: `${PATH_URL_IMG}yealink/phone-yealink-w70p-90-90.png`,
+  },
+  'yealink.w70p.packed.w59r.v5': {
+    url: `${PATH_URL_INFO}yealink_W79P`,
+    img: `${PATH_URL_IMG}yealink/phone-yealink-w70p-90-90.png`,
+  },
+  'yealink.ax83h': {
+    url: `${PATH_URL_INFO}yealink_AX83H`,
+    img: `${PATH_URL_IMG}yealink/phone-yealink-ax83h-90-90.png`,
+  },
+  'yealink.ax86r': {
+    url: `${PATH_URL_INFO}yealink_AX86R`,
+    img: `${PATH_URL_IMG}yealink/phone-yealink-ax86r-90-90.png`,
+  },
+  'fanvil.w620w': {
+    url: `${PATH_URL_INFO}fanvil_W620W`,
+    img: `${PATH_URL_IMG}fanvil/phone-fanvil-w620w-90-90.png`,
+  },
+  'fanvil.v65': {
+    url: `${PATH_URL_INFO}fanvil_V65`,
+    img: `${PATH_URL_IMG}fanvil/phone-fanvil-v65-90-90.png`,
+  },
+  'fanvil.v66pro': {
+    url: `${PATH_URL_INFO}fanvil_V66Pro`,
+    img: `${PATH_URL_IMG}fanvil/phone-fanvil-v66pro-90-90.png`,
+  },
 };
 
 export const PHONE_PROTOCOL = {

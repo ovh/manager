@@ -1,5 +1,7 @@
 import 'moment';
 
+import { DURATION_TO_TRANSLATION } from './upgrade.constants';
+
 const TRACKING_PREFIX = 'vps::detail::additional-disk::upgrade';
 
 export default class VpsDiskUpgradeCtrl {
@@ -26,6 +28,16 @@ export default class VpsDiskUpgradeCtrl {
         .priceInUcents / uCent;
 
     return renewPrice / 100;
+  }
+
+  static getPricePeriodTranslationKey(disk) {
+    const renewDisk = disk.prices.find(({ capacities }) =>
+      capacities.includes('renew'),
+    );
+    return (
+      DURATION_TO_TRANSLATION[renewDisk?.duration] ||
+      'vps_additional_disk_upgrade_prices_month_period'
+    );
   }
 
   trackClick(label) {

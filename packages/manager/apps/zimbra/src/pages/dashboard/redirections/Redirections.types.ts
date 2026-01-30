@@ -4,6 +4,7 @@ export type RedirectionItem = {
   id: string;
   from: string;
   to: string;
-  organization: string;
+  organizationLabel: string;
   status: keyof typeof ResourceStatus;
+  organizationId: string;
 };

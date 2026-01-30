@@ -242,7 +242,7 @@ export const EmailAccountForm = () => {
         }) => (
           <FormField className="w-full" invalid={(isDirty || isTouched) && !!errors?.[name]}>
             <label htmlFor={name} slot="label">
-              {t('common:email_account')} *
+              {t('common:email_address')} *
             </label>
             <div className="flex">
               <Input

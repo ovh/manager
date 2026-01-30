@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import { RowSelectionState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +10,7 @@ import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME, Icon, TEXT_PRESET } from '@ovhclo
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button, Datagrid, DatagridColumn, Text } from '@ovh-ux/muk';
 
-import { BadgeStatus } from '@/components';
+import { BadgeStatus, LabelChip } from '@/components';
 import { MAX_REDIRECTIONS_QUOTA } from '@/constants';
 import { ResourceStatus } from '@/data/api';
 import { useOrganizations, usePlatform, useRedirections } from '@/data/hooks';
@@ -38,7 +38,10 @@ const columns: DatagridColumn<RedirectionItem>[] = [
   },
   {
     id: 'organization',
-    accessorKey: 'organization',
+    accessorKey: 'organizationLabel',
+    cell: ({ row }) => (
+      <LabelChip id={row.original.organizationId}>{row.original.organizationLabel}</LabelChip>
+    ),
     label: 'common:organization',
   },
   {
@@ -67,8 +70,11 @@ export const Redirections = () => {
   const [selectedRows, setSelectedRows] = useState<RedirectionItem[]>([]);
   const hrefAddRedirection = useGenerateUrl('./add', 'path');
   const hrefDeleteSelectedRedirection = useGenerateUrl('./delete_all', 'path');
-  const { data: organizations } = useOrganizations();
+  const { data: organizations } = useOrganizations({ shouldFetchAll: true });
   const { clearSelectedRedirections } = location.state || {};
+  const [searchParams] = useSearchParams();
+  const organizationId = searchParams.get('organizationId') ?? undefined;
+
   const {
     data: redirections,
     isLoading,
@@ -79,6 +85,7 @@ export const Redirections = () => {
     destination: debouncedSearchInput,
     refetchInterval: DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+    organizationId,
   });
 
   useEffect(() => {
@@ -116,8 +123,10 @@ export const Redirections = () => {
         from: redirection.currentState.source,
         to: redirection.currentState.destination,
         status: redirection.resourceStatus,
-        organization: organizations?.find((o) => o.id === redirection?.currentState?.organizationId)
-          ?.currentState?.name,
+        organizationLabel: organizations?.find(
+          (o) => o.id === redirection?.currentState?.organizationId,
+        )?.currentState?.label,
+        organizationId: redirection?.currentState?.organizationId,
       })) ?? []
     );
   }, [redirections, organizations]);
