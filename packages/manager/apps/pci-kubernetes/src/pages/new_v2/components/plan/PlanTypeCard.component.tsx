@@ -15,7 +15,12 @@ type TPlanTypeCardProps = {
   onSelect: (planType: string | null) => void;
 };
 
-export const PlanTypeCard = ({ plan, selectedPlanType, isMultiZone, onSelect }: TPlanTypeCardProps) => {
+export const PlanTypeCard = ({
+  plan,
+  selectedPlanType,
+  isMultiZone,
+  onSelect,
+}: TPlanTypeCardProps) => {
   return (
     <PciCard
       selectable={!plan.disabled}

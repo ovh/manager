@@ -95,8 +95,17 @@ const getPlanPrice = (planType: TPlanCode, catalog: TCloudCatalog): TPlanTilePri
   };
 };
 
+const getPlanCode = (planType: TPlanTile['planType'], isMultiZone: boolean): TPlanCode => {
+  switch (planType) {
+    case 'standard':
+      return isMultiZone ? 'mks.standard.hour.consumption.3az' : 'mks.standard.hour.consumption';
+    case 'free':
+      return 'mks.free.hour.consumption';
+  }
+};
+
 export const selectPlansFromCatalog =
-  (isMultiZone: boolean = false, regionPlanTypes: Array<TPlanTile['planType']>) =>
+  (isMultiZone: boolean, regionPlanTypes?: Array<TPlanTile['planType']>) =>
   (catalog: TCloudCatalog | undefined): Array<TPlanTile> => {
     if (!catalog) return [];
 
@@ -108,9 +117,26 @@ export const selectPlansFromCatalog =
       return {
         ...planDef,
         price: getPlanPrice(planType, catalog),
-        disabled: !regionPlanTypes?.includes(planDef.planType),
+        disabled: regionPlanTypes ? !regionPlanTypes?.includes(planDef.planType) : false,
       };
     });
+  };
+
+export const selectPlanPrices =
+  (isMultiZone: boolean, planType: TPlanTile['planType']) =>
+  (catalog: TCloudCatalog | undefined) => {
+    if (!catalog) return null;
+
+    const code = getPlanCode(planType, isMultiZone);
+
+    const plans = catalog.entities.plans;
+    const plan = plans[code]?.pricings[0];
+    if (!plan) return null;
+
+    return {
+      hourlyPrice: plan.price,
+      hourlyTax: plan.tax,
+    };
   };
 
 export const selectRegionPlanType =
@@ -136,7 +162,7 @@ export const usePlanTiles = (macroRegion: string, isMultiZone: boolean) => {
   });
 
   const { data: plans } = useCloudCatalog({
-    select: selectPlansFromCatalog(isMultiZone, regionPlanTypes ?? []),
+    select: selectPlansFromCatalog(isMultiZone, regionPlanTypes),
   });
 
   return {

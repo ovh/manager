@@ -33,12 +33,6 @@ export const ClusterPlanSection = () => {
     return setValue('planType', planType);
   };
 
-  /* 
-    TODO : 
-    - Prix cart
-    - Ajouter des tests dans les mappers
-  */
-
   useEffect(() => {
     if (!plans) return;
 

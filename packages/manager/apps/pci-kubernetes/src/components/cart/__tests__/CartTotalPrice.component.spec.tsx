@@ -16,14 +16,7 @@ const totalPriceValue = 50;
 
 describe('Considering CartTotalPrice component', () => {
   test('Should render total prices', () => {
-    render(
-      <CartTotalPrice
-        price={totalPriceValue}
-        text={totalPriceText}
-        displayHourlyPrice
-        displayMonthlyPrice
-      />,
-    );
+    render(<CartTotalPrice price={totalPriceValue} text={totalPriceText} displayMonthlyPrice />);
 
     const cartTotalPriceElement = screen.getByTestId('cart-total-price');
     const cartHourlyTotalPriceElement = screen.getByTestId('cart-hourly-total-price');
