@@ -40,10 +40,7 @@ export default function QpusList({ qpus }: QpusListProps) {
           <Button
             data-testid="create-notebook-button"
             onClick={() => {
-              track(
-                TRACKING.notebooks.listing.createNotebooksClick(),
-                'listing',
-              );
+              track(TRACKING.qpus.listing.createNotebooksClick(), 'listing');
               navigate('./new');
             }}
           >
