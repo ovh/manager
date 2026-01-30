@@ -262,6 +262,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       header: '',
       isSortable: false,
       cell: ({ row: { original: server } }) => ActionCell(server),
+      size: 20,
     },
   ];
 }
