@@ -1,29 +1,28 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "lib": ["dom", "es2021"],
-    "noEmit": true,
-    "target": "es2020",
-    "types": ["vite/client", "node"],
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "removeComments": true,
+    "types": [
+      "vite/client",
+      "node"
+    ],
     "outDir": "dist",
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
     "noImplicitAny": true,
-    "declaration": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "jsx": "react-jsx",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@ovh-ux/manager-module-vcd-api": ["../../modules/vcd-api/src"],
-      "@ovh-ux/manager-network-common": ["../../modules/network-common/src"]
-    }
+      "@ovh-ux/manager-module-vcd-api": ["../../modules/vcd-api/src/dist"],
+      "@ovh-ux/manager-network-common": ["../../modules/network-common/src/dist"]
+    },
+    "baseUrl": "."
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "types", "**/*.spec.ts*"]
+  "include": [
+    "src",
+    "public/**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types",
+  ]
 }

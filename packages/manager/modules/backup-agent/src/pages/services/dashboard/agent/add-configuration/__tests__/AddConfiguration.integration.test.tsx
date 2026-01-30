@@ -7,6 +7,11 @@ import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 
+vi.mock('@hookform/resolvers/zod', async () => {
+  const { createZodResolverMock } = await import('@/test-utils/zodResolverMock');
+  return { zodResolver: createZodResolverMock() };
+});
+
 // --- Mock translation ---
 vi.mock('@ovhcloud/ods-components/react', async () => {
   const actual = await vi.importActual('@ovhcloud/ods-components/react');

@@ -1,20 +1,13 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import {
-  ShellContext,
-  initShellContext,
-  initI18n,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import App from './App';
 import './index.scss';
+import { APP_NAME_TRACKING, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constants';
 import './vite-hmr';
-
-import {
-  UNIVERSE,
-  SUB_UNIVERSE,
-  LEVEL2,
-  APP_NAME_TRACKING,
-} from './tracking.constants';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -39,7 +32,7 @@ const init = async (appName: string) => {
   context.shell.tracking.setConfig(region, LEVEL2);
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch {
     // nothing to do
   }
 
@@ -52,4 +45,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('hpc-vmware-public-vcf-aas');
+void init('hpc-vmware-public-vcf-aas');

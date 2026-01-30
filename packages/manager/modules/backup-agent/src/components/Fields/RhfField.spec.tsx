@@ -5,9 +5,15 @@ import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
 import 'element-internals-polyfill';
 import { useForm } from 'react-hook-form';
+import { vi } from 'vitest';
 import { z } from 'zod';
 
 import { RhfField } from './RhfField.component';
+
+vi.mock('@hookform/resolvers/zod', async () => {
+  const { createZodResolverMock } = await import('@/test-utils/zodResolverMock');
+  return { zodResolver: createZodResolverMock() };
+});
 
 const SCHEMA = z.object({
   inputTest: z.string().max(5),
