@@ -1,3 +1,4 @@
+import { safeJsonParse } from '@secret-manager/utils/json';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
@@ -8,13 +9,9 @@ export const useCustomMetadataSchema = () => {
 
   return z.string().refine(
     (value) => {
-      try {
-        const parsedJSON = JSON.parse(value) as object;
-        const keys = Object.keys(parsedJSON);
-        return keys.every((key) => key !== '');
-      } catch {
-        return true;
-      }
+      const parsedJSON = safeJsonParse(value);
+      const keys = Object.keys(parsedJSON);
+      return keys.every((key) => key !== '');
     },
     {
       error: t('error_empty_keys'),
