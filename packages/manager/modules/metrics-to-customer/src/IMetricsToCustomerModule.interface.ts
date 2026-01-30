@@ -1,0 +1,11 @@
+import { SubscriptionUrls } from '@/types/SubscriptionUrls.type';
+
+export interface IMetricsToCustomerModule {
+  resourceName: string;
+  productType: string;
+  resourceURN: string;
+  regions: string[];
+  defaultRetention: string;
+  subscriptionUrls: SubscriptionUrls;
+  enableConfigurationManagement?: boolean;
+}

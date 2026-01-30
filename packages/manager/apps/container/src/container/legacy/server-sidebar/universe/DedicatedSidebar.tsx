@@ -55,6 +55,12 @@ export const features = [
   'okms:key-management-service',
   'okms:secret-manager',
   'okms:secret-manager:beta-badge',
+  'observability',
+  'observability:dashboards',
+  'observability:metrics',
+  'observability:metrics:tenants',
+  'observability:settings',
+  'observability:settings:services',
 ];
 
 export default function DedicatedSidebar() {
@@ -459,6 +465,66 @@ export default function DedicatedSidebar() {
             pathMatcher: new RegExp('^/okms/secret-manager/*'),
           },
         ],
+      });
+    }
+
+    if (feature['observability']) {
+      menu.push({
+        id: 'observability',
+        label: t('sidebar_observability'),
+        ignoreSearch: true,
+        icon: (
+          <OsdsIcon
+            name={ODS_ICON_NAME.SEARCH}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.text}
+          />
+        ),
+        pathMatcher: new RegExp('^/observability'),
+        subItems: [
+          feature['observability:dashboards'] && {
+            id: 'dashboards',
+            href: navigation.getURL('observability', '#/dashboards'),
+            label: t('sidebar_observability_dashboards'),
+            pathMatcher: new RegExp('^/observability/dashboards'),
+            ignoreSearch: true,
+            icon:  (
+              <OsdsIcon
+                name={ODS_ICON_NAME.GRAPH_CONCEPT}
+                size={ODS_ICON_SIZE.xxs}
+                color={ODS_THEME_COLOR_INTENT.text}
+              />
+            ),
+          },
+          feature['observability:metrics:tenants'] && {
+            id: 'tenants',
+            href: navigation.getURL('observability', '#/metrics/tenants'),
+            label: t('sidebar_observability_metrics_tenants'),
+            pathMatcher: new RegExp('^/observability/metrics'),
+            ignoreSearch: true,
+            icon: (
+              <OsdsIcon
+                name={ODS_ICON_NAME.CONTAINER_CONCEPT}
+                size={ODS_ICON_SIZE.xxs}
+                color={ODS_THEME_COLOR_INTENT.text}
+              />
+            ),
+          },
+          feature['observability:settings:services'] && {
+            id: 'services',
+            href: navigation.getURL('observability', '#/settings/services'),
+            label: t('sidebar_observability_settings_service_management'),
+            pathMatcher: new RegExp('^/observability/settings/services'),
+            ignoreSearch: true,
+            icon: (
+              <OsdsIcon
+                name={ODS_ICON_NAME.KEY_CONCEPT}
+                size={ODS_ICON_SIZE.xxs}
+                color={ODS_THEME_COLOR_INTENT.text}
+              />
+            ),
+          },
+        ].filter(Boolean),
       });
     }
 
