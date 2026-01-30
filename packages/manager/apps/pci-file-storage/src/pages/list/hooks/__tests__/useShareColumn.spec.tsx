@@ -31,6 +31,28 @@ describe('useShareColumn', () => {
     expect(columns[4]!.id).toBe('status');
   });
 
+  it('should use region column with cell that translates regionDisplayKey', () => {
+    const { result } = renderHook(() => useShareColumn());
+    const columns = result.current ?? [];
+    const regionColumn = columns[1]! as {
+      id: string;
+      accessorKey?: string;
+      cell?: (ctx: { row: { original: { regionDisplayKey: string } } }) => React.ReactNode;
+    };
+    expect(regionColumn.id).toBe('region');
+    expect(regionColumn.accessorKey).toBe('region');
+    expect(regionColumn.cell).toBeDefined();
+    const cell = regionColumn.cell?.({
+      row: {
+        original: {
+          regionDisplayKey: 'regions:manager_components_region_GRA_micro',
+        },
+      },
+    } as never);
+    render(cell as React.ReactElement);
+    expect(screen.getByText('regions:manager_components_region_GRA_micro')).toBeInTheDocument();
+  });
+
   it('should render status column with Badge and mapped label', () => {
     const { result } = renderHook(() => useShareColumn());
     const columns = result.current ?? [];
@@ -44,6 +66,7 @@ describe('useShareColumn', () => {
         id: 'share-1',
         name: 'My Share',
         region: 'GRA9',
+        regionDisplayKey: 'regions:manager_components_region_GRA_micro',
         protocol: 'NFS',
         size: 1000,
         status: 'available',

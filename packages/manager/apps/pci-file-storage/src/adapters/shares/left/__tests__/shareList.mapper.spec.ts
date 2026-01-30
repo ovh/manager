@@ -1,9 +1,13 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { mapShareToShareListRow } from '../shareList.mapper';
 
+vi.mock('@ovh-ux/muk', () => ({
+  getMacroRegion: vi.fn((region: string) => (region === 'GRA9' ? 'GRA' : region)),
+}));
+
 describe('mapShareToShareListRow', () => {
-  it('should map domain share to list row', () => {
+  it('should map domain share to list row with region display key', () => {
     const share = {
       id: 'share-1',
       name: 'My Share',
@@ -23,6 +27,7 @@ describe('mapShareToShareListRow', () => {
       id: 'share-1',
       name: 'My Share',
       region: 'GRA9',
+      regionDisplayKey: 'regions:manager_components_region_GRA_micro',
       protocol: 'NFS',
       size: 161061273600,
       status: 'available',

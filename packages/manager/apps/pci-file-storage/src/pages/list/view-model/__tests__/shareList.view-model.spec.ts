@@ -11,6 +11,10 @@ vi.mock('@/adapters/shares/left/shareList.mapper', () => ({
 }));
 
 describe('shareList view model', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   describe('selectSharesForList', () => {
     it.each([
       { data: undefined, expected: [] as TShareListRow[], mapperCalls: 0 },
@@ -22,13 +26,17 @@ describe('shareList view model', () => {
       },
     ])('should return expected list when data is $data', ({ data, expected, mapperCalls }) => {
       if (mapperCalls > 0) {
-        vi.mocked(mapShareToShareListRow).mockReturnValue(expected[0] ?? ({} as TShareListRow));
+        vi.mocked(mapShareToShareListRow).mockReturnValue(expected?.[0] ?? ({} as TShareListRow));
       }
 
       const result = selectSharesForList(data);
 
       expect(result).toEqual(expected);
       expect(mapShareToShareListRow).toHaveBeenCalledTimes(mapperCalls);
+      if (mapperCalls > 0) {
+        const shares = data ?? [];
+        expect(mapShareToShareListRow).toHaveBeenCalledWith(shares[0], 0, shares);
+      }
     });
   });
 

@@ -19,7 +19,7 @@ const BADGE_COLOR_BY_STATUS: Record<TShareStatusBadgeColor, BadgeColor> = {
 };
 
 export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
-  const { t } = useTranslation(['list']);
+  const { t } = useTranslation(['list', 'regions']);
   const { formatBytes } = useBytes();
 
   return useMemo(
@@ -29,13 +29,11 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         accessorKey: 'name',
         header: t('list:columns.name_id'),
         cell: ({ row }) => (
-          <div className="flex flex-col gap-3">
+          <div>
             <Link as={RouterLink} to={`../${row.original.id}`}>
               {row.original.name}
             </Link>
-            <Text className="text-ods-body-text-400" preset="paragraph">
-              {row.original.id}
-            </Text>
+            <Text preset="paragraph">{row.original.id}</Text>
           </div>
         ),
         size: 400,
@@ -44,6 +42,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         id: 'region',
         accessorKey: 'region',
         header: t('list:columns.region'),
+        cell: ({ row }): string => t(row.original.regionDisplayKey, { micro: row.original.region }),
       },
       {
         id: 'protocol',
@@ -55,7 +54,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         id: 'allocated_capacity',
         accessorKey: 'size',
         header: t('list:columns.allocated_capacity'),
-        cell: ({ getValue }) => formatBytes(getValue<number>() ?? 0, 0, 1000),
+        cell: ({ getValue }) => formatBytes(getValue<number>() ?? 0, 3, 1000),
       },
       {
         id: 'status',

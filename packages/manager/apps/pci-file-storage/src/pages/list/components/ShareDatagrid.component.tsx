@@ -14,11 +14,13 @@ export const ShareDatagrid: React.FC = () => {
   const columns = useShareColumn();
 
   return (
-    <Datagrid<TShareListRow>
-      columns={columns}
-      data={shares}
-      totalCount={shares.length}
-      isLoading={isLoading}
-    />
+    <div className="w-full min-w-0 [&_table]:overflow-y-visible">
+      <Datagrid<TShareListRow>
+        columns={columns}
+        data={shares}
+        totalCount={shares.length}
+        isLoading={isLoading}
+      />
+    </div>
   );
 };

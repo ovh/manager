@@ -21,6 +21,7 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
         id: 'share-1',
         name: 'My Share',
         region: 'GRA9',
+        regionDisplayKey: 'regions:manager_components_region_GRA_micro',
         protocol: 'NFS',
         size: 161061273600,
         status: 'available',
