@@ -48,6 +48,9 @@ export default class ExchangeTabInformationCtrl {
 
     this.getGuides();
     this.retrievingDVCEmails();
+    if (!this.exchange.sslExpirationDate) {
+      this.getSSLDoingTasks();
+    }
     this.loadATooltip();
     this.loadAaaaTooltip();
     this.loadPtrTooltip();
@@ -88,6 +91,17 @@ export default class ExchangeTabInformationCtrl {
         this.shouldDisplaySSLRenew();
         this.setMessageSSL();
         this.loading.sslButton = false;
+      });
+  }
+
+  getSSLDoingTasks() {
+    this.exchangeService
+      .getSSLDoingTasks(this.exchange.organization, this.exchange.domain)
+      .then((task) => {
+        if (task.length > 0) {
+          this.hasSSLTask = true;
+          this.setMessageSSL();
+        }
       });
   }
 
