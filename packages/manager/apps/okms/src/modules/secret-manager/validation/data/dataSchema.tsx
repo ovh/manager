@@ -1,3 +1,4 @@
+import { safeJsonParse, safeJsonStringify } from '@secret-manager/utils/json';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
@@ -26,20 +27,16 @@ export const useSecretDataSchema = () => {
     )
     .refine(
       (value) => {
-        try {
-          const parsed = JSON.parse(value) as object;
-          const stringified = JSON.stringify(parsed);
+        const parsed = safeJsonParse<object>(value);
+        const stringified = safeJsonStringify(parsed);
 
-          // Normalize both strings for comparison (remove whitespace differences)
-          const original = value.replace(/\s/g, '');
-          const result = stringified.replace(/\s/g, '');
+        // Normalize both strings for comparison (remove whitespace differences)
+        const original = value.replace(/\s/g, '');
+        const result = stringified.replace(/\s/g, '');
 
-          // If the strings are not equal, it means there are duplicated keys
-          // (duplicated keys are lost with JSON.parse)
-          return original === result;
-        } catch {
-          return true;
-        }
+        // If the strings are not equal, it means there are duplicated keys
+        // (duplicated keys are lost with JSON.parse)
+        return original === result;
       },
       {
         error: t('error_duplicate_keys'),
@@ -47,13 +44,9 @@ export const useSecretDataSchema = () => {
     )
     .refine(
       (value) => {
-        try {
-          const parsedJSON = JSON.parse(value) as object;
-          const keys = Object.keys(parsedJSON);
-          return keys.every((key) => key !== '');
-        } catch {
-          return true;
-        }
+        const parsedJSON = safeJsonParse<object>(value);
+        const keys = Object.keys(parsedJSON);
+        return keys.every((key) => key !== '');
       },
       {
         error: t('error_empty_keys'),

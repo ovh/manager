@@ -2,7 +2,7 @@
  * Parses a JSON string and returns a typed object.
  * Returns an empty object if the input is null, undefined, or causes an error.
  */
-export function safeJsonParse<T>(json: string): T {
+export function safeJsonParse<T = object>(json: string): T {
   try {
     return JSON.parse(json) as T;
   } catch {
