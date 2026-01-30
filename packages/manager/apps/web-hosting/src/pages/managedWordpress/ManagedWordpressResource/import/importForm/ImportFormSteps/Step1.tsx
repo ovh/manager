@@ -41,6 +41,7 @@ export default function Step1({
 }: Step1Props) {
   return (
     <form onSubmit={onSubmit} className="w-full">
+      <h2 className="sr-only">{t('common:web_hosting_common_url_connexion')}</h2>
       <Text preset={TEXT_PRESET.heading3} className="mb-4">
         {t('common:web_hosting_common_url_connexion')}
       </Text>
@@ -48,7 +49,7 @@ export default function Step1({
         name="adminURL"
         control={control}
         render={({ field: { name, value, onBlur, onChange }, fieldState: { error, invalid } }) => (
-          <FormField className="mb-4 w-full" invalid={!!error && invalid}>
+          <FormField className="mb-4 w-full" id="input-admin-url" invalid={!!error && invalid}>
             <FormFieldLabel>{t('common:web_hosting_common_admin_url')}*</FormFieldLabel>
             <Input
               type={INPUT_TYPE.text}
@@ -71,7 +72,11 @@ export default function Step1({
         name="adminLogin"
         control={control}
         render={({ field: { name, value, onBlur, onChange } }) => (
-          <FormField className="mb-4 w-full" aria-errormessage={errors?.adminLogin?.message}>
+          <FormField
+            className="mb-4 w-full"
+            id="input-admin-login"
+            aria-errormessage={errors?.adminLogin?.message}
+          >
             <FormFieldLabel>{t('common:web_hosting_common_admin_login')}*</FormFieldLabel>
             <Input
               type={INPUT_TYPE.text}
@@ -90,7 +95,11 @@ export default function Step1({
         name="adminPassword"
         control={control}
         render={({ field: { name, value, onBlur, onChange } }) => (
-          <FormField className="mb-4 w-full" aria-errormessage={errors?.adminPassword?.message}>
+          <FormField
+            className="mb-4 w-full"
+            id="input-admin-password"
+            aria-errormessage={errors?.adminPassword?.message}
+          >
             <FormFieldLabel>{t('common:web_hosting_common_admin_password')}*</FormFieldLabel>
             <Password
               name={name}

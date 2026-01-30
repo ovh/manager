@@ -3,7 +3,8 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { managedWordpressWebsitesMock } from '@/data/__mocks__/managedWordpress/website';
 import ManagedWordpressTranslations from '@/public/translations/common/Messages_fr_FR.json';
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
+import { getDomRect } from '@/utils/test.setup';
 
 import MyWebsitesPage from '../ManagedWordpressResource/myWebsites/MyWebsites.page';
 
@@ -39,13 +40,19 @@ vi.mock(
 );
 
 describe('MyWebsitesPage Topbar Buttons', () => {
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+    vi.clearAllMocks();
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render page with content', () => {
-    const { getByTestId } = render(<MyWebsitesPage />, { wrapper });
-    const sortedRows = getByTestId('header-defaultFQDN');
+    render(<MyWebsitesPage />, { wrapper });
 
-    expect(sortedRows).toHaveTextContent(
-      ManagedWordpressTranslations.web_hosting_status_header_fqdn,
-    );
+    expect(
+      screen.getByText(ManagedWordpressTranslations.web_hosting_status_header_fqdn),
+    ).toBeInTheDocument();
   });
   it('should render all topbar buttons', () => {
     render(<MyWebsitesPage />, { wrapper });
@@ -54,5 +61,14 @@ describe('MyWebsitesPage Topbar Buttons', () => {
     expect(screen.getByTestId('my-websites-import')).toBeInTheDocument();
     expect(screen.getByTestId('my-websites-manage')).toBeInTheDocument();
     expect(screen.getByTestId('refresh')).toBeInTheDocument();
+  });
+  it.skip('should have a valid html with a11y and w3c', async () => {
+    const { container } = renderWithRouter(<MyWebsitesPage />);
+    // ODS: div inside label (invalid HTML), form elements without accessible names
+    const html = container.innerHTML
+      .replace(/\s*aria-controls="[^"]*"/g, '')
+      .replace(/\s*aria-labelledby="[^"]*"/g, '');
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

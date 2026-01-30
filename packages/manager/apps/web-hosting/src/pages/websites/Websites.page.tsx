@@ -235,7 +235,7 @@ export default function Websites() {
       },
       {
         id: 'actions',
-        header: '',
+        header: () => <div className="sr-only">{t('web_hosting_status_header_actions')}</div>,
         size: 48,
         cell: ({ row }) => <ActionButtonStatistics webSiteItem={row.original} />,
         enableHiding: false,

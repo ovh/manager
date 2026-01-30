@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { GitStatus, ServiceStatus } from '@/data/types/status';
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import ModifyModalDomain from '../ModifyDomain.modal';
 
@@ -30,6 +30,7 @@ vi.mock('@/data/api/webHosting', () => ({
 
 describe('ModifyModalDomain', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
     vi.mocked(useLocation).mockReturnValue({
       pathname: '/test',
@@ -46,7 +47,9 @@ describe('ModifyModalDomain', () => {
       },
     } as ReturnType<typeof useLocation>);
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(<ModifyModalDomain />, { wrapper });
     expect(container).toBeInTheDocument();

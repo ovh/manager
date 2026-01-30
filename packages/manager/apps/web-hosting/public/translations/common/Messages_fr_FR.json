@@ -55,6 +55,7 @@
   "web_hosting_status_header_fqdn": "Nom de domaine",
   "web_hosting_status_header_linked_domains": "Domaines associés",
   "web_hosting_status_header_boostOffer": "Boost",
+  "web_hosting_status_header_actions": "Actions",
   "web_hosting_status_header_websiteStatus": "Statut du site",
   "web_hosting_status_header_fqdn_wordpress": "Fully Qualified Domain Name (FQDN)",
   "web_hosting_status_active": "Activé",

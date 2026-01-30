@@ -141,7 +141,7 @@ export const OptionCache: React.FC<OptionCacheProps> = ({
                 },
               ]}
             >
-              <SelectControl />
+              <SelectControl aria-label={t('cdn_shared_option_query_string_title')} />
               <SelectContent />
             </Select>
           )}
