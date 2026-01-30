@@ -68,7 +68,14 @@ const renderComponent = async () => {
 
   const wrapper = await testWrapperBuilder().withI18next().withQueryClient().build();
 
-  return render(<EditMetadataDrawerForm {...defaultProps} />, { wrapper });
+  const rendered = render(<EditMetadataDrawerForm {...defaultProps} />, { wrapper });
+
+  // Wait the radio group to be rendered to avoid warnings
+  await waitFor(() => {
+    expect(screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE)).toBeInTheDocument();
+  });
+
+  return rendered;
 };
 
 const submitForm = async (user: UserEvent) => {
@@ -110,14 +117,12 @@ describe('EditMetadataDrawerForm component test suite', () => {
       const input3 = screen.getByRole('radio', {
         name: allLabels.secretManager.activated,
       });
-      screen.debug(input3);
       expect(input3).toBeInTheDocument();
       expect(input3).toBeChecked();
 
       const input4 = screen.getByRole('radio', {
         name: allLabels.common.status.disabled,
       });
-      screen.debug(input4);
       expect(input4).toBeInTheDocument();
       expect(input4).not.toBeChecked();
     });
@@ -135,9 +140,7 @@ describe('EditMetadataDrawerForm component test suite', () => {
       const submitButton = screen.getByRole('button', {
         name: commonLabels.actions.validate,
       });
-      await act(async () => {
-        await user.click(submitButton);
-      });
+      await act(() => user.click(submitButton));
 
       // THEN
       await waitFor(() => {
