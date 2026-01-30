@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.8.2...@ovh-ux/manager-network-common@0.9.0) (2026-01-30)
+
+
+### Features
+
+* resolve flaky tests and lint staged enhancement ([28b920f](https://github.com/ovh/manager/commit/28b920f6ac5e1180b9c7c4c23a9e3b5b920be7ca))
+
+
+
+
+
 ## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.8.1...@ovh-ux/manager-network-common@0.8.2) (2026-01-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-network-common

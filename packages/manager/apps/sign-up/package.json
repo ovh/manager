@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up-app",
-  "version": "4.6.13",
+  "version": "4.6.14",
   "private": true,
   "description": "Sign-up form application.",
   "repository": {
@@ -18,19 +18,19 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-cookie-policy": "^1.6.0",
-    "@ovh-ux/manager-core": "^13.4.2",
-    "@ovh-ux/ng-at-internet": "^6.0.43",
-    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.5",
-    "@ovh-ux/ng-ovh-feature-flipping": "^1.1.7",
-    "@ovh-ux/ng-ovh-http": "^5.1.6",
-    "@ovh-ux/ng-ovh-request-tagger": "^2.0.16",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.10.0",
-    "@ovh-ux/ng-translate-async-loader": "^2.2.6",
+    "@ovh-ux/manager-at-internet-configuration": "^1.5.1",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-cookie-policy": "^1.6.1",
+    "@ovh-ux/manager-core": "^13.4.3",
+    "@ovh-ux/ng-at-internet": "^6.0.44",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.6",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.1.8",
+    "@ovh-ux/ng-ovh-http": "^5.1.7",
+    "@ovh-ux/ng-ovh-request-tagger": "^2.0.17",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.10.1",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.7",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/sign-up": "^3.3.16",
+    "@ovh-ux/sign-up": "^3.3.17",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",
@@ -48,7 +48,7 @@
     "ui-select": "^0.19.8"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.4",
     "webpack": "^5.76.2",

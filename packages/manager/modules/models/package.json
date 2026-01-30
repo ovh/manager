@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-models",
-  "version": "2.7.9",
+  "version": "2.7.10",
   "private": true,
   "description": "Set of classes representing API data ",
   "repository": {
@@ -16,8 +16,8 @@
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "devDependencies": {
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

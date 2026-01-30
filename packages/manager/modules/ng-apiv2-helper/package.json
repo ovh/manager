@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ng-apiv2-helper",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "description": "OVHCloud Helper for apiv2",
   "repository": {
@@ -19,7 +19,7 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",

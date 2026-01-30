@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ng-layout-helpers",
-  "version": "2.13.0",
+  "version": "2.13.1",
   "private": true,
   "description": "Set of utilities and components for layouts",
   "repository": {
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

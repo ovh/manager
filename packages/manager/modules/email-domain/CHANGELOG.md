@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.16...@ovh-ux/manager-email-domain@1.11.17) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-email-domain
+
+
+
+
+
 ## [1.11.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.15...@ovh-ux/manager-email-domain@1.11.16) (2026-01-23)
 
 

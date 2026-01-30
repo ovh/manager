@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contacts",
-  "version": "5.3.7",
+  "version": "5.3.8",
   "description": "Helpers for managing OVH Contacts",
   "keywords": [
     "contacts",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",

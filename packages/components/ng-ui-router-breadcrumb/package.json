@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-breadcrumb",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Display a breadcrumb based on the UI-Router state declaration.",
   "keywords": [
     "angularjs",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.22",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.32.10...@ovh-ux/manager-pci-rancher-app@1.33.0) (2026-01-30)
+
+
+### Features
+
+* resolve flaky tests and lint staged enhancement ([28b920f](https://github.com/ovh/manager/commit/28b920f6ac5e1180b9c7c4c23a9e3b5b920be7ca))
+
+
+
+
+
 ## [1.32.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.32.9...@ovh-ux/manager-pci-rancher-app@1.32.10) (2026-01-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

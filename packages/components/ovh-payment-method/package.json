@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-payment-method",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Get payment methods from different OVHcloud APIs",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "axios": "^1.1.2"

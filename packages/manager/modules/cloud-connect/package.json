@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect",
-  "version": "1.27.0",
+  "version": "1.27.1",
   "private": true,
   "description": "OVHcloud CloudConnect product",
   "repository": {
@@ -21,7 +21,7 @@
     "lodash": "^4.17.14"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",

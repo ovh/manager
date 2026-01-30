@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox",
-  "version": "6.24.7",
+  "version": "6.24.8",
   "private": true,
   "description": "OverTheBox product.",
   "repository": {
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0",

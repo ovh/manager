@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nasha",
-  "version": "2.20.2",
+  "version": "2.20.3",
   "private": true,
   "description": "NAS-HA product.",
   "repository": {
@@ -20,7 +20,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@module-federation/runtime": "^0.8.11",

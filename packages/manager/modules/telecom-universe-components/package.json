@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "7.29.3",
+  "version": "7.29.4",
   "private": true,
   "description": "Collection of components for the Telecom control panel.",
   "repository": {
@@ -22,7 +22,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.4",

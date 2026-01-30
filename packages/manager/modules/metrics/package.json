@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "private": true,
   "description": "OVHcloud Metrics product",
   "repository": {
@@ -20,7 +20,7 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-components": "^1.0.0",

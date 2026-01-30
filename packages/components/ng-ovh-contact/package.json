@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contact",
-  "version": "5.3.2",
+  "version": "5.3.3",
   "description": "Helps you dealing with OVHcloud contacts from /me/contact API.",
   "keywords": [
     "angularjs",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",

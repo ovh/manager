@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise",
-  "version": "1.13.2",
+  "version": "1.13.3",
   "private": true,
   "description": "Veeam Enterprise product.",
   "repository": {
@@ -19,7 +19,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {

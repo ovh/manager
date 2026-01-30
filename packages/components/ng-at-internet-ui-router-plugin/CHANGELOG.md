@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.5.5...@ovh-ux/ng-at-internet-ui-router-plugin@3.5.6) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin
+
+
+
+
+
 ## [3.5.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.5.4...@ovh-ux/ng-at-internet-ui-router-plugin@3.5.5) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin

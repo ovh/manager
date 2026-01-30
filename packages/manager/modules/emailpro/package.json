@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro",
-  "version": "3.17.14",
+  "version": "3.17.15",
   "private": true,
   "description": "Email Pro product.",
   "repository": {
@@ -22,7 +22,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
