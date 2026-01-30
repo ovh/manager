@@ -1,4 +1,4 @@
-import React, { Suspense, startTransition, useContext } from 'react';
+import { Suspense, startTransition, useContext } from 'react';
 
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
@@ -16,6 +16,7 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
+import { NoAgentEnableMessage } from '@/components/NoAgentEnableMessage/NoAgentEnableMessage.component';
 import { useBackupVSPCTenantDetails } from '@/data/hooks/tenants/useVspcTenantDetails';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
@@ -25,8 +26,8 @@ import { useTenantDashboardTabs } from './_hooks/useTenantDashboardTabs';
 export default function DashboardPage() {
   const { appName } = useContext(BackupAgentContext);
   const { tenantId } = useRequiredParams('tenantId');
-  const { data: tenantResource } = useBackupVSPCTenantDetails({ tenantId: tenantId });
-  const { t } = useTranslation([NAMESPACES.ACTIONS]);
+  const { data: tenantResource } = useBackupVSPCTenantDetails({ tenantId });
+  const { t } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
 
   const { trackClick } = useOvhTracking();
@@ -49,7 +50,12 @@ export default function DashboardPage() {
         backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
         onClickReturn={onNavigateBackClicked}
         breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
-        message={<Notifications />}
+        message={
+          <>
+            <NoAgentEnableMessage />
+            <Notifications />
+          </>
+        }
         tabs={
           <OdsTabs>
             {tabs.map((tab) => (

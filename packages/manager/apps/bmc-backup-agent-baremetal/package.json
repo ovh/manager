@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "@ovh-ux/backup-agent": "^1.11.0",
+    "@ovh-ux/backup-agent": "^1.12.0",
     "@ovh-ux/manager-billing-informations": "^1.6.3",
     "@ovh-ux/manager-common-translations": "^0.28.2",
     "@ovh-ux/manager-config": "^8.8.1",

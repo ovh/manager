@@ -36,9 +36,26 @@ export const OdsTextMock = vi
 
 export const OdsMessageMock = vi
   .fn()
-  .mockImplementation(({ children, ...props }: { children?: React.ReactNode }) => (
-    <div {...(props as React.HTMLAttributes<HTMLDivElement>)}>{children}</div>
-  ));
+  .mockImplementation(
+    ({
+      children,
+      color,
+      isDismissible,
+      ...props
+    }: {
+      children?: React.ReactNode;
+      color?: string;
+      isDismissible?: boolean;
+    }) => (
+      <div
+        {...(props as React.HTMLAttributes<HTMLDivElement>)}
+        data-color={color}
+        data-is-dismissible={isDismissible}
+      >
+        {children}
+      </div>
+    ),
+  );
 
 export const OdsSelectMock = vi
   .fn()

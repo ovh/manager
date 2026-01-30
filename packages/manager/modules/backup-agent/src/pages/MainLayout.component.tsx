@@ -18,6 +18,7 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
+import { NoAgentEnableMessage } from '@/components/NoAgentEnableMessage/NoAgentEnableMessage.component';
 import { useBackupVaultsListOptions } from '@/data/hooks/vaults/getVault';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { LABELS } from '@/module.constants';
@@ -59,7 +60,12 @@ export default function MainLayout() {
     >
       <BaseLayout
         header={{ title: LABELS.BACKUP_AGENT, headerButton: <GuideButton items={guideItems} /> }}
-        message={<Notifications />}
+        message={
+          <>
+            <NoAgentEnableMessage />
+            <Notifications />
+          </>
+        }
         breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
         tabs={
           <OdsTabs>

@@ -30,7 +30,7 @@ export default function AgentsListingPage() {
   ]);
   const navigate = useNavigate();
   const columns = useAgentsListingColumnsHooks();
-  const { flattenData, isPending } = useBackupAgentList({ tenantId });
+  const { data, isPending } = useBackupAgentList({ tenantId });
   const guide = useGuideUtils();
 
   const handleDownloadButton = () => {
@@ -96,8 +96,8 @@ export default function AgentsListingPage() {
               </section>
             }
             columns={columns}
-            items={flattenData || []}
-            totalItems={flattenData?.length || 0}
+            items={data || []}
+            totalItems={data?.length || 0}
             isLoading={isPending}
           />
         )}
