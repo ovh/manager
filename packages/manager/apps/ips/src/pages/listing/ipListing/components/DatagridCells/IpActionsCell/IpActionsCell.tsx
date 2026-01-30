@@ -19,10 +19,9 @@ import { isGameFirewallAvailable } from '../enableCellsUtils';
 import {
   useGetIpdetails,
   useGetIpGameFirewall,
-  useIpHasForcedMitigation,
   useGetAttachedServices,
-  useIpHasVmac,
   useIpHasAlerts,
+  useIpHasVmac,
 } from '@/data/hooks';
 import {
   canAggregateByoipIp,
@@ -161,11 +160,6 @@ export const IpActionsCell = ({
     enabled: availableGetGameFirewall && !isByoipSlice,
   });
 
-  const { hasForcedMitigation } = useIpHasForcedMitigation({
-    ip,
-    enabled: !isIpExpired && !isByoipSlice,
-  });
-
   const items: ActionMenuItem[] = [
     !parentIpGroup && {
       id: 0,
@@ -221,7 +215,6 @@ export const IpActionsCell = ({
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
-      !hasForcedMitigation &&
       !hasHousingServiceAttachedToIp && {
         id: 3,
         label: t('listingActionConfigureEdgeNetworkFirewall'),
