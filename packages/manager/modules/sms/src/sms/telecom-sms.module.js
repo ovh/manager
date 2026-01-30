@@ -26,6 +26,7 @@ import phonebooks from './phonebooks';
 import receivers from './receivers';
 import senders from './senders';
 import sms from './sms';
+import statistics from './statistics';
 import users from './users';
 
 import component from './telecom-sms.component';
@@ -50,6 +51,7 @@ angular
     receivers,
     senders,
     sms,
+    statistics,
     users,
     ngOvhFeatureFlipping,
   ])
