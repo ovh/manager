@@ -1,10 +1,13 @@
 import React, { PropsWithChildren } from 'react';
 
+import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { LinkCardProps, OnboardingLayoutProps } from '@ovh-ux/muk';
+
+import { useShares } from '@/data/hooks/shares/useShares';
 
 import OnboardingPage from '../Onboarding.page';
 
@@ -12,6 +15,7 @@ const mockNavigate = vi.fn();
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
+  Navigate: () => null,
 }));
 
 vi.mock('@ovh-ux/muk', () => {
@@ -55,6 +59,13 @@ vi.mock('@/hooks/useGetUser', () => ({
   useGetUser: () => ({
     ovhSubsidiary: 'FR',
   }),
+}));
+
+vi.mock('@/data/hooks/shares/useShares', () => ({
+  useShares: vi.fn().mockReturnValue({
+    data: false,
+    isLoading: false,
+  } as unknown as QueryObserverSuccessResult<boolean>),
 }));
 
 describe('OnboardingPage', () => {
@@ -123,6 +134,18 @@ describe('OnboardingPage', () => {
       await user.click(orderButton);
 
       expect(mockNavigate).toHaveBeenCalledWith('../new');
+    });
+  });
+
+  describe('redirect when shares exist', () => {
+    it('redirects to list page when user has shares', () => {
+      vi.mocked(useShares).mockReturnValue({
+        data: true,
+        isLoading: false,
+      } as unknown as QueryObserverSuccessResult<boolean>);
+      render(<OnboardingPage />);
+
+      expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
     });
   });
 });
