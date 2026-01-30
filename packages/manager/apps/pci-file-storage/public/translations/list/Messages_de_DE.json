@@ -1,0 +1,17 @@
+{
+  "title": "Dateispeicher",
+  "columns": {
+    "name_id": "Name / ID",
+    "region": "Region",
+    "protocol": "Protokoll",
+    "allocated_capacity": "Zugewiesene Kapazität",
+    "allocated_capacity_value": "{{capacity}} GiB",
+    "status": "Status",
+    "actions": "Aktionen"
+  },
+  "actionButton": "Ein Share erstellen",
+  "actions": {
+    "manage": "Verwaltung der ",
+    "delete": "Löschen"
+  }
+}
