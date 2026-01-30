@@ -3,44 +3,53 @@ import { Button, Text } from '@ovhcloud/ods-react';
 import { describe, vi, expect, test } from 'vitest';
 import { Cart } from '../Cart.component';
 import { t } from 'i18next';
+import { BILLING_TYPE } from '@/types/instance/common.type';
 
 const instanceDetails = [
   {
+    id: 'localization',
     name: 'instance localization',
     description: (
       <Text preset="heading-6" className="text-[--ods-color-heading]">
         eu-west-par
       </Text>
     ),
+    displayPrice: true,
     price: 50,
   },
   {
+    id: 'image',
     name: 'image',
     description: (
       <Text preset="heading-6" className="text-[--ods-color-heading]">
         Linux
       </Text>
     ),
+    displayPrice: true,
     price: 10,
   },
 ];
 
 const kubeDetails = [
   {
+    id: 'localization',
     name: 'kube localization',
     description: (
       <Text preset="heading-6" className="text-[--ods-color-heading]">
         DE
       </Text>
     ),
+    displayPrice: false,
   },
   {
+    id: 'plan',
     name: 'plan',
     description: (
       <Text preset="heading-6" className="text-[--ods-color-heading]">
         free
       </Text>
     ),
+    displayPrice: true,
     price: 30,
   },
 ];
@@ -83,13 +92,25 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   }),
 }));
 
+vi.mock('@ovh-ux/muk', () => ({
+  useCatalogPrice: () => ({
+    getTextPrice: (price: number) => `${(price / 100).toFixed(4)} €`,
+  }),
+}));
+
 afterEach(() => {
   vi.clearAllMocks();
 });
 
 describe('Considering the Cart component', () => {
   test('Should render correct cart items expanded states', () => {
-    render(<Cart items={cartItems} actionsButtons={ActionButtons} />);
+    render(
+      <Cart
+        items={cartItems}
+        actionsButtons={ActionButtons}
+        billingType={BILLING_TYPE.Hourly}
+      />,
+    );
 
     const instancelocalizationElt = screen.getByTestId(
       `cart-item-details-instance localization`,
@@ -103,7 +124,13 @@ describe('Considering the Cart component', () => {
   });
 
   test('Should render correct cart items details', () => {
-    render(<Cart items={cartItems} actionsButtons={ActionButtons} />);
+    render(
+      <Cart
+        items={cartItems}
+        actionsButtons={ActionButtons}
+        billingType={BILLING_TYPE.Hourly}
+      />,
+    );
 
     const instanceLocalizationElt = screen.getByTestId(
       `cart-item-details-instance localization`,
@@ -120,7 +147,13 @@ describe('Considering the Cart component', () => {
   });
 
   test.skip('Should render expected total price', () => {
-    render(<Cart items={cartItems} actionsButtons={ActionButtons} />);
+    render(
+      <Cart
+        items={cartItems}
+        actionsButtons={ActionButtons}
+        billingType={BILLING_TYPE.Hourly}
+      />,
+    );
 
     const price = screen.getByTestId('cart-total-price');
     expect(price).toHaveTextContent('90');
