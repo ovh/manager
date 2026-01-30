@@ -814,7 +814,7 @@ class DedicatedCloudService {
   }
 
   addSecurityPolicy(serviceName, network) {
-    if (!/\/[0-9]{3}$/.test(network.value)) {
+    if (!/\/([0-9]|[1-2][0-9]|3[0-2])$/.test(network.value)) {
       // eslint-disable-next-line no-param-reassign
       network.value += '/32';
     }
@@ -861,6 +861,11 @@ class DedicatedCloudService {
   }
 
   modifySecurityPolicy(serviceName, entry) {
+    if (!/\/([0-9]|[1-2][0-9]|3[0-2])$/.test(entry.network)) {
+      // eslint-disable-next-line no-param-reassign
+      entry.network += '/32';
+    }
+
     return this.OvhHttp.put(
       '/dedicatedCloud/{serviceName}/allowedNetwork/{networkAccessId}',
       {
@@ -1761,6 +1766,10 @@ class DedicatedCloudService {
     return this.$http.post(
       `/dedicatedCloud/${serviceName}/requestContactForVmwareCloudDirectorMigration`,
     );
+  }
+
+  getIpGeolocation() {
+    return this.$http.post('/me/geolocation').then(({ data }) => data);
   }
 }
 
