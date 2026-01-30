@@ -22,6 +22,7 @@ import {
 import { useBackupConfigurations } from '@/data/hooks/configuration/useBackupConfiguration';
 import { isDiscoveryProject } from '@/data/utils/project.utils';
 import { useProject } from '@ovh-ux/manager-pci-common';
+import { BILLING_TYPE } from '@/types/instance/common.type';
 
 type TBackupConfigurationPrices = {
   localBackupPrice: number;
@@ -39,6 +40,7 @@ type TInstanceData = {
   windowsImageLicensePrice: number | null;
   backupConfigurationPrices: TBackupConfigurationPrices | null;
   networkName?: string;
+  billingType: BILLING_TYPE;
 };
 
 type TInstanceCreation = {
@@ -217,6 +219,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     distributionImageVersionName:
       backup?.name ?? distributionImageVersion.distributionImageVersionName,
     backupConfigurationPrices,
+    billingType,
   };
 
   const errorMessage = error
