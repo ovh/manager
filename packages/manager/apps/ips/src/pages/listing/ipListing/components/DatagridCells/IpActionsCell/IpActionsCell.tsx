@@ -31,7 +31,12 @@ import {
 } from '@/pages/byoip/Byoip.utils';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
-import { fromIpToId, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+import {
+  fromIpToId,
+  ipFormatter,
+  IAM_ACTION,
+  TRANSLATION_NAMESPACES,
+} from '@/utils';
 
 import { isGameFirewallAvailable } from '../enableCellsUtils';
 
@@ -172,6 +177,8 @@ export const IpActionsCell = ({
       trackingLabel: ipDetails?.description
         ? 'edit_description'
         : 'add_description',
+      iamActions: [IAM_ACTION.ipEdit],
+      urn: ipDetails?.iam?.urn,
       onClick: () =>
         navigate(
           `${urls.upsertDescription
@@ -186,6 +193,8 @@ export const IpActionsCell = ({
       id: 1,
       label: t('listingMenuReverseDns'),
       trackingLabel: 'configure_reverse-dns',
+      iamActions: [IAM_ACTION.reverseCreate, IAM_ACTION.reverseDelete],
+      urn: ipDetails?.iam?.urn,
       onClick: () =>
         navigate(
           `${urls.listingConfigureReverseDns
