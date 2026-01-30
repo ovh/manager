@@ -24,8 +24,9 @@ import {
 import { referenceRegionsMock } from '@/common/mocks/reference-regions/referenceRegions.mock';
 import { OkmsCatalog } from '@/common/types/orderCatalogOkms.type';
 import { CONTINENT_CODES } from '@/common/utils/location/continents';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
-import { RegionPicker } from './RegionPicker.component';
+import { RegionPicker, RegionPickerProps } from './RegionPicker.component';
 import { REGION_PICKER_TEST_IDS } from './regionPicker.constants';
 
 // Mock hooks
@@ -60,6 +61,11 @@ describe('RegionPicker', () => {
   const mockTranslateRegionName = vi.fn((name: string) => `Translated ${name}`);
   const mockTranslateGeographyName = vi.fn((continent: string) => continent);
 
+  const renderComponent = async (props: RegionPickerProps) => {
+    const wrapper = await testWrapperBuilder().withI18next().build();
+    return render(<RegionPicker {...props} />, { wrapper });
+  };
+
   beforeEach(() => {
     vi.clearAllMocks();
 
@@ -91,33 +97,39 @@ describe('RegionPicker', () => {
   });
 
   describe('Loading state', () => {
-    it('should display a spinner when locations are loading', () => {
+    it('should display a spinner when locations are loading', async () => {
       mockUseLocations.mockReturnValue({
         data: undefined,
         isPending: true,
         error: null,
       } as unknown as ReturnType<typeof useLocations>);
 
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       expect(screen.getByTestId(REGION_PICKER_TEST_IDS.SPINNER)).toBeInTheDocument();
     });
 
-    it('should display a spinner when catalog is loading', () => {
+    it('should display a spinner when catalog is loading', async () => {
       mockUseOrderCatalogOkms.mockReturnValue({
         data: undefined,
         isPending: true,
         error: null,
       } as unknown as ReturnType<typeof useOrderCatalogOkms>);
 
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       expect(screen.getByTestId(REGION_PICKER_TEST_IDS.SPINNER)).toBeInTheDocument();
     });
   });
 
   describe('Error handling', () => {
-    it('should call useNotificationAddErrorOnce when locations fetch fails', () => {
+    it('should call useNotificationAddErrorOnce when locations fetch fails', async () => {
       const mockError = new Error('Failed to fetch locations');
       mockUseLocations.mockReturnValue({
         data: undefined,
@@ -125,12 +137,15 @@ describe('RegionPicker', () => {
         error: mockError,
       } as unknown as ReturnType<typeof useLocations>);
 
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       expect(mockUseNotificationAddErrorOnce).toHaveBeenCalledWith(mockError);
     });
 
-    it('should call useNotificationAddErrorOnce when catalog fetch fails', () => {
+    it('should call useNotificationAddErrorOnce when catalog fetch fails', async () => {
       const mockError = new Error('Failed to fetch catalog');
       mockUseOrderCatalogOkms.mockReturnValue({
         data: undefined,
@@ -138,12 +153,15 @@ describe('RegionPicker', () => {
         error: mockError,
       } as unknown as ReturnType<typeof useOrderCatalogOkms>);
 
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       expect(mockUseNotificationAddErrorOnce).toHaveBeenCalledWith(mockError);
     });
 
-    it('should return null when there is an error', () => {
+    it('should return null when there is an error', async () => {
       const mockError = new Error('Failed to fetch');
       mockUseLocations.mockReturnValue({
         data: undefined,
@@ -151,9 +169,10 @@ describe('RegionPicker', () => {
         error: mockError,
       } as unknown as ReturnType<typeof useLocations>);
 
-      const { container } = render(
-        <RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />,
-      );
+      const { container } = await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       expect(container.firstChild).toBeNull();
     });
@@ -167,7 +186,10 @@ describe('RegionPicker', () => {
         error: null,
       } as ReturnType<typeof useLocations>);
 
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       await waitFor(() => {
         // Catalog only includes EUROPE and NORTH_AMERICA
@@ -216,7 +238,10 @@ describe('RegionPicker', () => {
         error: null,
       } as ReturnType<typeof useLocations>);
 
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       // Wait for initial render with EUROPE selected
       await waitFor(() => {
@@ -267,7 +292,10 @@ describe('RegionPicker', () => {
     };
 
     it('should display one certification', async () => {
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       await waitFor(() => {
         const testId = RADIO_CARD_TEST_IDS.card(REGION_EU_WEST_RBX);
@@ -282,7 +310,10 @@ describe('RegionPicker', () => {
     });
 
     it('should display multiple certifications', async () => {
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       await waitFor(() => {
         const testId = RADIO_CARD_TEST_IDS.card(REGION_EU_WEST_SBG);
@@ -297,7 +328,10 @@ describe('RegionPicker', () => {
     });
 
     it('should display nothing when there are no certifications', async () => {
-      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+      await renderComponent({
+        selectedRegion: undefined,
+        setSelectedRegion: mockSetSelectedRegion,
+      });
 
       await waitFor(() => {
         const testId = RADIO_CARD_TEST_IDS.card(REGION_EU_WEST_GRA);

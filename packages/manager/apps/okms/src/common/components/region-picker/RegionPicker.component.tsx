@@ -19,7 +19,7 @@ import { RadioCard } from '../radio-card/RadioCard.component';
 import { RegionPickerContinentTabs } from './RegionPickerContinentTabs.component';
 import { REGION_PICKER_TEST_IDS } from './regionPicker.constants';
 
-type RegionPickerProps = {
+export type RegionPickerProps = {
   selectedRegion: string | undefined;
   setSelectedRegion: (region: string | undefined) => void;
 };
