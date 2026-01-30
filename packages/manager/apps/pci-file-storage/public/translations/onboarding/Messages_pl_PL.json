@@ -1,25 +1,25 @@
 {
   "guides": {
     "learn-more": {
-      "category": "Oferta",
+      "category": "Pakiet",
       "title": "Dowiedz się więcej",
-      "description": "Strona Labs wyjaśniająca funkcjonalność i ceny przechowywania plików.",
+      "description": "Na stronie Labs znajdziesz informacje o funkcjach i cenach File Storage.",
       "link-text": "Dowiedz się więcej"
     },
     "get-started": {
       "category": "Przewodnik",
       "title": "Pierwsze kroki",
-      "description": "Dokumentacja krok po kroku, aby pomóc Ci stworzyć swój pierwszy udostępniony zasób.",
+      "description": "Przewodnik, z którego dowiesz się, jak utworzyć pierwszy „share”.",
       "link-text": "Dowiedz się więcej"
     },
     "discord": {
       "category": "Discord",
-      "title": "Bądź na bieżąco z najnowszymi wiadomościami",
-      "description": "Dołącz do nas bezpośrednio na #beta-file-storage: zadawaj pytania i dziel się swoimi uwagami.",
+      "title": "Bądź na bieżąco z aktualnościami",
+      "description": "Dołącz do nas na #beta-file-storage: zadawaj pytania i dziel się opiniami.",
       "link-text": "Dowiedz się więcej"
     }
   },
-  "title": "Wypróbuj przechowywanie plików za darmo!",
-  "description": "Potrzebujesz współdzielonego przechowywania dla swoich klastrów lub instancji? Nasze rozwiązanie przechowywania plików dla Public Cloud w pełni zarządzane oferuje wolumeny NFS od <strong>150 GiB do 10 TiB</strong>, do <strong>16 000 IOPS</strong> i <strong>128 MB/s</strong>. Kompatybilne z <strong>Managed Kubernetes</strong> (PVCs RWX) i <strong>instancjami Public Cloud</strong> (montaże NFS), udostępniaj pliki w sposób przejrzysty między węzłami, strefami i aplikacjami, z przejrzystą taryfikacją.",
-  "action-button": "Odkryj Betę"
+  "title": "Przetestuj File Storage za darmo!",
+  "description": "Potrzebujesz współdzielonej przestrzeni dyskowej dla Twoich klastrów lub instancji? Nasze w pełni zarządzane rozwiązanie File Storage for Public Cloud zapewnia wolumeny NFS od <strong>150 GiB do 10 TiB</strong>, wydajność do <strong>16 000 IOPS</strong> i przepustowość <strong>128 Mb/s</strong>. Jest kompatybilne z <strong>Managed Kubernetes</strong> (PVCs RWX) oraz <strong>instancjami Public Cloud</strong> (montowanie NFS). Umożliwia współdzielenie plików między węzłami, strefami i aplikacjami oraz zapewnia przejrzysty model rozliczeń.",
+  "action-button": "Sprawdź wersję beta"
 }

@@ -4,7 +4,7 @@
   "open": "Otwórz dashboard",
   "title": "Lista",
   "resource_name_label": "Nazwa",
-  "location_label": "Dzierżawa",
+  "location_label": "Lokalizacja",
   "region_label": "Region",
   "buckets_label": "Liczba bucketów",
   "status_label": "Status",

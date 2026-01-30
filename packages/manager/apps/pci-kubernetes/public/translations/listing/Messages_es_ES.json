@@ -24,7 +24,7 @@
   "kube_common_node_pool_autoscaling_title": "Configurar el tamaño del pool de nodos",
   "kube_common_node_pool_title_multiple": "Configurar uno o varios pools de nodos (opcional)",
   "kubernetes_containers_deployment_mode_label": "Modo de despliegue",
-  "kube_list_node_pools": "¿Necesita volúmenes persistentes para varios pods a través de diferentes nodos y zonas de disponibilidad? Pruebe nuestro servicio completamente gestionado <strong>File Storage</strong>, compatible con el Servicio de Kubernetes Gestionado. Disfrute de volúmenes 'Read Write Many' <strong>a partir de 150 GiB</strong>, evolucionando de manera transparente con sus clústeres.",
+  "kube_list_node_pools": "¿Necesita volúmenes persistentes para varios pods a través de diferentes nodos y zonas de disponibilidad? Pruebe nuestro servicio <strong>File Storage</strong>, completamente gestionado, compatible con Managed Kubernetes Service. Disfrute de volúmenes «Read Write Many» <strong>a partir de 150 GiB</strong> y escale sus clústeres de forma transparente.",
   "kube_list_node_pools_discover": "Descubrir la beta",
   "READY": "Listo",
   "DISABLED": "Desactivado",

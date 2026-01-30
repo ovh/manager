@@ -3,6 +3,11 @@
   "cacheDirectory": ".nx/cache",
   "defaultBase": "master",
   "plugins": [],
+  "pluginsConfig": {
+    "@nx/js": {
+      "projectsAffectedByDependencyUpdates": "auto"
+    }
+  },
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",

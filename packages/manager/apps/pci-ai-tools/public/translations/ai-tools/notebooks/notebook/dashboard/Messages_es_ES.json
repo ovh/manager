@@ -29,7 +29,7 @@
   "autoRestartEnabled": "Activado",
   "autoRestartDisabled": "Desactivado",
   "autoRestartToastSuccessTitle": "Reinicio automático actualizado",
-  "autoRestartToastSuccessDescription": "La configuración de reinicio automático se ha actualizado para {{name}}",
-  "disabledRestartButtonTooltip": "El reinicio automático no se puede modificar cuando el portátil está apagado.",
+  "autoRestartToastSuccessDescription": "Se ha actualizado la configuración de reinicio automático para {{name}}",
+  "disabledRestartButtonTooltip": "El reinicio automático no se puede modificar cuando el notebook está detenido.",
   "modifyLabel": "Modificar"
 }

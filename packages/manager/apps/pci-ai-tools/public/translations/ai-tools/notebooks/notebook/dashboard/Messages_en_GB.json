@@ -30,6 +30,6 @@
   "autoRestartDisabled": "Disabled",
   "autoRestartToastSuccessTitle": "Automatic restart updated",
   "autoRestartToastSuccessDescription": "The automatic restart setting has been updated for {{name}}",
-  "disabledRestartButtonTooltip": "Automatic restart cannot be changed when the notebook is off.",
-  "modifyLabel": "Modify"
+  "disabledRestartButtonTooltip": "The automatic restart feature cannot be changed when the notebook is stopped.",
+  "modifyLabel": "Edit"
 }

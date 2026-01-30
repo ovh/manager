@@ -30,6 +30,6 @@
   "autoRestartDisabled": "Disattivato",
   "autoRestartToastSuccessTitle": "Riavvio automatico aggiornato",
   "autoRestartToastSuccessDescription": "Il parametro di riavvio automatico è stato aggiornato per {{name}}",
-  "disabledRestartButtonTooltip": "Il riavvio automatico non può essere modificato quando il notebook è spento.",
-  "modifyLabel": "Modifica"
+  "disabledRestartButtonTooltip": "Il riavvio automatico non può essere modificato quando il notebook è arrestato.",
+  "modifyLabel": "Modificare"
 }

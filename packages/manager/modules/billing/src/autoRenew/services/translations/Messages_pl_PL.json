@@ -13,5 +13,5 @@
   "reason_billing_right": "Nie jesteś kontaktem księgowym <b>{{contactBilling}}</b>",
   "reason_admin_right": "Nie jesteś kontaktem administracyjnym <b>{{contactAdmin}}</b>",
   "billing_autorenew_service_no_bills": "Nie znaleziono faktur za tę usługę",
-  "billing_autorenew_service_bills_retrieval_failure": "Błąd podczas pobierania faktur za usługę: {{ message }}"
+  "billing_autorenew_service_bills_retrieval_failure": "Wystąpił błąd podczas pobierania faktur za usługę: {{message}}"
 }

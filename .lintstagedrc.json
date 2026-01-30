@@ -1,5 +1,5 @@
 {
-  "*": ["yarn lint:staged:runner"],
+  "*.{ts,tsx,js,jsx}": ["yarn lint:staged"],
   "**/package.json": ["npx sort-package-json"],
   "*.sh": ["make test"]
 }

@@ -34,7 +34,7 @@
   "activateEncryptionDescription": "Włącz szyfrowanie po stronie serwera za pomocą kluczy zarządzanych przez OVHcloud, aby zabezpieczyć dane w spoczynku.",
   "activateEncryptionWarning": "Po włączeniu szyfrowania będzie ono stosowane tylko do nowych przesyłanych obiektów i nie będzie można go już wyłączyć.",
   "activateEncryptionDocLink": "Dowiedz się więcej",
-  "versionningTitle": "Wersjonowanie",
+  "versionningTitle": "Versioning",
   "disableVersionning": "Chroń swoje dane. Włącz wersjonowanie, aby w prosty sposób przywracać obiekty w przypadku ich usunięcia lub przypadkowej modyfikacji.",
   "enableVersionning": "Twoje obiekty są wersjonowane. Ułatwia to ich śledzenie i odzyskiwanie w razie utraty lub zmiany.",
   "activateVersionningTitle": "Włącz wersjonowanie",

@@ -22,5 +22,5 @@
   "pci_projects_project_filter_by_region": "Filtrar por localização",
   "pci_projects_project_filter_by_plan_all": "Todos",
   "pci_projects_project_regions_filter_plan_message": "O plano Free está disponível apenas nas regiões 1-AZ, o plano Standard está disponível em todas as regiões 3-AZ e em algumas regiões 1-AZ.",
-  "pci_projects_project_regions_filter_plan_compare": "Comparar planos"
+  "pci_projects_project_regions_filter_plan_compare": "Comparar os planos"
 }
