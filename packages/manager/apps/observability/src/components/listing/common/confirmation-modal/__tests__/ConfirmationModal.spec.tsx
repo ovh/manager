@@ -18,7 +18,7 @@ vi.mock('react-i18next', () => ({
   ),
 }));
 
-vi.mock('@ovh-ux/muk', () => ({
+vi.mock('@ovhcloud/ods-react', () => ({
   Modal: ({
     children,
     'data-testid': dataTestId,
@@ -31,6 +31,10 @@ vi.mock('@ovh-ux/muk', () => ({
     <div data-testid={dataTestId || 'modal'} {...props}>
       {children}
     </div>
+  ),
+  ModalContent: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  ModalBody: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+    <div className={className}>{children}</div>
   ),
   Text: ({ children }: { children: React.ReactNode }) => <span>{children}</span>,
   Button: ({
@@ -69,12 +73,13 @@ vi.mock('@ovh-ux/muk', () => ({
   },
   BUTTON_VARIANT: {
     default: 'default',
-    outline: 'outline',
+    ghost: 'ghost',
   },
   SPINNER_SIZE: {
     md: 'md',
   },
   TEXT_PRESET: {
+    heading4: 'heading4',
     paragraph: 'paragraph',
   },
 }));

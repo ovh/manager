@@ -46,7 +46,7 @@ vi.mock('@ovh-ux/muk', () => ({
       onClick={onClick}
       data-variant={variant}
       data-urn={urn}
-      data-iam-actions={iamActions.join(',')}
+      data-iam-actions={iamActions?.join(',') ?? ''}
       data-display-tooltip={displayTooltip}
     >
       {children}
