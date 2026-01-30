@@ -1,11 +1,9 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useFormatDate } from '@ovh-ux/manager-react-components';
 import {
   Card,
   CARD_COLOR,
   Divider,
-  DIVIDER_COLOR,
   DIVIDER_SPACING,
   Text,
   TEXT_PRESET,
@@ -43,7 +41,7 @@ export default function ServiceDetailSubscribing({
         {t('allDom_detail_page_subscribing_title')}
       </Text>
 
-      <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
+      <Divider spacing={DIVIDER_SPACING._24} />
 
       <div className="flex items-center justify-between">
         <ServiceDetailSubscribingRenewDate
@@ -63,14 +61,14 @@ export default function ServiceDetailSubscribing({
         />
       </div>
 
-      <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
+      <Divider spacing={DIVIDER_SPACING._24} />
 
       <ServiceDetailSubscribingRenewMode
         renewMode={renewMode}
         pendingActions={pendingActions}
       />
 
-      <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
+      <Divider spacing={DIVIDER_SPACING._24} />
 
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-y-2">
@@ -107,7 +105,7 @@ export default function ServiceDetailSubscribing({
         />
       </div>
 
-      <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
+      <Divider spacing={DIVIDER_SPACING._24} />
 
       <div className="flex flex-col gap-y-2">
         <Text preset={TEXT_PRESET.heading6}>

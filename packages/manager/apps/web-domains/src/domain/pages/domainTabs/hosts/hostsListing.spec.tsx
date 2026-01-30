@@ -56,7 +56,7 @@ describe('Host Columns', () => {
 describe('Host Datagrid', () => {
   it('should display the content of host datagrid', async () => {
     nichandle.auth.account = 'admin-id';
-    const { getByTestId } = render(<HostsListing />, {
+    const { getByTestId, container } = render(<HostsListing />, {
       wrapper,
     });
     expect(await screen.findByTestId('datagrid')).toBeInTheDocument();
@@ -68,13 +68,28 @@ describe('Host Datagrid', () => {
 
     const drawer = getByTestId('drawer');
     expect(drawer).toBeInTheDocument();
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+      },
+    });
   });
 
   it('should display the warning message if nicadmin != user nic', async () => {
     nichandle.auth.account = 'adminxxx';
-    render(<HostsListing />, {
+    const { container } = render(<HostsListing />, {
       wrapper,
     });
     expect(await screen.findByTestId('warningMessage')).toBeInTheDocument();
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+        'empty-table-header': { enabled: false },
+        'aria-prohibited-attr': { enabled: false },
+      },
+    });
   });
 });

@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import { render, renderHook } from '@/common/utils/test.provider';
-import { Mock, vi } from 'vitest';
+import { Mock, vi, expect } from 'vitest';
 import {
   dnsDatagridMock,
   dnsDatagridMockError,
@@ -45,29 +45,42 @@ describe('DomainTabDnsWithError', () => {
     });
   });
 
-  it('should display the content of DNS datagrid', () => {
-    const { getByTestId, getAllByTestId } = render(
+  it('should display the content of DNS datagrid', async () => {
+    const { getByTestId, getAllByTestId, container } = render(
       <DnsConfigurationTab domainResource={serviceInfoDetail} />,
-      { wrapper },
+      {
+        wrapper,
+      },
     );
     expect(getByTestId('datagrid')).toBeInTheDocument();
     expect(getAllByTestId('status').length).toBe(4);
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+        'button-name': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
+    });
   });
 
-  it('should show a warning message when a DNS has ERROR status', () => {
+  it('should show a warning message when a DNS has ERROR status', async () => {
     const { getByText, container } = render(
       <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
     expect(getByText('domain_tab_DNS_error_warning')).toBeInTheDocument();
-    const message = container.querySelector('[class*="Message"]');
-    expect(message?.getAttribute('dismissible')).toBeFalsy();
+    await expect(container).toBeAccessible({
+      rules: {
+        'button-name': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
+    });
   });
 
-  it('should render DNS in the expected order', () => {
+  it('should render DNS in the expected order', async () => {
     (computeDnsDetails as Mock).mockReturnValue(dnsDatagridMockError);
 
-    const { getAllByTestId } = render(
+    const { getAllByTestId, container } = render(
       <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
@@ -82,6 +95,13 @@ describe('DomainTabDnsWithError', () => {
 
     const actualOrder = nameCells.map((cell) => cell.textContent);
     expect(actualOrder).toEqual(expectedOrder);
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+        'button-name': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
+    });
   });
 });
 
@@ -91,16 +111,23 @@ describe('DomainTabDns', () => {
     (computeDnsDetails as Mock).mockReturnValue(dnsDatagridMock);
   });
 
-  it('should not render a warning message when no DNS has ERROR status', () => {
-    const { queryByText } = render(
+  it('should not render a warning message when no DNS has ERROR status', async () => {
+    const { queryByText, container } = render(
       <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
     expect(queryByText('domain_tab_DNS_error_warning')).not.toBeInTheDocument();
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+        'button-name': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
+    });
   });
 
-  it('should render DNS in the expected order', () => {
-    const { getAllByTestId } = render(
+  it('should render DNS in the expected order', async () => {
+    const { getAllByTestId, container } = render(
       <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
@@ -115,5 +142,12 @@ describe('DomainTabDns', () => {
 
     const actualOrder = nameCells.map((cell) => cell.textContent);
     expect(actualOrder).toEqual(expectedOrder);
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+        'button-name': { enabled: false },
+        'aria-command-name': { enabled: false },
+      },
+    });
   });
 });

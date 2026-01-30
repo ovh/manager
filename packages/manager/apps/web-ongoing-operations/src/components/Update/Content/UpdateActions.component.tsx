@@ -98,6 +98,7 @@ export default function UpdateActions({
 
       <div className="flex gap-x-2 mt-8">
         <Button
+          name='cancel'
           slot="actions"
           onClick={() => {
             const url = urls.root;
@@ -109,6 +110,7 @@ export default function UpdateActions({
           {t(`${NAMESPACES.ACTIONS}:cancel`)}
         </Button>
         <Button
+          name='confirm'
           slot="actions"
           onClick={() => {
             onValidate();
