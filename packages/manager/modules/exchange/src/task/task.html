@@ -24,7 +24,6 @@
         >
             <span
                 data-ng-bind="('exchange_tab_TASKS_'+ ctrl.constructor.toUpperSnakeCase($row.function)) | translate"
-                data-ng-if="$row.status === ctrl.states.done"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -42,7 +41,6 @@
             ></span>
             <span
                 data-ng-bind="('exchange_tab_TASKS_'+ $row.status.toUpperCase()) | translate"
-                data-ng-if="$row.status === ctrl.states.done"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
