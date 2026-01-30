@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import clsx from 'clsx';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
@@ -35,10 +35,13 @@ export const MacroRegionSelection = () => {
     [localizations, t],
   );
 
-  const updateSelection = (macroRegion: string, firstAvailableMicroRegion: string | undefined) => {
-    setValue('macroRegion', macroRegion);
-    if (firstAvailableMicroRegion) setValue('shareData.microRegion', firstAvailableMicroRegion);
-  };
+  const updateSelection = useCallback(
+    (macroRegion: string, firstAvailableMicroRegion: string | undefined) => {
+      setValue('macroRegion', macroRegion);
+      if (firstAvailableMicroRegion) setValue('shareData.microRegion', firstAvailableMicroRegion);
+    },
+    [setValue],
+  );
 
   useEffect(() => {
     const availablePreviousSelectedLocalization = (localizations ?? []).find(
