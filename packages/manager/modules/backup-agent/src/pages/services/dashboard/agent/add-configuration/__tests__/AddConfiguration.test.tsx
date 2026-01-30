@@ -28,6 +28,11 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
+vi.mock('@hookform/resolvers/zod', async () => {
+  const { createZodResolverMock } = await import('@/test-utils/zodResolverMock');
+  return { zodResolver: createZodResolverMock() };
+});
+
 // --- Mock translation ---
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
