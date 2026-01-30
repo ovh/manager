@@ -187,7 +187,6 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
               loading={isPending}
               iamActions={isEditionMode ? IAM_ACTIONS.EDIT_TENANT : IAM_ACTIONS.CREATE_TENANT}
               urn={isEditionMode ? tenant.iam?.urn : selectedService?.iam?.urn}
-              isIamTrigger={true}
             >
               {t(`${NAMESPACES.ACTIONS}:${isEditionMode ? 'save' : 'create'}`)}
             </Button>

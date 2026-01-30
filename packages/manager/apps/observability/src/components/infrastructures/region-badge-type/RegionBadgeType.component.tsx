@@ -10,12 +10,11 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
 
+import { RegionBadgeTypeProps } from '@/components/infrastructures/region-badge-type/RegionBadgeType.props';
 import { RegionType } from '@/types/infrastructures.type';
 import { REGION_BADGE_LABELS } from '@/utils/labels.constants';
-
-import { RegionBadgeTypeProps } from './RegionBadgeType.props';
 
 const bgColors: Record<RegionType, string> = {
   'LOCAL-ZONE': 'bg-[--ods-color-primary-100]',

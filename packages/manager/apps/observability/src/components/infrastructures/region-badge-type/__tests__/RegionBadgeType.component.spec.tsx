@@ -20,8 +20,8 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
+// Mock ODS React components
+vi.mock('@ovhcloud/ods-react', () => ({
   Badge: ({
     id,
     children,
@@ -39,6 +39,10 @@ vi.mock('@ovh-ux/muk', () => ({
       {children}
     </div>
   ),
+  BADGE_COLOR: {
+    information: 'information',
+    promotion: 'promotion',
+  },
   Icon: ({ name, className }: { name: string; className?: string }) => (
     <span data-testid="icon" data-name={name} className={className} />
   ),
@@ -63,23 +67,6 @@ vi.mock('@ovh-ux/muk', () => ({
       {children}
     </div>
   ),
-  Text: ({
-    children,
-    preset,
-    className,
-  }: {
-    children: React.ReactNode;
-    preset?: string;
-    className?: string;
-  }) => (
-    <span data-testid="text" data-preset={preset} className={className}>
-      {children}
-    </span>
-  ),
-  BADGE_COLOR: {
-    information: 'information',
-    promotion: 'promotion',
-  },
   ICON_NAME: {
     circleInfo: 'circle-info',
   },
