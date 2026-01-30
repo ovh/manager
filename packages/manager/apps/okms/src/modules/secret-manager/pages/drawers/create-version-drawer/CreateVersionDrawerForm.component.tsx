@@ -3,6 +3,7 @@ import { SecretDataFormField } from '@secret-manager/components/form/secret-data
 import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
 import { SecretVersionDataField, SecretVersionWithData } from '@secret-manager/types/secret.type';
 import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
+import { safeJsonParse, safeJsonStringify } from '@secret-manager/utils/json';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
 import { useSecretDataSchema } from '@secret-manager/validation';
@@ -46,7 +47,7 @@ export const CreateVersionDrawerForm = ({
     error: createError,
   } = useCreateSecretVersion();
 
-  const dataAsString = JSON.stringify(version?.data);
+  const dataAsString = safeJsonStringify(version?.data);
 
   const dataSchema = useSecretDataSchema();
   const formSchema = z.object({ data: dataSchema });
@@ -76,7 +77,7 @@ export const CreateVersionDrawerForm = ({
       await createSecretVersion({
         okmsId,
         path: decodeSecretPath(secretPath),
-        data: JSON.parse(data.data) as SecretVersionDataField,
+        data: safeJsonParse<SecretVersionDataField>(data.data),
         cas: addCurrentVersionToCas(
           // No currentVersionId means there is no version yet, so we use 0 for CAS
           currentVersionId ?? 0,

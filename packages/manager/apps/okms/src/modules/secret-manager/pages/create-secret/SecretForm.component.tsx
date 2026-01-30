@@ -13,6 +13,7 @@ import { useCreateSecret } from '@secret-manager/data/hooks/useCreateSecret';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { SecretVersionDataField } from '@secret-manager/types/secret.type';
+import { safeJsonParse } from '@secret-manager/utils/json';
 import { useSecretDataSchema, useSecretPathSchema } from '@secret-manager/validation';
 import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
 import { useQueryClient } from '@tanstack/react-query';
@@ -160,7 +161,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
       data: {
         path: formData.path,
         version: {
-          data: JSON.parse(formData.data) as SecretVersionDataField,
+          data: safeJsonParse<SecretVersionDataField>(formData.data),
         },
         // Only include metadata if at least one field is enabled
         ...(Object.keys(metadata).length > 0 && { metadata }),
