@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.21.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.21.2...@ovh-ux/ng-ovh-web-universe-components@9.21.3) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-web-universe-components
+
+
+
+
+
 ## [9.21.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.21.1...@ovh-ux/ng-ovh-web-universe-components@9.21.2) (2025-11-17)
 
 

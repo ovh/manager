@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "6.102.0",
+  "version": "6.102.1",
   "private": true,
   "description": "Public Cloud Instance product.",
   "repository": {
@@ -32,7 +32,7 @@
     "xterm": "^3.14.5"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",

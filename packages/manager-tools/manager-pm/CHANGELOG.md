@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.50.1...@ovh-ux/manager-pm@0.51.0) (2026-01-30)
+
+
+### Features
+
+* enable cds nx support ([e1568ab](https://github.com/ovh/manager/commit/e1568ab701635320190b754bb7fb0b78fa7a259d))
+
+
+
+
+
 ## [0.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.50.0...@ovh-ux/manager-pm@0.50.1) (2026-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm

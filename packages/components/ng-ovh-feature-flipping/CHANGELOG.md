@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-feature-flipping@1.1.7...@ovh-ux/ng-ovh-feature-flipping@1.1.8) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-feature-flipping
+
+
+
+
+
 ## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-feature-flipping@1.1.6...@ovh-ux/ng-ovh-feature-flipping@1.1.7) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-feature-flipping

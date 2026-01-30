@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs",
-  "version": "1.36.1",
+  "version": "1.36.2",
   "private": true,
   "description": "OVHcloud Logs Data Platform",
   "repository": {
@@ -20,7 +20,7 @@
     "oclazyload": "^1.1.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {

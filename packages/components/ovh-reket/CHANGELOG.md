@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.28](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.27...@ovh-ux/ovh-reket@2.1.28) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/ovh-reket
+
+
+
+
+
 ## [2.1.27](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.26...@ovh-ux/ovh-reket@2.1.27) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/ovh-reket

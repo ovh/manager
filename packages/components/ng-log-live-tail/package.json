@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-log-live-tail",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "description": "Poll a log API for displaying messages",
   "keywords": [
     "angularjs",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "angular": "^1.7.0",

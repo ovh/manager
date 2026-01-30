@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-beta-preference@1.0.5...@ovh-ux/manager-beta-preference@1.0.6) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-beta-preference
+
+
+
+
+
 ## [1.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-beta-preference@1.0.4...@ovh-ux/manager-beta-preference@1.0.5) (2020-08-18)
 
 
@@ -45,6 +58,3 @@
 ### Bug Fixes
 
 * enable / disable beta features ([0638881](https://github.com/ovh/manager/commit/06388815606cdf785f2727f50c6d055634a7ce41))
-
-
-

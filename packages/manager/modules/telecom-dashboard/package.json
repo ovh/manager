@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard",
-  "version": "6.11.4",
+  "version": "6.11.5",
   "private": true,
   "description": "Telecom dashboard section.",
   "repository": {
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-banner": "^1.1.3",

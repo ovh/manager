@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-responsive-popover",
-  "version": "6.1.6",
+  "version": "6.1.7",
   "description": "Module is used to display a popover and adapt it to the screen dimension.",
   "keywords": [
     "angularjs",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "angular": "^1.7.0",

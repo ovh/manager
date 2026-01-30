@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cli-core",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "",
   "repository": {
     "type": "git",
@@ -30,9 +30,9 @@
     "@ovh-ux/manager-config": "8.8.0",
     "@ovh-ux/manager-core-api": "0.19.4",
     "@ovh-ux/manager-core-utils": "^0.5.0",
-    "@ovh-ux/manager-module-common-api": "^0.6.6",
+    "@ovh-ux/manager-module-common-api": "^0.6.7",
     "@ovh-ux/manager-static-analysis-kit": "0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "concurrently": "9.2.1",
     "msw": "2.1.7",

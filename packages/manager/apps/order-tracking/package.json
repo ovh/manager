@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/order-tracking-app",
-  "version": "3.0.66",
+  "version": "3.0.67",
   "private": true,
   "description": "Order tracking standalone application.",
   "repository": {
@@ -15,15 +15,15 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-core": "^13.4.2",
-    "@ovh-ux/ng-at-internet": "^6.0.43",
-    "@ovh-ux/ng-ovh-http": "^5.1.6",
-    "@ovh-ux/ng-ovh-order-tracking": "^2.5.6",
-    "@ovh-ux/ng-ovh-request-tagger": "^2.0.16",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.10.0",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.1.6",
-    "@ovh-ux/ng-translate-async-loader": "^2.2.6",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-core": "^13.4.3",
+    "@ovh-ux/ng-at-internet": "^6.0.44",
+    "@ovh-ux/ng-ovh-http": "^5.1.7",
+    "@ovh-ux/ng-ovh-order-tracking": "^2.5.7",
+    "@ovh-ux/ng-ovh-request-tagger": "^2.0.17",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.10.1",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.1.7",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.7",
     "@ovh-ux/request-tagger": "^0.6.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
@@ -50,7 +50,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "webpack-merge": "^4.1.4"

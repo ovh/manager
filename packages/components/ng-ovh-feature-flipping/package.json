@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-feature-flipping",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Feature flipping library",
   "keywords": [
     "angularjs",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "angular": "^1.7"

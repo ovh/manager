@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-ui-confirm-modal",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Simple confirmation modal",
   "keywords": [
     "angular",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "angular": "^1.7.5",

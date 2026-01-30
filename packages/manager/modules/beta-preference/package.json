@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-beta-preference",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "description": "User account beta preference management.",
   "repository": {
@@ -16,7 +16,7 @@
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",

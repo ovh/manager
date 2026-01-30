@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-email-domain",
-  "version": "1.11.16",
+  "version": "1.11.17",
   "private": true,
   "description": "Email domain product.",
   "repository": {
@@ -21,7 +21,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "0.0.1"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",

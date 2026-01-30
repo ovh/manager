@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-api",
-  "version": "0.21.1",
+  "version": "0.21.2",
   "description": "",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -22,13 +22,13 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-sso": "^0.7.1",
+    "@ovh-ux/manager-core-sso": "^0.7.2",
     "@ovh-ux/request-tagger": "^0.6.0",
     "axios": "^1.1.2"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "tsc-alias": "^1.8.16"
   }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-forge-cli",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -22,13 +22,13 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-cli-core": "^0.1.6",
+    "@ovh-ux/manager-cli-core": "^0.1.7",
     "enquirer": "^2.4.1",
     "tsc-alias": "^1.8.16"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@types/figlet": "^1.7.0",
     "@types/node": "^24.10.0",
