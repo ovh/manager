@@ -33,7 +33,9 @@ export const DeactivateVersionAfterTileItem = ({
             className="block h-5 content-center"
           />
         ) : (
-          <Text preset="span">{data.deactivateVersionAfter}</Text>
+          <Text preset="span" data-testid={SECRET_CONFIG_TILE_TEST_IDS.deactivateVersionAfter}>
+            {data.deactivateVersionAfter}
+          </Text>
         )}
       </Tile.Item.Description>
     </Tile.Item.Root>
