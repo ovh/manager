@@ -89,12 +89,12 @@
   "kube_add_plan_content_not_available": "indisponível na região",
   "kubernetes_add_region_plan_select": "Filtrar por planos",
   "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA",
-  "kubernetes_add_create_cluster": "Criar o meu cluster",
+  "kubernetes_add_create_cluster": "Criar meu cluster",
   "kubernetes_add_cluster_name_input_helper": {
     "introduction": "Deve:",
-    "char_number": "contém entre 2 e 64 caracteres",
-    "char_whitelist": "contém apenas letras, números, hífens ou sublinhados",
-    "first_char": "começar por uma letra",
+    "char_number": "ter entre 2 e 64 caracteres",
+    "char_whitelist": "ter apenas letras, números, hífens ou underscores",
+    "first_char": "começar com uma letra",
     "last_char": "terminar com um carácter alfanumérico (a-z, A-Z, 0-9)"
   },
   "kubernetes_add_cluster_name_input_error": "O nome do cluster é inválido",
@@ -103,8 +103,7 @@
   "kubernetes_add_location_subtitle": "Escolher um modo de implementação",
   "kubernetes_add_region_title_region_alt": "Logotipo da região 1-AZ",
   "kubernetes_add_region_title_region-3-az_alt": "Logotipo da região 3-AZ",
-  "kubernetes_add_region_continent_select": "Selecionar uma zona geográfica",
-  "kubernetes_add_region_plan_select": "Filtrar por planos",
+  "kubernetes_add_region_continent_select": "Filtrar por zona geográfica",
   "kubernetes_add_region_plan_all": "Todos os planos",
   "kubernetes_add_micro_region_choose": "Escolher um datacenter",
   "kubernetes_add_micro_region_select": "Selecionar um datacenter"
