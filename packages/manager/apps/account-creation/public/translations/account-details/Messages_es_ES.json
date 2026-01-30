@@ -42,5 +42,6 @@
   "account_details_field_state": "Estado",
   "account_details_field_province": "Provincia",
   "account_details_field_corporation_firstname": "Nombre del representante legal",
-  "account_details_field_corporation_lastname": "Apellido del representante legal"
+  "account_details_field_corporation_lastname": "Apellido del representante legal",
+  "account_details_section_address_kyc_info": "<strong>Para poder realizar su pedido, deberá incluir toda la información solicitada y asegurarse de que sus datos personales coinciden con el nombre y la dirección que aparecen en sus documentos oficiales.</strong> <ul><li>Introduzca <strong>su dirección completa</strong> </li><li>La dirección debe <strong>corresponder a la que aparece en el justificante</strong> de dirección que se le solicitará para comprobar su identidad.</li></ul>"
 }

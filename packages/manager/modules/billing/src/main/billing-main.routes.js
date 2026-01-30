@@ -18,6 +18,8 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
           .catch(() => false),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_main_title'),
+      isPolandAccount: /* @ngInject */ (currentUser) =>
+        currentUser.ovhSubsidiary === 'PL',
     },
   });
 

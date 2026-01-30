@@ -42,5 +42,6 @@
   "account_details_field_state": "Status",
   "account_details_field_province": "Provinz",
   "account_details_field_corporation_firstname": "Vorname des gesetzlichen Vertreters",
-  "account_details_field_corporation_lastname": "Name des gesetzlichen Vertreters"
+  "account_details_field_corporation_lastname": "Name des gesetzlichen Vertreters",
+  "account_details_section_address_kyc_info": "<strong>Achten Sie darauf, alle Informationen einzugeben, und vergewissern Sie sich, dass Ihre persönlichen Daten mit dem Namen und der Adresse in Ihren offiziellen Dokumenten übereinstimmen, um eine Bestellung aufzugeben.</strong> <ul><li>Geben Sie <strong>Ihre vollständige Adresse</strong> an.</li><li>Die Adresse muss <strong>mit der Adresse auf dem Adressnachweis</strong> übereinstimmen, der zur Überprüfung Ihrer Identität angefordert wird.</li></ul>"
 }

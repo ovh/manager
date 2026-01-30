@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
@@ -38,9 +38,13 @@ export default function AccountType() {
   });
   const [legalFormError, setLegalFormError] = useState<boolean>(false);
 
+  const invalidLegalForm = useMemo(() => {
+    return !legalForm || legalForm === 'other';
+  }, [legalForm]);
+
   const validateStep = useCallback(() => {
     // Account are created with the "other" legal form which is not available anymore
-    if (!legalForm || legalForm === 'other') {
+    if (invalidLegalForm) {
       setLegalFormError(true);
       trackError('empty');
       return;
@@ -158,6 +162,7 @@ export default function AccountType() {
         </OdsFormField>
         <OdsButton
           className={'w-full'}
+          isDisabled={invalidLegalForm}
           label={tAction('validate')}
           onClick={validateStep}
         />

@@ -187,6 +187,8 @@ describe('Header.component', () => {
       async (feature, isEnabled, specialLink) => {
         vi.mocked(fetchFeatureAvailabilityData).mockResolvedValue({
           [feature]: isEnabled,
+          account: true,
+          billing: true,
         });
         vi.mocked(fetchProcedureStatus).mockResolvedValue({
           status: ProcedureStatus.Open,
@@ -278,6 +280,9 @@ describe('Header.component', () => {
       vi.mocked(fetchFeatureAvailabilityData).mockResolvedValue({
         'identity-documents': false,
         'procedures:fraud': false,
+        account: true,
+        billing: true,
+        dedicated: true,
       });
 
       mockedRegion = 'US';

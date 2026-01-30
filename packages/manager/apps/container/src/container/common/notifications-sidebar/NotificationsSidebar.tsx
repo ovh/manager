@@ -32,7 +32,7 @@ const NotificationsSidebar = () => {
   const locale = useApplication().environment.getUserLocale();
 
   const getGroupedNotifications = async (): Promise<NotificationByDate> => {
-    if (!notifications) {
+    if (!notifications || notifications.length === 0) {
       return {} as NotificationByDate;
     }
 
@@ -44,20 +44,20 @@ const NotificationsSidebar = () => {
         return { date, fromNow: dateFromNow };
       }),
     );
-    const dateGroups = groups.reduce(
+    const dateGroups = groups?.reduce(
       (
-        all: Record<string, NotificationGroup>,
+        all: Record<string, string>,
         { date, fromNow: dateFromNow },
       ) => {
         return {
           ...all,
-          [date]: dateFromNow,
+          [date]: dateFromNow || date,
         };
       },
       {},
     );
 
-    return groupBy(notifications, ({ date }) => dateGroups[date] as string);
+    return groupBy(notifications, ({ date }) => dateGroups?.[date] || date);
   };
 
   useEffect(() => {

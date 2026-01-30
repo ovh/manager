@@ -1,0 +1,4 @@
+export const SERVICE_ACTIONS = {
+  ANTICIPATE_PAYMENT: 0,
+  RESILIATE: 1,
+};

@@ -34,6 +34,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
       navigationRoot,
       (n: Node) => n.id === node.id,
     );
+    if (!history?.length) return;
     trackingIdComplement = history.reduce((accumulator, currentValue) => {
       if (currentValue.id) {
         return `${accumulator}${currentValue.id.replace(/-/g, '_')}::`;

@@ -1,0 +1,83 @@
+<div class="billing-corrective-invoices">
+    <div data-ng-if="$ctrl.loading" class="text-center">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading">
+        <div data-ng-if="$ctrl.hasError" class="mb-4">
+            <oui-message data-type="error">
+                <span
+                    data-translate="billing_corrective_invoices_load_error"
+                ></span>
+            </oui-message>
+        </div>
+
+        <div
+            data-ng-if="!$ctrl.hasError && $ctrl.correctiveInvoices.length === 0"
+            class="mb-4"
+        >
+            <oui-message data-type="info">
+                <span
+                    data-translate="billing_corrective_invoices_empty"
+                ></span>
+            </oui-message>
+        </div>
+
+        <oui-datagrid
+            data-ng-if="$ctrl.correctiveInvoices.length > 0"
+            data-rows="$ctrl.correctiveInvoices"
+        >
+            <oui-datagrid-column
+                data-title=":: 'billing_corrective_invoices_table_id' | translate"
+                data-property="correctiveInvoiceId"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_corrective_invoices_table_order_id' | translate"
+                data-property="orderId"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_corrective_invoices_table_original_invoice' | translate"
+                data-property="correctedInvoiceId"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_corrective_invoices_table_date' | translate"
+            >
+                <span
+                    data-ng-if="$row.date"
+                    data-ng-bind="$row.date | date:'mediumDate'"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_corrective_invoices_table_total' | translate"
+                data-property="priceWithoutTax.text"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'billing_corrective_invoices_table_total_with_vat' | translate"
+                data-property="priceWithTax.text"
+            >
+            </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="end">
+                <oui-action-menu-item
+                    data-ng-if="$row.url"
+                    data-on-click="$ctrl.downloadInvoice($row.url)"
+                >
+                    <span
+                        data-translate="billing_corrective_invoices_table_download_html"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="$row.pdfUrl"
+                    data-on-click="$ctrl.downloadInvoice($row.pdfUrl)"
+                >
+                    <span
+                        data-translate="billing_corrective_invoices_table_download_pdf"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+</div>

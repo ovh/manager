@@ -42,5 +42,6 @@
   "account_details_section_address_administration": "Dane kontaktowe jednostki administracji publicznej",
   "account_details_field_sms_consent": "Zgadzam się na otrzymywanie wiadomości SMS dotyczących nowości i ofert handlowych OVHcloud.",
   "account_details_field_corporation_firstname": "Imię prawnego przedstawiciela",
-  "account_details_field_corporation_lastname": "Nazwisko prawnego przedstawiciela"
+  "account_details_field_corporation_lastname": "Nazwisko prawnego przedstawiciela",
+  "account_details_section_address_kyc_info": "<strong>Przed złożeniem zamówienia pamiętaj o wprowadzeniu wszystkich informacji i upewnij się, że Twoje imię i nazwisko odpowiada danym osobowym podanym w Twoich oficjalnych dokumentach.</strong> <ul><li>Wpisz <strong>pełny adres</strong> </li><li>Adres musi być <strong>zgodny z adresem widniejącym w dokumencie</strong> potwierdzającym Twoją tożsamość</li></ul>"
 }

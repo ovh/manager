@@ -42,5 +42,6 @@
   "account_details_field_state": "State",
   "account_details_field_province": "Region",
   "account_details_field_corporation_firstname": "Last name (legal representative):",
-  "account_details_field_corporation_lastname": "First name (legal representative):"
+  "account_details_field_corporation_lastname": "First name (legal representative):",
+  "account_details_section_address_kyc_info": "<strong>Please remember to fill in every field and confirm that your personal details match the name and address in your official documents before placing your order.</strong> <ul><li>Enter <strong>your full address</strong> </li><li>The address must <strong>match the one on the proof of address</strong> for identity verification.</li></ul>"
 }

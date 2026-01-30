@@ -1,0 +1,13 @@
+{
+  "billing_payment_corrective_invoices": "Corrective invoices",
+  "billing_corrective_invoices_table_id": "Reference",
+  "billing_corrective_invoices_table_order_id": "Order number",
+  "billing_corrective_invoices_table_original_invoice": "Original invoice",
+  "billing_corrective_invoices_table_date": "Date of issue",
+  "billing_corrective_invoices_table_total": "Amount excluding tax",
+  "billing_corrective_invoices_table_total_with_vat": "Amount including tax",
+  "billing_corrective_invoices_table_download_html": "View the HTML version",
+  "billing_corrective_invoices_table_download_pdf": "View the PDF version",
+  "billing_corrective_invoices_load_error": "An error occurred while loading the corrective invoices.",
+  "billing_corrective_invoices_empty": "We would like to inform you that there are no corrective invoices issued for the relevant periods."
+}

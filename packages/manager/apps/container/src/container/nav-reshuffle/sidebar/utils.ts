@@ -28,7 +28,7 @@ export function initTree(
   region: string,
   parentNode?: Node,
 ) {
-  return nodes.reduce((all, node) => {
+  return nodes?.reduce((all, node) => {
     if (
       node?.features?.length &&
       !node?.features?.some((feature: string) => features[feature])
