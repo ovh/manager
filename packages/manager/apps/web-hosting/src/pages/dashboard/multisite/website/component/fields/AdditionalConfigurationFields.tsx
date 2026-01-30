@@ -179,7 +179,7 @@ export const AdditionalConfigurationFields: React.FC<AdditionalConfigurationFiel
           render={({ field, fieldState: { error, invalid } }) => (
             <FormField className="w-full max-w-xl" invalid={!!error && invalid}>
               <FormFieldLabel>
-                {t('multisite_add_website_module_cms_advanced_path_label')}*
+                {t('multisite_add_website_module_cms_advanced_path_label')}
               </FormFieldLabel>
               <div className="flex w-full items-center">
                 <div className="flex items-center rounded-l border border-r-0 border-gray-300 bg-gray-50 px-3">
@@ -196,7 +196,7 @@ export const AdditionalConfigurationFields: React.FC<AdditionalConfigurationFiel
                   onChange={(e) => {
                     const rawValue = e.target.value ?? '';
                     const sanitized = rawValue.replace(/^\.\/www\//, '');
-                    field.onChange(`./www/${sanitized}`);
+                    field.onChange(sanitized ? `./www/${sanitized}` : '');
                   }}
                   data-testid="module-install-path-input"
                 />

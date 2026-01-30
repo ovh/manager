@@ -136,7 +136,7 @@ export const zForm = (t: (key: string, params?: Record<string, unknown>) => stri
 
       moduleDomain: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
       moduleLanguage: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
-      moduleInstallPath: z.string().min(1, t(`${NAMESPACES.FORM}:error_required_field`)),
+      moduleInstallPath: z.string().optional(),
 
       advancedConfiguration: z.boolean().optional(),
       wwwNeeded: z.boolean().optional(),

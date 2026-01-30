@@ -56,7 +56,7 @@ export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsPr
     }
     setValue('databaseServer', databaseDetails.name ?? '');
     setValue('databaseName', databaseDetails.user ?? '');
-    setValue('databasePort', databaseDetails.port ? String(databaseDetails.port) : '');
+    setValue('databasePort', databaseDetails.port ? String(databaseDetails.port) : '3306');
     setValue('databaseUser', databaseDetails.user ?? '');
   }, [databaseDetails, setValue]);
 

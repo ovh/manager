@@ -108,7 +108,16 @@ export default function AddWebsitePage() {
                 path: data.path,
               }
             : {}),
-          ...(isAdvancedInstallation
+          ...(isAdvancedInstallation &&
+          data.adminName?.trim() &&
+          data.adminPassword?.trim() &&
+          data.moduleDomain?.trim() &&
+          data.moduleLanguage?.trim() &&
+          data.databaseName?.trim() &&
+          data.databasePassword?.trim() &&
+          data.databasePort?.trim() &&
+          data.databaseServer?.trim() &&
+          data.databaseUser?.trim()
             ? {
                 adminConfiguration: {
                   adminLogin: data.adminName,
@@ -143,7 +152,16 @@ export default function AddWebsitePage() {
           ...(data.module && data.module !== CmsType.NONE
             ? { module: { name: data.module as CmsType } }
             : {}),
-          ...(isAdvancedInstallation
+          ...(isAdvancedInstallation &&
+          data.adminName?.trim() &&
+          data.adminPassword?.trim() &&
+          data.moduleDomain?.trim() &&
+          data.moduleLanguage?.trim() &&
+          data.databaseName?.trim() &&
+          data.databasePassword?.trim() &&
+          data.databasePort?.trim() &&
+          data.databaseServer?.trim() &&
+          data.databaseUser?.trim()
             ? {
                 adminConfiguration: {
                   adminLogin: data.adminName,

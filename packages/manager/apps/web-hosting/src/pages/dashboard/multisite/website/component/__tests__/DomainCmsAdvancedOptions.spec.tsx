@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useForm } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { z } from 'zod';
 
 import { useGetAttachedDomains } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import {
@@ -17,12 +16,10 @@ import {
 import { useGetModuleLanguages } from '@/data/hooks/webHostingModule/useWebHostingModule';
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
 import { AssociationType } from '@/data/types/product/website';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
+import { WebsiteFormData, zForm } from '@/utils/formSchemas.utils';
 import { wrapperWithI18n } from '@/utils/test.provider';
 
 import { DomainCmsAdvancedOptions } from '../DomainCmsAdvancedOptions';
-
-type FormData = z.infer<ReturnType<typeof websiteFormSchema>>;
 
 const mockDatabases = ['testdb1.mysql.db', 'testdb2.mysql.db'];
 const mockDatabaseDetails = {
@@ -32,6 +29,25 @@ const mockDatabaseDetails = {
 };
 const mockAttachedDomains = ['example.com', 'test.example.com'];
 const mockLanguages = ['fr', 'en', 'de'];
+
+const defaultAdvancedModeValues: Partial<WebsiteFormData> = {
+  advancedInstallation: true,
+  module: CmsType.WORDPRESS,
+  associationType: AssociationType.EXISTING,
+  selectedDatabase: 'testdb1.mysql.db',
+  databaseServer: 'test-server',
+  databaseName: 'test-db',
+  databasePort: '3306',
+  databaseUser: 'test-user',
+  databasePassword: 'ValidPass123',
+  adminName: 'admin',
+  adminPassword: 'ValidPass123',
+  moduleDomain: 'example.com',
+  moduleLanguage: 'fr',
+  moduleInstallPath: 'test',
+  name: 'test',
+  fqdn: 'test.example.com',
+};
 
 vi.mock('@/data/hooks/webHostingDatabase/useWebHostingDatabase', () => ({
   useGetHostingDatabases: vi.fn(),
@@ -46,20 +62,28 @@ vi.mock('@/data/hooks/webHostingModule/useWebHostingModule', () => ({
   useGetModuleLanguages: vi.fn(),
 }));
 
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useParams: vi.fn(),
+  };
+});
+
 const mockT = (key: string) => key;
 
-const TestComponent = ({ initialValues }: { initialValues?: Partial<FormData> }) => {
-  const { control, watch, setValue, formState } = useForm<FormData>({
-    resolver: zodResolver(websiteFormSchema(mockT)),
+const TestComponent = ({ initialValues }: { initialValues?: Partial<WebsiteFormData> }) => {
+  const { control, watch, setValue, formState } = useForm<WebsiteFormData>({
+    resolver: zodResolver(zForm(mockT).WEBSITE_FORM_SCHEMA),
     mode: 'onTouched',
     defaultValues: {
       associationType: AssociationType.EXISTING,
-      advancedInstallation: false as const,
+      advancedInstallation: false,
       module: CmsType.NONE,
       name: '',
       fqdn: '',
       ...initialValues,
-    } as FormData,
+    } as WebsiteFormData,
   });
 
   const controlValues = watch();
@@ -123,21 +147,14 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
 
     await waitFor(() => {
       expect(screen.getByTestId('database-select')).toBeInTheDocument();
-      expect(screen.getByTestId('admin-name-input')).toBeInTheDocument();
     });
   });
 
   it('should hide advanced options when checkbox is unchecked', async () => {
     const user = userEvent.setup();
-    render(
-      <TestComponent
-        initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
-        }}
-      />,
-      { wrapper: wrapperWithI18n },
-    );
+    render(<TestComponent initialValues={defaultAdvancedModeValues} />, {
+      wrapper: wrapperWithI18n,
+    });
 
     await waitFor(() => {
       expect(screen.getByTestId('database-select')).toBeInTheDocument();
@@ -155,15 +172,9 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
   });
 
   it('should display database options when advanced mode is enabled', async () => {
-    render(
-      <TestComponent
-        initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
-        }}
-      />,
-      { wrapper: wrapperWithI18n },
-    );
+    render(<TestComponent initialValues={defaultAdvancedModeValues} />, {
+      wrapper: wrapperWithI18n,
+    });
 
     await waitFor(() => {
       const databaseSelect = screen.getByTestId('database-select');
@@ -179,8 +190,7 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
     render(
       <TestComponent
         initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
+          ...defaultAdvancedModeValues,
           selectedDatabase: 'testdb1.mysql.db',
         }}
       />,
@@ -205,8 +215,8 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
     render(
       <TestComponent
         initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
+          ...defaultAdvancedModeValues,
+          databasePassword: '',
         }}
       />,
       { wrapper: wrapperWithI18n },
@@ -228,15 +238,9 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
   });
 
   it('should display domain options', async () => {
-    render(
-      <TestComponent
-        initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
-        }}
-      />,
-      { wrapper: wrapperWithI18n },
-    );
+    render(<TestComponent initialValues={defaultAdvancedModeValues} />, {
+      wrapper: wrapperWithI18n,
+    });
 
     await waitFor(() => {
       const domainSelect = screen.getByTestId('module-domain-select');
@@ -245,15 +249,9 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
   });
 
   it('should display language options based on selected CMS', async () => {
-    render(
-      <TestComponent
-        initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
-        }}
-      />,
-      { wrapper: wrapperWithI18n },
-    );
+    render(<TestComponent initialValues={defaultAdvancedModeValues} />, {
+      wrapper: wrapperWithI18n,
+    });
 
     await waitFor(() => {
       const languageSelect = screen.getByTestId('module-language-select');
@@ -262,15 +260,9 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
   });
 
   it('should display installation path with ./www/ prefix', async () => {
-    render(
-      <TestComponent
-        initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
-        }}
-      />,
-      { wrapper: wrapperWithI18n },
-    );
+    render(<TestComponent initialValues={defaultAdvancedModeValues} />, {
+      wrapper: wrapperWithI18n,
+    });
 
     await waitFor(() => {
       const pathInput = screen.getByTestId('module-install-path-input');
@@ -283,15 +275,9 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
 
   it('should allow entering installation path', async () => {
     const user = userEvent.setup();
-    render(
-      <TestComponent
-        initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
-        }}
-      />,
-      { wrapper: wrapperWithI18n },
-    );
+    render(<TestComponent initialValues={defaultAdvancedModeValues} />, {
+      wrapper: wrapperWithI18n,
+    });
 
     await waitFor(() => {
       const pathInput = screen.getByTestId('module-install-path-input');
@@ -299,21 +285,16 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
     });
 
     const pathInput = screen.getByTestId('module-install-path-input');
+    await user.clear(pathInput);
     await user.type(pathInput, 'myfolder');
 
     expect(pathInput).toHaveValue('myfolder');
   });
 
   it('should display tooltip with password rules', async () => {
-    render(
-      <TestComponent
-        initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
-        }}
-      />,
-      { wrapper: wrapperWithI18n },
-    );
+    render(<TestComponent initialValues={defaultAdvancedModeValues} />, {
+      wrapper: wrapperWithI18n,
+    });
 
     await waitFor(() => {
       const passwordInput = screen.getByTestId('database-password-input');
@@ -327,15 +308,9 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
   });
 
   it('should display language select when advanced mode is enabled', async () => {
-    render(
-      <TestComponent
-        initialValues={{
-          advancedInstallation: true,
-          module: CmsType.WORDPRESS,
-        }}
-      />,
-      { wrapper: wrapperWithI18n },
-    );
+    render(<TestComponent initialValues={defaultAdvancedModeValues} />, {
+      wrapper: wrapperWithI18n,
+    });
 
     await waitFor(() => {
       const languageSelectContainer = screen.getByTestId('module-language-select');
@@ -343,4 +318,3 @@ describe('DomainCmsAdvancedOptions - Mode avancé', () => {
     });
   });
 });
- */
