@@ -1,0 +1,17 @@
+{
+  "title": "File Storage",
+  "columns": {
+    "name_id": "Name / ID",
+    "region": "Region",
+    "protocol": "Protocol",
+    "allocated_capacity": "Allocated Capacity",
+    "allocated_capacity_value": "{{capacity}} GiB",
+    "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "pending": "Pending",
+    "error": "Error",
+    "na": "N/A"
+  }
+}
