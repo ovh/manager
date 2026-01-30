@@ -3,6 +3,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { DataGridTextCellMock } from '@/test-utils/mocks/manager-react-components';
+import { OdsSkeletonMock } from '@/test-utils/mocks/ods-components';
+import { useTranslationMock } from '@/test-utils/mocks/react-i18next';
+
 import { BillingUsageCell } from '../BillingUsageCell.components';
 
 const { mockUseQuery } = vi.hoisted(() => ({
@@ -10,13 +14,15 @@ const { mockUseQuery } = vi.hoisted(() => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="DataGridTextCell">{children}</div>
-  ),
+  DataGridTextCell: DataGridTextCellMock,
 }));
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsSkeleton: () => <div data-testid="OdsSkeleton" />,
+  OdsSkeleton: OdsSkeletonMock,
+}));
+
+vi.mock('react-i18next', () => ({
+  useTranslation: useTranslationMock,
 }));
 
 vi.mock('@/data/hooks/consumption/useServiceConsumption', () => ({
@@ -31,10 +37,6 @@ vi.mock('@tanstack/react-query', () => ({
   useQuery: mockUseQuery,
 }));
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
-}));
-
 describe('BillingUsageCell', () => {
   it('should display usage label when data is present', () => {
     mockUseQuery.mockReturnValue({
@@ -44,7 +46,7 @@ describe('BillingUsageCell', () => {
 
     render(<BillingUsageCell vaultId="vault-id" />);
 
-    expect(screen.getByText('10 unit_size_GB')).toBeVisible();
+    expect(screen.getByText('10 translated_unit_size_GB')).toBeVisible();
   });
 
   it('should display "-" when consumption details are not present', () => {
@@ -66,6 +68,6 @@ describe('BillingUsageCell', () => {
 
     render(<BillingUsageCell vaultId="vault-id" />);
 
-    expect(screen.getByTestId('OdsSkeleton')).toBeVisible();
+    expect(screen.getByTestId('ods-skeleton')).toBeVisible();
   });
 });

@@ -4,29 +4,23 @@ import { describe, expect, it, vi } from 'vitest';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { mockVaults } from '@/mocks/vaults/vaults.mock';
+import { ManagerButtonMock } from '@/test-utils/mocks/manager-react-components';
+import { useNavigateMock } from '@/test-utils/mocks/react-router-dom';
 import { VaultResource } from '@/types/Vault.type';
 
 import { VaultActionCell } from '../VaultActionCell.component';
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const { ...actual } = await vi.importActual('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
 
   return {
     ...actual,
-    ManagerButton: ({
-      icon,
-      variant,
-      'data-testid': dataTestId,
-    }: {
-      icon: string;
-      variant: string;
-      'data-testid': string;
-    }) => <button data-icon={icon} data-variant={variant} data-testid={dataTestId} />,
+    ManagerButton: ManagerButtonMock,
   };
 });
 
 vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(),
+  useNavigate: useNavigateMock,
 }));
 
 describe('VaultActionCell test suite', () => {

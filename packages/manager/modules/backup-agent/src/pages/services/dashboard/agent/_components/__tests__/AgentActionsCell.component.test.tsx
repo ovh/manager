@@ -7,40 +7,43 @@ import { mockAgents } from '@/mocks/agents/agents';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { AgentActionsCell } from '@/pages/services/dashboard/agent/_components/AgentActionsCell.component';
 
-vi.mock('react-router-dom', () => ({
-  useHref: vi.fn().mockImplementation((url: string) => url),
-}));
-
-// --- Mock translation ---
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const actual = await vi.importActual('@ovhcloud/ods-components/react');
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  const { useHrefMock } = await import('@/test-utils/mocks/react-router-dom');
   return {
     ...actual,
-    OdsButton: vi
-      .fn()
-      .mockImplementation(({ label }: { children: React.ReactNode; label: string }) => (
-        <button>{label}</button>
-      )),
+    useHref: useHrefMock,
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
-
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-components/react')>();
+  const { OdsButtonMock } = await import('@/test-utils/mocks/ods-components');
   return {
     ...actual,
-    DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-      <div data-testid="cell">{children}</div>
-    ),
+    OdsButton: OdsButtonMock,
   };
 });
 
-// --- Mock translation ---
-vi.mock('react-i18next', () => ({
-  useTranslation: vi
-    .fn()
-    .mockImplementation(() => ({ t: (key: string) => `translated_${key.split(':')[1]}` })),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  const { ActionMenuMock, DataGridTextCellMock } = await import(
+    '@/test-utils/mocks/manager-react-components'
+  );
+
+  return {
+    ...actual,
+    DataGridTextCell: DataGridTextCellMock,
+    ActionMenu: ActionMenuMock,
+  };
+});
+
+vi.mock('react-i18next', async () => {
+  const { useTranslationMock } = await import('@/test-utils/mocks/react-i18next');
+  return {
+    useTranslation: useTranslationMock,
+  };
+});
 
 describe('AgentActionCell', () => {
   it('renders agent action', () => {

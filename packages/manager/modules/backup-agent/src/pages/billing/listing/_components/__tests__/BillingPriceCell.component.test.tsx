@@ -3,6 +3,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { DataGridTextCellMock } from '@/test-utils/mocks/manager-react-components';
+import { OdsSkeletonMock } from '@/test-utils/mocks/ods-components';
+
 import { BillingPriceCell } from '../BillingPriceCell.components';
 
 const { mockUseQuery } = vi.hoisted(() => ({
@@ -10,13 +13,11 @@ const { mockUseQuery } = vi.hoisted(() => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="DataGridTextCell">{children}</div>
-  ),
+  DataGridTextCell: DataGridTextCellMock,
 }));
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsSkeleton: () => <div data-testid="OdsSkeleton" />,
+  OdsSkeleton: OdsSkeletonMock,
 }));
 
 vi.mock('@/data/hooks/consumption/useServiceConsumption', () => ({
@@ -47,6 +48,6 @@ describe('BillingPriceCell', () => {
 
     render(<BillingPriceCell vaultId="vault-id" />);
 
-    expect(screen.getByTestId('OdsSkeleton')).toBeVisible();
+    expect(screen.getByTestId('ods-skeleton')).toBeVisible();
   });
 });

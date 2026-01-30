@@ -3,16 +3,18 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import { DataGridTextCellMock } from '@/test-utils/mocks/manager-react-components';
+import { OdsBadgeMock } from '@/test-utils/mocks/ods-components';
+import { useTranslationMock } from '@/test-utils/mocks/react-i18next';
+
 import { ResourceStatusBadge } from './ResourceStatusBadge.component';
 
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
+  useTranslation: useTranslationMock,
 }));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="cell">{children}</div>
-  ),
+  DataGridTextCell: DataGridTextCellMock,
 }));
 
 vi.mock('@ovhcloud/ods-components', () => ({
@@ -25,11 +27,7 @@ vi.mock('@ovhcloud/ods-components', () => ({
 }));
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsBadge: ({ color, label }: { color: string; label: string }) => (
-    <span data-testid="badge" data-color={color}>
-      {label}
-    </span>
-  ),
+  OdsBadge: OdsBadgeMock,
 }));
 
 describe('ResourceStatusBadge', () => {
@@ -37,15 +35,15 @@ describe('ResourceStatusBadge', () => {
     render(<ResourceStatusBadge resourceStatus="READY" />);
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveTextContent('ready');
-    expect(badge.getAttribute('data-color')).toBe('success');
+    expect(badge).toHaveTextContent('translated_ready');
+    expect(badge.getAttribute('color')).toBe('success');
   });
 
   it('maps ERROR to critical color', () => {
     render(<ResourceStatusBadge resourceStatus="ERROR" />);
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveTextContent('error');
-    expect(badge.getAttribute('data-color')).toBe('critical');
+    expect(badge).toHaveTextContent('translated_error');
+    expect(badge.getAttribute('color')).toBe('critical');
   });
 });
