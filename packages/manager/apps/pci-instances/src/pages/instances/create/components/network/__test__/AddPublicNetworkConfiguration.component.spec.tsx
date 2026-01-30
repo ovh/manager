@@ -11,9 +11,12 @@ import {
 } from '@/__mocks__/instance/constants';
 import { getFloatingIps } from '@/data/api/floatingIps';
 import { getNetworkCatalog } from '@/data/api/networkCatalog';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
 
 const getNetworkCatalogMock = vi.fn();
 const getFloatingIpsMock = vi.fn();
+const useInstancesCatalogWithSelectMock = vi.fn();
 
 vi.mock('@/data/api/networkCatalog');
 vi.mocked(getNetworkCatalog).mockImplementation(getNetworkCatalogMock);
@@ -21,15 +24,25 @@ vi.mocked(getNetworkCatalog).mockImplementation(getNetworkCatalogMock);
 vi.mock('@/data/api/floatingIps');
 vi.mocked(getFloatingIps).mockImplementation(getFloatingIpsMock);
 
+vi.mock('@/data/hooks/catalog/useInstancesCatalogWithSelect');
+vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
+  useInstancesCatalogWithSelectMock,
+);
+
 const setupTest = ({
   networkId = null,
   microRegion = 'fake-region',
+  deploymentMode = 'region',
 }: {
   microRegion?: string | null;
   networkId?: string | null;
+  deploymentMode?: TDeploymentModeID;
 } = {}) => {
   getNetworkCatalogMock.mockReturnValue(mockedNetworkCatalog);
   getFloatingIpsMock.mockReturnValue(mockedFloatingIpEntity);
+  useInstancesCatalogWithSelectMock.mockReturnValue({
+    data: deploymentMode,
+  });
 
   renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper
@@ -111,6 +124,7 @@ describe('Considering AddPublicNetworkConfiguration component', () => {
   it('should disable floating IP when selected region is localZone', async () => {
     setupTest({
       microRegion: 'fake-LZ',
+      deploymentMode: 'localzone',
     });
 
     await waitFor(() => {

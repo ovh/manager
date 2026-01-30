@@ -23,6 +23,8 @@ import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import clsx from 'clsx';
 import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
 import { TPrivateNetworkData } from '../../view-models/networksViewModel';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { selectMicroRegionDeploymentMode } from '../../view-models/microRegionsViewModel';
 
 const disabledClassname = 'text-[--ods-color-text-disabled-default]';
 
@@ -40,14 +42,18 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
     select: selectSmallGatewayConfig(microRegion),
   });
 
+  const { data: deploymentMode } = useInstancesCatalogWithSelect({
+    select: selectMicroRegionDeploymentMode(microRegion),
+  });
+
   const getewayAvailability = useMemo(
     () =>
       getGatewayAvailability({
-        microRegion,
+        deploymentMode,
         privateNetworks,
         privateNetworkId,
       }),
-    [microRegion, privateNetworkId, privateNetworks],
+    [deploymentMode, privateNetworkId, privateNetworks],
   );
 
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);

@@ -49,10 +49,6 @@ const AddNetworkForm: FC = () => {
       setValue('newPrivateNetwork', networks.ovhPrivateNetwork, {
         shouldValidate: true,
       });
-
-    return () => {
-      setValue('newPrivateNetwork', null);
-    };
   }, [networks, setValue]);
 
   return (

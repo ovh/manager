@@ -14,6 +14,8 @@ import {
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import PublicIpConfiguration from './PublicIpConfiguration.component';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { selectMicroRegionDeploymentMode } from '../../view-models/microRegionsViewModel';
 
 const AddPublicNetworkConfiguration: FC<{
   privateNetworks: TPrivateNetworkData[];
@@ -25,14 +27,18 @@ const AddPublicNetworkConfiguration: FC<{
     name: ['privateNetworkId', 'microRegion', 'ipPublicType'],
   });
 
+  const { data: deploymentMode } = useInstancesCatalogWithSelect({
+    select: selectMicroRegionDeploymentMode(microRegion),
+  });
+
   const publicIpAvailability = useMemo(
     () =>
       getPublicIpAvailability({
-        microRegion,
+        deploymentMode,
         privateNetworks,
         privateNetworkId,
       }),
-    [microRegion, privateNetworkId, privateNetworks],
+    [deploymentMode, privateNetworkId, privateNetworks],
   );
 
   const resetPublicIpFields = useCallback(() => {

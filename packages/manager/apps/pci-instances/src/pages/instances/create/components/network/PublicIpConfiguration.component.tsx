@@ -28,6 +28,8 @@ import clsx from 'clsx';
 import { TooltipWrapper } from '@/components/form/TooltipWrapper.component';
 import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
 import { useFloatingIps } from '@/data/hooks/configuration/useFloatingIps';
+import { selectMicroRegionDeploymentMode } from '../../view-models/microRegionsViewModel';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 
 type TPublicIpTypeConfig = Record<
   'basicIp' | 'floatingIp',
@@ -75,24 +77,28 @@ const PublicIpConfiguration: FC<{
     select: selectSmallGatewayConfig(microRegion),
   });
 
+  const { data: deploymentMode } = useInstancesCatalogWithSelect({
+    select: selectMicroRegionDeploymentMode(microRegion),
+  });
+
   const publicIpAvailability = useMemo(
     () =>
       getPublicIpAvailability({
-        microRegion,
+        deploymentMode,
         privateNetworks,
         privateNetworkId,
       }),
-    [microRegion, privateNetworkId, privateNetworks],
+    [deploymentMode, privateNetworkId, privateNetworks],
   );
 
   const gatewayAvailability = useMemo(
     () =>
       getGatewayAvailability({
-        microRegion,
+        deploymentMode,
         privateNetworks,
         privateNetworkId,
       }),
-    [microRegion, privateNetworkId, privateNetworks],
+    [deploymentMode, privateNetworkId, privateNetworks],
   );
 
   const { data: floatingIps = [] } = useFloatingIps({

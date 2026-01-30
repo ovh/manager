@@ -9,17 +9,26 @@ import {
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 import { TPrivateNetworkData } from '../../../view-models/networksViewModel';
 import { getNetworkCatalog } from '@/data/api/networkCatalog';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
 
 const getNetworkCatalogMock = vi.fn();
+const useInstancesCatalogWithSelectMock = vi.fn();
 
 vi.mock('@/data/api/networkCatalog');
 vi.mocked(getNetworkCatalog).mockImplementation(getNetworkCatalogMock);
+
+vi.mock('@/data/hooks/catalog/useInstancesCatalogWithSelect');
+vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
+  useInstancesCatalogWithSelectMock,
+);
 
 type TSetupTestProps = {
   networkId?: string | null;
   microRegion?: string | null;
   assignNewGateway?: boolean;
   privateNetworks?: TPrivateNetworkData[];
+  deploymentMode?: TDeploymentModeID;
 };
 
 const setupTest = ({
@@ -27,8 +36,12 @@ const setupTest = ({
   microRegion = 'fake-region',
   assignNewGateway = false,
   privateNetworks = [],
+  deploymentMode = 'region',
 }: TSetupTestProps = {}) => {
   getNetworkCatalogMock.mockReturnValue(mockedNetworkCatalog);
+  useInstancesCatalogWithSelectMock.mockReturnValue({
+    data: deploymentMode,
+  });
 
   const wrapper = renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper
@@ -73,6 +86,7 @@ describe('Considering GatewayConfiguration component', () => {
   it('should be disabled when region is localZone', async () => {
     setupTest({
       microRegion: 'fake-LZ',
+      deploymentMode: 'localzone',
     });
 
     await waitFor(() => {

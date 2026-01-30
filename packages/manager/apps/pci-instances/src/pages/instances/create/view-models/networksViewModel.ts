@@ -1,10 +1,9 @@
-// TODO: does not use isLocalzone muk
-import { isLocalZone } from '@ovh-ux/muk';
 import { TPrivateNetwork } from '@/domain/entities/configuration';
 import { getOvhPrivateNetwork } from '@/domain/services/network.service';
 import { TNetworkCatalog } from '@/domain/entities/networkCatalog';
 import { getRegionalizedGatewayId, getRegionalizedPublicIpId } from '@/utils';
 import { TFloatingIp } from '@/domain/entities/configuration';
+import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
 
 type TCapability = 'PublicIP' | 'FloatingIP';
 
@@ -98,16 +97,21 @@ export const selectSmallGatewayConfig = (microRegion: string | null) => (
   };
 };
 
+type TNetworkAvailabilityArgs = {
+  privateNetworkId: string | null;
+  privateNetworks?: TPrivateNetworkData[];
+  deploymentMode?: TDeploymentModeID | null;
+};
+
+const isLocalZone = (deploymentMode: TDeploymentModeID) =>
+  deploymentMode === 'localzone';
+
 export const getGatewayAvailability = ({
-  microRegion,
+  deploymentMode,
   privateNetworks = [],
   privateNetworkId,
-}: {
-  privateNetworkId: string | null;
-  microRegion: string | null;
-  privateNetworks?: TPrivateNetworkData[];
-}) => {
-  if (!microRegion) return null;
+}: TNetworkAvailabilityArgs) => {
+  if (!deploymentMode) return null;
 
   if (
     privateNetworks.find(
@@ -120,7 +124,7 @@ export const getGatewayAvailability = ({
         'creation:pci_instance_creation_network_gateway_already_assigned_tooltip',
     };
 
-  if (isLocalZone(microRegion))
+  if (isLocalZone(deploymentMode))
     return {
       isDisabled: true,
       unavailableReason:
@@ -157,21 +161,17 @@ export const selectPublicIpPrices = (microRegion: string | null) => (
 };
 
 export const getPublicIpAvailability = ({
-  microRegion,
+  deploymentMode,
   privateNetworks = [],
   privateNetworkId,
-}: {
-  privateNetworkId: string | null;
-  microRegion: string | null;
-  privateNetworks?: TPrivateNetworkData[];
-}) => {
-  if (!microRegion) return null;
+}: TNetworkAvailabilityArgs) => {
+  if (!deploymentMode) return null;
 
   const basicPublicIpIsDisabled = privateNetworkId
     ? !hasPublicNetworkCapability(privateNetworkId, privateNetworks, 'PublicIP')
     : false;
 
-  const isLocalZoneRegion = isLocalZone(microRegion);
+  const isLocalZoneRegion = isLocalZone(deploymentMode);
 
   const floatingIpIsDisabled = privateNetworkId
     ? !hasPublicNetworkCapability(
