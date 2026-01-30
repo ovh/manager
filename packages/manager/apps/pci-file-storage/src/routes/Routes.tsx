@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Navigate, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/muk';
@@ -12,10 +12,10 @@ import { redirectionApp, subRoutes, urls } from './Routes.constants';
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const CreateSharePage = React.lazy(() => import('@/pages/create/CreateShare.page'));
+const ShareListPage = React.lazy(() => import('@/pages/list/ShareList.page'));
 
 export const Routes = (
   <>
-    <Route path="/" element={<Navigate to={urls.onboarding} replace />} />
     <Route
       id="root"
       path={urls.root}
@@ -42,7 +42,13 @@ export const Routes = (
           tracking: { pageName: 'new', pageType: PageType.funnel },
         }}
       />
-      <Route path="" element={<Navigate to={subRoutes.onboarding} replace />} />
+      <Route
+        path={subRoutes.list}
+        Component={ShareListPage}
+        handle={{
+          tracking: { pageName: 'list', pageType: PageType.dashboard },
+        }}
+      />
       <Route path="*" element={<NotFound />} />
     </Route>
   </>
