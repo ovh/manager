@@ -60,6 +60,12 @@
   "restoreAvailableUntil": "Item will be available until",
   "seeVersionsSwitchLabel": "See versions",
   "searchPlaceholder": "Search...",
+  "searchLabel": "Search:",
+  "prefixLabel": "Prefix:",
+  "rootPrefix": "(root)",
+  "loading": "Loading...",
+  "dropFilesToUpload": "Drop files to upload here",
+  "noSearchResults": "No results found for \"{{query}}\"",
   "changeStorageClassWarningInfrequentAccess": "Important: The Infrequent Access and Cold Archive classes impose a minimum retention period. <0>Learn more</0>",
   "selectObject": "Select {{name}} object",
   "selectAll": "Select all",
@@ -73,5 +79,6 @@
   "bulkDeleteVersionsTitle": "Delete multiple versions",
   "bulkDeleteVersionsDescription_one": "Do you want to permanently delete {{count}} version? This action cannot be reversed.",
   "bulkDeleteVersionsDescription_other": "Do you want to permanently delete {{count}} versions? This action cannot be reversed.",
-  "bulkDeleteVersionsConfirmation": "Enter {{confirmation}} to confirm"
+  "bulkDeleteVersionsConfirmation": "Enter {{confirmation}} to confirm",
+  "openFolder": "Open {{name}} folder"
 }

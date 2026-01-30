@@ -60,6 +60,12 @@
   "restoreAvailableUntil": "Das Objekt ist verfügbar bis",
   "seeVersionsSwitchLabel": "Versionen anzeigen",
   "searchPlaceholder": "Suchen...",
+  "searchLabel": "Suche:",
+  "prefixLabel": "Präfix:",
+  "rootPrefix": "(Wurzel)",
+  "loading": "Laden…",
+  "dropFilesToUpload": "Dateien hier ablegen, um sie hochzuladen",
+  "noSearchResults": "Keine Ergebnisse für \"{{query}}\" gefunden",
   "changeStorageClassWarningInfrequentAccess": "Achtung: Die Klassen Infrequent Access und Cold Archive erfordern eine Mindestaufbewahrungsdauer. <0>Mehr erfahren</0>",
   "selectObject": "Objekt {{name}} auswählen",
   "selectAll": "Alles auswählen",
@@ -73,5 +79,6 @@
   "bulkDeleteVersionsTitle": "Mehrere Versionen löschen",
   "bulkDeleteVersionsDescription_one": "Möchten Sie {{count}} Version endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
   "bulkDeleteVersionsDescription_other": "Möchten Sie {{count}} Versionen endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
-  "bulkDeleteVersionsConfirmation": "Geben Sie zum Bestätigen {{confirmation}} ein."
+  "bulkDeleteVersionsConfirmation": "Geben Sie zum Bestätigen {{confirmation}} ein.",
+  "openFolder": "Ordner {{name}} öffnen"
 }

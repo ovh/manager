@@ -43,6 +43,15 @@ export function useUpdateS3ObjectStorageClass({
           'objects',
         ],
       });
+      // Invalidate s3-browser queries to refresh the object list
+      queryClient.invalidateQueries({
+        queryKey: [
+          's3-browser',
+          variables.projectId,
+          variables.region,
+          variables.name,
+        ],
+      });
       customOnSuccess(_data);
     },
   });
