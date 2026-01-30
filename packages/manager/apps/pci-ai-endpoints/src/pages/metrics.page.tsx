@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,14 +7,10 @@ import {
   OsdsSelect,
   OsdsSelectOption,
   OsdsFormField,
-  OsdsMessage,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_MESSAGE_TYPE,
-} from '@ovhcloud/ods-components';
+import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { addMonths, endOfDay, subMonths } from 'date-fns';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import Metric from '@/components/Metric';
 import { useDateLocale } from '@/hooks/metric/useDateLocale.hook';
@@ -36,16 +32,31 @@ export default function MetricPage() {
     handleEndTimeChange,
   } = useDateLocale();
 
-  const maxDate = new Date(
-    new Date().getFullYear(),
-    new Date().getMonth() + 1,
-    0,
+  const retentionPeriodMonths = 3;
+  const defaultEndDateRef = useRef(endOfDay(new Date()));
+  const defaultStartDateRef = useRef(
+    subMonths(defaultEndDateRef.current, retentionPeriodMonths),
+  );
+  const hasInitialized = useRef(false);
+  const maxDate = defaultEndDateRef.current;
+  const minStartDate = subMonths(maxDate, retentionPeriodMonths);
+  const displayStartTime = hasInitialized.current
+    ? startTime
+    : defaultStartDateRef.current;
+  const displayEndTime = hasInitialized.current
+    ? endTime
+    : defaultEndDateRef.current;
+  const maxEndDate = new Date(
+    Math.min(
+      maxDate.getTime(),
+      addMonths(displayStartTime, retentionPeriodMonths).getTime(),
+    ),
   );
 
   const metricsQuery = useGetMetrics(
     projectId,
-    encodeURIComponent(startTime.toISOString()),
-    encodeURIComponent(endTime.toISOString()),
+    encodeURIComponent(displayStartTime.toISOString()),
+    encodeURIComponent(displayEndTime.toISOString()),
   );
 
   const metricsData: MetricData[] = Array.isArray(metricsQuery.data)
@@ -61,27 +72,23 @@ export default function MetricPage() {
 
   const localDatePicker = getLocaleForDatePicker();
 
+  useEffect(() => {
+    if (hasInitialized.current) return;
+
+    if (endTime.getTime() !== defaultEndDateRef.current.getTime()) {
+      handleEndTimeChange(defaultEndDateRef.current);
+    }
+
+    if (startTime.getTime() !== defaultStartDateRef.current.getTime()) {
+      handleStartTimeChange(defaultStartDateRef.current);
+    }
+
+    hasInitialized.current = true;
+  }, [endTime, startTime, handleEndTimeChange, handleStartTimeChange]);
+
   return (
     <>
       <div className="flex flex-col max-w-fit">
-        {Array.isArray(metricsQuery?.data) && (
-          <>
-            {metricsQuery.data.length === 0 && (
-              <OsdsMessage
-                type={ODS_MESSAGE_TYPE.info}
-                className="mb-6 max-w-[902px]"
-              >
-                <OsdsText
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_TEXT_SIZE._400}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t('ai_endpoints_no_data_for_the_selected_period')}
-                </OsdsText>
-              </OsdsMessage>
-            )}
-          </>
-        )}
         <div className="flex flex-col md:flex-row">
           <div className="flex mr-8 max-lg:pb-4">
             <OsdsFormField>
@@ -107,34 +114,37 @@ export default function MetricPage() {
               </OsdsSelect>
             </OsdsFormField>
           </div>
-          <div className="flex flex-col lg:flex-row">
-            <OsdsFormField className="flex lg:mr-8 max-lg:pb-4">
-              <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
-                {t('ai_endpoints_startDate')}
-              </OsdsText>
-              <OsdsDatepicker
-                value={startTime}
-                onOdsDatepickerValueChange={(v) =>
-                  handleStartTimeChange(v.detail.value)
-                }
-                maxDate={endTime}
-                locale={localDatePicker}
-              />
-            </OsdsFormField>
-            <OsdsFormField className="flex max-sm:pb-4">
-              <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
-                {t('ai_endpoints_endDate')}
-              </OsdsText>
-              <OsdsDatepicker
-                value={endTime}
-                onOdsDatepickerValueChange={(v) =>
-                  handleEndTimeChange(v.detail.value)
-                }
-                maxDate={maxDate}
-                minDate={startTime}
-                locale={localDatePicker}
-              />
-            </OsdsFormField>
+          <div className="flex flex-col">
+            <div className="flex flex-col lg:flex-row">
+              <OsdsFormField className="flex lg:mr-8 max-lg:pb-4">
+                <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
+                  {t('ai_endpoints_startDate')}
+                </OsdsText>
+                <OsdsDatepicker
+                  value={displayStartTime}
+                  onOdsDatepickerValueChange={(v) =>
+                    handleStartTimeChange(v.detail.value)
+                  }
+                  maxDate={displayEndTime}
+                  minDate={minStartDate}
+                  locale={localDatePicker}
+                />
+              </OsdsFormField>
+              <OsdsFormField className="flex max-sm:pb-4">
+                <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
+                  {t('ai_endpoints_endDate')}
+                </OsdsText>
+                <OsdsDatepicker
+                  value={displayEndTime}
+                  onOdsDatepickerValueChange={(v) =>
+                    handleEndTimeChange(v.detail.value)
+                  }
+                  maxDate={maxEndDate}
+                  minDate={displayStartTime}
+                  locale={localDatePicker}
+                />
+              </OsdsFormField>
+            </div>
           </div>
         </div>
         <div className="flex">
@@ -147,15 +157,17 @@ export default function MetricPage() {
       {Array.isArray(metricsQuery?.data) && (
         <>
           {metricsQuery.data.length === 0 ? (
-            <div className="mt-[150px] flex justify-center w-[70vw] mx-auto">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.default}
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._600}
-                className=" text-center"
-              >
-                {t('ai_endpoints_noData')}
-              </OsdsText>
+            <div className="relative mt-12 mx-auto">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <OsdsText
+                  color={ODS_THEME_COLOR_INTENT.default}
+                  level={ODS_TEXT_LEVEL.body}
+                  size={ODS_TEXT_SIZE._600}
+                  className="text-center"
+                >
+                  {t('ai_endpoints_noData')}
+                </OsdsText>
+              </div>
             </div>
           ) : (
             <div className="flex flex-wrap justify-center">
@@ -164,8 +176,8 @@ export default function MetricPage() {
                   key={metric.model}
                   projectId={projectId}
                   metric={metric.model}
-                  startTime={startTime}
-                  endTime={endTime}
+                  startTime={displayStartTime}
+                  endTime={displayEndTime}
                   isFirstLoading={i === 0}
                 />
               ))}
