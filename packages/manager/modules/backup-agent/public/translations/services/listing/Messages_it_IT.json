@@ -9,5 +9,6 @@
   "delete_tenant_banner_error": "Si è verificato un errore. Attendi qualche minuto prima di riprovare.",
   "unable_to_delete_tenant_feature_unavailable": "La rimozione di un Tenant non è disponibile dall'interfaccia per motivi di sicurezza. Se desideri rimuovere un Tenant, ti preghiamo di contattare il supporto.",
   "data_location": "Localizzazione dei dati",
-  "delete_tenant_feature_unavailable": "L’eliminazione di un Tenant non è disponibile dall'interfaccia per motivi di sicurezza. Per eliminare un Tenant, contatta il supporto."
+  "delete_tenant_feature_unavailable": "L’eliminazione di un Tenant non è disponibile dall'interfaccia per motivi di sicurezza. Per eliminare un Tenant, contatta il supporto.",
+  "services_tab_description": "Il tuo Tenant è basato sulla Veeam Service Provider Console e porta i tuoi Agent collegandoli ai tuoi Vaults. Potrai trovare tutti i tuoi Agent, configurarli e scaricare il tuo Agent in questa sezione. Per saperne di più, consulta la <Link>documentazione di OVHcloud Backup Agent</Link>"
 }

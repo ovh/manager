@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.20.0...@ovh-ux/manager-bm-server-components@2.20.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* **dedicated:** fix backup agent wording on baremetal ([10cd69b](https://github.com/ovh/manager/commit/10cd69bc8bd6b6c3d9c343abbee457bc6ba1cdd6)), closes [#BKP-655](https://github.com/ovh/manager/issues/BKP-655)
+
+
+
+
+
 # [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.10...@ovh-ux/manager-bm-server-components@2.20.0) (2026-01-26)
 
 

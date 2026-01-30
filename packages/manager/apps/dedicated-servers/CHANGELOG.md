@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.9.4...@ovh-ux/manager-dedicated-servers-app@0.9.5) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
 ## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.9.3...@ovh-ux/manager-dedicated-servers-app@0.9.4) (2026-01-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app

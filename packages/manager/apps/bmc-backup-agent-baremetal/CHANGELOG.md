@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.3.0...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.3.1) (2026-01-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4617] ([927a2d3](https://github.com/ovh/manager/commit/927a2d384a06dd66f87992fdb8811c15db4ca3ca))
+* **i18n:** add missing translations [CDS 4623] ([5b32c60](https://github.com/ovh/manager/commit/5b32c60cf7da76e65614bcf49feeb1ac7c6b03ad))
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.2.0...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.3.0) (2026-01-27)
+
+
+### Features
+
+* **bmc-backup-agent-baremetal:** add error message more clear ([eb22535](https://github.com/ovh/manager/commit/eb22535e55025cae6b5f25dd3e007da93f26ee85)), closes [#BKP-771](https://github.com/ovh/manager/issues/BKP-771)
+* **bmc-backup-agent-baremetal:** replace more info link ([2c6aff5](https://github.com/ovh/manager/commit/2c6aff535461bf65dd2e379bb0bab0d7ec547c54)), closes [#BKP-757](https://github.com/ovh/manager/issues/BKP-757)
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.1.4...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.2.0) (2026-01-26)
 
 

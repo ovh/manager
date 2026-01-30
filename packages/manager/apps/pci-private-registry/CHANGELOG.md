@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.12.9...@ovh-ux/manager-pci-private-registry-app@0.12.10) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
 ## [0.12.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.12.8...@ovh-ux/manager-pci-private-registry-app@0.12.9) (2026-01-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app

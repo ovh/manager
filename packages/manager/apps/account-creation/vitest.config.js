@@ -5,15 +5,22 @@ import {
   createConfig,
   defaultDedupedDependencies,
   defaultExcludedFiles,
+  stubStylesPlugin,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
+    plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
     test: {
       setupFiles: './src/setupTests.ts',
       coverage: {
         exclude: [...defaultExcludedFiles],
+      },
+      server: {
+        deps: {
+          inline: ['@ovhcloud/ods-react'],
+        },
       },
     },
     resolve: {

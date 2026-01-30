@@ -9,5 +9,6 @@
   "delete_tenant_banner_error": "An error has occurred. Please wait a few minutes and try again.",
   "unable_to_delete_tenant_feature_unavailable": "The deletion of a Tenant is not available from the interface for security reasons. If you wish to delete a Tenant, please contact support.",
   "data_location": "Data location",
-  "delete_tenant_feature_unavailable": "For security reasons, a Tenant cannot be deleted via the interface. If you would like to delete a Tenant, please contact support."
+  "delete_tenant_feature_unavailable": "For security reasons, a Tenant cannot be deleted via the interface. If you would like to delete a Tenant, please contact support.",
+  "services_tab_description": "Your Tenant is based on the Veeam Service Provider Console, and carries your Agents while linking them to your Vaults. You will be able to find all your Agents, configure them, and download your Agent in this section. To get further information, consult the <Link>OVHcloud Backup Agent documentation</Link>"
 }

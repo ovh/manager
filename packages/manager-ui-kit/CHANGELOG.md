@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.0.1...@ovh-ux/muk@1.1.0) (2026-01-29)
+
+
+### Features
+
+* **muk:** accept children in TileRoot component ([139716b](https://github.com/ovh/manager/commit/139716bd633e4b1366467c4e7b904ca7315d3313)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** add displayValue for FilterList Compo ([b8df973](https://github.com/ovh/manager/commit/b8df973e997cb334fae70e0d7e2ba7a19026b006)), closes [#MANAGER-18416](https://github.com/ovh/manager/issues/MANAGER-18416)
+* **muk:** add modalOpenChangeDetail param in openChange callback ([a91fd8f](https://github.com/ovh/manager/commit/a91fd8f5ab9e2fd52af5f8019c7768dc5d2146b6)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** add onMoreInfoButtonClick on onboarding layout button ([673f497](https://github.com/ovh/manager/commit/673f497b351499add964e86105c4bd905253a4d7)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** add typing for error-detail ([0094f8b](https://github.com/ovh/manager/commit/0094f8bc0ca49933c1040531a4692d42001380b3)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** display github icon on Roadmap and Changelog button ([933b876](https://github.com/ovh/manager/commit/933b87637094360a14a0c0e858d6695bf17a4bb1)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** export ods types for muk components ([4f00d1a](https://github.com/ovh/manager/commit/4f00d1af9cdceba289e0ab8d3042ca5b32f7e90e)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+
+
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.0.0...@ovh-ux/muk@1.0.1) (2026-01-23)
 
 

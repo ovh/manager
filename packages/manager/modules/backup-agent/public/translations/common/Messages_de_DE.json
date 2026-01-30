@@ -6,10 +6,11 @@
   "buckets": "Buckets",
   "policy": "Policy",
   "actions": "Aktionen",
-  "without_engagement": "ohne Vertragsbindung",
-  "backup_agent_guide": "Guides zu Backup Agent",
-  "baremetal_label_order_in_progress": "Die Bestellung ist eingegangen. Ihr Produkt wird gerade bereitgestellt und Sie können den Fortschritt <OrderLink>hier</OrderLink> nachverfolgen.",
-  "server": "Server",
   "primary": "Primär",
-  "secondary": "Sekundär"
+  "secondary": "Sekundär",
+  "without_engagement": "ohne Verpflichtungen",
+  "backup_agent_guide": "Backup-Agenten-Leitfäden",
+  "baremetal_label_order_in_progress": "Die Bestellung wurde erfolgreich erhalten, Ihr Produkt wird geliefert und Sie können den Fortschritt <OrderLink>hier</OrderLink> verfolgen.",
+  "server": "Server",
+  "billings_tab_description": "Hier finden Sie die aktuelle Abrechnung Ihres Tenants. Diese wird Ihnen zu Beginn des nächsten Monats in Rechnung gestellt. Um mehr darüber zu erfahren, konsultieren Sie die <Link>Dokumentation des OVHcloud Backup Agent</Link>"
 }

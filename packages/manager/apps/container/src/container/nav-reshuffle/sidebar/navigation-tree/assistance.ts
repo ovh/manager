@@ -68,6 +68,13 @@ export const assistanceTree: Node = {
       hasService: false,
     },
     {
+      id: 'ai_chatbot',
+      features: ['ai-chatbot'],
+      translation: 'sidebar_assistance_ai_chatbot',
+      hasService: false,
+      region: ['EU', 'CA'],
+    },
+    {
       id: 'carbon_calculator',
       features: ['carbon-calculator'],
       translation: 'sidebar_assistance_carbon_calculator',

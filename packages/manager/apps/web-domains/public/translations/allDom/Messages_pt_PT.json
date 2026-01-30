@@ -55,5 +55,7 @@
   "allDom_cancel_terminate_title": "Anular a rescisão do serviço {{serviceName}}",
   "allDom_cancel_terminate_subtitle": "Pretende anular a rescisão do serviço {{serviceName}}?",
   "allDom_cancel_terminate_success": "Foi registado o cancelamento da rescisão do serviço {{serviceName}}",
-  "allDom_cancel_terminate_error": "O cancelamento da rescisão do serviço {{serviceName}} falhou"
+  "allDom_cancel_terminate_error": "O cancelamento da rescisão do serviço {{serviceName}} falhou",
+  "allDom_detail_page_renew_information_advantage": "A renovação da oferta AllDom prolonga a sua vantagem tarifária.",
+  "allDom_detail_page_renew_information_renew": "Os nomes de domínio mantêm cada um o seu modo de renovação e a sua data de expiração."
 }

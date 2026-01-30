@@ -1,5 +1,5 @@
 import IcebergUtilsService from '../../icebergUtils.services';
-import { BACKUP_AGENT_GLOBAL_STATUS } from './backupAgent.constants';
+import {BACKUP_AGENT_AGENT_STATUS_TO_GLOBAL_STATUS, BACKUP_AGENT_GLOBAL_STATUS} from './backupAgent.constants';
 
 const moduleName = 'ovhManagerBackupAgentService';
 
@@ -41,23 +41,7 @@ class BackupAgentService {
   }
 
   static getGlobalStatusOfAgent(agent) {
-    if (agent.status === 'ENABLED') {
-      return BACKUP_AGENT_GLOBAL_STATUS.ENABLED;
-    }
-
-    if (agent.status === 'CREATING') {
-      return BACKUP_AGENT_GLOBAL_STATUS.CREATING;
-    }
-
-    if (agent.status === 'DISABLED') {
-      return BACKUP_AGENT_GLOBAL_STATUS.NOT_ENABLED;
-    }
-
-    if (agent.status === 'UPDATED') {
-      return BACKUP_AGENT_GLOBAL_STATUS.UPDATED;
-    }
-
-    return BACKUP_AGENT_GLOBAL_STATUS.NOT_INSTALLED;
+    return BACKUP_AGENT_AGENT_STATUS_TO_GLOBAL_STATUS[agent.status] ?? BACKUP_AGENT_GLOBAL_STATUS.NOT_INSTALLED;
   }
 
   getServerBackupAgent(resourceName) {

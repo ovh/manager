@@ -8,6 +8,7 @@
   "region_label": "Region",
   "buckets_label": "Anzahl der Buckets",
   "status_label": "Status",
-  "order_vault": "Einen Vault bestellen",
-  "more_action": "Zusätzliche Aktion"
+  "order_vault": "Ein Vault bestellen",
+  "more_action": "Zusätzliche Aktion",
+  "vaults_tab_description": "Ihre Vaults basieren auf dem Object Storage von OVHcloud. Sie sind mit Verschlüsselung und Unveränderlichkeit (14 Tage) für sichere und unveränderte Daten konfiguriert. Um mehr darüber zu erfahren, konsultieren Sie die <Link>Dokumentation des OVHcloud Backup Agent</Link>"
 }
