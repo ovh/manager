@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
-
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { Icon, ICON_NAME, Link, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { Service, Stream } from '@/data/types/dbaas/logs';
@@ -14,7 +11,7 @@ type TDataStreamSubscriptionsLink = Pick<Stream, 'nbSubscription' | 'streamId' |
   Pick<Service, 'serviceName'>;
 
 const DataStreamSubscriptionsLink = ({
-  nbSubscription,
+  nbSubscription = 0,
   serviceName,
   streamId,
   parentStreamId,
@@ -33,28 +30,40 @@ const DataStreamSubscriptionsLink = ({
       .then((url) => setSubscriptionsURL(url as string));
   }, [navigation, serviceName, streamId]);
 
-  return (
-    <>
-      <OdsText preset="span" id={isSubStream ? `popover-${streamId}` : undefined}>
-        <Links
-          data-testid="link-testStream"
-          href={subscriptionsURL}
-          label={nbSubscription.toString()}
-          type={LinkType.external}
-          target="_blank"
-          isDisabled={isSubStream}
-        />
-      </OdsText>
-      {isSubStream && (
-        <OdsTooltip
-          data-testid="popover-testStream"
-          triggerId={`popover-${streamId}`}
-          className="p-2 bg-gray-100 text-black"
-        >
+  if (isSubStream) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Text preset="span">
+            <Link
+              data-testid="link-testStream"
+              href={subscriptionsURL}
+              target="_blank"
+              disabled
+            >
+              {nbSubscription.toString()}
+              <Icon name={ICON_NAME.externalLink} />
+            </Link>
+          </Text>
+        </TooltipTrigger>
+        <TooltipContent data-testid="popover-testStream">
           {t('log_streams_subscription_disabled_tooltip')}
-        </OdsTooltip>
-      )}
-    </>
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  return (
+    <Text preset="span">
+      <Link
+        data-testid="link-testStream"
+        href={subscriptionsURL}
+        target="_blank"
+      >
+        {nbSubscription.toString()}
+        <Icon name={ICON_NAME.externalLink} />
+      </Link>
+    </Text>
   );
 };
 

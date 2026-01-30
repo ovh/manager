@@ -1,7 +1,7 @@
 import { MODULE_NAME } from '@/LogsToCustomer.constants';
 import { type ILogsToCustomerModule, LogsToCustomerModule } from '@/LogsToCustomer.module';
 import { type ApiUrls, type LogIamActions } from '@/LogsToCustomer.props';
-import '@/components/logTail/logTail.css';
+import '@/index.css';
 import { LogsToCustomerRoutes, lazyRouteConfig } from '@/routes/routes';
 
 import { NAMESPACES } from './LogsToCustomer.translations';

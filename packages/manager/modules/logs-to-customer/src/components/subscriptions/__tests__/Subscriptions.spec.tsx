@@ -1,5 +1,4 @@
 import { screen, waitFor } from '@testing-library/react';
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import { describe, expect, it, vi } from 'vitest';
 import { renderTest } from '@/test-utils/render-test';
 
@@ -37,7 +36,7 @@ describe('Subscription list', () => {
   });
 
   it('should display specific elements if there is no services', async () => {
-    const { container } = await renderTest({ nbLogServices: 0 });
+    await renderTest({ nbLogServices: 0 });
 
     await waitFor(
       () =>
@@ -48,10 +47,7 @@ describe('Subscription list', () => {
         timeout: 10_000,
       },
     );
-    await getOdsButtonByLabel({
-      container,
-      label: 'log_service_create',
-    });
+    expect(screen.getByRole('button', { name: 'log_service_create' })).toBeInTheDocument();
   });
 
   it('should render an empty state when there is no subscriptions', async () => {
