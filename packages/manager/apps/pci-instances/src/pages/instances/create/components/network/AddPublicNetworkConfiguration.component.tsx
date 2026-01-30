@@ -7,47 +7,69 @@ import {
   ToggleControl,
   ToggleLabel,
 } from '@ovhcloud/ods-react';
-import { selectPublicNetworkConfig } from '../../view-models/networksViewModel';
+import {
+  getPublicIpAvailability,
+  TPrivateNetworkData,
+} from '../../view-models/networksViewModel';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import PublicIpConfiguration from './PublicIpConfiguration.component';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { selectMicroRegionDeploymentMode } from '../../view-models/microRegionsViewModel';
 
-const AddPublicNetworkConfiguration: FC = () => {
+const AddPublicNetworkConfiguration: FC<{
+  privateNetworks: TPrivateNetworkData[];
+}> = ({ privateNetworks }) => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [networkId, microRegion, ipPublicType] = useWatch({
+  const [privateNetworkId, microRegion, ipPublicType] = useWatch({
     control,
-    name: ['networkId', 'microRegion', 'ipPublicType'],
+    name: ['privateNetworkId', 'microRegion', 'ipPublicType'],
   });
-  const configurations = useMemo(
-    () => selectPublicNetworkConfig(networkId, microRegion),
-    [networkId, microRegion],
+
+  const { data: deploymentMode } = useInstancesCatalogWithSelect({
+    select: selectMicroRegionDeploymentMode(microRegion),
+  });
+
+  const publicIpAvailability = useMemo(
+    () =>
+      getPublicIpAvailability({
+        deploymentMode,
+        privateNetworks,
+        privateNetworkId,
+      }),
+    [deploymentMode, privateNetworkId, privateNetworks],
   );
 
-  const initializePublicIpFields = useCallback(() => {
-    if (!configurations) return;
+  const resetPublicIpFields = useCallback(() => {
+    setValue('ipPublicType', null);
+    setValue('floatingIpAssignment', null);
+    setValue('existingFloatingIp', null);
+  }, [setValue]);
 
-    if (!configurations.basicPublicIp.isDisabled) {
+  const initializePublicIpFields = useCallback(() => {
+    if (!publicIpAvailability) return;
+
+    if (!publicIpAvailability.basicPublicIp.isDisabled) {
       setValue('ipPublicType', 'basicIp');
-    } else if (!configurations.floatingIp.isDisabled) {
+    } else if (!publicIpAvailability.floatingIp.isDisabled) {
       setValue('ipPublicType', 'floatingIp');
       setValue('floatingIpAssignment', 'createNew');
+      setValue('existingFloatingIp', null);
     }
-  }, [configurations, setValue]);
+  }, [publicIpAvailability, setValue]);
 
   const handleAssignPublicIp = ({ checked }: ToggleCheckedChangeDetail) => {
-    if (!checked) {
-      setValue('ipPublicType', null);
-      setValue('floatingIpAssignment', null);
-      setValue('existingFloatingIp', null);
-    } else initializePublicIpFields();
+    if (!checked) resetPublicIpFields();
+    else initializePublicIpFields();
   };
 
   useEffect(() => {
+    resetPublicIpFields();
     initializePublicIpFields();
-  }, [configurations, initializePublicIpFields]);
+  }, [publicIpAvailability, initializePublicIpFields, resetPublicIpFields]);
 
-  if (!configurations) return null;
+  if (!publicIpAvailability) return null;
 
   return (
     <div className="mt-4">
@@ -68,6 +90,10 @@ const AddPublicNetworkConfiguration: FC = () => {
         withLabels
         className="mt-6"
         checked={!!ipPublicType}
+        disabled={
+          publicIpAvailability.basicPublicIp.isDisabled &&
+          publicIpAvailability.floatingIp.isDisabled
+        }
         onCheckedChange={handleAssignPublicIp}
       >
         <ToggleControl />
@@ -79,7 +105,9 @@ const AddPublicNetworkConfiguration: FC = () => {
           </Text>
         </ToggleLabel>
       </Toggle>
-      {!!ipPublicType && <PublicIpConfiguration />}
+      {!!ipPublicType && (
+        <PublicIpConfiguration privateNetworks={privateNetworks} />
+      )}
     </div>
   );
 };

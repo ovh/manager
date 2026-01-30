@@ -3,18 +3,7 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Network from '../Network.component';
 import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
-import {
-  mockedGatewayConfiguration,
-  mockedOvhPrivateNetwork,
-  mockedPrivateNetworks,
-  mockedBasicPublicIpConfiguration,
-  mockedFloatingIpConfiguration,
-  mockedExistingFloatingIps,
-} from '@/__mocks__/instance/constants';
-import {
-  selectPrivateNetworks,
-  selectPublicNetworkConfig,
-} from '../../view-models/networksViewModel';
+import { mockedPrivateNetworkEntity } from '@/__mocks__/instance/constants';
 import {
   ButtonType,
   PageLocation,
@@ -22,47 +11,36 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
+import { getPrivateNetworks } from '@/data/api/privateNetworks';
+import { TPrivateNetwork } from '@/domain/entities/configuration';
 
-const selectPrivateNetworksMock = vi.fn();
-
-const NETWORK_ID = mockedPrivateNetworks[0]?.value;
+const getPrivateNetworksMock = vi.fn();
 
 const NETWORK_NAME = 'fake-name';
 const DEFAULT_VLAN_ID = 24;
 const DEFAULT_CIDR = '10.1.0.0/16';
 
-vi.mock('../../view-models/networksViewModel');
-vi.mocked(selectPrivateNetworks).mockImplementation(selectPrivateNetworksMock);
-vi.mocked(selectPublicNetworkConfig).mockReturnValue({
-  gateway: {
-    ...mockedGatewayConfiguration,
-    isDisabled: false,
-  },
-  basicPublicIp: {
-    ...mockedBasicPublicIpConfiguration,
-    isDisabled: false,
-  },
-  floatingIp: {
-    ...mockedFloatingIpConfiguration,
-    isDisabled: false,
-    existingFloatingIps: mockedExistingFloatingIps,
-  },
-});
+vi.mock(
+  '@/pages/instances/create/components/network/GatewayConfiguration.component',
+);
+vi.mock(
+  '@/pages/instances/create/components/network/AddPublicNetworkConfiguration.component',
+);
 
-type TNetworkItem = { label: string; value: string };
+vi.mock('@/data/api/privateNetworks');
+vi.mocked(getPrivateNetworks).mockImplementation(getPrivateNetworksMock);
 
 const setupTest = (
-  { networks }: { networks: TNetworkItem[] } = { networks: [] },
+  { networks }: { networks: TPrivateNetwork | null } = {
+    networks: mockedPrivateNetworkEntity,
+  },
 ) => {
-  selectPrivateNetworksMock.mockReturnValue({
-    networks,
-    ovhPrivateNetwork: mockedOvhPrivateNetwork,
-  });
+  getPrivateNetworksMock.mockReturnValue(networks);
 
   renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper
       defaultValues={{
-        networkId: NETWORK_ID,
+        microRegion: 'BHS5',
         newPrivateNetwork: {
           name: NETWORK_NAME,
           cidr: DEFAULT_CIDR,
@@ -78,7 +56,7 @@ const setupTest = (
 
 describe('Considering Network component', () => {
   it('should not display neither the dropdown nor the create private network button when networks do not yet exists', async () => {
-    setupTest();
+    setupTest({ networks: null });
 
     await waitFor(() => {
       expect(
@@ -94,7 +72,7 @@ describe('Considering Network component', () => {
   });
 
   it('should display creation form directly when networks do not yet exists', async () => {
-    setupTest();
+    setupTest({ networks: null });
 
     await waitFor(() => {
       expect(
@@ -110,37 +88,31 @@ describe('Considering Network component', () => {
   });
 
   it('should display dropdown and select the first existing network when it exists', async () => {
-    setupTest({ networks: mockedPrivateNetworks });
+    setupTest();
 
-    const defaultNetwork = mockedPrivateNetworks[0];
-
-    const options = screen.getAllByText(defaultNetwork!.label);
-    const optionWithValue = options.find((option) =>
-      option.hasAttribute('selected'),
-    );
-
-    for (const { label, value } of mockedPrivateNetworks) {
-      const options = screen.getAllByText(label);
-      const optionWithValue = options.find(
-        (option) => option.getAttribute('value') === value,
+    await waitFor(() => {
+      const options = screen.getAllByText('test-network-1');
+      // eslint-disable-next-line max-nested-callbacks
+      const optionWithValue = options.find((option) =>
+        option.hasAttribute('selected'),
       );
 
       expect(optionWithValue).toBeInTheDocument();
-    }
 
-    await waitFor(() => {
       expect(
         screen.getByText(
           'creation:pci_instance_creation_select_network_dropdown_label',
         ),
       ).toBeVisible();
 
-      expect(optionWithValue).toHaveValue(defaultNetwork!.value);
+      expect(optionWithValue).toHaveValue(
+        '22defd89-ab74-4353-8676-6a0ad7a239d3',
+      );
     });
   });
 
   it('should display create new Private Network button when networks exists', async () => {
-    setupTest({ networks: mockedPrivateNetworks });
+    setupTest();
 
     await waitFor(() => {
       expect(
@@ -150,7 +122,7 @@ describe('Considering Network component', () => {
   });
 
   it('should not display creation form until create button is clicked when networks exist', async () => {
-    setupTest({ networks: mockedPrivateNetworks });
+    setupTest();
 
     await waitFor(() => {
       expect(
@@ -162,11 +134,19 @@ describe('Considering Network component', () => {
   });
 
   it('should display create new Private Network form when click on btn', async () => {
-    setupTest({ networks: mockedPrivateNetworks });
+    setupTest();
 
-    await userEvent.click(
-      screen.getByText('creation:pci_instance_creation_network_add_new'),
+    expect(
+      screen.queryByRole('form', {
+        name: 'creation:pci_instance_creation_network_add_new',
+      }),
+    ).not.toBeInTheDocument();
+
+    const addNewButton = await screen.findByText(
+      'creation:pci_instance_creation_network_add_new',
     );
+
+    await userEvent.click(addNewButton);
 
     await waitFor(() => {
       expect(useOvhTracking().trackClick).toHaveBeenCalledWith({
@@ -185,11 +165,13 @@ describe('Considering Network component', () => {
   });
 
   it('should display cancel button when form is opened and networks exist', async () => {
-    setupTest({ networks: mockedPrivateNetworks });
+    setupTest();
 
-    await userEvent.click(
-      screen.getByText('creation:pci_instance_creation_network_add_new'),
+    const addNewButton = await screen.findByText(
+      'creation:pci_instance_creation_network_add_new',
     );
+
+    await userEvent.click(addNewButton);
 
     await waitFor(() => {
       expect(screen.getByText(`${NAMESPACES.ACTIONS}:cancel`)).toBeVisible();
@@ -197,11 +179,19 @@ describe('Considering Network component', () => {
   });
 
   it('should close creation form when click on cancel', async () => {
-    setupTest({ networks: mockedPrivateNetworks });
+    setupTest();
 
-    await userEvent.click(
-      screen.getByText('creation:pci_instance_creation_network_add_new'),
+    const addNewButton = await screen.findByText(
+      'creation:pci_instance_creation_network_add_new',
     );
+
+    await userEvent.click(addNewButton);
+
+    expect(
+      screen.queryByRole('form', {
+        name: 'creation:pci_instance_creation_network_add_new',
+      }),
+    ).toBeVisible();
 
     await userEvent.click(screen.getByText(`${NAMESPACES.ACTIONS}:cancel`));
 
@@ -211,36 +201,6 @@ describe('Considering Network component', () => {
           name: 'creation:pci_instance_creation_network_add_new',
         }),
       ).not.toBeInTheDocument();
-    });
-  });
-
-  it('should display gateway configuration', async () => {
-    setupTest();
-
-    await waitFor(() => {
-      expect(
-        screen.getByText(
-          'creation:pci_instance_creation_network_gateway_title',
-        ),
-      ).toBeVisible();
-
-      expect(
-        screen.getByLabelText(
-          /creation:pci_instance_creation_network_gateway_toggle_label/i,
-        ),
-      ).not.toBeChecked();
-    });
-  });
-
-  it('should have connectivity public checked by default', async () => {
-    setupTest();
-
-    await waitFor(() => {
-      expect(
-        screen.getByLabelText(
-          /creation:pci_instance_creation_network_add_public_connectivity.toggle_label/i,
-        ),
-      ).toBeChecked();
     });
   });
 });

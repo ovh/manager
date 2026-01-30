@@ -100,7 +100,7 @@ export type TAddSshKeyForm = z.infer<
   ReturnType<typeof buildAddSshKeyFormSchema>
 >;
 
-export const networkIdSchema = z.string().nullable();
+export const privateNetworkIdSchema = z.string().nullable();
 
 const VLAN_ID_MIN = 0;
 const VLAN_ID_MAX = 4000;
@@ -176,7 +176,7 @@ export const instanceCreationSchema = z.object({
   backup: backupImageSchema,
   sshKeyId: sshKeyIdSchema,
   newSshPublicKey: sshPublicKeySchema.nullable(),
-  networkId: networkIdSchema,
+  privateNetworkId: privateNetworkIdSchema,
   newPrivateNetwork: networkSchema,
   assignNewGateway: assignNewGatewaySchema,
   ipPublicType: ipPublicTypeSchema,

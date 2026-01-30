@@ -82,3 +82,9 @@ export const getRegionalizedImageId = (
   imageVersionName: string,
   regionName: string,
 ) => `${imageVersionName}_${regionName}`;
+
+export const getRegionalizedGatewayId = (size: string, regionName: string) =>
+  `gateway_${size}_${regionName}`;
+
+export const getRegionalizedPublicIpId = (type: string, regionName: string) =>
+  `${type}_${regionName}`;
