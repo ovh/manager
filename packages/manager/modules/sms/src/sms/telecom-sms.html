@@ -48,8 +48,9 @@
             <oui-header-tabs-item state="sms.service.dashboard"
                 ><span data-translate="sms_common_home"></span>
             </oui-header-tabs-item>
+            <!-- ng-show and not ng-if for the good work to oui-header-tabs__slider -->
             <oui-header-tabs-dropdown
-                data-ng-if="!$ctrl.isSmppAccount"
+                data-ng-show="!$ctrl.isSmppAccount"
                 text="{{:: 'sms_tabs_messages_campaign' | translate }}"
             >
                 <oui-header-tabs-item state="sms.service.sms">
@@ -59,8 +60,9 @@
                     <span data-translate="sms_sublink_sms_campaign"></span>
                 </oui-header-tabs-item>
             </oui-header-tabs-dropdown>
+            <!-- ng-show and not ng-if for the good work to oui-header-tabs__slider -->
             <oui-header-tabs-dropdown
-                data-ng-if="!$ctrl.isSmppAccount"
+                data-ng-show="!$ctrl.isSmppAccount"
                 text="{{:: 'sms_tabs_contacts' | translate }}"
             >
                 <oui-header-tabs-item state="sms.service.phonebooks">
@@ -73,14 +75,18 @@
             <oui-header-tabs-item state="sms.service.senders"
                 ><span data-translate="sms_tabs_senders"></span>
             </oui-header-tabs-item>
+            <!-- ng-show and not ng-if for the good work to oui-header-tabs__slider -->
             <oui-header-tabs-item
-                data-ng-if="!$ctrl.isSmppAccount"
+                data-ng-show="!$ctrl.isSmppAccount"
                 state="sms.service.users"
             >
                 <span data-translate="sms_tabs_api_users"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item state="sms.service.options"
                 ><span data-translate="sms_tabs_options"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item state="sms.service.statistics"
+                ><span data-translate="sms_tabs_statistics"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item state="sms.service.guides"
                 ><span data-translate="sms_tabs_guides"></span>
