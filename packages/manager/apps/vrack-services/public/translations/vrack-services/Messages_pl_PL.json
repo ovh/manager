@@ -1,7 +1,7 @@
 {
   "listingCrumb": "vRack Services",
-  "deliveringVrackServicesMessage": "Zlecenie aktywacji vRack Services zostało wysłane w dniu {{date}} - {{time}}. Status zamówienia: {{status}}",
-  "deliveringVrackMessage": "Zlecenie utworzenia sieci vRack zostało wysłane w dniu {{date}} - {{time}}. Status zamówienia: {{status}}",
+  "deliveringVrackServicesMessage": "Dyspozycja utworzenia vRack Services została złożona w dniu {{date}} - {{time}}. Status zamówienia: {{status}}",
+  "deliveringVrackMessage": "Dyspozycja utworzenia sieci vRack została zarejestrowana w dniu {{date}} - {{time}}. Status zamówienia: {{status}}",
   "orderStatus-cancelled": "Anulowane",
   "orderStatus-cancelling": "Trwa anulowanie",
   "orderStatus-checking": "Trwa sprawdzanie",
