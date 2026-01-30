@@ -21,7 +21,7 @@
   "pci_instance_creation_create_my_instance": "Lancer mon instance",
   "pci_instance_creation_error_title": "Une erreur est survenue",
   "pci_instance_creation_configuration_code": "Code de ma configuration",
-  "pci_instance_creation_select_flavor_title": "Sélectionnez un modèle",  
+  "pci_instance_creation_select_flavor_title": "Sélectionnez un modèle",
   "pci_instance_creation_select_flavor_cart_section": "Modèle",
   "pci_instance_creation_select_flavor_help_title": "Modèles",
   "pci_instance_creation_select_flavor_help_description": "OVHcloud propose une variété d’instances pour répondre à vos besoins en matière de calcul, de mémoire, de stockage et de performance.",
@@ -136,8 +136,8 @@
   "pci_instance_creation_backup_setting_help_replication_description": "<h6>Réplication sur un autre datacenter</h6><p>Pour renforcer la résilience de vos données, vous pouvez activer une réplication de vos sauvegardes vers un datacenter distant. Cela offre une sécurité supplémentaire et la possibilité de restaurer votre instance dans une autre région.",
   "pci_instance_creation_backup_setting_help_ui_guide": "<h6>Où retrouver vos sauvegardes</h6><p>Toutes vos sauvegardes sont accessibles depuis : L’interface de gestion de votre instance, La section Backup & Workflow Management.</p><Link>Consulter le guide complet sur la gestion des sauvegardes</Link>",
   "pci_instance_creation_backup_setting_auto_backup_checkbox_label": "Sauvegarde automatisée des instances (Local)",
-  "pci_instance_creation_backup_billing_label": "Chaque sauvegarde sera facturée : $t(pci_instance_creation_backup_setting_price_unit)",
-  "pci_instance_creation_backup_setting_price_unit": "~{{ price }} HT/mois/Go",
+  "pci_instance_creation_backup_billing_label": "Chaque sauvegarde sera facturée : {{ price }} $t(pci_instance_creation_backup_setting_price_unit)",
+  "pci_instance_creation_backup_setting_price_unit": "HT/mois/Go",
   "pci_instance_creation_backup_setting_distant_backup_checkbox_label": "Ajouter une sauvegarde distante (Optionnel)",
   "pci_instance_creation_backup_setting_distant_backup_warning_message": "La sauvegarde distante suit la même rotation que la sauvegarde locale.",
   "pci_instance_creation_backup_setting_local_label": "Sauvegarde auto (local)",
@@ -165,5 +165,9 @@
   },
   "pci_instance_creation_discovery_project_title": "Mode découverte",
   "pci_instance_creation_discovery_project_message": "Pour terminer la création de votre ressource, vous devez activer votre projet.",
-  "pci_instance_creation_discovery_project_activate": "Activer"
+  "pci_instance_creation_discovery_project_activate": "Activer",
+  "pci_instance_creation_cart_total_label": "Total",
+  "pci_instance_creation_cart_hourly_price_label": "Prix à l'heure estimé",
+  "pci_instance_creation_cart_monthly_price_label": "Prix mensuel estimé",
+  "pci_instance_creation_cart_monthly_price_disclaimer": "Hors Savings plan"
 }

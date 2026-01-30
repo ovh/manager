@@ -2,6 +2,7 @@ import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ErrorResponse, isRouteErrorResponse } from 'react-router-dom';
 import { AxiosError, isAxiosError } from 'axios';
+import { HOUR_AVERAGE_IN_MONTH } from '@/constants';
 
 type RouterErrorResponse = Pick<
   ErrorResponse,
@@ -82,3 +83,6 @@ export const getRegionalizedImageId = (
   imageVersionName: string,
   regionName: string,
 ) => `${imageVersionName}_${regionName}`;
+
+export const convertHourlyPriceToMonthly = (hourlyPrice: number): number =>
+  hourlyPrice * HOUR_AVERAGE_IN_MONTH;

@@ -15,9 +15,12 @@ export type TCartItem = {
 };
 
 export type TCartItemDetail = {
+  id: string;
   name: string;
   description?: JSX.Element;
+  displayPrice: boolean;
   price?: number;
+  priceUnit?: string;
 };
 
 type TCartItems = {
@@ -46,11 +49,17 @@ export const useCartItems = (): TCartItems => {
     networkName,
     name,
     backupConfigurationPrices,
+    billingType,
   } = instanceData;
+
+  const priceUnit = t(
+    `creation:pci_instance_creation_table_header_price_${billingType}_unit`,
+  );
 
   const region: TCartItemDetail[] = localizationDetails
     ? [
         {
+          id: 'region',
           name: t(`${NAMESPACES.REGION}:localisation`),
           description: (
             <Text preset="heading-6" className="text-[--ods-color-heading]">
@@ -59,6 +68,7 @@ export const useCartItems = (): TCartItems => {
               })`}
             </Text>
           ),
+          displayPrice: false,
         },
       ]
     : [];
@@ -66,17 +76,14 @@ export const useCartItems = (): TCartItems => {
   const flavor = flavorDetails
     ? [
         {
+          id: 'flavor',
           name: t('creation:pci_instance_creation_select_flavor_cart_section'),
           description: (
-            <>
-              <FlavorDetails quantity={quantity} flavor={flavorDetails} />
-              {flavorDetails.price && (
-                <Text preset="heading-6" className="text-[--ods-color-heading]">
-                  {getTextPrice(flavorDetails.price)}
-                </Text>
-              )}
-            </>
+            <FlavorDetails quantity={quantity} flavor={flavorDetails} />
           ),
+          price: flavorDetails.price,
+          displayPrice: true,
+          priceUnit,
         },
       ]
     : [];
@@ -85,24 +92,18 @@ export const useCartItems = (): TCartItems => {
     distributionImageVariantId && distributionImageVersionName
       ? [
           {
+            id: 'distributionImage',
             name: t(
               'creation:pci_instance_creation_cart_distribution_image_title',
             ),
             description: (
-              <>
-                <Text preset="heading-6" className="text-[--ods-color-heading]">
-                  {distributionImageVersionName}
-                </Text>
-                {windowsImageLicensePrice && (
-                  <Text
-                    preset="heading-6"
-                    className="text-[--ods-color-heading]"
-                  >
-                    {getTextPrice(windowsImageLicensePrice)}
-                  </Text>
-                )}
-              </>
+              <Text preset="heading-6" className="text-[--ods-color-heading]">
+                {distributionImageVersionName}
+              </Text>
             ),
+            price: windowsImageLicensePrice,
+            displayPrice: !!windowsImageLicensePrice,
+            priceUnit: windowsImageLicensePrice ? priceUnit : undefined,
           },
         ]
       : [];
@@ -110,19 +111,22 @@ export const useCartItems = (): TCartItems => {
   const sshKey = sshKeyId
     ? [
         {
+          id: 'sshKey',
           name: t('common:pci_instances_common_ssh_key_label'),
           description: (
             <Text preset="heading-6" className="text-[--ods-color-heading]">
               {sshKeyId}
             </Text>
           ),
+          displayPrice: false,
         },
       ]
     : [];
 
-  const backups = backupConfigurationPrices?.localBackupPrice
+  const backup = backupConfigurationPrices?.localBackupPrice
     ? [
         {
+          id: 'backup',
           name: t('common:pci_instances_common_backup'),
           description: (
             <div className="w-full">
@@ -130,13 +134,11 @@ export const useCartItems = (): TCartItems => {
                 label={t(
                   'creation:pci_instance_creation_backup_setting_local_label',
                 )}
-                price={t(
+                price={`~${getTextPrice(
+                  backupConfigurationPrices.localBackupPrice,
+                )}`}
+                priceUnit={t(
                   'creation:pci_instance_creation_backup_setting_price_unit',
-                  {
-                    price: getTextPrice(
-                      backupConfigurationPrices.localBackupPrice,
-                    ),
-                  },
                 )}
               />
               {backupConfigurationPrices.distantBackupPrice && (
@@ -145,18 +147,20 @@ export const useCartItems = (): TCartItems => {
                   label={t(
                     'creation:pci_instance_creation_backup_setting_distant_label',
                   )}
-                  price={t(
+                  price={`~${getTextPrice(
+                    backupConfigurationPrices.distantBackupPrice,
+                  )}`}
+                  priceUnit={t(
                     'creation:pci_instance_creation_backup_setting_price_unit',
-                    {
-                      price: getTextPrice(
-                        backupConfigurationPrices.distantBackupPrice,
-                      ),
-                    },
                   )}
                 />
               )}
             </div>
           ),
+          price:
+            backupConfigurationPrices.localBackupPrice +
+            (backupConfigurationPrices.distantBackupPrice ?? 0),
+          displayPrice: false,
         },
       ]
     : [];
@@ -164,6 +168,7 @@ export const useCartItems = (): TCartItems => {
   const network = networkName
     ? [
         {
+          id: 'network',
           name: t(
             'creation:pci_instance_creation_network_private_network_setting_title',
           ),
@@ -172,6 +177,8 @@ export const useCartItems = (): TCartItems => {
               {networkName}
             </Text>
           ),
+          //TODO: Add condition on public/private/gateway etc
+          displayPrice: false,
         },
       ]
     : [];
@@ -181,7 +188,7 @@ export const useCartItems = (): TCartItems => {
     ...flavor,
     ...distributionImage,
     ...sshKey,
-    ...backups,
+    ...backup,
     ...network,
   ];
 

@@ -14,7 +14,9 @@ const kubeItemName = 'kube_01';
 
 const details: TCartItemDetail[] = [
   {
+    id: 'localisation',
     name: 'localisation',
+    displayPrice: false,
   },
 ];
 

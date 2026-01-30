@@ -1,9 +1,8 @@
 import { mockedDistantBackupLocalizations } from '@/__mocks__/instance/constants';
 import { TCustomRegionItemData } from '@/components/localizationCard/LocalizationSelect.component';
+import { HOUR_AVERAGE_IN_MONTH } from '@/constants';
 import { TBackupConfiguration } from '@/domain/entities/configuration';
 import { SelectGroupItem } from '@ovhcloud/ods-react';
-
-const HOUR_AVERAGE_IN_MONTH = 730;
 
 export type TDistantBackupLocalizationItemData = TCustomRegionItemData & {
   backupPrice: number;

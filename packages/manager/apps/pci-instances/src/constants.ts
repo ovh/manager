@@ -40,3 +40,5 @@ export const CHANGELOG_LINKS = {
   'feature-request':
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
+
+export const HOUR_AVERAGE_IN_MONTH = 730;
