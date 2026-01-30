@@ -8,7 +8,7 @@ import { TCreateClusterSchema, createClusterSchema } from '../../CreateClusterFo
 const createClusterResolver = zodResolver(createClusterSchema);
 
 export const useCreateClusterForm = (is3azAvailable: boolean) => {
-  const defaultName = `MKS-${generateName()}`;
+  const defaultName = `mks-${generateName()}`;
 
   return useForm<TCreateClusterSchema>({
     mode: 'onChange',

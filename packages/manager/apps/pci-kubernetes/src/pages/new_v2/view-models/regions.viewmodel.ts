@@ -1,5 +1,3 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-
 import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
 import { useKubeRegions } from '@/api/hooks/useKubeRegions';
 import { TKubeRegions } from '@/domain/entities/kubeRegion';
@@ -52,11 +50,8 @@ export const filterMacroRegions =
 
 export const mapMacroRegionForCards = (regions?: TMacroRegion[]): TRegionCard[] | undefined =>
   regions?.map((region) => {
-    // Custom case for Mumbai region until common-translations is updated
-    const regionKey = region.name === 'YNM' ? 'MUM' : region.name;
-
     return {
-      labelKey: `${NAMESPACES.REGION}:region_${regionKey}`,
+      labelKey: `regions:region_${region.name}`,
       id: region.name,
       microRegions: region.microRegionIds,
       country: region.countryCode,

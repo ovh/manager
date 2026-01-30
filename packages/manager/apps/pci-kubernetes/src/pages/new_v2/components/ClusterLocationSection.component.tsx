@@ -79,11 +79,16 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
 
     setValue('location.continent', 'ALL');
     setValue('location.plan', 'all');
+  };
 
-    // Will retrigger the default values handler
+  useEffect(() => {
+    const isCurrentMacroRegionDisplayed = cardRegions?.find(({ id }) => id === macroRegionField);
+
+    if (isCurrentMacroRegionDisplayed) return;
+
     setValue('location.macroRegion', null);
     setValue('location.microRegion', null);
-  };
+  }, [cardRegions, macroRegionField, setValue]);
 
   // Default Value Handler
   useEffect(() => {
@@ -118,13 +123,14 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
       <Text preset="heading-3" className="mb-6">
         {t('kubernetes_add_location')}
       </Text>
-      <Text preset="heading-4" className="mb-6 flex items-center">
-        {t('kubernetes_add_location_subtitle')}
-        <HelpDrawerDivider />
-        <ClusterLocationHelpDrawer />
-      </Text>
       {is3azAvailable && (
         <>
+          <Text preset="heading-4" className="mb-6 flex items-center">
+            {t('kubernetes_add_location_subtitle')}
+            <HelpDrawerDivider />
+            <ClusterLocationHelpDrawer />
+          </Text>
+
           <Message dismissible={false}>
             <MessageIcon name="circle-info" />
             <MessageBody className="flex flex-col gap-4">
@@ -136,7 +142,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
             </MessageBody>
           </Message>
           <DeploymentModeSelect onDeploymentModeChange={onDeploymentModeChange} />
-          <div className="my-6 grid items-end gap-6 sm:grid-cols-2 lg:w-max">
+          <div className="mb-9 mt-6 grid items-end gap-6 sm:grid-cols-2 lg:w-max">
             <ContinentSelect options={continentOptions ?? []} />
             <PlanSelect options={planOptions} />
           </div>

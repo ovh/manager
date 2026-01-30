@@ -103,9 +103,8 @@
   "kubernetes_add_location_subtitle": "Scegliere una modalità di distribuzione",
   "kubernetes_add_region_title_region_alt": "Logo regione 1-AZ",
   "kubernetes_add_region_title_region-3-az_alt": "Logo regione 3-AZ",
-  "kubernetes_add_region_continent_select": "Selezionare un'area geografica",
-  "kubernetes_add_region_plan_select": "Filtra per piani",
+  "kubernetes_add_region_continent_select": "Filtra per area geografica",
   "kubernetes_add_region_plan_all": "Tutti i piani",
-  "kubernetes_add_micro_region_choose": "Scegliere un datacenter",
-  "kubernetes_add_micro_region_select": "Selezionare un datacenter"
+  "kubernetes_add_micro_region_choose": "Scegli un datacenter",
+  "kubernetes_add_micro_region_select": "Seleziona un datacenter"
 }

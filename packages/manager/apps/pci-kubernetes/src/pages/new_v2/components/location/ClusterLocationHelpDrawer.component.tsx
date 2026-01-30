@@ -21,10 +21,7 @@ export const ClusterLocationHelpDrawer: FC = () => {
     REGIONS_DOCUMENTATION_LINK[ovhSubsidiary] ?? REGIONS_DOCUMENTATION_LINK.DEFAULT;
 
   return (
-    <HelpDrawer>
-      <Text preset="heading-2" className="mb-4">
-        {t('region-selector:cluster_location_help_drawer.title')}
-      </Text>
+    <HelpDrawer headerContent={t('region-selector:cluster_location_help_drawer.title')}>
       <Text>
         <Trans
           ns="region-selector"
@@ -32,34 +29,34 @@ export const ClusterLocationHelpDrawer: FC = () => {
           i18nKey="region-selector:cluster_location_help_drawer.intro"
         />
       </Text>
-      <Text className="mb-4 mt-6" preset="heading-3">
+      <Text className="mt-9" preset="heading-4">
         {t('region-selector:cluster_location_help_drawer.3az_title')}
       </Text>
-      <Text className="mb-4">
+      <Text className="mt-5">
         <Trans
           ns="region-selector"
           components={{ strong: <strong /> }}
           i18nKey="region-selector:cluster_location_help_drawer.3az_control_plane"
         />
       </Text>
-      <Text>
+      <Text className="mt-5">
         <Trans
           ns="region-selector"
           components={{ strong: <strong /> }}
           i18nKey="region-selector:cluster_location_help_drawer.3az_worker_nodes"
         />
       </Text>
-      <Text className="mb-4 mt-6" preset="heading-3">
+      <Text className="mt-9" preset="heading-4">
         {t('region-selector:cluster_location_help_drawer.1az_title')}
       </Text>
-      <Text className="mb-4">
+      <Text className="mt-5">
         <Trans
           ns="region-selector"
           components={{ strong: <strong /> }}
           i18nKey="region-selector:cluster_location_help_drawer.1az_control_plane"
         />
       </Text>
-      <Text>
+      <Text className="mt-5">
         <Trans
           ns="region-selector"
           components={{ strong: <strong /> }}
@@ -67,14 +64,14 @@ export const ClusterLocationHelpDrawer: FC = () => {
         />
       </Text>
       <Link
-        className="mt-6"
+        className="mt-9"
         href={regionsDocumentationLink}
         target={OdsHTMLAnchorElementTarget._blank}
       >
         {t('region-selector:cluster_location_help_drawer.regions_title')}
       </Link>
       <Link
-        className="mt-4"
+        className="mt-5"
         href={deploymentDocumentationLink}
         target={OdsHTMLAnchorElementTarget._blank}
       >

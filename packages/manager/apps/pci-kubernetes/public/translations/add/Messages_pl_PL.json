@@ -103,8 +103,7 @@
   "kubernetes_add_location_subtitle": "Wybierz tryb wdrożenia",
   "kubernetes_add_region_title_region_alt": "Logo regionu 1-AZ",
   "kubernetes_add_region_title_region-3-az_alt": "Logo regionu 3-AZ",
-  "kubernetes_add_region_continent_select": "Wybierz strefę geograficzną",
-  "kubernetes_add_region_plan_select": "Filtruj według planów",
+  "kubernetes_add_region_continent_select": "Filtruj według obszaru geograficznego",
   "kubernetes_add_region_plan_all": "Wszystkie plany",
   "kubernetes_add_micro_region_choose": "Wybierz centrum danych",
   "kubernetes_add_micro_region_select": "Wybierz centrum danych"
