@@ -4,12 +4,14 @@ export default class BillingMainCtrl {
     $translate,
     coreConfig,
     isPayAsYouGoAvailable,
+    isTelephonyAvailable,
     guides,
     trackClick,
   ) {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.isPayAsYouGoAvailable = isPayAsYouGoAvailable;
+    this.isTelephonyAvailable = isTelephonyAvailable;
     this.guides = guides;
     this.trackClick = trackClick;
   }
