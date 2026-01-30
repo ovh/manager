@@ -4,7 +4,7 @@ import {
 } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
@@ -81,7 +81,7 @@ describe('Okms List page test suite', () => {
       name: labels.secretManager.create_a_secret,
     });
 
-    await user.click(button);
+    await act(() => user.click(button));
 
     await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
   });
@@ -91,7 +91,7 @@ describe('Okms List page test suite', () => {
 
     const { user, okmsNameLink } = await expectOkmsListPageToBeDisplayed();
 
-    await user.click(okmsNameLink);
+    await act(() => user.click(okmsNameLink));
 
     expect(
       (await screen.findAllByText(labels.secretManager.secret_manager)).length,

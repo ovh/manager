@@ -130,7 +130,7 @@ const clickOnConfirmButton = async (user: UserEvent) => {
     confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
     expect(confirmButton).not.toBeDisabled();
   });
-  await user.click(confirmButton!);
+  await act(() => user.click(confirmButton!));
 
   return confirmButton;
 };

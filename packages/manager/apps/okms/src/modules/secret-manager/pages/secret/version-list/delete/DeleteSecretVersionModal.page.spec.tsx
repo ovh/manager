@@ -3,7 +3,7 @@ import * as router from 'react-router-dom';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { updateVersionErrorMessage } from '@secret-manager/mocks/versions/versions.handler';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
@@ -46,7 +46,7 @@ describe('Secret version delete modal test suite', () => {
       name: labels.common.actions.delete,
     });
 
-    await user.click(submitButton);
+    await act(() => user.click(submitButton));
 
     // Check navigation
     await waitFor(() => {
@@ -66,7 +66,7 @@ describe('Secret version delete modal test suite', () => {
       name: labels.common.actions.delete,
     });
 
-    await user.click(submitButton);
+    await act(() => user.click(submitButton));
 
     await assertTextVisibility(updateVersionErrorMessage);
 

@@ -4,7 +4,7 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { deleteSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
@@ -54,7 +54,7 @@ describe('Delete secret modal test suite', () => {
       name: labels.common.actions.delete,
     });
 
-    await user.click(submitButton);
+    await act(() => user.click(submitButton));
 
     // Check navigation
     await waitFor(() => {
@@ -74,7 +74,7 @@ describe('Delete secret modal test suite', () => {
       name: labels.common.actions.delete,
     });
 
-    await user.click(submitButton);
+    await act(() => user.click(submitButton));
 
     await assertTextVisibility(deleteSecretErrorMessage);
 

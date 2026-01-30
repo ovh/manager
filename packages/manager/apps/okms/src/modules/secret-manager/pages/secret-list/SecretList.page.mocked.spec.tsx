@@ -2,7 +2,7 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterAll, vi } from 'vitest';
 
@@ -29,7 +29,7 @@ describe('Secret list page test suite with mocked react-router-dom', () => {
       name: labels.secretManager.create_a_secret,
     });
 
-    await user.click(createSecretButton);
+    await act(() => user.click(createSecretButton));
 
     await waitFor(() => {
       expect(navigateMock).toHaveBeenCalledTimes(1);

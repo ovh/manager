@@ -115,22 +115,25 @@ describe('Secret create version drawer page test suite', () => {
     const input = await screen.findByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
 
     // clean first the input
-    await user.clear(input);
+    await act(() => user.clear(input));
     // then type the new value
     const escaped = MOCK_NEW_DATA.replace(/{/g, '{{');
-    await user.type(input, escaped);
+    await act(() => user.type(input, escaped));
 
     // Submit the form
     // Button should be enabled after input change
+    await waitFor(() => {
+      const submitButton = screen.getByRole('button', {
+        name: labels.common.actions.add,
+      });
+      expect(submitButton).toBeInTheDocument();
+      expect(submitButton).toBeEnabled();
+    });
+
     const submitButton = screen.getByRole('button', {
       name: labels.common.actions.add,
     });
-    expect(submitButton).toBeInTheDocument();
-    expect(submitButton).toBeEnabled();
-
-    await act(async () => {
-      await user.click(submitButton);
-    });
+    await act(() => user.click(submitButton));
 
     // Wait for the createSecretVersion to be called
     await waitFor(() => {
