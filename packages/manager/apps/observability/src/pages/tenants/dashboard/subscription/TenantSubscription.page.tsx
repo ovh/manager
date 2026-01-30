@@ -153,7 +153,6 @@ export default function SubscriptionPage() {
             variant={BUTTON_VARIANT.default}
             urn={tenant?.iam?.urn ?? ''}
             iamActions={IAM_ACTIONS.EDIT_TENANT}
-            isIamTrigger={true}
             displayTooltip={true}
             disabled={true}
             loading={isTenantLoading}

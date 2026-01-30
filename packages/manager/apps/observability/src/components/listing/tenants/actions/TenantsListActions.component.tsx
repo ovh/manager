@@ -4,15 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import { BUTTON_COLOR, BUTTON_VARIANT, ICON_NAME, POPOVER_POSITION } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  ActionMenu,
-  ActionMenuItemProps,
-  BUTTON_COLOR,
-  BUTTON_VARIANT,
-  ICON_NAME,
-  POPOVER_POSITION,
-} from '@ovh-ux/muk';
+import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 
 import { LocationPathParams } from '@/routes/Routes.constants';
 import { getDeleteTenantUrl, getEditTenantUrl, getTenantDashboardUrl } from '@/routes/Routes.utils';
