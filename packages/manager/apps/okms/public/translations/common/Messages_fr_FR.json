@@ -1,5 +1,6 @@
 {
   "error_fetching_data": "Une erreur est survenue lors du chargement des données",
+  "error_updating_data": "Une erreur est survenue lors de la mise à jour des données",
   "okms_order_blocked": "Un domaine OKMS est déjà en cours de création. Vous pourrez activer un nouveau domaine OKMS lorsque votre première demande sera traitée.",
   "okms_order_expired": "L'activation de la région prend plus de temps qu'estimé. Merci de réessayer dans quelques minutes.",
   "okms_order_pending": "Votre domaine OKMS est en cours de création. Vous serez notifié lorsqu'il sera prêt.",

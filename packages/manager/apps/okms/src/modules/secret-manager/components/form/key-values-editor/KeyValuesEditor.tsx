@@ -7,7 +7,7 @@ import {
   keyValuePairsToString,
   stringToKeyValuePairs,
 } from '@secret-manager/utils/key-value/keyValue';
-import { UseControllerProps, useController, useFormContext } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { OdsFormField } from '@ovhcloud/ods-components/react';
@@ -18,14 +18,15 @@ import { Button } from '@ovh-ux/muk';
 import { KeyValuesEditorItem } from './KeyValuesEditorItem';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
-export type FormFieldInput = {
-  data: string;
+type KeyValuesEditorProps<T extends FieldValues> = UseControllerProps<T> & {
+  allowDeleteLastItem?: boolean;
 };
 
-export const KeyValuesEditor = <T extends FormFieldInput>({
+export const KeyValuesEditor = <T extends FieldValues>({
   name,
   control,
-}: UseControllerProps<T>) => {
+  allowDeleteLastItem = false,
+}: KeyValuesEditorProps<T>) => {
   const { t } = useTranslation(['secret-manager']);
   const { field, fieldState } = useController({ name, control });
   const { setError, clearErrors } = useFormContext(); // Requires a form provider to be present
@@ -93,7 +94,7 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
             onChange={(item) => handleItemChange(index, item)}
             onDelete={() => handleDeleteItem(index)}
             onBlur={handleItemBlur}
-            isDeletable={keyValuePairs.length > 1}
+            isDeletable={allowDeleteLastItem ? true : keyValuePairs.length > 1}
           />
         ))}
       </OdsFormField>

@@ -4,7 +4,7 @@ import {
   MAX_VERSIONS_MAX_VALUE,
   MAX_VERSIONS_MIN_VALUE,
 } from '@secret-manager/validation/secret-config/secretConfigSchema';
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { OdsFormField, OdsQuantity } from '@ovhcloud/ods-components/react';
@@ -12,16 +12,12 @@ import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
-type FormFieldInput = {
-  maxVersions?: number;
-};
-
-type SecretMaxVersionsFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
+type SecretMaxVersionsFormFieldProps<T extends FieldValues> = UseControllerProps<T> & {
   secret?: Secret;
   okmsId?: string;
 };
 
-export const SecretMaxVersionsFormField = <T extends FormFieldInput>({
+export const SecretMaxVersionsFormField = <T extends FieldValues>({
   name,
   control,
   secret,
