@@ -4,7 +4,7 @@
     "name_id": "Name / ID",
     "region": "Region",
     "protocol": "Protocol",
-    "allocated_capacity": "Allocated capacity",
+    "allocated_capacity": "Allocated Capacity",
     "status": "Status"
   },
   "status": {
