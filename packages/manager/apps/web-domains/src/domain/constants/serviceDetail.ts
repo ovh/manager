@@ -9,10 +9,9 @@ import {
 } from '../enum/domainState.enum';
 import { SuspensionStateEnum } from '../enum/suspensionState.enum';
 import {
-  DomainServiceStateEnum,
   BannerResult,
   ComboRule,
-  StatusDetails,
+  StatusDetails
 } from '@/domain/types/domainResource';
 import { LifecycleCapacitiesEnum } from '@/common/enum/common.enum';
 import { ProtectionStateEnum } from '../enum/protectionState.enum';
@@ -81,10 +80,10 @@ export type TOngoingOperationTarget = 'alldom' | 'dns' | 'domain';
 export const ongoingOperationLink = (
   target: TOngoingOperationTarget,
 ): [string, string, Record<string, ParamValueType>] => [
-  'web-ongoing-operations',
-  `/${target}`,
-  {},
-];
+    'web-ongoing-operations',
+    `/${target}`,
+    {},
+  ];
 
 export const ERROR_RULES: ComboRule[] = [
   {
@@ -286,50 +285,6 @@ export const DOMAIN_STATE: Record<string, StatusDetails> = {
   },
   [DomainStateEnum.TO_DELETE]: {
     i18nKey: 'domain_tab_general_information_pending_deletion',
-    statusColor: BADGE_COLOR.warning,
-  },
-  [DomainServiceStateEnum.AUTORENEW_IN_PROGRESS]: {
-    i18nKey: 'domain_status_auto_renew_in_progress',
-    statusColor: BADGE_COLOR.success,
-  },
-  [DomainServiceStateEnum.AUTORENEW_REGISTRY_IN_PROGRESS]: {
-    i18nKey: 'domain_status_auto_renew_in_progress',
-    statusColor: BADGE_COLOR.critical,
-  },
-  [DomainServiceStateEnum.DELETED]: {
-    i18nKey: 'domain_tab_general_information_deleted',
-    statusColor: BADGE_COLOR.critical,
-  },
-  [DomainServiceStateEnum.EXPIRED]: {
-    i18nKey: 'domain_tab_general_information_expired',
-    statusColor: BADGE_COLOR.critical,
-  },
-  [DomainServiceStateEnum.OK]: {
-    i18nKey: 'domain_tab_general_information_registered',
-    statusColor: BADGE_COLOR.success,
-  },
-  [DomainServiceStateEnum.OUTGOING_TRANSFER]: {
-    i18nKey: 'domain_tab_general_information_outgoing_transfer',
-    statusColor: BADGE_COLOR.information,
-  },
-  [DomainServiceStateEnum.PENDING_CREATE]: {
-    i18nKey: 'domain_tab_general_information_registration_progress',
-    statusColor: BADGE_COLOR.information,
-  },
-  [DomainServiceStateEnum.PENDING_DELETE]: {
-    i18nKey: 'domain_tab_general_information_pending_deletion',
-    statusColor: BADGE_COLOR.critical,
-  },
-  [DomainServiceStateEnum.PENDING_INCOMING_TRANSFER]: {
-    i18nKey: 'domain_tab_general_information_incoming_transfer',
-    statusColor: BADGE_COLOR.information,
-  },
-  [DomainServiceStateEnum.PENDING_INSTALLATION]: {
-    i18nKey: 'domain_status_pending_installation',
-    statusColor: BADGE_COLOR.information,
-  },
-  [DomainServiceStateEnum.RESTORABLE]: {
-    i18nKey: 'domain_tab_general_information_restorable',
     statusColor: BADGE_COLOR.warning,
   },
 };

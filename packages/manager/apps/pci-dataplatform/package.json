@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-dataplatform-app",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "private": true,
   "description": "pci-dataplatform",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/manager-core-api": "^0.21.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/shell": "^4.10.3",
+    "@ovh-ux/shell": "^4.10.4",
     "@tanstack/react-query": "5.90.12",
     "@tanstack/react-table": "8.21.3",
     "clsx": "^2.1.0",

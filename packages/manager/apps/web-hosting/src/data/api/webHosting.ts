@@ -1,6 +1,7 @@
 import { fetchIcebergV2, v2, v6 } from '@ovh-ux/manager-core-api';
 
 import {
+  AttachedDomainProps,
   PostWebHostingAttachedDomainPayload,
   PostWebHostingWebsitePayload,
   PutWebHostingWebsitePayload,
@@ -177,6 +178,12 @@ export const putAttachedDomain = async (
   );
 };
 
-export const getAttachedDomainDetails = async (serviceName: string, domain: string) => {
-  await v6.get<void>(`/hosting/web/${serviceName}/attachedDomain/${domain}`);
+export const getAttachedDomainDetails = async (
+  serviceName: string,
+  domain: string,
+): Promise<AttachedDomainProps> => {
+  const { data } = await v6.get<AttachedDomainProps>(
+    `/hosting/web/${serviceName}/attachedDomain/${domain}`,
+  );
+  return data;
 };

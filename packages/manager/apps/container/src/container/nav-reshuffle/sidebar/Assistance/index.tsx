@@ -20,7 +20,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   isLoading,
 }): JSX.Element => {
   const shell = useShell();
-  const { setChatbotReduced } = useContainer();
+  const { setChatbotReduced, setAIChatbotOpen, chatbotOpen } = useContainer();
 
   const environment = shell.getPlugin('environment').getEnvironment();
   const urls = useURL(environment);
@@ -74,6 +74,16 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
             shell.getPlugin('ux').openLiveChat();
             setChatbotReduced(false);
             trackNode('assistance_live_chat');
+            closeNavigationSidebar();
+          };
+          break;
+        case 'ai_chatbot':
+          node.onClick = () => {
+            if (chatbotOpen) {
+              shell.getPlugin('ux').closeChatbot();
+            }
+            setAIChatbotOpen(true);
+            trackNode('assistance_ai_chatbot');
             closeNavigationSidebar();
           };
           break;

@@ -91,7 +91,7 @@ export default function OnboardingPage() {
         onMoreInfoButtonClick={() => {}}
         isOrderLoading={isPending}
         orderHref={urls.firstOrder}
-        moreInfoHref={links.main}
+        moreInfoHref={links.website}
         isOrderDisabled={!flattenData?.length || !isVaultError || isVaultPending || isOrderSuccess}
         tooltipContent={!flattenData?.length ? t('no_baremetal_available') : undefined}
       >

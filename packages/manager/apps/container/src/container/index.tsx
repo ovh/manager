@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState, lazy } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import LegacyContainer from '@/container/legacy';
 import NavReshuffleContainer from '@/container/nav-reshuffle';
@@ -9,6 +9,7 @@ import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/components/sso-auth-modal/SSOAuthModal.component';
 import LiveChat from '@/container/livechat/LiveChat.component';
+import AIChatbot from '@/components/ai-chatbot/AIChatbot/AIChatbot.component';
 
 export default function Container(): JSX.Element {
   const { isLoading, betaVersion, useBeta } = useContainer();
@@ -56,6 +57,9 @@ export default function Container(): JSX.Element {
           <LiveChat
             closeLiveChat={() => shell.getPlugin('ux').closeChatbot()}
           />
+        </Suspense>
+        <Suspense fallback="">
+          <AIChatbot />
         </Suspense>
       </ProgressProvider>
 

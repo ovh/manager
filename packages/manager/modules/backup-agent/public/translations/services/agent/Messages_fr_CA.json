@@ -1,4 +1,5 @@
 {
+  "agents_tab_description": "Retrouvez ici l'ensemble de vos agents protégés. Il est important de finaliser votre configuration pour que votre serveur soit sauvegardé. Pour en savoir plus, consultez la <Link>documentation OVHcloud Backup Agent</Link>",
   "edit_configuration": "Éditer un agent",
   "service_informations": "Informations sur le service",
   "link_agent_to_a_server": "Lier un agent à un serveur existant",

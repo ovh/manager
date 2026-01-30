@@ -9,5 +9,6 @@
   "buckets_label": "Liczba bucketów",
   "status_label": "Status",
   "order_vault": "Zamów vault",
-  "more_action": "Dodatkowe działanie"
+  "more_action": "Dodatkowe działanie",
+  "vaults_tab_description": "Twoje Vaults opierają się na Object Storage OVHcloud. Są skonfigurowane z szyfrowaniem i niezmiennością (14 dni) dla bezpiecznych i niezmienionych danych. Aby uzyskać więcej informacji, zapoznaj się z <Link>dokumentacją OVHcloud Backup Agent</Link>"
 }

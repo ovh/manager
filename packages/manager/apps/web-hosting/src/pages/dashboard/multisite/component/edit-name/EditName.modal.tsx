@@ -27,7 +27,6 @@ export default function EditNameModal() {
   const siteId = state?.siteId;
   const { t } = useTranslation(['dashboard', 'common', NAMESPACES.ACTIONS, NAMESPACES.STATUS]);
   const { addSuccess, addError } = useNotifications();
-
   const { mutate: editName, isPending } = useMutation({
     mutationFn: (newName: string) =>
       putWebHostingWebsite(serviceName, siteId, {
@@ -65,10 +64,11 @@ export default function EditNameModal() {
       headline={t('hosting_dashboard_modal_update_headline')}
       description={t('hosting_dashboard_modal_update_description')}
       inputLabel={t('hosting_dashboard_modal_update_input_label')}
-      onClose={onClose}
+      onClose={() => onClose()}
       defaultValue={siteName}
       confirmButtonLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
       cancelButtonLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
+      onOpenChange={() => onClose()}
       updateDisplayName={handleEditNameModal}
       isLoading={isPending}
     />

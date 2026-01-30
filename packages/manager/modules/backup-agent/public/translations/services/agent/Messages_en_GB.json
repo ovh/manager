@@ -15,10 +15,10 @@
   "delete_agent_modal_title": "Delete agent",
   "delete_agent_modal_content": "Are you sure you want to delete the {{agentName}} agent? The associated data will be kept for up to 14 days after deletion.",
   "download_agent_with_executable": "Install via executable",
-  "download_agent_with_command_line": "Install agent via terminal",
-  "add_agent_banner_api_error": "An error has occurred. Please wait a few minutes and try again. {{errorMessage}}",
-  "add_agent_error_resource_not_found": "An error has occurred. Please check that the server is valid.",
-  "update_agent_banner_success": "Modifying policy... Please wait a few seconds.",
-  "unable_edit_agent_not_enabled": "The configuration will be available once the Agent is enabled.",
-  "add_agent_banner_success": "Server successfully added for backup."
+  "download_agent_with_command_line": "Install the agent via terminal",
+  "add_agent_banner_api_error": "An error occurred. Please wait a few minutes before trying again. {{errorMessage}}",
+  "add_agent_error_resource_not_found": "An error occurred. Please check that the server is valid.",
+  "update_agent_banner_success": "The policy modification is in progress, please wait a few seconds.",
+  "unable_edit_agent_not_enabled": "The configuration will be available once the Agent is activated.",
+  "agents_tab_description": "Find here all your protected agents. It is important to finalize your configuration so that your server is backed up. To get further information, consult the <Link>OVHcloud Backup Agent documentation</Link>"
 }

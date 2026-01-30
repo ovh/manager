@@ -19,5 +19,5 @@ export default {
 };
 
 export const LABELS = Object.freeze({
-  BACKUP_AGENT: 'Backup agent',
+  BACKUP_AGENT: 'Backup Agent',
 });

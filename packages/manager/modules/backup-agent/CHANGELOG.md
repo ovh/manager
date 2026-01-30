@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.11.0...@ovh-ux/backup-agent@1.11.1) (2026-01-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4617] ([927a2d3](https://github.com/ovh/manager/commit/927a2d384a06dd66f87992fdb8811c15db4ca3ca))
+* **i18n:** add missing translations [CDS 4623] ([5b32c60](https://github.com/ovh/manager/commit/5b32c60cf7da76e65614bcf49feeb1ac7c6b03ad))
+
+
+
+
+
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.10.0...@ovh-ux/backup-agent@1.11.0) (2026-01-27)
+
+
+### Features
+
+* **backup-agent:** add reload button component, remove reload from vaults and add it in agents page ([92ed729](https://github.com/ovh/manager/commit/92ed7290c144604b6b59b9a1ed3c07b3a21e85c2)), closes [#BKP-739](https://github.com/ovh/manager/issues/BKP-739)
+* **backup-agent:** add tabs descriptions ([63c8de7](https://github.com/ovh/manager/commit/63c8de798e940763b7d98493b97afef27f73a01a)), closes [#BKP-754](https://github.com/ovh/manager/issues/BKP-754)
+* **backup-agent:** update status types ([86d5cb4](https://github.com/ovh/manager/commit/86d5cb4b942fc29d15357865be95c80f72aea761)), closes [#BKP-737](https://github.com/ovh/manager/issues/BKP-737)
+* **bmc-backup-agent-baremetal:** replace more info link ([2c6aff5](https://github.com/ovh/manager/commit/2c6aff535461bf65dd2e379bb0bab0d7ec547c54)), closes [#BKP-757](https://github.com/ovh/manager/issues/BKP-757)
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.9.2...@ovh-ux/backup-agent@1.10.0) (2026-01-26)
 
 

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.73.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.2...@ovh-ux/manager-dedicated@20.73.3) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.73.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.1...@ovh-ux/manager-dedicated@20.73.2) (2026-01-27)
+
+
+### Bug Fixes
+
+* **dedicated:** fix backup agent wording on baremetal ([10cd69b](https://github.com/ovh/manager/commit/10cd69bc8bd6b6c3d9c343abbee457bc6ba1cdd6)), closes [#BKP-655](https://github.com/ovh/manager/issues/BKP-655)
+
+
+
+
+
 ## [20.73.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.0...@ovh-ux/manager-dedicated@20.73.1) (2026-01-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

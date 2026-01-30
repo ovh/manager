@@ -2,7 +2,7 @@ import { ApiResponse, v2 } from '@ovh-ux/manager-core-api';
 
 import { Agent } from '@/types/Agent.type';
 import { AgentDownloadLinks } from '@/types/AgentDownloadLinks';
-import { Resource } from '@/types/Resource.type';
+import { AgentResource } from '@/types/Resource.type';
 import {
   GetBackupAgentParams,
   getBackupAgentDetailsRoute,
@@ -28,7 +28,7 @@ export const getBackupAgentsDetails = async ({
   vspcTenantId,
   backupAgentId,
 }: GetBackupAgentParams) => {
-  const { data } = await v2.get<Resource<Agent>>(
+  const { data } = await v2.get<AgentResource<Agent>>(
     getBackupAgentDetailsRoute({ backupServicesId, vspcTenantId, backupAgentId }),
   );
   return data;
