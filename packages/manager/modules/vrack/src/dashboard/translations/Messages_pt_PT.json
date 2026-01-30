@@ -57,5 +57,6 @@
   "vrack_terminate_modal_error_banner": "A eliminação do seu vRack falhou, queira verificar se o seu vRack está vazio.",
   "vrack_terminate_title": "Rescindir o meu vRack",
   "vrack_terminate_description": "Para rescindir o seu vRack, deve desligar previamente todos os serviços que estão associados ao mesmo.",
-  "vrack_terminate": "Rescindir"
+  "vrack_terminate": "Rescindir",
+  "vrack_service_type_vmwareclouddirectorvirtualdatacenter": "Public VCF as-a-Service"
 }
