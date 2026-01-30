@@ -34,5 +34,5 @@
   "kubernetes_network_form_no_associated_gateway": "La tua sottorete non dispone di un gateway associato, necessario per il corretto funzionamento del cluster. Associane uno a questa sottorete o seleziona una sottorete conforme a questo requisito.",
   "kubernetes_network_form_no_private_network": "Per configurare la rete per il tuo Kubernetes è necessaria una rete privata associata. Se non ne hai già una, ti consigliamo di crearla.",
   "kubernetes_network_form_add_gateway": "Creare un gateway",
-  "kubernetes_network_form_notify_users_standard": "Per implementare il Managed Kubernetes Service Standard (1-AZ o 3-AZ), è obbligatorio un sottorete con una gateway collegata. Assicurati che la tua rete privata rispetti questo prerequisito per garantire un funzionamento ottimale."
+  "kubernetes_network_form_notify_users_standard": "Per eseguire il deploy di Managed Kubernetes Service Standard (1-AZ o 3-AZ) è necessaria una sottorete con un gateway associato. Assicurati che la tua rete privata rispetti questi prerequisiti per garantire un funzionamento ottimale."
 }

@@ -12,8 +12,8 @@
   "tableActionRestart": "Riavvia",
   "tableActionStop": "Arrestare",
   "tableActionDelete": "Eliminare",
-  "shutdownLabel": "Fermare il {{timeout}}",
-  "restartLabel": "Riavviare il {{timeout}}",
+  "shutdownLabel": "Arresto il {{timeout}}",
+  "restartLabel": "Riavvio il {{timeout}}",
   "timeOutLabel": "Scadenza",
-  "tableActionClone": "Clonare il lavoro"
+  "tableActionClone": "Clonare il job"
 }

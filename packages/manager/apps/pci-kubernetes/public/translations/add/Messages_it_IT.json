@@ -81,12 +81,12 @@
   "kube_add_plan_subtitle": "Scegli il piano più adatto alle tue esigenze. Usufruisci di un'ampia scelta di istanze utilizzate come nodi Kubernetes, fatturate a consumo o con impegno contrattuale.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Assegna un nome al tuo pool di nodi",
-  "kube_add_plan_content_unavailable_1AZ_banner": "Il piano {{ plan }} non è disponibile nelle regioni 1-AZ. Se desideri usufruire del piano {{ plan }}, seleziona il deployment in 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "Il piano {{ plan }} non è disponibile nelle regioni 3-AZ. Se desideri usufruire del piano {{ plan }}, seleziona un deployment in 1-AZ.",
+  "kube_add_plan_content_unavailable_1AZ_banner": "Il piano {{ plan }} non è disponibile nelle Region 1-AZ. Per utilizzare il piano {{ plan }}, seleziona il deploy in 3-AZ.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "Il piano {{ plan }} non è disponibile nelle Region 3-AZ. Per utilizzare il piano {{ plan }}, seleziona un deploy in 1-AZ.",
   "kube_add_name_title": "Assegna un nome al tuo pool di nodi",
   "kube_add_node_pool_name_already_exist_validation_error": "Il nome del nodepool è già in uso, ti preghiamo di sceglierne un altro.",
-  "kube_add_plan_content_standard_1AZ_control_plane": "Piano di controllo gestito, altamente disponibile (1-AZ) e dedicato, con risorse garantite",
-  "kube_add_plan_content_not_available": "non disponibile nella regione",
-  "kubernetes_add_region_plan_select": "Filtra per piani",
+  "kube_add_plan_content_standard_1AZ_control_plane": "Control plane gestito, altamente disponibile (1-AZ) e dedicato, con risorse garantite",
+  "kube_add_plan_content_not_available": "non disponibile nella Region",
+  "kubernetes_add_region_plan_select": "Filtrare per piani",
   "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA"
 }

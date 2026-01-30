@@ -12,8 +12,8 @@
   "tableActionRestart": "Reiniciar",
   "tableActionStop": "Parar",
   "tableActionDelete": "Eliminar",
-  "shutdownLabel": "Parar o {{timeout}}",
-  "restartLabel": "Reiniciar o {{timeout}}",
+  "shutdownLabel": "Interrupção a {{timeout}}",
+  "restartLabel": "Reinicialização a {{timeout}}",
   "timeOutLabel": "Expiração",
-  "tableActionClone": "Clonar o Trabalho"
+  "tableActionClone": "Clonar o Job"
 }

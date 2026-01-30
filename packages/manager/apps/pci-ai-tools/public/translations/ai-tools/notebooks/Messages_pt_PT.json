@@ -19,7 +19,7 @@
   "quantumTitle": "Emulators",
   "qpuTitle": "QPU",
   "tableActionRestart": "Reiniciar",
-  "shutdownLabel": "Paragem em {{timeout}}",
-  "restartLabel": "Reinício em {{timeout}}",
+  "shutdownLabel": "Interrupção a {{timeout}}",
+  "restartLabel": "Reinicialização a {{timeout}}",
   "timeOutLabel": "Expiração"
 }

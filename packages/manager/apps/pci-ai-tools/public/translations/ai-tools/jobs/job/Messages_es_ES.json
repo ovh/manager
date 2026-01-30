@@ -22,7 +22,7 @@
   "cliToastMessage": "Pedido copiado",
   "restartJobButtonConfirm": "Reanudar",
   "restartJobToastSuccessDescription": "El job {{name}} se ha iniciado",
-  "cloneJobTitle": "Clonar un nuevo trabajo",
-  "shutdownLabel": "Parada el ",
+  "cloneJobTitle": "Clonar un nuevo job",
+  "shutdownLabel": "Detención el ",
   "restartLabel": "Reinicio el "
 }
