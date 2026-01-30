@@ -1,6 +1,5 @@
 import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   BUTTON_COLOR,
@@ -26,17 +25,15 @@ import {
 
 import { useGetDomainZone } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { AssociationType } from '@/data/types/product/website';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
+import { WebsiteFormData } from '@/utils/formSchemas.utils';
 import { isValidDomain } from '@/utils/validator';
 
 import { DomainAdvancedConfiguration } from './DomainAdvancedConfiguration';
 import { PathField } from './fields/Pathfield';
 
-type FormData = z.infer<typeof websiteFormSchema>;
-
 interface DomainConfigurationProps {
-  control: Control<FormData, unknown, FormData>;
-  controlValues: FormData;
+  control: Control<WebsiteFormData, unknown, WebsiteFormData>;
+  controlValues: WebsiteFormData;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   isNextButtonVisible: boolean;
   isAddingDomain?: boolean;
