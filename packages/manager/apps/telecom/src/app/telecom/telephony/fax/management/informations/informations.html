@@ -34,6 +34,17 @@
                     data-ng-bind="$ctrl.fax.getDisplayedName()"
                 ></dd>
 
+                <!-- code rio -->
+                <dt
+                    data-translate="telephony_rio_label"
+                    data-ng-if="$ctrl.fax.rio"
+                ></dt>
+                <dd
+                    class="mb-2"
+                    data-ng-bind="$ctrl.fax.rio"
+                    data-ng-if="$ctrl.fax.rio"
+                ></dd>
+
                 <!-- country code -->
                 <dt
                     data-translate="telephony_group_fax_management_informations_country_code"
