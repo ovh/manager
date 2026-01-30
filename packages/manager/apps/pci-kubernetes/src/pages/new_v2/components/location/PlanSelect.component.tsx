@@ -36,9 +36,7 @@ export const PlanSelect = ({ options }: TPlanSelectProps) => {
       name="location.plan"
       control={control}
       render={({ field, fieldState }) => {
-        const handlePlanChange = (plans: SelectValueChangeDetail) => {
-          field.onChange(plans.value[0]);
-        };
+        const handlePlanChange = (plans: SelectValueChangeDetail) => field.onChange(plans.value[0]);
 
         return (
           <FormField invalid={!!fieldState.error}>

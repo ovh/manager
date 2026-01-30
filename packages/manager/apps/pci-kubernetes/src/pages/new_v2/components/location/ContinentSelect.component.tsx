@@ -38,9 +38,8 @@ export const ContinentSelect = ({ options }: TContinentSelectProps) => {
       name="location.continent"
       control={control}
       render={({ field, fieldState }) => {
-        const handleContinentChange = (continents: SelectValueChangeDetail) => {
+        const handleContinentChange = (continents: SelectValueChangeDetail) =>
           field.onChange(continents.value[0]);
-        };
 
         return (
           <FormField invalid={!!fieldState.error}>

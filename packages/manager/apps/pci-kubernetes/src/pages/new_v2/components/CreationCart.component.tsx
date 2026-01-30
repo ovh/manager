@@ -27,6 +27,11 @@ export const CreationCart = () => {
 
   const cartItems = useMemo<Array<TCartItem>>(() => {
     const selectedRegion = regions?.find(({ id }) => id === macroRegionField);
+    const microRegionLabel = microRegionField ? ` (${microRegionField})` : '';
+    const regionLabel = selectedRegion
+      ? `${t(`regions:region_${selectedRegion.id}`)}${microRegionLabel}`
+      : null;
+
     return [
       {
         title: t('listing:kube_list_title'),
@@ -35,9 +40,7 @@ export const CreationCart = () => {
         details: [
           {
             name: t('add:kubernetes_add_location'),
-            description: selectedRegion ? (
-              <Text preset="heading-6">{`${t(`regions:region_${selectedRegion.id}`)} ${microRegionField ? `(${microRegionField})` : ''}`}</Text>
-            ) : undefined,
+            description: regionLabel ? <Text preset="heading-6">{regionLabel}</Text> : undefined,
           },
         ],
         expanded: true,
