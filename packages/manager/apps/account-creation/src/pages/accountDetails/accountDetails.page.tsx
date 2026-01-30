@@ -69,6 +69,8 @@ import {
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
 import { TRACKING_GOAL_TYPE } from './accountDetails.constants';
+import AreaSelect from '@/components/areaSelect/AreaSelect.component';
+import { AREA_COUNTRY } from '@/types/area';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -85,7 +87,6 @@ function AccountDetailsForm({
 }: AccountDetailsFormProps) {
   const { t, i18n } = useTranslation([
     'account-details',
-    'area',
     NAMESPACES.FORM,
     NAMESPACES.LANGUAGE,
     NAMESPACES.COUNTRY,
@@ -173,15 +174,6 @@ function AccountDetailsForm({
       rules?.companyNationalIdentificationNumber?.regularExpression,
     ],
   );
-
-  const areaLabel = useMemo(() => {
-    if (
-      currentUser?.country &&
-      ['AU', 'US', 'IN'].includes(currentUser.country)
-    )
-      return 'state';
-    return currentUser?.country === 'CA' ? 'province' : 'area';
-  }, [currentUser.country]);
 
   const phoneCountry = watch('phoneCountry');
   const phoneType = watch('phoneType');
@@ -596,50 +588,19 @@ function AccountDetailsForm({
             <Controller
               control={control}
               name="area"
-              render={({ field: { name, value, onChange, onBlur } }) => (
-                <OdsFormField className="w-full">
-                  <OdsText
-                    preset="caption"
-                    aria-label={t('account_details_field_area')}
-                  >
-                    <label htmlFor={name}>
-                      {t(`account_details_field_${areaLabel}`)}
-                      {rules?.area?.mandatory && ' *'}
-                    </label>
-                  </OdsText>
-                  {!isLoading && (
-                    <OdsSelect
-                      name={name}
-                      value={value}
-                      onOdsChange={onChange}
-                      onOdsBlur={onBlur}
-                      isDisabled={!rules}
-                      className="flex-1"
-                      hasError={!!errors[name]}
-                      key={`areas_for_${country}_${rules?.area.in?.length ||
-                        0}`}
-                    >
-                      {rules?.area.in?.map((area: string) => (
-                        <option key={area} value={area}>
-                          {t(`area_${currentUser.country}_${area}`, {
-                            ns: 'area',
-                          })}
-                        </option>
-                      ))}
-                    </OdsSelect>
-                  )}
-                  {errors[name] && rules?.area && (
-                    <OdsText
-                      className="text-critical leading-[0.8]"
-                      preset="caption"
-                    >
-                      {renderTranslatedZodError(
-                        errors[name].message,
-                        rules?.area,
-                      )}
-                    </OdsText>
-                  )}
-                </OdsFormField>
+              render={({ field: {name, value, onChange, onBlur} }) => (
+                <AreaSelect
+                  name={name}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  country={country as AREA_COUNTRY}
+                  area={rules.area}
+                  defaultValue={currentUser.area}
+                  error={renderTranslatedZodError(errors[name]?.message, rules?.area)}
+                  disabled={!rules}
+                  isLoading={isLoading}
+                />
               )}
             />
           )}
