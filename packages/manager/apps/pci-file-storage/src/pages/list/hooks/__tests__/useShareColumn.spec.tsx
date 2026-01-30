@@ -1,4 +1,6 @@
-import { renderHook } from '@testing-library/react';
+import React from 'react';
+
+import { render, renderHook, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { useShareColumn } from '../useShareColumn';
@@ -27,5 +29,36 @@ describe('useShareColumn', () => {
     expect(columns[2]!.id).toBe('protocol');
     expect(columns[3]!.id).toBe('allocated_capacity');
     expect(columns[4]!.id).toBe('status');
+  });
+
+  it('should render status column with Badge and mapped label', () => {
+    const { result } = renderHook(() => useShareColumn());
+    const columns = result.current ?? [];
+    const statusColumn = columns[4]!;
+    const cellRenderer = statusColumn.cell;
+    expect(cellRenderer).toBeDefined();
+    expect(typeof cellRenderer).toBe('function');
+
+    const row = {
+      original: {
+        id: 'share-1',
+        name: 'My Share',
+        region: 'GRA9',
+        protocol: 'NFS',
+        size: 1000,
+        status: 'available',
+        statusDisplay: { labelKey: 'list:status.active', badgeColor: 'success' },
+      },
+    };
+    const cell = (cellRenderer as (ctx: unknown) => React.ReactNode)({
+      row: row as never,
+      getValue: () => 'available',
+      column: {} as never,
+      table: {} as never,
+      cell: {} as never,
+      renderValue: () => 'available',
+    });
+    render(cell as React.ReactElement);
+    expect(screen.getByText('list:status.active')).toBeInTheDocument();
   });
 });

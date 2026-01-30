@@ -1,3 +1,5 @@
+import type { TShareStatusDisplay } from './shareStatusMapper';
+
 export type TShareListRow = {
   id: string;
   name: string;
@@ -5,4 +7,5 @@ export type TShareListRow = {
   protocol: string;
   size: number;
   status: string;
+  statusDisplay: TShareStatusDisplay;
 };

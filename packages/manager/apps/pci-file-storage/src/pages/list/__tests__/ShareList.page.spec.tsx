@@ -24,6 +24,7 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
         protocol: 'NFS',
         size: 161061273600,
         status: 'available',
+        statusDisplay: { labelKey: 'list:status.active', badgeColor: 'success' },
       },
     ],
     isLoading: false,

@@ -48,6 +48,7 @@ describe('ShareDatagrid', () => {
         protocol: 'NFS',
         size: 100,
         status: 'available',
+        statusDisplay: { labelKey: 'list:status.active', badgeColor: 'success' },
       },
     ];
 

@@ -6,5 +6,11 @@
     "protocol": "Protocol",
     "allocated_capacity": "Allocated capacity",
     "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "pending": "Pending",
+    "error": "Error",
+    "na": "N/A"
   }
 }

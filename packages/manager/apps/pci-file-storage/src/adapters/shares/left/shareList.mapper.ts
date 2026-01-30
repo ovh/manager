@@ -1,6 +1,7 @@
 import { TShare } from '@/domain/entities/share.entity';
 
 import { TShareListRow } from './shareList.data';
+import { getShareStatusDisplay } from './shareStatusMapper';
 
 export const mapShareToShareListRow = (share: TShare): TShareListRow => ({
   id: share.id,
@@ -9,4 +10,5 @@ export const mapShareToShareListRow = (share: TShare): TShareListRow => ({
   protocol: share.protocol,
   size: share.size,
   status: share.status,
+  statusDisplay: getShareStatusDisplay(share.status),
 });

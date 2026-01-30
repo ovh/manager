@@ -4,11 +4,19 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { Link, Text } from '@ovhcloud/ods-react';
+import { BADGE_COLOR, Badge, type BadgeColor, Link, Text } from '@ovhcloud/ods-react';
 
 import { DatagridColumn, useBytes } from '@ovh-ux/muk';
 
 import { TShareListRow } from '@/adapters/shares/left/shareList.data';
+import { type TShareStatusBadgeColor } from '@/adapters/shares/left/shareStatusMapper';
+
+const BADGE_COLOR_BY_STATUS: Record<TShareStatusBadgeColor, BadgeColor> = {
+  success: BADGE_COLOR.success,
+  warning: BADGE_COLOR.warning,
+  critical: BADGE_COLOR.critical,
+  neutral: BADGE_COLOR.neutral,
+};
 
 export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
   const { t } = useTranslation(['list']);
@@ -53,6 +61,14 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         id: 'status',
         accessorKey: 'status',
         header: t('list:columns.status'),
+        cell: ({ row }) => {
+          const { labelKey, badgeColor } = row.original.statusDisplay;
+          return (
+            <Badge color={BADGE_COLOR_BY_STATUS[badgeColor]} size="md" className="text-nowrap">
+              {t(labelKey)}
+            </Badge>
+          );
+        },
       },
     ],
     [t, formatBytes],
