@@ -1,5 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@datatr-ux/uxlib';
-
 export const ReplicationRuleContainer = ({
   title,
   children,
@@ -8,11 +6,9 @@ export const ReplicationRuleContainer = ({
   children: React.ReactNode;
 }) => {
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-2">{children}</CardContent>
-    </Card>
+    <div>
+      <h4>{title}</h4>
+      <div className="flex flex-col gap-2">{children}</div>
+    </div>
   );
 };

@@ -1,26 +1,28 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  Button,
-  DialogBody,
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  useToast,
-} from '@datatr-ux/uxlib';
+import { ArrowLeft } from 'lucide-react';
+import { Button, useToast } from '@datatr-ux/uxlib';
 import { useS3Data } from '../../S3.context';
 import { useAddReplication } from '@/data/hooks/replication/useAddReplication.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { ReplicationForm } from '../_components/form/ReplicationForm.component';
 import { buildReplicationRule } from '../_components/form/buildReplicationRule';
 import { useReplicationForm } from '../_components/form/useReplicationForm.hook';
-import RouteModal from '@/components/route-modal/RouteModal';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+import LinkComponent from '@/components/links/Link.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem
+      translationKey="addReplicationBreadcrumb"
+      namespace="pci-object-storage/storages/s3/replication"
+    />
+  );
+}
 
 const CreateReplication = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/replication');
-  const { s3, s3Query } = useS3Data();
+  const { s3 } = useS3Data();
   const toast = useToast();
   const navigate = useNavigate();
   const { form } = useReplicationForm({});
@@ -39,7 +41,7 @@ const CreateReplication = () => {
         title: t('addReplicationToastSuccessTitle'),
         description: t('addReplicationToastSuccessDescription'),
       });
-      navigate('..');
+      navigate('../');
     },
   });
 
@@ -56,36 +58,31 @@ const CreateReplication = () => {
   });
 
   return (
-    <RouteModal isLoading={s3Query.isLoading}>
-      <DialogContent className="p-0 max-w-3xl" variant="information">
-        <DialogHeader>
-          <DialogTitle data-testid="add-replication-modal">
-            {t('addReplicationTitle')}
-          </DialogTitle>
-        </DialogHeader>
-        <DialogBody>
-          <ReplicationForm
-            form={form}
-            isPending={isPending}
-            onSubmit={onSubmit}
-          />
-        </DialogBody>
-        <DialogFooter className="border-t">
-          <DialogClose asChild>
-            <Button
-              data-testid="add-replication-cancel-button"
-              type="button"
-              mode="ghost"
-            >
-              {t('replicationButtonCancel')}
-            </Button>
-          </DialogClose>
-          <Button type="submit" disabled={isPending} form="replication-form">
-            {t('addReplicationButtonConfirm')}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </RouteModal>
+    <>
+      <LinkComponent to="../" className="flex items-center gap-2 mb-4">
+        <ArrowLeft className="size-4" />
+        {t('backLink')}
+      </LinkComponent>
+      <ReplicationForm
+        replicationTitle={t('addReplicationTitle')}
+        form={form}
+        isPending={isPending}
+        onSubmit={onSubmit}
+      />
+      <div className="flex gap-2 mt-4">
+        <Button
+          data-testid="add-replication-cancel-button"
+          type="button"
+          mode="ghost"
+          onClick={() => navigate('../')}
+        >
+          {t('replicationButtonCancel')}
+        </Button>
+        <Button type="submit" disabled={isPending} form="replication-form">
+          {t('addReplicationButtonConfirm')}
+        </Button>
+      </div>
+    </>
   );
 };
 

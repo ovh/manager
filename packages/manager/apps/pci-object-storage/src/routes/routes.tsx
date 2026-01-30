@@ -418,6 +418,28 @@ export default [
             ),
             children: [
               {
+                id: 'replication.list',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/replication/list/List.page'
+                  ),
+                ),
+                children: [
+                  {
+                    index: true,
+                  },
+                  {
+                    path: 'delete/:ruleId',
+                    id: 'replication.delete',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/replication/delete/Delete.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
                 path: 'new',
                 id: 'replication.new',
                 ...lazyLoadRoute(() =>
@@ -436,11 +458,11 @@ export default [
                 ),
               },
               {
-                path: 'delete/:ruleId',
-                id: 'replication.delete',
+                path: 'storage-job',
+                id: 'replication.storage-job',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/replication/delete/Delete.modal'
+                    '@/pages/object-storage/storage/s3Id/replication/storage-job/StorageJob.modal'
                   ),
                 ),
               },

@@ -73,5 +73,8 @@
   "bulkDeleteVersionsTitle": "Eliminar varias versiones",
   "bulkDeleteVersionsDescription_one": "¿Quiere eliminar definitivamente {{count}} versión? Esta acción no se puede deshacer.",
   "bulkDeleteVersionsDescription_other": "¿Desea eliminar {{count}} versiones de forma permanente? Esta acción no se puede deshacer.",
-  "bulkDeleteVersionsConfirmation": "Escriba {{confirmation}} para confirmar"
+  "bulkDeleteVersionsConfirmation": "Escriba {{confirmation}} para confirmar",
+  "downloadErrorDescription": "Error al descargar el archivo",
+  "downloadErrorStatus": "Error al descargar: {{status}}",
+  "downloadErrorUnknownType": "Tipo de descarga desconocido"
 }
