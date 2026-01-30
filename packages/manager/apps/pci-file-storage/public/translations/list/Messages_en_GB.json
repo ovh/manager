@@ -1,0 +1,10 @@
+{
+  "title": "File Storage",
+  "columns": {
+    "name_id": "Name / ID",
+    "region": "Region",
+    "protocol": "Protocol",
+    "allocated_capacity": "Allocated capacity",
+    "status": "Status"
+  }
+}

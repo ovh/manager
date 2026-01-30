@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -11,13 +11,20 @@ import { BaseLayout, LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { GUIDES, getOnboardingLinkFor } from '@/constants/Guides.constants';
+import { useShares } from '@/data/hooks/shares/useShares';
 import { useGetUser } from '@/hooks/useGetUser';
+import { selectHasShares } from '@/pages/list/view-model/shareList.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
   const { ovhSubsidiary } = useGetUser();
   const navigate = useNavigate();
+  const { data: hasShares, isLoading } = useShares({ select: selectHasShares });
+
+  if (!isLoading && hasShares) {
+    return <Navigate to={`../${subRoutes.list}`} replace />;
+  }
 
   return (
     <BaseLayout>
