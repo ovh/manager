@@ -195,7 +195,7 @@ export default function AccountSidebar() {
             id:'iam-identities',
             href: navigation.getURL('iam', '#/identities'),
             label: t('sidebar_security_identity_operations_iam_identities'),
-            pathMatcher: new RegExp('^/iam/identities'),
+            pathMatcher: new RegExp('^(/iam/identities|/identity-access-management/manage-tokens)'),
             ignoreSearch: true,
           },
           {
