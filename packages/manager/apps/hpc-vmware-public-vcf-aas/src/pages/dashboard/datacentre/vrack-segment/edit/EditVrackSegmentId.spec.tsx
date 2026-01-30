@@ -24,7 +24,9 @@ const checkFormInputAndCta = (container: HTMLElement) => {
   expect(
     screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan),
   ).toBeVisible();
-  expect(container.querySelector('[label="modify"]')).toBeVisible();
+  expect(
+    container.querySelector(`[label="${labels.commun.actions.modify}"]`),
+  ).toBeVisible();
   expect(
     container.querySelector(`[label="${labels.commun.actions.cancel}"]`),
   ).toBeVisible();
@@ -42,13 +44,19 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const expectSubmitButton = (container: HTMLElement) =>
-  expect(container.querySelector('ods-button[label="modify"]'));
+const expectSubmitButton = (container) =>
+  expect(
+    container.querySelector(
+      `ods-button[label="${labels.commun.actions.modify}"]`,
+    ),
+  );
 
 const submitForm = (container: HTMLElement) => {
   return act(() =>
     userEvent.click(
-      container.querySelector('ods-button[label="modify"]') as Element,
+      container.querySelector(
+        `ods-button[label="${labels.commun.actions.modify}"]`,
+      ) as Element,
     ),
   );
 };

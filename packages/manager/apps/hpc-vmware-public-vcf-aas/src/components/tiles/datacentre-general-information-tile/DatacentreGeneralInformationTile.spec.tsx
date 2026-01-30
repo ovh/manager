@@ -120,7 +120,7 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
 
     // then
     const elements = [
-      labels.dashboard.managed_vcd_dashboard_general_information,
+      labels.commun.dashboard.general_information,
       labels.datacentres.managed_vcd_vdc_commercial_range,
       labels.datacentres.managed_vcd_vdc_vcpu_count,
       labels.datacentres.managed_vcd_vdc_ram_count,

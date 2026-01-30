@@ -24,9 +24,29 @@ const commun = {
   actions: {
     confirm: 'Confirmer',
     cancel: 'Annuler',
+    modify: 'Modifier',
   },
   dashboard: {
     description: 'Description',
+    general_information: 'Informations générales',
+    name: 'Nom',
+  },
+  contact: {
+    contacts: 'Contacts',
+    contact: 'Contact',
+  },
+  billing: {
+    cancel_service: '"Résilier le service"',
+  },
+  system: {
+    password: 'Mot de passe',
+  },
+  error: {
+    error_message: 'Une erreur est survenue : {{message}}',
+  },
+  region: {
+    localisation: 'Localisation',
+    region: 'Région',
   },
   status: {
     status: 'Statut',
@@ -48,6 +68,11 @@ export const translations = {
   '@ovh-ux/manager-common-translations/dashboard': commun.dashboard,
   '@ovh-ux/manager-common-translations/actions': commun.actions,
   '@ovh-ux/manager-common-translations/status': commun.status,
+  '@ovh-ux/manager-common-translations/contact': commun.contact,
+  '@ovh-ux/manager-common-translations/billing': commun.billing,
+  '@ovh-ux/manager-common-translations/system': commun.system,
+  '@ovh-ux/manager-common-translations/error': commun.error,
+  '@ovh-ux/manager-common-translations/region': commun.region,
 };
 
 export const labels = {

@@ -21,9 +21,9 @@ describe('Organizations Listing Page', () => {
     // then
     const headers = [
       labels.listing.managed_vcd_listing_name,
-      labels.listing.managed_vcd_listing_description,
-      labels.listing.managed_vcd_listing_location,
-      labels.listing.managed_vcd_listing_region,
+      labels.commun.dashboard.description,
+      labels.commun.region.localisation,
+      labels.commun.region.region,
       labels.listing.managed_vcd_listing_web_interface_url,
     ];
 
