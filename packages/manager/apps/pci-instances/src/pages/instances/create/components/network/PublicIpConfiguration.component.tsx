@@ -35,7 +35,7 @@ type TPublicIpTypeConfig = Record<
   'basicIp' | 'floatingIp',
   {
     floatingIpAssignment: 'createNew' | 'reuseExisting' | null;
-    existingFloatingIp: null;
+    existingFloatingIpId: null;
     assignNewGateway: boolean;
   }
 >;
@@ -53,19 +53,19 @@ const PublicIpConfiguration: FC<{
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const [
-    privateNetworkId,
+    subnetId,
     microRegion,
     ipPublicType,
     floatingIpAssignment,
-    existingFloatingIp,
+    existingFloatingIpId,
   ] = useWatch({
     control,
     name: [
-      'privateNetworkId',
+      'subnetId',
       'microRegion',
       'ipPublicType',
       'floatingIpAssignment',
-      'existingFloatingIp',
+      'existingFloatingIpId',
     ],
   });
 
@@ -86,9 +86,9 @@ const PublicIpConfiguration: FC<{
       getPublicIpAvailability({
         deploymentMode,
         privateNetworks,
-        privateNetworkId,
+        subnetId,
       }),
-    [deploymentMode, privateNetworkId, privateNetworks],
+    [deploymentMode, subnetId, privateNetworks],
   );
 
   const gatewayAvailability = useMemo(
@@ -96,9 +96,9 @@ const PublicIpConfiguration: FC<{
       getGatewayAvailability({
         deploymentMode,
         privateNetworks,
-        privateNetworkId,
+        subnetId,
       }),
-    [deploymentMode, privateNetworkId, privateNetworks],
+    [deploymentMode, subnetId, privateNetworks],
   );
 
   const { data: floatingIps = [] } = useFloatingIps({
@@ -118,12 +118,12 @@ const PublicIpConfiguration: FC<{
     const config: TPublicIpTypeConfig = {
       basicIp: {
         floatingIpAssignment: null,
-        existingFloatingIp: null,
+        existingFloatingIpId: null,
         assignNewGateway: false,
       },
       floatingIp: {
         floatingIpAssignment: 'createNew',
-        existingFloatingIp: null,
+        existingFloatingIpId: null,
         assignNewGateway: !gatewayAvailability?.isDisabled,
       },
     };
@@ -140,15 +140,15 @@ const PublicIpConfiguration: FC<{
 
     setValue('floatingIpAssignment', newValue);
 
-    if (newValue === 'createNew') setValue('existingFloatingIp', null);
+    if (newValue === 'createNew') setValue('existingFloatingIpId', null);
     else if (newValue === 'reuseExisting')
-      setValue('existingFloatingIp', floatingIps[0]?.value ?? null);
+      setValue('existingFloatingIpId', floatingIps[0]?.value ?? null);
   };
 
   const handleSelectExistingFloatingIp = ({
     value,
   }: SelectValueChangeDetail) => {
-    setValue('existingFloatingIp', value[0] ?? null);
+    setValue('existingFloatingIpId', value[0] ?? null);
   };
 
   if (!publicIpAvailability || !prices) return null;
@@ -288,7 +288,7 @@ const PublicIpConfiguration: FC<{
           <FormField className="ml-12 max-w-[32%]">
             <Select
               items={floatingIps}
-              value={!!existingFloatingIp ? [existingFloatingIp] : []}
+              value={!!existingFloatingIpId ? [existingFloatingIpId] : []}
               onValueChange={handleSelectExistingFloatingIp}
             >
               <SelectControl />

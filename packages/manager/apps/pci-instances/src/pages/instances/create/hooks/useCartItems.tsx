@@ -43,7 +43,8 @@ export const useCartItems = (): TCartItems => {
     distributionImageVersionName,
     windowsImageLicensePrice,
     sshKeyId,
-    networkName,
+    privateNetwork,
+    publicNetwork,
     name,
     backupConfigurationPrices,
   } = instanceData;
@@ -161,16 +162,45 @@ export const useCartItems = (): TCartItems => {
       ]
     : [];
 
-  const network = networkName
+  const network = privateNetwork
     ? [
         {
           name: t(
             'creation:pci_instance_creation_network_private_network_setting_title',
           ),
           description: (
-            <Text preset="heading-6" className="text-[--ods-color-heading]">
-              {networkName}
-            </Text>
+            <div className="w-full">
+              <CartOptionDetailItem label={privateNetwork.name} />
+              {privateNetwork.willGatewayBeAttached && (
+                <CartOptionDetailItem
+                  className="mt-2"
+                  label={t(
+                    'creation:pci_instance_creation_network_gateway_title',
+                  )}
+                  {...(privateNetwork.gatewayPrice && {
+                    price: getTextPrice(privateNetwork.gatewayPrice),
+                  })}
+                />
+              )}
+            </div>
+          ),
+        },
+      ]
+    : [];
+
+  const publicNetworkDetails = publicNetwork
+    ? [
+        {
+          name: t('creation:pci_instance_creation_cart_public_network_title'),
+          description: (
+            <div className="w-full">
+              <CartOptionDetailItem
+                label={t(publicNetwork.labelKey)}
+                {...(publicNetwork.price !== null && {
+                  price: getTextPrice(publicNetwork.price),
+                })}
+              />
+            </div>
           ),
         },
       ]
@@ -183,6 +213,7 @@ export const useCartItems = (): TCartItems => {
     ...sshKey,
     ...backups,
     ...network,
+    ...publicNetworkDetails,
   ];
 
   const cartItems: TCartItem[] = [

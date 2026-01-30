@@ -33,9 +33,9 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
 }) => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [privateNetworkId, microRegion, assignNewGateway] = useWatch({
+  const [subnetId, microRegion, assignNewGateway] = useWatch({
     control,
-    name: ['privateNetworkId', 'microRegion', 'assignNewGateway'],
+    name: ['subnetId', 'microRegion', 'assignNewGateway'],
   });
 
   const { data: configurations, isPending } = useNetworkCatalog({
@@ -51,9 +51,9 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
       getGatewayAvailability({
         deploymentMode,
         privateNetworks,
-        privateNetworkId,
+        subnetId,
       }),
-    [deploymentMode, privateNetworkId, privateNetworks],
+    [deploymentMode, subnetId, privateNetworks],
   );
 
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);

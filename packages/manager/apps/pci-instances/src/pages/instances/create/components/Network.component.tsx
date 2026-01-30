@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   Button,
   FormField,
@@ -25,14 +25,19 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
 import AddPublicNetworkConfiguration from './network/AddPublicNetworkConfiguration.component';
 import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
+import Banner from '@/components/banner/Banner.component';
+import GuideLink from '@/components/guideLink/GuideLink.component';
+import { useGuideLink } from '@/hooks/url/useGuideLink';
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [privateNetworkId, microRegion] = useWatch({
+  const [subnetId, microRegion, ipPublicType, assignNewGateway] = useWatch({
     control,
-    name: ['privateNetworkId', 'microRegion'],
+    name: ['subnetId', 'microRegion', 'ipPublicType', 'assignNewGateway'],
   });
+
+  const guide = useGuideLink('NETWORK_PRIVATE_MODE');
 
   const { data: networks, isPending } = usePrivateNetworks({
     select: selectPrivateNetworks(microRegion),
@@ -45,7 +50,7 @@ const Network: FC = () => {
 
     if (!id) return;
 
-    setValue('privateNetworkId', id);
+    setValue('subnetId', id);
 
     trackClick({
       location: PageLocation.funnel,
@@ -56,7 +61,7 @@ const Network: FC = () => {
   };
 
   const handleOpenCreateNetwork = () => {
-    setValue('privateNetworkId', null);
+    setValue('subnetId', null);
 
     trackClick({
       location: PageLocation.funnel,
@@ -67,7 +72,7 @@ const Network: FC = () => {
   };
 
   const initializePrivateNetworkFields = useCallback(() => {
-    setValue('privateNetworkId', networks?.[0]?.value ?? null);
+    setValue('subnetId', networks?.[0]?.value ?? null);
     setValue('newPrivateNetwork', null);
   }, [networks, setValue]);
 
@@ -95,7 +100,7 @@ const Network: FC = () => {
           'creation:pci_instance_creation_network_private_network_setting_description',
         )}
       </Text>
-      {!privateNetworkId ? (
+      {!subnetId ? (
         <>
           <Text className="font-semibold" preset="paragraph">
             {t('creation:pci_instance_creation_network_add_new_warning')}
@@ -122,7 +127,7 @@ const Network: FC = () => {
             </FormFieldLabel>
             <Select
               items={networks}
-              value={[privateNetworkId]}
+              value={[subnetId]}
               onValueChange={handleSelectNetwork}
             >
               <SelectControl />
@@ -137,6 +142,18 @@ const Network: FC = () => {
       )}
       <GatewayConfiguration privateNetworks={networks} />
       <AddPublicNetworkConfiguration privateNetworks={networks} />
+      {ipPublicType === null && !assignNewGateway && (
+        <Banner className="mt-6">
+          <Trans
+            i18nKey="creation:pci_instance_creation_network_full_private_warning"
+            components={{
+              p: <Text preset="paragraph" />,
+              semibold: <span className="font-semibold" />,
+              Link: <GuideLink className="mt-4" href={guide} />,
+            }}
+          />
+        </Banner>
+      )}
     </section>
   );
 };
