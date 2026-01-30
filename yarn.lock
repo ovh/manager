@@ -6646,6 +6646,14 @@
     "@ovh-ux/manager-core-api" "^0.10.1"
     "@ovh-ux/manager-core-sso" "^0.5.0"
 
+"@ovh-ux/manager-config@^8.9.0":
+  version "8.9.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-8.9.0.tgz#c1adbdc34297eb708476f6a358ecfd3865580d25"
+  integrity sha512-3mByQoBTeNFbewmuar7ETeXIaRAYmCy4xIjLQ1llGSLHXQt92DGlqsOkQMGST/Cp5o0mHF8inj0ewCQLmcTW5w==
+  dependencies:
+    "@ovh-ux/manager-core-api" "^0.10.1"
+    "@ovh-ux/manager-core-sso" "^0.8.0"
+
 "@ovh-ux/manager-core-api@0.19.4":
   version "0.19.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.19.4.tgz#7aa6dc10a986a719aeee5d72595e1da0dbe72e27"
@@ -6673,6 +6681,15 @@
     "@ovh-ux/request-tagger" "^0.5.10"
     axios "^1.1.2"
 
+"@ovh-ux/manager-core-api@^0.22.0":
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.22.0.tgz#2ccd04f60191d78baf404a1651dd3362bc4b7b73"
+  integrity sha512-CnMYtERFrKGgA2IXBJRcSxgFftK3qYdoxGZiqbsOqEdV1tYQEkPTvdQsFsVlq4JU7B0Kw8AmatUWHGVbDOvUCw==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.8.0"
+    "@ovh-ux/request-tagger" "^0.7.0"
+    axios "^1.1.2"
+
 "@ovh-ux/manager-core-sso@^0.3.0":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
@@ -6687,6 +6704,11 @@
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.6.2.tgz#731c6778d395c741f07828a400dec80dd1c45f79"
   integrity sha512-ZtaMUgH5OeKD/cESCgSdu4kgFi+XL1kysN0TW+RVxKkwc1tzlA2IrJQCFpF36azfpeC+Ur3GyTdTpjyWIBNH2g==
+
+"@ovh-ux/manager-core-sso@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.8.0.tgz#eac7ce3081638eada16fefaf91a8b8f07bcc4908"
+  integrity sha512-HuLYl5l/f7JdlIILBhhGREENv1rDbIV6ta4GGFSpxQrqQ6RLlu+baXc2pVUyPG6/4tWRmnxPMHY1jzIqhP2T3A==
 
 "@ovh-ux/manager-react-components@^1.46.0":
   version "1.46.0"
@@ -6759,15 +6781,15 @@
     i18next-http-backend "^2.4.2"
 
 "@ovh-ux/manager-react-shell-client@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.2.2.tgz#3977556d806bdb0b8797f94e6431017f3f44584a"
-  integrity sha512-xCTfzFx0wbwqtKyhEz1q9L5/XGZT0mDl4eK1zHwRBlOInb4eWqXPQUEZwfiKY58TFHndAsr6NdiWoEtmtl4A4w==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.3.0.tgz#0bd03a036b78c14c7ac5cdb76f2096462b73dbf6"
+  integrity sha512-L/KO5SWE55aEdQCF+YF2RCBMblPiqQzvBi3nvnvGPx5nulj1VcmnwWIhEEnxrm0had6Ewe7eUKROcgFFw23JkA==
   dependencies:
-    "@ovh-ux/manager-config" "^8.8.7"
+    "@ovh-ux/manager-config" "^8.9.0"
     "@ovh-ux/ovh-at-internet" "^0.28.2"
     "@ovh-ux/request-tagger" "^0.4.1"
-    "@ovh-ux/shell" "^4.10.5"
-    "@ovh-ux/url-builder" "^2.4.3"
+    "@ovh-ux/shell" "^4.11.0"
+    "@ovh-ux/url-builder" "^2.5.0"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
@@ -6826,6 +6848,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.28.3.tgz#8d09ee974cb62c492f5a792ba0cd4a93e565db13"
   integrity sha512-6Af3L+zdsCxBNmk1DXQZb3GS4oAqeL/grwAkbgVbxEw9BCzaRdrjbzFHS7GBGtNMfARsLIIHJxQIO4O5hcoaeQ==
 
+"@ovh-ux/ovh-at-internet@^0.30.0":
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.30.0.tgz#e14dc72c5500c294632ce96ee7ba4aec33ec843c"
+  integrity sha512-0yti33KAuevmfJu99w54BZ8NEmH77SK96H+PE/y0XWVt2dFVywJsWE9v9C7PMM7TX2u/azWyhMCjsJ8H2Q+ebw==
+
 "@ovh-ux/request-tagger@^0.4.0", "@ovh-ux/request-tagger@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.4.1.tgz#ae77381d54f345e657a5c6c3195ece119fe375a8"
@@ -6835,6 +6862,11 @@
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.5.10.tgz#3ef239b3cc2842396a40540b5591264d1dc43116"
   integrity sha512-xj49NuUfCu4leclQb6B1DOnZoMQgLW5aXmNgtMAHljYS9ump2s5jgPgc4+K0nqvLg3fYf/YInwkVk/JEoX4qdQ==
+
+"@ovh-ux/request-tagger@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/request-tagger/-/request-tagger-0.7.0.tgz#582697e4fda56159292ae22641e87e33ba50bb8d"
+  integrity sha512-8rbyoy1p5Q8ZptEWg2N2zq+JcnUAOXmw0ieiN2GUJPyPKRRrhEqMfE7qThjuqrjveCW87jf2juxFxV2/mVLe1g==
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.5":
   version "1.0.6"
@@ -6846,6 +6878,20 @@
     lodash "^4.17.20"
     rollup-pluginutils "^2.8.2"
 
+"@ovh-ux/shell@^4.11.0":
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/shell/-/shell-4.11.0.tgz#45c8de126d239a2aaa3ec0506e9766ef0137f72b"
+  integrity sha512-owGkQ7kAEHUzNV64A87pQjfCHlw+l7SqI9ln84L2xfsWwKnBHgiXf+E4l9DQx0dde/7KQAhOIySxQ2NYuzJmag==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.9.0"
+    "@ovh-ux/manager-core-api" "^0.22.0"
+    "@ovh-ux/manager-core-sso" "^0.8.0"
+    "@ovh-ux/ovh-at-internet" "^0.30.0"
+    "@ovh-ux/request-tagger" "^0.7.0"
+    "@ovh-ux/url-builder" "^2.5.0"
+    dompurify "^3.2.4"
+    nanoid "^3.1.25"
+
 "@ovh-ux/translate-async-loader@^1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
@@ -6855,6 +6901,11 @@
   version "6.10.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.10.5.tgz#cdde47452edb326aa1224eb447ed40ae2b169b81"
   integrity sha512-0PrFAOM0/ylPlVeC6hsJMHGe+pWB/ooMrjQySH5ytqsPYZrvzuiLoecEZHmX8VbnAJ6nF63sFLGp/DuicaSiCQ==
+
+"@ovh-ux/url-builder@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/url-builder/-/url-builder-2.5.0.tgz#b1b15e142b16dcee765630d3f269a0c22325d6b0"
+  integrity sha512-gMNJSXJYiL7Vu4M5EAlU9w+q8YWInXNnzo9oOgzFaAso/M1jEIX0TuWopHMUPB02Uk7fcFypPTvIlQ8Ojntupw==
 
 "@ovhcloud/ods-common-core@17.2.1":
   version "17.2.1"

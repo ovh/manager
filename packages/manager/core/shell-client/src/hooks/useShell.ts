@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 
-import { ShellContext } from '../ShellContext';
+import { ShellContext, ShellContextType } from '../ShellContext';
 
 /**
  * @deprecated use ShellContext directly
  */
-export function useShell() {
+export function useShell(): ShellContextType['shell'] {
   const { shell } = useContext(ShellContext);
   return shell;
 }
