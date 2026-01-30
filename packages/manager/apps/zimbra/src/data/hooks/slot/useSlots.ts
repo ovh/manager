@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import {
   UseInfiniteQueryOptions,
@@ -16,7 +16,7 @@ import {
   getZimbraPlatformSlots,
   getZimbraPlatformSlotsQueryKey,
 } from '@/data/api';
-import { useSlotServices } from '@/data/hooks';
+import { useAccounts, useSlotServices } from '@/data/hooks';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 export type SlotWithService = {
@@ -24,6 +24,9 @@ export type SlotWithService = {
   email?: string;
   offer: keyof typeof ZimbraOffer;
   service?: SlotService;
+  organizationLabel?: string;
+  accountId?: string;
+  organizationId?: string;
 };
 
 type UseSlotsParams = Omit<
@@ -93,22 +96,48 @@ export const useSlots = (props: UseSlotsParams = {}) => {
 
 export const useSlotsWithService = (options: UseSlotsParams = {}) => {
   const query = useSlots(options);
+  const [searchParams] = useSearchParams();
+  const organizationId = searchParams.get('organizationId');
+  const [slots, setSlots] = useState<SlotWithService[]>([]);
   const { data: services, isLoading: isLoadingServices } = useSlotServices({
     gcTime: 0,
     ...(options.enabled ? { enabled: options.enabled } : {}),
   });
 
-  const [slots, setSlots] = useState<SlotWithService[]>([]);
+  const { data: accounts } = useAccounts({
+    organizationId,
+    enabled: !!organizationId,
+  });
 
   useEffect(() => {
+    if (!query.data) {
+      setSlots([]);
+      return;
+    }
+
+    const accountsById = new Map((accounts ?? []).map((acc) => [acc.id, acc]));
+
+    const filteredSlots =
+      organizationId && accounts
+        ? query.data.filter((item) => accountsById.has(item.currentState.accountId))
+        : query.data;
+
     setSlots(
-      query.data?.map((item) => ({
-        id: item.id,
-        offer: item.currentState.offer,
-        service: services?.[item.id],
-      })) ?? [],
+      filteredSlots.map((item) => {
+        const account = accountsById.get(item.currentState.accountId);
+
+        return {
+          id: item.id,
+          offer: item.currentState.offer,
+          service: services?.[item.id],
+          accountId: item.currentState.accountId,
+          email: item.currentState.email,
+          organizationLabel: account?.currentState.organizationLabel,
+          organizationId: account?.currentState.organizationId,
+        };
+      }),
     );
-  }, [query.data, services]);
+  }, [query.data, services, accounts, organizationId]);
 
   // use assign and make new properties to avoid rerenders
   return Object.assign(query, {
