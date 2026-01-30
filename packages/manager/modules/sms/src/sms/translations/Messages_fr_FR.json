@@ -14,6 +14,7 @@
   "sms_tabs_senders": "Expéditeurs",
   "sms_tabs_api_users": "Utilisateurs API",
   "sms_tabs_options": "Options",
+  "sms_tabs_statistics": "Statistiques",
   "sms_tabs_guides": "Guides",
   "sms_rename_error": "Impossible de renommer votre pack {{serviceName}}.",
   "sms_loading_error": "Une erreur est survenue lors du chargement de SMS",
