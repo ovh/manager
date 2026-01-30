@@ -22,6 +22,7 @@ export default {
     serviceName: '<',
     urlRenew: '<',
     trackClick: '<',
+    partitions: '<',
   },
   controller,
   template,

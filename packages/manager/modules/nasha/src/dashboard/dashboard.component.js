@@ -19,6 +19,7 @@ export default {
     serviceInfo: '<',
     serviceName: '<',
     trackClick: '<',
+    partitions: '<',
   },
   controller,
   template,
