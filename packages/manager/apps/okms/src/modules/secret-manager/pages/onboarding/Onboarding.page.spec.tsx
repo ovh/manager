@@ -1,5 +1,5 @@
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
@@ -28,7 +28,7 @@ describe('Secret Manager onboarding test suite', () => {
       name: labels.secretManager.create_a_secret,
     });
 
-    await user.click(button);
+    await act(() => user.click(button));
 
     await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
