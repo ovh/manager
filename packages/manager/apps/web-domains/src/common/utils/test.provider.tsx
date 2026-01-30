@@ -9,6 +9,7 @@ import i18n from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import domainTranslation from '@/public/translations/domain/Messages_fr_FR.json';
 import allDomaTranslation from '@/public/translations/allDom/Messages_fr_FR.json';
+import zoneTranslation from '@/public/translations/zone/Messages_fr_FR.json';
 import {
   render,
   renderHook,
@@ -37,9 +38,10 @@ i18n
       fr: {
         domain: domainTranslation,
         alldoms: allDomaTranslation,
+        zone: zoneTranslation,
       },
     },
-    ns: ['alldoms', 'domain'],
+    ns: ['alldoms', 'domain', 'zone'],
   })
   .catch(console.error);
 export const mockShellContext = ({
