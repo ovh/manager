@@ -149,5 +149,8 @@
   "redirections": "Weiterleitungen",
   "delete_redirections": "Weiterleitungen entfernen",
   "delete_email_accounts": "Accounts löschen",
-  "email_address": "E-Mail-Adresse"
+  "email_address": "E-Mail-Adresse",
+  "email_account_company_information": "Angaben zum Unternehmen",
+  "email_account_contact_information": "Kontaktinformationen",
+  "email_account_advanced_settings": "Erweiterte Einstellungen"
 }

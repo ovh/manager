@@ -156,4 +156,18 @@ describe('email account add and edit form', () => {
     expect(inputPassword).toHaveAttribute('has-error', 'false');
     expect(button).toHaveAttribute('is-disabled', 'false');
   });
+
+  it('should toggle advanced settings button', () => {
+    const { getByTestId, queryByTestId } = render(<EmailAccountForm />);
+
+    const toggleButton = getByTestId('toggle-btn');
+
+    fireEvent.click(toggleButton);
+
+    expect(queryByTestId('input-service')).toBeInTheDocument();
+
+    fireEvent.click(toggleButton);
+
+    expect(queryByTestId('input-service')).toBeNull();
+  });
 });

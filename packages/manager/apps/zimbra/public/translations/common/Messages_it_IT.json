@@ -149,5 +149,8 @@
   "redirections": "Reindirizzamenti",
   "delete_redirections": "Eliminare i reindirizzamenti",
   "delete_email_accounts": "Eliminare gli account",
-  "email_address": "Indirizzo email"
+  "email_address": "Indirizzo email",
+  "email_account_company_information": "Informazioni della società",
+  "email_account_contact_information": "Informazioni di contatto",
+  "email_account_advanced_settings": "Impostazioni avanzate"
 }
