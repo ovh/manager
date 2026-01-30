@@ -57,5 +57,6 @@
   "vrack_terminate_modal_error_banner": "Your Vrack could not be deleted. Please check if your Vrack is empty.",
   "vrack_terminate_title": "Cancel vRack",
   "vrack_terminate_description": "To cancel your vRack, you have to first disconnect all of the services linked to it",
-  "vrack_terminate": "Cancel"
+  "vrack_terminate": "Cancel",
+  "vrack_service_type_vmwareclouddirectorvirtualdatacenter": "Public VCF as-a-Service"
 }
