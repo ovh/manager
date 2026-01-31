@@ -66,5 +66,5 @@
   "errorDurationMin": "La durata minima è di 1 giorno.",
   "errorDurationMax": "La durata massima è di 100 anni o 36.500 giorni.",
   "errorRuleRequired": "Per attivare Object Lock di default è necessario definire una regola di retention.",
-  "deleteBucketButton": "Elimina il bucket"
+  "deleteBucketButton": "Eliminare il bucket"
 }
