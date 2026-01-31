@@ -184,45 +184,49 @@ const AddEditUserModal = ({
                 <p className="font-semibold">{t('resetUserPasswordCode')}</p>
                 <Clipboard value={`${newUser.password}`} />
               </div>
-              <p>{t('resetUserConnectionTitle')}</p>
-              <div data-testid="code-uri-container">
-                {service.endpoints.length > 1 && (
-                  <Select
-                    value={selectedEndpoint?.component}
-                    onValueChange={(v) =>
-                      setSelectedEndpoint(
-                        service.endpoints.find(
-                          (endpoint) => endpoint.component === v,
-                        ),
-                      )
-                    }
-                  >
-                    <SelectTrigger data-testid="dashboard-connection-detail-select">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {service.endpoints.map((ep) => (
-                        <SelectItem key={ep.component} value={ep.component}>
-                          {ep.component}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-                <div className="my-2">
-                  <p className="font-semibold">
-                    {t('resetUserConnectionCode')}
-                  </p>
-                  <Clipboard
-                    value={`${selectedEndpoint?.uri.replace(
-                      '<username>:<password>',
-                      `${encodeURIComponent(
-                        newUser.username.replace(/@.*/, ''),
-                      )}:${encodeURIComponent(newUser.password)}`,
-                    )}`}
-                  />
-                </div>
-              </div>
+              {service.endpoints.length > 0 && (
+                <>
+                  <p>{t('resetUserConnectionTitle')}</p>
+                  <div data-testid="code-uri-container">
+                    {service.endpoints.length > 1 && (
+                      <Select
+                        value={selectedEndpoint?.component}
+                        onValueChange={(v) =>
+                          setSelectedEndpoint(
+                            service.endpoints.find(
+                              (endpoint) => endpoint.component === v,
+                            ),
+                          )
+                        }
+                      >
+                        <SelectTrigger data-testid="dashboard-connection-detail-select">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {service.endpoints.map((ep) => (
+                            <SelectItem key={ep.component} value={ep.component}>
+                              {ep.component}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                    <div className="my-2">
+                      <p className="font-semibold">
+                        {t('resetUserConnectionCode')}
+                      </p>
+                      <Clipboard
+                        value={`${selectedEndpoint?.uri.replace(
+                          '<username>:<password>',
+                          `${encodeURIComponent(
+                            newUser.username.replace(/@.*/, ''),
+                          )}:${encodeURIComponent(newUser.password)}`,
+                        )}`}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ) : (
             <Form {...form}>
