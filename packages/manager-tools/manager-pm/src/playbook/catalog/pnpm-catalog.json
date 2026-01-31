@@ -16,6 +16,7 @@
   "packages/manager/apps/email-pro",
   "packages/manager/apps/hpc-vmware-vsphere",
   "packages/manager/apps/hycu",
+  "packages/manager/apps/metrics",
   "packages/manager/apps/okms",
   "packages/manager/apps/pci-ai-endpoints",
   "packages/manager/apps/pci-ai-tools",
