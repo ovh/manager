@@ -46,8 +46,8 @@ vi.mock('@secret-manager/data/hooks/useUpdateSecretVersion', () => ({
 }));
 
 const mockAddError = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/muk', async () => {
+  const actual = await vi.importActual('@ovh-ux/muk');
   return {
     ...actual,
     useNotifications: () => ({

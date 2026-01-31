@@ -2,7 +2,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -14,13 +15,13 @@ import {
 } from '@/common/mocks/locations/locations.mock';
 import { CONTINENT_CODES } from '@/common/utils/location/continents';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
-import { getOdsButtonByIcon, getOdsButtonByLabel } from '@/common/utils/tests/uiTestHelpers';
 import {
   GeographyGroup,
   useRegionSelector,
 } from '@/modules/secret-manager/hooks/useRegionSelector';
 
 import { RegionSelector } from './RegionSelector.component';
+import { REGION_SELECTOR_TEST_IDS } from './regionSelector.constants';
 
 let i18nValue: i18n;
 
@@ -61,6 +62,12 @@ const renderRegionSelector = async () => {
       </I18nextProvider>
     </BrowserRouter>,
   );
+};
+
+const openPopover = async () => {
+  const user = userEvent.setup();
+  const button = screen.getByRole('button', { name: mockRegionLabels.GRA });
+  await act(() => user.click(button));
 };
 
 const mockRegionLabels = {
@@ -122,15 +129,13 @@ describe('RegionSelector Component', () => {
       });
 
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
 
       // Then
-      const button = await getOdsButtonByIcon({
-        container,
-        iconName: 'chevron-down',
-      });
-
-      expect(button).toHaveAttribute('is-loading', 'true');
+      const button = await screen.findByTestId(
+        REGION_SELECTOR_TEST_IDS.TRIGGER_REGION_SELECTOR_BUTTON,
+      );
+      expect(button).toHaveAttribute('data-loading', 'true');
     });
   });
 
@@ -164,69 +169,61 @@ describe('RegionSelector Component', () => {
 
     it('should render the region selector with current region', async () => {
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
 
       // Then
       expect(screen.getByText(labels.common.region.region)).toBeInTheDocument();
-      await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.GRA,
-      });
+      expect(screen.getByRole('button', { name: mockRegionLabels.GRA })).toBeVisible();
     });
 
     it('should display all geography groups in the popover', async () => {
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
+      await openPopover();
 
       // Then
       expect(screen.getByText(mockGeographyNames.EU)).toBeInTheDocument();
       expect(screen.getByText(mockGeographyNames.CA)).toBeInTheDocument();
 
       // Check region links
-      await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.GRA,
-        isLink: true,
-      });
-      await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.DE,
-        isLink: true,
-      });
-      await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.BHS,
-        isLink: true,
-      });
+      const graLink = await screen.findByRole('link', { name: mockRegionLabels.GRA });
+      expect(graLink).toHaveAttribute(
+        'href',
+        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name),
+      );
+      const deLink = screen.getByRole('link', { name: mockRegionLabels.DE });
+      expect(deLink).toHaveAttribute(
+        'href',
+        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_LIM.name),
+      );
+      const bhsLink = screen.getByRole('link', { name: mockRegionLabels.BHS });
+      expect(bhsLink).toHaveAttribute(
+        'href',
+        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_CA_EAST_BHS.name),
+      );
     });
 
     it('should highlight the link for the current region', async () => {
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
+      await openPopover();
 
       // Then
-      const current = await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.GRA,
-        isLink: true,
-      });
-      expect(current).toHaveClass('[&::part(link)]:text-[var(--ods-color-heading)]');
+      const current = await screen.findByRole('link', { name: mockRegionLabels.GRA });
+      expect(current).toHaveClass('text-[var(--ods-color-heading)]');
 
-      const notCurrent = await getOdsButtonByLabel({
-        container,
-        label: mockRegionLabels.DE,
-        isLink: true,
-      });
-      expect(notCurrent).toHaveClass('[&::part(link)]:text-[var(--ods-color-primary-500)]');
+      const notCurrent = screen.getByRole('link', { name: mockRegionLabels.DE });
+      expect(notCurrent).toHaveClass('text-[var(--ods-color-primary-500)]');
     });
 
     it('should display dividers between geography groups', async () => {
       // When
       await renderRegionSelector();
+      await openPopover();
 
       // Then
       await waitFor(() => {
-        const dividers = document.querySelectorAll('ods-divider');
+        const dividers = screen.getAllByTestId(REGION_SELECTOR_TEST_IDS.DIVIDER);
         // Should have 1 divider between 2 geography groups
         expect(dividers).toHaveLength(1);
       });
@@ -244,15 +241,12 @@ describe('RegionSelector Component', () => {
       });
 
       // When
-      const { container } = await renderRegionSelector();
+      await renderRegionSelector();
 
       // Then
-      const button = await getOdsButtonByIcon({
-        container,
-        iconName: 'chevron-down',
-      });
+      const button = screen.getByTestId(REGION_SELECTOR_TEST_IDS.TRIGGER_REGION_SELECTOR_BUTTON);
 
-      expect(button).toHaveAttribute('label', '');
+      expect(button).toHaveTextContent('');
     });
   });
 });

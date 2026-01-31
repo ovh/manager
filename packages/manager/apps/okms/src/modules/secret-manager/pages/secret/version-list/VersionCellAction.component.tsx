@@ -1,8 +1,6 @@
 import { Secret, SecretVersion } from '@secret-manager/types/secret.type';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
 
 import { useActivateVersionItem } from './actions/activate-version/useActivateVersionMenuItem';
 import { useDeactivateVersionItem } from './actions/deactivate-version/useDeactivateVersionMenuItem';
@@ -28,7 +26,7 @@ export const VersionCellAction = ({
   });
   const deleteVersionItem = useDeleteVersionItem({ id: 4, okmsId, secret, version });
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     ...(revealValueItem ? [revealValueItem] : []),
     ...(deactivateVersionItem ? [deactivateVersionItem] : []),
     ...(activateVersionItem ? [activateVersionItem] : []),
@@ -40,8 +38,8 @@ export const VersionCellAction = ({
       id={`VersionActionMenu-${version.id}`}
       items={items}
       isCompact
-      icon={ODS_ICON_NAME.ellipsisVertical}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
+      variant={BUTTON_VARIANT.ghost}
       isDisabled={items.length === 0}
     />
   );

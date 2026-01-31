@@ -11,24 +11,12 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsModal,
-  OdsSelect,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsSelect } from '@ovhcloud/ods-components/react';
+import { Modal, ModalBody, ModalContent, ModalOpenChangeDetail, Text } from '@ovhcloud/ods-react';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -57,6 +45,12 @@ export const DisableServiceKeyModal = () => {
   const navigate = useNavigate();
 
   const closeModal = () => navigate('..');
+
+  const handleClose = (detail: ModalOpenChangeDetail) => {
+    if (!detail.open) {
+      closeModal();
+    }
+  };
 
   const { updateKmsServiceKey, isPending } = useUpdateOkmsServiceKey({
     okmsId,
@@ -98,65 +92,63 @@ export const DisableServiceKeyModal = () => {
   };
 
   return (
-    <OdsModal
-      isOpen
-      isDismissible
-      onOdsClose={closeModal}
-      color={ODS_MODAL_COLOR.warning}
-      className="[&::part(dialog)]:overflow-visible [&::part(dialog-content)]:overflow-visible"
-    >
-      <OdsText preset={ODS_TEXT_PRESET.heading2}>
-        {t('key_management_service_service-keys_modal_deactivation_heading')}
-      </OdsText>
-      {isPending ? (
-        <OdsSpinner className="my-4 block" size={ODS_SPINNER_SIZE.md} />
-      ) : (
-        <OdsFormField className="my-4 block">
-          <OdsSelect
-            name="deactivation-reason"
-            value={deactivationReason}
-            onOdsChange={(e) =>
-              setDeactivationReason(e?.detail.value as OkmsServiceKeyDeactivationReason)
-            }
-            placeholder={t(
-              'key_management_service_service-keys_modal_deactivation_reason_select_placeholder',
-            )}
-          >
-            {OkmsServiceKeyDeactivationReasonTypes?.map((reason) => (
-              <option key={reason} value={reason}>
-                {t(
-                  `key_management_service_service-keys_deactivation_reason_${reason.toLowerCase()}`,
-                )}
-              </option>
-            ))}
-          </OdsSelect>
-        </OdsFormField>
-      )}
-      <OdsButton
-        slot="actions"
-        variant={ODS_BUTTON_VARIANT.outline}
-        color={ODS_BUTTON_COLOR.primary}
-        onClick={() => {
-          trackClick({
-            location: PageLocation.popup,
-            buttonType: ButtonType.button,
-            actionType: 'action',
-            actions: ['cancel'],
-          });
-          closeModal();
-        }}
-        label={tCommon('key_management_service_cancel')}
-      />
-      <OdsButton
-        isLoading={isPending}
-        isDisabled={!deactivationReason}
-        slot="actions"
-        color={ODS_BUTTON_COLOR.primary}
-        onClick={handleSubmit}
-        aria-label="edit-name-okms"
-        label={t('key_management_service_service-keys_deactivation_button_confirm')}
-      />
-    </OdsModal>
+    <Modal onOpenChange={handleClose} open>
+      <ModalContent color="warning" dismissible>
+        <ModalBody className="z-50 space-y-4 overflow-visible">
+          <Text preset="heading-2">
+            {t('key_management_service_service-keys_modal_deactivation_heading')}
+          </Text>
+
+          <OdsFormField className="my-4 block">
+            <OdsSelect
+              isDisabled={isPending}
+              name="deactivation-reason"
+              value={deactivationReason}
+              onOdsChange={(e) =>
+                setDeactivationReason(e?.detail.value as OkmsServiceKeyDeactivationReason)
+              }
+              placeholder={t(
+                'key_management_service_service-keys_modal_deactivation_reason_select_placeholder',
+              )}
+            >
+              {OkmsServiceKeyDeactivationReasonTypes?.map((reason) => (
+                <option key={reason} value={reason}>
+                  {t(
+                    `key_management_service_service-keys_deactivation_reason_${reason.toLowerCase()}`,
+                  )}
+                </option>
+              ))}
+            </OdsSelect>
+          </OdsFormField>
+          <div className="flex justify-end gap-2">
+            <Button
+              variant="outline"
+              color="primary"
+              onClick={() => {
+                trackClick({
+                  location: PageLocation.popup,
+                  buttonType: ButtonType.button,
+                  actionType: 'action',
+                  actions: ['cancel'],
+                });
+                closeModal();
+              }}
+            >
+              {tCommon('key_management_service_cancel')}
+            </Button>
+            <Button
+              loading={isPending}
+              disabled={!deactivationReason}
+              color="primary"
+              onClick={handleSubmit}
+              aria-label="edit-name-okms"
+            >
+              {t('key_management_service_service-keys_deactivation_button_confirm')}
+            </Button>
+          </div>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 

@@ -1,14 +1,15 @@
 import { useHref } from 'react-router-dom';
 
-import { VersionState } from '@secret-manager/components/version-state/VersionState.component';
+import { VersionState } from '@secret-manager/components/version-state-badge/VersionStateBadge.component';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret, SecretVersion, SecretVersionState } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge } from '@ovhcloud/ods-react';
 
-import { DataGridTextCell, ManagerLink } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
+import { MukLink } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -32,21 +33,20 @@ export const VersionIdCell = ({ version, secret }: { version: SecretVersion; sec
 
   return (
     <div className="flex items-center gap-2">
-      <ManagerLink
-        label={version.id.toString()}
+      <MukLink
         href={href}
-        isDisabled={isVersionIdCellDisabled[version.state]}
+        disabled={isVersionIdCellDisabled[version.state]}
         urn={secret?.iam?.urn}
         iamActions={[kmsIamActions.secretGet, kmsIamActions.secretVersionGetData]}
-        isDisplayTooltip
+        displayTooltip
         data-testid={VERSION_LIST_CELL_TEST_IDS.version(version)}
-      />
+      >
+        {version.id.toString()}
+      </MukLink>
       {isCurrentVersion && (
-        <OdsBadge
-          data-testid={VERSION_LIST_CELL_TEST_IDS.currentVersionBadge}
-          label={t('current_version')}
-          color={'information'}
-        />
+        <Badge data-testid={VERSION_LIST_CELL_TEST_IDS.currentVersionBadge} color="information">
+          {t('current_version')}
+        </Badge>
       )}
     </div>
   );

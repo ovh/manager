@@ -15,18 +15,13 @@ import {
 import { Secret } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  BaseLayout,
-  Datagrid,
-  DatagridColumn,
-  ErrorBanner,
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, BaseLayoutProps, Button, Error, Notifications } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -49,33 +44,36 @@ export default function SecretListPage() {
 
   const okmsListUrl = useBackToOkmsListUrl();
 
+  // if okmsListUrl is not defined, we do not display the back link label
+  const backLink: BaseLayoutProps['backLink'] = okmsListUrl
+    ? {
+        label: t('back_to_okms_list'),
+        onClick: () => {
+          navigate(okmsListUrl);
+        },
+      }
+    : undefined;
+
   return (
     <BaseLayout
       header={{
         title: t('secret_manager'),
         changelogButton: <SecretManagerChangelogButton />,
-        headerButton: <SecretManagerGuidesButton />,
+        guideMenu: <SecretManagerGuidesButton />,
       }}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
           <OkmsBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
-      onClickReturn={() => {
-        if (okmsListUrl) {
-          navigate(okmsListUrl);
-        }
-      }}
-      // if okmsListUrl is not defined, we do not display the back link label
-      backLinkLabel={okmsListUrl ? t('back_to_okms_list') : ''}
+      backLink={backLink}
     >
       <div className="space-y-6">
         <div className="flex justify-between">
           <RegionSelector />
-          <OdsButton
-            label={t('okms_manage_label')}
+          <Button
             variant="outline"
             onClick={() => {
               navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId));
@@ -86,7 +84,9 @@ export default function SecretListPage() {
                 actions: ['okms'],
               });
             }}
-          />
+          >
+            {t('okms_manage_label')}
+          </Button>
         </div>
         <SecretDatagrid okmsId={okmsId} />
       </div>
@@ -103,12 +103,11 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
 
   const { trackClick } = useOkmsTracking();
 
-  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
-    useSecretList({ okmsId });
+  const { data, error, hasNextPage, fetchNextPage, isPending, refetch } = useSecretList({ okmsId });
 
   if (error)
     return (
-      <ErrorBanner
+      <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
         onReloadPage={refetch}
@@ -147,12 +146,9 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
       isLoading={isPending}
       hasNextPage={hasNextPage}
       onFetchNextPage={fetchNextPage}
-      sorting={sorting}
-      onSortChange={setSorting}
       contentAlignLeft
       topbar={
-        <OdsButton
-          label={t('create_a_secret')}
+        <Button
           onClick={() => {
             navigate({
               pathname: SECRET_MANAGER_ROUTES_URLS.createSecret,
@@ -165,7 +161,9 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
               actions: ['create', 'secret'],
             });
           }}
-        />
+        >
+          {t('create_a_secret')}
+        </Button>
       }
     />
   );

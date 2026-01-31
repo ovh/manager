@@ -1,11 +1,11 @@
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import { SecretManagerGuidesButton } from './SecretManagerGuideButton';
 
-const GUIDES_TEST_IDS = {
+const labels = {
   manager: 'manager',
   kv2Api: 'kv2-api',
   restApi: 'rest-api',
@@ -14,21 +14,21 @@ const GUIDES_TEST_IDS = {
 vi.mock('./guide-manager/useGuideItemManager', () => ({
   useGuideItemManager: vi.fn(() => ({
     id: 0,
-    dataTestid: GUIDES_TEST_IDS.manager,
+    children: labels.manager,
   })),
 }));
 
 vi.mock('./guide-kv2-api/useGuideItemKv2Api', () => ({
   useGuideItemKv2Api: vi.fn(() => ({
     id: 1,
-    dataTestid: GUIDES_TEST_IDS.kv2Api,
+    children: labels.kv2Api,
   })),
 }));
 
 vi.mock('./guide-rest-api/useGuideItemRestApi', () => ({
   useGuideItemRestApi: vi.fn(() => ({
     id: 2,
-    dataTestid: GUIDES_TEST_IDS.restApi,
+    children: labels.restApi,
   })),
 }));
 
@@ -36,11 +36,12 @@ describe('Secret Manager Guide Button test suite', () => {
   it('should display guides items', async () => {
     // GIVEN
     // WHEN
-    await renderWithI18n(<SecretManagerGuidesButton />);
+    const wrapper = await testWrapperBuilder().withQueryClient().withI18next().build();
+    render(<SecretManagerGuidesButton />, { wrapper });
 
     // THEN
-    expect(screen.getByTestId(GUIDES_TEST_IDS.manager)).toBeInTheDocument();
-    expect(screen.getByTestId(GUIDES_TEST_IDS.kv2Api)).toBeInTheDocument();
-    expect(screen.getByTestId(GUIDES_TEST_IDS.restApi)).toBeInTheDocument();
+    expect(screen.getByText(labels.manager)).toBeInTheDocument();
+    expect(screen.getByText(labels.kv2Api)).toBeInTheDocument();
+    expect(screen.getByText(labels.restApi)).toBeInTheDocument();
   });
 });

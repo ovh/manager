@@ -1,31 +1,35 @@
 import { useHref } from 'react-router-dom';
 
 import {
-  BreadcrumbItem,
+  KmsBreadcrumbItem,
   useBreadcrumb,
 } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 
-import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@ovhcloud/ods-react';
 
-export type BreadcrumbProps = {
-  items: BreadcrumbItem[];
+export type KmsBreadcrumbProps = {
+  items: KmsBreadcrumbItem[];
 };
 
-function Breadcrumb({ items }: BreadcrumbProps) {
+const KmsBreadcrumb = ({ items }: KmsBreadcrumbProps) => {
   const breadcrumbItems = useBreadcrumb({ items });
 
   return (
-    <OdsBreadcrumb>
+    <Breadcrumb>
       {breadcrumbItems.map(({ id, label, navigateTo }) => (
         <Item key={id} id={id} label={label} navigateTo={navigateTo} />
       ))}
-    </OdsBreadcrumb>
+    </Breadcrumb>
   );
-}
-
-const Item = ({ id, label, navigateTo }: BreadcrumbItem) => {
-  const href = useHref(navigateTo ?? '');
-  return <OdsBreadcrumbItem key={id} label={label} href={href} />;
 };
 
-export default Breadcrumb;
+const Item = ({ id, label, navigateTo }: KmsBreadcrumbItem) => {
+  const href = useHref(navigateTo ?? '');
+  return (
+    <BreadcrumbItem key={id}>
+      <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
+    </BreadcrumbItem>
+  );
+};
+
+export default KmsBreadcrumb;

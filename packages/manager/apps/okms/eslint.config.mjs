@@ -41,6 +41,7 @@ export default [
   {
     rules: {
       'react/no-multi-comp': 'off',
+      'no-console': ['error', { allow: ['error'] }],
     },
   },
   /* ------------------------------------------------------------------------ */

@@ -4,9 +4,16 @@ import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { RADIO_CARD_TEST_IDS } from '@/common/components/radio-card/RadioCard.constants';
 import { useLocations } from '@/common/data/hooks/useLocation';
 import { useOrderCatalogOkms } from '@/common/data/hooks/useOrderCatalogOkms';
-import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
+import { useReferenceRegions } from '@/common/data/hooks/useReferenceRegions';
+import {
+  REGION_EU_WEST_GRA,
+  REGION_EU_WEST_RBX,
+  REGION_EU_WEST_SBG,
+  catalogMock,
+} from '@/common/mocks/catalog/catalog.mock';
 import {
   LOCATION_CA_EAST_BHS,
   LOCATION_CA_EAST_TOR,
@@ -14,6 +21,7 @@ import {
   LOCATION_EU_WEST_SBG,
   locationsMock,
 } from '@/common/mocks/locations/locations.mock';
+import { referenceRegionsMock } from '@/common/mocks/reference-regions/referenceRegions.mock';
 import { OkmsCatalog } from '@/common/types/orderCatalogOkms.type';
 import { CONTINENT_CODES } from '@/common/utils/location/continents';
 
@@ -37,10 +45,15 @@ vi.mock('@/common/data/hooks/useOrderCatalogOkms', () => ({
   useOrderCatalogOkms: vi.fn(),
 }));
 
+vi.mock('@/common/data/hooks/useReferenceRegions', () => ({
+  useReferenceRegions: vi.fn(),
+}));
+
 const mockUseNotificationAddErrorOnce = vi.mocked(useNotificationAddErrorOnce);
 const mockUseRegionName = vi.mocked(useRegionName);
 const mockUseLocations = vi.mocked(useLocations);
 const mockUseOrderCatalogOkms = vi.mocked(useOrderCatalogOkms);
+const mockUseReferenceRegions = vi.mocked(useReferenceRegions);
 
 describe('RegionPicker', () => {
   const mockSetSelectedRegion = vi.fn();
@@ -69,6 +82,12 @@ describe('RegionPicker', () => {
       isPending: false,
       error: null,
     } as ReturnType<typeof useOrderCatalogOkms>);
+
+    mockUseReferenceRegions.mockReturnValue({
+      data: referenceRegionsMock,
+      isPending: false,
+      error: null,
+    } as unknown as ReturnType<typeof useReferenceRegions>);
   });
 
   describe('Loading state', () => {
@@ -227,6 +246,69 @@ describe('RegionPicker', () => {
       // EUROPE regions should no longer be visible
       expect(screen.queryByText(`Translated ${LOCATION_EU_WEST_RBX.name}`)).not.toBeInTheDocument();
       expect(screen.queryByText(`Translated ${LOCATION_EU_WEST_SBG.name}`)).not.toBeInTheDocument();
+    });
+  });
+
+  describe('display certifications', () => {
+    const mockLabelPciDss = 'PCI-DSS';
+    const mockLabelIso666 = 'ISO-666';
+    const certificationLabels = [mockLabelPciDss, mockLabelIso666];
+
+    const getCertificationBadges = (regionCard: HTMLElement): string[] => {
+      // Query for span elements with data-ods="badge" attribute
+      const badges = regionCard.querySelectorAll<HTMLElement>('span[data-ods="badge"]');
+      return (
+        Array.from(badges)
+          // Keep only text content
+          .map((badge) => badge.textContent?.trim() || '')
+          // And keep only certification badges
+          .filter((text) => certificationLabels.includes(text))
+      );
+    };
+
+    it('should display one certification', async () => {
+      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+
+      await waitFor(() => {
+        const testId = RADIO_CARD_TEST_IDS.card(REGION_EU_WEST_RBX);
+        const regionCard = screen.getByTestId(testId);
+        expect(regionCard).toBeInTheDocument();
+
+        const certificationBadges = getCertificationBadges(regionCard);
+
+        expect(certificationBadges).toContain(mockLabelPciDss);
+        expect(certificationBadges).not.toContain(mockLabelIso666);
+      });
+    });
+
+    it('should display multiple certifications', async () => {
+      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+
+      await waitFor(() => {
+        const testId = RADIO_CARD_TEST_IDS.card(REGION_EU_WEST_SBG);
+        const regionCard = screen.getByTestId(testId);
+        expect(regionCard).toBeInTheDocument();
+
+        const certificationBadges = getCertificationBadges(regionCard);
+
+        expect(certificationBadges).toContain(mockLabelPciDss);
+        expect(certificationBadges).toContain(mockLabelIso666);
+      });
+    });
+
+    it('should display nothing when there are no certifications', async () => {
+      render(<RegionPicker selectedRegion={undefined} setSelectedRegion={mockSetSelectedRegion} />);
+
+      await waitFor(() => {
+        const testId = RADIO_CARD_TEST_IDS.card(REGION_EU_WEST_GRA);
+        const regionCard = screen.getByTestId(testId);
+        expect(regionCard).toBeInTheDocument();
+
+        const certificationBadges = getCertificationBadges(regionCard);
+
+        expect(certificationBadges).not.toContain(mockLabelPciDss);
+        expect(certificationBadges).not.toContain(mockLabelIso666);
+      });
     });
   });
 });

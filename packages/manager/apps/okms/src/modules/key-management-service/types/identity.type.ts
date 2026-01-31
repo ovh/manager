@@ -46,7 +46,7 @@ export type IdentityGroup = {
   urn: string;
 };
 
-enum IdentityOauthClientFlow {
+export enum IdentityOauthClientFlow {
   authorization_code = 'AUTHORIZATION_CODE',
   client_credentials = 'CLIENT_CREDENTIALS',
 }

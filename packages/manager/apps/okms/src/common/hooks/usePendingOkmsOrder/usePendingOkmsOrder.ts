@@ -1,7 +1,7 @@
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { useTranslation } from 'react-i18next';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { useInterval } from '@/common/hooks/useInterval';
 import { usePendingOkmsOrderStore } from '@/common/store/pendingOkmsOrder';

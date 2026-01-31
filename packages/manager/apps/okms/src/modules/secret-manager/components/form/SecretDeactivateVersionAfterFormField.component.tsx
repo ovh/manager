@@ -1,14 +1,15 @@
 import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { HelpIconWithTooltip } from '@/common/components/help-icon-with-tooltip/HelpIconWithTooltip.component';
 
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type FormFieldInput = {
-  deactivateVersionAfter: string;
+  deactivateVersionAfter?: string;
 };
 
 export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>({
@@ -27,14 +28,14 @@ export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>(
       <OdsInput
         id={field.name}
         name={field.name}
-        value={field.value.toString()}
+        value={field.value?.toString()}
         onOdsBlur={field.onBlur}
         onOdsChange={field.onChange}
         data-testid={SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER}
       />
-      <OdsText slot="helper" preset="caption">
+      <Text slot="helper" preset="caption">
         {t('form_helper_deactivate_version_after')}
-      </OdsText>
+      </Text>
     </OdsFormField>
   );
 };

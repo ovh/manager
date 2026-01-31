@@ -1,17 +1,15 @@
-import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
-import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Clipboard, Spinner } from '@ovh-ux/muk';
 
-import { Link } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
+import { OkmsServiceState } from '@/common/components/okms-service-state-badge/OkmsServiceStateBadge.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { TrackingTags } from '@/tracking.constant';
 
@@ -43,10 +41,8 @@ export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => 
   };
 
   return (
-    <Link
-      href={links[type].href}
-      label={okms.iam.displayName}
-      isRouterLink
+    <InternalLink
+      to={links[type].href}
       data-testid={OKMS_LIST_CELL_TEST_IDS.name(okms.id)}
       onClick={() => {
         trackClick({
@@ -56,7 +52,9 @@ export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => 
           actions: links[type].tracking,
         });
       }}
-    />
+    >
+      {okms.iam.displayName}
+    </InternalLink>
   );
 };
 
@@ -78,7 +76,7 @@ export const DatagridCellStatus = (okms: OKMS) => {
     resourceName: okms.id,
   });
   if (isPending) {
-    return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
+    return <Spinner size="sm" />;
   }
   if (isError) {
     return <></>;

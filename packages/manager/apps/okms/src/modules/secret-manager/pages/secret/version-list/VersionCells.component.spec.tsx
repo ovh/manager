@@ -8,23 +8,18 @@ import {
   versionDeletedMock,
 } from '@secret-manager/mocks/versions/versions.mock';
 import { SecretVersion } from '@secret-manager/types/secret.type';
-import { screen } from '@testing-library/react';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
-import { describe, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { beforeAll, describe, expect, test, vi } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 
-import { getOdsButtonByLabel, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
-
-import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { removeHandlersDelay } from '@/common/utils/tests/msw';
-import { renderWithClient } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+import { assertBadgeColor } from '@/common/utils/tests/uiTestHelpers';
 
 import { VersionIdCell } from './VersionCells.component';
 import { VERSION_LIST_CELL_TEST_IDS } from './VersionCells.constants';
-
-let i18nValue: i18n;
 
 const mockOkmsId = 'test-okms-id';
 
@@ -38,17 +33,9 @@ const renderVersionLink = async (versionMock: SecretVersion) => {
   // use global server to mock iam response
   global.server?.resetHandlers(...toMswHandlers(removeHandlersDelay([...getIamMocks({})])));
 
-  if (!i18nValue) {
-    i18nValue = await initTestI18n();
-  }
+  const wrapper = await testWrapperBuilder().withQueryClient().withI18next().build();
 
-  const { container } = renderWithClient(
-    <I18nextProvider i18n={i18nValue}>
-      <VersionIdCell version={versionMock} secret={mockSecret1} />
-    </I18nextProvider>,
-  );
-
-  return { container };
+  return render(<VersionIdCell version={versionMock} secret={mockSecret1} />, { wrapper });
 };
 
 const mockNavigate = vi.fn();
@@ -64,29 +51,29 @@ describe('VersionCellId test suite', () => {
     isLinkDisabled: boolean;
   };
 
-  const testCases: TestCase[] = [
+  const useCases: TestCase[] = [
     { version: versionActiveMock, isLinkDisabled: false },
     { version: versionDeactivatedMock, isLinkDisabled: true },
     { version: versionDeletedMock, isLinkDisabled: true },
   ];
 
   describe('Version link tests', () => {
-    it.each(testCases)(
+    test.each(useCases)(
       'should render link for $version with param disabled: $isLinkDisabled',
       async ({ version, isLinkDisabled }) => {
-        // GIVEN version
+        // given version
 
-        // WHEN
-        const { container } = await renderVersionLink(version);
+        // when
+        await renderVersionLink(version);
 
-        // THEN
-        const link = await getOdsButtonByLabel({
-          container,
-          label: version.id.toString(),
-          isLink: true,
-          disabled: isLinkDisabled,
-        });
+        // then
+        const link = await screen.findByText(version.id.toString());
         expect(link).toBeInTheDocument();
+        if (isLinkDisabled) {
+          expect(link).toHaveAttribute('disabled');
+        } else {
+          expect(link).not.toHaveAttribute('disabled');
+        }
       },
     );
   });
@@ -102,27 +89,28 @@ describe('VersionCellId test suite', () => {
       });
     });
 
-    it('should display a badge when version is the current version', async () => {
-      // GIVEN
+    test('should display a badge when version is the current version', async () => {
+      // given
 
-      // WHEN
-      await renderVersionLink(currentVersionMocked);
+      // when
+      const { getByTestId } = await renderVersionLink(currentVersionMocked);
+      const badge = getByTestId(VERSION_LIST_CELL_TEST_IDS.currentVersionBadge);
 
-      // THEN
-      const badge = screen.getByTestId(VERSION_LIST_CELL_TEST_IDS.currentVersionBadge);
+      // then
       expect(badge).toBeInTheDocument();
-      expect(badge).toHaveAttribute('label', labels.secretManager.current_version);
-      expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.information);
+
+      expect(badge).toHaveTextContent(labels.secretManager.current_version);
+      assertBadgeColor(badge, 'information');
     });
 
-    it('should not display a badge when version is not the current version', async () => {
-      // GIVEN
+    test('should not display a badge when version is not the current version', async () => {
+      // given
 
-      // WHEN
-      await renderVersionLink(versionDeactivatedMock);
+      // when
+      const { queryByTestId } = await renderVersionLink(versionDeactivatedMock);
+      const badge = queryByTestId(VERSION_LIST_CELL_TEST_IDS.currentVersionBadge);
 
-      // THEN
-      const badge = screen.queryByTestId(VERSION_LIST_CELL_TEST_IDS.currentVersionBadge);
+      // then
       expect(badge).toBeNull();
     });
   });

@@ -3,11 +3,15 @@ import { useState } from 'react';
 import { useCheckoutOrder } from '@key-management-service/data/hooks/useCheckoutOrder';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsCheckbox, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsCheckbox } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { Button } from '@ovh-ux/muk';
+
+import { ExternalLink } from '@/common/components/link/Link.component';
 
 import {
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
@@ -41,11 +45,13 @@ export const OrderOkmsModalTermsAndConditions = ({
   return (
     <>
       <div className="flex flex-col gap-3 pb-6">
-        <OdsText preset="heading-4">{t('create_okms_terms_and_conditions_title')}</OdsText>
-        <OdsText preset="paragraph">{t('create_okms_terms_and_conditions_description')}</OdsText>
+        <Text preset="heading-4">{t('create_okms_terms_and_conditions_title')}</Text>
+        <Text preset="paragraph">{t('create_okms_terms_and_conditions_description')}</Text>
         <div className="flex flex-col gap-2">
           {cart.contractList.map(({ name, url }) => (
-            <Links key={name} href={url} target="_blank" type={LinkType.external} label={name} />
+            <ExternalLink key={name} href={url}>
+              {name}
+            </ExternalLink>
           ))}
         </div>
         <div className="flex items-center gap-3">
@@ -57,27 +63,28 @@ export const OrderOkmsModalTermsAndConditions = ({
             onOdsChange={(event) => setIsContractAccepted(event.detail.checked)}
           />
           <label className="cursor-pointer" htmlFor="confirm-contract">
-            <OdsText preset="span">{t('create_okms_terms_and_conditions_confirm_label')}</OdsText>
+            <Text preset="span">{t('create_okms_terms_and_conditions_confirm_label')}</Text>
           </label>
         </div>
         {error && (
-          <OdsMessage color="danger" isDismissible={false} className="w-full">
+          <Message color="critical" dismissible={false} className="w-full">
             {t(`${NAMESPACES.ERROR}:error_message`, {
               message: error.response.data.message,
             })}
-          </OdsMessage>
+          </Message>
         )}
       </div>
 
       <OkmsOrderModalCancelButton onClick={onCancel} />
-      <OdsButton
+      <Button
         data-testid={ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID}
         slot="actions"
-        label={t('confirm', { ns: NAMESPACES.ACTIONS })}
-        isDisabled={!isContractAccepted}
+        disabled={!isContractAccepted}
         onClick={() => requestOrder({ cartId: cart.cartId })}
-        isLoading={isPending}
-      />
+        loading={isPending}
+      >
+        {t('confirm', { ns: NAMESPACES.ACTIONS })}
+      </Button>
     </>
   );
 };

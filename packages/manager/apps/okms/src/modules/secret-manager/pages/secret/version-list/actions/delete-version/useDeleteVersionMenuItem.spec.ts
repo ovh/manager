@@ -12,9 +12,7 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
-
-import { ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenuItemProps, BUTTON_COLOR } from '@ovh-ux/muk';
 
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
@@ -54,7 +52,7 @@ vi.mock('@/common/hooks/useOkmsTracking', () => ({
   }),
 }));
 
-const deleteMenuItem: ActionMenuItem = {
+const deleteMenuItem: ActionMenuItemProps = {
   id: MOCKED_ID,
   label: labels.secretManager.version_state_delete,
   isDisabled: false,
@@ -76,14 +74,14 @@ describe('useDeleteVersionMenuItem test suite', () => {
 
   type TestCase = {
     version: SecretVersion;
-    returned: ActionMenuItem | null;
+    returned: ActionMenuItemProps | null;
   };
 
-  const disabledDeleteMenuItem: ActionMenuItem = {
+  const disabledDeleteMenuItem: ActionMenuItemProps = {
     id: MOCKED_ID,
     label: labels.secretManager.version_state_delete,
     isDisabled: true,
-    color: ODS_BUTTON_COLOR.critical,
+    color: BUTTON_COLOR.critical,
   };
 
   const testCases: TestCase[] = [
@@ -112,7 +110,7 @@ describe('useDeleteVersionMenuItem test suite', () => {
 
       // THEN
       if (returned === null) expect(result.current).toBeNull();
-      else expect(result.current).toMatchObject<ActionMenuItem>(returned);
+      else expect(result.current).toMatchObject<ActionMenuItemProps>(returned);
     },
   );
 
@@ -130,7 +128,7 @@ describe('useDeleteVersionMenuItem test suite', () => {
     await waitFor(() => result.current);
 
     // THEN
-    expect(result.current).toMatchObject<ActionMenuItem>({
+    expect(result.current).toMatchObject<ActionMenuItemProps>({
       ...deleteMenuItem,
       isDisabled: true,
     });

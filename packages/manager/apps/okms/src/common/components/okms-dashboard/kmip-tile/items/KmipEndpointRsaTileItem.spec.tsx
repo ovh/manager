@@ -7,7 +7,7 @@ import {
   DownloadOkmsPublicCaLinkProps,
 } from '@/common/components/download-okms-public-ca-link/DownloadOkmsPublicCaLink';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
-import { getOdsClipboardByValue } from '@/common/utils/tests/uiTestHelpers';
+import { assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { ENDPOINT_RSA_LABEL } from '@/constants';
 
 import { KmipEndpointRsaTileItem } from './KmipEndpointRsaTileItem.component';
@@ -27,12 +27,12 @@ describe('OKMS Kmip endpoint RSA Tile Item test suite', () => {
     // GIVEN okmsMocked
 
     // WHEN
-    const { container } = await renderWithI18n(<KmipEndpointRsaTileItem okms={okmsMocked} />);
+    await renderWithI18n(<KmipEndpointRsaTileItem okms={okmsMocked} />);
 
     // THEN
     expect(screen.getByText(ENDPOINT_RSA_LABEL)).toBeVisible();
 
-    expect(getOdsClipboardByValue({ container, value: okmsMocked.kmipRsaEndpoint })).toBeVisible();
+    await assertClipboardVisibility(okmsMocked.kmipRsaEndpoint);
 
     expect(DownloadOkmsPublicCaLink).toHaveBeenCalledTimes(1);
     expect(
