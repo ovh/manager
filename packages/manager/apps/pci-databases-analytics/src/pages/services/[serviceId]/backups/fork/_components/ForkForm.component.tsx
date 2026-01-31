@@ -4,11 +4,6 @@ import { Calendar as CalendarIcon } from 'lucide-react';
 import {
   Calendar,
   Button,
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
   useToast,
   Form,
   FormControl,
@@ -29,7 +24,6 @@ import {
   PopoverContent,
   PopoverTrigger,
   TimePicker,
-  Separator,
 } from '@datatr-ux/uxlib';
 import { order } from '@/types/catalog';
 import * as database from '@/types/cloud/project/database';
@@ -45,7 +39,6 @@ import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import NetworkOptions from '@/components/order/cluster-options/NetworkOptions.components';
 import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
 import RegionsSelect from '@/components/order/region/RegionSelect.component';
-import OrderPrice from '@/components/order/price/OrderPrice.component';
 import { useFork } from './useFork.hook';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { formatStorage } from '@/lib/bytesHelper';
@@ -56,9 +49,10 @@ import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { ForkInitialValue } from '../Fork.page';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import OrderSummary from '@/pages/services/create/_components/OrderSummary.component';
 import OrderSection from '@/components/order/Section.component';
 import NameInput from '@/components/order/name/NameInput.component';
+import Cart from '@/components/cart/Cart.component';
+import { useCartItems } from '@/pages/services/create/_components/useCartItems.hook';
 
 interface ForkFormProps {
   availabilities: database.Availability[];
@@ -173,12 +167,7 @@ const ForkForm = ({
     },
   );
 
-  const scrollToDiv = (target: string) => {
-    const div = document.getElementById(target);
-    if (div) {
-      div.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const cartItems = useCartItems({ order: model.result });
 
   const classNameLabel = 'scroll-m-20 text-xl font-semibold text-lg';
 
@@ -514,24 +503,10 @@ const ForkForm = ({
           </OrderSection>
         </div>
 
-        <Card className="sticky top-4 h-fit shadow-lg">
-          <CardHeader>
-            <CardTitle>{t('summaryTitle')}</CardTitle>
-          </CardHeader>
-          <CardContent className="grid grid-cols-1 gap-2">
-            <OrderSummary
-              order={model.result}
-              onSectionClicked={(section) => scrollToDiv(section)}
-            />
-            <Separator className="my-2" />
-            {model.result.availability && (
-              <OrderPrice
-                availability={model.result.availability}
-                prices={model.result.price}
-              />
-            )}
-          </CardContent>
-          <CardFooter className="flex justify-between">
+        <Cart
+          items={cartItems}
+          currency={catalog.locale.currencyCode}
+          actionButtons={
             <Button
               onClick={onSubmit}
               data-testid="fork-submit-button"
@@ -540,8 +515,8 @@ const ForkForm = ({
             >
               {t('orderButton')}
             </Button>
-          </CardFooter>
-        </Card>
+          }
+        />
       </div>
     </Form>
   );

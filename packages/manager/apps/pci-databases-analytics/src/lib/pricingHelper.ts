@@ -3,6 +3,8 @@ import * as database from '@/types/cloud/project/database';
 
 export const hourlyToMonthlyFactor = 730;
 
+export const ucentToEur = 100_000_000;
+
 export type Pricing = Pick<order.publicOrder.Pricing, 'price' | 'tax'>;
 
 interface ComputeFlavorPriceProps {

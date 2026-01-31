@@ -12,8 +12,6 @@ import Service, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/create/Create.page';
 
-import OrderSummary from '@/pages/services/create/_components/OrderSummary.component';
-
 import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
@@ -27,59 +25,11 @@ import {
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import * as database from '@/types/cloud/project/database';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
-import {
-  mockedBasicOrderFunnelFlavor,
-  mockedBasicOrderFunnelPlan,
-  mockedEngineVersion,
-  mockedOrderFunnelEngine,
-  mockedOrderFunnelRegion,
-} from '@/__tests__/helpers/mocks/order-funnel';
-import {
-  NetworkRegionStatusEnum,
-  NetworkStatusEnum,
-  NetworkTypeEnum,
-} from '@/types/cloud/network';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/pciProjects';
 import * as ProjectAPI from '@/data/api/project/project.api';
 import * as ServiceAPI from '@/data/api/database/service.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { PlanCode } from '@/types/cloud/Project';
-import { useOrderFunnel } from './_components/useOrderFunnel.hook';
-
-const mockedOrder = {
-  availability: mockedAvailabilities,
-  engine: mockedOrderFunnelEngine,
-  version: mockedEngineVersion,
-  plan: mockedBasicOrderFunnelPlan,
-  region: mockedOrderFunnelRegion,
-  flavor: mockedBasicOrderFunnelFlavor,
-  nodes: 3,
-  additionalStorage: 10,
-  name: 'myNewPG',
-  ipRestrictions: [
-    {
-      ip: 'ips',
-      description: 'IpDescription',
-    },
-  ],
-  network: {
-    type: database.NetworkTypeEnum.private,
-    network: {
-      id: 'id1',
-      name: 'network1',
-      regions: [
-        {
-          region: 'GRA',
-          openstackId: '123456',
-          status: NetworkRegionStatusEnum.ACTIVE,
-        },
-      ],
-      vlanId: 0,
-      status: NetworkStatusEnum.ACTIVE,
-      type: NetworkTypeEnum.private,
-    },
-  },
-} as ReturnType<typeof useOrderFunnel>['result'];
 
 describe('Order funnel page', () => {
   beforeEach(() => {
@@ -187,62 +137,6 @@ describe('Order funnel page', () => {
       expect(screen.getByTestId('order-funnel-skeleton')).toBeInTheDocument();
     });
   });
-
-  // it('order summary click link display section', async () => {
-  //   const mockedOnSectionClicked = vi.fn();
-  //   render(
-  //     <OrderSummary
-  //       order={mockedOrder}
-  //       onSectionClicked={mockedOnSectionClicked}
-  //     />,
-  //     { wrapper: RouterWithQueryClientWrapper },
-  //   );
-  //   await waitFor(() => {
-  //     expect(screen.getByText(mockedOrder.name)).toBeInTheDocument();
-  //   });
-  //   act(() => {
-  //     fireEvent.click(screen.getByTestId('engine-section-button'));
-  //   });
-  //   await waitFor(() => {
-  //     expect(mockedOnSectionClicked).toHaveBeenCalledWith('engine');
-  //   });
-  //   act(() => {
-  //     fireEvent.click(screen.getByTestId('plan-section-button'));
-  //   });
-  //   await waitFor(() => {
-  //     expect(mockedOnSectionClicked).toHaveBeenCalledWith('plan');
-  //   });
-  //   act(() => {
-  //     fireEvent.click(screen.getByTestId('region-section-button'));
-  //   });
-  //   await waitFor(() => {
-  //     expect(mockedOnSectionClicked).toHaveBeenCalledWith('region');
-  //   });
-  //   act(() => {
-  //     fireEvent.click(screen.getByTestId('flavor-section-button'));
-  //   });
-  //   await waitFor(() => {
-  //     expect(mockedOnSectionClicked).toHaveBeenCalledWith('flavor');
-  //   });
-  //   act(() => {
-  //     fireEvent.click(screen.getByTestId('cluster-section-button'));
-  //   });
-  //   await waitFor(() => {
-  //     expect(mockedOnSectionClicked).toHaveBeenCalledWith('cluster');
-  //   });
-  //   act(() => {
-  //     fireEvent.click(screen.getByTestId('network-section-button'));
-  //   });
-  //   await waitFor(() => {
-  //     expect(mockedOnSectionClicked).toHaveBeenCalledWith('options');
-  //   });
-  //   act(() => {
-  //     fireEvent.click(screen.getByTestId('ips-section-button'));
-  //   });
-  //   await waitFor(() => {
-  //     expect(mockedOnSectionClicked).toHaveBeenCalledWith('options');
-  //   });
-  // });
 
   it('renders Service with discovery banner', async () => {
     const mockedDiscoveryProject = {
