@@ -3,11 +3,12 @@
     data-specifications="$ctrl.specifications"
     data-bandwidth-option="$ctrl.bandwidthOption"
     data-is-cluster="$ctrl.isOldCluster"
+    data-nb-nics="$ctrl.nbNics"
 >
 </server-public-bandwidth-tile-definition>
 
 <oui-tile-button
-    data-ng-if="$ctrl.server.canOrderBandwith"
+    data-ng-if="$ctrl.server.canOrderBandwith && $ctrl.displayPublicBandwidth"
     data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
     data-href="{{ $ctrl.orderPublicLink }}"
 >
@@ -24,7 +25,7 @@
                 <!-- Outgoing Bandwidth -->
                 <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
                 <span
-                    data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                    data-ng-bind="$ctrl.specifications.vrack.realNicBandwidth | serverBandwidth:$ctrl.nbNics"
                 ></span>
                 <span
                     data-translate="dedicated_server_bandwidth_outgoing"
@@ -39,7 +40,7 @@
                 <!-- Incoming Bandwidth -->
                 <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
                 <span
-                    data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                    data-ng-bind="$ctrl.specifications.vrack.realNicBandwidth | serverBandwidth:$ctrl.nbNics"
                 ></span>
                 <span
                     data-translate="dedicated_server_bandwidth_incoming"
