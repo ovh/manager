@@ -7,8 +7,7 @@ import {
   MOCK_DATA_VALID_JSON,
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constants';
-import { waitFor } from '@testing-library/dom';
-import { act, fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 
 import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
@@ -89,6 +88,15 @@ describe('Create secret page test suite', () => {
 
     // WHEN
     await act(() => user.click(submitButton));
+
+    // Wait for navigation and loading to complete
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     // THEN
     // assert we have navigated to the newly created secret page

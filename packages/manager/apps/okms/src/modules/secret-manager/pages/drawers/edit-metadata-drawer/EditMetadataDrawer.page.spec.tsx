@@ -21,7 +21,22 @@ const renderPage = async (mockParams = {}) => {
   const { container } = await renderTestApp(mockPageUrl, mockParams);
 
   // Check if the drawer is open
-  expect(await screen.findByTestId('edit-metadata-drawer')).toBeInTheDocument();
+  await waitFor(
+    async () => {
+      expect(await screen.findByTestId('edit-metadata-drawer')).toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
+
+  // Wait for drawer loading to complete (spinner inside drawer and progressbar)
+  await waitFor(
+    () => {
+      const spinners = container.querySelectorAll('ods-spinner');
+      expect(spinners.length).toBe(0);
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+    },
+    { timeout: 10_000 },
+  );
 
   return { user, container };
 };
@@ -51,9 +66,24 @@ describe('Edit Metadata Drawer page test suite', () => {
   it('should render form with correct data when everything loads successfully', async () => {
     const { container } = await renderPage();
 
-    // Wait for form to be rendered
+    // Wait for form fields to be rendered - wait for the deactivate version after field
+    await waitFor(
+      () => {
+        expect(
+          screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER),
+        ).toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
+    // Wait for form to be rendered with correct values
     const maxVersions = mockSecret.metadata.maxVersions.toString();
-    expect(await screen.findByDisplayValue(maxVersions)).toBeInTheDocument();
+    await waitFor(
+      () => {
+        expect(screen.getByDisplayValue(maxVersions)).toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     // Check form fields are populated with secret data
     expect(
@@ -72,6 +102,16 @@ describe('Edit Metadata Drawer page test suite', () => {
   it('should handle form submission and navigation flow', async () => {
     const { user, container } = await renderPage();
 
+    // Wait for form field to be ready
+    await waitFor(
+      () => {
+        expect(
+          screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER),
+        ).toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
     // Change the data input value
     await changeOdsInputValueByTestId(
       SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER,
@@ -86,17 +126,35 @@ describe('Edit Metadata Drawer page test suite', () => {
     await act(() => user.click(submitButton));
 
     // Wait for drawer to close (navigation)
-    await waitFor(() => {
-      expect(screen.queryByTestId('edit-metadata-drawer')).not.toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.queryByTestId('edit-metadata-drawer')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
   });
 
   it('should handle form submission errors', async () => {
     const { user, container } = await renderPage({ isUpdateSecretKO: true });
 
-    // Wait for form to load
+    // Wait for form field to be ready
+    await waitFor(
+      () => {
+        expect(
+          screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER),
+        ).toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
+    // Wait for form to load with correct values
     const maxVersions = mockSecret.metadata.maxVersions.toString();
-    expect(await screen.findByDisplayValue(maxVersions)).toBeInTheDocument();
+    await waitFor(
+      () => {
+        expect(screen.getByDisplayValue(maxVersions)).toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     // Submit form
     const submitButton = await getOdsButtonByLabel({
@@ -106,7 +164,12 @@ describe('Edit Metadata Drawer page test suite', () => {
     await act(() => user.click(submitButton));
 
     // Verify error is displayed
-    expect(await screen.findByText('update-secret-error-message')).toBeInTheDocument();
+    await waitFor(
+      () => {
+        expect(screen.getByText('update-secret-error-message')).toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     // Drawer should still be open
     expect(screen.getByTestId('edit-metadata-drawer')).toBeInTheDocument();

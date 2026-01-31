@@ -3,7 +3,7 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { act, screen } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {
@@ -127,6 +127,15 @@ describe('Secret page test suite', () => {
       await act(async () => {
         await user.click(screen.getByText(labels.secretManager.versions));
       });
+
+      // Wait for navigation and loading to complete
+      await waitFor(
+        () => {
+          expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+          expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+        },
+        { timeout: 10_000 },
+      );
 
       // THEN
       await assertVersionDatagridVisilibity();
