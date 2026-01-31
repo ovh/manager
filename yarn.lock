@@ -6758,16 +6758,16 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
-"@ovh-ux/manager-react-shell-client@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.2.0.tgz#ed7eb22ef877a1dcd714cc344b89bcf8ac5de393"
-  integrity sha512-iJJSunmq6yfmkkaP/sebPP9wIeOgrwccxHjqnDVvkzPaoc0AlgSEJIX/+UCviB8ikiJxraCoIHqvfKr+VDQkTw==
+"@ovh-ux/manager-react-shell-client@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.2.1.tgz#310dde9c4556acdf3e5ba3b425b7bc1a75744547"
+  integrity sha512-jQZCEbip74TsmPUVajrzPNFN/64MQBp/eXvOREzQznqBz0OJ5dlCAzF91VIC2GHMw1yXIicvEZ55y9R4CLtydQ==
   dependencies:
     "@ovh-ux/manager-config" "^8.2.1"
     "@ovh-ux/ovh-at-internet" "^0.28.2"
     "@ovh-ux/request-tagger" "^0.4.1"
-    "@ovh-ux/shell" "^4.7.1"
-    "@ovh-ux/url-builder" "^2.0.4"
+    "@ovh-ux/shell" "^4.10.4"
+    "@ovh-ux/url-builder" "^2.4.2"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 

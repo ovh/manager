@@ -9,7 +9,7 @@ import angular from 'angular';
 
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 
 export default (containerEl, environment) => {
@@ -22,6 +22,7 @@ export default (containerEl, environment) => {
         ngUiRouterBreadcrumb,
         registerCoreModule(environment),
         ovhManagerVeeamEnterprise,
+        ngAtInternet,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )
