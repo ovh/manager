@@ -9,6 +9,8 @@ import {
   IP_FOR_SCALE_REDEPLOY,
 } from './constants';
 
+import { MIN_VERSION_DATASERVICEIP } from '../../../constants';
+
 export default class NutanixGeneralInfoRedeployCtrl {
   /* @ngInject */
   constructor($translate, atInternet) {
@@ -18,6 +20,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
     this.PRISM_CENTRAL_TYPE_ALONE = PRISM_CENTRAL_TYPE_ALONE;
     this.prismCentralTypes = PRISM_CENTRAL_TYPES;
     this.IPV4_BLOCK_REGEX = IPV4_BLOCK_REGEX;
+    this.MIN_VERSION_DATASERVICEIP = MIN_VERSION_DATASERVICEIP;
   }
 
   $onInit() {
@@ -126,6 +129,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
         infraVlanNumber,
         gatewayCidr,
         version,
+        dataserviceIp,
         nodes,
       }) => ({
         redundancyFactor,
@@ -135,6 +139,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
         infraVlanNumber,
         gatewayCidr,
         version,
+        dataserviceIp,
         nodes: this.getNodesWithDisplayName(nodes),
       }))(cloneDeep(this.cluster.targetSpec));
       if (this.cluster.allowedRedundancyFactor.length === 1) {
@@ -153,6 +158,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
     infraVlanNumber,
     gatewayCidr,
     version,
+    dataserviceIp,
     nodes,
   }) {
     return {
@@ -170,6 +176,7 @@ export default class NutanixGeneralInfoRedeployCtrl {
       ...(infraVlanNumber && { infraVlanNumber }),
       ...(gatewayCidr && { gatewayCidr }),
       ...(version && { version }),
+      ...(dataserviceIp && { dataserviceIp }),
     };
   }
 
