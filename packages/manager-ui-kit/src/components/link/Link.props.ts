@@ -6,6 +6,7 @@ export enum LinkType {
   back = 'back',
   next = 'next',
   external = 'external',
+  survey = 'survey',
 }
 
 interface CustomLinkProps {
@@ -16,6 +17,7 @@ interface CustomLinkProps {
   urn?: string;
   displayTooltip?: boolean;
   disableIamCheck?: boolean;
+  surveyApplicationKey?: string;
 }
 
 export type LinkProps<T extends ElementType = 'a'> = CustomLinkProps &
@@ -26,5 +28,6 @@ export type LinkProps<T extends ElementType = 'a'> = CustomLinkProps &
 type BackLinkProps = { type?: LinkType.back; children: ReactNode };
 type ExternalLinkProps = { type?: LinkType.external; children: ReactNode };
 type NextLinkProps = { type?: LinkType.next; children: ReactNode };
+type SurveyLinkProps = { type?: LinkType.survey; children: ReactNode };
 
-export type LinkIconsProps = BackLinkProps | ExternalLinkProps | NextLinkProps;
+export type LinkIconsProps = BackLinkProps | ExternalLinkProps | NextLinkProps | SurveyLinkProps;
