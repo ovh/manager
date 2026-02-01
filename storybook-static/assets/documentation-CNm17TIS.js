@@ -1,0 +1,5 @@
+import{j as e}from"./jsx-runtime-BRNY0I4F.js";import{u as o}from"./index-CWIOTABv.js";import{M as i}from"./index-CExQY-2-.js";import"./index-Bnop-kX6.js";import"./iframe-B25DnDzc.js";import"./index-4pTrEEYx.js";import"./index-DOoWsluG.js";import"./index-DrFu-skq.js";function r(n){const t={code:"code",h1:"h1",h2:"h2",p:"p",...o(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(i,{title:"Manager UI Kit/Components/Order/Documentation"}),`
+`,e.jsx(t.h1,{id:"order",children:"Order"}),`
+`,e.jsxs(t.p,{children:["The ",e.jsx(t.code,{children:"Order"})," component is a helper to build your template easily."]}),`
+`,e.jsx(t.h2,{id:"guideline",children:"Guideline"}),`
+`,e.jsxs(t.p,{children:["As the component ",e.jsx(t.code,{children:"orderSummary"})," already use ",e.jsx(t.code,{children:"<h2>"})," please don't use this tag for a correct semantic HTML structure."]})]})}function u(n={}){const{wrapper:t}={...o(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(r,{...n})}):r(n)}export{u as default};
