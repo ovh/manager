@@ -1,7 +1,7 @@
 name: Duplicate translation
 
 on:
-  push:
+  pull_request:
     branches-ignore: [master]
 
 concurrency:
