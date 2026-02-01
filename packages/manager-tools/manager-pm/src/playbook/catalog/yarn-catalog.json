@@ -8,7 +8,6 @@
   "packages/manager/apps/cloud-shell",
   "packages/manager/apps/dbaas-logs",
   "packages/manager/apps/dedicated-servers",
-  "packages/manager/apps/exchange",
   "packages/manager/apps/hpc-vmware-public-vcf-aas",
   "packages/manager/apps/iam",
   "packages/manager/apps/identity-access-management",
