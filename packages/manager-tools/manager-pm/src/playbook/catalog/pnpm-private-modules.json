@@ -310,5 +310,9 @@
   {
     "turbo": "--filter @ovh-ux/ng-shell-tracking",
     "pnpm": "packages/components/ng-shell-tracking"
+  },
+  {
+    "turbo": "--filter @ovh-ux/shell",
+    "pnpm": "packages/components/ovh-shell"
   }
 ]
