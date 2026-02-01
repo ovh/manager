@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.51.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.51.0...@ovh-ux/manager-pm@0.51.1) (2026-02-01)
+
+
+### Bug Fixes
+
+* react shell build  issues ([806d39b](https://github.com/ovh/manager/commit/806d39b48fce1bc6421ed492a33ccc91260dfcb8))
+
+
+
+
+
 # [0.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.50.1...@ovh-ux/manager-pm@0.51.0) (2026-01-30)
 
 
