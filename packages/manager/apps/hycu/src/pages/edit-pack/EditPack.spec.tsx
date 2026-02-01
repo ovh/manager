@@ -12,14 +12,15 @@ describe('License Hycu edit test suite', () => {
     await renderTestApp(`/${licensesHycu[0].serviceName}/edit-pack`);
 
     await waitFor(
-      () => screen.getByText(labels.editPack.hycu_edit_pack_title),
+      () =>
+        screen.getAllByText(labels.editPack.hycu_edit_pack_title)?.length > 0,
       {
         timeout: 10_000,
       },
     );
 
     expect(
-      screen.getByText(labels.editPack.hycu_edit_pack_title),
+      screen.getAllByText(labels.editPack.hycu_edit_pack_title)[0],
     ).toBeVisible();
     expect(
       screen.getByText(labels.editPack.hycu_edit_pack_description),

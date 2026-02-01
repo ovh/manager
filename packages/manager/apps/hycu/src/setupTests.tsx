@@ -1,13 +1,11 @@
-import { odsSetup } from '@ovhcloud/ods-common-core';
 import { SetupServer, setupServer } from 'msw/node';
 import {
   toMswHandlers,
   getAuthenticationMocks,
 } from '@ovh-ux/manager-core-test-utils';
+import { vi } from 'vitest';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
-
-odsSetup();
 
 declare global {
   // eslint-disable-next-line vars-on-top, no-var
@@ -21,6 +19,14 @@ const server = setupServer(
     ...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' }),
   ]),
 );
+
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'warn' });

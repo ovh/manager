@@ -1,13 +1,14 @@
+import { ICON_NAME } from '@ovhcloud/ods-react';
 import {
   ActionMenu,
-  ActionMenuItem,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
+  ActionMenuItemProps,
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+} from '@ovh-ux/muk';
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { IHycuDetails } from '@/types/hycu.details.interface';
@@ -26,28 +27,29 @@ const HycuActionMenu = ({ serviceName }: Pick<IHycuDetails, 'serviceName'>) => {
     resourceName: serviceName,
   });
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     {
       id: 1,
       label: t('terminate'),
-      color: ODS_THEME_COLOR_INTENT.error,
       onClick: () => {
         trackClick(
           TRACKING.listing.deleteClick(serviceDetails?.data.billing.plan.code),
         );
         openTerminateModal();
       },
-      disabled:
+      color: BUTTON_COLOR.critical,
+      isDisabled:
         serviceDetails?.data.resource.state === 'suspended' || undefined,
     },
   ];
 
   return (
     <ActionMenu
+      id="hycu-listing-action-menu"
       items={items}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
-      icon={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+      variant={BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
     />
   );
 };

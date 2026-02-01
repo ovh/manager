@@ -1,31 +1,31 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useNavigate,
   useResolvedPath,
   useParams,
-  NavLink,
   Outlet,
 } from 'react-router-dom';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_COLOR_INTENT,
-} from '@ovhcloud/ods-components';
+  Message,
+  MessageIcon,
+  MessageBody,
+  MESSAGE_COLOR,
+  Tabs,
+  TabList,
+  Tab,
+  ICON_NAME,
+  TabsValueChangeEvent,
+} from '@ovhcloud/ods-react';
 import {
-  OsdsMessage,
-  OsdsText,
-  OsdsTabs,
-  OsdsTabBar,
-  OsdsTabBarItem,
-} from '@ovhcloud/ods-components/react';
-
-import {
+  Text,
+  TEXT_PRESET,
   BaseLayout,
-  useServiceDetails,
   Notifications,
-  ChangelogButton,
-} from '@ovh-ux/manager-react-components';
+  ChangelogMenu,
+} from '@ovh-ux/muk';
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { CHANGELOG_LINKS } from '@/constants';
@@ -50,14 +50,14 @@ const ServiceSuspendedBanner = () => {
   const { t } = useTranslation(['hycu/dashboard', NAMESPACES.BILLING]);
 
   return (
-    <OsdsMessage className="mb-2" type={ODS_MESSAGE_TYPE.warning}>
-      <OsdsText
-        color={ODS_TEXT_COLOR_INTENT.warning}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-      >
-        {t(`${NAMESPACES.BILLING}:cancel_service_success`)}
-      </OsdsText>
-    </OsdsMessage>
+    <Message className="mb-2" color={MESSAGE_COLOR.warning} dismissible={false}>
+      <MessageIcon name={ICON_NAME.triangleExclamation} />
+      <MessageBody>
+        <Text preset={TEXT_PRESET.paragraph}>
+          {t(`${NAMESPACES.BILLING}:cancel_service_success`)}
+        </Text>
+      </MessageBody>
+    </Message>
   );
 };
 
@@ -69,22 +69,27 @@ const LicenseErrorActivationBanner = ({
   const { t } = useTranslation('hycu/dashboard');
 
   return (
-    <OsdsMessage className="mb-2" type={ODS_MESSAGE_TYPE.error}>
-      <OsdsText
-        color={ODS_TEXT_COLOR_INTENT.error}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-      >
-        {t('hycu_dashboard_error_license_message', {
-          error: licenseHycu.comment,
-        })}
-      </OsdsText>
-    </OsdsMessage>
+    <Message
+      className="mb-2"
+      color={MESSAGE_COLOR.critical}
+      dismissible={false}
+    >
+      <MessageIcon name={ICON_NAME.circleXmark} />
+      <MessageBody>
+        <Text preset={TEXT_PRESET.paragraph}>
+          {t('hycu_dashboard_error_license_message', {
+            error: licenseHycu.comment,
+          })}
+        </Text>
+      </MessageBody>
+    </Message>
   );
 };
 
 export default function DashboardPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
+  const [selectedTab, setSelectedTab] = useState<string>();
   const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.ACTIONS]);
 
   const { data: licenseHycu } = useDetailsLicenseHYCU(serviceName);
@@ -111,17 +116,26 @@ export default function DashboardPage() {
     },
   ] as const;
 
+  const handleValueChange = (event: TabsValueChangeEvent) => {
+    const tab = tabsList.filter(({ name }) => name === event.value)?.[0];
+    navigate(tab.to);
+    setSelectedTab(event.value);
+  };
+
   const panel = tabsList[0].name;
 
   const header = {
     title: serviceDetails?.data.resource.displayName,
-    description: serviceName,
-    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
   };
 
   if (error) {
     return (
-      <BaseLayout breadcrumb={<Breadcrumb />} header={header}>
+      <BaseLayout
+        breadcrumb={<Breadcrumb />}
+        header={header}
+        description={serviceName}
+      >
         <Errors error={error} />
       </BaseLayout>
     );
@@ -131,9 +145,12 @@ export default function DashboardPage() {
     <BaseLayout
       breadcrumb={<Breadcrumb />}
       header={header}
-      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back_to_list`)}
-      onClickReturn={() => {
-        navigate(urls.listing);
+      description={serviceName}
+      backLink={{
+        label: t(`${NAMESPACES.ACTIONS}:back_to_list`),
+        onClick: () => {
+          navigate(urls.listing);
+        },
       }}
       message={
         <>
@@ -142,20 +159,19 @@ export default function DashboardPage() {
         </>
       }
       tabs={
-        <OsdsTabs panel={panel}>
-          <OsdsTabBar slot="top">
+        <Tabs
+          defaultValue={panel}
+          onValueChange={handleValueChange}
+          value={selectedTab}
+        >
+          <TabList>
             {tabsList.map((tab: DashboardTabItemProps) => (
-              <NavLink key={tab.name} to={tab.to} className="no-underline">
-                <OsdsTabBarItem
-                  key={`osds-tab-bar-item-${tab.name}`}
-                  panel={tab.name}
-                >
-                  {tab.title}
-                </OsdsTabBarItem>
-              </NavLink>
+              <Tab key={`osds-tab-bar-item-${tab.name}`} value={tab.name}>
+                {tab.title}
+              </Tab>
             ))}
-          </OsdsTabBar>
-        </OsdsTabs>
+          </TabList>
+        </Tabs>
       }
     >
       <Outlet />

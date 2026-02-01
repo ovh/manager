@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { OnboardingLayout, LinkCard } from '@ovh-ux/muk';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -73,12 +73,12 @@ export default function Onboarding() {
       }}
       moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
       moreInfoHref={link?.main}
-      onmoreInfoButtonClick={() => {
+      onMoreInfoButtonClick={() => {
         trackClick(TRACKING.onboarding.moreInfoClick);
       }}
     >
       {tileList.map((tile) => (
-        <Card
+        <LinkCard
           key={tile.id}
           href={tile.href}
           texts={tile.texts}

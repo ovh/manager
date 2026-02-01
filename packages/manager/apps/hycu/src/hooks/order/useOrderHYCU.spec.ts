@@ -1,6 +1,6 @@
 import { describe, expect, it, test, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 import useOrderHYCU from './useOrderHYCU';
 
 vi.mock('@ovh-ux/manager-module-order', () => ({

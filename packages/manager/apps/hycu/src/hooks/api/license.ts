@@ -6,7 +6,7 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
-import { getServiceDetailsQueryKey } from '@ovh-ux/manager-react-components';
+import { getServiceDetailsQueryKey } from '@ovh-ux/manager-module-common-api';
 import {
   getDownloadLicenseHycuMutationKey,
   getLicenseHycuDownloadService,

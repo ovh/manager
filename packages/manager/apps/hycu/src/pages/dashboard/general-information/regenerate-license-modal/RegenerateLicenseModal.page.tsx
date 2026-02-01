@@ -1,24 +1,15 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Modal,
+  MODAL_TYPE,
+  Text,
+  TEXT_PRESET,
   Notifications,
   useNotifications,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { FileInputField } from '@/components/FileUpload/FileUpload.component';
 import { useRegenerateLicenseHYCUMutation } from '@/hooks/api/license';
@@ -42,7 +33,7 @@ export const RegenerateHycuLicenseModal: React.FC<RegenerateHycuLicenseModalProp
   const {
     control,
     handleSubmit,
-    formState: { isValid, isSubmitted },
+    formState: { isValid },
   } = useForm<FormValues>();
   const {
     mutate,
@@ -63,61 +54,32 @@ export const RegenerateHycuLicenseModal: React.FC<RegenerateHycuLicenseModalProp
   };
 
   return (
-    <OsdsModal
-      dismissible
-      color={ODS_THEME_COLOR_INTENT.primary}
-      headline={t('hycu_dashboard_license_regenerate_heading')}
-      onOdsModalClose={closeModal}
+    <Modal
+      type={MODAL_TYPE.primary}
+      heading={t('hycu_dashboard_license_regenerate_heading')}
+      onOpenChange={closeModal}
+      primaryButton={{
+        label: t('hycu_dashboard_regenerate_upload_confirm'),
+        loading: isRegeneratePending,
+        disabled: !isValid || isRegeneratePending,
+        onClick: () => handleSubmit(onSubmit)(),
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+      }}
     >
       <Notifications />
-      <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col gap-10">
         <div className="mt-8">
           <>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              className="block mb-3"
-            >
+            <Text preset={TEXT_PRESET.span} className="block mb-3">
               {t('hycu_dashboard_license_regenerate_description')}
-            </OsdsText>
+            </Text>
             <FileInputField name="license" control={control} />
           </>
         </div>
-        <div className="flex justify-end">
-          <OsdsButton
-            slot="actions"
-            type={ODS_BUTTON_TYPE.button}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={closeModal}
-            inline
-          >
-            {t(`${NAMESPACES.ACTIONS}:cancel`)}
-          </OsdsButton>
-          <OsdsButton
-            data-testid="hycu-dashboard-regenerate-upload-confirm"
-            disabled={!isValid || isRegeneratePending ? true : undefined}
-            slot="actions"
-            type={ODS_BUTTON_TYPE.submit}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
-          >
-            <span slot="start">
-              {isRegeneratePending && (
-                <OsdsSpinner
-                  className="pt-4"
-                  inline
-                  contrasted
-                  size={ODS_SPINNER_SIZE.sm}
-                ></OsdsSpinner>
-              )}
-            </span>
-            {t('hycu_dashboard_regenerate_upload_confirm')}
-          </OsdsButton>
-        </div>
       </form>
-    </OsdsModal>
+    </Modal>
   );
 };
 
