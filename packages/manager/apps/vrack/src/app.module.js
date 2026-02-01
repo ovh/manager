@@ -14,7 +14,7 @@ import angular from 'angular';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
-
+import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import './index.scss';
 
 export default (containerEl, environment) => {
@@ -27,6 +27,7 @@ export default (containerEl, environment) => {
         registerCoreModule(environment),
         ngUiRouterBreadcrumb,
         ovhManagerVrack,
+        ngOvhApiWrappers,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )
