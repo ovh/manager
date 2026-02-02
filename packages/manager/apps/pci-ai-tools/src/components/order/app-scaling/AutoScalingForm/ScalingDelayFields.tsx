@@ -18,27 +18,21 @@ interface ScalingDelayFieldsProps {
   showScaleToZero: boolean;
 }
 
-export function ScalingDelayFields({ showScaleToZero }: ScalingDelayFieldsProps) {
+export function ScalingDelayFields({
+  showScaleToZero,
+}: ScalingDelayFieldsProps) {
   const { t } = useTranslation('ai-tools/components/scaling');
   const { control } = useFormContext<ScalingStrategySchema>();
 
   return (
     <div className="flex flex-col gap-4">
       {showScaleToZero && (
-        <div className="flex flex-col gap-2">
-          <Alert variant="warning" className="border-0">
-            <div className="flex flex-row gap-3 items-start">
-              <AlertCircle className="size-5 mt-0.5 shrink-0" />
-              <p>{t('scaleToZeroWarningFlavor')}</p>
-            </div>
-          </Alert>
-          <Alert variant="primary" className="border-0">
-            <div className="flex flex-row gap-3 items-start">
-              <AlertCircle className="size-5 mt-0.5 shrink-0" />
-              <p>{t('scaleToZeroWarningTraffic')}</p>
-            </div>
-          </Alert>
-        </div>
+        <Alert variant="primary" className="border-0">
+          <div className="flex flex-row gap-3 items-start">
+            <AlertCircle className="size-5 mt-0.5 shrink-0" />
+            <p>{t('scaleToZeroWarningTraffic')}</p>
+          </div>
+        </Alert>
       )}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-6">
         {showScaleToZero && (

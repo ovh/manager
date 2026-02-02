@@ -1,7 +1,8 @@
-import { HelpCircle } from 'lucide-react';
+import { AlertCircle, HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import {
+  Alert,
   FormControl,
   FormField,
   FormItem,
@@ -17,6 +18,8 @@ import { ScalingStrategySchema } from '../scalingHelper';
 export function ReplicaFields() {
   const { t } = useTranslation('ai-tools/components/scaling');
   const { control } = useFormContext<ScalingStrategySchema>();
+  const minReplicas = useWatch({ control, name: 'replicasMin' });
+  const showScaleToZeroWarning = Number(minReplicas) === 0;
 
   return (
     <>
@@ -49,6 +52,14 @@ export function ReplicaFields() {
                 />
               </FormControl>
               <FormMessage />
+              {showScaleToZeroWarning && (
+                <Alert variant="warning" className="border-0 mt-2">
+                  <div className="flex flex-row gap-3 items-start">
+                    <AlertCircle className="size-5 mt-0.5 shrink-0" />
+                    <p>{t('scaleToZeroWarningFlavor')}</p>
+                  </div>
+                </Alert>
+              )}
             </FormItem>
           )}
         />
