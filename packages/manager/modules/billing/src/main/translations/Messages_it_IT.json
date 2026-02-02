@@ -4,5 +4,6 @@
   "billing_main_bills_tab": "Fatture",
   "billing_main_payments_tab": "Controllo dei pagamenti",
   "billing_payment_refunds_title": "Il tuo credito",
-  "billing_main_description": "Recupera e scarica le tue fatture. Monitora lo stato dei pagamenti. Consulta il tuo credito"
+  "billing_main_description": "Recupera e scarica le tue fatture. Monitora lo stato dei pagamenti. Consulta il tuo credito",
+  "billing_payment_corrective_invoices_title": "Fatture correttive"
 }
