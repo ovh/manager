@@ -10,6 +10,7 @@ import {
   TShareSpecs,
 } from '@/domain/entities/catalog.entity';
 import {
+  formattedProvisionedPerformance,
   selectAvailabilityZones,
   selectContinent,
   selectDeploymentModes,
@@ -23,7 +24,7 @@ vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
   mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
 }));
 
-vi.mock('@/domain/services/catalog.service', () => ({
+/* vi.mock('@/domain/services/catalog.service', () => ({
   getMicroRegions: (macroRegion: TMacroRegion, microRegionsById: Map<string, TMicroRegion>) => {
     if (!macroRegion?.microRegions) return [];
     return macroRegion.microRegions
@@ -32,7 +33,7 @@ vi.mock('@/domain/services/catalog.service', () => ({
   },
   isMicroRegionAvailable: (microRegion: TMicroRegion) =>
     microRegion.isActivated && !microRegion.isInMaintenance,
-}));
+})); */
 
 describe('share catalog selectors', () => {
   describe('selectDeploymentModes', () => {
@@ -455,6 +456,40 @@ describe('share catalog selectors', () => {
     ])('should return correct share specs $description', ({ microRegionId, data, expected }) => {
       const result = selectShareSpecs(microRegionId)(data);
 
+      expect(result).toEqual(expected);
+    });
+  });
+
+  describe('formattedProvisionedPerformance', () => {
+    it.each([
+      {
+        description: 'should return integer iops value and single decimal throughput value',
+        size: 150.1,
+        expected: {
+          iops: '3602',
+          throughput: '37.5',
+        },
+      },
+      {
+        description: 'should format performance for 200 GiB share',
+        size: 200,
+        expected: {
+          iops: '4800',
+          throughput: '50',
+        },
+      },
+      {
+        description: 'should return null when size is negative',
+        size: -1,
+        expected: null,
+      },
+      {
+        description: 'should return null when size is undefined',
+        size: undefined,
+        expected: null,
+      },
+    ])('$description', ({ size, expected }) => {
+      const result = formattedProvisionedPerformance(size);
       expect(result).toEqual(expected);
     });
   });

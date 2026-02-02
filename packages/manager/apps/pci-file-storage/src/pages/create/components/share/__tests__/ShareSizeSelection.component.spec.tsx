@@ -91,6 +91,56 @@ describe('ShareSizeSelection', () => {
     });
   });
 
+  it('should update form description on change', async () => {
+    const shareOptions: TShareSpecData[] = [
+      {
+        name: 'publiccloud-share-standard1',
+        capacityMin: 150,
+        capacityMax: 10240,
+        iopsLevel: 30,
+        bandwidthLevel: 0.25,
+        bandwidthUnit: 'MB/s/GB',
+      },
+    ];
+
+    mockUseShareCatalog.mockReturnValue({
+      data: shareOptions,
+    } as unknown as QueryObserverSuccessResult<TShareSpecData[]>);
+
+    renderWithMockedForm(<ShareSizeSelection />, {
+      defaultValues: {
+        shareData: {
+          microRegion: 'GRA1',
+          specName: 'publiccloud-share-standard1',
+          size: 150,
+        },
+      },
+    });
+
+    const provisionedPerformance = screen.getByText('create:shareSize.provisionedPerformance', {
+      exact: false,
+    });
+
+    expect(provisionedPerformance).toHaveTextContent('iops:3600');
+    expect(provisionedPerformance).toHaveTextContent('throughput:37.5');
+
+    const input = screen.getByRole('spinbutton');
+
+    await act(async () => {
+      await userEvent.clear(input);
+      await userEvent.type(input, '500');
+    });
+
+    await waitFor(() => {
+      const provisionedPerformance = screen.getByText('create:shareSize.provisionedPerformance', {
+        exact: false,
+      });
+
+      expect(provisionedPerformance).toHaveTextContent('iops:12000');
+      expect(provisionedPerformance).toHaveTextContent('throughput:125');
+    });
+  });
+
   const shareOptions: TShareSpecData[] = [
     {
       name: 'publiccloud-share-standard1',

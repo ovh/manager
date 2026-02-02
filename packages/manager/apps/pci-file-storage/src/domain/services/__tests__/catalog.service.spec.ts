@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
 
 import {
+  calculateProvisionedPerformance,
   getMicroRegions,
   isMacroRegionAvailable,
   isMicroRegionAvailable,
@@ -144,6 +145,45 @@ describe('catalog.service', () => {
       );
 
       expect(result).toBe(expected);
+    });
+  });
+
+  describe('calculateProvisionedPerformance', () => {
+    it.each([
+      {
+        description: 'should return minimum throughput and calculate IOPS relative to the size',
+        size: 10,
+        expectedIOPS: 240,
+        expectedThroughput: 25,
+      },
+      {
+        description: 'should return minimum throughput and calculate IOPS relative to the size',
+        size: 99,
+        expectedIOPS: 2376,
+        expectedThroughput: 25,
+      },
+      {
+        description: 'should calculate IOPS and throughput relative to the size',
+        size: 104,
+        expectedIOPS: 2496,
+        expectedThroughput: 26,
+      },
+      {
+        description: 'should calculate IOPS and throughput relative to the size',
+        size: 500,
+        expectedIOPS: 12000,
+        expectedThroughput: 125,
+      },
+      {
+        description: 'should return maximum values for IOPS and throughput',
+        size: 670,
+        expectedIOPS: 16000,
+        expectedThroughput: 128,
+      },
+    ])('$description', ({ size, expectedIOPS, expectedThroughput }) => {
+      const result = calculateProvisionedPerformance(size);
+      expect(result.iops).toBe(expectedIOPS);
+      expect(result.throughput).toBe(expectedThroughput);
     });
   });
 });
