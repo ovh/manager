@@ -10,7 +10,7 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
     data-state=open
     dir=ltr
     id=dialog::r0::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -18,7 +18,7 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
     data-scope=dialog
     dir=ltr
     id=dialog::r0::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -35,11 +35,11 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -139,7 +139,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
     dir=ltr
     hidden=
     id=dialog::r8::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -147,7 +147,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
     data-scope=dialog
     dir=ltr
     id=dialog::r8::positioner
-    style=pointer-events: none; z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=pointer-events: none; z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -166,11 +166,11 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -269,7 +269,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
     data-state=open
     dir=ltr
     id=dialog::r4::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -277,7 +277,7 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
     data-scope=dialog
     dir=ltr
     id=dialog::r4::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -294,11 +294,11 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -416,7 +416,7 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
     data-state=open
     dir=ltr
     id=dialog::r2c::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -424,7 +424,7 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
     data-scope=dialog
     dir=ltr
     id=dialog::r2c::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -441,11 +441,11 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -563,7 +563,7 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
     data-state=open
     dir=ltr
     id=dialog::r28::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -571,7 +571,7 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
     data-scope=dialog
     dir=ltr
     id=dialog::r28::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -588,11 +588,11 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -740,7 +740,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-state=open
     dir=ltr
     id=dialog::r18::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -748,7 +748,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-scope=dialog
     dir=ltr
     id=dialog::r18::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -765,11 +765,11 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -868,7 +868,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-state=open
     dir=ltr
     id=dialog::r1g::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -876,7 +876,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-scope=dialog
     dir=ltr
     id=dialog::r1g::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -893,11 +893,11 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -996,7 +996,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-state=open
     dir=ltr
     id=dialog::r1c::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -1004,7 +1004,7 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
     data-scope=dialog
     dir=ltr
     id=dialog::r1c::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -1021,11 +1021,11 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1124,7 +1124,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
     data-state=open
     dir=ltr
     id=dialog::r1k::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -1132,7 +1132,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
     data-scope=dialog
     dir=ltr
     id=dialog::r1k::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -1149,11 +1149,11 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1252,7 +1252,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
     data-state=open
     dir=ltr
     id=dialog::r20::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -1260,7 +1260,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
     data-scope=dialog
     dir=ltr
     id=dialog::r20::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -1277,11 +1277,11 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1423,7 +1423,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
     data-state=open
     dir=ltr
     id=dialog::r1o::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -1431,7 +1431,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
     data-scope=dialog
     dir=ltr
     id=dialog::r1o::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -1448,11 +1448,11 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1551,7 +1551,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
     data-state=open
     dir=ltr
     id=dialog::r24::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -1559,7 +1559,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
     data-scope=dialog
     dir=ltr
     id=dialog::r24::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -1576,11 +1576,11 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1722,7 +1722,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
     data-state=open
     dir=ltr
     id=dialog::r1s::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -1730,7 +1730,7 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
     data-scope=dialog
     dir=ltr
     id=dialog::r1s::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -1747,11 +1747,11 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1850,7 +1850,7 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
     data-state=open
     dir=ltr
     id=dialog::ro::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -1858,7 +1858,7 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
     data-scope=dialog
     dir=ltr
     id=dialog::ro::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -1875,11 +1875,11 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2012,7 +2012,7 @@ exports[`UpdateNameModal > Error States > should render modal with error message
     data-state=open
     dir=ltr
     id=dialog::rk::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -2020,7 +2020,7 @@ exports[`UpdateNameModal > Error States > should render modal with error message
     data-scope=dialog
     dir=ltr
     id=dialog::rk::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -2037,11 +2037,11 @@ exports[`UpdateNameModal > Error States > should render modal with error message
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2168,7 +2168,7 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
     data-state=open
     dir=ltr
     id=dialog::rc::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -2176,7 +2176,7 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
     data-scope=dialog
     dir=ltr
     id=dialog::rc::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -2193,11 +2193,11 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2299,7 +2299,7 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
     data-state=open
     dir=ltr
     id=dialog::rg::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -2307,7 +2307,7 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
     data-scope=dialog
     dir=ltr
     id=dialog::rg::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -2324,11 +2324,11 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2430,7 +2430,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-state=open
     dir=ltr
     id=dialog::r14::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -2438,7 +2438,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-scope=dialog
     dir=ltr
     id=dialog::r14::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -2455,11 +2455,11 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2571,7 +2571,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-state=open
     dir=ltr
     id=dialog::rs::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -2579,7 +2579,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-scope=dialog
     dir=ltr
     id=dialog::rs::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -2596,11 +2596,11 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2712,7 +2712,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-state=open
     dir=ltr
     id=dialog::r10::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -2720,7 +2720,7 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
     data-scope=dialog
     dir=ltr
     id=dialog::r10::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -2737,11 +2737,11 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--information
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
