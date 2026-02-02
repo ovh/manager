@@ -1510,5 +1510,6 @@
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-58-cores": "Licencja Windows Server 2025 Standard Edition   - 58 rdzeni",
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-60-cores": "Licencja Windows Server 2025 Standard Edition   - 60 rdzeni",
   "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-62-cores": "Licencja Windows Server 2025 Standard Edition   - 62 rdzenie",
-  "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-64-cores": "Licencja Windows Server 2025 Standard Edition   - 64 rdzenie"
+  "license_designation_WINDOWS_version_windows-server-2025-license-standard-edition-64-cores": "Licencja Windows Server 2025 Standard Edition   - 64 rdzenie",
+  "license_designation_SQLSERVER": "Microsoft SQL Server"
 }
