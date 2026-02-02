@@ -1,6 +1,6 @@
 {
-  "dashboard_widget_config_not_found": "Ningún widget en este panel de control",
+  "dashboard_widget_config_not_found": "No hay widgets en este dashboard",
   "dashboard_widget_close": "Cerrar",
-  "dashboard_no_widget": "Ningún widget configurado para este panel de control",
-  "dashboard_loading": "Cargando el panel de control"
+  "dashboard_no_widget": "No hay ningún widget configurado para este dashboard",
+  "dashboard_loading": "Cargando el dashboard..."
 }

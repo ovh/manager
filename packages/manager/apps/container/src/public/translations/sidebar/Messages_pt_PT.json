@@ -235,5 +235,12 @@
   "sidebar_backup_agent_iaas": "Backup Agent for IaaS",
   "sidebar_backup_agent_baremetal": "Backup Agent",
   "sidebar_assistance_ai_chatbot": "Assistente IA",
-  "sidebar_domain_reseller": "Programa Revendedor"
+  "sidebar_domain_reseller": "Programa Revendedor",
+  "sidebar_observability_settings": "Parâmetros",
+  "sidebar_observability_settings_service_management": "Gestão dos serviços",
+  "sidebar_observability": "Observabilidade",
+  "sidebar_observability_dashboards": "Dashboards",
+  "sidebar_observability_metrics": "Métricas",
+  "sidebar_observability_metrics_tenants": "Tenants",
+  "sidebar_observability_short": "Observabilidade"
 }

@@ -1,6 +1,6 @@
 {
-  "dashboard_widget_config_not_found": "Brak widgetów na tym pulpicie nawigacyjnym",
+  "dashboard_widget_config_not_found": "Brak widżetów na tym dashboardzie",
   "dashboard_widget_close": "Zamknij",
-  "dashboard_no_widget": "Brak widgetów skonfigurowanych dla tego pulpitu nawigacyjnego",
-  "dashboard_loading": "Ładowanie pulpitu nawigacyjnego"
+  "dashboard_no_widget": "Brak skonfigurowanych widżetów dla tego dashboardu",
+  "dashboard_loading": "Trwa ładowanie dashboardu"
 }
