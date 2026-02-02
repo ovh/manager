@@ -16,7 +16,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with h
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -105,7 +105,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] =
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -188,7 +188,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -299,7 +299,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -423,7 +423,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -511,7 +511,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without crea
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -599,7 +599,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic co
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -704,7 +704,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed c
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -787,7 +787,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
         data-ods=drawer-content
         data-part=content
         data-scope=dialog
@@ -911,7 +911,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
         aria-describedby=
         aria-labelledby=
         aria-modal=true
-        class=_drawer-positioner__content _drawer-positioner__content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
+        class=_drawer-content _drawer-content--right w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in
         data-ods=drawer-content
         data-part=content
         data-scope=dialog

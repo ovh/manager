@@ -10,7 +10,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r0::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -18,7 +18,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r0::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -35,11 +35,11 @@ exports[`Delete Modal component > renders basic modal 1`] = `
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--critical
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -120,7 +120,7 @@ exports[`Delete Modal component > renders loading modal 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r1::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -128,7 +128,7 @@ exports[`Delete Modal component > renders loading modal 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r1::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -145,11 +145,11 @@ exports[`Delete Modal component > renders loading modal 1`] = `
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--critical
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -237,7 +237,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r4::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -245,7 +245,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r4::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -262,11 +262,11 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--critical
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -350,7 +350,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r3::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -358,7 +358,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r3::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -375,11 +375,11 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--critical
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -460,7 +460,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r2::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
     class=_modal-positioner
@@ -468,7 +468,7 @@ exports[`Delete Modal component > renders modal with error 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r2::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
       aria-describedby=
@@ -485,11 +485,11 @@ exports[`Delete Modal component > renders modal with error 1`] = `
       tabindex=-1
     >
       <div
-        class=_modal-header _modal-header--critical
+        class=_modal-content__close-trigger
       >
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          class=_button _button--neutral _button--xs _button--ghost
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
