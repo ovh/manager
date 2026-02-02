@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, fireEvent } from '@testing-library/react';
 import {
   organizationList,
   datacentreList,
@@ -11,6 +11,9 @@ import { encodeVrackNetwork } from '../../../../../utils/encodeVrackNetwork';
 import { urls, subRoutes } from '../../../../../routes/routes.constant';
 
 const testVrack = mockVrackSegmentList[0];
+
+const varRegex = (key: string) => new RegExp(`\\{\\{\\s*${key}\\s*\\}\\}`, 'g');
+
 const initialRoute = urls.vrackSegmentDeleteNetwork
   .replace(subRoutes.dashboard, organizationList[0].id)
   .replace(subRoutes.vdcId, datacentreList[0].id)
@@ -26,6 +29,7 @@ const {
   managed_vcd_dashboard_vrack_delete_network_content2: content2,
   managed_vcd_dashboard_vrack_delete_network_success: success,
   managed_vcd_dashboard_vrack_delete_network_error: error,
+  managed_vcd_dashboard_vrack_column_segment_vrack_label: labelVrack,
 } = labels.datacentresVrackSegment;
 
 const checkModalContent = () => {
@@ -42,18 +46,44 @@ describe('Delete Vrack Network Page', () => {
     await waitFor(() => checkModalContent(), { timeout: 10_000 });
     const modal = screen.getByTestId('modal');
 
+    const confirmKeyword = 'DELETE';
+    const confirmInput = screen.getByPlaceholderText(confirmKeyword);
+
+    fireEvent(
+      confirmInput,
+      new CustomEvent('odsChange', {
+        bubbles: true,
+        detail: { value: confirmKeyword },
+      } as CustomEventInit),
+    );
+
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
-    expect(submitCta).toBeEnabled();
-    await act(() => userEvent.click(submitCta));
+
+    await waitFor(() => expect(submitCta).toBeEnabled(), {
+      timeout: 10_000,
+    });
+
+    fireEvent.click(submitCta);
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), {
       timeout: 10_000,
     });
 
-    // check success banner
-    expect(screen.getByText(success)).toBeVisible();
+    expect(
+      screen.getByText(
+        success
+          .replace(varRegex('subnet'), testVrack.targetSpec.networks[0])
+          .replace(
+            varRegex('vrack'),
+            labelVrack.replace(
+              varRegex('vlanId'),
+              testVrack.currentState.vlanId,
+            ),
+          ),
+      ),
+    ).toBeVisible();
   });
 
   // TODO : unskip when page is unmocked

@@ -1,6 +1,7 @@
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { subRoutes } from '@/routes/routes.constant';
 
 export default function CancellationTileItem({
@@ -9,12 +10,13 @@ export default function CancellationTileItem({
   isDisabled: boolean;
 }) {
   const { t } = useTranslation('dashboard');
+  const { t: tBilling } = useTranslation(NAMESPACES.BILLING);
   const navigate = useNavigate();
 
   return (
     <div className="flex items-center gap-x-3">
       <OdsButton
-        label={t('managed_vcd_dashboard_service_cancellation')}
+        label={tBilling('cancel_service')}
         variant="ghost"
         iconAlignment="right"
         isDisabled={isDisabled}

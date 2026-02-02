@@ -8,10 +8,10 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
 import { decodeVrackNetwork } from '@/utils/encodeVrackNetwork';
+import { DeleteModal } from '@/components/deleteModal/DeleteModal.component';
 
 export default function DeleteVrackNetwork() {
   const { id, vdcId, vrackSegmentId, vrackNetworkId } = useParams();
@@ -43,7 +43,12 @@ export default function DeleteVrackNetwork() {
     vrackSegmentId,
     onSuccess: () => {
       addSuccess({
-        content: t('managed_vcd_dashboard_vrack_delete_network_success'),
+        content: t('managed_vcd_dashboard_vrack_delete_network_success', {
+          subnet: decodeVrackNetwork(vrackNetworkId),
+          vrack: t('managed_vcd_dashboard_vrack_column_segment_vrack_label', {
+            vlanId: vrackSegment?.currentState?.vlanId,
+          }),
+        }),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
@@ -83,7 +88,7 @@ export default function DeleteVrackNetwork() {
   };
 
   return (
-    <Modal
+    <DeleteModal
       isOpen
       heading={t('managed_vcd_dashboard_vrack_delete_network')}
       isLoading={isLoading}
@@ -94,7 +99,7 @@ export default function DeleteVrackNetwork() {
       secondaryLabel={tActions('cancel')}
       onSecondaryButtonClick={closeModal}
       onDismiss={closeModal}
-      type={ODS_MODAL_COLOR.critical}
+      confirmationKeyword={tActions('delete').toUpperCase()}
     >
       <div className="flex flex-col gap-2">
         <OdsText>
@@ -104,6 +109,6 @@ export default function DeleteVrackNetwork() {
           {t('managed_vcd_dashboard_vrack_delete_network_content2')}
         </OdsMessage>
       </div>
-    </Modal>
+    </DeleteModal>
   );
 }

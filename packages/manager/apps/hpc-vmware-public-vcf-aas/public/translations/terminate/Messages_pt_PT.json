@@ -1,4 +1,5 @@
 {
   "terminate_managed_vcd_success": "O pedido de rescisão do seu serviço {{service}} foi registado. Receberá um e-mail para validar.",
-  "terminate_managed_vcd_ftc_success": "O pedido de rescisão do seu serviço {{service}} foi registado. Foi-lhe enviado um e-mail de confirmação."
+  "terminate_managed_vcd_ftc_success": "O pedido de rescisão do seu serviço {{service}} foi registado. Foi-lhe enviado um e-mail de confirmação.",
+  "terminate_confirm_deletion_service": "Introduza <1>{{confirmationKeyword}}</1> para validar a sua escolha."
 }

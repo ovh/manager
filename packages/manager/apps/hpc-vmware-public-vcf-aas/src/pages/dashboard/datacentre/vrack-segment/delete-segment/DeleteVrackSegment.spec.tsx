@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, fireEvent } from '@testing-library/react';
 import {
   organizationList,
   datacentreList,
@@ -20,6 +20,7 @@ const {
   managed_vcd_dashboard_vrack_delete_segment_content: content,
   managed_vcd_dashboard_vrack_delete_segment_success: success,
   managed_vcd_dashboard_vrack_delete_segment_error: error,
+  managed_vcd_dashboard_vrack_column_segment_vrack_label: labelVrack,
 } = labels.datacentresVrackSegment;
 
 const checkModalContent = () => {
@@ -28,6 +29,7 @@ const checkModalContent = () => {
 };
 
 const WAIT_OPTIONS = { timeout: 10_000 };
+const varRegex = (key: string) => new RegExp(`\\{\\{\\s*${key}\\s*\\}\\}`, 'g');
 
 describe('Delete Vrack Network Page', () => {
   it('should delete the network and display a success banner', async () => {
@@ -37,16 +39,36 @@ describe('Delete Vrack Network Page', () => {
     await waitFor(() => checkModalContent(), WAIT_OPTIONS);
     const modal = screen.getByTestId('modal');
 
-    // submit modal
+    const confirmKeyword = 'DELETE';
+    const confirmInput = screen.getByPlaceholderText(confirmKeyword);
+
+    fireEvent(
+      confirmInput,
+      new CustomEvent('odsChange', {
+        bubbles: true,
+        detail: { value: confirmKeyword },
+      } as CustomEventInit),
+    );
+
     const submitCta = screen.getByTestId('primary-button');
-    expect(submitCta).toBeEnabled();
-    await act(() => userEvent.click(submitCta));
+
+    await waitFor(() => expect(submitCta).toBeEnabled(), WAIT_OPTIONS);
+
+    fireEvent.click(submitCta);
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), WAIT_OPTIONS);
 
     // check success banner
-    expect(screen.getByText(success)).toBeVisible();
+
+    expect(
+      screen.getByText(
+        success.replace(
+          varRegex('vrack'),
+          labelVrack.replace(varRegex('vlanId'), testVrack.currentState.vlanId),
+        ),
+      ),
+    ).toBeVisible();
   });
 
   // TODO : unskip when page is unmocked
