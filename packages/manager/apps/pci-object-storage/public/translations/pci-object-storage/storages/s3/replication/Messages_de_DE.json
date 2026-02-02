@@ -77,7 +77,7 @@
   "disabledClassDestinationHelper": "Zielcontainer auswählen, um diese Option zu aktivieren",
   "warning1AZTo3AZ": "Die Storage-Klasse High Performance ist für den 3-AZ-Deployment-Modus nicht verfügbar. Ihre in High Performance gespeicherten Quellobjekte werden standardmäßig in die Standardspeicherklasse repliziert, die hinsichtlich ihrer Nutzung die ähnlichste Speicherklasse darstellt.",
   "warning3AZTo1AZ": "Die Speicherklasse Cold Archive ist nur im 3-AZ-Deployment-Modus und in der Region Paris verfügbar. Ihre in Cold Archive gespeicherten Quellobjekte werden standardmäßig in Infrequent Access repliziert – die Speicherklasse, die hinsichtlich ihrer Nutzung die ähnlichste Speicherklasse darstellt.",
-  "inconsistentReplicationRulesAlert": "Einige Replikationsregeln haben ein Ziel, das gelöscht wurde. Bitte löschen Sie diese Regeln, bevor Sie neue Replikationen erstellen.",
+  "inconsistentReplicationRulesAlert": "Einige Replikationsregeln haben ein Ziel, das gelöscht wurde. Löschen Sie diese Regeln, bevor Sie neue Replikationen erstellen.",
   "deletedDestinationTooltip": "Der Zielcontainer wurde gelöscht.",
   "createSyncRule": "Eine Synchronisierungsregel erstellen"
 }
