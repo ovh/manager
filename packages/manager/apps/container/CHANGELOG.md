@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.180.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.3...@ovh-ux/manager-container-app@0.180.4) (2026-02-02)
+
+
+### Bug Fixes
+
+* **container:** can t read property of undefined reading status ([7b8a3ac](https://github.com/ovh/manager/commit/7b8a3acf5eee65a44cc0e1691f6fc4a452a8e238)), closes [#MANAGER-EU-188](https://github.com/ovh/manager/issues/MANAGER-EU-188) [#MANAGER-EU-18T13](https://github.com/ovh/manager/issues/MANAGER-EU-18T13)
+* **container:** fix chatbot style ([ba81938](https://github.com/ovh/manager/commit/ba81938bad1d41c2c2febe3ed0509d9727343b47)), closes [#MANAGER-20633](https://github.com/ovh/manager/issues/MANAGER-20633)
+
+
+
+
+
 ## [0.180.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.2...@ovh-ux/manager-container-app@0.180.3) (2026-01-30)
 
 
