@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
@@ -41,7 +41,19 @@ export default function DeleteAgentPage() {
       onDismiss={closeModal}
       type={ODS_MODAL_COLOR.critical}
     >
-      <OdsText>{t('delete_agent_modal_content', { agentName: data?.currentState.name })}</OdsText>
+      <OdsMessage color="warning" isDismissible={false} className="mb-4">{t('delete_agent_modal_content_main')}</OdsMessage>
+      <OdsText className="[&::part(text)]:font-bold">
+        <Trans
+          ns={BACKUP_AGENT_NAMESPACES.AGENT}
+          i18nKey="delete_agent_modal_content_confirm"
+          values={{ agentName: data?.currentState.name }}
+          components={{
+            span: (
+              <span className="whitespace-nowrap" />
+            ),
+          }}
+        />
+      </OdsText>
     </Modal>
   );
 }
