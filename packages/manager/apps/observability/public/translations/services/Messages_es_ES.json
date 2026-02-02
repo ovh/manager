@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "title": "Gestión de los servicios",
+    "enable_service": "Activar un servicio",
+    "links": {
+      "tenants": "Tenant",
+      "datastreams": "Flujos de datos",
+      "managed_dashboards": "Dashboards administrados",
+      "link": "Acceder a la lista",
+      "title": "Objetos vinculados"
+    }
+  },
+  "status": {
+    "title": "Estado",
+    "READY": "Activo",
+    "UPDATING": "Actualizada",
+    "ERROR": "Error",
+    "DELETING": "Eliminando...",
+    "SUSPENDED": "Suspendido",
+    "CREATING": "Creando...",
+    "UNKNOWN": "Desconocido"
+  },
+  "delete": {
+    "success": "La solicitud de baja del servicio {{serviceName}} se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir."
+  },
+  "edit": {
+    "title": "Modificar el nombre del servicio",
+    "success": "El nombre del servicio se ha modificado correctamente."
+  }
+}

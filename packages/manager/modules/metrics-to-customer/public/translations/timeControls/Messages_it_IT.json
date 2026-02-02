@@ -5,6 +5,6 @@
   "option_days": "{{nbDays}} giorni",
   "button_refresh": "Aggiorna",
   "time_range_from": "Dal",
-  "time_range_to": "A",
+  "time_range_to": "Al",
   "apply_time_range": "Applica"
 }

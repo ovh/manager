@@ -234,5 +234,7 @@
   "sidebar_backup_services": "Serviços",
   "sidebar_backup_agent_iaas": "Backup Agent for IaaS",
   "sidebar_backup_agent_baremetal": "Backup Agent",
-  "sidebar_assistance_ai_chatbot": "Assistente IA"
+  "sidebar_assistance_ai_chatbot": "Assistente IA",
+  "sidebar_observability_settings": "Parâmetros",
+  "sidebar_observability_settings_service_management": "Gestão dos serviços"
 }

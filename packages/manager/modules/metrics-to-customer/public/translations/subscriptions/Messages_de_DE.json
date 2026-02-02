@@ -1,0 +1,28 @@
+{
+  "tenants_drawer": {
+    "title": "Liste der Tenants",
+    "disclaimer": "Es können nur Tenants ausgewählt werden, die sich in derselben Region {{region}} wie Ihre Ressource befinden.",
+    "no_results_found": "Für die Suche „{{searchQuery}}“ wurde kein Tenant gefunden.",
+    "region": "Region"
+  },
+  "tenants_regions": {
+    "region_one": "Region: {{region}}",
+    "region_other": "Regionen: {{region}}"
+  },
+  "no_tenants_message": {
+    "title": "Sammeln Sie Metriken in Ihrem ersten Tenant in dieser Region.",
+    "description": "Um Ihnen den Einstieg zu erleichtern, werden wir automatisch Ihren ersten Tenant mit den folgenden Einstellungen erstellen:",
+    "retention": "Aufbewahrung: {{retention}}"
+  },
+  "search": {
+    "placeholder": "Suche"
+  },
+  "subscription": {
+    "subscribe": {
+      "cta": "Abonnieren"
+    },
+    "unsubscribe": {
+      "cta": "Abbestellen"
+    }
+  }
+}
