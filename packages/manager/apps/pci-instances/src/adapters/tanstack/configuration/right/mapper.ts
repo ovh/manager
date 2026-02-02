@@ -55,7 +55,7 @@ export const mapBackupConfigurationDtoToEntity = (
 };
 
 const mapSubnetDtoToSubnetEntity = (subnet: TSubnetDTO): TSubnet => {
-  const capabilities = subnet.capabilities
+  const capabilities = (subnet.capabilities ?? [])
     .filter((capability) => capability.enabled)
     .map((capability) => capability.type);
 

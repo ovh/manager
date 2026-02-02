@@ -26,9 +26,13 @@ const AddNetworkForm: FC = () => {
     formState: { errors },
     setValue,
   } = useFormContext<TInstanceCreationForm>();
-  const [microRegion, vlanId] = useWatch({
+  const [microRegion, vlanId, enableDhcp] = useWatch({
     control,
-    name: ['microRegion', 'newPrivateNetwork.vlanId'],
+    name: [
+      'microRegion',
+      'newPrivateNetwork.vlanId',
+      'newPrivateNetwork.enableDhcp',
+    ],
   });
 
   const { data: networks } = usePrivateNetworks({
@@ -90,7 +94,7 @@ const AddNetworkForm: FC = () => {
         name="newPrivateNetwork.enableDhcp"
         render={({ field }) => (
           <Checkbox
-            checked={field.value}
+            checked={enableDhcp}
             onCheckedChange={handleEnableDhcp(field)}
             className="mt-6"
           >

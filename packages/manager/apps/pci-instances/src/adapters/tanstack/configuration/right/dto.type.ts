@@ -40,7 +40,7 @@ export type TSubnetDTO = {
   id: string;
   cidr: string;
   gatewayIp: string | null;
-  capabilities: TCapabilityDTO[];
+  capabilities: TCapabilityDTO[] | null;
 };
 
 export type TNetworkResourceDTO = {
