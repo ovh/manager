@@ -7,7 +7,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 const logsPage = lazy(() => import('@/pages/logs/Logs.page'));
 const logsDataStreamsPage = lazy(() => import('@/pages/data-streams/DataStreams.page'));
 const logsTerminateSubscriptionPage = lazy(
-  () => import('@/pages/logs/Logs-Subscription-terminate.page'),
+  () => import('@/pages/logs/LogsSubscriptionTerminate.page'),
 );
 
 type ModuleWithDefault<T extends ComponentType<unknown>, E extends object> = {
