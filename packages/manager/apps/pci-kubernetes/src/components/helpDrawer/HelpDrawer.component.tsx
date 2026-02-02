@@ -12,12 +12,15 @@ import {
   DrawerProp,
   DrawerTrigger,
   Icon,
+  Text,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-type HelperDrawerProps = PropsWithChildren<DrawerProp>;
-export const HelpDrawer = ({ children, onOpenChange }: HelperDrawerProps) => {
+type HelperDrawerProps = PropsWithChildren<DrawerProp> & {
+  headerContent?: string;
+};
+export const HelpDrawer = ({ children, onOpenChange, headerContent }: HelperDrawerProps) => {
   const { t } = useTranslation([NAMESPACES.ONBOARDING, NAMESPACES.ACTIONS, 'common']);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -41,18 +44,15 @@ export const HelpDrawer = ({ children, onOpenChange }: HelperDrawerProps) => {
 
       <DrawerContent
         position={DRAWER_POSITION.right}
-        className="flex h-[unset] w-[450px] max-w-[90vw] flex-col justify-between p-6"
+        className="flex h-[unset] w-[450px] max-w-[90vw] flex-col justify-between p-8"
       >
         <DrawerBody className="flex flex-col pb-3">
-          <Button
-            aria-label={t('close')}
-            variant="ghost"
-            size="sm"
-            className="self-end"
-            onClick={handleClose}
-          >
-            <Icon name="xmark" />
-          </Button>
+          <div className="mb-10 flex items-center justify-between gap-3">
+            {headerContent && <Text preset="heading-3">{headerContent}</Text>}
+            <Button aria-label={t('close')} variant="ghost" size="sm" onClick={handleClose}>
+              <Icon name="xmark" />
+            </Button>
+          </div>
           {children}
         </DrawerBody>
 

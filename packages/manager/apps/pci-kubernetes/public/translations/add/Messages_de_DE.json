@@ -89,7 +89,7 @@
   "kube_add_plan_content_not_available": "in der Region nicht verfügbar",
   "kubernetes_add_region_plan_select": "Nach Plänen filtern",
   "kube_add_plan_content_standard_1AZ_SLA": "SLA VON 99,9 %",
-  "kubernetes_add_create_cluster": "Erstelle meinen Cluster",
+  "kubernetes_add_create_cluster": "Meinen Cluster erstellen",
   "kubernetes_add_cluster_name_input_helper": {
     "introduction": "Muss:",
     "char_number": "zwischen 2 und 64 Zeichen enthalten",
@@ -97,15 +97,14 @@
     "first_char": "mit einem Buchstaben beginnen",
     "last_char": "mit einem alphanumerischen Zeichen enden (a-z, A-Z, 0-9)"
   },
-  "kubernetes_add_cluster_name_input_error": "Der Clustername ist ungültig",
-  "kubernetes_add_cluster_name_input_error_empty": "Der Clustername ist erforderlich",
+  "kubernetes_add_cluster_name_input_error": "Der Name des Clusters ist ungültig",
+  "kubernetes_add_cluster_name_input_error_empty": "Der Name des Clusters ist erforderlich",
   "kubernetes_add_location": "Standort",
   "kubernetes_add_location_subtitle": "Einen Bereitstellungsmodus wählen",
   "kubernetes_add_region_title_region_alt": "Logo Region 1-AZ",
   "kubernetes_add_region_title_region-3-az_alt": "Logo Region 3-AZ",
-  "kubernetes_add_region_continent_select": "Eine geografische Zone auswählen",
-  "kubernetes_add_region_plan_select": "Nach Plänen filtern",
+  "kubernetes_add_region_continent_select": "Nach geografischem Gebiet filtern",
   "kubernetes_add_region_plan_all": "Alle Pläne",
-  "kubernetes_add_micro_region_choose": "Ein Rechenzentrum wählen",
+  "kubernetes_add_micro_region_choose": "Einen Rechenzentrum wählen",
   "kubernetes_add_micro_region_select": "Ein Rechenzentrum auswählen"
 }

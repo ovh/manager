@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 import { RadioGroup } from '@ovhcloud/ods-react';
 
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-
 import { RegionCard } from '@/components/location/RegionCard.component';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
@@ -17,7 +15,7 @@ type TRegionSelectProps = {
 };
 
 export const RegionSelect = ({ regions }: TRegionSelectProps) => {
-  const { t } = useTranslation(['add', NAMESPACES.REGION]);
+  const { t } = useTranslation(['add', 'regions']);
 
   const { control, setValue } = useFormContext<TCreateClusterSchema>();
   const macroRegionField = useWatch({

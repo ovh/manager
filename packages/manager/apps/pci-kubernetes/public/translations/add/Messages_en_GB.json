@@ -103,8 +103,7 @@
   "kubernetes_add_location_subtitle": "Choose a deployment mode",
   "kubernetes_add_region_title_region_alt": "Region logo 1-AZ",
   "kubernetes_add_region_title_region-3-az_alt": "Region logo 3-AZ",
-  "kubernetes_add_region_continent_select": "Select a geographical area",
-  "kubernetes_add_region_plan_select": "Filter by plans",
+  "kubernetes_add_region_continent_select": "Filter by geographical area",
   "kubernetes_add_region_plan_all": "All plans",
   "kubernetes_add_micro_region_choose": "Choose a datacentre",
   "kubernetes_add_micro_region_select": "Select a datacentre"
