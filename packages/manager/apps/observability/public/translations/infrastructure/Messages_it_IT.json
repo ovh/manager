@@ -1,0 +1,17 @@
+{
+  "infrastructure": {
+    "region": {
+      "all": "Tutte le Region",
+      "eu": "Europa",
+      "us": "Stati Uniti",
+      "ap": "Asia Pacifica",
+      "ca": "Nord America ",
+      "title": "Selezionare la Region",
+      "zone": {
+        "local": "Esecuzione delle applicazioni il più vicino possibile ai tuoi utenti per una latenza ridotta e la localizzazione dei dati.",
+        "1_az": "Deploy resiliente ed economico su 1 zona di disponibilità.",
+        "3_az": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità."
+      }
+    }
+  }
+}
