@@ -1,19 +1,16 @@
 name: PR Inspector
 
 on:
-  push:
   pull_request:
-  pull_request_target:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   pr-inspector:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      pull-requests: write
-
     steps:
       # -------------------------
       # Checkout
@@ -22,16 +19,14 @@ jobs:
         uses: actions/checkout@v4
 
       # -------------------------
-      # labeler (only pull_request_target)
+      # labeler
       # -------------------------
       - name: PR Labeler (actions/labeler)
-        if: github.event_name == 'pull_request_target'
         uses: actions/labeler@v4
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Branch name labeler
-        if: github.event_name == 'pull_request_target'
         uses: TimonVS/pr-labeler-action@v4
         with:
           configuration-path: .github/branch-name-labeler.yml
@@ -39,27 +34,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # -------------------------
-      # check-metadata (only push)
+      # check-metadata
       # -------------------------
       - name: Check regions metadata
-        if: github.event_name == 'push'
         run: ./scripts/regions/check-regions.sh
         shell: bash
 
       # -------------------------
-      # merge_conflict_finder (only push)
+      # merge_conflict_finder
       # -------------------------
       - name: Merge Conflict finder
-        if: github.event_name == 'push'
         uses: olivernybroe/action-conflict-finder@v4.0
         with:
           exclude_dir: "node_modules/**"
 
       # -------------------------
-      # auto-label-merge-conflicts (push + pull_request)
+      # auto-label-merge-conflicts
       # -------------------------
       - name: Auto-label merge conflicts
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
         uses: mschilde/auto-label-merge-conflicts@master
         with:
           CONFLICT_LABEL_NAME: "has conflicts"
@@ -68,10 +60,9 @@ jobs:
           WAIT_MS: 5000
 
       # -------------------------
-      # yarn-explain (only pull_request)
+      # yarn-explain
       # -------------------------
       - name: Yarn Lock Changes
-        if: github.event_name == 'pull_request'
         uses: Simek/yarn-lock-changes@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
