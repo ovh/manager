@@ -1,88 +1,104 @@
 <div id="groupNumber">
-    <div
-        class="group-number-switch"
-        data-ng-if="$ctrl.number.getFeatureFamily() === 'ovhPabx'"
-    >
-        <div data-translate="telephony_number_action_layout"></div>
-        <oui-dropdown>
-            <oui-dropdown-trigger
-                text="{{:: 'telephony_number_display_options' | translate }}"
+    <div class="d-flex flex-column m-2 w-100" data-ng-if="$ctrl.isComplexFeature() && $ctrl.featureActions.length">
+        <oui-radio-toggle-group
+            direction="row"
+            model="$ctrl.selectedFeatureActionIndex"
+            dense
+            on-change="$ctrl.onFeatureActionChange(modelValue)"
+        >
+            <oui-radio
+                data-ng-repeat="action in $ctrl.featureActions track by $index"
+                data-ng-if="!action.divider && action.name !== 'number_modification_new'"
+                value="$index"
+                disabled="$ctrl.number.inEdition"
             >
-            </oui-dropdown-trigger>
-            <oui-dropdown-content>
-                <oui-dropdown-item data-on-click="$ctrl.toggleCcsLayout()">
-                    <span
-                        data-ng-if="$ctrl.verticalLayout"
-                        data-translate="telephony_number_action_layout_horizontal"
-                    >
-                    </span>
-                    <span
-                        data-ng-if="!$ctrl.verticalLayout"
-                        data-translate="telephony_number_action_layout_vertical"
-                    >
-                    </span>
-                </oui-dropdown-item>
-                <oui-dropdown-item data-on-click="$ctrl.actionsShowAll = true">
-                    <span
-                        data-translate="telephony_number_action_show_all_actions"
-                    ></span>
-                </oui-dropdown-item>
-                <oui-dropdown-item data-on-click="$ctrl.actionsShowAll = false">
-                    <span
-                        data-translate="telephony_number_action_hide_all_actions"
-                    ></span>
-                </oui-dropdown-item>
-            </oui-dropdown-content>
-        </oui-dropdown>
-        <div class="oui-button-group">
-            <div data-ng-if="$ctrl.reorderingMode">
-                <button
-                    class="oui-button oui-button_secondary"
-                    data-ng-disabled="!$ctrl.dialplanLoaded"
-                    data-ng-click="$ctrl.validateReorderSteps()"
-                >
-                    <span
-                        class="oui-icon oui-icon-arrow-transfer"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        data-translate="telephony_number_action_reorder_confirm"
-                    ></span>
-                </button>
-            </div>
-            <div data-ng-if="!$ctrl.reorderingMode">
-                <button
-                    class="oui-button oui-button_secondary"
-                    data-ng-disabled="!$ctrl.dialplanLoaded"
-                    data-ng-click="$ctrl.reorderingMode = true"
-                >
-                    <span
-                        class="oui-icon oui-icon-arrow-transfer"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        data-translate="telephony_number_action_reorder"
-                    ></span>
-                </button>
-            </div>
-        </div>
+                <span data-ng-bind="action.text"></span>
+            </oui-radio>
+        </oui-radio-toggle-group>
+    </div>
+
+    <!-- Tab content view (for complex features like cloudIvr/contactCenterSolutionExpert) -->
+    <div class="mt-3" data-ng-if="$ctrl.isComplexFeature() && !$ctrl.isDialplanTabSelected()">
+        <ui-view></ui-view>
     </div>
     <form
         class="telephony-number"
         name="telephonyNumber"
         data-ng-submit="$ctrl.saveNumber()"
+        data-ng-if="$ctrl.isDialplanTabSelected()"
         novalidate
     >
         <div
+            class="d-flex justify-content-end"
+            data-ng-if="$ctrl.number.getFeatureFamily() === 'ovhPabx'"
+        >
+            <div class="d-flex flex-column">
+                <div class="d-flex align-items-center">
+                    <div class="mr-3">
+                        <oui-checkbox
+                            data-model="$ctrl.actionsShowAll"
+                        >
+                            <span data-translate="telephony_number_action_show_all_actions"></span>
+                        </oui-checkbox>
+                    </div>
+                    <div>
+                        <oui-radio-toggle-group
+                            direction="row"
+                            data-model="$ctrl.layoutModel"
+                            dense
+                            data-on-change="$ctrl.onLayoutChange(modelValue)"
+                        >
+                            <oui-radio
+                                data-value="'horizontal'"
+                            >
+                                <span class="d-flex align-items-center">
+                                    <span class="oui-icon oui-icon-arrow-right mr-1"></span>
+                                    <span data-translate="telephony_number_action_layout_horizontal"></span>
+                                </span>
+                            </oui-radio>
+                            <oui-radio
+                                data-value="'vertical'"
+                            >
+                                <span class="d-flex align-items-center">
+                                    <span class="oui-icon oui-icon-arrow-down mr-1"></span>
+                                    <span data-translate="telephony_number_action_layout_vertical"></span>
+                                </span>
+                            </oui-radio>
+                        </oui-radio-toggle-group>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-end mt-3">
+                    <oui-switch
+                        data-disabled="!$ctrl.dialplanLoaded"
+                        data-model="$ctrl.reorderingMode"
+                        data-on-change="$ctrl.onReorderingModeChange(modelValue)"
+                    >
+                    </oui-switch>
+                    <span class="ml-2" data-translate="telephony_number_action_reorder"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOADING DIALPLAN -->
+        <div class="text-center my-5" data-ng-if="$ctrl.loading.init">
+            <oui-spinner></oui-spinner>
+        </div>
+        <!-- END LOADING DIALPLAN -->
+
+        <div
             class="group-number-container group-number-layout"
             data-ng-class="{
-            'group-number-layout-horizontal': !$ctrl.verticalLayout,
-            'group-number-layout-vertical': $ctrl.verticalLayout,
+                'group-number-layout-horizontal': !$ctrl.verticalLayout,
+                'group-number-layout-vertical': $ctrl.verticalLayout,
             }"
         >
-            <div class="group-number" data-ng-if="!$ctrl.loading.init">
+            <div class="group-number">
                 <!-- HEADER -->
-                <div class="number-header">
+                <div
+                    class="number-header"
+                    data-ng-class="{
+                        'mt-5': $ctrl.number.getFeatureFamily() === 'svi',
+                    }">
                     <!-- INCOMING CALL -->
                     <div class="group-number__step group-number__step--point">
                         <div class="group-number__title--container">
@@ -164,6 +180,7 @@
                                         role="menuitem"
                                         data-ng-class="{ divider: action.divider }"
                                         data-ng-repeat="action in $ctrl.featureActions track by $index"
+                                        data-ng-if="!action.showInTabsOnly"
                                     >
                                         <!-- ACTION WITH SREF -->
                                         <a
