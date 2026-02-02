@@ -151,25 +151,20 @@ describe('catalog.service', () => {
   describe('calculateProvisionedPerformance', () => {
     it.each([
       {
-        description: 'should return minimum throughput and calculate IOPS relative to the size',
-        size: 10,
-        expectedIOPS: 240,
-        expectedThroughput: 25,
-      },
-      {
-        description: 'should return minimum throughput and calculate IOPS relative to the size',
+        description:
+          'should return minimum throughput and calculate IOPS relative to the size for size 99 GiB',
         size: 99,
         expectedIOPS: 2376,
         expectedThroughput: 25,
       },
       {
-        description: 'should calculate IOPS and throughput relative to the size',
+        description: 'should calculate IOPS and throughput relative to the size for size 104 GiB',
         size: 104,
         expectedIOPS: 2496,
         expectedThroughput: 26,
       },
       {
-        description: 'should calculate IOPS and throughput relative to the size',
+        description: 'should calculate IOPS and throughput relative to the size for size 500 GiB',
         size: 500,
         expectedIOPS: 12000,
         expectedThroughput: 125,
