@@ -83,5 +83,13 @@
   "version_state_reactivate": "Reaktivieren",
   "versions": "Versionen",
   "no_version": "Keine Version",
-  "no_version_message": "Dieses Secret hat keine Version."
+  "no_version_message": "Dieses Secret hat keine Version.",
+  "create_okms_domain": "OKMS-Domain erstellen",
+  "create_secret_form_okms_not_selected": "Kein OKMS-Domain ist in dieser Region verfügbar. Bitte erstellen Sie ein OKMS-Domain, bevor Sie ein Geheimnis erstellen können.",
+  "enable_deactivate_version_after": "Ablaufdauer festlegen",
+  "enable_max_versions": "Maximale Anzahl von Versionen festlegen",
+  "enable_cas_required": "CAS konfigurieren",
+  "form_helper_max_versions_default": "Geben Sie \"0\" ein, um den Standardwert ({{value}}) zu verwenden.",
+  "form_helper_max_versions_domain": "Geben Sie \"0\" ein, um den Wert des OKMS-Domain ({{value}}) zu verwenden.",
+  "secret_settings": "Geheimniseinstellungen"
 }
