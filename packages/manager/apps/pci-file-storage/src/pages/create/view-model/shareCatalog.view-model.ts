@@ -12,7 +12,11 @@ import {
   mapRegionToLocalizationCard,
 } from '@/adapters/catalog/left/shareCatalog.mapper';
 import { TMacroRegion, TShareCatalog } from '@/domain/entities/catalog.entity';
-import { getMicroRegions, isMicroRegionAvailable } from '@/domain/services/catalog.service';
+import {
+  calculateProvisionedPerformance,
+  getMicroRegions,
+  isMicroRegionAvailable,
+} from '@/domain/services/catalog.service';
 
 export type TFirstAvailableLocation = { macroRegion: string; microRegion: string };
 
@@ -140,3 +144,15 @@ export const selectShareSpecs =
         bandwidthUnit: spec.bandwidth.unit,
       }));
   };
+
+export const formattedProvisionedPerformance = (sizeInGiB?: number) => {
+  if (sizeInGiB === undefined || sizeInGiB < 0 || isNaN(sizeInGiB)) return null;
+  const { iops, throughput } = calculateProvisionedPerformance(sizeInGiB);
+  const formattedIOPS = Math.round(iops).toString();
+  const formattedThroughput = (Math.round(throughput * 100) / 100).toFixed(1).replace('.0', '');
+
+  return {
+    iops: formattedIOPS,
+    throughput: formattedThroughput,
+  };
+};

@@ -1,14 +1,17 @@
 import { useEffect } from 'react';
 
 import { useFormContext, useWatch } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { FormField, FormFieldError, FormFieldLabel, Text } from '@ovhcloud/ods-react';
 
 import { SliderInput } from '@/components/slider/SliderInput.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
-import { selectShareSpecs } from '@/pages/create/view-model/shareCatalog.view-model';
+import {
+  formattedProvisionedPerformance,
+  selectShareSpecs,
+} from '@/pages/create/view-model/shareCatalog.view-model';
 
 const DEFAULT_MIN = 150;
 const DEFAULT_MAX = 10240;
@@ -38,6 +41,7 @@ export const ShareSizeSelection = () => {
 
   const min = selectedSpec?.capacityMin ?? DEFAULT_MIN;
   const max = selectedSpec?.capacityMax ?? DEFAULT_MAX;
+  const performance = formattedProvisionedPerformance(selectedSize);
 
   const handleChange = (value: number) => {
     if (value < min) {
@@ -69,6 +73,11 @@ export const ShareSizeSelection = () => {
           max={max}
           inputName="shareSize"
         />
+        {performance && (
+          <Text preset="paragraph" className="mt-2">
+            <Trans i18nKey="create:shareSize.provisionedPerformance" values={performance} />
+          </Text>
+        )}
         <FormFieldError>{t(`create:shareSize.error.${sizeError?.type}`)}</FormFieldError>
       </FormField>
     </section>
