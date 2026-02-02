@@ -85,6 +85,16 @@ export const breadcrumbConfig: BreadcrumbConfig = {
       ],
     },
 
+    // Tenants Onboarding
+    {
+      pattern: urls.tenantsOnboarding,
+      items: [
+        { labelKey: 'breadcrumb:metrics', path: urls.metrics },
+        { labelKey: 'breadcrumb:tenants', path: urls.tenants },
+        { hidden: true }, // onboarding label is hidden
+      ],
+    },
+
     // Tenant Dashboard (General Information)
     {
       pattern: urls.tenantDashboard,
