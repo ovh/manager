@@ -1,0 +1,5 @@
+{
+  "disk_read_bytes_title": "Bytes lidos no disco",
+  "disk_read_bytes_description_header": "Número médio de bytes lidos durante determinado período",
+  "disk_read_bytes_description_content": "Número de bytes lidos a partir do conjunto dos volumes de armazenamento associados à instância. Esta métrica permite avaliar o volume de dados que a aplicação lê a partir do armazenamento em disco e pode ser utilizada para analisar o desempenho de E/S. O valor relatado corresponde ao número total de bytes lidos durante o período. Com a monitorização básica (período de 5 minutos), divida este valor por 300 para obter os bytes por segundo."
+}

@@ -1,0 +1,5 @@
+{
+  "disk_read_bytes_title": "Von der Festplatte gelesene Byte",
+  "disk_read_bytes_description_header": "Die durchschnittliche Anzahl von Byte, die in einem bestimmten Zeitraum gelesen wurden",
+  "disk_read_bytes_description_content": "Die Anzahl der aus allen der Instanz zugeordneten Speichervolumes gelesenen Byte Mit dieser Metrik können Sie die Datenmenge bewerten, die die Anwendung aus dem Festplattenspeicher liest. Sie kann auch zum Analysieren der E/A-Leistung verwendet werden. Der gemeldete Wert ist die Gesamtanzahl der Byte, die in dem Zeitraum gelesen wurden. Bei der grundlegenden Überwachung (Zeitraum von 5 Minuten) teilen Sie diesen Wert durch 300, um die Byte pro Sekunde zu erhalten."
+}
