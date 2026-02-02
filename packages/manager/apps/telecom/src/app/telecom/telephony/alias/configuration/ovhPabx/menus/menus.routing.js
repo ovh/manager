@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/menus',
       views: {
-        'aliasView@telecom.telephony.billingAccount.alias.details': {
+        '@telecom.telephony.billingAccount.alias.details.configuration': {
           template,
           controller,
           controllerAs: '$ctrl',
