@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.32.1...@ovh-ux/manager-pci-object-storage-app@0.33.0) (2026-02-02)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** add error handling with toast notification in useDownload hook ([f3184fe](https://github.com/ovh/manager/commit/f3184fe5f1fe734858354e003674a099c1aff119)), closes [#DATATR-2710](https://github.com/ovh/manager/issues/DATATR-2710)
+
+
+### Features
+
+* **object-storage:** add storage job sync rule modal ([a54b0de](https://github.com/ovh/manager/commit/a54b0de1db23995180f9eeb79cfdc08cfd6d84dd)), closes [#DATATR-2744](https://github.com/ovh/manager/issues/DATATR-2744)
+* **pci-object-storage:** add Glacier IR storage class support for 3-AZ regions ([8cff220](https://github.com/ovh/manager/commit/8cff220063a0ff25d1eef946c14b53b5ace6d8e6)), closes [#DATATR-2810](https://github.com/ovh/manager/issues/DATATR-2810)
+
+
+
+
+
 ## [0.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.32.0...@ovh-ux/manager-pci-object-storage-app@0.32.1) (2026-02-01)
 
 
