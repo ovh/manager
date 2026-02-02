@@ -9,7 +9,7 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
     data-scope=dialog
     data-state=open
     dir=ltr
-    id=dialog::r3::backdrop
+    id=dialog::r4::backdrop
     style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
@@ -17,7 +17,7 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
     data-part=positioner
     data-scope=dialog
     dir=ltr
-    id=dialog::r3::positioner
+    id=dialog::r4::positioner
     style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
@@ -30,21 +30,31 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
       data-scope=dialog
       data-state=open
       dir=ltr
-      id=dialog::r3::content
+      id=dialog::r4::content
       role=dialog
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Example Heading
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
           dir=ltr
-          id=dialog::r3::close
+          id=dialog::r4::close
           type=button
         >
           <span
@@ -58,16 +68,6 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Example Heading
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -124,7 +124,7 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
     data-scope=dialog
     data-state=open
     dir=ltr
-    id=dialog::r2::backdrop
+    id=dialog::r3::backdrop
     style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
@@ -132,7 +132,7 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
     data-part=positioner
     data-scope=dialog
     dir=ltr
-    id=dialog::r2::positioner
+    id=dialog::r3::positioner
     style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
@@ -145,21 +145,31 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
       data-scope=dialog
       data-state=open
       dir=ltr
-      id=dialog::r2::content
+      id=dialog::r3::content
       role=dialog
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Example Heading
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
           dir=ltr
-          id=dialog::r2::close
+          id=dialog::r3::close
           type=button
         >
           <span
@@ -173,16 +183,6 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Example Heading
-          </h4>
-        </div>
         <div
           class=flex justify-center my-5
           data-testid=spinner
@@ -241,7 +241,7 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
     data-scope=dialog
     data-state=open
     dir=ltr
-    id=dialog::r4::backdrop
+    id=dialog::r5::backdrop
     style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
   />
   <div
@@ -249,7 +249,7 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
     data-part=positioner
     data-scope=dialog
     dir=ltr
-    id=dialog::r4::positioner
+    id=dialog::r5::positioner
     style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
   >
     <div
@@ -262,21 +262,31 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
       data-scope=dialog
       data-state=open
       dir=ltr
-      id=dialog::r4::content
+      id=dialog::r5::content
       role=dialog
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Example Heading
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
           dir=ltr
-          id=dialog::r4::close
+          id=dialog::r5::close
           type=button
         >
           <span
@@ -290,16 +300,6 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Example Heading
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -464,11 +464,21 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Example Heading
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -487,16 +497,6 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Example Heading
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -526,6 +526,232 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
 `;
 
 exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
+<body>
+  <div />
+  <div
+    class=_modal-backdrop
+    data-part=backdrop
+    data-scope=dialog
+    data-state=open
+    dir=ltr
+    id=dialog::r2::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
+  />
+  <div
+    class=_modal-positioner
+    data-part=positioner
+    data-scope=dialog
+    dir=ltr
+    id=dialog::r2::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
+  >
+    <div
+      aria-describedby=
+      aria-labelledby=
+      aria-modal=true
+      class=_modal-content
+      data-ods=modal-content
+      data-part=content
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r2::content
+      role=dialog
+      tabindex=-1
+    >
+      <div
+        class=_modal-header
+      >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Example Heading
+          </h4>
+        </div>
+        <button
+          aria-label=Close
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          data-ods=button
+          data-part=close-trigger
+          data-scope=dialog
+          dir=ltr
+          id=dialog::r2::close
+          type=button
+        >
+          <span
+            class=_icon _icon--xmark
+            data-ods=icon
+            role=presentation
+          />
+        </button>
+      </div>
+      <div
+        class=_modal-body text-left
+        data-ods=modal-body
+      >
+        <div
+          class=flex flex-col text-left
+        >
+          <div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+            </p>
+            <label
+              for=test-input
+            >
+              Test Input
+            </label>
+            <input
+              data-testid=test-input
+              id=test-input
+              type=text
+            />
+          </div>
+        </div>
+        <div
+          class=flex justify-end flex-wrap gap-4
+        >
+          <button
+            class=_button _button--primary _button--md _button--ghost mt-4
+            data-ods=button
+            data-testid=secondary-button
+            type=button
+          >
+            Cancel
+          </button>
+          <button
+            class=_button _button--primary _button--md _button--default mt-4
+            data-ods=button
+            data-testid=primary-button
+            type=button
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
+<body>
+  <div />
+  <div
+    class=_modal-backdrop
+    data-part=backdrop
+    data-scope=dialog
+    data-state=open
+    dir=ltr
+    id=dialog::r6::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
+  />
+  <div
+    class=_modal-positioner
+    data-part=positioner
+    data-scope=dialog
+    dir=ltr
+    id=dialog::r6::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
+  >
+    <div
+      aria-describedby=
+      aria-labelledby=
+      aria-modal=true
+      class=_modal-content
+      data-ods=modal-content
+      data-part=content
+      data-scope=dialog
+      data-state=open
+      dir=ltr
+      id=dialog::r6::content
+      role=dialog
+      tabindex=-1
+    >
+      <div
+        class=_modal-header
+      >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Example Heading
+          </h4>
+        </div>
+        <button
+          aria-label=Close
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
+          data-ods=button
+          data-part=close-trigger
+          data-scope=dialog
+          dir=ltr
+          id=dialog::r6::close
+          type=button
+        >
+          <span
+            class=_icon _icon--xmark
+            data-ods=icon
+            role=presentation
+          />
+        </button>
+      </div>
+      <div
+        class=_modal-body text-left
+        data-ods=modal-body
+      >
+        <div
+          class=flex flex-col text-left
+        >
+          <div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+            </p>
+            <label
+              for=test-input
+            >
+              Test Input
+            </label>
+            <input
+              data-testid=test-input
+              id=test-input
+              type=text
+            />
+          </div>
+        </div>
+        <div
+          class=flex justify-end flex-wrap gap-4
+        >
+          <button
+            class=_button _button--critical _button--md _button--ghost mt-4
+            data-ods=button
+            data-testid=secondary-button
+            type=button
+          >
+            Cancel
+          </button>
+          <button
+            class=_button _button--critical _button--md _button--default mt-4
+            data-ods=button
+            data-testid=primary-button
+            type=button
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Modal Snapshot Tests > does not display modal-header if not provided 1`] = `
 <body>
   <div />
   <div
@@ -584,16 +810,6 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
         data-ods=modal-body
       >
         <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Example Heading
-          </h4>
-        </div>
-        <div
           class=flex flex-col text-left
         >
           <div>
@@ -614,137 +830,7 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
         </div>
         <div
           class=flex justify-end flex-wrap gap-4
-        >
-          <button
-            class=_button _button--primary _button--md _button--ghost mt-4
-            data-ods=button
-            data-testid=secondary-button
-            type=button
-          >
-            Cancel
-          </button>
-          <button
-            class=_button _button--primary _button--md _button--default mt-4
-            data-ods=button
-            data-testid=primary-button
-            type=button
-          >
-            Confirm
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
-<body>
-  <div />
-  <div
-    class=_modal-backdrop
-    data-part=backdrop
-    data-scope=dialog
-    data-state=open
-    dir=ltr
-    id=dialog::r5::backdrop
-    style=z-index: calc(var(--ods-theme-overlay-z-index) + 1);
-  />
-  <div
-    class=_modal-positioner
-    data-part=positioner
-    data-scope=dialog
-    dir=ltr
-    id=dialog::r5::positioner
-    style=z-index: calc(var(--ods-theme-overlay-z-index) + 2);
-  >
-    <div
-      aria-describedby=
-      aria-labelledby=
-      aria-modal=true
-      class=_modal-content
-      data-ods=modal-content
-      data-part=content
-      data-scope=dialog
-      data-state=open
-      dir=ltr
-      id=dialog::r5::content
-      role=alertdialog
-      tabindex=-1
-    >
-      <div
-        class=_modal-content__close-trigger
-      >
-        <button
-          aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
-          data-ods=button
-          data-part=close-trigger
-          data-scope=dialog
-          dir=ltr
-          id=dialog::r5::close
-          type=button
-        >
-          <span
-            class=_icon _icon--xmark
-            data-ods=icon
-            role=presentation
-          />
-        </button>
-      </div>
-      <div
-        class=_modal-body text-left
-        data-ods=modal-body
-      >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Example Heading
-          </h4>
-        </div>
-        <div
-          class=flex flex-col text-left
-        >
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-            </p>
-            <label
-              for=test-input
-            >
-              Test Input
-            </label>
-            <input
-              data-testid=test-input
-              id=test-input
-              type=text
-            />
-          </div>
-        </div>
-        <div
-          class=flex justify-end flex-wrap gap-4
-        >
-          <button
-            class=_button _button--critical _button--md _button--ghost mt-4
-            data-ods=button
-            data-testid=secondary-button
-            type=button
-          >
-            Cancel
-          </button>
-          <button
-            class=_button _button--critical _button--md _button--default mt-4
-            data-ods=button
-            data-testid=primary-button
-            type=button
-          >
-            Confirm
-          </button>
-        </div>
+        />
       </div>
     </div>
   </div>
