@@ -71,7 +71,10 @@
   "bulkDeleteToastSuccessDescription_one": "{{count}} obiekt został usunięty.",
   "bulkDeleteToastSuccessDescription_other": "Liczba usuniętych obiektów: {{count}}.",
   "bulkDeleteVersionsTitle": "Usuń wiele wersji",
-  "bulkDeleteVersionsDescription_one": "Czy na pewno chcesz trwale usunąć {{count}} wersję? Operacja nie może zostać anulowana.",
-  "bulkDeleteVersionsDescription_other": "Czy na pewno chcesz trwale usunąć {{count}} wersje/wersji? Operacja nie może zostać anulowana.",
-  "bulkDeleteVersionsConfirmation": "Wpisz {{confirmation}}, aby potwierdzić"
+  "bulkDeleteVersionsDescription_one": "Czy chcesz trwale usunąć {{count}} wersję? Ta akcja nie może być anulowana.",
+  "bulkDeleteVersionsDescription_other": "Czy chcesz trwale usunąć {{count}} wersje? Ta akcja nie może być anulowana.",
+  "bulkDeleteVersionsConfirmation": "Wpisz {{confirmation}}, aby potwierdzić",
+  "downloadErrorDescription": "Błąd podczas przesyłania pliku",
+  "downloadErrorStatus": "Błąd podczas przesyłania: {{status}}",
+  "downloadErrorUnknownType": "Nieznany typ przesyłania"
 }

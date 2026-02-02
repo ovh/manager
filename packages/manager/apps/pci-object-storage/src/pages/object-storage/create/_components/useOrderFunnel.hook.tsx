@@ -16,6 +16,7 @@ import {
   createOrderFunnelFormSchema,
   OrderFunnelFormValues,
 } from './orderFunnel.schema';
+import { Region3AZ } from '@/configuration/region.const';
 
 interface UseOrderFunnelProps {
   regions: Region[];
@@ -48,7 +49,7 @@ export function useOrderFunnel({
     [ObjectContainerOffers['s3-standard']]: {
       name: generateName(),
       offer: ObjectContainerOffers['s3-standard'],
-      region: regions.find((r) => r.name === 'EU-WEST-PAR')?.name || '',
+      region: regions.find((r) => r.name === Region3AZ.PARIS)?.name || '',
       replication: {
         enabled: false,
         region: undefined,
