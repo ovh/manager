@@ -1,0 +1,89 @@
+{
+  "listing": {
+    "title": "Liste der Tenants",
+    "description": "Die Tenants ermöglichen Ihnen das Organisieren Ihrer Metriken, sobald sie im Observability-Dienst verfügbar sind.",
+    "description_bis": "Mit mehreren Tenants können Sie Ihre Daten Ihren Anforderungen entsprechend strukturieren, z. B. auch je nach Vertraulichkeitsstufe, Zugriffsrichtlinien, Aufbewahrungsstrategien und geeignetem Standort.",
+    "endpoint_cell": "Prometheus-Server-URL",
+    "retention_cell": "Aufbewahrung",
+    "active_metrics_cell": "Aktive Metriken",
+    "tags_cell": "Tags",
+    "clipboard_error_label": "Fehler",
+    "create_tenant_button": "Neuen Tenant hinzufügen",
+    "details_action": "Details",
+    "access_grafana_action": "Zugang zu Grafana",
+    "copy_uid_action": "UID des Tenants kopieren",
+    "generate_access_token_action": "Zugriffstoken generieren",
+    "filter_search_key": "Suche"
+  },
+  "delete": {
+    "delete_tenant_title": "Tenant löschen",
+    "delete_tenant_description": "Möchten Sie den Tenant „{{tenantName}}“ wirklich löschen?",
+    "success": "Der Tenant wird gelöscht."
+  },
+  "onboarding": {
+    "description": "Erstellen Sie Ihren neuen Tenant, um das Potenzial von Observability-Metriken weiter zu erkunden. Sie können Daten senden, Dashboards erstellen und Warnmeldungen konfigurieren, die auf Ihre spezifischen Anforderungen zugeschnitten sind.",
+    "orderButtonLabel": "Erstellen Sie Ihren Tenant"
+  },
+  "creation": {
+    "title": "Einen Tenant erstellen",
+    "success": "Der Tenant wird erstellt.",
+    "tenantInformation": "Tenant-Informationen eingeben",
+    "namePlaceholder": "Name des Tenants",
+    "description": "Beschreibung (optional)",
+    "descriptionPlaceholder": "Fügen Sie eine Beschreibung der Metriken hinzu, die Sie in diesem Tenant schreiben werden."
+  },
+  "configuration": {
+    "title": "Tenant konfigurieren",
+    "retention": {
+      "title": "Aufbewahrung"
+    },
+    "limit": {
+      "title": "Aufnahmelimit (aktive Metriken)",
+      "description": "Legen Sie die maximale Anzahl aktiver Metriken für diesen Tenant fest."
+    }
+  },
+  "edition": {
+    "title": "Tenant bearbeiten",
+    "subtitle": "Sie erstellen einen Tenant in Ihrem Observability-Dienst „{{tenantName}}“.",
+    "success": "Der Tenant wurde erfolgreich geändert."
+  },
+  "dashboard": {
+    "subscription_tab": "Abonnement",
+    "tags_tab": "Tags",
+    "explore_in_grafana_button": "In Grafana® ansehen",
+    "general_information_tile": {
+      "name": "Name des Tenants",
+      "endpoint": "Endpoint",
+      "updated_at": "Datum der letzten Änderung",
+      "edit_information": "Informationen bearbeiten"
+    },
+    "configuration_tile": {
+      "title": "Konfiguration",
+      "retention": "Aufbewahrung",
+      "active_metrics": "Aktive Metriken",
+      "ingestion_limit": "Aufnahmelimit"
+    },
+    "tags_tile": {
+      "title": "Tags",
+      "manage_tags": "Tags verwalten"
+    },
+    "subscription_tile": {
+      "title": "Verknüpftes Objekt",
+      "subscriptions": "Abonnements",
+      "access_subscription_page": "Zur Seite für das Abonnement"
+    },
+    "subscription_listing": {
+      "create_subscription": "Abonnement konfigurieren",
+      "kind_cell": "Produkttyp",
+      "resource_cell": "Ressource",
+      "unsubscribe": {
+        "cta": "Abbestellen",
+        "title": "Abbestellen?",
+        "confirm": "Ja, abbestellen",
+        "cancel": "Nein, abbrechen",
+        "warning": "Wenn Sie den Metrik-Tenant für diese Ressource abbestellen, wird die Erfassung und Löschung der zugehörigen Daten endgültig eingestellt.",
+        "success": "Das Abonnement wird entfernt."
+      }
+    }
+  }
+}

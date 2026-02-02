@@ -1,0 +1,15 @@
+{
+  "service": "Serviço <strong>{{serviceName}}</strong>",
+  "coming_soon": "Em breve",
+  "error": {
+    "message": "Ocorreu um erro: {{ message }}<br />{{queryId}}"
+  },
+  "form": {
+    "bounds": {
+      "helper": "O mínimo é de {{min}} e o máximo é de {{max}}."
+    },
+    "error": {
+      "max_chars": "O número de caracteres autorizado foi excedido (máximo de {{value}} caracteres)."
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "title": "Dienstverwaltung",
+    "enable_service": "Einen Dienst aktivieren",
+    "links": {
+      "tenants": "Tenants",
+      "datastreams": "Streams",
+      "managed_dashboards": "Verwaltete Dashboards",
+      "link": "Zur Liste",
+      "title": "Verknüpfte Objekte"
+    }
+  },
+  "status": {
+    "title": "Status",
+    "READY": "Aktiv",
+    "UPDATING": "Update",
+    "ERROR": "Fehler",
+    "DELETING": "Wird gelöscht",
+    "SUSPENDED": "Ausgesetzt",
+    "CREATING": "Wird erstellt",
+    "UNKNOWN": "Unbekannt"
+  },
+  "delete": {
+    "success": "Ihre Anfrage zur Kündigung Ihres Dienstes {{serviceName}} wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt."
+  },
+  "edit": {
+    "title": "Den Namen des Dienstes ändern",
+    "success": "Der Name des Dienstes wurde erfolgreich geändert."
+  }
+}
