@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.74.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.5...@ovh-ux/manager-dedicated@20.74.0) (2026-02-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1062] ([cf5d87f](https://github.com/ovh/manager/commit/cf5d87f02cebaab18d6a5268f99dd3651b167f78))
+
+
+### Features
+
+* **dedicated.licenses:** add SQL servers 2025 ([c583536](https://github.com/ovh/manager/commit/c583536a6664bd0adc3c709585fd18292824aafd)), closes [#MANAGER-20691](https://github.com/ovh/manager/issues/MANAGER-20691)
+* **dedicated.licenses:** licenses name fallback ([282f96e](https://github.com/ovh/manager/commit/282f96e2d52aff82d3be79c6a582016128a36b89)), closes [#MANAGER-17741](https://github.com/ovh/manager/issues/MANAGER-17741)
+* **dedicated:** fill whitelist ip with user ip ([0046ee6](https://github.com/ovh/manager/commit/0046ee60bcacb6af34a9fbed5d509538de1e1128)), closes [#MANAGER-20544](https://github.com/ovh/manager/issues/MANAGER-20544)
+
+
+
+
+
 ## [20.73.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.4...@ovh-ux/manager-dedicated@20.73.5) (2026-02-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

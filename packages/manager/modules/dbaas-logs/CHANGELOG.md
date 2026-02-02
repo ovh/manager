@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.36.2...@ovh-ux/manager-dbaas-logs@1.37.0) (2026-02-02)
+
+
+### Features
+
+* **dedicated.dbaas:** display ldp sub resources IAM policies ([125f98a](https://github.com/ovh/manager/commit/125f98a6236ddd586107d0867c452136b2236bc3)), closes [#MAOBS-221](https://github.com/ovh/manager/issues/MAOBS-221)
+
+
+
+
+
 ## [1.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.36.1...@ovh-ux/manager-dbaas-logs@1.36.2) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
