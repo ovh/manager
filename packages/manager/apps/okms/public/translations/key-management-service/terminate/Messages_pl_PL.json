@@ -4,6 +4,6 @@
   "key_management_service_terminate_error": "Wystąpił błąd: {{error}}",
   "key_management_service_terminate_heading": "Rezygnacja z KMS",
   "key_management_service_terminate_description": "Wpisz słowo „{{terminateKeyword}}”, aby potwierdzić rezygnację z usługi KMS.",
-  "key_management_service_terminate_success_banner": "Rezygnacja z KMS {{ServiceName}} została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
-  "key_management_service_terminate_success_banner_us": "Rezygnacja z KMS {{ServiceName}} została zarejestrowana. Wiadomość e-mail z potwierdzeniem została wysłana na Twój adres e-mail."
+  "key_management_service_terminate_success_banner": "Twoja prośba o rezygnację z domeny OKMS {{ServiceName}} została przyjęta. E-mail zawierający procedurę został wysłany do Ciebie.",
+  "key_management_service_terminate_success_banner_us": "Twoja prośba o rezygnację z domeny OKMS {{ServiceName}} została przyjęta. E-mail potwierdzający został wysłany do Ciebie."
 }
