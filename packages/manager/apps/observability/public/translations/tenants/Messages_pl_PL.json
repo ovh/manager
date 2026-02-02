@@ -1,0 +1,89 @@
+{
+  "listing": {
+    "title": "Lista tenantów",
+    "description": "Tenanty umożliwiają uporządkowanie metryk od momentu ich pojawienia się w usłudze obserwowalności.",
+    "description_bis": "Dzięki kilku tenantom możesz zorganizować swoje dane według potrzeb: poziom prywatności, polityki dostępu, strategie retencji i odpowiednia lokalizacja.",
+    "endpoint_cell": "Adres URL serwera Prometheus",
+    "retention_cell": "Retencja",
+    "active_metrics_cell": "Aktywne metryki",
+    "tags_cell": "Tagi",
+    "clipboard_error_label": "Błąd",
+    "create_tenant_button": "Dodaj nowy tenant",
+    "details_action": "Szczegóły",
+    "access_grafana_action": "Dostęp do Grafana",
+    "copy_uid_action": "Kopiuj UID tenantu",
+    "generate_access_token_action": "Wygeneruj token dostępu",
+    "filter_search_key": "wyszukiwanie"
+  },
+  "delete": {
+    "delete_tenant_title": "Usuń tenant",
+    "delete_tenant_description": "Czy na pewno chcesz usunąć tenant „{{tenantName}}”?",
+    "success": "Trwa usuwanie tenantu"
+  },
+  "onboarding": {
+    "description": "Utwórz nowy tenant i odkryj pełen potencjał metryk obserwowalności. Pozwoli Ci to przesyłać dane, tworzyć dashboardy i konfigurować alerty zgodnie z potrzebami.",
+    "orderButtonLabel": "Utwórz swój tenant"
+  },
+  "creation": {
+    "title": "Utwórz tenant",
+    "success": "Trwa tworzenie tenantu",
+    "tenantInformation": "Wpisz informacje dotyczące tenantu",
+    "namePlaceholder": "Nazwa tenantu",
+    "description": "Opis (opcjonalnie)",
+    "descriptionPlaceholder": "Dodaj opis metryk, które zapiszesz w tym tenancie"
+  },
+  "configuration": {
+    "title": "Skonfiguruj tenant",
+    "retention": {
+      "title": "Retencja"
+    },
+    "limit": {
+      "title": "Limit wprowadzania (metryki aktywne)",
+      "description": "Określ maksymalny limit metryk aktywnych dla tego tenantu."
+    }
+  },
+  "edition": {
+    "title": "Zmodyfikuj tenant",
+    "subtitle": "Jesteś w trakcie tworzenia tenantu w Twojej usłudze obserwowalności „{{tenantName}}”",
+    "success": "Tenant został pomyślnie zmodyfikowany"
+  },
+  "dashboard": {
+    "subscription_tab": "Zamówienie",
+    "tags_tab": "Tagi",
+    "explore_in_grafana_button": "Sprawdź w Grafana®",
+    "general_information_tile": {
+      "name": "Nazwa tenantu",
+      "endpoint": "EndPoint",
+      "updated_at": "Data ostatniej modyfikacji",
+      "edit_information": "Zmień informacje"
+    },
+    "configuration_tile": {
+      "title": "Konfiguracja",
+      "retention": "Retencja",
+      "active_metrics": "Aktywne metryki",
+      "ingestion_limit": "Limit wprowadzania"
+    },
+    "tags_tile": {
+      "title": "Tagi",
+      "manage_tags": "Zarządzaj tagami"
+    },
+    "subscription_tile": {
+      "title": "Powiązany obiekt",
+      "subscriptions": "Subskrypcje",
+      "access_subscription_page": "Przejdź do strony Subskrypcji"
+    },
+    "subscription_listing": {
+      "create_subscription": "Skonfiguruj subskrypcję",
+      "kind_cell": "Typ produktu",
+      "resource_cell": "Zasób",
+      "unsubscribe": {
+        "cta": "Rezygnacja z subskrypcji",
+        "title": "Chcesz zrezygnować z subskrypcji?",
+        "confirm": "Tak, rezygnuję z subskrypcji",
+        "cancel": "Nie, anuluj",
+        "warning": "Rezygnacja z subskrypcji tenantu dla tego zasobu spowoduje ostateczne zatrzymanie zbierania i usunięcie danych powiązanych.",
+        "success": "Trwa usuwanie subskrypcji"
+      }
+    }
+  }
+}

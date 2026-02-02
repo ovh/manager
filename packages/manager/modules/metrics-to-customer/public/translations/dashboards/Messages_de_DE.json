@@ -1,6 +1,6 @@
 {
   "dashboard_widget_config_not_found": "Kein Widget auf diesem Dashboard",
   "dashboard_widget_close": "Schliessen",
-  "dashboard_no_widget": "Kein Widget für dieses Dashboard konfiguriert",
+  "dashboard_no_widget": "Für dieses Dashboard sind keine Widgets konfiguriert.",
   "dashboard_loading": "Dashboard wird geladen"
 }
