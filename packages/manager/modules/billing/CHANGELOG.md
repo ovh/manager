@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.62.3...@ovh-ux/manager-billing@0.63.0) (2026-02-02)
+
+
+### Bug Fixes
+
+* **billing:** si ([7ca6f91](https://github.com/ovh/manager/commit/7ca6f9145f26824cb0020b51d90b231854ac29bc)), closes [#MANAGER-20736](https://github.com/ovh/manager/issues/MANAGER-20736)
+
+
+### Features
+
+* **billing:** add tracking on actions ([6ac2024](https://github.com/ovh/manager/commit/6ac2024216b59ff67b624e7b1032f22a5c5387d1)), closes [#MANAGER-20471](https://github.com/ovh/manager/issues/MANAGER-20471)
+* **billing:** corrective invoices poland ([449466e](https://github.com/ovh/manager/commit/449466e64208d04e767ffd521138d4927b6ace17)), closes [#MANAGER-20736](https://github.com/ovh/manager/issues/MANAGER-20736)
+
+
+
+
+
 ## [0.62.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.62.2...@ovh-ux/manager-billing@0.62.3) (2026-01-30)
 
 

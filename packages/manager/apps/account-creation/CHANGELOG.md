@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.10.2...@ovh-ux/manager-account-creation-app@0.11.0) (2026-02-02)
+
+
+### Bug Fixes
+
+* **account-creation:** disable button if form not valid ([0a0a1e5](https://github.com/ovh/manager/commit/0a0a1e5e821bf3ca4c9d22322389d6addf3d691b)), closes [#MANAGER-20722](https://github.com/ovh/manager/issues/MANAGER-20722)
+* **account-creation:** disable button on invalid legal form ([55633c0](https://github.com/ovh/manager/commit/55633c0f44bbe1901ce0944fc108291025a62c68)), closes [#MANAGER-20715](https://github.com/ovh/manager/issues/MANAGER-20715)
+* **account-creation:** fix redirection for unauthenticated users ([ef1e7b0](https://github.com/ovh/manager/commit/ef1e7b017f962ff857140f63b7f9db3a5844c1fe)), closes [#MANAGER-20712](https://github.com/ovh/manager/issues/MANAGER-20712)
+
+
+### Features
+
+* **account-creation:** add skeleton to details page ([a617c34](https://github.com/ovh/manager/commit/a617c340a57ebad41f68a77d8c36dbc5180d65e4)), closes [#MANAGER-20718](https://github.com/ovh/manager/issues/MANAGER-20718)
+* **account-creation:** fix ts errors; add india kyc banner ([099d0ae](https://github.com/ovh/manager/commit/099d0ae29839ff88d9325fce478f195cd8843e2b)), closes [#MANAGER-20697](https://github.com/ovh/manager/issues/MANAGER-20697)
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.10.1...@ovh-ux/manager-account-creation-app@0.10.2) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-creation-app
