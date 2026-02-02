@@ -1,0 +1,17 @@
+{
+  "infrastructure": {
+    "region": {
+      "all": "Todas as regiões",
+      "eu": "Europa",
+      "us": "Estados Unidos",
+      "ap": "Ásia-Pacífico",
+      "ca": "América do Norte",
+      "title": "Escolher a região",
+      "zone": {
+        "local": "Implementação das suas aplicações mais próxima dos seus utilizadores para uma baixa latência e residência dos dados.",
+        "1_az": "Implementação resiliente e económica em 1 zona de disponibilidade.",
+        "3_az": "Implementação de alta resiliência/alta disponibilidade em 3 Availability Zones para aplicações críticas"
+      }
+    }
+  }
+}
