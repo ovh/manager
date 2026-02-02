@@ -2,6 +2,7 @@ import {
   JSPLUMB_INSTANCE_OPTIONS,
   JSPLUMB_CONNECTIONS_OPTIONS,
   JSPLUMB_ENDPOINTS_OPTIONS,
+  COMPLEX_FEATURES,
 } from './number.constants';
 
 export default class TelephonyNumberCtrl {
@@ -9,6 +10,7 @@ export default class TelephonyNumberCtrl {
   constructor(
     $q,
     $scope,
+    $state,
     $translate,
     $translatePartialLoader,
     atInternet,
@@ -19,6 +21,7 @@ export default class TelephonyNumberCtrl {
   ) {
     this.$q = $q;
     this.$scope = $scope;
+    this.$state = $state;
     this.$translate = $translate;
     this.$translatePartialLoader = $translatePartialLoader;
     this.atInternet = atInternet;
@@ -46,10 +49,28 @@ export default class TelephonyNumberCtrl {
     this.reorderingMode = false;
     this.reorderingPending = false;
     this.actionsShowAll = false;
+    this.layoutModel = this.verticalLayout ? 'vertical' : 'horizontal';
 
     this.$scope.$on('dialplan.extensions.loaded', () => {
       this.dialplanLoaded = true;
     });
+
+    this.$scope.$watch(
+      () => this.verticalLayout,
+      (newVal) => {
+        if (newVal !== undefined) {
+          this.layoutModel = newVal ? 'vertical' : 'horizontal';
+        }
+      },
+    );
+
+    // Sync selected tab with current state
+    this.$scope.$watch(
+      () => this.$state.current.name,
+      () => {
+        this.syncSelectedTabWithState();
+      },
+    );
 
     return this.$q
       .all([
@@ -71,6 +92,7 @@ export default class TelephonyNumberCtrl {
       .getValue('TELECOM_CCS_LAYOUT')
       .then(({ vertical }) => {
         this.verticalLayout = vertical;
+        this.layoutModel = this.verticalLayout ? 'vertical' : 'horizontal';
       })
       .catch((error) => {
         if (error.status === 404) {
@@ -123,9 +145,8 @@ export default class TelephonyNumberCtrl {
   toggleCcsLayout() {
     this.verticalLayout = !this.verticalLayout;
     this.atInternet.trackClick({
-      name: `ccs::change-layout::to-${
-        this.verticalLayout ? 'vertical' : 'horizontal'
-      }`,
+      name: `ccs::change-layout::to-${this.verticalLayout ? 'vertical' : 'horizontal'
+        }`,
       type: 'action',
     });
     this.ovhUserPref.assign('TELECOM_CCS_LAYOUT', {
@@ -135,5 +156,53 @@ export default class TelephonyNumberCtrl {
 
   validateReorderSteps() {
     this.reorderingMode = false;
+  }
+
+  onFeatureActionChange(modelValue) {
+    const selectedActionIndex = Number(modelValue);
+    if (Number.isNaN(selectedActionIndex) || !this.featureActions) {
+      return null;
+    }
+
+    const action = this.featureActions[selectedActionIndex];
+    if (action?.onClick) {
+      action.onClick();
+    }
+
+    return action?.sref ? this.$state.go(action.sref) : null;
+  }
+
+  onLayoutChange(modelValue) {
+    this.verticalLayout = modelValue === 'vertical';
+    this.ovhUserPref.assign('TELECOM_CCS_LAYOUT', {
+      vertical: this.verticalLayout,
+    }).catch(() => null);
+  }
+
+  onReorderingModeChange(modelValue) {
+    if (!modelValue) {
+      this.validateReorderSteps();
+    }
+  }
+
+  syncSelectedTabWithState() {
+    if (!this.featureActions) return;
+
+    const currentState = this.$state.current.name;
+
+    const index = this.featureActions.findIndex(
+      (action) => action.sref && action.sref === currentState
+    );
+    this.selectedFeatureActionIndex = index === -1 ? null : index;
+  }
+
+  // Check if the selected tab is the Contact Center Solution tab (showing dialplan)
+  isDialplanTabSelected() {
+    return this.featureActions?.[this.selectedFeatureActionIndex]?.name === 'dialplan_management';
+  }
+
+  // Check if this is a complex feature that uses the tab system
+  isComplexFeature() {
+    return this.number && this.number.feature && COMPLEX_FEATURES.includes(this.number.feature.featureType);
   }
 }

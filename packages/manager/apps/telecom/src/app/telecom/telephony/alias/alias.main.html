@@ -70,6 +70,38 @@
                                 data-translate="telephony_alias_configuration_guide_ccs_recordings"
                             ></span>
                         </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.sviCreation') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_actions_menus_management"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.soundsManagement') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_actions_sounds_management"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.queueCreation') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_configuration_agents_title"
+                            ></span>
+                        </oui-guide-menu-item>
+                        <oui-guide-menu-item
+                            data-ng-href="{{:: $ctrl.guides.getURL('ccs.ttsManagement') }}"
+                            data-external
+                        >
+                            <span
+                                data-translate="telephony_alias_ovh_pabx_tts_title"
+                            ></span>
+                        </oui-guide-menu-item>
                     </oui-guide-menu>
                     <tuc-editable-service-name
                         data-tuc-editable-service-name-title="$ctrl.alias.getDisplayedName()"
