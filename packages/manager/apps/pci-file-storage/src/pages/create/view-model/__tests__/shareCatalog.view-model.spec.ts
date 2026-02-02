@@ -24,7 +24,7 @@ vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
   mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
 }));
 
-/* vi.mock('@/domain/services/catalog.service', () => ({
+vi.mock('@/domain/services/catalog.service', () => ({
   getMicroRegions: (macroRegion: TMacroRegion, microRegionsById: Map<string, TMicroRegion>) => {
     if (!macroRegion?.microRegions) return [];
     return macroRegion.microRegions
@@ -33,7 +33,7 @@ vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
   },
   isMicroRegionAvailable: (microRegion: TMicroRegion) =>
     microRegion.isActivated && !microRegion.isInMaintenance,
-})); */
+}));
 
 describe('share catalog selectors', () => {
   describe('selectDeploymentModes', () => {
