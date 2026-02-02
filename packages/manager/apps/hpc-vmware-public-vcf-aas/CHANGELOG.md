@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.29.5...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.30.0) (2026-02-02)
+
+
+### Bug Fixes
+
+* **vcfaas:** update success message when adding or deleting a segment vrack ([39e59ca](https://github.com/ovh/manager/commit/39e59ca84b624678adfab57d78549e9bbf046a92)), closes [#MANAGER-20678](https://github.com/ovh/manager/issues/MANAGER-20678)
+
+
+### Features
+
+* **vcfaas:** add confirmation keyword when deleting segment and network ([d0103ca](https://github.com/ovh/manager/commit/d0103cabbcb1133de8ede0163b413a77f834c578)), closes [#MANAGER-20508](https://github.com/ovh/manager/issues/MANAGER-20508)
+
+
+
+
+
 ## [0.29.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.29.4...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.29.5) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
