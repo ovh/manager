@@ -4,6 +4,6 @@
   "key_management_service_terminate_error": "Se ha producido un error: {{error}}",
   "key_management_service_terminate_heading": "Dar de baja mi KMS",
   "key_management_service_terminate_description": "Por favor, introduzca «{{terminateKeyword}}» para confirmar la baja de su KMS.",
-  "key_management_service_terminate_success_banner": "La solicitud de baja de su KMS {{ServiceName}} se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
-  "key_management_service_terminate_success_banner_us": "La solicitud de baja de su KMS {{ServiceName}} se ha enviado correctamente. Le hemos enviado un correo de confirmación."
+  "key_management_service_terminate_success_banner": "Su solicitud de cancelación de su dominio OKMS {{ServiceName}} ha sido recibida. Se le ha enviado un correo electrónico con el procedimiento.",
+  "key_management_service_terminate_success_banner_us": "Su solicitud de cancelación de su dominio OKMS {{ServiceName}} ha sido recibida. Se le ha enviado un correo electrónico de confirmación."
 }

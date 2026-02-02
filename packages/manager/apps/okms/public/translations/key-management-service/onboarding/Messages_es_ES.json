@@ -1,7 +1,7 @@
 {
   "title": "OVHcloud Key Management Service",
   "description": "Mantenga el control sobre el cifrado de sus datos sensibles.",
-  "orderButtonLabel": "Contratar un KMS",
+  "orderButtonLabel": "Contratar un dominio OKMS",
   "orderButtonLink": "/#/dedicated/key-management-service/order",
   "moreInfoButtonLabel": "Más información",
   "moreInfoButtonLink": "/#/dedicated/key-management-service/info",
