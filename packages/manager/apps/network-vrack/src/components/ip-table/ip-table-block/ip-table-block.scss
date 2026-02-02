@@ -1,0 +1,29 @@
+/* eslint-disable css/no-invalid-properties */
+
+
+.ip-table-block.table-row-stripped td {
+  background-color: var(--ods-table-striped-background-color);
+}
+.ip-table-subrange td.with-line {
+  position: relative;
+}
+
+
+.ip-table-subrange td.with-line::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: 50%;
+  width: 0;
+  border-right: 1px solid var(--ods-theme-text-color);
+}
+
+.ip-table-subrange td.with-line.line-begin::after {
+  top: 10px;
+}
+
+.ip-table-subrange td.with-line.line-end::after {
+  bottom: 10px;
+}
+
