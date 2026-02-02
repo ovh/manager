@@ -8,11 +8,14 @@
   "log_subscription_empty_tile_button_subscribe": "Subskrybuj",
   "log_subscription_list_title": "Korzystaj z logów",
   "log_subscription_list_button_subscribe_more": "Subskrybuj inny strumień danych",
-  "log_subscription_terminate_modal_headline": "Rezygnacja z subskrypcji",
+  "log_subscription_terminate_modal_headline": "Chcesz zrezygnować z subskrypcji?",
   "log_subscription_terminate_modal_delete_input_label": "Wpisz słowo „TERMINATE”, aby zrezygnować z subskrypcji strumienia danych.",
   "log_subscription_terminate_modal_confirm_button_label": "Rezygnacja z subskrypcji",
   "log_subscription_unsubscribe_success": "Rezygnacja z subskrypcji została pomyślnie przetworzona.",
   "log_subscription_unsubscribe_error": "Wystąpił błąd podczas składania rezygnacji z subskrypcji. {{error}}",
   "log_subscription_subscribe_success": "Subskrypcja została pomyślnie aktywowana.",
-  "log_subscription_subscribe_error": "Wystąpił błąd podczas aktywowania subskrypcji. {{error}}"
+  "log_subscription_subscribe_error": "Wystąpił błąd podczas aktywowania subskrypcji. {{error}}",
+  "log_subscription_terminate_modal_description": "Rezygnacja z subskrypcji strumienia danych dla tego zasobu spowoduje definitywne zatrzymanie gromadzenia danych oraz usunięcie wszystkich danych powiązanych z tym zasobem.",
+  "log_subscription_terminate_modal_cancel_button": "Nie, anuluj",
+  "log_subscription_terminate_modal_confirm_button": "Tak, rezygnuję z subskrypcji"
 }

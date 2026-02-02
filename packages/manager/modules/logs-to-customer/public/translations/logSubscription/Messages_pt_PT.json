@@ -8,11 +8,14 @@
   "log_subscription_empty_tile_button_subscribe": "Subscrever",
   "log_subscription_list_title": "Utilizar os seus logs",
   "log_subscription_list_button_subscribe_more": "Subscrever com outro fluxo de dados",
-  "log_subscription_terminate_modal_headline": "Cancelar a subscrição",
+  "log_subscription_terminate_modal_headline": "Cancelar a subscrição?",
   "log_subscription_terminate_modal_delete_input_label": "Introduza a palavra “TERMINATE” para anular a subscrição do fluxo de dados.",
   "log_subscription_terminate_modal_confirm_button_label": "Cancelar a subscrição",
   "log_subscription_unsubscribe_success": "A anulação da subscrição foi bem-sucedida.",
   "log_subscription_unsubscribe_error": "Ocorreu um erro durante a anulação da subscrição. {{error}}",
   "log_subscription_subscribe_success": "A sua subscrição foi concluída com êxito.",
-  "log_subscription_subscribe_error": "Foi detetado um erro na sua subscrição. {{error}}"
+  "log_subscription_subscribe_error": "Foi detetado um erro na sua subscrição. {{error}}",
+  "log_subscription_terminate_modal_description": "Cancelar a subscrição do fluxo de dados para este recurso levará à cessação definitiva da recolha e à eliminação dos dados associados.",
+  "log_subscription_terminate_modal_cancel_button": "Não, desistir",
+  "log_subscription_terminate_modal_confirm_button": "Sim, cancelar a subscrição"
 }

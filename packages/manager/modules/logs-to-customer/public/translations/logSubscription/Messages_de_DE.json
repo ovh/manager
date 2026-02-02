@@ -8,11 +8,14 @@
   "log_subscription_empty_tile_button_subscribe": "Abonnieren",
   "log_subscription_list_title": "Ihre Logs verwenden",
   "log_subscription_list_button_subscribe_more": "Einen anderen Stream abonnieren",
-  "log_subscription_terminate_modal_headline": "Abmelden",
+  "log_subscription_terminate_modal_headline": "Abbestellen?",
   "log_subscription_terminate_modal_delete_input_label": "Bitte geben Sie das Wort „TERMINATE“ ein, um sich vom Stream abzumelden.",
   "log_subscription_terminate_modal_confirm_button_label": "Abmelden",
   "log_subscription_unsubscribe_success": "Das Abonnement wurde erfolgreich gekündigt.",
   "log_subscription_unsubscribe_error": "Bei der Kündigung des Abonnements ist ein Fehler aufgetreten. {{error}}",
   "log_subscription_subscribe_success": "Ihr Abonnement war erfolgreich.",
-  "log_subscription_subscribe_error": "Bei Ihrem Abonnement ist ein Fehler aufgetreten. {{error}}"
+  "log_subscription_subscribe_error": "Bei Ihrem Abonnement ist ein Fehler aufgetreten. {{error}}",
+  "log_subscription_terminate_modal_description": "Wenn Sie den Stream für diese Ressource abbestellen, wird die Erfassung und Löschung der zugehörigen Daten endgültig eingestellt.",
+  "log_subscription_terminate_modal_cancel_button": "Nein, abbrechen",
+  "log_subscription_terminate_modal_confirm_button": "Ja, abbestellen"
 }
