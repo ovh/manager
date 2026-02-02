@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
@@ -20,7 +20,12 @@ import {
   PageLocation,
   usePageTracking,
 } from '@ovh-ux/manager-react-shell-client';
-
+import {
+  Icon,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 import { useTrackingContext } from '@/context/tracking/useTracking';
 import {
   useCountrySettings,
@@ -50,6 +55,7 @@ export default function Settings() {
   const { t } = useTranslation([
     'settings',
     NAMESPACES.ACTIONS,
+    NAMESPACES.ONBOARDING,
     NAMESPACES.FORM,
   ]);
   const { trackClick } = useTrackingContext();
@@ -66,7 +72,7 @@ export default function Settings() {
     formState: { errors, isValid },
     setValue,
     watch,
-  } = useForm({
+  } = useForm<SettingsFormData>({
     mode: 'onTouched',
     resolver: zodResolver(schema),
   });
@@ -74,6 +80,9 @@ export default function Settings() {
   const selectedCountry = watch('country');
   const selectedCurrency = watch('currency');
   const selectedLanguage = watch('language');
+  const isFormComplete = Boolean(
+    selectedCountry && selectedCurrency && selectedLanguage,
+  );
   const {
     data: countries,
     isLoading: isLoadingCountries,
@@ -117,15 +126,15 @@ export default function Settings() {
 
   useEffect(() => {
     if (currencies?.length === 1) {
-      setValue('currency', currencies[0].code);
+      setValue('currency', currencies[0].code, { shouldValidate: true });
     }
-  }, [currencies, selectedCountry]);
+  }, [currencies, selectedCountry, setValue]);
 
   useEffect(() => {
     if (languages?.length === 1) {
-      setValue('language', languages[0]);
+      setValue('language', languages[0], { shouldValidate: true });
     }
-  }, [languages, selectedCountry, selectedCurrency]);
+  }, [languages, selectedCountry, selectedCurrency, setValue]);
 
   useEffect(() => {
     const error = errorCountries || errorCurrencies || errorLanguages;
@@ -194,12 +203,19 @@ export default function Settings() {
           name="country"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField className="flex flex-wrap w-full gap-3 mb-7">
-              <label
-                className="block cursor-pointer"
-                slot={'label'}
-                id="country-setting-description"
-              >
-                {t('country_setting')} *
+              <label className="block cursor-pointer" slot={'label'}>
+                {t('country_setting')} *{' '}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Icon
+                      name="circle-question"
+                      id="country-setting-description"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent withArrow>
+                    {t('find_out_more', { ns: NAMESPACES.ONBOARDING })}
+                  </TooltipContent>
+                </Tooltip>
               </label>
               <OdsPopover
                 className="md:w-1/2 p-5"
@@ -234,12 +250,12 @@ export default function Settings() {
                   </OdsComboboxItem>
                 ))}
               </OdsCombobox>
-              {errors[name]?.message && (
+              {errors.country?.message && (
                 <OdsText
                   className="text-critical leading-[0.8]"
                   preset="caption"
                 >
-                  {t(errors[name].message, { ns: NAMESPACES.FORM })}
+                  {t(errors.country.message, { ns: NAMESPACES.FORM })}
                 </OdsText>
               )}
             </OdsFormField>
@@ -273,12 +289,12 @@ export default function Settings() {
                   </option>
                 ))}
               </OdsSelect>
-              {!!currencies?.length && errors[name]?.message && (
+              {!!currencies?.length && errors.currency?.message && (
                 <OdsText
                   className="text-critical leading-[0.8]"
                   preset="caption"
                 >
-                  {t(errors[name].message, { ns: NAMESPACES.FORM })}
+                  {t(errors.currency.message, { ns: NAMESPACES.FORM })}
                 </OdsText>
               )}
             </OdsFormField>
@@ -289,12 +305,19 @@ export default function Settings() {
           name="language"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField className="flex flex-wrap w-full gap-3 mb-7">
-              <label
-                className="block cursor-pointer"
-                slot={'label'}
-                id="site-setting-description"
-              >
-                {t('site_setting')} *
+              <label className="block cursor-pointer" slot={'label'}>
+                {t('site_setting')} *{' '}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Icon
+                      name="circle-question"
+                      id="site-setting-description"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent withArrow>
+                    {t('find_out_more', { ns: NAMESPACES.ONBOARDING })}
+                  </TooltipContent>
+                </Tooltip>
               </label>
               <OdsPopover
                 className="md:w-1/2 p-5"
@@ -323,12 +346,12 @@ export default function Settings() {
                   </option>
                 ))}
               </OdsSelect>
-              {!!languages?.length && errors[name]?.message && (
+              {!!languages?.length && errors.language?.message && (
                 <OdsText
                   className="text-critical leading-[0.8]"
                   preset="caption"
                 >
-                  {t(errors[name].message, { ns: NAMESPACES.FORM })}
+                  {t(errors.language.message, { ns: NAMESPACES.FORM })}
                 </OdsText>
               )}
             </OdsFormField>
@@ -337,7 +360,7 @@ export default function Settings() {
         <OdsButton
           className={'w-full'}
           label={t('validate', { ns: NAMESPACES.ACTIONS })}
-          isDisabled={!isValid}
+          isDisabled={!isValid || !isFormComplete}
           type="submit"
           data-testid="validate-button"
         />

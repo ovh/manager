@@ -20,7 +20,6 @@ import {
   ErrorBanner,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -38,7 +37,6 @@ export default function ServiceKeyDashboard() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
 
   const { data: okms, isPending: isLoadingOkms, error: okmsError } = useOkmsById(okmsId);
 
@@ -80,21 +78,19 @@ export default function ServiceKeyDashboard() {
       />
     );
 
-  const kms = okms?.data;
-  const kmsKey = serviceKey?.data;
-
   const tabsList: TabNavigationItem[] = [
     {
       name: 'general-information',
       title: t('key_management_service_service-keys_dashboard_tab_informations'),
       url: KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, keyId),
+      tracking: ['general-informations'],
     },
   ];
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: kms.iam.displayName,
+      label: okms.iam.displayName,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -104,7 +100,7 @@ export default function ServiceKeyDashboard() {
     },
     {
       id: keyId,
-      label: kmsKey.name || kmsKey.id,
+      label: serviceKey.name || serviceKey.id,
       navigateTo: KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, keyId),
     },
     {
@@ -119,26 +115,20 @@ export default function ServiceKeyDashboard() {
       <BaseLayout
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
-          title: kmsKey.name || kmsKey.id,
+          title: serviceKey.name || serviceKey.id,
           headerButton: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
         onClickReturn={() => {
           navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: ['return_listing_page'],
-          });
         }}
         backLinkLabel={t('key_management_service_service_keys_back_link')}
         message={<Notifications />}
         tabs={<TabNavigation tabs={tabsList} />}
       >
         <DashboardGridLayout>
-          <GeneralInformationTile kms={kms} serviceKey={kmsKey} />
-          <CryptoPropertiesTile serviceKey={kmsKey} />
+          <GeneralInformationTile kms={okms} serviceKey={serviceKey} />
+          <CryptoPropertiesTile serviceKey={serviceKey} />
         </DashboardGridLayout>
         <Outlet />
       </BaseLayout>

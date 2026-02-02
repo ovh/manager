@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "private": true,
   "description": "OVHcloud Metrics product",
   "repository": {
@@ -11,9 +11,16 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "scripts": {
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "lodash": "^4.17.15",
     "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-components": "^1.0.0",

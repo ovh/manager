@@ -1,7 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import {
+  ManagerTile,
+  useAuthorizationIam,
+} from '@ovh-ux/manager-react-components';
 import {
   Badge,
   Link,
@@ -9,11 +12,15 @@ import {
   Toggle,
   ToggleControl,
   ToggleLabel,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { transferStatusFromState } from '@/domain/utils/transferStatus';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 
 interface TransferToggleStatusProps {
   readonly domainResource: TDomainResource;
@@ -43,6 +50,17 @@ export default function TransferToggleStatus({
     domainResource?.currentState?.protectionState,
     domainResource?.targetSpec?.protectionState,
   );
+
+  const { data: dnsZoneIAMRessources } = useGetIAMResource(
+    domainResource.id,
+    'domain',
+  );
+  const urn = dnsZoneIAMRessources?.[0]?.urn;
+  const { isPending, isAuthorized } = useAuthorizationIam(
+    ['domain:apiovh:name/edit'],
+    urn,
+  );
+
   // FIXME: improve .tn transfer handling
   const isTn =
     domainResource?.currentState.extension.toLowerCase().includes('.tn') ||
@@ -59,7 +77,7 @@ export default function TransferToggleStatus({
         <Toggle
           withLabels={true}
           className="items-end"
-          disabled={transferStatus.toggleStatus === 'disabled'}
+          disabled={transferStatus.toggleStatus === 'disabled' || !isAuthorized}
           checked={
             domainResource?.currentState?.protectionState ===
             ProtectionStateEnum.PROTECTED
@@ -67,12 +85,23 @@ export default function TransferToggleStatus({
           onCheckedChange={() => setTransferModalOpened(!transferModalOpened)}
           data-testid={'toggle'}
         >
-          <ToggleControl data-testid={'toggle-control'} />
-          <ToggleLabel>
-            <Badge color={transferStatus.color}>
-              {t(transferStatus.i18nkeyContent)}
-            </Badge>
-          </ToggleLabel>
+          <Tooltip>
+            <TooltipTrigger asChild disabled={isAuthorized || isPending}>
+              <div className="flex items-end gap-2">
+                <ToggleControl data-testid={'toggle-control'} />
+                <ToggleLabel>
+                  <Badge color={transferStatus.color}>
+                    {t(transferStatus.i18nkeyContent)}
+                  </Badge>
+                </ToggleLabel>
+              </div>
+            </TooltipTrigger>
+            {!isAuthorized && !isPending && (
+              <TooltipContent>
+                {t(`${NAMESPACES.IAM}:iam_actions_message`)}
+              </TooltipContent>
+            )}
+          </Tooltip>
         </Toggle>
         {!domainResource?.currentState?.authInfoSupported && !isTn && (
           <Text>

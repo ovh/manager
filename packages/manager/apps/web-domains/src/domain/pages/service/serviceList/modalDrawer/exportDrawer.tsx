@@ -14,17 +14,17 @@ import { useTranslation } from 'react-i18next';
 import DomainTreeView from '../treeViews/domainTreeView';
 import ContactTreeView from '../treeViews/contactTreeView';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ExportSelection,
+  DomainColumn,
+  ContactColumn,
+} from '@/domain/types/export.types';
 
 interface ExportDrawerProps {
   readonly isDrawerOpen: boolean;
   readonly onClose: () => void;
   readonly serviceNames: string[];
   readonly onExport: (selection: ExportSelection) => Promise<void>;
-}
-
-interface ExportSelection {
-  domainColumns: string[];
-  contactColumns: string[];
 }
 
 export default function ExportDrawer({
@@ -34,21 +34,24 @@ export default function ExportDrawer({
   onExport,
 }: ExportDrawerProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
-
-  const [selection, setSelection] = useState<ExportSelection>({
+  const defaultSelection: ExportSelection = {
     domainColumns: ['domain', 'domain-utf8', 'expiration', 'dns-server'],
     contactColumns: ['owner'],
-  });
+  };
+  const [selection, setSelection] = useState<ExportSelection>(defaultSelection);
 
   const handleOpenChange = ({ open }: DrawerOpenChangeDetail) => {
-    if (!open) onClose();
+    if (!open) {
+      setSelection(defaultSelection);
+      onClose();
+    }
   };
 
-  const handleDomainSelectionChange = (ids: string[]) => {
+  const handleDomainSelectionChange = (ids: DomainColumn[]) => {
     setSelection((prev) => ({ ...prev, domainColumns: ids }));
   };
 
-  const handleContactSelectionChange = (ids: string[]) => {
+  const handleContactSelectionChange = (ids: ContactColumn[]) => {
     setSelection((prev) => ({ ...prev, contactColumns: ids }));
   };
 

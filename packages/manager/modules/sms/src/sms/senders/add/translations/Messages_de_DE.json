@@ -15,7 +15,7 @@
   "sms_senders_add_sender_label": "Absender: ",
   "sms_senders_add_sender_placeholder": "Absender",
   "sms_senders_add_sender_error_required": "Das Feld „Absender\" ist ein Pflichtfeld.",
-  "sms_senders_add_sender_error_pattern": "Das Feld „Absender\" darf ausschließlich Buchstaben enthalten.",
+  "sms_senders_add_sender_error_pattern": "Das Feld \"Absender\" darf nur aus alphabetischen Zeichen und Ziffern bestehen, die mindestens ein alphabetisches Zeichen enthalten.",
   "sms_senders_add_sender_error_maxlength": "Das Feld „Absender\" darf höchstens 11 Zeichen enthalten.",
   "sms_senders_add_sender_description_label": "Beschreibung: ",
   "sms_senders_add_sender_description_placeholder": "Beschreibung (optional)",
@@ -34,5 +34,6 @@
   "sms_senders_add_senders_success": "Wird hinzugefügt...",
   "sms_senders_add_sender_supporting_document": "Belege",
   "sms_senders_add_sender_supporting_document_help": "Im Rahmen unserer Sicherheitspolitik bitten wir Sie hiermit um einen Nachweis. Dabei handelt es sich standardmäßig um Briefpapier der Firma oder der Marke, einschließlich der Genehmigung eines Verantwortlichen mit Unterschrift und Stempel derselben Firma, ein Identitätsdokument oder, wenn es sich nicht um eine eingetragene Marke handelt, einen Kbis- bzw. Handelsregisterauszug.",
-  "sms_senders_add_sender_supporting_document_info": "Maximal 10 Dateien mit einer maximalen Größe von 10 MB. Die unterstützten Formate sind .pdf, .jpg, .jpeg und .png."
+  "sms_senders_add_sender_supporting_document_info": "Maximal 10 Dateien mit einer maximalen Größe von 10 MB. Die unterstützten Formate sind .pdf, .jpg, .jpeg und .png.",
+  "sms_senders_add_sender_info": "Verwenden Sie nur alphabetische Zeichen und Zahlen mit maximal 11 Zeichen und mindestens einem alphabetischen Zeichen."
 }

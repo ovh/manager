@@ -10,14 +10,14 @@ exports[`ErrorBoundary Tests > should render Error Boundary component when error
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
      
     Oups ! Une erreur est survenue.
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
      

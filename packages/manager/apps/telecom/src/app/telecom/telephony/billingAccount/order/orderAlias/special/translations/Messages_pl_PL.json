@@ -1,0 +1,15 @@
+{
+  "telephony_order_special_title": "Zamów numer specjalny",
+  "telephony_order_special_submit_title": "Zamów numer specjalny",
+  "telephony_order_special_amount_title": "Liczba numerów:",
+  "telephony_order_special_range_title": "Zakres",
+  "telephony_order_special_typology_title": "Typ:",
+  "telephony_order_special_specific_title": "Wybór numeru",
+  "telephony_order_special_retractation_title": "Prawo do odstąpienia od umowy",
+  "telephony_order_special_address_title": "Dane właściciela numeru",
+  "telephony_order_special_zone_tip": "Miejscowość lub kod pocztowy",
+  "telephony_order_special_numbers_error": "Nie można załadować listy wyboru wstępnego numerów.",
+  "telephony_order_special_order_error": "Zamówienie na specjalny(e) numer(y) nie powiodło się. Spróbuj ponownie później.",
+  "telephony_order_special_order_success": "Zamówiony(-e) numer(-y) geograficzny(-e). Prosimy o opłacenie zamówienia.",
+  "telephony_order_special_range_error": "Nie można załadować zakresów numerów."
+}

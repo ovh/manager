@@ -1,6 +1,7 @@
 import {
   OkmsServiceKey,
   OkmsServiceKeyOptions,
+  OkmsServiceKeyWithData,
 } from '@key-management-service/types/okmsServiceKey.type';
 import { useQuery } from '@tanstack/react-query';
 
@@ -19,7 +20,7 @@ import {
 /* Service Key List */
 
 export const useAllOkmsServiceKeys = (okmsId: string) => {
-  return useQuery<{ data: OkmsServiceKey[] }, ApiError>({
+  return useQuery<OkmsServiceKey[], ApiError>({
     queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
     queryFn: () => getListingOkmsServiceKey(okmsId),
     retry: false,
@@ -39,19 +40,30 @@ export const useOkmsServiceKeys = ({ sorting, okmsId }: OkmsServiceKeyOptions) =
   return {
     isLoading: allOKMSLoading,
     error: allOKMSError,
-    data: sortOkmsServiceKey(okms?.data || [], sorting),
+    data: sortOkmsServiceKey(okms || [], sorting),
   };
 };
 
 /* Service Key */
 
-export const useOkmsServiceKeyById = ({ okmsId, keyId }: { okmsId: string; keyId: string }) => {
-  return useQuery<{ data: OkmsServiceKey }, ErrorResponse>({
+type UseOkmsServiceKeyByIdParams = {
+  okmsId: string;
+  keyId: string;
+  enabled?: boolean;
+};
+
+export const useOkmsServiceKeyById = ({
+  okmsId,
+  keyId,
+  enabled = true,
+}: UseOkmsServiceKeyByIdParams) => {
+  return useQuery<OkmsServiceKeyWithData, ErrorResponse>({
     queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
     queryFn: () => getOkmsServiceKeyResource({ okmsId, keyId }),
     retry: false,
     ...{
       keepPreviousData: true,
     },
+    enabled,
   });
 };

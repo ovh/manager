@@ -1,13 +1,26 @@
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext, useMemo } from 'react';
-import { HELP_ROOT, HELP_URL } from './useHelpLink.constants';
+import { HELP_ROOT, HELP_INDEX_PATHS } from './useHelpLink.constants';
+import { HelpPath } from './useHelpLink.type';
 
-export default function useHelpLink() {
+type Props = {
+  paths?: HelpPath;
+}
+export default function useHelpLink({ paths }: Props = {}) {
   const shell = useContext(ShellContext);
   const region = shell.environment.getRegion();
   const { ovhSubsidiary } = shell.environment.getUser();
 
   return useMemo(() => {
-    return HELP_URL[region]?.[ovhSubsidiary] ?? HELP_ROOT;
-  }, [region, ovhSubsidiary]);
+
+    const helpPaths = paths ?? HELP_INDEX_PATHS;
+    const path = helpPaths[region]?.[ovhSubsidiary];
+    if (!path) {
+      return HELP_ROOT;
+    }
+    if (path.startsWith('http')) {
+      return path;
+    }
+    return `${HELP_ROOT}/${path}`;
+  }, [region, ovhSubsidiary, paths]);
 }

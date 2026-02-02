@@ -56,10 +56,6 @@ vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => ({
           planCode: 'databases.mongodb-plan-flavor.hour.consumption',
           pricings: [{ price: 1000, tax: 200 }],
         },
-        {
-          planCode: 'databases.mongodb-plan-flavor.month.consumption',
-          pricings: [{ price: 20000, tax: 4000 }],
-        },
       ],
     },
     isLoading: false,

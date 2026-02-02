@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Country,
   LegalForm,
@@ -14,6 +14,7 @@ import { useMe } from '@/data/hooks/useMe';
 import { urls } from '@/routes/routes.constant';
 import { Company } from '@/types/company';
 import { useLegacySignupRedirection } from '@/hooks/legacySignupRedirection/useLegacySignupRedirection';
+import { isUserLoggedIn } from '@/helpers/flowHelper';
 
 const NEW_ACCOUNT_CREATION_ACCESS_FEATURE = 'account-creation';
 const SMS_CONSENT_FEATURE = 'account:sms-consent';
@@ -24,9 +25,10 @@ type Props = {
 
 export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const { setUser } = useTrackingContext();
-  const { data: me, isFetched, isError, isEnabled } = useMe();
+  const { data: me, isFetched, isError } = useMe();
   const { data: availability } = useFeatureAvailability(
     [NEW_ACCOUNT_CREATION_ACCESS_FEATURE, SMS_CONSENT_FEATURE],
     { enabled: Boolean(isFetched && me) },
@@ -49,10 +51,10 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
 
   useEffect(() => {
-    if (!isEnabled) {
+    if (!isUserLoggedIn() && location.pathname !== urls.settings) {
       navigate(`${urls.settings}?${searchParams.toString()}`);
     }
-  }, [isEnabled]);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!isFetched || isError) {
@@ -70,14 +72,15 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   }, [isFetched, isError]);
 
   useEffect(() => {
-    if (availability) {
-      if (!availability[NEW_ACCOUNT_CREATION_ACCESS_FEATURE]) {
-        redirectToLegacySignup();
-      } else {
-        navigate(`${urls.accountType}?${searchParams.toString()}`);
-      }
+    if (!availability || location.pathname === urls.settings) {
+      return;
     }
-  }, [availability]);
+    if (!availability[NEW_ACCOUNT_CREATION_ACCESS_FEATURE]) {
+      redirectToLegacySignup();
+    } else if (location.pathname === urls.root) {
+      navigate(`${urls.accountType}?${searchParams.toString()}`);
+    }
+  }, [availability, location.pathname]);
 
   // When the legal form is updated, we will call setUser to update the tracking configuration
   useEffect(() => {

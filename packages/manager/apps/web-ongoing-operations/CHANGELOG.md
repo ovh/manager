@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.21.1...@ovh-ux/manager-web-ongoing-operations-app@1.21.2) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.21.0...@ovh-ux/manager-web-ongoing-operations-app@1.21.1) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.20.5...@ovh-ux/manager-web-ongoing-operations-app@1.21.0) (2026-01-28)
+
+
+### Features
+
+* **web-ongoing-operations:** search input is now based on url params ([91c2049](https://github.com/ovh/manager/commit/91c2049ec2ec03f00d3664eb5f891fbb7513ab8d))
+
+
+
+
+
+## [1.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.20.4...@ovh-ux/manager-web-ongoing-operations-app@1.20.5) (2026-01-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4607] ([c0bfd2c](https://github.com/ovh/manager/commit/c0bfd2c4f14214cf60d06a67b168a8d3fdfc72d7))
+* **web-ongoing-operations:** fix translations ([a1786c5](https://github.com/ovh/manager/commit/a1786c5468a074023ecf49106b8eafe8c8a3b2db)), closes [#DCE-132](https://github.com/ovh/manager/issues/DCE-132)
+
+
+
+
+
+## [1.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.20.3...@ovh-ux/manager-web-ongoing-operations-app@1.20.4) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.20.2...@ovh-ux/manager-web-ongoing-operations-app@1.20.3) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.20.1...@ovh-ux/manager-web-ongoing-operations-app@1.20.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.20.0...@ovh-ux/manager-web-ongoing-operations-app@1.20.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.6...@ovh-ux/manager-web-ongoing-operations-app@1.20.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4580] ([b633941](https://github.com/ovh/manager/commit/b6339415fc3ab5c81ccf82e2c766900a666020ec))
+* **web-domains:** fix ongoing operations redirection ([43c969d](https://github.com/ovh/manager/commit/43c969d4aebafab68a6665587a662d4266a4b9b8)), closes [#DCE-139](https://github.com/ovh/manager/issues/DCE-139)
+* **web-domains:** remove jest.Mock to Mock ([55dbf0e](https://github.com/ovh/manager/commit/55dbf0e7c5412c9d995f353c5086e8a3ca4546bf)), closes [#DCE-84](https://github.com/ovh/manager/issues/DCE-84)
+* **web-domains:** remove jest.Mock to Mock ([63da628](https://github.com/ovh/manager/commit/63da628951510aad339a21c420c69211ddefbd60)), closes [#DCE-84](https://github.com/ovh/manager/issues/DCE-84)
+
+
+### Features
+
+* **web-domains:** fix oops page when customer access directly on dns operations ([4a79611](https://github.com/ovh/manager/commit/4a796110aa87903cfbe8b8b14f829f0138ac418d)), closes [#DCE-134](https://github.com/ovh/manager/issues/DCE-134)
+
+
+
+
+
 ## [1.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.19.5...@ovh-ux/manager-web-ongoing-operations-app@1.19.6) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

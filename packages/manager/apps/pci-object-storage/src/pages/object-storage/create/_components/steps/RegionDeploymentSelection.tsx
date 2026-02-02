@@ -116,6 +116,7 @@ export const DeploymentModeSelection = ({
 
           return (
             <CheckboxTile
+              data-testid={`regions-radio-tile-${regionType}`}
               checked={isSelected}
               onCheckedChange={handleSelect(regionType)}
               key={regionType}

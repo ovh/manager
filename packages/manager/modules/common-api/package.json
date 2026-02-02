@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-common-api",
-  "version": "0.6.5",
+  "version": "0.6.7",
   "private": true,
   "description": "OVHcloud manager module common API (order, services, me, ...).",
   "repository": {
@@ -20,17 +20,17 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.21.1",
-    "@ovh-ux/manager-core-test-utils": "^0.11.6",
+    "@ovh-ux/manager-core-api": "^0.21.2",
+    "@ovh-ux/manager-core-test-utils": "^0.11.8",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "msw": "2.1.7"
   },

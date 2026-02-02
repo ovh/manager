@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-network-common",
-  "version": "0.7.7",
+  "version": "0.9.0",
   "private": true,
   "description": "OVHcloud manager module common network",
   "repository": {
@@ -20,8 +20,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
@@ -29,12 +29,12 @@
     "@ovh-ux/manager-react-components": "^2.43.1"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.21.1",
-    "@ovh-ux/manager-core-test-utils": "^0.11.6",
-    "@ovh-ux/manager-module-common-api": "^0.6.5",
-    "@ovh-ux/manager-module-order": "^0.13.3",
+    "@ovh-ux/manager-core-api": "^0.21.2",
+    "@ovh-ux/manager-core-test-utils": "^0.11.8",
+    "@ovh-ux/manager-module-common-api": "^0.6.7",
+    "@ovh-ux/manager-module-order": "^0.14.1",
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "msw": "2.1.7",
     "react-router-dom": "^6.3.0"

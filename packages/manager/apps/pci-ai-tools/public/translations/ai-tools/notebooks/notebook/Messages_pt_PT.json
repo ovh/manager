@@ -30,5 +30,20 @@
   "stopNotebookDescription3": "Iremos restaurar o seu Espaço de trabalho e reafetar recursos de cálculo.",
   "stopNotebookConfirmation": "Quer mesmo interromper o notebook {{name}}?",
   "stopNotebookButtonConfirm": "Parar",
-  "stopNotebookToastSuccessDescription": "O notebook {{name}} foi parado"
+  "stopNotebookToastSuccessDescription": "O notebook {{name}} foi parado",
+  "restartNotebookTitle": "Reiniciar o notebook",
+  "restartNotebookDescription": "Tem a certeza de que quer reiniciar o notebook {{name}}? Depois de reiniciado, estará ativo durante 7 dias suplementares a contar do dia da reinicialização.",
+  "restartNotebookButtonConfirm": "Reiniciar",
+  "restartNotebookToastSuccessDescription": "O notebook {{name}} foi reiniciado",
+  "restartNotebookToastSuccess": "O notebook {{name}} foi reiniciado",
+  "enableAutoRestartTitle": "Ativar a reinicialização automática",
+  "enableAutoRestartDescription": "Tem a certeza de que quer ativar a reinicialização automática para o notebook {{name}}? Uma vez ativada esta opção, o notebook será automaticamente reiniciado a cada 7 dias.",
+  "enableAutoRestartButtonConfirm": "Ativar",
+  "enableAutoRestartToastSuccessDescription": "A reinicialização automática foi ativada para o notebook {{name}}",
+  "disableAutoRestartTitle": "Desativar a reinicialização automática",
+  "disableAutoRestartDescription": "Tem a certeza de que quer desativar a reinicialização automática para o notebook {{name}} ? Uma vez desativada esta opção, o notebook não será reiniciado automaticamente a cada 7 dias. ",
+  "disableAutoRestartButtonConfirm": "Desativar",
+  "disableAutoRestartToastSuccessDescription": "A reinicialização automática foi desativada para o notebook {{name}}",
+  "shutdownLabel": "Interrupção a ",
+  "restartLabel": "Reinicialização a "
 }

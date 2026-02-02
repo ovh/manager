@@ -4,5 +4,7 @@
   "table_column_priority": "Priorität",
   "table_column_date": "Datum",
   "table_column_categories": "Kategorien",
-  "contact_status_warning": "Es scheint ein Problem mit dem Empfangsmittel {{ contactType }} zu geben. Sie können Ihre <anchor>Empfangseinstellungen verwalten</anchor>, um dieses Problem zu beheben."
+  "contact_status_warning": "Es scheint ein Problem mit dem Empfangsmittel {{ contactType }} zu geben. Sie können Ihre <anchor>Empfangseinstellungen verwalten</anchor>, um dieses Problem zu beheben.",
+  "sender_email_banner_text": "Unsere Adressen für den E-Mail-Versand ändern sich. Um die Authentizität unserer Kommunikation zu überprüfen, ",
+  "sender_email_banner_link": "sehen Sie sich unsere Anti-Phishing-Tipps an."
 }

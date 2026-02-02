@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
@@ -8,36 +8,43 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_INPUT_TYPE,
-  ODS_LINK_COLOR,
-  ODS_MESSAGE_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-  OdsRadioChangeEventDetail,
-  OdsRadioCustomEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsCheckbox,
-  OdsFormField,
-  OdsInput,
-  OdsMessage,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  Button,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  ICON_NAME,
+  INPUT_TYPE,
+  Input,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  RadioValueChangeDetail,
+  SPINNER_SIZE,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { IconLinkAlignmentType, LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Link, LinkType } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
   DomainBodyParamsType,
   DomainType,
-  OrganizationType,
   ResourceStatus,
   getDomainsZoneList,
   getDomainsZoneListQueryKey,
@@ -87,14 +94,6 @@ export const DomainForm = ({
     gcTime: 0,
   });
 
-  // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackOrgs, setHackOrgs] = useState<OrganizationType[]>([]);
-  const [hackKeyOrg, setHackKeyOrg] = useState(Date.now());
-
-  useEffect(() => {
-    setHackOrgs(organizations?.filter((org) => org.resourceStatus === ResourceStatus.READY));
-    setHackKeyOrg(Date.now());
-  }, [organizations]);
   const backLinkUrl = useGenerateUrl(backUrl, 'href');
 
   const { data: domainZones, isLoading: isLoadingDomainZones } = useQuery<string[]>({
@@ -105,19 +104,6 @@ export const DomainForm = ({
   const { data: existingDomains, isLoading: isLoadingExistingDomains } = useDomains({
     shouldFetchAll: true,
   });
-
-  // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackDomains, setHackDomains] = useState([]);
-  const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
-
-  useEffect(() => {
-    setHackDomains(
-      (domainZones || []).filter(
-        (zone: string) => !(existingDomains || []).find((d) => zone === d.currentState.name),
-      ),
-    );
-    setHackKeyDomains(Date.now());
-  }, [domainZones, existingDomains]);
 
   const isLoadingDomains = isLoadingDomainZones || isLoadingExistingDomains;
 
@@ -171,8 +157,8 @@ export const DomainForm = ({
   const formValues = watch();
 
   const handleDomainTypeChange = useCallback(
-    (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
-      setDomainType(event.detail.value as DomainOwnership);
+    (detail: RadioValueChangeDetail) => {
+      setDomainType(detail.value as DomainOwnership);
       setConfigurationType(DNS_CONFIG_TYPE.STANDARD);
       resetField('name');
     },
@@ -180,8 +166,8 @@ export const DomainForm = ({
   );
 
   const handleConfigurationTypeChange = useCallback(
-    (event: OdsRadioCustomEvent<OdsRadioChangeEventDetail>) => {
-      setConfigurationType(event.detail.value || '');
+    (detail: RadioValueChangeDetail) => {
+      setConfigurationType(detail.value || '');
     },
     [setConfigurationType],
   );
@@ -222,11 +208,10 @@ export const DomainForm = ({
       data-testid="add-domain-page"
     >
       {backUrl && (
-        <Links
-          iconAlignment={IconLinkAlignmentType.left}
+        <Link
           type={LinkType.back}
           href={backLinkUrl}
-          onClickReturn={() => {
+          onClick={() => {
             trackClick({
               location: PageLocation.page,
               buttonType: ButtonType.button,
@@ -234,120 +219,124 @@ export const DomainForm = ({
               actions: [pageTrackingName, BACK_PREVIOUS_PAGE],
             });
           }}
-          color={ODS_LINK_COLOR.primary}
-          label={t('zimbra_domains_add_domain_cta_back')}
-        />
+        >
+          {t('zimbra_domains_add_domain_cta_back')}
+        </Link>
       )}
-      {subtitle || <Subtitle>{t('common:add_domain')}</Subtitle>}
+      {subtitle || <Text preset={TEXT_PRESET.heading3}>{t('common:add_domain')}</Text>}
       {showOrganization && (
         <Controller
           control={control}
           name="organizationId"
-          render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+          render={({
+            field: { name, value, onChange, onBlur },
+            fieldState: { isDirty, isTouched },
+          }) => (
+            <FormField className="w-full" invalid={(isDirty || isTouched) && !!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('common:organization')} *
-              </label>
+              </FormFieldLabel>
               <div className="flex">
-                <OdsSelect
-                  key={hackKeyOrg}
+                <Select
+                  items={organizations
+                    ?.filter((org) => org.resourceStatus === ResourceStatus.READY)
+                    .map((org) => ({
+                      label: org.targetSpec?.name,
+                      value: org.id,
+                    }))}
                   data-testid="select-organization"
-                  placeholder={t('common:select_organization')}
                   className="mt-2 flex-1"
                   id={name}
+                  value={[value]}
                   name={name}
-                  value={value || organizationId /* @TODO remove when OdsSelect is fixed */}
-                  hasError={!!errors[name]}
-                  isDisabled={isLoading || !!organizationId}
-                  onOdsChange={onChange}
-                  onOdsBlur={onBlur}
+                  invalid={(isDirty || isTouched) && !!errors[name]}
+                  disabled={isLoading || !!organizationId}
+                  onValueChange={(detail) => onChange(detail.value[0])}
+                  onBlur={onBlur}
                 >
-                  {hackOrgs?.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.targetSpec?.name}
-                    </option>
-                  ))}
-                </OdsSelect>
-                {isLoading && (
-                  <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
-                )}
+                  <SelectControl placeholder={t('common:select_organization')} />
+                  <SelectContent />
+                </Select>
+                {isLoading && <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />}
               </div>
-            </OdsFormField>
+              {(isDirty || isTouched) && errors?.[name]?.message && (
+                <FormFieldError>{errors[name].message}</FormFieldError>
+              )}
+            </FormField>
           )}
         />
       )}
       {formValues.organizationId && (
-        <OdsFormField className="w-full gap-4">
-          <div className="flex gap-4 leading-none">
-            <OdsRadio
-              value={DomainOwnership.OVH}
-              inputId={DomainOwnership.OVH}
-              name="radio-ovhDomain"
-              isChecked={domainType === DomainOwnership.OVH}
-              onOdsChange={(value) => handleDomainTypeChange(value)}
-            ></OdsRadio>
-            <label htmlFor={DomainOwnership.OVH}>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('zimbra_domains_add_domain_select_title')}
-              </OdsText>
-            </label>
-          </div>
-          <div className="flex gap-4 leading-none">
-            <OdsRadio
-              value={DomainOwnership.EXTERNAL}
-              inputId={DomainOwnership.EXTERNAL}
-              name="radio-externalDomain"
-              isChecked={domainType === DomainOwnership.EXTERNAL}
-              onOdsChange={(value) => handleDomainTypeChange(value)}
-            ></OdsRadio>
-            <label htmlFor={DomainOwnership.EXTERNAL}>
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                {t('zimbra_domains_add_domain_input_title')}
-              </OdsText>
-            </label>
-          </div>
-        </OdsFormField>
+        <FormField className="w-full gap-4">
+          <RadioGroup value={domainType} onValueChange={handleDomainTypeChange}>
+            <Radio value={DomainOwnership.OVH}>
+              <RadioControl />
+              <RadioLabel>
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {t('zimbra_domains_add_domain_select_title')}
+                </Text>
+              </RadioLabel>
+            </Radio>
+            <Radio value={DomainOwnership.EXTERNAL}>
+              <RadioControl />
+              <RadioLabel>
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {t('zimbra_domains_add_domain_input_title')}
+                </Text>
+              </RadioLabel>
+            </Radio>
+          </RadioGroup>
+        </FormField>
       )}
       {formValues.organizationId && domainType && (
         <Controller
           control={control}
           name="name"
-          render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full" error={errors?.[name]?.message}>
-              <label htmlFor={name} slot="label">
+          render={({
+            field: { name, value, onChange, onBlur },
+            fieldState: { isDirty, isTouched },
+          }) => (
+            <FormField className="w-full" invalid={(isDirty || isTouched) && !!errors?.[name]}>
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('common:domain_name')} *
-              </label>
+              </FormFieldLabel>
               {isOvhDomain ? (
-                <div className="flex">
-                  <OdsSelect
-                    key={hackKeyDomains}
+                <>
+                  <Select
+                    items={domainZones
+                      ?.filter(
+                        (domain: string) =>
+                          !existingDomains?.some(
+                            (existingDomain) => existingDomain.currentState.name === domain,
+                          ),
+                      )
+                      ?.map((domain) => ({
+                        label: domain,
+                        value: domain,
+                      }))}
                     className="flex-1"
                     data-testid="select-domain"
-                    placeholder={t('common:select_domain')}
                     id={name}
                     name={name}
-                    value={value}
-                    hasError={!!errors[name]}
-                    isDisabled={isLoadingDomains}
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
+                    value={[value]}
+                    invalid={(isDirty || isTouched) && !!errors[name]}
+                    disabled={isLoadingDomains}
+                    onValueChange={(detail) => onChange(detail.value[0])}
+                    onBlur={onBlur}
                   >
-                    {hackDomains?.map((domain: string, index: number) => (
-                      <option key={index} value={domain}>
-                        {domain}
-                      </option>
-                    ))}
-                  </OdsSelect>
+                    <SelectControl placeholder={t('common:select_domain')} />
+                    <SelectContent />
+                  </Select>
                   {(isLoadingExistingDomains || isLoadingDomainZones) && (
-                    <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
+                    <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                   )}
-                </div>
+                </>
               ) : (
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
+                <Input
+                  type={INPUT_TYPE.text}
                   value={value}
-                  hasError={!!errors[name]}
-                  onOdsChange={onChange}
+                  invalid={(isDirty || isTouched) && !!errors[name]}
+                  onChange={onChange}
                   onBlur={onBlur}
                   data-testid="input-external-domain"
                   placeholder={t('zimbra_domains_add_domain_input')}
@@ -355,72 +344,73 @@ export const DomainForm = ({
                   id={name}
                 />
               )}
-            </OdsFormField>
+              {(isDirty || isTouched) && errors[name]?.message && (
+                <FormFieldError>{errors[name].message}</FormFieldError>
+              )}
+            </FormField>
           )}
         />
       )}
       {!isOvhDomain && (
-        <OdsMessage isDismissible={false} className="w-full" color={ODS_MESSAGE_COLOR.information}>
-          {t('zimbra_domains_add_domain_warning_modification_domain')}
-        </OdsMessage>
+        <Message dismissible={false} className="w-full" color={MESSAGE_COLOR.information}>
+          <MessageIcon name={ICON_NAME.circleInfo} />
+          <MessageBody>{t('zimbra_domains_add_domain_warning_modification_domain')}</MessageBody>
+        </Message>
       )}
       {isOvhDomain && formValues.name && (
         <>
-          <OdsFormField className="w-full">
-            <label htmlFor="form-field-input" slot="label">
+          <FormField className="w-full">
+            <FormFieldLabel htmlFor="form-field-input" slot="label">
               {t('common:configuration')}
-            </label>
-            <OdsText className="mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-              {t('zimbra_domains_add_domain_configuration_description')}
-            </OdsText>
-            {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map((type) => (
-              <div key={type} className="flex gap-4 leading-none">
-                <OdsRadio
-                  key={type}
-                  inputId={type}
-                  name="domainConfigurationType"
-                  value={type}
-                  isChecked={type === configurationType}
-                  onOdsChange={(value) => handleConfigurationTypeChange(value)}
-                  data-testid={`radio-config-${type}`}
-                ></OdsRadio>
-                <label htmlFor={type} className="flex w-full flex-col">
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t(`zimbra_domains_add_domain_configuration_choice_${type}`)}
-                  </OdsText>
-                  <OdsText preset={ODS_TEXT_PRESET.caption}>
-                    {t(`zimbra_domains_add_domain_configuration_choice_${type}_info`)}
-                  </OdsText>
-                </label>
-              </div>
-            ))}
-          </OdsFormField>
+              <Text className="mb-4" preset={TEXT_PRESET.paragraph}>
+                {t('zimbra_domains_add_domain_configuration_description')}
+              </Text>
+            </FormFieldLabel>
+            <RadioGroup value={configurationType} onValueChange={handleConfigurationTypeChange}>
+              {[DNS_CONFIG_TYPE.STANDARD, DNS_CONFIG_TYPE.EXPERT].map((type) => (
+                <div key={type} className="flex gap-4 leading-none">
+                  <Radio key={type} value={type} data-testid={`radio-config-${type}`}>
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.paragraph}>
+                        {t(`zimbra_domains_add_domain_configuration_choice_${type}`)}
+                      </Text>
+                      <Text preset={TEXT_PRESET.caption}>
+                        {t(`zimbra_domains_add_domain_configuration_choice_${type}_info`)}
+                      </Text>
+                    </RadioLabel>
+                  </Radio>
+                </div>
+              ))}
+            </RadioGroup>
+          </FormField>
           {isExpertConf ? (
-            <OdsFormField className="w-full space-y-4">
-              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            <FormField className="w-full space-y-4">
+              <Text preset={TEXT_PRESET.paragraph}>
                 <Trans
                   t={t}
                   i18nKey="zimbra_domains_add_domain_configuration_expert_title"
                   values={{ domain: formValues.name }}
                 />
-              </OdsText>
+              </Text>
               <Controller
                 control={control}
                 name="autoConfigureAutodiscover"
                 render={({ field: { name, value, onChange } }) => (
                   <div key={name} className="flex gap-4 leading-none">
-                    <OdsCheckbox
-                      inputId={name}
-                      key={name}
-                      isChecked={value}
+                    <Checkbox
+                      checked={value}
+                      id={name}
                       name={name}
-                      onOdsChange={() => onChange(!value)}
-                    ></OdsCheckbox>
-                    <label htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t('zimbra_domains_add_domain_configuration_expert_configure_srv')}
-                      </OdsText>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text preset={TEXT_PRESET.paragraph}>
+                          {t('zimbra_domains_add_domain_configuration_expert_configure_srv')}
+                        </Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
@@ -429,18 +419,19 @@ export const DomainForm = ({
                 name="autoConfigureMX"
                 render={({ field: { name, value, onChange } }) => (
                   <div key={name} className="flex gap-4 leading-none">
-                    <OdsCheckbox
-                      inputId={name}
-                      key={name}
-                      isChecked={value}
+                    <Checkbox
+                      checked={value}
+                      id={name}
                       name={name}
-                      onOdsChange={() => onChange(!value)}
-                    ></OdsCheckbox>
-                    <label htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t('zimbra_domains_add_domain_configuration_expert_configure_mx')}
-                      </OdsText>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text preset={TEXT_PRESET.paragraph}>
+                          {t('zimbra_domains_add_domain_configuration_expert_configure_mx')}
+                        </Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
@@ -449,18 +440,19 @@ export const DomainForm = ({
                 name="autoConfigureSPF"
                 render={({ field: { name, value, onChange } }) => (
                   <div key={name} className="flex gap-4 leading-none">
-                    <OdsCheckbox
-                      inputId={name}
-                      key={name}
-                      isChecked={value}
+                    <Checkbox
+                      checked={value}
+                      id={name}
                       name={name}
-                      onOdsChange={() => onChange(!value)}
-                    ></OdsCheckbox>
-                    <label htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t('zimbra_domains_add_domain_configuration_expert_configure_spf')}
-                      </OdsText>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text preset={TEXT_PRESET.paragraph}>
+                          {t('zimbra_domains_add_domain_configuration_expert_configure_spf')}
+                        </Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
@@ -469,39 +461,44 @@ export const DomainForm = ({
                 name="autoConfigureDKIM"
                 render={({ field: { name, value, onChange } }) => (
                   <div key={name} className="flex gap-4 leading-none">
-                    <OdsCheckbox
-                      inputId={name}
-                      key={name}
-                      isChecked={value}
+                    <Checkbox
+                      checked={value}
+                      id={name}
                       name={name}
-                      onOdsChange={() => onChange(!value)}
-                    ></OdsCheckbox>
-                    <label htmlFor={name}>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t('zimbra_domains_add_domain_configuration_expert_configure_dkim')}
-                      </OdsText>
-                    </label>
+                      onCheckedChange={(detail) => onChange(detail.checked)}
+                    >
+                      <CheckboxControl />
+                      <CheckboxLabel>
+                        <Text preset={TEXT_PRESET.paragraph}>
+                          {t('zimbra_domains_add_domain_configuration_expert_configure_dkim')}
+                        </Text>
+                      </CheckboxLabel>
+                    </Checkbox>
                   </div>
                 )}
               />
-            </OdsFormField>
+            </FormField>
           ) : (
-            <OdsMessage isDismissible={false} className="w-full" color={ODS_MESSAGE_COLOR.warning}>
-              {t('zimbra_domains_add_domain_warning_configuration_standard')}
-            </OdsMessage>
+            <Message dismissible={false} className="w-full" color={MESSAGE_COLOR.warning}>
+              <MessageIcon name={ICON_NAME.triangleExclamation} />
+              <MessageBody>
+                {t('zimbra_domains_add_domain_warning_configuration_standard')}
+              </MessageBody>
+            </Message>
           )}
         </>
       )}
-      <OdsFormField>
-        <OdsButton
+      <FormField>
+        <Button
           data-testid="add-domain-submit-btn"
           type="submit"
-          color={ODS_BUTTON_COLOR.primary}
-          isDisabled={!isDirty || !isValid}
-          isLoading={isSending}
-          label={submitButtonLabel || t(`${NAMESPACES.ACTIONS}:confirm`)}
-        ></OdsButton>
-      </OdsFormField>
+          color={BUTTON_COLOR.primary}
+          disabled={!isDirty || !isValid}
+          loading={isSending}
+        >
+          {submitButtonLabel || t(`${NAMESPACES.ACTIONS}:confirm`)}
+        </Button>
+      </FormField>
     </form>
   );
 };

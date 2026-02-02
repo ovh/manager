@@ -1,10 +1,10 @@
 {
   "signatory_informations": "Informação do signatário",
-  "signatory_informations_description": "Para emitir suas licenças, você deve aceitar o contrato do cliente da Microsoft. Por favor, verifique se as informações abaixo correspondem ao signatário.",
-  "signatory_informations_message": "Ao clicar em \"Confirmar\", você será redirecionado para o site da Microsoft para validar seu pedido. Após a validação, feche a aba e volte para este túnel de configuração.",
-  "signatory_step2_description": "Para entregar seu serviço, confirme que você assinou seu contrato com a Microsoft.",
+  "signatory_informations_description": "Para a emissão das suas licenças, tem de aceitar o contrato de cliente Microsoft. Verifique se as informações abaixo se referem ao signatário.",
+  "signatory_informations_message": "Ao clicar em «Confirmar», será redirecionado para o site da Microsoft, a fim de validar o seu pedido. Após a validação, feche o separador e volte para este túnel de configuração.",
+  "signatory_step2_description": "Para o fornecimento do serviço, confirme se assinou o contrato Microsoft.",
   "signatory_step2_link": "Link para a Microsoft",
-  "signatory_step2_button": "Eu assinei o contrato da Microsoft",
-  "signatory_success_message": "Seu serviço foi entregue com sucesso e agora está disponível!",
-  "signatory_success_link": "Meus primeiros passos com o Microsoft 365"
+  "signatory_step2_button": "Assinei o contrato Microsoft",
+  "signatory_success_message": "O serviço foi entregue com sucesso e já se encontra disponível!",
+  "signatory_success_link": "Primeiros passos com o Microsoft 365"
 }

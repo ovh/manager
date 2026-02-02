@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
 import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
-import { SecretVersionDataField, SecretWithData } from '@secret-manager/types/secret.type';
+import { SecretVersionDataField, SecretVersionWithData } from '@secret-manager/types/secret.type';
 import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
@@ -13,30 +13,35 @@ import z from 'zod';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import {
   DrawerContent,
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { VersionStatusMessage } from './VersionStatusMessage.component';
 
 type CreateVersionDrawerFormProps = {
-  secret: SecretWithData;
   okmsId: string;
   secretPath: string;
+  version?: SecretVersionWithData;
+  currentVersionId?: number;
   secretConfig: SecretSmartConfig;
   onDismiss: () => void;
 };
 
 export const CreateVersionDrawerForm = ({
-  secret,
   okmsId,
   secretPath,
+  version,
+  currentVersionId,
   secretConfig,
   onDismiss,
 }: CreateVersionDrawerFormProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
+  const { trackClick } = useOkmsTracking();
 
   const {
     mutateAsync: createSecretVersion,
@@ -44,7 +49,7 @@ export const CreateVersionDrawerForm = ({
     error: createError,
   } = useCreateSecretVersion();
 
-  const dataAsString = JSON.stringify(secret?.version?.data);
+  const dataAsString = JSON.stringify(version?.data);
 
   const dataSchema = useSecretDataSchema();
   const formSchema = z.object({ data: dataSchema });
@@ -64,13 +69,20 @@ export const CreateVersionDrawerForm = ({
   } = form;
 
   const handleSubmitForm = async (data: FormSchema) => {
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['create', 'version', 'confirm'],
+    });
     try {
       await createSecretVersion({
         okmsId,
         path: decodeSecretPath(secretPath),
         data: JSON.parse(data.data) as SecretVersionDataField,
         cas: addCurrentVersionToCas(
-          secret?.metadata?.currentVersion,
+          // No currentVersionId means there is no version yet, so we use 0 for CAS
+          currentVersionId ?? 0,
           secretConfig.casRequired.value,
         ),
       });
@@ -80,19 +92,30 @@ export const CreateVersionDrawerForm = ({
     }
   };
 
+  const handleDismiss = () => {
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['create', 'version', 'cancel'],
+    });
+    onDismiss();
+  };
+
   return (
     <div className="flex h-full flex-col">
       <DrawerContent>
         <FormProvider {...form}>
           <form
             className="m-1" // give room to display the outline of all inputs
+            onSubmit={handleSubmit(handleSubmitForm)}
           >
             {createError && (
               <OdsMessage color="danger" className="mb-4">
                 {createError?.response?.data?.message || t('add_new_version_error')}
               </OdsMessage>
             )}
-            <VersionStatusMessage state={secret.version.state} />
+            {version && <VersionStatusMessage state={version.state} />}
             <SecretDataFormField name="data" control={control} />
           </form>
         </FormProvider>
@@ -103,7 +126,7 @@ export const CreateVersionDrawerForm = ({
         isPrimaryButtonLoading={isCreating}
         onPrimaryButtonClick={handleSubmit(handleSubmitForm)}
         secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
-        onSecondaryButtonClick={onDismiss}
+        onSecondaryButtonClick={handleDismiss}
       />
     </div>
   );

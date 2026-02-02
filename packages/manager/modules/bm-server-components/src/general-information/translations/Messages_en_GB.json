@@ -40,7 +40,7 @@
   "dedicated_server_dashboard_zone": "Zone",
   "dedicated_server_dashboard_zone_unknown": "Information unavailable",
   "server_configuration_installation_inputs_title": "Specific options:",
-  "server_configuration_installation_inputs_info": "The following questions are specific to the operating system selected ({{t0}})",
+  "server_configuration_installation_inputs_info": "The questions below are specific to the operating system selected ({{t0}}): they are written in English only, for consistency with the API",
   "server_configuration_installation_inputs_item_placeholder": "Insert a value of type {{t0}}",
   "server_configuration_installation_inputs_item_placeholder_example": "For example: {{t0}}",
   "server_configuration_installation_inputs_item_mandatory": "This field is mandatory",

@@ -18,5 +18,9 @@
   "pci_project_flavors_zone_3AZ_tooltip": "Una región 3-AZ incluye tres zonas de disponibilidad situadas en una misma área metropolitana, separadas por algunos kilómetros. Cumple los más altos requisitos de resiliencia, al tiempo que garantiza una latencia extremadamente baja entre los AZ.",
   "pci_project_flavors_desactivated_region": "La localización seleccionada no está activada. Haga clic en «Siguiente» para añadirla a su proyecto Public Cloud y seguir creando su clúster Kubernetes.",
   "pci_projects_project_storages_containers_add_add_region_error": "Se ha producido un error al añadir la localización: {{message}}.",
-  "pci_projects_project_regions_add_region_success": "La localización {{ code }} se ha añadido correctamente al proyecto."
+  "pci_projects_project_regions_add_region_success": "La localización {{ code }} se ha añadido correctamente al proyecto.",
+  "pci_projects_project_filter_by_region": "Filtrar por localización",
+  "pci_projects_project_filter_by_plan_all": "Todos",
+  "pci_projects_project_regions_filter_plan_message": "El plan Free solo está disponible en las regiones 1-AZ, el plan Standard está disponible en todas las regiones 3-AZ y en algunas regiones 1-AZ.",
+  "pci_projects_project_regions_filter_plan_compare": "Comparar planes"
 }

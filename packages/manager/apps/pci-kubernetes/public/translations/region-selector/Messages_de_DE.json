@@ -18,5 +18,9 @@
   "pci_project_flavors_zone_3AZ_tooltip": "Eine 3-AZ-Region besteht aus drei Availability Zones, die sich innerhalb des gleichen Ballungsgebiets befinden, aber einige Kilometer voneinander entfernt sind. Sie erfüllt höchste Anforderungen in puncto Resilienz und gewährleistet gleichzeitig eine extrem niedrige Latenz zwischen den AZs.",
   "pci_project_flavors_desactivated_region": "Der ausgewählte Standort ist nicht aktiviert. Klicken Sie auf „Weiter“, um ihn zu Ihrem Public-Cloud-Projekt hinzuzufügen und die Erstellung Ihres Kubernetes-Clusters fortzusetzen.",
   "pci_projects_project_storages_containers_add_add_region_error": "Beim Hinzufügen des Standorts ist ein Fehler aufgetreten: {{message}}",
-  "pci_projects_project_regions_add_region_success": "Der Standort {{ code }} wurde zu Ihrem Projekt hinzugefügt."
+  "pci_projects_project_regions_add_region_success": "Der Standort {{ code }} wurde zu Ihrem Projekt hinzugefügt.",
+  "pci_projects_project_filter_by_region": "Nach Standort filtern",
+  "pci_projects_project_filter_by_plan_all": "Alle",
+  "pci_projects_project_regions_filter_plan_message": "Der Free Plan ist nur in den 1-AZ-Regionen verfügbar, der Standard Plan ist in allen 3-AZ-Regionen und in einigen 1-AZ-Regionen verfügbar.",
+  "pci_projects_project_regions_filter_plan_compare": "Die Pläne vergleichen"
 }

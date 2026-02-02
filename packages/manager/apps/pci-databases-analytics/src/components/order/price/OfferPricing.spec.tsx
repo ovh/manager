@@ -45,8 +45,8 @@ describe('OfferPricing component', () => {
     render(<OfferPricing prices={mockedServicePrice} />);
     await waitFor(() => {
       expect(screen.getByTestId('table-price-container')).toBeInTheDocument();
-      expect(screen.getByText('pricing_ht 10 €')).toBeInTheDocument();
-      expect(screen.getByText('(pricing_ttc 20 €)')).toBeInTheDocument();
+      expect(screen.getByText('pricing_ht 7 €')).toBeInTheDocument();
+      expect(screen.getByText('(pricing_ttc 15 €)')).toBeInTheDocument();
     });
   });
 });

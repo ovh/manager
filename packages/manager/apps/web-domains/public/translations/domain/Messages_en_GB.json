@@ -154,7 +154,7 @@
   "domain_table_modal_renew_restore_description": "To renew or restore your domain names, you'll need to use the OVHcloud renewal interface (outside of the Web Control Panel)",
   "domain_table_modal_renew_restore_order": "<strong>Click on the button below to access the OVHcloud renewal interface.</strong> A new tab will open, redirecting you to the OVHcloud renewal interface.",
   "domain_table_modal_renew_restore_button": "Restore/Renew ({{count}})",
-  "domain_table_modal_renew_restore_message_info": "Please note that you'll need to wait approximately 2 hours after accepting your payment for the renewal to be implemented for your domain name.",
+  "domain_table_modal_renew_restore_message_info": "Please note that approximately 2 hours are required after payment acceptance for the renewal to take effect on your domain name.",
   "domain_table_export_csv": "Export all",
   "domain_table_export_csv_selection": "Export selection ({{count}})",
   "domain_table_drawer_title": "Export domain names",
@@ -190,7 +190,7 @@
   "domain_tab_general_information_associated_services_hosting_action_activate": "Activate my free hosting plan",
   "domain_tab_general_information_associated_services_hosting_action_order": "Order a web hosting plan",
   "domain_tab_general_information_associated_services_hosting_drawer_title": "Activate your free hosting plan",
-  "domain_tab_general_information_associated_services_hosting_drawer_offer": "Your plan -",
+  "domain_tab_general_information_associated_services_hosting_drawer_offer": "Your plan",
   "domain_tab_general_information_associated_services_hosting_drawer_offer_title": "100MB Free Web Hosting",
   "domain_tab_general_information_associated_services_hosting_drawer_offer_dns": "DNS configuration",
   "domain_tab_general_information_associated_services_hosting_drawer_offer_dns_content": "If you don't select a configuration, your domain name will continue to point to current records, even if your new hosting plan has been activated.",
@@ -337,8 +337,10 @@
   "domain_tab_dsrecords_modal_delete_error_message": "An error occurred while deleting the DS record",
   "domain_table_state_error": "Error",
   "domain_tab_general_information_update_success": "Your update request has been processed.",
-  "domain_tab_dsrecords_message_information_content": "These DS records are provided for informational purposes and are managed automatically by OVHcloud.",
-  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC is currently {{action}}: you can track the progress of your request from the ongoing operations page. <Link />",
-  "domain_tab_dsrecords_message_information_action_in_progress_activate": "of activation",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "of deactivation"
+  "domain_tab_dsrecords_message_information_content": "These DS records are provided for informational purposes only and are managed automatically by OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC is currently running {{action}}: you can monitor the status of your request on the Ongoing Operations page. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "enabling",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "disabling",
+  "domain_tab_general_information_subscription_edit_owner": "Edit holder contact details",
+  "domain_tab_general_information_data_protection_disabled": "The registrar for this domain name does not allow custom management of data display."
 }

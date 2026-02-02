@@ -1,5 +1,5 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu, ActionMenuItemProps, BUTTON_COLOR } from '@ovh-ux/muk';
+import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,8 @@ import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { useNavigate } from 'react-router-dom';
 import { DomainStateEnum } from '@/domain/enum/domainState.enum';
+import { goToUpdateRenewFrequencyParams } from '@/domain/utils/helpers';
+import { BUTTON_COLOR } from '@ovhcloud/ods-react';
 
 interface DatagridColumnActionsProps {
   readonly serviceName: string;
@@ -37,6 +39,8 @@ export default function DatagridColumnActions({
 
   const navigate = useNavigate();
   const { navigateTo } = useNavigation();
+
+  const billingUrl = goToUpdateRenewFrequencyParams(serviceName);
 
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
     'domain',
@@ -79,10 +83,7 @@ export default function DatagridColumnActions({
           'domain_tab_general_information_subscription_handle_renew_frequency',
         ),
         onClick: () =>
-          navigateTo('billing', '/autorenew/services/update', {
-            serviceId: serviceName,
-            serviceType: DOMAIN,
-          }),
+          navigateTo(billingUrl.scope, billingUrl.target, billingUrl.params),
       });
     }
 

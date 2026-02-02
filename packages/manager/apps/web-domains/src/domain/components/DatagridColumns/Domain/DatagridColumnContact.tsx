@@ -2,7 +2,7 @@ import { Link } from '@ovhcloud/ods-react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { useGetDomainContact } from '@/domain/hooks/data/query';
-import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
+import { useGetConnectedNichandleId } from '@/common/hooks/nichandle/useGetConnectedNichandleId';
 
 interface DatagridColumnContactProps {
   readonly contactId: string;
@@ -13,7 +13,8 @@ export default function DatagridColumnContact({
   contactId,
   isOwner = false,
 }: DatagridColumnContactProps) {
-  const { nichandleInformation } = useNichandleInformation();
+  const { nichandle: connectedNichandle } = useGetConnectedNichandleId();
+
   const { data: userAccountUrl } = useNavigationGetUrl([
     'account',
     '/useraccount/infos',
@@ -29,13 +30,13 @@ export default function DatagridColumnContact({
       <DataGridTextCell>
         {domainContact
           ? domainContact.organisationName ||
-            `${domainContact.firstName} ${domainContact.lastName}`
+          `${domainContact.firstName} ${domainContact.lastName}`
           : contactId}
       </DataGridTextCell>
     );
   }
 
-  return nichandleInformation?.nichandle === contactId ? (
+  return connectedNichandle === contactId ? (
     <Link href={userAccountUrl}>{contactId}</Link>
   ) : (
     <DataGridTextCell>{contactId}</DataGridTextCell>

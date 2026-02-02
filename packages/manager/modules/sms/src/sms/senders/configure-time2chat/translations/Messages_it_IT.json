@@ -3,9 +3,9 @@
   "sms_senders_configure_auto_response": "Risposte automatiche",
   "sms_senders_configure_contact_info_title": "1. Se il cliente finale risponde \"contatta\" al messaggio",
   "sms_senders_configure_contact_info_subtitle": "Riceverà immediatamente le seguenti informazioni.",
-  "sms_senders_configure_contact_info_label_commercial_name": "Nome commerciale",
-  "sms_senders_configure_contact_info_label_phonenumber": "Numero di telefono (in formato internazionale 0033 o +33)",
-  "sms_senders_configure_contact_info_label_website": "Sito Internet",
+  "sms_senders_configure_contact_info_label_commercial_name": "Nome della società",
+  "sms_senders_configure_contact_info_label_phonenumber": "Numero della società",
+  "sms_senders_configure_contact_info_label_website": "Sito web della società",
   "sms_senders_configure_kyc_label_company_name": "Ragione sociale",
   "sms_senders_configure_kyc_label_brand_name": "Marchio che utilizza il servizio",
   "sms_senders_configure_kyc_label_primary_use_case": "Caso d'uso principale",
@@ -20,5 +20,6 @@
   "sms_senders_configure_contact_info_update_success": "L'aggiornamento delle informazioni sulle risposte automatiche è stato preso in carico.",
   "sms_senders_configure_auto_response_update_success": "L'aggiornamento del messaggio delle risposte automatiche è stato preso in carico.",
   "sms_senders_configure_kyc_update_success": "L’aggiornamento del KYC è stato preso in carico.",
-  "sms_senders_configure_loading_error": "Si è verificato un errore durante il recupero delle informazioni: {{ error }}"
+  "sms_senders_configure_loading_error": "Si è verificato un errore durante il recupero delle informazioni: {{ error }}",
+  "sms_senders_configure_contact_info_helper_phonenumber": "Inserisci il numero in formato internazionale (0039123456789 o +39123456789)"
 }

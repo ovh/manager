@@ -2,9 +2,10 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { fireEvent, screen } from '@testing-library/dom';
 import { describe, expect, it } from 'vitest';
 
-import { fireEvent, render, screen } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import DeleteRedirectionModal from './Delete.modal';
 

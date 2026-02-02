@@ -31,6 +31,7 @@
   "kubernetes_network_form_load_balancers_subnet_toggler": "Paramètres avancés",
   "kubernetes_network_form_rebuild": "Attention: changer la stratégie de routage sortant implique un redéploiement des noeuds de votre cluster en rolling update.",
   "kubernetes_network_form_notify_users": "Pour déployer Managed Kubernetes Service dans une région avec 3 zones de disponibilité (3-AZ), un sous-réseau avec une gateway attachée est obligatoire. Assurez-vous que votre réseau privé respecte ce prérequis pour garantir un fonctionnement optimal.",
+  "kubernetes_network_form_notify_users_standard": "Pour déployer Managed Kubernetes Service Standard (1-AZ ou 3-AZ), un sous-réseau avec une gateway attachée est obligatoire. Assurez-vous que votre réseau privé respecte ce prérequis pour garantir un fonctionnement optimal.",
   "kubernetes_network_form_no_associated_gateway": "Votre sous-réseau n'a pas de gateway associée, ce qui est nécessaire au bon fonctionnement du cluster. Veuillez en attacher une à ce sous-réseau ou sélectionner un sous-réseau conforme à ce prérequis.",
   "kubernetes_network_form_no_private_network": "Un réseau privé associé est requis pour configurer votre réseau pour votre Kubernetes. Nous vous suggérons de créer un réseau privé si vous n'en avez pas déjà un."
 }

@@ -54,5 +54,6 @@
   "telephony_group_line_softphone_save_logo": "Per attivare il logo, è necessario riavviare l'applicazione.",
   "telephony_group_line_softphone_save_theme": "Per attivare il tema, è necessario riavviare l'applicazione.",
   "telephony_group_billing_dashboard_suspended_info_link": "Clicca qui per aumentare il tuo deposito cauzionale.",
-  "telephony_group_billing_dashboard_suspended_info": "Questo gruppo è attualmente sospeso."
+  "telephony_group_billing_dashboard_suspended_info": "Questo gruppo è attualmente sospeso.",
+  "telephony_group_billing_dashboard_actions_group_order_plan": "Ordina un forfait"
 }

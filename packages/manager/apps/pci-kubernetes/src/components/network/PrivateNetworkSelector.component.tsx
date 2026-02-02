@@ -59,13 +59,15 @@ export const PrivateNetworkSelector = ({
         size={ODS_SELECT_SIZE.md}
         value={privateNetwork?.id}
         onOdsValueChange={({ detail }) => {
-          const network = availablePrivateNetworks.find((net) => net.id === detail.value);
-          setPrivateNetwork(network);
-          onSelect?.(network);
+          const network = availablePrivateNetworks?.find((net) => net.id === detail.value);
+          if (network) {
+            setPrivateNetwork(network);
+            onSelect?.(network);
+          }
         }}
         disabled={disabled || undefined}
       >
-        {availablePrivateNetworks.map((network) => (
+        {availablePrivateNetworks?.map((network) => (
           <OsdsSelectOption key={network.id} value={network.id}>
             {network.name}
           </OsdsSelectOption>

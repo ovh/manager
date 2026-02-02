@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.22.17...@ovh-ux/manager-veeam-backup-app@0.22.18) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.22.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.22.16...@ovh-ux/manager-veeam-backup-app@0.22.17) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.22.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.22.15...@ovh-ux/manager-veeam-backup-app@0.22.16) (2026-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.22.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.22.14...@ovh-ux/manager-veeam-backup-app@0.22.15) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.22.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.22.13...@ovh-ux/manager-veeam-backup-app@0.22.14) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.22.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.22.12...@ovh-ux/manager-veeam-backup-app@0.22.13) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
 ## [0.22.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.22.11...@ovh-ux/manager-veeam-backup-app@0.22.12) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app

@@ -8,7 +8,7 @@ import {
 
 type OkmsByRegion = {
   region: string;
-  okmsMock?: OKMS[];
+  okmsMock: OKMS[];
 };
 
 export const okmsRoubaix1Mock: OKMS = {
@@ -16,6 +16,7 @@ export const okmsRoubaix1Mock: OKMS = {
     displayName: 'kms-roubaix-1',
     id: '5c7d984a-e0c9-4d40-942a-2b6c1a3b11b5',
     urn: 'urn:v1:eu:resource:okms:5c7d984a-e0c9-4d40-942a-2b6c1a3b11b5',
+    state: 'OK',
   },
   id: '2c5463d3-540a-428b-94a8-44ddb61c6e05',
   kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
@@ -34,8 +35,28 @@ export const okmsRoubaix2Mock: OKMS = {
     displayName: 'kms-roubaix-2',
     id: '1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c',
     urn: `urn:v1:eu:resource:okms:1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c`,
+    state: 'OK',
   },
   id: '7f3a82ac-a8d8-4c2a-ab0c-f6e86ddf6a7c',
+  kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
+  kmipRsaEndpoint: 'eu-west-rbx.okms.ovh.net',
+  region: REGION_EU_WEST_RBX,
+  restEndpoint: 'https://eu-west-rbx.okms.ovh.net',
+  swaggerEndpoint: 'https://swagger-eu-west-rbx.okms.ovh.net',
+  kmipObjectCount: 1,
+  serviceKeyCount: 3,
+  secretCount: 2,
+  secretVersionCount: 21,
+};
+
+export const okmsRoubaix3MockExpired: OKMS = {
+  iam: {
+    displayName: 'kms-roubaix-3',
+    id: '1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c',
+    urn: `urn:v1:eu:resource:okms:1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c`,
+    state: 'EXPIRED',
+  },
+  id: '9f2a15ac-a8d8-4c2a-ab0c-a2e86ddf6a9c',
   kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
   kmipRsaEndpoint: 'eu-west-rbx.okms.ovh.net',
   region: REGION_EU_WEST_RBX,
@@ -52,6 +73,7 @@ export const okmsStrasbourg1Mock: OKMS = {
     displayName: 'kms-strasbourg-1',
     id: '331b05a0-2963-4f42-9e85-0474e4a5b265',
     urn: `urn:v1:eu:resource:okms:331b05a0-2963-4f42-9e85-0474e4a5b265`,
+    state: 'OK',
   },
   id: 'bd32045b-6d77-4514-913e-5cb044e3bccc',
   kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
@@ -75,6 +97,6 @@ export const regionWithOneOkms: OkmsByRegion = {
   okmsMock: [okmsStrasbourg1Mock],
 };
 
-export const regionWithoutOkms: OkmsByRegion = { region: REGION_EU_WEST_GRA };
+export const regionWithoutOkms: OkmsByRegion = { region: REGION_EU_WEST_GRA, okmsMock: [] };
 
 export const okmsMock: OKMS[] = [okmsRoubaix1Mock, okmsRoubaix2Mock, okmsStrasbourg1Mock];

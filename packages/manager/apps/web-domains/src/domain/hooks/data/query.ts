@@ -38,6 +38,7 @@ import { getOrderCatalog } from '@/domain/data/api/order';
 import {
   getDomainContact,
   getMXPlan,
+  getRedirectionEmail,
   getZimbra,
   updateServiceOption,
 } from '@/common/data/api/common.api';
@@ -68,11 +69,16 @@ export const useGetDomainResource = (serviceName: string) => {
   };
 };
 
-export const useGetDomainZone = (serviceName: string) => {
+export const useGetDomainZone = (
+  serviceName: string,
+  domainResource: TDomainResource,
+  enabled: boolean = false,
+) => {
   const { data, isLoading, error } = useQuery<TDomainZone>({
     queryKey: ['domain', 'zone', serviceName],
     queryFn: () => getDomainZone(serviceName),
     retry: false,
+    enabled: enabled,
   });
   return {
     domainZone: data,
@@ -256,8 +262,22 @@ export function useEmailService(serviceName: string) {
         // MXplan not found return redirect
       }
 
+      try {
+        const redirection = await getRedirectionEmail(serviceName);
+        if (redirection) {
+          if (redirection.length > 0) {
+            return {
+              serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION,
+              data: redirection[0],
+            };
+          }
+        }
+      } catch (_) {
+        // Redirection not found return nothing
+      }
+
       return {
-        serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION,
+        serviceDetected: AssociatedEmailsServicesEnum.NOTHING,
         data: serviceName,
       };
     },
@@ -317,10 +337,12 @@ export function useOrderFreeHosting() {
 export function useInitialOrderFreeHosting(
   serviceName: string,
   subsidiary: Subsidiary,
+  pricingMode: string,
 ) {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['initial-order-free-hosting', serviceName, subsidiary],
-    queryFn: () => initialOrderFreeHosting(serviceName, subsidiary),
+    queryFn: () =>
+      initialOrderFreeHosting(serviceName, subsidiary, pricingMode),
     enabled: false,
   });
 
@@ -361,7 +383,7 @@ export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
 export const useGetDnssecStatus = (
   resourceCurrentState: TCurrentState,
   resourceTargetSpec: TTargetSpec,
-) => {
+): { dnssecStatus: DnssecStatusEnum; isDnssecStatusLoading: boolean } => {
   if (!resourceCurrentState.dnssecConfiguration?.dnssecSupported) {
     return {
       dnssecStatus: DnssecStatusEnum.NOT_SUPPORTED,

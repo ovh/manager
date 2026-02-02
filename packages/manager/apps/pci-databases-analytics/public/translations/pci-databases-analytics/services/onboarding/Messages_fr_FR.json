@@ -1,17 +1,37 @@
 {
-  "title": "Avec nos bases de données managées, concentrez-vous sur vos applications",
-  "description1": "Exploitez la puissance de vos informations en gardant le contrôle de vos ressources.",
-  "description2": "Choisissez le moteur de base de données qui vous convient parmi une large gamme et déployez-le en quelques minutes. Nous gérons l'infrastructure et l'administration de vos services managés.",
-  "description3": "Vous économisez du temps, de l’argent, et êtes en mesure de vous concentrer sur vos développements et la valeur qu'apporte vos applications à vos clients.",
-  "createServiceButton": "Créer une base de données managée",
-  "cardGuidestitle": "Guides",
-  "cardGuidesDescription": "Documentation des bases de données",
-  "cardGuidesContent": "Retrouvez tous les guides et tutoriels de nos bases de données managées",
-  "cardQuickStartTitle": "Quick-Start",
-  "cardQuickStartDescription": "Déployez votre première base de données",
-  "cardQuickStartContent": "Apprenez comment installer rapidement votre première base de données managée",
-  "cardFreeTierTitle": "Free Tier",
-  "cardFreeTierTescription": "Essayez l'offre MongoDB gratuite",
-  "cardFreeTierContent": "Bénéficiez d'un cluster MongoDB managé 100% gratuit à vie",
-  "cardLink": "En savoir plus"
+  "databases.title": "Développez plutôt vos bases de données, au lieu de vous en soucier.",
+  "databases.subtitle": "Avec nos bases de données entièrement gérées, libérez-vous des contraintes administratives et concentrez-vous sur vos applications et vos produits.",
+  "databases.description1": "SQL, NoSQL ou mise en cache : nous avons la solution. Déployez votre moteur de base de données préféré en quelques minutes grâce à notre gamme de solutions gérées : <strong>PostgreSQL, MySQL, MongoDB et Valkey</strong>.",
+  "databases.description2": "Nos équipes gèrent l’infrastructure, les sauvegardes et la surveillance pour que vous puissiez vous concentrer sur le développement d’applications performantes, et non sur la maintenance des serveurs.",
+  "databases.description3": "De plus, commencez petit et évoluez facilement au fur et à mesure que vos données augmentent, le tout avec une <strong>tarification prévisible</strong>, la <strong>souveraineté des données</strong> et une <strong>haute disponibilité</strong> intégrée.",
+  "databases.createServiceButton": "Créer votre base de données managée",
+
+  "databases.tile.quickStart.title": "Quick Start",
+  "databases.tile.quickStart.content": "Retrouvez tous les guides et tutoriels de nos bases de données managées",
+
+  "databases.tile.documentation.title": "Documentation & tutoriels",
+  "databases.tile.documentation.content": "Apprenez à déployer rapidement votre première base de données managée.",
+
+  "databases.tile.freeTier.title": "MongoDB Free Tier",
+  "databases.tile.freeTier.content": "Bénéficiez d'un premier cluster MongoDB managé gratuit à vie.",
+  "databases.tile.freeTier.cta": "Créer votre instance MongoDB en deux clics",
+
+  "analytics.title": "Transformez vos données en informations exploitables et non en sources de problèmes.",
+  "analytics.subtitle": "Grâce à nos moteurs d'analyse entièrement gérés, libérez-vous des contraintes administratives et concentrez-vous sur vos applications et vos produits.",
+  "analytics.description1": "Analysez, recherchez et surveillez vos données à grande échelle, sans gérer d'infrastructure complexe.",
+  "analytics.description2": "Déployez <strong>Kafka, ClickHouse, OpenSearch et Grafana</strong> en quelques minutes pour optimiser vos flux de données, vos analyses et vos charges de travail d'observabilité.",
+  "analytics.description3": "Des tableaux de bord aux pipelines de données, <strong>gagnez en visibilité et en performance</strong> tout en conservant un <strong>contrôle total et la souveraineté de vos données</strong>.",
+  "analytics.createServiceButton": "Créer votre service d'analytics managé",
+
+  "analytics.tile.quickStart.title": "Quick Start",
+  "analytics.tile.quickStart.content": "Apprenez à déployer rapidement vos pipelines et dashboards managés.",
+
+  "analytics.tile.documentation.title": "Documentation et tutoriels",
+  "analytics.tile.documentation.content": "Retrouvez tous les guides et tutoriels de nos moteurs Analytics managés",
+
+  "analytics.tile.integrations.title": "Intégrations",
+  "analytics.tile.integrations.content": "Connectez-vous facilement avec vos bases de données, Object Storage, ou clusters Kubernetes.",
+  "analytics.tile.integrations.cta": "Essayer maintenant",
+
+  "common.cardLink": "En savoir plus"
 }

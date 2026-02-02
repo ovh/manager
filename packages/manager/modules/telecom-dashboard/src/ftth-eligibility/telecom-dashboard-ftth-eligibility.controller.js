@@ -1,4 +1,4 @@
-import { SUPPORT_URLS } from '../../../../apps/telecom/src/app/app.constants';
+import { SUPPORT_URLS } from './telecom-dashboard.constants';
 import {
   ELIGIBILITY,
   ACCESS_TYPE,

@@ -295,6 +295,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
           data-testid="ods-checkbox"
           input-id={inputId}
           name={name}
+          // eslint-disable-next-line @typescript-eslint/no-base-to-string
           is-checked={internalChecked?.toString()}
           is-disabled={isDisabled?.toString()}
           is-required={(props['is-required'] || props.isRequired)?.toString()}

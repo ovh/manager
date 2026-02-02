@@ -17,5 +17,9 @@
   "tableActionDelete": "Eliminare",
   "deleteTableTooltip": "Il notebook deve essere in stato interrotto",
   "quantumTitle": "Emulators",
-  "qpuTitle": "QPU"
+  "qpuTitle": "QPU",
+  "tableActionRestart": "Riavvia",
+  "shutdownLabel": "Arresto il {{timeout}}",
+  "restartLabel": "Riavvio il {{timeout}}",
+  "timeOutLabel": "Scadenza"
 }

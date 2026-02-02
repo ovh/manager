@@ -23,8 +23,9 @@ import {
   DashboardTileBlockItem,
   ManagerButton,
 } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { useOutletCredential } from '../Credential.page';
@@ -43,7 +44,7 @@ const CredentialGeneralInformations = () => {
   const { okms, credential } = useOutletCredential();
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const { filename, href: downloadHref, isDisabled } = getDownloadCredentialParameters(credential);
 
@@ -122,7 +123,7 @@ const CredentialGeneralInformations = () => {
                 location: PageLocation.page,
                 buttonType: ButtonType.button,
                 actionType: 'action',
-                actions: ['download_access_certificate'],
+                actions: ['download', 'credential'],
               })
             }
             label={t('key_management_service_credential_download')}
@@ -140,7 +141,7 @@ const CredentialGeneralInformations = () => {
               location: PageLocation.page,
               buttonType: ButtonType.button,
               actionType: 'action',
-              actions: ['delete_access_certificate'],
+              actions: ['delete', 'credential'],
             });
             navigate(KMS_ROUTES_URIS.credentialDelete);
           }}

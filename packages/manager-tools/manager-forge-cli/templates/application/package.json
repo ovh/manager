@@ -12,8 +12,8 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
@@ -46,12 +46,12 @@
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "*",
-    "@tanstack/react-query-devtools": "5.90.2",
     "@tailwindcss/postcss": "^4.1.17",
+    "@tanstack/react-query-devtools": "5.90.2",
+    "msw": "2.12.1",
     "typescript": "5.9.3",
     "vite": "7.2.2",
-    "vitest": "3.2.4",
-    "msw": "2.12.1"
+    "vitest": "3.2.4"
   },
   "regions": [
     "{{regions}}"

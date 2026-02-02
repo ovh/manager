@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import TEST_IDS from '@/utils/testIds.constants';
@@ -21,7 +22,7 @@ export default function EditableTileItem({
   iamActions,
   onClickEdit,
 }: EditableTileItemProps) {
-  const { t } = useTranslation('dashboard');
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
 
   return (
     <div className="flex justify-between items-center">
@@ -40,7 +41,7 @@ export default function EditableTileItem({
             label=""
             isDisabled={isDisabled}
             id={`editButton-${name || value}`}
-            aria-label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
+            aria-label={tActions('modify')}
           />
         </Suspense>
       </div>

@@ -30,5 +30,20 @@
   "stopNotebookDescription3": "Lo Spazio di lavoro verrà ripristinato e le risorse di calcolo ridistribuite.",
   "stopNotebookConfirmation": "Vuoi davvero arrestare il notebook {{name}}?",
   "stopNotebookButtonConfirm": "Arrestare",
-  "stopNotebookToastSuccessDescription": "Il notebook {{name}} è stato arrestato"
+  "stopNotebookToastSuccessDescription": "Il notebook {{name}} è stato arrestato",
+  "restartNotebookTitle": "Riavviare il notebook",
+  "restartNotebookDescription": "Vuoi davvero riavviare il notebook {{name}}? Una volta riavviato, resterà attivo per altri 7 giorni a partire dal giorno del riavvio.",
+  "restartNotebookButtonConfirm": "Riavvia",
+  "restartNotebookToastSuccessDescription": "Il notebook {{name}} è stato riavviato",
+  "restartNotebookToastSuccess": "Il notebook {{name}} è stato riavviato",
+  "enableAutoRestartTitle": "Attivare il riavvio automatico",
+  "enableAutoRestartDescription": "Vuoi davvero attivare il riavvio automatico per il notebook {{name}}? Una volta attivata questa opzione, il notebook si riavvierà automaticamente ogni 7 giorni.",
+  "enableAutoRestartButtonConfirm": "Attivare",
+  "enableAutoRestartToastSuccessDescription": "Il riavvio automatico è stato attivato per il notebook {{name}}",
+  "disableAutoRestartTitle": "Disattivare il riavvio automatico",
+  "disableAutoRestartDescription": "Vuoi davvero disattivare il riavvio automatico per il notebook {{name}}? Una volta disattivata questa opzione, il notebook non si riavvierà più automaticamente ogni 7 giorni. ",
+  "disableAutoRestartButtonConfirm": "Disattivare",
+  "disableAutoRestartToastSuccessDescription": "Il riavvio automatico è stato disattivato per il notebook {{name}}",
+  "shutdownLabel": "Arresto il ",
+  "restartLabel": "Riavvio il "
 }

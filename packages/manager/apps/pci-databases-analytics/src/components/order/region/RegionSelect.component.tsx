@@ -115,7 +115,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                   key={continent}
                   value={`${index}`}
                   className={cn(
-                    'bg-transparent shadow-none text-primary-[#e6f5fc] border-b-2 rounded-none font-semibold border-transparent text-primary',
+                    'bg-transparent shadow-none text-primary-[#e6f5fc] border-solid border-b-2 rounded-none font-semibold border-transparent text-primary',
                     'w-full px-6 flex gap-2 items-center',
                     'data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-primary',
                   )}

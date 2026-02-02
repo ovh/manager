@@ -1,0 +1,15 @@
+{
+  "telephony_order_special_title": "Sondernummer bestellen",
+  "telephony_order_special_submit_title": "Sondernummer bestellen",
+  "telephony_order_special_amount_title": "Anzahl der Nummern:",
+  "telephony_order_special_range_title": "Bereich:",
+  "telephony_order_special_typology_title": "Typologie:",
+  "telephony_order_special_specific_title": "Wahl der Rufnummer",
+  "telephony_order_special_retractation_title": "Widerrufsrecht",
+  "telephony_order_special_address_title": "Kontaktdaten des Nummerninhabers",
+  "telephony_order_special_zone_tip": "Ort oder Postleitzahl",
+  "telephony_order_special_numbers_error": "Die Liste der Nummernvoreinstellungen kann nicht geladen werden.",
+  "telephony_order_special_order_error": "Die Bestellung der Sondernummer(n) ist fehlgeschlagen. Bitte versuchen Sie es später noch einmal.",
+  "telephony_order_special_order_success": "Geografische Nummer(n), die bestellt wurden. Bitte begleichen Sie Ihre Bestellung.",
+  "telephony_order_special_range_error": "Die Nummernbereiche können nicht geladen werden."
+}

@@ -74,7 +74,7 @@ const Rclone = () => {
     <RouteModal isLoading={!userId}>
       <DialogContent variant="information">
         <DialogHeader>
-          <DialogTitle data-testid="get-user-secret-modal">
+          <DialogTitle data-testid="rclone-modal">
             {t('rcloneTitle')}
           </DialogTitle>
         </DialogHeader>
@@ -140,9 +140,12 @@ const Rclone = () => {
                     onValueChange={field.onChange}
                     modal
                   >
-                    <ComboboxTrigger ref={field.ref} disabled={field.disabled}>
+                    <ComboboxTrigger
+                      ref={field.ref}
+                      disabled={field.disabled}
+                      data-testid="select-region-trigger"
+                    >
                       <ComboboxValue
-                        data-testid="select-region-button"
                         placeholder={t('regionPlaceholder')}
                         value={
                           field.value && (
@@ -200,7 +203,7 @@ const Rclone = () => {
           </DialogClose>
           <Button
             type="submit"
-            data-testid="s3-policy-submit-button"
+            data-testid="rclone-submit-button"
             form="download-rclone"
           >
             {t('rcloneButtonConfirm')}

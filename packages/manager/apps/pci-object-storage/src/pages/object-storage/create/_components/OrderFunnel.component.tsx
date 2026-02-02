@@ -265,7 +265,7 @@ const OrderFunnel = ({
                     title={t('labelUser')}
                     description={t('descriptionUser')}
                   >
-                    <FormField name="user" form={form}>
+                    <FormField name="user" form={form} data-testid="user-field">
                       {(field) => <UserStep users={users} {...field} />}
                     </FormField>
                   </OrderSection>

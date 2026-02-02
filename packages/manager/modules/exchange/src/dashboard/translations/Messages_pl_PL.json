@@ -1382,8 +1382,8 @@
   "exchange_ACTION_configure_help_putinjunk_text": "Automatycznie przenosi do kosza e-maile oznaczone jako SPAM.",
   "exchange_ACTION_display_pst_check_existing_export": "Trwa weryfikowanie, czy wykonywany jest eksport.",
   "exchange_ACTION_display_pst_wait_label": "Eksport do pliku .pst może zająć kilka godzin. W każdej chwili będziesz mógł sprawdzić postęp operacji (możesz zamknąć to okno i później do niego powrócić).",
-  "exchange_ACTION_display_pst_get_file": "Twój plik jest już dostępny. Możesz go pobrać na tej stronie. UWAGA: adres tej jest ważny tylko przez 30 minut.",
-  "exchange_ACTION_display_pst_start": "Rozpocznij eksportowanie",
+  "exchange_ACTION_display_pst_get_file": "Twoje konto <strong>{{currentEmail}}</strong> jest teraz dostępne w formacie .pst.",
+  "exchange_ACTION_display_pst_start": "Pobierz",
   "exchange_ACTION_display_pst_progress": "Trwa eksport: wykonano {0}%",
   "exchange_ACTION_display_pst_export_done": "Eksport pliku .pst został zakończony. Możesz pobrać plik.",
   "exchange_ACTION_display_pst_genlink": "Generowanie linka",
@@ -1393,9 +1393,9 @@
   "exchange_ACTION_display_pst_retry": "Spróbuj ponownie",
   "exchange_ACTION_display_pst_error": "Eksport do pliku .pst nie powiódł się. Spróbuj ponownie później.",
   "exchange_ACTION_display_pst_already_exist": "Plik .pst istnieje już dla tego konta e-mail:",
-  "exchange_ACTION_display_pst_ask_generate_new": "Czy chcesz wykonać nowy eksport .pst?",
-  "exchange_ACTION_display_pst_warning_erase": "Uwaga: Ta operacja spowoduje zastąpienie już istniejącego pliku.",
-  "exchange_ACTION_add_pst_title": "Eksport do .pst",
+  "exchange_ACTION_display_pst_ask_generate_new": "Czy chcesz ponownie uruchomić eksport Twojego konta?",
+  "exchange_ACTION_display_pst_warning_erase": "Ta operacja spowoduje <strong>automatyczne usunięcie</strong> ostatniego pliku .pst.",
+  "exchange_ACTION_add_pst_title": "Eksportuj w formacie .pst",
   "exchange_action_order_space_disk_title": "Zamów dodatkową przestrzeń",
   "exchange_action_order_space_disk_intro": "Możesz zamówić dodatkową przestrzeń dyskową",
   "exchange_action_order_space_disk_price": "Cena netto:",
@@ -1687,5 +1687,7 @@
   "exchange_reset_mfa_success": "Dwuetapowa weryfikacja została zresetowana.",
   "exchange_mfa_error": "Wystąpił błąd: {{error}}",
   "exchange_delete_mfa_success": "Weryfikacja dwuetapowa za pomocą wiadomości SMS została usunięta.",
-  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}"
+  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}",
+  "exchange_ACTION_display_pst_message_info": "Plik będzie <strong>dostępny do pobrania do {{expirationDate}} do {{expirationHour}}</strong>. Po tym czasie plik zostanie automatycznie usunięty.",
+  "exchange_ACTION_display_pst_ask_generate_new_link": "Uruchom nowy eksport"
 }

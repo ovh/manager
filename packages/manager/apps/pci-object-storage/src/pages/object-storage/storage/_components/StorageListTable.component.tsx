@@ -49,7 +49,7 @@ export default function StoragesList({ storages }: StoragesListProps) {
       <DataTable.Header>
         <DataTable.Action>
           <Button
-            data-testid="create-service-button"
+            data-testid="create-storage-button"
             onClick={() => {
               navigate('./new');
             }}

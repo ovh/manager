@@ -606,7 +606,7 @@
   "logs_index_col_description": "Description",
   "logs_index_col_free_space": "Space available",
   "logs_index_col_shared": "Shared index",
-  "logs_index_col_nb_shard": "Partitions",
+  "logs_index_col_nb_shard": "Shards",
   "logs_index_access_osd_webui": "Access your OpenSearch Dashboards instance",
   "logs_index_access_os_api": "OpenSearch access",
   "logs_modal_delete_title": "Delete index",
@@ -801,5 +801,7 @@
   "streams_subscriptions_resource_products_webhosting": "Web Hosting",
   "streams_subscriptions_resource_products_account-api": "OVHcloud &amp; OVHcloud API Control Panel",
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Logs Audit",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "logs_roles_enable_iam": "Enable OVHcloud IAM",
+  "logs_iam_policies_get_error": "An error occurred while loading the IAM policies."
 }

@@ -3,13 +3,14 @@
   "sms_order_time2chat_description": "Preencha as informações abaixo para que possamos processar a sua encomenda.",
   "sms_order_time2chat_action_order": "Continuar",
   "sms_order_time2chat_action_cancel": "Anular",
-  "sms_order_time2chat_label_phonenumber": "Número de telefone (no formato internacional 00351 ou +351)",
-  "sms_order_time2chat_label_website": "Website",
-  "sms_order_time2chat_label_name": "Nome",
+  "sms_order_time2chat_label_phonenumber": "Número da empresa",
+  "sms_order_time2chat_label_website": "Website da empresa",
+  "sms_order_time2chat_label_name": "Nome da empresa",
   "sms_order_time2chat_label_company_name": "Denominação social",
   "sms_order_time2chat_label_brand_name": "Marca que utiliza o serviço",
   "sms_order_time2chat_label_primary_use_case": "Caso de uso principal",
   "sms_order_time2chat_label_operational_contact_name": "Nome do contacto",
   "sms_order_time2chat_label_operational_contact_email": "E-mail do contacto",
-  "sms_order_time2chat_message_error": "Ocorreu um erro: {{error}}"
+  "sms_order_time2chat_message_error": "Ocorreu um erro: {{error}}",
+  "sms_order_time2chat_helper_phonenumber": "Introduza o número no formato internacional (0033123456789 ou +33123456789)"
 }

@@ -42,11 +42,7 @@
   "summaryFieldIps_zero": "No se ha configurado ninguna IP",
   "summaryFieldIps_one": "{{count}} IP configurada",
   "summaryFieldIps_other": "{{count}} IP configuradas",
-  "priceHourly": "Hora",
-  "priceMonthly": "Mensual",
   "price": "Precio",
-  "priceUnitHourly": "/hora",
-  "priceUnitMonthly": "/mes",
   "orderButton": "Contratar",
   "apiAndTerraformButton": "Equivalente API y Terraform",
   "errorNetworkFieldMissingId": "Introduzca una red y una subred, o seleccione un tipo de red pública.",
@@ -101,5 +97,5 @@
   "summaryFieldSourceType-pit": "Fecha concreta",
   "summaryFieldSourceType-backup": "Backup",
   "summaryFieldSourceBackupNone": "Ninguno",
-  "pciDatabasesAddCommandDialogAPICta": "Haz clic <anchor>aquí</anchor> para acceder a la consola API de OVHCloud."
+  "pciDatabasesAddCommandDialogAPICta": "Haga clic <anchor>aquí</anchor> para acceder a la consola de la API de OVHcloud."
 }

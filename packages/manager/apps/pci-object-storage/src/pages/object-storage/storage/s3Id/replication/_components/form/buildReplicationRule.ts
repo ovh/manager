@@ -1,4 +1,3 @@
-import { transformTagsToApi } from '../../../../../../../lib/transformTagsHelper';
 import storages from '@/types/Storages';
 import { ReplicationFormValues } from './useReplicationForm.hook';
 
@@ -18,11 +17,16 @@ export const buildReplicationRule = (
     destination,
   } = formValues;
 
-  const transformedTags = transformTagsToApi(tags);
+  const filteredTags = (tags || [])
+    .filter((tag) => tag.key.trim() !== '')
+    .reduce(
+      (acc, { key, value }) => ({ ...acc, [key]: value }),
+      {} as Record<string, string>,
+    );
 
   const hasPrefix = isReplicationApplicationLimited && prefix;
   const hasTags =
-    isReplicationApplicationLimited && Object.keys(transformedTags).length > 0;
+    isReplicationApplicationLimited && Object.keys(filteredTags).length > 0;
   const hasFilter = hasPrefix || hasTags;
 
   return {
@@ -40,7 +44,7 @@ export const buildReplicationRule = (
     ...(hasFilter && {
       filter: {
         ...(hasPrefix && { prefix }),
-        ...(hasTags && { tags: transformedTags }),
+        ...(hasTags && { tags: filteredTags }),
       },
     }),
   };

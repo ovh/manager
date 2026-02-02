@@ -24,14 +24,10 @@ import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
 
 import Loading from '@/common/components/loading/Loading';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
@@ -58,7 +54,7 @@ export default function CreateKey() {
     isLoading: serviceKeyReferenceIsLoading,
     error: serviceKeyReferenceError,
     refetch: refetchServiceKeyReference,
-  } = useOkmsServiceKeyReference(okms?.data?.region || '');
+  } = useOkmsServiceKeyReference(okms?.region || '');
 
   const [key, setKey] = React.useState<OkmsServiceKeyReference | undefined>();
   const [keyType, setKeyType] = React.useState<OkmsKeyTypes | undefined>();
@@ -69,7 +65,7 @@ export default function CreateKey() {
   const [serviceKeyNameError, setServiceKeyNameError] = useState<
     ServiceKeyNameErrors | undefined
   >();
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick, trackPage } = useOkmsTracking();
   const { createKmsServiceKey, isPending } = useCreateOkmsServiceKey({
     okmsId,
   });
@@ -77,7 +73,7 @@ export default function CreateKey() {
   // Set default key reference if available
   useEffect(() => {
     if (!serviceKeyReferenceIsLoading && !key) {
-      servicekeyReference?.data?.forEach((reference) => {
+      servicekeyReference?.forEach((reference) => {
         if (reference.default) {
           setKey(reference);
           setKeyType(reference.type);
@@ -114,12 +110,12 @@ export default function CreateKey() {
       navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'create_encryption_key',
+        pageTags: ['create', 'service-key'],
       });
     } catch {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'create_encryption_key',
+        pageTags: ['create', 'service-key'],
       });
     }
   };
@@ -127,7 +123,7 @@ export default function CreateKey() {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms?.data?.iam?.displayName || okmsId,
+      label: okms?.iam?.displayName || okmsId,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -193,7 +189,7 @@ export default function CreateKey() {
                 keyCurve={keyCurve}
                 keySize={keySize}
                 keyType={keyType}
-                region={okms?.data?.region || ''}
+                region={okms?.region || ''}
                 setServiceKey={setKey}
                 setKeyCurve={setKeyCurve}
                 setKeySize={setKeySize}

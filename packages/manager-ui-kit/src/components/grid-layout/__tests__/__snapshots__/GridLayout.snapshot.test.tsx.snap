@@ -28,13 +28,13 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
           class=flex flex-col w-full
         >
           <h4
-            class=_text--heading-4
+            class=_text _text--heading-4
             data-ods=text
           >
             General Informations
           </h4>
           <hr
-            class=_divider _divider--primary _divider--24 w-full
+            class=_divider _divider--24 w-full
             data-ods=divider
           />
           <dl
@@ -50,7 +50,7 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
                   class=flex items-center gap-1 text-[var(--ods-color-text)]
                 >
                   <span
-                    class=_text--span font-bold
+                    class=_text _text--span font-bold
                     data-ods=text
                   >
                     Sample Term
@@ -61,13 +61,13 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
                 class=m-0
               >
                 <p
-                  class=_text--paragraph
+                  class=_text _text--paragraph
                   data-ods=text
                 >
                   Sample Description
                 </p>
                 <hr
-                  class=_divider _divider--primary _divider--24
+                  class=_divider _divider--24
                   data-ods=divider
                 />
               </dd>
@@ -83,13 +83,13 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
           class=flex flex-col w-full
         >
           <h4
-            class=_text--heading-4
+            class=_text _text--heading-4
             data-ods=text
           >
             Second child
           </h4>
           <hr
-            class=_divider _divider--primary _divider--24 w-full
+            class=_divider _divider--24 w-full
             data-ods=divider
           />
           <dl
@@ -105,7 +105,7 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
                   class=flex items-center gap-1 text-[var(--ods-color-text)]
                 >
                   <span
-                    class=_text--span font-bold
+                    class=_text _text--span font-bold
                     data-ods=text
                   >
                     Second child
@@ -116,13 +116,13 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
                 class=m-0
               >
                 <p
-                  class=_text--paragraph
+                  class=_text _text--paragraph
                   data-ods=text
                 >
                   Sample Description
                 </p>
                 <hr
-                  class=_divider _divider--primary _divider--24
+                  class=_divider _divider--24
                   data-ods=divider
                 />
               </dd>
@@ -138,13 +138,13 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
           class=flex flex-col w-full
         >
           <h4
-            class=_text--heading-4
+            class=_text _text--heading-4
             data-ods=text
           >
             Third child
           </h4>
           <hr
-            class=_divider _divider--primary _divider--24 w-full
+            class=_divider _divider--24 w-full
             data-ods=divider
           />
           <dl
@@ -160,7 +160,7 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
                   class=flex items-center gap-1 text-[var(--ods-color-text)]
                 >
                   <span
-                    class=_text--span font-bold
+                    class=_text _text--span font-bold
                     data-ods=text
                   >
                     Third child
@@ -171,13 +171,13 @@ exports[`GridLayout Snapshot Tests > should render grid layout with children 1`]
                 class=m-0
               >
                 <p
-                  class=_text--paragraph
+                  class=_text _text--paragraph
                   data-ods=text
                 >
                   Sample Description
                 </p>
                 <hr
-                  class=_divider _divider--primary _divider--24
+                  class=_divider _divider--24
                   data-ods=divider
                 />
               </dd>

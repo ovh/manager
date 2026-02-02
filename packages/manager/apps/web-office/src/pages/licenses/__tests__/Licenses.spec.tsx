@@ -3,12 +3,20 @@ import { describe, expect, it } from 'vitest';
 
 import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import dashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
+import type { UseFeatureAvailabilityResult } from '@ovh-ux/manager-module-common-api';
 
 import { renderWithRouter } from '@/utils/Test.provider';
 
 import Licenses from '../Licenses.page';
 
 describe('Licenses Page', () => {
+  vi.mocked(useFeatureAvailability).mockReturnValue({
+    data: {
+      'web-office:order': true,
+    },
+    isLoading: false,
+  } as unknown as UseFeatureAvailabilityResult<Record<string, boolean>>);
   it('should render page with content', async () => {
     const { getByTestId } = renderWithRouter(<Licenses />);
 

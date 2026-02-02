@@ -158,7 +158,8 @@ export type StatusDetails = {
 export type ServiceType =
   | { serviceDetected: AssociatedEmailsServicesEnum.ZIMBRA; data: string }
   | { serviceDetected: AssociatedEmailsServicesEnum.MXPLAN; data: string }
-  | { serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION; data: string };
+  | { serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION; data: string }
+  | { serviceDetected: AssociatedEmailsServicesEnum.NOTHING; data: string };
 
 export enum DnssecStateEnum {
   DISABLED = 'disabled',

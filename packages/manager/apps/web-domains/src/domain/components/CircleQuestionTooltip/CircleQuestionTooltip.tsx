@@ -21,6 +21,7 @@ export default function CircleQuestionTooltip({
         <Icon
           name={ICON_NAME.circleQuestion}
           className="text-[--ods-color-primary-500] pl-3"
+          data-testid={`question-circle-icon-${translatedMessage}`}
         />
       </TooltipTrigger>
       <TooltipContent>

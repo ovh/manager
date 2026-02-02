@@ -246,3 +246,9 @@ export type VcsWebhookUrls = {
 export type SshKey = {
   publicKey: string;
 };
+
+export type AttachedDomainProps = {
+  domain: string;
+  ipLocation?: HostingCountries;
+  ownLog?: string | null;
+};

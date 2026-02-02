@@ -55,5 +55,9 @@
   "totalPrice": "Total",
   "notePriceDesc": "QPU time is billed per second. You will only be billed for the time you actually use the QPU.",
   "pricingLabel": "Price",
-  "notebookPrice": "Notebook Resources"
+  "notebookPrice": "Notebook Resources",
+  "defaultAutoRestartInfo": "The notebook will automatically stop after 7 days. Your configuration and data will be saved.",
+  "fieldTimeOutLabel": "Expiry",
+  "fieldAutoRestartLabel": "Automatic restart",
+  "fieldAutoRestartDescription": "If enabled, the notebook will automatically restart every 7 days. If disabled, the notebook will automatically stop after 7 days. In both cases, your configuration and data will be saved."
 }

@@ -3,9 +3,9 @@
   "sms_senders_configure_auto_response": "Automatische Antworten",
   "sms_senders_configure_contact_info_title": "1. Antwortet der Endkunde mit „Kontakt“ auf die Nachricht,",
   "sms_senders_configure_contact_info_subtitle": "erhält er unverzüglich die folgenden Informationen.",
-  "sms_senders_configure_contact_info_label_commercial_name": "Kommerzieller Name",
-  "sms_senders_configure_contact_info_label_phonenumber": "Telefonnummer (im internationalen Format 0033 oder +33)",
-  "sms_senders_configure_contact_info_label_website": "Website",
+  "sms_senders_configure_contact_info_label_commercial_name": "Name des Unternehmens",
+  "sms_senders_configure_contact_info_label_phonenumber": "Unternehmensnummer",
+  "sms_senders_configure_contact_info_label_website": "Website des Unternehmens",
   "sms_senders_configure_kyc_label_company_name": "Firmenname",
   "sms_senders_configure_kyc_label_brand_name": "Marke, die den Dienst verwendet",
   "sms_senders_configure_kyc_label_primary_use_case": "Primärer Use Case",
@@ -20,5 +20,6 @@
   "sms_senders_configure_contact_info_update_success": "Die Aktualisierung der Informationen für automatische Antworten wurde registriert.",
   "sms_senders_configure_auto_response_update_success": "Die Aktualisierung der Nachricht für automatische Antworten wurde registriert.",
   "sms_senders_configure_kyc_update_success": "Die KYC-Aktualisierung wurde registriert.",
-  "sms_senders_configure_loading_error": "Beim Abrufen der Informationen ist ein Fehler aufgetreten. {{ error }}"
+  "sms_senders_configure_loading_error": "Beim Abrufen der Informationen ist ein Fehler aufgetreten. {{ error }}",
+  "sms_senders_configure_contact_info_helper_phonenumber": "Geben Sie die Nummer im internationalen Format ein (0033123456789 oder +33123456789)."
 }

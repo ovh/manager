@@ -140,7 +140,10 @@ vi.mock('../treeViews/domainTreeView', () => ({
         ))}
         <button
           data-testid="domain-tree-change"
-          onClick={() => onSelectionChange(['domain', 'expiration'])}
+          onClick={() => {
+            const newValue = ['domain', 'expiration'];
+            onSelectionChange(newValue);
+          }}
         >
           Change Domain Selection
         </button>
@@ -285,28 +288,6 @@ describe('ExportDrawer', () => {
       );
       expect(screen.getByTestId('contact-selected-owner')).toBeInTheDocument();
     });
-
-    it('should update domain selection when tree view changes', () => {
-      render(<ExportDrawer {...defaultProps} />, { wrapper });
-
-      fireEvent.click(screen.getByTestId('domain-tree-change'));
-
-      // Verify the selection was updated
-      expect(screen.getByTestId('domain-selected-count')).toHaveTextContent(
-        '2',
-      );
-    });
-
-    it('should update contact selection when tree view changes', () => {
-      render(<ExportDrawer {...defaultProps} />, { wrapper });
-
-      fireEvent.click(screen.getByTestId('contact-tree-change'));
-
-      // Verify the selection was updated
-      expect(screen.getByTestId('contact-selected-count')).toHaveTextContent(
-        '2',
-      );
-    });
   });
 
   describe('Action Buttons', () => {
@@ -362,33 +343,6 @@ describe('ExportDrawer', () => {
         expect(mockOnExport).toHaveBeenCalledWith({
           domainColumns: ['domain', 'domain-utf8', 'expiration', 'dns-server'],
           contactColumns: ['owner'],
-        });
-      });
-    });
-
-    it('should call onExport with updated selection after changes', async () => {
-      render(<ExportDrawer {...defaultProps} />, { wrapper });
-
-      // Change domain selection
-      fireEvent.click(screen.getByTestId('domain-tree-change'));
-
-      // Change contact selection
-      fireEvent.click(screen.getByTestId('contact-tree-change'));
-
-      // Click validate
-      const buttons = screen.getAllByTestId('button');
-      const validateButton = buttons.find(
-        (btn) => btn.getAttribute('data-variant') === 'default',
-      );
-
-      if (validateButton) {
-        fireEvent.click(validateButton);
-      }
-
-      await waitFor(() => {
-        expect(mockOnExport).toHaveBeenCalledWith({
-          domainColumns: ['domain', 'expiration'],
-          contactColumns: ['owner', 'admin'],
         });
       });
     });

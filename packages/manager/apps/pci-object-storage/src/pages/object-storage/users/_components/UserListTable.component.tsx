@@ -89,7 +89,7 @@ UsersList.Skeleton = function UsersListSkeleton() {
   return (
     <>
       <div
-        data-testid="service-list-table-skeleton"
+        data-testid="users-list-table-skeleton"
         className="flex justify-between w-100 mb-2 items-end"
       >
         <Skeleton className="h-10 w-48" />

@@ -16,6 +16,7 @@ import balance from './balance/billing-history-balance.module';
 import debt from './debt/billing-main-history-debt.module';
 import legacyHistory from './legacy/history.module';
 import postalMailOptions from './postalMailOptions/billing-main-history-postal-mail-options.module';
+import eInvoicingWarningModule from './eInvoicingWarning/e-invoicing-warning.module';
 
 const moduleName = 'ovhManagerDedicatedBillingHistory';
 
@@ -32,6 +33,7 @@ angular
     'ovh-api-services',
     ovhManagerCore,
     postalMailOptions,
+    eInvoicingWarningModule,
     uiBootstrap,
     uiRouter,
   ])

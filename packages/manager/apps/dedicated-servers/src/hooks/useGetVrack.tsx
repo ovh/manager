@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { getDSVrackQueryKey, getDSVrack } from '@/data/api/vrack';
 
 export type UseGetVrackParams = {
@@ -8,12 +8,12 @@ export type UseGetVrackParams = {
 
 export const useGetVrack = ({ server }: UseGetVrackParams) => {
   const { data: vrackResponse, isLoading, isError, error } = useQuery<
-    ApiResponse<string[]>,
+    string[],
     ApiError
   >({
     queryKey: getDSVrackQueryKey(server),
     queryFn: () => getDSVrack(server),
   });
 
-  return { vrack: vrackResponse?.data, isLoading, isError, error };
+  return { vrack: vrackResponse, isLoading, isError, error };
 };

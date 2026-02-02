@@ -17,6 +17,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { Button, Datagrid } from '@ovh-ux/muk';
 import type { DatagridColumn } from '@ovh-ux/muk';
@@ -34,6 +35,7 @@ import { IAM_ACTIONS } from '@/utils/IamAction.constants';
 import ActionButtonUsers from './ActionButtonUsers.component';
 
 export default function Users() {
+  const { data: availability } = useFeatureAvailability(['web-office:order']);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const { t } = useTranslation([
     'dashboard/users',
@@ -169,19 +171,23 @@ export default function Users() {
           setColumnVisibility,
         }}
         topbar={
-          !dataLicenceDetail?.serviceType ? (
-            <Button data-testid="licenses-order-button" onClick={onOrderLicenses}>
-              {t('common:users_order_licenses')}
-            </Button>
-          ) : (
-            <Button
-              data-testid="users-order-button"
-              urn={dataLicenceDetail?.iam.urn}
-              onClick={onOrderUsers}
-              iamActions={[IAM_ACTIONS.user.create]}
-            >
-              {t(`${NAMESPACES.ACTIONS}:order_users`)}
-            </Button>
+          availability?.['web-office:order'] && (
+            <>
+              {!dataLicenceDetail?.serviceType ? (
+                <Button data-testid="licenses-order-button" onClick={onOrderLicenses}>
+                  {t('common:users_order_licenses')}
+                </Button>
+              ) : (
+                <Button
+                  data-testid="users-order-button"
+                  urn={dataLicenceDetail?.iam.urn}
+                  onClick={onOrderUsers}
+                  iamActions={[IAM_ACTIONS.user.create]}
+                >
+                  {t(`${NAMESPACES.ACTIONS}:order_users`)}
+                </Button>
+              )}
+            </>
           )
         }
         isLoading={isLoadingUsers || isLoadingLicenceDetail}

@@ -17,9 +17,12 @@
   "stopJobButtonConfirm": "Arrêter",
   "stopJobToastSuccessDescription": "Le job {{name}} a été arrêté",
   "restartJobTitle": "Relancer un nouveau job",
+  "cloneJobTitle": "Cloner un nouveau job",
   "restartJobConfirmation": "Vous pouvez lancer un nouveau job à partir des mêmes paramètres qu'un autre job. Voulez-vous relancer un job identique au job {{name}} ?",
   "cliTitle": "Commande CLI équivalente",
   "cliToastMessage": "Commande copiée",
+  "shutdownLabel": "Arrêt le ",
+  "restartLabel": "Redémarrage le ",
   "restartJobButtonConfirm": "Relancer",
   "restartJobToastSuccessDescription": "Le job {{name}} a été démarré"
 }

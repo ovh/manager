@@ -2,8 +2,6 @@ import { Suspense, useEffect } from 'react';
 
 import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
 
-import kmsRoutes from '@key-management-service/routes/routes';
-import secretManagerRoutes from '@secret-manager/routes/routes';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -14,9 +12,7 @@ import { queryClient } from '@/common/utils/react-query/queryClient';
 
 function App() {
   const { shell } = useShellContext();
-  const router = createHashRouter(
-    createRoutesFromElements([rootRoutes, kmsRoutes, secretManagerRoutes]),
-  );
+  const router = createHashRouter(createRoutesFromElements(rootRoutes));
 
   useEffect(() => {
     shell.ux.hidePreloader();

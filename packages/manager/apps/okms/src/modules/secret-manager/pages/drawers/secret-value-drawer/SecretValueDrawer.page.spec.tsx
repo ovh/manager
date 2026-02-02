@@ -14,6 +14,7 @@ import userEvent from '@testing-library/user-event';
 
 import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
+import { valueToOdsSelectValue } from '@/common/utils/ods/odsSelect';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { RenderTestMockParams, renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
@@ -90,7 +91,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionListMock[0]?.id?.toString() ?? '',
+          valueToOdsSelectValue(versionListMock[0]?.id ?? 0),
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -115,7 +116,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionListMock[lastVersionId - 1]?.id?.toString() ?? '',
+          valueToOdsSelectValue(versionListMock[lastVersionId - 1]?.id ?? 0),
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -181,7 +182,10 @@ describe('ValueDrawer test suite', () => {
         await renderPage();
 
         // Change the data input value
-        await changeOdsInputValueByTestId(VERSION_SELECTOR_TEST_ID, version.id.toString());
+        await changeOdsInputValueByTestId(
+          VERSION_SELECTOR_TEST_ID,
+          valueToOdsSelectValue(version.id),
+        );
 
         // THEN
         await assertTextVisibility(labels.common.status.status);

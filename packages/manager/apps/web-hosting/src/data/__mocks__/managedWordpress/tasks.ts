@@ -9,7 +9,7 @@ export const managedWordpressWebsitesTaskMock: ManagedWordpressResourceTask = {
   createdAt: '2025-07-01T08:00:00+02:00',
   startedAt: '2025-07-01T08:01:00+02:00',
   updatedAt: '2025-07-01T08:01:01+02:00',
-  message: '',
+  message: 'test',
   progress: [],
   errors: [],
 };

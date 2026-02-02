@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam",
-  "version": "1.25.4",
+  "version": "1.25.5",
   "private": true,
   "description": "IAM product.",
   "repository": {
@@ -11,6 +11,13 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "src/index.js",
+  "scripts": {
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-components": "^1.26.1",

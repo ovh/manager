@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.2.1...@ovh-ux/manager-react-shell-client@1.2.2) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-shell-client
+
+
+
+
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.2.0...@ovh-ux/manager-react-shell-client@1.2.1) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-shell-client
+
+
+
+
+
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.1.0...@ovh-ux/manager-react-shell-client@1.2.0) (2026-01-20)
+
+
+### Features
+
+* **core:** update use ovh tracking usage without context ([e43d2c2](https://github.com/ovh/manager/commit/e43d2c236734e3b3ba2a9bfd410ddf9d5548a5f2)), closes [#MANAGER-20684](https://github.com/ovh/manager/issues/MANAGER-20684)
+
+
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@1.0.2...@ovh-ux/manager-react-shell-client@1.1.0) (2026-01-13)
 
 

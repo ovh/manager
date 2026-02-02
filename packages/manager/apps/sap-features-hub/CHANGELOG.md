@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.15...@ovh-ux/manager-sap-features-hub-app@0.6.16) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.6.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.14...@ovh-ux/manager-sap-features-hub-app@0.6.15) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.6.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.13...@ovh-ux/manager-sap-features-hub-app@0.6.14) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.6.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.12...@ovh-ux/manager-sap-features-hub-app@0.6.13) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.6.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.11...@ovh-ux/manager-sap-features-hub-app@0.6.12) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.6.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.10...@ovh-ux/manager-sap-features-hub-app@0.6.11) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
 ## [0.6.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.6.9...@ovh-ux/manager-sap-features-hub-app@0.6.10) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app

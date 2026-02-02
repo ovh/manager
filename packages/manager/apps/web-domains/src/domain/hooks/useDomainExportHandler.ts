@@ -1,20 +1,25 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { download, generateCsv, mkConfig } from 'export-to-csv';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { useDomainExport } from '@/domain/hooks/useDomainExport';
+import {
+  selectDomainsToExport,
+  processBatch,
+  generateAndDownloadCsv,
+} from '@/domain/utils/exportHelpers';
+import {
+  ExportProgress,
+  ExportResult,
+  ExportSelection,
+} from '@/domain/types/export.types';
 
 interface UseExportHandlerParams {
   exportAllServices: boolean;
   selectedServiceNames: string[];
   domainResources: TDomainResource[] | null;
-  setExportProgress: (
-    progress: { current: number; total: number; percentage: number } | null,
-  ) => void;
-  setExportDone: (
-    done: { filename: string; downloadUrl: string; total: number } | null,
-  ) => void;
+  setExportProgress: (progress: ExportProgress | null) => void;
+  setExportDone: (done: ExportResult | null) => void;
   setIsDrawerExportOpen?: (open: boolean) => void;
 }
 
@@ -26,108 +31,85 @@ export const useDomainExportHandler = ({
   setExportDone,
   setIsDrawerExportOpen,
 }: UseExportHandlerParams): {
-  handleExport: (selection: {
-    domainColumns: string[];
-    contactColumns: string[];
-  }) => Promise<void>;
+  handleExport: (selection: ExportSelection) => Promise<void>;
 } => {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { addError } = useNotifications();
   const { fetchDomainDetails, fetchAllDomains } = useDomainExport();
 
   const handleExport = useCallback(
-    async (selection: {
-      domainColumns: string[];
-      contactColumns: string[];
-    }) => {
+    async (selection: ExportSelection) => {
       setIsDrawerExportOpen?.(false);
 
       try {
-        if (
-          !selection ||
-          !selection.domainColumns ||
-          !selection.contactColumns
-        ) {
+        let fetchedDomains: TDomainResource[] | undefined;
+        if (!selection?.domainColumns || !selection?.contactColumns) {
           throw new Error('Invalid selection');
         }
 
-        let domainsToExport: TDomainResource[] = [];
-
+        // Phase 1: Fetch all domains if needed
         if (exportAllServices) {
-          const data = await fetchAllDomains();
-          domainsToExport = data.length > 0 ? data : domainResources || [];
-        } else {
-          domainsToExport = (domainResources || []).filter((domain) =>
-            selectedServiceNames.includes(domain.id),
-          );
+          setExportProgress({
+            current: 0,
+            total: 0,
+            percentage: 0,
+            phase: 'fetching',
+          });
+
+          fetchedDomains = await fetchAllDomains((currentCount, totalCount) => {
+            const percentage = totalCount
+              ? Math.round((currentCount / totalCount) * 100)
+              : 0;
+            setExportProgress({
+              current: currentCount,
+              total: totalCount || 0,
+              percentage,
+              phase: 'fetching',
+            });
+          });
         }
+
+        const domainsToExport = selectDomainsToExport(
+          exportAllServices,
+          selectedServiceNames,
+          domainResources,
+          fetchedDomains,
+        );
 
         if (domainsToExport.length === 0) {
           setExportProgress(null);
-          addError(
-            t('domain_export_error_no_domains', 'No domains to export'),
-            true,
-          );
+          addError(t('domain_export_error_no_domains'), true);
           return;
         }
 
-        const totalDomains = domainsToExport.length;
-
+        // Phase 2: Process domain details
         setExportProgress({
           current: 0,
-          total: totalDomains,
+          total: domainsToExport.length,
           percentage: 0,
+          phase: 'processing',
         });
 
-        const exportData: Array<Record<string, string>> = [];
-        let processedCount = 0;
         const BATCH_SIZE = 20;
+        const exportData = await processBatch(
+          domainsToExport,
+          BATCH_SIZE,
+          (domain) => fetchDomainDetails(domain, selection),
+          setExportProgress,
+        );
 
-        const batches = [];
-        for (let i = 0; i < domainsToExport.length; i += BATCH_SIZE) {
-          batches.push(domainsToExport.slice(i, i + BATCH_SIZE));
-        }
+        // Phase 3: Generate CSV
+        setExportProgress({
+          current: exportData.length,
+          total: exportData.length,
+          percentage: 100,
+          phase: 'generating',
+        });
 
-        await batches.reduce(async (previousPromise, batch) => {
-          await previousPromise;
-
-          const batchResults = await Promise.all(
-            batch.map((domain) => fetchDomainDetails(domain, selection)),
-          );
-
-          exportData.push(...batchResults);
-          processedCount += batch.length;
-
-          const percentage = Math.round((processedCount / totalDomains) * 100);
-          setExportProgress({
-            current: processedCount,
-            total: totalDomains,
-            percentage,
-          });
-        }, Promise.resolve());
+        const result = generateAndDownloadCsv(exportData);
 
         setExportProgress(null);
-
-        const csvConfig = mkConfig({
-          filename: `domains_export_${new Date().toISOString().split('T')[0]}`,
-          fieldSeparator: ',',
-          quoteStrings: true,
-          useKeysAsHeaders: true,
-        });
-
-        const csv = generateCsv(csvConfig)(exportData);
-        download(csvConfig)(csv);
-
-        const csvString = typeof csv === 'string' ? csv : csv.toString();
-        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
-        const downloadUrl = URL.createObjectURL(blob);
-        const filename = `${csvConfig.filename}.csv`;
-
-        setExportDone({
-          downloadUrl,
-          filename,
-          total: totalDomains,
-        });
+        setExportDone(result);
       } catch (exportError) {
         setExportProgress(null);
         addError(
@@ -137,6 +119,7 @@ export const useDomainExportHandler = ({
       }
     },
     [
+      exportAllServices,
       selectedServiceNames,
       domainResources,
       setExportProgress,

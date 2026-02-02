@@ -19,6 +19,7 @@ import {
   createRelease,
   lintAll,
   lintApplication,
+  lintCI,
   lintModule,
   publishPackage,
   runLernaTask,
@@ -33,11 +34,13 @@ import {
   testModule,
 } from '../src/kernel/helpers/tasks-helper.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
+import { loadToolsCatalog } from '../src/kernel/utils/catalog-utils.js';
 import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
 import {
   attachCleanupSignals,
   handleProcessAbortSignals,
 } from '../src/kernel/utils/process-utils.js';
+import { isToolAllowed } from '../src/kernel/utils/tools-utils.js';
 import {
   clearRootWorkspaces,
   updateRootWorkspacesFromCatalogs,
@@ -123,7 +126,7 @@ ACTIONS
   Single-app:
     build   --app <name>                 Build one app
     test    --app <name>                 Test one app
-    lint    --app <name> [--fix ...]     Lint one app (supports --fix and other ESLint flags)
+    lint    --app <name>                 Lint one app
 
   Module:
     add:module     --module <package|path> [--private]     Add a module (optionally private) to PNPM
@@ -132,6 +135,7 @@ ACTIONS
   Task manager passthrough (flags forwarded to Turbo/NX/...):
     buildCI [--filter <expr>] [other flags]
     testCI  [--filter <expr>] [other flags]
+    lintCI  [--filter <expr>] [other flags]
 
   Lerna passthrough (flags forwarded to Lerna):
     lerna <subcommand> [options]         Run any Lerna command with workspaces restored/cleaned
@@ -139,7 +143,7 @@ ACTIONS
   Global:
     full-build                           Build ALL
     full-test                            Test ALL
-    full-lint [--fix ...]                Lint ALL (supports --fix and other ESLint flags)
+    full-lint                            Lint ALL
     start                                Launch interactive app starter
     docs                                 Build documentation workspace
     cli                                  Run manager-migration-cli (everything after "cli" is forwarded)
@@ -190,23 +194,17 @@ EXAMPLES
   # Single app
   manager-pm --type pnpm --action build --app web
   manager-pm --type pnpm --action test  --app web
-  manager-pm --type pnpm --action lint  --app web --fix
-  manager-pm --type pnpm --action lint  --app web --max-warnings 0
+  manager-pm --type pnpm --action lint  --app web
 
   # Module management
   manager-pm --type pnpm --action build --module packages/manager/core/api
   manager-pm --type pnpm --action test  --module @ovh-ux/manager-core-api
-  manager-pm --type pnpm --action lint  --module packages/manager/core/application  --fix
-  manager-pm --type pnpm --action lint  --module @ovh-ux/manager-core-utils --max-warnings 0
-
-  # Lint all
-  manager-pm --type pnpm --action full-lint
-  manager-pm --type pnpm --action full-lint --fix
-  manager-pm --type pnpm --action full-lint --quiet --max-warnings 0
+  manager-pm --type pnpm --action lint  --module packages/manager/core/application
 
   # Task manager (Turbo/NX/...) passthrough
   manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
   manager-pm --type pnpm --action testCI  --filter=tag:unit --parallel
+  manager-pm --type pnpm --action lintCI  --filter=tag:unit --parallel
 
   # Lerna passthrough
   manager-pm --action lerna list --all --json --toposort
@@ -296,17 +294,54 @@ function collectForwardedArgs(opts, { includeApp = false, stripSilent = true } =
 }
 
 /**
- * Resolve the task runner (turbo/nx/...) from CLI options.
+ * Resolve the runner from CLI options and validate if it's allowed.
  *
- * @param {Record<string, string|boolean>} opts
- * @returns {string} runner binary name
+ * Rules:
+ * - If no runner provided → return "turbo"
+ * - If runner is "turbo" → always allowed
+ * - If runner exists in tools catalog:
+ *    - enforce supportedOs/ciSupportedOs
+ * - If runner NOT in catalog:
+ *    - assume it is a custom binary and allow it
+ * - If runner not allowed → fallback to "turbo"
+ *
+ * @async
+ * @function resolveRunnerFromOpts
+ * @param {Record<string, string|boolean>} opts - Parsed CLI options.
+ * @returns {Promise<string>} The validated runner name.
  */
-function resolveRunner(opts) {
+export async function resolveRunnerFromOpts(opts) {
   const runnerValue = opts.runner;
-  if (typeof runnerValue === 'string' && runnerValue.trim()) {
-    return runnerValue.trim();
+
+  if (typeof runnerValue !== 'string' || !runnerValue.trim()) {
+    return DEFAULT_RUNNER;
   }
-  return DEFAULT_RUNNER;
+
+  const requested = runnerValue.trim();
+
+  if (requested === DEFAULT_RUNNER) {
+    return DEFAULT_RUNNER;
+  }
+
+  const toolsCatalog = await loadToolsCatalog();
+  const toolSpec = toolsCatalog?.[requested];
+
+  // Unknown runner: allow it as custom binary (don’t block)
+  if (!toolSpec) {
+    logger.info(`[runner] Using custom runner: "${requested}" (not found in tools catalog)`);
+    return requested;
+  }
+
+  // Known runner: enforce OS constraints
+  if (!isToolAllowed(toolSpec)) {
+    logger.warn(
+      `⚠️ [runner] "${requested}" not supported in this env -> fallback to "${DEFAULT_RUNNER}"`,
+    );
+    return DEFAULT_RUNNER;
+  }
+
+  logger.info(`[runner] Using runner: "${requested}"`);
+  return requested;
 }
 
 /**
@@ -337,18 +372,24 @@ function resolveBaseArgs({ passthrough = [], filter }) {
 }
 
 /**
- * Map of supported CLI actions to their async handlers.
- * Each handler receives the parsed CLI context.
- *
- * @type {Record<string, (ctx: {app?: string, module?: string, passthrough: string[], filter?: string|null, mode?: string, opts: Record<string, string|boolean>}) => Promise<void>>}
+ * @type {Record<
+ *  string,
+ *  (ctx: {
+ *    app?: string,
+ *    module?: string,
+ *    passthrough: string[],
+ *    filter?: string|null,
+ *    mode?: string,
+ *    runner: string,
+ *    opts: Record<string, string|boolean>
+ *  }) => Promise<void>
+ * >}
  */
 const actions = {
-  async build({ app, module, opts }) {
+  async build({ app, module, runner }) {
     if (!app && !module) {
       exitError(`Action "build" requires either --app or --module`);
     }
-
-    const runner = resolveRunner(opts);
 
     if (app) {
       logger.info(`🏗️  Building application: ${app} (runner: ${runner})`);
@@ -359,12 +400,10 @@ const actions = {
       return buildModule(module, runner);
     }
   },
-  async test({ app, module, opts }) {
+  async test({ app, module, runner }) {
     if (!app && !module) {
       exitError(`Action "test" requires either --app or --module`);
     }
-
-    const runner = resolveRunner(opts);
 
     if (app) {
       logger.info(`🧪 Testing application: ${app} (runner: ${runner})`);
@@ -375,41 +414,34 @@ const actions = {
       return testModule(module, runner);
     }
   },
-  async lint({ app, module, passthrough, opts }) {
+  async lint({ app, module, runner }) {
     if (!app && !module) {
       exitError(`Action "lint" requires either --app or --module`);
     }
 
-    const runner = resolveRunner(opts);
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-
     if (app) {
-      logger.info(`🧹 Linting application: ${app} (runner: ${runner})`);
-      return lintApplication(app, [...forwarded, ...passthrough], runner);
+      logger.info(`🏗️  Linting application: ${app} (runner: ${runner})`);
+      return lintApplication(app, runner);
     }
     if (module) {
-      logger.info(`🔍 Linting module: ${module} (runner: ${runner})`);
-      return lintModule(module, [...forwarded, ...passthrough], runner);
+      logger.info(`📦 Linting module: ${module} (runner: ${runner})`);
+      return lintModule(module, runner);
     }
   },
   async start() {
     return startApp();
   },
-  async 'full-build'({ opts }) {
-    const runner = resolveRunner(opts);
+  async 'full-build'({ runner }) {
     logger.info(`🏗️  Building ALL apps + modules (runner: ${runner})`);
     return buildAll(runner);
   },
-  async 'full-test'({ opts }) {
-    const runner = resolveRunner(opts);
+  async 'full-test'({ runner }) {
     logger.info(`🧪 Testing ALL apps + modules (runner: ${runner})`);
     return testAll(runner);
   },
-  async 'full-lint'({ passthrough, opts }) {
-    const runner = resolveRunner(opts);
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+  async 'full-lint'({ runner }) {
     logger.info(`🧹 Linting ALL apps + modules (runner: ${runner})`);
-    return lintAll([...forwarded, ...passthrough], runner);
+    return lintAll(runner);
   },
   async docs() {
     return buildDocs();
@@ -440,19 +472,23 @@ const actions = {
   async postinstall() {
     return runLifecycleTask('postinstall');
   },
-  async buildCI({ passthrough, filter, opts }) {
-    const runner = resolveRunner(opts);
+  async buildCI({ passthrough, filter, opts, runner }) {
     const base = resolveBaseArgs({ passthrough, filter });
     const forwarded = collectForwardedArgs(opts);
 
     return buildCI([...base, ...forwarded], runner);
   },
-  async testCI({ passthrough, filter, opts }) {
-    const runner = resolveRunner(opts);
+  async testCI({ passthrough, filter, opts, runner }) {
     const base = resolveBaseArgs({ passthrough, filter });
     const forwarded = collectForwardedArgs(opts);
 
     return testCI([...base, ...forwarded], runner);
+  },
+  async lintCI({ passthrough, filter, opts, runner }) {
+    const base = resolveBaseArgs({ passthrough, filter });
+    const forwarded = collectForwardedArgs(opts);
+
+    return lintCI([...base, ...forwarded], runner);
   },
   async perfBudgets({ passthrough, opts }) {
     const forwarded = collectForwardedArgs(opts, { includeApp: true });
@@ -603,7 +639,7 @@ async function main() {
   } = opts;
 
   const container = Boolean(opts.container);
-  const runner = resolveRunner(opts);
+  const runner = await resolveRunnerFromOpts(opts);
 
   // Handle help, version, and CLI passthroughs
   await handleGlobalFlags(opts, passthrough);
@@ -628,6 +664,7 @@ async function main() {
     passthrough,
     filter,
     mode,
+    runner,
     opts,
   });
 }

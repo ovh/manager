@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -9,10 +9,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Label,
   useToast,
 } from '@datatr-ux/uxlib';
-import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
 import Price from '@/components/price/Price.component';
 import { useAddNode } from '@/hooks/api/database/node/useAddNode.hook';
 import { Pricing } from '@/lib/pricingHelper';
@@ -23,7 +21,6 @@ import RouteModal from '@/components/route-modal/RouteModal';
 
 const AddNode = () => {
   const { service, projectId } = useServiceData();
-  const [showMonthly, setShowMonthly] = useState(false);
   const catalogQuery = useGetCatalog();
   const navigate = useNavigate();
 
@@ -53,13 +50,12 @@ const AddNode = () => {
     const prefix = `databases.${service.engine.toLowerCase()}-${service.plan}-${
       service.flavor
     }`;
+    const pricingCatalog = catalogQuery.data?.addons?.find(
+      (a) => a.planCode === `${prefix}.hour.consumption`,
+    )?.pricings[0];
     return {
-      hourly: catalogQuery.data?.addons.find(
-        (a) => a.planCode === `${prefix}.hour.consumption`,
-      ).pricings[0],
-      monthly: catalogQuery.data?.addons.find(
-        (a) => a.planCode === `${prefix}.month.consumption`,
-      ).pricings[0],
+      price: pricingCatalog?.price,
+      tax: pricingCatalog?.tax,
     };
   }, [catalogQuery.data]);
 
@@ -84,38 +80,28 @@ const AddNode = () => {
           </DialogTitle>
         </DialogHeader>
         <DialogBody>
-          <Label>{t('priceUnitSwitchLabel')}</Label>
-          <PriceUnitSwitch
-            showMonthly={showMonthly}
-            onChange={setShowMonthly}
-          />
-          <p>
-            {price && (
+          {price && (
+            <p>
               <Trans
                 t={t}
                 i18nKey={'addNodeDescription'}
                 values={{
                   nbNodes: service.nodes.length,
-                  unit: showMonthly
-                    ? t('addNodeDescriptionUnitMonth')
-                    : t('addNodeDescriptionUnitHour'),
+                  unit: t('addNodeDescriptionUnitHour'),
                 }}
                 components={{
                   price: (
                     <Price
-                      priceInUcents={
-                        price[showMonthly ? 'monthly' : 'hourly'].price
-                      }
-                      taxInUcents={
-                        price[showMonthly ? 'monthly' : 'hourly'].tax
-                      }
-                      decimals={showMonthly ? 2 : 3}
+                      className="inline"
+                      priceInUcents={price.price}
+                      taxInUcents={price.tax}
+                      decimals={3}
                     />
                   ),
                 }}
               ></Trans>
-            )}
-          </p>
+            </p>
+          )}
         </DialogBody>
         <DialogFooter>
           <DialogClose asChild>

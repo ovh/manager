@@ -1,21 +1,12 @@
-import { useParams, Link } from 'react-router-dom';
-import {
-  OdsButton,
-  OdsLink,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { useParams, Link as RouterLink } from 'react-router-dom';
+import { Button, Icon, Link, Message, MessageBody, MessageIcon, Text } from '@ovhcloud/ods-react';
+import { LinkType, Link as ManagerLink, useFormatDate, RedirectionGuard } from '@ovh-ux/muk';
 import { Trans, useTranslation } from 'react-i18next';
-import {
-  useFormatDate,
-  RedirectionGuard,
-} from '@ovh-ux/manager-react-components';
 import { useState } from 'react';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { useAuthorization, useCategories, useHelpLink } from '@/hooks';
 import {
   EmailDisplay,
-  ClickLink,
   NotificationPriorityChip,
   ContactHistory,
 } from '@/components';
@@ -57,28 +48,26 @@ export default function CommunicationsDetailPage() {
       {notification !== undefined && (
         <>
           <div className="flex flex-col gap-8 max-w-5xl relative overflow-hidden">
-            <OdsText>
+            <Text>
               <Trans
                 i18nKey="description"
                 t={tCommon}
                 components={{
                   anchor: (
-                    <OdsLink
+                    <ManagerLink
                       href={helpLink}
                       target="_blank"
-                      label={tCommon('assistance_link_label')}
-                      icon="external-link"
+                      children={tCommon('assistance_link_label')}
+                      type={LinkType.external}
                     />
                   ),
                 }}
               />
-            </OdsText>
+            </Text>
             <div className="flex flex-row justify-start">
-              <Link to={urls.communication.listing}>
-                <OdsButton
+              <RouterLink to={urls.communication.listing}>
+                <Button
                   variant="ghost"
-                  icon="arrow-left"
-                  label={t('button_go_back')}
                   onClick={() =>
                     trackClick({
                       location: PageLocation.page,
@@ -88,17 +77,21 @@ export default function CommunicationsDetailPage() {
                       subApp: TrackingSubApps.Communications,
                     })
                   }
-                />
-              </Link>
+                >
+                  <Icon name="arrow-left" />
+                  {t('button_go_back')}
+                </Button>
+              </RouterLink>
             </div>
-            <OdsMessage color="information" isDismissible={false}>
-              <OdsText preset="paragraph">
+            <Message color="information" dismissible={false}>
+              <MessageIcon name="circle-info" />
+              <MessageBody>
                 <Trans
                   i18nKey="history_banner"
                   t={t}
                   components={{
                     anchor: (
-                      <ClickLink
+                      <Link
                         onClick={() => {
                           trackClick({
                             location: PageLocation.page,
@@ -109,7 +102,7 @@ export default function CommunicationsDetailPage() {
                           });
                           setShowHistoryDrawer(true);
                         }}
-                      ></ClickLink>
+                      ></Link>
                     ),
                   }}
                   values={{
@@ -120,35 +113,33 @@ export default function CommunicationsDetailPage() {
                     email: getFirstCleanEmail(notification.contacts) ?? '...',
                   }}
                 />
-              </OdsText>
-            </OdsMessage>
+              </MessageBody>
+            </Message>
 
-            <OdsText preset="heading-1">{notification.title}</OdsText>
+            <Text preset="heading-1">{notification.title}</Text>
             <div className="flex flex-col gap-4">
               <div className="flex flex-row gap-6 items-center">
-                <OdsText preset="span">
+                <Text preset="span">
                   {tCommon('date_label')}:{' '}
                   {formatDate({ date: notification.createdAt, format: 'Pp' })}
-                </OdsText>
+                </Text>
                 <NotificationPriorityChip priority={notification.priority} />
               </div>
               {Boolean(notification.categories?.length) && (
-                <OdsText
+                <Text
                   preset="paragraph"
                   data-testid="notification-categories"
                 >
                   {useCategories(tCommon, notification.categories)}
-                </OdsText>
+                </Text>
               )}
             </div>
             <EmailDisplay
               header={
                 notification.attachments.length ? (
-                  <OdsButton
+                  <Button
                     variant="outline"
                     size="sm"
-                    label={t('button_download_attachment')}
-                    icon="download"
                     onClick={() => {
                       trackClick({
                         location: PageLocation.page,
@@ -158,7 +149,10 @@ export default function CommunicationsDetailPage() {
                         subApp: TrackingSubApps.Communications,
                       });
                     }}
-                  />
+                  >
+                    <Icon name="download" />
+                    {t('button_download_attachment')}
+                  </Button>
                 ) : (
                   undefined
                 )

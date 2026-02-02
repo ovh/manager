@@ -60,10 +60,14 @@ export const useProjectActivation = ({
   );
 
   const handleActivateProject = useCallback(
-    async ({ simulate = true, autoPay = true }: { simulate?: boolean; autoPay?: boolean } = {}) => {
+    async ({
+      simulate = true,
+      autoPay = true,
+      claimVoucher = true,
+    }: { simulate?: boolean; autoPay?: boolean; claimVoucher?: boolean } = {}) => {
       try {
         // Step 1: Claim voucher if we have a promotion amount
-        if (promotionVoucher) {
+        if (promotionVoucher && claimVoucher) {
           await claimDiscoveryVoucher({
             projectId,
             voucherCode: DISCOVERY_PROMOTION_VOUCHER,
@@ -124,7 +128,7 @@ export const useProjectActivation = ({
    * Handler for credit payment flow (when user needs to pay)
    */
   const handleCreditPayment = () => {
-    void handleActivateProject({ autoPay: false, simulate: false });
+    void handleActivateProject({ autoPay: false, simulate: false, claimVoucher: false });
   };
 
   const isSubmitting =

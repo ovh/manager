@@ -4,18 +4,10 @@ import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  IconLinkAlignmentType,
-  LinkType,
-  Links,
-  OvhSubsidiary,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   ButtonType,
@@ -24,6 +16,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Link, LinkType, OvhSubsidiary, useNotifications } from '@ovh-ux/muk';
 
 import { Loading, PriceCard, TotalPriceCard } from '@/components';
 import { ZimbraOffer, ZimbraPlanCodes, getZimbraPlatformAccountsQueryKey, order } from '@/data/api';
@@ -64,11 +57,11 @@ export const UpdateOffer = () => {
       });
       clearNotifications();
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {slotWithService?.offer === ZimbraOffer.STARTER
             ? t('zimbra_account_upgrade_success_message')
             : t('zimbra_account_downgrade_success_message')}
-        </OdsText>,
+        </Text>,
         true,
       );
       if (data?.order?.url) {
@@ -86,13 +79,13 @@ export const UpdateOffer = () => {
         error.response?.data?.message?.includes(DRIVE_NOT_EMPTY_ERROR)
       ) {
         addWarning(
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Text preset={TEXT_PRESET.paragraph}>
             {t('zimbra_account_downgrade_drive_not_empty_warning_message')}
-          </OdsText>,
+          </Text>,
         );
       } else {
         addError(
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Text preset={TEXT_PRESET.paragraph}>
             {slotWithService?.offer === ZimbraOffer.STARTER
               ? t('zimbra_account_upgrade_error_message', {
                   error: error.response?.data?.message,
@@ -100,7 +93,7 @@ export const UpdateOffer = () => {
               : t('zimbra_account_downgrade_error_message', {
                   error: error.response?.data?.message,
                 })}
-          </OdsText>,
+          </Text>,
           true,
         );
       }
@@ -152,11 +145,10 @@ export const UpdateOffer = () => {
 
   return (
     <div className="mb-6 flex flex-col items-start" data-testid="update-offer-account-page">
-      <Links
-        iconAlignment={IconLinkAlignmentType.left}
+      <Link
         type={LinkType.back}
         href={goBackUrl}
-        onClickReturn={() => {
+        onClick={() => {
           trackClick({
             location: PageLocation.funnel,
             buttonType: ButtonType.link,
@@ -164,12 +156,13 @@ export const UpdateOffer = () => {
             actions: [UPDATE_OFFER_SLOT, BACK_PREVIOUS_PAGE],
           });
         }}
-        label={t('zimbra_account_upgrade_cta_back')}
-      />
-      <OdsText preset="heading-3" className="mt-5">
+      >
+        {t('zimbra_account_upgrade_cta_back')}
+      </Link>
+      <Text preset="heading-3" className="mt-5">
         {t('common:update_offer_title')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{slotWithService?.email}</OdsText>
+      </Text>
+      <Text preset={TEXT_PRESET.paragraph}>{slotWithService?.email}</Text>
       <div className="my-8 flex w-full justify-between gap-8">
         <div className="grid grid-cols-3 gap-4">
           {Object.values(ZimbraOffer).map((planCode) => (

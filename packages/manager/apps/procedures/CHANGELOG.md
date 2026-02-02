@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.19.8...@ovh-ux/manager-procedures-app@0.19.9) (2026-02-02)
+
+
+### Bug Fixes
+
+* **container:** can t read property of undefined reading status ([7b8a3ac](https://github.com/ovh/manager/commit/7b8a3acf5eee65a44cc0e1691f6fc4a452a8e238)), closes [#MANAGER-EU-188](https://github.com/ovh/manager/issues/MANAGER-EU-188) [#MANAGER-EU-18T13](https://github.com/ovh/manager/issues/MANAGER-EU-18T13)
+
+
+
+
+
+## [0.19.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.19.7...@ovh-ux/manager-procedures-app@0.19.8) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.19.6...@ovh-ux/manager-procedures-app@0.19.7) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
 ## [0.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.19.5...@ovh-ux/manager-procedures-app@0.19.6) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app

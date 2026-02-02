@@ -3,6 +3,239 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.10.2...@ovh-ux/manager-web-domains-app@1.10.3) (2026-02-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4633] ([b0adee9](https://github.com/ovh/manager/commit/b0adee9cabb30077119603428dd863c5943e3428))
+
+
+
+
+
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.10.1...@ovh-ux/manager-web-domains-app@1.10.2) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.10.0...@ovh-ux/manager-web-domains-app@1.10.1) (2026-01-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4617] ([927a2d3](https://github.com/ovh/manager/commit/927a2d384a06dd66f87992fdb8811c15db4ca3ca))
+* **i18n:** add missing translations [CDS 4623] ([5b32c60](https://github.com/ovh/manager/commit/5b32c60cf7da76e65614bcf49feeb1ac7c6b03ad))
+
+
+
+
+
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.6...@ovh-ux/manager-web-domains-app@1.10.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1054] ([d354a06](https://github.com/ovh/manager/commit/d354a06e4c741fc6c034f6a936f10ee0cba53c7b))
+* **web-domains:** datagrid filters, accept only IsEqual and IsDifferent ([2668a14](https://github.com/ovh/manager/commit/2668a14692ce4a7cb55990e02ecfa498937fa274))
+* **web-domains:** improve nichandle check for CA environment ([11502ec](https://github.com/ovh/manager/commit/11502ec15620755f82b90855ae54736f1e81c160))
+
+
+### Features
+
+* **web-domains:** add information message about renew mode ([eca9203](https://github.com/ovh/manager/commit/eca9203a754effa9ef7f4f5ae448ecb15095efc6)), closes [#DCE-147](https://github.com/ovh/manager/issues/DCE-147)
+
+
+
+
+
+## [1.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.5...@ovh-ux/manager-web-domains-app@1.9.6) (2026-01-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1034] ([16b608c](https://github.com/ovh/manager/commit/16b608cd89412783bd234ed2cb97f5c3611d1858))
+* **i18n:** add missing translations [CDS 1034] ([1f94e47](https://github.com/ovh/manager/commit/1f94e474f39686de0996bd9d5e7ba3120c6c111a))
+* **web-domains:** disable data protection button when user is not granted ([473fa45](https://github.com/ovh/manager/commit/473fa4591857e17491327fa9df2ee74b15729492)), closes [#D2I-5826](https://github.com/ovh/manager/issues/D2I-5826)
+* **web-domains:** fix tests ([d93f322](https://github.com/ovh/manager/commit/d93f322e023fbe9c596d6977d427744939d6b5a9)), closes [#D2I-5826](https://github.com/ovh/manager/issues/D2I-5826)
+* **web-domains:** invalid url ([4dc690a](https://github.com/ovh/manager/commit/4dc690a2dcf92ba3a4d539e779276119a8f7385c)), closes [#DCE-159](https://github.com/ovh/manager/issues/DCE-159)
+* **web-domains:** use generic sentence when data customization is not allowed ([86f98dd](https://github.com/ovh/manager/commit/86f98dd5c735692939fc11448ee169acc663d224)), closes [#D2I-5826](https://github.com/ovh/manager/issues/D2I-5826)
+
+
+
+
+
+## [1.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.4...@ovh-ux/manager-web-domains-app@1.9.5) (2026-01-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4606] ([8a702ab](https://github.com/ovh/manager/commit/8a702ab6db65f6b4ec2c301cac5c1a80bb76b7ba))
+
+
+
+
+
+## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.3...@ovh-ux/manager-web-domains-app@1.9.4) (2026-01-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4607] ([c0bfd2c](https://github.com/ovh/manager/commit/c0bfd2c4f14214cf60d06a67b168a8d3fdfc72d7))
+* **web-domains:** fix dataprotection status map ([e9f5388](https://github.com/ovh/manager/commit/e9f5388484356e46ad56093df4d32dcf298fc1da)), closes [#DCE-156](https://github.com/ovh/manager/issues/DCE-156)
+* **web-domains:** redirect client to order when have no email services(mxplan,zimbra,redirection) ([ba8c365](https://github.com/ovh/manager/commit/ba8c365c90fe5df33be0c2a9132c943402feb76b)), closes [#DCE-157](https://github.com/ovh/manager/issues/DCE-157)
+
+
+
+
+
+## [1.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.2...@ovh-ux/manager-web-domains-app@1.9.3) (2026-01-21)
+
+
+### Bug Fixes
+
+* **web-domains:** fetch zone dns on modify page ([45304c3](https://github.com/ovh/manager/commit/45304c3c0da365c6cb47d565c840720eb28a7d63)), closes [#DCE-155](https://github.com/ovh/manager/issues/DCE-155)
+* **web-domains:** fix free hosting only available on EU ([5f3669e](https://github.com/ovh/manager/commit/5f3669e289439090b03c01c27faf17a4095371d6)), closes [#DCE-152](https://github.com/ovh/manager/issues/DCE-152)
+* **web-domains:** fix onboarding page access ([5cd03f0](https://github.com/ovh/manager/commit/5cd03f0bdf2aa819764ee818fd4c721001a00060)), closes [#DCE-146](https://github.com/ovh/manager/issues/DCE-146)
+* **web-domains:** undefined cartId ([5153fdd](https://github.com/ovh/manager/commit/5153fddabe782a8027b18ca7c7541056e2f90f6a))
+
+
+
+
+
+## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.1...@ovh-ux/manager-web-domains-app@1.9.2) (2026-01-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4601] ([9c3eee5](https://github.com/ovh/manager/commit/9c3eee5045299f68f45ba2d2dad4448feb79d9e2))
+
+
+
+
+
+## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.9.0...@ovh-ux/manager-web-domains-app@1.9.1) (2026-01-19)
+
+
+### Bug Fixes
+
+* **web-domains:** fix ds records tab loads for ever when there is no zone ([285b8f2](https://github.com/ovh/manager/commit/285b8f2278d779cc8d71f5c4cd3d8328b87f8b02)), closes [#DCE-143](https://github.com/ovh/manager/issues/DCE-143)
+* **web-domains:** fix princing mode for free100M ([b34d578](https://github.com/ovh/manager/commit/b34d578edcc38b4c5a4935cd1592839a1d43e54e)), closes [#DCE-143](https://github.com/ovh/manager/issues/DCE-143)
+* **web-domains:** improve zone retrieving ([4ef2a03](https://github.com/ovh/manager/commit/4ef2a03abe6b226e16f186ffff043205fc3d3c11)), closes [#DCE-143](https://github.com/ovh/manager/issues/DCE-143)
+* **web-domains:** remove useless loading screen ([4f1362a](https://github.com/ovh/manager/commit/4f1362ab8270265537fc51d08e9332e9cca31be8)), closes [#DCE-143](https://github.com/ovh/manager/issues/DCE-143)
+
+
+
+
+
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.8.1...@ovh-ux/manager-web-domains-app@1.9.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **web-domains:** fix usage of iam authorisation checks ([6a8ed24](https://github.com/ovh/manager/commit/6a8ed245d9c0788214b937d69a68dc0a02323a7d)), closes [#INC0182631](https://github.com/ovh/manager/issues/INC0182631)
+
+
+### Features
+
+* **web-domains:** improve test ([6126db7](https://github.com/ovh/manager/commit/6126db7ac6bf05b65da07876dda2dd2db095b2e3))
+
+
+
+
+
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.8.0...@ovh-ux/manager-web-domains-app@1.8.1) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.7.2...@ovh-ux/manager-web-domains-app@1.8.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 997] ([09342a0](https://github.com/ovh/manager/commit/09342a0883254f333abe20e9fd160dbe8ca4f1a1))
+* **web-domains:**  undefined value + missing translation ([0b601ca](https://github.com/ovh/manager/commit/0b601ca9d4bd0d7faf16941bf6f3b90fc8a091db)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** check protection state authorization ([accd67d](https://github.com/ovh/manager/commit/accd67d894a7693f64bc4afd1f3c10e894448866)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** clear state after drawer close to unselect data + refacto ([b40bc88](https://github.com/ovh/manager/commit/b40bc88f468d5d2119e729b39552ad782ea571ed)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** fix action button disabling ([1d4fb22](https://github.com/ovh/manager/commit/1d4fb226da94846a07b8527e246c056c0e07745c)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** fix badges display ([dbbb3b1](https://github.com/ovh/manager/commit/dbbb3b1059bc4fc159ea5c2e264ceb2f1576b6f4)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** fix billing url ([aadb96b](https://github.com/ovh/manager/commit/aadb96b452015f610d3d76ff50ae54f6d1509d11)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** fix cursor expiration on datagrid, to refetch at inital states ([804049e](https://github.com/ovh/manager/commit/804049e3a79b2430ca588820b17922d581fcc0f0))
+* **web-domains:** fix pagination size value ([6b6f4bb](https://github.com/ovh/manager/commit/6b6f4bbdb734129577283ff7fe1b6775f76165d1)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** fix redirection ([d62003e](https://github.com/ovh/manager/commit/d62003e8acd507f2511018610b24c010920de6b4)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** fix tests ([08a42b5](https://github.com/ovh/manager/commit/08a42b52753c2540a305de98b33df5b358af8a00))
+* **web-domains:** fix typo ([e53e036](https://github.com/ovh/manager/commit/e53e036115f6926f5634f9daa2c7fe5aee43d5d3)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** reorganize badges ([3f55a92](https://github.com/ovh/manager/commit/3f55a923f3d171047267770ade3432ca52f3aed2)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** responsive fixes for alldom and domains ([3bf896c](https://github.com/ovh/manager/commit/3bf896c1fab129f84e03c2ec3420bcd3a69ee9cb)), closes [#DCE-142](https://github.com/ovh/manager/issues/DCE-142)
+* **web-domains:** update tests ([fa6b9fc](https://github.com/ovh/manager/commit/fa6b9fc5312ea60d1d72ca59a64599a06eb52c6b))
+
+
+### Features
+
+* **web-domains:** add edit owner contact button ([000d0c2](https://github.com/ovh/manager/commit/000d0c267d4ca19d52452e0697576f4b3ca4fe93)), closes [#DCE-141](https://github.com/ovh/manager/issues/DCE-141)
+
+
+
+
+
+## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.7.1...@ovh-ux/manager-web-domains-app@1.7.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.7.0...@ovh-ux/manager-web-domains-app@1.7.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.6.0...@ovh-ux/manager-web-domains-app@1.7.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4580] ([b633941](https://github.com/ovh/manager/commit/b6339415fc3ab5c81ccf82e2c766900a666020ec))
+* **i18n:** add missing translations [CDS 984] ([1a543bd](https://github.com/ovh/manager/commit/1a543bd69c3e6b4b964c87a143f650f907e56d80))
+* **web-domains:** add generic tooltip ([97efb91](https://github.com/ovh/manager/commit/97efb91b18dd32d9373c81b76e0d2ae30b2f44a9)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** clear notifications on tab change ([ba2888d](https://github.com/ovh/manager/commit/ba2888d8a075019b24e349216b253a41b7b94244)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** csv export improvement ([2422617](https://github.com/ovh/manager/commit/2422617cbdcc39ea7261ead63c675427e055a725)), closes [#DCE-139](https://github.com/ovh/manager/issues/DCE-139)
+* **web-domains:** fix handle all or selection ([a0e6273](https://github.com/ovh/manager/commit/a0e6273b089d3d499cab018edc84f0aff3c3f418)), closes [#DCE-139](https://github.com/ovh/manager/issues/DCE-139)
+* **web-domains:** fix test ([ed9d48f](https://github.com/ovh/manager/commit/ed9d48fa9aab6a9014533963664ed6eafd4dd628)), closes [#DCE-120](https://github.com/ovh/manager/issues/DCE-120)
+* **web-domains:** fix tests ([190853c](https://github.com/ovh/manager/commit/190853c46c3f1158bebfa3ade2793b57291bc7f3))
+* **web-domains:** improve dnssec handling ([9f8b54d](https://github.com/ovh/manager/commit/9f8b54deea07787f1def3d7aa7bcf13f63d2a6a1)), closes [#DCE-120](https://github.com/ovh/manager/issues/DCE-120)
+* **web-domains:** improve protection state ([44f77ea](https://github.com/ovh/manager/commit/44f77eafcba85e93425b2117393353096123721a)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** improve protection state handling ([d2f26b8](https://github.com/ovh/manager/commit/d2f26b806ea8278a22f747f55cfcb002ce8b7496)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** refetch resource before update ([3ac29ed](https://github.com/ovh/manager/commit/3ac29eddd74c5de78e8c9c7199e0cbee7721a901)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** remove authInfo for ati extensions ([fc4859e](https://github.com/ovh/manager/commit/fc4859e6b89c7965be980e19fc0a3357e1359da3)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** remove jest.Mock to Mock ([63da628](https://github.com/ovh/manager/commit/63da628951510aad339a21c420c69211ddefbd60)), closes [#DCE-84](https://github.com/ovh/manager/issues/DCE-84)
+* **web-domains:** tests ([6e04936](https://github.com/ovh/manager/commit/6e04936f59f2d7d4ccfba9b4be2f91b0d2dcd078)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+* **web-domains:** use MUK action menu ([776ffca](https://github.com/ovh/manager/commit/776ffca9de17608be2151f71ab4f1ba0fb5b7a35))
+
+
+### Features
+
+* **web-domains:** add dnssec modal to dsrecord listing ([6662407](https://github.com/ovh/manager/commit/66624076d10ed4129bcfcb487b9f318d94ce4648)), closes [#DCE-120](https://github.com/ovh/manager/issues/DCE-120)
+* **web-domains:** add guides to host page ([9b62ed8](https://github.com/ovh/manager/commit/9b62ed82c916176c4e12d89105d879f507a93393)), closes [#DCE-98](https://github.com/ovh/manager/issues/DCE-98)
+* **web-domains:** add guides to host page and fix others guides ([a963653](https://github.com/ovh/manager/commit/a963653607b5c22775ace516639600c86a5e4bc7)), closes [#DCE-98](https://github.com/ovh/manager/issues/DCE-98)
+* **web-domains:** fix oops page when customer access directly on dns operations ([4a79611](https://github.com/ovh/manager/commit/4a796110aa87903cfbe8b8b14f829f0138ac418d)), closes [#DCE-134](https://github.com/ovh/manager/issues/DCE-134)
+* **web-domains:** use new API from v2 to increase datagrid speed ([8ea76f7](https://github.com/ovh/manager/commit/8ea76f74c415c80da101d1da693e5b7e723425a1))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.5.5...@ovh-ux/manager-web-domains-app@1.6.0) (2026-01-13)
 
 

@@ -8,10 +8,14 @@ const require = createRequire(import.meta.url);
 export default {
   ...config,
   content: [
-    './src/**/*.{js,jsx,ts,tsx}',
+    './src/**/*.{js,jsx,ts,tsx,cjs}',
+    path.join(
+      path.dirname(require.resolve('@ovh-ux/muk')),
+      '**/*.{js,jsx,ts,tsx,cjs}',
+    ),
     path.join(
       path.dirname(require.resolve('@ovh-ux/manager-react-components')),
-      '**/*.{js,jsx,ts,tsx}',
+      '**/*.{js,jsx,ts,tsx,cjs}',
     ),
   ],
   corePlugins: {

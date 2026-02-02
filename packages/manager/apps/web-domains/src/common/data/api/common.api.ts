@@ -103,3 +103,36 @@ export const getMXPlan = async (serviceName: string): Promise<TMxPlan> => {
   const { data: mxPlan } = await v6.get(`/email/domain/${serviceName}`);
   return mxPlan;
 };
+
+export const getRedirectionEmail = async (
+  serviceName: string,
+): Promise<string[]> => {
+  const { data: redirection } = await v6.get(
+    `/email/domain/${serviceName}/redirection`,
+  );
+  return redirection;
+};
+
+export type IAMResource = {
+  id: string;
+  urn: string;
+  name: string;
+  displayName: string;
+  type: string;
+  owner: string;
+  tags: IAMTags;
+};
+
+export type IAMTags = {
+  [key: string]: string;
+};
+
+export const getIAMResource = async (
+  resourceName: string,
+  resourceType: string,
+): Promise<IAMResource[]> => {
+  const { data } = await v2.get(
+    `iam/resource?resourceName=${resourceName}&resourceType=${resourceType}`,
+  );
+  return data;
+};

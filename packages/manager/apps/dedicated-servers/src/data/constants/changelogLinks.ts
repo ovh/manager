@@ -1,6 +1,6 @@
-import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+import { ChangelogMenuLinks } from '@ovh-ux/muk';
 
-export const CHANGELOG_LINKS: ChangelogLinks = {
+export const CHANGELOG_LINKS: ChangelogMenuLinks = {
   changelog:
     'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Baremetal',
   roadmap:

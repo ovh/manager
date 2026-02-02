@@ -14,7 +14,7 @@
   "deleteObjectToastSuccessDescription": "Se ha eliminado el objeto {{ name }}.",
   "deleteObjectTitle": "Eliminar un objeto",
   "deleteObjectDescription": "¿Desea eliminar permanentemente el objeto {{- name }}? Esta acción no se puede deshacer.",
-  "deleteObjectConfirmation": "Escriba PERMANENTLY DELETE para confirmar esta acción",
+  "deleteObjectConfirmation": "Escriba {{confirmation}} para confirmar",
   "deleteObjectButtonCancel": "Cancelar",
   "deleteObjectButtonConfirm": "Eliminar",
   "seeVersionsSwitchLabel": "Ver las versiones"

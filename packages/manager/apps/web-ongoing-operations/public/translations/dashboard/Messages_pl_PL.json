@@ -176,5 +176,6 @@
   "domain_operations_update_phone": "Telefon",
   "domain_operations_update_spareEmail": "E-mail zapasowy",
   "domain_operations_update_vat": "VAT UE",
-  "domain_operations_update_firstName": "Imię"
+  "domain_operations_update_firstName": "Imię",
+  "domain_operations_upload_file_template": "Akceptowane będą wyłącznie pliki zgodne z tym wzorem dokumentu. <Link>z tym szablonem dokumentu</Link> będą akceptowane."
 }

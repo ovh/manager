@@ -257,6 +257,10 @@ const SMS_PHONEBOOKS = {
   },
 };
 
+export const URLS_PROTOCOLS = ['http://', 'https://'];
+
+export const URL_WITHOUT_PROTOCOL_REGEX = /^([\w-]+\.)+[\w-]{2,}(:\d+)?(\/.*)?$/i;
+
 export const PHONE_NUMBER_FOR_TIME2CHAT_REGEX = /^(\+33|0033)[1-9](?:[\s.-]?\d{2}){4}$/;
 
 export default {
@@ -265,5 +269,7 @@ export default {
   SMS_GUIDES,
   SMS_ALERTS,
   SMS_PHONEBOOKS,
+  URLS_PROTOCOLS,
+  URL_WITHOUT_PROTOCOL_REGEX,
   PHONE_NUMBER_FOR_TIME2CHAT_REGEX,
 };

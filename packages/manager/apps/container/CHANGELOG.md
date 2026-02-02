@@ -3,6 +3,166 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.180.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.3...@ovh-ux/manager-container-app@0.180.4) (2026-02-02)
+
+
+### Bug Fixes
+
+* **container:** can t read property of undefined reading status ([7b8a3ac](https://github.com/ovh/manager/commit/7b8a3acf5eee65a44cc0e1691f6fc4a452a8e238)), closes [#MANAGER-EU-188](https://github.com/ovh/manager/issues/MANAGER-EU-188) [#MANAGER-EU-18T13](https://github.com/ovh/manager/issues/MANAGER-EU-18T13)
+* **container:** fix chatbot style ([ba81938](https://github.com/ovh/manager/commit/ba81938bad1d41c2c2febe3ed0509d9727343b47)), closes [#MANAGER-20633](https://github.com/ovh/manager/issues/MANAGER-20633)
+
+
+
+
+
+## [0.180.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.2...@ovh-ux/manager-container-app@0.180.3) (2026-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4626] ([1b5dfd3](https://github.com/ovh/manager/commit/1b5dfd35a8e263cadc37107312a95e54304a3ad4))
+
+
+
+
+
+## [0.180.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.1...@ovh-ux/manager-container-app@0.180.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4617] ([927a2d3](https://github.com/ovh/manager/commit/927a2d384a06dd66f87992fdb8811c15db4ca3ca))
+* **i18n:** add missing translations [CDS 4623] ([5b32c60](https://github.com/ovh/manager/commit/5b32c60cf7da76e65614bcf49feeb1ac7c6b03ad))
+
+
+
+
+
+## [0.180.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.0...@ovh-ux/manager-container-app@0.180.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* **container:** fix backup agent translation ([cd5f2e0](https://github.com/ovh/manager/commit/cd5f2e079d49f20edaa8c7584e29ea535350b3cf)), closes [#BKP-773](https://github.com/ovh/manager/issues/BKP-773)
+
+
+
+
+
+# [0.180.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.4...@ovh-ux/manager-container-app@0.180.0) (2026-01-27)
+
+
+### Bug Fixes
+
+* **container:** sort alphabetically translations ([d8ad953](https://github.com/ovh/manager/commit/d8ad9532e460472afb81a55831a1cee2ac113490)), closes [#MANAGER-20633](https://github.com/ovh/manager/issues/MANAGER-20633)
+* **i18n:** add missing translations [CDS 1047] ([b38943b](https://github.com/ovh/manager/commit/b38943b73c2d1e69bd64c12a6a62d9bf8a70c751))
+
+
+### Features
+
+* **container:** implement ai chatbot federated module ([85caf1d](https://github.com/ovh/manager/commit/85caf1d7b42805149fb1f665c323a4d107920dc3)), closes [#MANAGER-20633](https://github.com/ovh/manager/issues/MANAGER-20633)
+
+
+
+
+
+## [0.179.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.3...@ovh-ux/manager-container-app@0.179.4) (2026-01-27)
+
+
+### Bug Fixes
+
+* **container:** menu reset when selecting ips app ([7aa43d9](https://github.com/ovh/manager/commit/7aa43d9f72b9bf6f5340fc3f038af4aae69e2d3e)), closes [#MANAGER-20546](https://github.com/ovh/manager/issues/MANAGER-20546)
+
+
+
+
+
+## [0.179.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.2...@ovh-ux/manager-container-app@0.179.3) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.179.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.1...@ovh-ux/manager-container-app@0.179.2) (2026-01-22)
+
+
+### Bug Fixes
+
+* **container:** fix pathmatcher regex for domain section ([2eb38a4](https://github.com/ovh/manager/commit/2eb38a4cdba4fe7c0e68aa216d5e96d3b0cba60e)), closes [#INC0183247](https://github.com/ovh/manager/issues/INC0183247)
+
+
+
+
+
+## [0.179.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.179.0...@ovh-ux/manager-container-app@0.179.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* **web-office:** add feature availability for order ([0a6f7ff](https://github.com/ovh/manager/commit/0a6f7ff76a7799389ec3ca4ce26e656fbe9e53eb)), closes [#PRDCOL-314](https://github.com/ovh/manager/issues/PRDCOL-314)
+
+
+
+
+
+# [0.179.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.178.0...@ovh-ux/manager-container-app@0.179.0) (2026-01-20)
+
+
+### Features
+
+* **container:** remove cloud web order on legacy sidebar ([bcee055](https://github.com/ovh/manager/commit/bcee055574740e65b74576ded3659e09c0c539e6)), closes [#PUWEBPT-181](https://github.com/ovh/manager/issues/PUWEBPT-181)
+
+
+
+
+
+# [0.178.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.177.0...@ovh-ux/manager-container-app@0.178.0) (2026-01-16)
+
+
+### Features
+
+* **pci-file-storage:** base new pci-file-storage app ([7c89509](https://github.com/ovh/manager/commit/7c89509fb89c9525e4c32c0c59e79762d0989e3a)), closes [#TAPC-5475](https://github.com/ovh/manager/issues/TAPC-5475)
+
+
+
+
+
+# [0.177.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.176.0...@ovh-ux/manager-container-app@0.177.0) (2026-01-15)
+
+
+### Features
+
+* **communication:** show service email adresses change banner ([7198356](https://github.com/ovh/manager/commit/7198356cab97860dc44bd3b62ff7d019b370f0be))
+
+
+
+
+
+# [0.176.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.175.0...@ovh-ux/manager-container-app@0.176.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 903] ([6eabc0d](https://github.com/ovh/manager/commit/6eabc0d4f1e5302f263a0637e64050710ad54446))
+
+
+### Features
+
+* **backup-billing:** init backup-billing µapp ([e3f376e](https://github.com/ovh/manager/commit/e3f376e3e99ebb70dde7dc258045c4d1a011e38b)), closes [#BKP-526](https://github.com/ovh/manager/issues/BKP-526)
+* **backup-vaults:** initiate backup vaults uapp ([4b63fa4](https://github.com/ovh/manager/commit/4b63fa43ed9d0602ee472e1c4be23af641c3a5c7)), closes [#BKP-525](https://github.com/ovh/manager/issues/BKP-525)
+* **container:** add backup-agent logo on navbar ([cd3d47a](https://github.com/ovh/manager/commit/cd3d47a4578171c14d74e939a5c9b370d55374c2)), closes [#BKP-523](https://github.com/ovh/manager/issues/BKP-523)
+* **container:** add backup-agent on sidebar v1 ([f765026](https://github.com/ovh/manager/commit/f76502638f2fdbb0c650a06c789747886307aeaa)), closes [#BKP-523](https://github.com/ovh/manager/issues/BKP-523)
+* **container:** add backup-agent µapps on pnr ([3552cbd](https://github.com/ovh/manager/commit/3552cbd75fff02425265a6a1e7d97aa70375224c)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+* **container:** add backup-services µapp to container ([cb2d876](https://github.com/ovh/manager/commit/cb2d876fe56f9d85adc752f9185a2d745f88c7eb)), closes [#BKP-524](https://github.com/ovh/manager/issues/BKP-524)
+* **container:** remove loader for backup agent services ([2f63f22](https://github.com/ovh/manager/commit/2f63f227659b6c2b83b9fd035e796bb2f30d8db9)), closes [#BKP-727](https://github.com/ovh/manager/issues/BKP-727)
+* **container:** rename application and add new tag ([566a6fe](https://github.com/ovh/manager/commit/566a6fe893ff619edc32e1f09865391d5f01ff3e)), closes [#BKP-700](https://github.com/ovh/manager/issues/BKP-700)
+
+
+
+
+
 # [0.175.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.174.7...@ovh-ux/manager-container-app@0.175.0) (2026-01-13)
 
 

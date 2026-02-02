@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/logs-to-customer",
-  "version": "1.10.8",
+  "version": "1.10.10",
   "description": "OVHcloud - observability - logs to customer module",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -31,15 +31,15 @@
     "build": "vite build",
     "dev": "vite build",
     "dev:watch": "vite build --watch",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
     "prepare": "tsc && vite build",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.21.1",
-    "@ovh-ux/manager-core-test-utils": "^0.11.6",
+    "@ovh-ux/manager-core-api": "^0.21.2",
+    "@ovh-ux/manager-core-test-utils": "^0.11.8",
     "@ovh-ux/manager-react-components": "2.43.1",
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",

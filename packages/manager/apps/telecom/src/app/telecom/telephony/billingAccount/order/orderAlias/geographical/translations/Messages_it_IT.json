@@ -1,0 +1,23 @@
+{
+  "telephony_order_geographical_title_country": "Ordina un numero geografico ({{country}})",
+  "telephony_order_geographical_title": "Ordina un numero geografico",
+  "telephony_order_geographical_submit_title": "Ordina un numero geografico",
+  "telephony_order_geographical_back_link": "Ritorna alla scelta dei tipi di numero",
+  "telephony_order_geographical_amount_title": "Numero di numeri:",
+  "telephony_order_geographical_zone_title": "Zona geografica:",
+  "telephony_order_geographical_zone_error": "La zona geografica non è corretta.",
+  "telephony_order_geographical_specific_title": "Scelta del numero",
+  "telephony_order_geographical_retractation_title": "Diritto di recesso",
+  "telephony_order_geographical_address_title": "Coordinate del titolare del numero",
+  "telephony_order_geographical_zone_tip": "Città o CAP",
+  "telephony_order_geographical_numbers_error": "Impossibile caricare la lista di preselezione dei numeri.",
+  "telephony_order_geographical_order_error": "L'ordine dei numeri geografici non è andato a buon fine. Ti preghiamo di riprovare più tardi.",
+  "telephony_order_geographical_order_error_city": "{{city}} non appartiene alla zona ({{zone}})",
+  "telephony_order_geographical_order_success": "Numero/i geografico/i ordinato/i. Effettua il saldo.",
+  "telephony_order_geographical_order_alias": "Tutte le configurazioni",
+  "telephony_order_geographical_order_sda_only": "Solo reindirizzamenti (SDAs)",
+  "telephony_order_geographical_prices_error": "Impossibile recuperare la tariffa per il numero fisso SDA Reindirizzamento",
+  "telephony_order_geographical_order_periodicy": "Ordina ({{total}} IVA incl./{{period}})",
+  "telephony_order_geographical_order_periodicy_annual": "anno",
+  "telephony_order_geographical_order_periodicy_month": "mese"
+}

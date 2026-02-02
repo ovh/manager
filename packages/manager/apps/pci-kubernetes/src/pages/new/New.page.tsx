@@ -26,11 +26,11 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
-import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { isStandardPlan } from '@/helpers';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import { PAGE_PREFIX } from '@/tracking.constants';
-import { DeploymentMode, TClusterPlanEnum } from '@/types';
+import { TClusterPlanEnum } from '@/types';
 
 import {
   TClusterCreationForm,
@@ -41,16 +41,14 @@ import stepsConfig from './steps/stepsConfig';
 
 const formIsNonNullable = (form: TClusterCreationForm): form is TNonNullableForm => {
   if (!form.region?.type) return false;
+  if (!form.network) return false;
+  if (!form.updatePolicy) return false;
 
-  const regionType = form.region.type as DeploymentMode;
+  if (form.plan && isStandardPlan(form.plan)) {
+    return !!form.network.privateNetwork;
+  }
 
-  // TODO:  When 3AZ will be available, update condition to make form.plan mandatory to create a cluster & remove "free" fallback value in createCluster call
-  return (
-    !!form.network &&
-    ((isMultiDeploymentZones(regionType) && !!form.network.privateNetwork) ||
-      isMonoDeploymentZone(regionType)) &&
-    !!form.updatePolicy
-  );
+  return true;
 };
 
 export default function NewPage() {

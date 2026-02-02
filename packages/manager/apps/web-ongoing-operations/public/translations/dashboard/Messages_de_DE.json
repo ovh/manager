@@ -176,5 +176,6 @@
   "domain_operations_update_phone": "Telefon",
   "domain_operations_update_spareEmail": "Backup-E-Mail",
   "domain_operations_update_vat": "Umsatzsteuer-Identifikationsnummer",
-  "domain_operations_update_firstName": "Vorname"
+  "domain_operations_update_firstName": "Vorname",
+  "domain_operations_upload_file_template": "Nur Dateien, die dieser Vorlage entsprechen, werden akzeptiert. <Link>Dokumentvorlage</Link> entsprechen, werden akzeptiert."
 }

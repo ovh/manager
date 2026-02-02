@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-cloud-universe-components",
-  "version": "2.18.3",
+  "version": "2.18.4",
   "private": true,
   "description": "Collection of components for the Cloud control panel.",
   "keywords": [
@@ -28,6 +28,8 @@
     "build": "rollup -c --environment BUILD:production --bundleConfigAsCjs",
     "dev": "rollup -c --environment BUILD:development --bundleConfigAsCjs",
     "dev:watch": "rollup -c --environment BUILD:development --bundleConfigAsCjs --watch",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "prepare": "rollup -c --environment BUILD:production --bundleConfigAsCjs"
   },
   "dependencies": {
@@ -38,7 +40,8 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.2.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",

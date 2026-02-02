@@ -1,0 +1,22 @@
+{
+  "home": "Strona główna",
+  "order": "Zamów",
+  "back": "Powrót",
+  "title": "Dashboard",
+  "email": "Adres e-mail",
+  "subject": "Temat",
+  "message": "Wiadomość",
+  "submitButton": "Wyślij",
+  "successMessage": "Twoja wiadomość została wysłana.",
+  "errors": {
+    "emailRequired": "Wpisz adres e-mail.",
+    "emailInvalid": "Wpisz poprawny adres e-mail.",
+    "subjectRequired": "Wpisz tytuł wiadomości.",
+    "messageRequired": "Wpisz wiadomość."
+  },
+  "general-information": "Informacje ogólne",
+  "help": "Pomoc",
+  "type_billing": "Sposób rozliczania usługi",
+  "consumption_tooltip": "Nie możesz samodzielnie dodać przestrzeni dyskowej. Aby zwiększyć przestrzeń dyskową, skontaktuj się z pomocą techniczną.",
+  "vault_price": "Czyli {{vaultPrice}} netto/m-c"
+}

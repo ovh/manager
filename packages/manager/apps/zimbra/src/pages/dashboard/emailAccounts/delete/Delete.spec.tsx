@@ -3,12 +3,13 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import '@testing-library/jest-dom';
+import { act, fireEvent } from '@testing-library/react';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
 import { deleteZimbraPlatformAccount } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { act, fireEvent, render } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import DeleteEmailAccountModal from './Delete.modal';
 

@@ -1,11 +1,19 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { Badge } from '@datatr-ux/uxlib';
+import { AlertTriangle } from 'lucide-react';
+import {
+  Badge,
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from '@datatr-ux/uxlib';
 import storages from '@/types/Storages';
 import { ActionsMenu } from './ActionsMenu.component';
 import LinkComponent from '@/components/links/Link.component';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
+import { hasDeletedDestination } from './replicationRules.utils';
 
 type GetColumnsParams = {
   onEditClicked: (replication: storages.ReplicationRule) => void;
@@ -20,7 +28,6 @@ export function getColumns({
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
   );
-
   return [
     {
       id: 'id',
@@ -44,7 +51,26 @@ export function getColumns({
           {t('columnDestinationName')}
         </DataTable.SortableHeader>
       ),
-      cell: ({ row }) => <span>{row.original.destination.name}</span>,
+      cell: ({ row }) => {
+        const isDeleted = hasDeletedDestination(row.original);
+        return (
+          <span className="flex items-center gap-2">
+            {row.original.destination.name}
+            {isDeleted && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <AlertTriangle className="size-4 text-yellow-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {t('deletedDestinationTooltip')}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+          </span>
+        );
+      },
     },
     {
       id: 'priority',

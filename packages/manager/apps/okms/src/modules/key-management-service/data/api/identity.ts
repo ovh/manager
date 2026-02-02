@@ -4,14 +4,15 @@ import {
   IdentityUser,
 } from '@key-management-service/types/identity.type';
 
-import apiClient, { ApiResponse } from '@ovh-ux/manager-core-api';
+import apiClient from '@ovh-ux/manager-core-api';
 
 /**
  *  Retrieve all IAM users of this account
  */
 
-export const getIdentityUsersIds = async (): Promise<ApiResponse<string[]>> => {
-  return apiClient.v6.get(`me/identity/user`);
+export const getIdentityUsersIds = async (): Promise<string[]> => {
+  const { data } = await apiClient.v6.get<string[]>(`me/identity/user`);
+  return data;
 };
 
 export const getIdentityUsersIdsQueryKey = () => [`get/me/identity/user`];
@@ -20,8 +21,9 @@ export const getIdentityUsersIdsQueryKey = () => [`get/me/identity/user`];
  *  Retrieve user by ID
  */
 
-export const getIdentityUser = async (userId: string): Promise<ApiResponse<IdentityUser>> => {
-  return apiClient.v6.get(`me/identity/user/${userId}`);
+export const getIdentityUser = async (userId: string): Promise<IdentityUser> => {
+  const { data } = await apiClient.v6.get<IdentityUser>(`me/identity/user/${userId}`);
+  return data;
 };
 
 export const getIdentityUserQueryKey = (userId: string) => ['get/me/identity/user/', userId];
@@ -30,8 +32,9 @@ export const getIdentityUserQueryKey = (userId: string) => ['get/me/identity/use
  *  Retrieve all IAM groups of this account
  */
 
-export const getIdentityGroupsIds = async (): Promise<ApiResponse<string[]>> => {
-  return apiClient.v6.get(`me/identity/group`);
+export const getIdentityGroupsIds = async (): Promise<string[]> => {
+  const { data } = await apiClient.v6.get<string[]>(`me/identity/group`);
+  return data;
 };
 
 export const getIdentityGroupsIdsQueryKey = () => [`get/me/identity/group`];
@@ -40,8 +43,9 @@ export const getIdentityGroupsIdsQueryKey = () => [`get/me/identity/group`];
  *  Retrieve group by ID
  */
 
-export const getIdentityGroup = async (groupId: string): Promise<ApiResponse<IdentityGroup>> => {
-  return apiClient.v6.get(`me/identity/group/${groupId}`);
+export const getIdentityGroup = async (groupId: string): Promise<IdentityGroup> => {
+  const { data } = await apiClient.v6.get<IdentityGroup>(`me/identity/group/${groupId}`);
+  return data;
 };
 
 export const getIdentityGroupQueryKey = (groupId: string) => ['get/me/identity/group/', groupId];
@@ -50,8 +54,9 @@ export const getIdentityGroupQueryKey = (groupId: string) => ['get/me/identity/g
  *  Retrieve all oAuth2 clients (Service Account)
  */
 
-export const getIdentityServiceAccountsIds = async (): Promise<ApiResponse<string[]>> => {
-  return apiClient.v6.get(`me/api/oauth2/client`);
+export const getIdentityServiceAccountsIds = async (): Promise<string[]> => {
+  const { data } = await apiClient.v6.get<string[]>(`me/api/oauth2/client`);
+  return data;
 };
 
 export const getIdentityServiceAccountsIdsQueryKey = () => [`get/me/api/oauth2/client`];
@@ -62,8 +67,11 @@ export const getIdentityServiceAccountsIdsQueryKey = () => [`get/me/api/oauth2/c
 
 export const getIdentityServiceAccount = async (
   serviceAccountId: string,
-): Promise<ApiResponse<IdentityOauthClient>> => {
-  return apiClient.v6.get(`me/api/oauth2/client/${serviceAccountId}`);
+): Promise<IdentityOauthClient> => {
+  const { data } = await apiClient.v6.get<IdentityOauthClient>(
+    `me/api/oauth2/client/${serviceAccountId}`,
+  );
+  return data;
 };
 
 export const getIdentityServiceAccountQueryKey = (serviceAccountId: string) => [

@@ -3,16 +3,11 @@ import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import DatagridColumnPendingActions from './DatagridColumnPendingActions';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
-import { domainStatusToBadge } from '@/domain/utils/domainStatus';
-import { DOMAIN_PENDING_ACTIONS } from '@/domain/constants/serviceDetail';
 import { wrapper } from '@/common/utils/test.provider';
+import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
 
 vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),
-}));
-
-vi.mock('@/domain/utils/domainStatus', () => ({
-  domainStatusToBadge: vi.fn(),
 }));
 
 vi.mock('@ovhcloud/ods-react', () => ({
@@ -108,8 +103,6 @@ describe('DatagridColumnPendingActions', () => {
       isServiceInfoLoading: false,
     });
 
-    (domainStatusToBadge as ReturnType<typeof vi.fn>).mockReturnValue(null);
-
     render(
       <DatagridColumnPendingActions
         serviceName={mockServiceName}
@@ -124,7 +117,7 @@ describe('DatagridColumnPendingActions', () => {
   });
 
   it('should render badge for pending action', () => {
-    const mockPendingAction = 'TERMINATE';
+    const mockPendingAction = LifecycleCapacitiesEnum.TerminateAtExpirationDate;
     const mockServiceInfo = {
       billing: {
         lifecycle: {
@@ -137,7 +130,6 @@ describe('DatagridColumnPendingActions', () => {
 
     const mockBadgeConfig = {
       statusColor: 'critical',
-      icon: 'warning-triangle-fill',
       i18nKey: 'domain_status_terminate',
     };
 
@@ -145,10 +137,6 @@ describe('DatagridColumnPendingActions', () => {
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
-
-    (domainStatusToBadge as ReturnType<typeof vi.fn>).mockReturnValue(
-      mockBadgeConfig,
-    );
 
     render(
       <DatagridColumnPendingActions
@@ -163,18 +151,13 @@ describe('DatagridColumnPendingActions', () => {
     const badge = screen.getByTestId(`status-badge-${mockPendingAction}`);
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveAttribute('data-color', 'critical');
-
-    expect(
-      screen.getByTestId('icon-warning-triangle-fill'),
-    ).toBeInTheDocument();
-    expect(domainStatusToBadge).toHaveBeenCalledWith(
-      DOMAIN_PENDING_ACTIONS,
-      mockPendingAction,
-    );
   });
 
   it('should handle multiple pending actions by showing first one', () => {
-    const mockPendingActions = ['TERMINATE', 'RENEW'];
+    const mockPendingActions = [
+      LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+      LifecycleCapacitiesEnum.EarlyRenewal,
+    ];
     const mockServiceInfo = {
       billing: {
         lifecycle: {
@@ -185,20 +168,10 @@ describe('DatagridColumnPendingActions', () => {
       },
     };
 
-    const mockBadgeConfig = {
-      statusColor: 'critical',
-      icon: 'warning-triangle-fill',
-      i18nKey: 'domain_status_terminate',
-    };
-
     (useGetServiceInformation as ReturnType<typeof vi.fn>).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
-
-    (domainStatusToBadge as ReturnType<typeof vi.fn>).mockReturnValue(
-      mockBadgeConfig,
-    );
 
     render(
       <DatagridColumnPendingActions
@@ -210,15 +183,20 @@ describe('DatagridColumnPendingActions', () => {
       },
     );
 
-    expect(domainStatusToBadge).toHaveBeenCalledWith(
-      DOMAIN_PENDING_ACTIONS,
-      'TERMINATE',
-    );
-    expect(screen.getByTestId('status-badge-TERMINATE')).toBeInTheDocument();
+    expect(
+      screen.getByTestId(
+        `status-badge-${LifecycleCapacitiesEnum.TerminateAtExpirationDate}`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId(
+        `status-badge-${LifecycleCapacitiesEnum.EarlyRenewal}`,
+      ),
+    ).toBeInTheDocument();
   });
 
   it('should render badge without icon when no icon specified', () => {
-    const mockPendingAction = 'CUSTOM_ACTION';
+    const mockPendingAction = LifecycleCapacitiesEnum.EarlyRenewal;
     const mockServiceInfo = {
       billing: {
         lifecycle: {
@@ -229,20 +207,10 @@ describe('DatagridColumnPendingActions', () => {
       },
     };
 
-    const mockBadgeConfig = {
-      statusColor: 'info',
-      icon: null as string | null,
-      i18nKey: 'domain_status_custom',
-    };
-
     (useGetServiceInformation as ReturnType<typeof vi.fn>).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
-
-    (domainStatusToBadge as ReturnType<typeof vi.fn>).mockReturnValue(
-      mockBadgeConfig,
-    );
 
     render(
       <DatagridColumnPendingActions

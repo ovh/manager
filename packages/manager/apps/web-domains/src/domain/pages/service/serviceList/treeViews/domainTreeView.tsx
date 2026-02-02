@@ -5,10 +5,11 @@ import {
   TreeViewValueChangeDetail,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
+import { DomainColumn } from '@/domain/types/export.types';
 
 interface DomainTreeViewProps {
-  readonly selectedIds: string[];
-  readonly onSelectionChange: (ids: string[]) => void;
+  readonly selectedIds: DomainColumn[];
+  readonly onSelectionChange: (ids: DomainColumn[]) => void;
 }
 
 export default function DomainTreeView({
@@ -73,7 +74,7 @@ export default function DomainTreeView({
           newValue.push('domain');
         }
 
-        onSelectionChange(newValue);
+        onSelectionChange(newValue as DomainColumn[]);
       }}
       value={selectedIds}
     >

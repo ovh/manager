@@ -10,10 +10,9 @@ import {
   MessageBody,
   Message,
 } from '@ovhcloud/ods-react';
-import { useEffect, useState } from 'react';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import HolderInformation from './HolderInformation';
-import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
+import { useGetConnectedNichandleId } from '@/common/hooks/nichandle/useGetConnectedNichandleId';
 
 interface HolderCardProps {
   readonly serviceName: string;
@@ -26,18 +25,12 @@ export default function HolderCard({
 }: HolderCardProps) {
   const { t } = useTranslation(['domain']);
   const { navigateTo } = useNavigation();
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const { nichandleInformation } = useNichandleInformation();
   const { domainResource } = useGetDomainResource(serviceName);
+  const { nichandle: connectedNichandle } = useGetConnectedNichandleId();
+  const isAuthorized = administratorContact === connectedNichandle;
 
   const contactID =
     domainResource.currentState.contactsConfiguration.contactOwner.id;
-
-  useEffect(() => {
-    if (administratorContact === nichandleInformation?.nichandle) {
-      setIsAuthorized(true);
-    }
-  }, [nichandleInformation?.nichandle]);
 
   return (
     <Card

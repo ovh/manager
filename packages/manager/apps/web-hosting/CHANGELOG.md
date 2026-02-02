@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.4...@ovh-ux/manager-web-hosting-app@0.16.5) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.3...@ovh-ux/manager-web-hosting-app@0.16.4) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.2...@ovh-ux/manager-web-hosting-app@0.16.3) (2026-01-28)
+
+
+### Bug Fixes
+
+* **web-hosting:** fix css break word and add refresh for tasks ([39d0ebd](https://github.com/ovh/manager/commit/39d0ebd28ffd8fd69ec4de72cf915aab1415dc5c)), closes [#PUWEBPT-205](https://github.com/ovh/manager/issues/PUWEBPT-205)
+* **web-hosting:** manage ip location and cdn on modify domain modal ([149418c](https://github.com/ovh/manager/commit/149418cd26bc6106c10e3cb1bda53e6e2ea8e51e)), closes [#PUWEBPT-206](https://github.com/ovh/manager/issues/PUWEBPT-206)
+* **web-hosting:** onclose update modal ([e66f00a](https://github.com/ovh/manager/commit/e66f00a16b16bf653bf91020b2e5fa5636c31ccf)), closes [#PUWEBPT-208](https://github.com/ovh/manager/issues/PUWEBPT-208)
+
+
+
+
+
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.1...@ovh-ux/manager-web-hosting-app@0.16.2) (2026-01-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4606] ([8a702ab](https://github.com/ovh/manager/commit/8a702ab6db65f6b4ec2c301cac5c1a80bb76b7ba))
+* **i18n:** add missing translations [CDS 4608] ([23f8e2c](https://github.com/ovh/manager/commit/23f8e2c61eb1ab781a37e2506279a648fce10acc))
+* **i18n:** add missing translations [CDS 4609] ([54b7e4a](https://github.com/ovh/manager/commit/54b7e4a775df6cdd4b2de0a6bf0528fec1f6e948))
+
+
+
+
+
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.0...@ovh-ux/manager-web-hosting-app@0.16.1) (2026-01-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4601] ([9c3eee5](https://github.com/ovh/manager/commit/9c3eee5045299f68f45ba2d2dad4448feb79d9e2))
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.15.5...@ovh-ux/manager-web-hosting-app@0.16.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* **web-hosting:** fix for test topbar ([18c2e29](https://github.com/ovh/manager/commit/18c2e29cb346d0185fe08587dbeba79624eb6789)), closes [#PUWEBPT-161](https://github.com/ovh/manager/issues/PUWEBPT-161)
+
+
+### Features
+
+* **web-hosting:** add test for delete site ([12fc121](https://github.com/ovh/manager/commit/12fc1214c668efb8b97f19fa65b09e4b542002f1)), closes [#PUWEBPT-188](https://github.com/ovh/manager/issues/PUWEBPT-188)
+* **web-hosting:** ameliorate test with muk ([c035aca](https://github.com/ovh/manager/commit/c035aca6e56cf6387511a2566b7d59a4d404d48c)), closes [#PUWEBPT-119](https://github.com/ovh/manager/issues/PUWEBPT-119)
+* **web-hosting:** disable ncrypt ssl button when no selected domain ([3975e44](https://github.com/ovh/manager/commit/3975e441cf4eb6f1a8c4fe4156cc169a63cbff5f)), closes [#PUWEBPT-165](https://github.com/ovh/manager/issues/PUWEBPT-165)
+* **web-hosting:** update delay for import from step1 to step 2 ([9bb5f6a](https://github.com/ovh/manager/commit/9bb5f6a14a13a8fbfa69a16d9c40c61f0a337f95)), closes [#PUWEBPT-189](https://github.com/ovh/manager/issues/PUWEBPT-189)
+
+
+
+
+
+## [0.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.15.4...@ovh-ux/manager-web-hosting-app@0.15.5) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.15.3...@ovh-ux/manager-web-hosting-app@0.15.4) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.15.2...@ovh-ux/manager-web-hosting-app@0.15.3) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
 ## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.15.1...@ovh-ux/manager-web-hosting-app@0.15.2) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app

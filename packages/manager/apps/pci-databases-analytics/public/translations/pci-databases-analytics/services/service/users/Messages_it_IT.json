@@ -22,7 +22,7 @@
   "resetUserPasswordDescription": "Vuoi davvero rigenerare la password dell'utente {{name}}?",
   "resetUserPasswordToastErrorTitle": "Si è verificato un errore durante la rigenerazione della password dell'utente",
   "resetUserPasswordToastSuccessDescription": "La password dell'utente {{name}} è stata rigenerata correttamente.",
-  "resetUserPasswordSuccess": "La password dell'utente è stata rigenerata con successo. Si prega di annotarlo poiché non potrà essere recuperato in seguito.",
+  "resetUserPasswordSuccess": "La password dell’utente è stata rigenerata correttamente. Annotala perché non potrà essere recuperata in seguito.",
   "resetUserPasswordCopy": "Password copiata negli appunti",
   "addUserToastErrorTitle": "Si è verificato un errore durante l'aggiunta dell'utente",
   "editUserToastErrorTitle": "Si è verificato un errore durante la modifica dell'utente.",
@@ -84,11 +84,11 @@
   "viewCertificateCopy": "Il certificato è stato copiato",
   "showAccessKeyTitle": "Chiave di accesso",
   "showAccessKeyCopy": "La chiave di accesso è stata copiata",
-  "addUserPasswordSuccess": "L'utente è stato creato con successo. Di seguito troverai tutte le informazioni necessarie per il suo utilizzo.",
-  "userCancelButton": "Annulla",
-  "userConfirmButton": "Conferma",
-  "userCloseButton": "Chiudi",
-  "userSuccessTitle": "Risultato",
-  "addUserMySQLInfo": "Per impostazione predefinita, un nuovo utente MySQL può connettersi al server di database, ma ha solo privilegi molto limitati. Le sue autorizzazioni devono essere esplicitamente concesse secondo necessità tramite la CLI (ad esempio con i comandi GRANT), rispettando la sintassi definita nella <anchor>documentazione ufficiale di MySQL</anchor>.",
-  "addUserPGInfo": "Per impostazione predefinita, un nuovo utente può connettersi al database e eredita tutti i privilegi concessi a PUBLIC o ai ruoli di cui è membro. Le sue autorizzazioni sono generalmente limitate e devono essere esplicitamente concesse secondo necessità tramite la CLI, seguendo la sintassi della <anchor>documentazione ufficiale di PostgreSQL</anchor>."
+  "addUserPasswordSuccess": "L'utente è stato creato correttamente. Qui sotto troverai tutte le informazioni necessarie al suo utilizzo",
+  "userCancelButton": "Annullare",
+  "userConfirmButton": "Confermare",
+  "userCloseButton": "Chiudere",
+  "userSuccessTitle": "Completato",
+  "addUserMySQLInfo": "Di default un nuovo utente MySQL può connettersi al server di database, ma dispone di privilegi molto limitati. Le sue autorizzazioni devono essere esplicitamente concesse in base alle necessità via CLI (per esempio con i comandi GRANT), rispettando la sintassi definita nella <anchor>documentazione ufficiale di MySQL</anchor>.",
+  "addUserPGInfo": "Di default, un nuovo utente può connettersi al database ed eredita tutti i privilegi concessi a PUBLIC o ai ruoli di cui è membro. I suoi permessi sono generalmente limitati e devono essere esplicitamente concessi in base alle necessità via CLI, seguendo la sintassi della <anchor>documentazione ufficiale di PostgreSQL</anchor>."
 }

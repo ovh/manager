@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.27.2...@ovh-ux/manager-components@1.27.3) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-components
+
+
+
+
+
+## [1.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.27.1...@ovh-ux/manager-components@1.27.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* fix sentry issues on common parts ([c87b11a](https://github.com/ovh/manager/commit/c87b11a80f1ee24cc59799398e0618abdf36aa1c)), closes [#MANAGER-EU-188](https://github.com/ovh/manager/issues/MANAGER-EU-188)
+
+
+
+
+
 ## [1.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.27.0...@ovh-ux/manager-components@1.27.1) (2025-12-12)
 
 

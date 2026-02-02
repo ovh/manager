@@ -1382,8 +1382,8 @@
   "exchange_ACTION_configure_help_putinjunk_text": "Spam-Mails automatisch in den Spam-Ordner verschieben",
   "exchange_ACTION_display_pst_check_existing_export": "Es wird überprüft, ob bereits ein Export durchgeführt wird. Bitte haben Sie einen Moment Geduld.",
   "exchange_ACTION_display_pst_wait_label": "Der Export in eine .pst-Datei kann abhängig von der Datenmenge einige Stunden in Anspruch nehmen. Sie können den Fortschritt der Operation jederzeit einsehen (Sie können dieses Fenster auch schließen und später wieder zurückkehren).",
-  "exchange_ACTION_display_pst_get_file": "Sie können Ihre Datei nun über folgenden Link herunterladen: ACHTUNG: Die URL ist nur 30 Minuten gültig.",
-  "exchange_ACTION_display_pst_start": "Export starten",
+  "exchange_ACTION_display_pst_get_file": "Ihr Account <strong>{{ currentEmail }}</strong> ist jetzt im PST-Format verfügbar.",
+  "exchange_ACTION_display_pst_start": "Herunterladen",
   "exchange_ACTION_display_pst_progress": "Export wird durchgeführt: {0} % abgeschlossen.",
   "exchange_ACTION_display_pst_export_done": "Der Export der .pst-Datei ist abgeschlossen. Sie können diese nun herunterladen.",
   "exchange_ACTION_display_pst_genlink": "Erstellung des Links",
@@ -1393,9 +1393,9 @@
   "exchange_ACTION_display_pst_retry": "Erneut versuchen",
   "exchange_ACTION_display_pst_error": "Export als .pst-Datei ist gescheitert. Bitte versuchen Sie es erneut.",
   "exchange_ACTION_display_pst_already_exist": "Für diesen E-Mail-Account existiert bereits eine .pst-Datei:",
-  "exchange_ACTION_display_pst_ask_generate_new": "Möchten Sie einen neuen Export im .pst-Format vornehmen?",
-  "exchange_ACTION_display_pst_warning_erase": "Achtung, diese Aktion ersetzt die bereits vorhandene Datei.",
-  "exchange_ACTION_add_pst_title": "Export als .pst-Datei",
+  "exchange_ACTION_display_pst_ask_generate_new": "Sie möchten einen neuen Export Ihres Accounts generieren?",
+  "exchange_ACTION_display_pst_warning_erase": "Durch diese Aktion wird <strong>die letzte PST-Datei automatisch und direkt gelöscht</strong>.",
+  "exchange_ACTION_add_pst_title": "Im PST-Format exportieren",
   "exchange_action_order_space_disk_title": "Zusätzlichen Speicherplatz bestellen",
   "exchange_action_order_space_disk_intro": "Sie können zusätzlichen Speicherplatz bestellen",
   "exchange_action_order_space_disk_price": "Gesamtpreis zzgl. MwSt.:",
@@ -1687,5 +1687,7 @@
   "exchange_reset_mfa_success": "Die Zwei-Faktor-Authentifizierung wurde zurückgesetzt.",
   "exchange_mfa_error": "Es ist ein Fehler aufgetreten: {{error}}",
   "exchange_delete_mfa_success": "Die Zwei-Faktor-Authentifizierung wurde gelöscht.",
-  "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}"
+  "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}",
+  "exchange_ACTION_display_pst_message_info": "Die Datei kann <strong>bis zum {{ expirationDate }} um {{ expirationHour }}</strong> heruntergeladen werden. Nach Ablauf dieser Frist wird die Datei automatisch gelöscht.",
+  "exchange_ACTION_display_pst_ask_generate_new_link": "Neuen Export starten"
 }

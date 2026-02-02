@@ -30,5 +30,20 @@
   "stopNotebookDescription3": "Przywrócimy Twoją przestrzeń roboczą i ponownie alokujemy zasoby obliczeniowe.",
   "stopNotebookConfirmation": "Czy na pewno chcesz zatrzymać notebook {{name}}?",
   "stopNotebookButtonConfirm": "Zatrzymaj",
-  "stopNotebookToastSuccessDescription": "Notebook {{name}} został zatrzymany"
+  "stopNotebookToastSuccessDescription": "Notebook {{name}} został zatrzymany",
+  "restartNotebookTitle": "Uruchom ponownie notatnik",
+  "restartNotebookDescription": "Czy na pewno chcesz uruchomić ponownie notatnik {{name}}? Po ponownym uruchomieniu będzie aktywny przez dodatkowe 7 dni od dnia ponownego uruchomienia.",
+  "restartNotebookButtonConfirm": "Uruchom ponownie",
+  "restartNotebookToastSuccessDescription": "Notatnik {{name}} został uruchomiony ponownie",
+  "restartNotebookToastSuccess": "Notatnik {{name}} został uruchomiony ponownie",
+  "enableAutoRestartTitle": "Włącz automatyczne ponowne uruchamianie",
+  "enableAutoRestartDescription": "Czy na pewno chcesz włączyć automatyczne ponowne uruchamianie dla notatnika {{name}}? Po włączeniu tej opcji notatnik będzie automatycznie uruchamiany ponownie co 7 dni.",
+  "enableAutoRestartButtonConfirm": "Włącz",
+  "enableAutoRestartToastSuccessDescription": "Automatyczne ponowne uruchamianie zostało włączone dla notatnika {{name}}",
+  "disableAutoRestartTitle": "Wyłącz automatyczne ponowne uruchamianie",
+  "disableAutoRestartDescription": "Czy na pewno chcesz wyłączyć automatyczne ponowne uruchamianie dla notatnika {{name}}? Po wyłączeniu tej opcji notatnik nie będzie już automatycznie uruchamiany ponownie co 7 dni. ",
+  "disableAutoRestartButtonConfirm": "Wyłącz",
+  "disableAutoRestartToastSuccessDescription": "Automatyczne ponowne uruchamianie zostało wyłączone dla notatnika {{name}}",
+  "shutdownLabel": "Zatrzymaj w dniu ",
+  "restartLabel": "Uruchom ponownie w dniu "
 }

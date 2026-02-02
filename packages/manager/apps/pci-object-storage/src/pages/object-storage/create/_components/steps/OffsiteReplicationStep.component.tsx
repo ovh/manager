@@ -46,7 +46,6 @@ const OffsiteReplicationStep = React.forwardRef<
     translateContinentRegion,
     translateMicroRegion,
   } = useTranslatedMicroRegions();
-
   const mappedRegions: MappedRegions[] = regions.map((r) => ({
     label: translateMicroRegion(r.name),
     continent: translateContinentRegion(r.name),
@@ -72,7 +71,10 @@ const OffsiteReplicationStep = React.forwardRef<
     }
   };
   return (
-    <div className="flex flex-col gap-4">
+    <div
+      className="flex flex-col gap-4"
+      data-testid="replication-step-container"
+    >
       <div>
         <span
           className="text-sm leading-none font-medium"
@@ -99,6 +101,7 @@ const OffsiteReplicationStep = React.forwardRef<
               <RadioGroupItem
                 value={replicationMode}
                 id={`offsite-replication-${replicationMode}-option`}
+                data-testid={`offsite-replication-${replicationMode}-option`}
               />
               <Label
                 htmlFor={`offsite-replication-${replicationMode}-option`}

@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.86](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.85...@ovh-ux/manager-emaildomain-app@3.0.86) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
+
+
+
+
+
+## [3.0.85](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.84...@ovh-ux/manager-emaildomain-app@3.0.85) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
+
+
+
+
+
+## [3.0.84](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.83...@ovh-ux/manager-emaildomain-app@3.0.84) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
+
+
+
+
+
+## [3.0.83](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.82...@ovh-ux/manager-emaildomain-app@3.0.83) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
+
+
+
+
+
+## [3.0.82](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.81...@ovh-ux/manager-emaildomain-app@3.0.82) (2026-01-22)
+
+
+### Bug Fixes
+
+* **web:** remove duplicated directive on email ([e034be7](https://github.com/ovh/manager/commit/e034be7f9879d9c3140343e19e550222d497428e)), closes [#INC0184072](https://github.com/ovh/manager/issues/INC0184072)
+
+
+
+
+
+## [3.0.81](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.80...@ovh-ux/manager-emaildomain-app@3.0.81) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
+
+
+
+
+
+## [3.0.80](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.79...@ovh-ux/manager-emaildomain-app@3.0.80) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
+
+
+
+
+
+## [3.0.79](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.78...@ovh-ux/manager-emaildomain-app@3.0.79) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-emaildomain-app
+
+
+
+
+
 ## [3.0.78](https://github.com/ovh/manager/compare/@ovh-ux/manager-emaildomain-app@3.0.77...@ovh-ux/manager-emaildomain-app@3.0.78) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-emaildomain-app

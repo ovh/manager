@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ChangelogButton,
   HeadersProps,
@@ -8,6 +9,7 @@ import {
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
+
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
@@ -18,13 +20,15 @@ import MessageSuspendedService from '@/components/message/MessageSuspendedServic
 export default function DashboardPage() {
   const { id } = useParams();
   const { t } = useTranslation('dashboard');
+  const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const navigate = useNavigate();
 
   const tabsList: DashboardTab[] = [
     {
       name: 'general_information',
-      title: t('managed_vcd_dashboard_general_information'),
+      title: tDashboard('general_information'),
       to: useResolvedPath('').pathname,
       trackingActions: TRACKING_TABS_ACTIONS.dashboard,
     },
@@ -66,7 +70,7 @@ export default function DashboardPage() {
           status={vcdOrganisation?.data?.resourceStatus}
         />
       }
-      backLinkLabel={t('managed_vcd_dashboard_back_link')}
+      backLinkLabel={tActions('back_to_list')}
       onClickReturn={() => navigate(urls.listing)}
     />
   );

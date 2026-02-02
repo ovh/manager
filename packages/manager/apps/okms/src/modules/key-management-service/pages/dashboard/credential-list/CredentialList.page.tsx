@@ -9,15 +9,16 @@ import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/od
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { ManagerButton, useAuthorizationIam } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 const CredentialList = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
   const { okms } = useOutletContext<KmsDashboardOutletContext>();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const { isAuthorized, isLoading: isLoadingIam } = useAuthorizationIam(
     [kmsIamActions.credentialGet],
@@ -40,7 +41,7 @@ const CredentialList = () => {
             location: PageLocation.page,
             buttonType: ButtonType.button,
             actionType: 'action',
-            actions: ['create_access_certificate'],
+            actions: ['create', 'credential'],
           });
           navigate(KMS_ROUTES_URLS.credentialCreate(okms.id));
         }}

@@ -1,9 +1,6 @@
 import '@/common/setupTests';
-import React from 'react';
-import { render, screen } from '@/common/utils/test.provider';
-import userEvent from '@testing-library/user-event';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
 import DnsState from './DnsState';
 import { OptionStateEnum } from '@/domain/enum/optionState.enum';
 import { TDomainResource } from '@/domain/types/domainResource';

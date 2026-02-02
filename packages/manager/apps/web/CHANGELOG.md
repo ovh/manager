@@ -3,6 +3,115 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.36.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.8...@ovh-ux/manager-web@19.36.9) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.36.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.7...@ovh-ux/manager-web@19.36.8) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.36.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.6...@ovh-ux/manager-web@19.36.7) (2026-01-28)
+
+
+### Bug Fixes
+
+* **web-hosting:** manage ip location and cdn on modify domain modal ([149418c](https://github.com/ovh/manager/commit/149418cd26bc6106c10e3cb1bda53e6e2ea8e51e)), closes [#PUWEBPT-206](https://github.com/ovh/manager/issues/PUWEBPT-206)
+
+
+
+
+
+## [19.36.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.5...@ovh-ux/manager-web@19.36.6) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.36.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.4...@ovh-ux/manager-web@19.36.5) (2026-01-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.36.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.3...@ovh-ux/manager-web@19.36.4) (2026-01-22)
+
+
+### Bug Fixes
+
+* **web:** fix for validator punycode for cname ([d76a462](https://github.com/ovh/manager/commit/d76a462209c196dac2913af0ed83d213cc6b3b5d)), closes [#PUWEBPT-204](https://github.com/ovh/manager/issues/PUWEBPT-204)
+
+
+
+
+
+## [19.36.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.2...@ovh-ux/manager-web@19.36.3) (2026-01-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.1...@ovh-ux/manager-web@19.36.2) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.0...@ovh-ux/manager-web@19.36.1) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.2...@ovh-ux/manager-web@19.36.0) (2026-01-20)
+
+
+### Features
+
+* **web-hosting:** add server info on database ([fbee4f2](https://github.com/ovh/manager/commit/fbee4f2e797259834abee10e68a13d734b97fcba)), closes [#PUWEBPT-50](https://github.com/ovh/manager/issues/PUWEBPT-50)
+* **web:** add action button résiliate for sql extra perso ([caf7e17](https://github.com/ovh/manager/commit/caf7e17a57eb713e65ab747497ce8d379d8c81a0)), closes [#PUWEBPT-161](https://github.com/ovh/manager/issues/PUWEBPT-161)
+
+
+
+
+
+## [19.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.1...@ovh-ux/manager-web@19.35.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.35.0...@ovh-ux/manager-web@19.35.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* **web-domains:** fix redirection ([a3e2a2f](https://github.com/ovh/manager/commit/a3e2a2f2523b7a0907f412177da0657c79c0b1b9)), closes [#DCE-136](https://github.com/ovh/manager/issues/DCE-136)
+
+
+
+
+
 # [19.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.34.6...@ovh-ux/manager-web@19.35.0) (2026-01-08)
 
 

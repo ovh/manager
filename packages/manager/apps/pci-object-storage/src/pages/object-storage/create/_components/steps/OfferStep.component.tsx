@@ -32,7 +32,7 @@ const OfferStep = React.forwardRef<HTMLInputElement, OfferStepProps>(
       >
         {OFFERS_TYPES.map((offer) => (
           <RadioTile
-            data-testid="offer-radio-tile-s3-api"
+            data-testid={`offer-radio-tile-${offer}`}
             value={offer}
             key={offer}
           >

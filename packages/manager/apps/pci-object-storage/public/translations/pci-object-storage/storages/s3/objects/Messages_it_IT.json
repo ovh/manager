@@ -60,5 +60,21 @@
   "restoreAvailableUntil": "L'oggetto sarà disponibile fino al",
   "seeVersionsSwitchLabel": "Visualizzare le versioni",
   "searchPlaceholder": "Ricerca...",
-  "changeStorageClassWarningInfrequentAccess": "Attenzione: Le classi Infrequent Access e Cold Archive richiedono una durata minima di conservazione. <0>Più informazioni</0>"
+  "changeStorageClassWarningInfrequentAccess": "Attenzione: Le classi Infrequent Access e Cold Archive richiedono una durata minima di conservazione. <0>Più informazioni</0>",
+  "selectObject": "Selezionare l'oggetto {{name}}",
+  "selectAll": "Seleziona tutto",
+  "bulkDeleteTitle": "Eliminare più oggetti",
+  "bulkDeleteDescription_one": "Stai per eliminare {{count}} oggetto.",
+  "bulkDeleteDescription_other": "Stai per eliminare {{count}} oggetti.",
+  "bulkDeleteButtonConfirm_one": "Eliminare {{count}} oggetto",
+  "bulkDeleteButtonConfirm_other": "Eliminare {{count}} oggetti",
+  "bulkDeleteToastSuccessDescription_one": "{{count}} oggetto eliminato correttamente.",
+  "bulkDeleteToastSuccessDescription_other": "{{count}} oggetti eliminati correttamente.",
+  "bulkDeleteVersionsTitle": "Eliminare più versioni",
+  "bulkDeleteVersionsDescription_one": "Vuoi eliminare definitivamente {{count}} versione? Questa azione non può essere annullata.",
+  "bulkDeleteVersionsDescription_other": "Vuoi eliminare definitivamente {{count}} versioni? Questa azione non può essere annullata.",
+  "bulkDeleteVersionsConfirmation": "Digita {{confirmation}} per confermare",
+  "downloadErrorDescription": "Errore durante il caricamento del file",
+  "downloadErrorStatus": "Errore durante il caricamento: {{status}}",
+  "downloadErrorUnknownType": "Tipo di caricamento sconosciuto"
 }

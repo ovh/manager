@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.45](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.44...@ovh-ux/manager-iplb-app@3.2.45) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.2.44](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.43...@ovh-ux/manager-iplb-app@3.2.44) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.2.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.42...@ovh-ux/manager-iplb-app@3.2.43) (2026-01-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.2.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.41...@ovh-ux/manager-iplb-app@3.2.42) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.2.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.40...@ovh-ux/manager-iplb-app@3.2.41) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
 ## [3.2.40](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.39...@ovh-ux/manager-iplb-app@3.2.40) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-iplb-app

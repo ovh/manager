@@ -53,5 +53,5 @@
   "error_message": "Se ha producido un error al completar la solicitud. {{ error }}",
   "agreement": "Firma del contrato",
   "contract_signature": "Firma del contrato",
-  "contract_signature_tooltip": "Para acceder a su servicio, debe aceptar el contrato de usuario de Microsoft"
+  "contract_signature_tooltip": "Para obtener acceso al servicio, debe aceptar el contrato de usuario de Microsoft"
 }

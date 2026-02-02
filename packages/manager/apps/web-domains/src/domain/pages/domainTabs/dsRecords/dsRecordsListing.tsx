@@ -36,10 +36,11 @@ import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import DnssecModal from '@/domain/components/ConfigurationCards/DnssecModal';
-import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import LinkToOngoingOperations from '@/domain/components/LinkToOngoingOperations/LinkToOngoingOperations';
 import UnauthorizedBanner from '@/domain/components/UnauthorizedBanner/UnauthorizedBanner';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 import Loading from '@/alldoms/components/loading/Loading';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
@@ -48,11 +49,27 @@ export default function DsRecordsListing() {
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
   );
+  const { data: dnsZoneIAMRessources } = useGetIAMResource(
+    domainResource.id,
+    'dnsZone',
+  );
+  const urn = dnsZoneIAMRessources?.[0]?.urn;
   const { isPending, isAuthorized } = useAuthorizationIam(
     ['dnsZone:apiovh:dnssec/create', 'dnsZone:apiovh:dnssec/delete'],
-    `urn:v1:eu:resource:dnsZone:${domainResource.id}`,
+    urn,
   );
-  const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
+
+  const isInternalDnsConfiguration =
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.EXTERNAL &&
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.MIXED;
+
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(
+    serviceName,
+    domainResource,
+    isInternalDnsConfiguration,
+  );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDnssecModalOpen, setIsDnssecModalOpen] = useState<boolean>(false);
   const [items, setItems] = useState<TDsDataInterface[]>([]);
@@ -159,9 +176,6 @@ export default function DsRecordsListing() {
     activeConfiguration,
   });
 
-  const isInternalDnsConfiguration =
-    activeConfiguration === ActiveConfigurationTypeEnum.INTERNAL;
-
   const { dnssecStatus, isDnssecStatusLoading } = useGetDnssecStatus(
     domainResource.currentState,
     domainResource.targetSpec,
@@ -226,17 +240,16 @@ export default function DsRecordsListing() {
     setIsDnssecModalOpen(false);
   };
 
+  if (!isPending && !isAuthorized) {
+    return <UnauthorizedBanner />;
+  }
+
   if (
-    isPending ||
     isDnssecStatusLoading ||
     isFetchingDomainResource ||
     isFetchingDomainZone
   ) {
     return <Loading />;
-  }
-
-  if (!isAuthorized) {
-    return <UnauthorizedBanner />;
   }
 
   return (

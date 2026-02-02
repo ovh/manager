@@ -11,6 +11,7 @@ export const features = [
   'instance',
   'pci-baremetal',
   'block-storage',
+  'pci-file-storage',
   'object-storage',
   'pci-ai-dashboard',
   'pci-ai-notebooks',
@@ -94,6 +95,7 @@ export function getPciProjectMenu(
   if (
     isFeaturesAvailable(
       'block-storage',
+      'pci-file-storage',
       'object-storage',
       'archive',
       'cold-archive',
@@ -113,6 +115,15 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/blocks`,
+          ),
+        },
+        isFeaturesAvailable('pci-file-storage') && {
+          id: 'file-storage',
+          title: 'File Storage',
+          badge: 'beta',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/files`,
           ),
         },
         isFeaturesAvailable('volume-backup') && {

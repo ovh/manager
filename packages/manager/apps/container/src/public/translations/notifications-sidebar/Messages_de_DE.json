@@ -4,5 +4,7 @@
   "notification_read": "Gelesen",
   "notification_unread": "Nicht gelesen",
   "no_notifications_title": "Sie sind auf dem neuesten Stand.",
-  "no_notifications_description": "Sie haben keine Benachrichtigungen."
+  "no_notifications_description": "Sie haben keine Benachrichtigungen.",
+  "notification_sender_email_title": "Unsere Adressen für den E-Mail-Versand ändern sich.",
+  "notification_sender_email_description": "Um die Authentizität unserer Kommunikation zu überprüfen, sehen Sie sich unsere Anti-Phishing-Tipps an."
 }

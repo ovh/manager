@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.17.0...@ovh-ux/ovh-product-icons@0.17.1) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/ovh-product-icons
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.16.0...@ovh-ux/ovh-product-icons@0.17.0) (2026-01-23)
+
+
+### Features
+
+* add icon sparkle ([fba1296](https://github.com/ovh/manager/commit/fba1296361c81ae030e8f70ef262b6cf9b84055c)), closes [#MANAGER-20633](https://github.com/ovh/manager/issues/MANAGER-20633)
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.15.1...@ovh-ux/ovh-product-icons@0.16.0) (2026-01-13)
 
 

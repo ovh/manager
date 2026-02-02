@@ -18,7 +18,7 @@
   "resetUserPasswordDescription": "Are you sure you want to reset the password for the user {{name}}?",
   "resetUserPasswordToastErrorTitle": "An error occurred while resetting the user password",
   "resetUserPasswordToastSuccessDescription": "The user password for {{name}} has been successfully reset.",
-  "resetUserPasswordSuccess": "The user's password has been successfully regenerated. Please note it down as it cannot be retrieved later.",
+  "resetUserPasswordSuccess": "The user password has been successfully reset. Please note it down as it cannot be retrieved later.",
   "resetUserPasswordCopy": "Password copied to clipboard",
   "addUserToastErrorTitle": "An error has occurred adding the user",
   "addUserToastSuccessTitle": "Success",
@@ -110,11 +110,11 @@
   "viewCertificateCopy": "The certificate has been copied",
   "showAccessKeyTitle": "Access key",
   "showAccessKeyCopy": "The access key has been copied!",
-  "addUserPasswordSuccess": "The user has been successfully created. Below you will find all the information necessary for its use.",
+  "addUserPasswordSuccess": "New user successfully created. Below, you’ll find all the information you need to use it",
   "userCancelButton": "Cancel",
   "userConfirmButton": "Confirm",
   "userCloseButton": "Close",
   "userSuccessTitle": "Success",
-  "addUserMySQLInfo": "By default, a new MySQL user can connect to the database server, but has very limited privileges. Their permissions must be explicitly granted as needed via the CLI (for example, using the GRANT commands), following the syntax defined in the <anchor>official MySQL documentation</anchor>.",
-  "addUserPGInfo": "By default, a new user can connect to the database and inherits all privileges granted to PUBLIC or roles of which they are a member. Their permissions are generally limited and must be explicitly granted as needed via the CLI, following the syntax of the <anchor>official PostgreSQL documentation</anchor>."
+  "addUserMySQLInfo": "By default, a new MySQL user can connect to the database server, but has very limited privileges. Permissions must be explicitly granted to the user as needed via the CLI (e.g., with GRANT commands), using the syntax outlined in the <anchor>official MySQL documentation</anchor>.",
+  "addUserPGInfo": "By default, new users can connect to the database automatically, acquiring the privileges assigned to PUBLIC or the roles they belong to. Permissions are generally limited and must be explicitly granted as needed via the CLI, based on the syntax in the <anchor>official PostgreSQL documentation</anchor>."
 }

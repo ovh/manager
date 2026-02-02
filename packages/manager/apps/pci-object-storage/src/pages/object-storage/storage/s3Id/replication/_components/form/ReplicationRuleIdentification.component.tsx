@@ -14,11 +14,16 @@ import { FormField } from '@/components/form-field/FormField.component';
 import { useReplicationFormContext } from './ReplicationForm.context';
 
 export const ReplicationRuleIdentification = () => {
-  const { form, isPending, isEditMode } = useReplicationFormContext();
+  const {
+    form,
+    isPending,
+    isEditMode,
+    replicationTitle,
+  } = useReplicationFormContext();
   const { t } = useTranslation('pci-object-storage/storages/s3/replication');
 
   return (
-    <ReplicationRuleContainer title={t('replicationConfigurationTitle')}>
+    <ReplicationRuleContainer title={replicationTitle}>
       <FormField name="ruleId" form={form}>
         {(field) => (
           <>

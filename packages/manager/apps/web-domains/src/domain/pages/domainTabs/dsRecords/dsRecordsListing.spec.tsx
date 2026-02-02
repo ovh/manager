@@ -12,6 +12,7 @@ import {
 } from '@/domain/enum/dnsConfigurationType.enum';
 import * as dataHooks from '@/domain/hooks/data/query';
 import { TDomainResource } from '@/domain/types/domainResource';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 
 vi.mock('@/domain/hooks/data/query', async () => {
   const actual = await vi.importActual('@/domain/hooks/data/query');
@@ -42,6 +43,10 @@ vi.mock('@/domain/hooks/data/query', async () => {
   };
 });
 
+vi.mock('@/common/hooks/iam/useGetIAMResource', () => ({
+  useGetIAMResource: vi.fn(),
+}));
+
 vi.mock('@ovh-ux/manager-react-components', async () => {
   const actual = await vi.importActual<
     typeof import('@ovh-ux/manager-react-components')
@@ -61,6 +66,12 @@ describe('DS Records Columns', () => {
   const setDsRecordsData = vi.fn();
   const setIsModalOpen = vi.fn();
   const activeConfiguration = ActiveConfigurationTypeEnum.EXTERNAL;
+
+  beforeEach(() => {
+    (useGetIAMResource as Mock).mockReturnValue({
+      data: [{ urn: 'urn:dnsZone:123' }],
+    });
+  });
 
   it('should return the correct number of column', () => {
     const { result } = renderHook(
@@ -108,6 +119,12 @@ describe('DS Records Columns', () => {
 });
 
 describe('DS Records Datagrid', () => {
+  beforeEach(() => {
+    (useGetIAMResource as Mock).mockReturnValue({
+      data: [{ urn: 'urn:dnsZone:123' }],
+    });
+  });
+
   it('should display the content of host datagrid and an informative message when the config is internal', () => {
     const { getByTestId } = render(<DsRecordsListing />, {
       wrapper,

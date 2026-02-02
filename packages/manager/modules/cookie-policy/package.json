@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cookie-policy",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "private": true,
   "description": "Cookie Policy",
   "keywords": [
@@ -20,6 +20,13 @@
   },
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
+  "scripts": {
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
+  },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.1",
     "@ovh-ux/manager-core": "^11.0.0 || ^12.0.0",

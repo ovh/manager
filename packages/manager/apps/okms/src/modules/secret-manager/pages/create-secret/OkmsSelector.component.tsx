@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
@@ -54,25 +56,27 @@ export const OkmsSelector = ({
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <OdsText preset="heading-4">{t('create_secret_form_okms_selector_title')}</OdsText>
-      <div className="space-y-3">
-        {okmsList.map((okms) => (
-          <RadioCard
-            id={okms.id}
-            onChange={(event) => onOkmsSelection(event.target.value)}
-            selected={selectedOkms}
-            key={okms.id}
-            name="okms"
-            title={okms.iam.displayName}
-            badges={<OkmsStatus id={okms.id} />}
-          >
-            {okms.iam.tags && Object.keys(okms.iam.tags).length > 0 && (
-              <TagsList tags={okms.iam.tags} lineNumber={10} />
-            )}
-          </RadioCard>
-        ))}
+    <Suspense>
+      <div className="flex flex-col gap-3">
+        <OdsText preset="heading-4">{t('create_secret_form_okms_selector_title')}</OdsText>
+        <div className="space-y-3">
+          {okmsList.map((okms) => (
+            <RadioCard
+              id={okms.id}
+              onChange={(event) => onOkmsSelection(event.target.value)}
+              selected={selectedOkms}
+              key={okms.id}
+              name="okms"
+              title={okms.iam.displayName}
+              badges={<OkmsStatus id={okms.id} />}
+            >
+              {okms.iam.tags && Object.keys(okms.iam.tags).length > 0 && (
+                <TagsList tags={okms.iam.tags} lineNumber={10} />
+              )}
+            </RadioCard>
+          ))}
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 };

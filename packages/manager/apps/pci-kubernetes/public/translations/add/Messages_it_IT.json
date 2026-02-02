@@ -70,8 +70,8 @@
   "kube_add_plan_content_free_100": "Fino a 100 nodi per cluster",
   "kube_add_plan_title_standard": "Standard",
   "kube_add_plan_description_standard": "Usufruisci di un accordo sul livello del servizio e un deploy regionale (suddiviso in tre Availability Zone), ideali per i carichi di lavoro che richiedono resilienza e alta disponibilità.",
-  "kube_add_plan_content_standard_SLA": "99,99% SLA",
-  "kube_add_plan_content_standard_ETCD": "ETCD dedicato fino a 8 GB",
+  "kube_add_plan_content_standard_3AZ_SLA": "99,99% SLA",
+  "kube_add_plan_content_standard_ETCD": "ETCD dedicato da 8 GB",
   "kube_add_plan_content_standard_3AZ_control_plane": "Control plane gestito, altamente disponibile e tollerante alla perdita di una zona di disponibilità",
   "kube_add_plan_content_standard_scaling": "Funzionalità di scaling dei nodi",
   "kube_add_plan_content_standard_version": "Supporto delle tre versioni più recenti di Kubernetes",
@@ -81,8 +81,12 @@
   "kube_add_plan_subtitle": "Scegli il piano più adatto alle tue esigenze. Usufruisci di un'ampia scelta di istanze utilizzate come nodi Kubernetes, fatturate a consumo o con impegno contrattuale.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Assegna un nome al tuo pool di nodi",
-  "kube_add_plan_content_unavailable_1AZ_banner": "Il piano {{ plan }} non è ancora disponibile nelle Region 1-AZ. Per utilizzare il piano {{ plan }}, seleziona il deploy in 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "Il piano {{ plan }} non è ancora disponibile nelle Region 3-AZ. Per utilizzare il piano {{ plan }}, seleziona un deploy in 1-AZ.",
+  "kube_add_plan_content_unavailable_1AZ_banner": "Il piano {{ plan }} non è disponibile nelle Region 1-AZ. Per utilizzare il piano {{ plan }}, seleziona il deploy in 3-AZ.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "Il piano {{ plan }} non è disponibile nelle Region 3-AZ. Per utilizzare il piano {{ plan }}, seleziona un deploy in 1-AZ.",
   "kube_add_name_title": "Assegna un nome al tuo pool di nodi",
-  "kube_add_node_pool_name_already_exist_validation_error": "Il nome del nodepool è già in uso, ti preghiamo di sceglierne un altro."
+  "kube_add_node_pool_name_already_exist_validation_error": "Il nome del nodepool è già in uso, ti preghiamo di sceglierne un altro.",
+  "kube_add_plan_content_standard_1AZ_control_plane": "Control plane gestito, altamente disponibile (1-AZ) e dedicato, con risorse garantite",
+  "kube_add_plan_content_not_available": "non disponibile nella Region",
+  "kubernetes_add_region_plan_select": "Filtrare per piani",
+  "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA"
 }

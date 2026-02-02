@@ -1,14 +1,18 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDeleteVcdVrackSegment } from '@ovh-ux/manager-module-vcd-api';
+import { useQuery } from '@tanstack/react-query';
+import {
+  useDeleteVcdVrackSegment,
+  useVcdVrackSegmentOptions,
+} from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal, ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
 import { TRACKING } from '@/tracking.constants';
+import { DeleteModal } from '@/components/deleteModal/DeleteModal.component';
 
 export default function DeleteVrackSegment() {
   const { id, vdcId, vrackSegmentId } = useParams();
@@ -21,6 +25,20 @@ export default function DeleteVrackSegment() {
     trackClick(TRACKING.vrackDeleteSegment.cancel);
     closeModal();
   };
+
+  const defaultQueryOptions = useVcdVrackSegmentOptions({
+    id,
+    vdcId,
+    vrackSegmentId,
+  });
+
+  const queryOptions = {
+    ...defaultQueryOptions,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  };
+
+  const { data: vrackSegment, isPending, isError } = useQuery(queryOptions);
   const { addSuccess, addError } = useMessageContext();
 
   const getDeleteErrorMessage = (message?: string) =>
@@ -43,7 +61,11 @@ export default function DeleteVrackSegment() {
         pageName: 'delete_vcfaas-segment_success',
       });
       addSuccess({
-        content: t('managed_vcd_dashboard_vrack_delete_segment_success'),
+        content: t('managed_vcd_dashboard_vrack_delete_segment_success', {
+          vrack: t('managed_vcd_dashboard_vrack_column_segment_vrack_label', {
+            vlanId: vrackSegment?.currentState?.vlanId,
+          }),
+        }),
         includedSubRoutes: [vdcId],
         excludedSubRoutes: [
           subRoutes.datacentreCompute,
@@ -71,13 +93,22 @@ export default function DeleteVrackSegment() {
     },
   });
 
+  if (isError) {
+    return (
+      <Modal isOpen onDismiss={closeModal}>
+        <ErrorBoundary redirectionApp="vcd" />
+      </Modal>
+    );
+  }
+
   return (
-    <Modal
+    <DeleteModal
       isOpen
       heading={t('managed_vcd_dashboard_vrack_delete_segment')}
       primaryLabel={tActions('delete')}
       isPrimaryButtonLoading={isDeleting}
       isPrimaryButtonDisabled={isDeleting}
+      isLoading={isPending}
       onPrimaryButtonClick={() => {
         deleteSegment();
         trackClick(TRACKING.vrackDeleteSegment.confirm);
@@ -85,13 +116,13 @@ export default function DeleteVrackSegment() {
       secondaryLabel={tActions('cancel')}
       onSecondaryButtonClick={cancelModal}
       onDismiss={cancelModal}
-      type={ODS_MODAL_COLOR.critical}
+      confirmationKeyword={tActions('delete').toUpperCase()}
     >
       <div className="flex flex-col gap-2">
         <OdsText>
           {t('managed_vcd_dashboard_vrack_delete_segment_content')}
         </OdsText>
       </div>
-    </Modal>
+    </DeleteModal>
   );
 }

@@ -4,25 +4,14 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME, Icon, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button, Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { BadgeStatus } from '@/components';
-import { AliasType } from '@/data/api';
+import { AliasType, ResourceStatus } from '@/data/api';
 import { useAliases, usePlatform } from '@/data/hooks';
 import { useDebouncedValue, useGenerateUrl } from '@/hooks';
 import { EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constants';
@@ -35,18 +24,22 @@ import { AliasItem } from './Aliases.types';
 const columns: DatagridColumn<AliasItem>[] = [
   {
     id: 'alias',
-    cell: (item: AliasItem) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.alias}</OdsText>,
+    accessorKey: 'alias',
     label: 'common:alias',
     isSearchable: true,
   },
   {
     id: 'status',
-    cell: (item: AliasItem) => <BadgeStatus status={item.status}></BadgeStatus>,
+    accessorKey: 'status',
+    cell: ({ getValue }) => (
+      <BadgeStatus status={getValue<keyof typeof ResourceStatus>()}></BadgeStatus>
+    ),
     label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
-    cell: (item: AliasItem) => <ActionButtonAlias item={item} />,
+    maxSize: 50,
+    cell: ({ row }) => <ActionButtonAlias item={row.original} />,
     label: '',
   },
 ];
@@ -92,21 +85,24 @@ export const Aliases = () => {
     <div>
       <Outlet />
       <div className="mb-6">
-        <Subtitle>{t('zimbra_account_alias_title')}</Subtitle>
+        <Text preset={TEXT_PRESET.heading3}>{t('zimbra_account_alias_title')}</Text>
       </div>
       <Datagrid
         topbar={
-          <ManagerButton
+          <Button
             id="add-alias-btn"
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
+            color={BUTTON_COLOR.primary}
+            size={BUTTON_SIZE.sm}
             onClick={handleAddAliasClick}
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.alias.create]}
             data-testid="add-alias-btn"
-            icon={ODS_ICON_NAME.plus}
-            label={t('common:add_alias')}
-          />
+          >
+            <>
+              <Icon name={ICON_NAME.plus} />
+              {t('common:add_alias')}
+            </>
+          </Button>
         }
         search={{
           searchInput,
@@ -115,10 +111,10 @@ export const Aliases = () => {
         }}
         columns={columns.map((column) => ({
           ...column,
-          label: t(column.label),
+          header: t(column.label),
         }))}
-        items={items}
-        totalItems={items.length}
+        data={items}
+        totalCount={items.length}
         isLoading={isLoading}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}

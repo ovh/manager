@@ -5,6 +5,9 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { useTranslation } from 'react-i18next';
 
 import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 type SecretListLinkTileItemProps = {
   okms: OKMS;
@@ -12,6 +15,7 @@ type SecretListLinkTileItemProps = {
 
 export const SecretListLinkTileItem = ({ okms }: SecretListLinkTileItemProps) => {
   const navigate = useNavigate();
+  const { trackClick } = useOkmsTracking();
   const { t } = useTranslation('key-management-service/common');
 
   return (
@@ -19,7 +23,15 @@ export const SecretListLinkTileItem = ({ okms }: SecretListLinkTileItemProps) =>
       <Links
         type={LinkType.next}
         label={t('manage_secrets_link')}
-        onClickReturn={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okms.id))}
+        onClickReturn={() => {
+          navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okms.id));
+          trackClick({
+            location: PageLocation.tile,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['secret', 'list'],
+          });
+        }}
       />
     </ManagerTile.Item>
   );

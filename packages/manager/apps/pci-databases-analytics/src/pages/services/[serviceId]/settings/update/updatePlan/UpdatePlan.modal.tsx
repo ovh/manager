@@ -137,15 +137,15 @@ const UpdatePlan = () => {
           <div className="flex-col w-full">
             <div className="flex items-center gap-2">
               <Price
-                priceInUcents={oldPrice?.servicePrice.hourly.price}
-                taxInUcents={oldPrice?.servicePrice.hourly.tax}
+                priceInUcents={oldPrice?.servicePrice.price}
+                taxInUcents={oldPrice?.servicePrice.tax}
                 decimals={3}
               />
               <PricingDetails service={service} pricing={oldPrice} />
               <ArrowRight className="size-4" />
               <Price
-                priceInUcents={newPrice?.servicePrice.hourly.price}
-                taxInUcents={newPrice?.servicePrice.hourly.tax}
+                priceInUcents={newPrice?.servicePrice.price}
+                taxInUcents={newPrice?.servicePrice.tax}
                 decimals={3}
               />
               <PricingDetails service={service} pricing={newPrice} />

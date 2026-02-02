@@ -29,6 +29,7 @@ export default function Layout() {
     trackCurrentPage({
       ...trackingAdditionalData,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   useEffect(() => {

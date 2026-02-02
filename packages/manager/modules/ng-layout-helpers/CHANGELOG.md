@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.13.0...@ovh-ux/manager-ng-layout-helpers@2.13.1) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-ng-layout-helpers
+
+
+
+
+
+# [2.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.12.1...@ovh-ux/manager-ng-layout-helpers@2.13.0) (2026-01-15)
+
+
+### Features
+
+* **billing-components:** add action to access bills if available ([688b890](https://github.com/ovh/manager/commit/688b890890197c386a609c32e9d10c53bba79cd4)), closes [#MANAGER-17709](https://github.com/ovh/manager/issues/MANAGER-17709)
+* **ng-layout-helpers:** add in and not in comparators ([01773a3](https://github.com/ovh/manager/commit/01773a3d32477b069d9e4d10ca56db6a998f452c)), closes [#MANAGER-17709](https://github.com/ovh/manager/issues/MANAGER-17709)
+
+
+
+
+
 ## [2.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.12.0...@ovh-ux/manager-ng-layout-helpers@2.12.1) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-ng-layout-helpers

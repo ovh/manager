@@ -10,13 +10,13 @@ exports[`Tile Snapshot tests > renders multiple dd elements 1`] = `
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Simple Tile
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -32,7 +32,7 @@ exports[`Tile Snapshot tests > renders multiple dd elements 1`] = `
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Sample Term
@@ -43,7 +43,7 @@ exports[`Tile Snapshot tests > renders multiple dd elements 1`] = `
             class=m-0
           >
             <span
-              class=_text--span
+              class=_text _text--span
               data-ods=text
             >
               Sample Description
@@ -60,7 +60,7 @@ exports[`Tile Snapshot tests > renders multiple dd elements 1`] = `
               Link
             </a>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -81,13 +81,13 @@ exports[`Tile Snapshot tests > renders simple tile 1`] = `
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Simple Tile
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -103,7 +103,7 @@ exports[`Tile Snapshot tests > renders simple tile 1`] = `
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Sample Term
@@ -114,13 +114,13 @@ exports[`Tile Snapshot tests > renders simple tile 1`] = `
             class=m-0
           >
             <span
-              class=_text--span
+              class=_text _text--span
               data-ods=text
             >
               Sample Description
             </span>
             <hr
-              class=_divider _divider--primary _divider--24
+              class=_divider _divider--24
               data-ods=divider
             />
           </dd>
@@ -135,7 +135,7 @@ exports[`Tile Snapshot tests > renders simple tile 1`] = `
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Sample Term
@@ -146,7 +146,7 @@ exports[`Tile Snapshot tests > renders simple tile 1`] = `
             class=m-0
           >
             <span
-              class=_text--span
+              class=_text _text--span
               data-ods=text
             >
               Sample Description
@@ -169,13 +169,13 @@ exports[`Tile Snapshot tests > renders tile term with Actions Menu 1`] = `
       class=flex flex-col w-full
     >
       <h4
-        class=_text--heading-4
+        class=_text _text--heading-4
         data-ods=text
       >
         Simple Tile
       </h4>
       <hr
-        class=_divider _divider--primary _divider--24 w-full
+        class=_divider _divider--24 w-full
         data-ods=divider
       />
       <dl
@@ -191,7 +191,7 @@ exports[`Tile Snapshot tests > renders tile term with Actions Menu 1`] = `
               class=flex items-center gap-1 text-[var(--ods-color-text)]
             >
               <span
-                class=_text--span font-bold
+                class=_text _text--span font-bold
                 data-ods=text
               >
                 Sample Term
@@ -223,7 +223,7 @@ exports[`Tile Snapshot tests > renders tile term with Actions Menu 1`] = `
             class=m-0
           >
             <span
-              class=_text--span
+              class=_text _text--span
               data-ods=text
             >
               Sample Description
@@ -247,13 +247,13 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
         class=flex flex-col w-full
       >
         <h4
-          class=_text--heading-4
+          class=_text _text--heading-4
           data-ods=text
         >
           Simple Tile
         </h4>
         <hr
-          class=_divider _divider--primary _divider--24 w-full
+          class=_divider _divider--24 w-full
           data-ods=divider
         />
         <dl
@@ -269,7 +269,7 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
                 class=flex items-center gap-1 text-[var(--ods-color-text)]
               >
                 <span
-                  class=_text--span font-bold
+                  class=_text _text--span font-bold
                   data-ods=text
                 >
                   Sample Term
@@ -293,7 +293,7 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
               class=m-0
             >
               <span
-                class=_text--span
+                class=_text _text--span
                 data-ods=text
               >
                 Sample Description
@@ -309,7 +309,7 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
     data-scope=tooltip
     dir=ltr
     id=tooltip::r0::popper
-    style=position: absolute; isolation: isolate; min-width: max-content; top: 0px; left: 0px; transform: translate3d(var(--x), var(--y), 0); z-index: var(--z-index);
+    style=position: absolute; isolation: isolate; min-width: max-content; top: 0px; left: 0px; transform: translate3d(var(--x), var(--y), 0); z-index: var(--ods-theme-overlay-z-index);
   >
     <div
       class=_tooltip-content
@@ -324,7 +324,7 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
       style=pointer-events: auto;
     >
       <p
-        class=_text--paragraph
+        class=_text _text--paragraph
         data-ods=text
       >
         Sample Tooltip Message

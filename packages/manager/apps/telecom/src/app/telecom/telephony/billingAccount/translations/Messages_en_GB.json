@@ -12,5 +12,10 @@
   "telephony_group_rename_error": "Unable to rename your {{billingAccount}} billing account.",
   "telephony_group_termination_warning": "The group will be deleted on <strong>{{ date }}</strong>.",
   "telephony_group_termination_warning_link": "You can cancel this by clicking here",
-  "telephony_group_tab_services": "Services"
+  "telephony_group_tab_services": "Services",
+  "telephony_group_order_product_label": "Which product would you like to order?",
+  "telephony_group_order_number": "Order a number",
+  "telephony_group_order_link_voip": "Order a VoIP line",
+  "telephony_group_order_link_sip": "Order a SIP Trunk channel",
+  "telephony_group_order_link_accessory": "Order an accessory"
 }

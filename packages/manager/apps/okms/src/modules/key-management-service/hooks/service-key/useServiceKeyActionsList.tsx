@@ -5,30 +5,40 @@ import { useUpdateOkmsServiceKey } from '@key-management-service/data/hooks/useU
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import {
-  OkmsKeyTypes,
   OkmsServiceKey,
   OkmsServiceKeyState,
 } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
-import { ActionMenuItem, useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
-const useServiceKeyActionsList = (okms: OKMS, okmsKey: OkmsServiceKey, isListMode?: boolean) => {
+import { ServiceKeyAction } from './service-key.type';
+import { useServiceKeyDownload } from './useServiceKeyDownload';
+
+export const useServiceKeyActionsList = (
+  okms: OKMS,
+  okmsKey: OkmsServiceKey,
+  page: 'list' | 'detail',
+): ServiceKeyAction[] => {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { addSuccess, clearNotifications } = useNotifications();
   const navigate = useNavigate();
-  const { trackClick, trackPage } = useOvhTracking();
-  const trackLocation = isListMode ? PageLocation.datagrid : PageLocation.page;
+  const { trackClick, trackPage } = useOkmsTracking();
+  const trackLocation = page === 'list' ? PageLocation.datagrid : PageLocation.page;
+
+  const downloadAction = useServiceKeyDownload({
+    okmsId: okms.id,
+    keyId: okmsKey.id,
+    keyType: okmsKey.type,
+    keyState: okmsKey.state,
+    page: 'list',
+  });
 
   const { deleteKmsServiceKey, isPending: deleteIsPending } = useDeleteOkmsServiceKey({
     okmsId: okms.id,
@@ -37,13 +47,13 @@ const useServiceKeyActionsList = (okms: OKMS, okmsKey: OkmsServiceKey, isListMod
       navigate(KMS_ROUTES_URLS.serviceKeyListing(okms.id));
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'delete_encryption_key',
+        pageTags: ['delete', 'service-key'],
       });
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'delete_encryption_key',
+        pageTags: ['delete', 'service-key'],
       });
     },
   });
@@ -56,41 +66,22 @@ const useServiceKeyActionsList = (okms: OKMS, okmsKey: OkmsServiceKey, isListMod
       addSuccess(t('key_management_service_service-keys_reactivate_success'), true);
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'reactivate_encryption_key',
+        pageTags: ['activate', 'service-key'],
       });
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'reactivate_encryption_key',
+        pageTags: ['activate', 'service-key'],
       });
     },
   });
 
-  const items: ActionMenuItem[] = [];
+  const items: ServiceKeyAction[] = [];
 
-  if (okmsKey?.type !== OkmsKeyTypes.oct) {
+  if (okmsKey.state === OkmsServiceKeyState.active) {
     items.push({
-      id: 1,
-      label: t('key_management_service_service-keys_link_download_key'),
-      color: ODS_BUTTON_COLOR.primary,
-      isDisabled: okmsKey?.state !== OkmsServiceKeyState.active,
-      download: `${okmsKey?.name}.jwk`,
-      href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(okmsKey?.keys))}`,
-      onClick: () => {
-        trackClick({
-          location: trackLocation,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['download_encryption_key'],
-        });
-      },
-    });
-  }
-
-  if (okmsKey?.state === OkmsServiceKeyState.active) {
-    items.push({
-      id: 2,
+      name: 'deactivate_encryption_key',
       label: t('key_management_service_service-keys_link_deactivate_key'),
       color: ODS_BUTTON_COLOR.primary,
       onClick: () => {
@@ -98,67 +89,64 @@ const useServiceKeyActionsList = (okms: OKMS, okmsKey: OkmsServiceKey, isListMod
           location: trackLocation,
           buttonType: ButtonType.button,
           actionType: 'action',
-          actions: ['deactivate_encryption_key'],
+          actions: ['deactivate', 'service-key'],
         });
-        return isListMode
+        return page === 'list'
           ? navigate(KMS_ROUTES_URLS.serviceKeyListingDeactivate(okms.id, okmsKey?.id))
           : navigate(KMS_ROUTES_URLS.serviceKeyDashboardDeactivate(okms.id, okmsKey?.id));
       },
       iamActions: [kmsIamActions.serviceKeyUpdate, kmsIamActions.serviceKeyDeactivate],
       urn: okmsKey?.iam.urn,
+      icon: ODS_ICON_NAME.lockClose,
     });
   }
 
-  if (okmsKey?.state) {
-    if (
-      [OkmsServiceKeyState.deactivated, OkmsServiceKeyState.compromised].includes(okmsKey.state)
-    ) {
-      items.push({
-        id: 3,
-        label: t('key_management_service_service-keys_link_reactivate_key'),
-        color: ODS_BUTTON_COLOR.primary,
-        isLoading: updateIsPending,
-        iamActions: [kmsIamActions.serviceKeyUpdate, kmsIamActions.serviceKeyActivate],
-        urn: okmsKey?.iam.urn,
-        onClick: () => {
-          trackClick({
-            location: trackLocation,
-            buttonType: ButtonType.button,
-            actionType: 'action',
-            actions: ['reactivate_encryption_key'],
-          });
-          updateKmsServiceKey({ state: OkmsServiceKeyState.active });
-        },
-      });
-    }
-
-    if (
-      ![OkmsServiceKeyState.destroyed, OkmsServiceKeyState.destroyed_compromised].includes(
-        okmsKey.state,
-      )
-    ) {
-      items.push({
-        id: 4,
-        label: t('key_management_service_service-keys_link_delete_key'),
-        color: ODS_BUTTON_COLOR.primary,
-        isDisabled: okmsKey?.state === OkmsServiceKeyState.active,
-        isLoading: deleteIsPending,
-        iamActions: [kmsIamActions.serviceKeyDelete],
-        urn: okmsKey?.iam.urn,
-        onClick: () => {
-          trackClick({
-            location: trackLocation,
-            buttonType: ButtonType.button,
-            actionType: 'action',
-            actions: ['delete_encryption_key'],
-          });
-          deleteKmsServiceKey();
-        },
-      });
-    }
+  if ([OkmsServiceKeyState.deactivated, OkmsServiceKeyState.compromised].includes(okmsKey.state)) {
+    items.push({
+      name: 'reactivate_encryption_key',
+      label: t('key_management_service_service-keys_link_reactivate_key'),
+      color: ODS_BUTTON_COLOR.primary,
+      isLoading: updateIsPending,
+      iamActions: [kmsIamActions.serviceKeyUpdate, kmsIamActions.serviceKeyActivate],
+      urn: okmsKey?.iam.urn,
+      onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['activate', 'service-key'],
+        });
+        updateKmsServiceKey({ state: OkmsServiceKeyState.active });
+      },
+      icon: ODS_ICON_NAME.refresh,
+    });
   }
 
-  return items;
-};
+  if (
+    ![OkmsServiceKeyState.destroyed, OkmsServiceKeyState.destroyed_compromised].includes(
+      okmsKey.state,
+    )
+  ) {
+    items.push({
+      name: 'delete_encryption_key',
+      label: t('key_management_service_service-keys_link_delete_key'),
+      color: ODS_BUTTON_COLOR.primary,
+      isDisabled: okmsKey?.state === OkmsServiceKeyState.active,
+      isLoading: deleteIsPending,
+      iamActions: [kmsIamActions.serviceKeyDelete],
+      urn: okmsKey?.iam.urn,
+      onClick: () => {
+        trackClick({
+          location: trackLocation,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['delete', 'service-key'],
+        });
+        deleteKmsServiceKey();
+      },
+      icon: ODS_ICON_NAME.trash,
+    });
+  }
 
-export default useServiceKeyActionsList;
+  return downloadAction ? [downloadAction, ...items] : items;
+};

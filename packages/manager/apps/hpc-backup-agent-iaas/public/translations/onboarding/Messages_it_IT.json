@@ -1,0 +1,25 @@
+{
+  "title_fallback": "Benvenuto su app-gen-test",
+  "description_part1": "Scopri come ottenere il massimo da app-gen-test, ddd.",
+  "description_part2": "Segui le nostre guide per iniziare rapidamente.",
+  "guides": {
+    "guide1": {
+      "category": "Discovery",
+      "title": "Iniziare a utilizzare app-gen-test",
+      "description": "Concetti base per iniziare.",
+      "cta": "Scopri"
+    },
+    "guide2": {
+      "category": "Tutorial",
+      "title": "Configurare il tuo ambiente",
+      "description": "Segui la nostra guida passo per passo.",
+      "cta": "Guarda il tutorial"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Domande frequenti",
+      "description": "Trova le risposte alle domande più frequenti.",
+      "cta": "Leggi le FAQ"
+    }
+  }
+}

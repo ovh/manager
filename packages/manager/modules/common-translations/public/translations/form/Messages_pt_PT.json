@@ -36,8 +36,8 @@
   "required": "obrigatório",
   "all_fields_are_required": "Todos os campos são obrigatórios.",
   "companyName": "Nome da organização",
-  "language": "Língua",
+  "language": "Idioma",
   "country": "País",
   "phone": "Telefone",
-  "email": "O seu e-mail"
+  "email": "E-mail"
 }

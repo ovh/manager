@@ -1,18 +1,25 @@
-import { User } from '@ovh-ux/manager-config/dist/types/environment/user';
 import { LegalFormEnum } from '@/common/enum/common.enum';
+import { useGetConnectedNichandleId } from '@/common/hooks/nichandle/useGetConnectedNichandleId';
+import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
+import { Spinner, SPINNER_SIZE } from '@ovhcloud/ods-react';
 
 interface NichandleInformationProps {
   readonly nichandle: string;
-  readonly nichandleInformation: User;
 }
 
 export default function NichandleInformation({
   nichandle,
-  nichandleInformation,
 }: NichandleInformationProps) {
+  const { nichandleInformation } = useNichandleInformation();
+  const { nichandle: connectedNichandle } = useGetConnectedNichandleId();
+
+  if (!nichandleInformation) {
+    return <Spinner size={SPINNER_SIZE.xs} />;
+  }
+
   return (
     <ul className="list-none p-0 m-0 font-bold">
-      {nichandle === nichandleInformation.nichandle && [
+      {nichandle === connectedNichandle && [
         nichandleInformation.legalform !== LegalFormEnum.Individual && (
           <li key={'organisation'}>
             {nichandleInformation.organisation}{' '}

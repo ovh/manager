@@ -15,7 +15,7 @@
   "sms_senders_add_sender_label": "Mittente: ",
   "sms_senders_add_sender_placeholder": "Mittente:",
   "sms_senders_add_sender_error_required": "Il campo \"Mittente\" è obbligatorio.",
-  "sms_senders_add_sender_error_pattern": "Il campo \"Mittente\" deve essere composto esclusivamente da caratteri alfabetici.",
+  "sms_senders_add_sender_error_pattern": "Il campo \"Mittente\" deve essere composto esclusivamente da caratteri alfabetici e cifre, includendo almeno un carattere alfabetico.",
   "sms_senders_add_sender_error_maxlength": "Il campo \"Mittente\" non può superare gli 11 caratteri.",
   "sms_senders_add_sender_description_label": "Descrizione: ",
   "sms_senders_add_sender_description_placeholder": "Descrizione (facoltativo)",
@@ -34,5 +34,6 @@
   "sms_senders_add_senders_success": "Aggiunta in corso...",
   "sms_senders_add_sender_supporting_document": "Documenti giustificativi",
   "sms_senders_add_sender_supporting_document_help": "Nel rispetto della nostra politica di sicurezza, ti chiediamo di fornire un documento giustificativo. Si tratta di una carta intestata della società o del marchio che include l’autorizzazione di un responsabile con firma e timbro della stessa società, di una carta d’identità o di una visura camerale nel caso di marchi non depositati.",
-  "sms_senders_add_sender_supporting_document_info": "Fino a 10 file con dimensione massima di 10 MB in formato pdf, jpg, jpeg o png."
+  "sms_senders_add_sender_supporting_document_info": "Fino a 10 file con dimensione massima di 10 MB in formato pdf, jpg, jpeg o png.",
+  "sms_senders_add_sender_info": "Utilizza esclusivamente caratteri alfabetici e cifre con un massimo di 11 caratteri e almeno un carattere alfabetico."
 }

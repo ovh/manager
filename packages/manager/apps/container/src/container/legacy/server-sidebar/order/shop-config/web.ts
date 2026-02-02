@@ -41,15 +41,6 @@ const webShopConfig = (
         tracking: 'web::orders::web-hosting::order',
       }
     : null,
-  features['cloud-web'] && ORDER_URLS[region].orderCloudWeb
-    ? {
-        label: 'order_item_cloudWeb',
-        icon: HOSTING_SVG,
-        url: getOrderURL('orderCloudWeb', region, sub),
-        external: true,
-        tracking: 'web::orders::cloud-web::order',
-      }
-    : null,
   features.zimbra && ORDER_URLS[region]?.zimbra
     ? {
         label: 'order_item_zimbra',
@@ -84,7 +75,7 @@ const webShopConfig = (
         tracking: 'web::orders::email-microsoft-exchange::order',
       }
     : null,
-  features['web-office'] && ORDER_URLS[region].orderOffice
+  features['web-office:order'] && ORDER_URLS[region].orderOffice
     ? {
         label: 'order_item_office',
         icon: OFFICE365_SVG,

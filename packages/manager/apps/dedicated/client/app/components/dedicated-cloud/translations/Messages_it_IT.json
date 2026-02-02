@@ -250,5 +250,6 @@
   "dedicatedCloud_banner_new_product": "Adesso è possibile selezionare datacenter corrispondenti a pacchetti software VMware differenti all'interno di uno stesso ambiente Private Cloud.",
   "dedicatedCloud_banner_new_product_link": "Scopri di più",
   "dedicatedCloud_tab_logs": "Log",
-  "dedicatedCloud_go_back_to_list": "Torna alla lista"
+  "dedicatedCloud_go_back_to_list": "Torna alla lista",
+  "use_my_current_ip_label": "Utilizzare il mio indirizzo IP attuale"
 }

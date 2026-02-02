@@ -1,0 +1,13 @@
+{
+  "services_tab_description": "Votre Tenant est basé sur la Veeam Service Provider Console, et porte vos Agents tout en les liant à vos Vaults. Vous pourrez retrouver tous vos Agents, les configurer et télécharger votre Agent dans cette partie. Pour en savoir plus, consultez la <Link>documentation OVHcloud Backup Agent</Link>",
+  "home": "Accueil",
+  "order": "Commander un service",
+  "open": "Ouvrir le tableau de bord",
+  "title": "Services",
+  "delete_tenant_modal_title": "Supprimer le Tenant",
+  "delete_tenant_modal_content": "Souhaitez-vous vraiment supprimer le Tenant {{tenantName}} ?",
+  "delete_tenant_banner_success": "Votre Tenant {{tenantName}} a correctement été supprimé",
+  "delete_tenant_banner_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer.",
+  "delete_tenant_feature_unavailable": "La suppression d’un Tenant n’est pas disponible depuis l’interface pour des raisons de sécurité.\n Si vous souhaitez supprimer un Tenant, veuillez contacter le support.",
+  "data_location": "Emplacement des données"
+}

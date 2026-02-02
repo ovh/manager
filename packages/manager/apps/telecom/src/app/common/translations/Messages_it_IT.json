@@ -472,5 +472,6 @@
   "country_YT": "Mayotte",
   "country_ZA": "Sudafrica",
   "country_ZM": "Zambia",
-  "country_ZW": "Zimbawe"
+  "country_ZW": "Zimbawe",
+  "common_field_label_required": "Obbligatorio"
 }

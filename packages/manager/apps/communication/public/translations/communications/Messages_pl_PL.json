@@ -4,5 +4,7 @@
   "table_column_priority": "Priorytet",
   "table_column_date": "Data",
   "table_column_categories": "Kategorie",
-  "contact_status_warning": "Wygląda na to, że wystąpił problem z metodą odbioru {{contactType}}. Aby rozwiązać ten problem, możesz <anchor>zmienić ustawienia odbioru</anchor>."
+  "contact_status_warning": "Wygląda na to, że wystąpił problem z metodą odbioru {{contactType}}. Aby rozwiązać ten problem, możesz <anchor>zmienić ustawienia odbioru</anchor>.",
+  "sender_email_banner_text": "Adresy e-mail, z których wysyłamy wiadomości, ulegają zmianie. Aby mieć pewność co do autentyczności e-maili, ",
+  "sender_email_banner_link": "zapoznaj się z naszymi wytycznymi dotyczącymi ochrony przed phishingiem."
 }

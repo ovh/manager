@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.8...@ovh-ux/manager-pci-ai-endpoints-app@0.12.0) (2026-01-30)
+
+
+### Features
+
+* resolve flaky tests and lint staged enhancement ([28b920f](https://github.com/ovh/manager/commit/28b920f6ac5e1180b9c7c4c23a9e3b5b920be7ca))
+
+
+
+
+
+## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.7...@ovh-ux/manager-pci-ai-endpoints-app@0.11.8) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+## [0.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.6...@ovh-ux/manager-pci-ai-endpoints-app@0.11.7) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
 ## [0.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.11.5...@ovh-ux/manager-pci-ai-endpoints-app@0.11.6) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app

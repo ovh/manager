@@ -15,18 +15,17 @@ export const useCreateSecretVersion = () => {
 
   return useMutation<CreateSecretVersionResponse, ApiError, CreateSecretVersionParams>({
     mutationFn: createSecretVersion,
-    onSuccess: async (_, variables) => {
+    onSuccess: (_, variables) => {
       // Invalidate secrets
-      await queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: secretQueryKeys.list(variables.okmsId),
-        exact: true,
       });
       // Invalidate secret details
-      await queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: secretQueryKeys.detail(variables.okmsId, variables.path),
       });
       // Invalidate secret versions
-      await queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: secretVersionsQueryKeys.list(variables.okmsId, variables.path),
       });
     },

@@ -27,5 +27,6 @@
   "billing_services_actions_menu_restore_label": "Ripristinare il servizio: {{ serviceName }} (Nuova finestra)",
   "billing_services_actions_menu_resiliate_us": "Disattivare il servizio",
   "billing_services_actions_menu_resiliate_my_engagement_us": "Rescindere l’impegno contrattuale",
-  "billing_services_actions_menu_commit_cancel_us": "Annullare la richiesta di sottoscrizione di un impegno contrattuale"
+  "billing_services_actions_menu_commit_cancel_us": "Annullare la richiesta di sottoscrizione di un impegno contrattuale",
+  "billing_services_actions_menu_see_bills": "Visualizza le tue fatture"
 }

@@ -172,7 +172,7 @@
   "billing_autorenew_engagement_none": "Ohne Vertragsbindung",
   "billing_autorenew_service_type_DOMAIN_RESELLER": "Domain-Reseller-Programm",
   "billing_autorenew_service_renew_automatic": "Automatisch",
-  "billing_autorenew_service_renew_manual": "Manuel",
+  "billing_autorenew_service_renew_manual": "Manuell",
   "billing_autorenew_service_renew": "Verlängerung",
   "billing_autorenew_criterion_renew": "Verlängerung"
 }

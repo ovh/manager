@@ -17,9 +17,9 @@ import DnsSection from './FreeHostingDrawer/DnsSection';
 import TarificationSection from './FreeHostingDrawer/TarificationSection';
 import ActivationSection from './FreeHostingDrawer/ActivationSection';
 import LoadingState from './FreeHostingDrawer/LoadingState';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 interface FreeHostingDrawerProps {
-  readonly serviceName: string;
   readonly isDrawerOpen: boolean;
   readonly freeHostingOptions: FreeHostingOptions;
   readonly isInitialOrderFreeHostingPending: boolean;
@@ -51,7 +51,7 @@ export default function FreeHostingDrawer({
   orderFreeHosting,
   onClose,
 }: FreeHostingDrawerProps) {
-  const { t } = useTranslation(['domain']);
+  const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
 
   const handleOpenChange = ({ open }: DrawerOpenChangeDetail) => {
     if (!open) onClose();
@@ -107,20 +107,20 @@ export default function FreeHostingDrawer({
           {/* Footer Buttons */}
           <div className="flex gap-4 p-6 border-t flex-shrink-0 mb-6">
             <Button variant="ghost" onClick={onClose}>
-              Annuler
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </Button>
             <Button
               variant="default"
               disabled={!freeHostingOptions.consent}
               onClick={() =>
                 orderFreeHosting({
-                  cartId: orderCartDetails.cartId,
-                  itemId: orderCartDetails.details[0].cartItemID,
+                  cartId: orderCartDetails?.cartId,
+                  itemId: orderCartDetails?.details[0]?.cartItemID,
                   options: freeHostingOptions,
                 })
               }
             >
-              Valider
+              {t(`${NAMESPACES.ACTIONS}:validate`)}
             </Button>
           </div>
         </DrawerBody>

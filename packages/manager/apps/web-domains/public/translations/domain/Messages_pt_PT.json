@@ -330,15 +330,17 @@
   "domain_tab_dsrecords_drawer_modify_error": "Foi detetado um erro aquando da modificação do DS record: {{ error }}",
   "domain_tab_dsrecords_drawer_form_error_empty": "Campo vazio",
   "domain_tab_dsrecords_add_disabled": "A configuração DNS atual não permite a adição de DS record",
-  "domain_tab_dsrecords_actions_disabled": "A configuração DNS atual não permite a adição nem a modificação de DS record",
+  "domain_tab_dsrecords_actions_disabled": "A configuração DNS atual não permite a adição nem a modificação de DS record.",
   "domain_tab_dsrecords_modal_delete_title": "Eliminar entrada",
   "domain_tab_dsrecords_modal_delete_subtitle": "Tem a certeza de que pretende eliminar esta entrada?",
   "domain_tab_dsrecords_modal_delete_success_message": "O DS record está a ser eliminado",
   "domain_tab_dsrecords_modal_delete_error_message": "Ocorreu um erro aquando da eliminação do DS record",
   "domain_table_state_error": "Erro",
   "domain_tab_general_information_update_success": "O seu pedido de atualização foi tratado com sucesso.",
-  "domain_tab_dsrecords_message_information_content": "Esses registros DS são fornecidos apenas para fins informativos e são geridos automaticamente pela OVHcloud.",
-  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC está em {{action}}: você pode acompanhar o progresso do seu pedido na página de operações em andamento. <Link />",
+  "domain_tab_dsrecords_message_information_content": "Estes registos DS são fornecidos a título informativo e são geridos automaticamente pela OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "O DNSSEC está em curso {{action}}: pode seguir o progresso do seu pedido a partir da página de operações em curso. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "de ativação",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de desativação"
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de desativação",
+  "domain_tab_general_information_subscription_edit_owner": "Modificar as informações do contato titular",
+  "domain_tab_general_information_data_protection_disabled": "O registry responsável por este domínio não autoriza a gestão personalizada da apresentação dos dados"
 }

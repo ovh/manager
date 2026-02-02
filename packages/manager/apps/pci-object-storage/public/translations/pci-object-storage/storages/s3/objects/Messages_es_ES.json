@@ -60,5 +60,21 @@
   "restoreAvailableUntil": "El artículo estará disponible hasta el",
   "seeVersionsSwitchLabel": "Ver las versiones",
   "searchPlaceholder": "Buscar...",
-  "changeStorageClassWarningInfrequentAccess": "Atención: Las clases Infrequent Access y Cold Archive imponen un tiempo mínimo de conservación. <0>Más información</0>"
+  "changeStorageClassWarningInfrequentAccess": "Atención: Las clases Infrequent Access y Cold Archive imponen una duración mínima de conservación. <0>Más información</0>",
+  "selectObject": "Seleccionar el objeto {{name}}",
+  "selectAll": "Seleccionar todo",
+  "bulkDeleteTitle": "Eliminar varios objetos",
+  "bulkDeleteDescription_one": "Estás a punto de eliminar {{count}} objeto.",
+  "bulkDeleteDescription_other": "Estás a punto de eliminar {{count}} objetos.",
+  "bulkDeleteButtonConfirm_one": "Eliminar {{count}} objeto",
+  "bulkDeleteButtonConfirm_other": "Eliminar {{count}} objetos",
+  "bulkDeleteToastSuccessDescription_one": "{{count}} objeto eliminado correctamente.",
+  "bulkDeleteToastSuccessDescription_other": "{{count}} objetos eliminados correctamente.",
+  "bulkDeleteVersionsTitle": "Eliminar varias versiones",
+  "bulkDeleteVersionsDescription_one": "¿Quiere eliminar definitivamente {{count}} versión? Esta acción no se puede deshacer.",
+  "bulkDeleteVersionsDescription_other": "¿Desea eliminar {{count}} versiones de forma permanente? Esta acción no se puede deshacer.",
+  "bulkDeleteVersionsConfirmation": "Escriba {{confirmation}} para confirmar",
+  "downloadErrorDescription": "Error al descargar el archivo",
+  "downloadErrorStatus": "Error al descargar: {{status}}",
+  "downloadErrorUnknownType": "Tipo de descarga desconocido"
 }

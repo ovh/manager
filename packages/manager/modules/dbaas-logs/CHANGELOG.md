@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.36.2...@ovh-ux/manager-dbaas-logs@1.37.0) (2026-02-02)
+
+
+### Features
+
+* **dedicated.dbaas:** display ldp sub resources IAM policies ([125f98a](https://github.com/ovh/manager/commit/125f98a6236ddd586107d0867c452136b2236bc3)), closes [#MAOBS-221](https://github.com/ovh/manager/issues/MAOBS-221)
+
+
+
+
+
+## [1.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.36.1...@ovh-ux/manager-dbaas-logs@1.36.2) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
+
+
+
+
+
+## [1.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.36.0...@ovh-ux/manager-dbaas-logs@1.36.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* **dedicated.dbaas:** fix iam activation from legacy roles ([34f684f](https://github.com/ovh/manager/commit/34f684f3bdecd79901ff4674e954ed65e1ac0638)), closes [#MABOS-222](https://github.com/ovh/manager/issues/MABOS-222)
+
+
+
+
+
+# [1.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.3...@ovh-ux/manager-dbaas-logs@1.36.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* **dedicated.dbaas:** fix missing translation for ldp enable iam cta ([baaf4d8](https://github.com/ovh/manager/commit/baaf4d83bfe25dbd8e1f5b640dc9dde33ddb5ef1)), closes [#MAOBS-200](https://github.com/ovh/manager/issues/MAOBS-200)
+
+
+### Features
+
+* **ldp:** add roadmap feature request and changelog ([e55c8c7](https://github.com/ovh/manager/commit/e55c8c72265084d63142029fc0f52d4baa6c7f15)), closes [#MAOBS-38](https://github.com/ovh/manager/issues/MAOBS-38)
+
+
+
+
+
 ## [1.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.35.2...@ovh-ux/manager-dbaas-logs@1.35.3) (2025-12-22)
 
 

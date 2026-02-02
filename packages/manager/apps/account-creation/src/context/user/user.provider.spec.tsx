@@ -35,14 +35,16 @@ vi.spyOn(useApplicationsApi, 'useApplications').mockReturnValue({
 } as UseQueryResult<Record<string, Application>>);
 
 const mockedUsedNavigate = vi.fn();
+const mockedUseLocation = vi.fn(() => ({ pathname: '/' }));
 vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
+  useLocation: () => mockedUseLocation(),
   useSearchParams: () => [
     new URLSearchParams({
       test: 'test',
     }),
     vi.fn(),
-  ], 
+  ],
 }));
 
 vi.mock('@/context/tracking/useTracking', () => ({
@@ -61,9 +63,10 @@ const renderComponent = () =>
     </QueryClientProvider>,
   );
 
-
 describe('User Provider', () => {
   beforeEach(() => {
+    mockedUsedNavigate.mockClear();
+    mockedUseLocation.mockReturnValue({ pathname: '/' });
     vi.mocked(MRC.useFeatureAvailability).mockReturnValue(({
       data: { 'account-creation': false },
       isFetched: true,
@@ -83,7 +86,9 @@ describe('User Provider', () => {
     renderComponent();
 
     await vi.waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(`${urls.settings}?test=test`);
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        `${urls.settings}?test=test`,
+      );
     });
   });
 
@@ -97,7 +102,9 @@ describe('User Provider', () => {
     renderComponent();
 
     await vi.waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(`${urls.accountType}?test=test`);
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(
+        `${urls.accountType}?test=test`,
+      );
     });
   });
 
@@ -121,6 +128,23 @@ describe('User Provider', () => {
 
     await vi.waitFor(() => {
       expect(mockedLocationAssign).toHaveBeenCalledWith(url);
+    });
+  });
+
+  it('should not redirect if already on the settings page', async () => {
+    mockedUseLocation.mockReturnValue({ pathname: urls.settings });
+    vi.spyOn(MRC, 'useFeatureAvailability').mockReturnValue({
+      isFetched: true,
+      data: {
+        'account-creation': true,
+      },
+    } as MRC.UseFeatureAvailabilityResult<{ 'account-creation': boolean }>);
+    renderComponent();
+
+    await vi.waitFor(() => {
+      expect(mockedUsedNavigate).not.toHaveBeenCalledWith(
+        expect.stringContaining(urls.accountType),
+      );
     });
   });
 });

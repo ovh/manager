@@ -28,13 +28,9 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const stateByReason: {
@@ -57,7 +53,7 @@ export const DisableServiceKeyModal = () => {
   const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tCommon } = useTranslation('key-management-service/common');
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick, trackPage } = useOkmsTracking();
   const navigate = useNavigate();
 
   const closeModal = () => navigate('..');
@@ -70,14 +66,14 @@ export const DisableServiceKeyModal = () => {
       addSuccess(t('key_management_service_service-keys_deactivation_success'), true);
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'deactivate_encryption_key',
+        pageTags: ['deactivate', 'service-key'],
       });
       closeModal();
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'deactivate_encryption_key',
+        pageTags: ['deactivate', 'service-key'],
       });
       closeModal();
     },

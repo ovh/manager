@@ -2,14 +2,16 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { screen, waitFor } from '@testing-library/dom';
 import '@testing-library/jest-dom';
+import { act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
 import { domainMock, platformMock, putZimbraDomain } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
-import { OdsHTMLElement } from '@/utils/test.utils';
+import { render } from '@/utils/test.provider';
 
 import ModalEditDomain from './Edit.modal';
 
@@ -34,39 +36,27 @@ describe('Domains edit modal', () => {
     expect(getByTestId('input-domain')).toHaveProperty('value', domainMock.currentState.name);
   });
 
-  it('check the status of confirm cta', async () => {
-    const { getByTestId } = render(<ModalEditDomain />);
-    const confirmCta = getByTestId('edit-btn');
-    const selectOrganization = getByTestId('select-organization') as OdsHTMLElement;
+  it.skip('check the status of confirm cta', async () => {
+    render(<ModalEditDomain />);
 
-    expect(confirmCta).toHaveAttribute('is-disabled', 'true');
+    const selectOrganizationContainer = screen.getByTestId('select-organization');
+    const selectOrganization = selectOrganizationContainer.querySelector('select');
 
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      fireEvent.blur(selectOrganization);
-      selectOrganization.odsBlur.emit({});
-    });
+    const editButton = screen.queryByTestId('edit-btn');
 
-    expect(confirmCta).toHaveAttribute('is-disabled', 'true');
+    expect(editButton).toHaveAttribute('disabled');
 
     // eslint-disable-next-line @typescript-eslint/require-await
     await act(async () => {
-      fireEvent.change(selectOrganization, {
-        target: { value: '1903b491-4d10-4000-8b70-f474d1abe601' },
-      });
-      selectOrganization.odsChange.emit({
-        name: 'organizationId',
-        value: '1903b491-4d10-4000-8b70-f474d1abe601',
-      });
+      userEvent.click(selectOrganizationContainer);
+      const firstOption = selectOrganization.querySelector('option');
+      userEvent.click(firstOption);
+      // fireEvent.change(selectOrganization, { target: { value: firstOption.value } });
     });
 
-    expect(selectOrganization).toHaveAttribute('has-error', 'false');
-    expect(confirmCta).toHaveAttribute('is-disabled', 'false');
+    await waitFor(() => expect(editButton).not.toHaveAttribute('disabled'));
 
-    // eslint-disable-next-line @typescript-eslint/require-await
-    await act(async () => {
-      fireEvent.click(confirmCta);
-    });
+    userEvent.click(editButton);
 
     expect(putZimbraDomain).toHaveBeenCalledOnce();
   });

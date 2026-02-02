@@ -1,13 +1,5 @@
 {
-  "*.html": [
-    "htmlhint --ignore \"**/dist/**,**/www/**,**/screenshot/**,**/docs-api/**,**/coverage/**,**/storybook-static/**,**/playwright-report/**, **/cucumber-results-report.html\" \"packages/**/*.html\"",
-    "prettier --write"
-  ],
-  "*.js": ["eslint --fix"],
-  "*.{tsx,ts}": ["eslint --fix", "prettier --write"],
-  "*.{css,less,scss}": ["stylelint --fix"],
-  "!(*CHANGELOG).md": ["remark -qf .", "eslint --ext .md --fix"],
+  "*.{ts,tsx,js,jsx}": ["yarn lint:staged"],
   "**/package.json": ["npx sort-package-json"],
-  "*.json": ["prettier --write"],
   "*.sh": ["make test"]
 }

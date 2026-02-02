@@ -22,5 +22,14 @@
   "addLabelTitle": "Add a label",
   "keyFieldLabel": "Key",
   "valueFieldLabel": "Value",
-  "deleteNotebookTooltip": "Make sure the notebook is in ‘Stopped’ status"
+  "deleteNotebookTooltip": "Make sure the notebook is in ‘Stopped’ status",
+  "activateAutoRestartButton": "Enable automatic restart",
+  "deactivateAutoRestartButton": "Disable automatic restart",
+  "autoRestartLabel": "Automatic restart",
+  "autoRestartEnabled": "Enabled",
+  "autoRestartDisabled": "Disabled",
+  "autoRestartToastSuccessTitle": "Automatic restart updated",
+  "autoRestartToastSuccessDescription": "The automatic restart setting has been updated for {{name}}",
+  "disabledRestartButtonTooltip": "The automatic restart feature cannot be changed when the notebook is stopped.",
+  "modifyLabel": "Edit"
 }

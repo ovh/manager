@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.35.1...@ovh-ux/manager-billing-components@4.35.2) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.35.0...@ovh-ux/manager-billing-components@4.35.1) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.34.0...@ovh-ux/manager-billing-components@4.35.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* **billing-components:** callback to go back from exchange renew ([c0e0d02](https://github.com/ovh/manager/commit/c0e0d020d685a427238e01dbe189f7e3a224eed1)), closes [#MANAGER-20665](https://github.com/ovh/manager/issues/MANAGER-20665)
+* **i18n:** add missing translations [CDS 4596] ([6fefde9](https://github.com/ovh/manager/commit/6fefde95c9960cb9c526d591b922ec181ce9b9f9))
+
+
+### Features
+
+* **billing-components:** add action to access bills if available ([688b890](https://github.com/ovh/manager/commit/688b890890197c386a609c32e9d10c53bba79cd4)), closes [#MANAGER-17709](https://github.com/ovh/manager/issues/MANAGER-17709)
+
+
+
+
+
 # [4.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.33.7...@ovh-ux/manager-billing-components@4.34.0) (2026-01-12)
 
 

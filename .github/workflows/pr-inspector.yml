@@ -1,0 +1,81 @@
+name: PR Inspector
+
+on:
+  push:
+  pull_request:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  pr-inspector:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      # -------------------------
+      # Checkout
+      # -------------------------
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # -------------------------
+      # labeler (only pull_request_target)
+      # -------------------------
+      - name: PR Labeler (actions/labeler)
+        if: github.event_name == 'pull_request_target'
+        uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Branch name labeler
+        if: github.event_name == 'pull_request_target'
+        uses: TimonVS/pr-labeler-action@v4
+        with:
+          configuration-path: .github/branch-name-labeler.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # -------------------------
+      # check-metadata (only push)
+      # -------------------------
+      - name: Check regions metadata
+        if: github.event_name == 'push'
+        run: ./scripts/regions/check-regions.sh
+        shell: bash
+
+      # -------------------------
+      # merge_conflict_finder (only push)
+      # -------------------------
+      - name: Merge Conflict finder
+        if: github.event_name == 'push'
+        uses: olivernybroe/action-conflict-finder@v4.0
+        with:
+          exclude_dir: "node_modules/**"
+
+      # -------------------------
+      # auto-label-merge-conflicts (push + pull_request)
+      # -------------------------
+      - name: Auto-label merge conflicts
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        uses: mschilde/auto-label-merge-conflicts@master
+        with:
+          CONFLICT_LABEL_NAME: "has conflicts"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAX_RETRIES: 5
+          WAIT_MS: 5000
+
+      # -------------------------
+      # yarn-explain (only pull_request)
+      # -------------------------
+      - name: Yarn Lock Changes
+        if: github.event_name == 'pull_request'
+        uses: Simek/yarn-lock-changes@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          collapsibleThreshold: 10
+          failOnDowngrade: false
+          path: yarn.lock
+          updateComment: true

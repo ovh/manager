@@ -16,6 +16,8 @@ import { Topbar } from './topbar/Topbar.component';
 import './translations';
 import { useDatagrid } from './useDatagrid';
 
+const DEFAULT_MIN_CONTAINER_HEIGHT = 150;
+
 export const Datagrid = <T extends Record<string, unknown>>({
   autoScroll = true,
   columns,
@@ -67,6 +69,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
   const visibleColumns = table.getAllLeafColumns();
   const containerSize = data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
   const containerStyle = {
+    minHeight: `${DEFAULT_MIN_CONTAINER_HEIGHT}px`,
     maxHeight: containerHeight ? `${containerHeight}px` : containerSize,
     height: containerHeight ? `${containerHeight}px` : containerSize,
   };

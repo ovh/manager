@@ -25,7 +25,7 @@ export const SecretValue = ({ okmsId, secretPath, version }: SecretValueProps) =
     data: secretVersion,
     isPending,
     error,
-  } = useSecretVersionWithData(okmsId, secretPath, version.id);
+  } = useSecretVersionWithData({ okmsId, secretPath, version: version.id });
 
   if (isPending)
     return (
@@ -37,7 +37,7 @@ export const SecretValue = ({ okmsId, secretPath, version }: SecretValueProps) =
   if (error)
     return (
       <OdsMessage className="mt-4" color="critical">
-        {t('error_message', { message: error.message, ns: NAMESPACES.ERROR })}
+        {t('error_message', { message: error.response.data.message, ns: NAMESPACES.ERROR })}
       </OdsMessage>
     );
 

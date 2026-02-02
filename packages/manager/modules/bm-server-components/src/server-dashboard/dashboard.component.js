@@ -53,6 +53,8 @@ export default {
     goToTagManager: '<',
     serverType: '<?',
     displayRbxEolBanner: '<?',
+    isBackupOptionAvailable: '<?',
+    backupAgent: '<?',
   },
   controller,
   template,

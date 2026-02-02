@@ -1,7 +1,0 @@
-{
-  "telephony_order_international_title": "Commander un numéro international",
-  "telephony_order_international_order_success": "Numéro(s) interlational(aux) commandé(s). Veuillez accepter les conditions générales de vente et régler votre commande.",
-  "telephony_order_international_order_error": "La commande de numéro(s) géographique(s) a échoué. Veuillez réessayer ultérieurement.",
-  "telephony_order_international_countries_error": "Impossible de récupérer la liste des pays",
-  "telephony_order_international_address_message": "Afin de pouvoir disposer de votre numéro, merci de renseigner des coordonnées valides dans le pays concerné."
-}

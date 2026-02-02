@@ -2,13 +2,15 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { fireEvent, waitFor } from '@testing-library/dom';
 import '@testing-library/jest-dom';
+import { act } from '@testing-library/react';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
 import { accountsMock, aliasesMock, deleteZimbraPlatformAlias } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import ModalDeleteAlias from './Delete.modal';
 

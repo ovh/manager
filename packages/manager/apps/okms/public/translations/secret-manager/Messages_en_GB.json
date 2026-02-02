@@ -81,5 +81,7 @@
   "version_state_delete": "Delete",
   "version_state_deleted": "Deleted",
   "version_state_reactivate": "Reactivate ",
-  "versions": "Versions"
+  "versions": "Versions",
+  "no_version": "No version",
+  "no_version_message": "There is no version associated with this secret."
 }

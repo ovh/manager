@@ -63,11 +63,11 @@ describe('OrganizationGeneralInformationTile component unit test suite', () => {
 
     // then
     const elements = [
-      'managed_vcd_dashboard_general_information',
-      'managed_vcd_dashboard_name',
-      'managed_vcd_dashboard_description',
-      'managed_vcd_dashboard_location',
-      'managed_vcd_dashboard_region',
+      'general_information',
+      'name',
+      'description',
+      'localisation',
+      'region',
       'managed_vcd_dashboard_datacentres_count',
       'managed_vcd_dashboard_management_interface',
       vcdOrg.currentState.fullName,

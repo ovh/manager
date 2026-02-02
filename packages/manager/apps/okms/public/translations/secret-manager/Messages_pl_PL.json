@@ -81,5 +81,7 @@
   "version_state_delete": "Usuń",
   "version_state_deleted": "Usunięta",
   "version_state_reactivate": "Przywróć",
-  "versions": "Wersje"
+  "versions": "Wersje",
+  "no_version": "Brak wersji",
+  "no_version_message": "Ta poufna dana nie ma wersji."
 }

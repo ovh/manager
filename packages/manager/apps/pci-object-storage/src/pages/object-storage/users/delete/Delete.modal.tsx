@@ -62,7 +62,7 @@ const DeleteUser = () => {
     <RouteModal isLoading={!user || !credsQuery.data}>
       <DialogContent variant="warning">
         <DialogHeader>
-          <DialogTitle data-testid="delete-storage-modal">
+          <DialogTitle data-testid="delete-user-modal">
             {t('deleteUserTitle')}
           </DialogTitle>
         </DialogHeader>
@@ -89,7 +89,7 @@ const DeleteUser = () => {
         <DialogFooter>
           <DialogClose asChild>
             <Button
-              data-testid="delete-storage-cancel-button"
+              data-testid="delete-user-cancel-button"
               type="button"
               mode="ghost"
             >
@@ -97,7 +97,7 @@ const DeleteUser = () => {
             </Button>
           </DialogClose>
           <Button
-            data-testid="delete-storage-submit-button"
+            data-testid="delete-user-submit-button"
             type="button"
             disabled={isPending}
             onClick={handleDelete}

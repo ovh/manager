@@ -70,8 +70,8 @@
   "kube_add_plan_content_free_100": "Até 100 nós por cluster",
   "kube_add_plan_title_standard": "Standard",
   "kube_add_plan_description_standard": "Usufrua de um compromisso de nível de serviço e de uma implementação regional (repartida por três Availability Zones), ideal para cargas de trabalho que requerem resiliência e alta disponibilidade.",
-  "kube_add_plan_content_standard_SLA": "SLA de 99,99%",
-  "kube_add_plan_content_standard_ETCD": "ETCD dedicado até 8 GB",
+  "kube_add_plan_content_standard_3AZ_SLA": "SLA de 99,99%",
+  "kube_add_plan_content_standard_ETCD": "ETCD dedicado de 8 GB",
   "kube_add_plan_content_standard_3AZ_control_plane": "Plano de controlo gerido, altamente disponível e tolerante à perda de uma Availability Zone",
   "kube_add_plan_content_standard_scaling": "Capacidade de escalabilidade dos nós",
   "kube_add_plan_content_standard_version": "Suporte das três versões mais recentes do Kubernetes",
@@ -81,8 +81,12 @@
   "kube_add_plan_subtitle": "Escolha o plano mais adequado às suas necessidades. Usufrua de uma vasta escolha de instâncias usadas como nós Kubernetes, faturadas consoante a utilização ou então com compromisso.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Dê um nome ao seu pool de nós",
-  "kube_add_plan_content_unavailable_1AZ_banner": "O plano {{ plan }} ainda não está disponível nas regiões 1-AZ. Se pretender beneficiar do plano {{ plan }}, escolha a implementação em 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "O plano {{ plan }} ainda não está disponível nas regiões 3-AZ. Se pretender beneficiar do plano {{ plan }}, escolha uma implementação em 1-AZ.",
+  "kube_add_plan_content_unavailable_1AZ_banner": "O plano {{ plan }} não está disponível nas regiões 1-AZ. Se pretender beneficiar do plano {{ plan }}, escolha a implementação em 3-AZ.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "O plano {{ plan }} não está disponível nas regiões 3-AZ. Se pretender beneficiar do plano {{ plan }}, escolha uma implementação em 1-AZ.",
   "kube_add_name_title": "Dê um nome ao seu pool de nós",
-  "kube_add_node_pool_name_already_exist_validation_error": "O nome do nodepool já está a ser usado. Escolha outro."
+  "kube_add_node_pool_name_already_exist_validation_error": "O nome do nodepool já está a ser usado. Escolha outro.",
+  "kube_add_plan_content_standard_1AZ_control_plane": "Plano de controlo gerido, altamente disponível (1-AZ) e dedicado, com recursos garantidos",
+  "kube_add_plan_content_not_available": "indisponível na região",
+  "kubernetes_add_region_plan_select": "Filtrar por planos",
+  "kube_add_plan_content_standard_1AZ_SLA": "SLA DE 99,9%"
 }

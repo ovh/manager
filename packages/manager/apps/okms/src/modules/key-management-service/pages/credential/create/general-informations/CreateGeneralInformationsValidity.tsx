@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsDatepicker, OdsFormField, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
 
+import { odsSelectValueToValue, valueToOdsSelectValue } from '@/common/utils/ods/odsSelect';
+
 import { VALIDITY_PERIOD_PRESET } from '../CreateGeneralInformations.constants';
 
 type CreateGeneralInformationsValidityProps = {
@@ -66,11 +68,11 @@ const CreateGeneralInformationsValidity = ({
         <OdsSelect
           name="validity-period"
           data-testid="input-validity-period"
-          onOdsChange={(v) => setValidityPresetPeriod(Number(v.detail.value))}
-          defaultValue={validityPresetPeriod.toString()}
+          onOdsChange={(v) => setValidityPresetPeriod(odsSelectValueToValue(v.detail.value ?? ''))}
+          defaultValue={valueToOdsSelectValue(validityPresetPeriod)}
         >
           {VALIDITY_PERIOD_PRESET.map((validityEntry) => (
-            <option value={validityEntry.days} key={validityEntry.days}>
+            <option value={valueToOdsSelectValue(validityEntry.days)} key={validityEntry.days}>
               {t(validityEntry.label)}
             </option>
           ))}

@@ -167,7 +167,7 @@
   "hosting_tab_DOMAINS_configuration_remove_failure": "Si è verificato un errore durante il distacco del dominio dal tuo hosting condiviso. {{error}}",
   "hosting_tab_DOMAINS_configuration_remove_success": "Il dominio verrà distaccato dal tuo hosting condiviso.",
   "activate_cdn": "Attivare il CDN",
-  "multisite_delete_site_modal_description_part1": "Per rimuovere questo sito, devi prima scollegare tutti i domini ad esso associati.",
-  "multisite_delete_site_modal_description_part2": "Il tuo sito verrà quindi disattivato automaticamente.",
-  "multisite_delete_site_modal_description_part3": "Le directory e i file non verranno eliminati."
+  "multisite_delete_site_modal_description_part1": "Per eliminare questo sito, è prima necessario scollegare tutti i domini ad esso associati.",
+  "multisite_delete_site_modal_description_part2": "A quel punto il sito verrà disattivato automaticamente.",
+  "multisite_delete_site_modal_description_part3": "Le directory e i file non saranno eliminati."
 }

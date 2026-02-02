@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-dataplatform-app",
-  "version": "1.7.5",
+  "version": "1.8.0",
   "private": true,
   "description": "pci-dataplatform",
   "repository": {
@@ -14,6 +14,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
     "coverage": "vitest run --coverage",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "tsc && vite",
     "test": "vitest run --pool=threads",
     "test-ui": "vitest --ui --coverage.enabled=true"
@@ -22,11 +24,11 @@
     "@datatr-ux/ods-tailwind-config": "^1.0.3",
     "@datatr-ux/ovhcloud-types": "2.0.3",
     "@datatr-ux/uxlib": "^0.0.11-beta-7",
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-core-api": "^0.21.1",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/shell": "^4.10.3",
+    "@ovh-ux/shell": "^4.10.5",
     "@tanstack/react-query": "5.90.12",
     "@tanstack/react-table": "8.21.3",
     "clsx": "^2.1.0",
@@ -44,7 +46,8 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",

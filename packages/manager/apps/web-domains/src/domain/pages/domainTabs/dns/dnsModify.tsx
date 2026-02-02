@@ -39,9 +39,13 @@ export default function DnsModifyPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
   const navigate = useNavigate();
   const backUrl = useGenerateUrl(urls.domainTabDns, 'path', { serviceName });
-  const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
+  );
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(
+    serviceName,
+    domainResource,
+    true,
   );
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();

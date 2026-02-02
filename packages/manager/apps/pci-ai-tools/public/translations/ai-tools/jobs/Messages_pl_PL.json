@@ -11,5 +11,9 @@
   "tableActionManage": "Zarządzaj",
   "tableActionRestart": "Restart",
   "tableActionStop": "Zatrzymaj",
-  "tableActionDelete": "Usuń"
+  "tableActionDelete": "Usuń",
+  "shutdownLabel": "Zatrzymaj {{timeout}}",
+  "restartLabel": "Uruchom ponownie {{timeout}}",
+  "timeOutLabel": "Data ważności",
+  "tableActionClone": "Sklonuj zadanie"
 }

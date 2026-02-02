@@ -22,7 +22,7 @@
   "telephony_alias_portability_order_desireDate_pattern_error": "La date saisie est invalide.",
   "telephony_alias_portability_order_rio": "RIO",
   "telephony_alias_portability_order_rio_pattern_error": "Le RIO saisi est invalide.",
-  "telephony_alias_portability_order_rio_info": "Relevé d'Identité Opérateur : appelez le 3179 pour obtenir le RIO de votre numéro.",
+  "telephony_alias_portability_order_rio_info": "Appelez le 3179 depuis votre ligne pour obtenir votre RIO par SMS ou par email. Si vous n'avez pas accès à la ligne concernée, appelez le 0805 69 3179 pour obtenir un autre RIO.",
   "telephony_alias_portability_order_contact_help": "Renseignez avec précision les informations indiquées sur la facture de votre opérateur actuel",
   "telephony_alias_portability_order_contact_personal_infos": "Informations personnelles",
   "telephony_alias_portability_order_contact_social_reason": "Forme légale",

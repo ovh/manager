@@ -81,5 +81,7 @@
   "version_state_delete": "Eliminar",
   "version_state_deleted": "Eliminada",
   "version_state_reactivate": "Reactivar",
-  "versions": "Versiones"
+  "versions": "Versiones",
+  "no_version": "Ninguna versión",
+  "no_version_message": "Este secreto no tiene ninguna versión."
 }

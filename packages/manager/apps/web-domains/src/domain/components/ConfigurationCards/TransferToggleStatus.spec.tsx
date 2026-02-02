@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React from 'react';
 import {
   render,
   screen,
@@ -9,7 +8,7 @@ import {
   wrapper,
 } from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import TransferToggleStatus from './TransferToggleStatus';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
@@ -19,6 +18,12 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
+
+vi.mock('@/common/hooks/iam/useGetIAMResource', () => ({
+  useGetIAMResource: vi.fn(),
+}));
 
 describe('TransferToggleStatus component', () => {
   const mockDomainResource: TDomainResource = {
@@ -101,8 +106,15 @@ describe('TransferToggleStatus component', () => {
   const mockSetTransferAuthInfoModalOpened = vi.fn();
   const mockSetTagModalOpened = vi.fn();
 
-  afterEach(() => {
+  beforeEach(() => {
     vi.clearAllMocks();
+    (useGetIAMResource as Mock).mockReturnValue({
+      data: [{ urn: 'urn:domain:123' }],
+    });
+    (useAuthorizationIam as Mock).mockReturnValue({
+      isPending: false,
+      isAuthorized: true,
+    });
   });
 
   it('renders with PROTECTED state', async () => {
@@ -253,7 +265,9 @@ describe('TransferToggleStatus component', () => {
     );
 
     await waitFor(() => {
-      const tooltipIcon = screen.getByRole('button');
+      const tooltipIcon = screen.getByTestId(
+        'question-circle-icon-domain_tab_general_information_transfer_activated',
+      );
       expect(tooltipIcon).toBeInTheDocument();
     });
   });
@@ -538,5 +552,28 @@ describe('TransferToggleStatus component', () => {
     expect(
       screen.getByText('domain_dns_table_state_deleting'),
     ).toBeInTheDocument();
+  });
+
+  it('renders with disabled toggle when the user is not authorized', async () => {
+    (useAuthorizationIam as Mock).mockReturnValue({
+      isPending: false,
+      isAuthorized: false,
+    });
+
+    render(
+      <TransferToggleStatus
+        domainResource={mockDomainResource}
+        transferModalOpened={false}
+        setTransferModalOpened={mockSetTransferModalOpened}
+        setTransferAuthInfoModalOpened={mockSetTransferAuthInfoModalOpened}
+        setTagModalOpened={mockSetTagModalOpened}
+      />,
+      { wrapper },
+    );
+
+    await waitFor(() => {
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).toBeDisabled();
+    });
   });
 });

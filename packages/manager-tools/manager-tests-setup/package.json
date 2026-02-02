@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-tests-setup",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Manager common tests configuration",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
@@ -19,8 +19,8 @@
     "manager-test": "./bin/manager-tests-setup-cli.js"
   },
   "scripts": {
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
+    "lint": "manager-lint --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
     "test": "vitest run --config src/__tests__/vite.config.mjs"
   },
   "devDependencies": {

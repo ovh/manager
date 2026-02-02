@@ -5,8 +5,8 @@ import {
   initShellContext,
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
-import '@ovh-ux/muk/dist/style.css';
 import '@ovh-ux/manager-react-components/dist/style.css';
+import '@ovh-ux/muk/dist/style.css';
 import App from './App';
 import './vite-hmr';
 import './index.scss';

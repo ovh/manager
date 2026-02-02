@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.7...@ovh-ux/manager-netapp@2.17.8) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.6...@ovh-ux/manager-netapp@2.17.7) (2026-01-21)
+
+
+### Bug Fixes
+
+* **dedicated.netapp:** fix general information tab ([a3a377c](https://github.com/ovh/manager/commit/a3a377cf28dc42afb3be78394aca72c030fc268b)), closes [#MANAGER-20785](https://github.com/ovh/manager/issues/MANAGER-20785)
+
+
+
+
+
 ## [2.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.5...@ovh-ux/manager-netapp@2.17.6) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

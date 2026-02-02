@@ -171,8 +171,8 @@
   "billing_autorenew_service_every_x_years": "Cada {{ years }} años",
   "billing_autorenew_engagement_none": "Sin compromiso",
   "billing_autorenew_service_type_DOMAIN_RESELLER": "Programa de Revendedores de Dominios",
-  "billing_autorenew_service_renew_automatic": "Automático",
+  "billing_autorenew_service_renew_automatic": "Automática",
   "billing_autorenew_service_renew_manual": "Manual",
-  "billing_autorenew_service_renew": "Renovación ",
-  "billing_autorenew_criterion_renew": "Renovación "
+  "billing_autorenew_service_renew": "Renovación",
+  "billing_autorenew_criterion_renew": "Renovación"
 }

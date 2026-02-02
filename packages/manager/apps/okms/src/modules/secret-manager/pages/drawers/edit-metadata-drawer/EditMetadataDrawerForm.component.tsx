@@ -19,11 +19,13 @@ import z from 'zod';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
 import {
   DrawerContent,
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 type EditMetadataDrawerFormProps = {
   secret: Secret;
@@ -41,6 +43,7 @@ export const EditMetadataDrawerForm = ({
   onDismiss,
 }: EditMetadataDrawerFormProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
+  const { trackClick } = useOkmsTracking();
 
   const {
     mutateAsync: updateSecret,
@@ -61,12 +64,18 @@ export const EditMetadataDrawerForm = ({
   });
 
   const handleSubmitForm = async (data: FormSchema) => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['edit', 'metadata', 'confirm'],
+    });
     try {
       await updateSecret({
         okmsId,
         path: decodeSecretPath(secretPath),
         cas: addCurrentVersionToCas(
-          secret?.metadata?.currentVersion,
+          secret?.metadata?.currentVersion ?? 0,
           secretConfig.casRequired.value,
           formValueToCasRequired(data.casRequired),
         ),
@@ -83,10 +92,20 @@ export const EditMetadataDrawerForm = ({
     }
   };
 
+  const handleDismiss = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['edit', 'metadata', 'cancel'],
+    });
+    onDismiss();
+  };
+
   return (
     <div className="flex h-full flex-col">
       <DrawerContent>
-        <form className="flex flex-col gap-4 p-1">
+        <form className="flex flex-col gap-4 p-1" onSubmit={handleSubmit(handleSubmitForm)}>
           {updateError && (
             <OdsMessage color="danger" className="mb-4">
               {updateError?.response?.data?.message || t('error_update_settings')}
@@ -110,7 +129,7 @@ export const EditMetadataDrawerForm = ({
         isPrimaryButtonLoading={isUpdating}
         onPrimaryButtonClick={handleSubmit(handleSubmitForm)}
         secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
-        onSecondaryButtonClick={onDismiss}
+        onSecondaryButtonClick={handleDismiss}
       />
     </div>
   );

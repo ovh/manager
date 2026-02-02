@@ -54,5 +54,6 @@
   "telephony_group_line_softphone_save_logo": "You must restart the application for the logo to be active.",
   "telephony_group_line_softphone_save_theme": "You must restart the application for the theme to be active.",
   "telephony_group_billing_dashboard_suspended_info_link": "Click here to increase your security deposit.",
-  "telephony_group_billing_dashboard_suspended_info": "This group is currently suspended."
+  "telephony_group_billing_dashboard_suspended_info": "This group is currently suspended.",
+  "telephony_group_billing_dashboard_actions_group_order_plan": "Order a package"
 }

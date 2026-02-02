@@ -52,7 +52,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       },
     },
   }),
-  useOvhTracking: () => ({ trackClick: vi.fn() }),
 }));
 
 const columns = {

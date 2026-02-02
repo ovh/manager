@@ -48,7 +48,6 @@ export default function DeleteGitModal() {
       try {
         await deleteGitAssociation(state.serviceName, websiteId[0], deleteFiles);
       } catch (error) {
-        console.error('Error in mutation:', error);
         throw error;
       }
     },

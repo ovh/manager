@@ -8,6 +8,10 @@
     "pnpm": "packages/manager/core/ovh-product-icons"
   },
   {
+    "turbo": "--filter @ovh-ux/backup-agent",
+    "pnpm": "packages/manager/modules/backup-agent"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-core-utils",
     "pnpm": "packages/manager/core/utils"
   },
@@ -284,6 +288,10 @@
     "pnpm": "packages/manager-tools/manager-legacy-tools/test-utils"
   },
   {
+    "turbo": "--filter @ovh-ux/manager-static-analysis-legacy-kit",
+    "pnpm": "packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-tailwind-config",
     "pnpm": "packages/manager-tools/manager-tailwind-config"
   },
@@ -302,5 +310,9 @@
   {
     "turbo": "--filter @ovh-ux/ng-shell-tracking",
     "pnpm": "packages/components/ng-shell-tracking"
+  },
+  {
+    "turbo": "--filter @ovh-ux/shell",
+    "pnpm": "packages/components/ovh-shell"
   }
 ]

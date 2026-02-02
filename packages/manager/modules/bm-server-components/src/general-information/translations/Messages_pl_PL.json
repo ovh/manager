@@ -40,7 +40,7 @@
   "dedicated_server_dashboard_zone": "Strefa",
   "dedicated_server_dashboard_zone_unknown": "Informacja niedostępna",
   "server_configuration_installation_inputs_title": "Opcje specjalne:",
-  "server_configuration_installation_inputs_info": "Poniższe pytania są specyficzne dla wybranego systemu operacyjnego ({{t0}}): są napisane wyłącznie w języku angielskim, gdyż pozwala to zachować spójność z API.",
+  "server_configuration_installation_inputs_info": "Poniższe pytania dotyczą wybranego systemu operacyjnego ({{t0}}) i są zapisane wyłącznie w języku angielskim, gdyż pozwala to zachować spójność z API.",
   "server_configuration_installation_inputs_item_placeholder": "Wprowadź wartość typu {{t0}}",
   "server_configuration_installation_inputs_item_placeholder_example": "Na przykład: {{t0}}",
   "server_configuration_installation_inputs_item_mandatory": "Uzupełnienie tego pola jest obowiązkowe",

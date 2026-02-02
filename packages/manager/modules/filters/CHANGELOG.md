@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@1.2.1...@ovh-ux/manager-filters@1.2.2) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-filters
+
+
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-filters@1.2.0...@ovh-ux/manager-filters@1.2.1) (2022-03-09)
 
 
@@ -67,6 +80,3 @@ Signed-off-by: Cyrille Bourgois <cyrille.bourgois@corp.ovh.com>
 ### Features
 
 * **modules:** add filters modules ([2829946](https://github.com/ovh/manager/commit/282994622503964c766f310e7c8d1d60e65f4821))
-
-
-

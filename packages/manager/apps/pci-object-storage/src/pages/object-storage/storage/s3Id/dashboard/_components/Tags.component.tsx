@@ -74,7 +74,7 @@ const Tags = () => {
   };
 
   return (
-    <div>
+    <div data-testid="tags-container">
       <Button
         disabled={isPending}
         data-testid="label-add-button"

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-savings-plan-app",
-  "version": "1.22.12",
+  "version": "1.23.0",
   "private": true,
   "description": "savings plan application",
   "repository": {
@@ -12,19 +12,20 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "lint": "eslint ./src",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "vite",
     "test": "vitest --config vitest.config.mjs run"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "1.0.3",
     "@datatr-ux/uxlib": "0.0.10",
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-core-api": "^0.21.1",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-core-utils": "^0.5.0",
-    "@ovh-ux/manager-pci-common": "^2.7.32",
+    "@ovh-ux/manager-pci-common": "^2.8.0",
     "@ovh-ux/manager-react-components": "2.43.1",
-    "@ovh-ux/manager-react-core-application": "^0.15.0",
+    "@ovh-ux/manager-react-core-application": "^0.15.3",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/manager-tailwind-config": "^0.6.2",
     "@ovh-ux/request-tagger": "^0.6.0",
@@ -52,7 +53,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@testing-library/jest-dom": "^6.4.6",
     "@vitejs/plugin-react": "^4.2.1",

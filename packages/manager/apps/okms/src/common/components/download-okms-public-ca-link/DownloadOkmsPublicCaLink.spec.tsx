@@ -27,10 +27,6 @@ vi.mock('@/common/utils/dom/download', () => ({
   initiateTextFileDownload: vi.fn(),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useOvhTracking: () => ({ trackClick: vi.fn() }),
-}));
-
 const mockOkms = {
   id: 'test-okms-id',
   region: 'test-region',

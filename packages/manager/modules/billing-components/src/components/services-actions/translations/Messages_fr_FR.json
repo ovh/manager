@@ -27,5 +27,6 @@
   "billing_services_actions_menu_commit_cancel": "Annuler la demande d'engagement",
   "billing_services_actions_menu_commit_cancel_us": "Annuler la demande d'engagement",
   "billing_services_actions_menu_restore": "Restaurer le service",
-  "billing_services_actions_menu_restore_label": "Restaurer le service : {{ serviceName }} (Nouvelle fenêtre)"
+  "billing_services_actions_menu_restore_label": "Restaurer le service : {{ serviceName }} (Nouvelle fenêtre)",
+  "billing_services_actions_menu_see_bills": "Voir mes factures"
 }

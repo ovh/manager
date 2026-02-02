@@ -14,6 +14,7 @@ import { getPnpmPrivateModules, getTurboPrivateFilters } from '../utils/dependen
 import { loadJson } from '../utils/json-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { removePackageManager, restorePackageManager } from '../utils/package-manager-utils.js';
+import { injectTools } from '../utils/tools-utils.js';
 import {
   clearRootWorkspaces,
   updateRootWorkspacesFromCatalogs,
@@ -230,6 +231,7 @@ export async function buildPrivatePackages() {
 export async function yarnPreInstall() {
   logger.info('🧩 Yarn preinstall: limit workspaces to Yarn catalog');
   await updateRootWorkspacesToYarnOnly();
+  await injectTools();
   logger.info('✅ Root workspaces set to Yarn-only for installation.');
 }
 

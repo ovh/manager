@@ -10,7 +10,7 @@ import {
 import {
   DATABASES_TRACKING,
   SQL_PERSO,
-  EXTRA_SQL_PERSO,
+  EXTRA_SQL_PERSO_PREFIX,
 } from '../hosting.constants';
 
 angular.module('App').controller(
@@ -126,38 +126,43 @@ angular.module('App').controller(
           this.loading.orderCapabilities = true;
         });
     }
+    
+loadExtraSqlPerso() {
+  return this.hostingDatabaseService
+    .getExtraSqlPerso(this.hosting.serviceName)
+    .then((result) => {
+      const sqlPerso = result?.find((item) => item?.name === SQL_PERSO);
+      const sqlPersoDelta =
+        sqlPerso?.database && sqlPerso?.usage
+          ? sqlPerso?.database - sqlPerso?.usage?.length
+          : 0;
+      this.emptySqlPerso = sqlPersoDelta > 0 ? [{
+        id: SQL_PERSO,
+        name: "sqlPerso",
+        availableSlots: sqlPersoDelta,
+        isIncluded: true,
+      }] : [];
 
-    loadExtraSqlPerso() {
-      return this.hostingDatabaseService
-        .getExtraSqlPerso(this.hosting.serviceName)
-        .then((result) => {
-          const sqlPerso = result?.find((item) => item?.name === SQL_PERSO);
-          const sqlPersoDelta =
-            sqlPerso?.database && sqlPerso?.usage
-              ? sqlPerso?.database - sqlPerso?.usage?.length
-              : 0;
-          this.emptySqlPerso = Array.from(
-            { length: sqlPersoDelta },
-            (_, i) => i,
-          );
-          this.extraSqlPerso = result?.filter(
-            (item) => item?.name === EXTRA_SQL_PERSO,
-          );
+      this.extraSqlPerso = result?.filter(
+        (item) => item?.name?.startsWith(EXTRA_SQL_PERSO_PREFIX),
+      );
 
-          this.extraSqlPersoDelta = this.extraSqlPerso
-            ?.map((item) =>
-              item?.database && item?.usage
-                ? item?.database - item?.usage?.length
-                : 0,
-            )
-            ?.reduce((accumulator, current) => accumulator + current, 0);
+      this.emptyExtraSqlPerso = this.extraSqlPerso
+        ?.map((item) => {
+          const delta = item?.database - (item?.usage?.length || 0);
+          return {
+            id: item.id,
+            name: item.serviceName,
+            availableSlots: delta,
+            isIncluded: false,
+            usage: item?.usage,
+          };
+        })
+        .filter((item) => item.availableSlots > 0);
+    });
+}
 
-          this.emptyExtraSqlPerso = Array.from(
-            { length: this.extraSqlPersoDelta },
-            (_, i) => i,
-          );
-        });
-    }
+
 
     static formatVersion(version) {
       return (version || '').replace(/_/gi, '.');
@@ -343,6 +348,12 @@ angular.module('App').controller(
         searchText: selectedItem?.serviceName,
       });
     }
+
+    onTerminateDatabaseSqlPerso(element) {
+      return this.coreURLBuilder.buildURL('dedicated', `#/billing/autorenew/delete?serviceId=${element?.name}`, {
+        selectedType: 'HOSTING_WEB_EXTRA_SQL_PERSO',
+    });
+}
 
     onOrderDatabaseClick() {
       this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_ORDER_DB);

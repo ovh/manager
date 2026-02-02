@@ -1382,8 +1382,8 @@
   "exchange_ACTION_configure_help_putinjunk_text": "Mover automaticamente os e-mails detetados como SPAM para a lixeira.",
   "exchange_ACTION_display_pst_check_existing_export": "Verificação da existência de uma exportação já em curso, por favor aguarde.",
   "exchange_ACTION_display_pst_wait_label": "A exportação para um ficheiro .PST pode levar algumas horas; poderá seguir o estado de progressão a qualquer altura (poderá fechar esta janela e voltar a abri-la mais tarde).",
-  "exchange_ACTION_display_pst_get_file": "O seu ficheiro está agora disponível e poderá efetuar o seu download a partir do seguinte URL. ATENÇÃO: este URL é válido unicamente para um período de 30 minutos.",
-  "exchange_ACTION_display_pst_start": "Iniciar a exportação",
+  "exchange_ACTION_display_pst_get_file": "A sua conta <strong>{{ currentEmail }}</strong> está agora disponível no formato .pst.",
+  "exchange_ACTION_display_pst_start": "Transferir",
   "exchange_ACTION_display_pst_progress": "A sua exportação está em curso {0}% de progressão.",
   "exchange_ACTION_display_pst_export_done": "A exportação do ficheiro .pst foi concluída. Já o pode descarregar.",
   "exchange_ACTION_display_pst_genlink": "Geração do URL de download",
@@ -1393,9 +1393,9 @@
   "exchange_ACTION_display_pst_retry": "Tentar novamente",
   "exchange_ACTION_display_pst_error": "A exportação para um ficheiro .pst falhou. Tente novamente.",
   "exchange_ACTION_display_pst_already_exist": "Já existe um ficheiro .pst para essa conta de e-mail:",
-  "exchange_ACTION_display_pst_ask_generate_new": "Deseja criar uma nova exportação em .pst?",
-  "exchange_ACTION_display_pst_warning_erase": "Atenção, esta ação substituirá o ficheiro já existente.",
-  "exchange_ACTION_add_pst_title": "Exportar em .pst",
+  "exchange_ACTION_display_pst_ask_generate_new": "Pretende gerar uma nova exportação da sua conta?",
+  "exchange_ACTION_display_pst_warning_erase": "Esta ação levará <strong>à eliminação automática e direta</strong> do último ficheiro .pst.",
+  "exchange_ACTION_add_pst_title": "Exportar para o formato .pst",
   "exchange_action_order_space_disk_title": "Solicitar espaço adicional",
   "exchange_action_order_space_disk_intro": "Pode encomendar espaço de disco adicional",
   "exchange_action_order_space_disk_price": "Preço total sem IVA:",
@@ -1687,5 +1687,7 @@
   "exchange_reset_mfa_success": "A dupla autenticação foi reiniciada com êxito.",
   "exchange_mfa_error": "Ocorreu um erro: {{error}}",
   "exchange_delete_mfa_success": "A dupla autenticação foi eliminada com êxito.",
-  "exchange_delete_mfa_error": "Ocorreu um erro aquando da eliminação da dupla autenticação: {{error}}"
+  "exchange_delete_mfa_error": "Ocorreu um erro aquando da eliminação da dupla autenticação: {{error}}",
+  "exchange_ACTION_display_pst_message_info": "O download do ficheiro está <strong>disponível até {{ expirationDate }} às {{ expirationHour }}</strong>. Decorrido este prazo, o ficheiro será automaticamente eliminado.",
+  "exchange_ACTION_display_pst_ask_generate_new_link": "Lançar uma nova exportação"
 }

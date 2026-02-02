@@ -4,5 +4,7 @@
   "notification_read": "Lido",
   "notification_unread": "Não lido",
   "no_notifications_title": "Está atualizado!",
-  "no_notifications_description": "Não tem notificações."
+  "no_notifications_description": "Não tem notificações.",
+  "notification_sender_email_title": "Os nossos endereços de correio eletrónico estão a mudar.",
+  "notification_sender_email_description": "Para verificar a autenticidade das nossas comunicações, consulte as nossas dicas de combate ao phishing."
 }

@@ -39,6 +39,7 @@ enum OvhProductName {
   SERVERV2 = 'ServerV2',
   SHIELDCHECK = 'ShieldCheck',
   SHOPPINGCARTPLUS = 'ShoppingCartPlus',
+  SPARKLE = 'Sparkle',
   STAR = 'Star',
   CLOUD_CHANGELOG = 'CloudChangelog',
   HOSTING_CHANGELOG = 'HostingChangelog',

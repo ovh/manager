@@ -19,21 +19,21 @@ type UseRedirectionsParams = Omit<
   UseInfiniteQueryOptions,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
-  redirection?: string;
-  redirectionTargetId?: string;
-  organizationLabel?: string;
+  destination?: string;
+  source?: string;
+  organizationId?: string;
   shouldFetchAll?: boolean;
 };
 
 export const useRedirections = (props: UseRedirectionsParams = {}) => {
-  const { redirection, redirectionTargetId, organizationLabel, shouldFetchAll, ...options } = props;
+  const { destination, source, organizationId, shouldFetchAll, ...options } = props;
   const [allPages, setAllPages] = useState(!!shouldFetchAll);
   const { platformId } = useParams();
 
   const urlSearchParams = buildURLSearchParams({
-    redirection,
-    redirectionTargetId,
-    organizationLabel,
+    destination,
+    source,
+    organizationId,
   });
 
   const query = useInfiniteQuery({

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.9...@ovh-ux/manager-models@2.7.10) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+## [2.7.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.8...@ovh-ux/manager-models@2.7.9) (2026-01-20)
+
+
+### Bug Fixes
+
+* **billing:** add a conditionnal chaining to avoid js error ([4a29eba](https://github.com/ovh/manager/commit/4a29ebab26627fe6e139c3312ff981c1eec12d2e)), closes [#INC0182354](https://github.com/ovh/manager/issues/INC0182354)
+
+
+
+
+
 ## [2.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.7...@ovh-ux/manager-models@2.7.8) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

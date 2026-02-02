@@ -6,6 +6,7 @@ import { TServiceInfo } from '@/common/types/common.types';
 import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 import { translateRenewPeriod } from '@/domain/utils/utils';
 import CircleQuestionTooltip from '../CircleQuestionTooltip/CircleQuestionTooltip';
+import { goToUpdateRenewFrequencyParams } from '@/domain/utils/helpers';
 
 interface RenewFrequencyProps {
   readonly serviceInfo: TServiceInfo;
@@ -16,13 +17,12 @@ export default function RenewFrequency({
   serviceName,
 }: RenewFrequencyProps) {
   const { t } = useTranslation(['domain']);
+
+  const billingUrl = goToUpdateRenewFrequencyParams(serviceName);
   const { data: renewFrequencyURL } = useNavigationGetUrl([
-    'billing',
-    '/autorenew/services/updates',
-    {
-      selectedType: 'DOMAIN',
-      serviceId: serviceName,
-    },
+    billingUrl.scope,
+    billingUrl.target,
+    billingUrl.params,
   ]);
 
   return (

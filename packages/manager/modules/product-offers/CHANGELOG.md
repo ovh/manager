@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.6.1...@ovh-ux/manager-product-offers@5.6.2) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-product-offers
+
+
+
+
+
 ## [5.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.6.0...@ovh-ux/manager-product-offers@5.6.1) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-product-offers

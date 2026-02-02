@@ -65,5 +65,6 @@
   "editObjectLockToastSuccessDescription": "As opções do Object Lock foram atualizadas",
   "errorDurationMin": "A duração mínima é de um dia.",
   "errorDurationMax": "A duração máxima é de 100 anos ou 36500 dias.",
-  "errorRuleRequired": "Deve ser definida uma regra de retenção para ativar o Object Lock por predefinição."
+  "errorRuleRequired": "Deve ser definida uma regra de retenção para ativar o Object Lock por predefinição.",
+  "deleteBucketButton": "Eliminar o bucket"
 }

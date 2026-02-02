@@ -18,7 +18,10 @@ import {
 import { OdsFormField, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
 
 import { Subtitle } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { TrackingTags } from '@/tracking.constant';
 
 export type KeyTypeSectionProps = {
   region: string;
@@ -45,15 +48,18 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
 }) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { data: servicekeyReferenceList } = useOkmsServiceKeyReference(region);
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const handleSelectKeyType = (reference: OkmsServiceKeyReference) => {
+    const keyTypeTrackingTag = reference.type as unknown as TrackingTags;
+
     trackClick({
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: ['select_type_key', reference.type],
+      actions: ['select', 'type', keyTypeTrackingTag],
     });
+
     setServiceKey(reference);
     setKeyType(reference.type);
 
@@ -92,7 +98,7 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
             </OdsText>
           </div>
           <div className="grid gap-3">
-            {servicekeyReferenceList?.data.map((reference) => (
+            {servicekeyReferenceList?.map((reference) => (
               <ServiceKeyTypeRadioButton
                 key={reference.type.toString()}
                 type={reference.type}

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Separator } from '@datatr-ux/uxlib';
 import Price from '@/components/price/Price.component';
-import { ServicePricing } from '@/lib/pricingHelper';
+import { hourlyToMonthlyFactor, ServicePricing } from '@/lib/pricingHelper';
 
 interface TablePriceProps {
   prices: ServicePricing;
@@ -17,8 +17,8 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
           <Price
             className="flex justify-end items-center flex-wrap gap-2"
             decimals={3}
-            priceInUcents={prices.flavorPrice.hourly.price}
-            taxInUcents={prices.flavorPrice.hourly.tax}
+            priceInUcents={prices.flavorPrice.price}
+            taxInUcents={prices.flavorPrice.tax}
           />
         </div>
       </div>
@@ -29,8 +29,8 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
           <Price
             className="flex justify-end items-center flex-wrap gap-2"
             decimals={3}
-            priceInUcents={prices.storagePrice.hourly.price}
-            taxInUcents={prices.storagePrice.hourly.tax}
+            priceInUcents={prices.storagePrice.price}
+            taxInUcents={prices.storagePrice.tax}
           />
         </div>
       </div>
@@ -43,8 +43,8 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
           <Price
             className="flex justify-end items-center flex-wrap gap-2"
             decimals={3}
-            priceInUcents={prices.servicePrice.hourly.price}
-            taxInUcents={prices.servicePrice.hourly.tax}
+            priceInUcents={prices.servicePrice.price}
+            taxInUcents={prices.servicePrice.tax}
           />
         </div>
       </div>
@@ -55,8 +55,8 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
           <Price
             className="flex justify-end items-center flex-wrap gap-2"
             decimals={0}
-            priceInUcents={prices.servicePrice.monthly.price}
-            taxInUcents={prices.servicePrice.monthly.tax}
+            priceInUcents={prices.servicePrice.price * hourlyToMonthlyFactor}
+            taxInUcents={prices.servicePrice.tax * hourlyToMonthlyFactor}
           />
         </div>
       </div>

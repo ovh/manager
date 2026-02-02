@@ -11,5 +11,9 @@
   "tableActionManage": "Manage",
   "tableActionRestart": "Restart",
   "tableActionStop": "Stop",
-  "tableActionDelete": "Delete"
+  "tableActionDelete": "Delete",
+  "shutdownLabel": "Stops on {{timeout}}",
+  "restartLabel": "Restarts on {{timeout}}",
+  "timeOutLabel": "Expiry",
+  "tableActionClone": "Clone Job"
 }

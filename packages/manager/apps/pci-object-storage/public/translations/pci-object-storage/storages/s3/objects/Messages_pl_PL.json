@@ -60,5 +60,21 @@
   "restoreAvailableUntil": "Obiekt będzie dostępny do",
   "seeVersionsSwitchLabel": "Wyświetl wersje",
   "searchPlaceholder": "Wyszukiwanie...",
-  "changeStorageClassWarningInfrequentAccess": "Uwaga: Klasy Infrequent Access i Cold Archive wymagają minimalnego czasu przechowywania. <0>Więcej informacji</0>"
+  "changeStorageClassWarningInfrequentAccess": "Uwaga: Klasy Infrequent Access i Cold Archive nakładają minimalny czas przechowywania. <0>Dowiedz się więcej</0>",
+  "selectObject": "Wybierz obiekt {{name}}",
+  "selectAll": "Zaznacz wszystko",
+  "bulkDeleteTitle": "Usuń wiele obiektów",
+  "bulkDeleteDescription_one": "Chcesz usunąć {{count}} obiekt.",
+  "bulkDeleteDescription_other": "Chcesz usunąć {{count}} obiekty/ów.",
+  "bulkDeleteButtonConfirm_one": "Usuń {{count}} obiekt",
+  "bulkDeleteButtonConfirm_other": "Usuń {{count}} obiekty/ów",
+  "bulkDeleteToastSuccessDescription_one": "{{count}} obiekt został usunięty.",
+  "bulkDeleteToastSuccessDescription_other": "Liczba usuniętych obiektów: {{count}}.",
+  "bulkDeleteVersionsTitle": "Usuń wiele wersji",
+  "bulkDeleteVersionsDescription_one": "Czy chcesz trwale usunąć {{count}} wersję? Ta akcja nie może być anulowana.",
+  "bulkDeleteVersionsDescription_other": "Czy chcesz trwale usunąć {{count}} wersje? Ta akcja nie może być anulowana.",
+  "bulkDeleteVersionsConfirmation": "Wpisz {{confirmation}}, aby potwierdzić",
+  "downloadErrorDescription": "Błąd podczas przesyłania pliku",
+  "downloadErrorStatus": "Błąd podczas przesyłania: {{status}}",
+  "downloadErrorUnknownType": "Nieznany typ przesyłania"
 }

@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -16,22 +16,34 @@ export type WillPaymentConfigOptions = {
  */
 export const useWillPaymentConfig = ({
   onPaymentStatusChange,
-}: WillPaymentConfigOptions = {}): TWillPaymentConfig => {
+}: WillPaymentConfigOptions = {}): TWillPaymentConfig | null => {
   const { environment } = useContext(ShellContext);
   const { i18n } = useTranslation();
   const user = environment.getUser();
 
-  const eventBus = document.getElementById('will-payment-event-bus');
+  const [eventBus, setEventBus] = useState<HTMLElement | null>(null);
 
-  return useMemo(
-    () => ({
+  useEffect(() => {
+    const el = document.getElementById('will-payment-event-bus');
+    if (el) {
+      setTimeout(() => {
+        setEventBus(el);
+      }, 0);
+    }
+  }, []);
+
+  return useMemo(() => {
+    if (!eventBus) {
+      return null;
+    }
+
+    return {
       baseUrl: window.location.origin,
       onChange: (state: GlobalStateStatus) => onPaymentStatusChange?.(state),
       subsidiary: user.ovhSubsidiary,
       language: i18n.language,
       hostApp: 'pci',
-      eventBus: eventBus ?? undefined,
-    }),
-    [onPaymentStatusChange, user.ovhSubsidiary, i18n.language, eventBus],
-  );
+      eventBus,
+    };
+  }, [onPaymentStatusChange, user.ovhSubsidiary, i18n.language, eventBus]);
 };

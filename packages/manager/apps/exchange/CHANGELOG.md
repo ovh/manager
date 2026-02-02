@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.46](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.45...@ovh-ux/manager-exchange-app@0.13.46) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.45](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.44...@ovh-ux/manager-exchange-app@0.13.45) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.44](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.43...@ovh-ux/manager-exchange-app@0.13.44) (2026-01-23)
+
+
+### Bug Fixes
+
+* **web.exchange:** add missing deps ([f01a7dc](https://github.com/ovh/manager/commit/f01a7dc70e1bade3cec6d3d3514ef14f831e73cf)), closes [#INC0184652](https://github.com/ovh/manager/issues/INC0184652)
+
+
+
+
+
+## [0.13.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.42...@ovh-ux/manager-exchange-app@0.13.43) (2026-01-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.41...@ovh-ux/manager-exchange-app@0.13.42) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.40...@ovh-ux/manager-exchange-app@0.13.41) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.13.40](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.39...@ovh-ux/manager-exchange-app@0.13.40) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
 ## [0.13.39](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.13.38...@ovh-ux/manager-exchange-app@0.13.39) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-exchange-app

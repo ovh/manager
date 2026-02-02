@@ -3,6 +3,95 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.51.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.51.0...@ovh-ux/manager-pm@0.51.1) (2026-02-01)
+
+
+### Bug Fixes
+
+* react shell build  issues ([806d39b](https://github.com/ovh/manager/commit/806d39b48fce1bc6421ed492a33ccc91260dfcb8))
+
+
+
+
+
+# [0.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.50.1...@ovh-ux/manager-pm@0.51.0) (2026-01-30)
+
+
+### Features
+
+* enable cds nx support ([e1568ab](https://github.com/ovh/manager/commit/e1568ab701635320190b754bb7fb0b78fa7a259d))
+
+
+
+
+
+## [0.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.50.0...@ovh-ux/manager-pm@0.50.1) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
+# [0.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.49.1...@ovh-ux/manager-pm@0.50.0) (2026-01-20)
+
+
+### Features
+
+* conditional installing nx case os ([96980ec](https://github.com/ovh/manager/commit/96980ec1bd3e3456a3655db0653664257a5fab2b)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
+## [0.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.49.0...@ovh-ux/manager-pm@0.49.1) (2026-01-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
+# [0.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.48.1...@ovh-ux/manager-pm@0.49.0) (2026-01-16)
+
+
+### Features
+
+* **pci-file-storage:** base new pci-file-storage app ([7c89509](https://github.com/ovh/manager/commit/7c89509fb89c9525e4c32c0c59e79762d0989e3a)), closes [#TAPC-5475](https://github.com/ovh/manager/issues/TAPC-5475)
+
+
+
+
+
+## [0.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.48.0...@ovh-ux/manager-pm@0.48.1) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
+# [0.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.47.1...@ovh-ux/manager-pm@0.48.0) (2026-01-15)
+
+
+### Features
+
+* **backup-agent-baremetal:** init bmc µapp with onboarding ([3d146ef](https://github.com/ovh/manager/commit/3d146ef7957134e8c3d8eb148a593df581c17b31)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+* **backup-agent-iaas:** init hpc µapp with onboarding ([0edf2f0](https://github.com/ovh/manager/commit/0edf2f06611434bf36416f987e09999e919f8368)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+* **backup-agent:** init module for backup agent ([2d7a18d](https://github.com/ovh/manager/commit/2d7a18d2aaeb9712794d349f61804884ef0b2f2a)), closes [#BKP-598](https://github.com/ovh/manager/issues/BKP-598)
+
+
+
+
+
+## [0.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.47.0...@ovh-ux/manager-pm@0.47.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-pm
+
+
+
+
+
 # [0.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.46.0...@ovh-ux/manager-pm@0.47.0) (2026-01-13)
 
 

@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.9.5...@ovh-ux/manager-dedicated-servers-app@0.9.6) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.9.4...@ovh-ux/manager-dedicated-servers-app@0.9.5) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.9.3...@ovh-ux/manager-dedicated-servers-app@0.9.4) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.9.2...@ovh-ux/manager-dedicated-servers-app@0.9.3) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.9.1...@ovh-ux/manager-dedicated-servers-app@0.9.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.9.0...@ovh-ux/manager-dedicated-servers-app@0.9.1) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.8.13...@ovh-ux/manager-dedicated-servers-app@0.9.0) (2026-01-14)
+
+
+### Features
+
+* **dedicated-server:** migrate from mrc to muk ([432844f](https://github.com/ovh/manager/commit/432844f17d3c0b9a6cfbce9ce4fcba4f2bc950ae)), closes [#MANAGER-20439](https://github.com/ovh/manager/issues/MANAGER-20439)
+
+
+
+
+
+## [0.8.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.8.12...@ovh-ux/manager-dedicated-servers-app@0.8.13) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
 ## [0.8.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.8.11...@ovh-ux/manager-dedicated-servers-app@0.8.12) (2026-01-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app

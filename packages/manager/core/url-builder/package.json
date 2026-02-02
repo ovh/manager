@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/url-builder",
-  "version": "2.4.1",
+  "version": "2.4.3",
   "description": "OVHcloud control panel URL Builder",
   "repository": {
     "type": "git",
@@ -21,15 +21,15 @@
     "build": "tsc && tsc-alias",
     "dev": "tsc && tsc-alias",
     "dev:watch": "tsc -w",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
+    "lint": "manager-lint --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
     "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:ci": "manager-test run --coverage"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "tsc-alias": "^1.8.16"
   }

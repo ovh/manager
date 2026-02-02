@@ -1,8 +1,7 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { DeploymentMode } from '@/types';
+import { TClusterPlanEnum } from '@/types';
 import { TRegionInformations } from '@/types/region';
 import { wrapper } from '@/wrapperRenders';
 
@@ -33,6 +32,12 @@ vi.mock('@/hooks/useFloatingIpsPrice', () => ({
   })),
 }));
 
+const mockUse3AZPlanAvailable = vi.fn(() => true);
+
+vi.mock('@/hooks/use3azPlanAvaible', () => ({
+  default: () => mockUse3AZPlanAvailable(),
+}));
+
 vi.mock('@/pages/new/steps/node-pool/DeploymentZone.component', () => ({
   default: () => <div data-testid="deployment-zone">DeploymentZone</div>,
 }));
@@ -51,18 +56,16 @@ vi.mock('@/pages/new/steps/node-pool/PublicConnectivity.component', () => ({
 
 describe('SizeStep', () => {
   const defaultProps = {
-    isOpen: true,
-    isChecked: false,
-    isLocked: false,
-    order: 1,
     regionInformations: null,
     selectedAvailabilityZones: null,
     antiAffinity: false,
     onAttachFloatingIPs: vi.fn(),
     onAntiAffinityChange: vi.fn(),
-    onNext: vi.fn(),
-    onEdit: vi.fn(),
   };
+
+  beforeEach(() => {
+    mockUse3AZPlanAvailable.mockReturnValue(true);
+  });
 
   it('should render NodePoolSize and NodePoolAntiAffinity components', () => {
     render(<SizeStep {...defaultProps} />, { wrapper });
@@ -76,10 +79,9 @@ describe('SizeStep', () => {
     expect(screen.getByTestId('deployment-zone')).toBeInTheDocument();
   });
 
-  describe('PublicConnectivity visibility based on deployment mode', () => {
-    const createRegionInfo = (type?: DeploymentMode): TRegionInformations =>
+  describe('PublicConnectivity visibility based on plan and 3AZ feature', () => {
+    const createRegionInfo = (): TRegionInformations =>
       ({
-        type,
         availabilityZones: ['zone-1', 'zone-2', 'zone-3'],
         continentCode: 'EU',
         countryCode: 'FR',
@@ -92,24 +94,43 @@ describe('SizeStep', () => {
 
     it.each([
       {
-        description: 'MONO_ZONE deployment',
-        regionInformations: createRegionInfo(DeploymentMode.MONO_ZONE),
+        description: 'FREE plan with 3AZ feature',
+        plan: TClusterPlanEnum.FREE,
+        has3AZFeature: true,
         shouldDisplay: false,
       },
       {
-        description: 'MULTI_ZONES deployment (standard plan)',
-        regionInformations: createRegionInfo(DeploymentMode.MULTI_ZONES),
+        description: 'STANDARD plan with 3AZ feature',
+        plan: TClusterPlanEnum.STANDARD,
+        has3AZFeature: true,
         shouldDisplay: true,
       },
       {
-        description: 'null regionInformations',
-        regionInformations: null,
+        description: 'STANDARD plan without 3AZ feature',
+        plan: TClusterPlanEnum.STANDARD,
+        has3AZFeature: false,
+        shouldDisplay: false,
+      },
+      {
+        description: 'FREE plan without 3AZ feature',
+        plan: TClusterPlanEnum.FREE,
+        has3AZFeature: false,
+        shouldDisplay: false,
+      },
+      {
+        description: 'no plan (defaults to FREE) with 3AZ feature',
+        plan: undefined,
+        has3AZFeature: true,
         shouldDisplay: false,
       },
     ])(
       'should $shouldDisplay render PublicConnectivity when $description',
-      ({ regionInformations, shouldDisplay }) => {
-        render(<SizeStep {...defaultProps} regionInformations={regionInformations} />, { wrapper });
+      ({ plan, has3AZFeature, shouldDisplay }) => {
+        mockUse3AZPlanAvailable.mockReturnValue(has3AZFeature);
+
+        render(<SizeStep {...defaultProps} regionInformations={createRegionInfo()} plan={plan} />, {
+          wrapper,
+        });
 
         if (shouldDisplay) {
           expect(screen.getByTestId('public-connectivity')).toBeInTheDocument();

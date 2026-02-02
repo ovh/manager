@@ -34,7 +34,7 @@
   "summaryOffsiteReplicationEnabled": "Replikacja włączona",
   "summaryOffsiteReplicationDisabled": "Replikacja wyłączona",
   "summaryOffsiteReplicationRegion": "Region:",
-  "summaryVersionningSection": "Wersjonowanie",
+  "summaryVersionningSection": "Versioning",
   "summaryVersionningEnabled": "Zarządzanie wersjami jest włączone",
   "summaryVersionningDisabled": "Zarządzanie wersjami jest wyłączone",
   "summaryUserSection": "Użytkownik",

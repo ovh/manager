@@ -1,0 +1,19 @@
+{
+  "telephony_order_nongeographical_title": "Eine nicht-geografische Nummer bestellen",
+  "telephony_order_nongeographical_submit_title": "Eine nicht-geografische Nummer bestellen",
+  "telephony_order_nongeographical_amount_title": "Anzahl der Nummern:",
+  "telephony_order_nongeographical_specific_title": "Wahl der Rufnummer",
+  "telephony_order_nongeographical_retractation_title": "Widerrufsrecht",
+  "telephony_order_nongeographical_address_title": "Kontaktdaten des Nummerninhabers",
+  "telephony_order_nongeographical_zone_tip": "Ort oder Postleitzahl",
+  "telephony_order_nongeographical_numbers_error": "Die Liste der Nummernvoreinstellungen kann nicht geladen werden.",
+  "telephony_order_nongeographical_order_error": "Fehler bei der Bestellung nicht geografischer Nummer(n). Bitte versuchen Sie es später noch einmal.",
+  "telephony_order_nongeographical_order_error_city": "{{city}} gehört nicht zur Zone ({{zone}})",
+  "telephony_order_nongeographical_order_success": "Nicht geografische Nummer(n), bestellt. Bitte begleichen Sie Ihre Bestellung.",
+  "telephony_order_nongeographical_order_alias": "Alle Konfigurationen",
+  "telephony_order_nongeographical_order_sda_only": "Nur Weiterleitungen (SDAs)",
+  "telephony_order_nongeographical_prices_error": "Der Preis für die feste SDA-Weiterleitungsnummer kann nicht abgerufen werden.",
+  "telephony_order_nongeographical_order_periodicy": "Bestellen ({{total}} inkl. MwSt. / {{period}})",
+  "telephony_order_nongeographical_order_periodicy_annual": "Jahr",
+  "telephony_order_nongeographical_order_periodicy_month": "Monat"
+}

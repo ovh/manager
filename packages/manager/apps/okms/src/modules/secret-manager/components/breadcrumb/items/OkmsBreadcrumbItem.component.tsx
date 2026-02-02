@@ -25,7 +25,7 @@ const Item = ({ okmsId }: { okmsId: string }) => {
     <OdsBreadcrumbItem
       data-testid={BREADCRUMB_ITEM_TEST_IDS.OKMS}
       key={okmsId}
-      label={error ? okmsId : okms?.data?.iam?.displayName || okmsId}
+      label={error ? okmsId : okms?.iam?.displayName || okmsId}
       href={link}
     />
   );

@@ -98,6 +98,7 @@ export default function MultisitePage() {
                 <Button
                   className="ml-2"
                   id={'edit-name'}
+                  data-testid="edit-name"
                   variant={BUTTON_VARIANT.ghost}
                   color={BUTTON_COLOR.primary}
                   onClick={() =>

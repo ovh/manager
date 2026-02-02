@@ -1,6 +1,6 @@
 {
   "title": "Elija la configuración de la cuenta",
-  "description": "¿Ya tienes una cuenta?",
+  "description": "¿Ya tiene una cuenta?",
   "country_setting": "País de residencia fiscal",
   "currency_setting": "Divisa",
   "site_setting": "Sitio web (idioma)",
@@ -8,5 +8,5 @@
   "setting_description_list_first": "1. Si usted es un cliente registrado a efectos del IVA, del GST o de un impuesto similar, su país de residencia corresponde al país en el que está registrado.",
   "setting_description_list_second": "2. Si usted es un cliente no registrado a efectos del IVA, del GST u otro impuesto similar, pero está registrado como «empresario», su país de residencia corresponde al país en el que esté registrado como empresario (número de identificación fiscal)",
   "setting_description_list_last": "3. Si usted es un cliente no registrado a efectos del IVA, del GST u otro impuesto similar, su país de residencia corresponde, en principio, al de su dirección de facturación. De conformidad con la legislación aplicable, OVH podrá verse obligada a contrastar esta información con la de su dirección IP o con la domiciliación bancaria de su medio de pago. En caso de discrepancia, OVH podrá ponerse en contacto con usted para validar su país de residencia",
-  "connect": "Inicia sesión"
+  "connect": "Inicie sesión"
 }

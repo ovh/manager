@@ -4,10 +4,9 @@ import { SecretData, SecretVersion } from '@secret-manager/types/secret.type';
 import { screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { ApiError } from '@ovh-ux/manager-core-api';
-
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
 
 import { SecretValue } from './SecretValue.component';
 import { SECRET_RAW_VALUE_TEST_ID } from './secretValueRaw.constants';
@@ -85,7 +84,7 @@ describe('SecretValue', () => {
     test('should display error message when hook returns error', async () => {
       // Given
       const fetchErrorMessage = 'Failed to fetch secret';
-      const mockError = new Error(fetchErrorMessage) as ApiError;
+      const mockError = createErrorResponseMock(fetchErrorMessage);
       mockUseSecretVersionWithData.mockReturnValue({
         data: undefined,
         isPending: false,

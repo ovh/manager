@@ -5,6 +5,8 @@ import { ShellProvider } from '@ovh-ux/manager-react-shell-client';
 import { HashRouterWithLocationWrapper } from './RouterWithLocationWrapper';
 import { QueryClientWrapper } from './QueryClientWrapper';
 import { mockedUser } from '../mocks/user';
+import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling.constants';
+import { UserActivityProvider } from '@/contexts/UserActivityContext';
 
 export const RouterWithQueryClientWrapper = ({
   children,
@@ -161,7 +163,9 @@ export const RouterWithQueryClientWrapper = ({
     <ShellProvider client={client}>
       <QueryClientWrapper>
         <HashRouterWithLocationWrapper>
-          {children}
+          <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
+            {children}
+          </UserActivityProvider>
         </HashRouterWithLocationWrapper>
       </QueryClientWrapper>
     </ShellProvider>

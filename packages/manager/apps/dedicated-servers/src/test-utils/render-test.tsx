@@ -8,13 +8,11 @@ import {
   ShellContextType,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { render, waitFor, screen } from '@testing-library/react';
-
+import { render, RenderResult, waitFor, screen } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
 } from '@ovh-ux/manager-module-common-api';
-
 import {
   initTestI18n,
   getAuthenticationMocks,
@@ -24,6 +22,11 @@ import { labels, translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '../tracking.constant';
 
+declare global {
+  // eslint-disable-next-line vars-on-top, no-var
+  var server: SetupServer | undefined;
+}
+
 let context: ShellContextType;
 let i18nState: i18n;
 
@@ -32,8 +35,8 @@ export const renderTest = async ({
   ...mockParams
 }: {
   initialRoute?: string;
-} & GetServicesMocksParams) => {
-  ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
+} & GetServicesMocksParams): Promise<RenderResult> => {
+  global.server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getServicesMocks(mockParams),
@@ -60,9 +63,7 @@ export const renderTest = async ({
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(labels.dedicated.title, {
-            exact: false,
-          }).length,
+          screen.getAllByText(labels.dedicated.title, { exact: false }).length,
         ).toBeGreaterThan(0),
       { timeout: 30000 },
     );

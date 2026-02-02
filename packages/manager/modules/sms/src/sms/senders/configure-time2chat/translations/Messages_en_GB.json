@@ -3,9 +3,9 @@
   "sms_senders_configure_auto_response": "Automatic replies",
   "sms_senders_configure_contact_info_title": "1. If the end customer replies \"contact\" to the message",
   "sms_senders_configure_contact_info_subtitle": "They will immediately receive the following information.",
-  "sms_senders_configure_contact_info_label_commercial_name": "Commercial name",
-  "sms_senders_configure_contact_info_label_phonenumber": "Telephone number (in international format 0033 or +33)",
-  "sms_senders_configure_contact_info_label_website": "Website",
+  "sms_senders_configure_contact_info_label_commercial_name": "Company name",
+  "sms_senders_configure_contact_info_label_phonenumber": "Company telephone number",
+  "sms_senders_configure_contact_info_label_website": "Company website",
   "sms_senders_configure_kyc_label_company_name": "Company name",
   "sms_senders_configure_kyc_label_brand_name": "Trademark using the service",
   "sms_senders_configure_kyc_label_primary_use_case": "Primary use cases",
@@ -20,5 +20,6 @@
   "sms_senders_configure_contact_info_update_success": "Automatic reply information update has been processed.",
   "sms_senders_configure_auto_response_update_success": "The automatic reply message update has been processed.",
   "sms_senders_configure_kyc_update_success": "The KYC update has been processed.",
-  "sms_senders_configure_loading_error": "An error occurred while retrieving the information. {{ error }}"
+  "sms_senders_configure_loading_error": "An error occurred while retrieving the information. {{ error }}",
+  "sms_senders_configure_contact_info_helper_phonenumber": "Please enter a number in international format (0044123456789 or +44123456789)."
 }

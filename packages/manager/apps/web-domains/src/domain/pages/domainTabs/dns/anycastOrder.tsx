@@ -40,9 +40,13 @@ import { useLinks } from '@/domain/constants/guideLinks';
 export default function AnycastOrder() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { serviceName } = useParams<{ serviceName: string }>();
-  const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
+  );
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(
+    serviceName,
+    domainResource,
+    true,
   );
   const [dnssecSelected, setDnssecSelected] = useState<boolean>(false);
   const [orderURL, setOrderURL] = useState<string>('');

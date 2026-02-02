@@ -4,7 +4,7 @@
   "deleteObjectVersionToastSuccessDescription": "Die Version des Objekts {{- name }} wurde gelöscht.",
   "deleteObjectVersionTitle": "Eine Version eines Objekts löschen",
   "deleteObjectVersionDescription": "Möchten Sie diese Version des Objekts {{- name }} endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
-  "deleteObjectVersionConfirmation": "Geben Sie PERMANENTLY DELETE ein, um zu bestätigen.",
+  "deleteObjectVersionConfirmation": "Zum Bestätigen {{confirmation}} eingeben",
   "deleteObjectVersionButtonCancel": "Abbrechen",
   "deleteObjectVersionButtonConfirm": "Löschen"
 }

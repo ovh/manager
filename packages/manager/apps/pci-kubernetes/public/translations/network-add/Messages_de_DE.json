@@ -33,5 +33,6 @@
   "kubernetes_network_form_select_private_option": "Privates Netzwerk auswählen",
   "kubernetes_network_form_no_associated_gateway": "Ihrem Subnetz ist kein Gateway zugeordnet, was für den ordnungsgemäßen Betrieb des Clusters erforderlich ist. Bitte fügen Sie diesem Subnetz ein Gateway an oder wählen Sie ein Subnetz, das den Voraussetzungen entspricht.",
   "kubernetes_network_form_no_private_network": "Sie benötigen ein privates Netzwerk, um Ihr Netzwerk für Kubernetes zu konfigurieren. Falls Sie noch kein privates Netzwerk haben, empfehlen wir Ihnen, ein solches einzurichten.",
-  "kubernetes_network_form_add_gateway": "Gateway erstellen"
+  "kubernetes_network_form_add_gateway": "Gateway erstellen",
+  "kubernetes_network_form_notify_users_standard": "Um Managed Kubernetes Service Standard (1-AZ oder 3-AZ) zu deployen, ist ein Subnetz mit zugehörigem Gateway erforderlich. Stellen Sie sicher, dass Ihr privates Netzwerk diese Voraussetzungen erfüllt, um einen optimalen Betrieb zu gewährleisten."
 }

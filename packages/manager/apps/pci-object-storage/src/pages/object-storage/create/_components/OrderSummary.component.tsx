@@ -100,7 +100,13 @@ const OrderSummary = ({
     );
   };
 
-  if (!order) return <Skeleton className="w-full h-[40vh]" />;
+  if (!order)
+    return (
+      <Skeleton
+        className="w-full h-[40vh]"
+        data-testid="order-summary-skeleton"
+      />
+    );
   return (
     <div className="grid grid-cols-1 gap-2 bg-neutral-50 border border-neutral-200 px-3 py-2 rounded-sm text-heading font-semibold text-sm max-h-[40vh] overflow-auto">
       {isS3Order(order) && (

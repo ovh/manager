@@ -21,7 +21,6 @@ export const PCI_FEATURES = {
     DATABASES_ANALYTICS: 'pci-databases-analytics',
     SNAPSHOT: 'snapshot',
     CLOUD_ARCHIVE: 'archive',
-    COLD_ARCHIVE: 'cold-archive',
     INSTANCE_BACKUP: 'instance-backup',
     LOAD_BALANCER: 'load-balancer',
     PRIVATE_NETWORK: 'private-network',

@@ -1,6 +1,6 @@
-export const odsTabIsSelected = (state: boolean) => `ods-tab[is-selected=${state.toString()}]`;
-export const odsTabById = (id: string) => `ods-tab[id="${id}"]`;
-export const tabContent = (discriminator: string) => `tab-content-${discriminator}`;
+export const odsTabIsSelected = (state: boolean) => `button[aria-selected=${state.toString()}]`;
+export const odsTabById = (id: string) => `button[id="${id}"]`;
+export const tabContent = (tabName: string) => `tab-content-${tabName}`;
 export type OdsEvent = {
   emit: (Record) => void;
 };

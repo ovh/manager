@@ -1,0 +1,25 @@
+{
+  "guides": {
+    "learn-more": {
+      "category": "Pakiet",
+      "title": "Dowiedz się więcej",
+      "description": "Na stronie Labs znajdziesz informacje o funkcjach i cenach File Storage.",
+      "link-text": "Dowiedz się więcej"
+    },
+    "get-started": {
+      "category": "Przewodnik",
+      "title": "Pierwsze kroki",
+      "description": "Przewodnik, z którego dowiesz się, jak utworzyć pierwszy „share”.",
+      "link-text": "Dowiedz się więcej"
+    },
+    "discord": {
+      "category": "Discord",
+      "title": "Bądź na bieżąco z aktualnościami",
+      "description": "Dołącz do nas na #beta-file-storage: zadawaj pytania i dziel się opiniami.",
+      "link-text": "Dowiedz się więcej"
+    }
+  },
+  "title": "Przetestuj File Storage za darmo!",
+  "description": "Potrzebujesz współdzielonej przestrzeni dyskowej dla Twoich klastrów lub instancji? Nasze w pełni zarządzane rozwiązanie File Storage for Public Cloud zapewnia wolumeny NFS od <strong>150 GiB do 10 TiB</strong>, wydajność do <strong>16 000 IOPS</strong> i przepustowość <strong>128 Mb/s</strong>. Jest kompatybilne z <strong>Managed Kubernetes</strong> (PVCs RWX) oraz <strong>instancjami Public Cloud</strong> (montowanie NFS). Umożliwia współdzielenie plików między węzłami, strefami i aplikacjami oraz zapewnia przejrzysty model rozliczeń.",
+  "action-button": "Sprawdź wersję beta"
+}

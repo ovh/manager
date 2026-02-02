@@ -330,15 +330,17 @@
   "domain_tab_dsrecords_drawer_modify_error": "Wykryto błąd podczas modyfikacji rekordu DS: {{ error }}",
   "domain_tab_dsrecords_drawer_form_error_empty": "Puste pole",
   "domain_tab_dsrecords_add_disabled": "Aktualna konfiguracja DNS nie pozwala na dodawanie rekordów DS",
-  "domain_tab_dsrecords_actions_disabled": "Bieżąca konfiguracja DNS nie pozwala na dodawanie ani modyfikowanie rekordów DS",
+  "domain_tab_dsrecords_actions_disabled": "Bieżąca konfiguracja DNS nie pozwala na dodawanie ani modyfikowanie rekordów DS.",
   "domain_tab_dsrecords_modal_delete_title": "Usuń wpis",
   "domain_tab_dsrecords_modal_delete_subtitle": "Czy na pewno chcesz usunąć ten wpis?",
   "domain_tab_dsrecords_modal_delete_success_message": "Trwa usuwanie rekordu DS",
   "domain_tab_dsrecords_modal_delete_error_message": "Wystąpił błąd podczas usuwania rekordu DS",
   "domain_table_state_error": "Błąd",
   "domain_tab_general_information_update_success": "Zlecenie aktualizacji zostało przetworzone.",
-  "domain_tab_dsrecords_message_information_content": "Te rekordy DS są dostarczane w celach informacyjnych i są zarządzane automatycznie przez OVHcloud.",
-  "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC jest w trakcie {{action}}: możesz śledzić postęp swojej prośby na stronie operacji w toku. <Link />",
-  "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacji",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacji"
+  "domain_tab_dsrecords_message_information_content": "Rekordy DNS mają charakter informacyjny i są zarządzane automatycznie przez OVHcloud.",
+  "domain_tab_dsrecords_message_information_action_in_progress": "Trwa {{action}} DNSSEC: postęp możesz śledzić na stronie bieżących operacji. <Link />",
+  "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacja",
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacja",
+  "domain_tab_general_information_subscription_edit_owner": "Zmień dane kontaktowe abonenta",
+  "domain_tab_general_information_data_protection_disabled": "Rejestr odpowiedzialny za tę nazwę domeny nie zezwala na niestandardowe zarządzanie wyświetlaniem danych."
 }

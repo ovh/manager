@@ -38,14 +38,17 @@
             </div>
 
             <div data-ng-show="ctrl.exportStep === 6">
-                <p data-translate="exchange_ACTION_display_pst_get_file"></p>
-                <a
-                    class="word-break"
-                    target="_blank"
-                    data-ng-bind="ctrl.exportURL.url"
-                    data-ng-href="{{ctrl.exportURL.url}}"
-                    data-ng-if="ctrl.exportURL.url"
-                ></a>
+                <p
+                data-translate="exchange_ACTION_display_pst_get_file"
+                data-translate-values="{ 'currentEmail': ctrl.currentEmail}"
+                ></p>
+                <oui-message type="info">
+                    <p
+                    data-translate="exchange_ACTION_display_pst_message_info"
+                    data-translate-values="{ 'expirationDate' : (ctrl.exportURL.expiration | date : short), 'expirationHour' : (ctrl.exportURL.expiration | date : 'HH:mm') }"
+                    ></p>
+                </oui-message>
+                <hr />
                 <p
                     class="font-weight-bold mt-4"
                     data-translate="exchange_ACTION_display_pst_ask_generate_new"
@@ -55,6 +58,15 @@
                     role="alert"
                     data-translate="exchange_ACTION_display_pst_warning_erase"
                 ></div>
+                <oui-button
+                    variant="link"
+                    icon-right="oui-icon-arrow-right"
+                    data-ng-click="ctrl.deleteExportDetails(ctrl.exchange)"
+                >
+                    <span
+                        data-translate="exchange_ACTION_display_pst_ask_generate_new_link"
+                    ></span>
+                </oui-button>
             </div>
 
             <div data-ng-show="ctrl.exportStep === 7">

@@ -6,15 +6,14 @@ import {
   useNavigate,
   useResolvedPath,
 } from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import { Breadcrumb } from '@ovh-ux/manager-react-components';
-import { BaseLayout, HeaderProps } from '@ovh-ux/muk';
+import { Tabs, Tab, TabList, TabsValueChangeEvent } from '@ovhcloud/ods-react';
+import { BaseLayout, HeaderProps, Breadcrumb } from '@ovh-ux/muk';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import { useTracking } from '@/hooks/useTracking/useTracking';
 import { TrackingSubApps } from '@/tracking.constant';
 import { GuidePlacement, GuidedTourProvider, GuideStep } from '@/hooks/useGuidedTour';
-
+import SenderEmailBanner from '@/components/senderEmailBanner/SenderEmailBanner.component'
 import { GuideMenu } from '@/components/guideMenu/GuideMenu.component';
 import GuidedTour from '@/components/guidedTour/GuidedTour.component';
 import GuidedTourIntroduction from '@/components/guidedTour/Introduction.component';
@@ -108,31 +107,40 @@ export default function DashboardLayout() {
         breadcrumb={<Breadcrumb rootLabel={t('title')} appName="communication" />}
         header={header}
         tabs={
-          <OdsTabs>
+          <Tabs
+          value={panel}
+          onValueChange={(event: TabsValueChangeEvent) => {
+            const selectedTab = tabsList.find((tab) => tab.name === event.value);
+              if (selectedTab) {
+                trackClick({
+                  location: PageLocation.mainTabnav,
+                  actionType: 'navigation',
+                  buttonType: ButtonType.tab,
+                  actions: [selectedTab.name],
+                  subApp:
+                    TrackingSubApps[selectedTab.name as keyof typeof TrackingSubApps],
+                });
+                navigate(selectedTab.to);
+              }
+            }}
+          >
+            <TabList>
             {tabsList.map((tab: DashboardTabItemProps) => (
-              <OdsTab
+              <Tab
                 key={`osds-tab-bar-item-${tab.name}`}
                 id={`${tab.name}-tab`}
                 className="select-none"
-                isSelected={tab.name === panel}
-                onOdsTabSelected={() => {
-                  trackClick({
-                    location: PageLocation.mainTabnav,
-                    actionType: 'navigation',
-                    buttonType: ButtonType.tab,
-                    actions: [tab.name],
-                    subApp:
-                      TrackingSubApps[tab.name as keyof typeof TrackingSubApps],
-                  });
-                  navigate(tab.to);
-                }}
+                value={tab.name}
               >
                 {tab.title}
-              </OdsTab>
+              </Tab>
             ))}
-          </OdsTabs>
+          </TabList>
+          </Tabs>
         }
       >
+        <SenderEmailBanner />
+
         <Outlet />
         <GuidedTourIntroduction />
       </BaseLayout>

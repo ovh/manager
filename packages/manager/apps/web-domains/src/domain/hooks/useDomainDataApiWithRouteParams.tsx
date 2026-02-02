@@ -1,56 +1,59 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import {
-  useDataApi,
-  UseDataApiOptions,
-  UseDataApiResult,
-  SearchProps,
-} from '@ovh-ux/muk';
+import { useDataApi, SearchProps } from '@ovh-ux/muk';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
-import { DomainStateEnum } from '@/domain/enum/domainState.enum';
+import {
+  FILTER_KEY_TO_API_PARAM,
+  MAIN_STATE_ALL_VALUES,
+  CURSOR_EXPIRED_ERROR_STATUS,
+} from '@/domain/constants/dataApiRouteParams.constants';
+import {
+  UseDomainDataApiWithRouteParamsOptions,
+  UseDomainDataApiWithRouteParamsResult,
+  FilterWithLabel,
+} from '@/domain/types/dataApiRouteParams.types';
 
-type UseDomainDataApiWithRouteParamsOptions<TData> = Omit<
-  UseDataApiOptions<TData>,
-  'route'
-> & {
-  baseRoute: string;
-  columns?: unknown[];
-};
+function buildRouteWithParams(
+  baseRoute: string,
+  searchParams: URLSearchParams,
+): string {
+  const params = new URLSearchParams();
 
-type FilterWithLabel = {
-  key: string;
-  value: string | string[];
-  comparator: FilterComparator;
-  label: string;
-};
+  const searchValue = searchParams.get('search');
+  if (searchValue) {
+    params.set('searchValue', searchValue);
+  }
 
-export type UseDomainDataApiWithRouteParamsResult<TData> = UseDataApiResult<
-  TData
-> & {
-  data?: TData[];
-  searchParams: URLSearchParams;
-  setSearchParams: (
-    params: URLSearchParams,
-    options?: { replace?: boolean },
-  ) => void;
-  searchProps: SearchProps;
-  filtersProps: {
-    filters: FilterWithLabel[];
-    add: (filter: FilterWithLabel) => void;
-    remove: (filter: FilterWithLabel) => void;
-  };
-};
+  Object.entries(FILTER_KEY_TO_API_PARAM).forEach(([columnKey, apiParam]) => {
+    const value = searchParams.get(apiParam);
+    if (value) {
+      value.split(',').forEach((v) => params.append(apiParam, v));
+    }
+  });
 
-const FILTER_KEY_TO_API_PARAM: Record<string, string> = {
-  'contactOwner.id': 'contactOwner',
-  'contactAdmin.id': 'contactAdministrator',
-  'contactTech.id': 'contactTechnical',
-  'contactBilling.id': 'contactBilling',
-  state: 'mainState',
-  suspensionState: 'suspensionState',
-};
+  Object.entries(FILTER_KEY_TO_API_PARAM).forEach(([columnKey, apiParam]) => {
+    const notValue = searchParams.get(`not_${apiParam}`);
+    if (notValue) {
+      const excludedValues = notValue.split(',');
+      if (columnKey === 'state') {
+        MAIN_STATE_ALL_VALUES.filter(
+          (v) => !excludedValues.includes(v),
+        ).forEach((v) => params.append('mainState', v));
+      }
+    }
+  });
 
-const MAIN_STATE_ALL_VALUES = Object.values(DomainStateEnum);
+  searchParams.forEach((value, key) => {
+    const isInternalParam = key.startsWith('not_') || key === 'search';
+
+    if (!isInternalParam && !params.has(key)) {
+      params.set(key, value);
+    }
+  });
+
+  const queryString = params.toString();
+  return queryString ? `${baseRoute}?${queryString}` : baseRoute;
+}
 
 export function useDomainDataApiWithRouteParams<
   TData = Record<string, unknown>
@@ -64,69 +67,138 @@ export function useDomainDataApiWithRouteParams<
     searchParams.get('search') || '',
   );
 
-  const routeWithParams = useMemo(() => {
-    const params = new URLSearchParams();
+  // Cursor expiration recovery state
+  const [cursorExpired, setCursorExpired] = useState(false);
+  const [collectedBeforeExpiry, setCollectedBeforeExpiry] = useState(0);
+  const hasTriggeredRecovery = useRef(false);
 
-    const searchValue = searchParams.get('search');
-    if (searchValue) {
-      params.set('searchValue', searchValue);
-    }
+  const routeWithParams = useMemo(
+    () => buildRouteWithParams(baseRoute, searchParams),
+    [baseRoute, searchParams],
+  );
 
-    Object.entries(FILTER_KEY_TO_API_PARAM).forEach(([columnKey, apiParam]) => {
-      const value = searchParams.get(apiParam);
-      if (value) {
-        value.split(',').forEach((v) => params.append(apiParam, v));
-      }
-    });
-
-    Object.entries(FILTER_KEY_TO_API_PARAM).forEach(([columnKey, apiParam]) => {
-      const notValue = searchParams.get(`not_${apiParam}`);
-      if (notValue) {
-        const excludedValues = notValue.split(',');
-        if (columnKey === 'state') {
-          MAIN_STATE_ALL_VALUES.filter(
-            (v) => !excludedValues.includes(v),
-          ).forEach((v) => params.append('mainState', v));
-        }
-      }
-    });
-
-    searchParams.forEach((value, key) => {
-      if (!key.startsWith('not_') && key !== 'search' && !params.has(key)) {
-        params.set(key, value);
-      }
-    });
-
-    const queryString = params.toString();
-    return queryString ? `${baseRoute}?${queryString}` : baseRoute;
-  }, [baseRoute, searchParams]);
-
-  const cacheKey = [routeWithParams];
-
-  const hookResult = useDataApi<TData>({
+  const primaryResult = useDataApi<TData>({
     ...restOptions,
-    cacheKey,
+    cacheKey: [routeWithParams],
     route: routeWithParams,
   });
 
-  const getColumnLabel = useCallback(
-    (columnId: string): string => {
-      const col = columns?.find((c: any) => c.id === columnId);
-      return typeof col?.header === 'string' ? col.header : '';
-    },
-    [columns],
-  );
+  // Secondary hook for cursor expiration recovery
+  // Uses a different cache key and only enabled when cursor expires
+  const recoveryResult = useDataApi<TData>({
+    ...restOptions,
+    cacheKey: [
+      routeWithParams,
+      'cursor-recovery',
+      cursorExpired ? 'active' : 'inactive',
+    ],
+    route: routeWithParams,
+    enabled: cursorExpired,
+  });
 
-  const getFilterValueLabel = useCallback(
-    (columnId: string, value: string): string => {
-      const col = columns?.find((c: any) => c.id === columnId);
-      const option = col?.filterOptions?.find(
-        (opt: any) => opt.value === value,
-      );
-      return option?.label ?? value;
-    },
-    [columns],
-  );
+  // Detect cursor expiration (500 error) and trigger recovery
+  // Check on the active result (primary or recovery depending on current mode)
+  const activeResult = cursorExpired ? recoveryResult : primaryResult;
+
+  const isCursorExpiredError =
+    activeResult.isError &&
+    activeResult.error &&
+    (activeResult.error as any)?.status === CURSOR_EXPIRED_ERROR_STATUS;
+
+  const hasDataAlreadyLoaded =
+    activeResult.flattenData && activeResult.flattenData.length > 0;
+
+  const shouldStartRecovery =
+    isCursorExpiredError &&
+    hasDataAlreadyLoaded &&
+    !hasTriggeredRecovery.current;
+
+  // Trigger recovery
+  useEffect(() => {
+    if (shouldStartRecovery) {
+      hasTriggeredRecovery.current = true;
+      const currentData = cursorExpired ? recoveryResult : primaryResult;
+      setCollectedBeforeExpiry(currentData.flattenData!.length);
+
+      // If we're already in recovery mode, reset to restart with fresh recovery
+      if (cursorExpired) {
+        setCursorExpired(false);
+      } else {
+        setCursorExpired(true);
+      }
+    }
+  }, [shouldStartRecovery, cursorExpired]);
+
+  // Reset recovery flag when data changes (new search, filters, etc.) or when switching modes
+  useEffect(() => {
+    const activeIsError = cursorExpired
+      ? recoveryResult.isError
+      : primaryResult.isError;
+    if (!activeIsError) {
+      hasTriggeredRecovery.current = false;
+    }
+  }, [
+    routeWithParams,
+    primaryResult.isError,
+    recoveryResult.isError,
+    cursorExpired,
+  ]);
+
+  // Auto-fetch pages during recovery until we reach the target count
+  useEffect(() => {
+    const shouldFetchMore =
+      cursorExpired &&
+      !recoveryResult.isFetching &&
+      recoveryResult.hasNextPage &&
+      (recoveryResult.flattenData?.length ?? 0) < collectedBeforeExpiry;
+
+    if (shouldFetchMore) {
+      void recoveryResult.fetchNextPage();
+    }
+  }, [
+    cursorExpired,
+    collectedBeforeExpiry,
+    recoveryResult.isFetching,
+    recoveryResult.hasNextPage,
+  ]);
+
+  useEffect(() => {
+    const recoveryDataLength = recoveryResult.flattenData?.length ?? 0;
+    const isRecoveryComplete =
+      cursorExpired &&
+      recoveryResult.flattenData &&
+      recoveryDataLength >= collectedBeforeExpiry &&
+      collectedBeforeExpiry > 0 &&
+      !recoveryResult.isFetching &&
+      !recoveryResult.isLoading;
+
+    if (!isRecoveryComplete) {
+      return;
+    }
+
+    // Fetch the extra page
+    if (
+      recoveryDataLength === collectedBeforeExpiry &&
+      recoveryResult.hasNextPage
+    ) {
+      void recoveryResult.fetchNextPage();
+    } else if (recoveryDataLength > collectedBeforeExpiry) {
+      // Recovery complete
+      setCollectedBeforeExpiry(0);
+    }
+  }, [
+    cursorExpired,
+    recoveryResult.isFetching,
+    recoveryResult.isLoading,
+    collectedBeforeExpiry,
+    recoveryResult.hasNextPage,
+  ]);
+
+  // Use recovery data when in recovery mode, otherwise use primary data
+  const activeData =
+    cursorExpired && recoveryResult.flattenData
+      ? recoveryResult.flattenData
+      : primaryResult.flattenData;
 
   const updateUrlParams = useCallback(
     (updater: (params: URLSearchParams) => void): void => {
@@ -160,15 +232,35 @@ export function useDomainDataApiWithRouteParams<
     [onSearch, searchInput],
   );
 
+  const getColumnLabel = useCallback(
+    (columnId: string): string => {
+      const col = columns?.find((c: any) => c.id === columnId);
+      return typeof col?.header === 'string' ? col.header : '';
+    },
+    [columns],
+  );
+
+  // translate value to human-readable label
+  const getFilterValueLabel = useCallback(
+    (columnId: string, value: string): string => {
+      const col = columns?.find((c: any) => c.id === columnId);
+      const option = col?.filterOptions?.find(
+        (opt: any) => opt.value === value,
+      );
+      return option?.label ?? value;
+    },
+    [columns],
+  );
+
   const urlFilters: FilterWithLabel[] = useMemo(() => {
     const filters: FilterWithLabel[] = [];
 
     Object.entries(FILTER_KEY_TO_API_PARAM).forEach(([columnKey, apiParam]) => {
-      const value = searchParams.get(apiParam);
-      const notValue = searchParams.get(`not_${apiParam}`);
+      const positiveValue = searchParams.get(apiParam);
+      const negativeValue = searchParams.get(`not_${apiParam}`);
 
-      if (value) {
-        const values = value.split(',');
+      if (positiveValue) {
+        const values = positiveValue.split(',');
         const translatedValues = values.map((v) =>
           getFilterValueLabel(columnKey, v),
         );
@@ -183,8 +275,8 @@ export function useDomainDataApiWithRouteParams<
         });
       }
 
-      if (notValue) {
-        const values = notValue.split(',');
+      if (negativeValue) {
+        const values = negativeValue.split(',');
         const translatedValues = values.map((v) =>
           getFilterValueLabel(columnKey, v),
         );
@@ -245,11 +337,39 @@ export function useDomainDataApiWithRouteParams<
     [urlFilters, addFilter, removeFilter],
   );
 
+  // Return Combined Result
   return {
-    ...hookResult,
+    // Spread primary result properties
+    ...primaryResult,
+
+    // Override with active data source
+    flattenData: activeData,
+
+    // Use recovery pagination when in recovery mode
+    fetchNextPage: cursorExpired
+      ? recoveryResult.fetchNextPage
+      : primaryResult.fetchNextPage,
+    hasNextPage: cursorExpired
+      ? recoveryResult.hasNextPage
+      : primaryResult.hasNextPage,
+    isFetching: cursorExpired
+      ? recoveryResult.isFetching
+      : primaryResult.isFetching,
+
+    // Mask errors during recovery OR when about to start recovery to prevent ErrorBoundary
+    isError:
+      cursorExpired || shouldStartRecovery ? false : primaryResult.isError,
+    error:
+      cursorExpired || shouldStartRecovery ? undefined : primaryResult.error,
+
+    // URL params management
     searchParams,
     setSearchParams,
+
+    // Search functionality
     searchProps,
+
+    // Filter functionality
     filtersProps,
   };
 }

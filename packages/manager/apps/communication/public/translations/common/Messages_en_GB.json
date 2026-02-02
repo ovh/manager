@@ -30,9 +30,10 @@
   "guide_menu_start_guide": "Guided tour",
   "guided_tour_introduction_title": "Welcome to your new My Communications page",
   "guided_tour_introduction_content": "Want a guided tour?",
-  "guided_tour_introduction_dont_display_again": "Don’t display this message again",
+  "guided_tour_introduction_dont_display_again": "Don't display this message again",
   "guided_tour_introduction_start_guide": "Start guided tour",
   "guided_tour_communications": "Here you can find all of the emails sent to you by OVHcloud, apart from support requests.",
   "guided_tour_contacts": "Organise your contact list and add contacts to link them to your sending preferences.",
-  "guided_tour_settings": "Set up how your messages will be sent and received by adding rules and choosing categories and priorities for each contact."
+  "guided_tour_settings": "Set up how your messages will be sent and received by adding rules and choosing categories and priorities for each contact.",
+  "guide_menu_account_messages": "Manage messages"
 }

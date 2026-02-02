@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { TLocalisation } from '@ovh-ux/manager-pci-common';
+import { TLocation } from '@/types/region';
 
 import { addProjectRegion } from '../data/regions';
 
 export type TUseAddProjectRegionArgs = {
   projectId: string;
   onError: (cause: Error) => void;
-  onSuccess: (data: TLocalisation, variables: string, context: unknown) => void;
+  onSuccess: (data: TLocation, variables: string, context: unknown) => void;
 };
 
 export const useQueryRegionQueryKey = (projectId: string) => ['project', projectId, 'regions'];

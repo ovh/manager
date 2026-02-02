@@ -15,6 +15,8 @@
   "common_criteria_adder_operator_string_endsWith": "termine par",
   "common_criteria_adder_operator_string_is": "est égal à",
   "common_criteria_adder_operator_string_isNot": "est différent de",
+  "common_criteria_adder_operator_string_in": "est parmi",
+  "common_criteria_adder_operator_string_notIn": "n'est pas parmi",
   "common_criteria_adder_operator_number_is": "est égal à",
   "common_criteria_adder_operator_number_smaller": "est inférieur à",
   "common_criteria_adder_operator_number_bigger": "est supérieur à",

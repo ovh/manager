@@ -15,9 +15,15 @@ vue
 packages/manager/apps/okms
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/pci-databases-analytics/src/lib/utils.ts
+packages/manager/apps/hpc-backup-agent-iaas
+packages/manager/apps/bmc-backup-agent-baremetal
+packages/manager/modules/backup-agent
+packages/manager-tools/manager-pm
 packages/manager/modules/logs-to-customer
 packages/manager-ui-kit
 packages/manager-wiki
+packages/manager/modules/backup-agent
+turbo.json
 packages/manager-tools/manager-forge-cli
 packages/manager-tools/manager-forge-cli/template
 packages/manager-tools/manager-cli-core
@@ -26,3 +32,4 @@ packages/manager/apps/communication
 packages/manager/apps/zimbra
 packages/manager/apps/pci-project
 packages/manager/apps/hub
+packages/manager/apps/pci-file-storage

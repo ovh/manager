@@ -34,7 +34,7 @@
   "activateEncryptionDescription": "Active le chiffrement côté serveur avec des clés gérées par OVHcloud pour sécuriser vos données au repos.",
   "activateEncryptionWarning": "Une fois activé, le chiffrement s'appliquera uniquement sur les nouveaux objets uploadés, et ne pourra plus être désactivé.",
   "activateEncryptionDocLink": "En savoir plus",
-  "versionningTitle": "Versionning",
+  "versionningTitle": "Versioning",
   "disableVersionning": "Protégez vos données dès maintenant. Activez le versioning pour restaurer facilement vos objets en cas de suppression ou de modification accidentelle.",
   "enableVersionning": "Vos objets sont versionnés pour garantir une meilleure traçabilité et récupération en cas de perte ou de modification.",
   "activateVersionningTitle": "Activer le versioning",
@@ -65,5 +65,6 @@
   "editObjectLockToastSuccessDescription": "Les options d'Object Lock ont été mises à jour",
   "errorDurationMin": "La durée minimale est de 1 jour.",
   "errorDurationMax": "La durée maximale est de 100 ans ou 36500 jours.",
-  "errorRuleRequired": "Une règle de rétention doit être définie pour activer l'Object Lock par défaut."
+  "errorRuleRequired": "Une règle de rétention doit être définie pour activer l'Object Lock par défaut.",
+  "deleteBucketButton": "Supprimer le bucket"
 }

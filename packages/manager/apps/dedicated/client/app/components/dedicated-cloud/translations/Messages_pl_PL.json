@@ -250,5 +250,6 @@
   "dedicatedCloud_banner_new_product": "Możesz teraz zamawiać centra danych odpowiadające różnym pakietom oprogramowania VMware w tym samym środowisku Private Cloud.",
   "dedicatedCloud_banner_new_product_link": "Dowiedz się więcej",
   "dedicatedCloud_tab_logs": "Logi",
-  "dedicatedCloud_go_back_to_list": "Powrót do listy"
+  "dedicatedCloud_go_back_to_list": "Powrót do listy",
+  "use_my_current_ip_label": "Użyj mojego bieżącego adresu IP"
 }

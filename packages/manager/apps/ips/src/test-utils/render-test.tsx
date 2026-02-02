@@ -1,14 +1,14 @@
 import React from 'react';
 import { SetupServer } from 'msw/node';
-import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
+import type { i18n as I18nType } from 'i18next';
 import { expect } from 'vitest';
 import {
   ShellContext,
   ShellContextType,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, RenderResult } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
@@ -65,12 +65,12 @@ export type MockParams = GetIpsMocksParams &
 const APP_NAME = 'ips';
 
 let context: ShellContextType;
-let i18nState: i18n;
+let i18nState: I18nType;
 
 export const renderTest = async ({
   initialRoute,
   ...mockParams
-}: { initialRoute?: string } & MockParams = {}) => {
+}: { initialRoute?: string } & MockParams = {}): Promise<RenderResult> => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers(
       [
@@ -103,9 +103,13 @@ export const renderTest = async ({
   context.environment.getUser().ovhSubsidiary =
     mockParams.ovhSubsidiary ?? 'FR';
 
+
   if (!i18nState) {
-    i18nState = await initTestI18n(APP_NAME, translations);
-  }
+  i18nState = (await initTestI18n(
+    APP_NAME,
+    translations,
+  )) as unknown as I18nType;
+}
 
   const result = render(
     <I18nextProvider i18n={i18nState}>

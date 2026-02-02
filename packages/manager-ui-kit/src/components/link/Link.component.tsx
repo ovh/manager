@@ -1,4 +1,4 @@
-import React from 'react';
+import { ElementType } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,35 +12,26 @@ import {
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { LinkProps } from '@/components/link/Link.props';
 import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
 
+import { LinkProps } from './Link.props';
 import { LinkIcons } from './LinkIcons.component';
 
-export const Link: React.FC<LinkProps> = ({
+export const Link = <T extends ElementType = 'a'>({
   children,
   type,
-  href,
-  className = '',
   iamActions,
   urn,
   disableIamCheck = false,
   displayTooltip = true,
-  ...props
-}) => {
+  ...odsLinkProps
+}: LinkProps<T>) => {
   const { t } = useTranslation(NAMESPACES.IAM);
   const { isAuthorized } = useAuthorizationIam(iamActions || [], urn || '', !disableIamCheck);
 
-  const getLinkProps = (isDisabled = false) => ({
-    className,
-    href,
-    disabled: isDisabled,
-    ...props,
-  });
-
   if (isAuthorized || iamActions === undefined) {
     return (
-      <OdsLink {...getLinkProps()}>
+      <OdsLink {...odsLinkProps}>
         <LinkIcons type={type}>{children}</LinkIcons>
       </OdsLink>
     );
@@ -48,7 +39,7 @@ export const Link: React.FC<LinkProps> = ({
 
   if (!displayTooltip) {
     return (
-      <OdsLink {...getLinkProps(true)}>
+      <OdsLink {...odsLinkProps} disabled={true}>
         <LinkIcons type={type}>{children}</LinkIcons>
       </OdsLink>
     );
@@ -57,7 +48,7 @@ export const Link: React.FC<LinkProps> = ({
   return (
     <Tooltip position={TOOLTIP_POSITION.bottom}>
       <TooltipTrigger asChild>
-        <OdsLink {...getLinkProps(true)} disabled={true}>
+        <OdsLink {...odsLinkProps} disabled={true}>
           <LinkIcons type={type}>{children}</LinkIcons>
         </OdsLink>
       </TooltipTrigger>
