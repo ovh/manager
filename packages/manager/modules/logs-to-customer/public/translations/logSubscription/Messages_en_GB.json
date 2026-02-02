@@ -14,5 +14,8 @@
   "log_subscription_unsubscribe_success": "You are unsubscribed!",
   "log_subscription_unsubscribe_error": "Unable to unsubscribe you. {{error}}",
   "log_subscription_subscribe_success": "You are subscribed!",
-  "log_subscription_subscribe_error": "Unable to complete subscription. {{error}}"
+  "log_subscription_subscribe_error": "Unable to complete subscription. {{error}}",
+  "log_subscription_terminate_modal_description": "Cancelling your subscription to this resource’s data stream will permanently halt data collection and delete the associated data.",
+  "log_subscription_terminate_modal_cancel_button": "No, cancel",
+  "log_subscription_terminate_modal_confirm_button": "Yes, unsubscribe"
 }
