@@ -2,6 +2,8 @@ import { ComponentPropsWithRef, ReactNode } from 'react';
 
 import { MODAL_COLOR, Modal, ModalOpenChangeDetail } from '@ovhcloud/ods-react';
 
+import { MODAL_TYPE } from '@/components/modal/Modal.constants';
+
 type ModalButton = {
   /** Label of the button */
   label: string;
@@ -19,7 +21,7 @@ export type ModalProps = ComponentPropsWithRef<typeof Modal> & {
   /** Title of modal */
   heading?: string;
   /** Type of modal. It can be any of `ODS_MODAL_COLOR` */
-  type?: MODAL_COLOR;
+  type?: MODAL_COLOR | MODAL_TYPE;
   /** Is loading state for display a spinner */
   loading?: boolean;
   /** Primary button details */

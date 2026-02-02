@@ -35,11 +35,21 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -58,16 +68,6 @@ exports[`UpdateNameModal > Basic Modal States > should render basic modal with r
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -166,11 +166,21 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -189,16 +199,6 @@ exports[`UpdateNameModal > Basic Modal States > should render modal when closed 
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -294,11 +294,21 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Display Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -317,16 +327,6 @@ exports[`UpdateNameModal > Basic Modal States > should render modal with all opt
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Display Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -441,11 +441,21 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Display Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -464,16 +474,6 @@ exports[`UpdateNameModal > Combined States > should render modal with all featur
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Display Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -588,11 +588,21 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -611,16 +621,6 @@ exports[`UpdateNameModal > Combined States > should render modal with loading, e
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -765,11 +765,21 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -788,16 +798,6 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -893,11 +893,21 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -916,16 +926,6 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -1021,11 +1021,21 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1044,16 +1054,6 @@ exports[`UpdateNameModal > Custom Button Labels > should render modal with custo
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -1149,11 +1149,21 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1172,16 +1182,6 @@ exports[`UpdateNameModal > Edge Cases > should render modal with empty default v
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -1277,11 +1277,21 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            This is a very long headline that might wrap to multiple lines in the modal
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1300,16 +1310,6 @@ exports[`UpdateNameModal > Edge Cases > should render modal with long text conte
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            This is a very long headline that might wrap to multiple lines in the modal
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -1448,11 +1448,21 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1471,16 +1481,6 @@ exports[`UpdateNameModal > Edge Cases > should render modal with null default va
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -1576,11 +1576,21 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name & Details
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1599,16 +1609,6 @@ exports[`UpdateNameModal > Edge Cases > should render modal with special charact
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name & Details
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -1747,11 +1747,21 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1770,16 +1780,6 @@ exports[`UpdateNameModal > Edge Cases > should render modal without onClose hand
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -1875,11 +1875,21 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -1898,16 +1908,6 @@ exports[`UpdateNameModal > Error States > should render modal with error and des
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -2037,11 +2037,21 @@ exports[`UpdateNameModal > Error States > should render modal with error message
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2060,16 +2070,6 @@ exports[`UpdateNameModal > Error States > should render modal with error message
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -2193,11 +2193,21 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2216,16 +2226,6 @@ exports[`UpdateNameModal > Loading States > should render modal in loading state
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -2324,11 +2324,21 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2347,16 +2357,6 @@ exports[`UpdateNameModal > Loading States > should render modal with loading sta
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -2455,11 +2455,21 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2478,16 +2488,6 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -2596,11 +2596,21 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2619,16 +2629,6 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >
@@ -2737,11 +2737,21 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
       tabindex=-1
     >
       <div
-        class=_modal-content__close-trigger
+        class=_modal-header
       >
+        <div
+          class=_modal-header__content
+        >
+          <h4
+            class=_text _text--heading-4
+            data-ods=text
+          >
+            Update Name
+          </h4>
+        </div>
         <button
           aria-label=Close
-          class=_button _button--neutral _button--xs _button--ghost
+          class=_button _button--neutral _button--xs _button--ghost _modal-header__close
           data-ods=button
           data-part=close-trigger
           data-scope=dialog
@@ -2760,16 +2770,6 @@ exports[`UpdateNameModal > Pattern Validation States > should render modal with 
         class=_modal-body text-left
         data-ods=modal-body
       >
-        <div
-          class=flex items-center mb-4
-        >
-          <h4
-            class=_text _text--heading-4 block mr-3 flex-1
-            data-ods=text
-          >
-            Update Name
-          </h4>
-        </div>
         <div
           class=flex flex-col text-left
         >

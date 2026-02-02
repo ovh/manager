@@ -13,6 +13,11 @@ describe('Modal Snapshot Tests', () => {
     expect(baseElement).toMatchSnapshot();
   });
 
+  it('does not display modal-header if not provided', () => {
+    const { baseElement } = renderModal({ children: <ModalContent /> });
+    expect(baseElement).toMatchSnapshot();
+  });
+
   it('displays the modal with actions', () => {
     const { baseElement } = renderModal({
       heading,
