@@ -88,6 +88,7 @@
   "multisite_add_website_module_cms_advanced_language_label": "Langue",
   "multisite_add_website_module_cms_advanced_language_placeholder": "Sélectionnez une langue",
   "multisite_add_website_module_cms_advanced_path_label": "Chemin d'installation",
+  "multisite_mandatory": "obligatoire",
   "multisite_add_website_success": "Votre site a bien été ajouté ! L'association de votre domaine peut prendre jusqu'à 48h.",
   "multisite_add_website_error": "Une erreur est survenue lors de l'ajout de votre site. {{ error }}",
   "multisite_add_website_in_progress": "Suivre les tâches en cours",

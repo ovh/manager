@@ -11,6 +11,7 @@ import {
   INPUT_TYPE,
   Icon,
   Input,
+  Password,
   Select,
   SelectContent,
   SelectControl,
@@ -72,7 +73,8 @@ export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsPr
         render={({ field, fieldState: { error, invalid } }) => (
           <FormField className="w-full max-w-xl" invalid={!!error && invalid}>
             <FormFieldLabel>
-              {t('multisite_add_website_module_cms_advanced_database_label')}*
+              {t('multisite_add_website_module_cms_advanced_database_label')} -{' '}
+              {t('multisite_mandatory')}
             </FormFieldLabel>
             <Select
               name={field.name}
@@ -106,7 +108,8 @@ export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsPr
           render={({ field, fieldState: { error, invalid } }) => (
             <FormField className="w-full max-w-xl" invalid={!!error && invalid}>
               <FormFieldLabel>
-                {t('multisite_add_website_module_cms_advanced_server_label')}*
+                {t('multisite_add_website_module_cms_advanced_server_label')} -{' '}
+                {t('multisite_mandatory')}
               </FormFieldLabel>
               <Input
                 type={INPUT_TYPE.text}
@@ -127,7 +130,8 @@ export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsPr
           render={({ field, fieldState: { error, invalid } }) => (
             <FormField className="w-full max-w-xl" invalid={!!error && invalid}>
               <FormFieldLabel>
-                {t('multisite_add_website_module_cms_advanced_database_name_label')}*
+                {t('multisite_add_website_module_cms_advanced_database_name_label')} -{' '}
+                {t('multisite_mandatory')}
               </FormFieldLabel>
               <Input
                 type={INPUT_TYPE.text}
@@ -148,7 +152,8 @@ export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsPr
           render={({ field, fieldState: { error, invalid } }) => (
             <FormField className="w-full max-w-xl" invalid={!!error && invalid}>
               <FormFieldLabel>
-                {t('multisite_add_website_module_cms_advanced_port_label')}*
+                {t('multisite_add_website_module_cms_advanced_port_label')} -{' '}
+                {t('multisite_mandatory')}
               </FormFieldLabel>
               <Input
                 type={INPUT_TYPE.text}
@@ -169,7 +174,8 @@ export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsPr
           render={({ field, fieldState: { error, invalid } }) => (
             <FormField className="w-full max-w-xl" invalid={!!error && invalid}>
               <FormFieldLabel>
-                {t('multisite_add_website_module_cms_advanced_user_label')}*
+                {t('multisite_add_website_module_cms_advanced_user_label')} -{' '}
+                {t('multisite_mandatory')}
               </FormFieldLabel>
               <Input
                 type={INPUT_TYPE.text}
@@ -191,7 +197,8 @@ export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsPr
             <FormField className="w-full max-w-xl" invalid={!!error && invalid}>
               <div className="flex items-center gap-2">
                 <FormFieldLabel>
-                  {t('multisite_add_website_module_cms_advanced_password_label')}*
+                  {t('multisite_add_website_module_cms_advanced_password_label')} -{' '}
+                  {t('multisite_mandatory')}
                 </FormFieldLabel>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -219,11 +226,10 @@ export const DatabaseConfigurationFields: React.FC<DatabaseConfigurationFieldsPr
                   </TooltipContent>
                 </Tooltip>
               </div>
-              <Input
-                type={INPUT_TYPE.password}
+              <Password
                 name={field.name}
                 value={field.value ?? ''}
-                onChange={(e) => field.onChange(e.target.value)}
+                onChange={field.onChange}
                 onBlur={field.onBlur}
                 invalid={!!errors.databasePassword}
                 data-testid="database-password-input"
