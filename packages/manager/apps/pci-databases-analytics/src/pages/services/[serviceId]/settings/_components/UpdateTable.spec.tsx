@@ -1,8 +1,5 @@
-import { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
-  act,
-  fireEvent,
   render,
   screen,
   waitFor,
@@ -42,41 +39,27 @@ const mockedService = {
   },
 };
 
-const mockedUsedNavigate = vi.fn();
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: 'operational',
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
+
+vi.mock('@/data/api/database/availability.api', () => ({
+  getAvailabilities: vi.fn(() => [
+    mockedAvailabilities,
+    mockedAvailabilitiesUpdate,
+  ]),
+}));
+
 
 describe('Update table in settings page', () => {
   beforeEach(() => {
-    vi.restoreAllMocks();
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-    // Mock necessary hooks and dependencies
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-      };
-    });
-
-    vi.mock('@/data/api/database/availability.api', () => ({
-      getAvailabilities: vi.fn(() => [
-        mockedAvailabilities,
-        mockedAvailabilitiesUpdate,
-      ]),
-    }));
-
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-      Trans: ({ children }: { children: ReactNode }) => children,
-    }));
+    vi.restoreAllMocks()
   });
 
   afterEach(() => {

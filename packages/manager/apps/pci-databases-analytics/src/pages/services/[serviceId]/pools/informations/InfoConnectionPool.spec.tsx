@@ -3,78 +3,48 @@ import {
   render,
   screen,
   waitFor,
-  fireEvent,
-  act,
 } from '@testing-library/react';
-import { useToast } from '@datatr-ux/uxlib';
+import { mockedUsedNavigate, setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-// import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
 import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
 import InfoConnectionPool from './InfoConnectionPool.modal';
 import * as connectionPoolApi from '@/data/api/database/connectionPool.api';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import * as database from '@/types/cloud/project/database';
 
 const mockedCertificate = { ca: 'certificateCA' };
-const mockedUsedNavigate = vi.fn();
-const downloadMock = vi.fn();
-vi.mock('@datatr-ux/uxlib', () => ({
-  Skeleton: vi.fn(() => <div data-testid="skeleton" />),
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+  })),
+}));
+vi.mock('@/data/api/database/connectionPool.api', () => ({
+  getConnectionPools: vi.fn(() => [mockedConnectionPool]),
+  addConnectionPool: vi.fn((pool) => pool),
+  editConnectionPool: vi.fn((pool) => pool),
+  deleteConnectionPool: vi.fn(),
+}));
+vi.mock('@/data/api/database/certificate.api', () => ({
+  getCertificate: vi.fn(() => mockedCertificate),
+}));
+vi.mock('@/data/api/database/database.api', () => ({
+  getServiceDatabases: vi.fn(() => [mockedDatabase]),
+}));
+vi.mock('@/data/api/database/user.api', () => ({
+  getUsers: vi.fn(() => [mockedUser]),
 }));
 
 describe('InfoConnectionPool', () => {
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-        useParams: () => ({
-          projectId: 'projectId',
-          category: database.engine.CategoryEnum.all,
-          poolId: mockedConnectionPool.id,
-        }),
-      };
+    vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
+      poolId: mockedConnectionPool.id,
     });
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-      })),
-    }));
-    vi.mock('@/data/api/database/connectionPool.api', () => ({
-      getConnectionPools: vi.fn(() => [mockedConnectionPool]),
-      addConnectionPool: vi.fn((pool) => pool),
-      editConnectionPool: vi.fn((pool) => pool),
-      deleteConnectionPool: vi.fn(),
-    }));
-    vi.mock('@/data/api/database/certificate.api', () => ({
-      getCertificate: vi.fn(() => mockedCertificate),
-    }));
-    vi.mock('@/data/api/database/database.api', () => ({
-      getServiceDatabases: vi.fn(() => [mockedDatabase]),
-    }));
-    vi.mock('@/data/api/database/user.api', () => ({
-      getUsers: vi.fn(() => [mockedUser]),
-    }));
-
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
   });
 
   afterEach(() => {
@@ -92,7 +62,6 @@ describe('InfoConnectionPool', () => {
     expect(screen.getByText(mockedDatabase.name)).toBeInTheDocument();
     expect(screen.getByText(mockedConnectionPool.port)).toBeInTheDocument();
     expect(screen.getByText(mockedConnectionPool.sslMode)).toBeInTheDocument();
-    // expect(screen.getByText(mockedConnectionPool.uri)).toBeInTheDocument();
     expect(screen.getByText(mockedConnectionPool.mode)).toBeInTheDocument();
     expect(screen.getByText(mockedConnectionPool.size)).toBeInTheDocument();
   });

@@ -9,52 +9,34 @@ import {
 import { useToast } from '@datatr-ux/uxlib';
 import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import DeleteService from './DeleteService.component';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 import { mockedIntegrations } from '@/__tests__/helpers/mocks/integrations';
 import { StateEnum } from '@/types/cloud/project/database/service/capability';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
+import DeleteService from './DeleteService.component';
+
+vi.mock('@/data/api/database/service.api', () => ({
+  getServices: vi.fn(() => [
+    mockedService,
+    {
+      ...mockedService,
+      id: mockedIntegrations.destinationServiceId,
+      description: 'destinationService',
+    },
+  ]),
+  deleteService: vi.fn(),
+}));
+vi.mock('@/data/api/database/integration.api', () => ({
+  getServiceIntegrations: vi.fn(() => [mockedIntegrations]),
+}));
 
 describe('Delete service modal', () => {
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@/data/api/database/service.api', () => ({
-      getServices: vi.fn(() => [
-        mockedService,
-        {
-          ...mockedService,
-          id: mockedIntegrations.destinationServiceId,
-          description: 'destinationService',
-        },
-      ]),
-      deleteService: vi.fn(),
-    }));
-    vi.mock('@/data/api/database/integration.api', () => ({
-      getServiceIntegrations: vi.fn(() => [mockedIntegrations]),
-    }));
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
     });
   });
   afterEach(() => {

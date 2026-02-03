@@ -1,27 +1,22 @@
 import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { useServiceData } from './Service.context';
 
+vi.mock('@/data/api/database/service.api', () => ({
+  getService: vi.fn(() => mockedService),
+}));
+
 describe('Service context', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-          category: 'operational',
-          serviceId: 'serviceId',
-        }),
-      };
+    setMockedUseParams({
+      projectId: 'projectId',
+      category: 'operational',
+      serviceId: 'serviceId',
     });
-    vi.mock('@/data/api/database/service.api', () => ({
-      getService: vi.fn(() => mockedService),
-    }));
   });
   afterEach(() => {
     vi.clearAllMocks();

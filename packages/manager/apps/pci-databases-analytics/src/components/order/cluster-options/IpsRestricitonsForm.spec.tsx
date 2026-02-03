@@ -1,6 +1,4 @@
 import {
-  act,
-  fireEvent,
   render,
   screen,
   waitFor,
@@ -8,7 +6,6 @@ import {
 import { describe, it, vi } from 'vitest';
 import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
 import { mockedOrderFunnelIps } from '@/__tests__/helpers/mocks/order-funnel';
-import * as database from '@/types/cloud/project/database';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 
 describe('IpsRestrictionsForm component', () => {

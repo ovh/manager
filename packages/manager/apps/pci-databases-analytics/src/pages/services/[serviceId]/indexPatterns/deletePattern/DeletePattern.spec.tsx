@@ -8,13 +8,13 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { useToast } from '@datatr-ux/uxlib';
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as database from '@/types/cloud/project/database';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import * as patternApi from '@/data/api/database/pattern.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { mockedPattern } from '@/__tests__/helpers/mocks/patterns';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import DeletePatternModal from './DeletePattern.modal';
 
 // Override mock to add capabilities
@@ -29,64 +29,26 @@ const mockedService = {
   },
 };
 
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: database.engine.CategoryEnum.analysis,
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
+vi.mock('@/data/api/database/pattern.api', () => ({
+  getPatterns: vi.fn(() => [mockedPattern]),
+  deletePattern: vi.fn(),
+}));
+
 describe('DeletePattern modal', () => {
   beforeEach(async () => {
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: database.engine.CategoryEnum.analysis,
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-          patternId: 'patternId',
-        }),
-      };
-    });
-
-    vi.mock('@/data/api/database/pattern.api', () => ({
-      getPatterns: vi.fn(() => [mockedPattern]),
-      deletePattern: vi.fn(),
-    }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
+      patternId: 'patternId',
     });
   });
   afterEach(() => {
