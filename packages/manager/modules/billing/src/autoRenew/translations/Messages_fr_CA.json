@@ -158,6 +158,7 @@
   "billing_autorenew_service_type_ZIMBRA_SLOT": "Compte Email Zimbra",
   "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN",
   "billing_autorenew_service_type_DOMAIN_RESELLER": "Programme Revendeur de Noms de Domaine",
+  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC",
   "billing_export_csv": "Exporter en CSV",
   "billing_common_link_new_window": "(nouvelle fenêtre)",
   "billing_autorenew_renew_action": "Renouveler",

@@ -170,5 +170,6 @@
   "billing_autorenew_service_every_year": "Jedes Jahr",
   "billing_autorenew_service_every_x_years": "Alle {{ years }} Jahre",
   "billing_autorenew_engagement_none": "Ohne Vertragsbindung",
-  "billing_autorenew_service_type_DOMAIN_RESELLER": "Domain-Reseller-Programm"
+  "billing_autorenew_service_type_DOMAIN_RESELLER": "Domain-Reseller-Programm",
+  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC"
 }
