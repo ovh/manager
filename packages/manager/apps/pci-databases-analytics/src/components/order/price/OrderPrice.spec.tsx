@@ -6,33 +6,34 @@ import { mockedServicePrice } from '@/__tests__/helpers/mocks/servicePrice';
 import * as database from '@/types/cloud/project/database';
 import { ServicePricing } from '@/lib/pricingHelper';
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string, options: Record<string, string | number>): string => {
+      return `${key} ${options?.price}`;
+    },
+  }),
+}));
+vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
+  return {
+    useGetCatalog: vi.fn(() => ({
+      isSuccess: true,
+      data: {
+        locale: {
+          currencyCode: 'EUR',
+        },
+      },
+    })),
+  };
+});
+vi.mock('@/hooks/useLocale', () => {
+  return {
+    useLocale: vi.fn(() => 'fr_FR'),
+  };
+});
+
 describe('OrderPrice component', () => {
   beforeEach(() => {
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string, options: Record<string, string | number>): string => {
-          return `${key} ${options?.price}`;
-        },
-      }),
-      Trans: ({ children }: { children: React.ReactNode }) => children,
-    }));
-    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
-      return {
-        useGetCatalog: vi.fn(() => ({
-          isSuccess: true,
-          data: {
-            locale: {
-              currencyCode: 'EUR',
-            },
-          },
-        })),
-      };
-    });
-    vi.mock('@/hooks/useLocale', () => {
-      return {
-        useLocale: vi.fn(() => 'fr_FR'),
-      };
-    });
+    vi.restoreAllMocks();
   });
   afterEach(() => {
     vi.clearAllMocks();

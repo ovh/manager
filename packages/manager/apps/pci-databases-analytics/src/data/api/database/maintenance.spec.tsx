@@ -6,25 +6,6 @@ import {
 } from '@/data/api/database/maintenance.api';
 import * as database from '@/types/cloud/project/database';
 
-vi.mock('@/data/api/api.client', async (importOriginal) => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const mod = await importOriginal<typeof import('@/data/api/api.client')>();
-  return {
-    ...mod,
-    apiClient: {
-      v6: {
-        get,
-        post,
-      },
-    },
-  };
-});
-
 describe('maintenance service functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

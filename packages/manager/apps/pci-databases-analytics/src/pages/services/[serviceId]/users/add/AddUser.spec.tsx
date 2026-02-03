@@ -21,14 +21,16 @@ vi.mock('@/data/api/database/user.api', () => ({
   editUser: vi.fn((user) => user),
 }));
 
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+  })),
+}));
+
 describe('AddUserModal', () => {
   beforeEach(() => {
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-      })),
-    }));
+    vi.restoreAllMocks();
   });
 
   afterEach(() => {

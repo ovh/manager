@@ -6,23 +6,6 @@ import {
 } from '@/data/api/database/prometheus.api';
 import * as database from '@/types/cloud/project/database';
 
-vi.mock('@/data/api/api.client', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: { queries: [] } });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-        post,
-      },
-    },
-  };
-});
-
 describe('prometheus api functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

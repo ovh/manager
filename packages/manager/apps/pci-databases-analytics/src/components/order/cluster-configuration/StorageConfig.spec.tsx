@@ -6,15 +6,6 @@ import {
   mockedAvailabilitiesUpdate,
 } from '@/__tests__/helpers/mocks/availabilities';
 
-const ResizeObserverMock = vi.fn(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
-
-// Stub the global ResizeObserver
-vi.stubGlobal('ResizeObserver', ResizeObserverMock);
-
 describe('StorageConfig component', () => {
   afterEach(() => {
     vi.clearAllMocks();

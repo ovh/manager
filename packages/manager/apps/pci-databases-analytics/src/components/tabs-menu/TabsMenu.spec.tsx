@@ -12,12 +12,7 @@ function setup(tabs: Tab[] = []) {
 
 describe('TabsMenu component', () => {
   beforeEach(() => {
-    const ResizeObserverMock = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+    vi.resetAllMocks();
   });
 
   afterEach(() => {

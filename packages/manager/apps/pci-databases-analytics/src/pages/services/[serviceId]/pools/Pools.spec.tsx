@@ -8,12 +8,12 @@ import {
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import Pools, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/[serviceId]/pools/Pools.page';
 import * as database from '@/types/cloud/project/database';
 import * as poolsApi from '@/data/api/database/connectionPool.api';
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedConnectionPool } from '@/__tests__/helpers/mocks/connectionPool';
@@ -36,68 +36,39 @@ const mockedService = {
   },
 };
 const mockCertificate = { ca: 'certificateCA' };
-const mockedUsedNavigate = vi.fn();
+
+vi.mock('@/data/api/database/connectionPool.api', () => ({
+  getConnectionPools: vi.fn(() => [mockedConnectionPool]),
+  addConnectionPool: vi.fn((connectionPool) => connectionPool),
+  deleteConnectionPool: vi.fn(),
+  editConnectionPool: vi.fn((connectionPool) => connectionPool),
+}));
+
+vi.mock('@/data/api/database/database.api', () => ({
+  getServiceDatabases: vi.fn(() => [mockedDatabase]),
+}));
+
+vi.mock('@/data/api/database/user.api', () => ({
+  getUsers: vi.fn(() => [mockedDatabaseUser]),
+}));
+
+vi.mock('@/data/api/database/certificate.api', () => ({
+  getCertificate: vi.fn(() => mockCertificate),
+}));
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: 'operational',
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
 
 describe('Connection pool page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@/data/api/database/connectionPool.api', () => ({
-      getConnectionPools: vi.fn(() => [mockedConnectionPool]),
-      addConnectionPool: vi.fn((connectionPool) => connectionPool),
-      deleteConnectionPool: vi.fn(),
-      editConnectionPool: vi.fn((connectionPool) => connectionPool),
-    }));
-
-    vi.mock('@/data/api/database/database.api', () => ({
-      getServiceDatabases: vi.fn(() => [mockedDatabase]),
-    }));
-
-    vi.mock('@/data/api/database/user.api', () => ({
-      getUsers: vi.fn(() => [mockedDatabaseUser]),
-    }));
-
-    vi.mock('@/data/api/database/certificate.api', () => ({
-      getCertificate: vi.fn(() => mockCertificate),
-      // test
-    }));
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
+    mockedUsedNavigate();
   });
 
   it('renders the breadcrumb component', async () => {

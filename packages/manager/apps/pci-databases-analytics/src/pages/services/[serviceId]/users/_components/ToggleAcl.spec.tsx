@@ -6,17 +6,9 @@ import ToggleAcl from './ToggleAcl.component';
 import { useServiceData } from '../../Service.context';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import * as database from '@/types/cloud/project/database';
-
 import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { CdbError } from '@/data/api/database';
-
-// Mock the necessary hooks and components using the correct syntax
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
 
 vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
   useServiceData: vi.fn(() => ({

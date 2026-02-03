@@ -6,15 +6,12 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-
 import { useToast } from '@datatr-ux/uxlib';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
+import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import Service, {
   breadcrumb as Breadcrumb,
 } from '@/pages/services/create/Create.page';
-
-import OrderSummary from '@/pages/services/create/_components/OrderSummary.component';
-
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import {
   mockedAvailabilities,
@@ -23,151 +20,53 @@ import {
   mockedRegionCapabilities,
   mockedSuggestions,
 } from '@/__tests__/helpers/mocks/availabilities';
-
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import * as database from '@/types/cloud/project/database';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog';
-import {
-  mockedBasicOrderFunnelFlavor,
-  mockedBasicOrderFunnelPlan,
-  mockedEngineVersion,
-  mockedOrderFunnelEngine,
-  mockedOrderFunnelRegion,
-} from '@/__tests__/helpers/mocks/order-funnel';
-import {
-  NetworkRegionStatusEnum,
-  NetworkStatusEnum,
-  NetworkTypeEnum,
-} from '@/types/cloud/network';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/pciProjects';
 import * as ProjectAPI from '@/data/api/project/project.api';
 import * as ServiceAPI from '@/data/api/database/service.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { PlanCode } from '@/types/cloud/Project';
-import { useOrderFunnel } from './_components/useOrderFunnel.hook';
 
-const mockedOrder = {
-  availability: mockedAvailabilities,
-  engine: mockedOrderFunnelEngine,
-  version: mockedEngineVersion,
-  plan: mockedBasicOrderFunnelPlan,
-  region: mockedOrderFunnelRegion,
-  flavor: mockedBasicOrderFunnelFlavor,
-  nodes: 3,
-  additionalStorage: 10,
-  name: 'myNewPG',
-  ipRestrictions: [
-    {
-      ip: 'ips',
-      description: 'IpDescription',
-    },
-  ],
-  network: {
-    type: database.NetworkTypeEnum.private,
-    network: {
-      id: 'id1',
-      name: 'network1',
-      regions: [
-        {
-          region: 'GRA',
-          openstackId: '123456',
-          status: NetworkRegionStatusEnum.ACTIVE,
-        },
-      ],
-      vlanId: 0,
-      status: NetworkStatusEnum.ACTIVE,
-      type: NetworkTypeEnum.private,
-    },
+vi.mock('@/data/api/project/project.api', () => {
+  return {
+    getProject: vi.fn(() => mockedPciProject),
+  };
+});
+
+vi.mock('@/data/api/database/availability.api', () => ({
+  getAvailabilities: vi.fn(() => [mockedAvailabilities]),
+  getSuggestions: vi.fn(() => [mockedSuggestions]),
+}));
+
+vi.mock('@/data/api/database/capabilities.api', () => ({
+  getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
+  getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
+  getCapabilities: vi.fn(() => mockedCapabilities),
+}));
+
+vi.mock('@/data/api/catalog/catalog.api', () => ({
+  catalogApi: {
+    getCatalog: vi.fn(() => mockedCatalog),
   },
-} as ReturnType<typeof useOrderFunnel>['result'];
+}));
+
+vi.mock('@/data/api/database/service.api', () => ({
+  addService: vi.fn((service) => service),
+}));
+
+vi.mock('@/data/api/network/network.api', () => ({
+  getPrivateNetworks: vi.fn(() => []),
+}));
 
 describe('Order funnel page', () => {
   beforeEach(() => {
-    vi.restoreAllMocks();
-
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-      Trans: ({ children }: { children: React.ReactNode }) => children,
-    }));
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
-
-    const ResizeObserverMock = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-          category: database.engine.CategoryEnum.all,
-        }),
-      };
-    });
-
-    vi.mock('@/data/api/project/project.api', () => {
-      return {
-        getProject: vi.fn(() => mockedPciProject),
-      };
-    });
-
-    vi.mock('@/data/api/database/availability.api', () => ({
-      getAvailabilities: vi.fn(() => [mockedAvailabilities]),
-      getSuggestions: vi.fn(() => [mockedSuggestions]),
-    }));
-
-    vi.mock('@/data/api/database/capabilities.api', () => ({
-      getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
-      getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
-      getCapabilities: vi.fn(() => mockedCapabilities),
-    }));
-
-    vi.mock('@/data/api/catalog/catalog.api', () => ({
-      catalogApi: {
-        getCatalog: vi.fn(() => mockedCatalog),
-      },
-    }));
-
-    vi.mock('@/data/api/database/service.api', () => ({
-      addService: vi.fn((service) => service),
-    }));
-
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
+    vi.restoreAllMocks(); 
+    mockManagerReactShellClient();
+    setMockedUseParams({ 
+      projectId: 'projectId',
+      category: database.engine.CategoryEnum.all,
+     });
   });
   afterEach(() => {
     vi.clearAllMocks();

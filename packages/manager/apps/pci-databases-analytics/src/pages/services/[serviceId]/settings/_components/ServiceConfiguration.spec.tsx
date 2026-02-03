@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   act,
@@ -9,6 +8,7 @@ import {
 } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import Settings from '@/pages/services/[serviceId]/settings/Settings.page';
 import * as database from '@/types/cloud/project/database';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
@@ -25,8 +25,6 @@ import {
   mockedRegionCapabilities,
 } from '@/__tests__/helpers/mocks/availabilities';
 import { mockedMaintenance } from '@/__tests__/helpers/mocks/maintenances';
-import { mockedUser } from '@/__tests__/helpers/mocks/user';
-import { Locale } from '@/hooks/useLocale';
 import { mockedIntegrations } from '@/__tests__/helpers/mocks/integrations';
 import { CdbError } from '@/data/api/database';
 
@@ -71,90 +69,49 @@ const mockedService = {
   },
 };
 
-const mockedUsedNavigate = vi.fn();
+vi.mock('@/data/api/catalog/catalog.api', () => ({
+  catalogApi: {
+    getCatalog: vi.fn(() => mockedCatalog),
+  },
+}));
+
+vi.mock('@/data/api/database/integration.api', () => ({
+  getServiceIntegrations: vi.fn(() => [mockedIntegrations]),
+}));
+
+vi.mock('@/data/api/database/availability.api', () => ({
+  getCapabilities: vi.fn(() => mockedCapabilities),
+  getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
+  getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
+  getAvailabilities: vi.fn(() => [
+    mockedAvailabilities,
+    mockedAvailabilitiesUpdate,
+  ]),
+}));
+
+vi.mock('@/data/api/database/maintenance.api', () => ({
+  getMaintenances: vi.fn(() => [mockedMaintenance]),
+}));
+
+vi.mock('@/data/api/database/service.api', () => ({
+  editService: vi.fn((service) => service),
+  deleteService: vi.fn(),
+  getServices: vi.fn(() => [mockedServiceOrig, mockedServiceInte]),
+}));
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: 'operational',
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
 describe('Service configuration page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-
-    vi.mock('@/data/api/catalog/catalog.api', () => ({
-      catalogApi: {
-        getCatalog: vi.fn(() => mockedCatalog),
-      },
-    }));
-
-    vi.mock('@/data/api/database/integration.api', () => ({
-      getServiceIntegrations: vi.fn(() => [mockedIntegrations]),
-    }));
-
-    vi.mock('@/data/api/database/availability.api', () => ({
-      getCapabilities: vi.fn(() => mockedCapabilities),
-      getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilities]),
-      getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilities]),
-      getAvailabilities: vi.fn(() => [
-        mockedAvailabilities,
-        mockedAvailabilitiesUpdate,
-      ]),
-    }));
-
-    vi.mock('@/data/api/database/maintenance.api', () => ({
-      getMaintenances: vi.fn(() => [mockedMaintenance]),
-    }));
-
-    vi.mock('@/data/api/database/service.api', () => ({
-      editService: vi.fn((service) => service),
-      deleteService: vi.fn(),
-      getServices: vi.fn(() => [mockedServiceOrig, mockedServiceInte]),
-    }));
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-          environment: {
-            getEnvironment: vi.fn(() => ({
-              getUser: vi.fn(() => mockedUser),
-            })),
-          },
-        })),
-      };
-    });
-
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-      Trans: ({ children }: { children: ReactNode }) => children,
-    }));
+    mockedUsedNavigate();
   });
 
   it('renders and shows skeletons while loading', async () => {

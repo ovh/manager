@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import ServiceLayout, {
   breadcrumb as Breadcrumb,
   Loader,
@@ -18,27 +19,18 @@ const loaderParam = {
   request: new Request('https://my-api.com/endpoint'),
 };
 
+
+vi.mock('@/data/api/database/service.api', () => ({
+  getService: vi.fn(),
+}));
+
 describe('Service Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-          serviceId: 'serviceId',
-        }),
-      };
+    setMockedUseParams({
+      projectId: 'projectId',
+      serviceId: 'serviceId',
     });
-
-    vi.mock('@/data/api/database/service.api', () => ({
-      getService: vi.fn(),
-    }));
-
-    const mockScrollIntoView = vi.fn();
-    window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
   });
   afterEach(() => {
     vi.clearAllMocks();
