@@ -45,45 +45,24 @@ export const useCartItems = (): TCartItems => {
 
   const { instanceData } = useInstanceCreation();
 
-  const [
-    flavorId,
-    macroRegion,
-    microRegion,
-    availabilityZone,
-    flavorType,
-  ] = useWatch({
+  const [flavorId, macroRegion, microRegion, availabilityZone] = useWatch({
     control,
-    name: [
-      'flavorId',
-      'macroRegion',
-      'microRegion',
-      'availabilityZone',
-      'flavorType',
-    ],
+    name: ['flavorId', 'macroRegion', 'microRegion', 'availabilityZone'],
   });
 
-  const { data: catalog } = useInstancesCatalogWithSelect({
-    select: (c) => c,
-  });
-
-  const quantityHintParams = useMemo(
+  const quantityHintParamsSelect = useMemo(
     () =>
-      catalog
-        ? selectQuantityHintParams(catalog)({
-            regionalizedFlavorId: flavorId,
-            macroRegionId: macroRegion,
-            microRegionId: microRegion,
-            availabilityZone: availabilityZone,
-            flavorType: flavorType ?? null,
-          })
-        : {
-            quota: null,
-            type: null,
-            region: null,
-            regionId: null,
-          },
-    [catalog, flavorId, macroRegion, microRegion, availabilityZone, flavorType],
+      selectQuantityHintParams({
+        regionalizedFlavorId: flavorId,
+        macroRegionId: macroRegion,
+        microRegionId: microRegion,
+        availabilityZone: availabilityZone,
+      }),
+    [flavorId, macroRegion, microRegion, availabilityZone],
   );
+  const { data: quantityHintParams } = useInstancesCatalogWithSelect({
+    select: quantityHintParamsSelect,
+  });
 
   const {
     localizationDetails,
