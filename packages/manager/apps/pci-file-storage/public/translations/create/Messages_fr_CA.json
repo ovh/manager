@@ -1,9 +1,9 @@
 {
   "title": "Créer un share",
-  "description": "Créez un partage de fichiers disponible dans votre projet Public Cloud.  Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
+  "description": "Créez un share disponible dans votre projet Public Cloud.  Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
   "name": {
     "title": "Nom du share",
-    "label": "Choisissez un nom pour votre fichier de partage",
+    "label": "Choisissez un nom pour votre share",
     "info": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points et ne pas dépasser 255 caractères.",
     "error": {
       "too_small": "Le nom du share ne peut pas être vide. Veuillez entrer un nom.",
@@ -18,20 +18,23 @@
       "modes": {
         "region": {
           "label": "Région 1-AZ",
-          "description": "Déploiement résilient et économique sur 1 zone de disponibilité."
+          "description": "Déploiement résilient et économique sur 1 zone."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité."
+          "description": "Déploiement au plus près pour une faible latence."
         },
         "region-3-az": {
           "label": "Région 3-AZ",
-          "description": "Déploiement de vos applications au plus près de vos utilisateurs pour une faible latence et la résidence des données."
+          "description": "Déploiement haute résilience et haute disponibilité sur 3 zones."
         }
       }
     },
+    "macroRegion": {
+      "title": "Choisissez une localisation"
+    },
     "continents": {
-      "label": "",
+      "label": "Sélectionner une zone géographique",
       "options": {
         "all": "Tous",
         "asia_oceania": "Asie-Pacifique",
@@ -70,8 +73,16 @@
   },
   "network": {
     "title": "Réseau privé",
-    "description": "Sélectionnez le réseau privé auquel vous souhaitez que vos instances se connectent à votre fichier de partage",
+    "description": "Sélectionnez le réseau privé auquel vous souhaitez lier votre share",
     "label": "Sélectionner un réseau privé existant",
-    "empty": "Désolé mais vous n'avez pas de réseau privé pour cette région"
+    "empty": "Désolé mais vous n'avez pas de réseau privé pour cette région",
+    "subnet": {
+      "label": "Sélectionner un sous-réseau privé existant",
+      "empty": "Vous n'avez pas de sous-réseau privé pour ce réseau"
+    }
+  },
+  "submit": {
+    "error": "Une erreur est survenue lors de l'ajout du share : {{error}}",
+    "success": "Le share {{name}} est en cours de création"
   }
 }

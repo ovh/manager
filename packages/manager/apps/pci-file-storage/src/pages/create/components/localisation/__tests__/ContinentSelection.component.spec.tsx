@@ -6,10 +6,10 @@ import userEvent from '@testing-library/user-event';
 import { DeepPartial, FieldValues, useFormContext } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TContinentData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { ContinentSelection } from '@/pages/create/components/localisation/macroRegion/ContinentSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { TContinentData } from '@/pages/create/view-model/shareCatalog.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');

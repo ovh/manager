@@ -4,13 +4,16 @@ import userEvent from '@testing-library/user-event';
 import { DeepPartial } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { ShareSelection } from '@/pages/create/components/share/ShareSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { TShareSpecData } from '@/pages/create/view-model/shareCatalog.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');
+vi.mock('@/pages/create/view-model/network.view-model', () => ({
+  generateAutoName: vi.fn((spec: string) => `${spec}_2025_02_09`),
+}));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 
@@ -22,7 +25,7 @@ describe('ShareSelection', () => {
   it('should render all share options', () => {
     const shareOptions: TShareSpecData[] = [
       {
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 1024,
         iopsLevel: 30,
@@ -51,16 +54,16 @@ describe('ShareSelection', () => {
 
     expect(screen.getByText('create:share.title')).toBeVisible();
     expect(screen.getByRole('radiogroup')).toBeVisible();
-    expect(screen.getByRole('radio', { name: 'publiccloud-share-standard1' })).toBeVisible();
+    expect(screen.getByRole('radio', { name: 'standard-1az' })).toBeVisible();
     expect(screen.getByRole('radio', { name: 'publiccloud-share-standard2' })).toBeVisible();
-    expect(screen.getByText('publiccloud-share-standard1')).toBeVisible();
+    expect(screen.getByText('standard-1az')).toBeVisible();
     expect(screen.getByText('publiccloud-share-standard2')).toBeVisible();
   });
 
   it('should auto-select first share option when available', async () => {
     const shareOptions: TShareSpecData[] = [
       {
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -79,14 +82,14 @@ describe('ShareSelection', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByRole('radio', { name: 'publiccloud-share-standard1' })).toBeChecked();
+      expect(screen.getByRole('radio', { name: 'standard-1az' })).toBeChecked();
     });
   });
 
   it('should handle share option selection', async () => {
     const shareOptions: TShareSpecData[] = [
       {
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -113,7 +116,7 @@ describe('ShareSelection', () => {
 
     renderWithMockedForm(<ShareSelection />, {
       defaultValues: {
-        shareData: { microRegion: 'GRA1', specName: 'publiccloud-share-standard1' },
+        shareData: { microRegion: 'GRA1', specName: 'standard-1az' },
       },
       onFormChange: (values) => {
         formValues = values;
@@ -127,7 +130,7 @@ describe('ShareSelection', () => {
 
     await waitFor(() => {
       expect(formValues?.shareData?.specName).toEqual('publiccloud-share-standard2');
-      expect(screen.getByRole('radio', { name: 'publiccloud-share-standard1' })).not.toBeChecked();
+      expect(screen.getByRole('radio', { name: 'standard-1az' })).not.toBeChecked();
       expect(screen.getByRole('radio', { name: 'publiccloud-share-standard2' })).toBeChecked();
     });
   });
@@ -135,7 +138,7 @@ describe('ShareSelection', () => {
   it('should update name when share spec changes and name is not dirty', async () => {
     const shareOptions: TShareSpecData[] = [
       {
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -164,7 +167,7 @@ describe('ShareSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           name: 'initial-name',
         },
       },
@@ -181,7 +184,7 @@ describe('ShareSelection', () => {
     await waitFor(() => {
       expect(formValues?.shareData?.specName).toEqual('publiccloud-share-standard2');
       expect(formValues?.shareData?.name).toMatch(
-        /^publiccloud-share-standard2_\d{2}_\d{2}_\d{4}$/,
+        /^publiccloud-share-standard2_\d{4}_\d{2}_\d{2}$/,
       );
     });
   });
@@ -189,7 +192,7 @@ describe('ShareSelection', () => {
   it('should not update name when share spec changes and name is dirty', async () => {
     const shareOptions: TShareSpecData[] = [
       {
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -218,7 +221,7 @@ describe('ShareSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           name: 'initial-name',
         },
       },

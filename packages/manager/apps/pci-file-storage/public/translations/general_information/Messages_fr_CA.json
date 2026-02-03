@@ -1,0 +1,10 @@
+{
+  "cards": {
+    "informations": "Informations",
+    "properties": "Propriétés"
+  },
+  "clipboard": {
+    "copy": "Copier dans le presse-papiers",
+    "copy_success": "Copié !"
+  }
+}

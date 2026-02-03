@@ -4,10 +4,10 @@ import userEvent from '@testing-library/user-event';
 import { DeepPartial } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { ShareSizeSelection } from '@/pages/create/components/share/ShareSizeSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { TShareSpecData } from '@/pages/create/view-model/shareCatalog.view-model';
 import { provisionedPerformancePresenter } from '@/pages/create/view-model/shareCatalog.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
@@ -49,7 +49,7 @@ describe('ShareSizeSelection', () => {
     const shareOptions: TShareSpecData[] = [
       {
         ...generalShareSpec,
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -66,7 +66,7 @@ describe('ShareSizeSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           size: 0,
         },
       },
@@ -80,7 +80,7 @@ describe('ShareSizeSelection', () => {
     const shareOptions: TShareSpecData[] = [
       {
         ...generalShareSpec,
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -99,7 +99,7 @@ describe('ShareSizeSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           size: 0,
         },
       },
@@ -123,7 +123,7 @@ describe('ShareSizeSelection', () => {
     const shareOptions: TShareSpecData[] = [
       {
         ...generalShareSpec,
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -152,7 +152,7 @@ describe('ShareSizeSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           size: 150,
         },
       },
@@ -162,8 +162,9 @@ describe('ShareSizeSelection', () => {
       exact: false,
     });
 
-    expect(provisionedPerformance).toHaveTextContent('iops:3600');
-    expect(provisionedPerformance).toHaveTextContent('throughput:37.5');
+    expect(provisionedPerformance).toHaveTextContent(
+      'create:shareSize.provisionedPerformance{"iops":"3600","throughput":"37.5"}',
+    );
 
     const input = screen.getByRole('spinbutton');
 
@@ -177,15 +178,16 @@ describe('ShareSizeSelection', () => {
         exact: false,
       });
 
-      expect(provisionedPerformance).toHaveTextContent('iops:12000');
-      expect(provisionedPerformance).toHaveTextContent('throughput:125');
+      expect(provisionedPerformance).toHaveTextContent(
+        'create:shareSize.provisionedPerformance{"iops":"12000","throughput":"125"}',
+      );
     });
   });
 
   const shareOptions: TShareSpecData[] = [
     {
       ...generalShareSpec,
-      name: 'publiccloud-share-standard1',
+      name: 'standard-1az',
       capacityMin: 150,
       capacityMax: 2048,
       iopsLevel: 30,
@@ -211,7 +213,7 @@ describe('ShareSizeSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           size: 500,
         },
       },

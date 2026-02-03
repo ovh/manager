@@ -1,0 +1,14 @@
+{
+  "title": "Delete your share",
+  "description": "You are about to permanently delete the share <strong>{{name}}</strong>. All data on the share will be lost.",
+  "input": {
+    "label": "Enter \"DELETE\" in the field below to confirm",
+    "error": "Please complete this field."
+  },
+  "submitButton": "Delete the share",
+  "message": {
+    "success": "The share {{shareName}} is being deleted",
+    "error": "An error occurred while deleting the share: {{errorMessage}}"
+  },
+  "cannotDelete": "This share cannot be deleted."
+}
