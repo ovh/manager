@@ -49,8 +49,8 @@ The Modal component provides a consistent interface for displaying modal dialogs
 [Here](?path=/docs/manager-ui-kit-components-modal-documentation--technical-information), the component
 
 ```tsx
-import { Modal } from '@ovh-ux/muk';
-import { Link, ICON_NAME, MODAL_COLOR } from '@ovhcloud/ods-react';
+import { Modal, MODAL_TYPE } from '@ovh-ux/muk';
+import { Link, ICON_NAME } from '@ovhcloud/ods-react';
 
 function MyModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +58,7 @@ function MyModal() {
   return (
     <Modal
       heading="Modal Title"
-      type={MODAL_COLOR.information}
+      type={MODAL_TYPE.information}
       isOpen={isOpen}
       onDismiss={() => setIsOpen(false)}
       primaryLabel="Confirm"
@@ -168,8 +168,7 @@ A reusable confirmation modal for destructive actions:
 [Here](?path=/story/manager-ui-kit-templates-delete-modal--delete-modal), the component
 
 ```tsx
-import { Modal } from '@ovh-ux/muk';
-import { MODAL_COLOR } from '@ovhcloud/ods-react';
+import { Modal, MODAL_TYPE } from '@ovh-ux/muk';
 
 function DeleteModal({ onClose, onConfirm, resourceName, resourceType = 'resource' }) {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -189,7 +188,7 @@ function DeleteModal({ onClose, onConfirm, resourceName, resourceType = 'resourc
   return (
     <Modal
       heading={`Delete ${resourceType}`}
-      type={MODAL_COLOR.critical}
+      type={MODAL_TYPE.critical}
       isOpen={true}
       onDismiss={onClose}
       primaryLabel="Delete"
@@ -199,7 +198,7 @@ function DeleteModal({ onClose, onConfirm, resourceName, resourceType = 'resourc
       onSecondaryButtonClick={onClose}
     >
       <p>
-        Are you sure you want to delete {resourceType} "{resourceName}"? 
+        Are you sure you want to delete {resourceType} "{resourceName}"?
         This action cannot be undone.
       </p>
     </Modal>

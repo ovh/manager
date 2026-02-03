@@ -6779,19 +6779,6 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/muk@^0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/muk/-/muk-0.13.3.tgz#b2f6806e4ec53ca9686c901fae7df7aaed7c45f3"
-  integrity sha512-b+InQcgPiPmZQJXFDjoXfOICR/zk6TDa4O+Uc+us9TsvjjHpWdcjeRI6HENcK5df0zuy3Lw6OFt7pI9V2eQDJQ==
-  dependencies:
-    clsx "^2.1.1"
-    dompurify "^3.2.6"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    sass "1.93.0"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
-
 "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.1.0.tgz#b8bfef258a4e0860eabf219cb1880ca0a15da687"
@@ -6944,15 +6931,6 @@
     react-hot-toast "2.6.0"
     react-shiki "0.9.0"
 
-"@ovhcloud/ods-react@^19.2.0":
-  version "19.2.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.2.1.tgz#babc8f579f4109b091f7fb208b49858ca49563b8"
-  integrity sha512-xk7u7B/EsxyMrnW1n13PcNNj93SBxKcOzQH8/RNJ3gQYJO+TYcG7w858xlry+KUi+hO2q8aYDcBjS5iD/4x4Eg==
-  dependencies:
-    "@ark-ui/react" "5.25.1"
-    classnames "2.5.1"
-    libphonenumber-js "1.12.8"
-
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
@@ -6981,11 +6959,6 @@
   version "18.6.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
   integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
-
-"@ovhcloud/ods-themes@^19.2.0":
-  version "19.2.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.1.tgz#c30976d911207f5309f2a3daaab04aed50d7a7ff"
-  integrity sha512-zjtSoX2gaVMtpBVIGmg3HBNfjWeHRAHzTyTOxjeR47L+qo4iAj2pghL4riZpNvn9/YlVaIJT8GpO+Lw/IVAAnQ==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
