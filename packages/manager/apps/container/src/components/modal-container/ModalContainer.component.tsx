@@ -12,12 +12,14 @@ import SuggestionModal from '@/components/suggestion-modal/SuggestionModal.compo
 import AgreementsUpdateModal from '@/components/agreements-update-modal/AgreementsUpdateModal.component';
 import PaymentModal from '@/components/payment-modal/PaymentModal.component';
 import { IdentityDocumentsModal } from '@/components/identity-documents-modal/IdentityDocumentsModal.component';
+import { CommunicationAnnounceModal } from '../communication-announce-modal/CommunicationAnnounceModal.component';
 
 const MODALS: FC[] = [
   IdentityDocumentsModal,
   PaymentModal,
   AgreementsUpdateModal,
   SuggestionModal,
+  CommunicationAnnounceModal,
 ];
 
 type ModalContainerProps = {
@@ -39,7 +41,7 @@ export default function ModalContainer({
       setIsReady(true);
       return;
     }
-    
+
     const initModalLifeCycleManagement = () => setIsReady(true);
     uxPlugin.onHidePreloader(initModalLifeCycleManagement, { once: true });
     return () => {
