@@ -9,7 +9,8 @@ type KeyStatusProps = {
 };
 
 export const ServiceKeyOperations = ({ operations }: KeyStatusProps) => {
-  const translatedOperations = useServiceKeyOperationsTranslations(operations);
+  const { operationNamesMap } = useServiceKeyOperationsTranslations();
+  const translatedOperations = operations.map((operation) => operationNamesMap[operation]);
 
   return <Text preset="span">{translatedOperations.join(', ')}</Text>;
 };

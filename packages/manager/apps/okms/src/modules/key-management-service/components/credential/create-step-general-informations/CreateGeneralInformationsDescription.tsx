@@ -4,8 +4,14 @@ import {
 } from '@key-management-service/utils/credential/validateCredentialDescription';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsTextarea } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
+  Text,
+  Textarea,
+} from '@ovhcloud/ods-react';
 
 type CreateGeneralInformationsDescriptionProps = {
   description: string | null;
@@ -31,23 +37,29 @@ export const CreateGeneralInformationsDescription = ({
     }
   };
 
+  const errorMessage = getDescriptionErrorMessage(credentialDescriptionError);
+
   return (
-    <OdsFormField error={getDescriptionErrorMessage(credentialDescriptionError)}>
-      <Text slot="label" preset="heading-5" className="mb-2">
-        {t('key_management_service_credential_create_general_information_description_title')}
-      </Text>
-      <OdsTextarea
+    <FormField invalid={!!credentialDescriptionError} className="mb-4">
+      <FormFieldLabel>
+        <Text preset="heading-5" className="mb-2">
+          {t('key_management_service_credential_create_general_information_description_title')}
+        </Text>
+      </FormFieldLabel>
+      <Textarea
         name="description"
         aria-label="description"
         data-testid="input-description"
-        value={description}
-        hasError={!!credentialDescriptionError}
-        onOdsChange={(e) => setDescription(e.detail.value)}
+        value={description || undefined}
+        onChange={(e) => setDescription(e.target.value)}
         rows={4}
       />
-      <Text slot="visual-hint" preset="caption">
-        {description?.length || 0}/{CredentialDescriptionMaxCharacters}
-      </Text>
-    </OdsFormField>
+      <FormFieldHelper>
+        <Text preset="caption">
+          {description?.length || 0}/{CredentialDescriptionMaxCharacters}
+        </Text>
+      </FormFieldHelper>
+      {errorMessage && <FormFieldError>{errorMessage}</FormFieldError>}
+    </FormField>
   );
 };

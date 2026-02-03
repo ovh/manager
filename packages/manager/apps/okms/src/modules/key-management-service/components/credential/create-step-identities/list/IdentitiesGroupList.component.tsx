@@ -4,7 +4,7 @@ import { IdentityGroup } from '@key-management-service/types/identity.type';
 import identityListSortAndFilter from '@key-management-service/utils/credential/identityListSortAndFilter';
 import { useTranslation } from 'react-i18next';
 
-import { OdsInput } from '@ovhcloud/ods-components/react';
+import { Input } from '@ovhcloud/ods-react';
 
 import { IdentitiesGroupTile } from '../tile/IdentitiesGroupTile.component';
 
@@ -40,13 +40,13 @@ export const IdentitiesGroupList = ({
 
   return (
     <>
-      <OdsInput
+      <Input
         className="mb-4 w-full"
         name="search"
         placeholder={t(
           'key_management_service_credential_create_identities_group_list_search_placeholder',
         )}
-        onOdsChange={(event) => setSearchString(event.detail.value as string)}
+        onChange={(event) => setSearchString(event.target.value)}
         type="search"
       />
       <div className="mb-4 grid gap-3">

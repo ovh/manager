@@ -1,10 +1,10 @@
+import { ChangeEventHandler } from 'react';
+
 import { KeyValuePair } from '@secret-manager/utils/key-value/keyValue';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { OdsInputChangeEventDetail, OdsInputCustomEvent } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { FormField, FormFieldLabel, Icon, Input } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Button } from '@ovh-ux/muk';
@@ -20,8 +20,6 @@ type KeyValuesEditorItemProps = {
   isDeletable: boolean;
 };
 
-type OdsInputChangeEventHandler = (event: OdsInputCustomEvent<OdsInputChangeEventDetail>) => void;
-
 export const KeyValuesEditorItem = ({
   index,
   item,
@@ -34,14 +32,14 @@ export const KeyValuesEditorItem = ({
   const keyInputName = KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(index);
   const valueInputName = KEY_VALUES_EDITOR_TEST_IDS.pairItemValueInput(index);
 
-  const handleKeyChange: OdsInputChangeEventHandler = (event) => {
+  const handleKeyChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const newKey = event.target.value?.toString();
     if (newKey !== undefined) {
       onChange({ key: newKey, value: item.value });
     }
   };
 
-  const handleValueChange: OdsInputChangeEventHandler = (event) => {
+  const handleValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const newValue = event.target.value?.toString();
     if (newValue !== undefined) {
       onChange({ key: item.key, value: newValue });
@@ -50,27 +48,26 @@ export const KeyValuesEditorItem = ({
 
   return (
     <div className="flex items-center gap-2">
-      <OdsFormField className="w-full">
-        <label slot="label">{t('key')}</label>
-        <OdsInput
+      <FormField className="w-full">
+        <FormFieldLabel>{t('key')}</FormFieldLabel>
+        <Input
           name={keyInputName}
           data-testid={keyInputName}
           value={item.key}
-          onOdsChange={handleKeyChange}
-          onOdsBlur={onBlur}
+          onChange={handleKeyChange}
+          onBlur={onBlur}
         />
-      </OdsFormField>
-      <OdsFormField className="w-full">
-        <label slot="label">{t('value')}</label>
-
-        <OdsInput
+      </FormField>
+      <FormField className="w-full">
+        <FormFieldLabel>{t('value')}</FormFieldLabel>
+        <Input
           name={valueInputName}
           data-testid={valueInputName}
           value={item.value}
-          onOdsChange={handleValueChange}
-          onOdsBlur={onBlur}
+          onChange={handleValueChange}
+          onBlur={onBlur}
         />
-      </OdsFormField>
+      </FormField>
 
       <Button
         data-testid={KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(index)}

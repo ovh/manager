@@ -7,6 +7,7 @@ import {
 } from '@secret-manager/components/form/SecretCasRequiredFormField.component';
 import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
 import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
+import { SecretPathFormField } from '@secret-manager/components/form/SecretPathFormField.component';
 import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
 import { secretQueryKeys } from '@secret-manager/data/api/secrets';
 import { useCreateSecret } from '@secret-manager/data/hooks/useCreateSecret';
@@ -21,7 +22,6 @@ import { Controller, FormProvider, SubmitHandler, useForm, useWatch } from 'reac
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 import { Card, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -86,7 +86,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
     control,
     handleSubmit,
     setValue,
-    formState: { isDirty, isValid, errors },
+    formState: { isDirty, isValid },
   } = form;
 
   const enableDeactivateVersionAfter = useWatch({
@@ -178,25 +178,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
           <Text preset="heading-2">{t('create_secret_form_secret_section_title')}</Text>
           <div className="flex flex-col gap-3">
             <Text preset="heading-4">{PATH_LABEL}</Text>
-            <Controller
-              name="path"
-              control={control}
-              render={({ field: { name, value, onChange, onBlur } }) => (
-                <OdsFormField error={errors?.[name]?.message}>
-                  <OdsInput
-                    id={name}
-                    name={name}
-                    value={value}
-                    onOdsBlur={onBlur}
-                    onOdsChange={onChange}
-                    data-testid={SECRET_FORM_TEST_IDS.INPUT_PATH}
-                  />
-                  <Text slot="helper" preset="caption">
-                    {t('path_field_helper')}
-                  </Text>
-                </OdsFormField>
-              )}
-            />
+            <SecretPathFormField name="path" control={control} />
           </div>
           <div className="flex flex-col gap-3">
             <Text preset="heading-4">{t('values')}</Text>
@@ -204,7 +186,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
           </div>
           {/* TEMP: waiting for custom metadata */}
           {/* <div className="flex flex-col gap-3">
-            <OdsText preset="heading-4">{t('custom_metadata_title')}</OdsText>
+            <Text preset="heading-4">{t('custom_metadata_title')}</Text>
           </div> */}
           <div className="flex flex-col gap-3">
             <Text preset="heading-4">{t('secret_settings')}</Text>
@@ -332,7 +314,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
         </div>
         {/* TEMP: waiting for payment informations */}
         {/* <div className="flex flex-col gap-5">
-        <OdsText preset="heading-2">{t('create_secret_form_payment_section_title')}</OdsText>
+        <Text preset="heading-2">{t('create_secret_form_payment_section_title')}</Text>
       </div> */}
         <div className="flex items-center justify-between py-3">
           <SecretFormBackLink />
