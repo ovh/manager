@@ -56,6 +56,7 @@ export const addShellContextProvider = async (providers: TestProvider[]) => {
   ));
 };
 
+// Required for Link components to work
 export const addRouterProvider = (providers: TestProvider[]) => {
   providers.push(({ children }) => <MemoryRouter>{children}</MemoryRouter>);
 };
