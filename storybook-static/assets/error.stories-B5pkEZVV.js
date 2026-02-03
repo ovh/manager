@@ -1,0 +1,13 @@
+import{j as s}from"./jsx-runtime-BRNY0I4F.js";import{b as t}from"./lib-D44cvI9Y-BwqRLB_Z.js";import"./index-Bnop-kX6.js";import"./iframe-Bmn67lXx.js";import"./QueryClientProvider-BPX08D6Z.js";import"./with-selector-CbDTc_Tw.js";import"./index-4pTrEEYx.js";import"./Icon-DrfG5m-t-DQEf1CkA.js";import"./index-2w0W-O47-BJ19ihbZ.js";import"./ods-react60-0db41gCx.js";import"./Link-BWQEuWpd-B5_veLQO.js";import"./Text-CcNd6qQr-D2KuMUPS.js";import"./ComboboxControl-sJOkWHeT-DJbuE-Pm.js";import"./ods-react236-aAAP9SXj.js";import"./MessageIcon-yhpEHWAg-CXHPnT2G.js";import"./Divider-THit99OS-BLm7oKDW.js";const l={error:{}},x={error:{status:404}},f={error:{status:401,data:{message:"[serviceId] Given data (undefined) is not valid for type long"},headers:{"x-ovh-queryid":"123456789"}}},O={title:"Manager UI Kit/Components/Errors",decorators:[g=>s.jsx("div",{children:g()})],component:t,tags:["autodocs"],argTypes:{},args:l,parameters:{layout:"centered"}},r=()=>s.jsx(t,{...l});r.parameters={docs:{source:{code:"<Error error={{}} />"}}};const o=()=>s.jsx(t,{...x});o.parameters={docs:{source:{code:`<Error 
+  error={{
+    status: 404,
+  }} 
+/>`}}};const e=()=>s.jsx(t,{...f});e.parameters={docs:{source:{code:`<Error 
+  error={{
+    status: 401,
+    data: {
+      message: '[serviceId] Given data (undefined) is not valid for type long',
+    },
+    headers: { 'x-ovh-queryid': '123456789' },
+  }} 
+/>`}}};var a,d,i;r.parameters={...r.parameters,docs:{...(a=r.parameters)==null?void 0:a.docs,source:{originalSource:"() => <Error {...defaultError} />",...(i=(d=r.parameters)==null?void 0:d.docs)==null?void 0:i.source}}};var p,c,m;o.parameters={...o.parameters,docs:{...(p=o.parameters)==null?void 0:p.docs,source:{originalSource:"() => <Error {...error404} />",...(m=(c=o.parameters)==null?void 0:c.docs)==null?void 0:m.source}}};var n,u,E;e.parameters={...e.parameters,docs:{...(n=e.parameters)==null?void 0:n.docs,source:{originalSource:"() => <Error {...errorApiWithCode} />",...(E=(u=e.parameters)==null?void 0:u.docs)==null?void 0:E.source}}};const R=["ErrorBoundary","Error404","ErrorApiWithCode"];export{o as Error404,e as ErrorApiWithCode,r as ErrorBoundary,R as __namedExportsOrder,O as default};
