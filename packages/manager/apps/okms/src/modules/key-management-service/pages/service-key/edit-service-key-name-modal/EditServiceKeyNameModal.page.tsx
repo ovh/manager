@@ -10,9 +10,17 @@ import {
 } from '@key-management-service/utils/service-key/validateServiceKeyName';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
-import { Modal, ModalBody, ModalContent, ModalOpenChangeDetail, Text } from '@ovhcloud/ods-react';
+import {
+  FormField,
+  FormFieldError,
+  INPUT_TYPE,
+  Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalOpenChangeDetail,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
@@ -101,21 +109,24 @@ export const EditServiceKeyNameModal = () => {
               updateKmsServiceKey({ name: serviceKeyName });
             }}
           >
-            <OdsFormField className="my-3 block" error={getErrorMessage(serviceKeyNameError)}>
-              <OdsInput
-                isDisabled={isPending}
+            <FormField className="my-3 block" invalid={!!serviceKeyNameError}>
+              <Input
+                disabled={isPending}
                 className="w-full"
                 name="input-edit-service-key-name"
                 aria-label="input-edit-service-key-name"
-                hasError={!!serviceKeyNameError}
-                type={ODS_INPUT_TYPE.text}
+                invalid={!!serviceKeyNameError}
+                type={INPUT_TYPE.text}
                 value={serviceKeyName}
-                isRequired
-                onOdsChange={(event) => {
-                  setServiceKeyName(event.target.value as string);
+                required
+                onChange={(event) => {
+                  setServiceKeyName(event.target.value);
                 }}
               />
-            </OdsFormField>
+              {getErrorMessage(serviceKeyNameError) && (
+                <FormFieldError>{getErrorMessage(serviceKeyNameError)}</FormFieldError>
+              )}
+            </FormField>
           </form>
           <div className="flex justify-end gap-2">
             <Button variant="outline" color="primary" onClick={closeModal}>
