@@ -2,7 +2,9 @@ import { ChangeEventHandler, ReactElement, ReactNode } from 'react';
 
 import clsx from 'clsx';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
+
+import { RADIO_CARD_TEST_IDS } from './RadioCard.constants';
 
 type RadioCardProps = {
   id: string;
@@ -33,6 +35,7 @@ export const RadioCard = ({
     <label
       key={id}
       htmlFor={id}
+      data-testid={RADIO_CARD_TEST_IDS.card(id)}
       className={clsx(
         'flex rounded-md border border-solid px-3 py-4',
         !isDisabled && 'cursor-pointer',
@@ -60,13 +63,13 @@ export const RadioCard = ({
             className="m-0"
           />
           <div className="flex flex-wrap items-center gap-y-1">
-            <OdsText preset="heading-6" className="mr-1">
+            <Text preset="heading-6" className="mr-1">
               {title}
-            </OdsText>
+            </Text>
             {subTitle && (
-              <OdsText preset="span" className="mr-2">
+              <Text preset="span" className="mr-2">
                 {subTitle}
-              </OdsText>
+              </Text>
             )}
             {badges && <span>{badges}</span>}
           </div>

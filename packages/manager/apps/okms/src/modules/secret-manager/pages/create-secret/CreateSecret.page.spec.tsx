@@ -10,6 +10,7 @@ import {
 import { waitFor } from '@testing-library/dom';
 import { act, fireEvent, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
+import { describe, expect } from 'vitest';
 
 import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
@@ -57,9 +58,8 @@ describe('Create secret page test suite', () => {
   it('should display the form sections', async () => {
     await renderTestApp(SECRET_MANAGER_ROUTES_URLS.createSecret);
 
-    await assertBreadcrumbItems(['RootBreadcrumbItem']);
-
     await assertTextVisibility(labels.secretManager.create_a_secret);
+    await assertBreadcrumbItems(['RootBreadcrumbItem']);
     await assertTextVisibility(labels.secretManager.create_secret_form_region_section_title);
     await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
   });

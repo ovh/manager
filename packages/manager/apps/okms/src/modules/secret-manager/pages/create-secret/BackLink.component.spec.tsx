@@ -6,12 +6,10 @@ import {
 } from '@secret-manager/routes/routes.constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { waitFor } from '@testing-library/dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { vi } from 'vitest';
-
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 
@@ -68,14 +66,10 @@ describe('Secrets creation form test suite', () => {
         vi.mocked(useSearchParams).mockReturnValueOnce([urlParams, vi.fn()]);
       }
 
-      const { container } = await renderBackLink();
+      await renderBackLink();
 
       // WHEN
-      const backLink = await getOdsButtonByLabel({
-        container,
-        label: labels.common.actions.back,
-        isLink: true,
-      });
+      const backLink = await screen.findByText(labels.common.actions.back);
 
       // THEN
       await waitFor(() => expect(backLink).toHaveAttribute('href', href));

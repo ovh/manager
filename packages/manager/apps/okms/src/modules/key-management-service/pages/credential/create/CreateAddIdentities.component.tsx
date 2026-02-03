@@ -6,17 +6,10 @@ import { useIdentityData } from '@key-management-service/hooks/credential/useIde
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsDivider, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
-import { Subtitle } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Button, Divider } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -76,21 +69,23 @@ const CreateAddIdentities = ({
     <div className="max-w-screen-lg">
       <div className="flex flex-col gap-7 md:gap-9">
         <div className="flex flex-col gap-6 md:gap-8">
-          <Subtitle>{t('key_management_service_credential_create_identities_title')}</Subtitle>
+          <Text preset="heading-3">
+            {t('key_management_service_credential_create_identities_title')}
+          </Text>
           <IdentitiesRootAccount
             isRootAccount={isRootAccount}
             setIsRootAccount={setIsRootAccount}
           />
 
-          <OdsDivider />
+          <Divider />
 
           {!isRootAccount && (
             <>
               <div className="flex items-center gap-1">
-                <OdsIcon name={ODS_ICON_NAME.circleInfo} />
-                <OdsText preset={ODS_TEXT_PRESET.span}>
+                <Icon name="circle-info" />
+                <Text preset="span">
                   {t('key_management_service_credential_create_identities_max_label')}
-                </OdsText>
+                </Text>
               </div>
               <IdentitiesSelectedUsersList identityURNs={identityURNs} />
               <IdentitiesSelectedGroups identityURNs={identityURNs} />
@@ -99,10 +94,9 @@ const CreateAddIdentities = ({
           )}
         </div>
         <div className="flex gap-4">
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.outline}
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
+          <Button
+            variant="outline"
+            color="primary"
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -112,12 +106,12 @@ const CreateAddIdentities = ({
               });
               navigate(KMS_ROUTES_URLS.credentialListing(okmsId));
             }}
-            label={t('key_management_service_credential_create_identities_button_cancel_label')}
-          />
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
+          >
+            {t('key_management_service_credential_create_identities_button_cancel_label')}
+          </Button>
+          <Button
+            variant="ghost"
+            color="primary"
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -127,11 +121,11 @@ const CreateAddIdentities = ({
               });
               prevStep();
             }}
-            label={t('key_management_service_credential_create_identities_button_back_label')}
-          />
-          <OdsButton
-            color={ODS_BUTTON_COLOR.primary}
-            size={ODS_BUTTON_SIZE.sm}
+          >
+            {t('key_management_service_credential_create_identities_button_back_label')}
+          </Button>
+          <Button
+            color="primary"
             onClick={() => {
               trackClick({
                 location: PageLocation.funnel,
@@ -141,9 +135,10 @@ const CreateAddIdentities = ({
               });
               nextStep();
             }}
-            isDisabled={identityURNs.length > 25 || identityURNs.length === 0}
-            label={t('key_management_service_credential_create_identities_button_create_label')}
-          />
+            disabled={identityURNs.length > 25 || identityURNs.length === 0}
+          >
+            {t('key_management_service_credential_create_identities_button_create_label')}
+          </Button>
         </div>
       </div>
     </div>

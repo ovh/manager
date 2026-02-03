@@ -4,7 +4,7 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { BreadcrumbItem, useBreadcrumb } from './useBreadcrumb';
+import { KmsBreadcrumbItem, useBreadcrumb } from './useBreadcrumb';
 
 const useNavigateMock = vi.fn();
 
@@ -22,7 +22,7 @@ const locationPaths = ['123123', 'path', '234234'];
 
 const locationPathname = '/'.concat(locationPaths.join('/'));
 
-const items: BreadcrumbItem[] = [
+const items: KmsBreadcrumbItem[] = [
   {
     id: locationPaths[0] ?? '',
     label: 'a name from api result',

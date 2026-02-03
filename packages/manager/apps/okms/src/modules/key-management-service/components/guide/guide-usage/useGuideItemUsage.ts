@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 
-import { GuideItem } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { GuideMenuItem } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 
 import { GUIDES_USAGE } from './guideUsage.constants';
 
-export const useGuideItemUsage = (id: number): GuideItem => {
+export const useGuideItemUsage = (id: number): GuideMenuItem => {
   const { t } = useTranslation('key-management-service/guide');
   const guideLink = useGuideLink(GUIDES_USAGE);
   const { trackClick } = useOkmsTracking();
@@ -17,7 +17,7 @@ export const useGuideItemUsage = (id: number): GuideItem => {
     id,
     href: guideLink,
     target: '_blank',
-    label: t('guides_header_kms_usage'),
+    children: t('guides_header_kms_usage'),
     onClick: () =>
       trackClick({
         location: PageLocation.page,

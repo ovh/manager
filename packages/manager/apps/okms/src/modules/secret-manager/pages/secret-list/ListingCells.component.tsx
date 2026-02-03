@@ -1,12 +1,11 @@
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
-import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
 
-import { Link } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -23,10 +22,8 @@ export const DatagridCellPath = (secret: Secret) => {
   const url = SECRET_MANAGER_ROUTES_URLS.secret(okmsId, secret.path);
 
   return (
-    <Link
-      href={url}
-      label={secret.path}
-      isRouterLink
+    <InternalLink
+      to={url}
       data-testid={SECRET_LIST_CELL_TEST_IDS.path(secret.path)}
       onClick={() => {
         trackClick({
@@ -36,7 +33,9 @@ export const DatagridCellPath = (secret: Secret) => {
           actions: ['secret'],
         });
       }}
-    />
+    >
+      {secret.path}
+    </InternalLink>
   );
 };
 
@@ -65,7 +64,7 @@ export const DatagridAction = (secret: Secret) => {
   const accessVersionsItem = useAccessVersionMenuItem({ id: 3, okmsId, secret });
   const deleteSecretItem = useDeleteSecretMenuItem({ id: 4, okmsId, secret });
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     revealValueItem,
     addVersionItem,
     accessVersionsItem,
@@ -77,8 +76,8 @@ export const DatagridAction = (secret: Secret) => {
       id={`SecretActionMenu-${secret.path}`}
       items={items}
       isCompact
-      icon={ODS_ICON_NAME.ellipsisVertical}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
+      variant={BUTTON_VARIANT.ghost}
     />
   );
 };

@@ -3,17 +3,17 @@ import { useLocation } from 'react-router-dom';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-export type BreadcrumbItem = {
+export type KmsBreadcrumbItem = {
   id: string;
   label: string;
   navigateTo?: string;
 };
 
 type UseBreadcrumbParams = {
-  items: BreadcrumbItem[];
+  items: KmsBreadcrumbItem[];
 };
 
-export const useBreadcrumb = ({ items }: UseBreadcrumbParams): BreadcrumbItem[] => {
+export const useBreadcrumb = ({ items }: UseBreadcrumbParams): KmsBreadcrumbItem[] => {
   const { t } = useTranslation('key-management-service/listing');
 
   const location = useLocation();
@@ -24,13 +24,13 @@ export const useBreadcrumb = ({ items }: UseBreadcrumbParams): BreadcrumbItem[] 
     .filter((x) => x)
     .slice(1);
 
-  const rootItem: BreadcrumbItem = {
+  const rootItem: KmsBreadcrumbItem = {
     id: 'root',
     label: t('key_management_service_listing_title'),
     navigateTo: KMS_ROUTES_URLS.kmsListing,
   };
 
-  const pathItems: BreadcrumbItem[] = pathnames.map((pathname) => {
+  const pathItems: KmsBreadcrumbItem[] = pathnames.map((pathname) => {
     // Search all pathnames in the items
     const itemFound = items?.find(({ id }) => id === pathname);
 

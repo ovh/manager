@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 
-import { GuideItem } from '@ovh-ux/manager-react-components';
+import { GuideMenuItem } from '@ovh-ux/muk';
 
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 
 import { GUIDES_REST_API } from './guideRestApi.constants';
 
-export const useGuideItemRestApi = (id: number): GuideItem => {
+export const useGuideItemRestApi = (id: number): GuideMenuItem => {
   const { t } = useTranslation('secret-manager');
   const guideLink = useGuideLink(GUIDES_REST_API);
 
@@ -14,6 +14,6 @@ export const useGuideItemRestApi = (id: number): GuideItem => {
     id,
     href: guideLink,
     target: '_blank',
-    label: t('guide_use_with_rest_api'),
+    children: t('guide_use_with_rest_api'),
   };
 };

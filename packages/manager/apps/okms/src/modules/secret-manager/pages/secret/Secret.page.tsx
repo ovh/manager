@@ -11,16 +11,10 @@ import { useSecret } from '@secret-manager/data/hooks/useSecret';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  BaseLayout,
-  ErrorBanner,
-  HeadersProps,
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { BaseLayout, Error, HeaderProps, Notifications, useNotifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -61,10 +55,10 @@ export default function SecretPage() {
     },
   ];
 
-  const headerProps: HeadersProps = {
+  const headerProps: HeaderProps = {
     title: secretPathDecoded,
     changelogButton: <SecretManagerChangelogButton />,
-    headerButton: <SecretManagerGuidesButton />,
+    guideMenu: <SecretManagerGuidesButton />,
   };
 
   if (isSecretPending) {
@@ -73,7 +67,7 @@ export default function SecretPage() {
 
   if (isSecretError) {
     return (
-      <ErrorBanner
+      <Error
         error={secretError?.response}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId))}
       />
@@ -87,19 +81,19 @@ export default function SecretPage() {
   return (
     <BaseLayout
       header={headerProps}
-      backLinkLabel={t('back_to_secret_list')}
+      backLink={{
+        label: t('back_to_secret_list'),
+        onClick: () => navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId)),
+      }}
       message={notifications.length > 0 ? <Notifications /> : undefined}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
           <OkmsBreadcrumbItem />
           <SecretBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       tabs={<TabNavigation tabs={tabsList} />}
-      onClickReturn={() => {
-        navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId));
-      }}
     >
       <Outlet context={outletContext} />
     </BaseLayout>

@@ -1,20 +1,17 @@
 import React from 'react';
 
+import { MemoryRouter } from 'react-router-dom';
+
 import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
+import { labels } from '@/common/utils/tests/init.i18n';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 import { OkmsDatagrid } from './OkmsDatagrid.component';
 import { OkmsDatagridType } from './okmsDatagrid.type';
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-  }),
-}));
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
@@ -36,48 +33,35 @@ vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => {
   };
 });
 
-const environment = {
-  getUser: vi.fn().mockReturnValue({ ovhSubsidiary: 'FR' }),
-  getUserLocale: vi.fn().mockReturnValue('fr_FR'),
-};
-
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  ShellContext: React.createContext({
-    environment: {
-      getEnvironment: vi.fn(() => environment),
-    },
-    shell: {
-      environment: {
-        getEnvironment: vi.fn(() => environment),
-      },
-    },
-  }),
-}));
-
 const columns = {
-  name: 'key_management_service_listing_name_cell',
-  id: 'key_management_service_listing_id_cell',
-  status: 'key_management_service_listing_status_cell',
-  secretCount: 'key_management_service_listing_secret_cell',
-  kmipCount: 'key_management_service_listing_kmip_cell',
+  name: labels.listing.key_management_service_listing_name_cell,
+  id: labels.listing.key_management_service_listing_id_cell,
+  status: labels.listing.key_management_service_listing_status_cell,
+  secretCount: labels.listing.key_management_service_listing_secret_cell,
+  kmipCount: labels.listing.key_management_service_listing_kmip_cell,
   servicekeyCount: SERVICE_KEYS_LABEL,
-  region: 'key_management_service_listing_region_cell',
-  terminate: 'key_management_service_listing_terminate',
+  region: labels.listing.key_management_service_listing_region_cell,
+  terminate: labels.listing.key_management_service_listing_terminate,
 };
 
 describe('Okms Datagrid tests suite', () => {
-  const renderComponent = (type: OkmsDatagridType) => {
-    const queryClient = new QueryClient();
+  const renderComponent = async (type: OkmsDatagridType) => {
+    const wrapper = await testWrapperBuilder()
+      .withQueryClient()
+      .withI18next()
+      .withShellContext()
+      .build();
 
     return render(
-      <QueryClientProvider client={queryClient}>
+      <MemoryRouter>
         <OkmsDatagrid type={type} okmsList={okmsMock} />
-      </QueryClientProvider>,
+      </MemoryRouter>,
+      { wrapper },
     );
   };
 
   it('should display the according columns when kms type is used', async () => {
-    renderComponent('kms');
+    await renderComponent('kms');
 
     // visible columns
     expect(await screen.findAllByText(columns.name)).toHaveLength(1);
@@ -92,7 +76,7 @@ describe('Okms Datagrid tests suite', () => {
   });
 
   it('should display the according columns when secret-manager type is used', async () => {
-    renderComponent('secret-manager');
+    await renderComponent('secret-manager');
 
     // visible columns
     expect(await screen.findAllByText(columns.name)).toHaveLength(1);

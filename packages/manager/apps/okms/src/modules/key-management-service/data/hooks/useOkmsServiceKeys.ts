@@ -8,14 +8,12 @@ import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 
 import { ErrorResponse } from '@/common/types/api.type';
-
 import {
   getListingOkmsServiceKey,
   getOkmsServiceKeyResource,
   getOkmsServiceKeyResourceListQueryKey,
   getOkmsServiceKeyResourceQueryKey,
-  sortOkmsServiceKey,
-} from '../api/okmsServiceKey';
+} from '@/modules/key-management-service/data/api/okmsServiceKey';
 
 /* Service Key List */
 
@@ -30,18 +28,8 @@ export const useAllOkmsServiceKeys = (okmsId: string) => {
   });
 };
 
-export const useOkmsServiceKeys = ({ sorting, okmsId }: OkmsServiceKeyOptions) => {
-  const {
-    data: okms,
-    error: allOKMSError,
-    isLoading: allOKMSLoading,
-  } = useAllOkmsServiceKeys(okmsId);
-
-  return {
-    isLoading: allOKMSLoading,
-    error: allOKMSError,
-    data: sortOkmsServiceKey(okms || [], sorting),
-  };
+export const useOkmsServiceKeys = ({ okmsId }: OkmsServiceKeyOptions) => {
+  return useAllOkmsServiceKeys(okmsId);
 };
 
 /* Service Key */

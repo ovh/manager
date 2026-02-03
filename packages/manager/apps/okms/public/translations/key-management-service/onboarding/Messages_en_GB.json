@@ -1,7 +1,7 @@
 {
   "title": "OVHcloud Key Management Service",
   "description": "Maintain control over the encryption of your sensitive data.",
-  "orderButtonLabel": "Order a KMS",
+  "orderButtonLabel": "Order a domain OKMS",
   "orderButtonLink": "/#/dedicated/key-management-service/order",
   "moreInfoButtonLabel": "Find out more",
   "moreInfoButtonLink": "/#/dedicated/key-management-service/info",

@@ -3,8 +3,8 @@ import { secretConfigOkmsQueryKey } from '@secret-manager/data/api/secretConfigO
 import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
 import { useTranslation } from 'react-i18next';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { Tile } from '@ovh-ux/muk';
 
 import { TileError } from '@/common/components/tile-error/TileError.component';
 import { useProductType } from '@/common/hooks/useProductType';
@@ -31,29 +31,17 @@ export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
   };
 
   return (
-    <ManagerTile>
-      <ManagerTile.Title>{t('okms_secret_config')}</ManagerTile.Title>
+    <Tile.Root title={t('okms_secret_config')}>
       {secretConfigOkmsQuery.error ? (
-        <>
-          <ManagerTile.Divider />
-          <TileError error={secretConfigOkmsQuery.error} onRetry={handleRetry} />
-        </>
+        <TileError error={secretConfigOkmsQuery.error} onRetry={handleRetry} />
       ) : (
         <>
-          <ManagerTile.Divider />
           <MaxVersionTileItem {...secretConfigOkmsQuery} />
-          <ManagerTile.Divider />
           <DeactivateVersionAfterTileItem {...secretConfigOkmsQuery} />
-          <ManagerTile.Divider />
-          <CasTileItem {...secretConfigOkmsQuery} />
-          {productType === 'secret-manager' && (
-            <>
-              <ManagerTile.Divider />
-              <EditSecretConfigLinkTileItem okms={okms} />
-            </>
-          )}
+          <CasTileItem {...secretConfigOkmsQuery} divider={productType === 'secret-manager'} />
+          {productType === 'secret-manager' && <EditSecretConfigLinkTileItem okms={okms} />}
         </>
       )}
-    </ManagerTile>
+    </Tile.Root>
   );
 };

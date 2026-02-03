@@ -11,16 +11,12 @@ import { SecretManagerChangelogButton } from '@secret-manager/components/secret-
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
-import {
-  BaseLayout,
-  ErrorBanner,
-  Notifications,
-  useFeatureAvailability,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, Error, Notifications } from '@ovh-ux/muk';
 
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
 import {
@@ -67,7 +63,7 @@ export default function OkmsDashboardPage() {
 
   if (error) {
     return (
-      <ErrorBanner
+      <Error
         error={error.response}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.root)}
         onReloadPage={() =>
@@ -87,16 +83,18 @@ export default function OkmsDashboardPage() {
       header={{
         title: t('okms_dashboard_title'),
         changelogButton: <SecretManagerChangelogButton />,
-        headerButton: <SecretManagerGuidesButton />,
+        guideMenu: <SecretManagerGuidesButton />,
       }}
-      backLinkLabel={t('back_to_secret_list')}
-      onClickReturn={() => navigate('..')}
+      backLink={{
+        label: t('back_to_secret_list'),
+        onClick: () => navigate('..'),
+      }}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
           <OkmsBreadcrumbItem />
           <OkmsDashboardBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
       tabs={<TabNavigation tabs={tabsList} />}
