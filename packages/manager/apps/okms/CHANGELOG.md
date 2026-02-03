@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.43.7...@ovh-ux/manager-okms-app@0.44.0) (2026-02-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1075] ([27fa52c](https://github.com/ovh/manager/commit/27fa52c249c3dde71a5ed3cef1ad06f2f8d8aa01))
+* **okms:** add secret settings toggles ([d54596f](https://github.com/ovh/manager/commit/d54596f297e4c7b737cfb539b3c2897aab7fc9d6)), closes [#EK-2608](https://github.com/ovh/manager/issues/EK-2608)
+* **okms:** enhance secret creation flow with OKMS domain messages ([d545192](https://github.com/ovh/manager/commit/d54519255e63c01c449f8cdc94b6b5c4e1c08cf2)), closes [#EK-2633](https://github.com/ovh/manager/issues/EK-2633)
+* **okms:** fix add service accounts modal ([7477f5f](https://github.com/ovh/manager/commit/7477f5f822f3bf0489a795bdf7da704ab4ef337a)), closes [#EK-2569](https://github.com/ovh/manager/issues/EK-2569)
+* **okms:** fix secret param wording ([2d53688](https://github.com/ovh/manager/commit/2d53688e907ed731ac5d4d6ba9c7a6ab1ce41622)), closes [#EK-2608](https://github.com/ovh/manager/issues/EK-2608)
+* **okms:** mono font in json secret value textarea ([ac7ed90](https://github.com/ovh/manager/commit/ac7ed90151e4898c8e35f459f8b9a2e359f8d30b)), closes [#EK-2633](https://github.com/ovh/manager/issues/EK-2633)
+* **okms:** no sorting on all datagrids ([3af0482](https://github.com/ovh/manager/commit/3af0482dec9361a726ebf1027dedd8769f34d146)), closes [#EK-2515](https://github.com/ovh/manager/issues/EK-2515)
+
+
+### Features
+
+* **okms:** add certifications on regions ([39f071c](https://github.com/ovh/manager/commit/39f071c144f03ff687323b4b6c92bb5b4fcc827e)), closes [#EK-2540](https://github.com/ovh/manager/issues/EK-2540)
+* **okms:** add create secret settings fields ([d29f014](https://github.com/ovh/manager/commit/d29f014b2573fc02c3267cff5f4cfdbadc2eb848)), closes [#MANAGER-18323](https://github.com/ovh/manager/issues/MANAGER-18323)
+* **okms:** rename KMS to OKMS domain ([e6b72cd](https://github.com/ovh/manager/commit/e6b72cd80ef55547596344f37c592a5f6d801c5c)), closes [#EK-2537](https://github.com/ovh/manager/issues/EK-2537)
+
+
+
+
+
 ## [0.43.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.43.6...@ovh-ux/manager-okms-app@0.43.7) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-okms-app
