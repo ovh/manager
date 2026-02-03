@@ -12,6 +12,10 @@
     "pnpm": "packages/manager/modules/backup-agent"
   },
   {
+    "turbo": "--filter @ovh-ux/logs-to-customer",
+    "pnpm": "packages/manager/modules/logs-to-customer"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-core-utils",
     "pnpm": "packages/manager/core/utils"
   },
