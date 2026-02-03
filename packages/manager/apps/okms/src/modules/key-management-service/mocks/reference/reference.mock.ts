@@ -1,8 +1,6 @@
+import { OkmsKeyTypes } from '@key-management-service/types/okmsServiceKey.type';
 import {
-  OkmsKeyTypes,
-  OkmsServiceKeyOperations,
-} from '@key-management-service/types/okmsServiceKey.type';
-import OkmsServiceKeyReference, {
+  OkmsServiceKeyReference,
   OkmsServiceKeyReferenceSize,
 } from '@key-management-service/types/okmsServiceKeyReference.type';
 
@@ -17,11 +15,11 @@ export const referenceServiceKeyMock: OkmsServiceKeyReference[] = [
     default: true,
     operations: [
       {
-        value: [OkmsServiceKeyOperations.encrypt, OkmsServiceKeyOperations.decrypt],
+        value: ['encrypt', 'decrypt'],
         default: true,
       },
       {
-        value: [OkmsServiceKeyOperations.wrapKey, OkmsServiceKeyOperations.unwrapKey],
+        value: ['wrapKey', 'unwrapKey'],
         default: false,
       },
     ],
@@ -33,7 +31,7 @@ export const referenceServiceKeyMock: OkmsServiceKeyReference[] = [
     default: false,
     operations: [
       {
-        value: [OkmsServiceKeyOperations.sign, OkmsServiceKeyOperations.verify],
+        value: ['sign', 'verify'],
         default: true,
       },
     ],

@@ -51,10 +51,7 @@ export const RegionSelector = () => {
             {geographyGroups.map((geographyGroup, index) => (
               <Fragment key={geographyGroup.continentCode}>
                 <div className="flex flex-col gap-4">
-                  <Text
-                    preset="caption"
-                    className="[&::part(text)]:text-[var(--ods-color-heading)]"
-                  >
+                  <Text preset="caption" className="text-[var(--ods-color-heading)]">
                     {translateGeographyName(geographyGroup.continentCode)}
                   </Text>
                   {geographyGroup.regions.map((link) => (

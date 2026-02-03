@@ -2,7 +2,6 @@ import { PropsWithChildren } from 'react';
 
 import clsx from 'clsx';
 
-import { ODS_CARD_COLOR } from '@ovhcloud/ods-components';
 import { Card, Text } from '@ovhcloud/ods-react';
 
 type IdentitiesBaseTileProps = PropsWithChildren<{
@@ -26,7 +25,7 @@ export const IdentitiesBaseTile = ({
       !isSelected && 'hover:border-[--ods-color-form-element-border-hover-default]',
       isSelected && 'border-[--ods-color-primary-500] bg-[--ods-color-primary-050]',
     )}
-    color={isSelected ? ODS_CARD_COLOR.primary : ODS_CARD_COLOR.neutral}
+    color={isSelected ? 'primary' : 'neutral'}
     onClick={onToggle}
     data-testid={testId}
   >

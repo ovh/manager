@@ -1,5 +1,5 @@
 import { OkmsServiceKeyOperations } from '@key-management-service/types/okmsServiceKey.type';
-import { describe, expect, it, test, vi } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 
 import { useServiceKeyOperationsTranslations } from './useServiceKeyOperationsTranslations';
 
@@ -18,27 +18,27 @@ describe('get service key operations translation', () => {
     translationKey: string;
   }[] = [
     {
-      operation: OkmsServiceKeyOperations.sign,
+      operation: 'sign',
       translationKey: 'key_management_service_service-keys_dashboard_field_operations_sign',
     },
     {
-      operation: OkmsServiceKeyOperations.verify,
+      operation: 'verify',
       translationKey: 'key_management_service_service-keys_dashboard_field_operations_verify',
     },
     {
-      operation: OkmsServiceKeyOperations.encrypt,
+      operation: 'encrypt',
       translationKey: 'key_management_service_service-keys_dashboard_field_operations_encrypt',
     },
     {
-      operation: OkmsServiceKeyOperations.decrypt,
+      operation: 'decrypt',
       translationKey: 'key_management_service_service-keys_dashboard_field_operations_decrypt',
     },
     {
-      operation: OkmsServiceKeyOperations.wrapKey,
+      operation: 'wrapKey',
       translationKey: 'key_management_service_service-keys_dashboard_field_operations_wrapKey',
     },
     {
-      operation: OkmsServiceKeyOperations.unwrapKey,
+      operation: 'unwrapKey',
       translationKey: 'key_management_service_service-keys_dashboard_field_operations_unwrapKey',
     },
   ];
@@ -49,21 +49,10 @@ describe('get service key operations translation', () => {
       // given operation and translationKey
 
       // when
-      const result = useServiceKeyOperationsTranslations([operation]);
+      const result = useServiceKeyOperationsTranslations().operationNamesMap[operation];
 
       // then
-      expect(result).toStrictEqual([translationKey]);
+      expect(result).toBe(translationKey);
     },
   );
-
-  it('should return operation as string if unexpected value', () => {
-    // given
-    const operations = ['aaa', 'bbb', 'ccc', 'ddd'];
-
-    // when
-    const result = useServiceKeyOperationsTranslations(operations);
-
-    // then
-    expect(result).toStrictEqual(operations);
-  });
 });
