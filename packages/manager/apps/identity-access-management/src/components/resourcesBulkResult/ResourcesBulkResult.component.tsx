@@ -75,11 +75,10 @@ export const ResourcesBulkResult = ({
                   resource: resource.displayName,
                 })}
               </h5>
-              <code>
-                {_error.status === 403
-                  ? t(`${NAMESPACES.IAM}:iam_actions_message`)
-                  : _error.response?.data?.message || _error.message}
-              </code>
+              {_error.status === 403 && (
+                <code>{t(`${NAMESPACES.IAM}:iam_actions_message`)}</code>
+              )}
+              <code>{_error.response?.data?.message || _error.message}</code>
             </div>
           </OdsMessage>
         ))}
