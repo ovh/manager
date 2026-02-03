@@ -19,7 +19,6 @@ import { Modal } from '@ovh-ux/manager-react-components';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { DownloadCode } from '@/components/DownloadCode/DownloadCode.component';
 import { useBackupVSPCTenantAgentDownloadLink } from '@/data/hooks/agents/getDownloadLinkAgent';
-import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { OS_LABELS } from '@/module.constants';
 import { OS } from '@/types/Os.type';
 
@@ -30,9 +29,7 @@ export default function DownloadAgentPage() {
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
 
-  const { tenantId } = useRequiredParams('tenantId');
   const { data: downloadLink, isLoading } = useBackupVSPCTenantAgentDownloadLink({
-    tenantId,
     os: osSelected,
   });
 

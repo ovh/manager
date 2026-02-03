@@ -20,7 +20,7 @@ const FirstOrderConfirmationModalPage = React.lazy(
 
 export default (
   <>
-    <Route path="/" element={<Navigate to={BackupAgentUrls.listingTenants} replace />} />
+    <Route path="/" element={<Navigate to={BackupAgentUrls.dashboardTenant} replace />} />
     <Route
       id="root"
       path={urls.root}

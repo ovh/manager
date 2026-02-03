@@ -3,7 +3,6 @@ import { screen, waitFor } from '@testing-library/react';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 import { mockAgents } from '@/mocks/agents/agents';
-import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 
@@ -11,7 +10,7 @@ describe('[INTEGRATION] - Delete Agent page', () => {
   it('display delete agent modal', async () => {
     const agent = mockAgents[0]!;
     const { container } = await renderTest({
-      initialRoute: `/services/dashboard/${TENANTS_MOCKS[0]!.id}/agents/delete/${agent.id}`,
+      initialRoute: `/agents/delete/${agent.id}`,
     });
 
     await waitFor(

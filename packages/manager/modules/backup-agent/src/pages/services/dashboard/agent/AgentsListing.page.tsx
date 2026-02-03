@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { OdsButton, OdsLink, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, Links, ManagerButton } from '@ovh-ux/manager-react-components';
@@ -14,15 +14,13 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ReloadButton } from '@/components/ReloadButton/ReloadButton.component';
 import { BACKUP_AGENTS_LIST_QUERY_KEY, useBackupAgentList } from '@/data/hooks/agents/getAgents';
 import { useGuideUtils } from '@/hooks/useGuideUtils';
-import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { BACKUP_AGENT_IAM_RULES } from '@/module.constants';
 import { AgentStatusLegend } from '@/pages/services/dashboard/agent/_components/AgentStatusLegend';
-import { urlParams, urls } from '@/routes/routes.constants';
+import { urls } from '@/routes/routes.constants';
 
 import { useAgentsListingColumnsHooks } from './_hooks/useAgentsListingColumns.hooks';
 
 export default function AgentsListingPage() {
-  const { tenantId } = useRequiredParams('tenantId');
   const { t } = useTranslation([
     BACKUP_AGENT_NAMESPACES.SERVICE_LISTING,
     BACKUP_AGENT_NAMESPACES.AGENT,
@@ -30,15 +28,15 @@ export default function AgentsListingPage() {
   ]);
   const navigate = useNavigate();
   const columns = useAgentsListingColumnsHooks();
-  const { flattenData, isPending } = useBackupAgentList({ tenantId });
+  const { flattenData, isPending } = useBackupAgentList();
   const guide = useGuideUtils();
 
   const handleDownloadButton = () => {
-    navigate(urls.downloadAgentBackup.replace(urlParams.tenantId, tenantId));
+    navigate(urls.downloadAgentBackup);
   };
 
   const handleAddConfiguration = () => {
-    navigate(urls.addAgentConfiguration.replace(urlParams.tenantId, tenantId));
+    navigate(urls.addAgentConfiguration);
   };
 
   return (
@@ -84,13 +82,17 @@ export default function AgentsListingPage() {
                   />
                 </div>
                 <div className="flex gap-4">
-                  <OdsButton id="details_of_status" variant="ghost" label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:details_of_status`)} />
+                  <OdsButton
+                    id="details_of_status"
+                    variant="ghost"
+                    label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:details_of_status`)}
+                  />
                   <OdsPopover triggerId="details_of_status" withArrow>
                     <AgentStatusLegend />
                   </OdsPopover>
                   <ReloadButton
                     isLoading={isPending}
-                    queryKeys={[BACKUP_AGENTS_LIST_QUERY_KEY(tenantId)]}
+                    queryKeys={[BACKUP_AGENTS_LIST_QUERY_KEY()]}
                   />
                 </div>
               </section>

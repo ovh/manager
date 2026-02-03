@@ -11,24 +11,17 @@ import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-re
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { BACKUP_AGENT_IAM_RULES } from '@/module.constants';
-import { urlParams, urls } from '@/routes/routes.constants';
+import { subRoutes } from '@/routes/routes.constants';
 
 export type AgentActionsCellProps = {
-  tenantId: string;
   agentId: string;
 };
-export const AgentActionsCell = ({ tenantId, agentId }: AgentActionsCellProps) => {
+export const AgentActionsCell = ({ agentId }: AgentActionsCellProps) => {
   const id = useId();
   const { t } = useTranslation([NAMESPACES.ACTIONS, BACKUP_AGENT_NAMESPACES.COMMON]);
-  const configurationHref = useHref(
-    urls.editAgentConfiguration.replace(urlParams.tenantId, tenantId).replace(':agentId', agentId),
-  );
+  const configurationHref = useHref(`${subRoutes.configure}/${agentId}`);
 
-  const deleteHref = useHref(
-    urls.dashboardTenantAgentDelete
-      .replace(urlParams.tenantId, tenantId)
-      .replace(':agentId', agentId),
-  );
+  const deleteHref = useHref(`${subRoutes.delete}/${agentId}`);
 
   const actions: ActionMenuItem[] = [
     {

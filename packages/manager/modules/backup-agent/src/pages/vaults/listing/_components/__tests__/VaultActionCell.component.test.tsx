@@ -17,15 +17,15 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 });
 
 vi.mock('react-router-dom', () => ({
-  useHref: useHrefMock
+  useHref: useHrefMock,
 }));
 
 describe('VaultActionCell', () => {
-  it('should render' , () => {
+  it('should render', () => {
     const vault = mockVaults[0]!;
     render(<VaultActionCell id={vault.id} />);
 
     const button = screen.getByTestId('arrow-link-cell');
-    expect(button).toHaveAttribute('href', '/vaults/dashboard/a1b2c3d4-1234-4000-82dc-5366d6786f80');
-  })
+    expect(button).toHaveAttribute('href', '/vaults/a1b2c3d4-1234-4000-82dc-5366d6786f80');
+  });
 });

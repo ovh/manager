@@ -8,22 +8,17 @@ import { WithRegion } from '@/types/Utils.type';
 
 type UseTenantBackupStatsProps = {
   tenantDetails?: Resource<WithRegion<Tenant>>;
-  vspcTenantIds?: string[];
 };
 
-export function useTenantBackupStats({
-  tenantDetails,
-  vspcTenantIds = [],
-}: UseTenantBackupStatsProps) {
+export function useTenantBackupStats({ tenantDetails }: UseTenantBackupStatsProps) {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD]);
-
   const connectedVaultCount = tenantDetails?.currentState.vaults.length ?? 0;
 
   const connectedVaultsText = t('number_of_linked_vaults', {
     connectedVaultCount,
   });
 
-  const { installedBackupAgents, isPending } = useInstalledBackupAgents({ vspcTenantIds });
+  const { installedBackupAgents, isPending } = useInstalledBackupAgents();
 
   const installedAgentsText = t('number_of_linked_server', {
     installedAgentsCount: installedBackupAgents,

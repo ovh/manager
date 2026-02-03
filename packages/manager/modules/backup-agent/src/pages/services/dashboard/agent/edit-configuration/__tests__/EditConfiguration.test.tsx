@@ -75,6 +75,7 @@ const {
   useBackupTenantPoliciesMock,
   useBackupVSPCTenantAgentDetailsMock,
   useEditConfigurationVSPCTenantAgentMock,
+  useGetVspcTenantIdMock,
 } = vi.hoisted(() => ({
   useBackupTenantPoliciesMock: vi
     .fn()
@@ -83,6 +84,7 @@ const {
     .fn()
     .mockReturnValue({ isPending: false, mutate: vi.fn() }),
   useBackupVSPCTenantAgentDetailsMock: vi.fn(),
+  useGetVspcTenantIdMock: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/agents/getAgentDetails', () => ({
@@ -123,6 +125,8 @@ describe('EditConfigurationComponent', () => {
       data: mockAgents[0]!,
       refetch: vi.fn().mockResolvedValue({ data: mockAgents[0]! }),
     });
+
+    useGetVspcTenantIdMock.mockReturnValue(vi.fn().mockReturnValue(TENANTS_MOCKS[0]!.id));
   });
 
   it('renders edit configuration component and see default value', async () => {
@@ -158,7 +162,6 @@ describe('EditConfigurationComponent', () => {
       displayName: mockAgents[0]!.currentState.name,
       ips: mockAgents[0]!.currentState.ips,
       policy: mockAgents[0]!.currentState.policy,
-      vspcTenantId: TENANTS_MOCKS[0]!.id,
       backupAgentId: mockAgents[0]!.id,
     });
   });
