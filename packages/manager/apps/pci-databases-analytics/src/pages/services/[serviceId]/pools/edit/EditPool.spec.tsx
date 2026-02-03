@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import EditPool from './EditPool.modal'; // Adjust the path as needed
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
@@ -28,26 +29,22 @@ vi.mock('@/data/api/database/database.api', () => ({
 vi.mock('@/data/api/database/user.api', () => ({
   getUsers: vi.fn(() => [mockedUser]),
 }));
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useParams: () => ({
-      projectId: 'projectId',
-      category: database.engine.CategoryEnum.all,
-      poolId: mockedConnectionPool.id,
-    }),
-  };
-});
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+  })),
+}));
 
 describe('Edit Pool modal', () => {
   beforeEach(() => {
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-      })),
-    }));
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
+      category: database.engine.CategoryEnum.all,
+      poolId: mockedConnectionPool.id,
+    });
   });
 
   afterEach(() => {

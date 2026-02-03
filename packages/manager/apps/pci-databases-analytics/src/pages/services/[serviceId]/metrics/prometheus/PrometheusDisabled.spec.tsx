@@ -29,12 +29,6 @@ const useServiceDataMock = {
   serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
 };
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
 describe('PrometheusDisabled', () => {
   afterEach(() => {
     vi.clearAllMocks();

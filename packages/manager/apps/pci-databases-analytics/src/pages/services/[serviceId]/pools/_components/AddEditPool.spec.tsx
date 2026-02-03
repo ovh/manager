@@ -17,37 +17,15 @@ import { mockedDatabase } from '@/__tests__/helpers/mocks/databases';
 import { mockedUser } from '@/__tests__/helpers/mocks/user';
 import { GenericUser } from '@/data/api/database/user.api';
 
-const ResizeObserverMock = vi.fn(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
+vi.mock('@/data/api/database/connectionPool.api', () => ({
+  getConnectionPools: vi.fn(() => [mockedConnectionPool]),
+  addConnectionPool: vi.fn((pool) => pool),
+  editConnectionPool: vi.fn((pool) => pool),
+  deleteConnectionPool: vi.fn(),
 }));
 describe('AddEditPool', () => {
   beforeEach(() => {
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-
-    vi.mock('@/data/api/database/connectionPool.api', () => ({
-      getConnectionPools: vi.fn(() => [mockedConnectionPool]),
-      addConnectionPool: vi.fn((pool) => pool),
-      editConnectionPool: vi.fn((pool) => pool),
-      deleteConnectionPool: vi.fn(),
-    }));
-
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
+    vi.restoreAllMocks();
   });
 
   afterEach(() => {

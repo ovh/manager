@@ -15,6 +15,8 @@ import * as patternApi from '@/data/api/database/pattern.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { mockedPattern } from '@/__tests__/helpers/mocks/patterns';
 import AddPattern from './AddPattern.modal';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
+import { ReactNode } from 'react';
 
 // Override mock to add capabilities
 const mockedService = {
@@ -28,53 +30,28 @@ const mockedService = {
   },
 };
 
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: database.engine.CategoryEnum.analysis,
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
+vi.mock('@/data/api/database/pattern.api', () => ({
+  getPatterns: vi.fn(() => [mockedPattern]),
+  addPattern: vi.fn((pattern) => pattern),
+  deletePattern: vi.fn(),
+}));
+
+
 describe('Add Pattern modal', () => {
   beforeEach(async () => {
-    vi.mock('react-i18next', async (importOriginal) => {
-      const mod = await importOriginal<typeof import('react-i18next')>();
-      return {
-        ...mod,
-        useTranslation: () => ({
-          t: (key: string) => key,
-        }),
-      };
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
     });
-
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: database.engine.CategoryEnum.analysis,
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
-    });
-
-    vi.mock('@/data/api/database/pattern.api', () => ({
-      getPatterns: vi.fn(() => [mockedPattern]),
-      addPattern: vi.fn((pattern) => pattern),
-      deletePattern: vi.fn(),
-    }));
   });
   afterEach(() => {
     vi.clearAllMocks();

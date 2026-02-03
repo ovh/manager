@@ -1,7 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
-  act,
-  fireEvent,
   render,
   screen,
   waitFor,
@@ -28,70 +26,45 @@ import {
   mockedMaintenanceTer,
 } from '@/__tests__/helpers/mocks/maintenances';
 
+vi.mock('@/data/api/database/metric.api', () => ({
+  getMetrics: vi.fn(() => [
+    mockMetric.name,
+    mockMetricCpu.name,
+    mockMetricDisk.name,
+    mockMetricMem.name,
+  ]),
+}));
+
+vi.mock('@/data/api/database/maintenance.api', () => ({
+  getMaintenances: vi.fn(() => [mockedMaintenance]),
+}));
+
+vi.mock('@/data/api/network/network.api', () => ({
+  networkApi: {
+    getVrack: vi.fn(() => [mockedVrack]),
+  },
+}));
+
+vi.mock('/chart.js', () => ({
+  Chart: vi.fn(() => null),
+}));
+
+vi.mock('react-chartjs-2', () => ({
+  Line: vi.fn(() => null),
+}));
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedServiceOrig,
+    category: 'operational',
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
 describe('Dashboard page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@/data/api/database/metric.api', () => ({
-      getMetrics: vi.fn(() => [
-        mockMetric.name,
-        mockMetricCpu.name,
-        mockMetricDisk.name,
-        mockMetricMem.name,
-      ]),
-    }));
-
-    vi.mock('@/data/api/database/maintenance.api', () => ({
-      getMaintenances: vi.fn(() => [mockedMaintenance]),
-    }));
-
-    vi.mock('@/data/api/network/network.api', () => ({
-      networkApi: {
-        getVrack: vi.fn(() => [mockedVrack]),
-      },
-    }));
-
-    vi.mock('/chart.js', () => ({
-      Chart: vi.fn(() => null),
-    }));
-
-    vi.mock('react-chartjs-2', () => ({
-      Line: vi.fn(() => null),
-    }));
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedServiceOrig,
-        category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-        useNavigation: () => ({
-          getURL: vi.fn(
-            (app: string, path: string) => `#mockedurl-${app}${path}`,
-          ),
-        }),
-      };
-    });
   });
 
   afterEach(() => {

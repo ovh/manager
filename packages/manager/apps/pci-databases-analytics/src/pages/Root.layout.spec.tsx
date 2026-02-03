@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-
 import Layout, { breadcrumb as Breadcrumb, Loader } from '@/pages/Root.layout';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as database from '@/types/cloud/project/database';
@@ -14,19 +13,19 @@ const breadCrumbParam = {
   request: new Request('https://my-api.com/endpoint'),
 };
 
+vi.mock('@/data/api/project/project.api', () => {
+  return {
+    getProject: vi.fn(() => ({
+      project_id: '123456',
+      projectName: 'projectName',
+      description: 'description',
+    })),
+  };
+});
+
 describe('Services Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    vi.mock('@/data/api/project/project.api', () => {
-      return {
-        getProject: vi.fn(() => ({
-          project_id: '123456',
-          projectName: 'projectName',
-          description: 'description',
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

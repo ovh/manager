@@ -2,12 +2,6 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import PrometheusDisableConfirmDialog from './PrometheusDisableConfirmDialog.component';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
 describe('PrometheusDisableConfirmDialog', () => {
   afterEach(() => {
     vi.clearAllMocks();

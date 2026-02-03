@@ -19,63 +19,29 @@ import {
   mockedDatabaseUserWithPassword,
 } from '@/__tests__/helpers/mocks/databaseUser';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
+
+vi.mock('@/data/api/database/prometheus.api', () => ({
+  getPrometheus: vi.fn(() => {}),
+  resetPrometheusUserPassword: vi.fn(() => mockedDatabaseUserWithPassword),
+}));
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: 'operational',
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
 
 describe('Reset prometheus user password modal', () => {
   beforeEach(async () => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-          category: database.engine.CategoryEnum.all,
-          userId: mockedDatabaseUser.id,
-        }),
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@/data/api/database/prometheus.api', () => ({
-      getPrometheus: vi.fn(() => {}),
-      resetPrometheusUserPassword: vi.fn(() => mockedDatabaseUserWithPassword),
-    }));
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
+      category: database.engine.CategoryEnum.all,
+      userId: mockedDatabaseUser.id,
     });
   });
   afterEach(() => {

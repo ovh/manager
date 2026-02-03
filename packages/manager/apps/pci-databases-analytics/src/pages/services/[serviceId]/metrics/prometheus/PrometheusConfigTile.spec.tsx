@@ -33,22 +33,6 @@ vi.mock('@/data/api/database/prometheus.api', () => ({
 vi.mock('@/data/api/database/service.api', () => ({
   editService: vi.fn((s) => s),
 }));
-vi.mock('@datatr-ux/uxlib', async () => {
-  const mod = await vi.importActual('@datatr-ux/uxlib');
-  const toastMock = vi.fn();
-  return {
-    ...mod,
-    useToast: vi.fn(() => ({
-      toast: toastMock,
-    })),
-  };
-});
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
 
 describe('PrometheusConfigTile', () => {
   afterEach(() => {
