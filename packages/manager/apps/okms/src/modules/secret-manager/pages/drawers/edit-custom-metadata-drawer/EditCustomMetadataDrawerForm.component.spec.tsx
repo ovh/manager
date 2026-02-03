@@ -1,15 +1,13 @@
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { KEY_VALUES_EDITOR_TEST_IDS } from '@secret-manager/components/form/key-values-editor/keyValuesEditor.constants';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { Drawer } from '@ovh-ux/muk';
-
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
-import { createErrorResponseMock, renderWithI18n } from '@/common/utils/tests/testUtils';
+import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import { EditCustomMetadataDrawerForm } from './EditCustomMetadataDrawerForm.component';
 
@@ -36,13 +34,6 @@ vi.mock('@secret-manager/data/hooks/useUpdateSecret', () => ({
 }));
 
 const renderComponent = async () => {
-  const user = userEvent.setup();
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: { retry: false },
-    },
-  });
-
   const defaultProps = {
     secret: mockSecret,
     okmsId: mockOkmsId,
@@ -50,16 +41,11 @@ const renderComponent = async () => {
     onDismiss: mockOnDismiss,
   };
 
-  const renderResult = await renderWithI18n(
-    <QueryClientProvider client={queryClient}>
-      <Drawer.Root isOpen onDismiss={vi.fn()}>
-        <EditCustomMetadataDrawerForm {...defaultProps} />
-      </Drawer.Root>
-    </QueryClientProvider>,
-  );
+  const wrapper = await testWrapperBuilder().withI18next().withQueryClient().build();
+  const renderResult = render(<EditCustomMetadataDrawerForm {...defaultProps} />, { wrapper });
 
   return {
-    user,
+    user: userEvent.setup(),
     ...renderResult,
   };
 };

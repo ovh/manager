@@ -45,13 +45,16 @@ export const EditCustomMetadataDrawerForm = ({
   type FormSchema = z.infer<typeof formSchema>;
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    mode: 'onChange', // Validation on all changes to show errors immediately
     defaultValues: {
       data: safeJsonStringify(secret.metadata.customMetadata),
     },
   });
 
-  const { control, handleSubmit } = form;
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid },
+  } = form;
 
   const handleSubmitForm = async ({ data }: FormSchema) => {
     trackClick({
@@ -111,6 +114,7 @@ export const EditCustomMetadataDrawerForm = ({
           label: t(`${NAMESPACES.ACTIONS}:validate`),
           isLoading: isUpdating,
           onClick: handleSubmit(handleSubmitForm),
+          isDisabled: !isValid,
         }}
         secondaryButton={{
           label: t(`${NAMESPACES.ACTIONS}:close`),
