@@ -60,7 +60,10 @@ describe('ShareDatagrid', () => {
         status: 'available',
         statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
         actions: new Map([
-          ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
+          [
+            'actions',
+            [{ labelTranslationKey: 'list:actions.manage', link: { path: './GRA9/share-1' } }],
+          ],
         ]),
       },
     ];

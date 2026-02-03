@@ -1,13 +1,14 @@
-import type { TShareStatusDisplay } from './shareStatusMapper';
+import type { TShareStatusDisplay } from './shareDetails.data';
 
 export type TShareListRowActionLink = {
   path: string;
   isExternal?: boolean;
   isTargetBlank?: boolean;
+  state?: { region: string };
 };
 
 export type TShareListRowAction = {
-  label: string;
+  labelTranslationKey: string;
   link: TShareListRowActionLink;
   isCritical?: boolean;
 };

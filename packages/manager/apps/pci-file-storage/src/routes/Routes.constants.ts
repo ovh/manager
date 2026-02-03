@@ -6,6 +6,10 @@ export const subRoutes = {
   onboarding: 'onboarding' as const,
   create: 'new' as const,
   list: '' as const,
+  shareDetail: ':region/:shareId' as const,
+  shareSnapshots: 'snapshots' as const,
+  shareAcl: 'acl' as const,
+  shareDelete: 'delete' as const,
 } as const;
 
 export const urls = {

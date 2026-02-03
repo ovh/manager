@@ -1,0 +1,24 @@
+{
+  "cards": {
+    "informations": "Más información",
+    "properties": "Propiedades"
+  },
+  "fields": {
+    "id": "ID",
+    "share_name": "Nombre del recurso compartido",
+    "status": "Estado",
+    "location": "Localización",
+    "creation_date": "Fecha de creación",
+    "protocol": "Protocolo",
+    "allocated_size": "Tamaño asignado del recurso compartido",
+    "mount_path": "Ruta de montaje"
+  },
+  "actions": {
+    "upgrade_share": "Actualizar el recurso compartido",
+    "delete": "Eliminar"
+  },
+  "clipboard": {
+    "copy": "Copiar al portapapeles",
+    "copy_success": "¡Copiado!"
+  }
+}

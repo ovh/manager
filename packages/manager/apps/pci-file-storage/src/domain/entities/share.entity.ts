@@ -55,4 +55,5 @@ export type TShare = {
   description: string;
   isPublic: boolean;
   enabledActions: readonly TShareEnabledAction[];
+  mountPaths: string[];
 };

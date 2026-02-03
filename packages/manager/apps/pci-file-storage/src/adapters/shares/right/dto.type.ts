@@ -3,6 +3,11 @@ export type TShareCapabilityDto = {
   enabled: boolean;
 };
 
+export type TShareExportLocationDto = {
+  id: string;
+  path: string;
+};
+
 export type TShareDto = {
   createdAt: string;
   description: string;
@@ -15,4 +20,5 @@ export type TShareDto = {
   status: string;
   type: string;
   capabilities: TShareCapabilityDto[];
+  exportLocations?: TShareExportLocationDto[];
 };
