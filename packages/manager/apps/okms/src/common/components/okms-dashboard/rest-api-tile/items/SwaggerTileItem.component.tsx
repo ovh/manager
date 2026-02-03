@@ -19,7 +19,6 @@ export const SwaggerTileItem = ({ okms }: SwaggerTileItemProps) => {
       <Tile.Item.Term label={SWAGGER_UI_LABEL} />
       <Tile.Item.Description divider={false}>
         <ExternalLink
-          className="block [&::part(link)]:flex"
           href={okms.swaggerEndpoint}
           onClick={() =>
             trackClick({

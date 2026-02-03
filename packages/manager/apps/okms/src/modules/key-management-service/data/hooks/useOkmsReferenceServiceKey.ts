@@ -1,4 +1,4 @@
-import OkmsServiceKeyReference from '@key-management-service/types/okmsServiceKeyReference.type';
+import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
 import { useQuery } from '@tanstack/react-query';
 
 import { ErrorResponse } from '@/common/types/api.type';

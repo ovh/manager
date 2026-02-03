@@ -53,11 +53,11 @@ export const IdentitiesSelectionModal = <T,>({
       <ModalContent
         color="information"
         dismissible
-        className="flex max-h-[90vh] max-w-[800px] flex-col"
+        className="flex h-[90vh] max-h-[90vh] max-w-[800px] flex-col"
       >
         <ModalBody className="flex min-h-0 flex-col space-y-4">
           <Text preset="heading-3">{title}</Text>
-          <div className="mt-4 min-h-0 flex-1 overflow-y-auto">
+          <div className="mt-4 min-h-0 flex-1 overflow-y-auto p-1">
             {isLoading ? (
               <div className="flex justify-center">
                 <Spinner size="sm" />

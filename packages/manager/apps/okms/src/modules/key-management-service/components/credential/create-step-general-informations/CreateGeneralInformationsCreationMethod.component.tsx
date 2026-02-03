@@ -2,8 +2,18 @@ import { CertificateType } from '@key-management-service/types/okmsCredential.ty
 import { CredentialCreationMethodErrorsType } from '@key-management-service/utils/credential/validateCredentialCreationMethod';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsRadio, OdsTextarea } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  RadioValueChangeDetail,
+  Text,
+  Textarea,
+} from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
@@ -42,8 +52,8 @@ export const CreateGeneralInformationsCreationMethod = ({
 
   return (
     <>
-      <OdsFormField>
-        <div slot="label" className="mb-2 space-y-2">
+      <FormField>
+        <FormFieldLabel className="mb-2 space-y-2">
           <Text className="block" preset="heading-5">
             {t('key_management_service_credential_create_general_creation_method_title')}
           </Text>
@@ -52,89 +62,86 @@ export const CreateGeneralInformationsCreationMethod = ({
               'key_management_service_credential_create_general_information_creation_method_subtitle',
             )}
           </Text>
-        </div>
-        <div className="flex items-center gap-3">
-          <OdsRadio
-            name="method"
-            inputId="radio-method-no-key"
+        </FormFieldLabel>
+
+        {/* Radio group to select the creation method */}
+        <RadioGroup
+          value={isCustomCsr ? 'key' : 'no-key'}
+          onValueChange={(detail: RadioValueChangeDetail) => {
+            const isKey = detail.value === 'key';
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['select', 'type', isKey ? 'custom' : 'ovh-generated'],
+            });
+            setIsCustomCsr(isKey);
+          }}
+          className="flex flex-col gap-3"
+        >
+          <Radio
+            value="no-key"
             data-testid="radio-method-no-key"
-            isChecked={!isCustomCsr}
-            onClick={() => {
-              trackClick({
-                location: PageLocation.funnel,
-                buttonType: ButtonType.button,
-                actionType: 'action',
-                actions: ['select', 'type', 'ovh-generated'],
-              });
-              setIsCustomCsr(false);
-            }}
-          />
-          <label htmlFor="radio-method-no-key">
-            <Text className="block" preset="paragraph">
-              {t(
-                'key_management_service_credential_create_general_information_creation_method_no_key',
-              )}
-            </Text>
-            <Text preset="caption">
-              {t(
-                `key_management_service_credential_create_general_information_creation_method_no_key_desc`,
-              )}
-            </Text>
-          </label>
-        </div>
-        <div className="flex items-center gap-3">
-          <OdsRadio
-            name="method"
-            inputId="radio-method-key"
-            data-testid="radio-method-key"
-            isChecked={isCustomCsr}
-            onClick={() => {
-              trackClick({
-                location: PageLocation.funnel,
-                buttonType: ButtonType.button,
-                actionType: 'action',
-                actions: ['select', 'type', 'custom'],
-              });
-              setIsCustomCsr(true);
-            }}
-          />
-          <label htmlFor="radio-method-key">
-            <Text className="block" preset="paragraph">
-              {t(
-                'key_management_service_credential_create_general_information_creation_method_key',
-              )}
-            </Text>
-            <Text preset="caption">
-              {t(
-                `key_management_service_credential_create_general_information_creation_method_key_desc`,
-              )}
-            </Text>
-          </label>
-        </div>
-      </OdsFormField>
+            className="flex items-center gap-3"
+          >
+            <RadioControl />
+            <RadioLabel>
+              <Text className="block" preset="paragraph">
+                {t(
+                  'key_management_service_credential_create_general_information_creation_method_no_key',
+                )}
+              </Text>
+              <Text preset="caption">
+                {t(
+                  `key_management_service_credential_create_general_information_creation_method_no_key_desc`,
+                )}
+              </Text>
+            </RadioLabel>
+          </Radio>
+          <Radio value="key" data-testid="radio-method-key" className="flex items-center gap-3">
+            <RadioControl />
+            <RadioLabel>
+              <Text className="block" preset="paragraph">
+                {t(
+                  'key_management_service_credential_create_general_information_creation_method_key',
+                )}
+              </Text>
+              <Text preset="caption">
+                {t(
+                  `key_management_service_credential_create_general_information_creation_method_key_desc`,
+                )}
+              </Text>
+            </RadioLabel>
+          </Radio>
+        </RadioGroup>
+      </FormField>
       {isCustomCsr ? (
-        <OdsFormField error={getCreationMethodErrorMessage(credentialCreationMethodError)}>
-          <div slot="label" className="mb-2 space-y-2">
+        <FormField invalid={!!credentialCreationMethodError}>
+          <FormFieldLabel className="mb-2 space-y-2">
             <Text className="block" preset="heading-5">
               {t('key_management_service_credential_create_general_information_csr_title')}
             </Text>
             <Text preset="paragraph">
               {t('key_management_service_credential_create_general_information_csr_subtitle')}
             </Text>
-          </div>
-          <OdsTextarea
+          </FormFieldLabel>
+          <Textarea
             name="credentialCreationMethod"
             data-testid="textarea-csr"
-            value={csr}
-            hasError={!!credentialCreationMethodError}
+            value={csr || ''}
             placeholder={CSR_PLACEHOLDER}
             rows={10}
-            onOdsChange={(e) => setCsr(e.detail.value)}
+            onChange={(e) => setCsr(e.target.value)}
           />
-        </OdsFormField>
+          {credentialCreationMethodError && (
+            <FormFieldError>
+              {getCreationMethodErrorMessage(credentialCreationMethodError)}
+            </FormFieldError>
+          )}
+        </FormField>
       ) : (
-        <OdsFormField className="flex flex-col gap-4">
-          <div slot="label" className="flex flex-col gap-2">
+        <FormField className="flex flex-col gap-4">
+          <FormFieldLabel className="flex flex-col gap-2">
             <Text className="block" preset="heading-5">
               {t(
                 'key_management_service_credential_create_general_information_certificate_type_title',
@@ -145,48 +152,46 @@ export const CreateGeneralInformationsCreationMethod = ({
                 'key_management_service_credential_crate_general_information_certificate_type_subtitle',
               )}
             </Text>
-          </div>
-          <div className="flex items-center gap-2">
-            <OdsRadio
-              inputId="certificateTypeECDSA"
-              id="certificateTypeECDSA"
+          </FormFieldLabel>
+
+          {/* Radio group to select the certificate type */}
+          <RadioGroup
+            value={certificateType || undefined}
+            onValueChange={(detail: RadioValueChangeDetail) => {
+              setCertificateType(detail.value as CertificateType);
+            }}
+            className="flex flex-col gap-2"
+          >
+            <Radio
+              value="ECDSA"
               data-testid="radio-certificate-type-ec"
-              name="certificateType"
-              value={certificateType}
-              isChecked={certificateType === 'ECDSA'}
-              onClick={() => {
-                setCertificateType('ECDSA');
-              }}
-            ></OdsRadio>
-            <label htmlFor="certificateTypeECDSA">
-              <Text preset="span">
-                {t(
-                  'key_management_service_credential_crate_general_information_certificate_type_ec_radio_label',
-                )}
-              </Text>
-            </label>
-          </div>
-          <div className="flex items-center gap-2">
-            <OdsRadio
-              inputId="certificateTypeRSA"
-              id="certificateTypeRSA"
+              className="flex items-center gap-2"
+            >
+              <RadioControl />
+              <RadioLabel>
+                <Text preset="span">
+                  {t(
+                    'key_management_service_credential_crate_general_information_certificate_type_ec_radio_label',
+                  )}
+                </Text>
+              </RadioLabel>
+            </Radio>
+            <Radio
+              value="RSA"
               data-testid="radio-certificate-type-rsa"
-              name="certificateType"
-              value={certificateType}
-              isChecked={certificateType === 'RSA'}
-              onClick={() => {
-                setCertificateType('RSA');
-              }}
-            ></OdsRadio>
-            <label htmlFor="certificateTypeRSA">
-              <Text preset="span">
-                {t(
-                  'key_management_service_credential_crate_general_information_certificate_type_rsa_radio_label',
-                )}
-              </Text>
-            </label>
-          </div>
-        </OdsFormField>
+              className="flex items-center gap-2"
+            >
+              <RadioControl />
+              <RadioLabel>
+                <Text preset="span">
+                  {t(
+                    'key_management_service_credential_crate_general_information_certificate_type_rsa_radio_label',
+                  )}
+                </Text>
+              </RadioLabel>
+            </Radio>
+          </RadioGroup>
+        </FormField>
       )}
     </>
   );
