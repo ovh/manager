@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-backup-agent-iaas-app",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "description": "OVHcloud Backup Agent for IaaS",
   "repository": {
@@ -19,7 +19,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/backup-agent": "^1.12.1",
+    "@ovh-ux/backup-agent": "^1.12.2",
     "@ovh-ux/manager-common-translations": "^0.28.3",
     "@ovh-ux/manager-config": "^8.8.7",
     "@ovh-ux/manager-core-api": "^0.21.2",

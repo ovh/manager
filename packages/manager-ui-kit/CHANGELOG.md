@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.1.1...@ovh-ux/muk@1.1.2) (2026-02-03)
+
+
+### Bug Fixes
+
+* **muk:** fix action menu bugs ([e59a752](https://github.com/ovh/manager/commit/e59a7522eab005427ad15929477f2ed042cadfbf)), closes [#ISSUE-21683](https://github.com/ovh/manager/issues/ISSUE-21683)
+
+
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.1.0...@ovh-ux/muk@1.1.1) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/muk
